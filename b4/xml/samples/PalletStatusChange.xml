@@ -1,0 +1,14 @@
+<message>
+	<hostRef>1e8d719e-4de6-42d6-a7a9-f4731af2f7b0</hostRef>
+	<messageRef>1372</messageRef>
+	<interfaceType>Pallet Status Change</interfaceType>
+	<messageInformation>SSCC=350001612293888675</messageInformation>
+	<interfaceDirection>Input</interfaceDirection>
+	<messageDate>2009-05-06T10:14:51</messageDate>
+	<messageData>
+		<PalletStatusChange>
+			<SSCC>350001612293888675</SSCC>
+			<Status>Blocked</Status>
+		</PalletStatusChange>
+	</messageData>
+</message>

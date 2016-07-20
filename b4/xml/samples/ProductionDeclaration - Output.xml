@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<message>
+	<hostRef>1e8d719e-4de6-42d6-a7a9-f4731af2f7b0</hostRef>
+	<messageRef>6957</messageRef>
+	<interfaceType>Production Declaration</interfaceType>
+	<messageInformation>SSCC=350001612200354774</messageInformation>
+	<interfaceDirection>Output</interfaceDirection>
+	<messageDate>2009-05-17T18:59:59</messageDate>
+	<messageData>
+		<productionDeclaration>
+			<SSCC>350001612200354774</SSCC>
+			<processOrder>00000013</processOrder>
+			<recipe></recipe>
+			<material>12005698</material>
+			<ean>8002205213782</ean>
+			<variant>00</variant>
+			<status>Unrestricted</status>
+			<batch>0929137</batch>
+			<batchStatus>Restricted</batchStatus>
+			<expiryDate>2010-11-30T18:59:58</expiryDate>
+			<location>AINTREE</location>
+			<gln/>
+			<plant>0929</plant>
+			<warehouse>712</warehouse>
+			<storageLocation/>
+			<storageBin/>
+			<storageType/>
+			<productionQuantity>80.000</productionQuantity>
+			<productionUOM>CS</productionUOM>
+			<confirmed>Y</confirmed>
+			<productionDate>2009-05-17T18:59:58</productionDate>
+		</productionDeclaration>
+	</messageData>
+</message>

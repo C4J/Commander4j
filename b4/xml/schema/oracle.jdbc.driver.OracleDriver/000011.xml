@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+
+<statement>
+ALTER TABLE app_pallet_history MODIFY (user_id VARCHAR2(20))
+</statement>
+
+<statement>
+ALTER TABLE sys_user_group_membership MODIFY (user_id VARCHAR2(20))
+</statement>
+
+<statement>
+ALTER TABLE sys_users MODIFY (user_id VARCHAR2(20))
+</statement>
+
+</DDL>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-03T20:07:13 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pallet_a5_x1" language="groovy" pageWidth="421" pageHeight="595" columnWidth="421" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="becf3d40-6d58-4af9-9427-c634540be3f8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="commander4j_dev"/>
+	<parameter name="SSCC" class="java.lang.String">
+		<parameterDescription><![CDATA[SSCC]]></parameterDescription>
+		<defaultValueExpression><![CDATA["350001612295858201"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LABEL_NO" class="java.lang.String">
+		<defaultValueExpression><![CDATA["L1"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM VIEW_PALLET_EXPIRY WHERE SSCC = $P{SSCC}]]>
+	</queryString>
+	<field name="SSCC" class="java.lang.String"/>
+	<field name="LOCATION_ID" class="java.lang.String"/>
+	<field name="MATERIAL" class="java.lang.String"/>
+	<field name="BATCH_NUMBER" class="java.lang.String"/>
+	<field name="PROCESS_ORDER" class="java.lang.String"/>
+	<field name="QUANTITY" class="java.math.BigDecimal"/>
+	<field name="UOM" class="java.lang.String"/>
+	<field name="DATE_OF_MANUFACTURE" class="java.sql.Timestamp"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="EAN" class="java.lang.String"/>
+	<field name="VARIANT" class="java.lang.String"/>
+	<field name="DESPATCH_NO" class="java.lang.String"/>
+	<field name="CONFIRMED" class="java.lang.String"/>
+	<field name="LAYERS" class="java.lang.Integer"/>
+	<field name="SSCC_EXPIRY_DATE" class="java.sql.Timestamp"/>
+	<field name="CUSTOMER_ID" class="java.lang.String"/>
+	<field name="MHN_NUMBER" class="java.lang.String"/>
+	<field name="DECISION" class="java.lang.String"/>
+	<field name="EXPIRY_DATE" class="java.sql.Timestamp"/>
+	<field name="DESCRIPTION" class="java.lang.String"/>
+	<field name="OLD_MATERIAL" class="java.lang.String"/>
+	<field name="CUSTOMER_NAME" class="java.lang.String"/>
+	<field name="PRINT_ON_LABEL" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="595" splitType="Stretch">
+			<staticText>
+				<reportElement x="18" y="108" width="140" height="21" uuid="cb2c7d6a-e1b7-4040-8e3f-480dca726260"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[SSCC]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="18" y="126" width="67" height="39" uuid="ae837cc7-5d9e-4bc4-a174-e4e977ddac80"/>
+				<textElement>
+					<font size="28" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SSCC}.subSequence( 0, 3 )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="13" width="332" height="30" uuid="3c57c60a-3e0f-4df7-98ad-3c7fc8a3c290"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="52" width="64" height="20" uuid="ae5b89e6-efde-4fe4-85ea-bdba252b8581"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[MATERIAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="18" y="70" width="226" height="31" uuid="4af812d5-3afa-48b1-90a1-fc0e523345e1"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="172" width="100" height="20" uuid="cb688a03-403a-4670-993b-b8a39ca07089"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[CONTENT]]></text>
+			</staticText>
+			<textField pattern="&quot;00000000000000&quot;">
+				<reportElement x="18" y="192" width="200" height="31" uuid="a9a3ba3f-1460-45f4-96db-ad0b552f0d63"/>
+				<textElement textAlignment="Center">
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="218" y="172" width="57" height="20" uuid="3d0f263c-466b-49fa-9b91-169544588ce0"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[VARIANT]]></text>
+			</staticText>
+			<textField pattern="00">
+				<reportElement x="228" y="192" width="39" height="31" uuid="3c4feb52-d845-4527-8c6f-47204d561356"/>
+				<textElement textAlignment="Center">
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[org.apache.commons.lang.StringUtils.leftPad($F{VARIANT},2,"0")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="13" width="40" height="30" uuid="45409282-8346-4312-853a-90cac51660da"/>
+				<textElement textAlignment="Right">
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LABEL_NO}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="33" y="466" width="353" height="93" uuid="3e828522-140d-41c2-90b7-c82ea5bea8dd"/>
+				<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="2.2" textPosition="none">
+					<jr:codeExpression><![CDATA["00"+org.apache.commons.lang.StringUtils.leftPad($F{SSCC},18,"0")]]></jr:codeExpression>
+				</jr:EAN128>
+			</componentElement>
+			<componentElement>
+				<reportElement x="20" y="348" width="381" height="93" uuid="126e9a37-d275-458a-9aa2-251779af2647"/>
+				<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.2" textPosition="none">
+					<jr:codeExpression><![CDATA["02"+org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")+
+"20"+org.apache.commons.lang.StringUtils.leftPad($F{VARIANT},2,"0")+
+"17"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
+new SimpleDateFormat("MM").format($F{EXPIRY_DATE})+
+new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
+"37"+org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") + "\u00F1" +
+"10" + $F{BATCH_NUMBER}]]></jr:codeExpression>
+				</jr:EAN128>
+			</componentElement>
+			<textField>
+				<reportElement x="20" y="441" width="381" height="20" uuid="5c30455b-65cd-49a8-a1b2-7f92e2724698"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(02)"+org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")+
+"(20)"+org.apache.commons.lang.StringUtils.leftPad($F{VARIANT},2,"0")+
+"(17)"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
+new SimpleDateFormat("MM").format($F{EXPIRY_DATE})+
+new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
+"(37)"+org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") +
+"(10)" + $F{BATCH_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="23" y="559" width="381" height="22" uuid="d4dd2f9d-40e1-45a8-9f9b-de916d7d1b23"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(00)"+org.apache.commons.lang.StringUtils.leftPad($F{SSCC},18,"0")]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="88" y="126" width="98" height="39" uuid="dc66afd9-532b-4b49-ac57-7d6527737a05"/>
+				<textElement>
+					<font size="28" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SSCC}.subSequence( 3, 8 )]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="199" y="126" width="97" height="39" uuid="fbecda49-79d3-4ec6-b10b-0b929bf18560"/>
+				<textElement>
+					<font size="28" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SSCC}.subSequence( 8, 13 )]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="310" y="127" width="94" height="39" uuid="517e0d2f-8c2f-4f70-b9b0-cfd68e6fadf0"/>
+				<textElement>
+					<font size="28" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SSCC}.subSequence( 13, 18 )]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="18" y="46" width="383" height="1" uuid="beb840b6-fc49-4b83-83a2-00574842aa10"/>
+			</line>
+			<line>
+				<reportElement x="19" y="102" width="383" height="3" uuid="1acafe45-538a-4520-809e-07e65cc93457"/>
+			</line>
+			<line>
+				<reportElement x="18" y="168" width="383" height="1" uuid="5ef5f80a-0a84-4849-ab82-9a557319d874"/>
+			</line>
+			<staticText>
+				<reportElement x="284" y="172" width="53" height="20" uuid="fc2ad9e7-9eb3-46b0-b5c4-316990bafcc2"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[COUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="172" width="57" height="20" uuid="3286fc7f-8ae7-4da8-a74f-8ee9edecb209"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[LAYERS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="283" y="192" width="60" height="31" uuid="6bdd2dac-f0b0-4336-9c7c-321e10ad9b28"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="192" width="36" height="31" uuid="108f49c8-0a8c-4bec-b554-38c11efbfc35"/>
+				<textElement textAlignment="Center">
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LAYERS}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="18" y="282" width="383" height="1" uuid="983c8ef8-a644-4732-89be-7cbe811b5946"/>
+			</line>
+			<staticText>
+				<reportElement x="18" y="288" width="138" height="20" uuid="08ec874c-236b-4315-a66b-fb48ccbc5fc8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[BATCH / LOT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="18" y="308" width="221" height="31" uuid="a0ed4e27-c2e7-4e4b-8ecb-2c3a013a9a73"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BATCH_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="18" y="342" width="383" height="1" uuid="4ec222e9-73ba-4928-9bb9-470813d8d89f"/>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="273" y="308" width="37" height="31" uuid="e32a97c9-79c0-46cc-a63d-ddef3405d166"/>
+				<textElement textAlignment="Right">
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MM").format($F{EXPIRY_DATE})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="323" y="308" width="74" height="31" uuid="5d32175f-e1e8-4858-a17b-f6426d883305"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[org.apache.commons.lang.StringUtils.leftPad(($F{SSCC_EXPIRY_DATE}.getYear()+1900).toString(),4,"0")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="256" y="288" width="150" height="20" uuid="a4c86323-e07f-4f9c-95a1-ae403a61d473"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[BEST BEFORE  (MM YYYY)]]></text>
+			</staticText>
+			<textField pattern="&quot;00000000000000&quot;">
+				<reportElement x="18" y="247" width="379" height="31" uuid="5bb84fcc-2c79-47ac-bea1-da360f863231"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="228" width="100" height="20" uuid="4faf0dfb-15c3-4136-97b9-e67119a860eb"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[DESCRIPTION]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

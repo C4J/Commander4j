@@ -1,0 +1,1573 @@
+<?xml version="1.0" encoding="utf-8"?> <!DOCTYPE SQL SYSTEM "sql.dtd"> 
+<SQL>
+	<jdbcDriver Type="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		<?JDBPalletHistory ?>
+		<statement>
+			<id>JDBPalletHistory.write</id>
+			<text>insert into {schema}app_pallet_history (transaction_ref,transaction_type,transaction_subtype,transaction_date,sscc,despatch_no,location_id,material,batch_number,process_order,quantity,uom,date_of_manufacture,status,ean,variant,user_id,confirmed,layers,sscc_expiry_date,customer_id,mhn_number,decision) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBPalletHistory.selectWithExpiry</id>
+			<text>select * from [VIEW_PALLET_HISTORY_expiry]</text>
+		</statement>
+		<statement>
+			<id>JDBPalletHistory.select</id>
+			<text>select * from [VIEW_PALLET_HISTORY]</text>
+		</statement>
+		<statement>
+			<id>JDBPalletHistory.insertFromPallet</id>
+			<text>INSERT INTO APP_PALLET_HISTORY (TRANSACTION_REF,TRANSACTION_TYPE,TRANSACTION_SUBTYPE,TRANSACTION_DATE,SSCC,LOCATION_ID,MATERIAL,BATCH_NUMBER,	PROCESS_ORDER,QUANTITY,
+					    	UOM,DATE_OF_MANUFACTURE,STATUS,EAN,VARIANT,DESPATCH_NO,USER_ID,CONFIRMED,LAYERS,SSCC_EXPIRY_DATE,CUSTOMER_ID,MHN_NUMBER,DECISION) 
+				  SELECT ? as TRANSACTION_REF,? as TRANSACTION_TYPE,? AS TRANSACTION_SUBTYPE,? AS TRANSACTION_DATE,SSCC,LOCATION_ID,MATERIAL,BATCH_NUMBER,PROCESS_ORDER,QUANTITY,
+							UOM,DATE_OF_MANUFACTURE,STATUS,EAN,VARIANT,DESPATCH_NO,? AS USER_ID,CONFIRMED,LAYERS,SSCC_EXPIRY_DATE,CUSTOMER_ID,MHN_NUMBER,DECISION FROM APP_PALLET WHERE DESPATCH_NO = ?</text>
+		</statement>		
+		<?JDBControl ?>
+		<statement>
+			<id>JDBControl.lockRecord</id>
+			<text>update sys_control set key_value = key_value where system_key = ?</text>
+		</statement>
+		<statement>
+			<id>JDBControl.create</id>
+			<text>insert into {schema}sys_control (system_key,key_value,description) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBControl.delete</id>
+			<text>delete from {schema}sys_control where system_key = ?</text>
+		</statement>
+		<statement>
+			<id>JDBControl.getControlData</id>
+			<text>select * from {schema}sys_control order by system_key</text>
+		</statement>
+		<statement>
+			<id>JDBControl.getProperties</id>
+			<text>select * from {schema}sys_control where system_key = ?</text>
+		</statement>
+		<statement>
+			<id>JDBControl.isValidSystemKey</id>
+			<text>select system_key from {schema}sys_control where system_key = ?</text>
+		</statement>
+		<statement>
+			<id>JDBControl.update</id>
+			<text>update {schema}sys_control set key_value = ?,description=? where System_key = ?</text>
+		</statement>
+		<?JDBGroup ?>
+		<statement>
+			<id>JDBGroup.create</id>
+			<text>insert into {schema}sys_groups (group_id,description) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBGroup.delete</id>
+			<text>delete from {schema}sys_groups where group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBGroup.getGroupIds</id>
+			<text>select group_id from {schema}sys_groups order by group_id</text>
+		</statement>
+		<statement>
+			<id>JDBGroup.getGroups</id>
+			<text>select * from {schema}sys_groups order by group_id</text>
+		</statement>
+		<statement>
+			<id>JDBGroup.getGroupProperties</id>
+			<text>select * from {schema}sys_groups where group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBGroup.isValidGroupId</id>
+			<text>select group_id from {schema}sys_groups where group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBGroup.renameTo</id>
+			<text>update {schema}sys_groups set group_id=? where group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBGroup.update</id>
+			<text>update {schema}sys_groups set description=? where group_id=?</text>
+		</statement>
+		<?JDBGroupPermissions ?>
+		<statement>
+			<id>JDBGroupPermissions.create</id>
+			<text>insert into {schema}sys_group_permissions (group_id,module_id) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBGroupPermissions.deletePermissionsForModule</id>
+			<text>delete from {schema}sys_group_permissions where module_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBGroupPermissions.delete</id>
+			<text>delete from {schema}sys_group_permissions where group_id = ? and module_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBGroupPermissions.getModulesAssigned</id>
+			<text>select a.* from [VIEW_GROUP_PERMISSIONS] a where a.group_id = ? order by a.module_id</text>
+		</statement>
+		<statement>
+			<id>JDBGroupPermissions.getModulesUnAssigned</id>
+			<text>select * from {schema}sys_modules where module_id not in (select module_id from {schema}sys_group_permissions where group_id = ?) order by module_id</text>
+		</statement>
+		<statement>
+			<id>JDBGroupPermissions.isValidGroupPermission</id>
+			<text>select group_id from {schema}sys_group_permissions where group_id = ? and module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBGroupPermissions.removeModulesfromGroup</id>
+			<text>delete from {schema}sys_group_permissions where group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBGroupPermissions.renameGroupTo</id>
+			<text>update {schema}sys_group_permissions set group_id =? where group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBGroupPermissions.renameModuleTo</id>
+			<text>update {schema}sys_group_permissions set module_id =? where module_id = ?</text>
+		</statement>
+		<?JDBMenus ?>
+		<statement>
+			<id>JDBMenus.create</id>
+			<text>insert into {schema}sys_menus (menu_id,module_id,sequence_id) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBMenus.delete</id>
+			<text>delete from {schema}sys_menus where menu_id = ? and module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMenus.deleteMenusForModuleId</id>
+			<text>delete from {schema}sys_menus where module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMenus.deleteMenusForMenuId</id>
+			<text>delete from {schema}sys_menus where menu_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMenus.rewriteMenu</id>
+			<text>delete from {schema}sys_menus where menu_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMenus.update</id>
+			<text>update {schema}sys_menus set menu_id=?,module_id=?,sequence_id=? where menu_id=? and module_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBMenus.renameModuleTo</id>
+			<text>update {schema}sys_menus set module_id = ? where module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMenus.renameMenuTo</id>
+			<text>update {schema}sys_menus set menu_id = ? where menu_id = ?</text>
+		</statement>
+		<?JDBModule ?>
+		<statement>
+			<id>JDBModule.getModulesUnAssignedtoToolbar</id>
+			<text>select * from {schema}sys_modules where module_type = 'FORM' and module_id not in (select module_id from {schema}sys_toolbar) order by module_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModulesAssignedtoToolbar</id>
+			<text>select a.* from [VIEW_TOOLBAR]a order by a.sequence_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModulesUnAssignedtoRFMenu</id>
+			<text>select * from {schema}sys_modules where module_type = 'FORM' and rf_active = 'Y' and module_id not in (select module_id from {schema}sys_rf_menu) order by module_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModulesAssignedtoRFMenu</id>
+			<text>select a.* from [VIEW_RF_MENU]a order by a.sequence_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.addGroup</id>
+			<text>insert into {schema}sys_group_permissions (group_id,module_id) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBModule.create</id>
+			<text>insert into {schema}sys_modules (module_id,resource_key,dk_active,rf_active,module_type,helpset_id) values (?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBModule.delete</id>
+			<text>delete from {schema}sys_modules where module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getFormIds</id>
+			<text>select module_id from {schema}sys_modules where module_type = 'FORM' order by module_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getGroupsAssigned</id>
+			<text>select sg.* from SYS_GROUP_PERMISSIONS sgp, SYS_GROUPS sg where sgp.module_id = ? and sg.GROUP_ID = sgp.GROUP_ID order by sgp.group_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getGroupsUnAssigned</id>
+			<text>select group_id from {schema}sys_groups where group_id not in (select group_id from {schema}sys_group_permissions where module_id = ?) order by group_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getMenuIds</id>
+			<text>select module_id,module_type,icon_filename from {schema}sys_modules where module_type = 'MENU' order by module_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModuleIds</id>
+			<text>select * from {schema}sys_modules order by module_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModuleIdsByType</id>
+			<text>select * from {schema}sys_modules where module_type = ? order by module_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModuleProperties</id>
+			<text>select * from {schema}sys_modules where module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModulesAssignedtoMenu</id>
+			<text>select a.* from [VIEW_MENU_STRUCTURE] a where a.menu_id = ? order by a.sequence_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModulesUnAssignedtoMenu</id>
+			<text>select * from {schema}sys_modules where module_id&lt;&gt;? and module_type&lt;&gt;'FUNCTION' and module_type&lt;&gt;'REPORT' and module_id not in (select module_id from {schema}sys_menus where menu_id = ?) order by module_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.removeGroup</id>
+			<text>delete from {schema}sys_group_permissions where module_id = ? and group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBModule.renameTo</id>
+			<text>update {schema}sys_modules set module_id=? where module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBModule.update</id>
+			<text>update {schema}sys_modules set resource_key=?,dk_active=?,rf_active=?,module_type=?,hint=?,icon_filename=?,helpset_id=?,report_filename=?,exec_filename=?,exec_dir=?,print_preview=?,print_dialog=?,print_copies=?,report_type=?,auto_labeller_command_file=?,auto_labeller_label_file=? where module_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBModule.getModulesofTypeforUser</id>
+			<text>SELECT * from {schema}sys_modules WHERE module_type = ? AND MODULE_ID IN (select module_id from {schema}sys_modules where dk_active = 'Y' and module_id in (select module_id from {schema}sys_group_permissions where group_id in (select group_id from {schema}sys_user_group_membership where user_id = ?))) order by module_id</text>
+		</statement>
+		<statement>
+			<id>JDBModule.isValidModuleId</id>
+			<text>select * from {schema}sys_modules where module_id = ?</text>
+		</statement>
+		<?JDBToolbar ?>
+		<statement>
+			<id>JDBToolbar.create</id>
+			<text>insert into {schema}sys_toolbar (module_id,sequence_id) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBToolbar.delete</id>
+			<text>delete from {schema}sys_toolbar where module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBToolbar.renameModuleTo</id>
+			<text>update {schema}sys_toolbar set module_id = ? where module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBToolbar.rewriteToolbar</id>
+			<text>delete from {schema}sys_toolbar</text>
+		</statement>
+		<statement>
+			<id>JDBToolbar.update</id>
+			<text>update {schema}sys_toolbar set sequence_id=? where module_id=?</text>
+		</statement>
+		<?JDBRFMenu ?>
+		<statement>
+			<id>JDBRFMenu.create</id>
+			<text>insert into {schema}sys_rf_menu (module_id,sequence_id) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBRFMenu.delete</id>
+			<text>delete from {schema}sys_rf_menu where module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBRFMenu.renameModuleTo</id>
+			<text>update {schema}sys_rf_menu set module_id = ? where module_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBRFMenu.rewriteRFMenu</id>
+			<text>delete from {schema}sys_rf_menu</text>
+		</statement>
+		<statement>
+			<id>JDBRFMenu.update</id>
+			<text>update {schema}sys_rf_menu set sequence_id=? where module_id=?</text>
+		</statement>
+		<?JDBUser ?>
+		<statement>
+			<id>JDBUser.loadModules</id>
+			<text>select distinct(a.module_id) from [VIEW_SECURITY] a where a.user_id = ? order by a.module_id</text>
+		</statement>
+		<statement>
+			<id>JDBUser.changePassword</id>
+			<text>update {schema}sys_users set Password = ?,last_password_change = ?,password_version=password_version+1,password_change_required='N',password_encrypted=?  where user_id = ?</text>
+		</statement>
+		<statement>
+		<id>JDBUser.recordPasswordChange</id>
+			<text>insert into {schema}sys_users_password_history (user_id,password_version,password)  (select user_id,password_version,password from {schema}sys_users where user_id=?)</text>
+		</statement>	
+		<statement>
+			<id>JDBUser.archivePasswordHistory</id>
+			<text>delete from {schema}sys_users_password_history where user_id = ? and password_version &lt;= ? </text>
+		</statement>
+		<statement>
+			<id>JDBUser.renamePasswordHistory</id>
+			<text>update {schema}sys_users_password_history set user_id = ? where user_id = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBUser.deletePasswordHistory</id>
+			<text>delete from {schema}sys_users_password_history where user_id = ?</text>
+		</statement>			
+		<statement>	
+			<id>JDBUser.findInPasswordHistory</id>
+			<text>select * from {schema}sys_users_password_history where user_id = ? and password_version &gt;= ? and password = ? </text>
+		</statement>			
+		<statement>
+			<id>JDBUser.create</id>
+			<text>insert into {schema}SYS_USERS(user_id,password,password_version) values (?,'tempcreate',0)</text>
+		</statement>
+		<statement>
+			<id>JDBUser.delete</id>
+			<text>delete from {schema}SYS_USERS where user_id = ?</text>
+		</statement>		
+		<statement>
+			<id>JDBUser.lock</id>
+			<text>update {schema}sys_users set account_locked = 'Y',account_locked_date=? where User_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUser.unlock</id>
+			<text>update {schema}sys_users set account_locked = 'N',bad_password_attempts = 0,account_locked_date=null where user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUser.disable</id>
+			<text>update {schema}sys_users set account_enabled = 'N' where User_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUser.enable</id>
+			<text>update {schema}sys_users set account_enabled = 'Y' where user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUser.getUserGroupsUnAssigned</id>
+			<text>select group_id from {schema}sys_groups where group_id not in (select group_id from {schema}sys_user_group_membership where user_id = ?) order by group_id</text>
+		</statement>
+		<statement>
+			<id>JDBUser.getUserIds</id>
+			<text>select * from {schema}sys_users order by user_id</text>
+		</statement>
+		<statement>
+			<id>JDBUser.getUserProperties</id>
+			<text>select * from {schema}sys_users where user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUser.isValidPassword</id>
+			<text>select * from {schema}sys_users where user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUser.isValidUserId</id>
+			<text>select user_id,password_version from {schema}sys_users where user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUser.login</id>
+			<text>update {schema}sys_users set last_logon = ?,app_version = ?,workstation_id=?,bad_password_attempts=0 where User_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUser.login(fail)</id>
+			<text>update {schema}sys_users set bad_password_attempts = bad_password_attempts + 1 where user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUser.renameTo</id>
+			<text>update {schema}sys_users set user_id=? where user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUser.update</id>
+			<text>update {schema}sys_users set password_expires=?,password_change_allowed=?,language_id=?,user_comment=?,account_expires=?,account_expiry_date=?,email_address=?,password_change_required=? where user_id=?</text>
+		</statement>
+		<?JDBUserGroupMembership ?>
+		<statement>
+			<id>JDBUserGroupMembership.addUsertoGroup</id>
+			<text>insert into {schema}sys_user_group_membership (user_id,group_id) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBUserGroupMembership.create</id>
+			<text>insert into {schema}sys_user_group_membership (user_id,group_id) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBUserGroupMembership.delete</id>
+			<text>delete from {schema}sys_user_group_membership where user_id = ? and group_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBUserGroupMembership.getGroupsAssignedtoUser</id>
+			<text>select group_id from {schema}sys_user_group_membership where user_id = ? order by user_id</text>
+		</statement>
+		<statement>
+			<id>JDBUserGroupMembership.getUsersAssignedtoGroup</id>
+			<text>select ugm.GROUP_ID,U.* 
+				from sys_user_group_membership ugm, sys_users u 
+				where ugm.group_id=? 
+				and u.USER_ID = ugm.USER_ID</text>
+		</statement>		
+		<statement>
+			<id>JDBUserGroupMembership.isValidUserGroupMembership</id>
+			<text>select * from {schema}sys_user_group_membership where user_id = ? and group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUserGroupMembership.removeAllGroupsfromUser</id>
+			<text>delete from {schema}sys_user_group_membership where user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUserGroupMembership.removeAllUsersfromGroup</id>
+			<text>delete from {schema}sys_user_group_membership where group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUserGroupMembership.removeGroupfromUser</id>
+			<text>delete from {schema}sys_user_group_membership where user_id = ? and group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUserGroupMembership.removeUserfromGroup</id>
+			<text>delete from {schema}sys_user_group_membership where user_id = ? and group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUserGroupMembership.renameGroupTo</id>
+			<text>update {schema}sys_user_group_membership set group_id =? where group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUserGroupMembership.renameUserTo</id>
+			<text>update {schema}sys_user_group_membership set user_id =? where user_id = ?</text>
+		</statement>
+		<?JDBUom ?>
+		<statement>
+			<id>JDBUom.create</id>
+			<text>insert into {schema}app_uom (uom,iso_uom,description,local_uom) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBUom.delete</id>
+			<text>delete from {schema}app_uom where uom = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUom.getISOUomProperties</id>
+			<text>select * from {schema}app_uom where iso_uom = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUom.getLocalUomProperties</id>
+			<text>select * from {schema}app_uom where local_uom = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUom.getUomProperties</id>
+			<text>select * from {schema}app_uom where uom = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUom.getUoms</id>
+			<text>select * from {schema}app_uom order by uom</text>
+		</statement>
+		<statement>
+			<id>JDBUom.isValidUom</id>
+			<text>select * from {schema}app_uom where uom = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUom.renameTo</id>
+			<text>update {schema}app_uom set uom =? where uom =?</text>
+		</statement>
+		<statement>
+			<id>JDBUom.update</id>
+			<text>update {schema}app_uom set description=?,iso_uom=?,local_uom=? where uom=?</text>
+		</statement>
+		<?JInternalFrameMenuTree ?>
+		<statement>
+			<id>JInternalFrameMenuTree.buildMenuTree</id>
+			<text>SELECT a.* FROM [VIEW_MENU_STRUCTURE]a WHERE a.MENU_ID = ? AND a.MODULE_ID IN (select module_id from {schema}sys_modules where dk_active = 'Y' and module_id in (select module_id from {schema}sys_group_permissions where group_id in (select group_id from {schema}sys_user_group_membership where user_id = ?))) order by sequence_id</text>
+		</statement>
+		<?JMenuRFMenu ?>
+		<statement>
+			<id>JMenuRFMenu.buildMenu</id>
+			<text>SELECT a.* FROM [VIEW_RF_MENU]a WHERE a.MODULE_ID IN (select module_id from {schema}sys_modules where rf_active = 'Y' and module_id in (select module_id from {schema}sys_group_permissions where group_id in (select group_id from {schema}sys_user_group_membership where user_id = ?))) order by sequence_id</text>
+		</statement>
+		<?JMenuToolbarMenu ?>
+		<statement>
+			<id>JMenuToolbarMenu.buildMenu</id>
+			<text>SELECT a.* FROM [VIEW_TOOLBAR]a WHERE a.MODULE_ID IN (select module_id from {schema}sys_modules where dk_active = 'Y' and module_id in (select module_id from {schema}sys_group_permissions where group_id in (select group_id from {schema}sys_user_group_membership where user_id = ?))) order by sequence_id</text>
+		</statement>
+		<?JDBMaterial ?>
+		<statement>
+			<id>JDBMaterial.create</id>
+			<text>insert into {schema}app_material (material) values (?)</text>
+		</statement>
+		<statement>
+			<id>JDBMaterial.delete</id>
+			<text>delete from {schema}app_material where material = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterial.getMaterialBatchCount</id>
+			<text>select count(batch_number) as batch_number from {schema}app_material_batch where material = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterial.getMaterialBatches</id>
+			<text>select * from {schema}app_material_batch where material = ? order by batch_number</text>
+		</statement>
+		<statement>
+			<id>JDBMaterial.getMaterialProperties</id>
+			<text>select * from {schema}app_material where material = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterial.getMaterialUomCount</id>
+			<text>select count(uom) as uom from {schema}app_material_uom where material = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterial.getMaterialUoms</id>
+			<text>select * from {schema}app_material_uom where material = ? order by uom</text>
+		</statement>
+		<statement>
+			<id>JDBMaterial.isValidMaterial</id>
+			<text>select material from {schema}app_material where material = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterial.update</id>
+			<text>update {schema}app_material set base_uom=?,description=?,gross_weight=?,material_type=?,old_material=?,net_weight=?,weight_uom=?,shelf_life=?,shelf_life_rule=?,shelf_life_uom=?,default_batch_status=?,equipment_type=?,[updated]=?,inspection_id=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=? where material=?</text>
+		</statement>
+		<?JDBMaterialUom ?>
+		<statement>
+			<id>JDBMaterialUom.isValidMaterialUom</id>
+			<text>select * from {schema}app_material_uom where material = ? and uom=?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialUom.create</id>
+			<text>insert into {schema}app_material_uom (material,uom) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialUom.update</id>
+			<text>update {schema}app_material_uom set ean=?,variant=?,numerator=?,denominator=? where material=? and uom=?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialUom.delete</id>
+			<text>delete from {schema}app_material_uom where material = ? and uom = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialUom.getMaterialUomProperties</id>
+			<text>select * from {schema}app_material_uom where material = ? and uom = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialUom.getMaterialUoms</id>
+			<text>select * from {schema}app_material_uom where material=? order by uom</text>
+		</statement>
+		<?JDBMaterialBatch ?>
+		<statement>
+			<id>JDBMaterialBatch.getMaterialBatchProperties</id>
+			<text>select * from {schema}app_material_batch where material = ? and batch_number = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialBatch.isValidMaterialBatch</id>
+			<text>select * from {schema}app_material_batch where material = ? and batch_number=?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialBatch.update</id>
+			<text>update {schema}app_material_batch set status=?,expiry_date=? where material=? and batch_number=?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialBatch.create</id>
+			<text>insert into {schema}app_material_batch (material,batch_number) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialBatch.delete</id>
+			<text>delete from {schema}app_material_batch where material = ? and batch_number = ?</text>
+		</statement>
+		<?JDBJourney ?>
+		<statement>
+			<id>JDBJourney.getProperties</id>
+			<text>select * from {schema}app_journey where journey_ref = ?</text>
+		</statement>
+		<statement>
+			<id>JDBJourney.isValid</id>
+			<text>select * from {schema}app_journey where journey_ref = ?</text>
+		</statement>
+		<statement>
+			<id>JDBJourney.update</id>
+			<text>update {schema}app_journey set status=?,despatch_no=?,date_updated=?,location_id_to=?,timeslot=? where journey_ref=?</text>
+		</statement>
+		<statement>
+			<id>JDBJourney.create</id>
+			<text>insert into {schema}app_journey (journey_ref,status,date_updated,location_id_to,timeslot) values (?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBJourney.delete</id>
+			<text>delete from {schema}app_journey where journey_ref = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBJourney.getJourneyList</id>
+			<text>select * from {schema}app_journey where status = 'Unassigned' order by journey_ref</text>
+		</statement>	
+		<?JDBMaterialType ?>
+		<statement>
+			<id>JDBMaterialType.getMaterialTypeProperties</id>
+			<text>select * from {schema}app_material_type where material_type = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialType.getMaterialTypes</id>
+			<text>select * from {schema}app_material_type order by material_type</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialType.create</id>
+			<text>insert into {schema}app_material_type (material_type,description) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialType.delete</id>
+			<text>delete from {schema}app_material_type where material_type = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialType.renameTo</id>
+			<text>update {schema}app_material_type set material_type =? where material_type =?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialType.update</id>
+			<text>update {schema}app_material_type set description=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=? where material_type=?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialType.isValidMaterialType</id>
+			<text>select * from {schema}app_material_type where material_type = ?</text>
+		</statement>
+		<?JDBProcessOrder ?>
+		<statement>
+			<id>JDBProcessOrder.getResources</id>
+			<text>select distinct required_resource from app_process_order where required_resource > '' and required_resource not in (select required_resource from {schema}app_auto_labeller_resources where line = ? and group_id = ?) order by required_resource</text>
+		</statement>
+		<statement>
+			<id>JDBProcessOrder.create</id>
+			<text>insert into {schema}app_process_order (process_order) values (?)</text>
+		</statement>
+		<statement>
+			<id>JDBProcessOrder.delete</id>
+			<text>delete from {schema}app_process_order where process_order = ?</text>
+		</statement>
+		<statement>
+			<id>JDBProcessOrder.getProcessOrderProperties</id>
+			<text>select * from {schema}app_process_order where process_order = ?</text>
+		</statement>
+		<statement>
+			<id>JDBProcessOrder.isValidProcessOrder</id>
+			<text>select process_order from {schema}app_process_order where process_order = ?</text>
+		</statement>
+		<statement>
+			<id>JDBProcessOrder.update</id>
+			<text>update {schema}app_process_order set material=?,description=?,status=?,location_id=?,due_date=?,recipe_id=?,required_quantity=?,required_uom=?,default_pallet_status=?,updated=?,required_resource=?,customer_id=?,inspection_id=? where process_order=?</text>
+		</statement>
+		<statement>
+			<id>JDBProcessOrder.selectWithLimit</id>
+			<text>select * from {schema}app_process_order</text>
+		</statement>
+		<?JDBLocation ?>
+		<statement>
+			<id>JDBLocation.create</id>
+			<text>insert into {schema}app_location (location_id) values (?)</text>
+		</statement>
+		<statement>
+			<id>JDBLocation.delete</id>
+			<text>delete from {schema}app_location where location_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBLocation.update</id>
+			<text>update {schema}app_location set plant=?,warehouse=?,gln=?,description=?,storage_location=?,storage_type=?,storage_section=?,storage_bin=?,equipment_tracking_id=?,msg_despatch_confirm=?,msg_despatch_preadvice=?,msg_despatch_equip_track=?,msg_prod_confirm=?,permitted_pallet_status=?,permitted_batch_status=?,msg_pallet_status=?,msg_pallet_split=?,msg_pallet_delete=?,enabled=?,msg_journey_ref=? where location_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBLocation.getLocationProperties</id>
+			<text>select * from {schema}app_location where location_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBLocation.getLocationData</id>
+			<text>select * from {schema}app_location ? order by location_id</text>
+		</statement>
+		<statement>
+			<id>JDBLocation.getLocationList</id>
+			<text>select * from {schema}app_location where enabled = 'Y' order by location_id</text>
+		</statement>
+		<statement>
+			<id>JDBLocation.isValidLocation</id>
+			<text>select location_id from {schema}app_location where location_id = ?</text>
+		</statement>
+		<?JDBPallet ?>
+		<statement>
+			<id>JDBPallet.getPalletProperties</id>
+			<text>select * from {schema}app_pallet where sscc = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.isValidPallet</id>
+			<text>select * from {schema}app_pallet where sscc= ?</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.create</id>
+			<text>insert into {schema}app_pallet (sscc,date_created,created_by_user_id) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.update</id>
+			<text>update {schema}app_pallet set despatch_no=?,location_id=?,material=?,batch_number=?,process_order=?,quantity=?,uom=?,date_of_manufacture=?,status=?,ean=?,variant=?,confirmed=?,layers=?,sscc_expiry_date=?,customer_id=?,mhn_number=?,decision=?,updated_by_user_id=?,date_updated=? where sscc = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.updateDespatchNo</id>
+			<text>update {schema}app_pallet set despatch_no=?,updated_by_user_id=?,date_updated=? where sscc = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.updateLocationID</id>
+			<text>update {schema}app_pallet set location_id=?,updated_by_user_id=?,date_updated=? where sscc = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.updateStatus</id>
+			<text>update {schema}app_pallet set status=?,updated_by_user_id=?,date_updated=? where sscc = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.updateMHNNumber</id>
+			<text>update {schema}app_pallet set mhn_number=?,updated_by_user_id=?,date_updated=? where sscc = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.updateDecision</id>
+			<text>update {schema}app_pallet set decision=?,updated_by_user_id=?,date_updated=? where sscc = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.assignedToMHN</id>
+			<text>select sscc from {schema}app_pallet wheremhn_number = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.delete</id>
+			<text>delete from {schema}app_pallet where sscc = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.selectWithExpiry</id>
+			<text>select * from [VIEW_PALLET_EXPIRY]</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.select</id>
+			<text>select * from {schema}app_pallet</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.updateLocationIDByDespatchNo</id>
+			<text>update {schema}APP_PALLET set location_id=?,updated_by_user_id=?,date_updated=? where despatch_no = ?</text>
+		</statement>		
+		<?JDBDespatch ?>
+		<statement>
+			<id>JDBDespatch.create</id>
+			<text>insert into {schema}app_despatch (despatch_no,status) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.equipment</id>
+			<text>select am.equipment_type,count(am.equipment_type) as total from app_pallet ap, app_material am where am.material = ap.material and ap.despatch_no = ? group by am.equipment_type</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.delete</id>
+			<text>delete from {schema}app_despatch where despatch_no = ?</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.update</id>
+			<text>update {schema}app_despatch set despatch_date=?,location_id_from=?,status=?,trailer=?,haulier=?,total_pallets=?,location_id_to=?,transaction_ref=?,load_no=?,journey_ref=? where despatch_no=?</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.setUserID</id>
+			<text>update {schema}app_despatch set user_id=? where despatch_no=?</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.setConfirmed</id>
+			<text>update {schema}APP_DESPATCH set transaction_ref=?,status=?,despatch_date=?,total_pallets=(select count(sscc) from {schema}app_pallet where despatch_no = ?) where despatch_no=?</text>
+		</statement>		
+		<statement>
+			<id>JDBDespatch.getDespatchProperties</id>
+			<text>select * from {schema}app_despatch where despatch_no = ?</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.getDespatchPropertiesFromTransactionRef</id>
+			<text>select * from {schema}app_despatch where transaction_ref = ?</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.count</id>
+			<text>select count(sscc) as pallet_count from {schema}app_pallet where despatch_no = ?</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.getDespatchData</id>
+			<text>select * from {schema}app_despatch ? order by despatch_no</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.isValidDespatch</id>
+			<text>select despatch_no from {schema}app_despatch where despatch_no = ?</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.browse</id>
+			<text>select a.* from (select [top]* from app_despatch where status = ? order by despatch_no desc) a order by a.despatch_no asc</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.getAssignedSSCCs</id>
+			<text>select sscc from {schema}app_pallet where despatch_no = ? order by sscc</text>
+		</statement>
+		<?JDBInterface ?>
+		<statement>
+			<id>JDBInterface.getInterfaceProperties</id>
+			<text>select * from {schema}sys_interface where interface_type = ? and interface_direction = ?</text>
+		</statement>
+		<statement>
+			<id>JDBInterface.isValidInterface</id>
+			<text>select * from {schema}sys_interface where interface_type = ? and interface_direction=?</text>
+		</statement>
+		<statement>
+			<id>JDBInterface.update</id>
+			<text>update {schema}sys_interface set Path=?,Enabled=?,Device=?,Format=?,email_flags=?,email_addresses=?,uom_conversion=? where interface_type=? and interface_direction=?</text>
+		</statement>
+		<statement>
+			<id>JDBInterface.create</id>
+			<text>insert into {schema}sys_interface (interface_type,interface_direction) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBInterface.delete</id>
+			<text>delete from {schema}sys_interface where interface_type = ? and interface_direction = ?</text>
+		</statement>
+		<?JDBInterfaceLog ?>
+		<statement>
+			<id>JDBInterfaceLog.create</id>
+			<text>insert into {schema}sys_interface_log (event_Time,interface_log_id,message_ref,interface_type,message_information,interface_direction,action,message_date,message_status,message_error,workstation_id,filename) values (?,?,?,?,?,?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBInterfaceLog.delete</id>
+			<text>delete from {schema}sys_interface_log where interface_log_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBInterfaceLog.archive1</id>
+			<text>delete from SYS_INTERFACE_LOG where FILENAME in (select FILENAME from SYS_INTERFACE_LOG where INTERFACE_DIRECTION = 'Input' and MESSAGE_STATUS = 'Success')</text>
+		</statement>
+		<statement>
+			<id>JDBInterfaceLog.archive2</id>
+			<text>delete from SYS_INTERFACE_LOG where INTERFACE_DIRECTION = 'Output' and MESSAGE_STATUS = 'Success'</text>
+		</statement>
+		<?JDBInterfaceRequest ?>
+		<statement>
+			<id>JDBInterfaceRequest.create</id>
+			<text>insert into {schema}sys_interface_request (event_Time,interface_request_id,interface_type,workstation_id,transaction_ref,status,filename,request_mode,unique_id) values (?,?,?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBInterfaceRequest.update</id>
+			<text>update {schema}sys_interface_request set status=? where interface_request_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBInterfaceRequest.delete</id>
+			<text>delete from {schema}sys_interface_request where interface_request_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBInterfaceRequest.getInterfaceRequestProperties</id>
+			<text>select * from {schema}sys_interface_request where interface_request_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBInterfaceRequest.getInterfaceRequestIDs</id>
+			<text>select * from {schema}sys_interface_request where status = ? order by interface_request_id</text>
+		</statement>
+		<?JDBReportRequest ?>
+		<statement>
+			<id>JDBReportRequest.create</id>
+			<text>insert into {schema}sys_report_request (report_request_id,module_id,invocation_mode,parameter_count,parameter_delimiter,parameter_names,parameter_types,parameter_values,sql,print_queue_name,print_copies) values (?,?,?,?,?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBReportRequest.delete</id>
+			<text>delete from {schema}sys_report_request where report_request_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBReportRequest.getReportRequestProperties</id>
+			<text>select * from {schema}sys_report_request where report_request_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBReportRequest.getReportRequestIDs</id>
+			<text>select * from {schema}sys_report_request order by report_request_id</text>
+		</statement>
+		<?JDBTranslations ?>
+		<statement>
+			<id>JDBLanguage.getText</id>
+			<text>select * from {schema}sys_language where resource_key = ? and language_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBLanguage.preLoad</id>
+			<text>select * from {schema}sys_language where resource_key like ? and language_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBLanguage.isValidKey</id>
+			<text>select * from {schema}sys_language where resource_key = ? and language_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBLanguage.update</id>
+			<text>update {schema}sys_language set text = ?,mnemonic = ? where resource_key = ? and language_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBLanguage.delete</id>
+			<text>delete from {schema}sys_language where resource_key = ? and language_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBLanguage.create</id>
+			<text>insert into {schema}sys_language (resource_key,language_id,text,mnemonic) values (?,?,?,?)</text>
+		</statement>
+		<?JDBCustomer ?>
+		<statement>
+			<id>JDBCustomer.getCustomerProperties</id>
+			<text>select * from {schema}app_customer where customer_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBCustomer.getCustomers</id>
+			<text>select * from {schema}app_customer order by customer_id</text>
+		</statement>
+		<statement>
+			<id>JDBCustomer.create</id>
+			<text>insert into {schema}app_customer (customer_id,customer_name,print_on_label,override_pack_label,pack_label_module_id,override_pallet_label,pallet_label_module_id) values (?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBCustomer.delete</id>
+			<text>delete from {schema}app_customer where customer_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBCustomer.renameTo</id>
+			<text>update {schema}app_customer set customer_id =? where customer_id =?</text>
+		</statement>
+		<statement>
+			<id>JDBCustomer.update</id>
+			<text>update {schema}app_customer set customer_name=?,print_on_label=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=? where customer_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBCustomer.isValidCustomer</id>
+			<text>select * from {schema}app_customer where customer_id = ?</text>
+		</statement>
+		<?JDBMHNReason ?>
+		<statement>
+			<id>JDBMHNReason.getReasonProperties</id>
+			<text>select * from {schema}app_mhn_reasons where Reason = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMHNReason.getReasons</id>
+			<text>select * from {schema}app_mhn_reasons order by Reason</text>
+		</statement>
+		<statement>
+			<id>JDBMHNReason.create</id>
+			<text>insert into {schema}app_mhn_reasons (Reason,description) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBMHNReason.delete</id>
+			<text>delete from {schema}app_mhn_reasons where Reason = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMHNReason.renameTo</id>
+			<text>update {schema}app_mhn_reasons set Reason =? where Reason =?</text>
+		</statement>
+		<statement>
+			<id>JDBMHNReason.update</id>
+			<text>update {schema}app_mhn_reasons set description=? where Reason=?</text>
+		</statement>
+		<statement>
+			<id>JDBMHNReason.isValidReason</id>
+			<text>select * from {schema}app_mhn_reasons where Reason = ?</text>
+		</statement>
+		<?JDBDecision ?>
+		<statement>
+			<id>JDBMHNDecision.getDecisionProperties</id>
+			<text>select * from {schema}app_mhn_decisions where Decision = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMHNDecision.getDecisions</id>
+			<text>select * from {schema}app_mhn_decisions order by Decision</text>
+		</statement>
+		<statement>
+			<id>JDBMHNDecision.create</id>
+			<text>insert into {schema}app_mhn_decisions (Decision,description,color_background,color_foreground,status) values (?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBMHNDecision.delete</id>
+			<text>delete from {schema}app_mhn_decisions where Decision = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMHNDecision.renameTo</id>
+			<text>update {schema}app_mhn_decisions set Decision =? where Decision =?</text>
+		</statement>
+		<statement>
+			<id>JDBMHNDecision.update</id>
+			<text>update {schema}app_mhn_decisions set description=?,color_background=?,color_foreground=?,status=? where Decision=?</text>
+		</statement>
+		<statement>
+			<id>JDBMHNDecision.isValidDecision</id>
+			<text>select * from {schema}app_mhn_decisions where Decision = ?</text>
+		</statement>
+		<?JDBMHN ?>
+		<statement>
+			<id>JDBMHN.create</id>
+			<text>insert into {schema}app_mhn (mhn_number,date_created,status,recorder) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBMHN.delete</id>
+			<text>delete from {schema}app_mhn where mhn_number=?</text>
+		</statement>
+		<statement>
+			<id>JDBMHN.delete</id>
+			<text>delete from {schema}app_mhn where mhn_number=?</text>
+		</statement>
+		<statement>
+			<id>JDBMHN.getMHNProperties</id>
+			<text>select * from {schema}app_mhn where mhn_number=?</text>
+		</statement>
+		<statement>
+			<id>JDBMHN.isValidMHN</id>
+			<text>select * from {schema}app_mhn where mhn_number=?</text>
+		</statement>
+		<statement>
+			<id>JDBMHN.update</id>
+			<text>update {schema}app_mhn set recorder=?,initiator=?,reason1=?,reason2=?,reason3=?,date_expected=?,date_resolved=?,status=?,comments=?,required_resource=?,authorisor=? where mhn_number=?</text>
+		</statement>
+		<statement>
+			<id>JDBMHN.palletDecisionSummary</id>
+			<text>select mhn_number,decision,sum(quantity) as sum_quantity,count(sscc) as count_sscc from {schema}app_pallet where mhn_number = ? group by mhn_number,decision having mhn_number = ?</text>
+		</statement>
+		<?JDBMaterialLocation ?>
+		<statement>
+			<id>JDBMaterialLocation.create</id>
+			<text>insert into {schema}app_material_location (material,location_id) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialLocation.delete</id>
+			<text>delete from {schema}app_material_location where material = ? and location_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialLocation.isValidMaterialLocation</id>
+			<text>select * from {schema}app_material_location where material = ? and location_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialLocation.update</id>
+			<text>update {schema}app_material_location set status = ? where material = ? and location_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialLocation.getProperties</id>
+			<text>select * from {schema}app_material_location where material = ? and location_id = ?</text>
+		</statement>
+		<?JDQMInspection ?>
+		<statement>
+			<id>JDBQMInspection.create</id>
+			<text>insert into {schema}app_qm_inspection (inspection_id,description,extension_id) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMInspection.delete</id>
+			<text>delete from {schema}app_qm_inspection where inspection_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMInspection.getProperties</id>
+			<text>select * from {schema}app_qm_inspection where inspection_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMInspection.isValid</id>
+			<text>select * from {schema}app_qm_inspection where inspection_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMInspection.update</id>
+			<text>update {schema}app_qm_inspection set description = ? where inspection_id = ?</text>
+		</statement>
+		<?JDBQMActivity ?>
+		<statement>
+			<id>JDBQMActivity.getActivities</id>
+			<text>select * from {schema}app_qm_activity where inspection_id = ? order by activity_id</text>
+		</statement>
+		<statement>
+			<id>JDBQMActivity.create</id>
+			<text>insert into {schema}app_qm_activity (inspection_id,activity_id,description,extension_id) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMActivity.delete</id>
+			<text>delete from {schema}app_qm_activity where inspection_id = ? and activity_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMActivity.getProperties</id>
+			<text>select * from {schema}app_qm_activity where inspection_id = ? and activity_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMActivity.isValid</id>
+			<text>select * from {schema}app_qm_activity where inspection_id = ? and activity_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMActivity.update</id>
+			<text>update {schema}app_qm_activity set description = ? where inspection_id = ? and activity_id = ?</text>
+		</statement>
+		<?JDBQMTest ?>
+		<statement>
+			<id>JDBQMTest.getTests</id>
+			<text>select * from {schema}app_qm_test where inspection_id = ? and activity_id =? order by sequence_id</text>
+		</statement>
+		<statement>
+			<id>JDBQMTest.create</id>
+			<text>insert into {schema}app_qm_test (inspection_id,activity_id,test_id,sequence_id,extension_id) values (?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMTest.delete</id>
+			<text>delete from {schema}app_qm_test where inspection_id = ? and activity_id = ? and test_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTest.getProperties</id>
+			<text>select * from {schema}app_qm_test where inspection_id = ? and activity_id = ? and test_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTest.isValid</id>
+			<text>select * from {schema}app_qm_test where inspection_id = ? and activity_id = ? and test_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTest.update</id>
+			<text>update {schema}app_qm_test set sequence_id = ? where inspection_id = ? and activity_id = ? and test_id=?</text>
+		</statement>
+		<?JDBQMDictionary ?>
+		<statement>
+			<id>JDBQMDictionary.getTests</id>
+			<text>select * from {schema}app_qm_dictionary order by test_id</text>
+		</statement>
+		<statement>
+			<id>JDBQMDictionary.create</id>
+			<text>insert into {schema}app_qm_dictionary (test_id,field_alignment,description,datatype,uom,required,select_list_id,visible,extension_id,field_width) values (?,?,?,?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMDictionary.delete</id>
+			<text>delete from {schema}app_qm_dictionary where test_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMDictionary.getProperties</id>
+			<text>select * from {schema}app_qm_dictionary where test_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMDictionary.isValid</id>
+			<text>select * from {schema}app_qm_dictionary where test_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMDictionary.update</id>
+			<text>update {schema}app_qm_dictionary set field_alignment=?,description=?,datatype=?,uom=?,required=?,select_list_id=?,visible=?,field_width=? where test_id = ?</text>
+		</statement>
+		<?JDBQMExtension ?>
+		<statement>
+			<id>JDBQMExtension.getProperties</id>
+			<text>select * from {schema}app_qm_extension where extension_id = ? and linked_table = ? and fieldname = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMExtension.create</id>
+			<text>insert into {schema}app_qm_extension (extension_id,linked_table,fieldname,value) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMExtension.delete</id>
+			<text>delete from {schema}app_qm_extension where extension_id = ? and linked_table = ? and fieldname = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMExtension.getExtensions</id>
+			<text>select * from {schema}app_qm_extension where extension_id = ? order by linked_table,fieldname</text>
+		</statement>
+		<statement>
+			<id>JDBQMExtension.update</id>
+			<text>update {schema}app_qm_extension set value = ? where extension_id = ? and linked_table = ? and fieldname = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMExtension.isValid</id>
+			<text>select * from {schema}app_qm_extension where extension_id = ? and linked_table = ? and fieldname = ?</text>
+		</statement>
+		<?JDBQMSample ?>
+		<statement>
+			<id>JDBQMSample.getSamples</id>
+			<text>select * from {schema}app_qm_sample where process_order=? and inspection_id = ? and activity_id = ? order by sample_date</text>
+		</statement>
+		<statement>
+			<id>JDBQMSample.create</id>
+			<text>insert into {schema}app_qm_sample (sample_id,inspection_id,activity_id,process_order,material,sample_date,user_id,user_data_1,user_data_2) values (?,?,?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMSample.delete</id>
+			<text>delete from {schema}app_qm_sample where sample_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMSample.getProperties</id>
+			<text>select * from {schema}app_qm_sample where sample_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMSample.isValid</id>
+			<text>select * from {schema}app_qm_sample where sample_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMSample.update</id>
+			<text>update {schema}app_qm_sample set inspection_id=?,activity_id=?,process_order=?,material=?,sample_date=?,user_id=?,user_data_1=?,user_data_2=? where sample_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMSample.selectWithLimit</id>
+			<text>select * from {schema}app_qm_sample</text>
+		</statement>
+		<?JDBQMResult ?>
+		<statement>
+			<id>JDBQMResult.getResults</id>
+			<text>select * from {schema}app_qm_result where sample_id = ? and test_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMResult.create</id>
+			<text>insert into {schema}app_qm_result (sample_id,test_id,value,updated,user_id,status,processed) values (?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMResult.delete</id>
+			<text>delete from {schema}app_qm_result where sample_id = ? and test_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMResult.getProperties</id>
+			<text>select * from {schema}app_qm_result where sample_id = ? and test_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMResult.isValid</id>
+			<text>select * from {schema}app_qm_result where sample_id = ? and test_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMResult.update</id>
+			<text>update {schema}app_qm_result set value=?,updated=?,user_id=?,status=?,processed=? where sample_id = ? and test_id = ?</text>
+		</statement>
+		<?JDBQMSequenceList ?>
+		<statement>
+			<id>JDBQMSelectList.getList</id>
+			<text>select * from {schema}app_qm_selectlist where select_list_id = ? order by sequence,value</text>
+		</statement>
+		<statement>
+			<id>JDBQMSelectList.getLists</id>
+			<text>select * from {schema}app_qm_selectlist order by select_list_id,sequence,value</text>
+		</statement>
+		<statement>
+			<id>JDBQMSelectList.create</id>
+			<text>insert into {schema}app_qm_selectlist (select_list_id,value,description,sequence) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMSelectList.delete</id>
+			<text>delete from {schema}app_qm_selectlist where select_list_id = ? and value = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMSelectList.getProperties</id>
+			<text>select * from {schema}app_qm_selectlist where select_list_id = ? and value = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMSelectList.isValid</id>
+			<text>select * from {schema}app_qm_selectlist where select_list_id = ? and value = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMSelectList.update</id>
+			<text>update {schema}app_qm_selectlist set description = ?,sequence=? where select_list_id = ? and value = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMSelectList.getSummary</id>
+			<text>select distinct(select_list_id) as select_list_id from {schema}app_qm_selectlist order by select_list_id</text>
+		</statement>
+		<?JDBAutoLabeller?>
+		<statement>
+			<id>JDBAutoLabeller.create</id>
+			<text>insert into {schema}app_auto_labeller (line,group_id,description,unique_id,modified,validate_resource,validate_workstation) values (?,?,?,?,?,?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBAutoLabeller.resend</id>
+			<text>update {schema}app_auto_labeller set modified = ? where line = ? and group_id = ?</text>
+		</statement>			
+		<statement>
+			<id>JDBAutoLabeller.delete</id>
+			<text>delete from {schema}app_auto_labeller where line = ? and group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBAutoLabeller.renameTo</id>
+			<text>update {schema}app_auto_labeller set line = ? where line = ? and group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBAutoLabeller.isValidLine</id>
+			<text>select line from {schema}app_auto_labeller where line = ? and group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBAutoLabeller.getProperties</id>
+			<text>select * from {schema}app_auto_labeller where line = ? and group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBAutoLabeller.update</id>
+			<text>update {schema}app_auto_labeller set unique_id=?,description=?,use_sscc_range=?,modified=?,validate_resource=?,validate_workstation=? where line = ? and group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBAutoLabeller.updateSSCC</id>
+			<text>update {schema}app_auto_labeller set sscc_sequence=? where line = ? and group_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBAutoLabeller.getLabellerIDs</id>
+			<text>select * from {schema}APP_AUTO_LABELLER order by LINE</text>
+		</statement>
+		<statement>
+			<id>JDBAutoLabeller.getLabellerIDsforGroup</id>
+			<text>select * from {schema}APP_AUTO_LABELLER WHERE GROUP_ID = ? order by LINE</text>
+		</statement>		
+		<?JDBUserReport?>
+		<statement>
+			<id>JDBUserReport.create</id>
+			<text>insert into {schema}SYS_USER_REPORTS (USER_REPORT_ID) values (?)</text>
+		</statement>		
+		<statement>
+			<id>JDBUserReport.delete</id>
+			<text>delete from {schema}SYS_USER_REPORTS where USER_REPORT_ID = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUserReport.renameTo</id>
+			<text>update {schema}SYS_USER_REPORTS set USER_REPORT_ID = ? where USER_REPORT_ID = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUserReport.isValid</id>
+			<text>select * from {schema}SYS_USER_REPORTS where USER_REPORT_ID = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUserReport.getProperties</id>
+			<text>select * from {schema}SYS_USER_REPORTS where USER_REPORT_ID = ?</text>
+		</statement>
+		<statement>
+			<id>JDBUserReport.update</id>
+			<text>update {schema}SYS_USER_REPORTS set DISPLAY_SEQUENCE=?,DESCRIPTION=?,SQL_SELECT=?,MODULE_ID=?,DESTINATION=?,ENABLED=?,PRIVATE=?,USER_ID=?,GROUP_ID=?,PARAM_DATE_RANGE=?,SAVE_PATH=?,PREVIEW=?,PROMPT_SAVE_AS=?,EMAIL_ENABLED=?,EMAIL_PROMPT_ENABLED=?,EMAIL_ADDRESSES=? where USER_REPORT_ID = ?</text>
+		</statement>		
+		<statement>
+			<id>JDBUserReport.getUserReportIDs</id>
+			<text>select * from {schema}SYS_USER_REPORTS order by DISPLAY_SEQUENCE,USER_REPORT_ID</text>
+		</statement>
+		<statement>
+			<id>JDBUserReport.updateUserID</id>
+			<text>update {schema}SYS_USER_REPORTS set USER_ID=? where USER_ID = ?</text>
+		</statement>		
+		<?JDBShifts?>
+		<statement>
+			<id>JDBShifts.create</id>
+			<text>insert into {schema}APP_SHIFTS (SHIFT_ID) values (?)</text>
+		</statement>		
+		<statement>
+			<id>JDBShifts.delete</id>
+			<text>delete from {schema}APP_SHIFTS where SHIFT_ID = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShifts.renameTo</id>
+			<text>update {schema}APP_SHIFTS set SHIFT_ID = ? where SHIFT_ID = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShifts.isValid</id>
+			<text>select * from {schema}APP_SHIFTS where SHIFT_ID = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShifts.getProperties</id>
+			<text>select * from {schema}APP_SHIFTS where SHIFT_ID = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShifts.update</id>
+			<text>update {schema}APP_SHIFTS set DESCRIPTION=?,START_TIME=?,END_TIME=? WHERE SHIFT_ID = ?</text>
+		</statement>		
+		<statement>
+			<id>JDBShifts.getShifts</id>
+			<text>select * from {schema}APP_SHIFTS order by DESCRIPTION</text>
+		</statement>	
+		<?JDBPrinters?>
+		<statement>
+			<id>JDBPrinters.create</id>
+			<text>insert into {schema}SYS_PRINTERS (PRINTER_ID,GROUP_ID) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBPrinters.update</id>
+			<text>update {schema}SYS_PRINTERS set PRINTER_TYPE=?,ENABLED=?,IP_ADDRESS=?,PORT=?,DESCRIPTION=?,LANGUAGE=?,PRINTER_DPI=?,ENABLE_EXPORT=?,EXPORT_PATH=?,ENABLE_DIRECT_PRINT=?,EXPORT_FORMAT=? where PRINTER_ID= ? and GROUP_ID=?</text>
+		</statement>
+		<statement>
+			<id>JDBPrinters.delete</id>
+			<text>delete from {schema}SYS_PRINTERS where PRINTER_ID= ? and GROUP_ID=?</text>
+		</statement>
+		<statement>
+			<id>JDBPrinters.getPrinterProperties</id>
+			<text>select * from {schema}SYS_PRINTERS where PRINTER_ID= ? and GROUP_ID=?</text>
+		</statement>
+		<statement>
+			<id>JDBPrinters.getPrinterIDs</id>
+			<text>select * from {schema}SYS_PRINTERS where ENABLED = ? order by PRINTER_ID</text>
+		</statement>	
+		<?JDBLabelData?>
+		<statement>
+			<id>JDBLabelData.create</id>
+			<text>INSERT INTO {schema}APP_LABEL_DATA (UNIQUE_ID,PRINT_DATE,USER_ID,WORKSTATION_ID,MATERIAL,MATERIAL_TYPE,BATCH_NUMBER,PROCESS_ORDER,REQUIRED_RESOURCE,LOCATION_ID,PROD_QUANTITY,PROD_UOM,BASE_QUANTITY,BASE_UOM,DATE_OF_MANUFACTURE,EXPIRY_DATE,PROD_EAN,PROD_VARIANT,BASE_EAN,BASE_VARIANT,CUSTOMER_ID,PRINT_COPIES,PRINT_QUEUE_NAME,EXPIRY_MODE,MODULE_ID,OVERRIDE_MANUFACTURE_DATE,OVERRIDE_EXPIRY_DATE,OVERRIDE_BATCH_PREFIX,BATCH_PREFIX,BATCH_SUFFIX,LABEL_TYPE,LINE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBLabelData.delete</id>
+			<text>DELETE FROM {schema}APP_LABEL_DATA WHERE UNIQUE_ID = ?</text>
+		</statement>
+		<statement>
+			<id>JDBLabelData.getProperties</id>
+			<text>SELECT * FROM {schema}APP_LABEL_DATA WHERE UNIQUE_ID = ?</text>
+		</statement>
+		<statement>
+			<id>JDBLabelData.updateLine</id>
+			<text>UPDATE {schema}APP_LABEL_DATA SET LINE=? WHERE UNIQUE_ID = ?</text>
+		</statement>		
+		<statement>
+			<id>JDBLabelData.renameLine</id>
+			<text>UPDATE {schema}APP_LABEL_DATA SET LINE=? WHERE LINE=?</text>
+		</statement>
+		<statement>
+			<id>JDBLabelData.select</id>
+			<text>SELECT * FROM {schema}VIEW_LABEL_DATA WHERE UNIQUE_ID = ?</text>
+		</statement>	
+		<?JDBPrinterLineMembership?>
+		<statement>
+			<id>JDBLinePrinterMembership.create</id>
+			<text>INSERT INTO {schema}SYS_PRINTER_LINE_MEMBERSHIP (LINE,GROUP_ID,PRINTER_ID) VALUES (?,?,?)</text>
+		</statement>		
+		<statement>		
+			<id>JDBLinePrinterMembership.delete</id>
+			<text>DELETE FROM {schema}SYS_PRINTER_LINE_MEMBERSHIP WHERE LINE = ? AND GROUP_ID = ? AND PRINTER_ID = ?</text>
+		</statement>		
+		<statement>		
+			<id>JDBLinePrinterMembership.deleteForPrinterID</id>
+			<text>DELETE FROM {schema}SYS_PRINTER_LINE_MEMBERSHIP WHERE PRINTER_ID = ?</text>
+		</statement>
+		<statement>		
+			<id>JDBLinePrinterMembership.getPrintersAssignedtoLine</id>
+			<text>SELECT * FROM {schema}SYS_PRINTER_LINE_MEMBERSHIP WHERE LINE = ? AND GROUP_ID = ?  ORDER BY PRINTER_ID</text>
+		</statement>		
+		<statement>		
+			<id>JDBLinePrinterMembership.getPrintersNotAssignedtoLine</id>
+			<text>SELECT * FROM {schema}SYS_PRINTERS WHERE PRINTER_ID NOT IN (SELECT PRINTER_ID FROM {schema}SYS_PRINTER_LINE_MEMBERSHIP WHERE LINE = ? AND GROUP_ID = ? )</text>
+		</statement>		
+		<statement>		
+			<id>JDBLinePrinterMembership.isPrinterAssignedToLine</id>
+			<text>SELECT * FROM {schema}SYS_PRINTER_LINE_MEMBERSHIP WHERE LINE = ? AND GROUP_ID = ?  AND PRINTER_ID = ?</text>
+		</statement>		
+		<statement>		
+			<id>JDBLinePrinterMembership.removeAllPrintersfromLine</id>
+			<text>DELETE FROM {schema}SYS_PRINTER_LINE_MEMBERSHIP WHERE LINE = ? AND GROUP_ID = ? </text>
+		</statement>	
+		<statement>		
+			<id>JDBLinePrinterMembership.renameLine</id>
+			<text>UPDATE {schema}SYS_PRINTER_LINE_MEMBERSHIP SET LINE = ? WHERE LINE = ? AND GROUP_ID = ? </text>
+		</statement>
+		<?DBVIEW_AUTO_LABELLER_PRINTER?>	
+		<statement>		
+			<id>DBVIEW_AUTO_LABELLER_PRINTER.getModified</id>
+			<text>SELECT * FROM {schema}VIEW_AUTO_LABELLER_PRINTER where modified = 'Y'</text>
+		</statement>	
+		<statement>		
+			<id>DBVIEW_AUTO_LABELLER_PRINTER.getEnabled</id>
+			<text>SELECT * FROM {schema}VIEW_AUTO_LABELLER_PRINTER</text>
+		</statement>	
+		<statement>		
+			<id>DBVIEW_AUTO_LABELLER_PRINTER.getProperties</id>
+			<text>SELECT * FROM {schema}VIEW_AUTO_LABELLER_PRINTER where line = ? and printer_id = ?</text>
+		</statement>	
+		<?JDBAutoLabellerResources?>
+		<statement>
+			<id>JDBAutoLabellerResources.create</id>
+			<text>insert into {schema}app_auto_labeller_resources (line,group_id,required_resource) values (?,?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBAutoLabellerResources.delete</id>
+			<text>delete from {schema}app_auto_labeller_resources where line=? and group_id = ? and required_resource=?</text>
+		</statement>	
+		<statement>
+			<id>JDBAutoLabellerResources.isValid</id>
+			<text>select * from {schema}app_auto_labeller_resources where line=?  and group_id = ? and required_resource=?</text>
+		</statement>
+		<statement>
+			<id>JDBAutoLabellerResources.getResources</id>
+			<text>select * from {schema}app_auto_labeller_resources where line=? and group_id = ?  order by required_resource</text>
+		</statement>					
+		<statement>
+			<id>JDBAutoLabellerResources.renameLine</id>
+			<text>update {schema}app_auto_labeller_resources set line=? where line=? and group_id = ? </text>
+		</statement>
+		<?JDBMaterialCustomerData ?>
+		<statement>
+			<id>JDBMaterialCustomerData.isValid</id>
+			<text>select * from {schema}app_material_customer_data where material = ? and customer_id=? and data_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialCustomerData.create</id>
+			<text>insert into {schema}app_material_customer_data (material,customer_id,data_id) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialCustomerData.update</id>
+			<text>update {schema}app_material_customer_data set data=? where material=? and customer_id=? and data_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialCustomerData.delete</id>
+			<text>delete from {schema}app_material_customer_data where material = ? and customer_id = ? and data_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialCustomerData.getProperties</id>
+			<text>select * from {schema}app_material_customer_data where material = ? and customer_id = ? and data_id=?</text>
+		</statement>
+		<?JDBArchive?>
+		<statement>
+			<id>JDBArchive.create</id>
+			<text>insert into {schema}SYS_ARCHIVE (archive_id) values (?)</text>
+		</statement>
+		<statement>
+			<id>JDBArchive.delete</id>
+			<text>delete from {schema}SYS_ARCHIVE where archive_id = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBArchive.getArchives</id>
+			<text>select * from {schema}SYS_ARCHIVE order archive_id</text>
+		</statement>	
+		<statement>
+			<id>JDBArchive.getProperties</id>
+			<text>select * from {schema}SYS_ARCHIVE where archive_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBArchive.isValidArchive</id>
+			<text>select * from {schema}SYS_ARCHIVE where archive_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBArchive.renameTo</id>
+			<text>update {schema}SYS_ARCHIVE set archive_id=? where archive_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBArchive.update</id>
+			<text>update {schema}SYS_ARCHIVE set description=?,enabled=?,background_task=?,sql_table=?,sql_criteria=?,retention_days=?,sequence=? where archive_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBArchive.updateRunStats</id>
+			<text>update {schema}SYS_ARCHIVE set run_start_time=?,run_end_time=?,records_deleted=?,sql_result=? where archive_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBArchive.jobList</id>
+			<text>select * from {schema}SYS_ARCHIVE where enabled='Y' and background_task= 'Y' order by sequence</text>
+		</statement>
+		<?JDBDataID?>
+		<statement>
+			<id>JDBDataID.create</id>
+			<text>insert into {schema}APP_MATERIAL_DATA_IDS (data_id) values (?)</text>
+		</statement>
+		<statement>
+			<id>JDBDataID.delete</id>
+			<text>delete from {schema}APP_MATERIAL_DATA_IDS  where data_id=?</text>
+		</statement>		
+		<statement>
+			<id>JDBDataID.getProperties</id>
+			<text>select * from {schema}APP_MATERIAL_DATA_IDS  where data_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBDataID.getIDs</id>
+			<text>select * from {schema}APP_MATERIAL_DATA_IDS order by data_id</text>
+		</statement>
+		<statement>
+			<id>JDBDataID.isValidID</id>
+			<text>select * from {schema}APP_MATERIAL_DATA_IDS  where data_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBDataID.update</id>
+			<text>update {schema}APP_MATERIAL_DATA_IDS set description=? where data_id=?</text>
+		</statement>	
+		<?JDBAuditPermissions?>
+		<statement>
+			<id>JDBAuditPermissions.create</id>
+			<text>insert into {schema}SYS_AUDIT_PERMISSIONS (sys_audit_log_id,event_time,user_id,event_type,event_action,target,data,workstation_id) values (?,?,?,?,?,?,?,?)</text>		</statement>
+		<statement>
+			<id>JDBAuditPermissions.getProperties</id>
+			<text>select * from {schema}SYS_AUDIT_PERMISSIONS where sys_audit_log_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBAuditPermissions.selectWithLimit</id>
+			<text>select * from {schema}SYS_AUDIT_PERMISSIONS</text>
+		</statement>	
+		<?JDBLineWorkstationMembership?>
+		<statement>
+			<id>JDBLineWorkstationMembership.create</id>
+			<text>INSERT INTO {schema}SYS_WORKSTATION_LINE_MEMBERS (LINE,GROUP_ID,WORKSTATION_ID) VALUES (?,?,?)</text>
+		</statement>		
+		<statement>		
+			<id>JDBLineWorkstationMembership.delete</id>
+			<text>DELETE FROM {schema}SYS_WORKSTATION_LINE_MEMBERS WHERE LINE = ? AND GROUP_ID = ? AND WORKSTATION_ID = ?</text>
+		</statement>		
+		<statement>		
+			<id>JDBLineWorkstationMembership.JdeleteForWorkstationID</id>
+			<text>DELETE FROM {schema}SYS_WORKSTATION_LINE_MEMBERS WHERE WORKSTATION_ID = ?</text>
+		</statement>
+		<statement>		
+			<id>JDBLineWorkstationMembership.getWorkstationsAssignedtoLine</id>
+			<text>SELECT * FROM {schema}SYS_WORKSTATION_LINE_MEMBERS WHERE LINE = ? AND GROUP_ID = ?  ORDER BY WORKSTATION_ID</text>
+		</statement>		
+		<statement>		
+			<id>JDBLineWorkstationMembership.getWorkstationsNotAssignedtoLine</id>
+			<text>SELECT * FROM {schema}SYS_PRINTERS WHERE WORKSTATION_ID NOT IN (SELECT WORKSTATION_ID FROM {schema}SYS_WORKSTATION_LINE_MEMBERS WHERE LINE = ? AND GROUP_ID = ? )</text>
+		</statement>		
+		<statement>		
+			<id>JDBLineWorkstationMembership.isWorkstationAssignedToLine</id>
+			<text>SELECT * FROM {schema}SYS_WORKSTATION_LINE_MEMBERS WHERE LINE = ? AND GROUP_ID = ?  AND WORKSTATION_ID = ?</text>
+		</statement>		
+		<statement>		
+			<id>JDBLineWorkstationMembership.removeAllWorkstationsfromLine</id>
+			<text>DELETE FROM {schema}SYS_WORKSTATION_LINE_MEMBERS WHERE LINE = ? AND GROUP_ID = ? </text>
+		</statement>	
+		<statement>		
+			<id>JDBLineWorkstationMembership.renameLine</id>
+			<text>UPDATE {schema}SYS_WORKSTATION_LINE_MEMBERS SET LINE = ? WHERE LINE = ? AND GROUP_ID = ? </text>
+		</statement>
+								
+	</jdbcDriver>
+</SQL>

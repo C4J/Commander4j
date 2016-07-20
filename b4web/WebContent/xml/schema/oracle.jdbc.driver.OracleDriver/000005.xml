@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	alter table sys_modules add REPORT_TYPE varchar(15) default ''
+</statement>
+
+<statement>
+	update sys_modules set REPORT_TYPE = 'Standard' where module_type = 'REPORT'
+</statement>
+
+</DDL>

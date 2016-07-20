@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+Insert into SYS_MODULES (MODULE_ID,DESCRIPTION,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,MNEMONIC,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES) values ('FRM_PRODDEC_PRINT','Enable Print CheckBox','N','Y','FUNCTION',null,0,null,null,null,null,null,'Y','N',1)
+</statement>
+
+<statement>
+Insert into SYS_MODULES (MODULE_ID,DESCRIPTION,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,MNEMONIC,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES) values ('FRM_PRODDEC_PREVIEW','Enable Preview CheckBox','N','Y','FUNCTION',null,0,null,null,null,null,null,'Y','N',1)
+</statement>
+
+<statement>
+Insert into SYS_MODULES (MODULE_ID,DESCRIPTION,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,MNEMONIC,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES) values ('FRM_PRODDEC_CONFIRM','Enable Confirm CheckBox','N','Y','FUNCTION',null,0,null,null,null,null,null,'Y','N',1)
+</statement>
+
+<statement>
+Insert into SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) values ('ADMIN','FRM_PRODDEC_PRINT')
+</statement>
+
+<statement>
+Insert into SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) values ('ADMIN','FRM_PRODDEC_PREVIEW')
+</statement>
+
+<statement>
+Insert into SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) values ('ADMIN','FRM_PRODDEC_CONFIRM')
+</statement>
+
+<statement>
+Insert into SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) values ('PALLET','FRM_PRODDEC_PRINT')
+</statement>
+
+<statement>
+Insert into SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) values ('PALLET','FRM_PRODDEC_PREVIEW')
+</statement>
+
+<statement>
+CREATE TABLE sys_report_request (
+  report_request_id NUMBER NOT NULL,
+  module_id VARCHAR2(35),
+  invocation_mode VARCHAR2(35),
+  parameter_count INTEGER DEFAULT 0,
+  parameter_delimiter VARCHAR2(1),
+  parameter_names VARCHAR2(250),
+  parameter_types VARCHAR2(250),
+  parameter_values VARCHAR2(250),
+  sql VARCHAR2(2000),
+  print_queue_name VARCHAR2(250),
+  print_copies INTEGER DEFAULT 0,
+  PRIMARY KEY (report_request_id))
+</statement>
+
+<statement>
+Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('INTERFACE REQUEST ID','1',null)
+</statement>
+
+<statement>
+Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('REPORT REQUEST ID','1',null)
+</statement>
+
+
+</DDL>

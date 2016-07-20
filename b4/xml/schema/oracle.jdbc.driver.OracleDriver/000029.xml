@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	insert into SYS_MODULES (MODULE_ID,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES,RESOURCE_KEY) values ('FRM_PRODDEC_REPRINT','Y','N','FUNCTION',null,null,null,'',null,null,'N','N',1,'btn_Re_Print')
+</statement>
+
+<statement>
+insert into sys_language (resource_key,text,language_id,mnemonic) values ('btn_Re_Print','Re-Print','EN','')
+</statement>
+
+<statement>
+insert into sys_language (resource_key,text,language_id,mnemonic) values ('btn_Re_Print','Re-Print','NL','')
+</statement>
+
+</DDL>

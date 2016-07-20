@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.4.final using JasperReports Library version 6.0.4  -->
+<!-- 2015-04-17T13:31:03 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="process_order_barcode" language="groovy" pageWidth="215" pageHeight="215" columnWidth="215" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6e435b7f-61e4-42dc-b76c-dbcb85542e7f">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="PLANT" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from APP_PROCESS_ORDER WHERE process_order = '13339891']]>
+	</queryString>
+	<field name="PROCESS_ORDER" class="java.lang.String"/>
+	<field name="MATERIAL" class="java.lang.String"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="DUE_DATE" class="java.sql.Timestamp"/>
+	<field name="DESCRIPTION" class="java.lang.String"/>
+	<field name="LOCATION_ID" class="java.lang.String"/>
+	<field name="RECIPE_ID" class="java.lang.String"/>
+	<field name="REQUIRED_QUANTITY" class="java.math.BigDecimal"/>
+	<field name="REQUIRED_UOM" class="java.lang.String"/>
+	<field name="UPDATED" class="java.sql.Timestamp"/>
+	<field name="DEFAULT_PALLET_STATUS" class="java.lang.String"/>
+	<field name="REQUIRED_RESOURCE" class="java.lang.String"/>
+	<field name="CUSTOMER_ID" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="215" splitType="Stretch">
+			<textField>
+				<reportElement x="45" y="5" width="86" height="10" uuid="1b968666-2526-4456-8ed9-fcbdb3915e48"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROCESS_ORDER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="61" y="45" width="81" height="10" isPrintWhenDetailOverflows="true" uuid="bcdce3ce-97f7-4783-b1e6-e9618069303b"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REQUIRED_RESOURCE}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="7" y="96" width="195" height="108" uuid="cff24687-09dd-49fe-83b3-07bf6012ea58"/>
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="2.0">
+					<jr:codeExpression><![CDATA[$F{PROCESS_ORDER}]]></jr:codeExpression>
+				</jr:Code128>
+			</componentElement>
+			<textField>
+				<reportElement x="7" y="73" width="195" height="12" uuid="6b8e4101-3fcc-45f9-9b38-7376428c7e64"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="52" y="25" width="71" height="10" uuid="04921b4c-c534-4522-8ba4-5ddb562041c5"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="5" width="31" height="10" uuid="7c074c66-9a92-4c98-ad5c-9deaba6060f5"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="45" width="43" height="10" uuid="dbefec7c-4fc0-4b3f-8e07-d82c68d90a89"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Resource]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="25" width="44" height="10" uuid="212024a6-e529-4295-9a46-028605b39b5a"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Material]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="63" width="54" height="10" uuid="a9578abf-3efe-4daf-8c61-fd5d6f931616"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="25" width="34" height="10" uuid="4d78b5cb-0ebf-418e-90df-6f787977572f"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PLANT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="131" y="25" width="26" height="10" uuid="70f94941-0a25-454a-b13e-7599ed555eb7"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Plant]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

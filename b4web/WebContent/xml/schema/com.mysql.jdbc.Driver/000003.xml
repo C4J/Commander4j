@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+ALTER TABLE `APP_LOCATION` ADD COLUMN `MSG_DESPATCH_CONFIRM` VARCHAR(1) DEFAULT 'Y';
+</statement>
+
+<statement>
+ALTER TABLE `APP_LOCATION` ADD COLUMN `MSG_DESPATCH_PREADVICE` VARCHAR(1) DEFAULT 'Y';
+</statement>
+
+<statement>
+ALTER TABLE `APP_LOCATION` ADD COLUMN `MSG_DESPATCH_EQUIP_TRACK` VARCHAR(1) DEFAULT 'Y';
+</statement>
+
+<statement>
+ALTER TABLE `APP_LOCATION` ADD COLUMN `MSG_PROD_CONFIRM` VARCHAR(1) DEFAULT 'Y';
+</statement>
+
+<statement>
+update `APP_LOCATION` set MSG_DESPATCH_CONFIRM='Y',MSG_DESPATCH_PREADVICE='Y',MSG_DESPATCH_EQUIP_TRACK='Y',MSG_PROD_CONFIRM='Y';
+</statement>
+
+<statement>
+insert into `SYS_CONTROL` (`SYSTEM_KEY`, `KEY_VALUE`, `DESCRIPTION`) values ('LABEL_HEADER_COMMENT','Free format text','Comment on barcode label header.');
+</statement>
+
+</DDL>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	INSERT INTO sys_modules (module_id, rf_active, dk_active, module_type, hint, icon_filename, helpset_id, report_filename, exec_filename, exec_dir, print_preview, print_dialog, print_copies,resource_key) values (N'FRM_PROCESS_ORDER_LABEL', N'Y', N'N', N'FORM', NULL,NULL, NULL, N'', NULL, NULL, NULL, NULL, NULL, N'mod_FRM_PROCESS_ORDER_LABEL')
+</statement>
+
+<statement>
+	INSERT INTO sys_modules (module_id,rf_active,dk_active,module_type,hint,icon_filename,helpset_id,report_filename,exec_filename,exec_dir,print_preview,print_dialog,print_copies,report_type,resource_key)  values ('RPT_PROCESS_ORDER_LABEL','N','Y','REPORT','',null,null,'Zebra_Process_Order.lbl','','','N','N',1,'Label','mod_FRM_PROCESS_ORDER_LABEL')
+</statement>
+
+<statement>
+	insert into sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PROCESS_ORDER_LABEL','Process Order Label Print','EN','')
+</statement>
+
+<statement>
+	insert into sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PROCESS_ORDER_LABEL','Process Order Label Print','NL','')
+</statement>
+
+<statement>
+	insert into sys_language (resource_key,text,language_id,mnemonic) values ('lbl_No_Of_Labels','Number of Labels','NL','')
+</statement>
+
+<statement>
+	insert into sys_language (resource_key,text,language_id,mnemonic) values ('lbl_No_Of_Labels','Number of Labels','EN','')
+</statement>
+
+<statement>
+	INSERT into sys_group_permissions (group_id, module_id) values ('PALLET', 'FRM_PROCESS_ORDER_LABEL')
+</statement>
+
+<statement>
+	INSERT into sys_group_permissions (group_id, module_id) values ('PUBLIC', 'FRM_PROCESS_ORDER_LABEL')
+</statement>
+
+<statement>
+	INSERT into sys_group_permissions (group_id, module_id) values ('PALLET', 'RPT_PROCESS_ORDER_LABEL')
+</statement>
+
+<statement>
+	INSERT into sys_group_permissions (group_id, module_id) values ('PUBLIC', 'RPT_PROCESS_ORDER_LABEL')
+</statement>
+
+</DDL>

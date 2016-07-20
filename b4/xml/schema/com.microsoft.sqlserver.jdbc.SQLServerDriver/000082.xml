@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Change_Password', 'EN', 'Change Password', 'P')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Change_Password', 'NL', 'Wachtwoord wijzigen', 'D')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Change_Password', 'HU', 'Jelszó módosítása', 'F')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Change_Password', 'IT', 'Cambia password', 'S')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Change_Password', 'ES', 'Cambiar contraseña', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Change_Password', 'FR', 'Changer mot de passe', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Change_Password', 'DE', 'Kennwort ändern', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Change_Password', 'PL', 'Zmień hasło', 'I')
+</statement>
+ 
+<statement> 
+INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY)
+ VALUES ('FRM_USER_PASS_CHANGE', 'Y', 'Y', 'FORM', '1 web_Change_Password', '0', 'user.gif', '', '', '', '', 'Y', 'N', '1', '', 'web_Change_Password')
+</statement> 
+
+<statement>
+	INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('PUBLIC', 'FRM_USER_PASS_CHANGE')
+</statement>
+
+<statement>
+	INSERT INTO SYS_RF_MENU (MODULE_ID, SEQUENCE_ID) VALUES ('FRM_USER_PASS_CHANGE', '5')
+</statement> 
+
+<statement>
+ALTER VIEW    VIEW_LABEL_DATA_PROCESS_ORDER AS
+SELECT		  PO.PROCESS_ORDER, 
+              PO.STATUS, 
+              PO.MATERIAL, 
+              PO.REQUIRED_UOM, 
+              PO.REQUIRED_RESOURCE,
+              PO.DUE_DATE,               
+              MAT.MATERIAL_TYPE, 
+              MAT.DESCRIPTION,
+			  RIGHT('00000000000000' + MATUOM_PROD.EAN, 14) AS PROD_EAN, 
+              RIGHT('00' + MATUOM_PROD.VARIANT, 2) AS PROD_VARIANT, 
+              MATUOM_BASE.NUMERATOR AS PROD_QUANTITY,
+      	      RIGHT('00000000000000' + MATUOM_BASE.EAN, 14) AS BASE_EAN, 
+              RIGHT('00' + MATUOM_BASE.VARIANT, 2) AS BASE_VARIANT,
+              MATUOM_PROD.NUMERATOR AS BASE_QUANTITY,
+			  dbo.c4j_GetFullPalletQuantity(PO.PROCESS_ORDER) AS PALLET_QUANTITY,
+			  dbo.c4j_GetLayers(PO.PROCESS_ORDER) AS PALLET_LAYERS, 
+			  MAT.OLD_MATERIAL, 
+              MAT.SHELF_LIFE, 
+              MAT.SHELF_LIFE_UOM, 
+              MAT.SHELF_LIFE_RULE, 
+              PO.CUSTOMER_ID, 
+              CUST.CUSTOMER_NAME,
+			  dbo.c4j_GetFinalBatchNumber(GETDATE(), 'N', '', '', PO.PROCESS_ORDER) AS BATCH_NUMBER,
+              dbo.c4j_GetFinalExpiryDate(GETDATE(), MAT.SHELF_LIFE, MAT.SHELF_LIFE_UOM, MAT.SHELF_LIFE_RULE, 'N', GETDATE()) AS EXPIRY_DATE, 
+			  MAT.UPDATED AS MATERIAL_UPDATED, 
+              PO.UPDATED AS PROCESS_ORDER_UPDATED
+FROM          dbo.APP_PROCESS_ORDER AS PO 
+              INNER JOIN dbo.APP_MATERIAL AS MAT 
+              			ON MAT.MATERIAL = PO.MATERIAL
+              INNER JOIN dbo.APP_CUSTOMER AS CUST 
+                        ON CUST.CUSTOMER_ID = PO.CUSTOMER_ID
+              INNER JOIN dbo.APP_MATERIAL_UOM AS MATUOM_PROD 
+              			ON MATUOM_PROD.MATERIAL  = PO.MATERIAL
+              			AND MATUOM_PROD.UOM = PO.REQUIRED_UOM
+              INNER JOIN dbo.APP_MATERIAL_UOM AS MATUOM_BASE 
+                        ON MATUOM_BASE.MATERIAL = PO.MATERIAL 
+                        AND MATUOM_BASE.UOM = MAT.BASE_UOM                
+                        AND MATUOM_BASE.UOM = MAT.BASE_UOM
+</statement>
+
+<statement>
+	DELETE FROM SYS_MENUS WHERE MODULE_ID = 'FRM_ADMIN_AUTO_LABELLER' AND MENU_ID = 'MENU_ADMIN'
+</statement>
+
+<statement>
+	INSERT INTO SYS_MENUS (MODULE_ID,MENU_ID,SEQUENCE_ID) VALUES ('FRM_ADMIN_AUTO_LABELLER','MENU_LABELS','2')
+</statement>
+
+<statement>
+	DELETE FROM SYS_MENUS WHERE MODULE_ID = 'FRM_ADMIN_LINE_PRINT' AND MENU_ID = 'MENU_ADMIN'
+</statement>
+
+<statement>
+	INSERT INTO SYS_MENUS (MODULE_ID,MENU_ID,SEQUENCE_ID) VALUES ('FRM_ADMIN_LINE_PRINT','MENU_LABELS','4')
+</statement>
+
+<statement>
+	DELETE FROM SYS_MENUS WHERE MODULE_ID = 'FRM_ADMIN_PRINTERS' AND MENU_ID = 'MENU_ADMIN'
+</statement>
+
+<statement>
+	DELETE FROM SYS_MENUS WHERE MODULE_ID = 'FRM_ADMIN_PRINTERS' AND MENU_ID = 'MENU_SETUP'
+</statement>
+
+<statement>
+	INSERT INTO SYS_MENUS (MODULE_ID,MENU_ID,SEQUENCE_ID) VALUES ('FRM_ADMIN_PRINTERS','MENU_LABELS','3')
+</statement>
+
+<statement>
+DELETE FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'mod_FRM_AUTO_LABELLER'
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_AUTO_LABELLER', 'EN', 'Production Line', 'A')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_AUTO_LABELLER', 'NL', 'Production Line', 'A')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_AUTO_LABELLER', 'HU', 'Gyártósor', 'A')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_AUTO_LABELLER', 'IT', 'Linea di produzione', 'A')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_AUTO_LABELLER', 'ES', 'Línea de Producción', 'A')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_AUTO_LABELLER', 'FR', 'Ligne de production', 'A')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_AUTO_LABELLER', 'DE', 'Fertigungsstraße', 'A')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_AUTO_LABELLER', 'PL', 'Linia produkcyjna', 'A')
+</statement>
+
+<statement>
+DELETE FROM SYS_LANGUAGE WHERE RESOURCE_KEY = 'mod_FRM_ADMIN_PRINTERS'
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_PRINTERS', 'EN', 'Label Printers', 'P')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_PRINTERS', 'NL', 'Labelprinters', 'D')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_PRINTERS', 'HU', 'Címke nyomtatók', 'F')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_PRINTERS', 'IT', 'Stampanti per etichette', 'S')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_PRINTERS', 'ES', 'impresoras de etiquetas', 'I')
+</statement>
+
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_PRINTERS', 'DE', 'Etikettendrucker', 'S')
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_PRINTERS', 'FR', 'Imprimantes d étiquettes', 'I')
+</statement>
+
+
+</DDL>

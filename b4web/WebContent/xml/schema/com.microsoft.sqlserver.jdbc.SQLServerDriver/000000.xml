@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+	
+<statement>
+CREATE TABLE [dbo].[BAR_EAN_DEFS](
+	[APPLICATION_ID] [varchar](4) NOT NULL,
+	[DESCRIPTION] [varchar](80) NULL,
+	[DATA_TYPE] [varchar](1) NULL,
+	[DECIMAL_INDICATOR] [varchar](1) NULL,
+	[MAX_DATA_LENGTH] [numeric](10, 0) NULL,
+	[FIXED_VARIABLE] [varchar](1) NULL,
+	[CHECK_DIGIT] [varchar](1) NULL,
+ CONSTRAINT [EAN_DEFS_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[APPLICATION_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_UOM_CONVERSION](
+	[UOM_FROM] [varchar](3) NOT NULL,
+	[UOM_TO] [varchar](3) NOT NULL,
+	[NUMERATOR] [numeric](38, 0) NOT NULL,
+	[DENOMINATOR] [numeric](38, 0) NOT NULL,
+ CONSTRAINT [PK_UOM_CONVERSION] PRIMARY KEY NONCLUSTERED 
+(
+	[UOM_FROM] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_UOM](
+	[UOM] [varchar](3) NOT NULL,
+	[ISO_UOM] [varchar](3) NULL,
+	[LOCAL_UOM] [varchar](3) NULL,
+	[DESCRIPTION] [varchar](50) NULL,
+ CONSTRAINT [UOM_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[UOM] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_STATUS](
+	[STATUS] [varchar](15) NOT NULL,
+ CONSTRAINT [STATUS_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[STATUS] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_PROCESS_ORDER](
+	[PROCESS_ORDER] [varchar](10) NOT NULL,
+	[MATERIAL] [varchar](20) NULL,
+	[STATUS] [varchar](15) NULL,
+	[DUE_DATE] [datetime] NULL,
+	[DESCRIPTION] [varchar](60) NULL,
+	[LOCATION_ID] [varchar](15) NULL,
+	[RECIPE_ID] [varchar](20) NULL,
+	[REQUIRED_QUANTITY] [numeric](22, 3) NULL,
+	[REQUIRED_UOM] [varchar](50) NULL,
+	[UPDATED] [datetime] NULL,
+	[DEFAULT_PALLET_STATUS] [varchar](15) NULL,
+ CONSTRAINT [PROCESS_ORDER_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[PROCESS_ORDER] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_PALLET_HISTORY](
+	[TRANSACTION_REF] [numeric](38, 0) NOT NULL,
+	[TRANSACTION_TYPE] [varchar](15) NOT NULL,
+	[TRANSACTION_SUBTYPE] [varchar](15) NOT NULL,
+	[TRANSACTION_DATE] [datetime] NOT NULL,
+	[SSCC] [varchar](18) NOT NULL,
+	[LOCATION_ID] [varchar](15) NULL,
+	[MATERIAL] [varchar](20) NULL,
+	[BATCH_NUMBER] [varchar](12) NULL,
+	[PROCESS_ORDER] [varchar](10) NULL,
+	[QUANTITY] [numeric](22, 3) NULL,
+	[UOM] [varchar](10) NULL,
+	[DATE_OF_MANUFACTURE] [datetime] NULL,
+	[STATUS] [varchar](15) NULL,
+	[EAN] [varchar](14) NULL,
+	[VARIANT] [varchar](2) NULL,
+	[DESPATCH_NO] [varchar](10) NULL,
+	[USER_ID] [varchar](10) NULL,
+	[CONFIRMED] [varchar](1) NULL,
+	[LAYERS] [int] NULL,
+ CONSTRAINT [PALLET_HISTORY_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[TRANSACTION_REF] ASC,
+	[TRANSACTION_TYPE] ASC,
+	[TRANSACTION_SUBTYPE] ASC,
+	[TRANSACTION_DATE] ASC,
+	[SSCC] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_PALLET](
+	[SSCC] [varchar](18) NOT NULL,
+	[LOCATION_ID] [varchar](15) NULL,
+	[MATERIAL] [varchar](20) NULL,
+	[BATCH_NUMBER] [varchar](12) NULL,
+	[PROCESS_ORDER] [varchar](10) NULL,
+	[QUANTITY] [numeric](22, 3) NULL,
+	[UOM] [varchar](10) NULL,
+	[DATE_OF_MANUFACTURE] [datetime] NULL,
+	[STATUS] [varchar](15) NULL,
+	[EAN] [varchar](14) NULL,
+	[VARIANT] [varchar](2) NULL,
+	[DESPATCH_NO] [varchar](10) NULL,
+	[CONFIRMED] [varchar](1) NULL,
+	[LAYERS] [int] NULL,
+ CONSTRAINT [PALLET_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[SSCC] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+<statement>
+CREATE TABLE [dbo].[APP_MATERIAL_UOM](
+	[MATERIAL] [varchar](20) NOT NULL,
+	[UOM] [varchar](3) NOT NULL,
+	[EAN] [varchar](14) NULL,
+	[VARIANT] [varchar](2) NULL,
+	[NUMERATOR] [numeric](38, 0) NULL,
+	[DENOMINATOR] [numeric](38, 0) NULL,
+ CONSTRAINT [MATERIAL_UOM_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[MATERIAL] ASC,
+	[UOM] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_MATERIAL_TYPE](
+	[MATERIAL_TYPE] [varchar](5) NOT NULL,
+	[DESCRIPTION] [varchar](80) NULL,
+ CONSTRAINT [MATERIAL_TYPE_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[MATERIAL_TYPE] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_MATERIAL_BATCH](
+	[MATERIAL] [varchar](20) NOT NULL,
+	[BATCH_NUMBER] [varchar](12) NOT NULL,
+	[STATUS] [varchar](15) NULL,
+	[EXPIRY_DATE] [datetime] NULL,
+ CONSTRAINT [MATERIAL_BATCH_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[MATERIAL] ASC,
+	[BATCH_NUMBER] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_MATERIAL](
+	[MATERIAL] [varchar](20) NOT NULL,
+	[MATERIAL_TYPE] [varchar](5) NULL,
+	[DESCRIPTION] [varchar](80) NULL,
+	[BASE_UOM] [varchar](3) NULL,
+	[PRODUCTION_UOM] [varchar](3) NULL,
+	[ISSUE_UOM] [varchar](3) NULL,
+	[SHELF_LIFE_UOM] [varchar](1) NULL,
+	[SHELF_LIFE] [numeric](38, 0) NULL,
+	[SHELF_LIFE_RULE] [varchar](1) NULL,
+	[GROSS_WEIGHT] [float] NULL,
+	[NET_WEIGHT] [float] NULL,
+	[WEIGHT_UOM] [varchar](3) NULL,
+	[OLD_MATERIAL] [varchar](20) NULL,
+	[DEFAULT_BATCH_STATUS] [varchar](15) NULL,
+	[DEFAULT_PALLET_STATUS] [varchar](15) NULL,
+	[PRODUCTION_QUANTITY] [numeric](23, 3) NULL,
+	[STORAGE_UNIT_TYPE] [varchar](10) NULL,
+	[EQUIPMENT_TYPE] [varchar](15) NULL,
+	[UPDATED] [datetime] NULL,
+ CONSTRAINT [MATERIAL_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[MATERIAL] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_LOCATION](
+	[LOCATION_ID] [varchar](15) NOT NULL,
+	[PLANT] [varchar](10) NULL,
+	[WAREHOUSE] [varchar](10) NULL,
+	[GLN] [varchar](14) NULL,
+	[DESCRIPTION] [varchar](45) NULL,
+	[STORAGE_LOCATION] [varchar](10) NULL,
+	[STORAGE_TYPE] [varchar](10) NULL,
+	[STORAGE_SECTION] [varchar](10) NULL,
+	[STORAGE_BIN] [varchar](10) NULL,
+	[EQUIPMENT_TRACKING_ID] [varchar](15) NULL,
+ CONSTRAINT [LOCATION_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[LOCATION_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[APP_DESPATCH](
+	[DESPATCH_NO] [varchar](10) NOT NULL,
+	[DESPATCH_DATE] [datetime] NULL,
+	[LOCATION_ID_FROM] [varchar](15) NULL,
+	[STATUS] [varchar](15) NULL,
+	[TOTAL_PALLETS] [numeric](38, 0) NULL,
+	[LOCATION_ID_TO] [varchar](15) NULL,
+	[TRAILER] [varchar](15) NULL,
+	[HAULIER] [varchar](15) NULL,
+	[TRANSACTION_REF] [numeric](38, 0) NULL,
+ CONSTRAINT [MATERIAL_DESPATCH_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[DESPATCH_NO] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_USERS](
+	[USER_ID] [varchar](10) NOT NULL,
+	[PASSWORD] [varchar](10) NULL,
+	[LANGUAGE_ID] [varchar](2) NULL,
+	[USER_COMMENT] [varchar](40) NULL,
+	[LAST_LOGON] [datetime] NULL,
+	[LAST_PASSWORD_CHANGE] [datetime] NULL,
+	[ACCOUNT_LOCKED] [varchar](1) NULL,
+	[PASSWORD_EXPIRES] [varchar](1) NULL,
+	[PASSWORD_CHANGE_ALLOWED] [varchar](1) NULL,
+	[BAD_PASSWORD_ATTEMPTS] [numeric](38, 0) NULL,
+	[ACCOUNT_EXPIRES] [varchar](1) NULL,
+	[ACCOUNT_EXPIRY_DATE] [datetime] NULL,
+	[EMAIL_ADDRESS] [varchar](45) NULL,
+ CONSTRAINT [USERS_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[USER_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_USER_GROUP_MEMBERSHIP](
+	[USER_ID] [varchar](10) NOT NULL,
+	[GROUP_ID] [varchar](20) NOT NULL,
+ CONSTRAINT [USERS_GROUPS_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[USER_ID] ASC,
+	[GROUP_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_TOOLBAR](
+	[MODULE_ID] [varchar](35) NOT NULL,
+	[SEQUENCE_ID] [numeric](38, 0) NOT NULL,
+ CONSTRAINT [TOOLBAR_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[MODULE_ID] ASC,
+	[SEQUENCE_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+<statement>
+CREATE TABLE [dbo].[SYS_RF_MENU](
+	[MODULE_ID] [varchar](35) NOT NULL,
+	[SEQUENCE_ID] [numeric](38, 0) NOT NULL,
+ CONSTRAINT [RF_MENU_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[MODULE_ID] ASC,
+	[SEQUENCE_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_MODULES](
+	[MODULE_ID] [varchar](35) NOT NULL,
+	[DESCRIPTION] [varchar](40) NULL,
+	[RF_ACTIVE] [varchar](1) NULL,
+	[DK_ACTIVE] [varchar](1) NULL,
+	[MODULE_TYPE] [varchar](10) NULL,
+	[HINT] [varchar](80) NULL,
+	[MNEMONIC] [numeric](38, 0) NULL,
+	[ICON_FILENAME] [varchar](40) NULL,
+	[HELPSET_ID] [varchar](100) NULL,
+	[REPORT_FILENAME] [varchar](40) NULL,
+	[EXEC_FILENAME] [varchar](80) NULL,
+	[EXEC_DIR] [varchar](80) NULL,
+	[PRINT_PREVIEW] [varchar](1) NULL,
+	[PRINT_DIALOG] [varchar](1) NULL,
+	[PRINT_COPIES] [int] NULL,
+ CONSTRAINT [MODULES_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[MODULE_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_MENUS](
+	[MODULE_ID] [varchar](35) NOT NULL,
+	[MENU_ID] [varchar](35) NOT NULL,
+	[SEQUENCE_ID] [numeric](38, 0) NULL,
+ CONSTRAINT [MENU_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[MODULE_ID] ASC,
+	[MENU_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_INTERFACE_REQUEST](
+	[EVENT_TIME] [datetime] NOT NULL,
+	[INTERFACE_REQUEST_ID] [decimal](22, 0) NOT NULL,
+	[INTERFACE_TYPE] [varchar](50) NULL,
+	[WORKSTATION_ID] [varchar](45) NULL,
+	[TRANSACTION_REF] [decimal](22, 0) NULL,
+ CONSTRAINT [PK_SYS_INTERFACE_REQUEST] PRIMARY KEY CLUSTERED 
+(
+	[EVENT_TIME] ASC,
+	[INTERFACE_REQUEST_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_INTERFACE_LOG](
+	[EVENT_TIME] [datetime] NOT NULL,
+	[INTERFACE_LOG_ID] [decimal](22, 0) NOT NULL,
+	[MESSAGE_REF] [varchar](45) NULL,
+	[INTERFACE_TYPE] [varchar](50) NULL,
+	[MESSAGE_INFORMATION] [varchar](45) NULL,
+	[INTERFACE_DIRECTION] [varchar](50) NULL,
+	[ACTION] [varchar](45) NULL,
+	[MESSAGE_DATE] [datetime] NULL,
+	[MESSAGE_STATUS] [varchar](45) NULL,
+	[MESSAGE_ERROR] [varchar](150) NULL,
+	[WORKSTATION_ID] [varchar](45) NULL,
+ CONSTRAINT [PK_sys_interface_log] PRIMARY KEY CLUSTERED 
+(
+	[EVENT_TIME] ASC,
+	[INTERFACE_LOG_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_INTERFACE](
+	[INTERFACE_TYPE] [varchar](50) NOT NULL,
+	[INTERFACE_DIRECTION] [varchar](50) NOT NULL,
+	[PATH] [varchar](255) NULL,
+	[ENABLED] [varchar](1) NULL,
+	[DEVICE] [varchar](15) NULL,
+	[SUBJECT] [varchar](100) NULL,
+	[TOPIC] [varchar](100) NULL,
+	[SERVER] [varchar](45) NULL,
+	[USERNAME] [varchar](45) NULL,
+	[PASSWORD] [varchar](45) NULL,
+	[FORMAT] [varchar](15) NULL,
+	[UOM_CONVERSION] [varchar](30) NULL,
+	[ENABLE_EMAIL_NOTIFICATIONS] [varchar](1) NULL,
+	[EMAIL_FLAGS] [varchar](10) NULL,
+	[EMAIL_ADDRESSES] [varchar](250) NULL,
+ CONSTRAINT [PK_SYS_INTERFACE] PRIMARY KEY CLUSTERED 
+(
+	[INTERFACE_TYPE] ASC,
+	[INTERFACE_DIRECTION] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_GROUPS](
+	[GROUP_ID] [varchar](20) NOT NULL,
+	[DESCRIPTION] [varchar](80) NULL,
+ CONSTRAINT [GROUPS_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[GROUP_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_GROUP_PERMISSIONS](
+	[GROUP_ID] [varchar](20) NOT NULL,
+	[MODULE_ID] [varchar](35) NOT NULL,
+ CONSTRAINT [GROUP_PERMISSIONS_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[GROUP_ID] ASC,
+	[MODULE_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE TABLE [dbo].[SYS_CONTROL](
+	[SYSTEM_KEY] [varchar](40) NOT NULL,
+	[KEY_VALUE] [varchar](80) NULL,
+	[DESCRIPTION] [varchar](255) NULL,
+ CONSTRAINT [CONTROL_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[SYSTEM_KEY] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+</statement>
+
+<statement>
+CREATE  FUNCTION [dbo].[GetBaseQuantity]
+(
+	@Material			 varchar(20),
+	@Production_Quantity numeric(22,3),
+	@Production_UOM		 varchar(3)
+)
+
+RETURNS numeric(22,3)
+AS
+BEGIN
+
+DECLARE @Base_UOM		varchar(3),
+		@Layers_UOM		varchar(3),
+		@Pallet_UOM		varchar(3),
+		@Base_Quantity	numeric(22,3),
+		@Layers			int
+		
+		SELECT @Base_UOM = BASE_UOM FROM APP_MATERIAL WHERE MATERIAL = @Material
+		SELECT @Base_Quantity = (@Production_Quantity * NUMERATOR / DENOMINATOR) FROM APP_MATERIAL_UOM WHERE MATERIAL = @Material AND UOM = @Production_UOM
+		
+		RETURN @Base_Quantity
+END
+</statement>
+
+<statement>
+CREATE  FUNCTION [dbo].[GetFullPalletQuantity]
+(
+	@Process_Order		 varchar(40)
+)
+
+RETURNS integer
+AS
+BEGIN
+
+DECLARE @Full_Pallet_Quantity	numeric(22,3),
+
+		
+		@Material				varchar(40),
+		
+		@PAL_UOM				varchar(3),
+		@PAL_Numerator			numeric(22,3),
+		@PAL_Denominator		numeric(22,3),
+		
+		@Required_UOM			varchar(3),
+		@Required_Denominator	numeric(22,3),
+		@Required_Numerator		numeric(22,3)
+			
+		SET @PAL_UOM = 'PAL'
+
+		SELECT @Required_UOM = REQUIRED_UOM,@Material = MATERIAL FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = @Process_Order
+	
+		SELECT @Required_Denominator=DENOMINATOR,@Required_Numerator=NUMERATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = @Material AND UOM = @Required_UOM
+		SELECT @PAL_Denominator=DENOMINATOR,@PAL_Numerator=NUMERATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = @Material AND UOM = @PAL_UOM		
+
+		SET @Full_Pallet_Quantity = (@PAL_Numerator/@PAL_Denominator) * (@Required_Denominator/@Required_Numerator)
+		--SET @Full_Pallet_Quantity = @Required_Denominator
+		
+		RETURN	@Full_Pallet_Quantity
+END
+</statement>
+<statement>
+CREATE  FUNCTION [dbo].[GetLayers]
+(
+	@Material			 varchar(20),
+	@Production_Quantity numeric(22,3),
+	@Production_UOM		 varchar(3)
+)
+
+RETURNS integer
+AS
+BEGIN
+
+DECLARE @Base_UOM		varchar(3),
+		@Layers_UOM		varchar(3),
+		@Pallet_UOM		varchar(3),
+		@Base_Quantity	numeric(22,3),
+		@Layers			int
+		
+		SELECT @Base_Quantity = dbo.GetBaseQuantity(@Material,@Production_Quantity,@Production_UOM)
+		
+		SET @Layers_UOM = N'LAG'
+
+		SELECT @Layers = (@Base_Quantity / NUMERATOR * DENOMINATOR)  FROM APP_MATERIAL_UOM WHERE MATERIAL = @Material AND UOM = @Layers_UOM
+		SET @Layers = CEILING(@Layers)
+		SET @Layers = coalesce(@Layers, 1)
+		IF @Layers = 0 SET @Layers = 1
+		IF @Production_Quantity = 0 SET @Layers = 0
+		RETURN	@Layers
+END
+</statement>
+
+<statement>
+CREATE  FUNCTION [dbo].[GetFullPalletLayers]
+(
+	@Material			 varchar(20),
+	@Production_UOM		 varchar(3)
+)
+
+RETURNS integer
+AS
+BEGIN
+
+DECLARE
+
+		@Pallet_UOM		varchar(3),
+		@Base_UOM		varchar(3),
+		@Full_Pallet_Quantity	numeric(22,3),
+		@Layers			int		
+		
+		SET @Pallet_UOM = 'PAL'
+
+		SELECT @Base_UOM =  BASE_UOM FROM APP_MATERIAL WHERE MATERIAL =  @Material
+		SELECT @Full_Pallet_Quantity = NUMERATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = @Material AND UOM = @Pallet_UOM
+		
+		SET @Layers = dbo.GetLayers(@Material,@Full_Pallet_Quantity,@Base_UOM)
+		
+		RETURN	@Layers
+END
+</statement>
+
+<statement>
+CREATE  VIEW [dbo].[View_Labeller_Process_Order_Info]
+AS
+SELECT     PO.PROCESS_ORDER, PO.MATERIAL, PO.STATUS, PO.DUE_DATE, MAT.DESCRIPTION, MAT.SHELF_LIFE, MAT.SHELF_LIFE_UOM, MAT.SHELF_LIFE_RULE, 
+                      PO.REQUIRED_UOM, MATUOM.EAN, MATUOM.VARIANT, MAT.OLD_MATERIAL, dbo.GetFullPalletLayers(PO.MATERIAL, PO.REQUIRED_UOM) AS DEFAULT_LAYERS, 
+                      dbo.GetFullPalletQuantity(PO.PROCESS_ORDER) AS DEFAULT_QUANTITY, PO.UPDATED AS PROCESS_ORDER_UPDATED, 
+                      MAT.UPDATED AS MATERIAL_UPDATED
+FROM         dbo.APP_PROCESS_ORDER AS PO INNER JOIN
+                      dbo.APP_MATERIAL AS MAT ON PO.MATERIAL = MAT.MATERIAL INNER JOIN
+                      dbo.APP_MATERIAL_UOM AS MATUOM ON PO.MATERIAL = MATUOM.MATERIAL AND PO.REQUIRED_UOM = MATUOM.UOM INNER JOIN
+                      dbo.APP_MATERIAL_UOM AS MATUOMFULL ON PO.MATERIAL = MATUOMFULL.MATERIAL
+WHERE     (MATUOMFULL.UOM = 'PAL')
+</statement>
+
+<statement>
+ALTER TABLE [dbo].[APP_MATERIAL] ADD  DEFAULT ('D') FOR [SHELF_LIFE_UOM]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_MATERIAL] ADD  DEFAULT ((0)) FOR [SHELF_LIFE]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_MATERIAL] ADD  DEFAULT ('+') FOR [SHELF_LIFE_RULE]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_MATERIAL] ADD  DEFAULT ((0)) FOR [GROSS_WEIGHT]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_MATERIAL] ADD  DEFAULT ((0)) FOR [NET_WEIGHT]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_MATERIAL] ADD  CONSTRAINT [DF_APP_MATERIAL_PRODUCTION_QUANTITY]  DEFAULT ((0)) FOR [PRODUCTION_QUANTITY]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_MATERIAL_UOM] ADD  DEFAULT ((1)) FOR [NUMERATOR]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_MATERIAL_UOM] ADD  DEFAULT ((1)) FOR [DENOMINATOR]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_PALLET] ADD  DEFAULT ((0)) FOR [QUANTITY]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_PALLET] ADD  DEFAULT (getdate()) FOR [DATE_OF_MANUFACTURE]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_PALLET_HISTORY] ADD  DEFAULT ((0)) FOR [QUANTITY]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_PALLET_HISTORY] ADD  DEFAULT (getdate()) FOR [DATE_OF_MANUFACTURE]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_PROCESS_ORDER] ADD  CONSTRAINT [DF_APP_PROCESS_ORDER_REQUIRED_QUANTITY]  DEFAULT ((0)) FOR [REQUIRED_QUANTITY]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_UOM_CONVERSION] ADD  DEFAULT ((1)) FOR [NUMERATOR]
+</statement>
+<statement>
+ALTER TABLE [dbo].[APP_UOM_CONVERSION] ADD  DEFAULT ((1)) FOR [DENOMINATOR]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_MODULES] ADD  DEFAULT ('Y') FOR [RF_ACTIVE]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_MODULES] ADD  DEFAULT ('Y') FOR [DK_ACTIVE]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_MODULES] ADD  DEFAULT ((0)) FOR [MNEMONIC]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_MODULES] ADD  CONSTRAINT [DF_SYS_MODULES_PRINT_PREVIEW]  DEFAULT ('Y') FOR [PRINT_PREVIEW]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_MODULES] ADD  CONSTRAINT [DF_SYS_MODULES_PRINT_DIALOG]  DEFAULT ('Y') FOR [PRINT_DIALOG]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_MODULES] ADD  CONSTRAINT [DF_SYS_MODULES_PRINT_COPIES]  DEFAULT ((1)) FOR [PRINT_COPIES]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_USERS] ADD  DEFAULT ('EN') FOR [LANGUAGE_ID]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_USERS] ADD  DEFAULT ('N') FOR [ACCOUNT_LOCKED]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_USERS] ADD  DEFAULT ('Y') FOR [PASSWORD_EXPIRES]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_USERS] ADD  DEFAULT ('Y') FOR [PASSWORD_CHANGE_ALLOWED]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_USERS] ADD  DEFAULT ((0)) FOR [BAD_PASSWORD_ATTEMPTS]
+</statement>
+<statement>
+ALTER TABLE [dbo].[SYS_USERS] ADD  DEFAULT ('N') FOR [ACCOUNT_EXPIRES]
+</statement>
+
+
+</DDL>

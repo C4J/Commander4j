@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+		drop view VIEW_PALLET_EXPIRY;
+</statement>
+
+<statement>
+	CREATE VIEW VIEW_PALLET_EXPIRY AS (SELECT p.SSCC, p.LOCATION_ID, p.MATERIAL, p.BATCH_NUMBER, p.PROCESS_ORDER,
+																		 p.QUANTITY, p.UOM, p.DATE_OF_MANUFACTURE, p.STATUS, p.EAN, 
+                      							 p.VARIANT, p.DESPATCH_NO, p.CONFIRMED, p.LAYERS, p.SSCC_EXPIRY_DATE, 
+                      							 p.CUSTOMER_ID, p.MHN_NUMBER, p.DECISION, b.EXPIRY_DATE, m.DESCRIPTION,m.OLD_MATERIAL,c.CUSTOMER_NAME,c.PRINT_ON_LABEL
+																		 FROM dbo.APP_PALLET AS p INNER JOIN
+                      							 dbo.APP_MATERIAL_BATCH AS b ON p.MATERIAL = b.MATERIAL AND p.BATCH_NUMBER = b.BATCH_NUMBER INNER JOIN
+                      							 dbo.APP_MATERIAL AS m ON p.MATERIAL = m.MATERIAL INNER JOIN
+                                     dbo.APP_CUSTOMER AS c ON p.CUSTOMER_ID = c.CUSTOMER_ID);
+</statement>
+
+
+</DDL>

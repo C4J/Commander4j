@@ -1,0 +1,43 @@
+<message>
+	<hostRef>1e8d719e-4de6-42d6-a7a9-f4731af2f7b0</hostRef>
+	<messageRef>1372</messageRef>
+	<interfaceType>QM Inspection Result</interfaceType>
+	<messageInformation>QM Inspection Result</messageInformation>
+	<interfaceDirection>Input</interfaceDirection>
+	<messageDate>2009-05-06T10:14:51</messageDate>
+	<messageData>
+		<sample>
+			<id>1</id>
+			<test>
+				<id>1234</id>
+				<data>hello </data>\
+			</test>
+			<test>
+				<id>1235</id>
+				<data>goodbye </data>\
+			</test>
+		</sample>
+		<sample>
+			<id>2</id>
+			<test>
+				<id>1234</id>
+				<data>hello </data>\
+			</test>
+			<test>
+				<id>1235</id>
+				<data>goodbye </data>\
+			</test>
+		</sample>
+		<sample>
+			<id>3</id>
+			<test>
+				<id>1234</id>
+				<data>hello </data>\
+			</test>
+			<test>
+				<id>1235</id>
+				<data>goodbye </data>\
+			</test>
+		</sample>
+	</messageData>
+</message>

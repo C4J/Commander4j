@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	DROP VIEW VIEW_AUTO_LABELLER
+</statement>
+
+
+</DDL>

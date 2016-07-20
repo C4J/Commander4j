@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE SQL SYSTEM "view.dtd">
+<SQL>
+	<jdbcDriver Type="com.ibm.db2.jcc.DB2Driver">
+		<?VIEWS?>
+		<statement>
+			<id>VIEW_GROUP_PERMISSIONS</id>
+			<text>
+				(select p.group_id,m.* from
+				{schema}sys_group_permissions p, {schema}sys_modules m
+				where m.module_id = p.module_id)
+			</text>
+		</statement>
+		<statement>
+			<id>VIEW_MENU_STRUCTURE</id>
+			<text>
+				(select sys_menus.*, sys_modules.description,
+				sys_modules.rf_active, sys_modules.dk_active,
+				sys_modules.module_type, sys_modules.hint,
+				sys_modules.mnemonic, sys_modules.icon_filename from
+				{schema}sys_menus, {schema}sys_modules where
+				sys_modules.module_id = sys_menus.module_id)
+			</text>
+		</statement>
+		<statement>
+			<id>VIEW_TOOLBAR</id>
+			<text>
+				(select sys_toolbar.*, sys_modules.description,
+				sys_modules.rf_active, sys_modules.dk_active,
+				sys_modules.module_type, sys_modules.hint,
+				sys_modules.mnemonic, sys_modules.icon_filename from
+				{schema}sys_toolbar, {schema}sys_modules where
+				sys_modules.module_id = sys_toolbar.module_id)
+			</text>
+		</statement>
+		<statement>
+			<id>VIEW_SECURITY</id>
+			<text>
+				(select sugm.user_id,sgp.module_id from
+				{schema}sys_user_group_membership sugm,
+				{schema}sys_group_permissions sgp where sgp.group_id =
+				sugm.group_id)
+			</text>
+		</statement>
+		<statement>
+			<id>VIEW_PALLET_EXPIRY</id>
+			<text>
+				(select p.*,b.expiry_date,m.description from
+				{schema}app_pallet p, {schema}app_material_batch b,
+				{schema}app_material m where b.material = p.material and
+				b.batch_number = p.batch_number and m.material =
+				p.material)
+			</text>
+		</statement>
+		<statement>
+			<id>VIEW_PALLET_HISTORY_expiry</id>
+			<text>
+				(select p.*,b.expiry_date,m.description from
+				{schema}app_pallet_history p, {schema}app_material_batch b,
+				{schema}app_material m where b.material = p.material and
+				b.batch_number = p.batch_number and m.material =
+				p.material)
+			</text>
+		</statement>
+		<statement>
+			<id>VIEW_PALLET_HISTORY</id>
+			<text>
+				(select p.* from {schema}app_pallet_history p) as a
+			</text>
+		</statement>	
+	</jdbcDriver>
+</SQL>

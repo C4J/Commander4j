@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-05-23T21:07:50 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MHN" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="57c42995-d94c-474c-8178-a209577c3384">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="commander4j_dev"/>
+	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["My Company"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MHN_NUMBER" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["MH04681"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM APP_MHN WHERE MHN_NUMBER = $P{MHN_NUMBER}]]>
+	</queryString>
+	<field name="MHN_NUMBER" class="java.lang.String"/>
+	<field name="INITIATOR" class="java.lang.String"/>
+	<field name="RECORDER" class="java.lang.String"/>
+	<field name="AUTHORISOR" class="java.lang.String"/>
+	<field name="REASON1" class="java.lang.String"/>
+	<field name="REASON2" class="java.lang.String"/>
+	<field name="REASON3" class="java.lang.String"/>
+	<field name="DATE_CREATED" class="java.sql.Timestamp"/>
+	<field name="DATE_EXPECTED" class="java.sql.Timestamp"/>
+	<field name="DATE_RESOLVED" class="java.sql.Timestamp"/>
+	<field name="COMMENTS" class="java.lang.String"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="REQUIRED_RESOURCE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="0" width="328" height="31" uuid="4ca61cd8-254d-4f56-8c5b-528e2dd04681"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{COMPANY_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="178" y="5" width="211" height="21" forecolor="#FF0033" uuid="657749e0-0aa6-4fc0-b198-5da5639a56c6"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="16" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MHN_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="5" width="168" height="21" forecolor="#FF0033" uuid="c8be4a55-1322-4121-ad1a-a421e9a6c0aa"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="16" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Master Hold Notice]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="514" y="7" width="24" height="20" uuid="27f0a17c-f29b-4228-bbad-688c1e30bb07"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="474" y="6" width="36" height="20" uuid="c024c2fd-005c-408f-bed2-b5016f8ac871"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Page :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="121" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="22" width="96" height="18" uuid="a823d3dc-7c57-4f79-b03a-43768222f6d4"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{INITIATOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="22" width="88" height="18" uuid="9ae68859-b063-482b-a99f-2d451cd7c6de"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RECORDER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="43" width="60" height="18" uuid="889afac5-7d13-4e38-8ae2-e20bebfa4a1d"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REASON1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="4" width="196" height="18" uuid="5590efc7-2e90-4830-9594-d83bd335bdb9"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DATE_CREATED}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="102" width="449" height="18" uuid="fbbc087d-b65f-4c40-9898-53535eaa8de3"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COMMENTS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="22" width="71" height="18" uuid="57b6dcb5-68fe-41e3-8bb1-b1bb323b06bb"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Initiator :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="21" width="60" height="18" uuid="fc5cef13-350f-4685-ad23-e736c8ef9b4a"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Recorder :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="4" width="92" height="18" uuid="91cf6b4a-716f-439c-bbca-ed75446b50fd"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Date Created :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="3" width="81" height="18" uuid="77dc3e21-822c-43d4-83bc-78d9f2935eb1"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Status :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="4" width="94" height="18" uuid="45823d5d-c3d0-4695-a7bf-8bd56cf3ab2b"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="103" width="82" height="18" uuid="ffc777d5-d3a7-4846-b25e-1ccf91afdb16"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Comments :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="43" width="70" height="18" uuid="8da48aa7-981a-47ac-9099-f50ca5bd542d"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Reason 1 :]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="166" y="43" width="364" height="18" uuid="c8fc5771-1d9a-4f3a-9131-1c564ead05e9"/>
+				<subreportParameter name="REASON">
+					<subreportParameterExpression><![CDATA[$F{REASON1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MHN_Primary_Reason.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="368" y="22" width="81" height="18" uuid="6e1ca089-c393-4e6a-bc1b-aa8284437174"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Authorised :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="22" width="100" height="18" uuid="4189d4a7-dc63-4107-8404-51234a4bfc01"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AUTHORISOR}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="62" width="60" height="18" uuid="398047b2-b7fb-41d5-a848-bad7c9cdd23d"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REASON2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="81" width="60" height="18" uuid="13272528-080d-44c8-8003-059add403555"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REASON3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="62" width="70" height="18" uuid="1e0bdd53-39b4-4036-8445-69a439d4cb26"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Reason 2 :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="81" width="70" height="18" uuid="49f9ef1b-c88a-4bd1-b760-a72ce982a2c8"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Reason 3 :]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="166" y="62" width="364" height="18" uuid="17b2bd81-8799-40e4-808a-ae075f655d1a"/>
+				<subreportParameter name="REASON">
+					<subreportParameterExpression><![CDATA[$F{REASON2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MHN_Primary_Reason.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="166" y="81" width="364" height="17" uuid="e603be87-a0d5-4412-8f64-720d561d9568"/>
+				<subreportParameter name="REASON">
+					<subreportParameterExpression><![CDATA[$F{REASON3}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MHN_Primary_Reason.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="125" uuid="e0738b40-4b75-470f-a02f-0f231169a145"/>
+				<subreportParameter name="MHN_NUMBER">
+					<subreportParameterExpression><![CDATA[$F{MHN_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MHN_Detail.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="12" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="100" splitType="Stretch">
+			<subreport>
+				<reportElement x="3" y="0" width="200" height="100" uuid="f9100ce9-3f21-4c7c-8bab-1956828188ce"/>
+				<subreportParameter name="MHN_NUMBER">
+					<subreportParameterExpression><![CDATA[$P{MHN_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MHN Decision Summary.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

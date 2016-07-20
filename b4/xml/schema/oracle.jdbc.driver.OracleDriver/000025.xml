@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+insert into sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Labels_Per_SSCC','Labels per SSCC','NL','')
+</statement>
+
+<statement>
+insert into  sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Labels_Per_SSCC','EN','Labels per SSCC','')
+</statement>
+
+<statement>
+insert into sys_group_permissions (group_id, module_id) values ('ADMIN', 'FRM_ADMIN_LANGUAGE_ADD')
+</statement>  
+
+<statement>
+insert into sys_group_permissions (group_id, module_id) values ('ADMIN', 'FRM_ADMIN_LANGUAGE_EDIT')
+</statement>  
+
+<statement>
+insert into sys_group_permissions (group_id, module_id) values ('ADMIN', 'FRM_ADMIN_LANGUAGE_DELETE')
+</statement>  
+
+<statement>
+insert into  sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Label_Header_Text','EN','Label Header Text','')
+</statement>
+
+<statement>
+insert into sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Label_Header_Text','Label Header Text','NL','')
+</statement>
+
+
+</DDL>

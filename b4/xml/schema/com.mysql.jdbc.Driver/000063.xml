@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+ALTER DATABASE {database} CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+
+<statement>
+     ALTER TABLE APP_AUTO_LABELLER CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_CUSTOMER CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_DESPATCH CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_LOCATION CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_MATERIAL CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_MATERIAL_BATCH CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_MATERIAL_LOCATION CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_MATERIAL_TYPE CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_MATERIAL_UOM CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_MHN CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_MHN_DECISIONS CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_MHN_REASONS CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_PALLET CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_PALLET_HISTORY CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_PROCESS_ORDER CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_QM_ACTIVITY CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_QM_DICTIONARY CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_QM_DICTIONARY_GROUP CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_QM_EXTENSION CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_QM_INSPECTION CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_QM_RESULT CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_QM_SAMPLE CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_QM_SELECTLIST CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_QM_TEST CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE APP_UOM CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE BAR_EAN_DEFS CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_CONTROL CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_GROUP_PERMISSIONS CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_GROUPS CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_INTERFACE CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_INTERFACE_LOG CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_INTERFACE_REQUEST CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_LANGUAGE CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_MENUS CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_MODULES CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_REPORT_REQUEST CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_RF_MENU CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_TOOLBAR CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_USER_GROUP_MEMBERSHIP CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+<statement>
+     ALTER TABLE SYS_USERS CONVERT TO CHARACTER SET utf8 COLLATE 'utf8_general_ci';
+</statement>
+
+<statement>
+	DROP VIEW APP_VIEW_QM_RESULTS
+</statement>
+
+<statement>
+CREATE VIEW VIEW_QM_RESULTS AS SELECT samp.PROCESS_ORDER as 'PROCESS_ORDER',
+       samp.MATERIAL as 'MATERIAL',
+       samp.SAMPLE_ID as 'SAMPLE_ID',
+       samp.INSPECTION_ID as 'INSPECTION_ID',
+       samp.ACTIVITY_ID as 'ACTIVITY_ID',       
+       samp.SAMPLE_DATE as 'SAMPLE_DATE',
+       samp.USER_DATA_1 as 'USER_DATA_1',
+       samp.USER_DATA_2 as 'USER_DATA_2',
+       result.TEST_ID as 'TEST_ID',
+       dict.DESCRIPTION as 'TEST_DESCRIPTION',
+       result.VALUE as 'VALUE',
+       COALESCE(valist.DESCRIPTION,result.VALUE) AS 'RESULT'
+FROM APP_QM_SAMPLE samp 
+LEFT JOIN APP_QM_RESULT result ON (result.SAMPLE_ID = samp.SAMPLE_ID)
+LEFT JOIN APP_QM_DICTIONARY dict ON (dict.TEST_ID = result.TEST_ID)
+LEFT JOIN APP_QM_SELECTLIST valist ON (valist.SELECT_LIST_ID = dict.SELECT_LIST_ID AND valist.VALUE = result.VALUE)
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetYear`(XDATE datetime,XSIZE int) RETURNS int(11)
+BEGIN
+	DECLARE result varchar(4) CHARACTER SET utf8;
+
+	SET result = RIGHT(CAST(YEAR(XDATE) AS CHAR(4)) ,XSIZE);
+RETURN result;
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetControlValue`(XNAME varchar(50)) RETURNS varchar(50) CHARSET utf8
+BEGIN
+	DECLARE result varchar(50) CHARACTER SET utf8;
+	SET result = (SELECT key_value FROM SYS_CONTROL where system_key = XNAME); 
+
+RETURN result;
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetPlant`() RETURNS varchar(10) CHARSET utf8
+BEGIN
+	DECLARE result varchar(10) CHARACTER SET utf8;
+
+	SET result = c4j_GetControlValue('PLANT');
+
+
+RETURN result;
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetMonth`(XDATE datetime) RETURNS varchar(2) CHARSET utf8
+BEGIN
+	DECLARE result varchar(6) CHARACTER SET utf8;
+	DECLARE moy int;
+
+	SET moy = MONTH(XDATE);
+	SET result = RIGHT(CONCAT('0',convert(moy,CHAR)),2);
+RETURN result;
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetBaseQuantity`(XMATERIAL varchar(20),XPRODUCTION_QUANTITY decimal(22,3),XPRODUCTION_UOM varchar(3)) RETURNS decimal(22,3)
+BEGIN
+
+DECLARE XBASE_UOM 	     varchar(3);
+DECLARE XBASE_QUANTITY	  decimal(22,3);
+		
+		SET XBASE_UOM = (SELECT BASE_UOM FROM APP_MATERIAL WHERE MATERIAL = XMATERIAL);
+	 	SET XBASE_QUANTITY = (SELECT (XPRODUCTION_QUANTITY * NUMERATOR / DENOMINATOR) FROM APP_MATERIAL_UOM WHERE MATERIAL = XMATERIAL AND UOM = XPRODUCTION_UOM);
+
+RETURN XBASE_QUANTITY;
+
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetDay`(XDATE datetime) RETURNS varchar(2) CHARSET utf8
+BEGIN
+
+	DECLARE result varchar(2) CHARACTER SET utf8;
+	DECLARE dom int;
+
+	SET dom = DAYOFMONTH(XDATE);
+	SET result = RIGHT(CONCAT('0',convert(dom,CHAR)),2);
+
+RETURN result;
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetExpiryDate`(XPRODUCTION_DATE datetime,XSHELF_LIFE int,XSHELF_LIFE_UOM varchar(1),XSHELF_LIFE_ROUNDING varchar(1)) RETURNS datetime
+BEGIN
+	DECLARE result datetime;
+
+	SET result = XPRODUCTION_DATE;
+
+
+		IF XSHELF_LIFE_UOM = 'D' THEN
+			SET result =  DATE_ADD(result,INTERVAL XSHELF_LIFE DAY);
+		END IF;
+
+		IF XSHELF_LIFE_UOM = 'M' THEN
+			SET result =  DATE_ADD(result,INTERVAL XSHELF_LIFE MONTH);
+		END IF;
+
+		IF XSHELF_LIFE_UOM = 'Y' THEN
+			SET result =  DATE_ADD(result,INTERVAL XSHELF_LIFE YEAR);
+		END IF;
+			
+		IF XSHELF_LIFE_ROUNDING = '+' THEN
+			SET result = LAST_DAY(result);
+		END IF;
+
+		IF XSHELF_LIFE_ROUNDING = '-' THEN
+			SET result = ADDDATE(LAST_DAY(SUBDATE(result, INTERVAL 1 MONTH)), 1);
+		END IF;
+
+		SET result = DATE(result);
+
+RETURN result;
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetFinalBatchNumber`(XPRODUCTION_DATE datetime,XOVERRIDE_BATCH varchar(1),XOVERRIDE_BATCH_NUMBER varchar(40),XBATCH_OPTIONAL varchar(40)) RETURNS varchar(100) CHARSET utf8
+BEGIN
+	DECLARE result varchar(100) CHARACTER SET utf8;
+	DECLARE batchformat varchar(100) CHARACTER SET utf8;
+
+	IF XOVERRIDE_BATCH = 'Y' THEN
+		SET result = XOVERRIDE_BATCH_NUMBER;
+	END IF;
+
+	IF XOVERRIDE_BATCH = 'N' THEN
+			SET batchformat = c4j_GetControlValue('BATCH FORMAT');
+			SET result = batchformat;
+			SET result = REPLACE(result,'{PLANT}',c4j_GetPlant());
+			SET result = REPLACE(result,'{YEAR4}',c4j_GetYear(XPRODUCTION_DATE,4));
+			SET result = REPLACE(result,'{YEAR2}',c4j_GetYear(XPRODUCTION_DATE,2));
+			SET result = REPLACE(result,'{YEAR1}',c4j_GetYear(XPRODUCTION_DATE,1));
+			SET result = REPLACE(result,'{MONTH}',c4j_GetMonth(XPRODUCTION_DATE));
+			SET result = REPLACE(result,'{DAY}',c4j_GetDay(XPRODUCTION_DATE));
+			SET result = REPLACE(result,'{JULIAN_DAY}',c4j_GetJulian(XPRODUCTION_DATE,1));
+			SET result = REPLACE(result,'{JULIAN0_DAY}',c4j_GetJulian(XPRODUCTION_DATE,0));
+			SET result = REPLACE(result,'{JULIAN1_DAY}',c4j_GetJulian(XPRODUCTION_DATE,1));
+	END IF;
+
+	SET result = CONCAT(result,XBATCH_OPTIONAL);
+
+RETURN result;
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetFinalExpiryDate`(XPRODUCTION_DATE datetime,XSHELF_LIFE int,XSHELF_LIFE_UOM varchar(1),XSHELF_LIFE_ROUNDING varchar(1),XOVERRIDE_EXPIRY varchar(1),XOVERRIDE_EXPIRY_DATE datetime) RETURNS datetime
+BEGIN
+	DECLARE result datetime;
+
+
+	IF XOVERRIDE_EXPIRY = 'Y' THEN
+		SET result = XOVERRIDE_EXPIRY_DATE;
+	END IF;
+
+
+	IF XOVERRIDE_EXPIRY = 'N' THEN
+		SET result = c4j_GetExpiryDate(XPRODUCTION_DATE,XSHELF_LIFE,XSHELF_LIFE_UOM,XSHELF_LIFE_ROUNDING);
+	END IF;
+
+RETURN result;
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetFullPalletQuantity`(XPROCESS_ORDER varchar(40)) RETURNS decimal(22,3)
+BEGIN
+	DECLARE result decimal(22,3);
+
+	DECLARE xmaterial varchar(40) CHARACTER SET utf8;
+	DECLARE xpal_uom varchar(3) CHARACTER SET utf8;
+	DECLARE xpal_numerator decimal(22,3);
+	DECLARE xpal_denominator decimal(22,3);
+	DECLARE xrequired_uom varchar(3) CHARACTER SET utf8;
+	DECLARE xrequired_denominator decimal(22,3);
+	DECLARE xrequired_numerator decimal(22,3);
+
+	SET xpal_uom = c4j_GetControlValue('UOM FULL PALLET QTY');
+	
+
+	SET xrequired_uom = (SELECT REQUIRED_UOM FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER);
+	SET xmaterial = (SELECT MATERIAL FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER);
+	SET xrequired_denominator = (SELECT DENOMINATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial and UOM = xrequired_uom);
+	SET xrequired_numerator = (SELECT NUMERATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial and UOM = xrequired_uom);	
+
+	SET xpal_denominator = (SELECT DENOMINATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial and UOM = xpal_uom);
+	SET xpal_numerator = (SELECT NUMERATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial and UOM = xpal_uom);
+
+	SET result = (xpal_numerator/xpal_denominator) * (xrequired_denominator/xrequired_numerator);
+
+    RETURN result;
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetJulian`(XDATE datetime,XOFFSET int) RETURNS varchar(6) CHARSET utf8
+BEGIN
+	DECLARE result VARCHAR(6) CHARACTER SET utf8;
+	DECLARE dayofyear int;
+
+	SET dayofyear = DAYOFYEAR(XDATE)-1+XOFFSET;
+
+	SET result = RIGHT(CONCAT('000',convert(dayofyear,CHAR)),3);
+
+RETURN result;
+END
+</statement>
+
+<statement>
+CREATE FUNCTION `c4j_GetLayers`(XPROCESS_ORDER varchar(20)) RETURNS int(11)
+BEGIN
+	DECLARE result 					int;
+	DECLARE xlayers_uom 				varchar(3) CHARACTER SET utf8;
+	DECLARE xpallet_uom 				varchar(3) CHARACTER SET utf8;
+	DECLARE xbase_quantity 			decimal(22,3);
+	DECLARE xmaterial					varchar(20) CHARACTER SET utf8;
+	DECLARE xproduction_uom  		varchar(3) CHARACTER SET utf8;
+	DECLARE xproduction_quantity 	decimal(22,3);
+
+	SET xproduction_quantity = c4j_GetFullPalletQuantity(XPROCESS_ORDER);
+	SET xmaterial = (SELECT MATERIAL FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER);
+	SET xproduction_uom = (SELECT REQUIRED_UOM FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER);
+	SET xbase_quantity = c4j_GetBaseQuantity(XMATERIAL,XPRODUCTION_QUANTITY,XPRODUCTION_UOM);
+
+	SET xlayers_uom = c4j_GetControlValue('UOM BASE QTY PER LAYER');
+
+	SET result = (SELECT (xbase_quantity / NUMERATOR * DENOMINATOR) FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial AND UOM = xlayers_uom);
+	
+	SET result = CEILING(result);
+	SET result = COALESCE(result,1);
+
+	IF result = 0 THEN 
+		SET result = 1;
+	END IF;
+
+    RETURN result;
+END
+</statement>
+
+<statement>
+CREATE VIEW `VIEW_AUTO_LABELLER` AS
+    select 
+        `AL`.`LINE` AS `LINE`,
+        `AL`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+        `PO`.`STATUS` AS `STATUS`,
+        `PO`.`MATERIAL` AS `MATERIAL`,
+        `PO`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
+        `MAT`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+        `MAT`.`DESCRIPTION` AS `DESCRIPTION`,
+        right(concat('00000000000000', `MATUOM`.`EAN`),
+            14) AS `EAN`,
+        right(concat('00', `MATUOM`.`VARIANT`),
+            2) AS `VARIANT`,
+        `MAT`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+        `MAT`.`SHELF_LIFE` AS `SHELF_LIFE`,
+        `MAT`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
+        `MAT`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
+        `PO`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+        `CUST`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+        `MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
+        `PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+        c4j_GetFinalBatchNumber(curdate(),
+                `AL`.`OVERRIDE_BATCH`,
+                `AL`.`OVERRIDE_BATCH_NUMBER`,
+                `AL`.`BATCH_OPTIONAL`) AS `BATCH_NUMBER`,
+        c4j_GetFinalExpiryDate(curdate(),
+                `MAT`.`SHELF_LIFE`,
+                `MAT`.`SHELF_LIFE_UOM`,
+                `MAT`.`SHELF_LIFE_RULE`,
+                `AL`.`OVERRIDE_EXPIRY`,
+                `AL`.`OVERRIDE_EXPIRY_DATE`) AS `EXPIRY_DATE`,
+        c4j_GetLayers(`PO`.`PROCESS_ORDER`) AS `DEFAULT_LAYERS`,
+        c4j_GetFullPalletQuantity(`PO`.`PROCESS_ORDER`) AS `DEFAULT_QUANTITY`
+    from
+        ((((`APP_AUTO_LABELLER` `AL`
+        join `APP_PROCESS_ORDER` `PO`)
+        join `APP_MATERIAL` `MAT`)
+        join `APP_CUSTOMER` `CUST`)
+        join `APP_MATERIAL_UOM` `MATUOM`)
+    where
+        ((`PO`.`PROCESS_ORDER` = `AL`.`PROCESS_ORDER`)
+            and (`MAT`.`MATERIAL` = `PO`.`MATERIAL`)
+            and (`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`)
+            and (`MATUOM`.`MATERIAL` = `PO`.`MATERIAL`)
+            and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`))
+</statement>
+
+<statement>
+CREATE VIEW `VIEW_AUTO_LABELLER_FULL` AS
+    select 
+        `PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+        `PO`.`STATUS` AS `STATUS`,
+        `PO`.`MATERIAL` AS `MATERIAL`,
+        `PO`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
+        `MAT`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+        `MAT`.`DESCRIPTION` AS `DESCRIPTION`,
+        right(concat('00000000000000', `MATUOM`.`EAN`),
+            14) AS `EAN`,
+        right(concat('00', `MATUOM`.`VARIANT`),
+            2) AS `VARIANT`,
+        `MAT`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+        `MAT`.`SHELF_LIFE` AS `SHELF_LIFE`,
+        `MAT`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
+        `MAT`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
+        `PO`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+        `CUST`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+        `MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
+        `PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+        c4j_GetFinalBatchNumber(curdate(), 'N', 'N', '') AS `BATCH_NUMBER`,
+        c4j_GetFinalExpiryDate(curdate(),
+                `MAT`.`SHELF_LIFE`,
+                `MAT`.`SHELF_LIFE_UOM`,
+                `MAT`.`SHELF_LIFE_RULE`,
+                'N',
+                curdate()) AS `EXPIRY_DATE`,
+        c4j_GetLayers(`PO`.`PROCESS_ORDER`) AS `DEFAULT_LAYERS`,
+        c4j_GetFullPalletQuantity(`PO`.`PROCESS_ORDER`) AS `DEFAULT_QUANTITY`
+    from
+        (((`APP_PROCESS_ORDER` `PO`
+        join `APP_MATERIAL` `MAT`)
+        join `APP_CUSTOMER` `CUST`)
+        join `APP_MATERIAL_UOM` `MATUOM`)
+    where
+        ((`MAT`.`MATERIAL` = `PO`.`MATERIAL`)
+            and (`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`)
+            and (`MATUOM`.`MATERIAL` = `PO`.`MATERIAL`)
+            and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`))
+</statement>
+
+<statement>
+	ALTER TABLE `APP_AUTO_LABELLER` ADD COLUMN `SSCC_SEQUENCE` DECIMAL(18) NULL DEFAULT 0  AFTER `BATCH_OPTIONAL` ;
+</statement>
+
+<statement>
+	INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, resource_key) VALUES ('FRM_ADMIN_AUTO_LAB_ADD', 'N', 'Y', 'FUNCTION', '', '', '', '', '', '', 'Y', 'Y', 1, '', '');
+</statement>
+
+<statement>
+	INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, resource_key) VALUES ('FRM_ADMIN_AUTO_LAB_EDIT', 'N', 'Y', 'FUNCTION', '', '', '', '', '', '', 'Y', 'Y', 1, '', 'mod_FRM_ADMIN_AUTO_LAB_EDIT');
+</statement>
+
+<statement>
+	INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, resource_key) VALUES ('FRM_ADMIN_AUTO_LAB_DELETE', 'N', 'Y', 'FUNCTION', '', '', '', '', '', '', 'Y', 'Y', 1, '', '');
+</statement>
+
+<statement>
+	INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_AUTO_LAB_ADD');
+</statement>
+
+<statement>
+	INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_AUTO_LAB_EDIT');
+</statement>
+
+<statement>
+	INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_AUTO_LAB_DELETE');
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Line_ID', 'EN', 'Line ID', '');
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Line_ID', 'NL', 'Line ID', '');
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Line_ID', 'HU', 'Line ID', '');
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Line_ID', 'IT', 'Line ID', '');
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_SSCC_Sequence', 'EN', 'SSCC Sequence', '');
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_SSCC_Sequence', 'NL', 'SSCC Sequence', '');
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_SSCC_Sequence', 'HU', 'SSCC Sequence', '');
+</statement>
+
+<statement>
+INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_SSCC_Sequence', 'IT', 'SSCC Sequence', '');
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','EN','Add or Update a Production Line','');
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','NL','Add or Update a Production Line','');
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','HU','Add or Update a Production Line','');
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','IT','Add or Update a Production Line','');
+</statement>
+
+<statement>
+ALTER TABLE `APP_MATERIAL_BATCH` DROP FOREIGN KEY `sys_c004058` ;
+</statement>
+
+</DDL>

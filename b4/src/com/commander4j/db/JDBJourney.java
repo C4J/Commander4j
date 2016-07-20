@@ -1,0 +1,427 @@
+
+package com.commander4j.db;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.LinkedList;
+import java.util.Vector;
+
+import org.apache.log4j.Logger;
+
+import com.commander4j.sys.Common;
+import com.commander4j.util.JUtility;
+
+public class JDBJourney {
+	public static int field_journey_ref = 25;
+	public static int field_despatch_no = 18;
+	public static int field_status = 20;
+	private String dbErrorMessage;
+	private String dbJourneyRef;
+	private String dbStatus;
+	private String dbDespatchNo;
+	private String dbLocationTo;
+	private Timestamp dbDateUpdated;
+	private Timestamp dbTimeslot;
+	private final Logger logger = Logger.getLogger(JDBJourney.class);
+	private String hostID;
+	private String sessionID;
+	private JDBDespatch desp;
+	private JDBLocation loc;
+
+	public JDBJourney(ResultSet rs) {
+		getPropertiesfromResultSet(rs);
+	}
+
+	public JDBJourney(String host, String session) {
+		// Get number of days that a password lasts before it needs changing.
+		setHostID(host);
+		setSessionID(session);
+
+	}
+
+	public JDBJourney(String journey, String status, String desp, Timestamp updated) {
+		setJourneyRef(journey);
+		setStatus(status);
+		setDespatchNo(desp);
+		setDateUpdated(updated);
+	}
+
+	public void clear() {
+		setDespatchNo(null);
+		setStatus("");
+		setDateUpdated(null);
+		
+	}
+
+	public boolean create(String journey, String status) {
+		setJourneyRef(journey);
+		setStatus(status);
+		return create();
+	}
+
+	public boolean create() {
+
+		logger.debug("create [" + getJourneyRef() + "][" + getStatus() + "]");
+		setDateUpdated(JUtility.getSQLDateTime());
+		boolean result = false;
+
+		if (isValid() == true) {
+			try {
+				PreparedStatement stmtupdate;
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
+						Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBJourney.create"));
+				stmtupdate.setString(1, getJourneyRef());
+				stmtupdate.setString(2, getStatus());
+				stmtupdate.setTimestamp(3, JUtility.getSQLDateTime());
+				stmtupdate.setString(4, getLocationTo());
+				stmtupdate.setTimestamp(5, getTimeslot());
+				stmtupdate.execute();
+				stmtupdate.clearParameters();
+				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+				stmtupdate.close();
+				update();
+				result = true;
+			} catch (SQLException e) {
+				setErrorMessage(e.getMessage());
+			}
+		}
+
+		return result;
+	}
+
+	public boolean delete() {
+		PreparedStatement stmtupdate;
+		boolean result = false;
+		setErrorMessage("");
+
+		try {
+			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
+					Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBJourney.delete"));
+			stmtupdate.setString(1, getJourneyRef());
+			stmtupdate.execute();
+			stmtupdate.clearParameters();
+			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+			stmtupdate.close();
+			result = true;
+		} catch (SQLException e) {
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
+	public boolean delete(String journey) {
+		boolean result = false;
+		setJourneyRef(journey);
+		result = delete();
+		return result;
+	}
+
+	public String getErrorMessage() {
+		return dbErrorMessage;
+	}
+
+	public String getDespatchNo() {
+		return JUtility.replaceNullStringwithBlank(dbDespatchNo);
+	}
+
+	public Timestamp getDateUpdated() {
+		return dbDateUpdated;
+	}
+
+	public Timestamp getTimeslot() {
+
+		return dbTimeslot;
+	}
+	
+	private String getHostID() {
+		return hostID;
+	}
+
+	public String getJourneyRef() {
+		return dbJourneyRef;
+	}
+
+	public String getLocationTo()
+	{
+		return dbLocationTo;
+	}
+	
+	public LinkedList<JDBJourney> getJourneyList(String defaultItem) {
+		LinkedList<JDBJourney> journeyList = new LinkedList<JDBJourney>();
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+
+		String test = JUtility.replaceNullStringwithBlank(defaultItem);
+
+		JDBJourney journey1 = new JDBJourney(getHostID(), getSessionID());
+		journey1.setJourneyRef(test);
+		journeyList.add(journey1);
+
+		try {
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
+					Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBJourney.getJourneyList"));
+			
+			stmt.setFetchSize(25);
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				JDBJourney journey2 = new JDBJourney(getHostID(), getSessionID());
+				journey2.getPropertiesfromResultSet(rs);
+				journeyList.add(journey2);
+			}
+			
+			rs.close();
+			stmt.close();
+
+		} catch (SQLException e) {
+			setErrorMessage(e.getMessage());
+		}
+
+		return journeyList;
+	}
+
+	public Vector<JDBJourney> getJourneyRefData(PreparedStatement criteria) {
+		ResultSet rs;
+		Vector<JDBJourney> result = new Vector<JDBJourney>();
+
+		// logger.debug("getControlData");
+		if (Common.hostList.getHost(getHostID()).toString().equals(null)) {
+			result.addElement(new JDBJourney("journey", "status", "desp", JUtility.getSQLDateTime()));
+		} else {
+			try {
+				rs = criteria.executeQuery();
+
+				while (rs.next()) {
+					result.addElement(new JDBJourney(rs.getString("journey_ref"), rs.getString("status"),
+							rs.getString("despatch_no"), rs.getTimestamp("date_updated")));
+				}
+
+				rs.close();
+			} catch (Exception e) {
+				setErrorMessage(e.getMessage());
+			}
+		}
+
+		return result;
+	}
+
+	public ResultSet getJourneyRefDataResultSet(PreparedStatement criteria) {
+		ResultSet rs;
+
+		try {
+			rs = criteria.executeQuery();
+		} catch (Exception e) {
+			rs = null;
+			setErrorMessage(e.getMessage());
+		}
+
+		return rs;
+	}
+
+	public boolean getJourneyRefProperties() {
+		boolean result = false;
+
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+
+		clear();
+
+		try {
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
+					Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBJourney.getProperties"));
+			stmt.setFetchSize(1);
+			stmt.setString(1, getJourneyRef());
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				getPropertiesfromResultSet(rs);
+				result = true;
+			} else {
+				setErrorMessage("Unknown JourneyRef [" + getJourneyRef() + "]");
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
+	public boolean getJourneyRefProperties(String journey) {
+		setJourneyRef(journey);
+
+		return getJourneyRefProperties();
+	}
+
+	public void getPropertiesfromResultSet(ResultSet rs) {
+		try {
+			clear();
+			setJourneyRef(rs.getString("Journey_Ref"));
+			setStatus(rs.getString("status"));
+			setDespatchNo(rs.getString("despatch_no"));
+			setDateUpdated(rs.getTimestamp("date_updated"));
+			setTimeslot(rs.getTimestamp("timeslot"));
+			setLocationTo(rs.getString("location_id_to"));
+		} catch (SQLException e) {
+			setErrorMessage(e.getMessage());
+		}
+	}
+
+	private String getSessionID() {
+		return sessionID;
+	}
+
+	public String getStatus() {
+		return JUtility.replaceNullStringwithBlank(dbStatus);
+	}
+
+	public boolean isValid() {
+		boolean result = true;
+
+		if (JUtility.isNullORBlank(getJourneyRef()) == true) {
+			setErrorMessage("JourneyRef cannot be null");
+			result = false;
+		}
+
+		if (result == true) {
+			if (JUtility.isNullORBlank(getStatus()) == true) {
+				setErrorMessage("Status cannot be null");
+				result = false;
+			}
+		}
+
+		if (result == true) {
+			if (JUtility.isNullORBlank(getDespatchNo()) == false) {
+				desp = new JDBDespatch(getHostID(), getSessionID());
+				if (desp.isValidDespatchNo(getDespatchNo()) == false) {
+					setErrorMessage("Invalid Despatch No");
+					result = false;
+				}
+			}
+		}
+		
+		if (result == true) {
+			if (JUtility.isNullORBlank(getLocationTo()) == false) {
+				loc = new JDBLocation(getHostID(), getSessionID());
+				if (loc.isValidLocation(getLocationTo()) == false) {
+					setErrorMessage("Invalid Location ID");
+					result = false;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	public boolean isValidJourneyRef() {
+
+		PreparedStatement stmt;
+		ResultSet rs;
+		boolean result = false;
+
+		try {
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
+					Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBJourney.isValid"));
+			stmt.setString(1, getJourneyRef());
+			stmt.setFetchSize(1);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				result = true;
+			} else {
+				setErrorMessage("Invalid JourneyRef");
+			}
+
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
+	public boolean isValidJourneyRef(String journey) {
+		setJourneyRef(journey);
+
+		return isValidJourneyRef();
+	}
+
+	private void setErrorMessage(String errorMsg) {
+		dbErrorMessage = errorMsg;
+	}
+
+	public void setDespatchNo(String despNo) {
+		dbDespatchNo = JUtility.replaceNullStringwithBlank(despNo);
+		if (dbDespatchNo.equals("") == true) {
+			dbStatus = "Unassigned";
+		} else {
+			dbStatus = "Assigned";
+		}
+
+	}
+
+	public void setDateUpdated(Timestamp updated) {
+		dbDateUpdated = updated;
+	}
+	
+	public void setTimeslot(Timestamp timeslot) {
+		dbTimeslot = timeslot;
+	}
+
+	
+	public void setLocationTo(String location) {
+		dbLocationTo = location;
+	}
+	
+	private void setHostID(String host) {
+		hostID = host;
+	}
+
+	public void setJourneyRef(String journey) {
+		dbJourneyRef = journey;
+	}
+
+	private void setSessionID(String session) {
+		sessionID = session;
+	}
+
+	public void setStatus(String status) {
+		dbStatus = status;
+	}
+
+	public boolean update() {
+		boolean result = false;
+		setDateUpdated(JUtility.getSQLDateTime());
+		if (isValid() == true) {
+			try {
+				PreparedStatement stmtupdate;
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
+						Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBJourney.update"));
+
+				stmtupdate.setString(1, getStatus());
+				stmtupdate.setString(2, getDespatchNo());
+				stmtupdate.setTimestamp(3, JUtility.getSQLDateTime());
+				stmtupdate.setString(4, getLocationTo());
+				stmtupdate.setTimestamp(5, getTimeslot());
+				stmtupdate.setString(6, getJourneyRef());
+				stmtupdate.execute();
+				stmtupdate.clearParameters();
+
+				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+				stmtupdate.close();
+				result = true;
+			} catch (SQLException e) {
+				setErrorMessage(e.getMessage());
+			}
+		}
+
+		return result;
+	}
+}

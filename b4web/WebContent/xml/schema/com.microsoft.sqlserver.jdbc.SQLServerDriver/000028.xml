@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+INSERT [dbo].[SYS_MODULES] ([MODULE_ID], [RF_ACTIVE], [DK_ACTIVE], [MODULE_TYPE], [HINT], [ICON_FILENAME], [HELPSET_ID], [REPORT_FILENAME], [EXEC_FILENAME], [EXEC_DIR], [PRINT_PREVIEW], [PRINT_DIALOG], [PRINT_COPIES],[RESOURCE_KEY]) VALUES (N'FRM_PAL_LABEL_COPIES', N'Y', N'N', N'FORM', NULL,NULL, NULL, N'', NULL, NULL, NULL, NULL, NULL, N'mod_FRM_PAL_LABEL_COPIES')
+</statement>
+
+<statement>
+	insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','Label Print','EN','')
+</statement>
+
+<statement>
+	insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','Label Print','NL','')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'PALLET', N'FRM_PAL_LABEL_COPIES')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'PUBLIC', N'FRM_PAL_LABEL_COPIES')
+</statement>
+
+</DDL>

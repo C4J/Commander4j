@@ -1,0 +1,31 @@
+<?xml encoding="UTF-8"?>
+<!ELEMENT Hosts ((NumberOfSites,SplashScreen,UpdateURL,UpdateMODE,UpdateDIR,SetupPassword, Site+))>
+<!ELEMENT Site (Enabled, UniqueID, Description, URL, DatabaseDriver,DatabaseParameters)>
+<!ATTLIST Site Number CDATA #REQUIRED>
+<!ELEMENT NumberOfSites (#PCDATA)>
+
+<!ELEMENT SplashScreen (#PCDATA)>
+<!ELEMENT UpdateURL (#PCDATA)>
+<!ELEMENT UpdateMODE (#PCDATA)>
+<!ELEMENT UpdateDIR (#PCDATA)>
+<!ELEMENT SetupPassword (#PCDATA)>
+
+
+<!ELEMENT Enabled (#PCDATA)>
+<!ELEMENT UniqueID (#PCDATA)>
+<!ELEMENT Description (#PCDATA)>
+<!ELEMENT URL (#PCDATA)>
+<!ELEMENT jdbcDriver (#PCDATA)>
+<!ELEMENT jdbcUsername (#PCDATA)>
+<!ELEMENT jdbcPassword (#PCDATA)>
+<!ELEMENT jdbcPasswordEncryption (#PCDATA)>
+<!ELEMENT jdbcDatabase (#PCDATA)>
+<!ELEMENT jdbcDatabaseSchema (#PCDATA)>
+<!ELEMENT jdbcConnectString (#PCDATA)>
+<!ELEMENT jdbcServer (#PCDATA)>
+<!ELEMENT jdbcPort (#PCDATA)>
+<!ELEMENT jdbcSID (#PCDATA)>
+<!ELEMENT jdbcDatabaseDateTimeToken (#PCDATA)>
+<!ELEMENT jdbcDatabaseSelectLimit (#PCDATA)>
+<!ELEMENT DatabaseParameters (jdbcUsername, jdbcPassword, jdbcServer, jdbcPort, jdbcSID,jdbcDatabase)>
+<!ELEMENT DatabaseDriver (jdbcDriver, jdbcConnectString, jdbcDatabaseDateTimeToken, jdbcDatabaseSelectLimit,jdbcDatabaseSchema)>

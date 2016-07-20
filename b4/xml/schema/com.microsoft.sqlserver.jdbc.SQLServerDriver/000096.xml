@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		CREATE TABLE [dbo].[APP_JOURNEY](
+			[JOURNEY_REF] varchar(25) NOT NULL,
+			[STATUS] varchar(20) NULL,
+			[DESPATCH_NO] varchar(18) NULL,
+			[TIMESLOT] [datetime] NULL,
+			[LOCATION_ID_TO] [varchar](15) NULL,
+			[DATE_UPDATED] datetime NULL
+		 CONSTRAINT [PK_APP_DESPATCH_JOURNEY] PRIMARY KEY CLUSTERED 
+		(
+			[JOURNEY_REF] ASC
+		)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+		) ON [PRIMARY]
+	</statement>
+
+	<statement>
+		CREATE NONCLUSTERED INDEX [JOURNEY_DESPATCH_IDX] ON [dbo].[APP_JOURNEY]
+		(
+			[DESPATCH_NO] ASC
+		)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	</statement>
+	
+	<statement>
+		CREATE NONCLUSTERED INDEX [STATUS_JOURNEY_IDX] ON [dbo].[APP_JOURNEY]
+		(
+			[STATUS] ASC,
+			[JOURNEY_REF] ASC
+		)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	</statement>
+	
+	<statement>
+		ALTER TABLE [dbo].APP_DESPATCH ADD JOURNEY_REF varchar(25)
+	</statement>
+	
+	<statement>
+		ALTER TABLE [dbo].APP_LOCATION ADD MSG_JOURNEY_REF varchar(1) DEFAULT 'N'
+	</statement>
+						
+	<statement>
+		INSERT [dbo].[SYS_MODULES] ([MODULE_ID], [RESOURCE_KEY], [RF_ACTIVE], [DK_ACTIVE], [MODULE_TYPE], [HINT], [MNEMONIC], [ICON_FILENAME], [HELPSET_ID], [REPORT_FILENAME], [EXEC_FILENAME], [EXEC_DIR], [PRINT_PREVIEW], [PRINT_DIALOG], [PRINT_COPIES]) VALUES (N'FRM_ADMIN_JOURNEY', N'mod_FRM_ADMIN_JOURNEY', N'N', N'Y', N'FORM', N'Maintain Journey References', 66, N'journeys.gif', 'http://commander4j.com/mw/index.php/Journey_Reference', NULL, NULL, NULL, NULL, NULL, NULL)
+	</statement>
+	
+	<statement>
+		INSERT [dbo].[SYS_MODULES] ([MODULE_ID], [RESOURCE_KEY], [RF_ACTIVE], [DK_ACTIVE], [MODULE_TYPE], [HINT], [MNEMONIC], [ICON_FILENAME], [HELPSET_ID], [REPORT_FILENAME], [EXEC_FILENAME], [EXEC_DIR], [PRINT_PREVIEW], [PRINT_DIALOG], [PRINT_COPIES]) VALUES (N'FRM_ADMIN_JOURNEY_EDIT', N'mod_FRM_ADMIN_JOURNEY_EDIT', N'N', N'Y', N'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+	</statement>
+	
+	<statement>
+		INSERT [dbo].[SYS_MODULES] ([MODULE_ID], [RESOURCE_KEY], [RF_ACTIVE], [DK_ACTIVE], [MODULE_TYPE], [HINT], [MNEMONIC], [ICON_FILENAME], [HELPSET_ID], [REPORT_FILENAME], [EXEC_FILENAME], [EXEC_DIR], [PRINT_PREVIEW], [PRINT_DIALOG], [PRINT_COPIES]) VALUES (N'FRM_ADMIN_JOURNEY_ADD', N'mod_FRM_ADMIN_JOURNEY_ADD', N'N', N'Y', N'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+	</statement>
+	
+	<statement>
+		INSERT [dbo].[SYS_MODULES] ([MODULE_ID], [RESOURCE_KEY], [RF_ACTIVE], [DK_ACTIVE], [MODULE_TYPE], [HINT], [MNEMONIC], [ICON_FILENAME], [HELPSET_ID], [REPORT_FILENAME], [EXEC_FILENAME], [EXEC_DIR], [PRINT_PREVIEW], [PRINT_DIALOG], [PRINT_COPIES]) VALUES (N'FRM_ADMIN_JOURNEY_DELETE', N'mod_FRM_ADMIN_JOURNEY_DELETE', N'N', N'Y', N'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+	</statement>
+								
+	<statement>
+		INSERT [dbo].[SYS_MENUS] ([MODULE_ID], [MENU_ID], [SEQUENCE_ID]) VALUES (N'FRM_ADMIN_JOURNEY', N'MENU_DATA_MAINT', 10)
+	</statement>
+	
+	<statement>
+		INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN', N'FRM_ADMIN_JOURNEY')
+	</statement>
+	
+	<statement>
+		INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN', N'FRM_ADMIN_JOURNEY_EDIT')
+	</statement>	
+
+	<statement>
+		INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN', N'FRM_ADMIN_JOURNEY_ADD')
+	</statement>	
+	
+	<statement>
+		INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN', N'FRM_ADMIN_JOURNEY_DELETE')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY','EN','Administer Journeys','B')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY','ES','Administer Journeys','B')
+	</statement>
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY','DE','Administer Journeys','B')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY','FR','Administer Journeys','B')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY','HU','Administer Journeys','B')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY','IT','Administer Journeys','B')
+	</statement>
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY','NL','Administer Journeys','B')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY','PL','Administer Journeys','B')
+	</statement>
+
+
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_EDIT','PL','Edit Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_EDIT','EN','Edit Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_EDIT','ES','Edit Journey Ref','')
+	</statement>	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_EDIT','DE','Edit Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_EDIT','FR','Edit Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_EDIT','HU','Edit Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_EDIT','IT','Edit Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_EDIT','NL','Edit Journey Ref','')
+	</statement>	
+		
+		
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_ADD','PL','Add Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_ADD','EN','Add Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_ADD','ES','Add Journey Ref','')
+	</statement>	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_ADD','DE','Add Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_ADD','FR','Add Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_ADD','HU','Add Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_ADD','IT','Add Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_ADD','NL','Add Journey Ref','')
+	</statement>	
+	
+	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_DELETE','PL','Delete Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_DELETE','EN','Delete Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_DELETE','ES','Delete Journey Ref','')
+	</statement>	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_DELETE','DE','Delete Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_DELETE','FR','Delete Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_DELETE','HU','Delete Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_DELETE','IT','Delete Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('mod_FRM_ADMIN_JOURNEY_DELETE','NL','Delete Journey Ref','')
+	</statement>	
+	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Input','PL','Create Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Input','EN','Create Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Input','ES','Create Journey Ref','')
+	</statement>	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Input','DE','Create Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Input','FR','Create Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Input','HU','Create Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Input','IT','Create Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Input','NL','Create Journey Ref','')
+	</statement>
+	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Delete','PL','Delete Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Delete','EN','Delete Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Delete','ES','Delete Journey Ref','')
+	</statement>	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Delete','DE','Delete Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Delete','FR','Delete Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Delete','HU','Delete Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Delete','IT','Delete Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('dlg_Journey_Ref_Delete','NL','Delete Journey Ref','')
+	</statement>		
+	
+	<statement>
+		INSERT [dbo].[SYS_INTERFACE] ([INTERFACE_TYPE], [INTERFACE_DIRECTION], [PATH], [ENABLED], [DEVICE], [SUBJECT], [TOPIC], [SERVER], [USERNAME], [PASSWORD], [FORMAT], [UOM_CONVERSION], [ENABLE_EMAIL_NOTIFICATIONS], [EMAIL_FLAGS], [EMAIL_ADDRESSES]) VALUES (N'Journey', N'Input', N'{base_dir}\xml\interface\input\Journey Definition', N'Y', N'Disk', NULL, NULL, NULL, NULL, NULL, N'XML', NULL, NULL, N'E', N'')
+	</statement>	
+
+
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Ref','PL','Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Ref','EN','Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Ref','ES','Journey Ref','')
+	</statement>	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Ref','DE','Journey Ref','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Ref','FR','Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Ref','HU','Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Ref','IT','Journey Ref','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Ref','NL','Journey Ref','')
+	</statement>		
+
+
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Status','PL','Status','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Status','EN','Status','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Status','ES','Status','')
+	</statement>	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Status','DE','Status','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Status','FR','Status','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Status','HU','Status','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Status','IT','Status','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Journey_Status','NL','Status','')
+	</statement>		
+		
+	<statement>
+		ALTER TABLE [dbo].[SYS_USERS_PASSWORD_HISTORY] ALTER COLUMN [PASSWORD] VARCHAR(50)
+	</statement>	
+	
+
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Timeslot','PL','Time slot','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Timeslot','EN','Time slot','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Timeslot','ES','Time slot','')
+	</statement>	
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Timeslot','DE','Time slot','')
+	</statement>	
+		
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Timeslot','FR','Time slot','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Timeslot','HU','Time slot','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Timeslot','IT','Time slot','')
+	</statement>
+	
+	<statement>
+		insert into [dbo].[sys_language] ([resource_key],[language_id],[text],[mnemonic]) values ('lbl_Timeslot','NL','Time slot','')
+	</statement>		
+	
+	<statement>
+		CREATE VIEW [dbo].VIEW_LABEL_DATA_PROCESS_ORDER_CDF
+		AS
+		SELECT PO.PROCESS_ORDER, PO.STATUS, PO.MATERIAL, PO.REQUIRED_UOM, PO.REQUIRED_RESOURCE, PO.DUE_DATE, MAT.MATERIAL_TYPE, MAT.DESCRIPTION, RIGHT('00000000000000' + MATUOM_PROD.EAN, 14) 
+		                  AS PROD_EAN, RIGHT('00' + MATUOM_PROD.VARIANT, 2) AS PROD_VARIANT, MATUOM_BASE.NUMERATOR AS PROD_QUANTITY, RIGHT('00000000000000' + ISNULL(PART2.DATA,''), 14) AS BASE_EAN, 
+		                  RIGHT('00' + ISNULL(PART3.DATA,''), 2) AS BASE_VARIANT, ISNULL(PART3.DATA, 0) AS BASE_QUANTITY, dbo.c4j_GetFullPalletQuantity(PO.PROCESS_ORDER) AS PALLET_QUANTITY, 
+		                  dbo.c4j_GetLayers(PO.PROCESS_ORDER) AS PALLET_LAYERS, MAT.OLD_MATERIAL, MAT.SHELF_LIFE, MAT.SHELF_LIFE_UOM, MAT.SHELF_LIFE_RULE, PO.CUSTOMER_ID, CUST.CUSTOMER_NAME, 
+		                  dbo.c4j_GetFinalBatchNumber(GETDATE(), 'N', '', '', PO.PROCESS_ORDER) AS BATCH_NUMBER, dbo.c4j_GetFinalExpiryDate(GETDATE(), MAT.SHELF_LIFE, MAT.SHELF_LIFE_UOM, MAT.SHELF_LIFE_RULE, 'N', 
+		                  GETDATE()) AS EXPIRY_DATE, MAT.UPDATED AS MATERIAL_UPDATED, PO.UPDATED AS PROCESS_ORDER_UPDATED, ISNULL(PART1.DATA, '') AS PART_NO
+		FROM     dbo.APP_PROCESS_ORDER AS PO INNER JOIN
+		                  dbo.APP_MATERIAL AS MAT ON MAT.MATERIAL = PO.MATERIAL INNER JOIN
+		                  dbo.APP_CUSTOMER AS CUST ON CUST.CUSTOMER_ID = PO.CUSTOMER_ID INNER JOIN
+		                  dbo.APP_MATERIAL_UOM AS MATUOM_PROD ON MATUOM_PROD.MATERIAL = PO.MATERIAL AND MATUOM_PROD.UOM = PO.REQUIRED_UOM INNER JOIN
+		                  dbo.APP_MATERIAL_UOM AS MATUOM_BASE ON MATUOM_BASE.MATERIAL = PO.MATERIAL AND MATUOM_BASE.UOM = MAT.BASE_UOM LEFT OUTER JOIN
+		                  dbo.APP_MATERIAL_CUSTOMER_DATA AS PART3 ON PO.MATERIAL = PART3.MATERIAL AND PO.CUSTOMER_ID = PART3.CUSTOMER_ID AND PART3.DATA_ID = 'CU_QUANTITY' LEFT OUTER JOIN
+		                  dbo.APP_MATERIAL_CUSTOMER_DATA AS PART2 ON PO.MATERIAL = PART2.MATERIAL AND PO.CUSTOMER_ID = PART2.CUSTOMER_ID AND PART2.DATA_ID = 'CU_EAN' LEFT OUTER JOIN
+		                  dbo.APP_MATERIAL_CUSTOMER_DATA AS PART4 ON PO.MATERIAL = PART4.MATERIAL AND PO.CUSTOMER_ID = PART4.CUSTOMER_ID AND PART4.DATA_ID = 'CU_VARIANT' LEFT OUTER JOIN
+		                  dbo.APP_MATERIAL_CUSTOMER_DATA AS PART1 ON PO.MATERIAL = PART1.MATERIAL AND PO.CUSTOMER_ID = PART1.CUSTOMER_ID AND PART1.DATA_ID = 'PART_NO'
+	</statement>		
+</DDL>

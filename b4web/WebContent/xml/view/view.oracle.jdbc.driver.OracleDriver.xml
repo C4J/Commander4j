@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE SQL SYSTEM "view.dtd"> 
+<SQL>
+	<jdbcDriver Type="oracle.jdbc.driver.OracleDriver">
+		<?VIEWS ?>
+		<statement>
+			<id>VIEW_GROUP_PERMISSIONS</id>
+			<text>(select p.group_id,m.* from {schema}sys_group_permissions p, {schema}sys_modules m where m.module_id = p.module_id)</text>
+		</statement>
+		<statement>
+			<id>VIEW_MENU_STRUCTURE</id>
+			<text>(select sys_menus.*, sys_modules.resource_key, sys_modules.rf_active, sys_modules.dk_active, sys_modules.module_type, sys_modules.hint, sys_modules.icon_filename from {schema}sys_menus, {schema}sys_modules where sys_modules.module_id = sys_menus.module_id)</text>
+		</statement>
+		<statement>
+			<id>VIEW_TOOLBAR</id>
+			<text>(select sys_toolbar.*, sys_modules.resource_key, sys_modules.rf_active, sys_modules.dk_active, sys_modules.module_type, sys_modules.hint, sys_modules.icon_filename from {schema}sys_toolbar, {schema}sys_modules where sys_modules.module_id = sys_toolbar.module_id)</text>
+		</statement>
+		<statement>
+			<id>VIEW_RF_MENU</id>
+			<text>(select sys_rf_menu.*, sys_modules.resource_key, sys_modules.rf_active, sys_modules.dk_active, sys_modules.module_type, sys_modules.hint, sys_modules.icon_filename from {schema}sys_rf_menu, {schema}sys_modules where sys_modules.module_id = sys_rf_menu.module_id)</text>
+		</statement>
+		<statement>
+			<id>VIEW_SECURITY</id>
+			<text>(select sugm.user_id,sgp.module_id from {schema}sys_user_group_membership sugm, {schema}sys_group_permissions sgp where sgp.group_id = sugm.group_id)</text>
+		</statement>
+		<statement>
+			<id>VIEW_PALLET_EXPIRY</id>
+			<text>VIEW_PALLET_EXPIRY</text>
+		</statement>
+		<statement>
+			<id>VIEW_PALLET_HISTORY_EXPIRY</id>
+			<text>VIEW_PALLET_HISTORY_EXPIRY</text>
+		</statement>
+		<statement>
+			<id>VIEW_PALLET_HISTORY</id>
+			<text>VIEW_PALLET_HISTORY</text>
+		</statement>
+	</jdbcDriver>
+</SQL>
