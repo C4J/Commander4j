@@ -131,6 +131,13 @@ public class OutgoingDespatchConfirmation
 				document = document + "DTM+11:" + despdateLong + ":203'";
 				document = document + "RFF+LO:" + desp.getDespatchNo() + "'";
 				document = document + "RFF+ZCO:'";
+				
+				if (desp.getLocationDBTo().getMsgJourneyRef().equals("Y"))
+				{
+					document = document + "RFF+SRN:" + desp.getJourneyRef() + "'";
+					optional++;
+				}
+				
 				document = document + "RFF+ZAF:'";
 				document = document + "RFF+ZPI:1'";
 				document = document + "RFF+ZCH:'";
