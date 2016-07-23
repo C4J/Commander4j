@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:sz="http://www.khi-ro.com" xmlns:theConfig="urn:CustomScript" xmlns:theScript="urn:CustomScript">
+  <hostRef>Commander4j_Prod_WIS</hostRef>
+  <messageRef>CRST 00045e8f-1ea5-476b-a17d-4e0e47329fd9</messageRef>
+  <interfaceType>Process Order Status Change</interfaceType>
+  <messageInformation>Process Order=18878564</messageInformation>
+  <interfaceDirection>Input</interfaceDirection>
+  <messageDate>2014-11-22T02:00:17</messageDate>
+  <messageData>
+    <processOrderStatusChange>
+      <orderNo>18878564</orderNo>
+      <receipeId>100000000023522644</receipeId>
+      <status>Discarded</status>
+    </processOrderStatusChange>
+  </messageData>
+</message>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:sz="http://www.khi-ro.com" xmlns:theConfig="urn:CustomScript" xmlns:theScript="urn:CustomScript">
+  <hostRef>Commander4j_Prod_WIS</hostRef>
+  <messageRef>0000001782818742</messageRef>
+  <interfaceType>Pallet Status Change</interfaceType>
+  <messageInformation>Order Number=0010338368</messageInformation>
+  <interfaceDirection>Input</interfaceDirection>
+  <messageDate>2014-11-27T15:46:37</messageDate>
+  <messageData>
+    <palletStatusChange>
+      <sscc>350001615015570100</sscc>
+      <status>Blocked</status>
+    </palletStatusChange>
+  </messageData>
+</message>

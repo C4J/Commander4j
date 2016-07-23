@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:sz="http://www.khi-ro.com" xmlns:theConfig="urn:CustomScript" xmlns:theScript="urn:CustomScript">
+  <hostRef>Commander4j_Prod_WIS</hostRef>
+  <messageRef>0000001778861632</messageRef>
+  <interfaceType>Batch Status Change</interfaceType>
+  <messageInformation>Material=000000000005107953 Batch=4324093300</messageInformation>
+  <interfaceDirection>Input</interfaceDirection>
+  <messageDate>2014-11-22T09:16:57</messageDate>
+  <messageData>
+    <batchStatusChange>
+      <material>5107953</material>
+      <batch>4324093300</batch>
+      <status>Unrestricted</status>
+    </batchStatusChange>
+  </messageData>
+</message>

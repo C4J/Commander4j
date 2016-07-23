@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lookup>
+    <item type="config" id="HostRef"><value>WRLIVE</value></item>    
+    <item type="config" id="Plant"><value>7786</value></item>
+    <item type="config" id="Warehouse"><value>PLY</value></item>
+    <item type="config" id="Language"><value>E</value></item>  
+    <item type="config" id="Location"><value>WISBECH</value></item>  
+    <item type="config" id="SAPUsername"><value>PUWISBECH</value></item>  
+    
+    <item type="location" id="0933-0001"><value>WISBECH</value></item>
+    <item type="location" id="7786-0001"><value>WROCLAW</value></item>
+    <item type="location" id="0962-0001"><value>WMP</value></item>    
+    <item type="location" id="0962-0003"><value>FENLAND</value></item>    
+    <item type="location" id="0962-0005"><value>NENE PARADE</value></item>        
+    <item type="location" id="0966-0001"><value>HAMS HALL</value></item>   
+    <item type="location" id="0931-0001"><value>SUDBURY</value></item>   
+    <item type="location" id="0931-0002"><value>LAITS</value></item>       
+    <item type="location" id="0966-0001"><value>WINCANTON</value></item>  
+    
+    <item type="status" id="Z1"><value>Invalid</value></item>
+    <item type="status" id="Z2"><value>Invalid</value></item>
+    <item type="status" id="Z3"><value>Valid</value></item>    
+    <item type="status" id="Z4"><value>Valid</value></item>    
+    <item type="status" id="Z5"><value>Invalid</value></item>        
+    <item type="status" id="Z6"><value>Invalid</value></item>
+
+    <item type="duration" id=""><value>D</value></item>
+    <item type="duration" id="0"><value>D</value></item>
+    <item type="duration" id="1"><value>W</value></item>    
+    <item type="duration" id="2"><value>M</value></item>    
+    <item type="duration" id="3"><value>Y</value></item>        
+    
+    <item type="rounding" id=""><value>=</value></item>
+    <item type="rounding" id="="><value>=</value></item>
+    <item type="rounding" id="-"><value>-</value></item>
+    <item type="rounding" id="+"><value>+</value></item>   
+    
+    <item type="SAPstatus" id=""><value>Unrestricted</value></item>  
+    <item type="SAPstatus" id="S"><value>Blocked</value></item>  
+    <item type="SAPstatus" id="Q"><value>QI</value></item>  
+    <item type="SAPstatus" id="X"><value>Restricted</value></item>  
+  
+    
+</lookup>
+

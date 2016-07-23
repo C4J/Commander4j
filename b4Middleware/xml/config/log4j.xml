@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true" 
+xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+  <appender name="LIFECYCLE" class="org.apache.log4j.RollingFileAppender"> 
+    <param name="MaxFileSize" value="25mb"/>
+    <param name="MaxBackupIndex" value="10"/>
+    <param name="File" value="logs/b4middleware.log"/>
+    <param name="Threshold" value="DEBUG"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d{ISO8601} %-5p [%t] %c - %m%n"/>
+    </layout>	                 
+
+  </appender>
+
+  <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+    <param name="Threshold" value="DEBUG"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d{ISO8601} %-5p [%t] %c - %m%n"/>
+    </layout>	                 
+  </appender>  
+	<logger name="net.sf.jasperreports">
+		<level value="OFF"/>
+	</logger>
+  <root>
+    <level value="DEBUG" />
+    <appender-ref ref="LIFECYCLE" />
+    <appender-ref ref="CONSOLE" />
+
+  </root>
+  
+
+	    
+</log4j:configuration>
+

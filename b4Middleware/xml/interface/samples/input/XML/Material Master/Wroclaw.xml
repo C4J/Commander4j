@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MESSAGE number="23852d4b-a1df-4e06-aa3f-3129e4ed741c" type="mm" id="809371938">
+    <DATA type="Basic">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="MsgFn" value="005"/>
+        <FIELD name="OldMaterialCode" value="43336363"/>
+        <FIELD name="MaterialType" value="ZTRV"/>
+        <FIELD name="MaterialGroup" value="F60"/>
+        <FIELD name="Division" value="00"/>
+        <FIELD name="EANCategory" value=""/>
+        <FIELD name="EANItemCode" value=""/>
+        <FIELD name="EANVariant" value=""/>
+        <FIELD name="ExpiryDate" value="B"/>
+        <FIELD name="BaseUOM" value="EA"/>
+        <FIELD name="MinRemShelfLife" value="1"/>
+        <FIELD name="PeriodIndforSLED" value="2"/>
+        <FIELD name="StoragePercentage" value="0"/>
+        <FIELD name="ShelfLife" value="24"/>
+        <FIELD name="RoundingRuleSLED" value="+"/>
+        <FIELD name="GrossWeight" value="110.000"/>
+        <FIELD name="NetWeight" value="100.000"/>
+        <FIELD name="WeightUnit" value="GRM"/>
+        <FIELD name="Volume" value="234.360"/>
+        <FIELD name="VolumeUnit" value="CMQ"/>
+        <FIELD name="HazMaterialNbr" value=""/>
+        <FIELD name="CrossPlantMaterialStatus" value="--"/>
+        <FIELD name="BatchManaged" value="X"/>
+    </DATA>
+    <DATA type="Text">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="Description" value="T FELIX GiJ Tuna Pouch BSt 100g N2 XE"/>
+        <FIELD name="Language" value="E"/>
+    </DATA>
+    <DATA type="Text">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="Description" value="T FELIX GiJ Tuna Pouch BSt 100g N2 XE"/>
+        <FIELD name="Language" value="L"/>
+    </DATA>
+    <DATA type="Plant">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="Plant" value="7786"/>
+        <FIELD name="MaterialStatus" value="Z3"/>
+        <FIELD name="IssueUOM" value=""/>
+        <FIELD name="MRPController" value="105"/>
+        <FIELD name="BatchManaged" value="X"/>
+        <FIELD name="SpecialProcessing" value=""/>
+        <FIELD name="ProductionUOM" value=""/>
+        <FIELD name="MaxStoragePeriod" value="0"/>
+        <FIELD name="TimeUnit" value=""/>
+        <FIELD name="MaxLotSize" value="0.000"/>
+        <FIELD name="MinLotSize" value="90000.000"/>
+        <FIELD name="RoundingRuleLotSize" value="30000.000"/>
+        <FIELD name="UsePlantFields" value=""/>
+        <FIELD name="MinRemShelfLife" value="0"/>
+        <FIELD name="PeriodIndforSLED" value=""/>
+        <FIELD name="ShelfLife" value="0"/>
+        <FIELD name="RoundingRuleSLED" value=""/>
+        <FIELD name="BBDCalculation" value=""/>
+        <FIELD name="BBDHRFormat" value=""/>
+        <FIELD name="FixedBBD" value="00000000"/>
+        <FIELD name="LabelHeaderText" value=""/>
+    </DATA>
+    <DATA type="Location">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="Plant" value="7786"/>
+        <FIELD name="StorageLocation" value="0001"/>
+        <FIELD name="StorageBin" value=""/>
+    </DATA>
+    <DATA type="UOM">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="UOM" value="CS"/>
+        <FIELD name="Numerator" value="1"/>
+        <FIELD name="Denominator" value="1"/>
+        <FIELD name="EANItemCode" value=""/>
+        <FIELD name="EANVariant" value=""/>
+        <FIELD name="LowerUOM" value=""/>
+        <FIELD name="EANCategory" value=""/>
+        <FIELD name="DimensionUnit" value="MMT"/>
+        <FIELD name="Volume" value="234.360"/>
+        <FIELD name="VolumeUnit" value="CMQ"/>
+        <FIELD name="GrossWeight" value="110.000"/>
+        <FIELD name="WeightUnit" value="GRM"/>
+    </DATA>
+    <DATA type="UOM">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="UOM" value="EA"/>
+        <FIELD name="Numerator" value="1"/>
+        <FIELD name="Denominator" value="1"/>
+        <FIELD name="EANItemCode" value=""/>
+        <FIELD name="EANVariant" value=""/>
+        <FIELD name="LowerUOM" value=""/>
+        <FIELD name="EANCategory" value=""/>
+        <FIELD name="DimensionUnit" value="MMT"/>
+        <FIELD name="Volume" value="234.360"/>
+        <FIELD name="VolumeUnit" value="CMQ"/>
+        <FIELD name="GrossWeight" value="110.000"/>
+        <FIELD name="WeightUnit" value="GRM"/>
+    </DATA>
+    <DATA type="UOM">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="UOM" value="LR"/>
+        <FIELD name="Numerator" value="594"/>
+        <FIELD name="Denominator" value="1"/>
+        <FIELD name="EANItemCode" value=""/>
+        <FIELD name="EANVariant" value=""/>
+        <FIELD name="LowerUOM" value=""/>
+        <FIELD name="EANCategory" value=""/>
+        <FIELD name="DimensionUnit" value=""/>
+        <FIELD name="Volume" value="0.000"/>
+        <FIELD name="VolumeUnit" value=""/>
+        <FIELD name="GrossWeight" value="0.000"/>
+        <FIELD name="WeightUnit" value=""/>
+    </DATA>
+    <DATA type="UOM">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="UOM" value="D97"/>
+        <FIELD name="Numerator" value="4752"/>
+        <FIELD name="Denominator" value="1"/>
+        <FIELD name="EANItemCode" value=""/>
+        <FIELD name="EANVariant" value=""/>
+        <FIELD name="LowerUOM" value=""/>
+        <FIELD name="EANCategory" value=""/>
+        <FIELD name="DimensionUnit" value="MMT"/>
+        <FIELD name="Volume" value="1.559"/>
+        <FIELD name="VolumeUnit" value="MTQ"/>
+        <FIELD name="GrossWeight" value="628.000"/>
+        <FIELD name="WeightUnit" value="KGM"/>
+    </DATA>
+    <DATA type="UOM">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="UOM" value="ZZ2"/>
+        <FIELD name="Numerator" value="1"/>
+        <FIELD name="Denominator" value="1"/>
+        <FIELD name="EANItemCode" value=""/>
+        <FIELD name="EANVariant" value=""/>
+        <FIELD name="LowerUOM" value=""/>
+        <FIELD name="EANCategory" value=""/>
+        <FIELD name="DimensionUnit" value=""/>
+        <FIELD name="Volume" value="0.000"/>
+        <FIELD name="VolumeUnit" value=""/>
+        <FIELD name="GrossWeight" value="0.000"/>
+        <FIELD name="WeightUnit" value=""/>
+    </DATA>
+    <DATA type="Warehouse">
+        <FIELD name="Material" value="000000000103392684"/>
+        <FIELD name="Warehouse" value="PLY"/>
+        <FIELD name="WMUOM" value=""/>
+        <FIELD name="StorageType" value="B10"/>
+        <FIELD name="StorageSection" value="DCA"/>
+        <FIELD name="WMSpecialProcessing" value=""/>
+        <FIELD name="2StepPick" value=""/>
+        <FIELD name="StorageTypeSP" value="B10"/>
+        <FIELD name="Bulk" value=""/>
+        <FIELD name="SUType" value="U1"/>
+        <FIELD name="LEQuantity" value="4158.000"/>
+        <FIELD name="LEUnit" value="EA"/>
+    </DATA>
+</MESSAGE>
