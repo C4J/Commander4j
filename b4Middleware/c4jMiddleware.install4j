@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="6.1.2" transformSequenceNumber="5">
-  <directoryPresets config="./c4jMiddleware.jar" />
-  <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="Middleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.00" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
-    <languages skipLanguageSelection="false" languageSelectionInPrincipalLanguage="false">
+  <directoryPresets config="./images/Launcher" />
+  <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.01" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
+    <languages skipLanguageSelection="true" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
       <additionalLanguages>
         <language id="da" customLocalizationFile="" />
@@ -68,10 +68,10 @@
       <dirEntry mountPoint="31" file="./xml/interface/backup" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="backup" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <dirEntry mountPoint="32" file="./xml/config" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="config" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+      <dirEntry mountPoint="32" file="./xml/config" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="config" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <dirEntry mountPoint="33" file="./xml/xslt" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="xslt" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+      <dirEntry mountPoint="33" file="./xml/xslt" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="xslt" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="34" file="./xml/trace" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="trace" excludeSuffixes="" dirMode="755" overrideDirMode="false">
@@ -88,8 +88,8 @@
     <components />
   </files>
   <launchers>
-    <launcher name="MiddlewareGUI" id="38" customizedId="" external="false" excludeFromMenu="false" unixMode="755" menuName="" icnsFile="" customMacBundleIdentifier="false" macBundleIdentifier="" swtApp="false" fileset="" macBundleBinary="JavaApplicationStub" addMacEntitlements="false" macEntitlementsFile="" useCustomMacosExecutableName="false" customMacosExecutableName="" useJavaMinVersionOverride="false" javaMinVersionOverride="" useJavaMaxVersionOverride="false" javaMaxVersionOverride="">
-      <executable name="MiddlewareGUI" type="1" iconSet="false" iconFile="" executableDir="." redirectStderr="true" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" globalSingleInstance="false" singleInstanceActivate="true" dpiAware="false">
+    <launcher name="Middleware GUI" id="38" customizedId="" external="false" excludeFromMenu="false" unixMode="755" menuName="" icnsFile="./images/Launcher/iFace_Icon.icns" customMacBundleIdentifier="false" macBundleIdentifier="" swtApp="false" fileset="" macBundleBinary="JavaApplicationStub" addMacEntitlements="false" macEntitlementsFile="" useCustomMacosExecutableName="false" customMacosExecutableName="" useJavaMinVersionOverride="false" javaMinVersionOverride="" useJavaMaxVersionOverride="false" javaMaxVersionOverride="">
+      <executable name="Middleware GUI" type="1" iconSet="true" iconFile="./images/Launcher/iFace_Icon.ico" executableDir="." redirectStderr="true" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" globalSingleInstance="false" singleInstanceActivate="true" dpiAware="false">
         <versionInfo include="false" fileVersion="" fileDescription="" legalCopyright="" internalName="" productName="" />
       </executable>
       <splashScreen show="false" width="0" height="0" bitmapFile="" windowsNative="false" textOverlay="false">
@@ -98,7 +98,7 @@
           <versionLine x="20" y="40" text="version ${compiler:sys.version}" fontSize="8" fontColor="0,0,0" bold="false" />
         </text>
       </splashScreen>
-      <java mainClass="com.commander4j.mw.StartMW" vmParameters="" arguments="GUI" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
+      <java mainClass="com.commander4j.mw.StartMW" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:xml\log4j.xml -Dfile.encoding=Cp1252" arguments="GUI" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
         <classPath>
           <archive location="c4jMiddleware.jar" failOnError="false" />
           <directory location="lib" failOnError="false" />
@@ -117,7 +117,50 @@
       <infoPlist mode="1" file="">
         <content />
       </infoPlist>
-      <iconImageFiles />
+      <iconImageFiles>
+        <file path="./images/Launcher/iFace_Icon (PNG)/16x16.png" />
+        <file path="./images/Launcher/iFace_Icon (PNG)/32x32.png" />
+        <file path="./images/Launcher/iFace_Icon (PNG)/48x48.png" />
+        <file path="./images/Launcher/iFace_Icon (PNG)/128x128.png" />
+        <file path="./images/Launcher/iFace_Icon (PNG)/256x256.png" />
+      </iconImageFiles>
+    </launcher>
+    <launcher name="Middleware Service" id="149" customizedId="" external="false" excludeFromMenu="false" unixMode="755" menuName="" icnsFile="./images/Launcher/iFace_Icon.icns" customMacBundleIdentifier="false" macBundleIdentifier="" swtApp="false" fileset="" macBundleBinary="JavaApplicationStub" addMacEntitlements="false" macEntitlementsFile="" useCustomMacosExecutableName="false" customMacosExecutableName="" useJavaMinVersionOverride="false" javaMinVersionOverride="" useJavaMaxVersionOverride="false" javaMaxVersionOverride="">
+      <executable name="Middleware Service" type="1" iconSet="true" iconFile="./images/Launcher/iFace_Icon.ico" executableDir="." redirectStderr="true" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" globalSingleInstance="false" singleInstanceActivate="true" dpiAware="false">
+        <versionInfo include="false" fileVersion="" fileDescription="" legalCopyright="" internalName="" productName="" />
+      </executable>
+      <splashScreen show="false" width="0" height="0" bitmapFile="" windowsNative="false" textOverlay="false">
+        <text>
+          <statusLine x="20" y="20" text="" fontSize="8" fontColor="0,0,0" bold="false" />
+          <versionLine x="20" y="40" text="version ${compiler:sys.version}" fontSize="8" fontColor="0,0,0" bold="false" />
+        </text>
+      </splashScreen>
+      <java mainClass="com.commander4j.mw.StartMW" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:xml\log4j.xml -Dfile.encoding=Cp1252" arguments="Service" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
+        <classPath>
+          <archive location="c4jMiddleware.jar" failOnError="false" />
+          <directory location="lib" failOnError="false" />
+        </classPath>
+        <nativeLibraryDirectories />
+        <vmOptions />
+      </java>
+      <includedFiles />
+      <unextractableFiles />
+      <vmOptionsFile mode="none" overwriteMode="0" fileMode="644">
+        <content />
+      </vmOptionsFile>
+      <customScript mode="1" file="">
+        <content />
+      </customScript>
+      <infoPlist mode="1" file="">
+        <content />
+      </infoPlist>
+      <iconImageFiles>
+        <file path="./images/Launcher/iFace_Icon (PNG)/16x16.png" />
+        <file path="./images/Launcher/iFace_Icon (PNG)/32x32.png" />
+        <file path="./images/Launcher/iFace_Icon (PNG)/48x48.png" />
+        <file path="./images/Launcher/iFace_Icon (PNG)/128x128.png" />
+        <file path="./images/Launcher/iFace_Icon (PNG)/256x256.png" />
+      </iconImageFiles>
     </launcher>
   </launchers>
   <installerGui installerType="1" addOnAppId="" suggestPreviousLocations="true" autoUpdateDescriptorUrl="" useAutoUpdateBaseUrl="false" autoUpdateBaseUrl="">
@@ -262,6 +305,14 @@
             <preActivation />
             <postActivation />
             <actions>
+              <action name="" id="200" customizedId="" beanClass="com.install4j.runtime.beans.actions.UninstallPreviousAction" enabled="true" commentSet="false" comment="" actionElevationType="none" rollbackBarrier="false" multiExec="false" failureStrategy="1" errorMessage="">
+                <serializedBean>
+                  <java class="java.beans.XMLDecoder">
+                    <object class="com.install4j.runtime.beans.actions.UninstallPreviousAction" />
+                  </java>
+                </serializedBean>
+                <condition />
+              </action>
               <action name="" id="9" customizedId="" beanClass="com.install4j.runtime.beans.actions.InstallFilesAction" enabled="true" commentSet="false" comment="" actionElevationType="elevated" rollbackBarrier="false" multiExec="false" failureStrategy="2" errorMessage="${i18n:FileCorrupted}">
                 <serializedBean>
                   <java class="java.beans.XMLDecoder">
