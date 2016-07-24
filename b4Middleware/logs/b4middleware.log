@@ -10084,3 +10084,59 @@
 2016-07-23 21:18:25,452 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
 2016-07-23 21:18:25,452 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - **      COMPLETED      **
 2016-07-23 21:18:25,452 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-23 22:34:28,855 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - Application starting
+2016-07-23 22:34:28,872 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-23 22:34:28,872 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - **      START          **
+2016-07-23 22:34:28,872 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-23 22:34:28,875 DEBUG [AWT-EventQueue-0] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-23 22:34:28,892 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - Loading config :Nestle Purina Wisbech
+2016-07-23 22:34:28,897 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - Loading map              : (map1) Material Data
+2016-07-23 22:34:29,122 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - Loading input connector  : (in) Read Konnect Material Master XML IN 1
+2016-07-23 22:34:29,127 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - Loading output connector : (out1) Commander4j Material Master XML OUT 1
+2016-07-23 22:34:29,130 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - Loading map              : (map2) Process Order Data
+2016-07-23 22:34:29,133 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - Loading input connector  : (in) SAP S95 CR XML
+2016-07-23 22:34:29,136 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - Loading output connector : (out1) Commander4j Process Order XML
+2016-07-23 22:34:29,138 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - Loading map              : (map3) Synchro CSV
+2016-07-23 22:34:29,141 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - Loading input connector  : (in) Synchro Export File
+2016-07-23 22:34:29,144 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - Loading output connector : (out1) Commander4j Process Order XML
+2016-07-23 22:34:29,145 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - startMaps
+2016-07-23 22:34:29,145 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-23 22:34:29,146 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-23 22:34:29,146 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Commander4j Material Master XML OUT 1]
+2016-07-23 22:34:29,146 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-23 22:34:29,146 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master XML IN 1]
+2016-07-23 22:34:29,146 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-23 22:34:29,146 DEBUG [Timer-0] com.commander4j.Interface.Inbound.InboundInterface - Processing [/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/input/1]
+2016-07-23 22:34:29,146 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-23 22:34:29,147 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Commander4j Process Order XML]
+2016-07-23 22:34:29,147 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-23 22:34:29,147 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [SAP S95 CR XML]
+2016-07-23 22:34:29,147 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-23 22:34:29,147 DEBUG [Timer-2] com.commander4j.Interface.Inbound.InboundInterface - Processing [/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/input/2]
+2016-07-23 22:34:29,147 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-23 22:34:29,148 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Commander4j Process Order XML]
+2016-07-23 22:34:29,148 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-23 22:34:29,148 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Synchro Export File]
+2016-07-23 22:34:29,148 DEBUG [Timer-4] com.commander4j.Interface.Inbound.InboundInterface - Processing [/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/input/3]
+2016-07-23 22:34:30,149 DEBUG [Timer-4] com.commander4j.Interface.Inbound.InboundInterface - Processing [/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/input/3]
+2016-07-23 22:34:30,149 DEBUG [Timer-2] com.commander4j.Interface.Inbound.InboundInterface - Processing [/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/input/2]
+2016-07-23 22:34:30,149 DEBUG [Timer-0] com.commander4j.Interface.Inbound.InboundInterface - Processing [/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/input/1]
+2016-07-23 22:34:30,789 DEBUG [AWT-EventQueue-0] com.commander4j.mw.Config - stopMaps
+2016-07-23 22:34:30,789 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-23 22:34:30,789 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-23 22:34:30,789 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read Konnect Material Master XML IN 1]
+2016-07-23 22:34:30,790 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-23 22:34:30,790 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Commander4j Material Master XML OUT 1]
+2016-07-23 22:34:30,790 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-23 22:34:30,790 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-23 22:34:30,790 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [SAP S95 CR XML]
+2016-07-23 22:34:30,790 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-23 22:34:30,790 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Commander4j Process Order XML]
+2016-07-23 22:34:30,791 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-23 22:34:30,791 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-23 22:34:30,791 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Synchro Export File]
+2016-07-23 22:34:30,791 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-23 22:34:30,791 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Commander4j Process Order XML]
+2016-07-23 22:34:30,791 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-23 22:34:30,791 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - **      COMPLETED      **
+2016-07-23 22:34:30,791 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
