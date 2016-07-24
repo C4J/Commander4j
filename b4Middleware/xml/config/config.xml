@@ -10,14 +10,14 @@
 
         <input id="in" description="Read Konnect Material Master XML IN 1">
             <type>XML</type>
-            <path>/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/input/1</path>
+            <path>./xml/interface/input/1</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>MATERIAL_IDOC_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Commander4j Material Master XML OUT 1">
-            <path>/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/output/1</path>
+            <path>./xml/interface/output/1</path>
             <type>XML</type>
             <XSLT/>
         </output>
@@ -34,14 +34,14 @@
 
         <input id="in" description="SAP S95 CR XML">
             <type>XML</type>
-            <path>/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/input/2</path>
+            <path>./xml/interface/input/2</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>CR_S95_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Commander4j Process Order XML">
-            <path>/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/output/2</path>
+            <path>./xml/interface/output/2</path>
             <type>XML</type>
             <XSLT/>
         </output>
@@ -52,14 +52,14 @@
 
         <input id="in" description="Synchro Export File">
             <type>CSV</type>
-            <path>/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/input/3</path>
+            <path>./xml/interface/input/3</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>CSV_XML_Test.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Commander4j Process Order XML">
-            <path>/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/output/3</path>
+            <path>./xml/interface/output/3</path>
             <type>XML</type>
             <XSLT/>
         </output>

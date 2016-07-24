@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.apache.log4j.Logger;
 
+import com.commander4j.gui.StartGUI;
 import com.commander4j.util.Utility;
 
 public class StartMW {
@@ -53,13 +54,30 @@ public class StartMW {
 	public static void main(String[] args)
 	{
 		
-		StartMW smw = new StartMW();
+		String parameter = "";
+		
+		if (args.length>0)
+		{
+			parameter = args[0];
+		}
+		
+		if (parameter.equals(""))
+		{
+			 parameter = "GUI";
+		}
+		
+		if (parameter.equals("GUI"))
+		{
+			StartGUI.main(args); 
+		}
+		
+		
+		if (parameter.equals("Service"))
+		{
+			StartMW smw = new StartMW();
 
-		smw.StartMiddleware();
-		
-		Utility.pause(30);
-		
-		smw.StopMiddleware();
+			smw.StartMiddleware();
+		}
 
 	}
 }

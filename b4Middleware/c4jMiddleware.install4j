@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="6.1.2" transformSequenceNumber="5">
-  <directoryPresets config="../../Distribution/java8/c4jMiddleware" />
+  <directoryPresets config="./c4jMiddleware.jar" />
   <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="Middleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.00" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
     <languages skipLanguageSelection="false" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
@@ -41,6 +41,7 @@
       <mountPoint id="34" root="" location="xml/trace" mode="755" />
       <mountPoint id="35" root="" location="lib" mode="755" />
       <mountPoint id="36" root="" location="logs" mode="755" />
+      <mountPoint id="94" root="" location="" mode="755" />
     </mountPoints>
     <entries>
       <dirEntry mountPoint="22" file="./images" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="images" excludeSuffixes="" dirMode="755" overrideDirMode="false">
@@ -82,6 +83,7 @@
       <dirEntry mountPoint="36" file="./logs" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="logs" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
+      <fileEntry mountPoint="94" file="./c4jMiddleware.jar" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" />
     </entries>
     <components />
   </files>
@@ -96,9 +98,10 @@
           <versionLine x="20" y="40" text="version ${compiler:sys.version}" fontSize="8" fontColor="0,0,0" bold="false" />
         </text>
       </splashScreen>
-      <java mainClass="com.commander4j.gui.StartGUI" vmParameters="" arguments="" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
+      <java mainClass="com.commander4j.mw.StartMW" vmParameters="" arguments="GUI" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
         <classPath>
-          <archive location="MiddlewareGUI" failOnError="false" />
+          <archive location="c4jMiddleware.jar" failOnError="false" />
+          <directory location="lib" failOnError="false" />
         </classPath>
         <nativeLibraryDirectories />
         <vmOptions />
