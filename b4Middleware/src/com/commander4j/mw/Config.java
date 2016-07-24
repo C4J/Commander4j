@@ -74,6 +74,9 @@ public class Config {
 
 				String mapId = doc.findXPath("//config/map[" + String.valueOf(mapSeq) + "]/@id").trim();
 				String mapDescription = doc.findXPath("//config/map[" + String.valueOf(mapSeq) + "]/@description").trim();
+				
+				map.setId(mapId);
+				map.setDescription(mapDescription);
 
 				logger.debug("Loading map              : (" + mapId + ") " + mapDescription);
 

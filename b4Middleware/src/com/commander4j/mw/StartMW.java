@@ -10,8 +10,8 @@ import com.commander4j.util.Utility;
 public class StartMW {
 
 	
-	Logger logger = Logger.getLogger(StartMW.class);
-	Config cfg;
+	private Logger logger = Logger.getLogger(StartMW.class);
+	public Config cfg;
 	
 	
 	public Boolean StartMiddleware()

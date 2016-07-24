@@ -13,12 +13,15 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
+import com.commander4j.Interface.Mapping.Maps;
 import com.commander4j.mw.Common;
 import com.commander4j.mw.StartMW;
 import com.commander4j.util.Utility;
@@ -34,9 +37,12 @@ public class StartGUI extends JFrame
 	private JLabel lblStatus = new JLabel("Ready");
 	private JPanel progressBarInterface = new JPanel();
 	private final JLabel lblInterfaceStatus = new JLabel("Interface Status :");
+	private JLabel label_NoOfMaps = new JLabel("");
+	private JList<Maps> listMaps = new JList<Maps>();
 	/**
 	 * Launch the application.
 	 */
+		
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -47,8 +53,6 @@ public class StartGUI extends JFrame
 				{
 					StartGUI frame = new StartGUI();
 					frame.setVisible(true);
-					
-					
 					
 				} catch (Exception e)
 				{
@@ -66,7 +70,7 @@ public class StartGUI extends JFrame
 		setTitle("Commander4j Middleware");
 		Utility.initLogging("");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 573, 391);
+		setBounds(100, 100, 574, 467);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -84,7 +88,7 @@ public class StartGUI extends JFrame
 				dispose();
 			}
 		});
-		btnClose.setBounds(307, 271, 150, 38);
+		btnClose.setBounds(306, 352, 150, 38);
 		contentPane.add(btnClose);
 		
 		tglbtnStopStart = new JToggleButton(Common.icon_ok);
@@ -102,6 +106,8 @@ public class StartGUI extends JFrame
 					tglbtnStopStart.setBackground(Color.RED);
 					tglbtnStopStart.setText("Stop");
 					lblStatus.setText("Running");
+					label_NoOfMaps.setText(String.valueOf(smw.cfg.getMaps().size()));
+
 					btnClose.setEnabled(false);
 					progressBarInterface.setBackground(new Color(0,128,0));
 				}
@@ -117,12 +123,12 @@ public class StartGUI extends JFrame
 				}
 			}
 		});
-		tglbtnStopStart.setBounds(121, 271, 150, 38);
+		tglbtnStopStart.setBounds(120, 352, 150, 38);
 		contentPane.add(tglbtnStopStart);
 		
 
 		panelStatus.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelStatus.setBounds(0, 339, 573, 30);
+		panelStatus.setBounds(0, 415, 573, 30);
 		contentPane.add(panelStatus);
 		panelStatus.setLayout(null);
 		
@@ -132,7 +138,7 @@ public class StartGUI extends JFrame
 		panelStatus.add(lblStatus);
 		
 		progressBarInterface.setForeground(new Color(0, 128, 0));
-		progressBarInterface.setBounds(312, 23, 25, 22);
+		progressBarInterface.setBounds(312, 26, 15, 15);
 		progressBarInterface.setPreferredSize(new Dimension(40,40));
 		progressBarInterface.setBackground(Color.RED);
 		contentPane.add(progressBarInterface);
@@ -140,5 +146,19 @@ public class StartGUI extends JFrame
 		lblInterfaceStatus.setBounds(173, 23, 131, 22);
 		
 		contentPane.add(lblInterfaceStatus);
+		
+		JLabel lblNumberOfMaps = new JLabel("Number of Maps :");
+		lblNumberOfMaps.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblNumberOfMaps.setBounds(173, 57, 131, 22);
+		contentPane.add(lblNumberOfMaps);
+		
+		label_NoOfMaps.setBounds(311, 61, 60, 15);
+		contentPane.add(label_NoOfMaps);
+		
+		JScrollPane scrollPaneMaps = new JScrollPane();
+		scrollPaneMaps.setBounds(100, 108, 392, 224);
+		contentPane.add(scrollPaneMaps);
+		
+		scrollPaneMaps.setViewportView(listMaps);
 	}
 }

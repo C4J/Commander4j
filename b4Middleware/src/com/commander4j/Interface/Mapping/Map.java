@@ -14,12 +14,39 @@ public class Map {
 	InboundInterface inboundInterface;
 	LinkedList<OutboundInterface> outboundInterface = new LinkedList<OutboundInterface>();
 	Logger logger = Logger.getLogger(Map.class);
+	private String id="";
+	private String description="";
 
 	public void run()
 	{
 
 	}
+	
+	public String toString()
+	{
+		return getId() + " - " + getDescription();
+	}
+	
+	public void setId(String ID)
+	{
+		id = ID;
+	}
+	
+	public void setDescription(String desc)
+	{
+		description = desc;
+	}
 
+	public String getId()
+	{
+		return id;
+	}
+	
+	public String getDescription()
+	{
+		return description;
+	}
+	
 	public void setEnabled(boolean yesno)
 	{
 		logger.debug("setEnabled "+String.valueOf(yesno));
