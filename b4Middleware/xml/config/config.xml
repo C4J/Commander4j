@@ -2,8 +2,6 @@
 <config description="Nestle Purina Wisbech">
 
     <logPath/>
-    <backupPath/>
-    <errorPath/>
     <XSLTPath/>
 
     <map id="map1" enabed="Y" description="Konnect Material Master to C4J Material Master">
@@ -14,6 +12,7 @@
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>KONNECT_MATERIAL_XML_to_C4J_XML.xsl</XSLT>
+            <backupPath>./xml/interface/backup/1 (Konnect - Material)</backupPath>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Material Master">
@@ -32,6 +31,7 @@
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>S95_PROCESS_ORDER_XML_to_C4J_XML.xsl</XSLT>
+            <backupPath>./xml/interface/backup/2 (S95 Process Order)</backupPath>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Process Order XML">
@@ -50,6 +50,7 @@
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>CSV_to_XML_Example.xsl</XSLT>
+            <backupPath>./xml/interface/backup/3 (Comma Separated Variables)</backupPath>
         </input>
 
         <output id="out1" enabed="Y" description="Write XML Example">
@@ -68,6 +69,7 @@
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>S95_BATCH_STATUS_XML_to_C4J_XML.xsl</XSLT>
+            <backupPath>./xml/interface/backup/4 (S95 Batch Status Change)</backupPath>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Batch Status Change">
@@ -86,6 +88,7 @@
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>S95_TRANSFER_SCHEDULE_XML_to_C4J_XML.xsl</XSLT>
+            <backupPath>./xml/interface/backup/5 (S95 Transfer Schedule)</backupPath>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Pallet Status Change XML">
@@ -104,6 +107,7 @@
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>S95_PROCESS_ORDER_STATUS_CHANGE_XML_to_C4J_XML.xsl</XSLT>
+            <backupPath>./xml/interface/backup/6 (S95 Process Order Status Change)</backupPath>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Process Order Status Change XML">
@@ -122,6 +126,7 @@
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
+            <backupPath>./xml/interface/backup/7 (C4J Production Declaration)</backupPath>
         </input>
 
         <output id="out1" enabed="Y" description="Write S95 Prod Dec XML">

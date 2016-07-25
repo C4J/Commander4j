@@ -26,6 +26,7 @@ import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.Utility;
 import javax.swing.Icon;
+import javax.swing.ScrollPaneConstants;
 
 public class StartGUI extends JFrame
 {
@@ -179,6 +180,7 @@ public class StartGUI extends JFrame
 		contentPane.add(label_NoOfMaps);
 		
 		JScrollPane scrollPaneMaps = new JScrollPane();
+		scrollPaneMaps.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneMaps.setBounds(12, 65, 751, 267);
 		contentPane.add(scrollPaneMaps);
 		

@@ -47,7 +47,7 @@ public class Config {
 	{
 
 		String configName = "";
-		String backupPath = "";
+		//String backupPath = "";
 		String XSLTPath = "";
 		Logger logger = Logger.getLogger(Config.class);
 
@@ -58,7 +58,7 @@ public class Config {
 		JXMLDocument doc = new JXMLDocument(filename);
 
 		configName = doc.findXPath("//config/@description");
-		backupPath = doc.findXPath("//config/backupPath");
+		//backupPath = doc.findXPath("//config/backupPath");
 		XSLTPath = doc.findXPath("//config/XSLTPath");
 
 		logger.debug("Loading config :" + configName);
@@ -89,6 +89,7 @@ public class Config {
 				String inputMask = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/mask").trim();
 				String pollingInterval = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/pollingInterval").trim();
 				String inputXSLT = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/XSLT").trim();
+				String backupPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/backupPath").trim();
 
 				InboundInterface inboundInterface = new InboundInterface(map, inputDescription);
 				inboundInterface.setId(inputId);
