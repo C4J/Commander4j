@@ -10,6 +10,21 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>../xslt/PALLET_PRODDEC_S95_XML.xsl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>Production Declaratiom</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XML</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>../../../../../Downloads/ijmuiden/Konnect/config/TROPOS_Material_to_Commander4j.xsl</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -45,21 +60,6 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>Batch Status Change</String>
-                                    </list>
-                                </field>
-                                <field name="scenarioTypes">
-                                    <list>
-                                        <String>XML</String>
-                                    </list>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="url">
-                                    <String>../xslt/PALLET_PRODDEC_S95_XML.xsl</String>
-                                </field>
-                                <field name="scenarioIds">
-                                    <list>
-                                        <String>Production Declaratiom</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">

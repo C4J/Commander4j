@@ -24,7 +24,7 @@ public class Map {
 	
 	public String toString()
 	{
-		return getId() + " - " + getDescription();
+		return Utility.padString(getId(),true,10," ") + "  " + Utility.padString(getDescription(),true,30," ") + "  "+Utility.padString(getInboundInterface().getType(),true,3," ") + "  ["+getInboundInterface().getInputPath()+"]";
 	}
 	
 	public void setId(String ID)
@@ -66,6 +66,11 @@ public class Map {
 			}
 		}
 
+	}
+	
+	public InboundInterface getInboundInterface()
+	{
+		return this.inboundInterface;
 	}
 
 	public void setInboundInterface(InboundInterface inint)

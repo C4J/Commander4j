@@ -111,4 +111,58 @@ public class Utility {
 		return result;
 	}
 	
+
+	public static String padSpace(int size)
+	{
+		String s = "";
+
+		for (int i = 0; i < size; i++)
+		{
+			s = s + " ";
+		}
+
+		return s;
+	}
+
+
+	public static String padString(int size, String character)
+	{
+		String s = "";
+
+		for (int i = 0; i < size; i++)
+		{
+			s = s + character;
+		}
+
+		return s;
+	}
+
+	public static String padString(String input, boolean right, int size, String character)
+	{
+		int inputlength = 0;
+		String result = replaceNullStringwithBlank(input);
+
+		inputlength = result.length();
+
+		if (inputlength > size)
+		{
+			// result = result.substring(0,size-1);
+			result = result.substring(0, size);
+		} else
+		{
+			if (inputlength < size)
+			{
+				if (right == true)
+				{
+					result = result + padString(size - inputlength, character);
+				} else
+				{
+					result = padString(size - inputlength, character) + result;
+				}
+			}
+		}
+
+		return result;
+	}
+	
 }

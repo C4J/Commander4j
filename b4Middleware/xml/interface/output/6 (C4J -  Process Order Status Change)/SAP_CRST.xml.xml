@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message xmlns:c4j="http://www.commander4j.com">
+   <plant>0933</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>CRID </messageRef>
+   <interfaceType>Process Order</interfaceType>
+   <messageInformation>Process Order=000019013755</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-25T12:49:57</messageDate>
+   <messageData>
+      <processOrder>
+         <orderNo>1913755</orderNo>
+         <receipeId>100000000023858061</receipeId>
+         <dueDate/>
+         <status>Discarded</status>
+         <plant>0933</plant>
+      </processOrder>
+   </messageData>
+</message>

@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 
 import com.commander4j.Interface.Mapping.Map;
-import com.commander4j.mw.Common;
+import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JXMLDocument;
 import com.commander4j.util.Utility;
@@ -45,10 +45,10 @@ public class InboundInterface extends InboundInterfaceABSTRACT {
 
 		File dir = new File(getInputPath());
 		String[] extensions = new String[] { getInputFileMask() };
-		logger.debug("Processing [" + dir.toString()+"]");
+		//logger.debug("Processing [" + dir.toString()+"]");
 		List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true);
 		for (File file : files) {
-			
+			logger.debug("Processing [" + file.getName()+"]");
 			if (connector.processInboundFile(file.getName()))
 			{
 				data = connector.getData();

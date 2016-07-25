@@ -12,7 +12,7 @@ import org.w3c.dom.Element;
 
 
 import com.commander4j.Interface.Inbound.InboundInterface;
-import com.commander4j.mw.Common;
+import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
 import com.opencsv.CSVReader;
 

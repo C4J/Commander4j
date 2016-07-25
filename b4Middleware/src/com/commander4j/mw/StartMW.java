@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.apache.log4j.Logger;
 
-import com.commander4j.gui.StartGUI;
+import com.commander4j.sys.Config;
 import com.commander4j.util.Utility;
 
 public class StartMW {
@@ -12,6 +12,7 @@ public class StartMW {
 	
 	private Logger logger = Logger.getLogger(StartMW.class);
 	public Config cfg;
+	public static String version = "1.02";
 	
 	
 	public Boolean StartMiddleware()
