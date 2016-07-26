@@ -9333,3 +9333,2155 @@
    </messageData>
 </message>]
 2016-07-25 18:46:23,584 DEBUG [Timer-0] com.commander4j.Connector.Outbound.OutboundConnectorXML - connectorSave [./xml/interface/output/1 (C4J - Material)/KONNECT_MM_WRCL2.xml.xml]
+2016-07-25 19:22:35,189 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - Application starting
+2016-07-25 19:22:35,199 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-25 19:22:35,199 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - **      START          **
+2016-07-25 19:22:35,199 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-25 19:22:35,202 DEBUG [AWT-EventQueue-0] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-25 19:22:35,222 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading config :Nestle Purina Wisbech
+2016-07-25 19:22:35,229 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map1) Konnect Material Master to C4J Material Master
+2016-07-25 19:22:35,453 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read Konnect Material Master
+2016-07-25 19:22:35,459 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Material Master
+2016-07-25 19:22:35,462 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map2) S95 Process Order to C4J Process Order
+2016-07-25 19:22:35,467 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CR XML
+2016-07-25 19:22:35,470 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order XML
+2016-07-25 19:22:35,473 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map3) Synchro CSV
+2016-07-25 19:22:35,476 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read CSV Example
+2016-07-25 19:22:35,479 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write XML Example
+2016-07-25 19:22:35,481 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map4) S95 Batch Status Change to C4J Batch Status Change
+2016-07-25 19:22:35,485 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read S95 Batch Status Change
+2016-07-25 19:22:35,488 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-07-25 19:22:35,491 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map5) S95 Transfer Schedule to C4J Pallet Status Change
+2016-07-25 19:22:35,495 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 TRANSFER ORDER XML
+2016-07-25 19:22:35,498 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-07-25 19:22:35,500 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map6) S95 Process Order Status Change to C4J Process Order Status Change
+2016-07-25 19:22:35,512 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CRST XML
+2016-07-25 19:22:35,516 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-07-25 19:22:35,518 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map7) C4J Production Declaration to S95 Production Declaration
+2016-07-25 19:22:35,520 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read C4J Prod Dec XML
+2016-07-25 19:22:35,523 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write S95 Prod Dec XML
+2016-07-25 19:22:35,523 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - startMaps
+2016-07-25 19:22:35,523 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-25 19:22:35,523 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,523 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Material Master]
+2016-07-25 19:22:35,523 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,524 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master]
+2016-07-25 19:22:35,524 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-25 19:22:35,524 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,524 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order XML]
+2016-07-25 19:22:35,524 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,524 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CR XML]
+2016-07-25 19:22:35,525 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-25 19:22:35,525 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,525 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write XML Example]
+2016-07-25 19:22:35,525 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,525 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read CSV Example]
+2016-07-25 19:22:35,525 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-25 19:22:35,525 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,525 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Batch Status Change]
+2016-07-25 19:22:35,525 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,526 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read S95 Batch Status Change]
+2016-07-25 19:22:35,526 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-25 19:22:35,526 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,526 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-25 19:22:35,526 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,526 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-25 19:22:35,527 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-25 19:22:35,527 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,527 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-25 19:22:35,528 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,528 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CRST XML]
+2016-07-25 19:22:35,528 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-25 19:22:35,528 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,529 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
+2016-07-25 19:22:35,529 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-25 19:22:35,529 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-25 19:22:37,235 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - stopMaps
+2016-07-25 19:22:37,236 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-25 19:22:37,236 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,236 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read Konnect Material Master]
+2016-07-25 19:22:37,236 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,236 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Material Master]
+2016-07-25 19:22:37,236 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-25 19:22:37,237 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,237 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CR XML]
+2016-07-25 19:22:37,237 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,237 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order XML]
+2016-07-25 19:22:37,237 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-25 19:22:37,237 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,237 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read CSV Example]
+2016-07-25 19:22:37,237 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,238 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write XML Example]
+2016-07-25 19:22:37,238 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-25 19:22:37,238 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,238 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read S95 Batch Status Change]
+2016-07-25 19:22:37,238 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,238 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Batch Status Change]
+2016-07-25 19:22:37,238 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-25 19:22:37,238 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,238 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-25 19:22:37,238 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,239 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-25 19:22:37,239 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-25 19:22:37,239 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,239 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CRST XML]
+2016-07-25 19:22:37,239 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,239 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-25 19:22:37,239 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-25 19:22:37,239 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,239 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read C4J Prod Dec XML]
+2016-07-25 19:22:37,239 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-25 19:22:37,240 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write S95 Prod Dec XML]
+2016-07-25 19:22:37,240 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-25 19:22:37,240 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - **      COMPLETED      **
+2016-07-25 19:22:37,240 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:22:40,569 DEBUG [main] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:22:40,572 DEBUG [main] com.commander4j.mw.StartMW - **      START          **
+2016-07-26 05:22:40,572 DEBUG [main] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:22:41,614 DEBUG [main] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-26 05:22:41,662 DEBUG [main] com.commander4j.sys.Config - Loading config :Nestle Purina Wisbech
+2016-07-26 05:22:41,670 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map1) Konnect Material Master to C4J Material Master
+2016-07-26 05:22:41,954 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read Konnect Material Master
+2016-07-26 05:22:41,960 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Material Master
+2016-07-26 05:22:41,962 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map2) S95 Process Order to C4J Process Order
+2016-07-26 05:22:41,966 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CR XML
+2016-07-26 05:22:41,970 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order XML
+2016-07-26 05:22:41,973 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map3) Synchro CSV
+2016-07-26 05:22:41,976 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read CSV Example
+2016-07-26 05:22:41,979 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write XML Example
+2016-07-26 05:22:41,982 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map4) S95 Batch Status Change to C4J Batch Status Change
+2016-07-26 05:22:41,985 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read S95 Batch Status Change
+2016-07-26 05:22:41,988 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-07-26 05:22:41,991 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map5) S95 Transfer Schedule to C4J Pallet Status Change
+2016-07-26 05:22:41,996 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 TRANSFER ORDER XML
+2016-07-26 05:22:41,998 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-07-26 05:22:42,000 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map6) S95 Process Order Status Change to C4J Process Order Status Change
+2016-07-26 05:22:42,004 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CRST XML
+2016-07-26 05:22:42,007 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-07-26 05:22:42,010 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map7) C4J Production Declaration to S95 Production Declaration
+2016-07-26 05:22:42,014 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read C4J Prod Dec XML
+2016-07-26 05:22:42,022 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write S95 Prod Dec XML
+2016-07-26 05:22:42,023 DEBUG [main] com.commander4j.sys.Config - startMaps
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Material Master]
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master]
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order XML]
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CR XML]
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:22:42,024 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write XML Example]
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read CSV Example]
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Batch Status Change]
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read S95 Batch Status Change]
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,025 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-26 05:22:42,026 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:22:42,026 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,026 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-26 05:22:42,026 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,026 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CRST XML]
+2016-07-26 05:22:42,026 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:22:42,026 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,026 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
+2016-07-26 05:22:42,026 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:22:42,026 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-26 05:40:28,150 DEBUG [main] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:40:28,150 DEBUG [main] com.commander4j.mw.StartMW - **      START          **
+2016-07-26 05:40:28,150 DEBUG [main] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:40:28,422 DEBUG [main] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-26 05:40:28,442 DEBUG [main] com.commander4j.sys.Config - Loading config :Nestle Purina Wisbech
+2016-07-26 05:40:28,450 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map1) Konnect Material Master to C4J Material Master
+2016-07-26 05:40:28,680 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read Konnect Material Master
+2016-07-26 05:40:28,685 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Material Master
+2016-07-26 05:40:28,688 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map2) S95 Process Order to C4J Process Order
+2016-07-26 05:40:28,692 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CR XML
+2016-07-26 05:40:28,695 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order XML
+2016-07-26 05:40:28,698 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map3) Synchro CSV
+2016-07-26 05:40:28,702 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read CSV Example
+2016-07-26 05:40:28,704 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write XML Example
+2016-07-26 05:40:28,707 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map4) S95 Batch Status Change to C4J Batch Status Change
+2016-07-26 05:40:28,710 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read S95 Batch Status Change
+2016-07-26 05:40:28,714 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-07-26 05:40:28,717 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map5) S95 Transfer Schedule to C4J Pallet Status Change
+2016-07-26 05:40:28,720 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 TRANSFER ORDER XML
+2016-07-26 05:40:28,723 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-07-26 05:40:28,727 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map6) S95 Process Order Status Change to C4J Process Order Status Change
+2016-07-26 05:40:28,730 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CRST XML
+2016-07-26 05:40:28,732 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-07-26 05:40:28,735 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map7) C4J Production Declaration to S95 Production Declaration
+2016-07-26 05:40:28,739 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read C4J Prod Dec XML
+2016-07-26 05:40:28,748 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write S95 Prod Dec XML
+2016-07-26 05:40:28,748 DEBUG [main] com.commander4j.sys.Config - startMaps
+2016-07-26 05:40:28,748 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:40:28,748 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,748 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Material Master]
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master]
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order XML]
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CR XML]
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write XML Example]
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read CSV Example]
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:40:28,749 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Batch Status Change]
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read S95 Batch Status Change]
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CRST XML]
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:40:28,750 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-26 05:40:51,283 DEBUG [Thread-0] com.commander4j.sys.Config - stopMaps
+2016-07-26 05:40:51,283 DEBUG [Thread-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:40:51,283 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,284 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read Konnect Material Master]
+2016-07-26 05:40:51,284 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,284 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Material Master]
+2016-07-26 05:40:51,284 DEBUG [Thread-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:40:51,284 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,284 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CR XML]
+2016-07-26 05:40:51,285 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,285 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order XML]
+2016-07-26 05:40:51,285 DEBUG [Thread-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:40:51,285 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,285 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read CSV Example]
+2016-07-26 05:40:51,285 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,286 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write XML Example]
+2016-07-26 05:40:51,286 DEBUG [Thread-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:40:51,286 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,286 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read S95 Batch Status Change]
+2016-07-26 05:40:51,286 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,286 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Batch Status Change]
+2016-07-26 05:40:51,286 DEBUG [Thread-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:40:51,286 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,287 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-26 05:40:51,287 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,287 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-26 05:40:51,287 DEBUG [Thread-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:40:51,287 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,287 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CRST XML]
+2016-07-26 05:40:51,287 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,287 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-26 05:40:51,287 DEBUG [Thread-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:40:51,288 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,288 DEBUG [Thread-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read C4J Prod Dec XML]
+2016-07-26 05:40:51,288 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:40:51,288 DEBUG [Thread-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write S95 Prod Dec XML]
+2016-07-26 05:40:51,288 DEBUG [Thread-0] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:40:51,288 DEBUG [Thread-0] com.commander4j.mw.StartMW - **      COMPLETED      **
+2016-07-26 05:40:51,288 DEBUG [Thread-0] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:41:45,575 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - Application starting
+2016-07-26 05:41:45,584 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:41:45,584 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - **      START          **
+2016-07-26 05:41:45,584 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:41:45,588 DEBUG [AWT-EventQueue-0] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-26 05:41:45,607 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading config :Nestle Purina Wisbech
+2016-07-26 05:41:45,615 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map1) Konnect Material Master to C4J Material Master
+2016-07-26 05:41:45,850 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read Konnect Material Master
+2016-07-26 05:41:45,855 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Material Master
+2016-07-26 05:41:45,858 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map2) S95 Process Order to C4J Process Order
+2016-07-26 05:41:45,863 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CR XML
+2016-07-26 05:41:45,866 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order XML
+2016-07-26 05:41:45,869 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map3) Synchro CSV
+2016-07-26 05:41:45,873 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read CSV Example
+2016-07-26 05:41:45,875 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write XML Example
+2016-07-26 05:41:45,878 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map4) S95 Batch Status Change to C4J Batch Status Change
+2016-07-26 05:41:45,882 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read S95 Batch Status Change
+2016-07-26 05:41:45,884 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-07-26 05:41:45,887 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map5) S95 Transfer Schedule to C4J Pallet Status Change
+2016-07-26 05:41:45,891 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 TRANSFER ORDER XML
+2016-07-26 05:41:45,893 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-07-26 05:41:45,896 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map6) S95 Process Order Status Change to C4J Process Order Status Change
+2016-07-26 05:41:45,899 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CRST XML
+2016-07-26 05:41:45,911 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-07-26 05:41:45,914 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map7) C4J Production Declaration to S95 Production Declaration
+2016-07-26 05:41:45,917 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read C4J Prod Dec XML
+2016-07-26 05:41:45,920 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write S95 Prod Dec XML
+2016-07-26 05:41:45,920 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - startMaps
+2016-07-26 05:41:45,920 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:41:45,920 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,920 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Material Master]
+2016-07-26 05:41:45,920 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master]
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order XML]
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CR XML]
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write XML Example]
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read CSV Example]
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Batch Status Change]
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read S95 Batch Status Change]
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-26 05:41:45,921 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CRST XML]
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:41:45,922 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-26 05:41:49,399 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - stopMaps
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read Konnect Material Master]
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Material Master]
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CR XML]
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order XML]
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read CSV Example]
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,400 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write XML Example]
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read S95 Batch Status Change]
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Batch Status Change]
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CRST XML]
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read C4J Prod Dec XML]
+2016-07-26 05:41:49,401 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:41:49,402 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write S95 Prod Dec XML]
+2016-07-26 05:41:49,402 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:41:49,402 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - **      COMPLETED      **
+2016-07-26 05:41:49,402 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:52:11,976 DEBUG [main] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:52:11,976 DEBUG [main] com.commander4j.mw.StartMW - **      START          **
+2016-07-26 05:52:11,976 DEBUG [main] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:52:12,776 DEBUG [main] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-26 05:52:12,797 DEBUG [main] com.commander4j.sys.Config - Loading config :Nestle Purina Wisbech
+2016-07-26 05:52:12,806 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map1) Konnect Material Master to C4J Material Master
+2016-07-26 05:52:13,046 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read Konnect Material Master
+2016-07-26 05:52:13,051 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Material Master
+2016-07-26 05:52:13,054 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map2) S95 Process Order to C4J Process Order
+2016-07-26 05:52:13,058 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CR XML
+2016-07-26 05:52:13,061 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order XML
+2016-07-26 05:52:13,065 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map3) Synchro CSV
+2016-07-26 05:52:13,070 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read CSV Example
+2016-07-26 05:52:13,073 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write XML Example
+2016-07-26 05:52:13,076 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map4) S95 Batch Status Change to C4J Batch Status Change
+2016-07-26 05:52:13,079 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read S95 Batch Status Change
+2016-07-26 05:52:13,085 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-07-26 05:52:13,088 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map5) S95 Transfer Schedule to C4J Pallet Status Change
+2016-07-26 05:52:13,092 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 TRANSFER ORDER XML
+2016-07-26 05:52:13,095 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-07-26 05:52:13,097 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map6) S95 Process Order Status Change to C4J Process Order Status Change
+2016-07-26 05:52:13,101 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CRST XML
+2016-07-26 05:52:13,105 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-07-26 05:52:13,108 DEBUG [main] com.commander4j.sys.Config - Loading map              : (map7) C4J Production Declaration to S95 Production Declaration
+2016-07-26 05:52:13,112 DEBUG [main] com.commander4j.sys.Config - Loading input connector  : (in) Read C4J Prod Dec XML
+2016-07-26 05:52:13,120 DEBUG [main] com.commander4j.sys.Config - Loading output connector : (out1) Write S95 Prod Dec XML
+2016-07-26 05:52:13,121 DEBUG [main] com.commander4j.sys.Config - startMaps
+2016-07-26 05:52:13,121 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:52:13,121 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,121 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Material Master]
+2016-07-26 05:52:13,121 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,122 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master]
+2016-07-26 05:52:13,122 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:52:13,122 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,122 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order XML]
+2016-07-26 05:52:13,122 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,122 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CR XML]
+2016-07-26 05:52:13,122 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:52:13,122 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,122 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write XML Example]
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read CSV Example]
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Batch Status Change]
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read S95 Batch Status Change]
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,123 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CRST XML]
+2016-07-26 05:52:13,124 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:52:13,124 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,124 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
+2016-07-26 05:52:13,124 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:52:13,124 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-26 05:52:23,156 DEBUG [main] com.commander4j.sys.Config - stopMaps
+2016-07-26 05:52:23,156 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:52:23,157 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,157 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read Konnect Material Master]
+2016-07-26 05:52:23,157 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,157 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Material Master]
+2016-07-26 05:52:23,157 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:52:23,157 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,157 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CR XML]
+2016-07-26 05:52:23,157 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,157 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order XML]
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read CSV Example]
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write XML Example]
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read S95 Batch Status Change]
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Batch Status Change]
+2016-07-26 05:52:23,158 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:52:23,159 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,159 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-26 05:52:23,159 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CRST XML]
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read C4J Prod Dec XML]
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write S95 Prod Dec XML]
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.mw.StartMW - **      COMPLETED      **
+2016-07-26 05:52:23,160 DEBUG [main] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:56:10,542 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - Application starting
+2016-07-26 05:56:10,551 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:56:10,552 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - **      START          **
+2016-07-26 05:56:10,552 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:56:10,555 DEBUG [AWT-EventQueue-0] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-26 05:56:10,574 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading config :Nestle Purina Wisbech
+2016-07-26 05:56:10,582 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map1) Konnect Material Master to C4J Material Master
+2016-07-26 05:56:10,805 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read Konnect Material Master
+2016-07-26 05:56:10,811 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Material Master
+2016-07-26 05:56:10,814 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map2) S95 Process Order to C4J Process Order
+2016-07-26 05:56:10,818 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CR XML
+2016-07-26 05:56:10,822 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order XML
+2016-07-26 05:56:10,824 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map3) Synchro CSV
+2016-07-26 05:56:10,828 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read CSV Example
+2016-07-26 05:56:10,830 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write XML Example
+2016-07-26 05:56:10,833 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map4) S95 Batch Status Change to C4J Batch Status Change
+2016-07-26 05:56:10,837 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read S95 Batch Status Change
+2016-07-26 05:56:10,839 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-07-26 05:56:10,843 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map5) S95 Transfer Schedule to C4J Pallet Status Change
+2016-07-26 05:56:10,847 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 TRANSFER ORDER XML
+2016-07-26 05:56:10,849 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-07-26 05:56:10,851 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map6) S95 Process Order Status Change to C4J Process Order Status Change
+2016-07-26 05:56:10,855 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CRST XML
+2016-07-26 05:56:10,866 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-07-26 05:56:10,870 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map7) C4J Production Declaration to S95 Production Declaration
+2016-07-26 05:56:10,874 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read C4J Prod Dec XML
+2016-07-26 05:56:10,876 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write S95 Prod Dec XML
+2016-07-26 05:56:10,877 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - startMaps
+2016-07-26 05:56:10,877 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:56:10,877 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,877 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Material Master]
+2016-07-26 05:56:10,878 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,878 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master]
+2016-07-26 05:56:10,878 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:56:10,878 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,879 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order XML]
+2016-07-26 05:56:10,879 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,879 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CR XML]
+2016-07-26 05:56:10,879 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:56:10,879 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,879 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write XML Example]
+2016-07-26 05:56:10,879 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,880 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read CSV Example]
+2016-07-26 05:56:10,880 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:56:10,880 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,880 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Batch Status Change]
+2016-07-26 05:56:10,880 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,880 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read S95 Batch Status Change]
+2016-07-26 05:56:10,881 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:56:10,882 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,882 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-26 05:56:10,883 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,883 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-26 05:56:10,884 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:56:10,884 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,884 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-26 05:56:10,884 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,884 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CRST XML]
+2016-07-26 05:56:10,884 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-26 05:56:10,884 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,884 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
+2016-07-26 05:56:10,884 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-26 05:56:10,885 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-26 05:56:54,884 DEBUG [in] com.commander4j.Interface.Inbound.InboundInterface - Processing [KONNECT_MM.xml]
+2016-07-26 05:56:54,885 DEBUG [in] com.commander4j.Connector.Inbound.InboundConnectorXML - connectorLoad [./xml/interface/input/1 (Konnect - Material)/KONNECT_MM.xml]
+2016-07-26 05:56:54,893 DEBUG [in] com.commander4j.Connector.Inbound.InboundConnectorABSTRACT - Read Konnect Material Master Backup input file :/Users/dave/Commander4j/workspace.osx/b4Middleware/./xml/interface/input/1 (Konnect - Material)/KONNECT_MM.xml to : /Users/dave/Commander4j/workspace.osx/b4Middleware/./xml/interface/backup/1 (Konnect - Material)/KONNECT_MM.xml
+2016-07-26 05:56:54,901 DEBUG [in] com.commander4j.Connector.Inbound.InboundConnectorABSTRACT - Read Konnect Material Master Delete input file :/Users/dave/Commander4j/workspace.osx/b4Middleware/./xml/interface/input/1 (Konnect - Material)/KONNECT_MM.xml
+2016-07-26 05:56:55,581 DEBUG [in] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/log/inbound_xslt_XML_KONNECT_MM.xml.xml
+2016-07-26 05:56:55,590 DEBUG [in] com.commander4j.Interface.Inbound.InboundInterface - processConnectorToInterfaceData [<?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103425513</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13425513</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13425513</material>
+         <old_material>12136634</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>425.000</gross_weight>
+         <net_weight>400.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX Fntc GiJ MP Bf&amp;Chkn 10(4x100g)XL</description>
+         <debug>X</debug>
+         <!-->Data from Plant [7786] Segment-->
+         <shelf_life>241</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>D</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>E1C</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>10</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>120</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+            <!--LE QTY is 284-->
+            <!--LE UOM is CS-->
+            <!--CS numerator is 10-->
+            <!--D97 (in EA) = 284(CS) x 10 = 2840-->
+            <numerator>2840</numerator>
+            <denominator>1</denominator>
+            <ean>123</ean>
+            <variant>22</variant>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>10</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>AA0</uom>
+            <numerator>1</numerator>
+            <denominator>4</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>10</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>120</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+               <!--LE QTY is 284-->
+               <!--LE UOM is CS-->
+               <!--CS numerator is 10-->
+               <!--D97 (in EA) = 284(CS) x 10 = 2840-->
+               <numerator>2840</numerator>
+               <denominator>1</denominator>
+               <ean>123</ean>
+               <variant>22</variant>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>10</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>AA0</uom>
+               <numerator>1</numerator>
+               <denominator>4</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,592 DEBUG [in] com.commander4j.Interface.Mapping.Map - << processInboundInterfaceToMap  [KONNECT_MM.xml - <?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103425513</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13425513</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13425513</material>
+         <old_material>12136634</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>425.000</gross_weight>
+         <net_weight>400.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX Fntc GiJ MP Bf&amp;Chkn 10(4x100g)XL</description>
+         <debug>X</debug>
+         <!-->Data from Plant [7786] Segment-->
+         <shelf_life>241</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>D</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>E1C</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>10</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>120</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+            <!--LE QTY is 284-->
+            <!--LE UOM is CS-->
+            <!--CS numerator is 10-->
+            <!--D97 (in EA) = 284(CS) x 10 = 2840-->
+            <numerator>2840</numerator>
+            <denominator>1</denominator>
+            <ean>123</ean>
+            <variant>22</variant>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>10</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>AA0</uom>
+            <numerator>1</numerator>
+            <denominator>4</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>10</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>120</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+               <!--LE QTY is 284-->
+               <!--LE UOM is CS-->
+               <!--CS numerator is 10-->
+               <!--D97 (in EA) = 284(CS) x 10 = 2840-->
+               <numerator>2840</numerator>
+               <denominator>1</denominator>
+               <ean>123</ean>
+               <variant>22</variant>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>10</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>AA0</uom>
+               <numerator>1</numerator>
+               <denominator>4</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,594 DEBUG [in] com.commander4j.Interface.Mapping.Map - >> processMapToOutboundInterface [KONNECT_MM.xml - <?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103425513</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13425513</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13425513</material>
+         <old_material>12136634</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>425.000</gross_weight>
+         <net_weight>400.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX Fntc GiJ MP Bf&amp;Chkn 10(4x100g)XL</description>
+         <debug>X</debug>
+         <!-->Data from Plant [7786] Segment-->
+         <shelf_life>241</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>D</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>E1C</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>10</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>120</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+            <!--LE QTY is 284-->
+            <!--LE UOM is CS-->
+            <!--CS numerator is 10-->
+            <!--D97 (in EA) = 284(CS) x 10 = 2840-->
+            <numerator>2840</numerator>
+            <denominator>1</denominator>
+            <ean>123</ean>
+            <variant>22</variant>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>10</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>AA0</uom>
+            <numerator>1</numerator>
+            <denominator>4</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>10</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>120</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+               <!--LE QTY is 284-->
+               <!--LE UOM is CS-->
+               <!--CS numerator is 10-->
+               <!--D97 (in EA) = 284(CS) x 10 = 2840-->
+               <numerator>2840</numerator>
+               <denominator>1</denominator>
+               <ean>123</ean>
+               <variant>22</variant>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>10</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>AA0</uom>
+               <numerator>1</numerator>
+               <denominator>4</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,596 DEBUG [in] com.commander4j.Interface.Outbound.OutboundInterface - processInterfaceToConnector [<?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103425513</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13425513</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13425513</material>
+         <old_material>12136634</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>425.000</gross_weight>
+         <net_weight>400.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX Fntc GiJ MP Bf&amp;Chkn 10(4x100g)XL</description>
+         <debug>X</debug>
+         <!-->Data from Plant [7786] Segment-->
+         <shelf_life>241</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>D</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>E1C</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>10</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>120</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+            <!--LE QTY is 284-->
+            <!--LE UOM is CS-->
+            <!--CS numerator is 10-->
+            <!--D97 (in EA) = 284(CS) x 10 = 2840-->
+            <numerator>2840</numerator>
+            <denominator>1</denominator>
+            <ean>123</ean>
+            <variant>22</variant>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>10</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>AA0</uom>
+            <numerator>1</numerator>
+            <denominator>4</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>10</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>120</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+               <!--LE QTY is 284-->
+               <!--LE UOM is CS-->
+               <!--CS numerator is 10-->
+               <!--D97 (in EA) = 284(CS) x 10 = 2840-->
+               <numerator>2840</numerator>
+               <denominator>1</denominator>
+               <ean>123</ean>
+               <variant>22</variant>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>10</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>AA0</uom>
+               <numerator>1</numerator>
+               <denominator>4</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,596 DEBUG [in] com.commander4j.Connector.Outbound.OutboundConnectorXML - connectorSave [./xml/interface/output/1 (C4J - Material)/KONNECT_MM.xml.xml]
+2016-07-26 05:56:55,598 DEBUG [in] com.commander4j.Interface.Inbound.InboundInterface - Processing [KONNECT_MM_WRCL1.xml]
+2016-07-26 05:56:55,598 DEBUG [in] com.commander4j.Connector.Inbound.InboundConnectorXML - connectorLoad [./xml/interface/input/1 (Konnect - Material)/KONNECT_MM_WRCL1.xml]
+2016-07-26 05:56:55,600 DEBUG [in] com.commander4j.Connector.Inbound.InboundConnectorABSTRACT - Read Konnect Material Master Backup input file :/Users/dave/Commander4j/workspace.osx/b4Middleware/./xml/interface/input/1 (Konnect - Material)/KONNECT_MM_WRCL1.xml to : /Users/dave/Commander4j/workspace.osx/b4Middleware/./xml/interface/backup/1 (Konnect - Material)/KONNECT_MM_WRCL1.xml
+2016-07-26 05:56:55,601 DEBUG [in] com.commander4j.Connector.Inbound.InboundConnectorABSTRACT - Read Konnect Material Master Delete input file :/Users/dave/Commander4j/workspace.osx/b4Middleware/./xml/interface/input/1 (Konnect - Material)/KONNECT_MM_WRCL1.xml
+2016-07-26 05:56:55,660 DEBUG [in] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/log/inbound_xslt_XML_KONNECT_MM_WRCL1.xml.xml
+2016-07-26 05:56:55,662 DEBUG [in] com.commander4j.Interface.Inbound.InboundInterface - processConnectorToInterfaceData [<?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103392684</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13392684</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13392684</material>
+         <old_material>43336363</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>110.000</gross_weight>
+         <net_weight>100.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX GiJ Tuna Pouch BSt 100g N2 XE</description>
+         <debug/>
+         <!-->Data from Basic Segment-->
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>2</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>U1</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>594</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from EA into EA before inserting calculated D97-->
+            <!--LE QTY is 4158-->
+            <!--LE UOM is EA-->
+            <!--EA numerator is 1-->
+            <!--D97 (in EA) = 4158(EA) x 1 = 4158-->
+            <numerator>4158</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>594</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from EA into EA before inserting calculated D97-->
+               <!--LE QTY is 4158-->
+               <!--LE UOM is EA-->
+               <!--EA numerator is 1-->
+               <!--D97 (in EA) = 4158(EA) x 1 = 4158-->
+               <numerator>4158</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,666 DEBUG [in] com.commander4j.Interface.Mapping.Map - << processInboundInterfaceToMap  [KONNECT_MM_WRCL1.xml - <?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103392684</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13392684</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13392684</material>
+         <old_material>43336363</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>110.000</gross_weight>
+         <net_weight>100.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX GiJ Tuna Pouch BSt 100g N2 XE</description>
+         <debug/>
+         <!-->Data from Basic Segment-->
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>2</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>U1</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>594</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from EA into EA before inserting calculated D97-->
+            <!--LE QTY is 4158-->
+            <!--LE UOM is EA-->
+            <!--EA numerator is 1-->
+            <!--D97 (in EA) = 4158(EA) x 1 = 4158-->
+            <numerator>4158</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>594</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from EA into EA before inserting calculated D97-->
+               <!--LE QTY is 4158-->
+               <!--LE UOM is EA-->
+               <!--EA numerator is 1-->
+               <!--D97 (in EA) = 4158(EA) x 1 = 4158-->
+               <numerator>4158</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,667 DEBUG [in] com.commander4j.Interface.Mapping.Map - >> processMapToOutboundInterface [KONNECT_MM_WRCL1.xml - <?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103392684</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13392684</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13392684</material>
+         <old_material>43336363</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>110.000</gross_weight>
+         <net_weight>100.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX GiJ Tuna Pouch BSt 100g N2 XE</description>
+         <debug/>
+         <!-->Data from Basic Segment-->
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>2</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>U1</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>594</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from EA into EA before inserting calculated D97-->
+            <!--LE QTY is 4158-->
+            <!--LE UOM is EA-->
+            <!--EA numerator is 1-->
+            <!--D97 (in EA) = 4158(EA) x 1 = 4158-->
+            <numerator>4158</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>594</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from EA into EA before inserting calculated D97-->
+               <!--LE QTY is 4158-->
+               <!--LE UOM is EA-->
+               <!--EA numerator is 1-->
+               <!--D97 (in EA) = 4158(EA) x 1 = 4158-->
+               <numerator>4158</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,668 DEBUG [in] com.commander4j.Interface.Outbound.OutboundInterface - processInterfaceToConnector [<?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103392684</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13392684</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13392684</material>
+         <old_material>43336363</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>110.000</gross_weight>
+         <net_weight>100.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX GiJ Tuna Pouch BSt 100g N2 XE</description>
+         <debug/>
+         <!-->Data from Basic Segment-->
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>2</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>U1</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>594</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from EA into EA before inserting calculated D97-->
+            <!--LE QTY is 4158-->
+            <!--LE UOM is EA-->
+            <!--EA numerator is 1-->
+            <!--D97 (in EA) = 4158(EA) x 1 = 4158-->
+            <numerator>4158</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>594</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from EA into EA before inserting calculated D97-->
+               <!--LE QTY is 4158-->
+               <!--LE UOM is EA-->
+               <!--EA numerator is 1-->
+               <!--D97 (in EA) = 4158(EA) x 1 = 4158-->
+               <numerator>4158</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,668 DEBUG [in] com.commander4j.Connector.Outbound.OutboundConnectorXML - connectorSave [./xml/interface/output/1 (C4J - Material)/KONNECT_MM_WRCL1.xml.xml]
+2016-07-26 05:56:55,670 DEBUG [in] com.commander4j.Interface.Inbound.InboundInterface - Processing [KONNECT_MM_WRCL2.xml]
+2016-07-26 05:56:55,670 DEBUG [in] com.commander4j.Connector.Inbound.InboundConnectorXML - connectorLoad [./xml/interface/input/1 (Konnect - Material)/KONNECT_MM_WRCL2.xml]
+2016-07-26 05:56:55,671 DEBUG [in] com.commander4j.Connector.Inbound.InboundConnectorABSTRACT - Read Konnect Material Master Backup input file :/Users/dave/Commander4j/workspace.osx/b4Middleware/./xml/interface/input/1 (Konnect - Material)/KONNECT_MM_WRCL2.xml to : /Users/dave/Commander4j/workspace.osx/b4Middleware/./xml/interface/backup/1 (Konnect - Material)/KONNECT_MM_WRCL2.xml
+2016-07-26 05:56:55,672 DEBUG [in] com.commander4j.Connector.Inbound.InboundConnectorABSTRACT - Read Konnect Material Master Delete input file :/Users/dave/Commander4j/workspace.osx/b4Middleware/./xml/interface/input/1 (Konnect - Material)/KONNECT_MM_WRCL2.xml
+2016-07-26 05:56:55,733 DEBUG [in] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/interface/log/inbound_xslt_XML_KONNECT_MM_WRCL2.xml.xml
+2016-07-26 05:56:55,735 DEBUG [in] com.commander4j.Interface.Inbound.InboundInterface - processConnectorToInterfaceData [<?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103439223</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13439223</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13439223</material>
+         <old_material>12208928</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>1.350</gross_weight>
+         <net_weight>1.200</net_weight>
+         <weight_uom>KGM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX Fntc GiJ MV Meat 6(12x100g)XG</description>
+         <debug/>
+         <!-->Data from Basic Segment-->
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>2</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>E1C</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>6</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>48</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+            <!--LE QTY is 48-->
+            <!--LE UOM is CS-->
+            <!--CS numerator is 6-->
+            <!--D97 (in EA) = 48(CS) x 6 = 288-->
+            <numerator>288</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>6</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>AA0</uom>
+            <numerator>1</numerator>
+            <denominator>12</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>6</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>48</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+               <!--LE QTY is 48-->
+               <!--LE UOM is CS-->
+               <!--CS numerator is 6-->
+               <!--D97 (in EA) = 48(CS) x 6 = 288-->
+               <numerator>288</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>6</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>AA0</uom>
+               <numerator>1</numerator>
+               <denominator>12</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,736 DEBUG [in] com.commander4j.Interface.Mapping.Map - << processInboundInterfaceToMap  [KONNECT_MM_WRCL2.xml - <?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103439223</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13439223</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13439223</material>
+         <old_material>12208928</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>1.350</gross_weight>
+         <net_weight>1.200</net_weight>
+         <weight_uom>KGM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX Fntc GiJ MV Meat 6(12x100g)XG</description>
+         <debug/>
+         <!-->Data from Basic Segment-->
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>2</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>E1C</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>6</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>48</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+            <!--LE QTY is 48-->
+            <!--LE UOM is CS-->
+            <!--CS numerator is 6-->
+            <!--D97 (in EA) = 48(CS) x 6 = 288-->
+            <numerator>288</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>6</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>AA0</uom>
+            <numerator>1</numerator>
+            <denominator>12</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>6</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>48</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+               <!--LE QTY is 48-->
+               <!--LE UOM is CS-->
+               <!--CS numerator is 6-->
+               <!--D97 (in EA) = 48(CS) x 6 = 288-->
+               <numerator>288</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>6</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>AA0</uom>
+               <numerator>1</numerator>
+               <denominator>12</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,737 DEBUG [in] com.commander4j.Interface.Mapping.Map - >> processMapToOutboundInterface [KONNECT_MM_WRCL2.xml - <?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103439223</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13439223</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13439223</material>
+         <old_material>12208928</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>1.350</gross_weight>
+         <net_weight>1.200</net_weight>
+         <weight_uom>KGM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX Fntc GiJ MV Meat 6(12x100g)XG</description>
+         <debug/>
+         <!-->Data from Basic Segment-->
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>2</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>E1C</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>6</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>48</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+            <!--LE QTY is 48-->
+            <!--LE UOM is CS-->
+            <!--CS numerator is 6-->
+            <!--D97 (in EA) = 48(CS) x 6 = 288-->
+            <numerator>288</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>6</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>AA0</uom>
+            <numerator>1</numerator>
+            <denominator>12</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>6</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>48</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+               <!--LE QTY is 48-->
+               <!--LE UOM is CS-->
+               <!--CS numerator is 6-->
+               <!--D97 (in EA) = 48(CS) x 6 = 288-->
+               <numerator>288</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>6</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>AA0</uom>
+               <numerator>1</numerator>
+               <denominator>12</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,739 DEBUG [in] com.commander4j.Interface.Outbound.OutboundInterface - processInterfaceToConnector [<?xml version="1.0" encoding="UTF-8"?><message xmlns:c4j="http://www.commander4j.com">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>MM 000000000103439223</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=13439223</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-07-26T05:56:55</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>13439223</material>
+         <old_material>12208928</old_material>
+         <materialType>ZTRV</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>1.350</gross_weight>
+         <net_weight>1.200</net_weight>
+         <weight_uom>KGM</weight_uom>
+         <!-->Text Description for Language [E]-->
+         <description>T FELIX Fntc GiJ MV Meat 6(12x100g)XG</description>
+         <debug/>
+         <!-->Data from Basic Segment-->
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>2</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [PLY]-->
+         <equipment_Type>E1C</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>6</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>48</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+            <!--LE QTY is 48-->
+            <!--LE UOM is CS-->
+            <!--CS numerator is 6-->
+            <!--D97 (in EA) = 48(CS) x 6 = 288-->
+            <numerator>288</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>6</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>AA0</uom>
+            <numerator>1</numerator>
+            <denominator>12</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement-->
+            <materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>6</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>48</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+               <!--LE QTY is 48-->
+               <!--LE UOM is CS-->
+               <!--CS numerator is 6-->
+               <!--D97 (in EA) = 48(CS) x 6 = 288-->
+               <numerator>288</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>6</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>AA0</uom>
+               <numerator>1</numerator>
+               <denominator>12</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>]
+2016-07-26 05:56:55,739 DEBUG [in] com.commander4j.Connector.Outbound.OutboundConnectorXML - connectorSave [./xml/interface/output/1 (C4J - Material)/KONNECT_MM_WRCL2.xml.xml]
+2016-07-26 05:57:52,928 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - stopMaps
+2016-07-26 05:57:52,929 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:57:52,929 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,929 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read Konnect Material Master]
+2016-07-26 05:57:52,929 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,929 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Material Master]
+2016-07-26 05:57:52,929 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:57:52,930 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,930 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CR XML]
+2016-07-26 05:57:52,930 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,930 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order XML]
+2016-07-26 05:57:52,930 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:57:52,930 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,930 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read CSV Example]
+2016-07-26 05:57:52,931 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,931 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write XML Example]
+2016-07-26 05:57:52,931 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:57:52,931 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,931 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read S95 Batch Status Change]
+2016-07-26 05:57:52,931 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,931 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Batch Status Change]
+2016-07-26 05:57:52,932 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:57:52,932 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,932 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-26 05:57:52,932 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,932 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-26 05:57:52,932 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:57:52,932 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,932 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CRST XML]
+2016-07-26 05:57:52,932 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,933 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-26 05:57:52,933 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-26 05:57:52,933 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,933 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read C4J Prod Dec XML]
+2016-07-26 05:57:52,933 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-26 05:57:52,933 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write S95 Prod Dec XML]
+2016-07-26 05:57:52,933 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************
+2016-07-26 05:57:52,933 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - **      COMPLETED      **
+2016-07-26 05:57:52,933 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMW - *************************

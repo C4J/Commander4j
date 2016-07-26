@@ -2,29 +2,29 @@
 <message xmlns:c4j="http://www.commander4j.com">
    <plant>7786</plant>
    <hostRef>WRLIVE</hostRef>
-   <messageRef>MM 000000000103392684</messageRef>
+   <messageRef>MM 000000000103439223</messageRef>
    <interfaceType>Material Definition</interfaceType>
-   <messageInformation>Material=13392684</messageInformation>
+   <messageInformation>Material=13439223</messageInformation>
    <interfaceDirection>Input</interfaceDirection>
    <messageDate>2016-07-26T05:56:55</messageDate>
    <messageData>
       <materialDefinition>
-         <material>13392684</material>
-         <old_material>43336363</old_material>
+         <material>13439223</material>
+         <old_material>12208928</old_material>
          <materialType>ZTRV</materialType>
          <base_uom>EA</base_uom>
-         <gross_weight>110.000</gross_weight>
-         <net_weight>100.000</net_weight>
-         <weight_uom>GRM</weight_uom>
+         <gross_weight>1.350</gross_weight>
+         <net_weight>1.200</net_weight>
+         <weight_uom>KGM</weight_uom>
          <!-->Text Description for Language [E]-->
-         <description>T FELIX GiJ Tuna Pouch BSt 100g N2 XE</description>
+         <description>T FELIX Fntc GiJ MV Meat 6(12x100g)XG</description>
          <debug/>
          <!-->Data from Basic Segment-->
          <shelf_life>24</shelf_life>
          <shelf_life_rule>+</shelf_life_rule>
          <shelf_life_uom>2</shelf_life_uom>
          <!-->Equipment from Warehouse Segment [PLY]-->
-         <equipment_Type>U1</equipment_Type>
+         <equipment_Type>E1C</equipment_Type>
          <validLocations>
             <location>
                <id>REWORK</id>
@@ -37,7 +37,7 @@
          </validLocations>
          <materialUOMDefinition>
             <uom>CS</uom>
-            <numerator>1</numerator>
+            <numerator>6</numerator>
             <denominator>1</denominator>
             <ean/>
             <variant/>
@@ -51,34 +51,41 @@
          </materialUOMDefinition>
          <materialUOMDefinition>
             <uom>LR</uom>
-            <numerator>594</numerator>
+            <numerator>48</numerator>
             <denominator>1</denominator>
             <ean/>
             <variant/>
          </materialUOMDefinition>
          <materialUOMDefinition>
             <uom>D97</uom>
-            <!--Converting LE Quantity from EA into EA before inserting calculated D97-->
-            <!--LE QTY is 4158-->
-            <!--LE UOM is EA-->
-            <!--EA numerator is 1-->
-            <!--D97 (in EA) = 4158(EA) x 1 = 4158-->
-            <numerator>4158</numerator>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+            <!--LE QTY is 48-->
+            <!--LE UOM is CS-->
+            <!--CS numerator is 6-->
+            <!--D97 (in EA) = 48(CS) x 6 = 288-->
+            <numerator>288</numerator>
             <denominator>1</denominator>
             <ean/>
             <variant/>
          </materialUOMDefinition>
          <materialUOMDefinition>
             <uom>ZZ2</uom>
-            <numerator>1</numerator>
+            <numerator>6</numerator>
             <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>AA0</uom>
+            <numerator>1</numerator>
+            <denominator>12</denominator>
             <ean/>
             <variant/>
          </materialUOMDefinition>
          <validUOMs><!-->New XML structure for future enhancement-->
             <materialUOMDefinition>
                <uom>CS</uom>
-               <numerator>1</numerator>
+               <numerator>6</numerator>
                <denominator>1</denominator>
                <ean/>
                <variant/>
@@ -92,27 +99,34 @@
             </materialUOMDefinition>
             <materialUOMDefinition>
                <uom>LR</uom>
-               <numerator>594</numerator>
+               <numerator>48</numerator>
                <denominator>1</denominator>
                <ean/>
                <variant/>
             </materialUOMDefinition>
             <materialUOMDefinition>
                <uom>D97</uom>
-               <!--Converting LE Quantity from EA into EA before inserting calculated D97-->
-               <!--LE QTY is 4158-->
-               <!--LE UOM is EA-->
-               <!--EA numerator is 1-->
-               <!--D97 (in EA) = 4158(EA) x 1 = 4158-->
-               <numerator>4158</numerator>
+               <!--Converting LE Quantity from CS into EA before inserting calculated D97-->
+               <!--LE QTY is 48-->
+               <!--LE UOM is CS-->
+               <!--CS numerator is 6-->
+               <!--D97 (in EA) = 48(CS) x 6 = 288-->
+               <numerator>288</numerator>
                <denominator>1</denominator>
                <ean/>
                <variant/>
             </materialUOMDefinition>
             <materialUOMDefinition>
                <uom>ZZ2</uom>
-               <numerator>1</numerator>
+               <numerator>6</numerator>
                <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>AA0</uom>
+               <numerator>1</numerator>
+               <denominator>12</denominator>
                <ean/>
                <variant/>
             </materialUOMDefinition>

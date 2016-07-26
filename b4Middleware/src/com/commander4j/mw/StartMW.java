@@ -13,7 +13,12 @@ public class StartMW {
 	private Logger logger = Logger.getLogger(StartMW.class);
 	public Config cfg;
 	public static String version = "1.02";
+	Boolean running=false;
 	
+	public Boolean isRunning()
+	{
+		return running;
+	}
 	
 	public Boolean StartMiddleware()
 	{
@@ -33,6 +38,8 @@ public class StartMW {
 		
 		cfg.startMaps();
 		
+		running=true;
+		
 		return result;
 	}
 	
@@ -47,6 +54,8 @@ public class StartMW {
 		logger.debug("*************************");
 		logger.debug("**      COMPLETED      **");
 		logger.debug("*************************");
+		
+		running=false;
 		
 		return result;
 	}
@@ -75,9 +84,7 @@ public class StartMW {
 		
 		if (parameter.equals("Service"))
 		{
-			StartMW smw = new StartMW();
-
-			smw.StartMiddleware();
+			StartService.main(args);
 		}
 
 	}
