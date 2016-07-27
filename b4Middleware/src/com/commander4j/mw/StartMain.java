@@ -28,15 +28,24 @@ public class StartMain {
 		Utility.initLogging("");
 		
 		logger.debug("*************************");
-		logger.debug("**      START          **");
+		logger.debug("**     STARTING        **");
 		logger.debug("*************************");
 		
 		cfg = new Config();
+
 		
 		cfg.loadMaps(System.getProperty("user.dir")+File.separator+"xml"+File.separator+"config"+File.separator+"config.xml");
 		
+		logger.debug("*************************");
+		logger.debug("**     MAPS LOADED     **");
+		logger.debug("*************************");
+		
 		
 		cfg.startMaps();
+
+		logger.debug("*************************");
+		logger.debug("**      STARTED        **");
+		logger.debug("*************************");
 		
 		running=true;
 		
@@ -47,12 +56,17 @@ public class StartMain {
 	public Boolean StopMiddleware()
 	{
 		Boolean result = true;
+
+		
+		logger.debug("*************************");
+		logger.debug("**      STOPPING       **");
+		logger.debug("*************************");
 		
 		cfg.stopMaps();
 		
 
 		logger.debug("*************************");
-		logger.debug("**      COMPLETED      **");
+		logger.debug("**      STOPPED        **");
 		logger.debug("*************************");
 		
 		running=false;

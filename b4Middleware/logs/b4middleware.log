@@ -12663,3 +12663,420 @@
 2016-07-27 18:30:00,974 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
 2016-07-27 18:30:00,974 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
 2016-07-27 18:30:00,974 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-27 22:14:54,123 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - Application starting
+2016-07-27 22:14:54,139 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:14:54,139 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **      START          **
+2016-07-27 22:14:54,139 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:14:54,148 DEBUG [AWT-EventQueue-0] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-27 22:14:54,195 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading config :Nestle Purina Wisbech
+2016-07-27 22:14:54,203 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map1) Konnect Material Master to C4J Material Master
+2016-07-27 22:14:54,504 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read Konnect Material Master
+2016-07-27 22:14:54,513 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Material Master
+2016-07-27 22:14:54,516 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map2) S95 Process Order to C4J Process Order
+2016-07-27 22:14:54,520 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CR XML
+2016-07-27 22:14:54,523 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order XML
+2016-07-27 22:14:54,525 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map3) Synchro CSV
+2016-07-27 22:14:54,530 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read CSV Example
+2016-07-27 22:14:54,532 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write XML Example
+2016-07-27 22:14:54,535 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map4) S95 Batch Status Change to C4J Batch Status Change
+2016-07-27 22:14:54,538 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read S95 Batch Status Change
+2016-07-27 22:14:54,541 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-07-27 22:14:54,544 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map5) S95 Transfer Schedule to C4J Pallet Status Change
+2016-07-27 22:14:54,549 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 TRANSFER ORDER XML
+2016-07-27 22:14:54,551 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-07-27 22:14:54,554 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map6) S95 Process Order Status Change to C4J Process Order Status Change
+2016-07-27 22:14:54,557 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CRST XML
+2016-07-27 22:14:54,567 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-07-27 22:14:54,570 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map7) C4J Production Declaration to S95 Production Declaration
+2016-07-27 22:14:54,573 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read C4J Prod Dec XML
+2016-07-27 22:14:54,576 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write S95 Prod Dec XML
+2016-07-27 22:14:54,577 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - startMaps
+2016-07-27 22:14:54,577 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:14:54,577 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,577 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Material Master]
+2016-07-27 22:14:54,577 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,578 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master]
+2016-07-27 22:14:54,578 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:14:54,578 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,578 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order XML]
+2016-07-27 22:14:54,578 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,578 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CR XML]
+2016-07-27 22:14:54,578 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write XML Example]
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read CSV Example]
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Batch Status Change]
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read S95 Batch Status Change]
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:14:54,579 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,580 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-27 22:14:54,580 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,580 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-27 22:14:54,580 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:14:54,580 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,580 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-27 22:14:54,580 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,580 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CRST XML]
+2016-07-27 22:14:54,581 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:14:54,582 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,582 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
+2016-07-27 22:14:54,582 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:14:54,583 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-27 22:15:00,110 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - stopMaps
+2016-07-27 22:15:00,110 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:00,110 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,110 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read Konnect Material Master]
+2016-07-27 22:15:00,111 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,111 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Material Master]
+2016-07-27 22:15:00,111 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:00,111 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,111 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CR XML]
+2016-07-27 22:15:00,111 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,111 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order XML]
+2016-07-27 22:15:00,111 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:00,112 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,112 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read CSV Example]
+2016-07-27 22:15:00,112 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,112 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write XML Example]
+2016-07-27 22:15:00,112 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:00,112 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,112 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read S95 Batch Status Change]
+2016-07-27 22:15:00,112 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,112 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Batch Status Change]
+2016-07-27 22:15:00,112 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CRST XML]
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:00,113 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,114 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read C4J Prod Dec XML]
+2016-07-27 22:15:00,114 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:00,114 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write S95 Prod Dec XML]
+2016-07-27 22:15:00,114 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:15:00,114 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **      COMPLETED      **
+2016-07-27 22:15:00,114 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:15:01,638 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - Application starting
+2016-07-27 22:15:01,646 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:15:01,646 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **      START          **
+2016-07-27 22:15:01,646 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:15:01,646 DEBUG [AWT-EventQueue-0] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-27 22:15:01,651 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading config :Nestle Purina Wisbech
+2016-07-27 22:15:01,653 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map1) Konnect Material Master to C4J Material Master
+2016-07-27 22:15:01,655 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read Konnect Material Master
+2016-07-27 22:15:01,657 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Material Master
+2016-07-27 22:15:01,658 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map2) S95 Process Order to C4J Process Order
+2016-07-27 22:15:01,660 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CR XML
+2016-07-27 22:15:01,661 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order XML
+2016-07-27 22:15:01,662 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map3) Synchro CSV
+2016-07-27 22:15:01,664 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read CSV Example
+2016-07-27 22:15:01,665 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write XML Example
+2016-07-27 22:15:01,667 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map4) S95 Batch Status Change to C4J Batch Status Change
+2016-07-27 22:15:01,669 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read S95 Batch Status Change
+2016-07-27 22:15:01,671 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-07-27 22:15:01,673 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map5) S95 Transfer Schedule to C4J Pallet Status Change
+2016-07-27 22:15:01,674 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 TRANSFER ORDER XML
+2016-07-27 22:15:01,676 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-07-27 22:15:01,677 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map6) S95 Process Order Status Change to C4J Process Order Status Change
+2016-07-27 22:15:01,679 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CRST XML
+2016-07-27 22:15:01,680 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-07-27 22:15:01,681 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map7) C4J Production Declaration to S95 Production Declaration
+2016-07-27 22:15:01,683 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read C4J Prod Dec XML
+2016-07-27 22:15:01,684 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write S95 Prod Dec XML
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - startMaps
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Material Master]
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master]
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order XML]
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,685 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CR XML]
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write XML Example]
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read CSV Example]
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Batch Status Change]
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read S95 Batch Status Change]
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CRST XML]
+2016-07-27 22:15:01,686 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:15:01,687 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,687 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
+2016-07-27 22:15:01,687 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:15:01,687 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - stopMaps
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read Konnect Material Master]
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Material Master]
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CR XML]
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order XML]
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:08,034 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,035 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read CSV Example]
+2016-07-27 22:15:08,035 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,035 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write XML Example]
+2016-07-27 22:15:08,035 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:08,035 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,035 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read S95 Batch Status Change]
+2016-07-27 22:15:08,035 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,035 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Batch Status Change]
+2016-07-27 22:15:08,035 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:08,035 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CRST XML]
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read C4J Prod Dec XML]
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write S95 Prod Dec XML]
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **      COMPLETED      **
+2016-07-27 22:15:08,036 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:19:45,827 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - Application starting
+2016-07-27 22:19:45,837 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:19:45,837 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **      STARTED        **
+2016-07-27 22:19:45,837 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:19:45,842 DEBUG [AWT-EventQueue-0] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-27 22:19:45,862 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading config :Nestle Purina Wisbech
+2016-07-27 22:19:45,869 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map1) Konnect Material Master to C4J Material Master
+2016-07-27 22:19:46,083 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read Konnect Material Master
+2016-07-27 22:19:46,088 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Material Master
+2016-07-27 22:19:46,091 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map2) S95 Process Order to C4J Process Order
+2016-07-27 22:19:46,095 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CR XML
+2016-07-27 22:19:46,098 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order XML
+2016-07-27 22:19:46,101 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map3) Synchro CSV
+2016-07-27 22:19:46,105 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read CSV Example
+2016-07-27 22:19:46,108 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write XML Example
+2016-07-27 22:19:46,110 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map4) S95 Batch Status Change to C4J Batch Status Change
+2016-07-27 22:19:46,114 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read S95 Batch Status Change
+2016-07-27 22:19:46,116 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-07-27 22:19:46,119 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map5) S95 Transfer Schedule to C4J Pallet Status Change
+2016-07-27 22:19:46,123 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 TRANSFER ORDER XML
+2016-07-27 22:19:46,125 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-07-27 22:19:46,128 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map6) S95 Process Order Status Change to C4J Process Order Status Change
+2016-07-27 22:19:46,131 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CRST XML
+2016-07-27 22:19:46,140 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-07-27 22:19:46,143 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map7) C4J Production Declaration to S95 Production Declaration
+2016-07-27 22:19:46,147 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read C4J Prod Dec XML
+2016-07-27 22:19:46,149 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write S95 Prod Dec XML
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - startMaps
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Material Master]
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master]
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order XML]
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,150 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CR XML]
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write XML Example]
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read CSV Example]
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Batch Status Change]
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read S95 Batch Status Change]
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CRST XML]
+2016-07-27 22:19:46,151 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:19:46,152 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,152 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
+2016-07-27 22:19:46,152 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:19:46,152 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-27 22:19:55,696 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - stopMaps
+2016-07-27 22:19:55,696 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:19:55,696 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,696 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read Konnect Material Master]
+2016-07-27 22:19:55,696 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,696 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Material Master]
+2016-07-27 22:19:55,696 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:19:55,696 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,696 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CR XML]
+2016-07-27 22:19:55,696 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order XML]
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read CSV Example]
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write XML Example]
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read S95 Batch Status Change]
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Batch Status Change]
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CRST XML]
+2016-07-27 22:19:55,697 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,698 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-27 22:19:55,698 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:19:55,698 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,698 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read C4J Prod Dec XML]
+2016-07-27 22:19:55,698 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:19:55,698 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write S95 Prod Dec XML]
+2016-07-27 22:19:55,698 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:19:55,698 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **      STOPPED        **
+2016-07-27 22:19:55,698 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:21:29,222 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - Application starting
+2016-07-27 22:21:29,230 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:21:29,230 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **     STARTING        **
+2016-07-27 22:21:29,231 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:21:29,234 DEBUG [AWT-EventQueue-0] com.commander4j.util.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-07-27 22:21:29,254 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading config :Nestle Purina Wisbech
+2016-07-27 22:21:29,261 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map1) Konnect Material Master to C4J Material Master
+2016-07-27 22:21:29,477 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read Konnect Material Master
+2016-07-27 22:21:29,482 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Material Master
+2016-07-27 22:21:29,485 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map2) S95 Process Order to C4J Process Order
+2016-07-27 22:21:29,489 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CR XML
+2016-07-27 22:21:29,492 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order XML
+2016-07-27 22:21:29,495 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map3) Synchro CSV
+2016-07-27 22:21:29,498 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read CSV Example
+2016-07-27 22:21:29,501 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write XML Example
+2016-07-27 22:21:29,503 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map4) S95 Batch Status Change to C4J Batch Status Change
+2016-07-27 22:21:29,507 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read S95 Batch Status Change
+2016-07-27 22:21:29,509 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-07-27 22:21:29,512 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map5) S95 Transfer Schedule to C4J Pallet Status Change
+2016-07-27 22:21:29,516 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 TRANSFER ORDER XML
+2016-07-27 22:21:29,519 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-07-27 22:21:29,521 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map6) S95 Process Order Status Change to C4J Process Order Status Change
+2016-07-27 22:21:29,524 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read SAP S95 CRST XML
+2016-07-27 22:21:29,533 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-07-27 22:21:29,536 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading map              : (map7) C4J Production Declaration to S95 Production Declaration
+2016-07-27 22:21:29,539 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading input connector  : (in) Read C4J Prod Dec XML
+2016-07-27 22:21:29,541 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - Loading output connector : (out1) Write S95 Prod Dec XML
+2016-07-27 22:21:29,542 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:21:29,542 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **     MAPS LOADED     **
+2016-07-27 22:21:29,542 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:21:29,542 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - startMaps
+2016-07-27 22:21:29,542 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:21:29,542 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Material Master]
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read Konnect Material Master]
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order XML]
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CR XML]
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write XML Example]
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read CSV Example]
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,543 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Batch Status Change]
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read S95 Batch Status Change]
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read SAP S95 CRST XML]
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled true
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Start Requested : [Write S95 Prod Dec XML]
+2016-07-27 22:21:29,544 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled true
+2016-07-27 22:21:29,545 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Start Requested : [Read C4J Prod Dec XML]
+2016-07-27 22:21:29,545 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:21:29,545 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **      STARTED        **
+2016-07-27 22:21:29,545 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:21:36,156 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **      STOPPING       **
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.sys.Config - stopMaps
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read Konnect Material Master]
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Material Master]
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CR XML]
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,157 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order XML]
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read CSV Example]
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write XML Example]
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read S95 Batch Status Change]
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Batch Status Change]
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,158 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Pallet Status Change XML]
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read SAP S95 CRST XML]
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write Commander4j Process Order Status Change XML]
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Mapping.Map - setEnabled false
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Inbound.InboundInterfaceABSTRACT - Stop Requested : [Read C4J Prod Dec XML]
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - setEnabled false
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.Interface.Outbound.OutboundInterfaceABSTRACT - Stop Requested : [Write S95 Prod Dec XML]
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - **      STOPPED        **
+2016-07-27 22:21:36,159 DEBUG [AWT-EventQueue-0] com.commander4j.mw.StartMain - *************************
