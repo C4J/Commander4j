@@ -1,0 +1,1067 @@
+2016-07-27 12:19:34,893 DEBUG [C4J Main] com.commander4j.xml.JXMLDocument - setDocument :xml/hosts/hosts.xml
+2016-07-27 12:19:35,258 DEBUG [C4J Main] com.commander4j.util.JUpdate - Update check not performed in development enviroment
+2016-07-27 12:19:36,641 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:36,643 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:36,654 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:36,661 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:36,661 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:36,661 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:36,662 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:36,662 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:36,662 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,662 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:36,662 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,662 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:36,663 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:36,663 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,663 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:36,663 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:36,663 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:36,663 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:36,663 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:36,663 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:36,663 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:36,663 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:36,664 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,665 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:36,665 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:36,665 DEBUG [C4J Main] org.apache.http.wire - >> "13c[\r][\n]"
+2016-07-27 12:19:36,665 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x2][0x0][0x0][0x0][0x1][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0x10]copies-supportedD[0x0][0x0][0x0][0x15]page-ranges-supportedD[0x0][0x0][0x0][0xc]printer-nameD[0x0][0x0][0x0][0xc]printer-infoD[0x0][0x0][0x0][0x10]printer-locationD[0x0][0x0][0x0][0x16]printer-make-and-modelD[0x0][0x0][0x0][0x15]printer-uri-supported[0x3]"
+2016-07-27 12:19:36,665 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,665 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:36,665 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 1298[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:36 GMT[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:36,666 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 1298
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:36 GMT
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:36,667 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:36,671 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:36,672 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x0][0x0][0x0][0x0][0x0][0x1][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-us[0x4]E[0x0][0x15]printer-uri-supported[0x0]Eipp://localhost:631/printers/HP_LaserJet_500_colorMFP_M570dn__14C288_B[0x0][0xc]printer-name[0x0](HP_LaserJet_500_colorMFP_M570dn__14C288_A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0](HP LaserJet 500 colorMFP M570dn (14C288)A[0x0][0x16]printer-make-and-model[0x0](HP LaserJet 500 colorMFP M570dn-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]/ipp://localhost:631/printers/Officejet_Pro_8600B[0x0][0xc]printer-name[0x0][0x12]Officejet_Pro_8600A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0][0x12]Officejet Pro 8600A[0x0][0x16]printer-make-and-model[0x0][0x1e]HP Officejet Pro 8600-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]1ipp://localhost:631/printers/Zebra_170_XiIII_PlusB[0x0][0xc]printer-name[0x0][0x14]Zebra_170_XiIII_PlusA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x11]Local Raw Printer3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]6ipp://localhost:631/classes/Zebra_170_XiIII_Plus_ClassB[0x0][0xc]printer-name[0x0][0x1a]Zebra_170_XiIII_Plus_ClassA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x13]Local Printer Class3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x3]"
+2016-07-27 12:19:36,673 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@59662a0b
+2016-07-27 12:19:36,911 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:36,914 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:36,914 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:36,915 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:36,915 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:36,915 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:36,915 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:36,915 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:36,915 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:36,915 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,915 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - >> "e1[\r][\n]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x1][0x0][0x0][0x0][0x2][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0xc]printer-nameD[0x0][0x0][0x0][0x15]printer-uri-supportedD[0x0][0x0][0x0][0x10]printer-location[0x3]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:36,916 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 113[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:36 GMT[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:36,917 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 113
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:36 GMT
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x4][0x6][0x0][0x0][0x0][0x2][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usA[0x0][0xe]status-message[0x0][0x13]No default printer.[0x3]"
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@5c90e579
+2016-07-27 12:19:36,918 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:36,927 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:36,927 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:36,928 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.wire - >> "13c[\r][\n]"
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x2][0x0][0x0][0x0][0x3][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0x10]copies-supportedD[0x0][0x0][0x0][0x15]page-ranges-supportedD[0x0][0x0][0x0][0xc]printer-nameD[0x0][0x0][0x0][0xc]printer-infoD[0x0][0x0][0x0][0x10]printer-locationD[0x0][0x0][0x0][0x16]printer-make-and-modelD[0x0][0x0][0x0][0x15]printer-uri-supported[0x3]"
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:36,929 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 1298[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:36 GMT[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 1298
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:36 GMT
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:36,930 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x0][0x0][0x0][0x0][0x0][0x3][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-us[0x4]E[0x0][0x15]printer-uri-supported[0x0]Eipp://localhost:631/printers/HP_LaserJet_500_colorMFP_M570dn__14C288_B[0x0][0xc]printer-name[0x0](HP_LaserJet_500_colorMFP_M570dn__14C288_A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0](HP LaserJet 500 colorMFP M570dn (14C288)A[0x0][0x16]printer-make-and-model[0x0](HP LaserJet 500 colorMFP M570dn-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]/ipp://localhost:631/printers/Officejet_Pro_8600B[0x0][0xc]printer-name[0x0][0x12]Officejet_Pro_8600A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0][0x12]Officejet Pro 8600A[0x0][0x16]printer-make-and-model[0x0][0x1e]HP Officejet Pro 8600-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]1ipp://localhost:631/printers/Zebra_170_XiIII_PlusB[0x0][0xc]printer-name[0x0][0x14]Zebra_170_XiIII_PlusA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x11]Local Raw Printer3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]6ipp://localhost:631/classes/Zebra_170_XiIII_Plus_ClassB[0x0][0xc]printer-name[0x0][0x1a]Zebra_170_XiIII_Plus_ClassA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x13]Local Printer Class3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x3]"
+2016-07-27 12:19:36,931 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@63070bab
+2016-07-27 12:19:36,931 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:36,933 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:36,933 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:36,933 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:36,934 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - >> "e1[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x1][0x0][0x0][0x0][0x4][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0xc]printer-nameD[0x0][0x0][0x0][0x15]printer-uri-supportedD[0x0][0x0][0x0][0x10]printer-location[0x3]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 113[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:36 GMT[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:36,935 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 113
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:36 GMT
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x4][0x6][0x0][0x0][0x0][0x4][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usA[0x0][0xe]status-message[0x0][0x13]No default printer.[0x3]"
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@762ef0ea
+2016-07-27 12:19:36,936 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:36,945 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:36,945 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:36,946 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:36,946 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:36,946 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:36,946 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:36,946 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:36,946 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:36,946 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,946 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:36,946 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,946 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.wire - >> "13c[\r][\n]"
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x2][0x0][0x0][0x0][0x5][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0x10]copies-supportedD[0x0][0x0][0x0][0x15]page-ranges-supportedD[0x0][0x0][0x0][0xc]printer-nameD[0x0][0x0][0x0][0xc]printer-infoD[0x0][0x0][0x0][0x10]printer-locationD[0x0][0x0][0x0][0x16]printer-make-and-modelD[0x0][0x0][0x0][0x15]printer-uri-supported[0x3]"
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:36,947 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 1298[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:36 GMT[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 1298
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:36 GMT
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x0][0x0][0x0][0x0][0x0][0x5][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-us[0x4]E[0x0][0x15]printer-uri-supported[0x0]Eipp://localhost:631/printers/HP_LaserJet_500_colorMFP_M570dn__14C288_B[0x0][0xc]printer-name[0x0](HP_LaserJet_500_colorMFP_M570dn__14C288_A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0](HP LaserJet 500 colorMFP M570dn (14C288)A[0x0][0x16]printer-make-and-model[0x0](HP LaserJet 500 colorMFP M570dn-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]/ipp://localhost:631/printers/Officejet_Pro_8600B[0x0][0xc]printer-name[0x0][0x12]Officejet_Pro_8600A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0][0x12]Officejet Pro 8600A[0x0][0x16]printer-make-and-model[0x0][0x1e]HP Officejet Pro 8600-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]1ipp://localhost:631/printers/Zebra_170_XiIII_PlusB[0x0][0xc]printer-name[0x0][0x14]Zebra_170_XiIII_PlusA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x11]Local Raw Printer3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]6ipp://localhost:631/classes/Zebra_170_XiIII_Plus_ClassB[0x0][0xc]printer-name[0x0][0x1a]Zebra_170_XiIII_Plus_ClassA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x13]Local Printer Class3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x3]"
+2016-07-27 12:19:36,948 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@6db9f5a4
+2016-07-27 12:19:36,949 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:36,950 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:36,950 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:36,951 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - >> "e1[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x1][0x0][0x0][0x0][0x6][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0xc]printer-nameD[0x0][0x0][0x0][0x15]printer-uri-supportedD[0x0][0x0][0x0][0x10]printer-location[0x3]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 113[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:36 GMT[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 113
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:36,952 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:36 GMT
+2016-07-27 12:19:36,953 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:36,953 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:36,953 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:36,953 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:36,953 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:36,953 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:36,953 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x4][0x6][0x0][0x0][0x0][0x6][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usA[0x0][0xe]status-message[0x0][0x13]No default printer.[0x3]"
+2016-07-27 12:19:36,953 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@3c0be339
+2016-07-27 12:19:36,953 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:36,959 DEBUG [C4J Main] com.commander4j.util.JPrint - refresh : Development Zebra Printer
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:36,963 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.wire - >> "13c[\r][\n]"
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x2][0x0][0x0][0x0][0x7][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0x10]copies-supportedD[0x0][0x0][0x0][0x15]page-ranges-supportedD[0x0][0x0][0x0][0xc]printer-nameD[0x0][0x0][0x0][0xc]printer-infoD[0x0][0x0][0x0][0x10]printer-locationD[0x0][0x0][0x0][0x16]printer-make-and-modelD[0x0][0x0][0x0][0x15]printer-uri-supported[0x3]"
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:36,964 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 1298[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:36 GMT[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 1298
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:36 GMT
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x0][0x0][0x0][0x0][0x0][0x7][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-us[0x4]E[0x0][0x15]printer-uri-supported[0x0]Eipp://localhost:631/printers/HP_LaserJet_500_colorMFP_M570dn__14C288_B[0x0][0xc]printer-name[0x0](HP_LaserJet_500_colorMFP_M570dn__14C288_A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0](HP LaserJet 500 colorMFP M570dn (14C288)A[0x0][0x16]printer-make-and-model[0x0](HP LaserJet 500 colorMFP M570dn-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]/ipp://localhost:631/printers/Officejet_Pro_8600B[0x0][0xc]printer-name[0x0][0x12]Officejet_Pro_8600A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0][0x12]Officejet Pro 8600A[0x0][0x16]printer-make-and-model[0x0][0x1e]HP Officejet Pro 8600-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]1ipp://localhost:631/printers/Zebra_170_XiIII_PlusB[0x0][0xc]printer-name[0x0][0x14]Zebra_170_XiIII_PlusA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x11]Local Raw Printer3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]6ipp://localhost:631/classes/Zebra_170_XiIII_Plus_ClassB[0x0][0xc]printer-name[0x0][0x1a]Zebra_170_XiIII_Plus_ClassA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x13]Local Printer Class3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x3]"
+2016-07-27 12:19:36,965 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@6e509ffa
+2016-07-27 12:19:36,966 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:36,968 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:36,968 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:36,969 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - >> "e1[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x1][0x0][0x0][0x0][0x8][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0xc]printer-nameD[0x0][0x0][0x0][0x15]printer-uri-supportedD[0x0][0x0][0x0][0x10]printer-location[0x3]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 113[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:36 GMT[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:36,970 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 113
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:36 GMT
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x4][0x6][0x0][0x0][0x0][0x8][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usA[0x0][0xe]status-message[0x0][0x13]No default printer.[0x3]"
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@2638011
+2016-07-27 12:19:36,971 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:36,983 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:36,984 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - >> "13c[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x2][0x0][0x0][0x0][0x9][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0x10]copies-supportedD[0x0][0x0][0x0][0x15]page-ranges-supportedD[0x0][0x0][0x0][0xc]printer-nameD[0x0][0x0][0x0][0xc]printer-infoD[0x0][0x0][0x0][0x10]printer-locationD[0x0][0x0][0x0][0x16]printer-make-and-modelD[0x0][0x0][0x0][0x15]printer-uri-supported[0x3]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 1298[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:36 GMT[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,985 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 1298
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:36 GMT
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x0][0x0][0x0][0x0][0x0][0x9][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-us[0x4]E[0x0][0x15]printer-uri-supported[0x0]Eipp://localhost:631/printers/HP_LaserJet_500_colorMFP_M570dn__14C288_B[0x0][0xc]printer-name[0x0](HP_LaserJet_500_colorMFP_M570dn__14C288_A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0](HP LaserJet 500 colorMFP M570dn (14C288)A[0x0][0x16]printer-make-and-model[0x0](HP LaserJet 500 colorMFP M570dn-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]/ipp://localhost:631/printers/Officejet_Pro_8600B[0x0][0xc]printer-name[0x0][0x12]Officejet_Pro_8600A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0][0x12]Officejet Pro 8600A[0x0][0x16]printer-make-and-model[0x0][0x1e]HP Officejet Pro 8600-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]1ipp://localhost:631/printers/Zebra_170_XiIII_PlusB[0x0][0xc]printer-name[0x0][0x14]Zebra_170_XiIII_PlusA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x11]Local Raw Printer3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]6ipp://localhost:631/classes/Zebra_170_XiIII_Plus_ClassB[0x0][0xc]printer-name[0x0][0x1a]Zebra_170_XiIII_Plus_ClassA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x13]Local Printer Class3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x3]"
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@2f465398
+2016-07-27 12:19:36,986 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:36,988 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:36,988 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:36,989 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - >> "e1[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x1][0x0][0x0][0x0][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0xc]printer-nameD[0x0][0x0][0x0][0x15]printer-uri-supportedD[0x0][0x0][0x0][0x10]printer-location[0x3]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 113[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:36 GMT[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:36,990 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 113
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:36 GMT
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x4][0x6][0x0][0x0][0x0][\n]"
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.wire - << "[0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usA[0x0][0xe]status-message[0x0][0x13]No default printer.[0x3]"
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@175b9425
+2016-07-27 12:19:36,991 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:37,004 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:37,004 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:37,004 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:37,004 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:37,004 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:37,004 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "13c[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x2][0x0][0x0][0x0][0xb][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0x10]copies-supportedD[0x0][0x0][0x0][0x15]page-ranges-supportedD[0x0][0x0][0x0][0xc]printer-nameD[0x0][0x0][0x0][0xc]printer-infoD[0x0][0x0][0x0][0x10]printer-locationD[0x0][0x0][0x0][0x16]printer-make-and-modelD[0x0][0x0][0x0][0x15]printer-uri-supported[0x3]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,005 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 1298[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:37 GMT[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 1298
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:37 GMT
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x0][0x0][0x0][0x0][0x0][0xb][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-us[0x4]E[0x0][0x15]printer-uri-supported[0x0]Eipp://localhost:631/printers/HP_LaserJet_500_colorMFP_M570dn__14C288_B[0x0][0xc]printer-name[0x0](HP_LaserJet_500_colorMFP_M570dn__14C288_A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0](HP LaserJet 500 colorMFP M570dn (14C288)A[0x0][0x16]printer-make-and-model[0x0](HP LaserJet 500 colorMFP M570dn-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]/ipp://localhost:631/printers/Officejet_Pro_8600B[0x0][0xc]printer-name[0x0][0x12]Officejet_Pro_8600A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0][0x12]Officejet Pro 8600A[0x0][0x16]printer-make-and-model[0x0][0x1e]HP Officejet Pro 8600-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]1ipp://localhost:631/printers/Zebra_170_XiIII_PlusB[0x0][0xc]printer-name[0x0][0x14]Zebra_170_XiIII_PlusA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x11]Local Raw Printer3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]6ipp://localhost:631/classes/Zebra_170_XiIII_Plus_ClassB[0x0][0xc]printer-name[0x0][0x1a]Zebra_170_XiIII_Plus_ClassA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x13]Local Printer Class3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x3]"
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@21b2e768
+2016-07-27 12:19:37,006 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:37,008 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:37,008 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "e1[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x1][0x0][0x0][0x0][0xc][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0xc]printer-nameD[0x0][0x0][0x0][0x15]printer-uri-supportedD[0x0][0x0][0x0][0x10]printer-location[0x3]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:37,009 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 113[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:37 GMT[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 113
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:37 GMT
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x4][0x6][0x0][0x0][0x0][0xc][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usA[0x0][0xe]status-message[0x0][0x13]No default printer.[0x3]"
+2016-07-27 12:19:37,010 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@17a7f733
+2016-07-27 12:19:37,011 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:37,020 DEBUG [C4J Main] com.commander4j.util.JPrint - refresh : HP LaserJet 500 colorMFP M570dn (14C288)
+2016-07-27 12:19:37,024 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:37,024 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "13c[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x2][0x0][0x0][0x0][\r][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0x10]copies-supportedD[0x0][0x0][0x0][0x15]page-ranges-supportedD[0x0][0x0][0x0][0xc]printer-nameD[0x0][0x0][0x0][0xc]printer-infoD[0x0][0x0][0x0][0x10]printer-locationD[0x0][0x0][0x0][0x16]printer-make-and-modelD[0x0][0x0][0x0][0x15]printer-uri-supported[0x3]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:37,025 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,026 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 1298[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:37 GMT[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 1298
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:37 GMT
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x0][0x0][0x0][0x0][0x0][\r][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-us[0x4]E[0x0][0x15]printer-uri-supported[0x0]Eipp://localhost:631/printers/HP_LaserJet_500_colorMFP_M570dn__14C288_B[0x0][0xc]printer-name[0x0](HP_LaserJet_500_colorMFP_M570dn__14C288_A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0](HP LaserJet 500 colorMFP M570dn (14C288)A[0x0][0x16]printer-make-and-model[0x0](HP LaserJet 500 colorMFP M570dn-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]/ipp://localhost:631/printers/Officejet_Pro_8600B[0x0][0xc]printer-name[0x0][0x12]Officejet_Pro_8600A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0][0x12]Officejet Pro 8600A[0x0][0x16]printer-make-and-model[0x0][0x1e]HP Officejet Pro 8600-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]1ipp://localhost:631/printers/Zebra_170_XiIII_PlusB[0x0][0xc]printer-name[0x0][0x14]Zebra_170_XiIII_PlusA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x11]Local Raw Printer3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]6ipp://localhost:631/classes/Zebra_170_XiIII_Plus_ClassB[0x0][0xc]printer-name[0x0][0x1a]Zebra_170_XiIII_Plus_ClassA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x13]Local Printer Class3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x3]"
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@6236eb5f
+2016-07-27 12:19:37,027 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:37,029 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - >> "e1[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x1][0x0][0x0][0x0][0xe][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0xc]printer-nameD[0x0][0x0][0x0][0x15]printer-uri-supportedD[0x0][0x0][0x0][0x10]printer-location[0x3]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 113[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:37 GMT[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 113
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:37 GMT
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:37,030 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:37,031 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:37,031 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:37,031 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:37,031 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:37,031 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x4][0x6][0x0][0x0][0x0][0xe][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usA[0x0][0xe]status-message[0x0][0x13]No default printer.[0x3]"
+2016-07-27 12:19:37,031 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@32910148
+2016-07-27 12:19:37,031 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:37,045 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:37,046 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - >> "13c[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x2][0x0][0x0][0x0][0xf][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0x10]copies-supportedD[0x0][0x0][0x0][0x15]page-ranges-supportedD[0x0][0x0][0x0][0xc]printer-nameD[0x0][0x0][0x0][0xc]printer-infoD[0x0][0x0][0x0][0x10]printer-locationD[0x0][0x0][0x0][0x16]printer-make-and-modelD[0x0][0x0][0x0][0x15]printer-uri-supported[0x3]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 1298[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:37 GMT[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 1298
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:37,047 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:37 GMT
+2016-07-27 12:19:37,048 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:37,048 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:37,048 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:37,048 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:37,048 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:37,048 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:37,048 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x0][0x0][0x0][0x0][0x0][0xf][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-us[0x4]E[0x0][0x15]printer-uri-supported[0x0]Eipp://localhost:631/printers/HP_LaserJet_500_colorMFP_M570dn__14C288_B[0x0][0xc]printer-name[0x0](HP_LaserJet_500_colorMFP_M570dn__14C288_A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0](HP LaserJet 500 colorMFP M570dn (14C288)A[0x0][0x16]printer-make-and-model[0x0](HP LaserJet 500 colorMFP M570dn-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]/ipp://localhost:631/printers/Officejet_Pro_8600B[0x0][0xc]printer-name[0x0][0x12]Officejet_Pro_8600A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0][0x12]Officejet Pro 8600A[0x0][0x16]printer-make-and-model[0x0][0x1e]HP Officejet Pro 8600-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]1ipp://localhost:631/printers/Zebra_170_XiIII_PlusB[0x0][0xc]printer-name[0x0][0x14]Zebra_170_XiIII_PlusA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x11]Local Raw Printer3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]6ipp://localhost:631/classes/Zebra_170_XiIII_Plus_ClassB[0x0][0xc]printer-name[0x0][0x1a]Zebra_170_XiIII_Plus_ClassA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x13]Local Printer Class3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x3]"
+2016-07-27 12:19:37,048 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@3571b748
+2016-07-27 12:19:37,048 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:37,050 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:37,050 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:37,050 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "e1[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x1][0x0][0x0][0x0][0x10][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0xc]printer-nameD[0x0][0x0][0x0][0x15]printer-uri-supportedD[0x0][0x0][0x0][0x10]printer-location[0x3]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 113[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:37 GMT[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:37,051 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 113
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:37 GMT
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x4][0x6][0x0][0x0][0x0][0x10][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usA[0x0][0xe]status-message[0x0][0x13]No default printer.[0x3]"
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@60015ef5
+2016-07-27 12:19:37,052 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:37,065 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:37,065 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "13c[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x2][0x0][0x0][0x0][0x11][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0x10]copies-supportedD[0x0][0x0][0x0][0x15]page-ranges-supportedD[0x0][0x0][0x0][0xc]printer-nameD[0x0][0x0][0x0][0xc]printer-infoD[0x0][0x0][0x0][0x10]printer-locationD[0x0][0x0][0x0][0x16]printer-make-and-modelD[0x0][0x0][0x0][0x15]printer-uri-supported[0x3]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:37,066 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 1298[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:37 GMT[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 1298
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:37 GMT
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x0][0x0][0x0][0x0][0x0][0x11][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-us[0x4]E[0x0][0x15]printer-uri-supported[0x0]Eipp://localhost:631/printers/HP_LaserJet_500_colorMFP_M570dn__14C288_B[0x0][0xc]printer-name[0x0](HP_LaserJet_500_colorMFP_M570dn__14C288_A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0](HP LaserJet 500 colorMFP M570dn (14C288)A[0x0][0x16]printer-make-and-model[0x0](HP LaserJet 500 colorMFP M570dn-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]/ipp://localhost:631/printers/Officejet_Pro_8600B[0x0][0xc]printer-name[0x0][0x12]Officejet_Pro_8600A[0x0][0x10]printer-location[0x0][0x0]A[0x0][0xc]printer-info[0x0][0x12]Officejet Pro 8600A[0x0][0x16]printer-make-and-model[0x0][0x1e]HP Officejet Pro 8600-AirPrint3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]1ipp://localhost:631/printers/Zebra_170_XiIII_PlusB[0x0][0xc]printer-name[0x0][0x14]Zebra_170_XiIII_PlusA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x11]Local Raw Printer3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x4]E[0x0][0x15]printer-uri-supported[0x0]6ipp://localhost:631/classes/Zebra_170_XiIII_Plus_ClassB[0x0][0xc]printer-name[0x0][0x1a]Zebra_170_XiIII_Plus_ClassA[0x0][0x10]printer-location[0x0][\r]Computer RoomA[0x0][0xc]printer-info[0x0][0x19]Development Zebra PrinterA[0x0][0x16]printer-make-and-model[0x0][0x13]Local Printer Class3[0x0][0x10]copies-supported[0x0][0x8][0x0][0x0][0x0][0x1][0x0][0x0]'[0xf]"[0x0][0x15]page-ranges-supported[0x0][0x1][0x1][0x3]"
+2016-07-27 12:19:37,067 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@f2ff811
+2016-07-27 12:19:37,068 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Get connection for route HttpRoute[{}->http://localhost:631]
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:631
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: best-match
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Sending request: POST /printers HTTP/1.1
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.wire - >> "POST /printers HTTP/1.1[\r][\n]"
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.wire - >> "Transfer-Encoding: chunked[\r][\n]"
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.wire - >> "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.wire - >> "Host: localhost:631[\r][\n]"
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.wire - >> "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,069 DEBUG [C4J Main] org.apache.http.wire - >> "User-Agent: Apache-HttpClient/4.3.4 (java 1.5)[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - >> "Expect: 100-continue[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - >> POST /printers HTTP/1.1
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - >> Transfer-Encoding: chunked
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - >> Content-Type: application/ipp
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - >> Host: localhost:631
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - >> Connection: Keep-Alive
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.3.4 (java 1.5)
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - >> Expect: 100-continue
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 100 Continue[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 100 Continue
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 100 Continue
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - >> "e1[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - >> "[0x1][0x1]@[0x1][0x0][0x0][0x0][0x12][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usE[0x0][0xb]printer-uri[0x0][0x19]http://localhost/printersB[0x0][0x14]requesting-user-name[0x0][0x0]D[0x0][0x14]requested-attributes[0x0][0xc]printer-nameD[0x0][0x0][0x0][0x15]printer-uri-supportedD[0x0][0x0][0x0][0x10]printer-location[0x3]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - >> "0[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - >> "[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "HTTP/1.1 200 OK[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "Connection: Keep-Alive[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "Content-Language: en_US[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "Content-Length: 113[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "Content-Type: application/ipp[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "Date: Wed, 27 Jul 2016 11:19:37 GMT[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "Keep-Alive: timeout=10[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "Accept-Encoding: gzip, deflate, identity[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "Server: CUPS/2.1 IPP/2.1[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "X-Frame-Options: DENY[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "Content-Security-Policy: frame-ancestors 'none'[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.wire - << "[\r][\n]"
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - << HTTP/1.1 200 OK
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - << Connection: Keep-Alive
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - << Content-Language: en_US
+2016-07-27 12:19:37,070 DEBUG [C4J Main] org.apache.http.headers - << Content-Length: 113
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.headers - << Content-Type: application/ipp
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.headers - << Date: Wed, 27 Jul 2016 11:19:37 GMT
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.headers - << Keep-Alive: timeout=10
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.headers - << Accept-Encoding: gzip, deflate, identity
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.headers - << Server: CUPS/2.1 IPP/2.1
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.headers - << X-Frame-Options: DENY
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.headers - << Content-Security-Policy: frame-ancestors 'none'
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive for 10000 MILLISECONDS
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.wire - << "[0x1][0x1][0x4][0x6][0x0][0x0][0x0][0x12][0x1]G[0x0][0x12]attributes-charset[0x0][0x5]utf-8H[0x0][0x1b]attributes-natural-language[0x0][0x5]en-usA[0x0][0xe]status-message[0x0][0x13]No default printer.[0x3]"
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.impl.conn.SingleClientConnManager - Releasing connection org.apache.http.impl.conn.SingleClientConnManager$ConnAdapter@5ab9e72c
+2016-07-27 12:19:37,071 DEBUG [C4J Main] org.apache.http.impl.conn.DefaultClientConnection - Connection shut down
+2016-07-27 12:19:37,081 DEBUG [C4J Main] com.commander4j.util.JPrint - refresh : Officejet Pro 8600
+2016-07-27 12:19:37,218 INFO  [C4J Main] com.commander4j.sys.Start - Application starting
+2016-07-27 12:19:57,385 DEBUG [C4J Main] com.commander4j.xml.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4/xml/sql/sql.com.mysql.jdbc.Driver.xml
+2016-07-27 12:19:58,280 DEBUG [C4J Main] com.commander4j.db.JDBSQLStatement - JDBSQLStatement loadSQLStatements loaded 377 statements.
+2016-07-27 12:19:58,281 DEBUG [C4J Main] com.commander4j.xml.JXMLDocument - setDocument :/Users/dave/Commander4j/workspace.osx/b4/xml/view/view.com.mysql.jdbc.Driver.xml
+2016-07-27 12:19:58,288 DEBUG [C4J Main] com.commander4j.db.JDBSQLStatement - JDBSQLStatement loadSQLStatements loaded 8 statements.
+2016-07-27 12:19:58,294 DEBUG [C4J Main] com.commander4j.sys.JHost - jdbc:mysql://localhost/commander4j_dev
+2016-07-27 12:19:58,571 DEBUG [C4J Main] com.commander4j.sys.JHost - Opened connection for session ID : 7faa87e6-289c-4942-b554-1b3c7ec6c8a1
+2016-07-27 12:19:59,028 DEBUG [C4J Main] com.commander4j.bar.JEANBarcode - loadEANdefs
+2016-07-27 12:19:59,576 DEBUG [C4J Main] com.commander4j.db.JDBUser - login :true
+2016-07-27 12:19:59,586 DEBUG [C4J Main] com.commander4j.db.JDBLanguage - 554 messages loaded.
+2016-07-27 12:20:03,347 DEBUG [AWT-EventQueue-0] com.commander4j.db.JDBQuery2 - SELECT * FROM APP_LOCATION WHERE 1=2  ORDER BY LOCATION_ID ASC 
+2016-07-27 12:20:04,661 DEBUG [AWT-EventQueue-0] com.commander4j.db.JDBQuery2 - SELECT * FROM APP_LOCATION  ORDER BY LOCATION_ID ASC 
+2016-07-27 12:28:36,307 DEBUG [AWT-EventQueue-0] com.commander4j.db.JDBQuery2 - SELECT * FROM APP_LOCATION WHERE 1=2  ORDER BY LOCATION_ID ASC 
+2016-07-27 12:28:37,994 DEBUG [AWT-EventQueue-0] com.commander4j.db.JDBQuery2 - SELECT * FROM APP_LOCATION  ORDER BY LOCATION_ID ASC 
+2016-07-27 12:28:49,546 DEBUG [AWT-EventQueue-0] com.commander4j.db.JDBQuery2 - SELECT * FROM APP_LOCATION  ORDER BY LOCATION_ID ASC 
+2016-07-27 12:41:00,099 DEBUG [AWT-EventQueue-0] com.commander4j.sys.JHost - Closed connection for to Host ID 1 session ID : 7faa87e6-289c-4942-b554-1b3c7ec6c8a1

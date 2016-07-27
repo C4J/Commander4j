@@ -7,10 +7,10 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Config;
 import com.commander4j.util.Utility;
 
-public class StartMW {
+public class StartMain {
 
 	
-	private Logger logger = Logger.getLogger(StartMW.class);
+	private Logger logger = Logger.getLogger(StartMain.class);
 	public Config cfg;
 	public static String version = "1.02";
 	Boolean running=false;

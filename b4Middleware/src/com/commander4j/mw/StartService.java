@@ -1,10 +1,11 @@
 package com.commander4j.mw;
 
+import com.commander4j.sys.Common;
 import com.commander4j.util.JWait;
 
 public class StartService {
 
-	StartMW smw= new StartMW();
+	//StartMW smw= new StartMW();
 
 	public StartService()
 	{
@@ -16,7 +17,7 @@ public class StartService {
 		AddShutdownHookSample sample = new AddShutdownHookSample();
 		sample.attachShutDownHook();
 
-		smw.StartMiddleware();
+		Common.smw.StartMiddleware();
 
 		return null;
 	}
@@ -24,7 +25,7 @@ public class StartService {
 	public int stop(int exitCode)
 	{
 
-		smw.StopMiddleware();
+		Common.smw.StopMiddleware();
 		return exitCode;
 	}
 
@@ -38,7 +39,7 @@ public class StartService {
 					System.out.println("Shutdown detected - requesting threads stop.");
 
 					System.out.println("Waiting for threads to stop.");
-					smw.StopMiddleware();
+					Common.smw.StopMiddleware();
 					System.out.println("All threads have stopped.");
 				}
 			});
@@ -49,11 +50,10 @@ public class StartService {
 	public static void main(String[] args)
 	{
 		System.out.println("Starting");
-		StartService ss = new StartService();
 		
-		ss.smw.StartMiddleware();
+		Common.smw.StartMiddleware();
 		
-		while (ss.smw.isRunning())
+		while (Common.smw.isRunning())
 		{
 			JWait.oneSec();
 		}
