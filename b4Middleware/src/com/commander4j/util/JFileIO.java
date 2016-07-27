@@ -22,6 +22,21 @@ public class JFileIO
 	private String shortfilename = "";
 	private final Logger logger = Logger.getLogger(JFileIO.class);
 
+	public boolean isValidDirectory(String directoryName)
+	{
+		boolean result = false;
+		 File theDir = new File(directoryName);
+		 System.out.println(theDir.getAbsolutePath());
+
+		  // if the directory does not exist, create it
+		  if (theDir.exists())
+		  {
+			  result = true;
+		  }
+		  theDir = null;
+		  return result;
+	}
+	
 	public String getShortFilename()
 	{
 		return shortfilename;

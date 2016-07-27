@@ -7,95 +7,106 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Config;
 import com.commander4j.util.Utility;
 
-public class StartMain {
+public class StartMain
+{
 
-	
 	private Logger logger = Logger.getLogger(StartMain.class);
 	public Config cfg;
 	public static String version = "1.02";
-	Boolean running=false;
-	
+	Boolean running = false;
+
 	public Boolean isRunning()
 	{
 		return running;
 	}
-	
+
 	public Boolean StartMiddleware()
 	{
 		Boolean result = true;
-		
+
 		logger.debug("Application starting");
 		Utility.initLogging("");
-		
+
 		logger.debug("*************************");
 		logger.debug("**     STARTING        **");
 		logger.debug("*************************");
-		
+
 		cfg = new Config();
 
-		
-		cfg.loadMaps(System.getProperty("user.dir")+File.separator+"xml"+File.separator+"config"+File.separator+"config.xml");
-		
+		cfg.loadMaps(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "config"
+				+ File.separator + "config.xml");
+
 		logger.debug("*************************");
 		logger.debug("**     MAPS LOADED     **");
 		logger.debug("*************************");
-		
-		
-		cfg.startMaps();
 
-		logger.debug("*************************");
-		logger.debug("**      STARTED        **");
-		logger.debug("*************************");
-		
-		running=true;
-		
+		if (cfg.getMapDirectoryErrorCount() == 0)
+		{
+
+			cfg.startMaps();
+
+			logger.debug("*************************");
+			logger.debug("**      STARTED        **");
+			logger.debug("*************************");
+
+			running = true;
+
+		} else
+		{
+			logger.debug("*************************");
+			logger.debug("**      ERRORS         **");
+			logger.debug("*************************");
+			
+			for (int x = 0; x < cfg.getMapDirectoryErrorCount(); x++)
+			{
+				logger.error(cfg.getMapDirectoryErrors().get(x));
+			}
+
+			result = false;
+		}
+
 		return result;
 	}
-	
-	
+
 	public Boolean StopMiddleware()
 	{
 		Boolean result = true;
 
-		
 		logger.debug("*************************");
 		logger.debug("**      STOPPING       **");
 		logger.debug("*************************");
-		
+
 		cfg.stopMaps();
-		
 
 		logger.debug("*************************");
 		logger.debug("**      STOPPED        **");
 		logger.debug("*************************");
-		
-		running=false;
-		
+
+		running = false;
+
 		return result;
 	}
-	
-	
+
 	public static void main(String[] args)
 	{
-		
+
 		String parameter = "";
-		
-		if (args.length>0)
+
+		if (args.length > 0)
 		{
 			parameter = args[0];
 		}
-		
+
 		if (parameter.equals(""))
 		{
-			 parameter = "GUI";
+			parameter = "GUI";
 		}
-		
+
 		if (parameter.equals("GUI"))
 		{
-			StartGUI.main(args); 
+			StartGUI.main(args);
 		}
-		
-		
+
 		if (parameter.equals("Service"))
 		{
 			StartService.main(args);

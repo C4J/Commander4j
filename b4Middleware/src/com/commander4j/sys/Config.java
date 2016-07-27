@@ -7,13 +7,26 @@ import org.apache.log4j.Logger;
 import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.Interface.Mapping.Map;
 import com.commander4j.Interface.Outbound.OutboundInterface;
+import com.commander4j.util.JFileIO;
 import com.commander4j.util.JXMLDocument;
 
 public class Config {
 
 	Logger logger = Logger.getLogger(Config.class);
 	LinkedList<Map> maps = new LinkedList<Map>();
+	LinkedList<String> directoryErrors = new LinkedList<String>();
+	JFileIO fio = new JFileIO();
+	
+	public int getMapDirectoryErrorCount()
+	{
+		return directoryErrors.size();
+	}
 
+	public LinkedList<String> getMapDirectoryErrors()
+	{
+		return directoryErrors;
+	}
+	
 	public Config()
 	{
 		Common.logDir = System.getProperty("user.dir")+java.io.File.separator+"xml"+java.io.File.separator+"interface"+java.io.File.separator+"log";
@@ -94,6 +107,12 @@ public class Config {
 				InboundInterface inboundInterface = new InboundInterface(map, inputDescription);
 				inboundInterface.setId(inputId);
 				inboundInterface.setDescription(inputDescription);
+				
+				if (fio.isValidDirectory(inputPath)==false)
+				{
+					directoryErrors.addLast("Map : ["+mapId+ "] inputId : ["+inputId+ "] Invalid Directory : "+inputPath);
+				}
+				
 				inboundInterface.setInputPath(inputPath);
 				inboundInterface.setBackupPath(backupPath);
 				inboundInterface.setXSLTPath(XSLTPath);
@@ -124,6 +143,11 @@ public class Config {
 					outboundInterface.setOutputPath(outputPath);
 					outboundInterface.setXSLTPath(XSLTPath);
 					outboundInterface.setXSLTFilename(outputXSLT);
+					
+					if (fio.isValidDirectory(outputPath)==false)
+					{
+						directoryErrors.addLast("Map : ["+mapId+ "] outputId : ["+outputId+ "] Invalid Directory : "+outputPath);
+					}
 
 					logger.debug("Loading output connector : (" + outputId + ") " + outputDescription);
 

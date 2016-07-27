@@ -55,21 +55,21 @@ public class StartGUI extends JFrame
 	{
 		if (Common.smw.isRunning())
 		{
-			int question = JOptionPane.showConfirmDialog(frame, "Closing application with stop interfaces ?", "Confirm",JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
-			
+			int question = JOptionPane.showConfirmDialog(frame, "Closing application with stop interfaces ?", "Confirm",
+					JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+
 			if (question == 0)
 			{
 				Common.smw.StopMiddleware();
 				System.exit(0);
 			}
-		}
-		else
+		} else
 		{
 			System.exit(0);
 		}
 	}
 
-   class WindowListener extends WindowAdapter
+	class WindowListener extends WindowAdapter
 	{
 		public void windowClosing(WindowEvent e)
 		{
@@ -162,13 +162,30 @@ public class StartGUI extends JFrame
 				{
 
 					Common.smw.StartMiddleware();
-					tglbtnStopStart.setBackground(Color.RED);
-					tglbtnStopStart.setText("Stop");
-					lblStatus.setText("Running");
-					label_NoOfMaps.setText(String.valueOf(Common.smw.cfg.getMaps().size()));
-					populateList("");
-					btnClose.setEnabled(false);
-					progressBarInterface.setBackground(new Color(0, 128, 0));
+					if (Common.smw.cfg.getMapDirectoryErrorCount() > 0)
+					{
+						String errorMessage = "";
+						
+						for (int x = 0; x < Common.smw.cfg.getMapDirectoryErrorCount(); x++)
+						{
+							errorMessage = errorMessage + Common.smw.cfg.getMapDirectoryErrors().get(x)+"\n";
+						}
+						
+						JOptionPane.showMessageDialog(frame,
+								errorMessage,
+							    "Map Errors",
+							    JOptionPane.ERROR_MESSAGE);
+						
+					} else
+					{
+						tglbtnStopStart.setBackground(Color.RED);
+						tglbtnStopStart.setText("Stop");
+						lblStatus.setText("Running");
+						label_NoOfMaps.setText(String.valueOf(Common.smw.cfg.getMaps().size()));
+						populateList("");
+						btnClose.setEnabled(false);
+						progressBarInterface.setBackground(new Color(0, 128, 0));
+					}
 				} else
 				{
 					Common.smw.StopMiddleware();

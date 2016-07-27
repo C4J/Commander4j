@@ -18,8 +18,16 @@ public class StartService {
 		sample.attachShutDownHook();
 
 		Common.smw.StartMiddleware();
+		
+		if (Common.smw.cfg.getMapDirectoryErrorCount()>0)
+		{
+			return 1;
+		}
+		else
+		{
+			return null;
+		}
 
-		return null;
 	}
 
 	public int stop(int exitCode)
