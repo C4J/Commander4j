@@ -6,7 +6,7 @@
    <interfaceType>Process Order</interfaceType>
    <messageInformation>Process Order=000019013782</messageInformation>
    <interfaceDirection>Input</interfaceDirection>
-   <messageDate>2016-07-28T17:13:35</messageDate>
+   <messageDate>2016-07-28T21:00:24</messageDate>
    <messageData>
       <processOrder>
          <orderNo>1913782</orderNo>

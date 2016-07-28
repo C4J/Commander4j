@@ -16,28 +16,29 @@ public class Map {
 	Logger logger = Logger.getLogger(Map.class);
 	private String id="";
 	private String description="";
-	private Long inboundMapCount = (long) 0;
-	private Long outboundMapCount = (long) 0;
+	private Long inboundMapMsgCount = (long) 0;
+	private Long outboundMapMsgCount = (long) 0;
 	
 	public void run()
 	{
 
 	}
 	
-	public Long getInboundMapCount()
+	public Long getInboundMapMessageCount()
 	{
-		return inboundMapCount;
+		return inboundMapMsgCount;
 	}
 	
-	public Long getOutboundMapCount()
+	public Long getOutboundMapMessageCount()
 	{
-		return outboundMapCount;
+		return outboundMapMsgCount;
 	}	
 	
 	public String toString()
 	{
-		return Utility.padString(getId(),true,10," ") + "  " + Utility.padString(getDescription(),true,30," ") + "  "+Utility.padString(getInboundInterface().getType(),true,3," ") + "  ["+getInboundInterface().getInputPath()+"]";
+		return Utility.padString(getId(),true,10," ") + "  " + Utility.padString(getDescription(),true,40," ") + "  "+Utility.padString(getInboundInterface().getType(),true,5," ") +Utility.padString(getInboundMapMessageCount().toString(),false,8," ")+" "+Utility.padString(getOutboundMapMessageCount().toString(),false,8," ") +"  ["+getInboundInterface().getInputPath()+"]";
 	}
+	
 	
 	public void setId(String ID)
 	{
@@ -98,8 +99,8 @@ public class Map {
 	public void processMapToOutboundInterface(String filename, OutboundInterface outint,Document data)
 	{
 		logger.debug(">> processMapToOutboundInterface [" + filename + " - " +  Utility.getStringFromDocument(data)+"]");
-		outboundMapCount++;
-		logger.debug(">> outboundMapMessages count [" + getOutboundMapCount().toString()+"]");
+		outboundMapMsgCount++;
+		logger.debug(">> outboundMapMessages count [" + getOutboundMapMessageCount().toString()+"]");
 		outint.processInterfaceToConnector(filename,data);
 	}
 	
@@ -107,8 +108,8 @@ public class Map {
 	{
 
 		logger.debug("<< processInboundInterfaceToMap  [" + filename + " - " + Utility.getStringFromDocument(data)+"]");
-		inboundMapCount++;
-		logger.debug(">> inboundMapMessages count [" + getInboundMapCount().toString()+"]");
+		inboundMapMsgCount++;
+		logger.debug(">> inboundMapMessages count [" + getInboundMapMessageCount().toString()+"]");
 		for (int x = 0; x < outboundInterface.size(); x++)
 		{
 			processMapToOutboundInterface(filename,outboundInterface.get(x),data);

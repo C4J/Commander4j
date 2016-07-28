@@ -79,15 +79,18 @@ public class StartGUI extends JFrame
 
 	private void populateList(String defaultitem)
 	{
+
 		DefaultComboBoxModel<Map> defComboBoxMod = new DefaultComboBoxModel<Map>();
-
 		int sel = -1;
-		for (int j = 0; j < Common.smw.cfg.getMaps().size(); j++)
+		if (Common.smw.isRunning())
 		{
-			defComboBoxMod.addElement(Common.smw.cfg.getMaps().get(j));
 
+			for (int j = 0; j < Common.smw.cfg.getMaps().size(); j++)
+			{
+				defComboBoxMod.addElement(Common.smw.cfg.getMaps().get(j));
+
+			}
 		}
-
 		ListModel<Map> jList1Model = defComboBoxMod;
 		listMaps.setModel(jList1Model);
 
@@ -123,7 +126,7 @@ public class StartGUI extends JFrame
 		setTitle("Commander4j Middleware" + " " + StartMain.version);
 		Utility.initLogging("");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 775, 467);
+		setBounds(100, 100, 920, 467);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -144,7 +147,7 @@ public class StartGUI extends JFrame
 				ConfirmExit();
 			}
 		});
-		btnClose.setBounds(525, 350, 150, 38);
+		btnClose.setBounds(706, 350, 150, 38);
 		contentPane.add(btnClose);
 
 		tglbtnStopStart = new JToggleButton(Common.icon_ok);
@@ -165,17 +168,14 @@ public class StartGUI extends JFrame
 					if (Common.smw.cfg.getMapDirectoryErrorCount() > 0)
 					{
 						String errorMessage = "";
-						
+
 						for (int x = 0; x < Common.smw.cfg.getMapDirectoryErrorCount(); x++)
 						{
-							errorMessage = errorMessage + Common.smw.cfg.getMapDirectoryErrors().get(x)+"\n";
+							errorMessage = errorMessage + Common.smw.cfg.getMapDirectoryErrors().get(x) + "\n";
 						}
-						
-						JOptionPane.showMessageDialog(frame,
-								errorMessage,
-							    "Map Errors",
-							    JOptionPane.ERROR_MESSAGE);
-						
+
+						JOptionPane.showMessageDialog(frame, errorMessage, "Map Errors", JOptionPane.ERROR_MESSAGE);
+
 					} else
 					{
 						tglbtnStopStart.setBackground(Color.RED);
@@ -198,16 +198,16 @@ public class StartGUI extends JFrame
 				}
 			}
 		});
-		tglbtnStopStart.setBounds(113, 350, 150, 38);
+		tglbtnStopStart.setBounds(64, 350, 150, 38);
 		contentPane.add(tglbtnStopStart);
 
 		panelStatus.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelStatus.setBounds(0, 415, 775, 30);
+		panelStatus.setBounds(0, 415, 908, 30);
 		contentPane.add(panelStatus);
 		panelStatus.setLayout(null);
 
 		lblStatus.setFont(new Font("Dialog", Font.PLAIN, 12));
-		lblStatus.setBounds(12, 0, 573, 25);
+		lblStatus.setBounds(12, 0, 884, 25);
 		lblStatus.setHorizontalAlignment(SwingConstants.LEFT);
 		panelStatus.add(lblStatus);
 
@@ -233,7 +233,7 @@ public class StartGUI extends JFrame
 
 		JScrollPane scrollPaneMaps = new JScrollPane();
 		scrollPaneMaps.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneMaps.setBounds(12, 65, 751, 267);
+		scrollPaneMaps.setBounds(12, 65, 896, 267);
 		contentPane.add(scrollPaneMaps);
 
 		scrollPaneMaps.setViewportView(listMaps);
@@ -241,13 +241,26 @@ public class StartGUI extends JFrame
 		JButton buttonHelp = new JButton((Icon) null);
 		buttonHelp.setFont(new Font("Dialog", Font.PLAIN, 12));
 		buttonHelp.setText("Help");
-		buttonHelp.setBounds(319, 350, 150, 38);
+		buttonHelp.setBounds(492, 350, 150, 38);
 		contentPane.add(buttonHelp);
 
-		JLabel lblIdDescriptionType = new JLabel("Id          Description                     Type Input Path");
+		JLabel lblIdDescriptionType = new JLabel("Id          Description                               Type      In       Out  Input Path");
 		lblIdDescriptionType.setForeground(Color.BLUE);
 		lblIdDescriptionType.setFont(new Font("Courier New", Font.PLAIN, 12));
 		lblIdDescriptionType.setBounds(12, 46, 653, 22);
 		contentPane.add(lblIdDescriptionType);
+
+		JButton btnRefresh = new JButton((Icon) null);
+		btnRefresh.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				populateList("");
+			}
+		});
+		btnRefresh.setText("Refresh");
+		btnRefresh.setFont(new Font("Dialog", Font.PLAIN, 12));
+		btnRefresh.setBounds(278, 350, 150, 38);
+		contentPane.add(btnRefresh);
 	}
 }

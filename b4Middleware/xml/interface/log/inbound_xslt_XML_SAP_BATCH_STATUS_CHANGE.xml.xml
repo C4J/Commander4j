@@ -5,7 +5,7 @@
    <interfaceType>Batch Status Change</interfaceType>
    <messageInformation>Material=43327495, Batch=0933092302</messageInformation>
    <interfaceDirection>Input</interfaceDirection>
-   <messageDate>2016-07-28T17:13:35</messageDate>
+   <messageDate>2016-07-28T21:00:24</messageDate>
    <messageData>
       <batchStatusChange>
          <batch>0933092302</batch>

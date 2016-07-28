@@ -5,7 +5,7 @@
       <EquipmentID>0933</EquipmentID>
       <EquipmentElementLevel>Site</EquipmentElementLevel>
    </Location>
-   <PublishedDate>2016-07-28T17:13:35</PublishedDate>
+   <PublishedDate>2016-07-28T21:00:24</PublishedDate>
    <ProductionResponse>
       <ProductionRequestID>18587383</ProductionRequestID>
       <SegmentResponse>
@@ -42,7 +42,7 @@
             </Quantity>
             <globe_Item>0001</globe_Item>
             <globe_StockType>Unrestricted</globe_StockType>
-            <globe_PostingDate>2016-07-28T17:13:35</globe_PostingDate>
+            <globe_PostingDate>2016-07-28T21:00:24</globe_PostingDate>
             <globe_ExpirationDate>2017-01-31T00:00:00</globe_ExpirationDate>
             <globe_ProductionDate>2015-01-04T14:23:53</globe_ProductionDate>
             <globe_GTIN>07613033137105</globe_GTIN>

@@ -5,7 +5,7 @@
    <interfaceType>Pallet Status Change</interfaceType>
    <messageInformation>TransferSchedule=0000001804442003</messageInformation>
    <interfaceDirection>Input</interfaceDirection>
-   <messageDate>2016-07-28T17:13:35</messageDate>
+   <messageDate>2016-07-28T21:00:24</messageDate>
    <messageData>
       <palletStatusChange>
          <sscc>376130308023787004</sscc>

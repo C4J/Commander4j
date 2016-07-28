@@ -9,6 +9,7 @@ import com.commander4j.Interface.Mapping.Map;
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JXMLDocument;
+import com.commander4j.util.Utility;
 
 public class Config {
 
@@ -16,6 +17,18 @@ public class Config {
 	LinkedList<Map> maps = new LinkedList<Map>();
 	LinkedList<String> directoryErrors = new LinkedList<String>();
 	JFileIO fio = new JFileIO();
+	
+	public String getInterfaceStatistics()
+	{
+		String result = "\n\n"+"Interface Statistics"+"\n"+"********************"+"\n";
+		
+		for (int x=0;x<getMaps().size();x++)
+		{
+			result = result + "Map : ["+getMaps().get(x).getId()+"] Description [" + Utility.padString(getMaps().get(x).getDescription(),true,40," ")+ "] Inbound Map Count ["+getMaps().get(x).getInboundMapMessageCount().toString()+ "] Outbound Map Count ["+getMaps().get(x).getOutboundMapMessageCount().toString()+"]"+"\n";
+		}
+		
+		return result;
+	}
 	
 	public int getMapDirectoryErrorCount()
 	{
