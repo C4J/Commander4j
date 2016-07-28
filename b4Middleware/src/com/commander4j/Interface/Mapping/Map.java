@@ -16,11 +16,23 @@ public class Map {
 	Logger logger = Logger.getLogger(Map.class);
 	private String id="";
 	private String description="";
-
+	private Long inboundMapCount = (long) 0;
+	private Long outboundMapCount = (long) 0;
+	
 	public void run()
 	{
 
 	}
+	
+	public Long getInboundMapCount()
+	{
+		return inboundMapCount;
+	}
+	
+	public Long getOutboundMapCount()
+	{
+		return outboundMapCount;
+	}	
 	
 	public String toString()
 	{
@@ -86,6 +98,8 @@ public class Map {
 	public void processMapToOutboundInterface(String filename, OutboundInterface outint,Document data)
 	{
 		logger.debug(">> processMapToOutboundInterface [" + filename + " - " +  Utility.getStringFromDocument(data)+"]");
+		outboundMapCount++;
+		logger.debug(">> outboundMapMessages count [" + getOutboundMapCount().toString()+"]");
 		outint.processInterfaceToConnector(filename,data);
 	}
 	
@@ -93,10 +107,12 @@ public class Map {
 	{
 
 		logger.debug("<< processInboundInterfaceToMap  [" + filename + " - " + Utility.getStringFromDocument(data)+"]");
-
+		inboundMapCount++;
+		logger.debug(">> inboundMapMessages count [" + getInboundMapCount().toString()+"]");
 		for (int x = 0; x < outboundInterface.size(); x++)
 		{
 			processMapToOutboundInterface(filename,outboundInterface.get(x),data);
+
 		}
 
 	}

@@ -1,4 +1,4 @@
-package com.commander4j.Connector.Inbound;
+package ABSTRACT.com.commander4j.Connector;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,11 +18,17 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 	private String type = "";
 	private String filename = "";
 	Logger logger = Logger.getLogger(InboundConnectorABSTRACT.class);
+	private Long inboundConnectorCount = (long) 0;
 
 	protected Document data;
 
 	private InboundInterface inint;
 
+	public Long getInboundConnectorCount()
+	{
+		return inboundConnectorCount;
+	}
+	
 	public InboundInterface getInboundInterface()
 	{
 		return inint;
@@ -47,7 +53,9 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 	public Boolean processInboundFile(String filename)
 	{
 		Boolean result = false;
-
+		
+		inboundConnectorCount++;
+		
 		setFilename(filename);
 		if (connectorLoad(inint.getInputPath() + File.separator + filename))
 		{

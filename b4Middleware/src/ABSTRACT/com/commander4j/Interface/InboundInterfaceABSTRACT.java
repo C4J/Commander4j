@@ -1,4 +1,4 @@
-package com.commander4j.Interface.Inbound;
+package ABSTRACT.com.commander4j.Interface;
 
 import java.io.File;
 import java.util.Timer;
@@ -7,14 +7,15 @@ import java.util.TimerTask;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 
-import com.commander4j.Connector.Inbound.InboundConnectorABSTRACT;
 import com.commander4j.Connector.Inbound.InboundConnectorASCII;
 import com.commander4j.Connector.Inbound.InboundConnectorCSV;
 import com.commander4j.Connector.Inbound.InboundConnectorDB;
 import com.commander4j.Connector.Inbound.InboundConnectorIDOC;
 import com.commander4j.Connector.Inbound.InboundConnectorXML;
+import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.Interface.Mapping.Map;
 
+import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 import INTERFACE.com.commander4j.Connector.InboundConnectorINTERFACE;
 import INTERFACE.com.commander4j.Interface.InboundInterfaceINTERFACE;
 

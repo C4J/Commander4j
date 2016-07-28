@@ -8,6 +8,8 @@ import org.w3c.dom.Document;
 import com.commander4j.Interface.Mapping.Map;
 import com.commander4j.util.Utility;
 
+import ABSTRACT.com.commander4j.Interface.OutboundInterfaceABSTRACT;
+
 
 public class OutboundInterface extends OutboundInterfaceABSTRACT  {
 	

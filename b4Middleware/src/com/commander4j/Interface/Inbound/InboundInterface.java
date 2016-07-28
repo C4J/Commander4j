@@ -20,6 +20,8 @@ import com.commander4j.util.JFileIO;
 import com.commander4j.util.JXMLDocument;
 import com.commander4j.util.Utility;
 
+import ABSTRACT.com.commander4j.Interface.InboundInterfaceABSTRACT;
+
 public class InboundInterface extends InboundInterfaceABSTRACT {
 
 	Logger logger = Logger.getLogger(InboundInterface.class);

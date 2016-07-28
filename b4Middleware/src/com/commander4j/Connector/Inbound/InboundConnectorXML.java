@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
 
+import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
+
 public class InboundConnectorXML extends InboundConnectorABSTRACT {
 
 	Logger logger = Logger.getLogger(InboundConnectorXML.class);

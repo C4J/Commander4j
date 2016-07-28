@@ -75,8 +75,13 @@ public class StartMain
 		logger.debug("*************************");
 		logger.debug("**      STOPPING       **");
 		logger.debug("*************************");
-
+	
 		cfg.stopMaps();
+		
+		for (int x=0;x<cfg.getMaps().size();x++)
+		{
+			System.out.println("Map : ["+cfg.getMaps().get(x).getId()+"] Description [" + Utility.padString(cfg.getMaps().get(x).getDescription(),true,40," ")+ "] Inbound Map Count ["+cfg.getMaps().get(x).getInboundMapCount().toString()+ "] Outbound Map Count ["+cfg.getMaps().get(x).getOutboundMapCount().toString()+"]");
+		}
 
 		logger.debug("*************************");
 		logger.debug("**      STOPPED        **");

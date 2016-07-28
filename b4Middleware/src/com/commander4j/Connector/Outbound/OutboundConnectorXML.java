@@ -10,6 +10,8 @@ import org.w3c.dom.ls.LSSerializer;
 
 import com.commander4j.Interface.Outbound.OutboundInterface;
 
+import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
+
 public class OutboundConnectorXML extends OutboundConnectorABSTRACT {
 
 	Logger logger = Logger.getLogger(OutboundConnectorXML.class);

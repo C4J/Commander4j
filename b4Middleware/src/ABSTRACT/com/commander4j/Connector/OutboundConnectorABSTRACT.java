@@ -1,4 +1,4 @@
-package com.commander4j.Connector.Outbound;
+package ABSTRACT.com.commander4j.Connector;
 
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
@@ -14,11 +14,17 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
     private String type = "";
     private String filename = "";
 	Logger logger = Logger.getLogger(OutboundConnectorABSTRACT.class);
+	private Long outboundConnectorCount = (long) 0;
 
     protected Document data;
 
     private OutboundInterface outint;
      
+	public Long getOutboundConnectorCount()
+	{
+		return outboundConnectorCount;
+	}
+	
     
     public OutboundInterface getOutboundInterface()
     {
@@ -27,6 +33,8 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
     
     public void processOutboundData(String filename, Document data)
     {
+    	outboundConnectorCount++;
+    	
     	setData(data);
     	setFilename(filename);
     	connectorSave(filename);

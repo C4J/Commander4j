@@ -16,6 +16,8 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
 import com.opencsv.CSVReader;
 
+import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
+
 public class InboundConnectorCSV extends InboundConnectorABSTRACT {
 
 	Logger logger = Logger.getLogger(InboundConnectorCSV.class);

@@ -1,4 +1,4 @@
-package com.commander4j.Interface.Outbound;
+package ABSTRACT.com.commander4j.Interface;
 
 import java.io.File;
 import java.util.Timer;
@@ -10,13 +10,15 @@ import org.w3c.dom.Document;
 import INTERFACE.com.commander4j.Connector.OutboundConnectorINTERFACE;
 import INTERFACE.com.commander4j.Interface.OutboundInterfaceINTERFACE;
 
-import com.commander4j.Connector.Outbound.OutboundConnectorABSTRACT;
 import com.commander4j.Connector.Outbound.OutboundConnectorASCII;
 import com.commander4j.Connector.Outbound.OutboundConnectorCSV;
 import com.commander4j.Connector.Outbound.OutboundConnectorDB;
 import com.commander4j.Connector.Outbound.OutboundConnectorIDOC;
 import com.commander4j.Connector.Outbound.OutboundConnectorXML;
 import com.commander4j.Interface.Mapping.Map;
+import com.commander4j.Interface.Outbound.OutboundInterface;
+
+import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
 public abstract class OutboundInterfaceABSTRACT extends TimerTask implements OutboundInterfaceINTERFACE{
 	boolean enabled = false;
