@@ -6,7 +6,7 @@
 
     <map id="map1" enabed="Y" description="Konnect Material Master to C4J Material Master">
 
-        <input id="in" description="Read Konnect Material Master">
+        <input id="in1" description="Read Konnect Material Master">
             <type>XML</type>
             <path>./xml/interface/input/1 (Konnect - Material)</path>
             <mask/>
@@ -25,7 +25,7 @@
 
     <map id="map2" enabed="Y" description="S95 Process Order to C4J Process Order">
 
-        <input id="in" description="Read SAP S95 CR XML">
+        <input id="in1" description="Read SAP S95 CR XML">
             <type>XML</type>
             <path>./xml/interface/input/2 (S95 Process Order)</path>
             <mask/>
@@ -44,7 +44,7 @@
 
     <map id="map3" enabed="Y" description="Synchro CSV">
 
-        <input id="in" description="Read CSV Example">
+        <input id="in1" description="Read CSV Example">
             <type>CSV</type>
             <path>./xml/interface/input/3 (Comma Separated Variables)</path>
             <mask/>
@@ -63,7 +63,7 @@
 
     <map id="map4" enabed="Y" description="S95 Batch Status Change to C4J Batch Status Change">
 
-        <input id="in" description="Read S95 Batch Status Change">
+        <input id="in1" description="Read S95 Batch Status Change">
             <type>XML</type>
             <path>./xml/interface/input/4 (S95 Batch Status Change)</path>
             <mask/>
@@ -82,7 +82,7 @@
 
     <map id="map5" enabed="Y" description="S95 Transfer Schedule to C4J Pallet Status Change">
 
-        <input id="in" description="Read SAP S95 TRANSFER ORDER XML">
+        <input id="in1" description="Read SAP S95 TRANSFER ORDER XML">
             <type>XML</type>
             <path>./xml/interface/input/5 (S95 Transfer Schedule)</path>
             <mask/>
@@ -101,7 +101,7 @@
     <map id="map6" enabed="Y"
         description="S95 Process Order Status Change to C4J Process Order Status Change">
 
-        <input id="in" description="Read SAP S95 CRST XML">
+        <input id="in1" description="Read SAP S95 CRST XML">
             <type>XML</type>
             <path>./xml/interface/input/6 (S95 Process Order Status Change)</path>
             <mask/>
@@ -120,7 +120,7 @@
 
     <map id="map7" enabed="Y" description="C4J Production Declaration to S95 Production Declaration">
 
-        <input id="in" description="Read C4J Prod Dec XML">
+        <input id="in1" description="Read C4J Prod Dec XML">
             <type>XML</type>
             <path>./xml/interface/input/7 (C4J Production Declaration)</path>
             <mask/>

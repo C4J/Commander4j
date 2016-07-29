@@ -5,9 +5,11 @@ import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
+import com.commander4j.sys.Common;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
@@ -25,6 +27,16 @@ public class InboundConnectorXML extends InboundConnectorABSTRACT {
 	{
 
 		logger.debug("connectorLoad [" + fullFilename + "]");
+		
+		try
+		{
+			String destination = Common.logDir + java.io.File.separator + (new File(fullFilename)).getName()+"_original.xml";
+			logger.debug("connectorLoad Backup [" + fullFilename + "] to ["+destination+"]");
+			FileUtils.copyFile(new File(fullFilename), new File(destination));
+		} catch (Exception ex)
+		{
+			logger.error("connectorLoad unable to backup [" + fullFilename + "]");
+		}
 
 		boolean result;
 		try

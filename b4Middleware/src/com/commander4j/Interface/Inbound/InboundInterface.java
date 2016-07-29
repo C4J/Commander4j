@@ -47,24 +47,28 @@ public class InboundInterface extends InboundInterfaceABSTRACT {
 
 		File dir = new File(getInputPath());
 		String[] extensions = new String[] { getInputFileMask() };
-
+		
 		List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true);
 		for (File file : files) {
 			logger.debug("Processing [" + file.getName()+"]");
 			if (connector.processInboundFile(file.getName()))
 			{
 				data = connector.getData();
-				jfileio.writeToDisk(Common.logDir, data, "inbound_interface_"+connector.getType()+"_"+file.getName()+".xml");
 				
-				source = new StreamSource(new File(Common.logDir+File.separator+"inbound_interface_"+connector.getType()+"_"+file.getName()+".xml"));
-				destination = new StreamResult(new File(Common.logDir+File.separator+"inbound_xslt_"+connector.getType()+"_"+file.getName()+".xml"));
+				String filename1 = file.getName()+"_"+map.getId()+"_"+getId()+"_"+connector.getType()+"_imported"+".xml";
+				String filename2 = file.getName()+"_"+map.getId()+"_"+getId()+"_"+connector.getType()+"_transform"+".xml";
+				
+				jfileio.writeToDisk(Common.logDir, data, filename1);
+				
+				source = new StreamSource(new File(Common.logDir+File.separator+filename1));
+				destination = new StreamResult(new File(Common.logDir+File.separator+filename2));
 				xslt = new StreamSource(new File(getXSLTPath()+getXSLTFilename()));
 
 				try
 				{
 					transformer =  fact.newTransformer(xslt);
 					transformer.transform(source,destination);
-					JXMLDocument doc = new JXMLDocument(Common.logDir+File.separator+"inbound_xslt_"+connector.getType()+"_"+file.getName()+".xml");
+					JXMLDocument doc = new JXMLDocument(Common.logDir+File.separator+filename2);
 					data = doc.getDocument();
 				} catch (TransformerConfigurationException e)
 				{

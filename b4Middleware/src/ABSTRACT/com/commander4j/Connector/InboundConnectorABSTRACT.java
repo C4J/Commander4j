@@ -18,15 +18,15 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 	private String type = "";
 	private String filename = "";
 	Logger logger = Logger.getLogger(InboundConnectorABSTRACT.class);
-	private Long inboundConnectorCount = (long) 0;
+	private Long inboundConnectorMessageCount = (long) 0;
 
 	protected Document data;
 
 	private InboundInterface inint;
 
-	public Long getInboundConnectorCount()
+	public Long getInboundConnectorMessageCount()
 	{
-		return inboundConnectorCount;
+		return inboundConnectorMessageCount;
 	}
 	
 	public InboundInterface getInboundInterface()
@@ -54,7 +54,7 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 	{
 		Boolean result = false;
 		
-		inboundConnectorCount++;
+		inboundConnectorMessageCount++;
 		
 		setFilename(filename);
 		if (connectorLoad(inint.getInputPath() + File.separator + filename))
