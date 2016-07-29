@@ -10,7 +10,7 @@
   description CDATA #REQUIRED
   enabed NMTOKEN #REQUIRED>
 
-<!ELEMENT input (inputPath,inputFileMask,inputType,inputPollingInterval,
+<!ELEMENT input (inputPath,inputFileMask,inputType,inputPattern,inputPollingInterval,
                  backupPath,XSLTPath,XSLTFilename)>
 <!ATTLIST input
   xmlns CDATA #FIXED ''
@@ -31,6 +31,10 @@
 
 <!ELEMENT inputType (#PCDATA)>
 <!ATTLIST inputType
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT inputPattern (#PCDATA)>
+<!ATTLIST inputPattern
   xmlns CDATA #FIXED ''>
 
 <!ELEMENT inputPollingInterval (#PCDATA)>

@@ -113,6 +113,7 @@ public class Config {
 				String inputType = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/type").trim();
 				String inputPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/path").trim();
 				String inputMask = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/mask").trim();
+				String inputPattern = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/inputPattern").trim();
 				String pollingInterval = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/pollingInterval").trim();
 				String inputXSLT = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/XSLT").trim();
 
@@ -130,6 +131,7 @@ public class Config {
 				inboundInterface.setXSLTFilename(inputXSLT);
 				inboundInterface.setInputFileMask(inputMask);
 				inboundInterface.setType(inputType);
+				inboundInterface.setInputPattern(inputPattern);
 				inboundInterface.setPollingInterval(Long.valueOf(pollingInterval));
 
 				logger.debug("Loading input connector  : (" + inputId + ") " + inputDescription);

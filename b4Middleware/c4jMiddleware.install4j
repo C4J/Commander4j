@@ -35,7 +35,6 @@
       <mountPoint id="30" root="" location="xml/interface/log" mode="755" />
       <mountPoint id="32" root="" location="xml/config" mode="755" />
       <mountPoint id="33" root="" location="xml/xslt" mode="755" />
-      <mountPoint id="34" root="" location="xml/trace" mode="755" />
       <mountPoint id="239" root="" location="xml/samples" mode="755" />
       <mountPoint id="240" root="" location="xml/Project" mode="755" />
       <mountPoint id="35" root="" location="lib" mode="755" />
@@ -62,9 +61,6 @@
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="33" file="./xml/xslt" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="xslt" excludeSuffixes="" dirMode="755" overrideDirMode="false">
-        <exclude />
-      </dirEntry>
-      <dirEntry mountPoint="34" file="./xml/trace" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="trace" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="239" file="./xml/samples" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="samples" excludeSuffixes="" dirMode="755" overrideDirMode="false">

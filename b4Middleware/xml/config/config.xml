@@ -130,5 +130,23 @@
 
     </map>
 
+    <map id="map8" enabed="Y" description="ASCII Flat File Fixed Column to XML">
+
+        <input id="in1" description="Read ASCII Flat File">
+            <type>ASCII</type>
+            <path>./xml/interface/input/8 (ASCII Flat File)</path>
+            <mask/>
+            <inputPattern>1-4,18-21</inputPattern>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>ASCII_to_XML_Example.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML">
+            <path>./xml/interface/output/8 (XML)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+
+    </map>
 
 </config>

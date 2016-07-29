@@ -91,7 +91,7 @@ public class StartMain
 
 	public static void main(String[] args)
 	{
-
+		
 		String parameter = "";
 
 		if (args.length > 0)

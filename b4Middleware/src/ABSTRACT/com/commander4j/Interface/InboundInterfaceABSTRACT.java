@@ -14,6 +14,7 @@ import com.commander4j.Connector.Inbound.InboundConnectorIDOC;
 import com.commander4j.Connector.Inbound.InboundConnectorXML;
 import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.Interface.Mapping.Map;
+import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 import INTERFACE.com.commander4j.Connector.InboundConnectorINTERFACE;
@@ -36,6 +37,8 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
     private String description;
     private String id = "";
     private Logger logger = Logger.getLogger(InboundInterfaceABSTRACT.class);
+    private String inputPattern = "";
+
 
 
 	public void setDescription(String description)
@@ -175,7 +178,18 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	{
 		timerFrequency = millisec;
 	}
+	
+	public String getInputPattern()
+	{
+		return inputPattern;
+	}
+	
+	public void setInputPattern(String pattern)
+	{
+		inputPattern = Utility.replaceNullStringwithBlank(pattern);
 
+	}
+	
 	public void setType(String type)
 	{
 		this.type = type;
