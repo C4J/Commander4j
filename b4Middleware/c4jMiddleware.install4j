@@ -33,7 +33,6 @@
       <mountPoint id="26" root="" location="xml/interface/input" mode="755" />
       <mountPoint id="27" root="" location="xml/interface/output" mode="755" />
       <mountPoint id="30" root="" location="xml/interface/log" mode="755" />
-      <mountPoint id="31" root="" location="xml/interface/backup" mode="755" />
       <mountPoint id="32" root="" location="xml/config" mode="755" />
       <mountPoint id="33" root="" location="xml/xslt" mode="755" />
       <mountPoint id="34" root="" location="xml/trace" mode="755" />
@@ -57,9 +56,6 @@
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="30" file="./xml/interface/log" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="log" excludeSuffixes="" dirMode="755" overrideDirMode="false">
-        <exclude />
-      </dirEntry>
-      <dirEntry mountPoint="31" file="./xml/interface/backup" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="backup" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="32" file="./xml/config" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="config" excludeSuffixes="" dirMode="755" overrideDirMode="false">

@@ -39,9 +39,9 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT {
 
 		try
 		{
-			String destination = Common.logDir + java.io.File.separator + (new File(fullFilename)).getName()+"_backup.csv";
-			logger.debug("connectorLoad Backup [" + fullFilename + "] to ["+destination+"]");
-			FileUtils.copyFile(new File(fullFilename), new File(destination));
+			String filename_BACKUP = Common.logDir + java.io.File.separator + "Inbound Backup of "+getType()+" "+ (new File(fullFilename)).getName();
+			logger.debug("connectorLoad Backup [" + fullFilename + "] to ["+filename_BACKUP+"]");
+			FileUtils.copyFile(new File(fullFilename), new File(filename_BACKUP));
 		} catch (Exception ex)
 		{
 			logger.error("connectorLoad unable to backup [" + fullFilename + "]");

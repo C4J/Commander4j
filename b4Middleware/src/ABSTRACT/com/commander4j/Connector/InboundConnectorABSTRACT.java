@@ -1,7 +1,6 @@
 package ABSTRACT.com.commander4j.Connector;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -9,9 +8,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
-import INTERFACE.com.commander4j.Connector.InboundConnectorINTERFACE;
-
 import com.commander4j.Interface.Inbound.InboundInterface;
+
+import INTERFACE.com.commander4j.Connector.InboundConnectorINTERFACE;
 
 public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERFACE {
 	private boolean enabled = true;
@@ -59,7 +58,6 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 		setFilename(filename);
 		if (connectorLoad(inint.getInputPath() + File.separator + filename))
 		{
-			connectorBackup(filename);
 			result = true;
 			connectorDelete(filename);
 		}
@@ -107,23 +105,6 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 		return temp;
 	}
 
-	public boolean connectorBackup(String filename)
-	{
-		Boolean result = false;
-		File source = new File(inint.getInputPath() + File.separator + filename);
-		File destination = new File(inint.getBackupPath() + File.separator + filename);
-		logger.debug(inint.getDescription()+" Backup input file :"+source.getAbsolutePath()+" to : "+destination.getAbsolutePath());
-		try
-		{
-			FileUtils.copyFile(source, destination);
-			result = true;
-		} catch (IOException e)
-		{
-			result = false;
-		}
-
-		return result;
-	}
 
 	public boolean connectorDelete(String filename)
 	{

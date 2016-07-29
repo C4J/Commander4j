@@ -115,7 +115,6 @@ public class Config {
 				String inputMask = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/mask").trim();
 				String pollingInterval = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/pollingInterval").trim();
 				String inputXSLT = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/XSLT").trim();
-				String backupPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/backupPath").trim();
 
 				InboundInterface inboundInterface = new InboundInterface(map, inputDescription);
 				inboundInterface.setId(inputId);
@@ -127,7 +126,6 @@ public class Config {
 				}
 				
 				inboundInterface.setInputPath(inputPath);
-				inboundInterface.setBackupPath(backupPath);
 				inboundInterface.setXSLTPath(XSLTPath);
 				inboundInterface.setXSLTFilename(inputXSLT);
 				inboundInterface.setInputFileMask(inputMask);

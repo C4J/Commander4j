@@ -55,20 +55,23 @@ public class InboundInterface extends InboundInterfaceABSTRACT {
 			{
 				data = connector.getData();
 				
-				String filename1 = file.getName()+"_"+map.getId()+"_"+getId()+"_"+connector.getType()+"_imported"+".xml";
-				String filename2 = file.getName()+"_"+map.getId()+"_"+getId()+"_"+connector.getType()+"_transform"+".xml";
+				String filename_imported = "Inbound "+connector.getType()+" Formatted to XML ("+map.getId()+" - "+getId()+ ")" + file.getName()+".xml";
 				
-				jfileio.writeToDisk(Common.logDir, data, filename1);
+				String filename_transformed = "Inbound "+connector.getType()+" XSLT Transformed ("+map.getId()+" - "+getId()+ ")"+ file.getName()+".xml";
 				
-				source = new StreamSource(new File(Common.logDir+File.separator+filename1));
-				destination = new StreamResult(new File(Common.logDir+File.separator+filename2));
+				//String filename_transformed = "Inbound_XSLT_"+connector.getType()+"_"+map.getId()+"_"+getId()+ file.getName()+".xml";
+				
+				jfileio.writeToDisk(Common.logDir, data, filename_imported);
+				
+				source = new StreamSource(new File(Common.logDir+File.separator+filename_imported));
+				destination = new StreamResult(new File(Common.logDir+File.separator+filename_transformed));
 				xslt = new StreamSource(new File(getXSLTPath()+getXSLTFilename()));
 
 				try
 				{
 					transformer =  fact.newTransformer(xslt);
 					transformer.transform(source,destination);
-					JXMLDocument doc = new JXMLDocument(Common.logDir+File.separator+filename2);
+					JXMLDocument doc = new JXMLDocument(Common.logDir+File.separator+filename_transformed);
 					data = doc.getDocument();
 				} catch (TransformerConfigurationException e)
 				{

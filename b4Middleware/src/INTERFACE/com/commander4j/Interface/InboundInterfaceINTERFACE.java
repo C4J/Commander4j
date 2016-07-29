@@ -1,8 +1,6 @@
 package INTERFACE.com.commander4j.Interface;
 
 public interface InboundInterfaceINTERFACE {
-
-	public String getBackupPath();
 	
 	public String getDescription();
 
@@ -17,8 +15,6 @@ public interface InboundInterfaceINTERFACE {
 	public String getXSLTFilename();
 	
 	public String getXSLTPath();
-	
-	public void setBackupPath(String path);
 	
 	public void setDescription(String description);
 	

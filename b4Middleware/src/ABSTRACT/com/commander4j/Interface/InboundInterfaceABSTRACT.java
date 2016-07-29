@@ -29,7 +29,6 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	protected Map map;
     protected Document data;
     private String inputPath = "";
-    private String backupPath = "";
     private String inputFileMask = "*.*";
     private String inputFilename = "";;
     private String xsltFilename = "";
@@ -118,13 +117,6 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 		this.inputPath = path;
 	}
 	
-	
-	public void setBackupPath(String path)
-	
-	{
-		this.backupPath = path;
-	}
-	
 	public String getInputPath()
 	{
 		if (inputPath.equals(""))
@@ -132,14 +124,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 		
 		return this.inputPath;
 	}
-	
-	public String getBackupPath()
-	{
-		if (backupPath.equals(""))
-			backupPath = System.getProperty("user.dir") + File.separator + "xml" + File.separator+"interface" + File.separator + "backup";
-		return this.backupPath;
-	}
-	
+
 	public void setEnabled(boolean enable)
 	{
 		logger.debug("setEnabled "+String.valueOf(enable));

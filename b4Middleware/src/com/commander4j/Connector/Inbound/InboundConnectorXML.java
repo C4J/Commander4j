@@ -30,7 +30,7 @@ public class InboundConnectorXML extends InboundConnectorABSTRACT {
 		
 		try
 		{
-			String destination = Common.logDir + java.io.File.separator + (new File(fullFilename)).getName()+"_original.xml";
+			String destination = Common.logDir + java.io.File.separator + (new File(fullFilename)).getName()+"_backup.xml";
 			logger.debug("connectorLoad Backup [" + fullFilename + "] to ["+destination+"]");
 			FileUtils.copyFile(new File(fullFilename), new File(destination));
 		} catch (Exception ex)
