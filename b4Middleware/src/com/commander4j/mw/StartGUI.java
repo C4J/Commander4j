@@ -244,7 +244,7 @@ public class StartGUI extends JFrame
 		buttonHelp.setBounds(492, 350, 150, 38);
 		contentPane.add(buttonHelp);
 
-		JLabel lblIdDescriptionType = new JLabel("Id          Description                               Type      In       Out  Input Path");
+		JLabel lblIdDescriptionType = new JLabel("Id          Description                               Type       In      Out  Input Path");
 		lblIdDescriptionType.setForeground(Color.BLUE);
 		lblIdDescriptionType.setFont(new Font("Courier New", Font.PLAIN, 12));
 		lblIdDescriptionType.setBounds(12, 46, 653, 22);

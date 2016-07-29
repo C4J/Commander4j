@@ -47,7 +47,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT {
 
 		File dir = new File(getInputPath());
 		String[] extensions = new String[] { getInputFileMask() };
-		//logger.debug("Processing [" + dir.toString()+"]");
+
 		List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true);
 		for (File file : files) {
 			logger.debug("Processing [" + file.getName()+"]");
