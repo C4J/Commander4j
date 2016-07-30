@@ -42,7 +42,8 @@ public class Config {
 	
 	public Config()
 	{
-		Common.logDir = System.getProperty("user.dir")+java.io.File.separator+"xml"+java.io.File.separator+"interface"+java.io.File.separator+"log";
+		Common.logDir = System.getProperty("user.dir")+java.io.File.separator+"interface"+java.io.File.separator+"log";
+		
 		
 	}
 	

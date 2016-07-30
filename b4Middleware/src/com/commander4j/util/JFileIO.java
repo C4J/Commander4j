@@ -21,7 +21,7 @@ public class JFileIO
 	private String filename = "";
 	private String shortfilename = "";
 	private final Logger logger = Logger.getLogger(JFileIO.class);
-
+	
 	public boolean isValidDirectory(String directoryName)
 	{
 		boolean result = false;

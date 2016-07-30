@@ -193,15 +193,19 @@
     
     <xsl:template match='DATA [@type="Location"]'>
 
+        
         <xsl:variable name="LOCATION_PLANT" select='string(FIELD[@name="Plant"]/@value)' />
         <xsl:variable name="LOCATION_SLOC" select='string(FIELD[@name="StorageLocation"]/@value)' />
         <xsl:variable name="LOCATION_BIN" select='string(FIELD[@name="StorageBin"]/@value)' />
         <xsl:variable name="LOCATION_STATUS" select="/MESSAGE/DATA[@type='Plant']/FIELD[@name='Plant'][@value=$LOCATION_PLANT]/parent::*/FIELD[@name='MaterialStatus']/@value" />
+        <xsl:variable name="ALIAS" select="c4j:getConfigItem('location',concat(string($LOCATION_PLANT),'-',string($LOCATION_SLOC)))" />
     
+        <xsl:if test="$ALIAS!=''">
         <location>
             <id><xsl:value-of select="c4j:getConfigItem('location',concat(string($LOCATION_PLANT),'-',string($LOCATION_SLOC)))"/></id>
             <status><xsl:value-of select="c4j:getConfigItem('status',$LOCATION_STATUS)"/></status>
         </location>
+        </xsl:if>
     </xsl:template>
     
 

@@ -80,7 +80,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	public String getOutputPath()
 	{
 		if (outputPath.equals(""))
-			outputPath = System.getProperty("user.dir") + File.separator + "xml" + File.separator+"interface" + File.separator + "output";
+			outputPath = System.getProperty("user.dir") + File.separator+"interface" + File.separator + "output";
 		
 		return this.outputPath;
 	}
@@ -151,7 +151,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	public String getXSLTPath()
 	{
 		if (xsltPath.equals(""))
-			xsltPath = System.getProperty("user.dir") + File.separator + "xml" + File.separator+"interface" + File.separator + "xslt";		
+			xsltPath = System.getProperty("user.dir")  + File.separator + "xslt";		
 		return xsltPath;
 	}
 	

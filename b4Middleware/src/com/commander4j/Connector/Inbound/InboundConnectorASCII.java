@@ -70,14 +70,12 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 				{
 					int firstcol = parseCols.get(x).start;
 					int lastcol = parseCols.get(x).end;
-					//int numberOfCols = lastcol-firstcol+1;
 					
 					FixedASCIIData data = new FixedASCIIData();
 					
 					data.columnId=x+1;
 					data.columnData=line.substring(firstcol-1, lastcol);
 					result.addLast(data);
-					
 				}
 			}
 		}
@@ -96,6 +94,7 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 
 		try
 		{
+			
 			String filename_BACKUP = Common.logDir + java.io.File.separator + "Inbound Backup of " + getType() + " " + (new File(fullFilename)).getName();
 			logger.debug("connectorLoad Backup [" + fullFilename + "] to [" + filename_BACKUP + "]");
 			FileUtils.copyFile(new File(fullFilename), new File(filename_BACKUP));

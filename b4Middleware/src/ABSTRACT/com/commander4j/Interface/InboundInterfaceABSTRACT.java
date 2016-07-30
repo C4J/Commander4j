@@ -59,7 +59,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	public String getXSLTPath()
 	{
 		if (xsltPath.equals(""))
-			xsltPath = System.getProperty("user.dir") + File.separator + "xml"  + File.separator + "xslt"+ File.separator;
+			xsltPath = System.getProperty("user.dir")  + File.separator + "xslt"+ File.separator;
 		return xsltPath;
 	}
 
@@ -123,7 +123,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	public String getInputPath()
 	{
 		if (inputPath.equals(""))
-			inputPath = System.getProperty("user.dir") + File.separator + "xml" + File.separator+"interface" + File.separator + "input";
+			inputPath = System.getProperty("user.dir") + File.separator+"interface" + File.separator + "input";
 		
 		return this.inputPath;
 	}

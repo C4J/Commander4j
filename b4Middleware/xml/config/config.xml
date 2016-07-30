@@ -3,19 +3,20 @@
 
     <logPath/>
     <XSLTPath/>
+    <logArchiveRetentionDays></logArchiveRetentionDays>
 
     <map id="map1" enabed="Y" description="Konnect Material Master to C4J Material Master">
 
         <input id="in1" description="Read Konnect Material Master">
             <type>XML</type>
-            <path>./xml/interface/input/1 (Konnect - Material)</path>
+            <path>./interface/input/1 (Konnect - Material)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>KONNECT_MATERIAL_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Material Master">
-            <path>./xml/interface/output/1 (C4J - Material)</path>
+            <path>./interface/output/1 (C4J - Material)</path>
             <type>XML</type>
             <XSLT/>
         </output>
@@ -26,14 +27,14 @@
 
         <input id="in1" description="Read SAP S95 CR XML">
             <type>XML</type>
-            <path>./xml/interface/input/2 (S95 Process Order)</path>
+            <path>./interface/input/2 (S95 Process Order)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>S95_PROCESS_ORDER_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Process Order XML">
-            <path>./xml/interface/output/2 (C4J - Process Order)</path>
+            <path>./interface/output/2 (C4J - Process Order)</path>
             <type>XML</type>
             <XSLT/>
         </output>
@@ -44,14 +45,14 @@
 
         <input id="in1" description="Read CSV Example">
             <type>CSV</type>
-            <path>./xml/interface/input/3 (Comma Separated Variables)</path>
+            <path>./interface/input/3 (Comma Separated Variables)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>CSV_to_XML_Example.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write XML Example">
-            <path>./xml/interface/output/3 (XML)</path>
+            <path>./interface/output/3 (XML)</path>
             <type>XML</type>
             <XSLT/>
         </output>
@@ -62,14 +63,14 @@
 
         <input id="in1" description="Read S95 Batch Status Change">
             <type>XML</type>
-            <path>./xml/interface/input/4 (S95 Batch Status Change)</path>
+            <path>./interface/input/4 (S95 Batch Status Change)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>S95_BATCH_STATUS_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Batch Status Change">
-            <path>./xml/interface/output/4 (C4J - Batch Status Change)</path>
+            <path>./interface/output/4 (C4J - Batch Status Change)</path>
             <type>XML</type>
             <XSLT/>
         </output>
@@ -80,14 +81,14 @@
 
         <input id="in1" description="Read SAP S95 TRANSFER ORDER XML">
             <type>XML</type>
-            <path>./xml/interface/input/5 (S95 Transfer Schedule)</path>
+            <path>./interface/input/5 (S95 Transfer Schedule)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>S95_TRANSFER_SCHEDULE_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Pallet Status Change XML">
-            <path>./xml/interface/output/5 (C4J - Pallet Status Change)</path>
+            <path>./interface/output/5 (C4J - Pallet Status Change)</path>
             <type>XML</type>
             <XSLT/>
         </output>
@@ -98,14 +99,14 @@
 
         <input id="in1" description="Read SAP S95 CRST XML">
             <type>XML</type>
-            <path>./xml/interface/input/6 (S95 Process Order Status Change)</path>
+            <path>./interface/input/6 (S95 Process Order Status Change)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>S95_PROCESS_ORDER_STATUS_CHANGE_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Process Order Status Change XML">
-            <path>./xml/interface/output/6 (C4J - Process Order Status Change)</path>
+            <path>./interface/output/6 (C4J - Process Order Status Change)</path>
             <type>XML</type>
             <XSLT/>
         </output>
@@ -116,14 +117,14 @@
 
         <input id="in1" description="Read C4J Prod Dec XML">
             <type>XML</type>
-            <path>./xml/interface/input/7 (C4J Production Declaration)</path>
+            <path>./interface/input/7 (C4J Production Declaration)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write S95 Prod Dec XML">
-            <path>./xml/interface/output/7 (S95 Production Declaration)</path>
+            <path>./interface/output/7 (S95 Production Declaration)</path>
             <type>XML</type>
             <XSLT/>
         </output>
@@ -134,7 +135,7 @@
 
         <input id="in1" description="Read ASCII Flat File">
             <type>ASCII</type>
-            <path>./xml/interface/input/8 (ASCII Flat File)</path>
+            <path>./interface/input/8 (ASCII Flat File)</path>
             <mask/>
             <inputPattern>1-4,18-21</inputPattern>
             <pollingInterval>1000</pollingInterval>
@@ -142,7 +143,7 @@
         </input>
 
         <output id="out1" enabed="Y" description="Write XML">
-            <path>./xml/interface/output/8 (XML)</path>
+            <path>./interface/output/8 (XML)</path>
             <type>XML</type>
             <XSLT/>
         </output>

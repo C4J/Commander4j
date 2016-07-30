@@ -188,6 +188,7 @@ public class StartGUI extends JFrame
 					}
 				} else
 				{
+					populateList("");
 					Common.smw.StopMiddleware();
 
 					tglbtnStopStart.setBackground(Color.GREEN);

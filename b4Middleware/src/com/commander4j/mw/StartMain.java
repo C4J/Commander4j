@@ -12,7 +12,7 @@ public class StartMain
 
 	private Logger logger = Logger.getLogger(StartMain.class);
 	public Config cfg;
-	public static String version = "1.02";
+	public static String version = "1.03";
 	Boolean running = false;
 
 	public Boolean isRunning()
