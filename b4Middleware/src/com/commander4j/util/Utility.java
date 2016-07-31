@@ -15,6 +15,25 @@ import org.w3c.dom.Document;
 
 public class Utility {
 
+	public static String nvl(String value,String defaultValue)
+	{
+		String result = "";
+		
+		if (value == null)
+		{
+			value = "";
+		}
+		
+		result = value;
+		
+		if (result.equals(""))
+		{
+			result = defaultValue;
+		}
+
+		return result;
+	}
+	
 	public static synchronized String getStringFromDocument(Document doc)  {
 		
 		try{

@@ -149,5 +149,23 @@
         </output>
 
     </map>
+    
+        <map id="map9" enabed="Y" description="Tropos Material XML">
+
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/9 (TROPOS Material XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>TROPOS_Material_to_Commander4j_Material.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML">
+            <path>./interface/output/9 (C4J - Material)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+
+    </map>
 
 </config>
