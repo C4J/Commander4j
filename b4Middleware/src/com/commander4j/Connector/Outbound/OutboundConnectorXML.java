@@ -3,7 +3,7 @@ package com.commander4j.Connector.Outbound;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
@@ -14,7 +14,7 @@ import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
 public class OutboundConnectorXML extends OutboundConnectorABSTRACT {
 
-	Logger logger = Logger.getLogger(OutboundConnectorXML.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundConnectorXML.class));
 
 	public OutboundConnectorXML(OutboundInterface inter)
 	{

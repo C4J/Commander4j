@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 
 import INTERFACE.com.commander4j.Connector.OutboundConnectorINTERFACE;
@@ -34,7 +34,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
     private String xsltPath = "";    
     private String description;
     private String id;
-	Logger logger = Logger.getLogger(OutboundInterfaceABSTRACT.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundInterfaceABSTRACT.class));
 
 	public void setDescription(String description)
 	{

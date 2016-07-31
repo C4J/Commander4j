@@ -9,7 +9,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.apache.log4j.xml.DOMConfigurator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
 import org.w3c.dom.Document;
 
 public class Utility {
@@ -72,10 +73,14 @@ public class Utility {
 	{
 		if (filename.isEmpty())
 		{
-			filename = "." + File.separator + "xml" + File.separator + "config" + File.separator + "log4j.xml";
+			filename =  "xml" + File.separator + "config" + File.separator + "log4j2.xml";
 		}
+		
+        LoggerContext context = (org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false);
+        File file = new File(filename);
 
-		DOMConfigurator.configure(filename);
+        // this will force a reconfiguration
+        context.setConfigLocation(file.toURI());
 
 	}
 	

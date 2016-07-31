@@ -2,7 +2,7 @@ package com.commander4j.Interface.Mapping;
 
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
@@ -13,7 +13,8 @@ public class Map {
 	boolean enabled = true;
 	InboundInterface inboundInterface;
 	LinkedList<OutboundInterface> outboundInterface = new LinkedList<OutboundInterface>();
-	Logger logger = Logger.getLogger(Map.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((Map.class));
+
 	private String id="";
 	private String description="";
 	private Long inboundMapMsgCount = (long) 0;

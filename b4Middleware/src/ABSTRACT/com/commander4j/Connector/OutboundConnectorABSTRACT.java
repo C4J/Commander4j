@@ -1,9 +1,9 @@
 package ABSTRACT.com.commander4j.Connector;
 
-import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
+import org.apache.logging.log4j.Logger;
 
 import INTERFACE.com.commander4j.Connector.OutboundConnectorINTERFACE;
 
@@ -13,7 +13,9 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
     private boolean enabled = true;
     private String type = "";
     private String filename = "";
-	Logger logger = Logger.getLogger(OutboundConnectorABSTRACT.class);
+
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundConnectorABSTRACT.class));
+
 	private Long outboundConnectorCount = (long) 0;
 
     protected Document data;

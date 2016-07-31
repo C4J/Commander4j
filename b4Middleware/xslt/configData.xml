@@ -40,6 +40,10 @@
     <item type="SAPstatus" id="Q"><value>QI</value></item>  
     <item type="SAPstatus" id="X"><value>Restricted</value></item>  
   
-    
+    <item type="TroposUOM" id="UNIT"><value>UNI</value></item>  
+    <item type="TroposUOM" id="CASE"><value>CS</value></item>  
+    <item type="TroposUOM" id="PALL"><value>PAL</value></item>  
+    <item type="TroposUOM" id="EACH"><value>EA</value></item>  
+        
 </lookup>
 

@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 
 import com.commander4j.Connector.Inbound.InboundConnectorASCII;
@@ -36,7 +36,9 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
     private String xsltPath = "";
     private String description;
     private String id = "";
-    private Logger logger = Logger.getLogger(InboundInterfaceABSTRACT.class);
+
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundInterfaceABSTRACT.class));
+
     private String inputPattern = "";
 
 

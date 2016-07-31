@@ -9,18 +9,20 @@ import java.text.NumberFormat;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
+
 
 public class JFileIO
 {
 	private String errorMessage = "";
 	private String filename = "";
 	private String shortfilename = "";
-	private final Logger logger = Logger.getLogger(JFileIO.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((JFileIO.class));
+
 	
 	public boolean isValidDirectory(String directoryName)
 	{
@@ -104,6 +106,7 @@ public class JFileIO
 		return result;
 	}
 
+	@SuppressWarnings("deprecation")
 	public String readFiletoString(String filename)
 	{
 		String result = "";
@@ -223,6 +226,7 @@ public class JFileIO
 		return result;
 	}
 
+	@SuppressWarnings("deprecation")
 	public List<String> readFileLines(String filename)
 	{
 		List<String> result = null;

@@ -6,7 +6,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.sys.Common;
@@ -15,7 +15,7 @@ import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
 public class InboundConnectorXML extends InboundConnectorABSTRACT {
 
-	Logger logger = Logger.getLogger(InboundConnectorXML.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorABSTRACT.class));
 
 	public InboundConnectorXML(InboundInterface inter)
 	{

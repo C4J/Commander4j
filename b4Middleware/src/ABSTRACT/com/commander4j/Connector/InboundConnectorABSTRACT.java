@@ -3,7 +3,7 @@ package ABSTRACT.com.commander4j.Connector;
 import java.io.File;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -16,7 +16,7 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 	private boolean enabled = true;
 	private String type = "";
 	private String filename = "";
-	Logger logger = Logger.getLogger(InboundConnectorABSTRACT.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorABSTRACT.class));
 	private Long inboundConnectorMessageCount = (long) 0;
 
 	protected Document data;

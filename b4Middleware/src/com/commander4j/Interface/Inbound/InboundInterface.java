@@ -11,7 +11,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 
 import com.commander4j.Interface.Mapping.Map;
@@ -24,7 +24,7 @@ import ABSTRACT.com.commander4j.Interface.InboundInterfaceABSTRACT;
 
 public class InboundInterface extends InboundInterfaceABSTRACT {
 
-	Logger logger = Logger.getLogger(InboundInterface.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundInterface.class));
     JFileIO jfileio = new JFileIO();
 	TransformerFactory fact = new net.sf.saxon.TransformerFactoryImpl();
 	StreamSource source;

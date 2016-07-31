@@ -12,15 +12,17 @@
     <path id="b4Middleware.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/junit-4.11.jar"/>
-        <pathelement location="lib/commons-codec-1.5.jar"/>
-        <pathelement location="lib/commons-io-2.4.jar"/>
-        <pathelement location="lib/commons-logging-1.1.jar"/>
-        <pathelement location="lib/log4j-1.2.13.jar"/>
-        <pathelement location="lib/poi-3.14-20160307.jar"/>
+        <pathelement location="lib/commons-codec-1.10.jar"/>
+        <pathelement location="lib/commons-io-2.5.jar"/>
+        <pathelement location="lib/commons-logging-1.2.jar"/>
+        <pathelement location="lib/log4j-api-2.6.2.jar"/>
+        <pathelement location="lib/log4j-core-2.6.2.jar"/>
+    	<pathelement location="lib/poi-3.14-20160307.jar"/>
         <pathelement location="lib/poi-ooxml-3.14-20160307.jar"/>
         <pathelement location="lib/poi-ooxml-schemas-3.14-20160307.jar"/>
-        <pathelement location="lib/saxon9he.jar"/>
-        <pathelement location="lib/opencsv-3.8.jar"/>
+        <pathelement location="lib/saxon9.jar"/>
+        <pathelement location="lib/saxon9-dom.jar"/>
+    	<pathelement location="lib/opencsv-3.8.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>

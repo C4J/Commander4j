@@ -2,7 +2,7 @@ package com.commander4j.mw;
 
 import java.io.File;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Config;
 import com.commander4j.util.Utility;
@@ -10,7 +10,7 @@ import com.commander4j.util.Utility;
 public class StartMain
 {
 
-	private Logger logger = Logger.getLogger(StartMain.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((StartMain.class));
 	public Config cfg;
 	public static String version = "1.03";
 	Boolean running = false;

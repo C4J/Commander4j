@@ -12,7 +12,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
@@ -26,7 +26,7 @@ import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 public class InboundConnectorASCII extends InboundConnectorABSTRACT
 {
 
-	Logger logger = Logger.getLogger(InboundConnectorCSV.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorCSV.class));
 	JFileIO jfileio = new JFileIO();
     private LinkedList<FixedASCIIColumns> parseCols = new LinkedList<FixedASCIIColumns>();
 

@@ -2,7 +2,7 @@ package com.commander4j.sys;
 
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.Interface.Mapping.Map;
@@ -13,7 +13,7 @@ import com.commander4j.util.Utility;
 
 public class Config {
 
-	Logger logger = Logger.getLogger(Config.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((Config.class));
 	LinkedList<Map> maps = new LinkedList<Map>();
 	LinkedList<String> directoryErrors = new LinkedList<String>();
 	JFileIO fio = new JFileIO();
@@ -76,7 +76,6 @@ public class Config {
 		String configName = "";
 		//String backupPath = "";
 		String XSLTPath = "";
-		Logger logger = Logger.getLogger(Config.class);
 
 		int mapSeq = 1;
 

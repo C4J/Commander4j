@@ -1,6 +1,6 @@
 package com.commander4j.Connector.Outbound;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.util.JXMLDocument;
@@ -10,7 +10,7 @@ import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
 public class OutboundConnectorCSV extends OutboundConnectorABSTRACT {
 
-	Logger logger = Logger.getLogger(OutboundConnectorCSV.class);
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundConnectorCSV.class));
 
 	public OutboundConnectorCSV(OutboundInterface inter)
 	{
