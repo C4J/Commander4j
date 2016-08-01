@@ -54,7 +54,7 @@ public class Map {
 			}
 		}
 		
-		return Utility.padString(getId(),true,10," ") + "  " + Utility.padString(getDescription(),true,40," ") + "  "+Utility.padString(getInboundInterface().getType(),true,5," ") + "  "+Utility.padString(outboundTypeList,true,12," ") +Utility.padString(getInboundMapMessageCount().toString(),false,8," ")+" "+Utility.padString(getOutboundMapMessageCount().toString(),false,8," ") +"  ["+getInboundInterface().getInputPath()+"]";
+		return Utility.padString(getId(),true,10," ") + "  " + Utility.padString(getDescription(),true,40," ") + "  "+Utility.padString(getInboundInterface().getType(),true,5," ") + "  "+Utility.padString(outboundTypeList,true,12," ") +Utility.padString(getInboundMapMessageCount().toString(),false,8," ")+" "+Utility.padString(getOutboundMapMessageCount().toString(),false,8," ") +"  "+getInboundInterface().getXSLTFilename();
 	}
 	
 	

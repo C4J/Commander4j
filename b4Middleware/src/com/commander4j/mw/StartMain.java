@@ -12,7 +12,7 @@ public class StartMain
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((StartMain.class));
 	public Config cfg;
-	public static String version = "1.03";
+	public static String version = "1.04";
 	Boolean running = false;
 
 	public Boolean isRunning()
