@@ -37,7 +37,24 @@ public class Map {
 	
 	public String toString()
 	{
-		return Utility.padString(getId(),true,10," ") + "  " + Utility.padString(getDescription(),true,40," ") + "  "+Utility.padString(getInboundInterface().getType(),true,5," ") +Utility.padString(getInboundMapMessageCount().toString(),false,8," ")+" "+Utility.padString(getOutboundMapMessageCount().toString(),false,8," ") +"  ["+getInboundInterface().getInputPath()+"]";
+		int OutboundIntCount = getNumberofOutboundInterfaces();
+		String outboundTypeList="";
+		
+		if (OutboundIntCount>0)
+		{
+			for (int x=0;x<OutboundIntCount;x++)
+			{
+				getOutBoundInterface(x).getType();
+				if (x>0)
+				{
+					outboundTypeList = outboundTypeList + "\\";
+				}
+				outboundTypeList=getOutBoundInterface(x).getType();
+				
+			}
+		}
+		
+		return Utility.padString(getId(),true,10," ") + "  " + Utility.padString(getDescription(),true,40," ") + "  "+Utility.padString(getInboundInterface().getType(),true,5," ") + "  "+Utility.padString(outboundTypeList,true,12," ") +Utility.padString(getInboundMapMessageCount().toString(),false,8," ")+" "+Utility.padString(getOutboundMapMessageCount().toString(),false,8," ") +"  ["+getInboundInterface().getInputPath()+"]";
 	}
 	
 	
@@ -87,6 +104,17 @@ public class Map {
 		return this.inboundInterface;
 	}
 
+	public int getNumberofOutboundInterfaces()
+	{
+		int result = outboundInterface.size();
+		return result;
+	}
+	
+	public OutboundInterface getOutBoundInterface(int index)
+	{
+		return outboundInterface.get(index);
+	}
+	
 	public void setInboundInterface(InboundInterface inint)
 	{
 		this.inboundInterface = inint;

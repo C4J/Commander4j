@@ -126,7 +126,7 @@ public class StartGUI extends JFrame
 		setTitle("Commander4j Middleware" + " " + StartMain.version);
 		Utility.initLogging("");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 920, 467);
+		setBounds(100, 100, 1058, 467);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -147,7 +147,7 @@ public class StartGUI extends JFrame
 				ConfirmExit();
 			}
 		});
-		btnClose.setBounds(706, 350, 150, 38);
+		btnClose.setBounds(699, 350, 150, 38);
 		contentPane.add(btnClose);
 
 		tglbtnStopStart = new JToggleButton(Common.icon_ok);
@@ -199,16 +199,16 @@ public class StartGUI extends JFrame
 				}
 			}
 		});
-		tglbtnStopStart.setBounds(64, 350, 150, 38);
+		tglbtnStopStart.setBounds(212, 350, 150, 38);
 		contentPane.add(tglbtnStopStart);
 
 		panelStatus.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelStatus.setBounds(0, 415, 908, 30);
+		panelStatus.setBounds(0, 415, 1027, 30);
 		contentPane.add(panelStatus);
 		panelStatus.setLayout(null);
 
 		lblStatus.setFont(new Font("Dialog", Font.PLAIN, 12));
-		lblStatus.setBounds(12, 0, 884, 25);
+		lblStatus.setBounds(12, 0, 1003, 25);
 		lblStatus.setHorizontalAlignment(SwingConstants.LEFT);
 		panelStatus.add(lblStatus);
 
@@ -234,7 +234,7 @@ public class StartGUI extends JFrame
 
 		JScrollPane scrollPaneMaps = new JScrollPane();
 		scrollPaneMaps.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneMaps.setBounds(12, 65, 896, 267);
+		scrollPaneMaps.setBounds(12, 65, 1034, 267);
 		contentPane.add(scrollPaneMaps);
 
 		scrollPaneMaps.setViewportView(listMaps);
@@ -242,13 +242,13 @@ public class StartGUI extends JFrame
 		JButton buttonHelp = new JButton((Icon) null);
 		buttonHelp.setFont(new Font("Dialog", Font.PLAIN, 12));
 		buttonHelp.setText("Help");
-		buttonHelp.setBounds(492, 350, 150, 38);
+		buttonHelp.setBounds(537, 350, 150, 38);
 		contentPane.add(buttonHelp);
 
-		JLabel lblIdDescriptionType = new JLabel("Id          Description                               Type       In      Out  Input Path");
+		JLabel lblIdDescriptionType = new JLabel("Id          Description                               Input   Output(s)        In      Out  Input Path");
 		lblIdDescriptionType.setForeground(Color.BLUE);
 		lblIdDescriptionType.setFont(new Font("Courier New", Font.PLAIN, 12));
-		lblIdDescriptionType.setBounds(12, 46, 653, 22);
+		lblIdDescriptionType.setBounds(12, 46, 883, 22);
 		contentPane.add(lblIdDescriptionType);
 
 		JButton btnRefresh = new JButton((Icon) null);
@@ -261,7 +261,7 @@ public class StartGUI extends JFrame
 		});
 		btnRefresh.setText("Refresh");
 		btnRefresh.setFont(new Font("Dialog", Font.PLAIN, 12));
-		btnRefresh.setBounds(278, 350, 150, 38);
+		btnRefresh.setBounds(375, 350, 150, 38);
 		contentPane.add(btnRefresh);
 	}
 }
