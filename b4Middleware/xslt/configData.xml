@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lookup>
+    
     <item type="config" id="HostRef"><value>WRLIVE</value></item>    
     <item type="config" id="Plant"><value>7786</value></item>
     <item type="config" id="Warehouse"><value>PLY</value></item>
@@ -44,6 +45,12 @@
     <item type="TroposUOM" id="CASE"><value>CS</value></item>  
     <item type="TroposUOM" id="PALL"><value>PAL</value></item>  
     <item type="TroposUOM" id="EACH"><value>EA</value></item>  
-        
+   
+    <item type="TroposStatus" id="RELEASED"><value>Ready</value></item>  
+    <item type="TroposStatus" id="DETAILS CHANGED"><value>Ready</value></item>  
+    <item type="TroposStatus" id="RELEASE CANCELLED"><value>Discarded</value></item>  
+    <item type="TroposStatus" id="ORDER_CLOSED"><value>Finished</value></item>     
+    <item type="TroposStatus" id="ORDER RE-OPENED"><value>Ready</value></item>    
+ 
 </lookup>
 

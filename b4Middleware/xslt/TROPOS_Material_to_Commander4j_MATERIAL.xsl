@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:c4j="http://www.commander4j.com"
-	xmlns:tgi="http://xml.apache.org/xalan/java/com.commander4j.util.Utility"
+	xmlns:c4j_XSLT_Ext="http://xml.apache.org/xalan/java/com.commander4j.Transformation.XSLTExtension"
 	exclude-result-prefixes="xs"  version="2.0">
 	
 	<xsl:output encoding="UTF-8" indent='yes' method="xml" />
@@ -19,7 +19,7 @@
 		  <xsl:param name="stock_conv" select='STOCK_UOM_PER_PALL' />
 		  <xsl:param name="pack_conv_temp" select='UOM_STOCK_BASE_UOM' />
       	
-      	  <xsl:param name="pack_conv"  select="tgi:nvl($pack_conv_temp,'1')" xmlns:nd="com.commander4j.xslt.functions"/>
+      	<xsl:param name="pack_conv"  select="c4j_XSLT_Ext:nvl($pack_conv_temp,'1')" xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
       	
 		  <xsl:param name="base_uom" select='UOM_BASE' />
 		  <xsl:param name="stock_uom" select='UOM_STOCK' />
@@ -27,7 +27,7 @@
 		  <xsl:param name="variant" select='VAR_CODE' />
 		  <xsl:param name="pallet_quantity" select="number($stock_conv) * number($pack_conv)" />
 		  <xsl:param name="layers_per_pallet_temp" select='LAYER_PER_PALLET' />
-          <xsl:param name="layers_per_pallet"  select="tgi:nvl($layers_per_pallet_temp,'1')" xmlns:nd="com.commander4j.xslt.functions"/>
+      	<xsl:param name="layers_per_pallet"  select="c4j_XSLT_Ext:nvl($layers_per_pallet_temp,'1')" xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
 		  <xsl:param name="layers_per_pallet_numerator" select="number($pallet_quantity) div number($layers_per_pallet)" />
 		  <xsl:param name="customerID" select="CUST_CODE" />
 
@@ -65,10 +65,10 @@
 				  </materialUOMDefinition>
 				  <materialUOMDefinition>
 				  	     <uom><xsl:value-of select="c4j:getConfigItem('TroposUOM',$stock_uom)"/></uom>
-					    <numerator><xsl:value-of select='UOM_STOCK_BASE_UOM' /></numerator>
+					    <numerator><xsl:value-of select='$pack_conv' /></numerator>
 					    <denominator>1</denominator>
-					    <ean><xsl:value-of select='ANA' /></ean>
-				  	<variant><xsl:value-of select='$variant' /></variant>
+					    <ean><xsl:value-of select='EAN_CASE' /></ean>
+				  	<variant><xsl:value-of select="c4j_XSLT_Ext:padVariant($variant)" xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/></variant>		  	    
 				  </materialUOMDefinition>
 				  <materialUOMDefinition>
 				  	  <uom><xsl:value-of select="c4j:getConfigItem('TroposUOM',$pallet_uom)"/></uom>
@@ -90,6 +90,9 @@
 					   <customer><xsl:attribute name="ID"><xsl:value-of select='CUST_CODE' /></xsl:attribute>
 						   <data><xsl:attribute name="dataType">PART_NO</xsl:attribute> <xsl:attribute name="value"><xsl:value-of select='CUST_PART_NO' /></xsl:attribute></data>
 						   <data><xsl:attribute name="dataType">NAME</xsl:attribute> <xsl:attribute name="value"><xsl:value-of select='CUST_NAME' /></xsl:attribute></data>
+					   	<data><xsl:attribute name="dataType">CU_EAN</xsl:attribute> <xsl:attribute name="value"><xsl:value-of select='EAN_UNIT' /></xsl:attribute></data>
+					   	<data><xsl:attribute name="dataType">CU_QUANTITY</xsl:attribute><xsl:attribute name="value"><xsl:value-of select='CASE_UNIT_FAC' /></xsl:attribute></data>
+					   	
 					   </customer>
 					</materialCustomerData>
 				</materialDefinition>

@@ -23,7 +23,7 @@ public class StartMain
 	public Boolean StartMiddleware()
 	{
 		Boolean result = true;
-
+		
 		logger.debug("Application starting");
 		Utility.initLogging("");
 

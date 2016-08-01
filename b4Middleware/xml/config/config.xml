@@ -167,5 +167,23 @@
         </output>
 
     </map>
+    
+    <map id="map10" enabed="Y" description="Tropos Works Order XML">
+
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/10 (TROPOS Works Order)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>TROPOS_WorksOrder_to_Commander4j_Process_Order.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML">
+            <path>./interface/output/10 (C4J - Process Order)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+
+    </map>
 
 </config>

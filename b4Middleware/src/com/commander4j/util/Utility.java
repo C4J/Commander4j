@@ -15,7 +15,7 @@ import org.w3c.dom.Document;
 
 public class Utility {
 
-	public static String nvl(String value,String defaultValue)
+	public static synchronized String nvl(String value,String defaultValue)
 	{
 		String result = "";
 		
