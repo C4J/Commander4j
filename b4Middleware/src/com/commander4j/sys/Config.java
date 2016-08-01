@@ -148,7 +148,12 @@ public class Config {
 					String outputType = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/type").trim();
 					String outputPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/path").trim();
 					String outputXSLT = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/XSLT").trim();
+					String outputPattern = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/outputPattern").trim();
+					String optionDelimeter = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/optionDelimeter").trim();
+					String csvOptions = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/csvOptions").trim();
 
+					
+					
 					OutboundInterface outboundInterface = new OutboundInterface(map, outputDescription);
 					outboundInterface.setId(outputId);
 					outboundInterface.setDescription(outputDescription);
@@ -156,6 +161,9 @@ public class Config {
 					outboundInterface.setOutputPath(outputPath);
 					outboundInterface.setXSLTPath(XSLTPath);
 					outboundInterface.setXSLTFilename(outputXSLT);
+					outboundInterface.setOutputPattern(outputPattern);
+					outboundInterface.setCSVOptions(csvOptions);
+					outboundInterface.setOptionDelimeter(optionDelimeter);
 					
 					if (fio.isValidDirectory(outputPath)==false)
 					{

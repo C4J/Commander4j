@@ -193,12 +193,14 @@
             <path>./interface/input/11 (C4J - Production Declaration)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT>C4J_PRODDEC_XML_to_TROPOS_GoodsReceipt2_CSV.xsl</XSLT>
+            <XSLT>C4J_PRODDEC_XML_to_TROPOS_GoodsReceipt_CSV.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write XML">
             <path>./interface/output/11 (TROPOS - Goods Receipt)</path>
             <type>CSV</type>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=none</csvOptions>
             <XSLT/>
         </output>
 

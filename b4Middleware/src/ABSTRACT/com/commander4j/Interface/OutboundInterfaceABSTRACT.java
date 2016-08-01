@@ -17,6 +17,7 @@ import com.commander4j.Connector.Outbound.OutboundConnectorIDOC;
 import com.commander4j.Connector.Outbound.OutboundConnectorXML;
 import com.commander4j.Interface.Mapping.Map;
 import com.commander4j.Interface.Outbound.OutboundInterface;
+import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
@@ -35,6 +36,9 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
     private String description;
     private String id;
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundInterfaceABSTRACT.class));
+    private String outputPattern = "";
+    private String csvOptions = "";
+    private String delimeter="";
 
 	public void setDescription(String description)
 	{
@@ -119,6 +123,39 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	public String getType()
 	{
 		return type;
+	}
+	
+	public String getOutputPattern()
+	{
+		return outputPattern;
+	}
+	
+	public void setOutputPattern(String pattern)
+	{
+		outputPattern = Utility.replaceNullStringwithBlank(pattern);
+
+	}
+	
+	public String getCSVOptions()
+	{
+		return csvOptions;
+	}
+	
+	public void setCSVOptions(String options)
+	{
+		csvOptions = Utility.replaceNullStringwithBlank(options);
+
+	}
+	
+	public String getOptionDelimeter()
+	{
+		return delimeter;
+	}
+	
+	public void setOptionDelimeter(String value)
+	{
+		delimeter = Utility.replaceNullStringwithBlank(value);
+
 	}
 
 	public void setType(String type)

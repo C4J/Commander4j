@@ -1,6 +1,7 @@
 package com.commander4j.Connector.Outbound;
 
 import java.io.FileWriter;
+import java.util.LinkedList;
 
 import javax.xml.transform.TransformerException;
 
@@ -17,16 +18,61 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 {
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundConnectorCSV.class));
-
+	private LinkedList<String> parseOptions = new LinkedList<String>();
+	boolean disableQuotes = false;
+	char seperator = ',';
+	char quote = '"';
+	
 	public OutboundConnectorCSV(OutboundInterface inter)
 	{
 		super(Connector_CSV, inter);
+	}
+
+	private void getCSVOptions()
+	{
+		String options = getOutboundInterface().getCSVOptions();
+		String delimeter = getOutboundInterface().getOptionDelimeter();
+		parsePattern(options, delimeter);
+	}
+
+	private void parsePattern(String pattern, String delim)
+	{
+		parseOptions.clear();
+		delim = "\\"+delim;
+		String[] opts = pattern.split(delim);
+		for (int x = 0; x < opts.length; x++)
+		{
+			String two = opts[x];
+			String[] three = two.split("=");
+
+			String opt = three[0];
+			String val = three[1];
+
+			switch (opt)
+			{
+			case "separator":
+				seperator = val.charAt(0);
+				break;
+			case "quote":
+				quote = val.charAt(0);
+				if (val.equals("none"))
+				{
+					disableQuotes=true;
+				}
+				break;				
+			default:
+				opt = "";
+				break;
+			}
+		}
 	}
 
 	@Override
 	public boolean connectorSave(String filename)
 	{
 		boolean result = false;
+
+		getCSVOptions();
 
 		logger.debug("connectorSave [" + filename + "." + getType().toLowerCase() + "]");
 
@@ -47,11 +93,6 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 		}
 		int rows = Integer.valueOf(rw);
 
-		String separator = Utility.replaceNullStringwithBlank(document.findXPath("//data/@separator").trim());
-		char sep = separator.charAt(0);
-		
-		boolean disableQuotes = Boolean.valueOf(Utility.replaceNullStringwithBlank(document.findXPath("//data/@disableQuotes").trim()));
-		
 		try
 		{
 			System.out.println(document.documentToString(getData()));
@@ -70,11 +111,11 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 					CSVWriter writer;
 					if (disableQuotes)
 					{
-						writer =  new CSVWriter(new FileWriter(filename+"."+getType().toLowerCase() ), sep, CSVWriter.NO_QUOTE_CHARACTER);
-					}
-					else
+						writer = new CSVWriter(new FileWriter(filename + "." + getType().toLowerCase()), seperator,
+								CSVWriter.NO_QUOTE_CHARACTER);
+					} else
 					{
-						writer = new CSVWriter(new FileWriter(filename+"."+getType().toLowerCase() ), sep);
+						writer = new CSVWriter(new FileWriter(filename + "." + getType().toLowerCase()), seperator);
 					}
 
 					String[] csvrow = new String[columns];
@@ -87,7 +128,8 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 									+ "']";
 							String data = Utility.replaceNullStringwithBlank(document.findXPath(xpath).trim());
 							csvrow[c - 1] = data;
-							logger.debug("row=["+ String.valueOf(r) +"] col=["+ String.valueOf(c) +"] data=["+data+"]");
+							logger.debug("row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] data=[" + data
+									+ "]");
 						}
 
 						writer.writeNext(csvrow);
