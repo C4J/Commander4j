@@ -3,7 +3,7 @@
 
     <logPath/>
     <XSLTPath/>
-    <logArchiveRetentionDays></logArchiveRetentionDays>
+    <logArchiveRetentionDays/>
 
     <map id="map1" enabed="Y" description="Konnect Material Master to C4J Material Master">
 
@@ -149,8 +149,8 @@
         </output>
 
     </map>
-    
-        <map id="map9" enabed="Y" description="Tropos Material XML">
+
+    <map id="map9" enabed="Y" description="Tropos Material XML">
 
         <input id="in1" description="Read XML File">
             <type>XML</type>
@@ -167,7 +167,7 @@
         </output>
 
     </map>
-    
+
     <map id="map10" enabed="Y" description="Tropos Works Order XML">
 
         <input id="in1" description="Read XML File">
@@ -181,6 +181,24 @@
         <output id="out1" enabed="Y" description="Write XML">
             <path>./interface/output/10 (C4J - Process Order)</path>
             <type>XML</type>
+            <XSLT/>
+        </output>
+
+    </map>
+
+    <map id="map11" enabed="Y" description="C4J Production Declaration to TROPOS Goods Receipt">
+
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/11 (C4J - Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_to_TROPOS_GoodsReceipt2_CSV.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML">
+            <path>./interface/output/11 (TROPOS - Goods Receipt)</path>
+            <type>CSV</type>
             <XSLT/>
         </output>
 

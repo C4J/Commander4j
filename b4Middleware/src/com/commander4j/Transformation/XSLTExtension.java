@@ -75,4 +75,43 @@ public class XSLTExtension
 		return result;
 	}
 	
+	
+	public static  synchronized String formatDate(String inputString,String formatFrom,String formatTo)
+	{
+		String result = inputString;
+		
+		SimpleDateFormat fromUser = new SimpleDateFormat(formatFrom);
+		SimpleDateFormat myFormat = new SimpleDateFormat(formatTo);
+
+		try {
+
+		    result = myFormat.format(fromUser.parse(inputString));
+		    
+		} catch (Exception e) {
+			
+			result = e.getMessage() + "["+inputString+"],["+formatFrom+"],["+formatTo+"]";
+			
+		}
+		
+		return result;
+	}
+	
+	public static  synchronized String removeCommas(String inputString)
+	{
+		String result = inputString;
+		
+		result = result.replace(","," ");
+		
+		return result;
+	}	
+	
+	public static  synchronized String subString(String inputString,int startpos,int length)
+	{
+		String result = inputString;
+		
+		result = result.substring(startpos, startpos+length);
+		
+		return result;
+	}
+	
 }
