@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.Connector.Inbound.InboundConnectorCSV;
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.sys.FixedASCIIColumns;
-import com.commander4j.sys.FixedASCIIData;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JXMLDocument;
 import com.commander4j.util.Utility;
@@ -55,31 +54,6 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 			col.end = end;
 			parseCols.add(col);
 		}
-	}
-
-	private LinkedList<FixedASCIIData> getASCIIColumnData(String line)
-	{
-		LinkedList<FixedASCIIData> result = new LinkedList<FixedASCIIData>();
-
-		if (parseCols.size() > 0)
-		{
-			if (line.length() > 0)
-			{
-				for (int x = 0; x < parseCols.size(); x++)
-				{
-					int firstcol = parseCols.get(x).start;
-					int lastcol = parseCols.get(x).end;
-
-					FixedASCIIData data = new FixedASCIIData();
-
-					data.columnId = x + 1;
-					data.columnData = line.substring(firstcol - 1, lastcol);
-					result.addLast(data);
-				}
-			}
-		}
-
-		return result;
 	}
 
 	@Override

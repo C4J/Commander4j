@@ -47,9 +47,9 @@ public class Map {
 				getOutBoundInterface(x).getType();
 				if (x>0)
 				{
-					outboundTypeList = outboundTypeList + "\\";
+					outboundTypeList = outboundTypeList + "+";
 				}
-				outboundTypeList=getOutBoundInterface(x).getType();
+				outboundTypeList=outboundTypeList + getOutBoundInterface(x).getType();
 				
 			}
 		}

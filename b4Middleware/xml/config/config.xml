@@ -196,7 +196,7 @@
             <XSLT>C4J_PRODDEC_XML_to_TROPOS_GoodsReceipt_CSV.xsl</XSLT>
         </input>
 
-        <output id="out1" enabed="Y" description="Write XML">
+        <output id="out1" enabed="Y" description="Write CSV">
             <path>./interface/output/11 (TROPOS - Goods Receipt)</path>
             <type>CSV</type>
             <optionDelimeter>^</optionDelimeter>
@@ -207,7 +207,7 @@
     </map>
 
     <map id="map12" enabed="Y" description="C4J Production Declaration to ASCII Flat File">
-        
+
         <input id="in1" description="Read XML File">
             <type>XML</type>
             <path>./interface/input/12 (C4J - Production Declaration)</path>
@@ -215,11 +215,38 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write ASCII File">
             <path>./interface/output/12 (ASCII Prod Dec)</path>
             <type>ASCII</type>
             <outputPattern>1-10,12-21,23-32</outputPattern>
+            <XSLT/>
+        </output>
+
+    </map>
+    
+    <map id="map13" enabed="Y" description="C4J Production Dec to ASCII and CSV Files">
+        
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/13 (C4J - Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write ASCII File">
+            <path>./interface/output/13 (Mixed Output)</path>
+            <type>ASCII</type>
+            <outputPattern>1-10,12-21,23-32</outputPattern>
+            <XSLT/>
+        </output>
+        
+        <output id="out2" enabed="Y" description="Write CSV">
+            <path>./interface/output/13 (Mixed Output)</path>
+            <type>CSV</type>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=none</csvOptions>
             <XSLT/>
         </output>
         
