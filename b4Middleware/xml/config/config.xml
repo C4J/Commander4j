@@ -206,4 +206,23 @@
 
     </map>
 
+    <map id="map12" enabed="Y" description="C4J Production Declaration to ASCII Flat File">
+        
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/12 (C4J - Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write ASCII File">
+            <path>./interface/output/12 (ASCII Prod Dec)</path>
+            <type>ASCII</type>
+            <outputPattern>1-10,12-21,23-32</outputPattern>
+            <XSLT/>
+        </output>
+        
+    </map>
+
 </config>

@@ -80,7 +80,7 @@ public class Map {
 	
 	public void setEnabled(boolean yesno)
 	{
-		logger.debug("setEnabled "+String.valueOf(yesno));
+		logger.debug("Map ["+getId()+"] Description ["+getDescription()+"] setEnabled "+String.valueOf(yesno));
 		if (yesno==true)
 		{
 			for (int x = 0; x < outboundInterface.size(); x++)
