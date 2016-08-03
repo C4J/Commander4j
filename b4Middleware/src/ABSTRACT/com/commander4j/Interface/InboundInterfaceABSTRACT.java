@@ -41,8 +41,6 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 
     private String inputPattern = "";
 
-
-
 	public void setDescription(String description)
 	{
 		this.description = description;
@@ -129,7 +127,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 		
 		return this.inputPath;
 	}
-
+	
 	public void setEnabled(boolean enable)
 	{
 		logger.debug("setEnabled "+String.valueOf(enable));

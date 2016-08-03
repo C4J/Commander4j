@@ -147,7 +147,7 @@ public class StartGUI extends JFrame
 				ConfirmExit();
 			}
 		});
-		btnClose.setBounds(699, 350, 150, 38);
+		btnClose.setBounds(701, 365, 150, 38);
 		contentPane.add(btnClose);
 
 		tglbtnStopStart = new JToggleButton(Common.icon_ok);
@@ -199,7 +199,7 @@ public class StartGUI extends JFrame
 				}
 			}
 		});
-		tglbtnStopStart.setBounds(212, 350, 150, 38);
+		tglbtnStopStart.setBounds(214, 365, 150, 38);
 		contentPane.add(tglbtnStopStart);
 
 		panelStatus.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -234,7 +234,7 @@ public class StartGUI extends JFrame
 
 		JScrollPane scrollPaneMaps = new JScrollPane();
 		scrollPaneMaps.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneMaps.setBounds(12, 65, 1034, 267);
+		scrollPaneMaps.setBounds(12, 65, 1034, 287);
 		contentPane.add(scrollPaneMaps);
 
 		scrollPaneMaps.setViewportView(listMaps);
@@ -242,7 +242,7 @@ public class StartGUI extends JFrame
 		JButton buttonHelp = new JButton((Icon) null);
 		buttonHelp.setFont(new Font("Dialog", Font.PLAIN, 12));
 		buttonHelp.setText("Help");
-		buttonHelp.setBounds(537, 350, 150, 38);
+		buttonHelp.setBounds(539, 365, 150, 38);
 		contentPane.add(buttonHelp);
 
 		JLabel lblIdDescriptionType = new JLabel("Id          Description                               Input   Output(s)        In      Out  XSLT Filename");
@@ -261,7 +261,7 @@ public class StartGUI extends JFrame
 		});
 		btnRefresh.setText("Refresh");
 		btnRefresh.setFont(new Font("Dialog", Font.PLAIN, 12));
-		btnRefresh.setBounds(375, 350, 150, 38);
+		btnRefresh.setBounds(377, 365, 150, 38);
 		contentPane.add(btnRefresh);
 	}
 }

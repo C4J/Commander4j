@@ -95,7 +95,7 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 			{
 				try
 				{
-					FileWriter fw = new FileWriter(filename + "." + getType().toLowerCase());
+					FileWriter fw = new FileWriter(filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase());
 
 					// Read new row value from XML
 					

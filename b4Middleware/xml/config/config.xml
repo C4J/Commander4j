@@ -233,12 +233,14 @@
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
+            <intputFileExtension>xml</intputFileExtension>
         </input>
         
         <output id="out1" enabed="Y" description="Write ASCII File">
             <path>./interface/output/13 (Mixed Output)</path>
             <type>ASCII</type>
             <outputPattern>1-10,12-21,23-32</outputPattern>
+            <outputFileExtension>txt</outputFileExtension>
             <XSLT/>
         </output>
         

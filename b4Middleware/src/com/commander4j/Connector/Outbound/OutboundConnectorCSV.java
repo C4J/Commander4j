@@ -111,11 +111,11 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 					CSVWriter writer;
 					if (disableQuotes)
 					{
-						writer = new CSVWriter(new FileWriter(filename + "." + getType().toLowerCase()), seperator,
+						writer = new CSVWriter(new FileWriter(filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase()), seperator,
 								CSVWriter.NO_QUOTE_CHARACTER);
 					} else
 					{
-						writer = new CSVWriter(new FileWriter(filename + "." + getType().toLowerCase()), seperator);
+						writer = new CSVWriter(new FileWriter(filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase()), seperator);
 					}
 
 					String[] csvrow = new String[columns];

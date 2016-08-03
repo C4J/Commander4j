@@ -151,8 +151,7 @@ public class Config {
 					String outputPattern = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/outputPattern").trim();
 					String optionDelimeter = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/optionDelimeter").trim();
 					String csvOptions = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/csvOptions").trim();
-
-					
+					String outputFileExtension  = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/outputFileExtension").trim();
 					
 					OutboundInterface outboundInterface = new OutboundInterface(map, outputDescription);
 					outboundInterface.setId(outputId);
@@ -164,6 +163,7 @@ public class Config {
 					outboundInterface.setOutputPattern(outputPattern);
 					outboundInterface.setCSVOptions(csvOptions);
 					outboundInterface.setOptionDelimeter(optionDelimeter);
+					outboundInterface.setOutputFileExtension(outputFileExtension);
 					
 					if (fio.isValidDirectory(outputPath)==false)
 					{

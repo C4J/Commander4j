@@ -39,6 +39,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
     private String outputPattern = "";
     private String csvOptions = "";
     private String delimeter="";
+    private String outputFileExtension = "";
 
 	public void setDescription(String description)
 	{
@@ -79,6 +80,19 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	
 	{
 		this.outputPath = path;
+	}
+	
+	public void setOutputFileExtension(String extension)
+	{
+		if (Utility.replaceNullStringwithBlank(extension).equals("")==false)
+		{
+			this.outputFileExtension = extension;
+		}
+	}	
+	
+	public String getOutputFileExtension()
+	{
+		return this.outputFileExtension;
 	}
 	
 	public String getOutputPath()
@@ -166,18 +180,23 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 		{
 		case OutboundConnectorINTERFACE.Connector_ASCII:
 			connector = new OutboundConnectorASCII((OutboundInterface) this);
+			setOutputFileExtension("txt");
 			break;
 		case OutboundConnectorINTERFACE.Connector_CSV:
 			connector = new OutboundConnectorCSV((OutboundInterface) this);
+			setOutputFileExtension("csv");
 			break;
 		case OutboundConnectorINTERFACE.Connector_DB:
 			connector = new OutboundConnectorDB((OutboundInterface) this);
+			setOutputFileExtension("db");
 			break;
 		case OutboundConnectorINTERFACE.Connector_IDOC:
 			connector = new OutboundConnectorIDOC((OutboundInterface) this);
+			setOutputFileExtension("idoc");
 			break;
 		case OutboundConnectorINTERFACE.Connector_XML:
 			connector = new OutboundConnectorXML((OutboundInterface) this);
+			setOutputFileExtension("xml");
 			break;			
 		default:
 			throw new IllegalArgumentException();

@@ -27,7 +27,7 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT {
 		boolean result = false;
 		
 		
-		logger.debug("connectorSave [" + filename+"."+getType().toLowerCase() + "]");
+		logger.debug("connectorSave [" + filename+"."+getOutboundInterface().getOutputFileExtension().toLowerCase() + "]");
 		try
 		{
 			DOMImplementationLS DOMiLS = null;
