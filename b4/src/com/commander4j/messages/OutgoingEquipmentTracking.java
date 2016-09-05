@@ -91,6 +91,12 @@ public class OutgoingEquipmentTracking
 			gmh.setInterfaceDirection(inter.getInterfaceDirection());
 			gmh.setMessageDate(JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime()));
 
+			if (desp.getDespatchPalletCount()==0)
+			{
+				setErrorMessage("Message Suppressed - 0 pallets assigned to despatch");
+				suppressMessage = true;			
+			}
+			
 			if (sourceEquipmentLocation.length() == 0)
 			{
 				setErrorMessage("Message Suppressed - No Equipment Destination (From) for Location [" + desp.getLocationIDFrom() + "]");

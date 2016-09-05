@@ -89,6 +89,12 @@ public class OutgoingDespatchConfirmation
 		gmh.setMessageInformation("Despatch=" + desp.getDespatchNo());
 		gmh.setInterfaceDirection(inter.getInterfaceDirection());
 		gmh.setMessageDate(JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime()));
+		
+		if (desp.getDespatchPalletCount()==0)
+		{
+			setErrorMessage("Message Suppressed - 0 pallets assigned to despatch");
+			suppressMessage = true;			
+		}
 
 		if (sourceGLN.length() == 0)
 		{
