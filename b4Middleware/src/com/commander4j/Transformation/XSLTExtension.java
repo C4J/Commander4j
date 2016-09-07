@@ -7,6 +7,16 @@ import com.commander4j.util.Utility;
 
 public class XSLTExtension
 {
+
+	public static synchronized String trim(String value)
+	{
+		String result = Utility.replaceNullStringwithBlank(value);
+		
+		result = result.trim();
+
+		return result;
+	}
+	
 	public static synchronized String nvl(String value,String defaultValue)
 	{
 		String result = "";

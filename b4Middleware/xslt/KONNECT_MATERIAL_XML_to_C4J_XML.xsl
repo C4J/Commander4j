@@ -59,8 +59,13 @@
                     <xsl:if test="$USE_PLANT!='X'">
                         <xsl:comment>>Data from Basic Segment</xsl:comment>
                         <shelf_life><xsl:value-of select='DATA[@type="Basic"]/FIELD[@name="ShelfLife"]/@value' /></shelf_life>
-                        <shelf_life_rule><xsl:value-of select='string(DATA[@type="Basic"]/FIELD[@name="RoundingRuleSLED"]/@value)' /></shelf_life_rule>
-                        <shelf_life_uom><xsl:value-of select='string(DATA[@type="Basic"]/FIELD[@name="PeriodIndforSLED"]/@value)' /></shelf_life_uom>
+                        
+                        <xsl:variable name="temp1" select='string(DATA[@type="Basic"]/FIELD[@name="RoundingRuleSLED"]/@value)'/>
+                        <shelf_life_rule><xsl:value-of select="c4j:getConfigItem('ShelfLifeRounding',$temp1)"/></shelf_life_rule>    
+                                               
+                        <xsl:variable name="temp2" select='string(DATA[@type="Basic"]/FIELD[@name="PeriodIndforSLED"]/@value)'/>
+                        <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('ShelfLifeDuration',$temp2)"/></shelf_life_uom>
+                        
                     </xsl:if>
                     
                     <xsl:if test="$USE_WAREHOUSE=$WAREHOUSE">
@@ -123,9 +128,9 @@
     <xsl:template match='DATA [@type="Plant"]/FIELD[@name="Plant"][@value=$PLANT]'>
         <shelf_life><xsl:value-of select="parent::*/FIELD[@name='ShelfLife']/@value" /></shelf_life>
         <xsl:variable name="temp1" select='parent::*/FIELD[@name="RoundingRuleSLED"]/@value'/>
-        <shelf_life_rule><xsl:value-of select="c4j:getConfigItem('rounding',$temp1)"/></shelf_life_rule>     
+        <shelf_life_rule><xsl:value-of select="c4j:getConfigItem('ShelfLifeRounding',$temp1)"/></shelf_life_rule>     
         <xsl:variable name="temp2" select='parent::*/FIELD[@name="PeriodIndforSLED"]/@value'/>
-        <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('duration',$temp2)"/></shelf_life_uom>
+        <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('ShelfLifeDuration',$temp2)"/></shelf_life_uom>
     </xsl:template>
       
     <!-- ================
@@ -198,12 +203,12 @@
         <xsl:variable name="LOCATION_SLOC" select='string(FIELD[@name="StorageLocation"]/@value)' />
         <xsl:variable name="LOCATION_BIN" select='string(FIELD[@name="StorageBin"]/@value)' />
         <xsl:variable name="LOCATION_STATUS" select="/MESSAGE/DATA[@type='Plant']/FIELD[@name='Plant'][@value=$LOCATION_PLANT]/parent::*/FIELD[@name='MaterialStatus']/@value" />
-        <xsl:variable name="ALIAS" select="c4j:getConfigItem('location',concat(string($LOCATION_PLANT),'-',string($LOCATION_SLOC)))" />
+        <xsl:variable name="ALIAS" select="c4j:getConfigItem('PlantSLOCtoLocation',concat(string($LOCATION_PLANT),'-',string($LOCATION_SLOC)))" />
     
         <xsl:if test="$ALIAS!=''">
         <location>
-            <id><xsl:value-of select="c4j:getConfigItem('location',concat(string($LOCATION_PLANT),'-',string($LOCATION_SLOC)))"/></id>
-            <status><xsl:value-of select="c4j:getConfigItem('status',$LOCATION_STATUS)"/></status>
+            <id><xsl:value-of select="c4j:getConfigItem('PlantSLOCtoLocation',concat(string($LOCATION_PLANT),'-',string($LOCATION_SLOC)))"/></id>
+            <status><xsl:value-of select="c4j:getConfigItem('SAPMaterialStatus',$LOCATION_STATUS)"/></status>
         </location>
         </xsl:if>
     </xsl:template>

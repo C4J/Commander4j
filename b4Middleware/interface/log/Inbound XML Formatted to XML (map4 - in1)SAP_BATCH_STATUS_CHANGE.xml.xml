@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MaterialInformation>
+    <ID>0000001804444879</ID>
+    <Location>
+        <EquipmentID>0933</EquipmentID>
+        <EquipmentElementLevel>Site</EquipmentElementLevel>
+    </Location>
+    <PublishedDate>2014-12-31T00:00:00</PublishedDate>
+    <MaterialLot>
+        <ID>0933092302</ID>
+        <MaterialDefinitionID>000000000043327495</MaterialDefinitionID>
+    </MaterialLot>
+</MaterialInformation>

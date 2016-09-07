@@ -52,7 +52,7 @@
         <xsl:variable name="materialS" select="translate($materialL, '^0*', '' )" />
         <material><xsl:value-of select='$materialS'/></material>
         <xsl:variable name="batchStatus" select="globe_BatchRestrictedStatus"/>
-        <status><xsl:value-of select="c4j:getConfigItem('SAPstatus',string($batchStatus))"/></status>
+        <status><xsl:value-of select="c4j:getConfigItem('SAPStockStatus',string($batchStatus))"/></status>
     </xsl:template>
     
     

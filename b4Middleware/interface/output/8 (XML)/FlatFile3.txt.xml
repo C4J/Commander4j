@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test>
+   <barcode>abcd-rstu</barcode>
+   <barcode>1234-8901</barcode>
+   <barcode>0000-1120</barcode>
+   <barcode>1232-5676</barcode>
+   <barcode>1233-5677</barcode>
+   <barcode>1234-5678</barcode>
+   <barcode>1235-5679</barcode>
+   <barcode>1236-5680</barcode>
+   <barcode>1237-5681</barcode>
+   <barcode>1238-5682</barcode>
+   <barcode>1239-5683</barcode>
+   <barcode>1240-5684</barcode>
+   <barcode>1241-5685</barcode>
+</test>

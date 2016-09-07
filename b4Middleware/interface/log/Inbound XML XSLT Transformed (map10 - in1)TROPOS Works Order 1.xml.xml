@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message xmlns:c4j="http://www.commander4j.com"
+         xmlns:c4j_XSLT_Ext="http://xml.apache.org/xalan/java/com.commander4j.Transformation.XSLTExtension">
+   <plant>7786</plant>
+   <hostRef>WRLIVE</hostRef>
+   <messageRef>TROPOS 2016-08-01T10:57:52</messageRef>
+   <interfaceType>Process Order</interfaceType>
+   <messageInformation>Process Order=P/041607</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-08-01T10:57:52</messageDate>
+   <messageData>
+      <processOrder>
+         <orderNo>P/041607</orderNo>
+         <material>40751399</material>
+         <description>PLC DUNNES MFF Dog CiJ Turkey 400g MP IE</description>
+         <status>Ready</status>
+         <location>WH-PACKDIS</location>
+         <requiredResource>BULK CAN STACKER</requiredResource>
+         <receipeId>Version</receipeId>
+         <dueDate>2016-08-16T00:00:00</dueDate>
+         <requiredQuantity>33720</requiredQuantity>
+         <requiredUom>UNI</requiredUom>
+         <defaultPalletStatus>Unrestricted</defaultPalletStatus>
+         <customerID/>
+         <customerName/>
+      </processOrder>
+   </messageData>
+</message>
