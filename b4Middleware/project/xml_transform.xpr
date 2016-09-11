@@ -10,6 +10,21 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
+                                    <String>../xslt/WONDERWARE_FFMW_XML_to_C4J_XML2.xsl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>WONDERWARE_FFMW_XML_to_C4J_XML2</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XML</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
                                     <String>../xslt/WONDERWARE_FFMW_XML_to_C4J_XML.xsl</String>
                                 </field>
                                 <field name="scenarioIds">
@@ -661,6 +676,94 @@
                                     </String-array>
                                 </field>
                             </scenario>
+                            <scenario>
+                                <field name="advancedOptionsMap">
+                                    <null/>
+                                </field>
+                                <field name="name">
+                                    <String>WONDERWARE_FFMW_XML_to_C4J_XML2</String>
+                                </field>
+                                <field name="baseURL">
+                                    <String></String>
+                                </field>
+                                <field name="footerURL">
+                                    <String></String>
+                                </field>
+                                <field name="fOPMethod">
+                                    <String>pdf</String>
+                                </field>
+                                <field name="fOProcessorName">
+                                    <String>Apache FOP</String>
+                                </field>
+                                <field name="headerURL">
+                                    <String></String>
+                                </field>
+                                <field name="inputXSLURL">
+                                    <String>file:/Users/dave/Commander4j/workspace.osx/b4Middleware/xslt/WONDERWARE_FFMW_XML_to_C4J_XML2.xsl</String>
+                                </field>
+                                <field name="inputXMLURL">
+                                    <String>file:/Users/dave/Commander4j/workspace.osx/b4Middleware/samples/input/14%20(Wonderware%20FFMW%20Material%20Phase%202)/phase2.xml</String>
+                                </field>
+                                <field name="defaultScenario">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="isFOPPerforming">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="type">
+                                    <String>XML</String>
+                                </field>
+                                <field name="saveAs">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="openInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="outputFile">
+                                    <null/>
+                                </field>
+                                <field name="outputResource">
+                                    <null/>
+                                </field>
+                                <field name="openOtherLocationInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="locationToOpenInBrowserURL">
+                                    <null/>
+                                </field>
+                                <field name="openInEditor">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInHTMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInXMLPane">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="showInSVGPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInResultSetPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="useXSLTInput">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="xsltParams">
+                                    <list/>
+                                </field>
+                                <field name="cascadingStylesheets">
+                                    <String-array/>
+                                </field>
+                                <field name="xslTransformer">
+                                    <String>Saxon-PE</String>
+                                </field>
+                                <field name="extensionURLs">
+                                    <String-array>
+                                        <String>file:/Users/dave/Commander4j/workspace.osx/b4Middleware/c4jMiddleware.jar</String>
+                                    </String-array>
+                                </field>
+                            </scenario>
                         </scenario-array>
                     </entry>
                 </serializableOrderedMap>
@@ -671,9 +774,7 @@
         <folder path="."/>
         <file name="../c4jMiddleware.jar"/>
         <file name="../xslt/configData.xml"/>
-        <file name="../samples/input/9%20(TROPOS%20Material%20XML)/Inbound%20Material%20Master_TROPOS.xml"/>
-        <file name="../samples/input/10%20(TROPOS%20Works%20Order)/PO_1.xml"/>
-        <file name="../xslt/TROPOS_Material_to_Commander4j_Material.xsl"/>
-        <file name="../xslt/TROPOS_WorksOrder_to_Commander4j_Process_Order.xsl"/>
+        <file name="../xslt/WONDERWARE_FFMW_XML_to_C4J_XML.xsl"/>
+        <file name="../xslt/WONDERWARE_FFMW_XML_to_C4J_XML2.xsl"/>
     </projectTree>
 </project>

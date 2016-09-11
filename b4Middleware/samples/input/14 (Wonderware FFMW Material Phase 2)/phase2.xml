@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <plant>0933</plant>
+   <warehouse>734</warehouse>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>MM 18475495</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=12232233</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-09-02T10:16:39</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>12232233</material>
+         <materialType>FERT</materialType>
+         <description>WINALOT CLASSICS CiJ Chicken 24x400g XB</description>
+         <!--LE Data for Warehouse = 734-->
+         <LE_quantity>96</LE_quantity>
+         <LE_uom>CS</LE_uom>
+         <base_uom>EA</base_uom>
+         <gross_weight>450.000</gross_weight>
+         <net_weight>400.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <old_material>EWM000000012006334</old_material>
+         <equipment_Type>LPR</equipment_Type>
+         <!--Data for Plant = 0933-->
+         <!--Using Plant Data = N-->
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>M</shelf_life_uom>
+         <validLocations>
+            <location id="WISBECH">
+               <id>WISBECH</id>
+               <status>Valid</status>
+            </location>
+            <location id="WINCANTON">
+               <id>WINCANTON</id>
+               <status>Valid</status>
+            </location>
+            <location id="REWORK">
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location id="EXPORT">
+               <id>EXPORT</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition uom="CS">
+            <uom>CS</uom>
+            <ean>05000163009631</ean>
+            <variant>04</variant>
+            <numerator>24</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition uom="EA">
+            <uom>EA</uom>
+            <ean>05000161010059</ean>
+            <variant>01</variant>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition uom="LR">
+            <uom>LR</uom>
+            <ean/>
+            <variant/>
+            <numerator>384</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition uom="D97">
+            <uom>D97</uom>
+            <ean>07613031869046</ean>
+            <variant>01</variant>
+            <numerator>2304</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition uom="ZZ2">
+            <uom>ZZ2</uom>
+            <ean/>
+            <variant/>
+            <numerator>24</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+      </materialDefinition>
+   </messageData>
+</message>
