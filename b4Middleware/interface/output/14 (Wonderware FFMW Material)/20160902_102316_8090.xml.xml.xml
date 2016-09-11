@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>MM 18475520</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material Definition</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-09-02T10:18:06</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>12232259</material>
+         <materialType>FERT</materialType>
+         <description>GOURMET PERLE GiG Tuna&amp;Shrimp 24x85g XB</description>
+         <base_uom>EA</base_uom>
+         <gross_weight>90.000</gross_weight>
+         <net_weight>85.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <old_material>EWM000000012083731</old_material>
+         <equipment_Type>LPR</equipment_Type>
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <location>
+            <id>WISBECH</id>
+            <status>Valid</status>
+         </location>
+         <location>
+            <id>WINCANTON</id>
+            <status>Valid</status>
+         </location>
+         <location>
+            <id>REWORK</id>
+            <status>Valid</status>
+         </location>
+         <location>
+            <id>EXPORT</id>
+            <status>Valid</status>
+         </location>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <ean>07613031868971</ean>
+            <variant>00</variant>
+            <numerator>24</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <ean>07613031868964</ean>
+            <variant>00</variant>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <ean/>
+            <variant/>
+            <numerator>720</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <ean/>
+            <variant/>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97--><!--LE QTY is 210--><!--LE UOM is CS--><!--CS numerator is 24--><!--D97 (in EA) = 210(CS) x 24 = 5040--><!--Original numerator is 5040--><numerator>5040</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <ean/>
+            <variant/>
+            <numerator>24</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+      </materialDefinition>
+   </messageData>
+</message>

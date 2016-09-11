@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>MM 18475538</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material Definition</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-09-02T10:19:43</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>12232273</material>
+         <materialType>FERT</materialType>
+         <description>FELIX AGAIL GiJ MV Meat 4(12x100g) XB</description>
+         <base_uom>EA</base_uom>
+         <gross_weight>1.350</gross_weight>
+         <net_weight>1.200</net_weight>
+         <weight_uom>KGM</weight_uom>
+         <old_material>EWM000000012114228</old_material>
+         <equipment_Type>BEU</equipment_Type>
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <location>
+            <id>WISBECH</id>
+            <status>Valid</status>
+         </location>
+         <location>
+            <id>WINCANTON</id>
+            <status>Valid</status>
+         </location>
+         <location>
+            <id>REWORK</id>
+            <status>Valid</status>
+         </location>
+         <location>
+            <id>EXPORT</id>
+            <status>Valid</status>
+         </location>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <ean>07613031870035</ean>
+            <variant>00</variant>
+            <numerator>4</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <ean>05000161029761</ean>
+            <variant>75</variant>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <ean/>
+            <variant/>
+            <numerator>60</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <ean/>
+            <variant/>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97--><!--LE QTY is 90--><!--LE UOM is CS--><!--CS numerator is 4--><!--D97 (in EA) = 90(CS) x 4 = 360--><!--Original numerator is 360--><numerator>360</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <ean/>
+            <variant/>
+            <numerator>4</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>AA0</uom>
+            <ean/>
+            <variant/>
+            <numerator>1</numerator>
+            <denominator>12</denominator>
+         </materialUOMDefinition>
+      </materialDefinition>
+   </messageData>
+</message>

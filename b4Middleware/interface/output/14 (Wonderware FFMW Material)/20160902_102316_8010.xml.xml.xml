@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>MM 18475495</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material Definition</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-09-02T10:16:39</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>12232233</material>
+         <materialType>FERT</materialType>
+         <description>WINALOT CLASSICS CiJ Chicken 24x400g XB</description>
+         <base_uom>EA</base_uom>
+         <gross_weight>450.000</gross_weight>
+         <net_weight>400.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <old_material>EWM000000012006334</old_material>
+         <equipment_Type>LPR</equipment_Type>
+         <shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <location>
+            <id>WISBECH</id>
+            <status>Valid</status>
+         </location>
+         <location>
+            <id>WINCANTON</id>
+            <status>Valid</status>
+         </location>
+         <location>
+            <id>REWORK</id>
+            <status>Valid</status>
+         </location>
+         <location>
+            <id>EXPORT</id>
+            <status>Valid</status>
+         </location>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <ean>05000163009631</ean>
+            <variant>04</variant>
+            <numerator>24</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <ean>05000161010059</ean>
+            <variant>01</variant>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <ean/>
+            <variant/>
+            <numerator>384</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <ean>07613031869046</ean>
+            <variant>01</variant>
+            <!--Converting LE Quantity from CS into EA before inserting calculated D97--><!--LE QTY is 96--><!--LE UOM is CS--><!--CS numerator is 24--><!--D97 (in EA) = 96(CS) x 24 = 2304--><!--Original numerator is 2304--><numerator>2304</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <ean/>
+            <variant/>
+            <numerator>24</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+      </materialDefinition>
+   </messageData>
+</message>

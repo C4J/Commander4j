@@ -15,6 +15,8 @@
     <xsl:variable name="WAREHOUSE"><xsl:value-of select="c4j:getConfigItem('config','Warehouse')"/></xsl:variable>
     <xsl:variable name="LANGUAGE"><xsl:value-of select="c4j:getConfigItem('config','Language')"/></xsl:variable>
     
+    <xsl:variable name="BASE_UOM"><xsl:value-of select="string(/message/messageData/materialDefinition/base_uom)"/></xsl:variable>
+    
     <xsl:variable name="D97_EAN" select="string(/message/messageData/materialDefinition/materialUOMDefinition[@uom='D97']/ean)" />
     <xsl:variable name="D97_VARIANT" select="string(/message/messageData/materialDefinition/materialUOMDefinition[@uom='D97']/variant)" />
     <xsl:variable name="D97_DENOMINATOR" select="number(concat('0',string(/message/messageData/materialDefinition/materialUOMDefinition[@uom='D97']/denominator)))" />
@@ -27,16 +29,7 @@
     <xsl:template match="message">
          
         <message>
-            <debug>
-                <d97_ean><xsl:value-of select="$D97_EAN" /></d97_ean>
-                <d97_variant><xsl:value-of select="$D97_VARIANT" /></d97_variant>
-                <d97_denominator><xsl:value-of select="$D97_DENOMINATOR" /></d97_denominator>
-                <d97_numerator><xsl:value-of select="$D97_NUMERATOR" /></d97_numerator>
-                <le_quantity><xsl:value-of select="$LE_QUANTITY" /></le_quantity>
-                <le_uom><xsl:value-of select="$LE_UOM" /></le_uom>
-                <le_numerator><xsl:value-of select="$LE_NUMERATOR" /></le_numerator>
-            </debug>
-            
+
             <hostRef><xsl:value-of select="hostRef" /></hostRef>
             <messageRef><xsl:value-of select="messageRef"/></messageRef>
             <interfaceType><xsl:value-of select="interfaceType"/></interfaceType>
@@ -88,11 +81,30 @@
     <xsl:template match="messageData/materialDefinition">
         <xsl:for-each select="materialUOMDefinition">
             <materialUOMDefinition>
+                
+                <xsl:variable name="CURRENT_UOM"><xsl:value-of select="uom"/></xsl:variable>
+     
                 <uom><xsl:value-of select="uom" /></uom>
                 <ean><xsl:value-of select="ean" /></ean>  
                 <variant><xsl:value-of select="variant" /></variant>
-                <numerator><xsl:value-of select="numerator" /></numerator>
+                
+                <xsl:if test="$CURRENT_UOM='D97'">  
+                    <xsl:comment>Converting LE Quantity from <xsl:value-of select='$LE_UOM' /> into <xsl:value-of select='$BASE_UOM' /> before inserting calculated D97</xsl:comment> 
+                    <xsl:comment>LE QTY is <xsl:value-of select='$LE_QUANTITY' /></xsl:comment> 
+                    <xsl:comment>LE UOM is <xsl:value-of select='$LE_UOM' /></xsl:comment> 
+                    <xsl:comment><xsl:value-of select='$LE_UOM' /> numerator is <xsl:value-of select='$LE_NUMERATOR' /></xsl:comment> 
+                    <xsl:variable name="temp99" select="number($LE_QUANTITY * $LE_NUMERATOR)" />
+                    <xsl:comment>D97 (in <xsl:value-of select='$BASE_UOM' />) = <xsl:value-of select='$LE_QUANTITY' />(<xsl:value-of select='$LE_UOM' />) x <xsl:value-of select='$LE_NUMERATOR' /> = <xsl:value-of select='$temp99' /></xsl:comment> 
+                    <xsl:comment>Original numerator is <xsl:value-of select='numerator' /></xsl:comment>
+                    <numerator><xsl:value-of select='$temp99'/></numerator>
+                </xsl:if>
+                
+                <xsl:if test="$CURRENT_UOM!='D97'">  
+                    <numerator><xsl:value-of select="numerator" /></numerator>
+                </xsl:if>    
+                 
                 <denominator><xsl:value-of select="denominator" /></denominator>
+                
             </materialUOMDefinition>
         </xsl:for-each>
     </xsl:template>
