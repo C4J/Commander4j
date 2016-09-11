@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lookup>
     
-    <item type="config" id="HostRef"><value>WRLIVE</value></item>    
-    <item type="config" id="Plant"><value>7786</value></item>
-    <item type="config" id="Warehouse"><value>PLY</value></item>
+    <item type="config" id="HostRef"><value>WILIVE</value></item>    
+    <item type="config" id="Plant"><value>0933</value></item>
+    <item type="config" id="Warehouse"><value>734</value></item>
     <item type="config" id="Language"><value>E</value></item>  
     <item type="config" id="Location"><value>WISBECH</value></item>  
     <item type="config" id="SAPUsername"><value>PUWISBECH</value></item>  
@@ -13,7 +13,6 @@
     <item type="PlantSLOCtoLocation" id="0962-0001"><value>WMP</value></item>    
     <item type="PlantSLOCtoLocation" id="0962-0003"><value>FENLAND</value></item>    
     <item type="PlantSLOCtoLocation" id="0962-0005"><value>NENE PARADE</value></item>        
-    <item type="PlantSLOCtoLocation" id="0966-0001"><value>HAMS HALL</value></item>   
     <item type="PlantSLOCtoLocation" id="0931-0001"><value>SUDBURY</value></item>   
     <item type="PlantSLOCtoLocation" id="0931-0002"><value>LAITS</value></item>       
     <item type="PlantSLOCtoLocation" id="0966-0001"><value>WINCANTON</value></item>  
@@ -33,6 +32,9 @@
     <item type="SAPMaterialStatus" id="Z4"><value>Valid</value></item>    
     <item type="SAPMaterialStatus" id="Z5"><value>Invalid</value></item>        
     <item type="SAPMaterialStatus" id="Z6"><value>Invalid</value></item>
+
+    <item type="UsePlant" id=""><value>N</value></item>
+    <item type="UsePlant" id="X"><value>Y</value></item>
 
     <item type="ShelfLifeDuration" id=""><value>D</value></item>
     <item type="ShelfLifeDuration" id="0"><value>D</value></item>
