@@ -774,7 +774,7 @@
         <folder path="."/>
         <file name="../c4jMiddleware.jar"/>
         <file name="../xslt/configData.xml"/>
-        <file name="../xslt/WONDERWARE_FFMW_XML_to_C4J_XML.xsl"/>
-        <file name="../xslt/WONDERWARE_FFMW_XML_to_C4J_XML2.xsl"/>
+        <file name="../xslt/WONDERWARE_FFMW_XML_to_C4J_XML%20Phase%201.xsl"/>
+        <file name="../xslt/WONDERWARE_FFMW_XML_to_C4J_XML%20Phase%202.xsl"/>
     </projectTree>
 </project>

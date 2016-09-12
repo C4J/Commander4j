@@ -33,7 +33,7 @@
             <hostRef><xsl:value-of select="hostRef" /></hostRef>
             <messageRef><xsl:value-of select="messageRef"/></messageRef>
             <interfaceType><xsl:value-of select="interfaceType"/></interfaceType>
-            <messageInformation><xsl:value-of select="interfaceType"/></messageInformation>
+            <messageInformation><xsl:value-of select="messageInformation"/></messageInformation>
             <interfaceDirection><xsl:value-of select="interfaceDirection"/></interfaceDirection>
             <messageDate><xsl:value-of select="messageDate"/></messageDate>
             
