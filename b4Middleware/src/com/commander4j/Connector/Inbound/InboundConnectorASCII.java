@@ -20,6 +20,7 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.FixedASCIIColumns;
 import com.commander4j.sys.FixedASCIIData;
 import com.commander4j.util.JFileIO;
+import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
@@ -94,10 +95,9 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 
 		try
 		{
-			
-			String filename_BACKUP = Common.logDir + java.io.File.separator + "Inbound Backup of " + getType() + " " + (new File(fullFilename)).getName();
-			logger.debug("connectorLoad Backup [" + fullFilename + "] to [" + filename_BACKUP + "]");
-			FileUtils.copyFile(new File(fullFilename), new File(filename_BACKUP));
+			String destination = Common.logDir + java.io.File.separator + Utility.getCurrentTimeStampString()+" INPUT_BACKUP_"+getType()+" "+  (new File(fullFilename)).getName();
+			logger.debug("connectorLoad Backup [" + fullFilename + "] to [" + destination + "]");
+			FileUtils.copyFile(new File(fullFilename), new File(destination));
 		} catch (Exception ex)
 		{
 			logger.error("connectorLoad unable to backup [" + fullFilename + "]");

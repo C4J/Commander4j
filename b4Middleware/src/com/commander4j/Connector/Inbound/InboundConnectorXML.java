@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.sys.Common;
+import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
@@ -30,7 +31,7 @@ public class InboundConnectorXML extends InboundConnectorABSTRACT {
 		
 		try
 		{
-			String destination = Common.logDir + java.io.File.separator + (new File(fullFilename)).getName()+"_backup.xml";
+			String destination = Common.logDir + java.io.File.separator + Utility.getCurrentTimeStampString()+" INPUT_BACKUP_"+getType()+" "+  (new File(fullFilename)).getName();
 			logger.debug("connectorLoad Backup [" + fullFilename + "] to ["+destination+"]");
 			FileUtils.copyFile(new File(fullFilename), new File(destination));
 		} catch (Exception ex)

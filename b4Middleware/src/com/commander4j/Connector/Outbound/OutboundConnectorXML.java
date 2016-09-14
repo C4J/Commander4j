@@ -38,7 +38,11 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT {
 
 				LSOutput LSO = DOMiLS.createLSOutput();
 
-				FOS = new FileOutputStream(filename+"."+getType().toLowerCase() );
+				if (filename.endsWith("."+getType().toLowerCase())==false)
+				{
+					filename = filename + "."+getType().toLowerCase();
+				}
+				FOS = new FileOutputStream(filename );
 				LSO.setByteStream((OutputStream) FOS);
 
 				LSSerializer LSS = DOMiLS.createLSSerializer();

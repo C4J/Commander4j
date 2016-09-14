@@ -3,6 +3,8 @@ package com.commander4j.util;
 import java.io.File;
 import java.io.StringWriter;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -15,6 +17,13 @@ import org.w3c.dom.Document;
 
 public class Utility {
 
+	public static String getCurrentTimeStampString() {
+	    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");//dd/MM/yyyy
+	    Date now = new Date();
+	    String strDate = sdfDate.format(now);
+	    return strDate;
+	}
+	
 	public static synchronized String nvl(String value,String defaultValue)
 	{
 		String result = "";

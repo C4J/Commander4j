@@ -22,17 +22,18 @@ import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Interface.InboundInterfaceABSTRACT;
 
-public class InboundInterface extends InboundInterfaceABSTRACT {
+public class InboundInterface extends InboundInterfaceABSTRACT
+{
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundInterface.class));
-    JFileIO jfileio = new JFileIO();
+	JFileIO jfileio = new JFileIO();
 	TransformerFactory fact = new net.sf.saxon.TransformerFactoryImpl();
 	StreamSource source;
 	StreamSource xslt;
 	StreamResult destination;
 	Transformer transformer;
-    
-	public InboundInterface(Map map,String description)
+
+	public InboundInterface(Map map, String description)
 	{
 		super(map);
 		setDescription(description);
@@ -40,60 +41,77 @@ public class InboundInterface extends InboundInterfaceABSTRACT {
 	}
 
 	boolean enabled = false;
-	
+
 	@Override
 	public void run()
 	{
 
 		File dir = new File(getInputPath());
-		String[] extensions = new String[] { getInputFileMask() };
-		
-		List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true);
-		for (File file : files) {
-			logger.debug("Processing [" + file.getName()+"]");
-			if (connector.processInboundFile(file.getName()))
-			{
-				data = connector.getData();
-				
-				String filename_imported = "Inbound "+connector.getType()+" Formatted to XML ("+map.getId()+" - "+getId()+ ")" + file.getName()+".xml";
-				
-				String filename_transformed = "Inbound "+connector.getType()+" XSLT Transformed ("+map.getId()+" - "+getId()+ ")"+ file.getName()+".xml";
-				
-				//String filename_transformed = "Inbound_XSLT_"+connector.getType()+"_"+map.getId()+"_"+getId()+ file.getName()+".xml";
-				
-				jfileio.writeToDisk(Common.logDir, data, filename_imported);
-				
-				source = new StreamSource(new File(Common.logDir+File.separator+filename_imported));
-				destination = new StreamResult(new File(Common.logDir+File.separator+filename_transformed));
-				xslt = new StreamSource(new File(getXSLTPath()+getXSLTFilename()));
+		String[] extensions = new String[]
+		{ getInputFileMask() };
 
-				try
+		List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true);
+		for (File file : files)
+		{
+			if (file.length() > 0)
+			{
+				logger.debug("Processing [" + file.getName() + "]");
+				if (connector.processInboundFile(file.getName()))
 				{
-					transformer =  fact.newTransformer(xslt);
-					transformer.transform(source,destination);
-					JXMLDocument doc = new JXMLDocument(Common.logDir+File.separator+filename_transformed);
-					data = doc.getDocument();
-				} catch (TransformerConfigurationException e)
-				{
-					logger.error(e.getMessage());
-					e.printStackTrace();
-				} catch (TransformerException e)
-				{
-					logger.error(e.getMessage());
-					e.printStackTrace();
+					data = connector.getData();
+
+					String filename_imported = Utility.getCurrentTimeStampString() + " IMPORTED_"+ connector.getType()+"_to_XML" +" " + file.getName() ;
+					
+					if (filename_imported.endsWith(".xml")==false)
+					{
+						filename_imported=filename_imported+".xml";
+					}
+					
+					String filename_transformed = Utility.getCurrentTimeStampString() + " TRANSFORMED_"+ connector.getType() +" " + file.getName() ;
+					
+					if (filename_transformed.endsWith(".xml")==false)
+					{
+						filename_transformed=filename_transformed+".xml";
+					}
+
+					// String filename_transformed =
+					// "Inbound_XSLT_"+connector.getType()+"_"+map.getId()+"_"+getId()+
+					// file.getName()+".xml";
+
+					jfileio.writeToDisk(Common.logDir, data, filename_imported);
+
+					source = new StreamSource(new File(Common.logDir + File.separator + filename_imported));
+					destination = new StreamResult(new File(Common.logDir + File.separator + filename_transformed));
+					xslt = new StreamSource(new File(getXSLTPath() + getXSLTFilename()));
+
+					try
+					{
+						transformer = fact.newTransformer(xslt);
+						transformer.transform(source, destination);
+						JXMLDocument doc = new JXMLDocument(Common.logDir + File.separator + filename_transformed);
+						data = doc.getDocument();
+					} catch (TransformerConfigurationException e)
+					{
+						logger.error(e.getMessage());
+						e.printStackTrace();
+					} catch (TransformerException e)
+					{
+						logger.error(e.getMessage());
+						e.printStackTrace();
+					}
+
+					processConnectorToInterfaceData(connector.getFilename(), data);
 				}
-	
-				processConnectorToInterfaceData(connector.getFilename(), data);
 			}
 		}
 	}
 
-	public void processConnectorToInterfaceData(String filename,Document data)
+	public void processConnectorToInterfaceData(String filename, Document data)
 	{
 		this.data = data;
 
-		logger.debug("processConnectorToInterfaceData [" + Utility.getStringFromDocument(data)+"]");
-		map.processInboundInterfaceToMap(filename,data);
+		logger.debug("processConnectorToInterfaceData [" + Utility.getStringFromDocument(data) + "]");
+		map.processInboundInterfaceToMap(filename, data);
 
 	}
 

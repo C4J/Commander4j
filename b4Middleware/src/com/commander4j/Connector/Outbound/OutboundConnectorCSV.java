@@ -72,9 +72,14 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 	{
 		boolean result = false;
 
+		if (filename.endsWith("."+getType().toLowerCase())==false)
+		{
+			filename = filename + "."+getType().toLowerCase();
+		}
+		
 		getCSVOptions();
 
-		logger.debug("connectorSave [" + filename + "." + getType().toLowerCase() + "]");
+		logger.debug("connectorSave [" + filename + "]");
 
 		JXMLDocument document = new JXMLDocument();
 		document.setDocument(getData());
@@ -111,11 +116,11 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 					CSVWriter writer;
 					if (disableQuotes)
 					{
-						writer = new CSVWriter(new FileWriter(filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase()), seperator,
+						writer = new CSVWriter(new FileWriter(filename), seperator,
 								CSVWriter.NO_QUOTE_CHARACTER);
 					} else
 					{
-						writer = new CSVWriter(new FileWriter(filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase()), seperator);
+						writer = new CSVWriter(new FileWriter(filename), seperator);
 					}
 
 					String[] csvrow = new String[columns];
