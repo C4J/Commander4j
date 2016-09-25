@@ -72,10 +72,10 @@ public class Config {
 
 	public LinkedList<Map> loadMaps(String filename)
 	{
-
 		String configName = "";
-		//String backupPath = "";
 		String XSLTPath = "";
+		String LogPath = "";
+		String ArchiveRetentionDays = "";
 
 		int mapSeq = 1;
 
@@ -84,10 +84,22 @@ public class Config {
 		JXMLDocument doc = new JXMLDocument(filename);
 
 		configName = doc.findXPath("//config/@description");
-		//backupPath = doc.findXPath("//config/backupPath");
 		XSLTPath = doc.findXPath("//config/XSLTPath");
-
-		logger.debug("Loading config :" + configName);
+		LogPath = doc.findXPath("//config/logPath");
+		
+		logger.debug("Config Name :" + configName);
+		
+		ArchiveRetentionDays = doc.findXPath("//config/logArchiveRetentionDays");
+		
+		Common.ArchiveRetentionDays = Integer.valueOf(ArchiveRetentionDays);
+		Common.logDir = LogPath;
+		
+		if (Common.logDir.equals(""))
+		{
+			Common.logDir = System.getProperty("user.dir")+java.io.File.separator+"interface"+java.io.File.separator+"log";
+		}
+		
+		logger.debug("Log Path :" + Common.logDir);
 
 		while (doc.findXPath("//config/map[" + String.valueOf(mapSeq) + "]/@enabed").trim() != "")
 		{

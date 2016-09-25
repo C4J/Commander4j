@@ -140,7 +140,7 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 
 						//Convert char array back into string
 						String joinedString = String.copyValueOf(rowdataArray);
-
+						joinedString = joinedString + "\n";
 						//Write to output file
 						fw.write(joinedString);
 						fw.flush();

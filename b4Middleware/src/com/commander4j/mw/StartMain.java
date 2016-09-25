@@ -5,6 +5,7 @@ import java.io.File;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Config;
+import com.commander4j.thread.LogArchiveThread;
 import com.commander4j.util.Utility;
 
 public class StartMain
@@ -14,6 +15,7 @@ public class StartMain
 	public Config cfg;
 	public static String version = "1.05";
 	Boolean running = false;
+	LogArchiveThread archiveLog;
 
 	public Boolean isRunning()
 	{
@@ -43,6 +45,10 @@ public class StartMain
 		if (cfg.getMapDirectoryErrorCount() == 0)
 		{
 
+			archiveLog = new LogArchiveThread();
+			archiveLog.setName("Log Archiver");
+			archiveLog.start();
+			
 			cfg.startMaps();
 
 			logger.debug("*************************");
@@ -76,7 +82,23 @@ public class StartMain
 		logger.debug("**      STOPPING       **");
 		logger.debug("*************************");
 	
+		try
+		{
+			logger.debug("Shutting down Log File Archiver");
+			while (archiveLog.isAlive())
+			{
+				archiveLog.allDone = true;
+				com.commander4j.util.JWait.milliSec(100);
+			}
+			logger.debug("Log File Archiver terminated");
+		} catch (Exception ex1)
+		{
+
+		}
+		
+		logger.debug("Shutting down Maps");
 		cfg.stopMaps();
+		logger.debug("Maps Terminated");
 	
 		logger.info(cfg.getInterfaceStatistics());
 		

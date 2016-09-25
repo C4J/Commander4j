@@ -41,4 +41,6 @@ public class Common {
 	
 	public final static StartMain smw = new StartMain();
 	
+	public static Integer ArchiveRetentionDays = 30;
+	
 }

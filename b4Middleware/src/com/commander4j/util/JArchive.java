@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.commons.io.filefilter.AgeFileFilter;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
 
 import com.commander4j.sys.Common;
 
@@ -16,14 +15,10 @@ public class JArchive {
 	{
 		int result = 0;
 
-		// Calculate cut-off date
-
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
 		cal.add(Calendar.DATE, -1 * daysToKeep);
 		Date cutoffDate = cal.getTime();
-
-		// Check and fix silly/missing values
 
 		if (Utility.replaceNullStringwithBlank(path).equals(""))
 		{
@@ -40,14 +35,9 @@ public class JArchive {
 			daysToKeep=1;
 		}
 
-		// Get a list of sub-directories within target path
-
 		File directory = new File(path);
-		File[] subdirs = directory.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
-		for (File dir : subdirs)
-		{
-			result = result + deleteFiles(dir, new AgeFileFilter(cutoffDate));
-		}
+
+		result = result + deleteFiles(directory, new AgeFileFilter(cutoffDate));
 
 		return result;
 	}
@@ -63,7 +53,7 @@ public class JArchive {
 			try
 			{
 				Date lastMod = new Date(file.lastModified());
-				System.out.println("Removing old interface file [" + file.getName() + ", Date: " + lastMod + "] from ["+directory.getName()+"]");
+				System.out.println("Removing log file [" + file.getName() + ", Date: " + lastMod + "] from ["+directory.getName()+"]");
 				file.delete();
 				count++;
 			} catch (Exception ex)

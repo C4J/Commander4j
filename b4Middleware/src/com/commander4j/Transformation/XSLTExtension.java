@@ -7,6 +7,31 @@ import com.commander4j.util.Utility;
 
 public class XSLTExtension
 {
+	
+	
+	public static String padStringLeft(String value,int size, String character)
+	{
+		String s = Utility.replaceNullStringwithBlank(value);
+
+		while (s.length() < size)
+		{
+			s = character + s;
+		}
+		
+		return s;
+	}
+	
+	public static String padStringRight(String value,int size, String character)
+	{
+		String s = Utility.replaceNullStringwithBlank(value);
+
+		while (s.length() < size)
+		{
+			s = s +  character;
+		}
+		
+		return s;
+	}
 
 	public static synchronized String trim(String value)
 	{
