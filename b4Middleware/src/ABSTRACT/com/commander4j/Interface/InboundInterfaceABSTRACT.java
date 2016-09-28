@@ -20,46 +20,47 @@ import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 import INTERFACE.com.commander4j.Connector.InboundConnectorINTERFACE;
 import INTERFACE.com.commander4j.Interface.InboundInterfaceINTERFACE;
 
-public abstract class InboundInterfaceABSTRACT extends TimerTask implements InboundInterfaceINTERFACE{
+public abstract class InboundInterfaceABSTRACT extends TimerTask implements InboundInterfaceINTERFACE
+{
 	boolean enabled = false;
 	private String type = "";
 	public InboundConnectorABSTRACT connector;
 	private Long timerFrequency = (long) 2000;
-	private boolean running=false;
+	private boolean running = false;
 	private Timer timer = new Timer();
 	protected Map map;
-    protected Document data;
-    private String inputPath = "";
-    private String inputFileMask = "*.*";
-    private String inputFilename = "";;
-    private String xsltFilename = "";
-    private String xsltPath = "";
-    private String description;
-    private String id = "";
+	protected Document data;
+	private String inputPath = "";
+	private String inputFileMask = "*.*";
+	private String inputFilename = "";;
+	private String xsltFilename = "";
+	private String xsltPath = "";
+	private String description;
+	private String id = "";
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundInterfaceABSTRACT.class));
 
-    private String inputPattern = "";
+	private String inputPattern = "";
 
 	public void setDescription(String description)
 	{
 		this.description = description;
 	}
-	
+
 	public String getDescription()
 	{
 		return this.description;
 	}
-	
+
 	public String getXSLTFilename()
 	{
 		return xsltFilename;
 	}
-	
+
 	public String getXSLTPath()
 	{
 		if (xsltPath.equals(""))
-			xsltPath = System.getProperty("user.dir")  + File.separator + "xslt"+ File.separator;
+			xsltPath = System.getProperty("user.dir") + File.separator + "xslt" + File.separator;
 		return xsltPath;
 	}
 
@@ -67,37 +68,37 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	{
 		this.xsltFilename = xsltFilename;
 	}
-	
+
 	public void setXSLTPath(String xsltPath)
 	{
 		this.xsltPath = xsltPath;
 	}
-    
-    public InboundInterfaceABSTRACT(Map map)
-    {
-    	this.map = map;
-    }
-	
-    public void processInboundData()
-    {
-    	map.processInboundInterfaceToMap(getFilename(),getData());
-    }
-    
+
+	public InboundInterfaceABSTRACT(Map map)
+	{
+		this.map = map;
+	}
+
+	public void processInboundData()
+	{
+		map.processInboundInterfaceToMap(getFilename(), getData());
+	}
+
 	public String getFilename()
 	{
 		return this.inputFilename;
 	}
-    
+
 	public Document getData()
 	{
 		return this.data;
 	}
-	
+
 	public boolean getEnabled()
 	{
 		return this.enabled;
 	}
-	
+
 	public void setInputFileMask(String mask)
 	{
 		this.inputFileMask = mask;
@@ -107,44 +108,43 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	{
 		return this.inputFileMask;
 	}
-	
+
 	public void setInputFilename(String filename)
-	
+
 	{
 		this.inputFilename = filename;
 	}
-	
+
 	public void setInputPath(String path)
-	
+
 	{
 		this.inputPath = path;
 	}
-	
+
 	public String getInputPath()
 	{
 		if (inputPath.equals(""))
-			inputPath = System.getProperty("user.dir") + File.separator+"interface" + File.separator + "input";
-		
+			inputPath = System.getProperty("user.dir") + File.separator + "interface" + File.separator + "input";
+
 		return this.inputPath;
 	}
-	
+
 	public void setEnabled(boolean enable)
 	{
-		logger.debug("setEnabled "+String.valueOf(enable));
-		if ((enable==true) && (enabled==false) && (running==false))
+		logger.debug("setEnabled " + String.valueOf(enable));
+		if ((enable == true) && (enabled == false) && (running == false))
 		{
 			// start
 			connector.setEnabled(enabled);
 			this.enabled = enable;
 			setRunning(true);
-			logger.debug("Start Requested : ["+getDescription()+"]");
+			logger.debug("Start Requested : [" + getDescription() + "]");
 			timer.scheduleAtFixedRate(this, 0, timerFrequency);
-		}
-		else
+		} else
 		{
 			// stop
 			timer.cancel();
-			logger.debug("Stop Requested : ["+getDescription()+"]");
+			logger.debug("Stop Requested : [" + getDescription() + "]");
 			setRunning(false);
 		}
 	}
@@ -153,7 +153,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	{
 		this.running = yes;
 	}
-	
+
 	public boolean isRunning()
 	{
 		return this.running;
@@ -168,28 +168,28 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	{
 		this.id = id;
 	}
-	
+
 	public String getId()
 	{
 		return id;
 	}
-	
+
 	public void setPollingInterval(Long millisec)
 	{
 		timerFrequency = millisec;
 	}
-	
+
 	public String getInputPattern()
 	{
 		return inputPattern;
 	}
-	
+
 	public void setInputPattern(String pattern)
 	{
 		inputPattern = Utility.replaceNullStringwithBlank(pattern);
 
 	}
-	
+
 	public void setType(String type)
 	{
 		this.type = type;
@@ -215,7 +215,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 		case InboundConnectorINTERFACE.Connector_XML:
 			connector = new InboundConnectorXML((InboundInterface) this);
 			setInputFileMask("xml");
-			break;			
+			break;
 		default:
 			throw new IllegalArgumentException();
 		}

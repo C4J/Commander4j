@@ -95,60 +95,67 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 			{
 				try
 				{
-					FileWriter fw = new FileWriter(filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase());
+					FileWriter fw = new FileWriter(
+							filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase());
 
 					// Read new row value from XML
-					
+
 					for (int r = 1; r <= rows; r++)
 					{
 						String rowdata = Utility.padSpace(maxColumn);
 						char[] rowdataArray = rowdata.toCharArray();
 
-						// Read new col value from XML 
-						
+						// Read new col value from XML
+
 						for (int c = 1; c <= columns; c++)
 						{
 							if (c <= getPatternColumnCount())
 							{
-								//Get the data from the XML input 
-								String xpath = "//data/row[@id='" + String.valueOf(r) + "']/col[@id='"+ String.valueOf(c) + "']";
-								String dataString = Utility.replaceNullStringwithBlank(document.findXPath(xpath).trim());
-								
-								//Get the position of the data within the ASCII file for this column.
-								FixedASCIIColumns coldef = parseCols.get(c-1);
-								
-								//Do we have data to put into columns
+								// Get the data from the XML input
+								String xpath = "//data/row[@id='" + String.valueOf(r) + "']/col[@id='"
+										+ String.valueOf(c) + "']";
+								String dataString = Utility
+										.replaceNullStringwithBlank(document.findXPath(xpath).trim());
+
+								// Get the position of the data within the ASCII
+								// file for this column.
+								FixedASCIIColumns coldef = parseCols.get(c - 1);
+
+								// Do we have data to put into columns
 								if (dataString.isEmpty() == false)
 								{
-									//For each column in the data field
+									// For each column in the data field
 									for (int x = 0; x < dataString.length(); x++)
 									{
-										//Make sure that the data string fits within output column range
+										// Make sure that the data string fits
+										// within output column range
 										if ((coldef.start + x) <= coldef.end)
 										{
-											//Update character in output row
+											// Update character in output row
 											rowdataArray[coldef.start + x - 1] = dataString.charAt(x);
 										}
 									}
 								}
-								logger.debug("row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] data=["+ dataString + "]");
+								logger.debug("row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] data=["
+										+ dataString + "]");
 							} else
 							{
-								logger.debug("Igored row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c)	+ "] - no column defined in config.xml");
+								logger.debug("Igored row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c)
+										+ "] - no column defined in config.xml");
 							}
 						}
 
-						//Convert char array back into string
+						// Convert char array back into string
 						String joinedString = String.copyValueOf(rowdataArray);
 						joinedString = joinedString + "\n";
-						//Write to output file
+						// Write to output file
 						fw.write(joinedString);
 						fw.flush();
 					}
-					
-					//Close output file
+
+					// Close output file
 					fw.close();
-					
+
 				} catch (Exception ex)
 				{
 					System.out.println(ex.getMessage());

@@ -12,7 +12,8 @@ import com.commander4j.Interface.Inbound.InboundInterface;
 
 import INTERFACE.com.commander4j.Connector.InboundConnectorINTERFACE;
 
-public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERFACE {
+public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERFACE
+{
 	private boolean enabled = true;
 	private String type = "";
 	private String filename = "";
@@ -27,7 +28,7 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 	{
 		return inboundConnectorMessageCount;
 	}
-	
+
 	public InboundInterface getInboundInterface()
 	{
 		return inint;
@@ -52,9 +53,9 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 	public Boolean processInboundFile(String filename)
 	{
 		Boolean result = false;
-		
+
 		inboundConnectorMessageCount++;
-		
+
 		setFilename(filename);
 		if (connectorLoad(inint.getInputPath() + File.separator + filename))
 		{
@@ -96,7 +97,6 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 		return data;
 	}
 
-	
 	public Element addElement(Document doc, String name, String value)
 	{
 		Element temp = (Element) doc.createElement(name);
@@ -104,7 +104,6 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 		temp.appendChild(temp_value);
 		return temp;
 	}
-
 
 	public boolean connectorDelete(String filename)
 	{
@@ -114,7 +113,7 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 		try
 		{
 			FileUtils.deleteQuietly(source);
-			logger.debug(inint.getDescription()+" Delete input file :"+source.getAbsolutePath());
+			logger.debug(inint.getDescription() + " Delete input file :" + source.getAbsolutePath());
 			result = true;
 		} catch (Exception e)
 		{

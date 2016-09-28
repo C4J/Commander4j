@@ -4,18 +4,19 @@ import com.commander4j.Interface.Outbound.OutboundInterface;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
-public class OutboundConnectorIDOC  extends OutboundConnectorABSTRACT {
-	
+public class OutboundConnectorIDOC extends OutboundConnectorABSTRACT
+{
+
 	public OutboundConnectorIDOC(OutboundInterface inter)
 	{
-		super(Connector_IDOC,inter);
+		super(Connector_IDOC, inter);
 	}
 
 	@Override
 	public boolean connectorSave(String fullFilename)
 	{
 		boolean result = false;
-		
+
 		return result;
 	}
 

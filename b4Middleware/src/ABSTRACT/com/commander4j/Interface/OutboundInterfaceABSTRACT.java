@@ -21,36 +21,37 @@ import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
-public abstract class OutboundInterfaceABSTRACT extends TimerTask implements OutboundInterfaceINTERFACE{
+public abstract class OutboundInterfaceABSTRACT extends TimerTask implements OutboundInterfaceINTERFACE
+{
 	boolean enabled = false;
 	private String type = "";
 	public OutboundConnectorABSTRACT connector;
 	private Long timerFrequency = (long) 2000;
-	private boolean running=false;
+	private boolean running = false;
 	Timer timer = new Timer();
 	protected Map map;
-    protected Document data;
-    private String outputPath = "";
-    private String xsltFilename = "";
-    private String xsltPath = "";    
-    private String description;
-    private String id;
+	protected Document data;
+	private String outputPath = "";
+	private String xsltFilename = "";
+	private String xsltPath = "";
+	private String description;
+	private String id;
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundInterfaceABSTRACT.class));
-    private String outputPattern = "";
-    private String csvOptions = "";
-    private String delimeter="";
-    private String outputFileExtension = "";
+	private String outputPattern = "";
+	private String csvOptions = "";
+	private String delimeter = "";
+	private String outputFileExtension = "";
 
 	public void setDescription(String description)
 	{
 		this.description = description;
 	}
-	
+
 	public String getDescription()
 	{
 		return this.description;
 	}
-	
+
 	public String getXSLTFilename()
 	{
 		return xsltFilename;
@@ -60,66 +61,65 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	{
 		this.xsltFilename = xsltFilename;
 	}
-    
-    public OutboundInterfaceABSTRACT(Map map)
-    {
-    	this.map = map;
-    }
-	
+
+	public OutboundInterfaceABSTRACT(Map map)
+	{
+		this.map = map;
+	}
+
 	public Document getData()
 	{
 		return this.data;
 	}
-	
+
 	public boolean getEnabled()
 	{
 		return this.enabled;
 	}
-	
+
 	public void setOutputPath(String path)
-	
+
 	{
 		this.outputPath = path;
 	}
-	
+
 	public void setOutputFileExtension(String extension)
 	{
-		if (Utility.replaceNullStringwithBlank(extension).equals("")==false)
+		if (Utility.replaceNullStringwithBlank(extension).equals("") == false)
 		{
 			this.outputFileExtension = extension;
 		}
-	}	
-	
+	}
+
 	public String getOutputFileExtension()
 	{
 		return this.outputFileExtension;
 	}
-	
+
 	public String getOutputPath()
 	{
 		if (outputPath.equals(""))
-			outputPath = System.getProperty("user.dir") + File.separator+"interface" + File.separator + "output";
-		
+			outputPath = System.getProperty("user.dir") + File.separator + "interface" + File.separator + "output";
+
 		return this.outputPath;
 	}
 
 	public void setEnabled(boolean enable)
 	{
-		logger.debug("setEnabled "+String.valueOf(enable));
-		if ((enable==true) && (enabled==false) && (running==false))
+		logger.debug("setEnabled " + String.valueOf(enable));
+		if ((enable == true) && (enabled == false) && (running == false))
 		{
 			// start
 			connector.setEnabled(enabled);
 			this.enabled = enable;
 			setRunning(true);
-			logger.debug("Start Requested : ["+getDescription()+"]");
+			logger.debug("Start Requested : [" + getDescription() + "]");
 			timer.scheduleAtFixedRate(this, 0, timerFrequency);
-		}
-		else
+		} else
 		{
 			// stop
 			timer.cancel();
-			logger.debug("Stop Requested : ["+getDescription()+"]");
+			logger.debug("Stop Requested : [" + getDescription() + "]");
 			setRunning(false);
 		}
 	}
@@ -128,7 +128,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	{
 		this.running = yes;
 	}
-	
+
 	public boolean isRunning()
 	{
 		return this.running;
@@ -138,34 +138,34 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	{
 		return type;
 	}
-	
+
 	public String getOutputPattern()
 	{
 		return outputPattern;
 	}
-	
+
 	public void setOutputPattern(String pattern)
 	{
 		outputPattern = Utility.replaceNullStringwithBlank(pattern);
 
 	}
-	
+
 	public String getCSVOptions()
 	{
 		return csvOptions;
 	}
-	
+
 	public void setCSVOptions(String options)
 	{
 		csvOptions = Utility.replaceNullStringwithBlank(options);
 
 	}
-	
+
 	public String getOptionDelimeter()
 	{
 		return delimeter;
 	}
-	
+
 	public void setOptionDelimeter(String value)
 	{
 		delimeter = Utility.replaceNullStringwithBlank(value);
@@ -197,31 +197,30 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 		case OutboundConnectorINTERFACE.Connector_XML:
 			connector = new OutboundConnectorXML((OutboundInterface) this);
 			setOutputFileExtension("xml");
-			break;			
+			break;
 		default:
 			throw new IllegalArgumentException();
 		}
 
 	}
-	
+
 	public String getXSLTPath()
 	{
 		if (xsltPath.equals(""))
-			xsltPath = System.getProperty("user.dir")  + File.separator + "xslt";		
+			xsltPath = System.getProperty("user.dir") + File.separator + "xslt";
 		return xsltPath;
 	}
-	
+
 	public void setXSLTPath(String xsltPath)
 	{
 		this.xsltPath = xsltPath;
 	}
-	
 
 	public void setId(String id)
 	{
 		this.id = id;
 	}
-	
+
 	public String getId()
 	{
 		return id;

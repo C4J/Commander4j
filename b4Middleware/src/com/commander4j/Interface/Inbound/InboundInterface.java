@@ -60,18 +60,20 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 				{
 					data = connector.getData();
 
-					String filename_imported = Utility.getCurrentTimeStampString() + " IMPORTED_"+ connector.getType()+"_to_XML" +" " + file.getName() ;
-					
-					if (filename_imported.endsWith(".xml")==false)
+					String filename_imported = Utility.getCurrentTimeStampString() + " IMPORTED_" + connector.getType()
+							+ "_to_XML" + " " + file.getName();
+
+					if (filename_imported.endsWith(".xml") == false)
 					{
-						filename_imported=filename_imported+".xml";
+						filename_imported = filename_imported + ".xml";
 					}
-					
-					String filename_transformed = Utility.getCurrentTimeStampString() + " TRANSFORMED_"+ connector.getType() +" " + file.getName() ;
-					
-					if (filename_transformed.endsWith(".xml")==false)
+
+					String filename_transformed = Utility.getCurrentTimeStampString() + " TRANSFORMED_"
+							+ connector.getType() + " " + file.getName();
+
+					if (filename_transformed.endsWith(".xml") == false)
 					{
-						filename_transformed=filename_transformed+".xml";
+						filename_transformed = filename_transformed + ".xml";
 					}
 
 					// String filename_transformed =

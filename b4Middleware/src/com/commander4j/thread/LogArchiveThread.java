@@ -11,6 +11,7 @@ public class LogArchiveThread extends Thread
 	Integer counter = 0;
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((LogArchiveThread.class));
+
 	public LogArchiveThread()
 	{
 		super();
@@ -24,30 +25,27 @@ public class LogArchiveThread extends Thread
 			try
 			{
 				sleep(1000);
-			}
-			catch (InterruptedException e1)
+			} catch (InterruptedException e1)
 			{
 				e1.printStackTrace();
 			}
-			
+
 			if (counter >= 60)
 			{
 				logger.debug("Checking for log files to archive.");
 				JArchive.archiveBackupFiles(Common.logDir, Common.ArchiveRetentionDays);
 				counter = 0;
-			}
-			else
+			} else
 			{
 				counter++;
 			}
-			
+
 			if (allDone)
 			{
 				logger.debug("LogArchiveThread closed.");
 				return;
 			}
 
-	
 		}
 	}
 }

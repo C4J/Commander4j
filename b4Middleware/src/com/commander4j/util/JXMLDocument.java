@@ -49,8 +49,8 @@ public class JXMLDocument
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((JXMLDocument.class));
 
-
-	public Document getDocument() {
+	public Document getDocument()
+	{
 		return document;
 	}
 
@@ -59,8 +59,7 @@ public class JXMLDocument
 		try
 		{
 			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		}
-		catch (Exception ex)
+		} catch (Exception ex)
 		{
 			logger.error("JXMLDocument constructor " + ex.getMessage());
 		}
@@ -85,15 +84,15 @@ public class JXMLDocument
 	 *            String
 	 * @return String
 	 */
-	public String findXPath(String path) {
+	public String findXPath(String path)
+	{
 		String result = "";
 
 		try
 		{
 			Node widgetNode = (Node) xpath.evaluate(path, document, XPathConstants.NODE);
 			result = widgetNode.getFirstChild().getNodeValue().toString();
-		}
-		catch (Exception ex)
+		} catch (Exception ex)
 		{
 			result = "";
 		}
@@ -107,58 +106,60 @@ public class JXMLDocument
 	 * @param filename
 	 *            String
 	 */
-	public Boolean setDocument(String filename) {
+	public Boolean setDocument(String filename)
+	{
 		Boolean result = false;
 		logger.debug("setDocument :" + filename);
 		try
 		{
 			document = builder.parse(new File(filename));
 			result = true;
-		}
-		catch (Exception ex)
+		} catch (Exception ex)
 		{
 			logger.error("JXMLDocument.setDocument " + ex.getMessage());
 		}
 		return result;
 	}
 
-	public void setDocument(Document doc) {
+	public void setDocument(Document doc)
+	{
 		document = doc;
 	}
 
-	public void setDocumentText(String text) {
+	public void setDocumentText(String text)
+	{
 		logger.debug("setDocumentText :" + text);
 		try
 		{
 			document = builder.parse(new InputSource(new StringReader(text)));
 
-		}
-		catch (Exception ex)
+		} catch (Exception ex)
 		{
 			System.out.println(ex.getMessage());
 			logger.error("JXMLDocument.setDocumentText " + ex.getMessage());
 		}
 	}
-	
-	public String documentToString(org.w3c.dom.Document doc) throws TransformerException {
 
-	    // Create dom source for the document
-	    DOMSource domSource=new DOMSource(doc);
+	public String documentToString(org.w3c.dom.Document doc) throws TransformerException
+	{
 
-	    // Create a string writer
-	    StringWriter stringWriter=new StringWriter();
+		// Create dom source for the document
+		DOMSource domSource = new DOMSource(doc);
 
-	    // Create the result stream for the transform
-	    StreamResult result = new StreamResult(stringWriter);
+		// Create a string writer
+		StringWriter stringWriter = new StringWriter();
 
-	    // Create a Transformer to serialize the document
-	    TransformerFactory tFactory =TransformerFactory.newInstance();
-	    Transformer transformer = tFactory.newTransformer();
-	    transformer.setOutputProperty("indent","yes");
+		// Create the result stream for the transform
+		StreamResult result = new StreamResult(stringWriter);
 
-	    // Transform the document to the result stream
-	    transformer.transform(domSource, result);        
-	    return stringWriter.toString();
+		// Create a Transformer to serialize the document
+		TransformerFactory tFactory = TransformerFactory.newInstance();
+		Transformer transformer = tFactory.newTransformer();
+		transformer.setOutputProperty("indent", "yes");
+
+		// Transform the document to the result stream
+		transformer.transform(domSource, result);
+		return stringWriter.toString();
 	}
 
 }

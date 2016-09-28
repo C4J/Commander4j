@@ -9,87 +9,85 @@ import INTERFACE.com.commander4j.Connector.OutboundConnectorINTERFACE;
 
 import com.commander4j.Interface.Outbound.OutboundInterface;
 
-public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTERFACE{
-    private boolean enabled = true;
-    private String type = "";
-    private String filename = "";
+public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTERFACE
+{
+	private boolean enabled = true;
+	private String type = "";
+	private String filename = "";
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundConnectorABSTRACT.class));
 
 	private Long outboundConnectorCount = (long) 0;
 
-    protected Document data;
+	protected Document data;
 
-    private OutboundInterface outint;
-     
+	private OutboundInterface outint;
+
 	public Long getOutboundConnectorCount()
 	{
 		return outboundConnectorCount;
 	}
-	
-    
-    public OutboundInterface getOutboundInterface()
-    {
-    	return outint;
-    }
-    
-    public void processOutboundData(String filename, Document data)
-    {
-    	outboundConnectorCount++;
-    	
-    	setData(data);
-    	setFilename(filename);
-    	connectorSave(filename);
-    }
-    
-    
-    public OutboundConnectorABSTRACT(String type,OutboundInterface outer)
-    {
-    	this.type = type;
-    	this.outint = outer;
-    }
-    
+
+	public OutboundInterface getOutboundInterface()
+	{
+		return outint;
+	}
+
+	public void processOutboundData(String filename, Document data)
+	{
+		outboundConnectorCount++;
+
+		setData(data);
+		setFilename(filename);
+		connectorSave(filename);
+	}
+
+	public OutboundConnectorABSTRACT(String type, OutboundInterface outer)
+	{
+		this.type = type;
+		this.outint = outer;
+	}
+
 	public void setEnabled(boolean enabled)
 	{
 		this.enabled = enabled;
 	}
-	
+
 	public boolean getEnabled()
 	{
 		return this.enabled;
 	}
-	
+
 	private void setFilename(String filename)
 	{
 		this.filename = filename;
 	}
-	
+
 	public String getFilename()
 	{
 		return this.filename;
 	}
 
-	
 	public String getType()
 	{
 		return type;
 	}
-	
+
 	public void setType(String type)
 	{
 		this.type = type;
 	}
-	
+
 	public void setData(Document data)
 	{
 		this.data = data;
 	}
-	
+
 	public Document getData()
 	{
 		return data;
 	}
-	
+
 	public Element addElement(Document doc, String name, String value)
 	{
 		Element temp = (Element) doc.createElement(name);
@@ -97,5 +95,5 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 		temp.appendChild(temp_value);
 		return temp;
 	}
-	
+
 }

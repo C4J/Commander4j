@@ -15,26 +15,28 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.w3c.dom.Document;
 
-public class Utility {
+public class Utility
+{
 
-	public static String getCurrentTimeStampString() {
-	    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");//dd/MM/yyyy
-	    Date now = new Date();
-	    String strDate = sdfDate.format(now);
-	    return strDate;
+	public static String getCurrentTimeStampString()
+	{
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");// dd/MM/yyyy
+		Date now = new Date();
+		String strDate = sdfDate.format(now);
+		return strDate;
 	}
-	
-	public static synchronized String nvl(String value,String defaultValue)
+
+	public static synchronized String nvl(String value, String defaultValue)
 	{
 		String result = "";
-		
+
 		if (value == null)
 		{
 			value = "";
 		}
-		
+
 		result = value;
-		
+
 		if (result.equals(""))
 		{
 			result = defaultValue;
@@ -42,24 +44,25 @@ public class Utility {
 
 		return result;
 	}
-	
-	public static synchronized String getStringFromDocument(Document doc)  {
-		
-		try{
-	    DOMSource domSource = new DOMSource(doc);
-	    StringWriter writer = new StringWriter();
-	    StreamResult result = new StreamResult(writer);
-	    TransformerFactory tf = TransformerFactory.newInstance();
-	    Transformer transformer = tf.newTransformer();
-	    transformer.transform(domSource, result);
-	    return writer.toString();
-		}
-		catch (Exception ex)
+
+	public static synchronized String getStringFromDocument(Document doc)
+	{
+
+		try
+		{
+			DOMSource domSource = new DOMSource(doc);
+			StringWriter writer = new StringWriter();
+			StreamResult result = new StreamResult(writer);
+			TransformerFactory tf = TransformerFactory.newInstance();
+			Transformer transformer = tf.newTransformer();
+			transformer.transform(domSource, result);
+			return writer.toString();
+		} catch (Exception ex)
 		{
 			return " Error displaying document(data)";
 		}
 	}
-	
+
 	public static String replaceNullObjectwithBlank(Object value)
 	{
 		String result = "";
@@ -81,8 +84,8 @@ public class Utility {
 
 		return value;
 	}
-	
-	public static  void pause(int value)
+
+	public static void pause(int value)
 	{
 		for (int x = 0; x < value; x++)
 		{
@@ -96,27 +99,28 @@ public class Utility {
 			}
 		}
 	}
-	
+
 	public static void initLogging(String filename)
 	{
 		if (filename.isEmpty())
 		{
-			filename =  "xml" + File.separator + "config" + File.separator + "log4j2.xml";
+			filename = "xml" + File.separator + "config" + File.separator + "log4j2.xml";
 		}
-		
-        LoggerContext context = (org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false);
-        File file = new File(filename);
 
-        // this will force a reconfiguration
-        context.setConfigLocation(file.toURI());
+		LoggerContext context = (org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false);
+		File file = new File(filename);
+
+		// this will force a reconfiguration
+		context.setConfigLocation(file.toURI());
 
 	}
-	
+
 	public static String getLogFilename(String filename)
 	{
-		return System.getProperty("user.dir")+File.separator+"interface"+File.separator+"log"+File.separator+filename;
+		return System.getProperty("user.dir") + File.separator + "interface" + File.separator + "log" + File.separator
+				+ filename;
 	}
-	
+
 	public static String getISOTimeStampStringFormat(Timestamp ts)
 	{
 		String result = "";
@@ -143,7 +147,6 @@ public class Utility {
 
 		return result;
 	}
-	
 
 	public static String padSpace(int size)
 	{
@@ -156,7 +159,6 @@ public class Utility {
 
 		return s;
 	}
-
 
 	public static String padString(int size, String character)
 	{
@@ -197,5 +199,5 @@ public class Utility {
 
 		return result;
 	}
-	
+
 }

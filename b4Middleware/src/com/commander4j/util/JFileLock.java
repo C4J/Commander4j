@@ -29,7 +29,7 @@ public class JFileLock
 			try
 			{
 				lock = channel.tryLock();
-				result=true;
+				result = true;
 			} catch (OverlappingFileLockException e)
 			{
 				// File is already locked in this thread or virtual machine

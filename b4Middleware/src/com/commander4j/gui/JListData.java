@@ -49,7 +49,8 @@ public class JListData implements Comparable<JListData>
 	 * 
 	 * @return Object
 	 */
-	public Object getmData() {
+	public Object getmData()
+	{
 		return mData;
 	}
 
@@ -58,7 +59,8 @@ public class JListData implements Comparable<JListData>
 	 * 
 	 * @return Icon
 	 */
-	public Icon getIcon() {
+	public Icon getIcon()
+	{
 		return mIcon;
 	}
 
@@ -67,7 +69,8 @@ public class JListData implements Comparable<JListData>
 	 * 
 	 * @return int
 	 */
-	public int getIndex() {
+	public int getIndex()
+	{
 		return mIndex;
 	}
 
@@ -76,7 +79,8 @@ public class JListData implements Comparable<JListData>
 	 * 
 	 * @return boolean
 	 */
-	public boolean isSelectable() {
+	public boolean isSelectable()
+	{
 		return mSelectable;
 	}
 
@@ -85,7 +89,8 @@ public class JListData implements Comparable<JListData>
 	 * 
 	 * @return Object
 	 */
-	public Object getObject() {
+	public Object getObject()
+	{
 		return mData;
 	}
 
@@ -94,7 +99,8 @@ public class JListData implements Comparable<JListData>
 	 * 
 	 * @return String
 	 */
-	public String toString() {
+	public String toString()
+	{
 		return mData.toString();
 	}
 
@@ -105,7 +111,8 @@ public class JListData implements Comparable<JListData>
 	 *            JDBListData
 	 * @return int
 	 */
-	public int compareTo(JListData anotherModuleListData) {
+	public int compareTo(JListData anotherModuleListData)
+	{
 		return mData.toString().compareTo(anotherModuleListData.toString());
 
 	}

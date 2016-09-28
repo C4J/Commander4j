@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 
 import com.commander4j.sys.Common;
 
-
 /**
  */
 public class JImageIconLoader
@@ -19,15 +18,18 @@ public class JImageIconLoader
 		enableCache();
 	}
 
-	public void clearCache() {
+	public void clearCache()
+	{
 		imageIndex.clear();
 	}
 
-	public void disableCache() {
+	public void disableCache()
+	{
 		cacheImages = false;
 	}
 
-	public void enableCache() {
+	public void enableCache()
+	{
 		cacheImages = true;
 	}
 
@@ -36,7 +38,8 @@ public class JImageIconLoader
 	 * 
 	 * @return ImageIcon
 	 */
-	public ImageIcon getImageIcon() {
+	public ImageIcon getImageIcon()
+	{
 		ImageIcon result = null;
 		return result;
 
@@ -49,7 +52,8 @@ public class JImageIconLoader
 	 *            String
 	 * @return ImageIcon
 	 */
-	public ImageIcon getImageIcon(String filename) {
+	public ImageIcon getImageIcon(String filename)
+	{
 		ImageIcon result = null;
 
 		// $hide>>$
@@ -60,13 +64,11 @@ public class JImageIconLoader
 			if (imageIndex.containsKey(filename))
 			{
 				result = imageIndex.get(filename);
-			}
-			else
+			} else
 			{
 				readfromfile = true;
 			}
-		}
-		else
+		} else
 		{
 			readfromfile = true;
 		}
@@ -81,8 +83,7 @@ public class JImageIconLoader
 				{
 					imageIndex.put(filename, result);
 				}
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				result = new ImageIcon(Common.image_path + Common.image_error);
 			}
@@ -98,7 +99,8 @@ public class JImageIconLoader
 	 * 
 	 * @return boolean
 	 */
-	public boolean isCacheEnabled() {
+	public boolean isCacheEnabled()
+	{
 		return cacheImages;
 	}
 

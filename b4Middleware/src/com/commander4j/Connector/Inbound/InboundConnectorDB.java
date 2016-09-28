@@ -4,12 +4,12 @@ import com.commander4j.Interface.Inbound.InboundInterface;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
-public class InboundConnectorDB  extends InboundConnectorABSTRACT {
-	
-	
+public class InboundConnectorDB extends InboundConnectorABSTRACT
+{
+
 	public InboundConnectorDB(InboundInterface inter)
 	{
-		super(Connector_DB,inter);
+		super(Connector_DB, inter);
 	}
 
 	@Override

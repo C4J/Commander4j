@@ -6,7 +6,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.commander4j.sys.Common;
 
-
 public class JList4j<E> extends JList<E>
 {
 
@@ -35,6 +34,5 @@ public class JList4j<E> extends JList<E>
 		setBackground(Common.color_listBackground);
 		setBorder(new EmptyBorder(0, 0, 0, 0));
 	}
-	
-		
+
 }

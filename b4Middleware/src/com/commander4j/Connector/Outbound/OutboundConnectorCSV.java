@@ -22,7 +22,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 	boolean disableQuotes = false;
 	char seperator = ',';
 	char quote = '"';
-	
+
 	public OutboundConnectorCSV(OutboundInterface inter)
 	{
 		super(Connector_CSV, inter);
@@ -38,7 +38,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 	private void parsePattern(String pattern, String delim)
 	{
 		parseOptions.clear();
-		delim = "\\"+delim;
+		delim = "\\" + delim;
 		String[] opts = pattern.split(delim);
 		for (int x = 0; x < opts.length; x++)
 		{
@@ -57,9 +57,9 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 				quote = val.charAt(0);
 				if (val.equals("none"))
 				{
-					disableQuotes=true;
+					disableQuotes = true;
 				}
-				break;				
+				break;
 			default:
 				opt = "";
 				break;
@@ -72,11 +72,11 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 	{
 		boolean result = false;
 
-		if (filename.endsWith("."+getType().toLowerCase())==false)
+		if (filename.endsWith("." + getType().toLowerCase()) == false)
 		{
-			filename = filename + "."+getType().toLowerCase();
+			filename = filename + "." + getType().toLowerCase();
 		}
-		
+
 		getCSVOptions();
 
 		logger.debug("connectorSave [" + filename + "]");
@@ -116,8 +116,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 					CSVWriter writer;
 					if (disableQuotes)
 					{
-						writer = new CSVWriter(new FileWriter(filename), seperator,
-								CSVWriter.NO_QUOTE_CHARACTER);
+						writer = new CSVWriter(new FileWriter(filename), seperator, CSVWriter.NO_QUOTE_CHARACTER);
 					} else
 					{
 						writer = new CSVWriter(new FileWriter(filename), seperator);
@@ -133,8 +132,8 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 									+ "']";
 							String dataString = Utility.replaceNullStringwithBlank(document.findXPath(xpath).trim());
 							csvrow[c - 1] = dataString;
-							logger.debug("row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] data=[" + dataString
-									+ "]");
+							logger.debug("row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] data=["
+									+ dataString + "]");
 						}
 
 						writer.writeNext(csvrow);

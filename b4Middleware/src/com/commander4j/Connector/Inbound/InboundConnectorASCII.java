@@ -29,7 +29,7 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorCSV.class));
 	JFileIO jfileio = new JFileIO();
-    private LinkedList<FixedASCIIColumns> parseCols = new LinkedList<FixedASCIIColumns>();
+	private LinkedList<FixedASCIIColumns> parseCols = new LinkedList<FixedASCIIColumns>();
 
 	public InboundConnectorASCII(InboundInterface inter)
 	{
@@ -40,12 +40,12 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 	{
 		return parseCols.size();
 	}
-	
+
 	private void parsePattern(String pattern)
 	{
 		parseCols.clear();
 		String[] one = pattern.split(",");
-		for (int x=0;x<one.length;x++)
+		for (int x = 0; x < one.length; x++)
 		{
 			String two = one[x];
 			String[] three = two.split("-");
@@ -53,49 +53,50 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 			int end = Integer.valueOf(three[1]);
 			FixedASCIIColumns col = new FixedASCIIColumns();
 			col.position = x;
-			col.start=start;
-			col.end=end;
+			col.start = start;
+			col.end = end;
 			parseCols.add(col);
 		}
 	}
-	
+
 	private LinkedList<FixedASCIIData> getASCIIColumnData(String line)
 	{
 		LinkedList<FixedASCIIData> result = new LinkedList<FixedASCIIData>();
-		
-		if (parseCols.size()>0)
+
+		if (parseCols.size() > 0)
 		{
-			if (line.length()>0)
+			if (line.length() > 0)
 			{
-				for (int x=0;x<parseCols.size();x++)
+				for (int x = 0; x < parseCols.size(); x++)
 				{
 					int firstcol = parseCols.get(x).start;
 					int lastcol = parseCols.get(x).end;
-					
+
 					FixedASCIIData data = new FixedASCIIData();
-					
-					data.columnId=x+1;
-					data.columnData=line.substring(firstcol-1, lastcol);
+
+					data.columnId = x + 1;
+					data.columnData = line.substring(firstcol - 1, lastcol);
 					result.addLast(data);
 				}
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	@Override
 	public boolean connectorLoad(String fullFilename)
 	{
 		long row = 0;
-		
+
 		parsePattern(getInboundInterface().getInputPattern());
 
 		logger.debug("connectorLoad [" + fullFilename + "]");
 
 		try
 		{
-			String destination = Common.logDir + java.io.File.separator + Utility.getCurrentTimeStampString()+" INPUT_BACKUP_"+getType()+" "+  (new File(fullFilename)).getName();
+			String destination = Common.logDir + java.io.File.separator + Utility.getCurrentTimeStampString()
+					+ " INPUT_BACKUP_" + getType() + " " + (new File(fullFilename)).getName();
 			logger.debug("connectorLoad Backup [" + fullFilename + "] to [" + destination + "]");
 			FileUtils.copyFile(new File(fullFilename), new File(destination));
 		} catch (Exception ex)
@@ -113,7 +114,7 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 			FileReader fileReader = new FileReader(fullFilename);
 
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			
+
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 
@@ -122,24 +123,24 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 			Element message = (Element) data.createElement("data");
 			message.setAttribute("type", Connector_ASCII);
 
-			row=0;
+			row = 0;
 			while ((line = bufferedReader.readLine()) != null)
 			{
 				row++;
 				Element xmlrow = (Element) data.createElement("row");
 				xmlrow.setAttribute("id", String.valueOf(row));
 				xmlrow.setNodeValue(String.valueOf(row));
-				
+
 				System.out.println(line);
-				
-				LinkedList<FixedASCIIData>  nextLine = getASCIIColumnData(line);
-				
+
+				LinkedList<FixedASCIIData> nextLine = getASCIIColumnData(line);
+
 				for (int x = 0; x < getPatternColumnCount(); x++)
 				{
-					
+
 					System.out.println(nextLine.get(x).columnId);
 					System.out.println(nextLine.get(x).columnData);
-					
+
 					Element xmlcol = addElement(data, "col", nextLine.get(x).columnData);
 					xmlcol.setAttribute("id", String.valueOf(nextLine.get(x).columnId));
 					xmlcol.setNodeValue(nextLine.get(x).columnData);
@@ -150,14 +151,14 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 			}
 
 			bufferedReader.close();
-			
+
 			message.setAttribute("type", Connector_ASCII);
 			message.setAttribute("cols", String.valueOf(getPatternColumnCount()));
 			message.setAttribute("rows", String.valueOf(row));
 			message.setAttribute("filename", (new File(fullFilename)).getName());
-			
+
 			data.appendChild(message);
-						
+
 		} catch (FileNotFoundException ex)
 		{
 			System.out.println("Unable to open file '" + fullFilename + "'");
@@ -167,9 +168,8 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 
 		} catch (ParserConfigurationException ex)
 		{
-			
-		}
 
+		}
 
 		return result;
 	}

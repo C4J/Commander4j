@@ -12,7 +12,8 @@ import com.commander4j.Interface.Outbound.OutboundInterface;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
-public class OutboundConnectorXML extends OutboundConnectorABSTRACT {
+public class OutboundConnectorXML extends OutboundConnectorABSTRACT
+{
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundConnectorXML.class));
 
@@ -25,9 +26,9 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT {
 	public boolean connectorSave(String filename)
 	{
 		boolean result = false;
-		
-		
-		logger.debug("connectorSave [" + filename+"."+getOutboundInterface().getOutputFileExtension().toLowerCase() + "]");
+
+		logger.debug("connectorSave [" + filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase()
+				+ "]");
 		try
 		{
 			DOMImplementationLS DOMiLS = null;
@@ -38,11 +39,11 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT {
 
 				LSOutput LSO = DOMiLS.createLSOutput();
 
-				if (filename.endsWith("."+getType().toLowerCase())==false)
+				if (filename.endsWith("." + getType().toLowerCase()) == false)
 				{
-					filename = filename + "."+getType().toLowerCase();
+					filename = filename + "." + getType().toLowerCase();
 				}
-				FOS = new FileOutputStream(filename );
+				FOS = new FileOutputStream(filename);
 				LSO.setByteStream((OutputStream) FOS);
 
 				LSSerializer LSS = DOMiLS.createLSSerializer();

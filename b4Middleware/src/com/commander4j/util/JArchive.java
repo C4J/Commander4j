@@ -9,7 +9,8 @@ import org.apache.commons.io.filefilter.AgeFileFilter;
 
 import com.commander4j.sys.Common;
 
-public class JArchive {
+public class JArchive
+{
 
 	public static int archiveBackupFiles(String path, int daysToKeep)
 	{
@@ -29,10 +30,10 @@ public class JArchive {
 		{
 			path = Common.logDir;
 		}
-		
-		if (daysToKeep<=0)
+
+		if (daysToKeep <= 0)
 		{
-			daysToKeep=1;
+			daysToKeep = 1;
 		}
 
 		File directory = new File(path);
@@ -53,7 +54,8 @@ public class JArchive {
 			try
 			{
 				Date lastMod = new Date(file.lastModified());
-				System.out.println("Removing log file [" + file.getName() + ", Date: " + lastMod + "] from ["+directory.getName()+"]");
+				System.out.println("Removing log file [" + file.getName() + ", Date: " + lastMod + "] from ["
+						+ directory.getName() + "]");
 				file.delete();
 				count++;
 			} catch (Exception ex)

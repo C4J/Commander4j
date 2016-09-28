@@ -25,7 +25,7 @@ public class StartMain
 	public Boolean StartMiddleware()
 	{
 		Boolean result = true;
-		
+
 		logger.debug("Application starting");
 		Utility.initLogging("");
 
@@ -48,7 +48,7 @@ public class StartMain
 			archiveLog = new LogArchiveThread();
 			archiveLog.setName("Log Archiver");
 			archiveLog.start();
-			
+
 			cfg.startMaps();
 
 			logger.debug("*************************");
@@ -62,7 +62,7 @@ public class StartMain
 			logger.debug("*************************");
 			logger.debug("**      ERRORS         **");
 			logger.debug("*************************");
-			
+
 			for (int x = 0; x < cfg.getMapDirectoryErrorCount(); x++)
 			{
 				logger.error(cfg.getMapDirectoryErrors().get(x));
@@ -81,7 +81,7 @@ public class StartMain
 		logger.debug("*************************");
 		logger.debug("**      STOPPING       **");
 		logger.debug("*************************");
-	
+
 		try
 		{
 			logger.debug("Shutting down Log File Archiver");
@@ -95,13 +95,13 @@ public class StartMain
 		{
 
 		}
-		
+
 		logger.debug("Shutting down Maps");
 		cfg.stopMaps();
 		logger.debug("Maps Terminated");
-	
+
 		logger.info(cfg.getInterfaceStatistics());
-		
+
 		logger.debug("*************************");
 		logger.debug("**      STOPPED        **");
 		logger.debug("*************************");
@@ -113,7 +113,7 @@ public class StartMain
 
 	public static void main(String[] args)
 	{
-		
+
 		String parameter = "";
 
 		if (args.length > 0)

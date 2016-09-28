@@ -15,7 +15,6 @@ import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 
-
 public class JFileIO
 {
 	private String errorMessage = "";
@@ -23,22 +22,21 @@ public class JFileIO
 	private String shortfilename = "";
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((JFileIO.class));
 
-	
 	public boolean isValidDirectory(String directoryName)
 	{
 		boolean result = false;
-		 File theDir = new File(directoryName);
-		 System.out.println(theDir.getAbsolutePath());
+		File theDir = new File(directoryName);
+		System.out.println(theDir.getAbsolutePath());
 
-		  // if the directory does not exist, create it
-		  if (theDir.exists())
-		  {
-			  result = true;
-		  }
-		  theDir = null;
-		  return result;
+		// if the directory does not exist, create it
+		if (theDir.exists())
+		{
+			result = true;
+		}
+		theDir = null;
+		return result;
 	}
-	
+
 	public String getShortFilename()
 	{
 		return shortfilename;
@@ -153,8 +151,7 @@ public class JFileIO
 				}
 			}
 			String filename = path + outputFilename;
-			
-			
+
 			setFilename(filename);
 			setShortFilename(outputFilename);
 
@@ -181,7 +178,7 @@ public class JFileIO
 				LSS.write(document, LSO);
 
 				FOS.close();
-			} 
+			}
 
 			// ===============================
 
