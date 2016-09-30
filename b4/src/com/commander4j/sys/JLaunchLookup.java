@@ -108,8 +108,8 @@ public class JLaunchLookup
 		JDialogLookup.dlg_title = "Users";
 
 		JDialogLookup.dlg_key_field_name = "user_id";
-		JDialogLookup.dlg_criteria_field_name_default = "USER_COMMENT";
-		JDialogLookup.dlg_orderBy_name_default = "USER_COMMENT";
+		JDialogLookup.dlg_criteria_field_name_default = "USER_ID";
+		JDialogLookup.dlg_orderBy_name_default = "USER_ID";
 		JDialogLookup.dlg_sort_descending = false;
 
 		// dlg_criteria_default = "";
