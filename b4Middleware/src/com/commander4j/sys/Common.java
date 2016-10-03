@@ -51,5 +51,6 @@ public class Common
 	public static StartGUI sgui;
 	public static StartService sservice;
 	public static CheckboxMenuItem runningStatus = new CheckboxMenuItem("Running...");
+	public static String runMode = "";
 
 }

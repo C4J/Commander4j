@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.apache.logging.log4j.Logger;
 
+import com.commander4j.sys.Common;
 import com.commander4j.sys.Config;
 import com.commander4j.thread.LogArchiveThread;
 import com.commander4j.util.Utility;
@@ -42,7 +43,7 @@ public class StartMain
 		logger.debug("**     MAPS LOADED     **");
 		logger.debug("*************************");
 
-		if (cfg.getMapDirectoryErrorCount() == 0)
+		if ((cfg.getMapDirectoryErrorCount() == 0) || (Common.runMode.equals("Service")))
 		{
 
 			archiveLog = new LogArchiveThread();
@@ -128,11 +129,13 @@ public class StartMain
 
 		if (parameter.equals("GUI"))
 		{
+			Common.runMode = "GUI";
 			StartGUI.main(args);
 		}
 
 		if (parameter.equals("Service"))
 		{
+			Common.runMode = "Service";
 			StartService.main(args);
 		}
 
