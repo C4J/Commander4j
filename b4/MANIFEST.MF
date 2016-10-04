@@ -12,9 +12,9 @@ Class-Path: lib/app/commons-email-1.3.3.jar
  lib/db/mysql-connector-java-5.1.36-bin.jar 
  lib/db/ojdbc7.jar 
  lib/db/sqljdbc41.jar 
- lib/jasper/jasperreports-6.3.0.jar 
- lib/jasper/jasperreports-fonts-6.3.0.jar 
- lib/jasper/jasperreports-javaflow-6.3.0.jar 
+ lib/jasper/jasperreports-6.3.1.jar 
+ lib/jasper/jasperreports-fonts-6.3.1.jar 
+ lib/jasper/jasperreports-javaflow-6.3.1.jar 
  lib/jasperlib/ant-1.7.1.jar 
  lib/jasperlib/antlr-2.7.5.jar 
  lib/jasperlib/barbecue-1.5-beta1.jar 
@@ -46,7 +46,7 @@ Class-Path: lib/app/commons-email-1.3.3.jar
  lib/jasperlib/commons-javaflow-20160505.jar 
  lib/jasperlib/commons-lang-2.6.jar 
  lib/jasperlib/commons-logging-1.1.1.jar 
- lib/jasperlib/core-2.3.0.jar 
+ lib/jasperlib/core-3.2.1.jar 
  lib/jasperlib/ecj-4.3.1.jar 
  lib/jasperlib/groovy-all-2.4.5.jar 
  lib/jasperlib/hibernate-core-3.3.2.GA.jar 

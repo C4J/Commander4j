@@ -55,7 +55,7 @@
 	</tr>
 	<tr>
 		<td align="center" style="height: 34px">
-		Version : 5.26
+		Version : 5.27
 	</tr>
 	<tr>
 		<td align="center" style="height: 70px"><input type="submit" name="buttonStart"

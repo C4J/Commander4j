@@ -35,7 +35,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/httpcore-4.3.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-3.10.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-ooxml-3.10.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/core-2.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/app/opencsv-3.5.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/rhino-1.7.6.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/xmpcore-5.1.1.jar"/>
@@ -80,11 +79,12 @@
 	<classpathentry kind="lib" path="lib/jasperlib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/serializer-2.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-javaflow-20160505.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.3.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/Java SE 8 [1.8.0_101]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/jasperlib/core-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
