@@ -20,9 +20,9 @@
         <pathelement location="lib/barcode/commons-cli-1.3.1.jar"/>
         <pathelement location="lib/barcode/jdom-2.0.6.jar"/>
     	<pathelement location="lib/cups4j/cups4j.runnable-0.6.4.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-5.1.36-bin.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-5.1.40-bin.jar"/>
         <pathelement location="lib/db/ojdbc7.jar"/>
-        <pathelement location="lib/db/sqljdbc41.jar"/>
+        <pathelement location="lib/db/sqljdbc42.jar"/>
         <pathelement location="lib/devonly/i4jruntime.jar"/>
         <pathelement location="lib/jasper/jasperreports-6.3.1.jar"/>
         <pathelement location="lib/jasper/jasperreports-fonts-6.3.1.jar"/>

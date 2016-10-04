@@ -21,7 +21,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-core-4.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-queryparser-4.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/olap4j-0.9.7.309-JS-3.jar"/>
-	<classpathentry kind="lib" path="lib/db/sqljdbc41.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/castor-core-1.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/castor-xml-1.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/db/ojdbc7.jar"/>
@@ -59,7 +58,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/xmlgraphics-commons-2.1.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/commons-cli-1.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/jdom-2.0.6.jar"/>
-	<classpathentry kind="lib" path="lib/db/mysql-connector-java-5.1.36-bin.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/hibernate-core-3.3.2.GA.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/jfreechart-1.0.19.jar"/>
@@ -86,5 +84,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jasperlib/core-3.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/db/mysql-connector-java-5.1.40-bin.jar"/>
+	<classpathentry kind="lib" path="lib/db/sqljdbc42.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -38,7 +38,8 @@ public class StartGUI extends JFrame
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	// private StartMW smw = new StartMW();
-	private JToggleButton tglbtnStopStart;
+	private JButton btnStart;
+	private JButton btnStop;
 	private JPanel panelStatus = new JPanel();
 	private JLabel lblStatus = new JLabel("Ready");
 	private JPanel progressBarInterface = new JPanel();
@@ -147,60 +148,43 @@ public class StartGUI extends JFrame
 				ConfirmExit();
 			}
 		});
-		btnClose.setBounds(701, 365, 150, 38);
+		btnClose.setBounds(780, 364, 150, 38);
 		contentPane.add(btnClose);
 
-		tglbtnStopStart = new JToggleButton(Common.icon_ok);
-		tglbtnStopStart.setFont(new Font("Dialog", Font.PLAIN, 12));
-		tglbtnStopStart.setMnemonic(KeyEvent.VK_ENTER);
-		tglbtnStopStart.setText("Start");
-		tglbtnStopStart.setSelectedIcon(Common.icon_cancel);
-		tglbtnStopStart.setOpaque(true);
-		tglbtnStopStart.repaint();
-		tglbtnStopStart.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				if (tglbtnStopStart.isSelected())
+		btnStart = new JButton(Common.icon_ok);
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Common.smw.StartMiddleware();
+				if (Common.smw.cfg.getMapDirectoryErrorCount() > 0)
 				{
+					String errorMessage = "";
 
-					Common.smw.StartMiddleware();
-					if (Common.smw.cfg.getMapDirectoryErrorCount() > 0)
+					for (int x = 0; x < Common.smw.cfg.getMapDirectoryErrorCount(); x++)
 					{
-						String errorMessage = "";
-
-						for (int x = 0; x < Common.smw.cfg.getMapDirectoryErrorCount(); x++)
-						{
-							errorMessage = errorMessage + Common.smw.cfg.getMapDirectoryErrors().get(x) + "\n";
-						}
-
-						JOptionPane.showMessageDialog(frame, errorMessage, "Map Errors", JOptionPane.ERROR_MESSAGE);
-
-					} else
-					{
-						tglbtnStopStart.setBackground(Color.RED);
-						tglbtnStopStart.setText("Stop");
-						lblStatus.setText("Running");
-						label_NoOfMaps.setText(String.valueOf(Common.smw.cfg.getMaps().size()));
-						populateList("");
-						btnClose.setEnabled(false);
-						progressBarInterface.setBackground(new Color(0, 128, 0));
+						errorMessage = errorMessage + Common.smw.cfg.getMapDirectoryErrors().get(x) + "\n";
 					}
+
+					JOptionPane.showMessageDialog(frame, errorMessage, "Map Errors", JOptionPane.ERROR_MESSAGE);
+
 				} else
 				{
+					btnStart.setEnabled(false);
+					btnStop.setEnabled(true);
+					lblStatus.setText("Running");
+					label_NoOfMaps.setText(String.valueOf(Common.smw.cfg.getMaps().size()));
 					populateList("");
-					Common.smw.StopMiddleware();
-
-					tglbtnStopStart.setBackground(Color.GREEN);
-					tglbtnStopStart.setText("Start");
-					lblStatus.setText("Stopped");
-					btnClose.setEnabled(true);
-					progressBarInterface.setBackground(Color.RED);
+					btnClose.setEnabled(false);
+					progressBarInterface.setBackground(new Color(0, 128, 0));
 				}
 			}
 		});
-		tglbtnStopStart.setBounds(214, 365, 150, 38);
-		contentPane.add(tglbtnStopStart);
+		btnStart.setFont(new Font("Dialog", Font.PLAIN, 12));
+		btnStart.setMnemonic(KeyEvent.VK_ENTER);
+		btnStart.setText("Start");
+		btnStart.setSelectedIcon(Common.icon_cancel);
+		btnStart.setOpaque(true);
+		btnStart.setBounds(130, 364, 150, 38);
+		contentPane.add(btnStart);
 
 		panelStatus.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panelStatus.setBounds(0, 415, 1027, 30);
@@ -242,7 +226,7 @@ public class StartGUI extends JFrame
 		JButton buttonHelp = new JButton((Icon) null);
 		buttonHelp.setFont(new Font("Dialog", Font.PLAIN, 12));
 		buttonHelp.setText("Help");
-		buttonHelp.setBounds(539, 365, 150, 38);
+		buttonHelp.setBounds(618, 364, 150, 38);
 		contentPane.add(buttonHelp);
 
 		JLabel lblIdDescriptionType = new JLabel(
@@ -262,7 +246,28 @@ public class StartGUI extends JFrame
 		});
 		btnRefresh.setText("Refresh");
 		btnRefresh.setFont(new Font("Dialog", Font.PLAIN, 12));
-		btnRefresh.setBounds(377, 365, 150, 38);
+		btnRefresh.setBounds(456, 364, 150, 38);
 		contentPane.add(btnRefresh);
+		
+		btnStop = new JButton(Common.icon_cancel);
+		btnStop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				populateList("");
+				Common.smw.StopMiddleware();
+
+				btnStart.setEnabled(true);
+				btnStop.setEnabled(false);
+				lblStatus.setText("Stopped");
+				btnClose.setEnabled(true);
+				progressBarInterface.setBackground(Color.RED);
+			}
+		});
+		btnStop.setEnabled(false);
+		btnStop.setText("Stop");
+		btnStop.setOpaque(true);
+		btnStop.setMnemonic(KeyEvent.VK_ENTER);
+		btnStop.setFont(new Font("Dialog", Font.PLAIN, 12));
+		btnStop.setBounds(292, 364, 150, 38);
+		contentPane.add(btnStop);
 	}
 }
