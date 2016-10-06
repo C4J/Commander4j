@@ -77,7 +77,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/serializer-2.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-javaflow-20160505.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/Java SE 8 [1.8.0_101]">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>

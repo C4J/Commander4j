@@ -13,14 +13,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JToggleButton;
 import javax.swing.ListModel;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
@@ -29,8 +30,6 @@ import com.commander4j.Interface.Mapping.Map;
 import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.Utility;
-import javax.swing.Icon;
-import javax.swing.ScrollPaneConstants;
 
 public class StartGUI extends JFrame
 {
