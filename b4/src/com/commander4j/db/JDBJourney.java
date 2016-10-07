@@ -141,7 +141,7 @@ public class JDBJourney {
 	}
 
 	public String getJourneyRef() {
-		return dbJourneyRef;
+		return dbJourneyRef.toUpperCase();
 	}
 
 	public String getLocationTo()
@@ -385,7 +385,7 @@ public class JDBJourney {
 	}
 
 	public void setJourneyRef(String journey) {
-		dbJourneyRef = journey;
+		dbJourneyRef = journey.toUpperCase();
 	}
 
 	private void setSessionID(String session) {

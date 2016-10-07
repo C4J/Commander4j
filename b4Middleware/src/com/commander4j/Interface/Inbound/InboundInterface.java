@@ -50,7 +50,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 		String[] extensions = new String[]
 		{ getInputFileMask() };
 
-		List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, true);
+		List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, false);
 		for (File file : files)
 		{
 			if (file.length() > 0)

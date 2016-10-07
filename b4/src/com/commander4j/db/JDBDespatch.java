@@ -858,12 +858,12 @@ public class JDBDespatch
 
 	public String getJourneyRef()
 	{
-		return JUtility.replaceNullStringwithBlank(dbJourneyRef);
+		return JUtility.replaceNullStringwithBlank(dbJourneyRef).toUpperCase();
 	}
 
 	public String getJourneyRefOLD()
 	{
-		return JUtility.replaceNullStringwithBlank(dbJourneyRefOLD);
+		return JUtility.replaceNullStringwithBlank(dbJourneyRefOLD).toUpperCase();
 	}
 
 	private String getHostID()
@@ -1118,7 +1118,7 @@ public class JDBDespatch
 	public void setJourneyRef(String jref)
 	{
 		// String oldValue = JUtility.replaceNullStringwithBlank(dbJourneyRef);
-		String newValue = JUtility.replaceNullStringwithBlank(jref);
+		String newValue = JUtility.replaceNullStringwithBlank(jref).toUpperCase();
 
 		dbJourneyRef = newValue;
 
@@ -1139,7 +1139,7 @@ public class JDBDespatch
 	public void setJourneyRefOLD(String jref)
 	{
 
-		String newValue = JUtility.replaceNullStringwithBlank(jref);
+		String newValue = JUtility.replaceNullStringwithBlank(jref).toUpperCase();
 		dbJourneyRefOLD = newValue;
 	}
 

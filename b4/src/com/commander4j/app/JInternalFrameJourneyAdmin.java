@@ -202,9 +202,10 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame {
 		String ljourneyref = "";
 
 		ljourneyref = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Journey_Ref_Input"));
+
 		if (ljourneyref != null) {
 			if (ljourneyref.equals("") == false) {
-
+				ljourneyref = ljourneyref.toUpperCase();
 				JDBJourney jref = new JDBJourney(Common.selectedHostID, Common.sessionID);
 				if (jref.isValidJourneyRef(ljourneyref) == false) {
 					JLaunchMenu.runForm("FRM_ADMIN_JOURNEY_EDIT", ljourneyref);
