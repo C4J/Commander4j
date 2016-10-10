@@ -117,8 +117,7 @@ public class Utility
 
 	public static String getLogFilename(String filename)
 	{
-		return System.getProperty("user.dir") + File.separator + "interface" + File.separator + "log" + File.separator
-				+ filename;
+		return System.getProperty("user.dir") + File.separator + "interface" + File.separator + "log" + File.separator + filename;
 	}
 
 	public static String getISOTimeStampStringFormat(Timestamp ts)

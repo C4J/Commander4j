@@ -6,13 +6,16 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.commons.io.filefilter.AgeFileFilter;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
 public class JArchive
 {
 
-	public static int archiveBackupFiles(String path, int daysToKeep)
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((JArchive.class));
+	
+	public int archiveBackupFiles(String path, int daysToKeep)
 	{
 		int result = 0;
 
@@ -43,26 +46,23 @@ public class JArchive
 		return result;
 	}
 
-	public static int deleteFiles(File directory, FileFilter fileFilter)
+	public int deleteFiles(File directory, FileFilter fileFilter)
 	{
 		int count = 0;
 		File[] files = directory.listFiles(fileFilter);
 
 		for (File file : files)
 		{
-			// file.delete();
 			try
 			{
 				Date lastMod = new Date(file.lastModified());
-				System.out.println("Removing log file [" + file.getName() + ", Date: " + lastMod + "] from ["
-						+ directory.getName() + "]");
+				logger.debug("Removing log file [" + file.getName() + ", Date: " + lastMod + "] from [" + directory.getName() + "]");
 				file.delete();
 				count++;
 			} catch (Exception ex)
 			{
 
 			}
-
 		}
 
 		return count;

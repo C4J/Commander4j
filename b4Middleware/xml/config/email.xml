@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emailSettings>
+
+    <configuration>
+        <property name="mail.smtp.auth" value="true"/>
+        <property name="mail.smtp.starttls.enable" value="true"/>
+        <property name="mail.smtp.host" value="smtp.gmail.com"/>
+        <property name="mail.smtp.user" value="c4jmiddleware@gmail.com"/>
+        <property name="mail.smtp.password" value="rooq wpvb mwns psfo"/>
+        <property name="mail.smtp.port" value="587"/>
+        <property name="mail.smtp.from" value="c4jmiddleware@gmail.com"/>
+    </configuration>
+
+    <distributionList id="1">
+        <toAddressList>c4jmiddleware@gmail.com,davegarratt@msn.com</toAddressList>
+    </distributionList>
+
+    <distributionList id="2">
+        <toAddressList>support@commander4j.com</toAddressList>
+    </distributionList>
+
+    <distributionList id="3">
+        <toAddressList/>
+    </distributionList>
+
+    <distributionList id="4">
+        <toAddressList/>
+    </distributionList>
+
+</emailSettings>

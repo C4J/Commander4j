@@ -55,8 +55,7 @@ public class StartGUI extends JFrame
 	{
 		if (Common.smw.isRunning())
 		{
-			int question = JOptionPane.showConfirmDialog(frame, "Closing application with stop interfaces ?", "Confirm",
-					JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int question = JOptionPane.showConfirmDialog(frame, "Closing application with stop interfaces ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 
 			if (question == 0)
 			{
@@ -151,8 +150,10 @@ public class StartGUI extends JFrame
 		contentPane.add(btnClose);
 
 		btnStart = new JButton(Common.icon_ok);
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnStart.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				Common.smw.StartMiddleware();
 				if (Common.smw.cfg.getMapDirectoryErrorCount() > 0)
 				{
@@ -228,8 +229,7 @@ public class StartGUI extends JFrame
 		buttonHelp.setBounds(618, 364, 150, 38);
 		contentPane.add(buttonHelp);
 
-		JLabel lblIdDescriptionType = new JLabel(
-				"Id          Description                               Input   Output(s)        In      Out  XSLT Filename");
+		JLabel lblIdDescriptionType = new JLabel("Id          Description                               Input   Output(s)        In      Out  XSLT Filename");
 		lblIdDescriptionType.setForeground(Color.BLUE);
 		lblIdDescriptionType.setFont(new Font("Courier New", Font.PLAIN, 12));
 		lblIdDescriptionType.setBounds(12, 46, 883, 22);
@@ -247,10 +247,12 @@ public class StartGUI extends JFrame
 		btnRefresh.setFont(new Font("Dialog", Font.PLAIN, 12));
 		btnRefresh.setBounds(456, 364, 150, 38);
 		contentPane.add(btnRefresh);
-		
+
 		btnStop = new JButton(Common.icon_cancel);
-		btnStop.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnStop.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				populateList("");
 				Common.smw.StopMiddleware();
 

@@ -95,8 +95,7 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 			{
 				try
 				{
-					FileWriter fw = new FileWriter(
-							filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase());
+					FileWriter fw = new FileWriter(filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase());
 
 					// Read new row value from XML
 
@@ -112,10 +111,8 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 							if (c <= getPatternColumnCount())
 							{
 								// Get the data from the XML input
-								String xpath = "//data/row[@id='" + String.valueOf(r) + "']/col[@id='"
-										+ String.valueOf(c) + "']";
-								String dataString = Utility
-										.replaceNullStringwithBlank(document.findXPath(xpath).trim());
+								String xpath = "//data/row[@id='" + String.valueOf(r) + "']/col[@id='" + String.valueOf(c) + "']";
+								String dataString = Utility.replaceNullStringwithBlank(document.findXPath(xpath).trim());
 
 								// Get the position of the data within the ASCII
 								// file for this column.
@@ -136,12 +133,10 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 										}
 									}
 								}
-								logger.debug("row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] data=["
-										+ dataString + "]");
+								logger.debug("row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] data=[" + dataString + "]");
 							} else
 							{
-								logger.debug("Igored row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c)
-										+ "] - no column defined in config.xml");
+								logger.debug("Igored row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] - no column defined in config.xml");
 							}
 						}
 

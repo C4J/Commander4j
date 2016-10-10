@@ -128,12 +128,10 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 
 						for (int c = 1; c <= columns; c++)
 						{
-							String xpath = "//data/row[@id='" + String.valueOf(r) + "']/col[@id='" + String.valueOf(c)
-									+ "']";
+							String xpath = "//data/row[@id='" + String.valueOf(r) + "']/col[@id='" + String.valueOf(c) + "']";
 							String dataString = Utility.replaceNullStringwithBlank(document.findXPath(xpath).trim());
 							csvrow[c - 1] = dataString;
-							logger.debug("row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] data=["
-									+ dataString + "]");
+							logger.debug("row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] data=[" + dataString + "]");
 						}
 
 						writer.writeNext(csvrow);

@@ -5,7 +5,7 @@ import java.io.File;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
-import com.commander4j.sys.Config;
+import com.commander4j.sys.MiddlewareConfig;
 import com.commander4j.thread.LogArchiveThread;
 import com.commander4j.util.Utility;
 
@@ -13,7 +13,7 @@ public class StartMain
 {
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((StartMain.class));
-	public Config cfg;
+	public MiddlewareConfig cfg;
 	public static String version = "1.10";
 	Boolean running = false;
 	LogArchiveThread archiveLog;
@@ -34,10 +34,9 @@ public class StartMain
 		logger.debug("**     STARTING        **");
 		logger.debug("*************************");
 
-		cfg = new Config();
+		cfg = new MiddlewareConfig();
 
-		cfg.loadMaps(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "config"
-				+ File.separator + "config.xml");
+		cfg.loadMaps(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "config" + File.separator + "config.xml");
 
 		logger.debug("*************************");
 		logger.debug("**     MAPS LOADED     **");

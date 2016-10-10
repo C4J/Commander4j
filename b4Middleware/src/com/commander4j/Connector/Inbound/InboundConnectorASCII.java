@@ -5,9 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.LinkedList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,11 +15,9 @@ import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
-import com.commander4j.sys.Common;
 import com.commander4j.sys.FixedASCIIColumns;
 import com.commander4j.sys.FixedASCIIData;
 import com.commander4j.util.JFileIO;
-import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
@@ -94,19 +89,8 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 		parsePattern(getInboundInterface().getInputPattern());
 
 		logger.debug("connectorLoad [" + fullFilename + "]");
-		
-		try
-		{
-			String destination = Common.logDir + java.io.File.separator + Utility.getCurrentTimeStampString() + " INPUT_BACKUP_" + getType() + " " + (new File(fullFilename)).getName();
-			logger.debug("connectorLoad Backup [" + fullFilename + "] to [" + destination + "]");
-			Path from = Paths.get(fullFilename);
-			Path to = Paths.get(destination);
-			Files.copy(from, to);
-		} catch (Exception ex)
-		{
-			logger.error("connectorLoad unable to backup [" + fullFilename + "]");
-			logger.error("Error message [" + ex.getMessage() + "]");
-		}
+
+		backupInboundFile(fullFilename);
 
 		boolean result = true;
 

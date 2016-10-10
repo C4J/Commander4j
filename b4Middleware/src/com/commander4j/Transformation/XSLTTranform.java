@@ -21,8 +21,7 @@ public class XSLTTranform
 	public static void main(String[] args)
 	{
 		XSLTTranform test = new XSLTTranform();
-		test.process("./xml/xslt/MATERIAL_IDOC_XML_to_C4J_XML.xsl", "./xml/samples/input/Material Master/Wroclaw2.xml",
-				"./xml/interface/output/Wroclaw2_result.xml");
+		test.process("./xml/xslt/MATERIAL_IDOC_XML_to_C4J_XML.xsl", "./xml/samples/input/Material Master/Wroclaw2.xml", "./xml/interface/output/Wroclaw2_result.xml");
 	}
 
 	public boolean process(File stylesheet, Document document, String xmlOut)

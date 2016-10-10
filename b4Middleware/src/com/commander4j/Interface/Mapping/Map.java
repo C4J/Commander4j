@@ -55,12 +55,8 @@ public class Map
 			}
 		}
 
-		return Utility.padString(getId(), true, 10, " ") + "  " + Utility.padString(getDescription(), true, 40, " ")
-				+ "  " + Utility.padString(getInboundInterface().getType(), true, 5, " ") + "  "
-				+ Utility.padString(outboundTypeList, true, 12, " ")
-				+ Utility.padString(getInboundMapMessageCount().toString(), false, 8, " ") + " "
-				+ Utility.padString(getOutboundMapMessageCount().toString(), false, 8, " ") + "  "
-				+ getInboundInterface().getXSLTFilename();
+		return Utility.padString(getId(), true, 10, " ") + "  " + Utility.padString(getDescription(), true, 40, " ") + "  " + Utility.padString(getInboundInterface().getType(), true, 5, " ") + "  " + Utility.padString(outboundTypeList, true, 12, " ")
+				+ Utility.padString(getInboundMapMessageCount().toString(), false, 8, " ") + " " + Utility.padString(getOutboundMapMessageCount().toString(), false, 8, " ") + "  " + getInboundInterface().getXSLTFilename();
 	}
 
 	public void setId(String ID)
@@ -85,8 +81,7 @@ public class Map
 
 	public void setEnabled(boolean yesno)
 	{
-		logger.debug(
-				"Map [" + getId() + "] Description [" + getDescription() + "] setEnabled " + String.valueOf(yesno));
+		logger.debug("Map [" + getId() + "] Description [" + getDescription() + "] setEnabled " + String.valueOf(yesno));
 		if (yesno == true)
 		{
 			for (int x = 0; x < outboundInterface.size(); x++)
@@ -133,8 +128,7 @@ public class Map
 
 	public void processMapToOutboundInterface(String filename, OutboundInterface outint, Document data)
 	{
-		logger.debug(
-				">> processMapToOutboundInterface [" + filename + " - " + Utility.getStringFromDocument(data) + "]");
+		logger.debug(">> processMapToOutboundInterface [" + filename + " - " + Utility.getStringFromDocument(data) + "]");
 		outboundMapMsgCount++;
 		logger.debug(">> outboundMapMessages count [" + getOutboundMapMessageCount().toString() + "]");
 		outint.processInterfaceToConnector(filename, data);
@@ -143,8 +137,7 @@ public class Map
 	public void processInboundInterfaceToMap(String filename, Document data)
 	{
 
-		logger.debug(
-				"<< processInboundInterfaceToMap  [" + filename + " - " + Utility.getStringFromDocument(data) + "]");
+		logger.debug("<< processInboundInterfaceToMap  [" + filename + " - " + Utility.getStringFromDocument(data) + "]");
 		inboundMapMsgCount++;
 		logger.debug(">> inboundMapMessages count [" + getInboundMapMessageCount().toString() + "]");
 		for (int x = 0; x < outboundInterface.size(); x++)

@@ -151,8 +151,7 @@ public class XSLTExtension
 
 	public static synchronized String concat(String inputString1, String inputString2)
 	{
-		String result = Utility.replaceNullStringwithBlank(inputString1)
-				+ Utility.replaceNullStringwithBlank(inputString2);
+		String result = Utility.replaceNullStringwithBlank(inputString1) + Utility.replaceNullStringwithBlank(inputString2);
 
 		return result;
 	}

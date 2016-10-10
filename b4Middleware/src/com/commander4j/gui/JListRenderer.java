@@ -35,8 +35,7 @@ public class JListRenderer extends JLabel implements ListCellRenderer<Object>
 		background = newBackgroundColor;
 	}
 
-	public Component getListCellRendererComponent(JList4j<? extends Object> list, Object value, int index,
-			boolean isSelected, boolean cellHasFocus)
+	public Component getListCellRendererComponent(JList4j<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus)
 	{
 		{
 			Icon theIcon = null;
@@ -48,8 +47,7 @@ public class JListRenderer extends JLabel implements ListCellRenderer<Object>
 				return separator;
 			}
 
-			JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected,
-					cellHasFocus);
+			JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			renderer.setFont(Common.font_list);
 
 			if (value instanceof JListData)
@@ -90,8 +88,7 @@ public class JListRenderer extends JLabel implements ListCellRenderer<Object>
 	}
 
 	@Override
-	public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index,
-			boolean isSelected, boolean cellHasFocus)
+	public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus)
 	{
 		{
 			Icon theIcon = null;
@@ -103,8 +100,7 @@ public class JListRenderer extends JLabel implements ListCellRenderer<Object>
 				return separator;
 			}
 
-			JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected,
-					cellHasFocus);
+			JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			renderer.setFont(Common.font_list);
 
 			if (value instanceof JListData)

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JArchive;
+import com.commander4j.util.JWait;
 
 public class LogArchiveThread extends Thread
 {
@@ -11,6 +12,7 @@ public class LogArchiveThread extends Thread
 	Integer counter = 0;
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((LogArchiveThread.class));
+	JArchive archiver = new JArchive();
 
 	public LogArchiveThread()
 	{
@@ -20,20 +22,15 @@ public class LogArchiveThread extends Thread
 
 	public void run()
 	{
+		logger.debug("LogArchiveThread started.");
 		while (true)
 		{
-			try
-			{
-				sleep(1000);
-			} catch (InterruptedException e1)
-			{
-				e1.printStackTrace();
-			}
+			
+			JWait.oneSec();
 
-			if (counter >= 60)
+			if (counter >= 600)
 			{
-				logger.debug("Checking for log files to archive.");
-				JArchive.archiveBackupFiles(Common.logDir, Common.ArchiveRetentionDays);
+				archiver.archiveBackupFiles(Common.logDir, Common.ArchiveRetentionDays);
 				counter = 0;
 			} else
 			{

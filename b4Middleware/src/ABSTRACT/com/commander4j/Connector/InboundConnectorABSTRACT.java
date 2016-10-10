@@ -1,6 +1,9 @@
 package ABSTRACT.com.commander4j.Connector;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +12,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
+import com.commander4j.sys.Common;
+import com.commander4j.util.Utility;
 
 import INTERFACE.com.commander4j.Connector.InboundConnectorINTERFACE;
 
@@ -23,6 +28,22 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 	protected Document data;
 
 	private InboundInterface inint;
+
+	public void backupInboundFile(String fullFilename)
+	{
+		try
+		{
+			String destination = Common.logDir + java.io.File.separator + Utility.getCurrentTimeStampString() + " INPUT_BACKUP_" + getType() + " " + (new File(fullFilename)).getName();
+			logger.debug("connectorLoad Backup [" + fullFilename + "] to [" + destination + "]");
+			Path from = Paths.get(fullFilename);
+			Path to = Paths.get(destination);
+			Files.copy(from, to);
+		} catch (Exception ex)
+		{
+			logger.error("connectorLoad unable to backup [" + fullFilename + "]");
+			logger.error("Error message [" + ex.getMessage() + "]");
+		}
+	}
 
 	public Long getInboundConnectorMessageCount()
 	{
