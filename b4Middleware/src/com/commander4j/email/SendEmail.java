@@ -19,6 +19,7 @@ import javax.mail.internet.MimeMultipart;
 
 import org.apache.logging.log4j.Logger;
 
+import com.commander4j.sys.Common;
 import com.commander4j.util.JXMLDocument;
 
 public class SendEmail
@@ -59,6 +60,11 @@ public class SendEmail
 	public boolean Send(String distributionID, String subject, String messageText, String filename)
 	{
 		boolean result = true;
+		
+		if (Common.emailEnabled==false)
+		{
+			return result;
+		}
 
 		init(distributionID);
 

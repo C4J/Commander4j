@@ -52,5 +52,6 @@ public class Common
 	public static StartService sservice;
 	public static CheckboxMenuItem runningStatus = new CheckboxMenuItem("Running...");
 	public static String runMode = "";
+	public static Boolean emailEnabled = true;
 
 }

@@ -77,6 +77,7 @@ public class MiddlewareConfig
 		String XSLTPath = "";
 		String LogPath = "";
 		String ArchiveRetentionDays = "";
+		String emailEnable = "";
 
 		int mapSeq = 1;
 
@@ -87,11 +88,12 @@ public class MiddlewareConfig
 		configName = doc.findXPath("//config/@description");
 		XSLTPath = doc.findXPath("//config/XSLTPath");
 		LogPath = doc.findXPath("//config/logPath");
+		emailEnable = doc.findXPath("//config/enableEmailNotifications");
+		ArchiveRetentionDays = doc.findXPath("//config/logArchiveRetentionDays");
 
 		logger.debug("Config Name :" + configName);
 
-		ArchiveRetentionDays = doc.findXPath("//config/logArchiveRetentionDays");
-
+		Common.emailEnabled = Boolean.valueOf(emailEnable);
 		Common.ArchiveRetentionDays = Integer.valueOf(ArchiveRetentionDays);
 		Common.logDir = LogPath;
 
