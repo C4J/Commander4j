@@ -11,11 +11,11 @@
         <property name="mail.smtp.from" value="c4jmiddleware@gmail.com"/>
     </configuration>
 
-    <distributionList id="1">
+    <distributionList id="System">
         <toAddressList>c4jmiddleware@gmail.com,davegarratt@msn.com</toAddressList>
     </distributionList>
 
-    <distributionList id="2">
+    <distributionList id="Error">
         <toAddressList>support@commander4j.com</toAddressList>
     </distributionList>
 

@@ -52,8 +52,8 @@ public class SendEmail
 				seq++;
 			}
 		}
-		
-		addressList = doc.findXPath("//emailSettings/distributionList[" + String.valueOf(distributionID) + "]/toAddressList").trim();
+		//select="/DataSet/Data/[@Value1='2']/@Value2"
+		addressList = doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "']/toAddressList").trim();
 
 	}
 

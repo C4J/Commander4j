@@ -96,6 +96,7 @@ public class MiddlewareConfig
 		Common.emailEnabled = Boolean.valueOf(emailEnable);
 		Common.ArchiveRetentionDays = Integer.valueOf(ArchiveRetentionDays);
 		Common.logDir = LogPath;
+		Common.configName = configName;
 
 		if (Common.logDir.equals(""))
 		{

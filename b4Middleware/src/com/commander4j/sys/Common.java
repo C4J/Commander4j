@@ -53,5 +53,6 @@ public class Common
 	public static CheckboxMenuItem runningStatus = new CheckboxMenuItem("Running...");
 	public static String runMode = "";
 	public static Boolean emailEnabled = true;
+	public static String configName = "";
 
 }

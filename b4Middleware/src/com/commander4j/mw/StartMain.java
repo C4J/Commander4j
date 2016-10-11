@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.apache.logging.log4j.Logger;
 
+import com.commander4j.email.SendEmail;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.MiddlewareConfig;
 import com.commander4j.thread.LogArchiveThread;
@@ -17,6 +18,7 @@ public class StartMain
 	public static String version = "1.10";
 	Boolean running = false;
 	LogArchiveThread archiveLog;
+	SendEmail sendmail = new SendEmail();
 
 	public Boolean isRunning()
 	{
@@ -33,6 +35,7 @@ public class StartMain
 		logger.debug("*************************");
 		logger.debug("**     STARTING        **");
 		logger.debug("*************************");
+		
 
 		cfg = new MiddlewareConfig();
 
@@ -54,7 +57,8 @@ public class StartMain
 			logger.debug("*************************");
 			logger.debug("**      STARTED        **");
 			logger.debug("*************************");
-
+			
+			sendmail.Send("System", "Starting "+Common.configName, "Program started", "");
 			running = true;
 
 		} else
@@ -63,11 +67,14 @@ public class StartMain
 			logger.debug("**      ERRORS         **");
 			logger.debug("*************************");
 
+			String errorMsg="";
 			for (int x = 0; x < cfg.getMapDirectoryErrorCount(); x++)
 			{
 				logger.error(cfg.getMapDirectoryErrors().get(x));
+				errorMsg=errorMsg+cfg.getMapDirectoryErrors().get(x)+"\n";
 			}
-
+			
+			sendmail.Send("System", "Error Starting "+Common.configName, "Errors :-\n\n"+errorMsg, "");
 			result = false;
 		}
 
@@ -105,7 +112,9 @@ public class StartMain
 		logger.debug("*************************");
 		logger.debug("**      STOPPED        **");
 		logger.debug("*************************");
-
+		
+		
+		sendmail.Send("System", "Stopping "+Common.configName, "Program stopped", "");
 		running = false;
 
 		return result;
