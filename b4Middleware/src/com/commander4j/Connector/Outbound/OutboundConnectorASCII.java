@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.commander4j.Connector.Inbound.InboundConnectorCSV;
 import com.commander4j.Interface.Outbound.OutboundInterface;
+import com.commander4j.sys.Common;
 import com.commander4j.sys.FixedASCIIColumns;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JXMLDocument;
@@ -153,7 +154,9 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 
 				} catch (Exception ex)
 				{
-					System.out.println(ex.getMessage());
+					logger.error(ex.getMessage());
+					Common.emailqueue.addToQueue("Error", "Error Writing File ["+filename+"]", ex.getMessage()+"\n\n", "");
+
 				}
 			}
 		}

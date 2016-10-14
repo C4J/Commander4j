@@ -7,6 +7,7 @@ import java.io.File;
 
 import javax.swing.Icon;
 
+import com.commander4j.email.EmailQueue;
 import com.commander4j.gui.JListRenderer;
 import com.commander4j.mw.StartGUI;
 import com.commander4j.mw.StartMain;
@@ -54,5 +55,6 @@ public class Common
 	public static String runMode = "";
 	public static Boolean emailEnabled = true;
 	public static String configName = "";
+	public static EmailQueue emailqueue = new EmailQueue();
 
 }

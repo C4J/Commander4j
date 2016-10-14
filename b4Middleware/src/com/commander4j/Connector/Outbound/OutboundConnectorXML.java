@@ -9,6 +9,7 @@ import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 
 import com.commander4j.Interface.Outbound.OutboundInterface;
+import com.commander4j.sys.Common;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
@@ -56,6 +57,8 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT
 		{
 			result = false;
 			logger.error(ex.getMessage());
+			Common.emailqueue.addToQueue("Error", "Error Writing File ["+filename+"]", ex.getMessage()+"\n\n", "");
+
 		}
 
 		return result;

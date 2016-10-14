@@ -145,12 +145,17 @@ public class MiddlewareConfig
 				inboundInterface.setInputPath(inputPath);
 				inboundInterface.setXSLTPath(XSLTPath);
 				inboundInterface.setXSLTFilename(inputXSLT);
-				inboundInterface.setInputFileMask(inputMask);
 				inboundInterface.setType(inputType);
+				
+				if (inputMask.equals("")==false)
+				{
+					inboundInterface.setInputFileMask(inputMask);
+				}
+				
 				inboundInterface.setInputPattern(inputPattern);
 				inboundInterface.setPollingInterval(Long.valueOf(pollingInterval));
 
-				logger.debug("Loading input connector  : (" + inputId + ") " + inputDescription);
+				logger.debug("Loading input connector  : (" + inputId + ") " + inputDescription +" Type " +inboundInterface.getType()+" Mask "+inboundInterface.getInputFileMask());
 
 				map.setInboundInterface(inboundInterface);
 

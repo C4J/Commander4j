@@ -4,9 +4,9 @@ import java.io.File;
 
 import org.apache.logging.log4j.Logger;
 
-import com.commander4j.email.SendEmail;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.MiddlewareConfig;
+import com.commander4j.thread.EmailThread;
 import com.commander4j.thread.LogArchiveThread;
 import com.commander4j.util.Utility;
 
@@ -18,7 +18,7 @@ public class StartMain
 	public static String version = "1.10";
 	Boolean running = false;
 	LogArchiveThread archiveLog;
-	SendEmail sendmail = new SendEmail();
+	EmailThread emailthread;
 
 	public Boolean isRunning()
 	{
@@ -51,6 +51,10 @@ public class StartMain
 			archiveLog = new LogArchiveThread();
 			archiveLog.setName("Log Archiver");
 			archiveLog.start();
+			
+			emailthread = new EmailThread();
+			emailthread.setName("Email Thread");
+			emailthread.start();			
 
 			cfg.startMaps();
 
@@ -58,7 +62,7 @@ public class StartMain
 			logger.debug("**      STARTED        **");
 			logger.debug("*************************");
 			
-			sendmail.Send("System", "Starting "+Common.configName, "Program started", "");
+			Common.emailqueue.addToQueue("System", "Starting "+Common.configName, "Program started", "");
 			running = true;
 
 		} else
@@ -74,7 +78,7 @@ public class StartMain
 				errorMsg=errorMsg+cfg.getMapDirectoryErrors().get(x)+"\n";
 			}
 			
-			sendmail.Send("System", "Error Starting "+Common.configName, "Errors :-\n\n"+errorMsg, "");
+			Common.emailqueue.addToQueue("System", "Error Starting "+Common.configName, "Errors :-\n\n"+errorMsg, "");
 			result = false;
 		}
 
@@ -114,7 +118,24 @@ public class StartMain
 		logger.debug("*************************");
 		
 		
-		sendmail.Send("System", "Stopping "+Common.configName, "Program stopped", "");
+		Common.emailqueue.addToQueue("System", "Stopping "+Common.configName, "Program stopped", "");
+		
+		
+		try
+		{
+			Common.emailqueue.processQueue();
+			logger.debug("Shutting Email Thread");
+			while (emailthread.isAlive())
+			{
+				emailthread.allDone = true;
+				com.commander4j.util.JWait.milliSec(100);
+			}
+			logger.debug("Emailer terminated");
+		} catch (Exception ex1)
+		{
+
+		}
+		
 		running = false;
 
 		return result;

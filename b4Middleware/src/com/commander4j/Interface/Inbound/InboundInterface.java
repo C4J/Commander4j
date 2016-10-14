@@ -59,40 +59,44 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 				{
 					data = connector.getData();
 
-					String filename_imported = Utility.getCurrentTimeStampString() + " IMPORTED_" + connector.getType() + "_to_XML" + " " + file.getName();
-
-					if (filename_imported.endsWith(".xml") == false)
+					if (getXSLTFilename().equals("") == false)
 					{
-						filename_imported = filename_imported + ".xml";
-					}
 
-					String filename_transformed = Utility.getCurrentTimeStampString() + " TRANSFORMED_" + connector.getType() + " " + file.getName();
+						String filename_imported = Utility.getCurrentTimeStampString() + " IMPORTED_" + connector.getType() + "_to_XML" + " " + file.getName();
 
-					if (filename_transformed.endsWith(".xml") == false)
-					{
-						filename_transformed = filename_transformed + ".xml";
-					}
+						if (filename_imported.endsWith(".xml") == false)
+						{
+							filename_imported = filename_imported + ".xml";
+						}
 
-					jfileio.writeToDisk(Common.logDir, data, filename_imported);
+						String filename_transformed = Utility.getCurrentTimeStampString() + " TRANSFORMED_" + connector.getType() + " " + file.getName();
 
-					source = new StreamSource(new File(Common.logDir + File.separator + filename_imported));
-					destination = new StreamResult(new File(Common.logDir + File.separator + filename_transformed));
-					xslt = new StreamSource(new File(getXSLTPath() + getXSLTFilename()));
+						if (filename_transformed.endsWith(".xml") == false)
+						{
+							filename_transformed = filename_transformed + ".xml";
+						}
 
-					try
-					{
-						transformer = fact.newTransformer(xslt);
-						transformer.transform(source, destination);
-						JXMLDocument doc = new JXMLDocument(Common.logDir + File.separator + filename_transformed);
-						data = doc.getDocument();
-					} catch (TransformerConfigurationException e)
-					{
-						logger.error(e.getMessage());
-						e.printStackTrace();
-					} catch (TransformerException e)
-					{
-						logger.error(e.getMessage());
-						e.printStackTrace();
+						jfileio.writeToDisk(Common.logDir, data, filename_imported);
+
+						source = new StreamSource(new File(Common.logDir + File.separator + filename_imported));
+						destination = new StreamResult(new File(Common.logDir + File.separator + filename_transformed));
+						xslt = new StreamSource(new File(getXSLTPath() + getXSLTFilename()));
+
+						try
+						{
+							transformer = fact.newTransformer(xslt);
+							transformer.transform(source, destination);
+							JXMLDocument doc = new JXMLDocument(Common.logDir + File.separator + filename_transformed);
+							data = doc.getDocument();
+						} catch (TransformerConfigurationException e)
+						{
+							logger.error(e.getMessage());
+							Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", e.getMessage() + "\n\n", file.getAbsolutePath());
+						} catch (TransformerException e)
+						{
+							logger.error(e.getMessage());
+							Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", e.getMessage() + "\n\n", file.getAbsolutePath());
+						}
 					}
 
 					processConnectorToInterfaceData(connector.getFilename(), data);

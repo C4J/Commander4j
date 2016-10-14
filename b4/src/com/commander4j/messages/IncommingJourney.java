@@ -61,6 +61,7 @@ public class IncommingJourney
 		int occur = 1;
 		int created = 0;
 		int deleted = 0;
+		int updated = 0;
 
 		while (ref.length() > 0)
 
@@ -107,11 +108,28 @@ public class IncommingJourney
 					}
 				}
 
+				if (action.equals("update"))
+				{
+					if (journey.getJourneyRefProperties(ref) == true)
+					{
+						if (journey.getStatus().equals("Unassigned"))
+						{
+							journey.setJourneyRef(ref);
+							journey.setStatus("Unassigned");
+							journey.setTimeslot(timeslot);
+							journey.setLocationTo(location_to);
+							journey.update();
+							result = true;
+							updated++;
+						}
+					}
+				}
+				
 				occur++;
 			}
 		}
 		setErrorMessage(
-				String.valueOf(created) + " Journey(s) created, " + String.valueOf(deleted) + " Journey(s) deleted");
+				String.valueOf(created) + " Journey(s) created, " + String.valueOf(updated) + " Journey(s) updated, " +String.valueOf(deleted) + " Journey(s) deleted");
 
 		journey = null;
 		return result;

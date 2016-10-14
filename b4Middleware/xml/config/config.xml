@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config description="Nestle Purina Wisbech">
+<config description="c4jMiddleware Nestle Purina Wisbech">
 
     <logPath/>
     <XSLTPath/>
@@ -7,7 +7,6 @@
     <enableEmailNotifications>true</enableEmailNotifications>
 
     <map id="map1" enabed="Y" description="Konnect Material Master to C4J Material Master">
-
         <input id="in1" description="Read Konnect Material Master">
             <type>XML</type>
             <path>./interface/input/01 (Konnect - Material)</path>
@@ -21,11 +20,9 @@
             <type>XML</type>
             <XSLT/>
         </output>
-
     </map>
 
     <map id="map2" enabed="Y" description="S95 Process Order to C4J Process Order">
-
         <input id="in1" description="Read SAP S95 CR XML">
             <type>XML</type>
             <path>./interface/input/02 (S95 Process Order)</path>
@@ -39,11 +36,9 @@
             <type>XML</type>
             <XSLT/>
         </output>
-
     </map>
 
     <map id="map3" enabed="Y" description="Synchro CSV">
-
         <input id="in1" description="Read CSV Example">
             <type>CSV</type>
             <path>./interface/input/03 (Comma Separated Variables)</path>
@@ -57,11 +52,9 @@
             <type>XML</type>
             <XSLT/>
         </output>
-
     </map>
 
     <map id="map4" enabed="Y" description="S95 Batch Status Change to C4J Batch Status Change">
-
         <input id="in1" description="Read S95 Batch Status Change">
             <type>XML</type>
             <path>./interface/input/04 (S95 Batch Status Change)</path>
@@ -75,11 +68,9 @@
             <type>XML</type>
             <XSLT/>
         </output>
-
     </map>
 
     <map id="map5" enabed="Y" description="S95 Transfer Schedule to C4J Pallet Status Change">
-
         <input id="in1" description="Read SAP S95 TRANSFER ORDER XML">
             <type>XML</type>
             <path>./interface/input/05 (S95 Transfer Schedule)</path>
@@ -111,11 +102,9 @@
             <type>XML</type>
             <XSLT/>
         </output>
-
     </map>
 
     <map id="map7" enabed="Y" description="C4J Production Declaration to S95 Production Declaration">
-
         <input id="in1" description="Read C4J Prod Dec XML">
             <type>XML</type>
             <path>./interface/input/07 (C4J Production Declaration)</path>
@@ -129,11 +118,9 @@
             <type>XML</type>
             <XSLT/>
         </output>
-
     </map>
 
     <map id="map8" enabed="Y" description="ASCII Flat File Fixed Column to XML">
-
         <input id="in1" description="Read ASCII Flat File">
             <type>ASCII</type>
             <path>./interface/input/08 (ASCII Flat File)</path>
@@ -148,11 +135,9 @@
             <type>XML</type>
             <XSLT/>
         </output>
-
     </map>
 
     <map id="map9" enabed="Y" description="Tropos Material XML">
-
         <input id="in1" description="Read XML File">
             <type>XML</type>
             <path>./interface/input/09 (TROPOS Material XML)</path>
@@ -166,11 +151,9 @@
             <type>XML</type>
             <XSLT/>
         </output>
-
     </map>
 
     <map id="map10" enabed="Y" description="Tropos Works Order XML">
-
         <input id="in1" description="Read XML File">
             <type>XML</type>
             <path>./interface/input/10 (TROPOS Works Order)</path>
@@ -184,11 +167,9 @@
             <type>XML</type>
             <XSLT/>
         </output>
-
     </map>
 
     <map id="map11" enabed="Y" description="C4J Production Declaration to TROPOS Goods Receipt">
-
         <input id="in1" description="Read XML File">
             <type>XML</type>
             <path>./interface/input/11 (C4J - Production Declaration)</path>
@@ -204,11 +185,9 @@
             <csvOptions>separator=,^quote=none</csvOptions>
             <XSLT/>
         </output>
-
     </map>
 
     <map id="map12" enabed="Y" description="C4J Production Declaration to ASCII Flat File">
-
         <input id="in1" description="Read XML File">
             <type>XML</type>
             <path>./interface/input/12 (C4J - Production Declaration)</path>
@@ -223,20 +202,17 @@
             <outputPattern>1-10,12-21,23-32</outputPattern>
             <XSLT/>
         </output>
-
     </map>
-    
+
     <map id="map13" enabed="Y" description="C4J Production Dec to ASCII and CSV Files">
-        
         <input id="in1" description="Read XML File">
             <type>XML</type>
             <path>./interface/input/13 (C4J - Production Declaration)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
-            <intputFileExtension>xml</intputFileExtension>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write ASCII File">
             <path>./interface/output/13 (Mixed Output)</path>
             <type>ASCII</type>
@@ -244,7 +220,7 @@
             <outputFileExtension>txt</outputFileExtension>
             <XSLT/>
         </output>
-        
+
         <output id="out2" enabed="Y" description="Write CSV">
             <path>./interface/output/13 (Mixed Output)</path>
             <type>CSV</type>
@@ -252,29 +228,25 @@
             <csvOptions>separator=,^quote=none</csvOptions>
             <XSLT/>
         </output>
-        
     </map>
-    
+
     <map id="map14a" enabed="Y" description="W-ware FFMW Material to C4J MM (phase 1)">
-        
         <input id="in1" description="Read FFMW Material Master">
             <type>XML</type>
             <path>./interface/input/14 (Wonderware FFMW Material)</path>
-            <mask/>
+            <mask>XML</mask>
             <pollingInterval>1000</pollingInterval>
             <XSLT>WONDERWARE_FFMW_XML_to_C4J_XML Phase 1.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write Commander4j Material Intermediate">
             <path>./interface/intermediate/14 (Wonderware FFMW Material)</path>
             <type>XML</type>
             <XSLT/>
         </output>
-        
     </map>
-    
+
     <map id="map14b" enabed="Y" description="W-ware FFMW Material to C4J MM (phase 2)">
-        
         <input id="in1" description="Read FFMW Material Master">
             <type>XML</type>
             <path>./interface/intermediate/14 (Wonderware FFMW Material)</path>
@@ -282,18 +254,15 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>WONDERWARE_FFMW_XML_to_C4J_XML Phase 2.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write Commander4j Material">
             <path>./interface/output/14 (Wonderware FFMW Material)</path>
             <type>XML</type>
             <XSLT/>
         </output>
-        
-    </map>  
-    
-    
+    </map>
+
     <map id="map15" enabed="Y" description="C4J Equipment Tracking to ASCII Flat File">
-        
         <input id="in1" description="Read XML File">
             <type>XML</type>
             <path>./interface/input/15 (C4J Equipment Tracking)</path>
@@ -301,14 +270,35 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_Equipment_XML_to_ASCII_Flat_File.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write ASCII File">
             <path>./interface/output/15 (C4J Equipment Tracking)</path>
             <type>ASCII</type>
             <outputPattern>1-4,5-12,13-14,15-16,17-19,20-21,26-27</outputPattern>
             <XSLT/>
         </output>
-        
-    </map>   
+    </map>
+
+    <map id="map16" enabed="Y" description="Split inbound XML into 2 outbounds">
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/16 (Single Input)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML Copy 1">
+            <path>./interface/output/16a (Single Input Output Copy 1)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+
+        <output id="out2" enabed="Y" description="Write XML Copy 2">
+            <path>./interface/output/16b (Single Input Output Copy 2)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
 
 </config>

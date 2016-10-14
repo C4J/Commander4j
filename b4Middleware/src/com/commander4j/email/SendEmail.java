@@ -57,7 +57,7 @@ public class SendEmail
 
 	}
 
-	public boolean Send(String distributionID, String subject, String messageText, String filename)
+	public synchronized boolean Send(String distributionID, String subject, String messageText, String filename)
 	{
 		boolean result = true;
 		

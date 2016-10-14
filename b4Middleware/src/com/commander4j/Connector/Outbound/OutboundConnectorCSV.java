@@ -8,6 +8,7 @@ import javax.xml.transform.TransformerException;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.Interface.Outbound.OutboundInterface;
+import com.commander4j.sys.Common;
 import com.commander4j.util.JXMLDocument;
 import com.commander4j.util.Utility;
 import com.opencsv.CSVWriter;
@@ -140,7 +141,8 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 					writer.close();
 				} catch (Exception ex)
 				{
-
+					logger.error(ex.getMessage());
+					Common.emailqueue.addToQueue("Error", "Error Writing File ["+filename+"]", ex.getMessage()+"\n\n", "");
 				}
 
 			}
