@@ -22,8 +22,6 @@
     <xsl:variable name="CREATE_DATE" select="c4j_XSLT_Ext:trim(string(/ZMATMAS03/EDI_DC40/CREDAT))" />
     <xsl:variable name="CREATE_TIME" select="c4j_XSLT_Ext:trim(string(/ZMATMAS03/EDI_DC40/CRETIM))" />
     <xsl:variable name="CREATE_DATETIME" select="c4j_XSLT_Ext:concat($CREATE_DATE,$CREATE_TIME)"  />
-    <xsl:variable name="LE_QTY" select="number(concat('0',string(/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHMG1)))" />
-    <xsl:variable name="LE_UOM" select="c4j_XSLT_Ext:trim(string(/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHME1))" />
     
     <xsl:template match="ZMATMAS03">
          
@@ -46,10 +44,7 @@
                     <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP" mode="DESCRIPTION"/>
                     
                     <!-- Get LE Quantity from Warehouse -->
-                    <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP" mode="LE"/>
-
-                    <LE_QUANTITY><xsl:value-of select="$LE_QTY" /></LE_QUANTITY>
-                    <LE_UOM><xsl:value-of select="$LE_UOM" /></LE_UOM>
+                    <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP" mode="LE"/>     
                     
                     <base_uom><xsl:value-of select="$BASE_UOM" /></base_uom>
                     <gross_weight><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E1MARAM/BRGEW)"/></gross_weight>	
@@ -59,54 +54,48 @@
  
                     <!-- Get First Equipment Type -->
                     <equipment_Type><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP/E1MLGNM[1]/LETY1[1])" /></equipment_Type>
-                     
-                    <xsl:variable name="PLANT_PRESENT" select="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$PLANT]" />
-                    <xsl:variable name="USE_PLANT" select="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$PLANT]/../../GLB_002F_RGTE1MARCMBBD/ADOPT_CLNT_FLD" />
- 
-                    <xsl:comment>Plant Data Flag = [<xsl:value-of select='$USE_PLANT' />] for Plant <xsl:value-of select='$PLANT' /></xsl:comment>  
                     
-                    <xsl:if test="$USE_PLANT = 'X'">
-                        <!-- Get Plant Data -->
-                        <xsl:comment>Plant Flag is X></xsl:comment>
-                        <shelf_life><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$PLANT]/../../GLB_002F_RGTE1MARCMBBD/PLANT_MHDHB)" /></shelf_life>
-                        <shelf_life_rule><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$PLANT]/../../GLB_002F_RGTE1MARCMBBD/PLANT_RDMHD)" /></shelf_life_rule>
-                        <xsl:variable name="SHELF_UOM" select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$PLANT]/../../GLB_002F_RGTE1MARCMBBD/PLANT_IPRKZ)" />
-                        <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('ShelfLifeUom',$SHELF_UOM)" /></shelf_life_uom>
-                        
-                    </xsl:if>
+                    <!-- Get Plant Data -->
+                    <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP" mode="SHELF"/>  
                     
-                    <xsl:if test="$USE_PLANT != 'X'">
-                        <xsl:comment>Plant Flag not X</xsl:comment>  
-                        <shelf_life><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E1MARAM/MHDHB)" /></shelf_life>
-                        <shelf_life_rule><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E1MARAM/RDMHD)" /></shelf_life_rule>
-                        <xsl:variable name="SHELF_UOM" select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E1MARAM/IPRKZ)" />
-                        <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('ShelfLifeUom',$SHELF_UOM)" /></shelf_life_uom>
-                    </xsl:if>
-                    
-                    <validLocations>
-                        <!-- Get Locations -->
-                        <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP" mode="LOCATION"/> 
-                        
-                        <!-- Add Static Locations -->
-                        <location id="REWORK">
-                            <id>REWORK</id>
-                            <status>Valid</status>
-                        </location>
-                        <location id="EXPORT">
-                            <id>EXPORT</id>
-                            <status>Valid</status>
-                        </location>
-                    </validLocations>
-                    
-                    <!-- Get Units of Measure -->  
-                    <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP/E2MARMM002GRP/E1MARMM"/>
-
                 </materialDefinition>
             </messageData>
         </message>
 
     </xsl:template>
-     
+   
+    <!-- Get Plant Data -->
+    <xsl:template match="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP" mode="SHELF">
+        <xsl:variable name="CURRENT_PLANT" select="c4j_XSLT_Ext:trim(E1MARCM/WERKS)" />
+       
+        <xsl:if test="$CURRENT_PLANT = $PLANT"> 
+            
+            <xsl:comment>Data for Plant = <xsl:value-of select='$CURRENT_PLANT' /></xsl:comment>
+            
+            <!-- Get Shelf Life -->
+            <xsl:apply-templates select="GLB_002F_RGTE1MARCMBBD[1]/ADOPT_CLNT_FLD[1]"/>
+            
+            <validLocations>
+                <!-- Get Locations -->
+                <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP" mode="LOCATION"/> 
+                
+                <!-- Add Static Locations -->
+                <location id="REWORK">
+                    <id>REWORK</id>
+                    <status>Valid</status>
+                </location>
+                <location id="EXPORT">
+                    <id>EXPORT</id>
+                    <status>Valid</status>
+                </location>
+            </validLocations>
+            
+            <!-- Get Units of Measure -->  
+            <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP/E2MARMM002GRP/E1MARMM"/>
+            
+        </xsl:if>   
+    </xsl:template>
+   
     <!-- Get Description for Language E -->
     <xsl:template match="/ZMATMAS03/E2MARAM005GRP" mode="DESCRIPTION">     
         <xsl:for-each select="E1MAKTM">
@@ -131,9 +120,11 @@
     
     <!-- Get Units of Measure -->  
     <xsl:template match="/ZMATMAS03/E2MARAM005GRP/E2MARMM002GRP/E1MARMM">
+  
+        <!--  /ZMATMAS03/E2MARAM005GRP[1]/E2MLGNM001GRP[1]/E1MLGNM[1]/LHMG1[1] -->  
         
         <materialUOMDefinition>
-
+            <xsl:attribute name="uom"><xsl:value-of select="c4j_XSLT_Ext:trim(MEINH)" /></xsl:attribute>
             <xsl:variable name="CURRENT_UOM" select='c4j_XSLT_Ext:trim(string(MEINH))' />
             <xsl:variable name="LE_QUANTITY" select="number(concat('0',string(LHMG1)))" />
             <xsl:variable name="LE_UOM" select="c4j_XSLT_Ext:trim(string(LHME1))" />
@@ -144,11 +135,10 @@
             <numerator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREZ)" /></numerator>
             <denominator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREN)" /></denominator>
 
-            <xsl:if test="$CURRENT_UOM = 'D97'">
+            <xsl:if test="$LE_UOM != ''">
                 <LEQuantity><xsl:value-of select="$LE_QUANTITY" /></LEQuantity>
                 <LEuom><xsl:value-of select="$LE_UOM" /></LEuom>
             </xsl:if>
-            
             
         </materialUOMDefinition>
     </xsl:template>
@@ -171,7 +161,27 @@
         </location>
     </xsl:template>
       
-      
+    <!-- Get Shelf Life -->
+    <xsl:template match="GLB_002F_RGTE1MARCMBBD[1]/ADOPT_CLNT_FLD[1]">
+        <xsl:variable name="USE_PLANT" select="c4j:getConfigItem('UsePlant',c4j_XSLT_Ext:trim(ADOPT_CLNT_FLD))" />
+       
+        <xsl:if test="$USE_PLANT = 'Y'">
+            <xsl:comment>Using Plant Data = Y</xsl:comment>
+            <shelf_life><xsl:value-of select="c4j_XSLT_Ext:trim(PLANT_MHDHB)" /></shelf_life>
+            <shelf_life_rule><xsl:value-of select="c4j_XSLT_Ext:trim(PLANT_RDMHD)" /></shelf_life_rule>
+            <xsl:variable name="SHELF_UOM" select="c4j_XSLT_Ext:trim(PLANT_IPRKZ)" />
+            <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('ShelfLifeUom',$SHELF_UOM)" /></shelf_life_uom>
+        </xsl:if>
+        
+        <xsl:if test="$USE_PLANT = 'N'">
+            <xsl:comment>Using Plant Data = N</xsl:comment>
+            <shelf_life><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP[1]/E1MARAM[1]/MHDHB[1])" /></shelf_life>
+            <shelf_life_rule><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP[1]/E1MARAM[1]/RDMHD[1])" /></shelf_life_rule>
+            <xsl:variable name="SHELF_UOM" select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP[1]/E1MARAM[1]/IPRKZ[1])" />
+            <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('ShelfLifeUom',$SHELF_UOM)" /></shelf_life_uom>
+        </xsl:if>
+    </xsl:template>
+
     <!-- ================
         FUNCTION get config data 
         ================ -->
