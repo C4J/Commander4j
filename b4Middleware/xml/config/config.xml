@@ -4,7 +4,7 @@
     <logPath/>
     <XSLTPath/>
     <logArchiveRetentionDays>10</logArchiveRetentionDays>
-    <enableEmailNotifications>true</enableEmailNotifications>
+    <enableEmailNotifications>false</enableEmailNotifications>
 
     <map id="map1" enabed="Y" description="Konnect Material Master to C4J Material Master">
         <input id="in1" description="Read Konnect Material Master">

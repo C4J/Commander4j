@@ -10,11 +10,7 @@
 
 
     <!-- CONFIG DATA -->
-    <xsl:variable name="HOSTREF"><xsl:value-of select="c4j:getConfigItem('config','HostRef')"/></xsl:variable>
-    <xsl:variable name="PLANT"><xsl:value-of select="c4j:getConfigItem('config','Plant')"/></xsl:variable>
-    <xsl:variable name="WAREHOUSE"><xsl:value-of select="c4j:getConfigItem('config','Warehouse')"/></xsl:variable>
-    <xsl:variable name="LANGUAGE"><xsl:value-of select="c4j:getConfigItem('config','Language')"/></xsl:variable>
-    
+
     <xsl:variable name="BASE_UOM"><xsl:value-of select="string(/message/messageData/materialDefinition/base_uom)"/></xsl:variable>
     
     <xsl:variable name="D97_EAN" select="string(/message/messageData/materialDefinition/materialUOMDefinition[@uom='D97']/ean)" />

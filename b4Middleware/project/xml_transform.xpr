@@ -4,13 +4,13 @@
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
             <serialized version="18.0" xml:space="preserve">
-                <map>
+                <serializableOrderedMap>
                     <entry>
                         <String>scenario.associations</String>
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../xslt/WONDERWARE_FFMW_XML_to_C4J_XML%20Phase%201b.xsl</String>
+                                    <String>../../../../Downloads/DDDD/20160912_123626_6540.XML</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -26,6 +26,21 @@
                             <scenarioAssociation>
                                 <field name="url">
                                     <String>../xslt/WONDERWARE_FFMW_XML_to_C4J_XML%20Phase%201.xsl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>WONDERWARE_FFMW_XML_to_C4J_XML Phase 1</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../xslt/WONDERWARE_FFMW_XML_to_C4J_XML%20Phase%201b.xsl</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -66,10 +81,10 @@
                                     <String></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String>file:/Users/dave/Commander4j/workspace.osx/b4Middleware/xslt/WONDERWARE_FFMW_XML_to_C4J_XML%20Phase%201b.xsl</String>
+                                    <String>file:/Users/dave/Commander4j/workspace.osx/b4Middleware/xslt/WONDERWARE_FFMW_XML_to_C4J_XML%20Phase%201.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
-                                    <String>file:/Users/dave/Downloads/DDDD/20160912_123626_6540.xml</String>
+                                    <String>file:/Users/dave/Downloads/DDDD/20160912_123626_6540.XML</String>
                                 </field>
                                 <field name="defaultScenario">
                                     <Boolean>false</Boolean>
@@ -133,7 +148,7 @@
                             </scenario>
                         </scenario-array>
                     </entry>
-                </map>
+                </serializableOrderedMap>
             </serialized>
         </options>
     </meta>

@@ -5,7 +5,7 @@
         <property name="mail.smtp.auth" value="true"/>
         <property name="mail.smtp.starttls.enable" value="true"/>
         <property name="mail.smtp.host" value="smtp.gmail.com"/>
-        <property name="mail.smtp.user" value="c4jmiddleware@gmail.com"/>
+        <property name="mail.smtp.user" value="middleware@gmail.com"/>
         <property name="mail.smtp.password" value="rooq wpvb mwns psfo"/>
         <property name="mail.smtp.port" value="587"/>
         <property name="mail.smtp.from" value="c4jmiddleware@gmail.com"/>

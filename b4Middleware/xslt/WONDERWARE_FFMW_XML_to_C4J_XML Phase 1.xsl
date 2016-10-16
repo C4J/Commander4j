@@ -14,9 +14,10 @@
     <xsl:variable name="PLANT"><xsl:value-of select="c4j:getConfigItem('config','Plant')"/></xsl:variable>
     <xsl:variable name="WAREHOUSE"><xsl:value-of select="c4j:getConfigItem('config','Warehouse')"/></xsl:variable>
     <xsl:variable name="LANGUAGE"><xsl:value-of select="c4j:getConfigItem('config','Language')"/></xsl:variable>
+    <xsl:variable name="LOCATION"><xsl:value-of select="c4j:getConfigItem('config','Location')"/></xsl:variable>
     
     <!-- Local Variables -->
-    <xsl:variable name="SAPMATERIAL_LONG" select="string(/ZMATMAS03/E2MARAM005GRP[1]/E1MARAM[1]/MATNR[1])" />
+    <xsl:variable name="SAPMATERIAL_LONG" select="string(/ZMATMAS03/E2MARAM005GRP/E1MARAM/MATNR)" />
     <xsl:variable name="SAPMATERIAL_SHORT" select="translate($SAPMATERIAL_LONG, '^0*', '' )" />
     <xsl:variable name="BASE_UOM" select="c4j_XSLT_Ext:trim(string(/ZMATMAS03/E2MARAM005GRP/E1MARAM/MEINS))" />
     <xsl:variable name="CREATE_DATE" select="c4j_XSLT_Ext:trim(string(/ZMATMAS03/EDI_DC40/CREDAT))" />
@@ -44,9 +45,6 @@
                     
                     <!-- Get Description for Language E -->
                     <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP" mode="DESCRIPTION"/>
-                    
-                    <!-- Get LE Quantity from Warehouse -->
-                    <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP" mode="LE"/>
 
                     <LE_QUANTITY><xsl:value-of select="$LE_QTY" /></LE_QUANTITY>
                     <LE_UOM><xsl:value-of select="$LE_UOM" /></LE_UOM>
@@ -84,10 +82,8 @@
                     </xsl:if>
                     
                     <validLocations>
-                        <!-- Get Locations -->
-                        <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP" mode="LOCATION"/> 
+                        <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM"/>
                         
-                        <!-- Add Static Locations -->
                         <location id="REWORK">
                             <id>REWORK</id>
                             <status>Valid</status>
@@ -104,7 +100,6 @@
                 </materialDefinition>
             </messageData>
         </message>
-
     </xsl:template>
      
     <!-- Get Description for Language E -->
@@ -116,29 +111,15 @@
             </xsl:if>
         </xsl:for-each>
     </xsl:template>   
-    
-    <!-- Get LE Quantity from Warehouse -->
-    <xsl:template match="/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP" mode="LE">     
-        <xsl:for-each select="E1MLGNM">
-            <xsl:variable name="CURRENT_WAREHOUSE" select="string(LGNUM)" />
-            <xsl:if test="$CURRENT_WAREHOUSE = $WAREHOUSE">
-                <xsl:comment>LE Data for Warehouse = <xsl:value-of select='$CURRENT_WAREHOUSE' /></xsl:comment>
-                <LE_quantity><xsl:value-of select="number(concat('0',string(LHMG1)))" /></LE_quantity>
-                <LE_uom><xsl:value-of select="c4j_XSLT_Ext:trim(LHME1)" /></LE_uom>
-            </xsl:if>
-        </xsl:for-each>
-    </xsl:template>      
-    
+ 
     <!-- Get Units of Measure -->  
     <xsl:template match="/ZMATMAS03/E2MARAM005GRP/E2MARMM002GRP/E1MARMM">
+         <xsl:variable name="CURRENT_UOM" select='c4j_XSLT_Ext:trim(string(MEINH))' />
+         <xsl:variable name="LE_QUANTITY" select="number(concat('0',string(LHMG1)))" />
+         <xsl:variable name="LE_UOM" select="c4j_XSLT_Ext:trim(string(LHME1))" />
         
-        <materialUOMDefinition>
-
-            <xsl:variable name="CURRENT_UOM" select='c4j_XSLT_Ext:trim(string(MEINH))' />
-            <xsl:variable name="LE_QUANTITY" select="number(concat('0',string(LHMG1)))" />
-            <xsl:variable name="LE_UOM" select="c4j_XSLT_Ext:trim(string(LHME1))" />
-            
-            <uom><xsl:value-of select="c4j_XSLT_Ext:trim(MEINH)" /></uom>
+        <materialUOMDefinition><xsl:attribute name="id" select="$CURRENT_UOM" />       
+             <uom><xsl:value-of select="$CURRENT_UOM" /></uom>
             <ean><xsl:value-of select="c4j_XSLT_Ext:padEAN(c4j_XSLT_Ext:trim(EAN11))" /></ean>
             <variant><xsl:value-of select="c4j_XSLT_Ext:padVariant(c4j_XSLT_Ext:trim(GTIN_VARIANT))" /></variant>
             <numerator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREZ)" /></numerator>
@@ -148,30 +129,28 @@
                 <LEQuantity><xsl:value-of select="$LE_QUANTITY" /></LEQuantity>
                 <LEuom><xsl:value-of select="$LE_UOM" /></LEuom>
             </xsl:if>
-            
-            
         </materialUOMDefinition>
     </xsl:template>
   
     <!-- Get Locations -->
-    <xsl:template match="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP" mode="LOCATION">
-        
-        <xsl:variable name="CURRENT_PLANT" select="c4j_XSLT_Ext:trim(E1MARCM/WERKS)" />
-        <xsl:variable name="CURRENT_LOCATION" select="c4j_XSLT_Ext:trim(E1MARDM[1]/LGORT[1])" />
-        <xsl:variable name="CURRENT_STATUS" select="c4j_XSLT_Ext:trim(E1MARCM/MMSTA[1])" />
-        
+    <xsl:template match="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM">
+        <xsl:variable name="CURRENT_PLANT" select="c4j_XSLT_Ext:trim(WERKS)" />
+        <xsl:variable name="CURRENT_STATUS" select="c4j_XSLT_Ext:trim(MMSTA)" />
+        <xsl:variable name="CURRENT_LOCATION" select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$CURRENT_PLANT]/../../E1MARDM[1]/LGORT )"/>
+    
         <xsl:variable name="TEMP1" select="c4j_XSLT_Ext:concat($CURRENT_PLANT,'-')"  />
         <xsl:variable name="TEMP2" select="c4j_XSLT_Ext:concat($TEMP1,$CURRENT_LOCATION)"  />
-        <xsl:variable name="LOCATION"><xsl:value-of select="c4j:getConfigItem('PlantSLOCtoLocation',$TEMP2)"/></xsl:variable>
-       
-        <location>
-            <xsl:attribute name="id"><xsl:value-of select="c4j_XSLT_Ext:trim($LOCATION)" /></xsl:attribute>
-            <id><xsl:value-of select="c4j_XSLT_Ext:trim($LOCATION)" /></id>
-            <status><xsl:value-of select="c4j:getConfigItem('SAPMaterialStatus',$CURRENT_STATUS)" /></status>
-        </location>
+        <xsl:variable name="LOCATION2"><xsl:value-of select="c4j:getConfigItem('PlantSLOCtoLocation',$TEMP2)"/></xsl:variable>  
+        
+        <xsl:if test="$LOCATION2 != ''">
+            <location><xsl:attribute name="id" select="$LOCATION2" />
+                <xsl:attribute name="id"><xsl:value-of select="c4j_XSLT_Ext:trim($LOCATION2)" /></xsl:attribute>
+                <id><xsl:value-of select="c4j_XSLT_Ext:trim($LOCATION2)" /></id>
+                <status><xsl:value-of select="c4j:getConfigItem('SAPMaterialStatus',$CURRENT_STATUS)" /></status>
+            </location>
+        </xsl:if>      
     </xsl:template>
-      
-      
+    
     <!-- ================
         FUNCTION get config data 
         ================ -->
