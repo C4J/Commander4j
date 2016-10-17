@@ -10,7 +10,22 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../../../../Downloads/DDDD/20160912_123626_6540.XML</String>
+                                    <String>../../../../Downloads/Example.xsl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>Example</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../xslt/WONDERWARE_FFMW_XML_to_C4J_XML%20Phase%201.xsl</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
@@ -25,7 +40,7 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../xslt/WONDERWARE_FFMW_XML_to_C4J_XML%20Phase%201.xsl</String>
+                                    <String>../../../../Downloads/DDDD/20160912_123626_6540.XML</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>

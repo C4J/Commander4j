@@ -25,6 +25,9 @@
     <xsl:variable name="CREATE_DATETIME" select="c4j_XSLT_Ext:concat($CREATE_DATE,$CREATE_TIME)"  />
     <xsl:variable name="LE_QTY" select="number(concat('0',string(/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHMG1)))" />
     <xsl:variable name="LE_UOM" select="c4j_XSLT_Ext:trim(string(/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHME1))" />
+    <xsl:variable name="LE_UOM_NOTRIM" select="/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHME1" />
+    <xsl:variable name="LE_NUMERATOR" select="number(concat('0',string(/ZMATMAS03/E2MARAM005GRP/E2MARMM002GRP/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREZ)))" />
+    <xsl:variable name="LE_DENOMINATOR" select="number(concat('0',string(/ZMATMAS03/E2MARAM005GRP/E2MARMM002GRP/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREN)))" />
     
     <xsl:template match="ZMATMAS03">
          
@@ -48,6 +51,8 @@
 
                     <LE_QUANTITY><xsl:value-of select="$LE_QTY" /></LE_QUANTITY>
                     <LE_UOM><xsl:value-of select="$LE_UOM" /></LE_UOM>
+                    <LE_NUMERATOR><xsl:value-of select="$LE_NUMERATOR" /></LE_NUMERATOR>
+                    <LE_DENOMINATOR><xsl:value-of select="$LE_DENOMINATOR" /></LE_DENOMINATOR>
                     
                     <base_uom><xsl:value-of select="$BASE_UOM" /></base_uom>
                     <gross_weight><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E1MARAM/BRGEW)"/></gross_weight>	
@@ -115,8 +120,6 @@
     <!-- Get Units of Measure -->  
     <xsl:template match="/ZMATMAS03/E2MARAM005GRP/E2MARMM002GRP/E1MARMM">
          <xsl:variable name="CURRENT_UOM" select='c4j_XSLT_Ext:trim(string(MEINH))' />
-         <xsl:variable name="LE_QUANTITY" select="number(concat('0',string(LHMG1)))" />
-         <xsl:variable name="LE_UOM" select="c4j_XSLT_Ext:trim(string(LHME1))" />
         
         <materialUOMDefinition><xsl:attribute name="id" select="$CURRENT_UOM" />       
              <uom><xsl:value-of select="$CURRENT_UOM" /></uom>
@@ -126,7 +129,7 @@
             <denominator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREN)" /></denominator>
 
             <xsl:if test="$CURRENT_UOM = 'D97'">
-                <LEQuantity><xsl:value-of select="$LE_QUANTITY" /></LEQuantity>
+                <LEQuantity><xsl:value-of select="$LE_QTY" /></LEQuantity>
                 <LEuom><xsl:value-of select="$LE_UOM" /></LEuom>
             </xsl:if>
         </materialUOMDefinition>
