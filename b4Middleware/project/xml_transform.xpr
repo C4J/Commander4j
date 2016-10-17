@@ -10,11 +10,11 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="url">
-                                    <String>../../../../Downloads/Example.xsl</String>
+                                    <String>../xslt/WONDERWARE_FFMW_XML_to_C4J_XML.xsl</String>
                                 </field>
                                 <field name="scenarioIds">
                                     <list>
-                                        <String>Example</String>
+                                        <String>WONDERWARE_FFMW_XML_to_C4J_XML Phase 1</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">
@@ -45,6 +45,21 @@
                                 <field name="scenarioIds">
                                     <list>
                                         <String>WONDERWARE_FFMW_XML_to_C4J_XML Phase 1</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Downloads/Example.xsl</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>Example</String>
                                     </list>
                                 </field>
                                 <field name="scenarioTypes">

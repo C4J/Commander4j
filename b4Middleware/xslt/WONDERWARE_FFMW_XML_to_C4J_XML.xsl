@@ -119,19 +119,43 @@
  
     <!-- Get Units of Measure -->  
     <xsl:template match="/ZMATMAS03/E2MARAM005GRP/E2MARMM002GRP/E1MARMM">
-         <xsl:variable name="CURRENT_UOM" select='c4j_XSLT_Ext:trim(string(MEINH))' />
+        <xsl:variable name="CURRENT_UOM" select='c4j_XSLT_Ext:trim(string(MEINH))' />
+        <xsl:variable name="CURRENT_EAN" select='c4j_XSLT_Ext:padEAN(c4j_XSLT_Ext:trim(EAN11))' />
+        <xsl:variable name="CURRENT_VARIANT" select='c4j_XSLT_Ext:padVariant(c4j_XSLT_Ext:trim(GTIN_VARIANT))' />
+        <xsl:variable name="CURRENT_NUMERATOR" select="c4j_XSLT_Ext:trim(UMREZ)" />
+        <xsl:variable name="CURRENT_DENOMINATOR" select="c4j_XSLT_Ext:trim(UMREN)" />
         
         <materialUOMDefinition><xsl:attribute name="id" select="$CURRENT_UOM" />       
-             <uom><xsl:value-of select="$CURRENT_UOM" /></uom>
-            <ean><xsl:value-of select="c4j_XSLT_Ext:padEAN(c4j_XSLT_Ext:trim(EAN11))" /></ean>
-            <variant><xsl:value-of select="c4j_XSLT_Ext:padVariant(c4j_XSLT_Ext:trim(GTIN_VARIANT))" /></variant>
-            <numerator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREZ)" /></numerator>
-            <denominator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREN)" /></denominator>
-
-            <xsl:if test="$CURRENT_UOM = 'D97'">
-                <LEQuantity><xsl:value-of select="$LE_QTY" /></LEQuantity>
-                <LEuom><xsl:value-of select="$LE_UOM" /></LEuom>
+            <uom><xsl:value-of select="$CURRENT_UOM" /></uom>
+            <ean><xsl:value-of select="$CURRENT_EAN" /></ean>
+            <variant><xsl:value-of select="$CURRENT_VARIANT" /></variant>
+     
+        
+            <xsl:if test="$CURRENT_UOM='D97'">           
+                <xsl:comment>Converting LE Quantity from <xsl:value-of select='$LE_UOM' /> into <xsl:value-of select='$BASE_UOM' /> before inserting calculated D97</xsl:comment> 
+                <xsl:comment>LE QTY is <xsl:value-of select='$LE_QTY' /></xsl:comment> 
+                <xsl:comment>LE UOM is <xsl:value-of select='$LE_UOM' /></xsl:comment> 
+                <xsl:comment><xsl:value-of select='$LE_UOM' /> numerator is <xsl:value-of select='$LE_NUMERATOR' /></xsl:comment> 
+                <xsl:variable name="temp99" select="number($LE_QTY * $LE_NUMERATOR)" />
+                <xsl:comment>D97 (in <xsl:value-of select='$BASE_UOM' />) = <xsl:value-of select='$LE_QTY' />(<xsl:value-of select='$LE_UOM' />) x <xsl:value-of select='$LE_NUMERATOR' /> = <xsl:value-of select='$temp99' /></xsl:comment> 
+                <xsl:comment>Original numerator is <xsl:value-of select="$CURRENT_NUMERATOR" /></xsl:comment>
+                
+                <xsl:if test="$temp99=0">
+                    <numerator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREZ)" /></numerator>
+                </xsl:if>
+                
+                <xsl:if test="$temp99>0">
+                    <numerator><xsl:value-of select='$temp99'/></numerator>
+                </xsl:if>
+                
             </xsl:if>
+            
+            <xsl:if test="$CURRENT_UOM!='D97'">  
+                <numerator><xsl:value-of select="$CURRENT_NUMERATOR" /></numerator>
+            </xsl:if>  
+            
+            <denominator><xsl:value-of select="$CURRENT_DENOMINATOR" /></denominator>
+            
         </materialUOMDefinition>
     </xsl:template>
   

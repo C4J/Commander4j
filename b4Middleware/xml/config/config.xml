@@ -230,33 +230,17 @@
         </output>
     </map>
 
-    <map id="map14a" enabed="Y" description="W-ware FFMW Material to C4J MM (phase 1)">
+    <map id="map14" enabed="Y" description="W-ware FFMW Material to C4J MM">
         <input id="in1" description="Read FFMW Material Master">
             <type>XML</type>
             <path>./interface/input/14 (Wonderware FFMW Material)</path>
             <mask>XML</mask>
             <pollingInterval>1000</pollingInterval>
-            <XSLT>WONDERWARE_FFMW_XML_to_C4J_XML Phase 1.xsl</XSLT>
-        </input>
-
-        <output id="out1" enabed="Y" description="Write Commander4j Material Intermediate">
-            <path>./interface/intermediate/14 (Wonderware FFMW Material)</path>
-            <type>XML</type>
-            <XSLT/>
-        </output>
-    </map>
-
-    <map id="map14b" enabed="Y" description="W-ware FFMW Material to C4J MM (phase 2)">
-        <input id="in1" description="Read FFMW Material Master">
-            <type>XML</type>
-            <path>./interface/intermediate/14 (Wonderware FFMW Material)</path>
-            <mask/>
-            <pollingInterval>1000</pollingInterval>
-            <XSLT>WONDERWARE_FFMW_XML_to_C4J_XML Phase 2.xsl</XSLT>
+            <XSLT>WONDERWARE_FFMW_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Material">
-            <path>./interface/output/14 (Wonderware FFMW Material)</path>
+            <path>./interface/output/14 (C4J - Material)</path>
             <type>XML</type>
             <XSLT/>
         </output>
