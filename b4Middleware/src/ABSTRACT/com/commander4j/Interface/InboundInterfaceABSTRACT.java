@@ -31,7 +31,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	protected Map map;
 	protected Document data;
 	private String inputPath = "";
-	private String inputFileMask = "*.*";
+	private String[] inputFileMask = {"*"};
 	private String inputFilename = "";;
 	private String xsltFilename = "";
 	private String xsltPath = "";
@@ -99,12 +99,12 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 		return this.enabled;
 	}
 
-	public void setInputFileMask(String mask)
+	public void setInputFileMask(String[] mask)
 	{
 		this.inputFileMask = mask;
 	}
 
-	public String getInputFileMask()
+	public String[] getInputFileMask()
 	{
 		return this.inputFileMask;
 	}
@@ -198,23 +198,23 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 		{
 		case InboundConnectorINTERFACE.Connector_ASCII:
 			connector = new InboundConnectorASCII((InboundInterface) this);
-			setInputFileMask("txt");
+			setInputFileMask(InboundConnectorINTERFACE.Mask_ASCII);
 			break;
 		case InboundConnectorINTERFACE.Connector_CSV:
 			connector = new InboundConnectorCSV((InboundInterface) this);
-			setInputFileMask("csv");
+			setInputFileMask(InboundConnectorINTERFACE.Mask_CSV);
 			break;
 		case InboundConnectorINTERFACE.Connector_DB:
 			connector = new InboundConnectorDB((InboundInterface) this);
-			setInputFileMask("dbf");
+			setInputFileMask(InboundConnectorINTERFACE.Mask_DB);
 			break;
 		case InboundConnectorINTERFACE.Connector_IDOC:
 			connector = new InboundConnectorIDOC((InboundInterface) this);
-			setInputFileMask("idoc");
+			setInputFileMask(InboundConnectorINTERFACE.Mask_IDOC);
 			break;
 		case InboundConnectorINTERFACE.Connector_XML:
 			connector = new InboundConnectorXML((InboundInterface) this);
-			setInputFileMask("xml");
+			setInputFileMask(InboundConnectorINTERFACE.Mask_XML);
 			break;
 		default:
 			throw new IllegalArgumentException();

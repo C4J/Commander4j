@@ -46,8 +46,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 	{
 
 		File dir = new File(getInputPath());
-		String[] extensions = new String[]
-		{ getInputFileMask() };
+		String[] extensions =  getInputFileMask();
 
 		List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, false);
 		for (File file : files)
@@ -113,5 +112,6 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 		map.processInboundInterfaceToMap(filename, data);
 
 	}
+
 
 }

@@ -21,7 +21,7 @@ public class MiddlewareConfig
 
 	public String getInterfaceStatistics()
 	{
-		String result = "\n\n" + "Interface Statistics" + "\n" + "********************" + "\n";
+		String result = "\n\n" + "Interface Statistics" + "\n" + "********************" + "\n\n";
 
 		for (int x = 0; x < getMaps().size(); x++)
 		{
@@ -30,6 +30,15 @@ public class MiddlewareConfig
 		}
 
 		return result;
+	}
+	
+	public void resetInterfaceStatistics()
+	{
+		for (int x = 0; x < getMaps().size(); x++)
+		{
+			getMaps().get(x).resetInboundMapMessageCount();
+			getMaps().get(x).resetOutboundMapMessageCount();
+		}
 	}
 
 	public int getMapDirectoryErrorCount()
@@ -78,6 +87,7 @@ public class MiddlewareConfig
 		String LogPath = "";
 		String ArchiveRetentionDays = "";
 		String emailEnable = "";
+		String statusReportTime = "00:00:00";
 
 		int mapSeq = 1;
 
@@ -90,13 +100,27 @@ public class MiddlewareConfig
 		LogPath = doc.findXPath("//config/logPath");
 		emailEnable = doc.findXPath("//config/enableEmailNotifications");
 		ArchiveRetentionDays = doc.findXPath("//config/logArchiveRetentionDays");
+		statusReportTime = doc.findXPath("//config/statusReportTime");
 
 		logger.debug("Config Name :" + configName);
 
 		Common.emailEnabled = Boolean.valueOf(emailEnable);
+		
+		if (ArchiveRetentionDays.equals(""))
+		{
+			ArchiveRetentionDays="7";
+		}
+		
 		Common.ArchiveRetentionDays = Integer.valueOf(ArchiveRetentionDays);
 		Common.logDir = LogPath;
 		Common.configName = configName;
+		
+		if (statusReportTime.equals(""))
+		{
+			statusReportTime="09:00:00";
+		}
+		
+		Common.statusReportTime = statusReportTime;
 
 		if (Common.logDir.equals(""))
 		{
@@ -149,7 +173,8 @@ public class MiddlewareConfig
 				
 				if (inputMask.equals("")==false)
 				{
-					inboundInterface.setInputFileMask(inputMask);
+					String[] maskArray = inputMask.split(",");
+					inboundInterface.setInputFileMask(maskArray);
 				}
 				
 				inboundInterface.setInputPattern(inputPattern);

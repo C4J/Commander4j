@@ -7,7 +7,7 @@ public interface InboundInterfaceINTERFACE
 
 	public boolean getEnabled();
 
-	public String getInputFileMask();
+	public String[] getInputFileMask();
 
 	public String getInputPath();
 
@@ -21,7 +21,7 @@ public interface InboundInterfaceINTERFACE
 
 	public void setEnabled(boolean yesno);
 
-	public void setInputFileMask(String mask);
+	public void setInputFileMask(String[] mask);
 
 	public void setInputFilename(String filename);
 

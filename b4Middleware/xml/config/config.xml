@@ -5,6 +5,7 @@
     <XSLTPath/>
     <logArchiveRetentionDays>10</logArchiveRetentionDays>
     <enableEmailNotifications>false</enableEmailNotifications>
+    <statusReportTime>09:00:00</statusReportTime>
 
     <map id="map1" enabed="Y" description="Konnect Material Master to C4J Material Master">
         <input id="in1" description="Read Konnect Material Master">
@@ -234,7 +235,7 @@
         <input id="in1" description="Read FFMW Material Master">
             <type>XML</type>
             <path>./interface/input/14 (Wonderware FFMW Material)</path>
-            <mask>XML</mask>
+            <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>WONDERWARE_FFMW_XML_to_C4J_XML.xsl</XSLT>
         </input>

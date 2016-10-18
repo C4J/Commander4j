@@ -31,6 +31,16 @@ public class Map
 		return inboundMapMsgCount;
 	}
 
+	public void resetOutboundMapMessageCount()
+	{
+		outboundMapMsgCount = (long) 0;
+	}
+	
+	public void resetInboundMapMessageCount()
+	{
+		inboundMapMsgCount = (long) 0;
+	}	
+	
 	public Long getOutboundMapMessageCount()
 	{
 		return outboundMapMsgCount;

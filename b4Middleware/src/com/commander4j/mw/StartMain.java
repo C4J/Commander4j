@@ -8,6 +8,7 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.MiddlewareConfig;
 import com.commander4j.thread.EmailThread;
 import com.commander4j.thread.LogArchiveThread;
+import com.commander4j.thread.StatusThread;
 import com.commander4j.util.Utility;
 
 public class StartMain
@@ -15,9 +16,10 @@ public class StartMain
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((StartMain.class));
 	public MiddlewareConfig cfg;
-	public static String version = "1.10";
+	public static String version = "1.21";
 	Boolean running = false;
 	LogArchiveThread archiveLog;
+	StatusThread statusthread;
 	EmailThread emailthread;
 
 	public Boolean isRunning()
@@ -51,6 +53,10 @@ public class StartMain
 			archiveLog = new LogArchiveThread();
 			archiveLog.setName("Log Archiver");
 			archiveLog.start();
+			
+			statusthread = new StatusThread();
+			statusthread.setName("Status Thread");
+			statusthread.start();
 			
 			emailthread = new EmailThread();
 			emailthread.setName("Email Thread");
@@ -107,6 +113,20 @@ public class StartMain
 
 		}
 
+		try
+		{
+			logger.debug("Shutting down Status Thread");
+			while (statusthread.isAlive())
+			{
+				statusthread.allDone = true;
+				com.commander4j.util.JWait.milliSec(100);
+			}
+			logger.debug("Status Thread terminated");
+		} catch (Exception ex1)
+		{
+
+		}
+		
 		logger.debug("Shutting down Maps");
 		cfg.stopMaps();
 		logger.debug("Maps Terminated");
