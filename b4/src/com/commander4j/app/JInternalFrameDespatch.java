@@ -108,6 +108,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private PreparedStatement listStatement;
 	private JButton4j jButtonLookupJourneyRef;
 	private JTextField4j textFieldJourneyRef;
+	private JButton4j jButtonRemoveJourneyRef= new JButton4j(Common.icon_remove);
 
 	public JInternalFrameDespatch()
 	{
@@ -121,7 +122,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		final JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Common.color_app_window);
-		desktopPane.setBounds(0, 0, 833, 453);
+		desktopPane.setBounds(0, 0, 846, 453);
 		getContentPane().add(desktopPane);
 		desktopPane.setLayout(null);
 
@@ -167,8 +168,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 								buttonAssign.setEnabled(false);
 								newButton.setEnabled(false);
 								jButtonLookupJourneyRef.setEnabled(false);
-							}
-							else
+								jButtonRemoveJourneyRef.setEnabled(false);
+							} else
 							{
 								deleteButton.setEnabled(true);
 								jButtonLookupLocationFrom.setEnabled(true);
@@ -183,10 +184,11 @@ public class JInternalFrameDespatch extends JInternalFrame
 								if (d.isJourneyRefReqd().equals("Y"))
 								{
 									jButtonLookupJourneyRef.setEnabled(true);
-								}
-								else
+									jButtonRemoveJourneyRef.setEnabled(true);
+								} else
 								{
 									jButtonLookupJourneyRef.setEnabled(false);
+									jButtonRemoveJourneyRef.setEnabled(false);
 									d.setJourneyRef("");
 								}
 							}
@@ -194,8 +196,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 							try
 							{
 								jTextFieldDespatchDate.setText(d.getDespatchDate().toString().substring(0, 19));
-							}
-							catch (Exception ee)
+							} catch (Exception ee)
 							{
 								jTextFieldDespatchDate.setText("N/A");
 							}
@@ -213,13 +214,11 @@ public class JInternalFrameDespatch extends JInternalFrame
 							populateAssignedList(d.getDespatchNo(), "");
 							clearUnAssignedList();
 						}
-					}
-					else
+					} else
 					{
 						blankDespatchFields();
 					}
-				}
-				else
+				} else
 				{
 					jButtonLookupLocationFrom.setEnabled(false);
 					buttonSetUserID.setEnabled(false);
@@ -237,7 +236,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		scrollPane.setViewportView(list_despatch);
 
 		final JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(510, 30, 150, 375);
+		scrollPane_1.setBounds(520, 30, 150, 375);
 		desktopPane.add(scrollPane_1);
 
 		list_unassigned = new JList4j<String>();
@@ -247,7 +246,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		scrollPane_1.setViewportView(list_unassigned);
 
 		final JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(310, 30, 150, 375);
+		scrollPane_2.setBounds(325, 30, 150, 375);
 		desktopPane.add(scrollPane_2);
 
 		list_assigned = new JList4j<String>();
@@ -258,7 +257,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		comboBoxPalletStatus = new JComboBox<String>();
 
 		comboBoxPalletStatus.setFont(Common.font_std);
-		comboBoxPalletStatus.setBounds(672, 135, 143, 21);
+		comboBoxPalletStatus.setBounds(686, 137, 143, 21);
 
 		ComboBoxModel<String> jComboBoxDefaultPalletStatusModel = new DefaultComboBoxModel<String>(Common.palletStatusIncBlank);
 		comboBoxPalletStatus.setModel(jComboBoxDefaultPalletStatusModel);
@@ -266,39 +265,39 @@ public class JInternalFrameDespatch extends JInternalFrame
 		desktopPane.add(comboBoxPalletStatus);
 
 		textFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
-		textFieldSSCC.setBounds(672, 50, 143, 21);
+		textFieldSSCC.setBounds(686, 52, 143, 21);
 		desktopPane.add(textFieldSSCC);
 
 		final JLabel4j_std palletStatusLabel = new JLabel4j_std();
 		palletStatusLabel.setText(lang.get("lbl_Pallet_Status"));
-		palletStatusLabel.setBounds(672, 115, 128, 20);
+		palletStatusLabel.setBounds(686, 117, 128, 20);
 		desktopPane.add(palletStatusLabel);
 
 		final JLabel4j_std ssccLabel = new JLabel4j_std();
 		ssccLabel.setText(lang.get("lbl_Pallet_SSCC"));
-		ssccLabel.setBounds(672, 35, 128, 16);
+		ssccLabel.setBounds(686, 37, 128, 16);
 		desktopPane.add(ssccLabel);
 
 		textFieldMaterial = new JTextField4j(JDBMaterial.field_material);
-		textFieldMaterial.setBounds(672, 90, 124, 21);
+		textFieldMaterial.setBounds(686, 92, 124, 21);
 		desktopPane.add(textFieldMaterial);
 
 		final JLabel4j_std materialLabel = new JLabel4j_std();
 		materialLabel.setText(lang.get("lbl_Material"));
-		materialLabel.setBounds(672, 75, 128, 16);
+		materialLabel.setBounds(686, 77, 128, 16);
 		desktopPane.add(materialLabel);
 
 		textFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
-		textFieldBatch.setBounds(672, 175, 124, 21);
+		textFieldBatch.setBounds(686, 177, 124, 21);
 		desktopPane.add(textFieldBatch);
 
 		final JLabel4j_std batchLabel = new JLabel4j_std();
 		batchLabel.setText(lang.get("lbl_Batch"));
-		batchLabel.setBounds(672, 160, 128, 16);
+		batchLabel.setBounds(686, 162, 128, 16);
 		desktopPane.add(batchLabel);
 		buttonAssign.setEnabled(false);
 
-		buttonAssign.setBounds(470, 150, 25, 25);
+		buttonAssign.setBounds(485, 150, 25, 25);
 		buttonAssign.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -306,8 +305,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 				if (textFieldDespatchLocationTo.getText().equals(""))
 				{
 					jStatusText.setText("Please define Destination Location");
-				}
-				else
+				} else
 				{
 					jStatusText.setText("");
 					if (list_unassigned.getSelectedIndex() > -1)
@@ -326,8 +324,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 									addtoList(assignedList, item);
 									removefromList(unassignedList, item);
 									jStatusText.setText("");
-								}
-								else
+								} else
 								{
 									jStatusText.setText(d.getErrorMessage());
 								}
@@ -347,7 +344,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		desktopPane.add(buttonAssign);
 		buttonUnAssign.setEnabled(false);
 
-		buttonUnAssign.setBounds(470, 185, 25, 25);
+		buttonUnAssign.setBounds(485, 185, 25, 25);
 		buttonUnAssign.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -402,14 +399,12 @@ public class JInternalFrameDespatch extends JInternalFrame
 							d.updateUserID(number, Common.userList.getUser(Common.sessionID).getUserId());
 							populateDespatchList(number);
 							setConfirmButtonStatus();
-						}
-						else
+						} else
 						{
 							JUtility.errorBeep();
-							JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+							JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 						}
-					}
-					else
+					} else
 					{
 						JUtility.errorBeep();
 						JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE);
@@ -456,7 +451,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 				populateUnassignedList(listStatement, "");
 			}
 		});
-		findButton.setBounds(672, 298, 143, 30);
+		findButton.setBounds(686, 300, 143, 30);
 		desktopPane.add(findButton);
 
 		final JButton4j printButton = new JButton4j(Common.icon_report);
@@ -484,20 +479,20 @@ public class JInternalFrameDespatch extends JInternalFrame
 		jLabel10.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
 		jLabel10.setText(lang.get("lbl_Limit"));
-		jLabel10.setBounds(672, 244, 128, 21);
+		jLabel10.setBounds(686, 246, 128, 21);
 		desktopPane.add(jLabel10);
 
 		jCheckBoxLimit = new JCheckBox4j();
 		jCheckBoxLimit.setSelected(true);
 		jCheckBoxLimit.setBackground(new Color(255, 255, 255));
-		jCheckBoxLimit.setBounds(672, 264, 21, 21);
+		jCheckBoxLimit.setBounds(686, 266, 21, 21);
 		desktopPane.add(jCheckBoxLimit);
 
 		spinnerUnassignedLimit = new JSpinner();
 		JSpinner.NumberEditor ne1 = new JSpinner.NumberEditor(spinnerUnassignedLimit);
 		ne1.getTextField().setFont(Common.font_std);
 		spinnerUnassignedLimit.setEditor(ne1);
-		spinnerUnassignedLimit.setBounds(701, 264, 114, 20);
+		spinnerUnassignedLimit.setBounds(715, 266, 114, 20);
 		spinnerUnassignedLimit.setValue(1000);
 		desktopPane.add(spinnerUnassignedLimit);
 
@@ -550,12 +545,11 @@ public class JInternalFrameDespatch extends JInternalFrame
 							{
 								populateDespatchList("");
 								setConfirmButtonStatus();
-							}
-							else
+							} else
 							{
 								refresh();
 								JUtility.errorBeep();
-								JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+								JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 
 							}
 						}
@@ -574,17 +568,17 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		final JLabel4j_title unassignedLabel = new JLabel4j_title();
 		unassignedLabel.setText(lang.get("lbl_Unassigned"));
-		unassignedLabel.setBounds(510, 10, 150, 16);
+		unassignedLabel.setBounds(520, 10, 150, 16);
 		desktopPane.add(unassignedLabel);
 
 		final JLabel4j_title assignedLabel = new JLabel4j_title();
 		assignedLabel.setText(lang.get("lbl_Assigned"));
-		assignedLabel.setBounds(310, 10, 150, 16);
+		assignedLabel.setBounds(325, 10, 150, 16);
 		desktopPane.add(assignedLabel);
 
 		final JLabel4j_title palletFilterCriteriaLabel = new JLabel4j_title();
 		palletFilterCriteriaLabel.setText(lang.get("lbl_Unassigned_Filter"));
-		palletFilterCriteriaLabel.setBounds(672, 15, 125, 16);
+		palletFilterCriteriaLabel.setBounds(686, 10, 125, 16);
 		desktopPane.add(palletFilterCriteriaLabel);
 
 		final JButton4j refreshButton = new JButton4j(Common.icon_refresh);
@@ -625,15 +619,14 @@ public class JInternalFrameDespatch extends JInternalFrame
 				if (JUtility.isNullORBlank(textFieldDespatchLocationFrom.getText()) == true)
 				{
 					findButton.setEnabled(false);
-				}
-				else
+				} else
 				{
 					findButton.setEnabled(true);
 				}
 			}
 		});
 		textFieldDespatchLocationFrom.setEditable(false);
-		textFieldDespatchLocationFrom.setBounds(172, 30, 105, 20);
+		textFieldDespatchLocationFrom.setBounds(172, 30, 120, 20);
 		desktopPane.add(textFieldDespatchLocationFrom);
 
 		final JLabel4j_std locationLabel_1 = new JLabel4j_std();
@@ -648,12 +641,12 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		textFieldDespatchStatus = new JTextField4j(JDBDespatch.field_status);
 		textFieldDespatchStatus.setEditable(false);
-		textFieldDespatchStatus.setBounds(172, 290, 128, 20);
+		textFieldDespatchStatus.setBounds(172, 290, 141, 20);
 		desktopPane.add(textFieldDespatchStatus);
 
 		textFieldDespatchLocationTo = new JTextField4j(JDBLocation.field_location_id);
 		textFieldDespatchLocationTo.setEditable(false);
-		textFieldDespatchLocationTo.setBounds(172, 73, 105, 20);
+		textFieldDespatchLocationTo.setBounds(172, 73, 120, 20);
 		desktopPane.add(textFieldDespatchLocationTo);
 
 		final JLabel4j_std locationLabel_1_1 = new JLabel4j_std();
@@ -672,18 +665,19 @@ public class JInternalFrameDespatch extends JInternalFrame
 		desktopPane.add(palletStatusLabel_1_1_1);
 
 		textFieldNoOfPallets = new JTextField4j();
+		textFieldNoOfPallets.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldNoOfPallets.setEditable(false);
-		textFieldNoOfPallets.setBounds(172, 382, 60, 20);
+		textFieldNoOfPallets.setBounds(172, 382, 68, 20);
 		desktopPane.add(textFieldNoOfPallets);
 
 		jTextFieldDespatchDate = new JTextField4j();
 		jTextFieldDespatchDate.setEditable(false);
-		jTextFieldDespatchDate.setBounds(172, 335, 125, 20);
+		jTextFieldDespatchDate.setBounds(172, 335, 141, 20);
 		desktopPane.add(jTextFieldDespatchDate);
 
 		jButtonLookupLocationFrom = new JButton4j(Common.icon_lookup);
 		jButtonLookupLocationFrom.setEnabled(false);
-		jButtonLookupLocationFrom.setBounds(277, 29, 21, 21);
+		jButtonLookupLocationFrom.setBounds(293, 29, 21, 21);
 		jButtonLookupLocationFrom.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -705,7 +699,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		jButtonLookupLocationTo = new JButton4j(Common.icon_lookup);
 		jButtonLookupLocationTo.setEnabled(false);
-		jButtonLookupLocationTo.setBounds(277, 72, 21, 21);
+		jButtonLookupLocationTo.setBounds(293, 72, 21, 21);
 		jButtonLookupLocationTo.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -723,10 +717,11 @@ public class JInternalFrameDespatch extends JInternalFrame
 					if (d.isJourneyRefReqd().equals("Y"))
 					{
 						jButtonLookupJourneyRef.setEnabled(true);
-					}
-					else
+						jButtonRemoveJourneyRef.setEnabled(true);
+					} else
 					{
 						jButtonLookupJourneyRef.setEnabled(false);
+						jButtonRemoveJourneyRef.setEnabled(false);
 					}
 					updateDespatch(d);
 				}
@@ -735,7 +730,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		desktopPane.add(jButtonLookupLocationTo);
 
 		jButtonLookupMaterial = new JButton4j(Common.icon_lookup);
-		jButtonLookupMaterial.setBounds(795, 90, 21, 21);
+		jButtonLookupMaterial.setBounds(809, 92, 21, 21);
 		jButtonLookupMaterial.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -752,7 +747,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		desktopPane.add(jButtonLookupMaterial);
 
 		jButtonLookupBatch = new JButton4j(Common.icon_lookup);
-		jButtonLookupBatch.setBounds(795, 175, 21, 21);
+		jButtonLookupBatch.setBounds(809, 177, 21, 21);
 		jButtonLookupBatch.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -811,7 +806,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		textFieldTrailer = new JTextField4j(JDBDespatch.field_trailer);
 		textFieldTrailer.setEditable(false);
-		textFieldTrailer.setBounds(172, 116, 105, 20);
+		textFieldTrailer.setBounds(172, 116, 120, 20);
 
 		desktopPane.add(textFieldTrailer);
 
@@ -822,7 +817,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		textFieldHaulier = new JTextField4j(JDBDespatch.field_haulier);
 		textFieldHaulier.setEditable(false);
-		textFieldHaulier.setBounds(172, 160, 105, 20);
+		textFieldHaulier.setBounds(172, 160, 120, 20);
 		desktopPane.add(textFieldHaulier);
 
 		jButtonLookupTrailer = new JButton4j();
@@ -844,7 +839,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 				}
 			}
 		});
-		jButtonLookupTrailer.setBounds(277, 115, 21, 21);
+		jButtonLookupTrailer.setBounds(293, 115, 21, 21);
 		desktopPane.add(jButtonLookupTrailer);
 
 		jButtonLookupHaulier = new JButton4j();
@@ -866,7 +861,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 				}
 			}
 		});
-		jButtonLookupHaulier.setBounds(277, 159, 21, 21);
+		jButtonLookupHaulier.setBounds(293, 159, 21, 21);
 		desktopPane.add(jButtonLookupHaulier);
 
 		JLabel4j_std lblLoadNo = new JLabel4j_std();
@@ -877,7 +872,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		textFieldLoadNo = new JTextField4j(JDBDespatch.field_load_no);
 		textFieldLoadNo.setText("");
 		textFieldLoadNo.setEditable(false);
-		textFieldLoadNo.setBounds(172, 203, 105, 20);
+		textFieldLoadNo.setBounds(172, 203, 120, 20);
 		desktopPane.add(textFieldLoadNo);
 
 		jButtonLookupLoadNo = new JButton4j();
@@ -901,18 +896,18 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		jButtonLookupLoadNo.setText("...");
 		jButtonLookupLoadNo.setEnabled(false);
-		jButtonLookupLoadNo.setBounds(277, 202, 21, 21);
+		jButtonLookupLoadNo.setBounds(293, 202, 21, 21);
 		desktopPane.add(jButtonLookupLoadNo);
 
 		JLabel4j_std label = new JLabel4j_std();
 		label.setText(lang.get("lbl_User_ID"));
-		label.setBounds(672, 338, 128, 16);
+		label.setBounds(686, 340, 128, 16);
 		desktopPane.add(label);
 
 		textFieldUserID = new JTextField4j(JDBUser.field_user_id);
 		textFieldUserID.setText("");
 		textFieldUserID.setEditable(false);
-		textFieldUserID.setBounds(672, 356, 122, 20);
+		textFieldUserID.setBounds(686, 358, 122, 20);
 		desktopPane.add(textFieldUserID);
 
 		buttonSetUserID = new JButton4j((Icon) null);
@@ -934,57 +929,71 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		buttonSetUserID.setEnabled(false);
-		buttonSetUserID.setBounds(795, 355, 21, 21);
+		buttonSetUserID.setBounds(809, 357, 21, 21);
 		desktopPane.add(buttonSetUserID);
 
 		textFieldDespatchNo = new JTextField4j(JDBDespatch.field_despatch_no);
-		textFieldDespatchNo.setBounds(672, 215, 143, 21);
+		textFieldDespatchNo.setBounds(686, 217, 143, 21);
 		desktopPane.add(textFieldDespatchNo);
 
 		JLabel4j_std despatchNolabel = new JLabel4j_std();
 		despatchNolabel.setText(lang.get("lbl_Despatch_No"));
-		despatchNolabel.setBounds(672, 200, 143, 16);
+		despatchNolabel.setBounds(686, 202, 143, 16);
 		desktopPane.add(despatchNolabel);
-		
+
 		JLabel4j_std label4j_std = new JLabel4j_std();
 		label4j_std.setText(lang.get("lbl_Journey_Ref"));
 		label4j_std.setBounds(172, 225, 105, 20);
 		desktopPane.add(label4j_std);
-		
+
 		textFieldJourneyRef = new JTextField4j(20);
 		textFieldJourneyRef.setText("");
 		textFieldJourneyRef.setEditable(false);
-		textFieldJourneyRef.setBounds(172, 246, 105, 20);
+		textFieldJourneyRef.setBounds(172, 246, 100, 20);
 		desktopPane.add(textFieldJourneyRef);
-		
+
 		jButtonLookupJourneyRef = new JButton4j();
-		jButtonLookupJourneyRef.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		jButtonLookupJourneyRef.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				JLaunchLookup.dlgAutoExec = true;
 				JLaunchLookup.dlgCriteriaDefault = "Y";
-				
+
 				JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
-				
+
 				if (JLaunchLookup.journeys())
 				{
 					textFieldJourneyRef.setText(JLaunchLookup.dlgResult);
 
 					d.setJourneyRef(JLaunchLookup.dlgResult);
 					updateDespatch(d);
-					
+
 				}
 			}
 		});
 		jButtonLookupJourneyRef.setText("...");
 		jButtonLookupJourneyRef.setEnabled(false);
-		jButtonLookupJourneyRef.setBounds(277, 245, 21, 21);
+		jButtonLookupJourneyRef.setBounds(272, 245, 21, 21);
 		desktopPane.add(jButtonLookupJourneyRef);
-		
-				jStatusText = new JLabel4j_std("");
-				jStatusText.setBounds(0, 460, 830, 21);
-				getContentPane().add(jStatusText);
-				jStatusText.setForeground(new java.awt.Color(255, 0, 0));
-				jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		jButtonRemoveJourneyRef.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
+				textFieldJourneyRef.setText("");
+				d.setJourneyRef("");
+				updateDespatch(d);
+			}
+		});
+
+		jButtonRemoveJourneyRef.setEnabled(false);
+		jButtonRemoveJourneyRef.setBounds(293, 245, 21, 21);
+		desktopPane.add(jButtonRemoveJourneyRef);
+
+		jStatusText = new JLabel4j_std("");
+		jStatusText.setBounds(0, 460, 830, 21);
+		getContentPane().add(jStatusText);
+		jStatusText.setForeground(new java.awt.Color(255, 0, 0));
+		jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -1026,7 +1035,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		}
 	}
-	
+
 	private void blankDespatchFields()
 	{
 		textFieldDespatchLocationFrom.setText("");
@@ -1048,8 +1057,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		try
 		{
 			listStatement.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
@@ -1101,7 +1109,6 @@ public class JInternalFrameDespatch extends JInternalFrame
 		q.addParamtoSQL("Confirmed = ", "Y");
 
 		q.addParamtoSQL("status=", ((String) comboBoxPalletStatus.getSelectedItem()).toString());
-
 
 		q.appendSort("sscc", "asc");
 		q.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), spinnerUnassignedLimit.getValue());
@@ -1169,8 +1176,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		if (confirmedRadioButton.isSelected())
 		{
 			status = "Confirmed";
-		}
-		else
+		} else
 		{
 			status = "Unconfirmed";
 		}
@@ -1261,8 +1267,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		if (JUtility.isNullORBlank(fromlocation) == true)
 		{
 			findButton.setEnabled(false);
-		}
-		else
+		} else
 		{
 			findButton.setEnabled(true);
 		}
@@ -1280,7 +1285,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		if (d.update() == false)
 		{
 			JUtility.errorBeep();
-			JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+			JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 			result = false;
 		}
 

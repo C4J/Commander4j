@@ -247,7 +247,9 @@ public class Common
 	public final static Icon icon_auto_labeller = Common.imageIconloader.getImageIcon(Common.image_auto_label);
 	public final static Icon icon_confirm = Common.imageIconloader.getImageIcon(Common.image_confirm);
 	public final static Icon icon_groups = Common.imageIconloader.getImageIcon(Common.image_groups);
+	public final static Icon icon_remove = Common.imageIconloader.getImageIcon(Common.image_remove);
 	
+	public final static String image_remove = "remove.gif";
 	public final static String image_resend = "resend.gif";
 	public final static String image_history = "pallet_history.gif";
 	public final static String image_pdf = "pdf.gif";

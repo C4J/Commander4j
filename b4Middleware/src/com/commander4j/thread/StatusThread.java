@@ -43,17 +43,17 @@ public class StatusThread extends Thread
 					
 					String report="Garbage Collector Started.\n\n";
 
-					report = report+"Before GC\n";
-					report = report+"Used Memory  :" + (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb\n";
-					report = report+"Free Memory  :" + runtime.freeMemory() / mb + "mb\n";
-					report = report+"Total Memory :" + runtime.totalMemory() / mb + "mb\n";
-					report = report+"Max Memory   :" + runtime.maxMemory() / mb + "mb\n";
+					report = report+"Before GC\n\n";
+					report = report+"  Used Memory  :" + (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb\n";
+					report = report+"  Free Memory  :" + runtime.freeMemory() / mb + "mb\n";
+					report = report+"  Total Memory :" + runtime.totalMemory() / mb + "mb\n";
+					report = report+"  Max Memory   :" + runtime.maxMemory() / mb + "mb\n\n";
 					System.gc();
-					report = report+"After GC";
-					report = report+"Used Memory  :" + (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb\n";
-					report = report+"Free Memory  :" + runtime.freeMemory() / mb + "mb\n";
-					report = report+"Total Memory :" + runtime.totalMemory() / mb + "mb\n";
-					report = report+"Max Memory   :" + runtime.maxMemory() / mb + "mb\n\n";
+					report = report+"After GC\n\n";
+					report = report+"  Used Memory  :" + (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb\n";
+					report = report+"  Free Memory  :" + runtime.freeMemory() / mb + "mb\n";
+					report = report+"  Total Memory :" + runtime.totalMemory() / mb + "mb\n";
+					report = report+"  Max Memory   :" + runtime.maxMemory() / mb + "mb\n\n";
 					
 					report = report+"Garbage Collector Finished.\n\n";
 					

@@ -3,7 +3,7 @@
 <DDL>
 
 	<statement>
-		CREATE FUNCTION `c4j_GetLayers`(XPROCESS_ORDER varchar(20))
+		ALTER FUNCTION `c4j_GetLayers`(XPROCESS_ORDER varchar(20))
 		RETURNS int(11)
 		LANGUAGE SQL
 		NOT DETERMINISTIC
