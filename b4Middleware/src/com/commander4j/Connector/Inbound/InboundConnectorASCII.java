@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
+import com.commander4j.sys.Common;
 import com.commander4j.sys.FixedASCIIColumns;
 import com.commander4j.sys.FixedASCIIData;
 import com.commander4j.util.JFileIO;
@@ -89,74 +90,85 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 		parsePattern(getInboundInterface().getInputPattern());
 
 		logger.debug("connectorLoad [" + fullFilename + "]");
+		boolean result = false;
 
 		backupInboundFile(fullFilename);
 
-		boolean result = true;
-
-		String line = null;
-
-		try
+		if (backupInboundFile(fullFilename))
 		{
 
-			FileReader fileReader = new FileReader(fullFilename);
+			String line = null;
 
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-
-			data = builder.newDocument();
-
-			Element message = (Element) data.createElement("data");
-			message.setAttribute("type", Connector_ASCII);
-
-			row = 0;
-			while ((line = bufferedReader.readLine()) != null)
+			try
 			{
-				row++;
-				Element xmlrow = (Element) data.createElement("row");
-				xmlrow.setAttribute("id", String.valueOf(row));
-				xmlrow.setNodeValue(String.valueOf(row));
 
-				System.out.println(line);
+				FileReader fileReader = new FileReader(fullFilename);
 
-				LinkedList<FixedASCIIData> nextLine = getASCIIColumnData(line);
+				BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-				for (int x = 0; x < getPatternColumnCount(); x++)
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder builder = factory.newDocumentBuilder();
+
+				data = builder.newDocument();
+
+				Element message = (Element) data.createElement("data");
+				message.setAttribute("type", Connector_ASCII);
+
+				row = 0;
+				while ((line = bufferedReader.readLine()) != null)
 				{
+					row++;
+					Element xmlrow = (Element) data.createElement("row");
+					xmlrow.setAttribute("id", String.valueOf(row));
+					xmlrow.setNodeValue(String.valueOf(row));
 
-					System.out.println(nextLine.get(x).columnId);
-					System.out.println(nextLine.get(x).columnData);
+					System.out.println(line);
 
-					Element xmlcol = addElement(data, "col", nextLine.get(x).columnData);
-					xmlcol.setAttribute("id", String.valueOf(nextLine.get(x).columnId));
-					xmlcol.setNodeValue(nextLine.get(x).columnData);
-					xmlrow.appendChild(xmlcol);
+					LinkedList<FixedASCIIData> nextLine = getASCIIColumnData(line);
 
+					for (int x = 0; x < getPatternColumnCount(); x++)
+					{
+
+						System.out.println(nextLine.get(x).columnId);
+						System.out.println(nextLine.get(x).columnData);
+
+						Element xmlcol = addElement(data, "col", nextLine.get(x).columnData);
+						xmlcol.setAttribute("id", String.valueOf(nextLine.get(x).columnId));
+						xmlcol.setNodeValue(nextLine.get(x).columnData);
+						xmlrow.appendChild(xmlcol);
+
+					}
+					message.appendChild(xmlrow);
 				}
-				message.appendChild(xmlrow);
+
+				bufferedReader.close();
+
+				message.setAttribute("type", Connector_ASCII);
+				message.setAttribute("cols", String.valueOf(getPatternColumnCount()));
+				message.setAttribute("rows", String.valueOf(row));
+				message.setAttribute("filename", (new File(fullFilename)).getName());
+
+				data.appendChild(message);
+
+			} catch (FileNotFoundException ex)
+			{
+				System.out.println("Unable to open file '" + fullFilename + "'");
+				logger.error("connectorLoad " + getType() + " " + ex.getMessage());
+				Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
+				result = false;
+			} catch (IOException ex)
+			{
+				System.out.println("Error reading file '" + fullFilename + "'");
+				logger.error("connectorLoad " + getType() + " " + ex.getMessage());
+				Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
+				result = false;
+
+			} catch (ParserConfigurationException ex)
+			{
+				logger.error("connectorLoad " + getType() + " " + ex.getMessage());
+				Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
+				result = false;
 			}
-
-			bufferedReader.close();
-
-			message.setAttribute("type", Connector_ASCII);
-			message.setAttribute("cols", String.valueOf(getPatternColumnCount()));
-			message.setAttribute("rows", String.valueOf(row));
-			message.setAttribute("filename", (new File(fullFilename)).getName());
-
-			data.appendChild(message);
-
-		} catch (FileNotFoundException ex)
-		{
-			System.out.println("Unable to open file '" + fullFilename + "'");
-		} catch (IOException ex)
-		{
-			System.out.println("Error reading file '" + fullFilename + "'");
-
-		} catch (ParserConfigurationException ex)
-		{
-
 		}
 
 		return result;

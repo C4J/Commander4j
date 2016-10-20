@@ -29,8 +29,9 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 
 	private InboundInterface inint;
 
-	public void backupInboundFile(String fullFilename)
+	public Boolean backupInboundFile(String fullFilename)
 	{
+		Boolean result = false;
 		try
 		{
 			String destination = Common.logDir + java.io.File.separator + Utility.getCurrentTimeStampString() + " INPUT_BACKUP_" + getType() + " " + (new File(fullFilename)).getName();
@@ -38,11 +39,14 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 			Path from = Paths.get(fullFilename);
 			Path to = Paths.get(destination);
 			Files.copy(from, to);
+			result = true;
 		} catch (Exception ex)
 		{
 			logger.error("connectorLoad unable to backup [" + fullFilename + "]");
 			logger.error("Error message [" + ex.getMessage() + "]");
+			Common.emailqueue.addToQueue("Error", "Error backing up file", "Error backing up file "+filename+ "["+ex.getMessage()+"]", "");
 		}
+		return result;
 	}
 
 	public Long getInboundConnectorMessageCount()
@@ -81,8 +85,9 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 		if (connectorLoad(inint.getInputPath() + File.separator + filename))
 		{
 			result = true;
-			connectorDelete(filename);
+			
 		}
+		connectorDelete(filename);
 
 		return result;
 
@@ -138,6 +143,8 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 			result = true;
 		} catch (Exception e)
 		{
+			logger.error("Error deleting file "+filename+ "["+e.getMessage()+"]");
+			Common.emailqueue.addToQueue("Error", "Error deleting file", "Error deleting file "+filename+ "["+e.getMessage()+"]", "");
 			result = false;
 		}
 

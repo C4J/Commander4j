@@ -52,7 +52,7 @@
             <storageLocation><xsl:value-of select='$sloc'/></storageLocation>
             <storageBin><xsl:value-of select='Location/Location/Location/EquipmentID'/></storageBin>
             <storageType><xsl:value-of select='Location/Location/EquipmentID'/></storageType>
-            <location><xsl:value-of select="c4j:getConfigItem('location',concat(string($SAPPLANT),'-',string($sloc)))"/></location>
+            <location><xsl:value-of select="c4j:getConfigItem('PlantSLOCtoLocation',concat(string($SAPPLANT),'-',string($sloc)))"/></location>
             <material><xsl:value-of select='$SAPMATERIAL_SHORT' /></material>
             <description><xsl:value-of select='Description'/></description>
             <requiredQuantity><xsl:value-of select='Quantity/QuantityString'/></requiredQuantity>

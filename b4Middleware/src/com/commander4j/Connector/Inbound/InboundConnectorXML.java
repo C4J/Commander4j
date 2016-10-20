@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
+import com.commander4j.sys.Common;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
@@ -26,24 +27,27 @@ public class InboundConnectorXML extends InboundConnectorABSTRACT
 	{
 
 		logger.debug("connectorLoad [" + fullFilename + "]");
+		boolean result = false;
 
-		backupInboundFile(fullFilename);
-
-		boolean result;
-		try
+		if (backupInboundFile(fullFilename))
 		{
-			result = true;
 
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
+			try
+			{
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder builder = factory.newDocumentBuilder();
+				data = builder.parse(new File(fullFilename));
+				result = true;
 
-			data = builder.parse(new File(fullFilename));
-			result = true;
+			} catch (Exception ex)
+			{
+				result = false;
+				logger.error("connectorLoad " + getType() + " " + ex.getMessage());
+				Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
+			}
 
-		} catch (Exception ex)
-		{
-			result = false;
 		}
+
 		return result;
 	}
 
