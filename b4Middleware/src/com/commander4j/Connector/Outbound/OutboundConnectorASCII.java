@@ -151,6 +151,7 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 
 					// Close output file
 					fw.close();
+					result=true;
 
 				} catch (Exception ex)
 				{

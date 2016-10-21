@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Main-Class: com.commander4j.mw.StartMain
 Class-Path: . lib/junit-4.11.jar 
  lib/commons-codec-1.10.jar 
+ lib/commons-lang3-3.5.jar 
  lib/commons-io-2.5.jar 
  lib/commons-logging-1.2.jar 
  lib/javax.mail.jar 

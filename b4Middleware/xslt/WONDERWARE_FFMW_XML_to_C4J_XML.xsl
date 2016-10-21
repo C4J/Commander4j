@@ -18,7 +18,7 @@
     
     <!-- Local Variables -->
     <xsl:variable name="SAPMATERIAL_LONG" select="string(/ZMATMAS03/E2MARAM005GRP/E1MARAM/MATNR)" />
-    <xsl:variable name="SAPMATERIAL_SHORT" select="translate($SAPMATERIAL_LONG, '^0*', '' )" />
+    <xsl:variable name="SAPMATERIAL_SHORT" select="c4j_XSLT_Ext:removeLeadingZeros($SAPMATERIAL_LONG)" />
     <xsl:variable name="BASE_UOM" select="c4j_XSLT_Ext:trim(string(/ZMATMAS03/E2MARAM005GRP/E1MARAM/MEINS))" />
     <xsl:variable name="CREATE_DATE" select="c4j_XSLT_Ext:trim(string(/ZMATMAS03/EDI_DC40/CREDAT))" />
     <xsl:variable name="CREATE_TIME" select="c4j_XSLT_Ext:trim(string(/ZMATMAS03/EDI_DC40/CRETIM))" />

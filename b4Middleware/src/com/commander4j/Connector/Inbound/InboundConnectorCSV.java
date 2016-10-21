@@ -85,6 +85,8 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT
 				message.setAttribute("filename", (new File(fullFilename)).getName());
 
 				data.appendChild(message);
+				
+				result = true;
 
 			} catch (Exception ex)
 			{

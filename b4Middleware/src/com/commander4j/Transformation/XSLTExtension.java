@@ -3,11 +3,19 @@ package com.commander4j.Transformation;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.commander4j.util.Utility;
 
 public class XSLTExtension
 {
 
+	public static String removeLeadingZeros(String param)
+	{
+		String result = StringUtils.stripStart(param,"0");
+		return result;
+	}
+	
 	public static String padStringLeft(String value, int size, String character)
 	{
 		String s = Utility.replaceNullStringwithBlank(value);

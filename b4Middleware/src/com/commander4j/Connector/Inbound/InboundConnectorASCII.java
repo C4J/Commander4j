@@ -149,6 +149,8 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 				message.setAttribute("filename", (new File(fullFilename)).getName());
 
 				data.appendChild(message);
+				
+				result = true;
 
 			} catch (FileNotFoundException ex)
 			{

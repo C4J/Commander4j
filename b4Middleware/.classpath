@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="lib/log4j-api-2.6.2.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-core-2.6.2.jar"/>
 	<classpathentry kind="lib" path="lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

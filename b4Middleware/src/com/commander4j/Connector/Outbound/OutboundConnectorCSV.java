@@ -139,6 +139,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 
 					}
 					writer.close();
+					result=true;
 				} catch (Exception ex)
 				{
 					logger.error(ex.getMessage());
