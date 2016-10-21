@@ -57,6 +57,11 @@
     <item type="SAPStockStatus" id="S"><value>Blocked</value></item>  
     <item type="SAPStockStatus" id="Q"><value>QI</value></item>  
     <item type="SAPStockStatus" id="X"><value>Restricted</value></item>  
+    
+    <item type="SAPStockType" id="Unrestricted"><value>Unrestricted</value></item>  
+    <item type="SAPStockType" id="Blocked"><value>Blocked</value></item>  
+    <item type="SAPStockType" id="QI"><value>Quality Inspection</value></item>  
+    <item type="SAPStockType" id="Restricted"><value>Restricted</value></item>  
   
     <item type="TroposUOM" id="UNIT"><value>UNI</value></item>  
     <item type="TroposUOM" id="CASE"><value>CS</value></item>  

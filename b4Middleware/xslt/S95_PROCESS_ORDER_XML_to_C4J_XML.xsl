@@ -59,7 +59,8 @@
             <description><xsl:value-of select='Description'/></description>
             <requiredQuantity><xsl:value-of select='Quantity/QuantityString'/></requiredQuantity>
             <requiredUom><xsl:value-of select='Quantity/UnitOfMeasure'/></requiredUom>
-            <defaultPalletStatus><xsl:value-of select='globe_StockType'/></defaultPalletStatus>
+            <xsl:variable name="STOCKTYPE" select="globe_StockType" />
+           <defaultPalletStatus><xsl:value-of select="c4j:getConfigItem('SAPStockType',$STOCKTYPE)"/></defaultPalletStatus>
     </xsl:template>
     
     <xsl:template match='ProductionRequest/SegmentRequirement/SegmentRequirement'>
