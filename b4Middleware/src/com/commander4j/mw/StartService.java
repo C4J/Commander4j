@@ -22,33 +22,17 @@ public class StartService
 		Common.sgui = new StartGUI();
 		Common.sgui.setVisible(false);
 
-		Common.smw.StartMiddleware();
-
-		while (shutdown.equals(false))
+		if (Common.smw.StartMiddleware())
 		{
-			if (Common.smw.isRunning())
+
+			while (shutdown.equals(false))
 			{
-				System.out.println("shutdown =" + String.valueOf(shutdown));
-				if (Common.smw.cfg.getMapDirectoryErrorCount() > 0)
+				while (Common.smw.isRunning())
 				{
-					System.out.println("Aborting due to directories not found.");
-					result = 1;
-				} else
-				{
-					System.out.println("isRunning() =" + String.valueOf(Common.smw.isRunning()));
-					while (Common.smw.isRunning())
-					{
-						JWait.oneSec();
-					}
-					result = 0;
+					JWait.oneSec();
 				}
-			}
 
-			if (shutdown.equals(false))
-			{
-				JWait.oneSec();
 			}
-
 		}
 
 		return result;
