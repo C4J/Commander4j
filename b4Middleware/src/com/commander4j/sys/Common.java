@@ -9,7 +9,6 @@ import javax.swing.Icon;
 
 import com.commander4j.email.EmailQueue;
 import com.commander4j.gui.JListRenderer;
-import com.commander4j.mw.StartGUI;
 import com.commander4j.mw.StartMain;
 import com.commander4j.mw.StartService;
 import com.commander4j.util.JImageIconLoader;
@@ -49,7 +48,7 @@ public class Common
 
 	public static Integer ArchiveRetentionDays = 30;
 
-	public static StartGUI sgui;
+	//public static StartGUI sgui;
 	public static StartService sservice;
 	public static CheckboxMenuItem runningStatus = new CheckboxMenuItem("Running...");
 	public static String runMode = "";

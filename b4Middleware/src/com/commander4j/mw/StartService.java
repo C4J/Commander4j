@@ -19,8 +19,8 @@ public class StartService
 		AddShutdownHookSample sample = new AddShutdownHookSample();
 		sample.attachShutDownHook();
 
-		Common.sgui = new StartGUI();
-		Common.sgui.setVisible(false);
+		//Common.sgui = new StartGUI();
+		//Common.sgui.setVisible(false);
 
 		if (Common.smw.StartMiddleware())
 		{
