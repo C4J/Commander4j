@@ -2,12 +2,12 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:c4j="http://www.commander4j.com"
-                exclude-result-prefixes="xs"  version="2.0">
+                xmlns:c4j_XSLT_Ext="http://xml.apache.org/xalan/java/com.commander4j.Transformation.XSLTExtension"
+                exclude-result-prefixes="xs c4j c4j_XSLT_Ext"  version="2.0">
 
     <xsl:output encoding="UTF-8" indent='yes' method="xml" />
     <xsl:strip-space  elements="*"/>
-
-
+    
     <!-- CONFIG DATA -->
     <xsl:variable name="HOSTREF"><xsl:value-of select="c4j:getConfigItem('config','HostRef')"/></xsl:variable>
     <xsl:variable name="PLANT"><xsl:value-of select="c4j:getConfigItem('config','Plant')"/></xsl:variable>
@@ -29,7 +29,7 @@
     
     
     <xsl:variable name="SAPMATERIAL_LONG" select="string(/MESSAGE/DATA[@type='Basic']/FIELD[@name='Material']/@value)" />
-    <xsl:variable name="SAPMATERIAL_SHORT" select="translate($SAPMATERIAL_LONG, '^0*', '' )" />
+    <xsl:variable name="SAPMATERIAL_SHORT" select="c4j_XSLT_Ext:removeLeadingZeros($SAPMATERIAL_LONG)" />
     <xsl:variable name="USE_PLANT" select="string(/MESSAGE/DATA[@type='Plant']/FIELD[@name='Plant'][@value=$PLANT]/parent::*/FIELD[@name='UsePlantFields']/@value)" />
     <xsl:variable name="USE_WAREHOUSE" select="string(/MESSAGE/DATA[@type='Warehouse']/FIELD[@name='Warehouse'][@value=$WAREHOUSE]/parent::*/FIELD[@name='Warehouse']/@value)" />
     <xsl:variable name="DATENOW" select="current-dateTime()"/>

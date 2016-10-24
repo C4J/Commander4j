@@ -237,7 +237,7 @@
             <path>./interface/input/14 (Wonderware FFMW Material)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT>WONDERWARE_FFMW_XML_to_C4J_XML.xsl</XSLT>
+            <XSLT>WONDERWARE_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Material">
