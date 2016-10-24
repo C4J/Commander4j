@@ -96,8 +96,9 @@
 							</UnitOfMeasure>
 						</Quantity>
 						<globe_Item>0001</globe_Item>
+						<xsl:variable name="STOCKTYPE" select="/message/messageData/productionDeclaration/status" />
 						<globe_StockType>
-							<xsl:value-of select='/message/messageData/productionDeclaration/status'/>
+                            <xsl:value-of select="c4j:getConfigItem('C4JStockType',$STOCKTYPE)"/>
 						</globe_StockType>
 						<globe_PostingDate>
 							<xsl:value-of select='$MESSAGEDATE' />
