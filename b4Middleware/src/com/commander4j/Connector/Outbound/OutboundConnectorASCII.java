@@ -7,7 +7,6 @@ import javax.xml.transform.TransformerException;
 
 import org.apache.logging.log4j.Logger;
 
-import com.commander4j.Connector.Inbound.InboundConnectorCSV;
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.FixedASCIIColumns;
@@ -20,7 +19,7 @@ import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 {
 
-	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorCSV.class));
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundConnectorASCII.class));
 	JFileIO jfileio = new JFileIO();
 	private LinkedList<FixedASCIIColumns> parseCols = new LinkedList<FixedASCIIColumns>();
 	private int maxColumn = 0;

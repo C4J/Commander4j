@@ -285,5 +285,23 @@
             <XSLT/>
         </output>
     </map>
+    
+    <map id="map17" enabed="Y" description="Excel Spreadsheet">
+        <input id="in1" description="Read Excel File">
+            <type>XLS</type>
+            <path>./interface/input/17 (Excel)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write CSV File">
+            <path>./interface/output/17 (CSV)</path>
+            <type>CSV</type>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=none</csvOptions>
+            <XSLT/>
+        </output>
+    </map>
 
 </config>

@@ -25,7 +25,7 @@ import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 public class InboundConnectorASCII extends InboundConnectorABSTRACT
 {
 
-	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorCSV.class));
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorASCII.class));
 	JFileIO jfileio = new JFileIO();
 	private LinkedList<FixedASCIIColumns> parseCols = new LinkedList<FixedASCIIColumns>();
 
@@ -92,7 +92,7 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 		logger.debug("connectorLoad [" + fullFilename + "]");
 		boolean result = false;
 
-		backupInboundFile(fullFilename);
+		//backupInboundFile(fullFilename);
 
 		if (backupInboundFile(fullFilename))
 		{

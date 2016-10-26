@@ -15,7 +15,7 @@ import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 public class InboundConnectorXML extends InboundConnectorABSTRACT
 {
 
-	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorABSTRACT.class));
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorXML.class));
 
 	public InboundConnectorXML(InboundInterface inter)
 	{

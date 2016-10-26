@@ -10,6 +10,7 @@ import org.w3c.dom.Document;
 import com.commander4j.Connector.Inbound.InboundConnectorASCII;
 import com.commander4j.Connector.Inbound.InboundConnectorCSV;
 import com.commander4j.Connector.Inbound.InboundConnectorDB;
+import com.commander4j.Connector.Inbound.InboundConnectorExcel;
 import com.commander4j.Connector.Inbound.InboundConnectorIDOC;
 import com.commander4j.Connector.Inbound.InboundConnectorXML;
 import com.commander4j.Interface.Inbound.InboundInterface;
@@ -204,6 +205,10 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 			connector = new InboundConnectorCSV((InboundInterface) this);
 			setInputFileMask(InboundConnectorINTERFACE.Mask_CSV);
 			break;
+		case InboundConnectorINTERFACE.Connector_Excel:
+			connector = new InboundConnectorExcel((InboundInterface) this);
+			setInputFileMask(InboundConnectorINTERFACE.Mask_Excel);
+			break;			
 		case InboundConnectorINTERFACE.Connector_DB:
 			connector = new InboundConnectorDB((InboundInterface) this);
 			setInputFileMask(InboundConnectorINTERFACE.Mask_DB);

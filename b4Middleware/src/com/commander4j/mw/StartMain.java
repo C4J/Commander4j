@@ -144,7 +144,7 @@ public class StartMain
 		try
 		{
 			Common.emailqueue.processQueue();
-			logger.debug("Shutting Email Thread");
+			logger.debug("Shutting down email thread");
 			while (emailthread.isAlive())
 			{
 				emailthread.allDone = true;
