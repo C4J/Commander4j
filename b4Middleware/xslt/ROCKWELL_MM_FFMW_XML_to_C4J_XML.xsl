@@ -172,8 +172,6 @@
                         <xsl:comment>LE Quantity UOM <xsl:value-of select='$LE_UOM' /> is same as <xsl:value-of select='$BASE_UOM' /></xsl:comment>
                         <numerator><xsl:value-of select='$LE_QUANTITY' /></numerator> 
                     </xsl:if>
-                    
-                    
 
                     <denominator><xsl:value-of select='$D97_DENOMINATOR' /></denominator>
                     <ean><xsl:value-of select='$D97_EAN' /></ean>

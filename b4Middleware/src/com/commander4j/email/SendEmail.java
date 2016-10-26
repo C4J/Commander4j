@@ -21,6 +21,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JXMLDocument;
+import com.commander4j.util.Utility;
 
 public class SendEmail
 {
@@ -44,79 +45,87 @@ public class SendEmail
 			String val = doc.findXPath("//configuration/property[" + String.valueOf(seq) + "]/@value").trim();
 			if (prop.equals(""))
 			{
-				cont=false;
-			}
-			else
+				cont = false;
+			} else
 			{
 				properties.setProperty(prop, val);
 				seq++;
 			}
 		}
-		//select="/DataSet/Data/[@Value1='2']/@Value2"
-		addressList = doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "']/toAddressList").trim();
+		// select="/DataSet/Data/[@Value1='2']/@Value2"
+		addressList = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/toAddressList").trim());
 
 	}
 
 	public synchronized boolean Send(String distributionID, String subject, String messageText, String filename)
 	{
 		boolean result = true;
-		
-		if (Common.emailEnabled==false)
+
+		if (Common.emailEnabled == false)
 		{
 			return result;
 		}
 
 		init(distributionID);
 
-		Session session;
-		
-		if (properties.get("mail.smtp.auth").toString().toLowerCase().equals("true"))
+		if (addressList.equals("") == false)
 		{
-			session = Session.getInstance(properties, new javax.mail.Authenticator()
+
+			Session session;
+
+			if (properties.get("mail.smtp.auth").toString().toLowerCase().equals("true"))
 			{
-				protected PasswordAuthentication getPasswordAuthentication()
+				session = Session.getInstance(properties, new javax.mail.Authenticator()
 				{
-					return new PasswordAuthentication(properties.get("mail.smtp.user").toString(), properties.get("mail.smtp.password").toString());
-				}
-			});
-		} else
-		{
-			session = Session.getInstance(properties);
-		}
-
-		try
-		{
-
-			MimeMessage message = new MimeMessage(session);
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addressList));
-			message.setSubject(subject);
-			//message.setText(messageText);
-			
-			MimeBodyPart mbp1 = new MimeBodyPart();
-			MimeBodyPart mbp2 = new MimeBodyPart();
-			
-		    mbp1.setText(messageText);
-		    
-		    Multipart mp = new MimeMultipart();
-		    mp.addBodyPart(mbp1);
-			
-			if (filename.equals("")==false)
+					protected PasswordAuthentication getPasswordAuthentication()
+					{
+						return new PasswordAuthentication(properties.get("mail.smtp.user").toString(), properties.get("mail.smtp.password").toString());
+					}
+				});
+			} else
 			{
-		         FileDataSource fds = new FileDataSource(filename);
-		         mbp2.setDataHandler(new DataHandler(fds));
-		        
-		         mbp2.setFileName(fds.getName());
-		         mp.addBodyPart(mbp2);
+				session = Session.getInstance(properties);
 			}
-			message.setContent(mp);
-			message.setSentDate(new Date());
-			
-			Transport.send(message);
-			logger.debug("Email sent successfully..");
-		} catch (MessagingException mex)
+
+			try
+			{
+
+				MimeMessage message = new MimeMessage(session);
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addressList));
+				message.setSubject(subject);
+				// message.setText(messageText);
+
+				MimeBodyPart mbp1 = new MimeBodyPart();
+				MimeBodyPart mbp2 = new MimeBodyPart();
+
+				mbp1.setText(messageText);
+
+				Multipart mp = new MimeMultipart();
+				mp.addBodyPart(mbp1);
+
+				if (filename.equals("") == false)
+				{
+					FileDataSource fds = new FileDataSource(filename);
+					mbp2.setDataHandler(new DataHandler(fds));
+
+					mbp2.setFileName(fds.getName());
+					mp.addBodyPart(mbp2);
+				}
+				message.setContent(mp);
+				message.setSentDate(new Date());
+
+				Transport.send(message);
+				logger.debug("Email sent successfully..");
+			} catch (MessagingException mex)
+			{
+				logger.error("Error sending email : " + mex.getMessage());
+				result = false;
+			}
+
+		}
+		else
 		{
-			logger.error("Error sending email : "+mex.getMessage());
-			result = false;
+			logger.debug("Disabled or empty email distribution list. No email sent.");
 		}
 
 		return result;

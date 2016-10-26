@@ -3,7 +3,6 @@ package com.commander4j.thread;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
-import com.commander4j.util.JArchive;
 import com.commander4j.util.JWait;
 
 public class EmailThread extends Thread
@@ -12,7 +11,6 @@ public class EmailThread extends Thread
 	Integer counter = 0;
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((EmailThread.class));
-	JArchive archiver = new JArchive();
 
 	public EmailThread()
 	{

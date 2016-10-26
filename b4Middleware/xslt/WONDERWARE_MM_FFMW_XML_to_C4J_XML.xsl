@@ -49,10 +49,13 @@
                     <!-- Get Description for Language E -->
                     <xsl:apply-templates select="/ZMATMAS03/E2MARAM005GRP" mode="DESCRIPTION"/>
 
-                    <LE_QUANTITY><xsl:value-of select="$LE_QTY" /></LE_QUANTITY>
-                    <LE_UOM><xsl:value-of select="$LE_UOM" /></LE_UOM>
-                    <LE_NUMERATOR><xsl:value-of select="$LE_NUMERATOR" /></LE_NUMERATOR>
-                    <LE_DENOMINATOR><xsl:value-of select="$LE_DENOMINATOR" /></LE_DENOMINATOR>
+	                <xsl:comment>LE_QTY=<xsl:value-of select="$LE_QTY" /></xsl:comment> 
+	                <xsl:comment>LE_UOM=<xsl:value-of select="$LE_UOM" /></xsl:comment> 
+	                <xsl:comment>LE_NUMERATOR=<xsl:value-of select="$LE_NUMERATOR" /></xsl:comment> 
+	                <xsl:comment>LE_DENOMINATOR=<xsl:value-of select="$LE_DENOMINATOR" /></xsl:comment> 
+
+                    <xsl:variable name="temp98" select="number($LE_QTY * $LE_NUMERATOR)" />
+                    <LE_Quantity><xsl:value-of select="$temp98" /></LE_Quantity>
                     
                     <base_uom><xsl:value-of select="$BASE_UOM" /></base_uom>
                     <gross_weight><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E1MARAM/BRGEW)"/></gross_weight>	

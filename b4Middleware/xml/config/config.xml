@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config description="c4jMiddleware Nestle Purina Wisbech">
+<config description="c4jMiddleware Example">
 
     <logPath/>
     <XSLTPath/>
@@ -7,13 +7,13 @@
     <enableEmailNotifications>false</enableEmailNotifications>
     <statusReportTime>09:00:00</statusReportTime>
 
-    <map id="map1" enabed="Y" description="Konnect Material Master to C4J Material Master">
-        <input id="in1" description="Read Konnect Material Master">
+    <map id="map01" enabed="Y" description="Rockwell Material Master to C4J Material Master">
+        <input id="in1" description="Read Rockwell Material Master">
             <type>XML</type>
             <path>./interface/input/01 (Konnect - Material)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT>KONNECT_MATERIAL_XML_to_C4J_XML.xsl</XSLT>
+            <XSLT>ROCKWELL_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Material Master">
@@ -23,7 +23,7 @@
         </output>
     </map>
 
-    <map id="map2" enabed="Y" description="S95 Process Order to C4J Process Order">
+    <map id="map02" enabed="Y" description="S95 Process Order to C4J Process Order">
         <input id="in1" description="Read SAP S95 CR XML">
             <type>XML</type>
             <path>./interface/input/02 (S95 Process Order)</path>
@@ -39,7 +39,7 @@
         </output>
     </map>
 
-    <map id="map3" enabed="Y" description="Synchro CSV">
+    <map id="map03" enabed="Y" description="Synchro CSV">
         <input id="in1" description="Read CSV Example">
             <type>CSV</type>
             <path>./interface/input/03 (Comma Separated Variables)</path>
@@ -55,7 +55,7 @@
         </output>
     </map>
 
-    <map id="map4" enabed="Y" description="S95 Batch Status Change to C4J Batch Status Change">
+    <map id="map04" enabed="Y" description="S95 Batch Status Change to C4J Batch Status Change">
         <input id="in1" description="Read S95 Batch Status Change">
             <type>XML</type>
             <path>./interface/input/04 (S95 Batch Status Change)</path>
@@ -71,7 +71,7 @@
         </output>
     </map>
 
-    <map id="map5" enabed="Y" description="S95 Transfer Schedule to C4J Pallet Status Change">
+    <map id="map05" enabed="Y" description="S95 Transfer Schedule to C4J Pallet Status Change">
         <input id="in1" description="Read SAP S95 TRANSFER ORDER XML">
             <type>XML</type>
             <path>./interface/input/05 (S95 Transfer Schedule)</path>
@@ -87,7 +87,7 @@
         </output>
     </map>
 
-    <map id="map6" enabed="Y"
+    <map id="map06" enabed="Y"
         description="S95 Process Order Status Change to C4J Process Order Status Change">
 
         <input id="in1" description="Read SAP S95 CRST XML">
@@ -105,7 +105,7 @@
         </output>
     </map>
 
-    <map id="map7" enabed="Y" description="C4J Production Declaration to S95 Production Declaration">
+    <map id="map07" enabed="Y" description="C4J Production Declaration to S95 Production Declaration">
         <input id="in1" description="Read C4J Prod Dec XML">
             <type>XML</type>
             <path>./interface/input/07 (C4J Production Declaration)</path>
@@ -121,7 +121,7 @@
         </output>
     </map>
 
-    <map id="map8" enabed="Y" description="ASCII Flat File Fixed Column to XML">
+    <map id="map08" enabed="Y" description="ASCII Flat File Fixed Column to XML">
         <input id="in1" description="Read ASCII Flat File">
             <type>ASCII</type>
             <path>./interface/input/08 (ASCII Flat File)</path>
@@ -138,7 +138,7 @@
         </output>
     </map>
 
-    <map id="map9" enabed="Y" description="Tropos Material XML">
+    <map id="map09" enabed="Y" description="Tropos Material XML">
         <input id="in1" description="Read XML File">
             <type>XML</type>
             <path>./interface/input/09 (TROPOS Material XML)</path>

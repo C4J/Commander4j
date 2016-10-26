@@ -11,19 +11,19 @@
         <property name="mail.smtp.from" value="c4jmiddleware@gmail.com"/>
     </configuration>
 
-    <distributionList id="System">
+    <distributionList id="System" enabled="Y">
         <toAddressList>c4jmiddleware@gmail.com,davegarratt@msn.com</toAddressList>
     </distributionList>
 
-    <distributionList id="Error">
+    <distributionList id="Error" enabled="Y">
         <toAddressList>support@commander4j.com</toAddressList>
     </distributionList>
 
-    <distributionList id="3">
+    <distributionList id="3" enabled="N">
         <toAddressList/>
     </distributionList>
 
-    <distributionList id="4">
+    <distributionList id="4" enabled="N">
         <toAddressList/>
     </distributionList>
 
