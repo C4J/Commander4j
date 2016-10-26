@@ -2,10 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/junit-4.11.jar"/>
-	<classpathentry kind="lib" path="lib/poi-3.14-20160307.jar"/>
-	<classpathentry kind="lib" path="lib/poi-ooxml-3.14-20160307.jar"/>
-	<classpathentry kind="lib" path="lib/poi-ooxml-schemas-3.14-20160307.jar"/>
 	<classpathentry kind="lib" path="lib/opencsv-3.8.jar"/>
 	<classpathentry kind="lib" path="lib/saxon9.jar"/>
 	<classpathentry kind="lib" path="lib/saxon9-dom.jar"/>
@@ -16,5 +12,12 @@
 	<classpathentry kind="lib" path="lib/log4j-core-2.6.2.jar"/>
 	<classpathentry kind="lib" path="lib/javax.mail.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang3-3.5.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="lib/poi-3.15.jar"/>
+	<classpathentry kind="lib" path="lib/poi-excelant-3.15.jar"/>
+	<classpathentry kind="lib" path="lib/poi-ooxml-3.15.jar"/>
+	<classpathentry kind="lib" path="lib/poi-ooxml-schemas-3.15.jar"/>
+	<classpathentry kind="lib" path="lib/poi-scratchpad-3.15.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections4-4.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

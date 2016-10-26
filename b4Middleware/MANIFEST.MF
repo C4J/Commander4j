@@ -1,16 +1,20 @@
 Manifest-Version: 1.0
-Main-Class: com.commander4j.mw.StartMain
-Class-Path: . lib/junit-4.11.jar 
- lib/commons-codec-1.10.jar 
- lib/commons-lang3-3.5.jar 
- lib/commons-io-2.5.jar 
- lib/commons-logging-1.2.jar 
- lib/javax.mail.jar 
- lib/log4j-api-2.6.2.jar 
- lib/log4j-core-2.6.2.jar 
- lib/poi-3.14-20160307.jar 
- lib/poi-ooxml-3.14-20160307.jar 
- lib/poi-ooxml-schemas-3.14-20160307.jar 
+Main-Class: com.commander4j.mw.StartGUI
+Class-Path: lib/opencsv-3.8.jar 
  lib/saxon9.jar 
  lib/saxon9-dom.jar 
- lib/opencsv-3.8.jar 
+ lib/commons-codec-1.10.jar 
+ lib/commons-io-2.5.jar 
+ lib/commons-logging-1.2.jar 
+ lib/log4j-api-2.6.2.jar 
+ lib/log4j-core-2.6.2.jar 
+ lib/javax.mail.jar 
+ lib/commons-lang3-3.5.jar 
+ lib/junit-4.12.jar 
+ lib/poi-3.15.jar 
+ lib/poi-excelant-3.15.jar 
+ lib/poi-ooxml-3.15.jar 
+ lib/poi-ooxml-schemas-3.15.jar 
+ lib/poi-scratchpad-3.15.jar 
+ lib/commons-collections4-4.1.jar
+

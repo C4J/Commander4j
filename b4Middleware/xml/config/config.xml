@@ -10,7 +10,7 @@
     <map id="map01" enabed="Y" description="Rockwell Material Master to C4J Material Master">
         <input id="in1" description="Read Rockwell Material Master">
             <type>XML</type>
-            <path>./interface/input/01 (Konnect - Material)</path>
+            <path>./interface/input/01 (Rockwell FFMW Material)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>ROCKWELL_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
