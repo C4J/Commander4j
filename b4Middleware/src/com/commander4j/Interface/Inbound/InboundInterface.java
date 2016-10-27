@@ -70,21 +70,12 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 					if (getXSLTFilename().equals("") == false)
 					{
 
-						//String filename_imported = Utility.getCurrentTimeStampString() + " IMPORTED_" + connector.getType() + "_to_XML" + " " + file.getName();
-
-						//if (filename_imported.endsWith(".xml") == false)
-						//{
-						//	filename_imported = filename_imported + ".xml";
-						//}
-
 						String filename_transformed = Utility.getCurrentTimeStampString() + " TRANSFORMED_" + connector.getType() + " " + file.getName();
 
 						if (filename_transformed.endsWith(".xml") == false)
 						{
 							filename_transformed = filename_transformed + ".xml";
 						}
-
-						//jfileio.writeToDisk(Common.logDir, data, filename_imported);
 
 						source = new StreamSource(new File(Common.logDir + File.separator + filename_imported));
 						destination = new StreamResult(new File(Common.logDir + File.separator + filename_transformed));
