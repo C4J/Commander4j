@@ -15,6 +15,7 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.w3c.dom.Element;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
+import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
@@ -109,8 +110,10 @@ public class InboundConnectorExcel extends InboundConnectorABSTRACT
 					
 					result = true;
 					
-				} catch(Exception ioe) {
-				    ioe.printStackTrace();
+				} catch(Exception ex) {
+					result = false;
+					logger.error("connectorLoad " + getType() + " " + ex.getMessage());
+					Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
 				}
 
 		}

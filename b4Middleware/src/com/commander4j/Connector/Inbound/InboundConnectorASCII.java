@@ -2,14 +2,11 @@ package com.commander4j.Connector.Inbound;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.LinkedList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
@@ -152,25 +149,13 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 				
 				result = true;
 
-			} catch (FileNotFoundException ex)
+			} catch (Exception ex)
 			{
 				System.out.println("Unable to open file '" + fullFilename + "'");
 				logger.error("connectorLoad " + getType() + " " + ex.getMessage());
 				Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
 				result = false;
-			} catch (IOException ex)
-			{
-				System.out.println("Error reading file '" + fullFilename + "'");
-				logger.error("connectorLoad " + getType() + " " + ex.getMessage());
-				Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
-				result = false;
-
-			} catch (ParserConfigurationException ex)
-			{
-				logger.error("connectorLoad " + getType() + " " + ex.getMessage());
-				Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
-				result = false;
-			}
+			} 
 		}
 
 		return result;

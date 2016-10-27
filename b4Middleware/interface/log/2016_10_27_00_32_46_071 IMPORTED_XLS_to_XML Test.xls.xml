@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<data cols="2" filename="Test.xls" rows="3" type="XLS"><row id="1"><col id="1">Col A</col><col id="2">Col B</col></row><row id="2"><col id="1">1.0</col><col id="2">2.0</col></row><row id="3"><col id="1">Row 3 Col A</col><col id="2">Row 3 Col B</col></row></data>

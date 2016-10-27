@@ -57,16 +57,25 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 				if (connector.processInboundFile(file.getName()))
 				{
 					data = connector.getData();
+					
+					String filename_imported = Utility.getCurrentTimeStampString() + " IMPORTED_" + connector.getType() + "_to_XML" + " " + file.getName();
+
+					if (filename_imported.endsWith(".xml") == false)
+					{
+						filename_imported = filename_imported + ".xml";
+					}
+					
+					jfileio.writeToDisk(Common.logDir, data, filename_imported);
 
 					if (getXSLTFilename().equals("") == false)
 					{
 
-						String filename_imported = Utility.getCurrentTimeStampString() + " IMPORTED_" + connector.getType() + "_to_XML" + " " + file.getName();
+						//String filename_imported = Utility.getCurrentTimeStampString() + " IMPORTED_" + connector.getType() + "_to_XML" + " " + file.getName();
 
-						if (filename_imported.endsWith(".xml") == false)
-						{
-							filename_imported = filename_imported + ".xml";
-						}
+						//if (filename_imported.endsWith(".xml") == false)
+						//{
+						//	filename_imported = filename_imported + ".xml";
+						//}
 
 						String filename_transformed = Utility.getCurrentTimeStampString() + " TRANSFORMED_" + connector.getType() + " " + file.getName();
 
@@ -75,7 +84,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 							filename_transformed = filename_transformed + ".xml";
 						}
 
-						jfileio.writeToDisk(Common.logDir, data, filename_imported);
+						//jfileio.writeToDisk(Common.logDir, data, filename_imported);
 
 						source = new StreamSource(new File(Common.logDir + File.separator + filename_imported));
 						destination = new StreamResult(new File(Common.logDir + File.separator + filename_transformed));
