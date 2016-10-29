@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="6.1.3" transformSequenceNumber="5">
   <directoryPresets config="./xslt/configData.xml" />
-  <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.30" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
+  <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.35" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
     <languages skipLanguageSelection="true" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
       <additionalLanguages>
@@ -48,7 +48,7 @@
       </dirEntry>
       <fileEntry mountPoint="32" file="./xml/config/log4j2.xml" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" />
       <fileEntry mountPoint="32" file="./xml/config/log4j2.dtd" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" />
-      <fileEntry mountPoint="32" file="./xml/config/config.xml" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
+      <fileEntry mountPoint="32" file="./xml/config/config.xml" overwriteMode="5" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="32" file="./xml/config/config.dtd" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" />
       <dirEntry mountPoint="32" file="./xml/config" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="config" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
@@ -138,7 +138,7 @@
           <versionLine x="20" y="40" text="version ${compiler:sys.version}" fontSize="8" fontColor="0,0,0" bold="false" />
         </text>
       </splashScreen>
-      <java mainClass="com.commander4j.mw.StartMain" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:xml\log4j.xml -Dfile.encoding=Cp1252" arguments="Service" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
+      <java mainClass="com.commander4j.mw.StartMain" vmParameters="-Xms128m -Xmx256m -Dlog4j.configuration=file:xml\log4j.xml -Dfile.encoding=Cp1252" arguments="Service" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
         <classPath>
           <archive location="c4jMiddleware.jar" failOnError="false" />
           <directory location="lib" failOnError="false" />

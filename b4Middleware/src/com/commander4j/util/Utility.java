@@ -18,6 +18,28 @@ import org.w3c.dom.Document;
 
 public class Utility
 {
+	
+	public static String getISODateStringFormat(Date ts)
+	{
+		String result = "";
+
+		try
+		{
+			String temp = new java.text.SimpleDateFormat("yyyy-MM-dd").format(ts);
+			// String temp = ts.toString(); 0123456789012345678
+			result = temp.substring(0, 4);
+			result = result + "-";
+			result = result + temp.substring(5, 7);
+			result = result + "-";
+			result = result + temp.substring(8, 10);
+
+		} catch (Exception ex)
+		{
+			result = "Error";
+		}
+
+		return result;
+	}
 
 	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
 

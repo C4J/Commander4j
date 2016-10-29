@@ -114,7 +114,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 			this.enabled = enable;
 			setRunning(true);
 			logger.debug("Start Requested : [" + getDescription() + "]");
-			timer.scheduleAtFixedRate(this, 0, timerFrequency);
+			timer.schedule(this, 0, timerFrequency);
 		} else
 		{
 			// stop
