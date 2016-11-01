@@ -455,7 +455,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					temp.updateMHNDecision(initalDecision);
 					if (initialStatus.equals("") == false)
 					{
-						temp.updateStatus(initialStatus);
+						temp.updateStatus(initialStatus,true);
 					}
 					jStatusText.setText("SSCC "+sscc+" added to MHN "+mhnnumber);
 					Rectangle progressRect = jStatusText.getBounds();  

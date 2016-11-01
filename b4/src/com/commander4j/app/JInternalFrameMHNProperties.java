@@ -586,7 +586,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 															temp.updateMHNDecision(decisionList.get(xx).getDecision());
 															if (decisionList.get(xx).getStatus().equals("")==false)
 															{
-																temp.updateStatus(decisionList.get(xx).getStatus());
+																temp.updateStatus(decisionList.get(xx).getStatus(),true);
 
 																jStatusText.setText("SSCC "+sscc+" updated to  "+decisionList.get(xx).getStatus());
 																Rectangle progressRect = jStatusText.getBounds();  

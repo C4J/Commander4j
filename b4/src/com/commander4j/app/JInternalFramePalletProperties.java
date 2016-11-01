@@ -429,7 +429,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 			result = pallet.update();
 			if (result == true) {
 				pallet.writePalletHistory(txnRef, "EDIT", "TO");
-				pallet.updateStatus((String) jComboBoxDefaultPalletStatus.getSelectedItem());
+				pallet.updateStatus((String) jComboBoxDefaultPalletStatus.getSelectedItem(),true);
 
 				jTextFieldLayers.setText(String.valueOf(pallet.getLayersOnPallet()));
 				enableOrdisableFields(null);

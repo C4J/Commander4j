@@ -62,17 +62,13 @@ public class IncommingPalletStatusChange
 
 				if (pal.getPalletProperties(sscc) == true)
 				{
-					Long txn = pal.updateStatus(status);
+					Long txn = pal.updateStatus(status,false);
 					if (txn>0)
 					{
-						// if there has been a change to the status create an outbound message here
-						OutgoingPalletStatusChange opsc = new OutgoingPalletStatusChange(getHostID(), getSessionID());
-						opsc.submit(txn);
 						updated++;
 					}
 					else
 					{
-						// false in this case means that no update was required as the new status was the same as the old one.
 						notupdated++;
 					}
 				}

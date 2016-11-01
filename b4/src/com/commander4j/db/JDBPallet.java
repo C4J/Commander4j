@@ -621,8 +621,8 @@ public class JDBPallet
 
 				while (rs.next())
 				{
-					result.addElement(new JDBPallet(rs.getString("sscc"), rs.getString("material"), rs.getString("batch_number"), rs.getString("process_order"), rs.getBigDecimal("quantity"), rs.getString("uom"), rs.getBigDecimal("base_quantity"), rs
-							.getString("base_uom"), rs.getTimestamp("date_of_manufacture"), rs.getString("status"), rs.getString("location_id"), rs.getString("ean"), rs.getString("variant")));
+					result.addElement(new JDBPallet(rs.getString("sscc"), rs.getString("material"), rs.getString("batch_number"), rs.getString("process_order"), rs.getBigDecimal("quantity"), rs.getString("uom"), rs.getBigDecimal("base_quantity"),
+							rs.getString("base_uom"), rs.getTimestamp("date_of_manufacture"), rs.getString("status"), rs.getString("location_id"), rs.getString("ean"), rs.getString("variant")));
 				}
 
 				rs.close();
@@ -1409,18 +1409,18 @@ public class JDBPallet
 						Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 						stmtupdate.clearParameters();
 						stmtupdate.close();
-						result=true;
-						logger.debug("SSCC "+getSSCC()+" updated.");
+						result = true;
+						logger.debug("SSCC " + getSSCC() + " updated.");
 					} catch (Exception ex)
 					{
 						updatetries++;
 						errormsg = ex.getMessage();
-						logger.error("Error updating pallet "+getSSCC()+" - (Attempt " + String.valueOf(updatetries) + " of 5");
-						sleepTime = generator.nextInt( 3000 );
+						logger.error("Error updating pallet " + getSSCC() + " - (Attempt " + String.valueOf(updatetries) + " of 5");
+						sleepTime = generator.nextInt(3000);
 						JWait.milliSec(sleepTime);
 					}
 				}
-				if (result==false)
+				if (result == false)
 				{
 					setErrorMessage(errormsg);
 				}
@@ -1565,7 +1565,7 @@ public class JDBPallet
 		return result;
 	}
 
-	public Long updateStatus(String newStatus)
+	public Long updateStatus(String newStatus, boolean triggerOutboundMessage)
 	{
 		Long result = (long) 0;
 
@@ -1595,13 +1595,16 @@ public class JDBPallet
 
 				if (txn > 0)
 				{
-					if (getLocationObj().isStatusChangeMessageRequired() == true)
+					if (triggerOutboundMessage)
 					{
-						OutgoingPalletStatusChange opsc = new OutgoingPalletStatusChange(getHostID(), getSessionID());
-						opsc.submit(txn);
-					} else
-					{
-						logger.debug("Pallet Status Message Suppressed for Location " + getLocationObj().getLocationID());
+						if (getLocationObj().isStatusChangeMessageRequired() == true)
+						{
+							OutgoingPalletStatusChange opsc = new OutgoingPalletStatusChange(getHostID(), getSessionID());
+							opsc.submit(txn);
+						} else
+						{
+							logger.debug("Pallet Status Message Suppressed for Location " + getLocationObj().getLocationID());
+						}
 					}
 				}
 				result = txn;
