@@ -78,9 +78,10 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 	private JTextField4j jTextFieldBatchSuffix = new JTextField4j(20);
 	private JCheckBox chckbxEnabled = new JCheckBox("");
 	private JButton4j button4jClear;
-	private JButton4j button4j_Delete;
+	private JButton4j button4jDelete;
 
-	public JInternalFrameProcessOrderResourceAdmin() {
+	public JInternalFrameProcessOrderResourceAdmin()
+	{
 		super();
 		setIconifiable(true);
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
@@ -97,7 +98,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_PROCESS_ORDER_RESOURCE"));
-		
+
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -142,13 +143,31 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 		}
 	}
 
-	public JInternalFrameProcessOrderResourceAdmin(String material) {
+	public JInternalFrameProcessOrderResourceAdmin(String material)
+	{
 		this();
 		lmaterial = material;
 		jTextFieldResource.setText(lmaterial);
 		jTextFieldDescription.setText(lLocation);
 		buildSQL();
 		populateList();
+	}
+
+	private void deleteRecord()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			String lresource = jTable1.getValueAt(row, 0).toString();
+
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Resource_Delete") + " " + lresource, lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			if (n == 0)
+			{
+				JDBProcessOrderResource por = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
+				por.setResource(lresource);
+				por.delete();
+			}
+		}
 	}
 
 	private void search()
@@ -162,50 +181,27 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 		JDBMaterialLocation materialLocation = new JDBMaterialLocation(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		buildSQL();
-		export.saveAs("material_location.xls", materialLocation.getMaterialLocationDataResultSet(listStatement), Common.mainForm);
+		export.saveAs("po_resources.xls", materialLocation.getMaterialLocationDataResultSet(listStatement), Common.mainForm);
 	}
 
 	private void addRecord()
 	{
-		String lmaterial = "";
-		String llocation = "";
-		lmaterial = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_Input"));
-		if (lmaterial != null)
+		String lresource = "";
+
+		lresource = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Resource_Input"));
+		if (lresource != null)
 		{
-			if (lmaterial.equals("") == false)
+			if (lresource.equals("") == false)
 			{
-				JDBMaterial mat = new JDBMaterial(Common.selectedHostID, Common.sessionID);
-				if (mat.isValidMaterial(lmaterial))
+				JDBProcessOrderResource matloc = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
+				if (matloc.isValidResource(lresource) == false)
 				{
-					llocation = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_Location_Input"));
-					if (llocation != null)
-					{
-						if (llocation.equals("") == false)
-						{
-							JDBLocation locn = new JDBLocation(Common.selectedHostID, Common.sessionID);
-							if (locn.isValidLocation(llocation))
-							{
-								JDBMaterialLocation matloc = new JDBMaterialLocation(Common.selectedHostID, Common.sessionID);
-								if (matloc.isValidMaterialLocation(lmaterial, llocation) == false)
-								{
-									JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_LOCATION_EDIT", lmaterial, llocation);
-								}
-								else
-								{
-									JOptionPane.showMessageDialog(Common.mainForm, "Material/Location [" + lmaterial + " / " + llocation + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
-								}
-							}
-							else
-							{
-								JOptionPane.showMessageDialog(Common.mainForm, "Location [" + llocation + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
-							}							
-						}
-					}
-				}
-				else
+					JLaunchMenu.runForm("FRM_ADMIN_PO_RESOURCE_EDIT", lresource);
+				} else
 				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, "Resource [" + lresource + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 				}
+
 			}
 		}
 
@@ -224,15 +220,15 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
 			jToggleButtonSequence.setIcon(Common.icon_descending);
-		}
-		else
+		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
 			jToggleButtonSequence.setIcon(Common.icon_ascending);
 		}
 	}
 
-	public JInternalFrameProcessOrderResourceAdmin(String material, String location) {
+	public JInternalFrameProcessOrderResourceAdmin(String material, String location)
+	{
 		this();
 		lmaterial = material;
 		lLocation = location;
@@ -244,7 +240,6 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 
 	private void buildSQL()
 	{
-		
 
 		JDBQuery.closeStatement(listStatement);
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
@@ -255,8 +250,16 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 		query.addParamtoSQL("description=", jTextFieldDescription.getText());
 		query.addParamtoSQL("batch_suffix=", jTextFieldBatchSuffix.getText());
 
+		if (chckbxEnabled.isSelected())
+		{
+			query.addParamtoSQL("enabled=", "Y");
+		} else
+		{
+			query.addParamtoSQL("enabled=", "N");
+		}
+
 		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
-		query.applyRestriction(false,"none",0);
+		query.applyRestriction(false, "none", 0);
 		query.bindParams();
 		listStatement = query.getPreparedStatement();
 	}
@@ -321,7 +324,11 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					jDesktopPane1.add(jScrollPane1);
 					jScrollPane1.setBounds(0, 196, 510, 333);
 					{
-						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
+						TableModel jTable1Model = new DefaultTableModel(new String[][]
+						{
+								{ "One", "Two" },
+								{ "Three", "Four" } }, new String[]
+						{ "Column 1", "Column 2" });
 						jTable1 = new JTable();
 						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
 						jScrollPane1.setViewportView(jTable1);
@@ -412,7 +419,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 									{
 										public void actionPerformed(final ActionEvent e)
 										{
-											sortBy("PROCESS_ORDER_RESOURCE");
+											sortBy("REQUIRED_RESOURCE");
 										}
 									});
 									newItemMenuItem.setText(lang.get("lbl_Process_Order_Required_Resource"));
@@ -516,7 +523,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
-					jButtonSearch.setBounds(128, 123, 126, 32);
+					jButtonSearch.setBounds(0, 123, 126, 32);
 					jButtonSearch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -585,7 +592,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 				{
 					jTextFieldDescription = new JTextField4j(JDBLocation.field_location_id);
 					jDesktopPane1.add(jTextFieldDescription);
-					jTextFieldDescription.setBounds(154, 37, 283, 21);
+					jTextFieldDescription.setBounds(154, 37, 341, 21);
 				}
 				{
 					jLabelSortBy = new JLabel4j_std();
@@ -595,7 +602,8 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					jLabelSortBy.setBounds(0, 90, 150, 21);
 				}
 				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "REQUIRED_RESOURCE", "BATCH_SUFFIX", "DESCRIPTION","ENABLED" });
+					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
+					{ "REQUIRED_RESOURCE", "BATCH_SUFFIX", "DESCRIPTION", "ENABLED" });
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
@@ -661,36 +669,52 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					jButtonExcel.setBounds(128, 153, 126, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
-				
-				
-				jTextFieldBatchSuffix.setBounds(154, 64, 68, 21);
+
+				jTextFieldBatchSuffix.setBounds(154, 64, 80, 21);
 				jDesktopPane1.add(jTextFieldBatchSuffix);
-				
+
 				JLabel4j_std label4jEnabled = new JLabel4j_std();
 				label4jEnabled.setText(lang.get("lbl_Enabled"));
 				label4jEnabled.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4jEnabled.setBounds(234, 65, 135, 21);
 				jDesktopPane1.add(label4jEnabled);
 				chckbxEnabled.setSelected(true);
-				
-				chckbxEnabled.setBounds(373, 66, 29, 23);
+
+				chckbxEnabled.setBounds(373, 62, 29, 23);
 				jDesktopPane1.add(chckbxEnabled);
-				
+
 				button4jClear = new JButton4j(Common.icon_clear);
+				button4jClear.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						jTextFieldResource.setText("");
+						jTextFieldDescription.setText("");
+						jTextFieldBatchSuffix.setText("");
+						chckbxEnabled.setSelected(true);
+						search();
+					}
+				});
 				button4jClear.setText(lang.get("btn_Clear_Filter"));
 				button4jClear.setMnemonic(KeyEvent.VK_C);
-				button4jClear.setBounds(0, 123, 126, 32);
+				button4jClear.setBounds(128, 123, 126, 32);
 				jDesktopPane1.add(button4jClear);
-				
-				button4j_Delete = new JButton4j(Common.icon_delete);
-				button4j_Delete.setText(lang.get("btn_Delete"));
-				button4j_Delete.setMnemonic(KeyEvent.VK_D);
-				button4j_Delete.setBounds(0, 153, 126, 32);
-				jDesktopPane1.add(button4j_Delete);
+
+				button4jDelete = new JButton4j(Common.icon_delete);
+				button4jDelete.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						deleteRecord();
+					}
+				});
+				button4jDelete.setText(lang.get("btn_Delete"));
+				button4jDelete.setMnemonic(KeyEvent.VK_D);
+				button4jDelete.setBounds(0, 153, 126, 32);
+				jDesktopPane1.add(button4jDelete);
 
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}

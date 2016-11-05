@@ -194,6 +194,33 @@ public class JLaunchLookup
 
 		return JDialogLookup.dlg_selected;
 	}
+	
+	/**
+	 * Method locations.
+	 * 
+	 * @return boolean
+	 */
+	public static boolean resources() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_PROCESS_ORDER_RESOURCES"));
+		JDialogLookup.dlg_title = "Resources";
+
+		JDialogLookup.dlg_key_field_name = "required_resource";
+		JDialogLookup.dlg_criteria_field_name_default = "enabled";
+		JDialogLookup.dlg_orderBy_name_default = "required_resource";
+		JDialogLookup.dlg_sort_descending = false;
+
+		// dlg_criteria_default = "";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}	
 
 	public static boolean modules() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
