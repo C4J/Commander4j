@@ -1570,6 +1570,26 @@
 			<id>JDBLineWorkstationMembership.renameLine</id>
 			<text>UPDATE {schema}SYS_WORKSTATION_LINE_MEMBERS SET LINE = ? WHERE LINE = ? AND GROUP_ID = ? </text>
 		</statement>
-				
+		<?JDBProcessOrderResource ?>
+		<statement>
+			<id>JDBProcessOrderResource.create</id>
+			<text>insert into {schema}app_process_order_resource (required_resource,enabled,description,batch_suffix) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBProcessOrderResource.delete</id>
+			<text>delete from {schema}app_process_order_resource where required_resource = ?</text>
+		</statement>
+		<statement>
+			<id>JDBProcessOrderResource.isValidResource</id>
+			<text>select * from {schema}app_process_order_resource where required_resource = ?</text>
+		</statement>
+		<statement>
+			<id>JDBProcessOrderResource.update</id>
+			<text>update {schema}app_process_order_resource set enabled = ?,batch_suffix=?,description=? where required_resource = ?</text>
+		</statement>
+		<statement>
+			<id>JDBProcessOrderResource.getProperties</id>
+			<text>select * from {schema}app_process_order_resource where required_resource = ?</text>
+		</statement>				
 	</jdbcDriver>
 </SQL>

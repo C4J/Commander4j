@@ -12,7 +12,7 @@ public class JVersion
 	}
 
 	public static int getSchemaVersion() {
-		return 97;
+		return 98;
 	}
 
 }

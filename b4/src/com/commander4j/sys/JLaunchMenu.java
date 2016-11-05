@@ -53,6 +53,7 @@ import com.commander4j.app.JInternalFramePalletSplit;
 import com.commander4j.app.JInternalFrameProcessOrderAdmin;
 import com.commander4j.app.JInternalFrameProcessOrderLabel;
 import com.commander4j.app.JInternalFrameProcessOrderProperties;
+import com.commander4j.app.JInternalFrameProcessOrderResourceAdmin;
 import com.commander4j.app.JInternalFrameProductionConfirmation;
 import com.commander4j.app.JInternalFrameProductionDeclaration;
 import com.commander4j.app.JInternalFrameQMDictionaryAdmin;
@@ -823,6 +824,19 @@ public class JLaunchMenu {
 			else
 			{
 				u = new JInternalFrameMaterialLocationAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_ADMIN_PO_RESOURCE"))
+		{
+			final JInternalFrameProcessOrderResourceAdmin u;
+			if (isLoaded(JInternalFrameProcessOrderResourceAdmin.class))
+				setVisible(JInternalFrameProcessOrderResourceAdmin.class);
+			else
+			{
+				u = new JInternalFrameProcessOrderResourceAdmin();
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}

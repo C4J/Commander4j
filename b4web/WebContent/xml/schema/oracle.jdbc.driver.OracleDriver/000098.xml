@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+  <statement>
+	CREATE TABLE "APP_PROCESS_ORDER_RESOURCE" 
+	  (
+		"REQUIRED_RESOURCE" VARCHAR2(50), 
+	    "DESCRIPTION" VARCHAR2(80), 
+	    "BATCH_SUFFIX" VARCHAR2(15), 
+		"ENABLED" VARCHAR2(1)
+	   )
+  </statement>
+
+  <statement>
+	  CREATE UNIQUE INDEX "PO_RESOURCE_PK" ON "APP_PROCESS_ORDER_RESOURCE" ("REQUIRED_RESOURCE")
+  </statement>
+  
+<statement>INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES,RESOURCE_KEY) VALUES ('FRM_ADMIN_PO_RESOURCE', N'N', 'Y', 'FORM', 'Maintain Resources', 'process_order.gif', NULL, NULL, NULL, NULL, NULL, NULL, NULL,'mod_FRM_ADMIN_PO_RESOURCE')</statement>
+
+<statement>INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES) VALUES ('FRM_ADMIN_PO_RESOURCE_EDIT', 'N', 'Y', 'FUNCTION', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)</statement>
+
+<statement>INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE) VALUES ('FRM_ADMIN_PO_RESOURCE_ADD', 'N', 'Y', 'FUNCTION', '', '', '', '', '', '', 'Y', 'Y', 1, '')</statement>
+
+<statement>INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE) VALUES ('FRM_ADMIN_PO_RESOURCE_DELETE', 'N', 'Y', 'FUNCTION', '', '', '', '', '', '', 'Y', 'Y', 1, '')</statement>
+
+<statement>INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_ADMIN_PO_RESOURCE', 'MENU_DATA_MAINT', 4)</statement>
+
+<statement>INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN','FRM_ADMIN_PO_RESOURCE')</statement>
+<statement>INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN','FRM_ADMIN_PO_RESOURCE_ADD')</statement>
+<statement>INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN','FRM_ADMIN_PO_RESOURCE_EDIT')</statement>
+<statement>INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN','FRM_ADMIN_PO_RESOURCE_DELETE')</statement>
+
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE','EN','Administer Process Order Resources','R')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_EDIT','EN','Edit a Resource Record','')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_DELETE','EN','Delete Resource ?','')</statement>
+
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE','IT','Administer Process Order Resources','R')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_EDIT','IT','Edit a Resource Record','')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_DELETE','IT','Delete Resource ?','')</statement>
+
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE','NL','Administer Process Order Resources','R')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_EDIT','NL','Edit a Resource Record','')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_DELETE','NL','Delete Resource ?','')</statement>
+
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE','HU','Administer Process Order Resources','R')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_EDIT','HU','Edit a Resource Record','')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_DELETE','HU','Delete Resource ?','')</statement>
+
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE','FR','Administer Process Order Resources','R')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_EDIT','FR','Edit a Resource Record','')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_DELETE','FR','Delete Resource ?','')</statement>
+
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE','ES','Administer Process Order Resources','R')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_EDIT','ES','Edit a Resource Record','')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_DELETE','ES','Delete Resource ?','')</statement>
+
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE','PL','Administer Process Order Resources','R')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_EDIT','PL','Edit a Resource Record','')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_DELETE','PL','Delete Resource ?','')</statement>
+
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE','DE','Administer Process Order Resources','R')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_EDIT','DE','Edit a Resource Record','')</statement>
+<statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('mod_FRM_ADMIN_PO_RESOURCE_DELETE','DE','Delete Resource ?','')</statement>
+
+</DDL>

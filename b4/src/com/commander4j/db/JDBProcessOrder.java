@@ -46,6 +46,7 @@ public class JDBProcessOrder
 	private JDBLocation location;
 	private JDBCustomer customer;
 	private JDBControl ctrl;
+	private JDBProcessOrderResource poRes;
 
 	private String hostID;
 	private String sessionID;
@@ -65,6 +66,7 @@ public class JDBProcessOrder
 		location = new JDBLocation(getHostID(), getSessionID());
 		customer = new JDBCustomer(getHostID(), getSessionID());
 		matuom = new JDBMaterialUom(getHostID(), getSessionID());
+		poRes = new JDBProcessOrderResource(getHostID(), getSessionID());
 		ctrl = new JDBControl(getHostID(), getSessionID());
 	}
 
@@ -864,6 +866,9 @@ public class JDBProcessOrder
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
+				
+				poRes.create(getRequiredResource());
+				
 			} catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
