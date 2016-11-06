@@ -54,6 +54,7 @@ import com.commander4j.app.JInternalFrameProcessOrderAdmin;
 import com.commander4j.app.JInternalFrameProcessOrderLabel;
 import com.commander4j.app.JInternalFrameProcessOrderProperties;
 import com.commander4j.app.JInternalFrameProcessOrderResourceAdmin;
+import com.commander4j.app.JInternalFrameProcessOrderResourceProperties;
 import com.commander4j.app.JInternalFrameProductionConfirmation;
 import com.commander4j.app.JInternalFrameProductionDeclaration;
 import com.commander4j.app.JInternalFrameQMDictionaryAdmin;
@@ -1273,6 +1274,19 @@ public class JLaunchMenu {
 			else
 			{
 				u = new JInternalFrameJourneyProperties(StrParam);
+				u.setTitle(mod.getDescription() + " [" + StrParam + "]");
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_ADMIN_PO_RESOURCE_EDIT"))
+		{
+			final JInternalFrameProcessOrderResourceProperties u;
+			if (isLoaded(JInternalFrameJourneyProperties.class))
+				((JInternalFrameProcessOrderResourceProperties) isLoadedInstance(JInternalFrameProcessOrderResourceProperties.class)).setResource(StrParam);
+			else
+			{
+				u = new JInternalFrameProcessOrderResourceProperties(StrParam);
 				u.setTitle(mod.getDescription() + " [" + StrParam + "]");
 				displayForm(u, optionName);
 			}

@@ -1,7 +1,6 @@
 package com.commander4j.app;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -103,7 +102,7 @@ public class JInternalFrameMaterialLocationProperties extends JInternalFrame
 			this.setClosable(true);
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBackground(Color.WHITE);
+				jDesktopPane1.setBackground(Common.color_app_window);
 				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 182));
 				jDesktopPane1.setLayout(null);

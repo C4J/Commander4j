@@ -32,7 +32,6 @@ public class JDBProcessOrderResource
 
 	public void clear()
 	{
-		setResource("");
 		setBatchSuffix("");
 		setDescription("");
 		setEnabled(false);

@@ -27,6 +27,7 @@ import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -69,8 +70,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSearch;
 	private JScrollPane jScrollPane1;
-	private String lmaterial;
-	private String lLocation;
+	private String lresource;
 	private static boolean dlg_sort_descending = false;
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private JDBLanguage lang;
@@ -104,6 +104,12 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
 
 		setSequence(dlg_sort_descending);
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				jTextFieldResource.requestFocus();
+			}
+		});
 	}
 
 	private void clearFilter()
@@ -146,9 +152,8 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 	public JInternalFrameProcessOrderResourceAdmin(String material)
 	{
 		this();
-		lmaterial = material;
-		jTextFieldResource.setText(lmaterial);
-		jTextFieldDescription.setText(lLocation);
+		lresource = material;
+		jTextFieldResource.setText(lresource);
 		buildSQL();
 		populateList();
 	}
@@ -166,6 +171,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 				JDBProcessOrderResource por = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
 				por.setResource(lresource);
 				por.delete();
+				search();
 			}
 		}
 	}
@@ -193,8 +199,9 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 		{
 			if (lresource.equals("") == false)
 			{
-				JDBProcessOrderResource matloc = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
-				if (matloc.isValidResource(lresource) == false)
+				JDBProcessOrderResource por = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
+				lresource = lresource.trim().toUpperCase();
+				if (por.isValidResource(lresource) == false)
 				{
 					JLaunchMenu.runForm("FRM_ADMIN_PO_RESOURCE_EDIT", lresource);
 				} else
@@ -225,17 +232,6 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 			jToggleButtonSequence.setToolTipText("Ascending");
 			jToggleButtonSequence.setIcon(Common.icon_ascending);
 		}
-	}
-
-	public JInternalFrameProcessOrderResourceAdmin(String material, String location)
-	{
-		this();
-		lmaterial = material;
-		lLocation = location;
-		jTextFieldResource.setText(lmaterial);
-		jTextFieldDescription.setText(lLocation);
-		buildSQL();
-		populateList();
 	}
 
 	private void buildSQL()
@@ -296,9 +292,8 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			lmaterial = jTable1.getValueAt(row, 0).toString();
-			lLocation = jTable1.getValueAt(row, 1).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PO_RESOURCE_EDIT", lmaterial, lLocation);
+			lresource = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PO_RESOURCE_EDIT", lresource);
 		}
 
 	}
