@@ -227,9 +227,9 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jTable1.setFont(Common.font_list);
 
-		jTable1.getColumnModel().getColumn(JDBMHNTableModel.MHN_Number_Col).setPreferredWidth(80);
-		jTable1.getColumnModel().getColumn(JDBMHNTableModel.recorder_Col).setPreferredWidth(80);
-		jTable1.getColumnModel().getColumn(JDBMHNTableModel.initiator_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBMHNTableModel.MHN_Number_Col).setPreferredWidth(75);
+		jTable1.getColumnModel().getColumn(JDBMHNTableModel.recorder_Col).setPreferredWidth(90);
+		jTable1.getColumnModel().getColumn(JDBMHNTableModel.initiator_Col).setPreferredWidth(90);
 		jTable1.getColumnModel().getColumn(JDBMHNTableModel.reason1_Col).setPreferredWidth(60);
 		jTable1.getColumnModel().getColumn(JDBMHNTableModel.reason2_Col).setPreferredWidth(60);
 		jTable1.getColumnModel().getColumn(JDBMHNTableModel.reason3_Col).setPreferredWidth(60);
@@ -237,7 +237,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBMHNTableModel.date_expected_Col).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBMHNTableModel.date_resolved_Col).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBMHNTableModel.status_Col).setPreferredWidth(50);
-		jTable1.getColumnModel().getColumn(JDBMHNTableModel.comment_Col).setPreferredWidth(345);
+		jTable1.getColumnModel().getColumn(JDBMHNTableModel.comment_Col).setPreferredWidth(395);
 
 		jScrollPane1.repaint();
 
@@ -401,282 +401,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MHN"));
-		{
-			buttonReasonLookup = new JButton4j(Common.icon_lookup);
-			buttonReasonLookup.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
-					JLaunchLookup.dlgAutoExec = false;
-					JLaunchLookup.dlgCriteriaDefault = "";
-					if (JLaunchLookup.reasons())
-					{
-						jTextFieldReason.setText(JLaunchLookup.dlgResult);
-					}
-				}
-			});
 
-			buttonReasonLookup.setBounds(214, 35, 21, 21);
-			jDesktopPane1.add(buttonReasonLookup);
-		}
-		{
-			jLabelAuthorisor = new JLabel4j_std();
-			jLabelAuthorisor.setText(lang.get("lbl_Authorisor"));
-			jLabelAuthorisor.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelAuthorisor.setBounds(726, 8, 103, 21);
-			jDesktopPane1.add(jLabelAuthorisor);
-		}
-		{
-			jTextFieldAuthorisor = new JTextField4j(JDBMHN.field_authorisor);
-			jTextFieldAuthorisor.setBounds(833, 8, 99, 21);
-			jDesktopPane1.add(jTextFieldAuthorisor);
-		}
-		
-		JLabel4j_std labelCreated = new JLabel4j_std();
-		labelCreated.setText(lang.get("lbl_Created"));
-		labelCreated.setHorizontalAlignment(SwingConstants.TRAILING);
-		labelCreated.setBounds(476, 35, 126, 21);
-		jDesktopPane1.add(labelCreated);
-		
-		dateControlCreatedFrom = new JDateControl();
-		dateControlCreatedFrom.setEnabled(false);
-		dateControlCreatedFrom.setBounds(634, 31, 125, 25);
-		jDesktopPane1.add(dateControlCreatedFrom);
-		
-		calendarButtonCreatedFrom = new JCalendarButton(dateControlCreatedFrom);
-		calendarButtonCreatedFrom.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		calendarButtonCreatedFrom.setEnabled(false);
-		calendarButtonCreatedFrom.setBounds(763, 35, 21, 21);
-		jDesktopPane1.add(calendarButtonCreatedFrom);
-		
-		checkBoxCreatedFrom = new JCheckBox4j();
-		checkBoxCreatedFrom.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (checkBoxCreatedFrom.isSelected())
-				{
-					dateControlCreatedFrom.setEnabled(true);
-					calendarButtonCreatedFrom.setEnabled(true);
-				}
-				else
-				{
-					dateControlCreatedFrom.setEnabled(false);
-					calendarButtonCreatedFrom.setEnabled(false);
-				}
-			}
-		});
-		checkBoxCreatedFrom.setBackground(Color.WHITE);
-		checkBoxCreatedFrom.setBounds(604, 31, 21, 25);
-		jDesktopPane1.add(checkBoxCreatedFrom);
-		
-		checkBoxCreatedTo = new JCheckBox4j();
-		checkBoxCreatedTo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (checkBoxCreatedTo.isSelected())
-				{
-					dateControlCreatedTo.setEnabled(true);
-					calendarButtonCreatedTo.setEnabled(true);
-				}
-				else
-				{
-					dateControlCreatedTo.setEnabled(false);
-					calendarButtonCreatedTo.setEnabled(false);
-				}
-			}
-		});
-		checkBoxCreatedTo.setBackground(Color.WHITE);
-		checkBoxCreatedTo.setBounds(784, 31, 21, 25);
-		jDesktopPane1.add(checkBoxCreatedTo);
-		
-		dateControlCreatedTo = new JDateControl();
-		dateControlCreatedTo.setEnabled(false);
-		dateControlCreatedTo.setBounds(810, 31, 125, 25);
-		jDesktopPane1.add(dateControlCreatedTo);
-		
-		calendarButtonCreatedTo = new JCalendarButton(dateControlCreatedTo);
-		calendarButtonCreatedTo.setEnabled(false);
-		calendarButtonCreatedTo.setBounds(938, 35, 21, 21);
-		jDesktopPane1.add(calendarButtonCreatedTo);
-		
-		JLabel4j_std labelExpected = new JLabel4j_std();
-		labelExpected.setText(lang.get("lbl_Expected"));
-		labelExpected.setHorizontalAlignment(SwingConstants.TRAILING);
-		labelExpected.setBounds(476, 63, 126, 21);
-		jDesktopPane1.add(labelExpected);
-		
-		checkBoxExpectedFrom = new JCheckBox4j();
-		checkBoxExpectedFrom.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (checkBoxExpectedFrom.isSelected())
-				{
-					dateControlExpectedFrom.setEnabled(true);
-					calendarButtonExpectedFrom.setEnabled(true);
-				}
-				else
-				{
-					dateControlExpectedFrom.setEnabled(false);
-					calendarButtonExpectedFrom.setEnabled(false);
-				}
-			}
-		});
-		checkBoxExpectedFrom.setBackground(Color.WHITE);
-		checkBoxExpectedFrom.setBounds(604, 59, 21, 25);
-		jDesktopPane1.add(checkBoxExpectedFrom);
-		
-		dateControlExpectedFrom = new JDateControl();
-		dateControlExpectedFrom.setEnabled(false);
-		dateControlExpectedFrom.setBounds(634, 59, 125, 25);
-		jDesktopPane1.add(dateControlExpectedFrom);
-		
-		calendarButtonExpectedFrom = new JCalendarButton(dateControlExpectedFrom);
-		calendarButtonExpectedFrom.setEnabled(false);
-		calendarButtonExpectedFrom.setBounds(763, 63, 21, 21);
-		jDesktopPane1.add(calendarButtonExpectedFrom);
-		
-		checkBoxExpectedTo = new JCheckBox4j();
-		checkBoxExpectedTo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (checkBoxExpectedTo.isSelected())
-				{
-					dateControlExpectedTo.setEnabled(true);
-					calendarButtonExpectedTo.setEnabled(true);
-				}
-				else
-				{
-					dateControlExpectedTo.setEnabled(false);
-					calendarButtonExpectedTo.setEnabled(false);
-				}
-			}
-		});
-		checkBoxExpectedTo.setBackground(Color.WHITE);
-		checkBoxExpectedTo.setBounds(784, 59, 21, 25);
-		jDesktopPane1.add(checkBoxExpectedTo);
-		
-		dateControlExpectedTo = new JDateControl();
-		dateControlExpectedTo.setEnabled(false);
-		dateControlExpectedTo.setBounds(810, 59, 125, 25);
-		jDesktopPane1.add(dateControlExpectedTo);
-		
-		calendarButtonExpectedTo = new JCalendarButton(dateControlExpectedTo);
-		calendarButtonExpectedTo.setEnabled(false);
-		calendarButtonExpectedTo.setBounds(938, 63, 21, 21);
-		jDesktopPane1.add(calendarButtonExpectedTo);
-		
-		JLabel4j_std labelResolved = new JLabel4j_std();
-		labelResolved.setText(lang.get("lbl_Resolved"));
-		labelResolved.setHorizontalAlignment(SwingConstants.TRAILING);
-		labelResolved.setBounds(480, 90, 122, 21);
-		jDesktopPane1.add(labelResolved);
-		
-		checkBoxResolvedFrom = new JCheckBox4j();
-		checkBoxResolvedFrom.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (checkBoxResolvedFrom.isSelected())
-				{
-					dateControlResolvedFrom.setEnabled(true);
-					calendarButtonResolvedFrom.setEnabled(true);
-				}
-				else
-				{
-					dateControlResolvedFrom.setEnabled(false);
-					calendarButtonResolvedFrom.setEnabled(false);
-				}
-			}
-		});
-		checkBoxResolvedFrom.setBackground(Color.WHITE);
-		checkBoxResolvedFrom.setBounds(604, 86, 21, 25);
-		jDesktopPane1.add(checkBoxResolvedFrom);
-		
-		dateControlResolvedFrom = new JDateControl();
-		dateControlResolvedFrom.setEnabled(false);
-		dateControlResolvedFrom.setBounds(634, 86, 125, 25);
-		jDesktopPane1.add(dateControlResolvedFrom);
-		
-		checkBoxResolvedTo = new JCheckBox4j();
-		checkBoxResolvedTo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					if (checkBoxResolvedTo.isSelected())
-					{
-						dateControlResolvedTo.setEnabled(true);
-						calendarButtonResolvedTo.setEnabled(true);
-					}
-					else
-					{
-						dateControlResolvedTo.setEnabled(false);
-						calendarButtonResolvedTo.setEnabled(false);
-					}
-			}
-		});
-		checkBoxResolvedTo.setBackground(Color.WHITE);
-		checkBoxResolvedTo.setBounds(784, 86, 21, 25);
-		jDesktopPane1.add(checkBoxResolvedTo);
-		
-		dateControlResolvedTo = new JDateControl();
-		dateControlResolvedTo.setEnabled(false);
-		dateControlResolvedTo.setBounds(810, 86, 125, 25);
-		jDesktopPane1.add(dateControlResolvedTo);
-		
-		calendarButtonResolvedFrom = new JCalendarButton(dateControlResolvedFrom);
-		calendarButtonResolvedFrom.setEnabled(false);
-		calendarButtonResolvedFrom.setBounds(763, 90, 21, 21);
-		jDesktopPane1.add(calendarButtonResolvedFrom);
-		
-		calendarButtonResolvedTo = new JCalendarButton(dateControlResolvedTo);
-		calendarButtonResolvedTo.setEnabled(false);
-		calendarButtonResolvedTo.setBounds(938, 90, 21, 21);
-		jDesktopPane1.add(calendarButtonResolvedTo);
-		{
-			button = new JButton4j(Common.icon_lookup);
-			button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
-
-					if (JLaunchLookup.users()) {
-						jTextFieldAuthorisor.setText(JLaunchLookup.dlgResult);
-					}
-				}
-			});
-			button.setBounds(932, 8, 21, 21);
-			jDesktopPane1.add(button);
-		}
-		{
-			button_1 = new JButton4j(Common.icon_lookup);
-			button_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
-
-					if (JLaunchLookup.users()) {
-						jTextFieldInitiator.setText(JLaunchLookup.dlgResult);
-					}
-				}
-			});
-			button_1.setBounds(691, 8, 21, 21);
-			jDesktopPane1.add(button_1);
-		}
-		{
-			button_2 = new JButton4j(Common.icon_lookup);
-			button_2.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "";
-
-					if (JLaunchLookup.users()) {
-						jTextFieldRecorder.setText(JLaunchLookup.dlgResult);
-					}
-				}
-			});
-			button_2.setBounds(449, 8, 21, 21);
-			jDesktopPane1.add(button_2);
-		}
-
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Rectangle window = getBounds();
-		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
-
-		setSequence(true);
-		
 		search();
 	}
 
@@ -1019,7 +744,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				{
 					jTextFieldResource = new JTextField4j(JDBProcessOrder.field_process_order);
 					jDesktopPane1.add(jTextFieldResource);
-					jTextFieldResource.setBounds(109, 90, 126, 21);
+					jTextFieldResource.setBounds(109, 90, 105, 21);
 				}
 				{
 					jLabelReason = new JLabel4j_std();
@@ -1199,6 +924,296 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jButtonClear.setBounds(107, 118, 106, 32);
 					jDesktopPane1.add(jButtonClear);
 				}
+				{
+					buttonReasonLookup = new JButton4j(Common.icon_lookup);
+					buttonReasonLookup.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							JLaunchLookup.dlgAutoExec = false;
+							JLaunchLookup.dlgCriteriaDefault = "";
+							if (JLaunchLookup.reasons())
+							{
+								jTextFieldReason.setText(JLaunchLookup.dlgResult);
+							}
+						}
+					});
+
+					buttonReasonLookup.setBounds(214, 35, 21, 21);
+					jDesktopPane1.add(buttonReasonLookup);
+				}
+				{
+					jLabelAuthorisor = new JLabel4j_std();
+					jLabelAuthorisor.setText(lang.get("lbl_Authorisor"));
+					jLabelAuthorisor.setHorizontalAlignment(SwingConstants.TRAILING);
+					jLabelAuthorisor.setBounds(726, 8, 103, 21);
+					jDesktopPane1.add(jLabelAuthorisor);
+				}
+				{
+					jTextFieldAuthorisor = new JTextField4j(JDBMHN.field_authorisor);
+					jTextFieldAuthorisor.setBounds(833, 8, 99, 21);
+					jDesktopPane1.add(jTextFieldAuthorisor);
+				}
+				
+				JLabel4j_std labelCreated = new JLabel4j_std();
+				labelCreated.setText(lang.get("lbl_Created"));
+				labelCreated.setHorizontalAlignment(SwingConstants.TRAILING);
+				labelCreated.setBounds(476, 35, 126, 21);
+				jDesktopPane1.add(labelCreated);
+				
+				dateControlCreatedFrom = new JDateControl();
+				dateControlCreatedFrom.setEnabled(false);
+				dateControlCreatedFrom.setBounds(634, 31, 125, 25);
+				jDesktopPane1.add(dateControlCreatedFrom);
+				
+				calendarButtonCreatedFrom = new JCalendarButton(dateControlCreatedFrom);
+				calendarButtonCreatedFrom.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				calendarButtonCreatedFrom.setEnabled(false);
+				calendarButtonCreatedFrom.setBounds(763, 35, 21, 21);
+				jDesktopPane1.add(calendarButtonCreatedFrom);
+				
+				checkBoxCreatedFrom = new JCheckBox4j();
+				checkBoxCreatedFrom.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (checkBoxCreatedFrom.isSelected())
+						{
+							dateControlCreatedFrom.setEnabled(true);
+							calendarButtonCreatedFrom.setEnabled(true);
+						}
+						else
+						{
+							dateControlCreatedFrom.setEnabled(false);
+							calendarButtonCreatedFrom.setEnabled(false);
+						}
+					}
+				});
+				checkBoxCreatedFrom.setBackground(Color.WHITE);
+				checkBoxCreatedFrom.setBounds(604, 31, 21, 25);
+				jDesktopPane1.add(checkBoxCreatedFrom);
+				
+				checkBoxCreatedTo = new JCheckBox4j();
+				checkBoxCreatedTo.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (checkBoxCreatedTo.isSelected())
+						{
+							dateControlCreatedTo.setEnabled(true);
+							calendarButtonCreatedTo.setEnabled(true);
+						}
+						else
+						{
+							dateControlCreatedTo.setEnabled(false);
+							calendarButtonCreatedTo.setEnabled(false);
+						}
+					}
+				});
+				checkBoxCreatedTo.setBackground(Color.WHITE);
+				checkBoxCreatedTo.setBounds(784, 31, 21, 25);
+				jDesktopPane1.add(checkBoxCreatedTo);
+				
+				dateControlCreatedTo = new JDateControl();
+				dateControlCreatedTo.setEnabled(false);
+				dateControlCreatedTo.setBounds(810, 31, 125, 25);
+				jDesktopPane1.add(dateControlCreatedTo);
+				
+				calendarButtonCreatedTo = new JCalendarButton(dateControlCreatedTo);
+				calendarButtonCreatedTo.setEnabled(false);
+				calendarButtonCreatedTo.setBounds(938, 35, 21, 21);
+				jDesktopPane1.add(calendarButtonCreatedTo);
+				
+				JLabel4j_std labelExpected = new JLabel4j_std();
+				labelExpected.setText(lang.get("lbl_Expected"));
+				labelExpected.setHorizontalAlignment(SwingConstants.TRAILING);
+				labelExpected.setBounds(476, 63, 126, 21);
+				jDesktopPane1.add(labelExpected);
+				
+				checkBoxExpectedFrom = new JCheckBox4j();
+				checkBoxExpectedFrom.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (checkBoxExpectedFrom.isSelected())
+						{
+							dateControlExpectedFrom.setEnabled(true);
+							calendarButtonExpectedFrom.setEnabled(true);
+						}
+						else
+						{
+							dateControlExpectedFrom.setEnabled(false);
+							calendarButtonExpectedFrom.setEnabled(false);
+						}
+					}
+				});
+				checkBoxExpectedFrom.setBackground(Color.WHITE);
+				checkBoxExpectedFrom.setBounds(604, 59, 21, 25);
+				jDesktopPane1.add(checkBoxExpectedFrom);
+				
+				dateControlExpectedFrom = new JDateControl();
+				dateControlExpectedFrom.setEnabled(false);
+				dateControlExpectedFrom.setBounds(634, 59, 125, 25);
+				jDesktopPane1.add(dateControlExpectedFrom);
+				
+				calendarButtonExpectedFrom = new JCalendarButton(dateControlExpectedFrom);
+				calendarButtonExpectedFrom.setEnabled(false);
+				calendarButtonExpectedFrom.setBounds(763, 63, 21, 21);
+				jDesktopPane1.add(calendarButtonExpectedFrom);
+				
+				checkBoxExpectedTo = new JCheckBox4j();
+				checkBoxExpectedTo.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (checkBoxExpectedTo.isSelected())
+						{
+							dateControlExpectedTo.setEnabled(true);
+							calendarButtonExpectedTo.setEnabled(true);
+						}
+						else
+						{
+							dateControlExpectedTo.setEnabled(false);
+							calendarButtonExpectedTo.setEnabled(false);
+						}
+					}
+				});
+				checkBoxExpectedTo.setBackground(Color.WHITE);
+				checkBoxExpectedTo.setBounds(784, 59, 21, 25);
+				jDesktopPane1.add(checkBoxExpectedTo);
+				
+				dateControlExpectedTo = new JDateControl();
+				dateControlExpectedTo.setEnabled(false);
+				dateControlExpectedTo.setBounds(810, 59, 125, 25);
+				jDesktopPane1.add(dateControlExpectedTo);
+				
+				calendarButtonExpectedTo = new JCalendarButton(dateControlExpectedTo);
+				calendarButtonExpectedTo.setEnabled(false);
+				calendarButtonExpectedTo.setBounds(938, 63, 21, 21);
+				jDesktopPane1.add(calendarButtonExpectedTo);
+				
+				JLabel4j_std labelResolved = new JLabel4j_std();
+				labelResolved.setText(lang.get("lbl_Resolved"));
+				labelResolved.setHorizontalAlignment(SwingConstants.TRAILING);
+				labelResolved.setBounds(480, 90, 122, 21);
+				jDesktopPane1.add(labelResolved);
+				
+				checkBoxResolvedFrom = new JCheckBox4j();
+				checkBoxResolvedFrom.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (checkBoxResolvedFrom.isSelected())
+						{
+							dateControlResolvedFrom.setEnabled(true);
+							calendarButtonResolvedFrom.setEnabled(true);
+						}
+						else
+						{
+							dateControlResolvedFrom.setEnabled(false);
+							calendarButtonResolvedFrom.setEnabled(false);
+						}
+					}
+				});
+				checkBoxResolvedFrom.setBackground(Color.WHITE);
+				checkBoxResolvedFrom.setBounds(604, 86, 21, 25);
+				jDesktopPane1.add(checkBoxResolvedFrom);
+				
+				dateControlResolvedFrom = new JDateControl();
+				dateControlResolvedFrom.setEnabled(false);
+				dateControlResolvedFrom.setBounds(634, 86, 125, 25);
+				jDesktopPane1.add(dateControlResolvedFrom);
+				
+				checkBoxResolvedTo = new JCheckBox4j();
+				checkBoxResolvedTo.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+							if (checkBoxResolvedTo.isSelected())
+							{
+								dateControlResolvedTo.setEnabled(true);
+								calendarButtonResolvedTo.setEnabled(true);
+							}
+							else
+							{
+								dateControlResolvedTo.setEnabled(false);
+								calendarButtonResolvedTo.setEnabled(false);
+							}
+					}
+				});
+				checkBoxResolvedTo.setBackground(Color.WHITE);
+				checkBoxResolvedTo.setBounds(784, 86, 21, 25);
+				jDesktopPane1.add(checkBoxResolvedTo);
+				
+				dateControlResolvedTo = new JDateControl();
+				dateControlResolvedTo.setEnabled(false);
+				dateControlResolvedTo.setBounds(810, 86, 125, 25);
+				jDesktopPane1.add(dateControlResolvedTo);
+				
+				calendarButtonResolvedFrom = new JCalendarButton(dateControlResolvedFrom);
+				calendarButtonResolvedFrom.setEnabled(false);
+				calendarButtonResolvedFrom.setBounds(763, 90, 21, 21);
+				jDesktopPane1.add(calendarButtonResolvedFrom);
+				
+				calendarButtonResolvedTo = new JCalendarButton(dateControlResolvedTo);
+				calendarButtonResolvedTo.setEnabled(false);
+				calendarButtonResolvedTo.setBounds(938, 90, 21, 21);
+				jDesktopPane1.add(calendarButtonResolvedTo);
+				{
+					button = new JButton4j(Common.icon_lookup);
+					button.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "";
+
+							if (JLaunchLookup.users()) {
+								jTextFieldAuthorisor.setText(JLaunchLookup.dlgResult);
+							}
+						}
+					});
+					button.setBounds(932, 8, 21, 21);
+					jDesktopPane1.add(button);
+				}
+				{
+					button_1 = new JButton4j(Common.icon_lookup);
+					button_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "";
+
+							if (JLaunchLookup.users()) {
+								jTextFieldInitiator.setText(JLaunchLookup.dlgResult);
+							}
+						}
+					});
+					button_1.setBounds(691, 8, 21, 21);
+					jDesktopPane1.add(button_1);
+				}
+				{
+					button_2 = new JButton4j(Common.icon_lookup);
+					button_2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "";
+
+							if (JLaunchLookup.users()) {
+								jTextFieldRecorder.setText(JLaunchLookup.dlgResult);
+							}
+						}
+					});
+					button_2.setBounds(449, 8, 21, 21);
+					jDesktopPane1.add(button_2);
+				}
+				
+				JButton4j buttonResourceLookup = new JButton4j(Common.icon_lookup);
+				buttonResourceLookup.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JLaunchLookup.dlgAutoExec = false;
+						JLaunchLookup.dlgCriteriaDefault = "";
+						if (JLaunchLookup.resources())
+						{
+							jTextFieldResource.setText(JLaunchLookup.dlgResult);
+						}
+					}
+				});
+				buttonResourceLookup.setBounds(214, 90, 21, 21);
+				jDesktopPane1.add(buttonResourceLookup);
+
+				Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+				Rectangle window = getBounds();
+				setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
+
+				setSequence(true);
+				
 			}
 		}
 		catch (Exception e)
