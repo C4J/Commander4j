@@ -36,7 +36,36 @@ public class JDBProcessOrderResource
 		setDescription("");
 		setEnabled(false);
 	}
+	
+	public String getBatchSuffixForResource(String res)
+	{
+		String result = "";
+		
+		if (getResourceProperties(res))
+		{
+			if (isEnabled())
+			{
+				result = getBatchSuffix();
+			}
+		}
+		
+		return result;
+	}
 
+	public Boolean isEnabled()
+	{
+		Boolean result = false;
+		if (getEnabled().equals("Y"))
+		{
+			result = true;
+		}
+		else
+		{
+			result = false;
+		}
+		return result;
+	}
+	
 	public boolean create(String res)
 	{
 		boolean result = false;
@@ -103,7 +132,7 @@ public class JDBProcessOrderResource
 
 	public String getBatchSuffix()
 	{
-		return JUtility.replaceNullStringwithBlank(dbBatchSuffix);
+		return JUtility.replaceNullStringwithBlank(dbBatchSuffix).trim();
 	}
 
 	public String getDescription()

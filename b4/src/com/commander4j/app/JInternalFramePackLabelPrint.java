@@ -50,6 +50,7 @@ import com.commander4j.db.JDBMaterialUom;
 import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBPallet;
 import com.commander4j.db.JDBProcessOrder;
+import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
@@ -127,6 +128,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame {
 	private SpinnerNumberModel shelflifenumbermodel = new SpinnerNumberModel();
 	private SpinnerNumberModel quantitynumbermodel = new SpinnerNumberModel();
 	private JDBProcessOrder processorder = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
+	private JDBProcessOrderResource processorderResource = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);	
 	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 	private JDBMaterialUom materialuom = new JDBMaterialUom(Common.selectedHostID, Common.sessionID);
 	private JDBMaterialBatch materialbatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
@@ -287,6 +289,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame {
 			jTextFieldBaseVariant.setText(materialuom.getVariant());
 
 			valid = true;
+
+			jTextFieldBatchSuffix.setText(processorderResource.getBatchSuffixForResource(processorder.getRequiredResource()));
 			calcBBEBatch();
 
 		} else
