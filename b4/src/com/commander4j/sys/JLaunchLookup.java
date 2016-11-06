@@ -202,7 +202,7 @@ public class JLaunchLookup
 	 */
 	public static boolean resources() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_PROCESS_ORDER_RESOURCES"));
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_PROCESS_ORDER_RESOURCE"));
 		JDialogLookup.dlg_title = "Resources";
 
 		JDialogLookup.dlg_key_field_name = "required_resource";

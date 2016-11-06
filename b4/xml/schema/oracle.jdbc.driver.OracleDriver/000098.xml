@@ -71,4 +71,7 @@
 <statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('dlg_Resource_Delete','DE','Delete Resource ?','')</statement>
 <statement>insert into SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) values ('dlg_Resource_Input','DE','Input new Resource','')</statement>
 
+<statement>UPDATE SYS_MODULES SET RESOURCE_KEY = 'mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_LOCATION_EDIT'</statement>
+
+
 </DDL>

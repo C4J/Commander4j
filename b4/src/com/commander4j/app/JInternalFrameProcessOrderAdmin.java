@@ -134,30 +134,6 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		query.bindParams();
 		listStatement = query.getPreparedStatement();
 		populateList();
-
-		JLabel4j_std label = new JLabel4j_std();
-		label.setText(lang.get("lbl_Process_Order_Required_Resource"));
-		label.setHorizontalAlignment(SwingConstants.TRAILING);
-		label.setBounds(10, 110, 131, 21);
-		jDesktopPane1.add(label);
-
-		jTextFieldRequiredResource = new JTextField4j(JDBProcessOrder.field_required_resource);
-		jTextFieldRequiredResource.setBounds(148, 110, 117, 21);
-		jDesktopPane1.add(jTextFieldRequiredResource);
-		
-		calendarButtondueDateFrom = new JCalendarButton(dueDateFrom);
-		calendarButtondueDateFrom.setEnabled(false);
-		calendarButtondueDateFrom.setBounds(300, 79, 21, 21);
-		jDesktopPane1.add(calendarButtondueDateFrom);
-		
-		calendarButtondueDateTo = new JCalendarButton(dueDateTo);
-		calendarButtondueDateTo.setEnabled(false);
-		calendarButtondueDateTo.setBounds(510, 79, 21, 21);
-		jDesktopPane1.add(calendarButtondueDateTo);
-		
-		jTextFieldCustomerID = new JTextField4j(JDBCustomer.field_customer_id);
-		jTextFieldCustomerID.setBounds(383, 110, 117, 21);
-		jDesktopPane1.add(jTextFieldCustomerID);
 		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -1214,7 +1190,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				}
 				
 				{
-					JButton4j btnLookupCustomer = new JButton4j("");
+					JButton4j btnLookupCustomer = new JButton4j(Common.icon_lookup);
 					btnLookupCustomer.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							JLaunchLookup.dlgAutoExec = true;
@@ -1227,6 +1203,46 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					});
 					btnLookupCustomer.setBounds(498, 110, 22, 21);
 					jDesktopPane1.add(btnLookupCustomer);
+				}
+				{
+
+					JLabel4j_std label = new JLabel4j_std();
+					label.setText(lang.get("lbl_Process_Order_Required_Resource"));
+					label.setHorizontalAlignment(SwingConstants.TRAILING);
+					label.setBounds(10, 110, 131, 21);
+					jDesktopPane1.add(label);
+
+					jTextFieldRequiredResource = new JTextField4j(JDBProcessOrder.field_required_resource);
+					jTextFieldRequiredResource.setBounds(148, 110, 105, 21);
+					jDesktopPane1.add(jTextFieldRequiredResource);
+					
+					calendarButtondueDateFrom = new JCalendarButton(dueDateFrom);
+					calendarButtondueDateFrom.setEnabled(false);
+					calendarButtondueDateFrom.setBounds(300, 79, 21, 21);
+					jDesktopPane1.add(calendarButtondueDateFrom);
+					
+					calendarButtondueDateTo = new JCalendarButton(dueDateTo);
+					calendarButtondueDateTo.setEnabled(false);
+					calendarButtondueDateTo.setBounds(510, 79, 21, 21);
+					jDesktopPane1.add(calendarButtondueDateTo);
+					
+					jTextFieldCustomerID = new JTextField4j(JDBCustomer.field_customer_id);
+					jTextFieldCustomerID.setBounds(383, 110, 117, 21);
+					jDesktopPane1.add(jTextFieldCustomerID);
+					
+					JButton4j btnLookupResource = new JButton4j(Common.icon_lookup);
+					btnLookupResource.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "";
+							if (JLaunchLookup.resources())
+							{
+								jTextFieldRequiredResource.setText(JLaunchLookup.dlgResult);
+							}
+						}
+					});
+					btnLookupResource.setBounds(253, 110, 22, 21);
+					jDesktopPane1.add(btnLookupResource);
 				}
 			}
 		}

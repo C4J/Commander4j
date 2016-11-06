@@ -72,4 +72,7 @@
 <statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Resource_Delete','DE','Delete Resource ?','')</statement>
 <statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Resource_Input','DE','Input new Resource','')</statement>
 
+<statement>UPDATE [dbo].[SYS_MODULES] SET [RESOURCE_KEY] = 'mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT'  WHERE [MODULE_ID] = 'FRM_ADMIN_MATERIAL_LOCATION_EDIT'</statement>
+
+
 </DDL>

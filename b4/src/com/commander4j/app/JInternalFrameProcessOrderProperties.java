@@ -53,6 +53,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 	private JLabel4j_std jLabelProcessOrder;
 	private JButton4j jButtonCustomerLookup;
 	private JButton4j jButtonLocationLookup;
+	private JButton4j jButtonResourceLookup;
 	private JButton4j jButtonMaterialLookup;
 	private JButton4j jButtonClose;
 	private JButton4j jButtonHelp;
@@ -318,7 +319,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 				{
 					jTextFieldRequiredResource = new JTextField4j(JDBProcessOrder.field_required_resource);
 					jDesktopPane1.add(jTextFieldRequiredResource);
-					jTextFieldRequiredResource.setBounds(163, 353, 301, 21);
+					jTextFieldRequiredResource.setBounds(163, 353, 126, 21);
 					jTextFieldRequiredResource.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -501,6 +502,25 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 							if (JLaunchLookup.locations())
 							{
 								jTextFieldLocation.setText(JLaunchLookup.dlgResult);
+								jButtonSave.setEnabled(true);
+							}
+						}
+					});
+				}
+				
+				{
+					jButtonResourceLookup = new JButton4j(Common.icon_lookup);
+					jDesktopPane1.add(jButtonResourceLookup);
+					jButtonResourceLookup.setBounds(287, 353, 21, 21);
+					jButtonResourceLookup.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "Y";
+							if (JLaunchLookup.resources())
+							{
+								jTextFieldRequiredResource.setText(JLaunchLookup.dlgResult);
 								jButtonSave.setEnabled(true);
 							}
 						}

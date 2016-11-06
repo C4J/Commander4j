@@ -595,7 +595,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(99, 11, 141, 21);
+					jTextFieldMaterial.setBounds(99, 11, 148, 21);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
@@ -607,7 +607,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
 					jDesktopPane1.add(jTextFieldBatch);
-					jTextFieldBatch.setBounds(99, 44, 141, 21);
+					jTextFieldBatch.setBounds(99, 44, 148, 21);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
@@ -649,7 +649,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonLookupMaterial = new JButton4j();
+					jButtonLookupMaterial = new JButton4j(Common.icon_lookup);
 					jButtonLookupMaterial.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							JLaunchLookup.dlgAutoExec = false;
@@ -665,7 +665,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonLookupBatch = new JButton4j();
+					jButtonLookupBatch = new JButton4j(Common.icon_lookup);
 					jButtonLookupBatch.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();

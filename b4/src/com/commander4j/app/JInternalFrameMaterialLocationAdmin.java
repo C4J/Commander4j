@@ -627,7 +627,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonLookupMaterial = new JButton4j();
+					jButtonLookupMaterial = new JButton4j(Common.icon_lookup);
 					jButtonLookupMaterial.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -645,7 +645,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonLookupLocation = new JButton4j();
+					jButtonLookupLocation = new JButton4j(Common.icon_lookup);
 					jButtonLookupLocation.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
