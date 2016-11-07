@@ -126,7 +126,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(358, 207));
-			this.setBounds(0, 0, 377, 223);
+			this.setBounds(0, 0, 377, 206);
 			setVisible(true);
 			this.setClosable(true);
 			{
@@ -141,7 +141,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
-					jButtonUpdate.setBounds(6, 142, 112, 32);
+					jButtonUpdate.setBounds(6, 128, 112, 32);
 					jButtonUpdate.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -154,14 +154,14 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(118, 142, 112, 32);
+					jButtonHelp.setBounds(125, 128, 112, 32);
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setBounds(230, 142, 112, 32);
+					jButtonCancel.setBounds(244, 128, 112, 32);
 					jButtonCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -173,7 +173,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelResource);
 					jLabelResource.setText(lang.get("lbl_Process_Order_Required_Resource"));
 					jLabelResource.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelResource.setBounds(49, 13, 70, 21);
+					jLabelResource.setBounds(6, 13, 113, 21);
 				}
 				{
 					jTextFieldResource = new JTextField4j(JDBProcessOrderResource.field_Resource_id);
@@ -186,9 +186,9 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 				{
 					jLabelDescription = new JLabel4j_std();
 					jDesktopPane1.add(jLabelDescription);
-					jLabelDescription.setText(lang.get("lbl_Location_ID"));
+					jLabelDescription.setText(lang.get("lbl_Description"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelDescription.setBounds(49, 41, 70, 21);
+					jLabelDescription.setBounds(6, 41, 113, 21);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBLocation.field_location_id);
@@ -208,7 +208,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelBatchSuffix);
 					jLabelBatchSuffix.setText(lang.get("lbl_Material_Batch"));
 					jLabelBatchSuffix.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelBatchSuffix.setBounds(42, 69, 77, 21);
+					jLabelBatchSuffix.setBounds(6, 69, 113, 21);
 				}
 				
 				textFieldBatchSuffix = new JTextField4j(15);
@@ -234,7 +234,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 				label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Enabled"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(12, 97, 107, 21);
+				label4j_std.setBounds(6, 97, 113, 21);
 				jDesktopPane1.add(label4j_std);
 				
 			}
