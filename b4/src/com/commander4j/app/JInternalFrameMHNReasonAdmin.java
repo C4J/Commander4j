@@ -155,7 +155,7 @@ public class JInternalFrameMHNReasonAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(375, 402));
-			this.setBounds(0, 0, 385+Common.LFAdjustWidth, 418+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 522, 494);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -169,7 +169,7 @@ public class JInternalFrameMHNReasonAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(231, 7, 126, 32);
+					jButtonAdd.setBounds(374, 7, 126, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_REASON_ADD"));
 					jButtonAdd.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -183,7 +183,7 @@ public class JInternalFrameMHNReasonAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(231, 36, 126, 32);
+					jButtonDelete.setBounds(374, 36, 126, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_REASON_DELETE"));
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
 					jButtonDelete.addActionListener(new ActionListener() {
@@ -198,7 +198,7 @@ public class JInternalFrameMHNReasonAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(231, 65, 126, 32);
+					jButtonEdit.setBounds(374, 65, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_REASON_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -211,7 +211,7 @@ public class JInternalFrameMHNReasonAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonRename);
 					jButtonRename.setText(lang.get("btn_Rename"));
 					jButtonRename.setMnemonic(lang.getMnemonicChar());
-					jButtonRename.setBounds(231, 94, 126, 32);
+					jButtonRename.setBounds(374, 94, 126, 32);
 					jButtonRename.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_REASON_RENAME"));
 					jButtonRename.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -225,7 +225,7 @@ public class JInternalFrameMHNReasonAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(231, 123, 126, 32);
+					jButtonPrint.setBounds(374, 123, 126, 32);
 					jButtonPrint.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							print();
@@ -237,14 +237,14 @@ public class JInternalFrameMHNReasonAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(231, 152, 126, 32);
+					jButtonHelp.setBounds(374, 152, 126, 32);
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.setBounds(231, 181, 126, 32);
+					jButtonRefresh.setBounds(374, 181, 126, 32);
 					jButtonRefresh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							populateList("");
@@ -256,7 +256,7 @@ public class JInternalFrameMHNReasonAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(231, 210, 126, 32);
+					jButtonClose.setBounds(374, 210, 126, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -266,7 +266,7 @@ public class JInternalFrameMHNReasonAdmin extends JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(7, 7, 217, 357);
+					jScrollPane1.setBounds(7, 7, 355, 443);
 					{
 						ListModel<JDBMHNReasons> jList1Model = new DefaultComboBoxModel<JDBMHNReasons>();
 						jListReasons = new JList4j<JDBMHNReasons>();
