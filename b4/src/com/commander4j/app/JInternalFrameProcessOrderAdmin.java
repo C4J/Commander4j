@@ -192,6 +192,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		jTextFieldRecipe.setText("");
 		jTextFieldCustomer.setText("");
 		jTextFieldCustomerID.setText("");
+		jTextFieldRequiredResource.setText("");
 		search();
 	}
 

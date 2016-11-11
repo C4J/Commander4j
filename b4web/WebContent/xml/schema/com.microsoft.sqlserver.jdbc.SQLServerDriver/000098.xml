@@ -76,5 +76,12 @@
 
 <statement>insert into [dbo].[APP_PROCESS_ORDER_RESOURCE] SELECT DISTINCT [REQUIRED_RESOURCE] AS REQUIRED_RESOURCE,'' AS DESCRIPTION, '' AS BATCH_SUFFIX,'Y' AS ENABLED  FROM [dbo].[APP_PROCESS_ORDER] WHERE [REQUIRED_RESOURCE] IS NOT NULL AND [REQUIRED_RESOURCE] != ''</statement>
 
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Batch_Suffix','EN','Batch Suffix','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Batch_Suffix','IT','Batch Suffix','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Batch_Suffix','NL','Batch Suffix','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Batch_Suffix','FR','Batch Suffix','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Batch_Suffix','ES','Batch Suffix','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Batch_Suffix','PL','Batch Suffix','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Batch_Suffix','DE','Batch Suffix','')</statement>
 
 </DDL>

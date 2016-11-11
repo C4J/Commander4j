@@ -206,7 +206,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 				{
 					jLabelBatchSuffix = new JLabel4j_std();
 					jDesktopPane1.add(jLabelBatchSuffix);
-					jLabelBatchSuffix.setText(lang.get("lbl_Material_Batch"));
+					jLabelBatchSuffix.setText(lang.get("lbl_Batch_Suffix"));
 					jLabelBatchSuffix.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabelBatchSuffix.setBounds(6, 69, 113, 21);
 				}
