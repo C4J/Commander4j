@@ -25,6 +25,7 @@ public class JDBMaterialUom
 	private Integer dbMaterialNumerator;
 	private String dbMaterialUom;
 	private String dbMaterialVariant;
+	private String dbMaterialOverride;
 	public static int field_ean = 14;
 	public static int field_variant = 2;
 	private final Logger logger = Logger.getLogger(JDBMaterialUom.class);
@@ -80,7 +81,7 @@ public class JDBMaterialUom
 	 * @param denominator
 	 *            Integer
 	 */
-	public JDBMaterialUom(String host, String session, String material, String uom, String ean, String variant, Integer numerator, Integer denominator)
+	public JDBMaterialUom(String host, String session, String material, String uom, String ean, String variant, Integer numerator, Integer denominator,String override)
 	{
 		setHostID(host);
 		setSessionID(session);
@@ -90,6 +91,7 @@ public class JDBMaterialUom
 		setVariant(variant);
 		setNumerator(numerator);
 		setDenominator(denominator);
+		setOverride(override);
 	}
 
 	public JDBMaterialUom(ResultSet rs)
@@ -109,6 +111,7 @@ public class JDBMaterialUom
 			setVariant(rs.getString("variant"));
 			setNumerator(rs.getInt("numerator"));
 			setDenominator(rs.getInt("denominator"));
+			setOverride(rs.getString("override"));
 
 		} catch (SQLException e)
 		{
@@ -142,6 +145,7 @@ public class JDBMaterialUom
 		setVariant("");
 		setNumerator(0);
 		setDenominator(0);
+		setOverride("");
 	}
 
 	/**
@@ -263,6 +267,11 @@ public class JDBMaterialUom
 	{
 		return dbMaterialDenominator;
 	}
+	
+	public String getOverride()
+	{
+		return JUtility.replaceNullStringwithBlank(dbMaterialOverride);
+	}
 
 	/**
 	 * Method getEan.
@@ -308,7 +317,7 @@ public class JDBMaterialUom
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBMaterialUom(getHostID(), getSessionID(), "material", "uom", "variant", "ean", 0, 0));
+			result.addElement(new JDBMaterialUom(getHostID(), getSessionID(), "material", "uom", "variant", "ean", 0, 0,""));
 		} else
 		{
 			try
@@ -317,7 +326,7 @@ public class JDBMaterialUom
 
 				while (rs.next())
 				{
-					result.addElement(new JDBMaterialUom(getHostID(), getSessionID(), rs.getString("material"), rs.getString("uom"), rs.getString("ean"), rs.getString("variant"), rs.getInt("numerator"), rs.getInt("denominator")));
+					result.addElement(new JDBMaterialUom(getHostID(), getSessionID(), rs.getString("material"), rs.getString("uom"), rs.getString("ean"), rs.getString("variant"), rs.getInt("numerator"), rs.getInt("denominator"),rs.getString("override")));
 				}
 				rs.close();
 
@@ -598,6 +607,11 @@ public class JDBMaterialUom
 		dbMaterialDenominator = denominator;
 	}
 
+	public void setOverride(String override)
+	{
+		dbMaterialOverride = JUtility.replaceNullStringwithBlank(override).toUpperCase();
+	}
+	
 	/**
 	 * Method setEan.
 	 * 
@@ -704,8 +718,9 @@ public class JDBMaterialUom
 				stmtupdate.setString(2, getVariant());
 				stmtupdate.setInt(3, getNumerator());
 				stmtupdate.setInt(4, getDenominator());
-				stmtupdate.setString(5, getMaterial());
-				stmtupdate.setString(6, getUom());
+				stmtupdate.setString(5, getOverride());
+				stmtupdate.setString(6, getMaterial());
+				stmtupdate.setString(7, getUom());
 				stmtupdate.execute();
 
 				stmtupdate.clearParameters();

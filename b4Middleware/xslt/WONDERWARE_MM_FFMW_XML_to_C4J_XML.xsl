@@ -139,6 +139,7 @@
                 <xsl:comment>LE QTY is <xsl:value-of select='$LE_QTY' /></xsl:comment> 
                 <xsl:comment>LE UOM is <xsl:value-of select='$LE_UOM' /></xsl:comment> 
                 <xsl:comment><xsl:value-of select='$LE_UOM' /> numerator is <xsl:value-of select='$LE_NUMERATOR' /></xsl:comment> 
+                <xsl:variable name="temp98" select="number($CURRENT_NUMERATOR)" />
                 <xsl:variable name="temp99" select="number($LE_QTY * $LE_NUMERATOR)" />
                 <xsl:comment>D97 (in <xsl:value-of select='$BASE_UOM' />) = <xsl:value-of select='$LE_QTY' />(<xsl:value-of select='$LE_UOM' />) x <xsl:value-of select='$LE_NUMERATOR' /> = <xsl:value-of select='$temp99' /></xsl:comment> 
                 <xsl:comment>Original numerator is <xsl:value-of select="$CURRENT_NUMERATOR" /></xsl:comment>
@@ -149,6 +150,9 @@
                 
                 <xsl:if test="$temp99>0">
                     <numerator><xsl:value-of select='$temp99'/></numerator>
+                    <xsl:if test="$temp98!=$temp99">
+                         <override>X</override>
+                     </xsl:if>
                 </xsl:if>
                 
             </xsl:if>

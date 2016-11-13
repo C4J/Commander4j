@@ -124,7 +124,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(625, 245));
-			this.setBounds(0, 0, 637, 279);
+			this.setBounds(0, 0, 727, 279);
 			setVisible(true);
 			this.setIconifiable(true);
 			{
@@ -135,7 +135,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 					jScrollPane1 = new JScrollPane();
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(7, 7, 469, 200);
+					jScrollPane1.setBounds(7, 7, 556, 200);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
 						this.setClosable(true);
@@ -164,7 +164,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(483, 7, 126, 32);
+					jButtonAdd.setBounds(575, 7, 126, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_UOM_ADD"));
 					jButtonAdd.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -206,7 +206,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(483, 35, 126, 32);
+					jButtonEdit.setBounds(575, 35, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_UOM_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -220,7 +220,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(483, 63, 126, 32);
+					jButtonDelete.setBounds(575, 63, 126, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_UOM_EDIT"));
 					jButtonDelete.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -254,7 +254,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(483, 91, 126, 32);
+					jButtonPrint.setBounds(575, 91, 126, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_MATERIAL_UOM"));
 					jButtonPrint.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -268,14 +268,14 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(483, 147, 126, 32);
+					jButtonHelp.setBounds(575, 147, 126, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(483, 175, 126, 32);
+					jButtonClose.setBounds(575, 175, 126, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -286,7 +286,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 					jButtonRefresh = new JButton4j(Common.icon_refresh);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
-					jButtonRefresh.setBounds(483, 119, 126, 32);
+					jButtonRefresh.setBounds(575, 119, 126, 32);
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
 					jButtonRefresh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {

@@ -25,6 +25,7 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
+import javax.swing.JCheckBox;
 
 public class JInternalFrameMaterialUomProperties extends JInternalFrame
 {
@@ -52,6 +53,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 	private JDBMaterialUom materialuom = new JDBMaterialUom(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_std status = new JLabel4j_std();
+	private JCheckBox chckbxOverride = new JCheckBox("");
 
 	public JInternalFrameMaterialUomProperties()
 	{
@@ -68,6 +70,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 				status.setBackground(Color.GRAY);
 				status.setBounds(0, 196, 385, 21);
 				jDesktopPane1.add(status);
+
 			}
 		});
 	}
@@ -86,6 +89,14 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 		jTextFieldVariant.setText(materialuom.getVariant());
 		jSpinnerNumerator.setValue(materialuom.getNumerator());
 		jSpinnerDenominator.setValue(materialuom.getDenominator());
+		if (materialuom.getOverride().equals("X"))
+		{
+			chckbxOverride.setSelected(true);
+		}
+		else
+		{
+			chckbxOverride.setSelected(false);
+		}
 	}
 
 	private void initGUI()
@@ -93,7 +104,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(376, 234));
-			this.setBounds(25, 25, 410, 268);
+			this.setBounds(25, 25, 410, 261);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -111,7 +122,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
 					jButtonUpdate.setPreferredSize(new java.awt.Dimension(90, 30));
-					jButtonUpdate.setBounds(15, 164, 110, 32);
+					jButtonUpdate.setBounds(11, 181, 120, 32);
 					jButtonUpdate.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -127,6 +138,15 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 							jTextFieldVariant.setText(materialuom.getVariant());
 							materialuom.setNumerator((Integer) jSpinnerNumerator.getValue());
 							materialuom.setDenominator((Integer) jSpinnerDenominator.getValue());
+							
+							if (chckbxOverride.isSelected())
+							{
+								materialuom.setOverride("X");
+							}
+							else
+							{
+								materialuom.setOverride("");
+							}
 
 							if (materialuom.isValidMaterialUom() == false)
 							{
@@ -146,7 +166,6 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 								jButtonUpdate.setEnabled(false);
 							}
 
-
 						}
 					});
 				}
@@ -155,7 +174,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(129, 164, 110, 32);
+					jButtonHelp.setBounds(141, 181, 120, 32);
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_close);
@@ -163,7 +182,7 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
 					jButtonCancel.setPreferredSize(new java.awt.Dimension(90, 30));
-					jButtonCancel.setBounds(242, 164, 110, 32);
+					jButtonCancel.setBounds(271, 181, 120, 32);
 					jButtonCancel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -301,6 +320,24 @@ public class JInternalFrameMaterialUomProperties extends JInternalFrame
 						}
 					});
 				}
+				
+				{
+					JLabel4j_std lbl_Override = new JLabel4j_std();
+					lbl_Override.setText(lang.get("lbl_Override"));
+					lbl_Override.setHorizontalTextPosition(SwingConstants.RIGHT);
+					lbl_Override.setHorizontalAlignment(SwingConstants.RIGHT);
+					lbl_Override.setBounds(11, 152, 147, 21);
+					jDesktopPane1.add(lbl_Override);
+				}
+				chckbxOverride.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						jButtonUpdate.setEnabled(true);
+					}
+				});
+				
+
+				chckbxOverride.setBounds(161, 150, 25, 23);
+				jDesktopPane1.add(chckbxOverride);
 			}
 		}
 		catch (Exception e)

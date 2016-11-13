@@ -18,8 +18,9 @@ public class JDBMaterialUomTableModel extends AbstractTableModel
 	public static final int Material_Variant_Col = 3;
 	public static final int Material_Numerator_Col = 4;
 	public static final int Material_Denominator_Col = 5;
-
-	private String[] mcolNames = { "Material", "UOM", "EAN", "Variant", "Numerator", "Denominator" };
+	public static final int Material_Override_Col = 6;
+	
+	private String[] mcolNames = { "Material", "UOM", "EAN", "Variant", "Numerator", "Denominator","Override" };
 	private ResultSet mResultSet;
 
 	private int prowCount = -1;
@@ -91,6 +92,18 @@ public class JDBMaterialUomTableModel extends AbstractTableModel
 				return cache.get(row).getNumerator();
 			case Material_Denominator_Col:
 				return cache.get(row).getDenominator();
+			case Material_Override_Col:
+
+				Boolean cb;
+				if (cache.get(row).getOverride().equals("X") == true)
+				{
+					cb = true;
+				}
+				else
+				{
+					cb = false;
+				}
+				return cb;
 			}
 		}
 		catch (Exception ex)

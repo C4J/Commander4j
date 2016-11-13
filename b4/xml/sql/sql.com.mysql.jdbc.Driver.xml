@@ -521,7 +521,7 @@
 		</statement>
 		<statement>
 			<id>JDBMaterialUom.update</id>
-			<text>update {schema}APP_MATERIAL_UOM set ean=?,variant=?,numerator=?,denominator=? where material=? and uom=?</text>
+			<text>update {schema}APP_MATERIAL_UOM set ean=?,variant=?,numerator=?,denominator=?,override=? where material=? and uom=?</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialUom.delete</id>

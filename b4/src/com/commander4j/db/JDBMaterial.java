@@ -686,7 +686,7 @@ public class JDBMaterial
 
 			while (rs.next())
 			{
-				JDBMaterialUom mu = new JDBMaterialUom(getHostID(), getSessionID(), rs.getString("material"), rs.getString("uom"), rs.getString("ean"), rs.getString("variant"), rs.getInt("numerator"), rs.getInt("denominator"));
+				JDBMaterialUom mu = new JDBMaterialUom(getHostID(), getSessionID(), rs.getString("material"), rs.getString("uom"), rs.getString("ean"), rs.getString("variant"), rs.getInt("numerator"), rs.getInt("denominator"),rs.getString("override"));
 				uomList.addLast(mu);
 			}
 			rs.close();

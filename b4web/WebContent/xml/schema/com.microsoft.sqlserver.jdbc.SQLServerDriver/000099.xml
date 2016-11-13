@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		ALTER TABLE [dbo].APP_MATERIAL_UOM ADD [OVERRIDE] varchar(1)  DEFAULT ''
+	</statement>
+	
+	<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Override','EN','Override','')</statement>
+	
+	<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Override','IT','Override','')</statement>
+	
+	<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Override','NL','Override','')</statement>
+	
+	<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Override','HU','Override','')</statement>
+	
+	<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Override','FR','Override','')</statement>
+	
+	<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Override','ES','Override','')</statement>
+	
+	<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Override','PL','Override','')</statement>
+	
+	<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Override','DE','Override','')</statement>
+	
+	
+</DDL>

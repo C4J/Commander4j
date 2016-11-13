@@ -15,7 +15,8 @@ import com.commander4j.db.JDBMaterialUom;
 import com.commander4j.db.JDBUom;
 import com.commander4j.util.JUtility;
 
-public class IncommingMaterialDefinition {
+public class IncommingMaterialDefinition
+{
 
 	private String hostID;
 	private String sessionID;
@@ -44,6 +45,7 @@ public class IncommingMaterialDefinition {
 	private String uom;
 	private String location;
 	private String numerator;
+	private String override;
 	private String denominator;
 	private String ean;
 	private String variant;
@@ -143,10 +145,10 @@ public class IncommingMaterialDefinition {
 		default_batch_status = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/default_batch_status").trim());
 
 		/* Material Customer Data */
-		
+
 		repeat = true;
 		seq = 1;
-		
+
 		do
 		{
 			key = "//message/messageData/materialDefinition/materialCustomerData/customer[" + String.valueOf(seq) + "]/@ID";
@@ -154,7 +156,7 @@ public class IncommingMaterialDefinition {
 
 			if (customerID.length() > 0)
 			{
-				
+
 				repeat2 = true;
 				seq2 = 1;
 				do
@@ -166,45 +168,44 @@ public class IncommingMaterialDefinition {
 
 					if (dataID.length() > 0)
 					{
-						
-						if (dataIds.isValidDataID(dataID)==false)
+
+						if (dataIds.isValidDataID(dataID) == false)
 						{
 							dataIds.setDescription("Auto Created");
 							dataIds.create(dataID);
 							dataIds.update();
 						}
-						
-						if (matcustdata.isValidMaterialCustomerData(material, customerID, dataID)==false)
+
+						if (matcustdata.isValidMaterialCustomerData(material, customerID, dataID) == false)
 						{
 							matcustdata.create(material, customerID, dataID);
 						}
 						matcustdata.setData(dataValue);
 						matcustdata.update();
-						
+
 						if (dataID.equals("NAME"))
 						{
-							customer_name=dataValue;
+							customer_name = dataValue;
 						}
-						
+
 					} else
 					{
-						repeat2=false;
+						repeat2 = false;
 					}
-					
+
 					seq2++;
-					
+
 				} while (repeat2);
-				
-				if (cust.isValidCustomer(customerID)==false)
+
+				if (cust.isValidCustomer(customerID) == false)
 				{
 					cust.clear();
 					cust.create(customerID, customer_name, "Y");
-				    cust.update();
+					cust.update();
 				}
-			}
-			else
+			} else
 			{
-				repeat=false;
+				repeat = false;
 			}
 
 			seq++;
@@ -212,7 +213,7 @@ public class IncommingMaterialDefinition {
 		} while (repeat);
 
 		/* Material Locations */
-		
+
 		repeat = true;
 		seq = 1;
 
@@ -244,7 +245,7 @@ public class IncommingMaterialDefinition {
 		} while (repeat);
 
 		/* Material Units of Measure */
-		
+
 		repeat = true;
 		seq = 1;
 		String matUOMError = "";
@@ -270,12 +271,18 @@ public class IncommingMaterialDefinition {
 				key = "//message/messageData/materialDefinition/materialUOMDefinition[" + String.valueOf(seq) + "]/variant";
 				variant = gmh.getXMLDocument().findXPath(key).trim();
 
+				key = "//message/messageData/materialDefinition/materialUOMDefinition[" + String.valueOf(seq) + "]/override";
+				override = gmh.getXMLDocument().findXPath(key).trim();
+
 				if (uomdb.isValidInternalUom(uom) == false)
 				{
 					uomdb.create(uom, uom, uom, "Auto created UOM");
 				}
 
-				if (matuom.getMaterialUomProperties(material, uom) == false)
+				Boolean foundMatUom = matuom.getMaterialUomProperties(material, uom);
+				String locked = matuom.getOverride();
+
+				if (foundMatUom == false)
 				{
 					matuom.setMaterial(material);
 					matuom.setUom(uom);
@@ -292,32 +299,37 @@ public class IncommingMaterialDefinition {
 
 				try
 				{
-					matuom.setNumerator(Integer.valueOf(JUtility.getDefaultValue(numerator, String.valueOf(matuom.getNumerator()), "0")));
-					matuom.setDenominator(Integer.valueOf(JUtility.getDefaultValue(denominator, String.valueOf(matuom.getDenominator()), "0")));
-
-					matuom.setEan(ean);
-					matuom.setVariant(variant);
-
-					if (matuom.getNumerator() == 0)
+					if ((locked.equals("") || override.equals("X")))
 					{
-						result = false;
-						setErrorMessage("Material " + material + " UOM [" + uom + "]. Numerator cannot be zero.");
-					} else
-					{
-						if (matuom.getDenominator() == 0)
+
+						matuom.setNumerator(Integer.valueOf(JUtility.getDefaultValue(numerator, String.valueOf(matuom.getNumerator()), "0")));
+						matuom.setDenominator(Integer.valueOf(JUtility.getDefaultValue(denominator, String.valueOf(matuom.getDenominator()), "0")));
+
+						matuom.setEan(ean);
+						matuom.setVariant(variant);
+						matuom.setOverride(override);
+
+						if (matuom.getNumerator() == 0)
 						{
 							result = false;
-							setErrorMessage("Material " + material + " UOM [" + uom + "]. Denominator cannot be zero.");
+							setErrorMessage("Material " + material + " UOM [" + uom + "]. Numerator cannot be zero.");
 						} else
 						{
-							if (matuom.update() == false)
+							if (matuom.getDenominator() == 0)
 							{
 								result = false;
-								setErrorMessage("Material " + material + " UOM [" + uom + "] update error. " + matuom.getErrorMessage());
+								setErrorMessage("Material " + material + " UOM [" + uom + "]. Denominator cannot be zero.");
+							} else
+							{
+								if (matuom.update() == false)
+								{
+									result = false;
+									setErrorMessage("Material " + material + " UOM [" + uom + "] update error. " + matuom.getErrorMessage());
+								}
 							}
 						}
-					}
 
+					}
 				} catch (Exception ex)
 				{
 					result = false;
