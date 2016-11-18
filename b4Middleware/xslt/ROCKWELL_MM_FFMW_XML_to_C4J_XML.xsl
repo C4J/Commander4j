@@ -159,13 +159,20 @@
                     <uom><xsl:value-of select='$CURRENT_UOM' /></uom>
                
                     <xsl:if test="$LE_UOM != $CURRENT_UOM">
+                        <xsl:variable name="temp97" select='FIELD[@name="Numerator"]/@value' />
+                        <xsl:variable name="temp98" select="number($temp97)" />  
                         <xsl:comment>Converting LE Quantity from <xsl:value-of select='$LE_UOM' /> into <xsl:value-of select='$BASE_UOM' /> before inserting calculated D97</xsl:comment> 
                         <xsl:comment>LE QTY is <xsl:value-of select='$LE_QUANTITY' /></xsl:comment> 
                         <xsl:comment>LE UOM is <xsl:value-of select='$LE_UOM' /></xsl:comment> 
                         <xsl:comment><xsl:value-of select='$LE_UOM' /> numerator is <xsl:value-of select='$LE_NUMERATOR' /></xsl:comment> 
                         <xsl:variable name="temp99" select="number($LE_QUANTITY * $LE_NUMERATOR)" />
                         <xsl:comment>D97 (in <xsl:value-of select='$BASE_UOM' />) = <xsl:value-of select='$LE_QUANTITY' />(<xsl:value-of select='$LE_UOM' />) x <xsl:value-of select='$LE_NUMERATOR' /> = <xsl:value-of select='$temp99' /></xsl:comment> 
+                        <xsl:comment>Original Quantity is <xsl:value-of select='$temp98'/></xsl:comment>
+                        <xsl:comment>Calculated Quantity is <xsl:value-of select='$temp99'/></xsl:comment>
                         <numerator><xsl:value-of select='$temp99'/></numerator>
+                        <xsl:if test="$temp98!=$temp99">
+                            <override>X</override>
+                        </xsl:if>
                     </xsl:if>
                     
                     <xsl:if test="$LE_UOM = $CURRENT_UOM">
