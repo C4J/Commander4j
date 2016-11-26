@@ -1,0 +1,289 @@
+2016-11-25 13:20:03,557 DEBUG c.c.m.StartMain [AWT-EventQueue-0] Application starting
+2016-11-25 13:20:03,582 DEBUG c.c.m.StartMain [AWT-EventQueue-0] *************************
+2016-11-25 13:20:03,583 DEBUG c.c.m.StartMain [AWT-EventQueue-0] **     STARTING        **
+2016-11-25 13:20:03,583 DEBUG c.c.m.StartMain [AWT-EventQueue-0] *************************
+2016-11-25 13:20:03,592 DEBUG c.c.u.JXMLDocument [AWT-EventQueue-0] setDocument :/Users/dave/Commander4j/workspace.osx/b4Middleware/xml/config/config.xml
+2016-11-25 13:20:03,657 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Config Name :c4jMiddleware Example
+2016-11-25 13:20:03,657 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Log Path :/Users/dave/Commander4j/workspace.osx/b4Middleware/interface/log
+2016-11-25 13:20:03,665 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map01) Rockwell Material Master to C4J Material Master
+2016-11-25 13:20:03,756 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read Rockwell Material Master Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,767 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write Commander4j Material Master
+2016-11-25 13:20:03,770 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map02) S95 Process Order to C4J Process Order
+2016-11-25 13:20:03,773 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read SAP S95 CR XML Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,777 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write Commander4j Process Order XML
+2016-11-25 13:20:03,779 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map03) Synchro CSV
+2016-11-25 13:20:03,781 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read CSV Example Type CSV Mask [Ljava.lang.String;@190b21dd
+2016-11-25 13:20:03,784 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write XML Example
+2016-11-25 13:20:03,786 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map04) S95 Batch Status Change to C4J Batch Status Change
+2016-11-25 13:20:03,789 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read S95 Batch Status Change Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,791 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write Commander4j Batch Status Change
+2016-11-25 13:20:03,793 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map05) S95 Transfer Schedule to C4J Pallet Status Change
+2016-11-25 13:20:03,795 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read SAP S95 TRANSFER ORDER XML Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,798 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2016-11-25 13:20:03,799 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map06) S95 Process Order Status Change to C4J Process Order Status Change
+2016-11-25 13:20:03,803 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read SAP S95 CRST XML Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,807 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2016-11-25 13:20:03,809 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map07) C4J Production Declaration to S95 Production Declaration
+2016-11-25 13:20:03,812 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read C4J Prod Dec XML Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,816 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write S95 Prod Dec XML
+2016-11-25 13:20:03,818 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map08) ASCII Flat File Fixed Column to XML
+2016-11-25 13:20:03,821 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read ASCII Flat File Type ASCII Mask [Ljava.lang.String;@7c2121
+2016-11-25 13:20:03,828 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write XML
+2016-11-25 13:20:03,830 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map09) Tropos Material XML
+2016-11-25 13:20:03,832 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,836 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write XML
+2016-11-25 13:20:03,838 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map10) Tropos Works Order XML
+2016-11-25 13:20:03,841 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,845 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write XML
+2016-11-25 13:20:03,847 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map11) C4J Production Declaration to TROPOS Goods Receipt
+2016-11-25 13:20:03,849 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,853 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write CSV
+2016-11-25 13:20:03,855 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map12) C4J Production Declaration to ASCII Flat File
+2016-11-25 13:20:03,857 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,859 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write ASCII File
+2016-11-25 13:20:03,861 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map13) C4J Production Dec to ASCII and CSV Files
+2016-11-25 13:20:03,862 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,865 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write ASCII File
+2016-11-25 13:20:03,867 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out2) Write CSV
+2016-11-25 13:20:03,868 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map14) W-ware FFMW Material to C4J MM
+2016-11-25 13:20:03,871 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read FFMW Material Master Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,874 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write Commander4j Material
+2016-11-25 13:20:03,875 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map15) C4J Equipment Tracking to ASCII Flat File
+2016-11-25 13:20:03,877 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,879 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write ASCII File
+2016-11-25 13:20:03,881 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map16) Split inbound XML into 2 outbounds
+2016-11-25 13:20:03,883 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@7e235960
+2016-11-25 13:20:03,886 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write XML Copy 1
+2016-11-25 13:20:03,891 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out2) Write XML Copy 2
+2016-11-25 13:20:03,892 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading map              : (map17) Excel Spreadsheet
+2016-11-25 13:20:03,896 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading input connector  : (in1) Read Excel File Type XLS Mask [Ljava.lang.String;@67b91886
+2016-11-25 13:20:03,898 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] Loading output connector : (out1) Write CSV File
+2016-11-25 13:20:03,899 DEBUG c.c.m.StartMain [AWT-EventQueue-0] *************************
+2016-11-25 13:20:03,899 DEBUG c.c.m.StartMain [AWT-EventQueue-0] **     MAPS LOADED     **
+2016-11-25 13:20:03,899 DEBUG c.c.m.StartMain [AWT-EventQueue-0] *************************
+2016-11-25 13:20:03,901 DEBUG c.c.t.LogArchiveThread [Log Archiver] LogArchiveThread started.
+2016-11-25 13:20:03,901 DEBUG c.c.t.StatusThread [Status Thread] StatusThread started.
+2016-11-25 13:20:03,902 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] startMaps
+2016-11-25 13:20:03,902 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map01] Description [Rockwell Material Master to C4J Material Master] setEnabled true
+2016-11-25 13:20:03,902 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,902 DEBUG c.c.t.EmailThread [Email Thread] EmailThread started.
+2016-11-25 13:20:03,902 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write Commander4j Material Master]
+2016-11-25 13:20:03,903 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,903 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read Rockwell Material Master]
+2016-11-25 13:20:03,903 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map02] Description [S95 Process Order to C4J Process Order] setEnabled true
+2016-11-25 13:20:03,903 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,903 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write Commander4j Process Order XML]
+2016-11-25 13:20:03,903 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,903 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read SAP S95 CR XML]
+2016-11-25 13:20:03,904 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map03] Description [Synchro CSV] setEnabled true
+2016-11-25 13:20:03,904 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,904 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write XML Example]
+2016-11-25 13:20:03,904 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,904 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read CSV Example]
+2016-11-25 13:20:03,904 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map04] Description [S95 Batch Status Change to C4J Batch Status Change] setEnabled true
+2016-11-25 13:20:03,905 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,905 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write Commander4j Batch Status Change]
+2016-11-25 13:20:03,905 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,906 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read S95 Batch Status Change]
+2016-11-25 13:20:03,906 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map05] Description [S95 Transfer Schedule to C4J Pallet Status Change] setEnabled true
+2016-11-25 13:20:03,906 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,906 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write Commander4j Pallet Status Change XML]
+2016-11-25 13:20:03,906 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,907 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-11-25 13:20:03,907 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map06] Description [S95 Process Order Status Change to C4J Process Order Status Change] setEnabled true
+2016-11-25 13:20:03,907 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,907 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write Commander4j Process Order Status Change XML]
+2016-11-25 13:20:03,907 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,907 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read SAP S95 CRST XML]
+2016-11-25 13:20:03,908 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map07] Description [C4J Production Declaration to S95 Production Declaration] setEnabled true
+2016-11-25 13:20:03,908 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,908 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write S95 Prod Dec XML]
+2016-11-25 13:20:03,908 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,908 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read C4J Prod Dec XML]
+2016-11-25 13:20:03,908 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map08] Description [ASCII Flat File Fixed Column to XML] setEnabled true
+2016-11-25 13:20:03,909 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,909 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write XML]
+2016-11-25 13:20:03,909 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,909 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read ASCII Flat File]
+2016-11-25 13:20:03,909 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map09] Description [Tropos Material XML] setEnabled true
+2016-11-25 13:20:03,909 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,909 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write XML]
+2016-11-25 13:20:03,910 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,910 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read XML File]
+2016-11-25 13:20:03,910 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map10] Description [Tropos Works Order XML] setEnabled true
+2016-11-25 13:20:03,910 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,910 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write XML]
+2016-11-25 13:20:03,910 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,910 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read XML File]
+2016-11-25 13:20:03,910 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map11] Description [C4J Production Declaration to TROPOS Goods Receipt] setEnabled true
+2016-11-25 13:20:03,910 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,910 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write CSV]
+2016-11-25 13:20:03,911 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,911 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read XML File]
+2016-11-25 13:20:03,911 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map12] Description [C4J Production Declaration to ASCII Flat File] setEnabled true
+2016-11-25 13:20:03,911 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,911 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write ASCII File]
+2016-11-25 13:20:03,911 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,911 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read XML File]
+2016-11-25 13:20:03,912 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map13] Description [C4J Production Dec to ASCII and CSV Files] setEnabled true
+2016-11-25 13:20:03,912 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,912 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write ASCII File]
+2016-11-25 13:20:03,912 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,912 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write CSV]
+2016-11-25 13:20:03,912 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,913 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read XML File]
+2016-11-25 13:20:03,913 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map14] Description [W-ware FFMW Material to C4J MM] setEnabled true
+2016-11-25 13:20:03,913 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,913 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write Commander4j Material]
+2016-11-25 13:20:03,913 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,913 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read FFMW Material Master]
+2016-11-25 13:20:03,913 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map15] Description [C4J Equipment Tracking to ASCII Flat File] setEnabled true
+2016-11-25 13:20:03,913 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,913 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write ASCII File]
+2016-11-25 13:20:03,913 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,913 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read XML File]
+2016-11-25 13:20:03,913 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map16] Description [Split inbound XML into 2 outbounds] setEnabled true
+2016-11-25 13:20:03,914 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,914 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write XML Copy 1]
+2016-11-25 13:20:03,914 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,914 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write XML Copy 2]
+2016-11-25 13:20:03,914 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,914 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read XML File]
+2016-11-25 13:20:03,914 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map17] Description [Excel Spreadsheet] setEnabled true
+2016-11-25 13:20:03,914 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,914 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Write CSV File]
+2016-11-25 13:20:03,914 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled true
+2016-11-25 13:20:03,914 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Start Requested : [Read Excel File]
+2016-11-25 13:20:03,915 DEBUG c.c.m.StartMain [AWT-EventQueue-0] *************************
+2016-11-25 13:20:03,915 DEBUG c.c.m.StartMain [AWT-EventQueue-0] **      STARTED        **
+2016-11-25 13:20:03,915 DEBUG c.c.m.StartMain [AWT-EventQueue-0] *************************
+2016-11-25 13:20:05,565 DEBUG c.c.m.StartMain [AWT-EventQueue-0] *************************
+2016-11-25 13:20:05,565 DEBUG c.c.m.StartMain [AWT-EventQueue-0] **      STOPPING       **
+2016-11-25 13:20:05,565 DEBUG c.c.m.StartMain [AWT-EventQueue-0] *************************
+2016-11-25 13:20:05,565 DEBUG c.c.m.StartMain [AWT-EventQueue-0] Shutting down Log File Archiver
+2016-11-25 13:20:05,908 DEBUG c.c.t.LogArchiveThread [Log Archiver] LogArchiveThread closed.
+2016-11-25 13:20:05,967 DEBUG c.c.m.StartMain [AWT-EventQueue-0] Log File Archiver terminated
+2016-11-25 13:20:05,968 DEBUG c.c.m.StartMain [AWT-EventQueue-0] Shutting down Status Thread
+2016-11-25 13:20:06,911 DEBUG c.c.t.StatusThread [Status Thread] StatusThread closed.
+2016-11-25 13:20:06,988 DEBUG c.c.m.StartMain [AWT-EventQueue-0] Status Thread terminated
+2016-11-25 13:20:06,988 DEBUG c.c.m.StartMain [AWT-EventQueue-0] Shutting down Maps
+2016-11-25 13:20:06,988 DEBUG c.c.s.MiddlewareConfig [AWT-EventQueue-0] stopMaps
+2016-11-25 13:20:06,989 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map01] Description [Rockwell Material Master to C4J Material Master] setEnabled false
+2016-11-25 13:20:06,989 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,989 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read Rockwell Material Master]
+2016-11-25 13:20:06,989 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,990 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write Commander4j Material Master]
+2016-11-25 13:20:06,990 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map02] Description [S95 Process Order to C4J Process Order] setEnabled false
+2016-11-25 13:20:06,990 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,990 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read SAP S95 CR XML]
+2016-11-25 13:20:06,990 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,990 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write Commander4j Process Order XML]
+2016-11-25 13:20:06,991 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map03] Description [Synchro CSV] setEnabled false
+2016-11-25 13:20:06,991 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,991 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read CSV Example]
+2016-11-25 13:20:06,991 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,991 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write XML Example]
+2016-11-25 13:20:06,991 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map04] Description [S95 Batch Status Change to C4J Batch Status Change] setEnabled false
+2016-11-25 13:20:06,991 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,991 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read S95 Batch Status Change]
+2016-11-25 13:20:06,992 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,992 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write Commander4j Batch Status Change]
+2016-11-25 13:20:06,992 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map05] Description [S95 Transfer Schedule to C4J Pallet Status Change] setEnabled false
+2016-11-25 13:20:06,992 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,992 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read SAP S95 TRANSFER ORDER XML]
+2016-11-25 13:20:06,993 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,993 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write Commander4j Pallet Status Change XML]
+2016-11-25 13:20:06,993 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map06] Description [S95 Process Order Status Change to C4J Process Order Status Change] setEnabled false
+2016-11-25 13:20:06,993 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,993 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read SAP S95 CRST XML]
+2016-11-25 13:20:06,993 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,994 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write Commander4j Process Order Status Change XML]
+2016-11-25 13:20:06,994 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map07] Description [C4J Production Declaration to S95 Production Declaration] setEnabled false
+2016-11-25 13:20:06,994 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,994 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read C4J Prod Dec XML]
+2016-11-25 13:20:06,994 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,994 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write S95 Prod Dec XML]
+2016-11-25 13:20:06,994 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map08] Description [ASCII Flat File Fixed Column to XML] setEnabled false
+2016-11-25 13:20:06,995 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,995 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read ASCII Flat File]
+2016-11-25 13:20:06,995 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,995 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write XML]
+2016-11-25 13:20:06,995 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map09] Description [Tropos Material XML] setEnabled false
+2016-11-25 13:20:06,995 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,995 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read XML File]
+2016-11-25 13:20:06,996 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,996 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write XML]
+2016-11-25 13:20:06,996 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map10] Description [Tropos Works Order XML] setEnabled false
+2016-11-25 13:20:06,996 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,996 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read XML File]
+2016-11-25 13:20:06,997 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,997 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write XML]
+2016-11-25 13:20:06,997 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map11] Description [C4J Production Declaration to TROPOS Goods Receipt] setEnabled false
+2016-11-25 13:20:06,997 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,997 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read XML File]
+2016-11-25 13:20:06,997 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,997 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write CSV]
+2016-11-25 13:20:06,997 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map12] Description [C4J Production Declaration to ASCII Flat File] setEnabled false
+2016-11-25 13:20:06,997 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read XML File]
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write ASCII File]
+2016-11-25 13:20:06,998 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map13] Description [C4J Production Dec to ASCII and CSV Files] setEnabled false
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read XML File]
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write ASCII File]
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write CSV]
+2016-11-25 13:20:06,998 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map14] Description [W-ware FFMW Material to C4J MM] setEnabled false
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read FFMW Material Master]
+2016-11-25 13:20:06,998 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write Commander4j Material]
+2016-11-25 13:20:06,999 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map15] Description [C4J Equipment Tracking to ASCII Flat File] setEnabled false
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read XML File]
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write ASCII File]
+2016-11-25 13:20:06,999 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map16] Description [Split inbound XML into 2 outbounds] setEnabled false
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read XML File]
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write XML Copy 1]
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:06,999 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write XML Copy 2]
+2016-11-25 13:20:07,000 DEBUG c.c.I.M.Map [AWT-EventQueue-0] Map [map17] Description [Excel Spreadsheet] setEnabled false
+2016-11-25 13:20:07,000 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:07,000 DEBUG A.c.c.I.InboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Read Excel File]
+2016-11-25 13:20:07,000 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] setEnabled false
+2016-11-25 13:20:07,000 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [AWT-EventQueue-0] Stop Requested : [Write CSV File]
+2016-11-25 13:20:07,000 DEBUG c.c.m.StartMain [AWT-EventQueue-0] Maps Terminated
+2016-11-25 13:20:07,001 INFO c.c.m.StartMain [AWT-EventQueue-0] 
+
+Interface Statistics
+********************
+
+Map : [map01] Description [Rockwell Material Master to C4J Material] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map02] Description [S95 Process Order to C4J Process Order  ] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map03] Description [Synchro CSV                             ] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map04] Description [S95 Batch Status Change to C4J Batch Sta] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map05] Description [S95 Transfer Schedule to C4J Pallet Stat] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map06] Description [S95 Process Order Status Change to C4J P] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map07] Description [C4J Production Declaration to S95 Produc] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map08] Description [ASCII Flat File Fixed Column to XML     ] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map09] Description [Tropos Material XML                     ] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map10] Description [Tropos Works Order XML                  ] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map11] Description [C4J Production Declaration to TROPOS Goo] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map12] Description [C4J Production Declaration to ASCII Flat] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map13] Description [C4J Production Dec to ASCII and CSV File] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map14] Description [W-ware FFMW Material to C4J MM          ] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map15] Description [C4J Equipment Tracking to ASCII Flat Fil] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map16] Description [Split inbound XML into 2 outbounds      ] Inbound Map Count [0] Outbound Map Count [0]
+Map : [map17] Description [Excel Spreadsheet                       ] Inbound Map Count [0] Outbound Map Count [0]
+
+2016-11-25 13:20:07,001 DEBUG c.c.m.StartMain [AWT-EventQueue-0] *************************
+2016-11-25 13:20:07,001 DEBUG c.c.m.StartMain [AWT-EventQueue-0] **      STOPPED        **
+2016-11-25 13:20:07,001 DEBUG c.c.m.StartMain [AWT-EventQueue-0] *************************
+2016-11-25 13:20:07,001 DEBUG c.c.m.StartMain [AWT-EventQueue-0] Shutting down email thread
+2016-11-25 13:20:07,914 DEBUG c.c.t.EmailThread [Email Thread] EmailThread closed.
+2016-11-25 13:20:07,916 DEBUG c.c.m.StartMain [AWT-EventQueue-0] Emailer terminated
