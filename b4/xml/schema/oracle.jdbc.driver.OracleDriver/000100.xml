@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	ALTER TABLE APP_CUSTOMER ADD UPDATED DATE DEFAULT NULL
+</statement>
+
+<statement>
+	UPDATE APP_CUSTOMER SET UPDATED = (SELECT SYSDATE FROM DUAL)
+</statement>
+
+<statement>
+	ALTER TABLE APP_CUSTOMER ADD CUSTOMER_DATA_01 VARCHAR2(40) DEFAULT ''
+</statement>
+
+<statement>
+	ALTER TABLE APP_CUSTOMER ADD CUSTOMER_DATA_02 VARCHAR2(40) DEFAULT ''
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_01', 'EN', 'Customer Data 1', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_01', 'NL', 'Customer Data 1', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_01', 'HU', 'Customer Data 1', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_01', 'IT', 'Customer Data 1', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_01', 'DE', 'Customer Data 1', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_01', 'ES', 'Customer Data 1', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_01', 'PL', 'Customer Data 1', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_02', 'EN', 'Customer Data 2', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_02', 'NL', 'Customer Data 2', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_02', 'HU', 'Customer Data 2', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_02', 'IT', 'Customer Data 2', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_02', 'DE', 'Customer Data 2', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_02', 'ES', 'Customer Data 2', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_02', 'PL', 'Customer Data 2', 'Q')
+</statement>
+
+</DDL>

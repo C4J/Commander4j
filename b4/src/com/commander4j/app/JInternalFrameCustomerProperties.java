@@ -52,6 +52,8 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 	private JComboBox4j<JDBListData> comboBoxPalletModuleID = new JComboBox4j<JDBListData>();
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private Vector<JDBListData> moduleList = new Vector<JDBListData>();
+	private JTextField4j textField4j_Cust_Data_01 = new JTextField4j(40);
+	private JTextField4j textField4j_Cust_Data_02 = new JTextField4j(40);
 
 	public JInternalFrameCustomerProperties() {
 		super();
@@ -67,6 +69,9 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 			public void run() {
 				jTextFieldName.requestFocus();
 				jTextFieldName.setCaretPosition(jTextFieldName.getText().length());
+				
+
+
 			}
 		});
 	}
@@ -84,6 +89,10 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 
 		jTextFieldID.setText(mt.getID());
 		jTextFieldName.setText(mt.getName());
+		
+		textField4j_Cust_Data_01.setText(mt.getCustomerData01());
+		textField4j_Cust_Data_02.setText(mt.getCustomerData02());
+		
 		if (mt.getPrintOnLabel().equals("Y")) {
 			checkBoxPrintOnLabel.setSelected(true);
 		}
@@ -113,7 +122,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 	private void initGUI() {
 		try {
 			this.setPreferredSize(new java.awt.Dimension(389, 143));
-			this.setBounds(0, 0, 507, 296);
+			this.setBounds(0, 0, 507, 352);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -164,10 +173,14 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
 					jButtonUpdate.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonUpdate.setBounds(72, 197, 112, 28);
+					jButtonUpdate.setBounds(72, 272, 112, 28);
 					jButtonUpdate.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							mt.setName(jTextFieldName.getText());
+							
+							mt.setCustomerData01(textField4j_Cust_Data_01.getText());
+							mt.setCustomerData02(textField4j_Cust_Data_02.getText());
+							
 							if (checkBoxPrintOnLabel.isSelected()) {
 								mt.setPrintOnLabel("Y");
 							}
@@ -224,7 +237,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(205, 197, 112, 28);
+					jButtonHelp.setBounds(205, 272, 112, 28);
 				}
 				{
 					label = new JLabel4j_std();
@@ -253,7 +266,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonClose, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(336, 197, 112, 28);
+					jButtonClose.setBounds(336, 272, 112, 28);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -317,6 +330,45 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					}
 				});
 				jDesktopPane1.add(comboBoxPalletModuleID);
+				textField4j_Cust_Data_01.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						jButtonUpdate.setEnabled(true);
+					}
+				});
+				
+
+				textField4j_Cust_Data_01.setFocusCycleRoot(true);
+				textField4j_Cust_Data_01.setCaretPosition(0);
+				textField4j_Cust_Data_01.setBounds(204, 199, 244, 21);
+				jDesktopPane1.add(textField4j_Cust_Data_01);
+				textField4j_Cust_Data_02.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyPressed(KeyEvent e) {
+						jButtonUpdate.setEnabled(true);
+					}
+				});
+				
+
+				textField4j_Cust_Data_02.setFocusCycleRoot(true);
+				textField4j_Cust_Data_02.setCaretPosition(0);
+				textField4j_Cust_Data_02.setBounds(204, 232, 244, 21);
+				jDesktopPane1.add(textField4j_Cust_Data_02);
+				
+				
+				JLabel4j_std label4j_std2 = new JLabel4j_std();
+				label4j_std2.setText(lang.get("lbl_Customer_Data_01"));
+				label4j_std2.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_std2.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_std2.setBounds(22, 199, 175, 21);
+				jDesktopPane1.add(label4j_std2);
+				
+				JLabel4j_std label4j_std3 = new JLabel4j_std();
+				label4j_std3.setText(lang.get("lbl_Customer_Data_02"));
+				label4j_std3.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_std3.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_std3.setBounds(22, 232, 175, 21);
+				jDesktopPane1.add(label4j_std3);
 			}
 		}
 		catch (Exception e) {

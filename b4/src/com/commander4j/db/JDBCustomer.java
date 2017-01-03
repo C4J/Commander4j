@@ -21,6 +21,8 @@ public class JDBCustomer
 	private String dbCustomerID;
 	public static int field_customer_id = 20;
 	public static int field_customer_name = 50;
+	public static int field_cust_data_1 = 40;
+	public static int field_cust_data_2 = 40;
 	public static int field_print_on_label = 1;
 	private final Logger logger = Logger.getLogger(JDBCustomer.class);
 	private String hostID;
@@ -30,6 +32,28 @@ public class JDBCustomer
 	private String dbOverride_Pallet_Label;
 	private String dbPack_Label_ModuleID;
 	private String dbPallet_Label_ModuleID;
+	private String dbCustomerData01;
+	private String dbCustomerData02;
+	
+	public String getCustomerData01()
+	{
+		return JUtility.replaceNullStringwithBlank(dbCustomerData01);
+	}
+	
+	public String getCustomerData02()
+	{
+		return JUtility.replaceNullStringwithBlank(dbCustomerData02);
+	}
+	
+	public void setCustomerData01(String data01)
+	{
+		dbCustomerData01 = data01;
+	}
+	
+	public void setCustomerData02(String data02)
+	{
+		dbCustomerData02 = data02;
+	}
 	
 	public JDBCustomer(String host, String session) {
 		setHostID(host);
@@ -73,6 +97,9 @@ public class JDBCustomer
 				stmtupdate.setString(5, getPackLabelModuleID());
 				stmtupdate.setString(6, getOverridePalletLabel());
 				stmtupdate.setString(7, getPalletLabelModuleID());
+				stmtupdate.setString(8, getCustomerData01());
+				stmtupdate.setString(9, getCustomerData02());
+				stmtupdate.setTimestamp(10, JUtility.getSQLDateTime());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -160,6 +187,8 @@ public class JDBCustomer
 				setPackLabelModuleID(rs.getString("pack_label_module_id"));
 				setOverridePalletLabel(rs.getString("override_pallet_label"));
 				setPalletLabelModuleID(rs.getString("pallet_label_module_id"));
+				setCustomerData01(rs.getString("customer_data_01"));
+				setCustomerData02(rs.getString("customer_data_02"));
 				result = true;
 				rs.close();
 				stmt.close();
@@ -199,6 +228,8 @@ public class JDBCustomer
 				mt.setPackLabelModuleID(rs.getString("pack_label_module_id"));
 				mt.setOverridePalletLabel(rs.getString("override_pallet_label"));
 				mt.setPalletLabelModuleID(rs.getString("pallet_label_module_id"));
+				setCustomerData01(rs.getString("customer_data_01"));
+				setCustomerData02(rs.getString("customer_data_02"));
 				typeList.add(mt);
 			}
 			rs.close();
@@ -462,7 +493,10 @@ public class JDBCustomer
 				stmtupdate.setString(4,getPackLabelModuleID());
 				stmtupdate.setString(5,getOverridePalletLabel());
 				stmtupdate.setString(6,getPalletLabelModuleID());
-				stmtupdate.setString(7, getID());
+				stmtupdate.setString(7, getCustomerData01());
+				stmtupdate.setString(8, getCustomerData02());
+				stmtupdate.setTimestamp(9, JUtility.getSQLDateTime());
+				stmtupdate.setString(10, getID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
