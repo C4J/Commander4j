@@ -76,6 +76,8 @@ public class JDBCustomer
 		setPackLabelModuleID("");
 		setPalletLabelModuleID("");
 		setErrorMessage("");
+		setCustomerData01("");
+		setCustomerData02("");
 	}
 	
 	public boolean create(String lid, String lname, String printonLabel) {
