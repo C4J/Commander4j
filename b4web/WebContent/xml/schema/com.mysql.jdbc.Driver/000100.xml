@@ -106,38 +106,33 @@ INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_C
 
 <statement>
 	CREATE VIEW `view_labeller_process_order_info` AS
-	    (SELECT 
-	        `PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
-	        `PO`.`MATERIAL` AS `MATERIAL`,
-	        `PO`.`STATUS` AS `STATUS`,
-	        `PO`.`DUE_DATE` AS `DUE_DATE`,
-	        `MAT`.`DESCRIPTION` AS `DESCRIPTION`,
-	        `MAT`.`SHELF_LIFE` AS `SHELF_LIFE`,
-	        `MAT`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
-	        `MAT`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
-	        `PO`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
-	        `MATUOM`.`EAN` AS `EAN`,
-	        `MATUOM`.`VARIANT` AS `VARIANT`,
-	        `MAT`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
-	         C4J_GETLAYERS(`PO`.`PROCESS_ORDER`) AS `DEFAULT_LAYERS`,
-	         C4J_GETFULLPALLETQUANTITY(`PO`.`PROCESS_ORDER`) AS `DEFAULT_QUANTITY`,
-	        `PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
-	        `MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
-	        `CUST`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
-	        `app_material_customer_data`.`DATA` AS `PART_NO`,
-			IFNULL(CUST.CUSTOMER_DATA_01,'') AS CASE__LABEL,
-	        IFNULL(CUST.CUSTOMER_DATA_02,'') AS PALLET__LABEL,
-	        CUST.UPDATED AS CUSTOMER_UPDATED
-	    FROM
-	        (((((`app_process_order` `PO`
-	        LEFT JOIN `app_customer` `CUST` ON ((`PO`.`CUSTOMER_ID` = `CUST`.`CUSTOMER_ID`)))
-	        LEFT JOIN `app_material` `MAT` ON ((`PO`.`MATERIAL` = `MAT`.`MATERIAL`)))
-	        LEFT JOIN `app_material_uom` `MATUOM` ON (((`PO`.`MATERIAL` = `MATUOM`.`MATERIAL`)
-	            AND (`PO`.`REQUIRED_UOM` = `MATUOM`.`UOM`))))
-	        LEFT JOIN `app_material_uom` `MATUOMFULL` ON ((`PO`.`MATERIAL` = `MATUOMFULL`.`MATERIAL`)))
-	        LEFT JOIN `app_material_customer_data` ON (((`PO`.`MATERIAL` = `app_material_customer_data`.`MATERIAL`)
-	            AND (`PO`.`CUSTOMER_ID` = `app_material_customer_data`.`CUSTOMER_ID`)
-	            AND (`app_material_customer_data`.`DATA_ID` = 'PART_NO')))))
+	    (select `PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+		`PO`.`MATERIAL` AS `MATERIAL`,
+		`PO`.`STATUS` AS `STATUS`,
+		`PO`.`DUE_DATE` AS `DUE_DATE`,
+		`MAT`.`DESCRIPTION` AS `DESCRIPTION`,
+		`MAT`.`SHELF_LIFE` AS `SHELF_LIFE`,
+		`MAT`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
+		`MAT`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
+		`PO`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
+		`MATUOM`.`EAN` AS `EAN`,
+		`MATUOM`.`VARIANT` AS `VARIANT`,
+		`MAT`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+		`C4J_GETLAYERS`(`PO`.`PROCESS_ORDER`) AS `DEFAULT_LAYERS`,
+		`C4J_GETFULLPALLETQUANTITY`(`PO`.`PROCESS_ORDER`) AS `DEFAULT_QUANTITY`,
+		`PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+		`MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
+		`CUST`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+		`CUSTDATA`.`DATA` AS `PART_NO`,
+		ifnull(`CUST`.`CUSTOMER_DATA_01`,'') AS `CASE__LABEL`,
+		ifnull(`CUST`.`CUSTOMER_DATA_02`,'') AS `PALLET__LABEL`,
+		`CUST`.`UPDATED` AS `CUSTOMER_UPDATED`
+		FROM
+		(((((`app_process_order` `PO` left join `app_material` `MAT` on((`MAT`.`MATERIAL` = `PO`.`MATERIAL`))) 
+		left join `app_customer` `CUST` on((`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`))) 
+		left join `app_material_uom` `MATUOM` on(((`MATUOM`.`MATERIAL` = `PO`.`MATERIAL`) and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`)))) 
+		left join `app_material_uom` `MATUOMFULL` on(((`MATUOMFULL`.`MATERIAL` = `PO`.`MATERIAL`) and (`MATUOMFULL`.`UOM` = 'PAL')))) 
+		left join `app_material_customer_data` `CUSTDATA` on(((`CUSTDATA`.`MATERIAL` = `PO`.`MATERIAL`) and (`CUSTDATA`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`) and (`CUSTDATA`.`DATA_ID` = 'PART_NO')))))	                        
 </statement>
 
 </DDL>
