@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.0.4.final using JasperReports Library version 6.0.4  -->
-<!-- 2015-04-17T21:27:52 -->
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-01-07T19:47:55 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Customers" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="99bf6c3d-0abc-4e53-8b99-3c32cfcb155b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mysql commander4j_test"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["My Company"]]></defaultValueExpression>
 	</parameter>
@@ -14,6 +16,13 @@
 	<field name="CUSTOMER_ID" class="java.lang.String"/>
 	<field name="CUSTOMER_NAME" class="java.lang.String"/>
 	<field name="PRINT_ON_LABEL" class="java.lang.String"/>
+	<field name="OVERRIDE_PACK_LABEL" class="java.lang.String"/>
+	<field name="PACK_LABEL_MODULE_ID" class="java.lang.String"/>
+	<field name="OVERRIDE_PALLET_LABEL" class="java.lang.String"/>
+	<field name="PALLET_LABEL_MODULE_ID" class="java.lang.String"/>
+	<field name="UPDATED" class="java.sql.Timestamp"/>
+	<field name="CUSTOMER_DATA_01" class="java.lang.String"/>
+	<field name="CUSTOMER_DATA_02" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -38,7 +47,7 @@
 		</band>
 	</title>
 	<columnHeader>
-		<band height="18" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
@@ -48,21 +57,21 @@
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="650" y="0" width="151" height="16" forecolor="#000000" uuid="99f8d94e-2f50-4f43-b325-53388472274d"/>
+				<reportElement x="700" y="0" width="101" height="16" forecolor="#000000" uuid="99f8d94e-2f50-4f43-b325-53388472274d"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Print Name on Label]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="124" y="0" width="100" height="16" forecolor="#000000" uuid="6f63d429-9426-4b02-b367-13510644799a"/>
+				<reportElement x="90" y="0" width="100" height="16" forecolor="#000000" uuid="6f63d429-9426-4b02-b367-13510644799a"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Customer Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="0" width="100" height="16" forecolor="#000000" uuid="14f4f332-4d0e-4994-976c-544d783f2f6a"/>
+				<reportElement x="3" y="0" width="76" height="16" forecolor="#000000" uuid="14f4f332-4d0e-4994-976c-544d783f2f6a"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="false" isItalic="false" isUnderline="false"/>
 				</textElement>
@@ -80,26 +89,50 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 			</line>
+			<staticText>
+				<reportElement x="306" y="0" width="184" height="16" forecolor="#000000" uuid="102accf4-6090-4cd2-8c8f-17415d2e7c32"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Customer Data 01]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="507" y="0" width="184" height="16" forecolor="#000000" uuid="743e6e94-a1a0-4231-a4dd-1ee78398307b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Customer Data 02]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="18" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="0" y="0" width="100" height="18" uuid="236cb3a1-3fe7-4680-8efc-2f539f305787"/>
+				<reportElement x="0" y="0" width="78" height="18" uuid="236cb3a1-3fe7-4680-8efc-2f539f305787"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{CUSTOMER_ID}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="124" y="0" width="506" height="18" uuid="5e22fd5f-853a-4073-82ba-9a5000ce31df"/>
+				<reportElement x="90" y="0" width="200" height="18" uuid="5e22fd5f-853a-4073-82ba-9a5000ce31df"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{CUSTOMER_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="653" y="0" width="100" height="18" uuid="d3269a4f-d0c4-41ce-aa0e-c79d7688a4d1"/>
+				<reportElement x="720" y="0" width="80" height="18" uuid="d3269a4f-d0c4-41ce-aa0e-c79d7688a4d1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{PRINT_ON_LABEL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="306" y="0" width="192" height="18" uuid="9264f788-d08b-4399-9111-dfcdac141608"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_DATA_01}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="507" y="0" width="202" height="18" uuid="8cb0124b-c46e-4c33-9390-bb37fa3a3330"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_DATA_01}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
