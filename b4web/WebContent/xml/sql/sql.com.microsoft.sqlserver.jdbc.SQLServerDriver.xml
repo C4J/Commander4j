@@ -890,7 +890,7 @@
 		</statement>
 		<statement>
 			<id>JDBCustomer.create</id>
-			<text>insert into {schema}app_customer (customer_id,customer_name,print_on_label,override_pack_label,pack_label_module_id,override_pallet_label,pallet_label_module_id,customer_data_01,customer_data_02,updated) values (?,?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}app_customer (customer_id,customer_name,print_on_label,override_pack_label,pack_label_module_id,override_pallet_label,pallet_label_module_id,customer_data_01,customer_data_02,updated) values (?,?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBCustomer.delete</id>
