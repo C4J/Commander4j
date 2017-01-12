@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-01-07T19:47:55 -->
+<!-- 2017-01-09T20:15:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Customers" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="99bf6c3d-0abc-4e53-8b99-3c32cfcb155b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -106,33 +106,43 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="21" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<textField>
-				<reportElement x="0" y="0" width="78" height="18" uuid="236cb3a1-3fe7-4680-8efc-2f539f305787"/>
-				<textElement verticalAlignment="Middle"/>
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField pattern="">
+				<reportElement x="0" y="0" width="78" height="20" uuid="236cb3a1-3fe7-4680-8efc-2f539f305787"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{CUSTOMER_ID}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="90" y="0" width="200" height="18" uuid="5e22fd5f-853a-4073-82ba-9a5000ce31df"/>
-				<textElement verticalAlignment="Middle"/>
+			<textField pattern="">
+				<reportElement x="90" y="0" width="200" height="20" isPrintWhenDetailOverflows="true" uuid="5e22fd5f-853a-4073-82ba-9a5000ce31df"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{CUSTOMER_NAME}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="720" y="0" width="80" height="18" uuid="d3269a4f-d0c4-41ce-aa0e-c79d7688a4d1"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+			<textField pattern="">
+				<reportElement x="720" y="0" width="80" height="20" uuid="d3269a4f-d0c4-41ce-aa0e-c79d7688a4d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{PRINT_ON_LABEL}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="306" y="0" width="192" height="18" uuid="9264f788-d08b-4399-9111-dfcdac141608"/>
-				<textElement verticalAlignment="Middle"/>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="306" y="0" width="192" height="20" isPrintWhenDetailOverflows="true" uuid="9264f788-d08b-4399-9111-dfcdac141608"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{CUSTOMER_DATA_01}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="507" y="0" width="202" height="18" uuid="8cb0124b-c46e-4c33-9390-bb37fa3a3330"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{CUSTOMER_DATA_01}]]></textFieldExpression>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="507" y="0" width="202" height="20" isPrintWhenDetailOverflows="true" uuid="8cb0124b-c46e-4c33-9390-bb37fa3a3330"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_DATA_02}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
