@@ -247,7 +247,7 @@ public class JDialogArchiveProperties extends JDialog {
 				jDesktopPane1.add(label4j_Sequence);
 
 				SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
-				jSpinnerIntModel.setMinimum(30);
+				jSpinnerIntModel.setMinimum(1);
 				jSpinnerIntModel.setMaximum(9999);
 
 				jSpinnerIntModel.setStepSize(1);

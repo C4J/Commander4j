@@ -411,21 +411,9 @@ public class JDBMHN
 			setDateCreated(rs.getTimestamp("date_created"));
 			setDateExpected(rs.getTimestamp("date_expected"));
 			setStatus(rs.getString("status"));
-			if (getStatus().equals("Active")==true)
-			{
-				setDateResolved(null);
-			}
-			else
-			{
-				if (getDateResolved()==null)
-				{
-					setDateResolved(JUtility.getSQLDateTime());
-				}
-				else
-				{
-					setDateResolved(rs.getTimestamp("date_resolved"));
-				}
-			}
+
+			setDateResolved(rs.getTimestamp("date_resolved"));
+
 
 			setComment(rs.getString("comments"));
 			setResource(rs.getString("required_resource"));
@@ -608,6 +596,17 @@ public class JDBMHN
 			stmtupdate.setString(4, getReason2());
 			stmtupdate.setString(5, getReason3());
 			stmtupdate.setTimestamp(6, getDateExpected());
+			if (getStatus().equals("Active"))
+			{
+				setDateResolved(null);
+			}
+			if (getStatus().equals("Closed"))
+			{
+				if (getDateResolved()==null)
+				{
+					setDateResolved(JUtility.getSQLDateTime());
+				}
+			}		
 			stmtupdate.setTimestamp(7, getDateResolved());
 			stmtupdate.setString(8, getStatus());
 			stmtupdate.setString(9, getComments());
