@@ -2,6 +2,7 @@ package com.commander4j.messages;
 
 import java.sql.Timestamp;
 
+import com.commander4j.db.JDBDespatch;
 import com.commander4j.db.JDBJourney;
 import com.commander4j.util.JUtility;
 
@@ -53,6 +54,8 @@ public class IncommingJourney
 		Boolean result = false;
 
 		JDBJourney journey = new JDBJourney(getHostID(), getSessionID());
+		JDBDespatch despatch  = new JDBDespatch(getHostID(), getSessionID());
+		
 		String ref = "12345";
 		String action = "";
 		String timestampString = "";
@@ -105,6 +108,22 @@ public class IncommingJourney
 							result = true;
 							deleted++;
 						}
+						else
+						{
+							if (despatch.getDespatchProperties(journey.getDespatchNo()))
+							{
+								if (despatch.getStatus().equals("Unconfirmed"))
+								{
+									despatch.setJourneyRef("");
+									despatch.update();
+									
+									journey.setJourneyRef(ref);
+									journey.delete();
+									result = true;
+									deleted++;
+								}
+							}
+						}
 					}
 				}
 
@@ -115,12 +134,26 @@ public class IncommingJourney
 						if (journey.getStatus().equals("Unassigned"))
 						{
 							journey.setJourneyRef(ref);
-							journey.setStatus("Unassigned");
 							journey.setTimeslot(timeslot);
 							journey.setLocationTo(location_to);
 							journey.update();
 							result = true;
 							updated++;
+						}
+						else
+						{
+							if (despatch.getDespatchProperties(journey.getDespatchNo()))
+							{
+								if (despatch.getStatus().equals("Unconfirmed"))
+								{
+									journey.setJourneyRef(ref);
+									journey.setTimeslot(timeslot);
+									journey.setLocationTo(location_to);
+									journey.update();
+									result = true;
+									updated++;
+								}
+							}
 						}
 					}
 				}
