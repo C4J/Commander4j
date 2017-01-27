@@ -567,11 +567,11 @@
 		</statement>
 		<statement>
 			<id>JDBJourney.update</id>
-			<text>update {schema}app_journey set status=?,despatch_no=?,date_updated=?,location_id_to=?,timeslot=? where journey_ref=?</text>
+			<text>update {schema}app_journey set status=?,despatch_no=?,date_updated=?,location_id_to=?,timeslot=?,load_type=?,load_type_desc=?,haulier=? where journey_ref=?</text>
 		</statement>
 		<statement>
 			<id>JDBJourney.create</id>
-			<text>insert into {schema}app_journey (journey_ref,status,date_updated,location_id_to,timeslot) values (?,?,?,?,?)</text>
+			<text>insert into {schema}app_journey (journey_ref,status,date_updated,location_id_to,timeslot,load_type,load_type_desc,haulier) values (?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBJourney.delete</id>

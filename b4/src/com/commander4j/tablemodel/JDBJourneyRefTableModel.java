@@ -16,10 +16,12 @@ public class JDBJourneyRefTableModel extends AbstractTableModel
 	public static final int Status_Col = 2;
 	public static final int Despatch_Col = 3;
 	public static final int Timeslot_Col = 4;
-	public static final int Updated_Col = 5;
+	public static final int LoadType_Col = 5;
+	public static final int LoadTypeDesc_Col = 6;
+	public static final int Haulier_Col = 7;
+	public static final int Updated_Col = 8;
 
-	// Names of the columns
-	private String[] mcolNames = { "Journey Ref", "To Location","Status", "Despatch No","Time Slot" ,"Updated"};
+	private String[] mcolNames = { "Journey Ref", "To Location","Status", "Despatch No","Time Slot" ,"Load Type","Type Description","Haulier","Updated"};
 	private ResultSet mResultSet;
 	private int prowCount = -1;
 	private HashMap<Integer,JDBJourney> cache = new HashMap<Integer,JDBJourney>();
@@ -77,6 +79,12 @@ public class JDBJourneyRefTableModel extends AbstractTableModel
 				return cache.get(row).getJourneyRef();
 			case Status_Col:
 				return cache.get(row).getStatus();
+			case LoadType_Col:
+				return cache.get(row).getLoadType();
+			case LoadTypeDesc_Col:
+				return cache.get(row).getLoadTypeDesc();
+			case Haulier_Col:
+				return cache.get(row).getHaulier();
 			case Location_Col:
 				return cache.get(row).getLocationTo();				
 			case Despatch_Col:

@@ -4,7 +4,7 @@ public class JVersion
 {
 
 	public static String getProgramVersion() {
-		return "5.31";
+		return "5.32";
 	}
 
 	public static Double getProgramVersionValue() {
@@ -12,7 +12,7 @@ public class JVersion
 	}
 
 	public static int getSchemaVersion() {
-		return 100;
+		return 101;
 	}
 
 }

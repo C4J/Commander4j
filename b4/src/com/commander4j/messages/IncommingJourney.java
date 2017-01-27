@@ -60,6 +60,9 @@ public class IncommingJourney
 		String action = "";
 		String timestampString = "";
 		String location_to = "";
+		String loadType = "";
+		String loadTypeDesc = "";
+		String haulier = "";
 		Timestamp timeslot;
 		int occur = 1;
 		int created = 0;
@@ -74,7 +77,10 @@ public class IncommingJourney
 		    timestampString = gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/timeslot").trim();			
 			timeslot = JUtility.getTimeStampFromISOString(timestampString);	
 			location_to = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/destination").trim());
-
+			loadType = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/loadType").trim());
+			loadTypeDesc = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/loadTypeDesc").trim());
+			haulier = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/haulier").trim());
+			
 			if (ref.length() > 0)
 			{
 
@@ -86,6 +92,9 @@ public class IncommingJourney
 						journey.setStatus("Unassigned");
 						journey.setTimeslot(timeslot);
 						journey.setLocationTo(location_to);
+						journey.setLoadType(loadType);
+						journey.setLoadTypeDesc(loadTypeDesc);
+						journey.setHaulier(haulier);
 						result = journey.create();
 						if (result)
 						{
@@ -136,6 +145,9 @@ public class IncommingJourney
 							journey.setJourneyRef(ref);
 							journey.setTimeslot(timeslot);
 							journey.setLocationTo(location_to);
+							journey.setLoadType(loadType);
+							journey.setLoadTypeDesc(loadTypeDesc);
+							journey.setHaulier(haulier);
 							journey.update();
 							result = true;
 							updated++;
@@ -149,6 +161,9 @@ public class IncommingJourney
 									journey.setJourneyRef(ref);
 									journey.setTimeslot(timeslot);
 									journey.setLocationTo(location_to);
+									journey.setLoadType(loadType);
+									journey.setLoadTypeDesc(loadTypeDesc);
+									journey.setHaulier(haulier);
 									journey.update();
 									result = true;
 									updated++;
