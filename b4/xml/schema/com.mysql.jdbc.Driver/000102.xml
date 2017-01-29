@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	CREATE VIEW `view_journeys` 
+	AS select `app_journey`.`JOURNEY_REF` AS `JOURNEY_REF`,
+	`app_journey`.`STATUS` AS `STATUS`,
+	`app_journey`.`DESPATCH_NO` AS `DESPATCH_NO`,
+	`app_journey`.`TIMESLOT` AS `TIMESLOT`,
+	`app_journey`.`LOCATION_ID_TO` AS `LOCATION_ID_TO`,
+	`app_journey`.`DATE_UPDATED` AS `DATE_UPDATED`,
+	`app_journey`.`LOAD_TYPE` AS `LOAD_TYPE`,
+	`app_journey`.`LOAD_TYPE_DESC` AS `LOAD_TYPE_DESC`,
+	`app_journey`.`HAULIER` AS `HAULIER`,
+	concat(`app_journey`.`TIMESLOT`,' ',rpad(`app_journey`.`LOAD_TYPE`,10,' '),' ',rpad(`app_journey`.`LOAD_TYPE_DESC`,20,' '),rpad(`app_journey`.`HAULIER`,20,' ')) AS `DESCRIPTION` 
+	from `app_journey` 
+	where (`app_journey`.`STATUS` = 'Unassigned');
+</statement>
+
+</DDL>

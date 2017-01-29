@@ -508,6 +508,8 @@ public class JDBDespatch
 
 		if (isValid(false) == true)
 		{
+			String journeyRef = getJourneyRef();
+			
 			assignedList.clear();
 			assignedList.addAll(getAssignedSSCCs());
 
@@ -533,6 +535,18 @@ public class JDBDespatch
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 
 				stmtupdate.close();
+				
+				if (journeyRef.equals("")==false)
+				{
+					JDBJourney jrny = new JDBJourney(getHostID(), getSessionID());
+					if (jrny.getJourneyRefProperties(journeyRef))
+					{
+						jrny.setStatus("Unassigned");
+						jrny.setDespatchNo("");
+						jrny.update();
+					}
+				}
+				
 				result = true;
 			} catch (SQLException e)
 			{

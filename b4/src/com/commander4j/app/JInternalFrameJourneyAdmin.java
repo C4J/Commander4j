@@ -296,8 +296,8 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		query.addParamtoSQL("despatch_no=", jTextFieldDespatchNo.getText());
 		query.addParamtoSQL("status=", jComboBoxStatus.getSelectedItem().toString());
 		query.addParamtoSQL("location_id_to=", jTextFieldLocationID.getText());
-		query.addParamtoSQL("load_type=", jTextFieldLoadType.getText());
-		query.addParamtoSQL("load_type_desc=", jTextFieldLoadTypeDesc.getText());
+		query.addParamtoSQL("upper(load_type) LIKE ", "%" + jTextFieldLoadType.getText().toUpperCase() + "%");
+		query.addParamtoSQL("upper(load_type_desc) LIKE ", "%" + jTextFieldLoadTypeDesc.getText().toUpperCase() + "%");
 		query.addParamtoSQL("haulier=", jTextFieldHaulier.getText());
 
 		if (jCheckBoxFrom.isSelected())

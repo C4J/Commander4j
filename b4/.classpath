@@ -81,7 +81,7 @@
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="lib" path="lib/db/sqljdbc42.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_112]">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/Java SE 8 [1.8.0_121]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>

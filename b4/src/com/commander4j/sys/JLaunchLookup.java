@@ -126,15 +126,15 @@ public class JLaunchLookup
 	
 	public static boolean journeys() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_JOURNEY"));
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}VIEW_JOURNEYS"));
 		JDialogLookup.dlg_title = "Journeys";
 
 		JDialogLookup.dlg_key_field_name = "journey_ref";
-		JDialogLookup.dlg_criteria_field_name_default = "STATUS";
-		JDialogLookup.dlg_orderBy_name_default = "TIMESLOT";
+		JDialogLookup.dlg_criteria_field_name_default = "LOAD_TYPE";
+		JDialogLookup.dlg_orderBy_name_default = "DESCRIPTION";
 		JDialogLookup.dlg_sort_descending = true;
 
-		dlgCriteriaDefault = "Unassigned";
+		dlgCriteriaDefault = "";
 		dlgAutoExec = true;
 
 		JDialogLookup inst = new JDialogLookup(Common.mainForm);

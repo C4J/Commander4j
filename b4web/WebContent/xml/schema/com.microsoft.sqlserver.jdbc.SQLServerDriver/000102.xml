@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	CREATE VIEW [dbo].[VIEW_JOURNEYS]
+	AS
+	SELECT JOURNEY_REF, STATUS, DESPATCH_NO, TIMESLOT, LOCATION_ID_TO, DATE_UPDATED, LOAD_TYPE, LOAD_TYPE_DESC, HAULIER,
+	CONCAT(convert(varchar(25), timeslot, 120),' ' ,
+				  LEFT(ISNULL(LOAD_TYPE,'') + SPACE(10), 10), ' ',
+				  LEFT(ISNULL(LOAD_TYPE_DESC,'') + SPACE(20), 20),  ' ',
+				  LEFT(ISNULL(HAULIER,'') + SPACE(20), 20)) 
+				  AS DESCRIPTION 
+	FROM     dbo.APP_JOURNEY
+	WHERE STATUS = 'Unassigned'	  
+</statement>
+
+
+</DDL>
