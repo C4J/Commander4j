@@ -65,7 +65,7 @@
 		</statement>
 		<statement>
 			<id>JDBGroup.getGroups</id>
-			<text>select * from {schema}sys_groups order by group_id</text>
+			<text>select * from {schema}SYS_GROUPS order by group_id</text>
 		</statement>	
 		<statement>
 			<id>JDBGroup.getGroupProperties</id>
@@ -291,23 +291,23 @@
 		</statement>
 		<statement>
 			<id>JDBUser.recordPasswordChange</id>
-			<text>insert into {schema}sys_users_password_history (user_id,password_version,password)  (select user_id,password_version,password from {schema}sys_users where user_id=?)</text>
+			<text>insert into {schema}SYS_USERS_PASSWORD_HISTORY (user_id,password_version,password)  (select user_id,password_version,password from {schema}SYS_USERS where user_id=?)</text>
 		</statement>
 		<statement>
 			<id>JDBUser.archivePasswordHistory</id>
-			<text>delete from {schema}sys_users_password_history where user_id = ? and password_version &lt;= ? </text>
+			<text>delete from {schema}SYS_USERS_PASSWORD_HISTORY where user_id = ? and password_version &lt;= ? </text>
 		</statement>
 		<statement>
 			<id>JDBUser.renamePasswordHistory</id>
-			<text>update {schema}sys_users_password_history set user_id = ? where user_id = ?</text>
+			<text>update {schema}SYS_USERS_PASSWORD_HISTORY set user_id = ? where user_id = ?</text>
 		</statement>	
 		<statement>
 			<id>JDBUser.deletePasswordHistory</id>
-			<text>delete from {schema}sys_users_password_history where user_id = ?</text>
+			<text>delete from {schema}SYS_USERS_PASSWORD_HISTORY where user_id = ?</text>
 		</statement>		
 		<statement>	
 			<id>JDBUser.findInPasswordHistory</id>
-			<text>select * from {schema}sys_users_password_history where user_id = ? and password_version &gt;= ? and password = ? </text>
+			<text>select * from {schema}SYS_USERS_PASSWORD_HISTORY where user_id = ? and password_version &gt;= ? and password = ? </text>
 		</statement>				
 		<statement>
 			<id>JDBUser.create</id>
@@ -319,19 +319,19 @@
 		</statement>
 		<statement>
 			<id>JDBUser.lock</id>
-			<text>update {schema}sys_users set account_locked = 'Y',account_locked_date=? where User_id = ?</text>
+			<text>update {schema}SYS_USERS set account_locked = 'Y',account_locked_date=? where User_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBUser.unlock</id>
-			<text>update {schema}sys_users set account_locked = 'N',bad_password_attempts = 0,account_locked_date=null where user_id = ?</text>
+			<text>update {schema}SYS_USERS set account_locked = 'N',bad_password_attempts = 0,account_locked_date=null where user_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBUser.disable</id>
-			<text>update {schema}sys_users set account_enabled = 'N' where User_id = ?</text>
+			<text>update {schema}SYS_USERS set account_enabled = 'N' where User_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBUser.enable</id>
-			<text>update {schema}sys_users set account_enabled = 'Y' where user_id = ?</text>
+			<text>update {schema}SYS_USERS set account_enabled = 'Y' where user_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBUser.getUserGroupsUnAssigned</id>
@@ -389,7 +389,7 @@
 		<statement>
 			<id>JDBUserGroupMembership.getUsersAssignedtoGroup</id>
 			<text>select ugm.GROUP_ID,U.* 
-				from sys_user_group_membership ugm, sys_users u 
+				from SYS_USER_GROUP_MEMBERSHIP ugm, SYS_USERS u 
 				where ugm.group_id=? 
 				and u.USER_ID = ugm.USER_ID</text>
 		</statement>			
@@ -559,27 +559,27 @@
 		<?JDBJourney ?>
 		<statement>
 			<id>JDBJourney.getProperties</id>
-			<text>select * from {schema}app_journey where journey_ref = ?</text>
+			<text>select * from {schema}APP_JOURNEY where journey_ref = ?</text>
 		</statement>
 		<statement>
 			<id>JDBJourney.isValid</id>
-			<text>select * from {schema}app_journey where journey_ref = ?</text>
+			<text>select * from {schema}APP_JOURNEY where journey_ref = ?</text>
 		</statement>
 		<statement>
 			<id>JDBJourney.update</id>
-			<text>update {schema}app_journey set status=?,despatch_no=?,date_updated=?,location_id_to=?,timeslot=?,load_type=?,load_type_desc=?,haulier=? where journey_ref=?</text>
+			<text>update {schema}APP_JOURNEY set status=?,despatch_no=?,date_updated=?,location_id_to=?,timeslot=?,load_type=?,load_type_desc=?,haulier=? where journey_ref=?</text>
 		</statement>
 		<statement>
 			<id>JDBJourney.create</id>
-			<text>insert into {schema}app_journey (journey_ref,status,date_updated,location_id_to,timeslot,load_type,load_type_desc,haulier) values (?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_JOURNEY (journey_ref,status,date_updated,location_id_to,timeslot,load_type,load_type_desc,haulier) values (?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBJourney.delete</id>
-			<text>delete from {schema}app_journey where journey_ref = ?</text>
+			<text>delete from {schema}APP_JOURNEY where journey_ref = ?</text>
 		</statement>
 		<statement>
 			<id>JDBJourney.getJourneyList</id>
-			<text>select * from {schema}app_journey where status = 'Unassigned' order by journey_ref</text>
+			<text>select * from {schema}APP_JOURNEY where status = 'Unassigned' order by journey_ref</text>
 		</statement>							
 		<?JDBMaterialType ?>
 		<statement>
@@ -613,7 +613,7 @@
 		<?JDBProcessOrder ?>
 		<statement>
 			<id>JDBProcessOrder.getResources</id>
-			<text>select distinct required_resource from app_process_order where required_resource > '' and required_resource not in (select required_resource from {schema}APP_AUTO_LABELLER_RESOURCES where line = ? and group_id = ?) order by required_resource</text>
+			<text>select distinct required_resource from APP_PROCESS_ORDER where required_resource > '' and required_resource not in (select required_resource from {schema}APP_AUTO_LABELLER_RESOURCES where line = ? and group_id = ?) order by required_resource</text>
 		</statement>
 		<statement>
 			<id>JDBProcessOrder.create</id>
@@ -650,7 +650,7 @@
 		</statement>
 		<statement>
 			<id>JDBLocation.update</id>
-			<text>update {schema}app_location set plant=?,warehouse=?,gln=?,description=?,storage_location=?,storage_type=?,storage_section=?,storage_bin=?,equipment_tracking_id=?,msg_despatch_confirm=?,msg_despatch_preadvice=?,msg_despatch_equip_track=?,msg_prod_confirm=?,permitted_pallet_status=?,permitted_batch_status=?,msg_pallet_status=?,msg_pallet_split=?,msg_pallet_delete=?,enabled=?,msg_journey_ref=? where location_id=?</text>
+			<text>update {schema}APP_LOCATION set plant=?,warehouse=?,gln=?,description=?,storage_location=?,storage_type=?,storage_section=?,storage_bin=?,equipment_tracking_id=?,msg_despatch_confirm=?,msg_despatch_preadvice=?,msg_despatch_equip_track=?,msg_prod_confirm=?,permitted_pallet_status=?,permitted_batch_status=?,msg_pallet_status=?,msg_pallet_split=?,msg_pallet_delete=?,enabled=?,msg_journey_ref=? where location_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBLocation.getLocationProperties</id>
@@ -748,7 +748,7 @@
 		</statement>
 		<statement>
 			<id>JDBDespatch.setConfirmed</id>
-			<text>update {schema}APP_DESPATCH set transaction_ref=?,status=?,despatch_date=?,total_pallets=(select count(sscc) from {schema}app_pallet where despatch_no = ?) where despatch_no=?</text>
+			<text>update {schema}APP_DESPATCH set transaction_ref=?,status=?,despatch_date=?,total_pallets=(select count(sscc) from {schema}APP_PALLET where despatch_no = ?) where despatch_no=?</text>
 		</statement>
 		<statement>
 			<id>JDBDespatch.getDespatchProperties</id>
@@ -882,31 +882,31 @@
 		<?JDBCustomer ?>
 		<statement>
 			<id>JDBCustomer.getCustomerProperties</id>
-			<text>select * from {schema}app_customer where customer_id = ?</text>
+			<text>select * from {schema}APP_CUSTOMER where customer_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBCustomer.getCustomers</id>
-			<text>select * from {schema}app_customer order by customer_id</text>
+			<text>select * from {schema}APP_CUSTOMER order by customer_id</text>
 		</statement>
 		<statement>
 			<id>JDBCustomer.create</id>
-			<text>insert into {schema}app_customer (customer_id,customer_name,print_on_label,override_pack_label,pack_label_module_id,override_pallet_label,pallet_label_module_id,customer_data_01,customer_data_02,updated) values (?,?,?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_CUSTOMER (customer_id,customer_name,print_on_label,override_pack_label,pack_label_module_id,override_pallet_label,pallet_label_module_id,customer_data_01,customer_data_02,updated) values (?,?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBCustomer.delete</id>
-			<text>delete from {schema}app_customer where customer_id = ?</text>
+			<text>delete from {schema}APP_CUSTOMER where customer_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBCustomer.renameTo</id>
-			<text>update {schema}app_customer set customer_id =? where customer_id =?</text>
+			<text>update {schema}APP_CUSTOMER set customer_id =? where customer_id =?</text>
 		</statement>
 		<statement>
 			<id>JDBCustomer.update</id>
-			<text>update {schema}app_customer set customer_name=?,print_on_label=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=?,customer_data_01=?,customer_data_02=?,updated=? where customer_id=?</text>
+			<text>update {schema}APP_CUSTOMER set customer_name=?,print_on_label=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=?,customer_data_01=?,customer_data_02=?,updated=? where customer_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBCustomer.isValidCustomer</id>
-			<text>select * from {schema}app_customer where customer_id = ?</text>
+			<text>select * from {schema}APP_CUSTOMER where customer_id = ?</text>
 		</statement>
 
 		<?JDBMHNReason ?>
@@ -1020,243 +1020,243 @@
 		<?JDQMInspection ?>
 		<statement>
 			<id>JDBQMInspection.create</id>
-			<text>insert into {schema}app_qm_inspection (inspection_id,description,extension_id) values (?,?,?)</text>
+			<text>insert into {schema}APP_QM_INSPECTION (inspection_id,description,extension_id) values (?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMInspection.delete</id>
-			<text>delete from {schema}app_qm_inspection where inspection_id = ?</text>
+			<text>delete from {schema}APP_QM_INSPECTION where inspection_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMInspection.getProperties</id>
-			<text>select * from {schema}app_qm_inspection where inspection_id = ?</text>
+			<text>select * from {schema}APP_QM_INSPECTION where inspection_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMInspection.isValid</id>
-			<text>select * from {schema}app_qm_inspection where inspection_id = ?</text>
+			<text>select * from {schema}APP_QM_INSPECTION where inspection_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMInspection.update</id>
-			<text>update {schema}app_qm_inspection set description = ? where inspection_id = ?</text>
+			<text>update {schema}APP_QM_INSPECTION set description = ? where inspection_id = ?</text>
 		</statement>
 		<?JDBQMActivity ?>
 		<statement>
 			<id>JDBQMActivity.getActivities</id>
-			<text>select * from {schema}app_qm_activity where inspection_id = ? order by activity_id</text>
+			<text>select * from {schema}APP_QM_ACTIVITY where inspection_id = ? order by activity_id</text>
 		</statement>
 		<statement>
 			<id>JDBQMActivity.create</id>
-			<text>insert into {schema}app_qm_activity (inspection_id,activity_id,description,extension_id) values (?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_ACTIVITY (inspection_id,activity_id,description,extension_id) values (?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMActivity.delete</id>
-			<text>delete from {schema}app_qm_activity where inspection_id = ? and activity_id = ?</text>
+			<text>delete from {schema}APP_QM_ACTIVITY where inspection_id = ? and activity_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMActivity.getProperties</id>
-			<text>select * from {schema}app_qm_activity where inspection_id = ? and activity_id = ?</text>
+			<text>select * from {schema}APP_QM_ACTIVITY where inspection_id = ? and activity_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMActivity.isValid</id>
-			<text>select * from {schema}app_qm_activity where inspection_id = ? and activity_id = ?</text>
+			<text>select * from {schema}APP_QM_ACTIVITY where inspection_id = ? and activity_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMActivity.update</id>
-			<text>update {schema}app_qm_activity set description = ? where inspection_id = ? and activity_id = ?</text>
+			<text>update {schema}APP_QM_ACTIVITY set description = ? where inspection_id = ? and activity_id = ?</text>
 		</statement>
 		<?JDBQMTest ?>
 		<statement>
 			<id>JDBQMTest.getTests</id>
-			<text>select * from {schema}app_qm_test where inspection_id = ? and activity_id =? order by sequence_id</text>
+			<text>select * from {schema}APP_QM_TEST where inspection_id = ? and activity_id =? order by sequence_id</text>
 		</statement>
 		<statement>
 			<id>JDBQMTest.create</id>
-			<text>insert into {schema}app_qm_test (inspection_id,activity_id,test_id,sequence_id,extension_id) values (?,?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_TEST (inspection_id,activity_id,test_id,sequence_id,extension_id) values (?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMTest.delete</id>
-			<text>delete from {schema}app_qm_test where inspection_id = ? and activity_id = ? and test_id=?</text>
+			<text>delete from {schema}APP_QM_TEST where inspection_id = ? and activity_id = ? and test_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBQMTest.getProperties</id>
-			<text>select * from {schema}app_qm_test where inspection_id = ? and activity_id = ? and test_id=?</text>
+			<text>select * from {schema}APP_QM_TEST where inspection_id = ? and activity_id = ? and test_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBQMTest.isValid</id>
-			<text>select * from {schema}app_qm_test where inspection_id = ? and activity_id = ? and test_id=?</text>
+			<text>select * from {schema}APP_QM_TEST where inspection_id = ? and activity_id = ? and test_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBQMTest.update</id>
-			<text>update {schema}app_qm_test set sequence_id = ? where inspection_id = ? and activity_id = ? and test_id=?</text>
+			<text>update {schema}APP_QM_TEST set sequence_id = ? where inspection_id = ? and activity_id = ? and test_id=?</text>
 		</statement>
 		<?JDBQMDictionary ?>
 		<statement>
 			<id>JDBQMDictionary.getTests</id>
-			<text>select * from {schema}app_qm_dictionary order by test_id</text>
+			<text>select * from {schema}APP_QM_DICTIONARY order by test_id</text>
 		</statement>
 		<statement>
 			<id>JDBQMDictionary.create</id>
-			<text>insert into {schema}app_qm_dictionary (test_id,field_alignment,description,datatype,uom,required,select_list_id,visible,extension_id,field_width) values (?,?,?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_DICTIONARY (test_id,field_alignment,description,datatype,uom,required,select_list_id,visible,extension_id,field_width) values (?,?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMDictionary.delete</id>
-			<text>delete from {schema}app_qm_dictionary where test_id = ?</text>
+			<text>delete from {schema}APP_QM_DICTIONARY where test_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMDictionary.getProperties</id>
-			<text>select * from {schema}app_qm_dictionary where test_id = ?</text>
+			<text>select * from {schema}APP_QM_DICTIONARY where test_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMDictionary.isValid</id>
-			<text>select * from {schema}app_qm_dictionary where test_id = ?</text>
+			<text>select * from {schema}APP_QM_DICTIONARY where test_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMDictionary.update</id>
-			<text>update {schema}app_qm_dictionary set field_alignment=?,description=?,datatype=?,uom=?,required=?,select_list_id=?,visible=?,field_width=? where test_id = ?</text>
+			<text>update {schema}APP_QM_DICTIONARY set field_alignment=?,description=?,datatype=?,uom=?,required=?,select_list_id=?,visible=?,field_width=? where test_id = ?</text>
 		</statement>
 		<?JDBQMExtension ?>
 		<statement>
 			<id>JDBQMExtension.getProperties</id>
-			<text>select * from {schema}app_qm_extension where extension_id = ? and linked_table = ? and fieldname = ?</text>
+			<text>select * from {schema}APP_QM_EXTENSION where extension_id = ? and linked_table = ? and fieldname = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMExtension.create</id>
-			<text>insert into {schema}app_qm_extension (extension_id,linked_table,fieldname,value) values (?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_EXTENSION (extension_id,linked_table,fieldname,value) values (?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMExtension.delete</id>
-			<text>delete from {schema}app_qm_extension where extension_id = ? and linked_table = ? and fieldname = ?</text>
+			<text>delete from {schema}APP_QM_EXTENSION where extension_id = ? and linked_table = ? and fieldname = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMExtension.getExtensions</id>
-			<text>select * from {schema}app_qm_extension where extension_id = ? order by linked_table,fieldname</text>
+			<text>select * from {schema}APP_QM_EXTENSION where extension_id = ? order by linked_table,fieldname</text>
 		</statement>
 		<statement>
 			<id>JDBQMExtension.update</id>
-			<text>update {schema}app_qm_extension set value = ? where extension_id = ? and linked_table = ? and fieldname = ?</text>
+			<text>update {schema}APP_QM_EXTENSION set value = ? where extension_id = ? and linked_table = ? and fieldname = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMExtension.isValid</id>
-			<text>select * from {schema}app_qm_extension where extension_id = ? and linked_table = ? and fieldname = ?</text>
+			<text>select * from {schema}APP_QM_EXTENSION where extension_id = ? and linked_table = ? and fieldname = ?</text>
 		</statement>
 		<?JDBQMSample ?>
 		<statement>
 			<id>JDBQMSample.getSamples</id>
-			<text>select * from {schema}app_qm_sample where process_order=? and inspection_id = ? and activity_id = ? order by sample_date</text>
+			<text>select * from {schema}APP_QM_SAMPLE where process_order=? and inspection_id = ? and activity_id = ? order by sample_date</text>
 		</statement>
 		<statement>
 			<id>JDBQMSample.create</id>
-			<text>insert into {schema}app_qm_sample (sample_id,inspection_id,activity_id,process_order,material,sample_date,user_id,user_data_1,user_data_2) values (?,?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_SAMPLE (sample_id,inspection_id,activity_id,process_order,material,sample_date,user_id,user_data_1,user_data_2) values (?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMSample.delete</id>
-			<text>delete from {schema}app_qm_sample where sample_id = ?</text>
+			<text>delete from {schema}APP_QM_SAMPLE where sample_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMSample.getProperties</id>
-			<text>select * from {schema}app_qm_sample where sample_id = ?</text>
+			<text>select * from {schema}APP_QM_SAMPLE where sample_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMSample.isValid</id>
-			<text>select * from {schema}app_qm_sample where sample_id = ?</text>
+			<text>select * from {schema}APP_QM_SAMPLE where sample_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMSample.update</id>
-			<text>update {schema}app_qm_sample set inspection_id=?,activity_id=?,process_order=?,material=?,sample_date=?,user_id=?,user_data_1=?,user_data_2=? where sample_id = ?</text>
+			<text>update {schema}APP_QM_SAMPLE set inspection_id=?,activity_id=?,process_order=?,material=?,sample_date=?,user_id=?,user_data_1=?,user_data_2=? where sample_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMSample.selectWithLimit</id>
-			<text>select * from {schema}app_qm_sample</text>
+			<text>select * from {schema}APP_QM_SAMPLE</text>
 		</statement>
 		<?JDBQMResult ?>
 		<statement>
 			<id>JDBQMResult.getResults</id>
-			<text>select * from {schema}app_qm_result where sample_id = ? and test_id = ?</text>
+			<text>select * from {schema}APP_QM_RESULT where sample_id = ? and test_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMResult.create</id>
-			<text>insert into {schema}app_qm_result (sample_id,test_id,value,updated,user_id,status,processed) values (?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_RESULT (sample_id,test_id,value,updated,user_id,status,processed) values (?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMResult.delete</id>
-			<text>delete from {schema}app_qm_result where sample_id = ? and test_id = ?</text>
+			<text>delete from {schema}APP_QM_RESULT where sample_id = ? and test_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMResult.getProperties</id>
-			<text>select * from {schema}app_qm_result where sample_id = ? and test_id = ?</text>
+			<text>select * from {schema}APP_QM_RESULT where sample_id = ? and test_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMResult.isValid</id>
-			<text>select * from {schema}app_qm_result where sample_id = ? and test_id = ?</text>
+			<text>select * from {schema}APP_QM_RESULT where sample_id = ? and test_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMResult.update</id>
-			<text>update {schema}app_qm_result set value=?,updated=?,user_id=?,status=?,processed=? where sample_id = ? and test_id = ?</text>
+			<text>update {schema}APP_QM_RESULT set value=?,updated=?,user_id=?,status=?,processed=? where sample_id = ? and test_id = ?</text>
 		</statement>
 		<?JDBQMSequenceList ?>
 		<statement>
 			<id>JDBQMSelectList.getList</id>
-			<text>select * from {schema}app_qm_selectlist where select_list_id = ? order by sequence,value</text>
+			<text>select * from {schema}APP_QM_SELECTLIST where select_list_id = ? order by sequence,value</text>
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.getLists</id>
-			<text>select * from {schema}app_qm_selectlist order by select_list_id,sequence,value</text>
+			<text>select * from {schema}APP_QM_SELECTLIST order by select_list_id,sequence,value</text>
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.create</id>
-			<text>insert into {schema}app_qm_selectlist (select_list_id,value,description,sequence) values (?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_SELECTLIST (select_list_id,value,description,sequence) values (?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.delete</id>
-			<text>delete from {schema}app_qm_selectlist where select_list_id = ? and value = ?</text>
+			<text>delete from {schema}APP_QM_SELECTLIST where select_list_id = ? and value = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.getProperties</id>
-			<text>select * from {schema}app_qm_selectlist where select_list_id = ? and value = ?</text>
+			<text>select * from {schema}APP_QM_SELECTLIST where select_list_id = ? and value = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.isValid</id>
-			<text>select * from {schema}app_qm_selectlist where select_list_id = ? and value = ?</text>
+			<text>select * from {schema}APP_QM_SELECTLIST where select_list_id = ? and value = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.update</id>
-			<text>update {schema}app_qm_selectlist set description = ?,sequence=? where select_list_id = ? and value = ?</text>
+			<text>update {schema}APP_QM_SELECTLIST set description = ?,sequence=? where select_list_id = ? and value = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.getSummary</id>
-			<text>select distinct(select_list_id) as select_list_id from {schema}app_qm_selectlist order by select_list_id</text>
+			<text>select distinct(select_list_id) as select_list_id from {schema}APP_QM_SELECTLIST order by select_list_id</text>
 		</statement>
 		<?JDBAutoLabeller?>
 		<statement>
 			<id>JDBAutoLabeller.create</id>
-			<text>insert into {schema}app_auto_labeller (line,group_id,description,unique_id,modified,validate_resource,validate_workstation) values (?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_AUTO_LABELLER (line,group_id,description,unique_id,modified,validate_resource,validate_workstation) values (?,?,?,?,?,?,?)</text>
 		</statement>	
 		<statement>
 			<id>JDBAutoLabeller.resend</id>
-			<text>update {schema}app_auto_labeller set modified = ? where line = ? and group_id = ?</text>
+			<text>update {schema}APP_AUTO_LABELLER set modified = ? where line = ? and group_id = ?</text>
 		</statement>			
 		<statement>
 			<id>JDBAutoLabeller.delete</id>
-			<text>delete from {schema}app_auto_labeller where line = ? and group_id = ?</text>
+			<text>delete from {schema}APP_AUTO_LABELLER where line = ? and group_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBAutoLabeller.renameTo</id>
-			<text>update {schema}app_auto_labeller set line = ? where line = ? and group_id = ?</text>
+			<text>update {schema}APP_AUTO_LABELLER set line = ? where line = ? and group_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBAutoLabeller.isValidLine</id>
-			<text>select line from {schema}app_auto_labeller where line = ? and group_id = ?</text>
+			<text>select line from {schema}APP_AUTO_LABELLER where line = ? and group_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBAutoLabeller.getProperties</id>
-			<text>select * from {schema}app_auto_labeller where line = ? and group_id = ?</text>
+			<text>select * from {schema}APP_AUTO_LABELLER where line = ? and group_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBAutoLabeller.update</id>
-			<text>update {schema}app_auto_labeller set unique_id=?,description=?,use_sscc_range=?,modified=?,validate_resource=?,validate_workstation=? where line = ? and group_id = ?</text>
+			<text>update {schema}APP_AUTO_LABELLER set unique_id=?,description=?,use_sscc_range=?,modified=?,validate_resource=?,validate_workstation=? where line = ? and group_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBAutoLabeller.updateSSCC</id>
-			<text>update {schema}app_auto_labeller set sscc_sequence=? where line = ? and group_id = ?</text>
+			<text>update {schema}APP_AUTO_LABELLER set sscc_sequence=? where line = ? and group_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBAutoLabeller.getLabellerIDs</id>
@@ -1573,23 +1573,23 @@
 		<?JDBProcessOrderResource ?>
 		<statement>
 			<id>JDBProcessOrderResource.create</id>
-			<text>insert into {schema}app_process_order_resource (required_resource,enabled,description,batch_suffix) values (?,?,?,?)</text>
+			<text>insert into {schema}APP_PROCESS_ORDER_RESOURCE (required_resource,enabled,description,batch_suffix) values (?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBProcessOrderResource.delete</id>
-			<text>delete from {schema}app_process_order_resource where required_resource = ?</text>
+			<text>delete from {schema}APP_PROCESS_ORDER_RESOURCE where required_resource = ?</text>
 		</statement>
 		<statement>
 			<id>JDBProcessOrderResource.isValidResource</id>
-			<text>select * from {schema}app_process_order_resource where required_resource = ?</text>
+			<text>select * from {schema}APP_PROCESS_ORDER_RESOURCE where required_resource = ?</text>
 		</statement>
 		<statement>
 			<id>JDBProcessOrderResource.update</id>
-			<text>update {schema}app_process_order_resource set enabled = ?,batch_suffix=?,description=? where required_resource = ?</text>
+			<text>update {schema}APP_PROCESS_ORDER_RESOURCE set enabled = ?,batch_suffix=?,description=? where required_resource = ?</text>
 		</statement>
 		<statement>
 			<id>JDBProcessOrderResource.getProperties</id>
-			<text>select * from {schema}app_process_order_resource where required_resource = ?</text>
+			<text>select * from {schema}APP_PROCESS_ORDER_RESOURCE where required_resource = ?</text>
 		</statement>				
 	</jdbcDriver>
 </SQL>

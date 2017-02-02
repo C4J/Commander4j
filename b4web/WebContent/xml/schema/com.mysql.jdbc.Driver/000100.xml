@@ -75,11 +75,11 @@ INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_C
 </statement>
 
 <statement>
-	DROP VIEW view_label_data_process_order
+	DROP VIEW VIEW_LABEL_DATA_PROCESS_ORDER
 </statement>
 
 <statement>
-	CREATE VIEW view_label_data_process_order
+	CREATE VIEW VIEW_LABEL_DATA_PROCESS_ORDER
 		AS
 		SELECT        PO.PROCESS_ORDER, PO.STATUS, PO.MATERIAL, PO.REQUIRED_UOM, PO.REQUIRED_RESOURCE, PO.DUE_DATE, MAT.MATERIAL_TYPE, MAT.DESCRIPTION, 
 		                         RIGHT('00000000000000' + MATUOM_PROD.EAN, 14) AS PROD_EAN, RIGHT('00' + MATUOM_PROD.VARIANT, 2) AS PROD_VARIANT, 
@@ -101,11 +101,11 @@ INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_C
 </statement>
 
 <statement>
-	DROP VIEW view_labeller_process_order_info
+	DROP VIEW VIEW_LABELLER_PROCESS_ORDER_INFO
 </statement>
 
 <statement>
-	CREATE VIEW `view_labeller_process_order_info` AS
+	CREATE VIEW `VIEW_LABELLER_PROCESS_ORDER_INFO` AS
 	    (select `PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
 		`PO`.`MATERIAL` AS `MATERIAL`,
 		`PO`.`STATUS` AS `STATUS`,
@@ -128,11 +128,11 @@ INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_C
 		ifnull(`CUST`.`CUSTOMER_DATA_02`,'') AS `PALLET__LABEL`,
 		`CUST`.`UPDATED` AS `CUSTOMER_UPDATED`
 		FROM
-		(((((`app_process_order` `PO` left join `app_material` `MAT` on((`MAT`.`MATERIAL` = `PO`.`MATERIAL`))) 
-		left join `app_customer` `CUST` on((`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`))) 
-		left join `app_material_uom` `MATUOM` on(((`MATUOM`.`MATERIAL` = `PO`.`MATERIAL`) and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`)))) 
-		left join `app_material_uom` `MATUOMFULL` on(((`MATUOMFULL`.`MATERIAL` = `PO`.`MATERIAL`) and (`MATUOMFULL`.`UOM` = 'PAL')))) 
-		left join `app_material_customer_data` `CUSTDATA` on(((`CUSTDATA`.`MATERIAL` = `PO`.`MATERIAL`) and (`CUSTDATA`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`) and (`CUSTDATA`.`DATA_ID` = 'PART_NO')))))	                        
+		(((((`APP_PROCESS_ORDER` `PO` left join `APP_MATERIAL` `MAT` on((`MAT`.`MATERIAL` = `PO`.`MATERIAL`))) 
+		left join `APP_CUSTOMER` `CUST` on((`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`))) 
+		left join `APP_MATERIAL_UOM` `MATUOM` on(((`MATUOM`.`MATERIAL` = `PO`.`MATERIAL`) and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`)))) 
+		left join `APP_MATERIAL_UOM` `MATUOMFULL` on(((`MATUOMFULL`.`MATERIAL` = `PO`.`MATERIAL`) and (`MATUOMFULL`.`UOM` = 'PAL')))) 
+		left join `APP_MATERIAL_CUSTOMER_DATA` `CUSTDATA` on(((`CUSTDATA`.`MATERIAL` = `PO`.`MATERIAL`) and (`CUSTDATA`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`) and (`CUSTDATA`.`DATA_ID` = 'PART_NO')))))	                        
 </statement>
 
 </DDL>
