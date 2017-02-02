@@ -189,6 +189,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 								{
 									jButtonLookupJourneyRef.setEnabled(false);
 									jButtonRemoveJourneyRef.setEnabled(false);
+									textFieldJourneyRef.setText("");
 									d.setJourneyRef("");
 								}
 							}
@@ -722,6 +723,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 					{
 						jButtonLookupJourneyRef.setEnabled(false);
 						jButtonRemoveJourneyRef.setEnabled(false);
+						textFieldJourneyRef.setText("");
+						d.setJourneyRef("");
 					}
 					updateDespatch(d);
 				}
