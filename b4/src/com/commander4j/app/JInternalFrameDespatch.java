@@ -34,6 +34,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.commander4j.db.JDBDespatch;
+import com.commander4j.db.JDBJourney;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBLocation;
 import com.commander4j.db.JDBMaterial;
@@ -85,6 +86,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private JSpinner spinnerDespatchLimit = new JSpinner();
 	private JDBDespatch despatch = new JDBDespatch(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBJourney journey = new JDBJourney(Common.selectedHostID, Common.sessionID);
 	private JButton4j confirmButton = new JButton4j(Common.icon_ok);
 	private JButton4j deleteButton = new JButton4j(Common.icon_delete);
 	private JButton4j buttonUnAssign = new JButton4j(Common.icon_arrow_right);
@@ -108,8 +110,9 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private PreparedStatement listStatement;
 	private JButton4j jButtonLookupJourneyRef;
 	private JTextField4j textFieldJourneyRef;
-	private JButton4j jButtonRemoveJourneyRef= new JButton4j(Common.icon_remove);
-
+	private JButton4j jButtonRemoveJourneyRef= new JButton4j(Common.icon_despatch_remove);
+	private JButton4j jButtonAddJourneyRef= new JButton4j(Common.icon_despatch_add);
+	
 	public JInternalFrameDespatch()
 	{
 		super();
@@ -169,6 +172,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 								newButton.setEnabled(false);
 								jButtonLookupJourneyRef.setEnabled(false);
 								jButtonRemoveJourneyRef.setEnabled(false);
+								jButtonAddJourneyRef.setEnabled(false);
 							} else
 							{
 								deleteButton.setEnabled(true);
@@ -185,10 +189,13 @@ public class JInternalFrameDespatch extends JInternalFrame
 								{
 									jButtonLookupJourneyRef.setEnabled(true);
 									jButtonRemoveJourneyRef.setEnabled(true);
+									jButtonAddJourneyRef.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DESPATCH_NO_JOURNEY"));
 								} else
 								{
 									jButtonLookupJourneyRef.setEnabled(false);
 									jButtonRemoveJourneyRef.setEnabled(false);
+									jButtonAddJourneyRef.setEnabled(false);
+									jButtonAddJourneyRef.setEnabled(false);
 									textFieldJourneyRef.setText("");
 									d.setJourneyRef("");
 								}
@@ -719,11 +726,13 @@ public class JInternalFrameDespatch extends JInternalFrame
 					{
 						jButtonLookupJourneyRef.setEnabled(true);
 						jButtonRemoveJourneyRef.setEnabled(true);
+						jButtonAddJourneyRef.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DESPATCH_NO_JOURNEY"));
 					} else
 					{
 						jButtonLookupJourneyRef.setEnabled(false);
 						jButtonRemoveJourneyRef.setEnabled(false);
 						textFieldJourneyRef.setText("");
+						jButtonAddJourneyRef.setEnabled(false);
 						d.setJourneyRef("");
 					}
 					updateDespatch(d);
@@ -952,10 +961,10 @@ public class JInternalFrameDespatch extends JInternalFrame
 		textFieldJourneyRef = new JTextField4j(20);
 		textFieldJourneyRef.setText("");
 		textFieldJourneyRef.setEditable(false);
-		textFieldJourneyRef.setBounds(172, 246, 100, 20);
+		textFieldJourneyRef.setBounds(172, 246, 79, 20);
 		desktopPane.add(textFieldJourneyRef);
 
-		jButtonLookupJourneyRef = new JButton4j();
+		jButtonLookupJourneyRef = new JButton4j(Common.icon_lookup);
 		jButtonLookupJourneyRef.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -975,9 +984,9 @@ public class JInternalFrameDespatch extends JInternalFrame
 				}
 			}
 		});
-		jButtonLookupJourneyRef.setText("...");
+		jButtonLookupJourneyRef.setText("");
 		jButtonLookupJourneyRef.setEnabled(false);
-		jButtonLookupJourneyRef.setBounds(272, 245, 21, 21);
+		jButtonLookupJourneyRef.setBounds(251, 245, 21, 21);
 		desktopPane.add(jButtonLookupJourneyRef);
 		jButtonRemoveJourneyRef.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -987,10 +996,30 @@ public class JInternalFrameDespatch extends JInternalFrame
 				updateDespatch(d);
 			}
 		});
-
+		
 		jButtonRemoveJourneyRef.setEnabled(false);
-		jButtonRemoveJourneyRef.setBounds(293, 245, 21, 21);
+		jButtonRemoveJourneyRef.setToolTipText(lang.get("btn_Despatch_BLANK_Journey"));
+		jButtonRemoveJourneyRef.setBounds(272, 245, 21, 21);
 		desktopPane.add(jButtonRemoveJourneyRef);
+		
+		jButtonAddJourneyRef.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
+				journey.setJourneyRef("NO JOURNEY");
+				journey.setStatus("Unassigned");
+				journey.setDespatchNo("");
+				journey.update();
+				textFieldJourneyRef.setText("NO JOURNEY");
+
+				d.setJourneyRef("NO JOURNEY");
+				updateDespatch(d);
+
+			}
+		});
+		jButtonAddJourneyRef.setEnabled(false);
+		jButtonAddJourneyRef.setBounds(293, 245, 21, 21);
+		jButtonAddJourneyRef.setToolTipText(lang.get("btn_Despatch_NO_JOURNEY"));
+		desktopPane.add(jButtonAddJourneyRef);
 
 		jStatusText = new JLabel4j_std("");
 		jStatusText.setBounds(0, 460, 830, 21);

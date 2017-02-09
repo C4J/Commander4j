@@ -248,6 +248,8 @@ public class Common
 	public final static Icon icon_confirm = Common.imageIconloader.getImageIcon(Common.image_confirm);
 	public final static Icon icon_groups = Common.imageIconloader.getImageIcon(Common.image_groups);
 	public final static Icon icon_remove = Common.imageIconloader.getImageIcon(Common.image_remove);
+	public final static Icon icon_despatch_remove = Common.imageIconloader.getImageIcon(Common.image_despatch_remove);
+	public final static Icon icon_despatch_add = Common.imageIconloader.getImageIcon(Common.image_despatch_add);
 	
 	public final static String image_remove = "remove.gif";
 	public final static String image_resend = "resend.gif";
@@ -331,7 +333,9 @@ public class Common
 	public final static String image_printer_disabled = "cancel.gif";
 	public final static String image_auto_label = "auto_labeller.png";
 	public final static String image_confirm = "CMD_Icon.gif";
-
+	public final static String image_despatch_add = "journey_add.gif";
+	public final static String image_despatch_remove = "journey_remove.gif";
+	
 	public static int user_password_expiry_days = 14;
 	public static int user_max_password_attempts = 3;
 	public static boolean active_mq_enabled = false;
