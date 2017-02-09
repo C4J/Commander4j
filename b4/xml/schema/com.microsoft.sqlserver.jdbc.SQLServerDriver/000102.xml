@@ -75,5 +75,7 @@
 
 <statement>INSERT INTO [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN',N'FRM_ADMIN_DESPATCH_NO_JOURNEY')</statement>
 
+<statement>INSERT INTO [dbo].[APP_JOURNEY] ([JOURNEY_REF], [STATUS]) VALUES (N'NO JOURNEY',N'Unassigned')</statement>
+
 
 </DDL>
