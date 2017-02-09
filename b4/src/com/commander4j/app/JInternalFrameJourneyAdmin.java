@@ -731,7 +731,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
-					{ "JOURNEY_REF", "LOCATION_ID_TO", "DESPATCH_NO", "STATUS", "TIMESLOT", "DATE_UPDATED" });
+					{ "JOURNEY_REF", "LOCATION_ID_TO", "DESPATCH_NO", "STATUS", "TIMESLOT", "DATE_UPDATED","LOAD_TYPE" ,"LOAD_TYPE_DESC","HAULIER"});
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
