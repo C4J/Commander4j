@@ -235,13 +235,20 @@ public class JDBQMTest
 
 			while (rs.next())
 			{
-				JDBQMTest mt = new JDBQMTest(getHostID(), getSessionID());
-				mt.setInspectionID(rs.getString("inspection_id"));
-				mt.setActivityID(rs.getString("activity_id"));
-				mt.setTestID(rs.getString("test_id"));
-				mt.setSequence(rs.getLong("sequence_id"));
-				mt.setExtensionID(rs.getLong("extension_id"));
-				testList.add(mt);
+				JDBQMDictionary dict = new JDBQMDictionary(getHostID(), getSessionID());
+				if (dict.getProperties(rs.getString("test_id")))
+				{
+					if (dict.getVisible().equals("Y"))
+					{
+						JDBQMTest mt = new JDBQMTest(getHostID(), getSessionID());
+						mt.setInspectionID(rs.getString("inspection_id"));
+						mt.setActivityID(rs.getString("activity_id"));
+						mt.setTestID(rs.getString("test_id"));
+						mt.setSequence(rs.getLong("sequence_id"));
+						mt.setExtensionID(rs.getLong("extension_id"));
+						testList.add(mt);
+					}
+				}
 			}
 			rs.close();
 			stmt.close();

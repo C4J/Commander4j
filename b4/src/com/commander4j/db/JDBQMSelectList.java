@@ -187,7 +187,7 @@ public class JDBQMSelectList
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
-		logger.debug("JDBQMSequenceList getProperties SelectList ["+getSelectListID()+"] Value ["+getValue()+"]");
+		//logger.debug("JDBQMSequenceList getProperties SelectList ["+getSelectListID()+"] Value ["+getValue()+"]");
 
 		clear();
 
@@ -430,7 +430,8 @@ public class JDBQMSelectList
 			}
 			else
 			{
-				result = JUtility.padString(getValue(), true, field_value_id, " ") + " - " + getDescription();	
+				//result = JUtility.padString(getValue(), true, field_value_id, " ") + " - " + getDescription();	
+				result = getValue() + " - " + getDescription();	
 			}
 		}
 		else {

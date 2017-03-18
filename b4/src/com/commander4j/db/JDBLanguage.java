@@ -110,7 +110,14 @@ public class JDBLanguage
 	{
 		String result = "";
 		String language = JUtility.replaceNullStringwithBlank(Common.userList.getUser(getSessionID()).getLanguage());
+		try
+		{
 		result = get(key, language);
+		}
+		catch (Exception ex)
+		{
+			result="error";
+		}
 		return result;
 	}
 

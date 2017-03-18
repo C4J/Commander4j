@@ -201,6 +201,7 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 				{
 					JDBQMSelectList sl = new JDBQMSelectList();
 					sl.setSelectListID(listID.get(col));
+					//System.out.println("Cell value is :["+res.getValue()+  "] row "+String.valueOf(row)+" col "+String.valueOf(col));
 					sl.setValue(res.getValue());
 					select.setSelectListID(listID.get(col));
 					select.setValue(res.getValue());
