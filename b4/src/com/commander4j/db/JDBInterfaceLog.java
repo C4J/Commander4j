@@ -39,6 +39,13 @@ import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBInterfaceLog is used to record all activities of the interface module.
+ * When a messages is processed, whether it be inbound or outbound its recorded
+ * in this log along with the status, Success or Fail. A screen within the
+ * application allows messages to be re-processed if needed.
+ *
+ */
 public class JDBInterfaceLog
 {
 
@@ -60,7 +67,7 @@ public class JDBInterfaceLog
 	public static int field_action = 45;
 	public static int field_workstation_id = 45;
 	public static int field_filename = 150;
-	
+
 	private final Logger logger = Logger.getLogger(JDBInterfaceLog.class);
 
 	private String hostID;
@@ -88,7 +95,8 @@ public class JDBInterfaceLog
 		create();
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		setEventTime(null);
 		setMessageRef("");
 		setInterfaceType("");
@@ -98,7 +106,8 @@ public class JDBInterfaceLog
 		setMessageStatus("");
 	}
 
-	public boolean create() {
+	public boolean create()
+	{
 
 		logger.debug("create [" + getInterfaceType() + "][" + getInterfaceDirection() + "]");
 
@@ -126,8 +135,7 @@ public class JDBInterfaceLog
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -135,7 +143,8 @@ public class JDBInterfaceLog
 		return result;
 	}
 
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -151,8 +160,7 @@ public class JDBInterfaceLog
 			stmtupdate.close();
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -160,7 +168,8 @@ public class JDBInterfaceLog
 		return result;
 	}
 
-	public boolean archive() {
+	public boolean archive()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -177,8 +186,7 @@ public class JDBInterfaceLog
 			stmtupdate.close();
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -186,7 +194,8 @@ public class JDBInterfaceLog
 		return result;
 	}
 
-	public ResultSet getInterfaceDataResultSet(PreparedStatement criteria) {
+	public ResultSet getInterfaceDataResultSet(PreparedStatement criteria)
+	{
 
 		ResultSet rs;
 
@@ -194,8 +203,7 @@ public class JDBInterfaceLog
 		{
 			rs = criteria.executeQuery();
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -204,7 +212,8 @@ public class JDBInterfaceLog
 		return rs;
 	}
 
-	public long generateNewInterfaceLogID() {
+	public long generateNewInterfaceLogID()
+	{
 		long result = 0;
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
 		String temp = "";
@@ -234,17 +243,14 @@ public class JDBInterfaceLog
 							retry = false;
 						}
 					}
-				}
-				else
+				} else
 				{
 					logger.debug("Record Locked !");
 					retry = true;
 					counter++;
 				}
-			}
-			while (retry);
-		}
-		else
+			} while (retry);
+		} else
 		{
 			ctrl.getKeyValueWithDefault("INTERFACE LOG ID", "1", "Unique Interface Log ID");
 			interfaceLogID = 1;
@@ -256,31 +262,38 @@ public class JDBInterfaceLog
 		return result;
 	}
 
-	public String getAction() {
+	public String getAction()
+	{
 		return dbAction;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return JUtility.replaceNullStringwithBlank(dbMessageError);
 	}
 
-	public String getFilename() {
+	public String getFilename()
+	{
 		return JUtility.replaceNullStringwithBlank(dbFilename);
 	}
 
-	public Timestamp getEventTime() {
+	public Timestamp getEventTime()
+	{
 		return dbEventTime;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
-	public String getInterfaceDirection() {
+	public String getInterfaceDirection()
+	{
 		return dbInterfaceDirection;
 	}
 
-	public Vector<JDBInterfaceLog> getInterfaceLogData(PreparedStatement criteria) {
+	public Vector<JDBInterfaceLog> getInterfaceLogData(PreparedStatement criteria)
+	{
 
 		ResultSet rs;
 		Vector<JDBInterfaceLog> result = new Vector<JDBInterfaceLog>();
@@ -288,8 +301,7 @@ public class JDBInterfaceLog
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
 			result.addElement(new JDBInterfaceLog(JUtility.getSQLDateTime(), Long.valueOf("0"), "messageRef", "interfaceType", "messageInfo", "interfaceDirection", JUtility.getSQLDateTime(), "messageStatus", "messageError", "action"));
-		}
-		else
+		} else
 		{
 			try
 			{
@@ -298,13 +310,12 @@ public class JDBInterfaceLog
 				while (rs.next())
 				{
 					getPropertiesfromResultSet(rs);
-					result.addElement(new JDBInterfaceLog(getEventTime(), getInterfaceLogID(), getMessageRef(), getInterfaceType(), getMessageInformation(), getInterfaceDirection(), getMessageDate(), getMessageStatus(), getMessageError(),
-							getAction()));
+					result.addElement(
+							new JDBInterfaceLog(getEventTime(), getInterfaceLogID(), getMessageRef(), getInterfaceType(), getMessageInformation(), getInterfaceDirection(), getMessageDate(), getMessageStatus(), getMessageError(), getAction()));
 				}
 				rs.close();
 
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -313,7 +324,8 @@ public class JDBInterfaceLog
 		return result;
 	}
 
-	public ResultSet getInterfaceLogDataResultSet(PreparedStatement criteria) {
+	public ResultSet getInterfaceLogDataResultSet(PreparedStatement criteria)
+	{
 
 		ResultSet rs;
 
@@ -321,8 +333,7 @@ public class JDBInterfaceLog
 		{
 			rs = criteria.executeQuery();
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -331,11 +342,13 @@ public class JDBInterfaceLog
 		return rs;
 	}
 
-	public Long getInterfaceLogID() {
+	public Long getInterfaceLogID()
+	{
 		return dbInterfaceLogID;
 	}
 
-	public boolean getInterfaceLogProperties() {
+	public boolean getInterfaceLogProperties()
+	{
 		boolean result = false;
 
 		PreparedStatement stmt;
@@ -356,27 +369,27 @@ public class JDBInterfaceLog
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid InterfaceLogID");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public boolean getInterfaceLogProperties(Long logID) {
+	public boolean getInterfaceLogProperties(Long logID)
+	{
 		setInterfaceLogID(logID);
 		return getInterfaceLogProperties();
 	}
 
-	public ResultSet getInterfaceLogResultSet(PreparedStatement criteria) {
+	public ResultSet getInterfaceLogResultSet(PreparedStatement criteria)
+	{
 
 		ResultSet rs;
 
@@ -384,8 +397,7 @@ public class JDBInterfaceLog
 		{
 			rs = criteria.executeQuery();
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -394,31 +406,38 @@ public class JDBInterfaceLog
 		return rs;
 	}
 
-	public String getInterfaceType() {
+	public String getInterfaceType()
+	{
 		return dbInterfaceType;
 	}
 
-	public Timestamp getMessageDate() {
+	public Timestamp getMessageDate()
+	{
 		return dbMessageDate;
 	}
 
-	private String getMessageError() {
+	private String getMessageError()
+	{
 		return dbMessageError;
 	}
 
-	public String getMessageInformation() {
+	public String getMessageInformation()
+	{
 		return dbMessageInformation;
 	}
 
-	public String getMessageRef() {
+	public String getMessageRef()
+	{
 		return dbMessageRef;
 	}
 
-	public String getMessageStatus() {
+	public String getMessageStatus()
+	{
 		return dbMessageStatus;
 	}
 
-	public void getPropertiesfromResultSet(ResultSet rs) {
+	public void getPropertiesfromResultSet(ResultSet rs)
+	{
 		try
 		{
 			clear();
@@ -434,26 +453,29 @@ public class JDBInterfaceLog
 			setMessageError(rs.getString("message_error"));
 			setWorkstationID(rs.getString("workstation_id"));
 			setFilename(rs.getString("filename"));
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public String getWorkstationID() {
+	public String getWorkstationID()
+	{
 		return dbWorkstationID;
 	}
 
-	public void setAction(String Action) {
+	public void setAction(String Action)
+	{
 		this.dbAction = Action;
 	}
 
-	private void setErrorMessage(String errorMsg) {
+	private void setErrorMessage(String errorMsg)
+	{
 		if (errorMsg.isEmpty() == false)
 		{
 			logger.error(errorMsg);
@@ -461,61 +483,75 @@ public class JDBInterfaceLog
 		dbMessageStatus = errorMsg;
 	}
 
-	public void setEventTime(Timestamp eventTime) {
+	public void setEventTime(Timestamp eventTime)
+	{
 		dbEventTime = eventTime;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setInterfaceDirection(String direction) {
+	public void setInterfaceDirection(String direction)
+	{
 		dbInterfaceDirection = direction;
 	}
 
-	public void setInterfaceLogID(Long logID) {
+	public void setInterfaceLogID(Long logID)
+	{
 		dbInterfaceLogID = logID;
 	}
 
-	public void setInterfaceType(String type) {
+	public void setInterfaceType(String type)
+	{
 		dbInterfaceType = type;
 	}
 
-	public void setMessageDate(Timestamp messagedate) {
+	public void setMessageDate(Timestamp messagedate)
+	{
 		dbMessageDate = messagedate;
 	}
 
-	private void setMessageError(String messageError) {
+	private void setMessageError(String messageError)
+	{
 		dbMessageError = messageError;
 	}
 
-	private void setFilename(String file) {
+	private void setFilename(String file)
+	{
 		dbFilename = file;
 	}
 
-	public void setMessageInformation(String messageinformation) {
+	public void setMessageInformation(String messageinformation)
+	{
 		dbMessageInformation = messageinformation.replaceAll("\\n", "");
 		dbMessageInformation = dbMessageInformation.replaceAll("  ", " ");
 	}
 
-	public void setMessageRef(String messageref) {
+	public void setMessageRef(String messageref)
+	{
 		dbMessageRef = messageref.replaceAll("\\n", "");
 		dbMessageRef = dbMessageRef.replaceAll("  ", " ");
 	}
 
-	public void setMessageStatus(String messagestatus) {
+	public void setMessageStatus(String messagestatus)
+	{
 		dbMessageStatus = messagestatus;
 	}
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public void setWorkstationID(String workstationID) {
+	public void setWorkstationID(String workstationID)
+	{
 		dbWorkstationID = workstationID;
 	}
 
-	public void write(GenericMessageHeader gmh, String messageStatus, String messageError, String action, String filename) {
+	public void write(GenericMessageHeader gmh, String messageStatus, String messageError, String action, String filename)
+	{
 		setEventTime(JUtility.getSQLDateTime());
 		setMessageRef(gmh.getMessageRef());
 		setInterfaceType(gmh.getInterfaceType());
@@ -529,7 +565,8 @@ public class JDBInterfaceLog
 		create();
 	}
 
-	public void write(String messageRef, String interfaceType, String messageInfo, String interfaceDirection, Timestamp messageDateTime, String messageStatus, String messageError, String action) {
+	public void write(String messageRef, String interfaceType, String messageInfo, String interfaceDirection, Timestamp messageDateTime, String messageStatus, String messageError, String action)
+	{
 		setEventTime(JUtility.getSQLDateTime());
 		setMessageRef(messageRef);
 		setInterfaceType(interfaceType);

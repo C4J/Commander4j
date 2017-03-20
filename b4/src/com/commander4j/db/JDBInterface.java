@@ -38,6 +38,12 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBInterface is used to insert/update/delete records from the SYS_INTERFACE
+ * table. This table holds the configuration for all inbound and outbound
+ * interfaces.
+ *
+ */
 public class JDBInterface
 {
 
@@ -91,13 +97,15 @@ public class JDBInterface
 		setDevice(Device);
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		setPath("");
 		setEnabled("");
 		setUOMConversion("None");
 	}
 
-	public boolean create() {
+	public boolean create()
+	{
 
 		logger.debug("create [" + getInterfaceType() + "][" + getInterfaceDirection() + "]");
 
@@ -118,8 +126,7 @@ public class JDBInterface
 				stmtupdate.close();
 				update();
 				result = true;
-			}
-			catch (SQLException e)
+			} catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -128,7 +135,8 @@ public class JDBInterface
 		return result;
 	}
 
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -146,8 +154,7 @@ public class JDBInterface
 			stmtupdate.close();
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -155,7 +162,8 @@ public class JDBInterface
 		return result;
 	}
 
-	public boolean delete(String type, String direction) {
+	public boolean delete(String type, String direction)
+	{
 		boolean result = false;
 		setInterfaceType(type);
 		setInterfaceDirection(direction);
@@ -163,15 +171,18 @@ public class JDBInterface
 		return result;
 	}
 
-	public String getDevice() {
+	public String getDevice()
+	{
 		return dbDevice;
 	}
 
-	public String getEmailAddresses() {
+	public String getEmailAddresses()
+	{
 		return JUtility.replaceNullObjectwithBlank(dbEmailAddresses);
 	}
 
-	public Boolean getEmailError() {
+	public Boolean getEmailError()
+	{
 		Boolean result = false;
 		if (getEmailFlags().contains("E"))
 		{
@@ -181,11 +192,13 @@ public class JDBInterface
 		return result;
 	}
 
-	public String getEmailFlags() {
+	public String getEmailFlags()
+	{
 		return JUtility.replaceNullObjectwithBlank(dbEmailFlags);
 	}
 
-	public Boolean getEmailSuccess() {
+	public Boolean getEmailSuccess()
+	{
 		Boolean result = false;
 		if (getEmailFlags().contains("S"))
 		{
@@ -195,7 +208,8 @@ public class JDBInterface
 		return result;
 	}
 
-	public Boolean getEmailWarning() {
+	public Boolean getEmailWarning()
+	{
 		Boolean result = false;
 		if (getEmailFlags().contains("W"))
 		{
@@ -205,15 +219,18 @@ public class JDBInterface
 		return result;
 	}
 
-	public String getEnabled() {
+	public String getEnabled()
+	{
 		return dbEnabled;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	public String getFormat() {
+	public String getFormat()
+	{
 		dbFormat = JUtility.replaceNullStringwithBlank(dbFormat);
 		if (dbFormat.equals(""))
 		{
@@ -222,11 +239,13 @@ public class JDBInterface
 		return dbFormat;
 	}
 
-	public String getHostID() {
+	public String getHostID()
+	{
 		return hostID;
 	}
 
-	public LinkedList<String> getInputPaths() {
+	public LinkedList<String> getInputPaths()
+	{
 		LinkedList<String> result = new LinkedList<String>();
 		result.clear();
 		LinkedList<JDBInterface> intList = new LinkedList<JDBInterface>();
@@ -247,7 +266,8 @@ public class JDBInterface
 		return result;
 	}
 
-	public Vector<JDBInterface> getInterfaceData(PreparedStatement criteria) {
+	public Vector<JDBInterface> getInterfaceData(PreparedStatement criteria)
+	{
 
 		ResultSet rs;
 		Vector<JDBInterface> result = new Vector<JDBInterface>();
@@ -255,8 +275,7 @@ public class JDBInterface
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
 			result.addElement(new JDBInterface("interfaceType", "interfaceDirection", "Path", "Enabled", "Device"));
-		}
-		else
+		} else
 		{
 			try
 			{
@@ -268,8 +287,7 @@ public class JDBInterface
 				}
 				rs.close();
 
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -278,7 +296,8 @@ public class JDBInterface
 		return result;
 	}
 
-	public ResultSet getInterfaceDataResultSet(PreparedStatement criteria) {
+	public ResultSet getInterfaceDataResultSet(PreparedStatement criteria)
+	{
 
 		ResultSet rs;
 
@@ -286,8 +305,7 @@ public class JDBInterface
 		{
 			rs = criteria.executeQuery();
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -296,11 +314,13 @@ public class JDBInterface
 		return rs;
 	}
 
-	public String getInterfaceDirection() {
+	public String getInterfaceDirection()
+	{
 		return dbInterfaceDirection;
 	}
 
-	public LinkedList<JDBInterface> getInterfaceList(String device, String interfaceDirection) {
+	public LinkedList<JDBInterface> getInterfaceList(String device, String interfaceDirection)
+	{
 		LinkedList<JDBInterface> result = new LinkedList<JDBInterface>();
 		result.clear();
 
@@ -331,8 +351,7 @@ public class JDBInterface
 				result.add(temp);
 			}
 			rs.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -340,7 +359,8 @@ public class JDBInterface
 		return result;
 	}
 
-	public boolean getInterfaceProperties() {
+	public boolean getInterfaceProperties()
+	{
 		boolean result = false;
 
 		PreparedStatement stmt;
@@ -361,36 +381,38 @@ public class JDBInterface
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Interface Definition");
 			}
 			rs.close();
-			stmt.close();			
-		}
-		catch (SQLException e)
+			stmt.close();
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public boolean getInterfaceProperties(String type, String direction) {
+	public boolean getInterfaceProperties(String type, String direction)
+	{
 		setInterfaceType(type);
 		setInterfaceDirection(direction);
 		return getInterfaceProperties();
 	}
 
-	public String getInterfaceType() {
+	public String getInterfaceType()
+	{
 		return dbInterfaceType;
 	}
 
-	public String getPath() {
+	public String getPath()
+	{
 		return JUtility.formatPath(dbPath);
 	}
 
-	public void getPropertiesfromResultSet(ResultSet rs) {
+	public void getPropertiesfromResultSet(ResultSet rs)
+	{
 		try
 		{
 			clear();
@@ -403,25 +425,27 @@ public class JDBInterface
 			setUOMConversion(rs.getString("uom_conversion"));
 			setEmailFlags(rs.getString("email_flags"));
 			setEmailAddresses(rs.getString("email_addresses"));
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 	}
 
-	public String getRealPath() {
+	public String getRealPath()
+	{
 		String result = getPath();
 		result = result.replace("{base_dir}", Common.base_dir);
 		logger.debug(result);
 		return result;
 	}
 
-	public String getSessionID() {
+	public String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public String getUOMConversion() {
+	public String getUOMConversion()
+	{
 		dbUomConversion = JUtility.replaceNullObjectwithBlank(dbUomConversion);
 		if (dbUomConversion.equals(""))
 		{
@@ -430,7 +454,8 @@ public class JDBInterface
 		return dbUomConversion;
 	}
 
-	public boolean isEnabled() {
+	public boolean isEnabled()
+	{
 		boolean result = false;
 		if (dbEnabled != null)
 		{
@@ -442,7 +467,8 @@ public class JDBInterface
 		return result;
 	}
 
-	public boolean isValid() {
+	public boolean isValid()
+	{
 		boolean result = true;
 
 		if (JUtility.isNullORBlank(getInterfaceType()) == true)
@@ -468,7 +494,8 @@ public class JDBInterface
 		return result;
 	}
 
-	public boolean isValidInterface() {
+	public boolean isValidInterface()
+	{
 
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -485,15 +512,13 @@ public class JDBInterface
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Interface");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -503,29 +528,32 @@ public class JDBInterface
 		return result;
 	}
 
-	public boolean isValidInterface(String type, String direction) {
+	public boolean isValidInterface(String type, String direction)
+	{
 		setInterfaceType(type);
 		setInterfaceDirection(direction);
 		return isValidInterface();
 	}
 
-	public void setDevice(String device) {
+	public void setDevice(String device)
+	{
 		dbDevice = device;
 	}
 
-	public void setEmailAddresses(String addresses) {
+	public void setEmailAddresses(String addresses)
+	{
 		dbEmailAddresses = addresses;
 	}
 
-	public void setEmailError(Boolean yesNo) {
+	public void setEmailError(Boolean yesNo)
+	{
 		if (yesNo == true)
 		{
 			if (getEmailError() == false)
 			{
 				dbEmailFlags = getEmailFlags() + "E";
 			}
-		}
-		else
+		} else
 		{
 			if (getEmailError() == true)
 			{
@@ -534,19 +562,20 @@ public class JDBInterface
 		}
 	}
 
-	public void setEmailFlags(String flags) {
+	public void setEmailFlags(String flags)
+	{
 		dbEmailFlags = flags;
 	}
 
-	public void setEmailSuccess(Boolean yesNo) {
+	public void setEmailSuccess(Boolean yesNo)
+	{
 		if (yesNo == true)
 		{
 			if (getEmailSuccess() == false)
 			{
 				dbEmailFlags = getEmailFlags() + "S";
 			}
-		}
-		else
+		} else
 		{
 			if (getEmailSuccess() == true)
 			{
@@ -555,15 +584,15 @@ public class JDBInterface
 		}
 	}
 
-	public void setEmailWarning(Boolean yesNo) {
+	public void setEmailWarning(Boolean yesNo)
+	{
 		if (yesNo == true)
 		{
 			if (getEmailWarning() == false)
 			{
 				dbEmailFlags = getEmailFlags() + "W";
 			}
-		}
-		else
+		} else
 		{
 			if (getEmailWarning() == true)
 			{
@@ -572,61 +601,70 @@ public class JDBInterface
 		}
 	}
 
-	public void setEnabled(Boolean enabled) {
+	public void setEnabled(Boolean enabled)
+	{
 		if (enabled == true)
 		{
 			dbEnabled = "Y";
-		}
-		else
+		} else
 		{
 			dbEnabled = "N";
 		}
 	}
 
-	public void setEnabled(String enabled) {
+	public void setEnabled(String enabled)
+	{
 		if (enabled == null)
 		{
 			dbEnabled = "N";
-		}
-		else
+		} else
 		{
 			dbEnabled = enabled.toUpperCase();
 		}
 	}
 
-	private void setErrorMessage(String errorMsg) {
+	private void setErrorMessage(String errorMsg)
+	{
 		dbErrorMessage = errorMsg;
 	}
 
-	public void setFormat(String format) {
+	public void setFormat(String format)
+	{
 		dbFormat = format;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setInterfaceDirection(String direction) {
+	public void setInterfaceDirection(String direction)
+	{
 		dbInterfaceDirection = direction;
 	}
 
-	public void setInterfaceType(String type) {
+	public void setInterfaceType(String type)
+	{
 		dbInterfaceType = type;
 	}
 
-	public void setPath(String path) {
+	public void setPath(String path)
+	{
 		dbPath = path.replace(Common.base_dir, "{base_dir}");
 	}
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public void setUOMConversion(String conv) {
+	public void setUOMConversion(String conv)
+	{
 		dbUomConversion = conv;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 
 		logger.debug("update [" + getInterfaceType() + "] [" + getInterfaceDirection() + "]");
@@ -655,8 +693,7 @@ public class JDBInterface
 				stmtupdate.close();
 				result = true;
 
-			}
-			catch (SQLException e)
+			} catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}

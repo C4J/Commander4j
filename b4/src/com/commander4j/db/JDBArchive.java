@@ -41,6 +41,12 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBArchive class is used to insert/update/delete the SYS_ARCHIVE table.
+ * The SYS_ARCHIVE table is a user definable auto archiving system. In essence a SQL delete statement with date parameter can be inserted into this table.
+ * At a predetermined interval the Archiving Thread executes each statement in this table to remove old/unneeded records from tables.
+ *
+ */
 public class JDBArchive {
 
 	private final Logger logger = Logger.getLogger(JDBArchive.class);

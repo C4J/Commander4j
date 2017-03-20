@@ -42,88 +42,70 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
 
-public class JDBLabelData {
-	private String 		dbUniqueID;
-	private Timestamp 	dbPrintDate;
-	private String 		dbUserID;
-	private String 		dbWorkstationID;
-	private String 		dbMaterial;
-	private String 		dbMaterialType;
-	private String 		dbBatchNumber;
-	private String 		dbProcessOrder;
-	private String 		dbRequiredResource;
-	private String 		dbLocationID;
-	private BigDecimal 	dbProdQuantity;
-	private String 		dbProdUom;
-	private BigDecimal 	dbBaseQuantity;
-	private String 		dbBaseUom;
-	private Timestamp 	dbDateofManufacture;
-	private Timestamp 	dbExpiryDate;
-	private String 		dbExpiryMode;
-	private String 		dbProdEAN;
-	private String 		dbProdVariant;
-	private String 		dbBaseEAN;
-	private String 		dbBaseVariant;
-	private String 		dbCustomer;
-	private String 		dbPrintQueue;
-	private Long 		dbPrintCopies;
-	private String 		dbErrorMessage;
-	private String 		dbModuleID;
-	private String 		dbOverideDateofManufacture;
-	private String 		dbOverideExpiryDate;
-	private String 		dbOverrideBatchPrefix;
-	private String		dbBatchPrefix;
-	private String		dbBatchSuffix;
-	private String		dbLabelType;
-	private String		dbLine;
-	
+/**
+ * JDBLabelData is used to insert/update/delete record from the APP_LABEL_DATA
+ * table. When printing case labels you have the option of sending a report
+ * directly to a printer or using the "Assign to Labeller" option. If the assign
+ * option is selected all of the data required to print the label is written to
+ * a record in the table. A background thread is then used to write the required
+ * data to a file for each labeller which needs to print the data. It should be
+ * noted that the operator selects a production line when printing and each
+ * production line can have one or more physical labellers.
+ *
+ */
+public class JDBLabelData
+{
+	private String dbUniqueID;
+	private Timestamp dbPrintDate;
+	private String dbUserID;
+	private String dbWorkstationID;
+	private String dbMaterial;
+	private String dbMaterialType;
+	private String dbBatchNumber;
+	private String dbProcessOrder;
+	private String dbRequiredResource;
+	private String dbLocationID;
+	private BigDecimal dbProdQuantity;
+	private String dbProdUom;
+	private BigDecimal dbBaseQuantity;
+	private String dbBaseUom;
+	private Timestamp dbDateofManufacture;
+	private Timestamp dbExpiryDate;
+	private String dbExpiryMode;
+	private String dbProdEAN;
+	private String dbProdVariant;
+	private String dbBaseEAN;
+	private String dbBaseVariant;
+	private String dbCustomer;
+	private String dbPrintQueue;
+	private Long dbPrintCopies;
+	private String dbErrorMessage;
+	private String dbModuleID;
+	private String dbOverideDateofManufacture;
+	private String dbOverideExpiryDate;
+	private String dbOverrideBatchPrefix;
+	private String dbBatchPrefix;
+	private String dbBatchSuffix;
+	private String dbLabelType;
+	private String dbLine;
+
 	private final Logger logger = Logger.getLogger(JDBLabelData.class);
-	
+
 	private String hostID;
-	
+
 	private String sessionID;
-	
+
 	public JDBLabelData(String host, String session)
 	{
 		setHostID(host);
 		setSessionID(session);
 	}
-	
-	public JDBLabelData(String uid,
-						Timestamp printTime,
-						String user, 
-						Long copies, 
-						String workstation,
-						String mat, 
-						String matType, 
-						String batch,
-						String order,
-						String resource,
-						String locn,
-						BigDecimal prodqty,
-						String produom,
-						BigDecimal baseqty,
-						String baseuom,
-						Timestamp dom,
-						Timestamp exp,
-						String prodean,
-						String prodvar,
-						String baseean,
-						String basevar,						
-						String cust,
-						String q,
-						String expmode,
-						String module,
-						String ov_dom,
-						String ov_exp,
-						String ov_bat,
-						String batch_pre,
-						String batch_suf,
-						String labelType,
-						String line
-						)
+
+	public JDBLabelData(String uid, Timestamp printTime, String user, Long copies, String workstation, String mat, String matType, String batch, String order, String resource, String locn, BigDecimal prodqty, String produom, BigDecimal baseqty,
+			String baseuom, Timestamp dom, Timestamp exp, String prodean, String prodvar, String baseean, String basevar, String cust, String q, String expmode, String module, String ov_dom, String ov_exp, String ov_bat, String batch_pre,
+			String batch_suf, String labelType, String line)
 	{
-		
+
 		setUniqueID(uid);
 		setPrintDate(printTime);
 		setUserID(user);
@@ -144,7 +126,7 @@ public class JDBLabelData {
 		setProdEAN(prodean);
 		setProdVariant(prodvar);
 		setBaseEAN(baseean);
-		setBaseVariant(basevar);	
+		setBaseVariant(basevar);
 		setCustomer(cust);
 		setPrintQueue(q);
 		setExpiryMode(expmode);
@@ -158,7 +140,7 @@ public class JDBLabelData {
 		setLine(line);
 		create();
 	}
-	
+
 	public void clear()
 	{
 		setPrintDate(null);
@@ -193,13 +175,13 @@ public class JDBLabelData {
 		setLabelType("");
 		setLine("");
 	}
-	
+
 	public void sendMessage()
 	{
-		OutgoingLabelData old = new OutgoingLabelData(getHostID(),getSessionID());
+		OutgoingLabelData old = new OutgoingLabelData(getHostID(), getSessionID());
 		old.submit(getUniqueID());
 	}
-	
+
 	public boolean create()
 	{
 
@@ -211,31 +193,31 @@ public class JDBLabelData {
 		{
 			PreparedStatement stmtupdate;
 			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLabelData.create"));
-			
-			stmtupdate.setString(1,getUniqueID());
-			stmtupdate.setTimestamp(2,getPrintDate());
-			stmtupdate.setString(3,getUserID());
-			stmtupdate.setString(4,getWorkstationID());
-			stmtupdate.setString(5,getMaterial());
-			stmtupdate.setString(6,getMaterialType());
-			stmtupdate.setString(7,getBatchNumber());
-			stmtupdate.setString(8,getProcessOrder());
-			stmtupdate.setString(9,getRequiredResource());
-			stmtupdate.setString(10,getLocationID());
-			stmtupdate.setBigDecimal(11,getProdQuantity());
-			stmtupdate.setString(12,getProdUom());
-			stmtupdate.setBigDecimal(13,getBaseQuantity());
-			stmtupdate.setString(14,getBaseUom());			
-			stmtupdate.setTimestamp(15,getDateofManufacture());
-			stmtupdate.setTimestamp(16,getExpirtDate());
-			stmtupdate.setString(17,getProdEAN());
-			stmtupdate.setString(18,getProdVariant());
-			stmtupdate.setString(19,getBaseEAN());
-			stmtupdate.setString(20,getBaseVariant());			
-			stmtupdate.setString(21,getCustomer());
-			stmtupdate.setLong(22,getPrintCopies());
-			stmtupdate.setString(23,getPrintQueue());
-			stmtupdate.setString(24,getExpiryMode());
+
+			stmtupdate.setString(1, getUniqueID());
+			stmtupdate.setTimestamp(2, getPrintDate());
+			stmtupdate.setString(3, getUserID());
+			stmtupdate.setString(4, getWorkstationID());
+			stmtupdate.setString(5, getMaterial());
+			stmtupdate.setString(6, getMaterialType());
+			stmtupdate.setString(7, getBatchNumber());
+			stmtupdate.setString(8, getProcessOrder());
+			stmtupdate.setString(9, getRequiredResource());
+			stmtupdate.setString(10, getLocationID());
+			stmtupdate.setBigDecimal(11, getProdQuantity());
+			stmtupdate.setString(12, getProdUom());
+			stmtupdate.setBigDecimal(13, getBaseQuantity());
+			stmtupdate.setString(14, getBaseUom());
+			stmtupdate.setTimestamp(15, getDateofManufacture());
+			stmtupdate.setTimestamp(16, getExpirtDate());
+			stmtupdate.setString(17, getProdEAN());
+			stmtupdate.setString(18, getProdVariant());
+			stmtupdate.setString(19, getBaseEAN());
+			stmtupdate.setString(20, getBaseVariant());
+			stmtupdate.setString(21, getCustomer());
+			stmtupdate.setLong(22, getPrintCopies());
+			stmtupdate.setString(23, getPrintQueue());
+			stmtupdate.setString(24, getExpiryMode());
 			stmtupdate.setString(25, getModuleID());
 			stmtupdate.setString(26, getOverrideDateofManufacture());
 			stmtupdate.setString(27, getOverrideExpiryDate());
@@ -243,14 +225,14 @@ public class JDBLabelData {
 			stmtupdate.setString(29, getBatchPrefix());
 			stmtupdate.setString(30, getBatchSuffix());
 			stmtupdate.setString(31, getLabelType());
-			stmtupdate.setString(32,getLine());
+			stmtupdate.setString(32, getLine());
 
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
 			result = true;
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -258,7 +240,7 @@ public class JDBLabelData {
 
 		return result;
 	}
-	
+
 	public boolean delete()
 	{
 		PreparedStatement stmtupdate;
@@ -283,54 +265,54 @@ public class JDBLabelData {
 
 		return result;
 	}
-	
+
 	public String generateUniqueID()
 	{
 		String result = JUnique.getUniqueID();
 		setUniqueID(result);
 		return result;
 	}
-	
+
 	public String getBaseEAN()
 	{
 		return dbBaseEAN;
 	}
-	
+
 	public BigDecimal getBaseQuantity()
 	{
 		return dbBaseQuantity;
 	}
-	
+
 	public String getBaseUom()
 	{
 		return dbBaseUom;
 	}
-	
+
 	public String getBaseVariant()
 	{
 		return dbBaseVariant;
 	}
-	
+
 	public String getBatchNumber()
 	{
 		return dbBatchNumber;
 	}
-	
+
 	public String getBatchPrefix()
 	{
 		return dbBatchPrefix;
 	}
-	
+
 	public String getBatchSuffix()
 	{
 		return dbBatchSuffix;
 	}
-	
+
 	public String getCustomer()
 	{
 		return dbCustomer;
 	}
-	
+
 	public Timestamp getDateofManufacture()
 	{
 		return dbDateofManufacture;
@@ -350,12 +332,12 @@ public class JDBLabelData {
 	{
 		return dbExpiryMode;
 	}
-	
+
 	private String getHostID()
 	{
 		return hostID;
 	}
-	
+
 	public boolean getProperties()
 	{
 		boolean result = false;
@@ -368,8 +350,7 @@ public class JDBLabelData {
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-					.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLabelData.getProperties"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLabelData.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, getUniqueID());
 			rs = stmt.executeQuery();
@@ -390,13 +371,13 @@ public class JDBLabelData {
 		}
 		return result;
 	}
-	
+
 	public boolean getProperties(String unique)
 	{
 		setUniqueID(unique);
 		return getProperties();
 	}
-	
+
 	public ResultSet getLabelDataResultSet(PreparedStatement criteria)
 	{
 
@@ -414,12 +395,12 @@ public class JDBLabelData {
 
 		return rs;
 	}
-	
+
 	public String getLabelType()
 	{
 		return dbLabelType;
 	}
-	
+
 	public String getLine()
 	{
 		return JUtility.replaceNullStringwithBlank(dbLine);
@@ -429,17 +410,17 @@ public class JDBLabelData {
 	{
 		return dbLocationID;
 	}
-	
+
 	public String getMaterial()
 	{
 		return dbMaterial;
 	}
-	
+
 	public String getMaterialType()
 	{
 		return dbMaterialType;
 	}
-	
+
 	public String getMessageInformation()
 	{
 		return dbMaterial;
@@ -449,17 +430,17 @@ public class JDBLabelData {
 	{
 		return dbModuleID;
 	}
-	
+
 	public String getOverrideBatchPrefix()
 	{
 		return dbOverrideBatchPrefix;
 	}
-	
+
 	public String getOverrideDateofManufacture()
 	{
 		return dbOverideDateofManufacture;
 	}
-	
+
 	public String getOverrideExpiryDate()
 	{
 		return dbOverideExpiryDate;
@@ -474,7 +455,7 @@ public class JDBLabelData {
 	{
 		return dbPrintDate;
 	}
-	
+
 	public String getPrintQueue()
 	{
 		return dbPrintQueue;
@@ -484,12 +465,12 @@ public class JDBLabelData {
 	{
 		return dbProcessOrder;
 	}
-	
+
 	public String getProdEAN()
 	{
 		return dbProdEAN;
 	}
-	
+
 	public BigDecimal getProdQuantity()
 	{
 		return dbProdQuantity;
@@ -504,23 +485,23 @@ public class JDBLabelData {
 	{
 		return dbProdVariant;
 	}
-	
-	public String[] getDataArray(String unique,String mode)
+
+	public String[] getDataArray(String unique, String mode)
 	{
-		String[] result = {""};
+		String[] result =
+		{ "" };
 
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
-		logger.debug("getLabelDataProperties ["+getUniqueID()+"]");
+		logger.debug("getLabelDataProperties [" + getUniqueID() + "]");
 		ResultSetHelperService rsh = new ResultSetHelperService();
 
 		clear();
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-					.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLabelData.getProperties"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLabelData.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, getUniqueID());
 			rs = stmt.executeQuery();
@@ -531,12 +512,11 @@ public class JDBLabelData {
 				if (mode.equals("heading"))
 				{
 					result = rsh.getColumnNames(rs);
-				}
-				else
+				} else
 				{
 					result = rsh.getColumnValues(rs);
 				}
-				
+
 			} else
 			{
 				setErrorMessage("Invalid UniqueID");
@@ -589,7 +569,7 @@ public class JDBLabelData {
 			setBatchSuffix(rs.getString("BATCH_SUFFIX"));
 			setLabelType(rs.getString("LABEL_TYPE"));
 			setLine(rs.getString("LINE"));
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -630,12 +610,11 @@ public class JDBLabelData {
 	{
 		dbBaseQuantity = qty;
 	}
-	
+
 	public void setBaseUom(String uom)
 	{
 		dbBaseUom = uom;
 	}
-
 
 	public void setBaseVariant(String var)
 	{
@@ -649,13 +628,13 @@ public class JDBLabelData {
 
 	public void setBatchPrefix(String batch)
 	{
-		dbBatchPrefix=batch;
+		dbBatchPrefix = batch;
 		dbBatchNumber = dbBatchPrefix + dbBatchSuffix;
 	}
 
 	public void setBatchSuffix(String batch)
 	{
-		dbBatchSuffix=batch;
+		dbBatchSuffix = batch;
 		dbBatchNumber = dbBatchPrefix + dbBatchSuffix;
 	}
 
@@ -663,7 +642,7 @@ public class JDBLabelData {
 	{
 		dbCustomer = cust;
 	}
-	
+
 	public void setDateofManufacture(Timestamp prodDate)
 	{
 		dbDateofManufacture = prodDate;
@@ -678,7 +657,7 @@ public class JDBLabelData {
 	{
 		dbExpiryDate = expTime;
 	}
-	
+
 	public void setExpiryMode(String expmod)
 	{
 		dbExpiryMode = expmod;
@@ -688,7 +667,7 @@ public class JDBLabelData {
 	{
 		hostID = host;
 	}
-	
+
 	public void setLabelType(String ltype)
 	{
 		dbLabelType = ltype;
@@ -703,7 +682,7 @@ public class JDBLabelData {
 	{
 		this.dbLocationID = locn;
 	}
-	
+
 	public void setMaterial(String material)
 	{
 		dbMaterial = material;
@@ -713,7 +692,7 @@ public class JDBLabelData {
 	{
 		dbMaterialType = type;
 	}
-	
+
 	public void setModuleID(String module)
 	{
 		dbModuleID = module;
@@ -721,55 +700,52 @@ public class JDBLabelData {
 
 	public void setOverrideBatchPrefix(Boolean override)
 	{
-		if (override==true)
+		if (override == true)
 		{
-			dbOverrideBatchPrefix="Y";
-		}
-		else
+			dbOverrideBatchPrefix = "Y";
+		} else
 		{
-			dbOverrideBatchPrefix="N";
+			dbOverrideBatchPrefix = "N";
 		}
 	}
 
 	public void setOverrideBatchPrefix(String override)
 	{
-		dbOverrideBatchPrefix=override;
+		dbOverrideBatchPrefix = override;
 	}
 
 	public void setOverrideDateofManufacture(Boolean override)
 	{
-		if (override==true)
+		if (override == true)
 		{
-			dbOverideDateofManufacture="Y";
-		}
-		else
+			dbOverideDateofManufacture = "Y";
+		} else
 		{
-			dbOverideDateofManufacture="N";
+			dbOverideDateofManufacture = "N";
 		}
 	}
 
 	public void setOverrideDateofManufacture(String override)
 	{
-		dbOverideDateofManufacture=override;
+		dbOverideDateofManufacture = override;
 	}
 
 	public void setOverrideExpiryDate(Boolean override)
 	{
-		if (override==true)
+		if (override == true)
 		{
-			dbOverideExpiryDate="Y";
-		}
-		else
+			dbOverideExpiryDate = "Y";
+		} else
 		{
-			dbOverideExpiryDate="N";
+			dbOverideExpiryDate = "N";
 		}
 	}
 
 	public void setOverrideExpiryDate(String override)
 	{
-		dbOverideExpiryDate=override;
+		dbOverideExpiryDate = override;
 	}
-	
+
 	public void setPrintCopies(Long copies)
 	{
 		dbPrintCopies = copies;
@@ -789,7 +765,7 @@ public class JDBLabelData {
 	{
 		dbProcessOrder = processOrder;
 	}
-	
+
 	public void setProdEAN(String ean)
 	{
 		dbProdEAN = ean;
@@ -814,7 +790,7 @@ public class JDBLabelData {
 	{
 		dbRequiredResource = resource;
 	}
-	
+
 	private void setSessionID(String session)
 	{
 		sessionID = session;
@@ -829,13 +805,13 @@ public class JDBLabelData {
 	{
 		dbUserID = user;
 	}
-	
+
 	public void setWorkstationID(String workstationID)
 	{
 		dbWorkstationID = workstationID;
 	}
 
-	public boolean updateLine(String uniqueId,String line)
+	public boolean updateLine(String uniqueId, String line)
 	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -863,7 +839,7 @@ public class JDBLabelData {
 		return result;
 	}
 
-	public boolean renameLine(String oldLine,String newLine)
+	public boolean renameLine(String oldLine, String newLine)
 	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -887,6 +863,6 @@ public class JDBLabelData {
 		}
 
 		return result;
-	}	
-	
+	}
+
 }

@@ -29,6 +29,10 @@ package com.commander4j.db;
 
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDBEquipmentList class is a utility class which is used to determine how many of each type of equipment (pallet types) are used on each despatch.
+ *
+ */
 public class JDBEquipmentList
 {
 	private String equipmentID = "";

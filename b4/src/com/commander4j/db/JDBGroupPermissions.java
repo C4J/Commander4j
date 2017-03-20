@@ -38,6 +38,12 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
+/**
+ * JDBGroupPermissions class is used to insert/update and delete records from
+ * the SYS_GROUP_PERMISSIONS table. This table links the modules which a user is
+ * allowed to access to the group(s) which they belong to.
+ *
+ */
 
 public class JDBGroupPermissions
 {
@@ -50,19 +56,23 @@ public class JDBGroupPermissions
 	private String sessionID;
 	private JDBAuditPermissions auditPerm;
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
@@ -73,7 +83,8 @@ public class JDBGroupPermissions
 		auditPerm = new JDBAuditPermissions(getHostID(), getSessionID());
 	}
 
-	public boolean create(String lGroupId, String lModuleId, String actionedBy) {
+	public boolean create(String lGroupId, String lModuleId, String actionedBy)
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -93,16 +104,14 @@ public class JDBGroupPermissions
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-				
+
 				auditPerm.generateNewAuditLogID();
 				auditPerm.write(actionedBy, "GROUP_MODULE", "ADD", getGroupId(), getModuleId());
-			}
-			else
+			} else
 			{
 				setErrorMessage("Group Permission already exists");
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -110,18 +119,21 @@ public class JDBGroupPermissions
 		return result;
 	}
 
-	public boolean delete(String groupid, String moduleid,String actionedBy) {
+	public boolean delete(String groupid, String moduleid, String actionedBy)
+	{
 		setGroupId(groupid);
 		setModuleId(moduleid);
 		return delete(actionedBy);
 	}
 
-	public boolean deletePermissionsForModule(String moduleid) {
+	public boolean deletePermissionsForModule(String moduleid)
+	{
 		setModuleId(moduleid);
 		return deletePermissionsForModule();
 	}
 
-	public boolean deletePermissionsForModule() {
+	public boolean deletePermissionsForModule()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -137,8 +149,7 @@ public class JDBGroupPermissions
 			stmtupdate.close();
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -146,7 +157,8 @@ public class JDBGroupPermissions
 		return result;
 	}
 
-	public boolean delete(String actionedBy) {
+	public boolean delete(String actionedBy)
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -166,8 +178,7 @@ public class JDBGroupPermissions
 				auditPerm.generateNewAuditLogID();
 				auditPerm.write(actionedBy, "GROUP_MODULE", "REMOVE", getGroupId(), getModuleId());
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -175,21 +186,23 @@ public class JDBGroupPermissions
 		return result;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	public String getGroupId() {
+	public String getGroupId()
+	{
 		return dbGroupId;
 	}
 
-
-	public String getModuleId() {
+	public String getModuleId()
+	{
 		return dbModuleId;
 	}
 
-
-	public LinkedList<JDBListData> getModulesAssigned(String host, String session) {
+	public LinkedList<JDBListData> getModulesAssigned(String host, String session)
+	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
 
@@ -212,8 +225,7 @@ public class JDBGroupPermissions
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -221,8 +233,8 @@ public class JDBGroupPermissions
 		return moduleList;
 	}
 
-
-	public LinkedList<JDBListData> getModulesUnAssigned(String host, String session) {
+	public LinkedList<JDBListData> getModulesUnAssigned(String host, String session)
+	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
 		PreparedStatement stmt;
@@ -244,16 +256,15 @@ public class JDBGroupPermissions
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return moduleList;
 	}
 
-
-	public boolean isValidGroupPermission() {
+	public boolean isValidGroupPermission()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
@@ -269,16 +280,14 @@ public class JDBGroupPermissions
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Group Permission");
 			}
 			stmt.close();
 			rs.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -287,8 +296,8 @@ public class JDBGroupPermissions
 
 	}
 
-
-	public boolean removeModulesfromGroup() {
+	public boolean removeModulesfromGroup()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -302,8 +311,7 @@ public class JDBGroupPermissions
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -311,8 +319,8 @@ public class JDBGroupPermissions
 		return result;
 	}
 
-
-	public boolean renameGroupTo(String lGroupId) {
+	public boolean renameGroupTo(String lGroupId)
+	{
 		boolean result = false;
 
 		try
@@ -326,8 +334,7 @@ public class JDBGroupPermissions
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -335,8 +342,8 @@ public class JDBGroupPermissions
 		return result;
 	}
 
-
-	public boolean renameModuleTo(String lModuleId) {
+	public boolean renameModuleTo(String lModuleId)
+	{
 		boolean result = false;
 
 		try
@@ -350,8 +357,7 @@ public class JDBGroupPermissions
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -359,8 +365,8 @@ public class JDBGroupPermissions
 		return result;
 	}
 
-
-	private void setErrorMessage(String errorMsg) {
+	private void setErrorMessage(String errorMsg)
+	{
 		if (errorMsg.isEmpty() == false)
 		{
 			logger.error(errorMsg);
@@ -368,13 +374,13 @@ public class JDBGroupPermissions
 		dbErrorMessage = errorMsg;
 	}
 
-
-	public void setGroupId(String groupId) {
+	public void setGroupId(String groupId)
+	{
 		dbGroupId = groupId;
 	}
 
-
-	public void setModuleId(String moduleId) {
+	public void setModuleId(String moduleId)
+	{
 		dbModuleId = moduleId;
 	}
 }

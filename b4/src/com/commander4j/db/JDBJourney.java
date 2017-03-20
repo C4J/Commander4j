@@ -39,6 +39,17 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBJourney is a table associated with the despatch transaction. When
+ * Dispatching pallets to a location it is an option to capture an external
+ * tracking reference (Journey Ref). The option to determine the requirement of
+ * Journey Ref is determined by a property of the receiving location. See
+ * JDBLocation class and APP_LOCATION table. The Journey Refs which can be used
+ * as either inserted manually using the appropriate screen within the
+ * application or read in from a XML message using the application interfacing
+ * module.
+ *
+ */
 public class JDBJourney
 {
 	public static int field_journey_ref = 25;
@@ -279,7 +290,7 @@ public class JDBJourney
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBJourney("journey", "status", "desp", JUtility.getSQLDateTime(),"loadType","loadTypeDesc","haulier"));
+			result.addElement(new JDBJourney("journey", "status", "desp", JUtility.getSQLDateTime(), "loadType", "loadTypeDesc", "haulier"));
 		} else
 		{
 			try
@@ -288,7 +299,8 @@ public class JDBJourney
 
 				while (rs.next())
 				{
-					result.addElement(new JDBJourney(rs.getString("journey_ref"), rs.getString("status"), rs.getString("despatch_no"), rs.getTimestamp("date_updated"), rs.getString("load_type"), rs.getString("load_type_desc"), rs.getString("haulier")));
+					result.addElement(
+							new JDBJourney(rs.getString("journey_ref"), rs.getString("status"), rs.getString("despatch_no"), rs.getTimestamp("date_updated"), rs.getString("load_type"), rs.getString("load_type_desc"), rs.getString("haulier")));
 				}
 
 				rs.close();

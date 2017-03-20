@@ -39,6 +39,11 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.JWait;
 
+/**
+ * JDBControl class is used to insert/update/delete the SYS_CONTROL table. This
+ * table is used to hold configuration information for the application.
+ *
+ */
 
 public class JDBControl
 {
@@ -55,18 +60,21 @@ public class JDBControl
 
 	private final Logger logger = Logger.getLogger(JDBControl.class);
 
-	public JDBControl(String host, String session) {
+	public JDBControl(String host, String session)
+	{
 		setHostID(host);
 		setSessionID(session);
 	}
 
-	public JDBControl(String host, String session, ResultSet rs) {
+	public JDBControl(String host, String session, ResultSet rs)
+	{
 		setHostID(host);
 		setSessionID(session);
 		getPropertiesfromResultSet(rs);
 	}
 
-	public JDBControl(String host, String session, String key, String value, String description) {
+	public JDBControl(String host, String session, String key, String value, String description)
+	{
 		setHostID(host);
 		setSessionID(session);
 		setSystemKey(key);
@@ -106,15 +114,13 @@ public class JDBControl
 				}
 				stmtupdate.close();
 				result = true;
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 				logger.error("JDBControl.create " + e.getMessage());
 				result = false;
 			}
-		}
-		else
+		} else
 		{
 			setErrorMessage("System Key already exists");
 		}
@@ -139,8 +145,7 @@ public class JDBControl
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -157,8 +162,7 @@ public class JDBControl
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
 			result.addElement(new JDBControl(getHostID(), getSessionID(), "system_key", "key_value", "description"));
-		}
-		else
+		} else
 		{
 			try
 			{
@@ -173,8 +177,7 @@ public class JDBControl
 				rs.close();
 				stmt.close();
 
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -192,8 +195,7 @@ public class JDBControl
 		{
 			rs = criteria.executeQuery();
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -235,8 +237,7 @@ public class JDBControl
 		if (getProperties(key))
 		{
 			dbKeyValue = JUtility.replaceNullObjectwithBlank(getKeyValue());
-		}
-		else
+		} else
 		{
 			setKeyValue(dflt);
 			setDescription(desc);
@@ -269,8 +270,7 @@ public class JDBControl
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -293,8 +293,7 @@ public class JDBControl
 			setKeyValue(rs.getString("key_value"));
 			setDescription(rs.getString("Description"));
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -327,8 +326,7 @@ public class JDBControl
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -350,23 +348,20 @@ public class JDBControl
 			try
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-						.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.lockRecord"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBControl.lockRecord"));
 				stmtupdate.setString(1, getSystemKey());
 				stmtupdate.setQueryTimeout(timeout);
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				stmtupdate.close();
 				result = true;
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				logger.error("Lock retry.. [" + String.valueOf(retrycount) + " of " + String.valueOf(maxretries) + "]");
 				retrycount++;
 				JWait.manySec(1);
 			}
-		}
-		while ((result == false) & (retrycount <= maxretries));
+		} while ((result == false) & (retrycount <= maxretries));
 
 		if (result == false)
 		{
@@ -425,8 +420,7 @@ public class JDBControl
 			}
 			stmtupdate.close();
 			result = true;
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			setErrorMessage(e.getMessage());
 			result = false;

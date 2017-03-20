@@ -27,6 +27,11 @@ package com.commander4j.db;
  * 
  */
 
+/**
+ * JDBDDL class is used to execute DDL and DML commands from the Setup4j program to create and update the database schema.
+ *
+ */
+
 public class JDBDDL
 {
 

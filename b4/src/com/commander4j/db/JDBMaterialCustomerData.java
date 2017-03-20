@@ -36,7 +36,10 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
-
+/**
+ * JDBMaterialCustomerData class is used  to insert/update/delete the APP_MATERIAL_CUSTOMER_DATA table. 
+ * This table is keyed on MATERIAL, CUSTOMER_ID and DATA_ID.
+ */
 
 public class JDBMaterialCustomerData
 {

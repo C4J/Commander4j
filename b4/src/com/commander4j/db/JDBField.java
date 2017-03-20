@@ -27,6 +27,10 @@ package com.commander4j.db;
  * 
  */
 
+/**
+ * The JDBField class is used in conjunction with JDBStucture and JDBTable by the Clone4j Utility to copy data from one schema to another.
+ *
+ */
 public class JDBField
 {
 	private String fieldName = "";

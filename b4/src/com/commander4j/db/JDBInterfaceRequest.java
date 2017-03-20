@@ -39,6 +39,14 @@ import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBInterfaceRequest is used by the outbound interface process by inserting a
+ * record into the SYS_INTERFACE_REQUEST table. Whenever a process needs to
+ * generate an outbound message a request record is put into the table
+ * SYS_INTERFACE_REQUEST The request record contains a reference to the
+ * transaction number within the APP_PALLET_HISTORY_TABLE.
+ *
+ */
 public class JDBInterfaceRequest
 {
 
@@ -59,11 +67,13 @@ public class JDBInterfaceRequest
 
 	private String sessionID;
 
-	public String getStatus() {
+	public String getStatus()
+	{
 		return dbStatus;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(String status)
+	{
 		dbStatus = status;
 	}
 
@@ -71,13 +81,14 @@ public class JDBInterfaceRequest
 	{
 		dbUniqueID = JUtility.replaceNullStringwithBlank(unq);
 	}
-	
+
 	public String getUniqueID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbUniqueID);
 	}
-	
-	public boolean update(Long irid, String status) {
+
+	public boolean update(Long irid, String status)
+	{
 		Boolean result = false;
 		setInterfaceRequestID(irid);
 		setStatus(status);
@@ -85,7 +96,8 @@ public class JDBInterfaceRequest
 		return result;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 		try
 		{
@@ -101,8 +113,7 @@ public class JDBInterfaceRequest
 			}
 			stmtupdate.close();
 			result = true;
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			setErrorMessage(e.getMessage());
 			result = false;
@@ -116,13 +127,15 @@ public class JDBInterfaceRequest
 		setSessionID(session);
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		setEventTime(null);
 		setInterfaceType("");
 		setStatus("");
 	}
 
-	public boolean create() {
+	public boolean create()
+	{
 
 		logger.debug("create [" + getInterfaceType() + "][" + String.valueOf(getTransactionRef()) + "]");
 
@@ -147,8 +160,7 @@ public class JDBInterfaceRequest
 			stmtupdate.close();
 
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -156,7 +168,8 @@ public class JDBInterfaceRequest
 		return result;
 	}
 
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -172,8 +185,7 @@ public class JDBInterfaceRequest
 			stmtupdate.close();
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -181,12 +193,14 @@ public class JDBInterfaceRequest
 		return result;
 	}
 
-	public boolean delete(Long intReq) {
+	public boolean delete(Long intReq)
+	{
 		setInterfaceRequestID(intReq);
 		return delete();
 	}
 
-	public long generateNewInterfaceRequestID() {
+	public long generateNewInterfaceRequestID()
+	{
 		long result = 0;
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
 		String temp = "";
@@ -216,17 +230,14 @@ public class JDBInterfaceRequest
 							retry = false;
 						}
 					}
-				}
-				else
+				} else
 				{
 					logger.debug("Record Locked !");
 					retry = true;
 					counter++;
 				}
-			}
-			while (retry);
-		}
-		else
+			} while (retry);
+		} else
 		{
 			ctrl.getKeyValueWithDefault("INTERFACE REQUEST ID", "1", "Unique Interface Request ID");
 			interfaceRequestID = 1;
@@ -239,39 +250,48 @@ public class JDBInterfaceRequest
 		return result;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	public Timestamp getEventTime() {
+	public Timestamp getEventTime()
+	{
 		return dbEventTime;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
-	private void setFilename(String filename) {
+	private void setFilename(String filename)
+	{
 		dbFilename = filename;
 	}
 
-	public String getFilename() {
+	public String getFilename()
+	{
 		return dbFilename;
 	}
 
-	private void setMode(String mode) {
+	private void setMode(String mode)
+	{
 		dbMode = mode;
 	}
 
-	public String getMode() {
+	public String getMode()
+	{
 		return dbMode;
 	}
 
-	public Long getInterfaceRequestID() {
+	public Long getInterfaceRequestID()
+	{
 		return dbInterfaceRequestID;
 	}
 
-	public LinkedList<Long> getInterfaceRequestIDs() {
+	public LinkedList<Long> getInterfaceRequestIDs()
+	{
 		LinkedList<Long> intList = new LinkedList<Long>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -291,8 +311,7 @@ public class JDBInterfaceRequest
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -300,7 +319,8 @@ public class JDBInterfaceRequest
 		return intList;
 	}
 
-	public void getPropertiesfromResultSet(ResultSet rs) {
+	public void getPropertiesfromResultSet(ResultSet rs)
+	{
 		try
 		{
 			clear();
@@ -313,21 +333,22 @@ public class JDBInterfaceRequest
 			setFilename(rs.getString("filename"));
 			setMode(rs.getString("request_mode"));
 			setUniqueID(rs.getString("unique_id"));
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 	}
 
-	public boolean getInterfaceRequestProperties(Long requestID) {
+	public boolean getInterfaceRequestProperties(Long requestID)
+	{
 		setInterfaceRequestID(requestID);
 		boolean result = false;
 		result = getInterfaceRequestProperties();
 		return result;
 	}
 
-	public boolean getInterfaceRequestProperties() {
+	public boolean getInterfaceRequestProperties()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
@@ -346,15 +367,13 @@ public class JDBInterfaceRequest
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Interface Request ID [" + getInterfaceRequestID() + "]");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -362,7 +381,8 @@ public class JDBInterfaceRequest
 		return result;
 	}
 
-	public ResultSet getInterfaceRequestResultSet(PreparedStatement criteria) {
+	public ResultSet getInterfaceRequestResultSet(PreparedStatement criteria)
+	{
 
 		ResultSet rs;
 
@@ -370,8 +390,7 @@ public class JDBInterfaceRequest
 		{
 			rs = criteria.executeQuery();
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -380,64 +399,78 @@ public class JDBInterfaceRequest
 		return rs;
 	}
 
-	public String getInterfaceType() {
+	public String getInterfaceType()
+	{
 		return dbInterfaceType;
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public Long getTransactionRef() {
+	public Long getTransactionRef()
+	{
 		return dbTransactionRef;
 	}
 
-	public String getWorkstationID() {
+	public String getWorkstationID()
+	{
 		return dbWorkstationID;
 	}
 
-	private void setErrorMessage(String err) {
+	private void setErrorMessage(String err)
+	{
 		dbErrorMessage = err;
 	}
 
-	public void setEventTime(Timestamp eventTime) {
+	public void setEventTime(Timestamp eventTime)
+	{
 		dbEventTime = eventTime;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setInterfaceRequestID(Long InterfaceLogID) {
+	public void setInterfaceRequestID(Long InterfaceLogID)
+	{
 		this.dbInterfaceRequestID = InterfaceLogID;
 	}
 
-	public void setInterfaceType(String type) {
+	public void setInterfaceType(String type)
+	{
 		dbInterfaceType = type;
 	}
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public void setTransactionRef(Long TransactionRef) {
+	public void setTransactionRef(Long TransactionRef)
+	{
 		dbTransactionRef = TransactionRef;
 	}
 
-	public void setWorkstationID(String WorkstationID) {
+	public void setWorkstationID(String WorkstationID)
+	{
 		dbWorkstationID = WorkstationID;
 	}
 
-	public void write(GenericMessageHeader gmh, String messageStatus, String messageError, String action) {
+	public void write(GenericMessageHeader gmh, String messageStatus, String messageError, String action)
+	{
 		setEventTime(JUtility.getSQLDateTime());
 		setInterfaceType(gmh.getInterfaceType());
 		setFilename("");
 		setMode("Normal");
 		create();
 	}
-	
+
 	// Used by label data outbound interface
-	public void write(String unq, String interfaceType) {
+	public void write(String unq, String interfaceType)
+	{
 		setEventTime(JUtility.getSQLDateTime());
 		setInterfaceType(interfaceType);
 		setTransactionRef(Long.valueOf(-1));
@@ -447,7 +480,8 @@ public class JDBInterfaceRequest
 		create();
 	}
 
-	public void write(Long transactionRef, String interfaceType) {
+	public void write(Long transactionRef, String interfaceType)
+	{
 		setEventTime(JUtility.getSQLDateTime());
 		setInterfaceType(interfaceType);
 		setTransactionRef(transactionRef);
@@ -456,7 +490,8 @@ public class JDBInterfaceRequest
 		create();
 	}
 
-	public void write(String filename, String interfaceType, String mode) {
+	public void write(String filename, String interfaceType, String mode)
+	{
 		setEventTime(JUtility.getSQLDateTime());
 		setInterfaceType(interfaceType);
 		setTransactionRef(Long.valueOf(-1));

@@ -37,6 +37,15 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBCustomer class is used to insert/update/delete the APP_CUSTOMER table.
+ * This table is used to hold customer names and label options. When printing
+ * labels the the system looks at the customer ref in the Process Order and then
+ * retrieves the customer details from the APP_CUSTOMER table. This permits
+ * customer specific titles to appear on labels. The default customer ref of
+ * SELF can be used for all Process Orders if the company name on the label is
+ * constant.
+ */
 public class JDBCustomer
 {
 	private String dbErrorMessage;
@@ -51,48 +60,51 @@ public class JDBCustomer
 	private final Logger logger = Logger.getLogger(JDBCustomer.class);
 	private String hostID;
 	private String sessionID;
-	
+
 	private String dbOverride_Pack_Label;
 	private String dbOverride_Pallet_Label;
 	private String dbPack_Label_ModuleID;
 	private String dbPallet_Label_ModuleID;
 	private String dbCustomerData01;
 	private String dbCustomerData02;
-	
+
 	public String getCustomerData01()
 	{
 		return JUtility.replaceNullStringwithBlank(dbCustomerData01);
 	}
-	
+
 	public String getCustomerData02()
 	{
 		return JUtility.replaceNullStringwithBlank(dbCustomerData02);
 	}
-	
+
 	public void setCustomerData01(String data01)
 	{
 		dbCustomerData01 = data01;
 	}
-	
+
 	public void setCustomerData02(String data02)
 	{
 		dbCustomerData02 = data02;
 	}
-	
-	public JDBCustomer(String host, String session) {
+
+	public JDBCustomer(String host, String session)
+	{
 		setHostID(host);
 		setSessionID(session);
 	}
-	
-	public JDBCustomer(String host, String session, String id, String name, String label) {
+
+	public JDBCustomer(String host, String session, String id, String name, String label)
+	{
 		setHostID(host);
 		setSessionID(session);
 		setID(id);
 		setName(name);
 		setPrintOnLabel(label);
 	}
-	
-	public void clear() {
+
+	public void clear()
+	{
 		setName("");
 		setPrintOnLabel("Y");
 		setOverridePackLabel(false);
@@ -103,17 +115,20 @@ public class JDBCustomer
 		setCustomerData01("");
 		setCustomerData02("");
 	}
-	
-	public boolean create(String lid, String lname, String printonLabel) {
+
+	public boolean create(String lid, String lname, String printonLabel)
+	{
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
+		try
+		{
 			setID(lid);
 			setName(lname);
 			setPrintOnLabel(printonLabel);
 
-			if (isValidCustomer() == false) {
+			if (isValidCustomer() == false)
+			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBCustomer.create"));
 				stmtupdate.setString(1, getID());
@@ -131,26 +146,30 @@ public class JDBCustomer
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else {
+			} else
+			{
 				setErrorMessage("Customer already exists");
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
-	
-	public boolean delete() {
+
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
-			if (getID().equals("SELF") == false) {
-				if (isValidCustomer() == true) {
+		try
+		{
+			if (getID().equals("SELF") == false)
+			{
+				if (isValidCustomer() == true)
+				{
 					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBCustomer.delete"));
 					stmtupdate.setString(1, getID());
 					stmtupdate.execute();
@@ -159,38 +178,40 @@ public class JDBCustomer
 					stmtupdate.close();
 					result = true;
 				}
-			}
-			else {
+			} else
+			{
 				setErrorMessage("You cannot delete SELF");
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
-	
-	public ResultSet getCustomerDataResultSet() {
+
+	public ResultSet getCustomerDataResultSet()
+	{
 		PreparedStatement stmt;
 		ResultSet rs = null;
 		setErrorMessage("");
 
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBCustomer.getCustomers"));
 			stmt.setFetchSize(100);
 			rs = stmt.executeQuery();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return rs;
 	}
-	
-	
-	public boolean getCustomerProperties() {
+
+	public boolean getCustomerProperties()
+	{
 		boolean result = false;
 
 		PreparedStatement stmt;
@@ -200,13 +221,15 @@ public class JDBCustomer
 
 		clear();
 
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBCustomer.getCustomerProperties"));
 			stmt.setString(1, getID());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			if (rs.next())
+			{
 				setName(rs.getString("customer_name"));
 				setPrintOnLabel(rs.getString("print_on_label"));
 				setOverridePackLabel(rs.getString("override_pack_label"));
@@ -218,34 +241,38 @@ public class JDBCustomer
 				result = true;
 				rs.close();
 				stmt.close();
-			}
-			else {
+			} else
+			{
 				setErrorMessage("Invalid Customer ID");
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
-	
-	public boolean getCustomerProperties(String cust) {
+
+	public boolean getCustomerProperties(String cust)
+	{
 		setID(cust);
 		return getCustomerProperties();
 	}
-	
-	public LinkedList<JDBCustomer> getCustomers() {
+
+	public LinkedList<JDBCustomer> getCustomers()
+	{
 		LinkedList<JDBCustomer> typeList = new LinkedList<JDBCustomer>();
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
 
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBCustomer.getCustomers"));
 			stmt.setFetchSize(100);
 			rs = stmt.executeQuery();
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 				JDBCustomer mt = new JDBCustomer(getHostID(), getSessionID());
 				mt.setID(rs.getString("customer_id"));
 				mt.setName(rs.getString("customer_name"));
@@ -261,30 +288,34 @@ public class JDBCustomer
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return typeList;
 	}
-	
-	public String getErrorMessage() {
+
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
-	
-	private String getHostID() {
+
+	private String getHostID()
+	{
 		return hostID;
 	}
-	
-	public String getID() {
+
+	public String getID()
+	{
 		String result = "";
 		if (dbCustomerID != null)
 			result = dbCustomerID;
 		return result;
 	}
-	
-	public String getName() {
+
+	public String getName()
+	{
 		String result = "";
 		if (dbCustomerName != null)
 			result = dbCustomerName;
@@ -296,7 +327,7 @@ public class JDBCustomer
 		dbOverride_Pack_Label = JUtility.replaceNullStringwithBlank(dbOverride_Pack_Label);
 		if (dbOverride_Pack_Label.equals(""))
 		{
-			dbOverride_Pack_Label="N";
+			dbOverride_Pack_Label = "N";
 		}
 		return dbOverride_Pack_Label;
 
@@ -307,7 +338,7 @@ public class JDBCustomer
 		dbOverride_Pallet_Label = JUtility.replaceNullStringwithBlank(dbOverride_Pallet_Label);
 		if (dbOverride_Pallet_Label.equals(""))
 		{
-			dbOverride_Pallet_Label="N";
+			dbOverride_Pallet_Label = "N";
 		}
 		return dbOverride_Pallet_Label;
 
@@ -323,11 +354,13 @@ public class JDBCustomer
 		return JUtility.replaceNullStringwithBlank(dbPallet_Label_ModuleID);
 	}
 
-	public String getPrintOnLabel() {
+	public String getPrintOnLabel()
+	{
 		return dbPrintOnLabel;
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
@@ -336,8 +369,7 @@ public class JDBCustomer
 		if (getOverridePackLabel().equals("Y"))
 		{
 			return true;
-		}
-		else
+		} else
 		{
 			return false;
 		}
@@ -348,35 +380,37 @@ public class JDBCustomer
 		if (getOverridePalletLabel().equals("Y"))
 		{
 			return true;
-		}
-		else
+		} else
 		{
 			return false;
 		}
 	}
 
-	public boolean isValidCustomer() {
+	public boolean isValidCustomer()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
 
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBCustomer.isValidCustomer"));
 			stmt.setString(1, getID());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			if (rs.next())
+			{
 				result = true;
-			}
-			else {
+			} else
+			{
 				setErrorMessage("Invalid Customer [" + getID() + "]");
 			}
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
@@ -384,20 +418,25 @@ public class JDBCustomer
 
 	}
 
-	public boolean isValidCustomer(String cust) {
+	public boolean isValidCustomer(String cust)
+	{
 		setID(cust);
 		return isValidCustomer();
 	}
 
-	public boolean renameTo(String newType) {
+	public boolean renameTo(String newType)
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
-		try {
-			if (isValidCustomer() == true) {
+		try
+		{
+			if (isValidCustomer() == true)
+			{
 				JDBCustomer mattype = new JDBCustomer(getHostID(), getSessionID());
 				mattype.setID(newType);
-				if (mattype.isValidCustomer() == false) {
+				if (mattype.isValidCustomer() == false)
+				{
 					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBCustomer.renameTo"));
 					stmtupdate.setString(1, newType);
 					stmtupdate.setString(2, getID());
@@ -409,35 +448,40 @@ public class JDBCustomer
 
 					setID(newType);
 					result = true;
-				}
-				else {
+				} else
+				{
 					setErrorMessage("New Customer ID is already in use.");
 				}
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
 
-	private void setErrorMessage(String errorMsg) {
-		if (errorMsg.isEmpty() == false) {
+	private void setErrorMessage(String errorMsg)
+	{
+		if (errorMsg.isEmpty() == false)
+		{
 			logger.error(errorMsg);
 		}
 		dbErrorMessage = errorMsg;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setID(String type) {
+	public void setID(String type)
+	{
 		dbCustomerID = type;
 	}
 
-	public void setName(String description) {
+	public void setName(String description)
+	{
 		dbCustomerName = description;
 	}
 
@@ -446,8 +490,7 @@ public class JDBCustomer
 		if (yesno)
 		{
 			setOverridePackLabel("Y");
-		}
-		else
+		} else
 		{
 			setOverridePackLabel("N");
 		}
@@ -463,8 +506,7 @@ public class JDBCustomer
 		if (yesno)
 		{
 			setOverridePalletLabel("Y");
-		}
-		else
+		} else
 		{
 			setOverridePalletLabel("N");
 		}
@@ -485,40 +527,47 @@ public class JDBCustomer
 		dbPallet_Label_ModuleID = id;
 	}
 
-	public void setPrintOnLabel(String lprint) {
+	public void setPrintOnLabel(String lprint)
+	{
 		dbPrintOnLabel = lprint;
 	}
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public String toString() {
+	public String toString()
+	{
 		String result = "";
-		if (getID().equals("") == false) {
+		if (getID().equals("") == false)
+		{
 			result = JUtility.padString(getID(), true, field_customer_id, " ") + " - " + getName();
-		}
-		else {
+		} else
+		{
 			result = "";
 		}
 
 		return result;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
-			if (isValidCustomer() == true) {
+		try
+		{
+			if (isValidCustomer() == true)
+			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBCustomer.update"));
 				stmtupdate.setString(1, getName());
 				stmtupdate.setString(2, getPrintOnLabel());
-				stmtupdate.setString(3,getOverridePackLabel());
-				stmtupdate.setString(4,getPackLabelModuleID());
-				stmtupdate.setString(5,getOverridePalletLabel());
-				stmtupdate.setString(6,getPalletLabelModuleID());
+				stmtupdate.setString(3, getOverridePackLabel());
+				stmtupdate.setString(4, getPackLabelModuleID());
+				stmtupdate.setString(5, getOverridePalletLabel());
+				stmtupdate.setString(6, getPalletLabelModuleID());
 				stmtupdate.setString(7, getCustomerData01());
 				stmtupdate.setString(8, getCustomerData02());
 				stmtupdate.setTimestamp(9, JUtility.getSQLDateTime());
@@ -529,8 +578,8 @@ public class JDBCustomer
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 

@@ -34,7 +34,13 @@ import java.util.LinkedList;
 import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
-
+/**
+ * JDBAutoLabellerResources class is used  to insert/update/delete the APP_AUTO_LABELLER_RESOURCES table. 
+ * It is used to determine which Process Order Resources are linked to which Production Lines.
+ * When the data is assigned to the Production Line the Orders Resource is validated by checking it is linked to the Line in this table.
+ * This prevents the wrong order being set to the printers/labelers on a line.
+ *
+ */
 public class JDBAutoLabellerResources {
 	private String dbErrorMessage;
 	private String dbRequiredResource;

@@ -37,6 +37,15 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBDataIDs class is used to insert/update/delete the APP_MATERIAL_DATA_IDS
+ * table. The default APP_MATERIAL table holds the basic material master data.
+ * However in order to extend the type of data which can be stored and also link
+ * it so a customer there is another table called APP_MATERIAL_CUSTOMER_DATA.
+ * This second table is keyed on MATERIAL, CUSTOMER_ID and DATA_ID. The DATA_ID
+ * can be anything meaningful name to describe the new data item being stored.
+ */
+
 public class JDBDataIDs
 {
 
@@ -49,7 +58,6 @@ public class JDBDataIDs
 	public static int field_data_id = 20;
 	public static int field_description = 80;
 
-	
 	public JDBDataIDs(String host, String session)
 	{
 		setHostID(host);
@@ -64,13 +72,15 @@ public class JDBDataIDs
 		setDescription(description);
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		// setType("");
 		setDescription("");
 		setErrorMessage("");
 	}
 
-	public boolean create(String lid) {
+	public boolean create(String lid)
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -88,13 +98,11 @@ public class JDBDataIDs
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else
+			} else
 			{
-				setErrorMessage("Data ID ["+lid+"] already exists");
+				setErrorMessage("Data ID [" + lid + "] already exists");
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -102,7 +110,8 @@ public class JDBDataIDs
 		return result;
 	}
 
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -119,8 +128,7 @@ public class JDBDataIDs
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -128,22 +136,26 @@ public class JDBDataIDs
 		return result;
 	}
 
-	public String getDescription() {
+	public String getDescription()
+	{
 		String result = "";
 		if (dbDataIDDescription != null)
 			result = dbDataIDDescription;
 		return result;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
-	public boolean getProperties() {
+	public boolean getProperties()
+	{
 		boolean result = false;
 
 		PreparedStatement stmt;
@@ -164,27 +176,27 @@ public class JDBDataIDs
 			{
 				setDescription(rs.getString("description"));
 				result = true;
-			}
-			else
+			} else
 			{
-				setErrorMessage("Invalid Data ID ["+getID()+"]");
+				setErrorMessage("Invalid Data ID [" + getID() + "]");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public boolean geProperties(String materialType) {
+	public boolean geProperties(String materialType)
+	{
 		setID(materialType);
 		return getProperties();
 	}
-	
-	public LinkedList<JDBDataIDs> getDataIDs() {
+
+	public LinkedList<JDBDataIDs> getDataIDs()
+	{
 		LinkedList<JDBDataIDs> typeList = new LinkedList<JDBDataIDs>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -206,8 +218,7 @@ public class JDBDataIDs
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -215,18 +226,21 @@ public class JDBDataIDs
 		return typeList;
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public String getID() {
+	public String getID()
+	{
 		String result = "";
 		if (dbDataID != null)
 			result = dbDataID;
 		return result;
 	}
 
-	public boolean isValidDataID() {
+	public boolean isValidDataID()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
@@ -241,16 +255,14 @@ public class JDBDataIDs
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Data ID [" + getID() + "]");
 			}
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -265,11 +277,13 @@ public class JDBDataIDs
 		return isValidDataID();
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(String description)
+	{
 		dbDataIDDescription = description;
 	}
 
-	private void setErrorMessage(String errorMsg) {
+	private void setErrorMessage(String errorMsg)
+	{
 		if (errorMsg.isEmpty() == false)
 		{
 			logger.error(errorMsg);
@@ -277,27 +291,28 @@ public class JDBDataIDs
 		dbErrorMessage = errorMsg;
 	}
 
-
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public void setID(String id) {
+	public void setID(String id)
+	{
 		dbDataID = id;
 	}
 
-	public String toString() {
+	public String toString()
+	{
 		String result = "";
 		if (getID().equals("") == false)
 		{
 			result = JUtility.padString(getID(), true, 20, " ") + " - " + getDescription();
-		}
-		else
+		} else
 		{
 			result = "";
 		}
@@ -305,7 +320,8 @@ public class JDBDataIDs
 		return result;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -323,8 +339,7 @@ public class JDBDataIDs
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}

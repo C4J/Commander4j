@@ -37,6 +37,12 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBLanguage is used to insert/update/delete records from the SYS_LANGUAGE
+ * table. The table text for all buttons, labels within the application in
+ * multiple languages.
+ *
+ */
 public class JDBLanguage
 {
 	private String hostID;

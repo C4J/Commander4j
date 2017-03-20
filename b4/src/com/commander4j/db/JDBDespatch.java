@@ -43,6 +43,11 @@ import com.commander4j.messages.OutgoingEquipmentTracking;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBDespatch class class is used to insert/update/delete the APP_DESPATCH
+ * table.
+ */
+
 public class JDBDespatch
 {
 	/* Locations */
