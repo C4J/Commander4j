@@ -1,9 +1,31 @@
-// $codepro.audit.disable numericLiterals
-/*
- * Created on 11-Jan-2005
- *
- */
 package com.commander4j.db;
+
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBGroup.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,13 +83,7 @@ public class JDBGroup
 		setDescription("");
 	}
 
-	/**
-	 * Method addModule.
-	 * 
-	 * @param lModuleId
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean addModule(String lModuleId,String actionedBy) {
 		boolean result = false;
 
@@ -80,15 +96,7 @@ public class JDBGroup
 		return result;
 	}
 
-	/**
-	 * Method create.
-	 * 
-	 * @param lGroupId
-	 *            String
-	 * @param ldescription
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean create(String lGroupId, String ldescription,String actionedBy) {
 		boolean result = false;
 		setErrorMessage("");
@@ -127,11 +135,7 @@ public class JDBGroup
 		return result;
 	}
 
-	/**
-	 * Method delete.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean delete(String group,String actionedBy) {
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -169,38 +173,22 @@ public class JDBGroup
 		return result;
 	}
 
-	/**
-	 * Method getDescription.
-	 * 
-	 * @return String
-	 */
+
 	public String getDescription() {
 		return dbDescription;
 	}
 
-	/**
-	 * Method getErrorMessage.
-	 * 
-	 * @return String
-	 */
+
 	public String getErrorMessage() {
 		return dbErrorMessage;
 	}
 
-	/**
-	 * Method getGroupId.
-	 * 
-	 * @return String
-	 */
+
 	public String getGroupId() {
 		return dbGroupId;
 	}
 
-	/**
-	 * Method getGroupIds.
-	 * 
-	 * @return LinkedList<String>
-	 */
+
 	public LinkedList<String> getGroupIds() {
 		LinkedList<String> groupList = new LinkedList<String>();
 
@@ -252,11 +240,7 @@ public class JDBGroup
 		return rs;
 	}
 
-	/**
-	 * Method getGroupProperties.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean getGroupProperties() {
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -292,11 +276,7 @@ public class JDBGroup
 		return result;
 	}
 
-	/**
-	 * Method getModulesAssigned.
-	 * 
-	 * @return LinkedList<JDBListData>
-	 */
+
 	public LinkedList<JDBListData> getModulesAssigned() {
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 
@@ -306,11 +286,7 @@ public class JDBGroup
 		return moduleList;
 	}
 
-	/**
-	 * Method getModulesUnAssigned.
-	 * 
-	 * @return LinkedList<JDBListData>
-	 */
+
 	public LinkedList<JDBListData> getModulesUnAssigned() {
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 
@@ -320,11 +296,7 @@ public class JDBGroup
 		return moduleList;
 	}
 
-	/**
-	 * Method isValidGroupId.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isValidGroupId() {
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -358,13 +330,7 @@ public class JDBGroup
 
 	}
 
-	/**
-	 * Method removeModule.
-	 * 
-	 * @param lModuleId
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean removeModule(String lModuleId,String actionedBy) {
 		boolean result = false;
 
@@ -379,13 +345,7 @@ public class JDBGroup
 		return result;
 	}
 
-	/**
-	 * Method renameTo.
-	 * 
-	 * @param newGroupId
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean renameTo(String oldGroupId,String newGroupId,String actionedBy) {
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -434,22 +394,12 @@ public class JDBGroup
 		return result;
 	}
 
-	/**
-	 * Method setDescription.
-	 * 
-	 * @param description
-	 *            String
-	 */
+
 	public void setDescription(String description) {
 		dbDescription = description;
 	}
 
-	/**
-	 * Method setErrorMessage.
-	 * 
-	 * @param errorMsg
-	 *            String
-	 */
+
 	private void setErrorMessage(String errorMsg) {
 		if (errorMsg.isEmpty() == false)
 		{
@@ -458,21 +408,12 @@ public class JDBGroup
 		dbErrorMessage = errorMsg;
 	}
 
-	/**
-	 * Method setGroupId.
-	 * 
-	 * @param groupId
-	 *            String
-	 */
+
 	public void setGroupId(String groupId) {
 		dbGroupId = groupId;
 	}
 
-	/**
-	 * Method update.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean update() {
 		boolean result = false;
 		setErrorMessage("");

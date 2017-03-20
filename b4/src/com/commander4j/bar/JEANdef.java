@@ -5,10 +5,32 @@
 package com.commander4j.bar;
 
 /**
- * @author David
+ * @author David Garratt
  * 
- * @version $Revision: 1.0 $
+ * Project Name : Commander4j
+ * 
+ * Filename     : JEANdef.java
+ * 
+ * Package Name : com.commander4j.bar
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
  */
+
 public class JEANdef
 {
 	private String applicationID;
@@ -25,33 +47,10 @@ public class JEANdef
 
 	private String checkDigit;
 
-	/**
-	 * Method toString.
-	 * 
-	 * @return String
-	 */
 	public String toString() {
 		return this.applicationID;
 	}
 
-	/**
-	 * Constructor for JEANdef.
-	 * 
-	 * @param appid
-	 *            String
-	 * @param desc
-	 *            String
-	 * @param type
-	 *            String
-	 * @param decInd
-	 *            String
-	 * @param maxlen
-	 *            int
-	 * @param fixedvar
-	 *            String
-	 * @param cd
-	 *            String
-	 */
 	JEANdef(String appid, String desc, String type, String decInd, int maxlen, String fixedvar, String cd)
 	{
 		applicationID = appid;
@@ -63,107 +62,72 @@ public class JEANdef
 		checkDigit = cd;
 	}
 
-	/**
-	 * @return the applicationID
-	 */
+
 	public String getApplicationID() {
 		return applicationID;
 	}
 
-	/**
-	 * @param value
-	 *            String
-	 */
+
 	public void setApplicationID(String value) {
 		applicationID = value;
 	}
 
-	/**
-	 * @return the description
-	 */
+
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 * @param value
-	 *            String
-	 */
+
 	public void setDescription(String value) {
 		description = value;
 	}
 
-	/**
-	 * @return the dataType
-	 */
+
 	public String getDataType() {
 		return dataType;
 	}
 
-	/**
-	 * @param value
-	 *            String
-	 */
+
 	public void setDataType(String value) {
 		dataType = value;
 	}
 
-	/**
-	 * @return the decimalIndicator
-	 */
+
 	public String getDecimalIndicator() {
 		return decimalIndicator;
 	}
 
-	/**
-	 * @param value
-	 *            String
-	 */
+
 	public void setDecimalIndicator(String value) {
 		decimalIndicator = value;
 	}
 
-	/**
-	 * @return the maxLength
-	 */
+
 	public int getMaxLength() {
 		return maxLength;
 	}
 
-	/**
-	 * @param value
-	 *            int
-	 */
+
 	public void setMaxLength(int value) {
 		maxLength = value;
 	}
 
-	/**
-	 * @return the fixedVariable
-	 */
+
 	public String getFixedVariable() {
 		return fixedVariable;
 	}
 
-	/**
-	 * @param value
-	 *            String
-	 */
+
 	public void setFixedVariable(String value) {
 		fixedVariable = value;
 	}
 
-	/**
-	 * @return the checkDigit
-	 */
+
 	public String getCheckDigit() {
 		return checkDigit;
 	}
 
-	/**
-	 * @param value
-	 *            String
-	 */
+
 	public void setCheckDigit(String value) {
 		checkDigit = value;
 	}

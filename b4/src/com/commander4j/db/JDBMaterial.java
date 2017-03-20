@@ -1,5 +1,32 @@
 package com.commander4j.db;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBMaterial.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -474,11 +501,7 @@ public class JDBMaterial
 		return result;
 	}
 
-	/**
-	 * Method getMaterialBatches.
-	 * 
-	 * @return LinkedList<JDBMaterialBatch>
-	 */
+
 	public LinkedList<JDBMaterialBatch> getMaterialBatches()
 	{
 		LinkedList<JDBMaterialBatch> batchList = new LinkedList<JDBMaterialBatch>();
@@ -510,13 +533,7 @@ public class JDBMaterial
 		return batchList;
 	}
 
-	/**
-	 * Method getMaterialData.
-	 * 
-	 * @param criteria
-	 *            PreparedStatement
-	 * @return Vector<JDBMaterial>
-	 */
+
 	public Vector<JDBMaterial> getMaterialData(PreparedStatement criteria)
 	{
 
@@ -567,13 +584,7 @@ public class JDBMaterial
 		return rs;
 	}
 
-	/**
-	 * Method getMaterialProperties.
-	 * 
-	 * @param lmaterial
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean getMaterialProperties(String lmaterial)
 	{
 		boolean result = false;
@@ -615,21 +626,13 @@ public class JDBMaterial
 		return result;
 	}
 
-	/**
-	 * Method getMaterialType.
-	 * 
-	 * @return String
-	 */
+
 	public String getMaterialType()
 	{
 		return dbMaterialType;
 	}
 
-	/**
-	 * Method getMaterialUomCount.
-	 * 
-	 * @return Integer
-	 */
+
 	public Integer getMaterialUomCount()
 	{
 		Integer result = 0;
@@ -663,11 +666,7 @@ public class JDBMaterial
 		return result;
 	}
 
-	/**
-	 * Method getMaterialUoms.
-	 * 
-	 * @return LinkedList<JDBMaterialUom>
-	 */
+
 	public LinkedList<JDBMaterialUom> getMaterialUoms()
 	{
 		LinkedList<JDBMaterialUom> uomList = new LinkedList<JDBMaterialUom>();
@@ -699,31 +698,18 @@ public class JDBMaterial
 		return uomList;
 	}
 
-	/**
-	 * Method getNetWeight.
-	 * 
-	 * @return BigDecimal
-	 */
+
 	public BigDecimal getNetWeight()
 	{
 		return dbNetWeight;
 	}
 
-	/**
-	 * Method getOldMaterial.
-	 * 
-	 * @return String
-	 */
+
 	public String getOldMaterial()
 	{
 		return dbOldMaterial;
 	}
 
-	/**
-	 * Method getProductionUom.
-	 * 
-	 * @return String
-	 */
 
 	public void getPropertiesfromResultSet(ResultSet rs)
 	{
@@ -818,54 +804,31 @@ public class JDBMaterial
 		return sessionID;
 	}
 
-	/**
-	 * Method getShelfLife.
-	 * 
-	 * @return int
-	 */
+
 	public int getShelfLife()
 	{
 		return dbShelflife;
 	}
 
-	/**
-	 * Method getShelfLifeRule.
-	 * 
-	 * @return String
-	 */
+
 	public String getShelfLifeRule()
 	{
 		return dbShelflifeRule;
 	}
 
-	/**
-	 * Method getShelfLifeUom.
-	 * 
-	 * @return String
-	 */
+
 	public String getShelfLifeUom()
 	{
 		return dbShelflifeUom;
 	}
 
-	/**
-	 * Method getWeightUom.
-	 * 
-	 * @return String
-	 */
+
 	public String getWeightUom()
 	{
 		return dbWeightUom;
 	}
 
-	/**
-	 * Method isValid.
-	 * 
-	 * @return boolean
-	 */
-	/**
-	 * @return
-	 */
+
 	public boolean isValid()
 	{
 		boolean result = true;
@@ -911,11 +874,7 @@ public class JDBMaterial
 		return result;
 	}
 
-	/**
-	 * Method isValidMaterial.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isValidMaterial()
 	{
 
@@ -948,25 +907,14 @@ public class JDBMaterial
 
 	}
 
-	/**
-	 * Method isValidMaterial.
-	 * 
-	 * @param mat
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean isValidMaterial(String mat)
 	{
 		setMaterial(mat);
 		return isValidMaterial();
 	}
 
-	/**
-	 * Method setBaseUom.
-	 * 
-	 * @param uom
-	 *            String
-	 */
+
 	public void setBaseUom(String uom)
 	{
 		if (uom == null)
@@ -976,23 +924,13 @@ public class JDBMaterial
 		dbBaseUom = uom;
 	}
 
-	/**
-	 * Method setDefaultBatchStatus.
-	 * 
-	 * @param batchStatus
-	 *            String
-	 */
+
 	public void setDefaultBatchStatus(String batchStatus)
 	{
 		dbDefaultBatchStatus = batchStatus;
 	}
 
-	/**
-	 * Method setDescription.
-	 * 
-	 * @param description
-	 *            String
-	 */
+
 	public void setDescription(String description)
 	{
 		dbDescription = description;
@@ -1003,23 +941,13 @@ public class JDBMaterial
 		dbEquipmentType = equipmentType;
 	}
 
-	/**
-	 * Method setErrorMessage.
-	 * 
-	 * @param ErrorMsg
-	 *            String
-	 */
+
 	private void setErrorMessage(String ErrorMsg)
 	{
 		dbErrorMessage = ErrorMsg;
 	}
 
-	/**
-	 * Method setGrossWeight.
-	 * 
-	 * @param weight
-	 *            BigDecimal
-	 */
+
 	public void setGrossWeight(BigDecimal weight)
 	{
 		dbGrossWeight = weight;
@@ -1035,45 +963,25 @@ public class JDBMaterial
 		dbInspectionID = insp;
 	}
 
-	/**
-	 * Method setMaterial.
-	 * 
-	 * @param material
-	 *            String
-	 */
+
 	public void setMaterial(String material)
 	{
 		dbMaterial = material;
 	}
 
-	/**
-	 * Method setMaterialType.
-	 * 
-	 * @param materialType
-	 *            String
-	 */
+
 	public void setMaterialType(String materialType)
 	{
 		dbMaterialType = materialType;
 	}
 
-	/**
-	 * Method setNetWeight.
-	 * 
-	 * @param weight
-	 *            BigDecimal
-	 */
+
 	public void setNetWeight(BigDecimal weight)
 	{
 		dbNetWeight = weight;
 	}
 
-	/**
-	 * Method setOldMaterial.
-	 * 
-	 * @param material
-	 *            String
-	 */
+
 	public void setOldMaterial(String material)
 	{
 		dbOldMaterial = material;
@@ -1084,55 +992,31 @@ public class JDBMaterial
 		sessionID = session;
 	}
 
-	/**
-	 * Method setShelfLife.
-	 * 
-	 * @param shelflife
-	 *            int
-	 */
+
 	public void setShelfLife(int shelflife)
 	{
 		dbShelflife = shelflife;
 	}
 
-	/**
-	 * Method setShelfLifeRule.
-	 * 
-	 * @param rule
-	 *            String
-	 */
+
 	public void setShelfLifeRule(String rule)
 	{
 		dbShelflifeRule = rule;
 	}
 
-	/**
-	 * Method setShelfLifeUom.
-	 * 
-	 * @param uom
-	 *            String
-	 */
+
 	public void setShelfLifeUom(String uom)
 	{
 		dbShelflifeUom = uom;
 	}
 
-	/**
-	 * Method setWeightUom.
-	 * 
-	 * @param uom
-	 *            String
-	 */
+
 	public void setWeightUom(String uom)
 	{
 		dbWeightUom = uom;
 	}
 
-	/**
-	 * Method update.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean update()
 	{
 		boolean result = false;

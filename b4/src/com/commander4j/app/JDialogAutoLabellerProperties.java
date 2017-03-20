@@ -1,5 +1,32 @@
 package com.commander4j.app;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDialogAutoLabellerProperties.java
+ * 
+ * Package Name : com.commander4j.app
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -91,6 +118,11 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog {
 	private String selectedLine = "";
 	private String selectedGroup = "";
 
+	/**
+	 * @param frame Parent frame
+	 * @param line Production Line
+	 * @param group Group
+	 */
 	public JDialogAutoLabellerProperties(JFrame frame, String line, String group)
 	{
 		super(frame, "Line Properties", ModalityType.DOCUMENT_MODAL);
@@ -161,6 +193,9 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog {
 
 	}
 
+	/**
+	 * Calculate the SSCC check digit.
+	 */
 	private void calcCheckDigit()
 	{
 		String sscc = SSCCPrefix;
@@ -169,6 +204,9 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog {
 		textField4SSCCCheckDigit.setText(barcode.calcCheckdigit(sscc));
 	}
 
+	/**
+	 *  Method used to build GUI
+	 */
 	private void initGUI()
 	{
 		try

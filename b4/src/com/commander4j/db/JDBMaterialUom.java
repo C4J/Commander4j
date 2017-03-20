@@ -1,5 +1,31 @@
-// $codepro.audit.disable numericLiterals
 package com.commander4j.db;
+
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBMaterialUom.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,9 +38,6 @@ import com.commander4j.bar.JEANUtility;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
-/**
- * @author David
- */
 public class JDBMaterialUom
 {
 
@@ -52,10 +75,7 @@ public class JDBMaterialUom
 		return hostID;
 	}
 
-	/**
-	 * @uml.property name="uom"
-	 * @uml.associationEnd multiplicity="(1 1)"
-	 */
+
 	private JDBUom uom;
 
 	public JDBMaterialUom(String host, String session)
@@ -65,22 +85,6 @@ public class JDBMaterialUom
 		uom = new JDBUom(getHostID(), getSessionID());
 	}
 
-	/**
-	 * Constructor for JDBMaterialUom.
-	 * 
-	 * @param material
-	 *            String
-	 * @param uom
-	 *            String
-	 * @param ean
-	 *            String
-	 * @param variant
-	 *            String
-	 * @param numerator
-	 *            Integer
-	 * @param denominator
-	 *            Integer
-	 */
 	public JDBMaterialUom(String host, String session, String material, String uom, String ean, String variant, Integer numerator, Integer denominator,String override)
 	{
 		setHostID(host);
@@ -303,13 +307,7 @@ public class JDBMaterialUom
 		return dbMaterial;
 	}
 
-	/**
-	 * Method getMaterialUomData.
-	 * 
-	 * @param criteria
-	 *            PreparedStatement
-	 * @return Vector<JDBMaterialUom>
-	 */
+
 	public Vector<JDBMaterialUom> getMaterialUomData(PreparedStatement criteria)
 	{
 		ResultSet rs;
@@ -339,11 +337,7 @@ public class JDBMaterialUom
 		return result;
 	}
 
-	/**
-	 * Method getMaterialUomProperties.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean getMaterialUomProperties()
 	{
 		boolean result = false;
@@ -382,15 +376,7 @@ public class JDBMaterialUom
 		return result;
 	}
 
-	/**
-	 * Method getMaterialUomProperties.
-	 * 
-	 * @param mat
-	 *            String
-	 * @param uom
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean getMaterialUomProperties(String mat, String uom)
 	{
 		setMaterial(mat);
@@ -398,11 +384,7 @@ public class JDBMaterialUom
 		return getMaterialUomProperties();
 	}
 
-	/**
-	 * Method getMaterialUoms.
-	 * 
-	 * @return Vector<JDBUom>
-	 */
+
 	public Vector<JDBUom> getMaterialUoms()
 	{
 		Vector<JDBUom> uomList = new Vector<JDBUom>();
@@ -436,55 +418,32 @@ public class JDBMaterialUom
 		return uomList;
 	}
 
-	/**
-	 * Method getMaterialUoms.
-	 * 
-	 * @param material
-	 *            String
-	 * @return Vector<JDBUom>
-	 */
+
 	public Vector<JDBUom> getMaterialUoms(String material)
 	{
 		setMaterial(material);
 		return getMaterialUoms();
 	}
 
-	/**
-	 * Method getNumerator.
-	 * 
-	 * @return Integer
-	 */
+
 	public Integer getNumerator()
 	{
 		return dbMaterialNumerator;
 	}
 
-	/**
-	 * Method getUom.
-	 * 
-	 * @return String
-	 * @uml.property name="uom"
-	 */
+
 	public String getUom()
 	{
 		return dbMaterialUom;
 	}
 
-	/**
-	 * Method getVariant.
-	 * 
-	 * @return String
-	 */
+
 	public String getVariant()
 	{
 		return JUtility.replaceNullStringwithBlank(dbMaterialVariant);
 	}
 
-	/**
-	 * Method isValid.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isValid()
 	{
 		boolean result = true;
@@ -540,11 +499,7 @@ public class JDBMaterialUom
 		return result;
 	}
 
-	/**
-	 * Method isValidMaterialUom.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isValidMaterialUom()
 	{
 
@@ -580,15 +535,7 @@ public class JDBMaterialUom
 
 	}
 
-	/**
-	 * Method isValidMaterialUom.
-	 * 
-	 * @param material
-	 *            String
-	 * @param uom
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean isValidMaterialUom(String material, String uom)
 	{
 		setMaterial(material);
@@ -596,12 +543,7 @@ public class JDBMaterialUom
 		return isValidMaterialUom();
 	}
 
-	/**
-	 * Method setDenominator.
-	 * 
-	 * @param denominator
-	 *            Integer
-	 */
+
 	public void setDenominator(Integer denominator)
 	{
 		dbMaterialDenominator = denominator;
@@ -612,12 +554,7 @@ public class JDBMaterialUom
 		dbMaterialOverride = JUtility.replaceNullStringwithBlank(override).toUpperCase();
 	}
 	
-	/**
-	 * Method setEan.
-	 * 
-	 * @param ean
-	 *            String
-	 */
+
 	public void setEan(String ean)
 	{
 		ean = JUtility.replaceNullStringwithBlank(ean);
@@ -630,12 +567,7 @@ public class JDBMaterialUom
 		}
 	}
 
-	/**
-	 * Method setErrorMessage.
-	 * 
-	 * @param errorMsg
-	 *            String
-	 */
+
 	private void setErrorMessage(String errorMsg)
 	{
 		if (errorMsg.isEmpty() == false)
@@ -645,45 +577,25 @@ public class JDBMaterialUom
 		dbErrorMessage = errorMsg;
 	}
 
-	/**
-	 * Method setMaterial.
-	 * 
-	 * @param material
-	 *            String
-	 */
+
 	public void setMaterial(String material)
 	{
 		dbMaterial = material;
 	}
 
-	/**
-	 * Method setNumerator.
-	 * 
-	 * @param numerator
-	 *            Integer
-	 */
+
 	public void setNumerator(Integer numerator)
 	{
 		dbMaterialNumerator = numerator;
 	}
 
-	/**
-	 * Method setUom.
-	 * 
-	 * @param uom
-	 *            String
-	 */
+
 	public void setUom(String uom)
 	{
 		dbMaterialUom = uom;
 	}
 
-	/**
-	 * Method setVariant.
-	 * 
-	 * @param variant
-	 *            String
-	 */
+
 	public void setVariant(String variant)
 	{
 		variant = JUtility.replaceNullStringwithBlank(variant);
@@ -696,11 +608,7 @@ public class JDBMaterialUom
 		}
 	}
 
-	/**
-	 * Method update.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean update()
 	{
 		boolean result = false;

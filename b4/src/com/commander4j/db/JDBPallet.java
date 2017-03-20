@@ -1,5 +1,32 @@
 package com.commander4j.db;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBPallet.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.PreparedStatement;
@@ -286,11 +313,7 @@ public class JDBPallet
 		return create(0L, transactionType, transactionSubtye);
 	}
 
-	/**
-	 * Method delete.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean delete()
 	{
 
@@ -355,13 +378,7 @@ public class JDBPallet
 		return result;
 	}
 
-	/**
-	 * Method delete.
-	 * 
-	 * @param sscc
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean delete(String sscc)
 	{
 		setSSCC(sscc);
@@ -369,11 +386,7 @@ public class JDBPallet
 		return delete();
 	}
 
-	/**
-	 * Method getBaseQuantity.
-	 * 
-	 * @return BigDecimal
-	 */
+
 	public BigDecimal getBaseQuantity()
 	{
 		dbBaseQuantity = calcBaseUOMQuantity(getUom(), getQuantity());
@@ -397,11 +410,7 @@ public class JDBPallet
 		return result;
 	}
 
-	/**
-	 * Method getBaseUom.
-	 * 
-	 * @return String
-	 */
+
 	public String getBaseUom()
 	{
 		if (lastMaterialMaterial.equals(getMaterial()) == false)
@@ -418,12 +427,7 @@ public class JDBPallet
 		return dbBatchExpiry;
 	}
 
-	/**
-	 * Method getBatchNumber.An internal error occurred during: "Java Search".
-	 * Class file name must end with .class
-	 * 
-	 * @return String
-	 */
+
 	public String getBatchNumber()
 	{
 		return JUtility.replaceNullStringwithBlank(dbBatchNumber);
@@ -478,31 +482,19 @@ public class JDBPallet
 		return JUtility.replaceNullStringwithBlank(dbDecision);
 	}
 
-	/**
-	 * Method getDespatchNo.
-	 * 
-	 * @return String
-	 */
+
 	public String getDespatchNo()
 	{
 		return JUtility.replaceNullStringwithBlank(dbDespatchNo);
 	}
 
-	/**
-	 * Method getEAN.
-	 * 
-	 * @return String
-	 */
+
 	public String getEAN()
 	{
 		return dbEAN;
 	}
 
-	/**
-	 * Method getErrorMessage.
-	 * 
-	 * @return String
-	 */
+
 	public String getErrorMessage()
 	{
 		return dbErrorMessage;
@@ -518,11 +510,7 @@ public class JDBPallet
 		return dbLayers;
 	}
 
-	/**
-	 * Method getLocationID.
-	 * 
-	 * @return String
-	 */
+
 	public String getLocationID()
 	{
 		return dbLocationId;
@@ -539,12 +527,7 @@ public class JDBPallet
 		return location;
 	}
 
-	/**
-	 * Method getMaterial.
-	 * 
-	 * @return String
-	 * @uml.property name="material"
-	 */
+
 	public String getMaterial()
 	{
 		return JUtility.replaceNullStringwithBlank(dbMaterial);
@@ -562,11 +545,7 @@ public class JDBPallet
 		return result;
 	}
 
-	/**
-	 * Method getMaterialBatchStatus.
-	 * 
-	 * @return String
-	 */
+
 	public String getMaterialBatchStatus()
 	{
 		String result = "";
@@ -595,15 +574,7 @@ public class JDBPallet
 		return dbMHNNumber;
 	}
 
-	/**
-	 * Method getPalletData.
-	 * 
-	 * @param criteria
-	 *            PreparedStatement
-	 * @param calcBaseQty
-	 *            boolean
-	 * @return Vector<JDBPallet>
-	 */
+
 	public Vector<JDBPallet> getPalletData(PreparedStatement criteria, boolean calcBaseQty)
 	{
 		ResultSet rs;
@@ -651,13 +622,7 @@ public class JDBPallet
 		return rs;
 	}
 
-	/**
-	 * Method getPalletList.
-	 * 
-	 * @param criteria
-	 *            PreparedStatement
-	 * @return LinkedList<String>
-	 */
+
 	public LinkedList<String> getPalletList(PreparedStatement criteria)
 	{
 		ResultSet rs;
@@ -688,11 +653,7 @@ public class JDBPallet
 		return result;
 	}
 
-	/**
-	 * Method getPalletProperties.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean getPalletProperties()
 	{
 		boolean result = false;
@@ -730,13 +691,7 @@ public class JDBPallet
 		return result;
 	}
 
-	/**
-	 * Method getPalletProperties.
-	 * 
-	 * @param sscc
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean getPalletProperties(String sscc)
 	{
 		boolean result;
@@ -746,12 +701,7 @@ public class JDBPallet
 		return result;
 	}
 
-	/**
-	 * Method getProcessOrder.
-	 * 
-	 * @return String
-	 * @uml.property name="processOrder"
-	 */
+
 	public String getProcessOrder()
 	{
 		return dbProcessOrder;
@@ -828,11 +778,7 @@ public class JDBPallet
 		}
 	}
 
-	/**
-	 * Method getQuantity.
-	 * 
-	 * @return BigDecimal
-	 */
+
 	public BigDecimal getQuantity()
 	{
 		return dbQuantity;
@@ -861,21 +807,13 @@ public class JDBPallet
 		return sessionID;
 	}
 
-	/**
-	 * Method getSSCC.
-	 * 
-	 * @return String
-	 */
+
 	public String getSSCC()
 	{
 		return dbSSCC;
 	}
 
-	/**
-	 * Method getStatus.
-	 * 
-	 * @return String
-	 */
+
 	public String getStatus()
 	{
 		return JUtility.replaceNullStringwithBlank(dbStatus);
@@ -886,11 +824,7 @@ public class JDBPallet
 		return transactionRef;
 	}
 
-	/**
-	 * Method getUom.
-	 * 
-	 * @return String
-	 */
+
 	public String getUom()
 	{
 		return dbUom;
@@ -901,11 +835,7 @@ public class JDBPallet
 		return JUtility.replaceNullStringwithBlank(dbUpdatedBy);
 	}
 
-	/**
-	 * Method getVariant.
-	 * 
-	 * @return String
-	 */
+
 	public String getVariant()
 	{
 		return dbVariant;
@@ -929,11 +859,7 @@ public class JDBPallet
 		return dbConfirmed;
 	}
 
-	/**
-	 * Method isValidPallet.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isValidPallet()
 	{
 		PreparedStatement stmt;
@@ -972,11 +898,7 @@ public class JDBPallet
 		return isValidPallet();
 	}
 
-	/**
-	 * Method isValid.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isValidSSCCFormat()
 	{
 		boolean result = true;
@@ -1004,11 +926,7 @@ public class JDBPallet
 		return result;
 	}
 
-	/**
-	 * Method populateFromProcessOrder.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean populateFromProcessOrder()
 	{
 		boolean result = true;
@@ -1046,12 +964,7 @@ public class JDBPallet
 		dbBatchExpiry = ts;
 	}
 
-	/**
-	 * Method setBatchNumber.
-	 * 
-	 * @param batch
-	 *            String
-	 */
+
 	public void setBatchNumber(String batch)
 	{
 		dbBatchNumber = JUtility.replaceNullStringwithBlank(batch);
@@ -1127,34 +1040,19 @@ public class JDBPallet
 		dbDecision = JUtility.replaceNullStringwithBlank(decision);
 	}
 
-	/**
-	 * Method setDespatchNo.
-	 * 
-	 * @param despatchNo
-	 *            String
-	 */
+
 	public void setDespatchNo(String despatchNo)
 	{
 		dbDespatchNo = JUtility.replaceNullStringwithBlank(despatchNo);
 	}
 
-	/**
-	 * Method setEAN.
-	 * 
-	 * @param ean
-	 *            String
-	 */
+
 	public void setEAN(String ean)
 	{
 		dbEAN = ean;
 	}
 
-	/**
-	 * Method setErrorMessage.
-	 * 
-	 * @param ErrorMsg
-	 *            String
-	 */
+
 	private void setErrorMessage(String ErrorMsg)
 	{
 		if (ErrorMsg.isEmpty() == false)
@@ -1175,23 +1073,13 @@ public class JDBPallet
 		dbLayers = layers;
 	}
 
-	/**
-	 * Method setLocationID.
-	 * 
-	 * @param location_id
-	 *            String
-	 */
+
 	public void setLocationID(String location_id)
 	{
 		dbLocationId = JUtility.replaceNullStringwithBlank(location_id);
 	}
 
-	/**
-	 * Method setMaterial.
-	 * 
-	 * @param mat
-	 *            String
-	 */
+
 	public void setMaterial(String mat)
 	{
 		dbMaterial = JUtility.replaceNullStringwithBlank(mat);
@@ -1202,25 +1090,13 @@ public class JDBPallet
 		dbMHNNumber = JUtility.replaceNullStringwithBlank(mhn);
 	}
 
-	/**
-	 * Method setProcessOrder.
-	 * 
-	 * @param process_order
-	 *            String
-	 */
+
 	public void setProcessOrder(String process_order)
 	{
 		dbProcessOrder = JUtility.replaceNullStringwithBlank(process_order);
 	}
 
-	/**
-	 * Method setQuantity.
-	 * 
-	 * @param quantity
-	 *            BigDecimal
-	 * @param recalc
-	 *            boolean
-	 */
+
 	public void setQuantity(BigDecimal quantity)
 	{
 		if (quantity == null)
@@ -1236,44 +1112,25 @@ public class JDBPallet
 		sessionID = session;
 	}
 
-	/**
-	 * Method setSSCC.
-	 * 
-	 * @param sscc
-	 *            String
-	 */
+
 	public void setSSCC(String sscc)
 	{
 		dbSSCC = sscc;
 	}
 
-	/**
-	 * Method setStatus.
-	 * 
-	 * @param status
-	 *            String
-	 */
+
 	public void setStatus(String status)
 	{
 		dbStatus = JUtility.replaceNullStringwithBlank(status);
 	}
 
-	/**
-	 * Method create.
-	 * 
-	 * @return boolean
-	 */
+
 	public void setTransactionRef(long txn)
 	{
 		transactionRef = txn;
 	}
 
-	/**
-	 * Method setUom.
-	 * 
-	 * @param u
-	 *            String
-	 */
+
 	public void setUom(String u)
 	{
 		dbUom = JUtility.replaceNullStringwithBlank(u);
@@ -1284,12 +1141,7 @@ public class JDBPallet
 		dbUpdatedBy = by;
 	}
 
-	/**
-	 * Method setVariant.
-	 * 
-	 * @param variant
-	 *            String
-	 */
+
 	public void setVariant(String variant)
 	{
 		dbVariant = JUtility.replaceNullStringwithBlank(variant);
@@ -1356,11 +1208,7 @@ public class JDBPallet
 		return result;
 	}
 
-	/**
-	 * Method update.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean update()
 	{
 		boolean result = false;

@@ -1,8 +1,31 @@
-/*
- * Created on 12-Jun-2005
- *
- */
 package com.commander4j.db;
+
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBUom.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,11 +37,6 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
-/**
- * @author David
- * 
- * @version $Revision: 1.0 $
- */
 public class JDBUom
 {
 
@@ -475,11 +493,7 @@ public class JDBUom
 		return result;
 	}
 
-	/**
-	 * Method getUoms.
-	 * 
-	 * @return LinkedList<JDBUom>
-	 */
+
 	public LinkedList<JDBUom> getInternalUoms() {
 		LinkedList<JDBUom> uomList = new LinkedList<JDBUom>();
 		PreparedStatement stmt;

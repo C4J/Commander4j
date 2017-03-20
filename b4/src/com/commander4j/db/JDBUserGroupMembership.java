@@ -1,5 +1,31 @@
-
 package com.commander4j.db;
+
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBUserGroupMembership.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,11 +78,6 @@ public class JDBUserGroupMembership
 	    user = new JDBUser(getHostID(), getSessionID());
 	}
 
-	/**
-	 * Method addUsertoGroup.
-	 * 
-	 * @return boolean
-	 */
 	public boolean addUsertoGroup(String actionedBy) {
 		boolean result = false;
 
@@ -90,15 +111,7 @@ public class JDBUserGroupMembership
 		return result;
 	}
 
-	/**
-	 * Method create.
-	 * 
-	 * @param luser_id
-	 *            String
-	 * @param lgroup_id
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean create(String luser_id, String lgroup_id) {
 		boolean result = false;
 		setErrorMessage("");
@@ -133,11 +146,6 @@ public class JDBUserGroupMembership
 		return result;
 	}
 
-	/**
-	 * Method delete.
-	 * 
-	 * @return boolean
-	 */
 	public boolean delete() {
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -165,20 +173,10 @@ public class JDBUserGroupMembership
 		return result;
 	}
 
-	/**
-	 * Method getGroupId.
-	 * 
-	 * @return String
-	 */
 	public String getGroupId() {
 		return db_group_id;
 	}
 
-	/**
-	 * Method getGroupsAssignedtoUser.
-	 * 
-	 * @return LinkedList<String>
-	 */
 	public LinkedList<String> getGroupsAssignedtoUser() {
 		// int tempCount = 0;
 		LinkedList<String> groupList = new LinkedList<String>();
@@ -270,20 +268,11 @@ public class JDBUserGroupMembership
 		return groupList;
 	}
 	
-	/**
-	 * Method getUserId.
-	 * 
-	 * @return String
-	 */
+
 	public String getUserId() {
 		return db_user_id;
 	}
 
-	/**
-	 * Method isValidUserGroupMembership.
-	 * 
-	 * @return boolean
-	 */
 	public boolean isValidUserGroupMembership() {
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -316,11 +305,6 @@ public class JDBUserGroupMembership
 
 	}
 
-	/**
-	 * Method removeAllGroupsfromUser.
-	 * 
-	 * @return boolean
-	 */
 	public boolean removeAllGroupsfromUser() {
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -344,11 +328,6 @@ public class JDBUserGroupMembership
 		return result;
 	}
 
-	/**
-	 * Method removeAllUsersfromGroup.
-	 * 
-	 * @return boolean
-	 */
 	public boolean removeAllUsersfromGroup() {
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -372,11 +351,6 @@ public class JDBUserGroupMembership
 		return result;
 	}
 
-	/**
-	 * Method removeGroupfromUser.
-	 * 
-	 * @return boolean
-	 */
 	public boolean removeGroupfromUser() {
 		boolean result = false;
 
@@ -408,11 +382,7 @@ public class JDBUserGroupMembership
 		return result;
 	}
 
-	/**
-	 * Method removeUserfromGroup.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean removeUserfromGroup(String actionedBy) {
 		boolean result = false;
 
@@ -449,13 +419,6 @@ public class JDBUserGroupMembership
 		return result;
 	}
 
-	/**
-	 * Method renameGroupTo.
-	 * 
-	 * @param lgroup_id
-	 *            String
-	 * @return boolean
-	 */
 	public boolean renameGroupTo(String lgroup_id) {
 		boolean result = false;
 
@@ -479,13 +442,6 @@ public class JDBUserGroupMembership
 		return result;
 	}
 
-	/**
-	 * Method renameUserTo.
-	 * 
-	 * @param luser_id
-	 *            String
-	 * @return boolean
-	 */
 	public boolean renameUserTo(String luser_id) {
 		boolean result = false;
 
@@ -509,62 +465,28 @@ public class JDBUserGroupMembership
 		return result;
 	}
 
-	/**
-	 * Method setError.
-	 * 
-	 * @param e
-	 *            Exception
-	 */
 	private void setError(Exception e) {
 		logger.error(e);
 		db_exception = e;
 		setErrorMessage(e.getMessage());
 	}
 
-	/**
-	 * Method getException.
-	 * 
-	 * @return Exception
-	 */
 	public Exception getException() {
 		return db_exception;
 	}
 
-	/**
-	 * Method setErrorMessage.
-	 * 
-	 * @param ErrorMsg
-	 *            String
-	 */
 	private void setErrorMessage(String ErrorMsg) {
 		db_error_message = ErrorMsg;
 	}
 
-	/**
-	 * Method getErrorMessage.
-	 * 
-	 * @return String
-	 */
 	public String getErrorMessage() {
 		return db_error_message;
 	}
 
-	/**
-	 * Method setGroupId.
-	 * 
-	 * @param GroupId
-	 *            String
-	 */
 	public void setGroupId(String GroupId) {
 		db_group_id = GroupId;
 	}
 
-	/**
-	 * Method setUserId.
-	 * 
-	 * @param UserId
-	 *            String
-	 */
 	public void setUserId(String UserId) {
 		db_user_id = UserId;
 	}

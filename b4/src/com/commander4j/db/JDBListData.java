@@ -1,41 +1,46 @@
 package com.commander4j.db;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBListData.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import javax.swing.Icon;
 
-/**
- */
 public class JDBListData implements Comparable<JDBListData>
 {
-	/**
-	 * @uml.property name="mIcon"
-	 * @uml.associationEnd multiplicity="(1 1)"
-	 */
+
 	private Icon mIcon;
-	/**
-	 * @uml.property name="mIndex"
-	 */
+
 	private int mIndex;
-	/**
-	 * @uml.property name="mSelectable"
-	 */
+
 	private boolean mSelectable;
-	/**
-	 * @uml.property name="mData"
-	 */
+
 	private Object mData;
 
-	/**
-	 * Constructor for JDBListData.
-	 * 
-	 * @param icon
-	 *            Icon
-	 * @param index
-	 *            int
-	 * @param selectable
-	 *            boolean
-	 * @param data
-	 *            Object
-	 */
+
 	public JDBListData(Icon icon, int index, boolean selectable, Object data)
 	{
 		mIcon = icon;
@@ -44,67 +49,37 @@ public class JDBListData implements Comparable<JDBListData>
 		mData = data;
 	}
 
-	/**
-	 * Method getmData.
-	 * 
-	 * @return Object
-	 */
+
 	public Object getmData() {
 		return mData;
 	}
 
-	/**
-	 * Method getIcon.
-	 * 
-	 * @return Icon
-	 */
+
 	public Icon getIcon() {
 		return mIcon;
 	}
 
-	/**
-	 * Method getIndex.
-	 * 
-	 * @return int
-	 */
+
 	public int getIndex() {
 		return mIndex;
 	}
 
-	/**
-	 * Method isSelectable.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isSelectable() {
 		return mSelectable;
 	}
 
-	/**
-	 * Method getObject.
-	 * 
-	 * @return Object
-	 */
+
 	public Object getObject() {
 		return mData;
 	}
 
-	/**
-	 * Method toString.
-	 * 
-	 * @return String
-	 */
+
 	public String toString() {
 		return mData.toString();
 	}
 
-	/**
-	 * Method compareTo.
-	 * 
-	 * @param anotherModuleListData
-	 *            JDBListData
-	 * @return int
-	 */
+
 	public int compareTo(JDBListData anotherModuleListData) {
 		return mData.toString().compareTo(anotherModuleListData.toString());
 

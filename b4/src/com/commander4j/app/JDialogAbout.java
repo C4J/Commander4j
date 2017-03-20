@@ -1,5 +1,32 @@
 package com.commander4j.app;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDialogAbout.java
+ * 
+ * Package Name : com.commander4j.app
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -28,14 +55,19 @@ import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+
+/**
+ * JDialogAbout is a modal dialog box which displays the application name and program version.
+ *
+ */
 public class JDialogAbout extends javax.swing.JDialog
 {
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
-	private JLabel4j_std jLabel2;
-	private JLabel4j_std jLabel5;
-	private JLabel4j_std jLabel1;
-	private JLabel4j_std jLabel3;
+	private JLabel4j_std jLabelBy;
+	private JLabel4j_std jLabelVersion;
+	private JLabel4j_std jLabelWebPage;
+	private JLabel4j_std jLabelAuthor;
 	private JButton4j jButtonOk;
 	private URI helpURI;
 	private URI mailtoURI;
@@ -43,7 +75,7 @@ public class JDialogAbout extends javax.swing.JDialog
 	private static boolean HelpAvailable = false;
 	public static Desktop desktop;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JLabel4j_std jLabel4;
+	private JLabel4j_std jLabelEmail;
 
 	public JDialogAbout(JFrame frame)
 	{
@@ -59,14 +91,12 @@ public class JDialogAbout extends javax.swing.JDialog
 				helpURI = new URI("http://www.commander4j.com");
 				mailtoURI = new URI("mailto:support@commander4j.com");
 				HelpAvailable = true;
-			}
-			else
+			} else
 			{
 				HelpAvailable = false;
 			}
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			HelpAvailable = false;
 		}
@@ -77,7 +107,8 @@ public class JDialogAbout extends javax.swing.JDialog
 
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			{
@@ -98,91 +129,99 @@ public class JDialogAbout extends javax.swing.JDialog
 						jButtonOk.setText(lang.get("btn_Ok"));
 						jButtonOk.setMnemonic(lang.getMnemonicChar());
 						jButtonOk.setBounds(126, 196, 91, 28);
-						jButtonOk.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
+						jButtonOk.addActionListener(new ActionListener()
+						{
+							public void actionPerformed(ActionEvent evt)
+							{
 								dispose();
 							}
 						});
 					}
 					{
-						jLabel2 = new JLabel4j_std();
-						jDesktopPane1.add(jLabel2);
-						jLabel2.setText("by");
-						jLabel2.setBounds(147, 112, 56, 21);
-						jLabel2.setFont(new java.awt.Font("Dialog", 0, 12));
-						jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+						jLabelBy = new JLabel4j_std();
+						jDesktopPane1.add(jLabelBy);
+						jLabelBy.setText("by");
+						jLabelBy.setBounds(147, 112, 56, 21);
+						jLabelBy.setFont(new java.awt.Font("Dialog", 0, 12));
+						jLabelBy.setHorizontalAlignment(SwingConstants.CENTER);
 					}
 					{
-						jLabel3 = new JLabel4j_std();
-						jDesktopPane1.add(jLabel3);
-						jLabel3.setText("David Garratt");
-						jLabel3.setBounds(119, 133, 105, 14);
-						jLabel3.setFont(new java.awt.Font("Dialog", 0, 12));
-						jLabel3.setHorizontalAlignment(SwingConstants.CENTER);
+						jLabelAuthor = new JLabel4j_std();
+						jDesktopPane1.add(jLabelAuthor);
+						jLabelAuthor.setText("David Garratt");
+						jLabelAuthor.setBounds(119, 133, 105, 14);
+						jLabelAuthor.setFont(new java.awt.Font("Dialog", 0, 12));
+						jLabelAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 					}
 					{
-						jLabel1 = new JLabel4j_std();
-						jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-						jDesktopPane1.add(jLabel1);
-						jLabel1.setText("http://www.commander4j.com");
-						jLabel1.setBounds(48, 175, 241, 14);
-						jLabel1.setForeground(new java.awt.Color(0, 0, 255));
-						jLabel1.addMouseListener(new MouseAdapter() {
-							public void mouseClicked(MouseEvent evt) {
+						jLabelWebPage = new JLabel4j_std();
+						jLabelWebPage.setHorizontalAlignment(SwingConstants.CENTER);
+						jDesktopPane1.add(jLabelWebPage);
+						jLabelWebPage.setText("http://www.commander4j.com");
+						jLabelWebPage.setBounds(48, 175, 241, 14);
+						jLabelWebPage.setForeground(new java.awt.Color(0, 0, 255));
+						jLabelWebPage.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
 								if (HelpAvailable)
 								{
 									try
 									{
 										desktop.browse(helpURI);
-									}
-									catch (Exception ex)
+									} catch (Exception ex)
 									{
 										JUtility.errorBeep();
-										JOptionPane.showMessageDialog(Common.mainForm, ex.getMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+										JOptionPane.showMessageDialog(Common.mainForm, ex.getMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 									}
 								}
 							}
 
-							public void mouseExited(MouseEvent evt) {
+							public void mouseExited(MouseEvent evt)
+							{
 								Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 								setCursor(normalCursor);
 							}
 
-							public void mouseEntered(MouseEvent evt) {
+							public void mouseEntered(MouseEvent evt)
+							{
 								Cursor hourglassCursor = new Cursor(Cursor.HAND_CURSOR);
 								setCursor(hourglassCursor);
 							}
 						});
 					}
 					{
-						jLabel4 = new JLabel4j_std();
-						jLabel4.setHorizontalAlignment(SwingConstants.CENTER);
-						jDesktopPane1.add(jLabel4);
-						jLabel4.setText("Email : support@commander4j.com");
-						jLabel4.setBounds(44, 154, 242, 14);
-						jLabel4.setForeground(new java.awt.Color(0, 0, 255));
-						jLabel4.addMouseListener(new MouseAdapter() {
-							public void mouseClicked(MouseEvent evt) {
+						jLabelEmail = new JLabel4j_std();
+						jLabelEmail.setHorizontalAlignment(SwingConstants.CENTER);
+						jDesktopPane1.add(jLabelEmail);
+						jLabelEmail.setText("Email : support@commander4j.com");
+						jLabelEmail.setBounds(44, 154, 242, 14);
+						jLabelEmail.setForeground(new java.awt.Color(0, 0, 255));
+						jLabelEmail.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
 								if (HelpAvailable)
 								{
 									try
 									{
 										desktop.mail(mailtoURI);
-									}
-									catch (Exception ex)
+									} catch (Exception ex)
 									{
 										JUtility.errorBeep();
-										JOptionPane.showMessageDialog(Common.mainForm, ex.getMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+										JOptionPane.showMessageDialog(Common.mainForm, ex.getMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 									}
 								}
 							}
 
-							public void mouseExited(MouseEvent evt) {
+							public void mouseExited(MouseEvent evt)
+							{
 								Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 								setCursor(normalCursor);
 							}
 
-							public void mouseEntered(MouseEvent evt) {
+							public void mouseEntered(MouseEvent evt)
+							{
 								Cursor hourglassCursor = new Cursor(Cursor.HAND_CURSOR);
 								setCursor(hourglassCursor);
 							}
@@ -195,28 +234,27 @@ public class JDialogAbout extends javax.swing.JDialog
 						jDesktopPane1.paintComponents(gph.create(0, 0, 200, 50));
 					}
 					{
-						jLabel5 = new JLabel4j_std();
-						jDesktopPane1.add(jLabel5);
-						jLabel5.setText("Commander4j " + JVersion.getProgramVersion());
-						jLabel5.setBounds(14, 7, 322, 35);
-						jLabel5.setFont(new java.awt.Font("Serif", 1, 28));
-						jLabel5.setForeground(new java.awt.Color(255, 0, 0));
-						jLabel5.setHorizontalAlignment(SwingConstants.CENTER);
+						jLabelVersion = new JLabel4j_std();
+						jDesktopPane1.add(jLabelVersion);
+						jLabelVersion.setText("Commander4j " + JVersion.getProgramVersion());
+						jLabelVersion.setBounds(14, 7, 322, 35);
+						jLabelVersion.setFont(new java.awt.Font("Serif", 1, 28));
+						jLabelVersion.setForeground(new java.awt.Color(255, 0, 0));
+						jLabelVersion.setHorizontalAlignment(SwingConstants.CENTER);
 					}
 
 					{
-						final JBarcodePanel panel = new JBarcodePanel();
-						panel.setBackground(Color.WHITE);
-						panel.setLayout(null);
-						panel.setBounds(14, 48, 314, 60);
-						panel.setImage(i);
-						jDesktopPane1.add(panel);
+						final JBarcodePanel panelBarcode = new JBarcodePanel();
+						panelBarcode.setBackground(Color.WHITE);
+						panelBarcode.setLayout(null);
+						panelBarcode.setBounds(14, 48, 314, 60);
+						panelBarcode.setImage(i);
+						jDesktopPane1.add(panelBarcode);
 					}
 				}
 			}
 			this.setSize(356, 264);
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}

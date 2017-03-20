@@ -1,9 +1,31 @@
-// $codepro.audit.disable numericLiterals
-/*
- * Created on 22-May-2005
- *
- */
 package com.commander4j.db;
+
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBRFMenu.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,29 +35,15 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
-/**
- * @author David
- * 
- * @version $Revision: 1.0 $
- */
 public class JDBRFMenu
 {
-	/**
-	 * @uml.property name="dbErrorMessage"
-	 */
+
 	private String dbErrorMessage;
-	/**
-	 * @uml.property name="dbModuleId"
-	 */
+
 	private String dbModuleId;
-	/**
-	 * @uml.property name="dbSequenceId"
-	 */
+
 	private int dbSequenceId;
-	/**
-	 * @uml.property name="logger"
-	 * @uml.associationEnd multiplicity="(1 1)"
-	 */
+
 	private final Logger logger = Logger.getLogger(JDBRFMenu.class);
 	private String hostID;
 	private String sessionID;
@@ -62,15 +70,7 @@ public class JDBRFMenu
 		setSessionID(session);
 	}
 
-	/**
-	 * Method create.
-	 * 
-	 * @param lModuleId
-	 *            String
-	 * @param lSequenceId
-	 *            int
-	 * @return boolean
-	 */
+
 	public boolean create(String lModuleId, int lSequenceId) {
 		boolean result = false;
 		setErrorMessage("");
@@ -99,11 +99,7 @@ public class JDBRFMenu
 		return result;
 	}
 
-	/**
-	 * Method delete.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean delete() {
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -128,40 +124,22 @@ public class JDBRFMenu
 		return result;
 	}
 
-	/**
-	 * Method getErrorMessage.
-	 * 
-	 * @return String
-	 */
+
 	public String getErrorMessage() {
 		return dbErrorMessage;
 	}
 
-	/**
-	 * Method getModuleId.
-	 * 
-	 * @return String
-	 */
+
 	public String getModuleId() {
 		return dbModuleId;
 	}
 
-	/**
-	 * Method getSequenceId.
-	 * 
-	 * @return int
-	 */
+
 	public int getSequenceId() {
 		return dbSequenceId;
 	}
 
-	/**
-	 * Method renameModuleTo.
-	 * 
-	 * @param newModuleId
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean renameModuleTo(String newModuleId) {
 		boolean result = false;
 
@@ -189,13 +167,7 @@ public class JDBRFMenu
 		return result;
 	}
 
-	/**
-	 * Method rewriteToolbar.
-	 * 
-	 * @param modules
-	 *            LinkedList<JDBListData>
-	 * @return boolean
-	 */
+
 	public boolean rewriteRFMenu(LinkedList<JDBListData> modules) {
 		boolean result = false;
 		String lModuleId;
@@ -228,42 +200,23 @@ public class JDBRFMenu
 		return result;
 	}
 
-	/**
-	 * Method setErrorMessage.
-	 * 
-	 * @param errorMsg
-	 *            String
-	 */
+
 	private void setErrorMessage(String errorMsg) {
 		logger.error(errorMsg);
 		dbErrorMessage = errorMsg;
 	}
 
-	/**
-	 * Method setModuleId.
-	 * 
-	 * @param moduleId
-	 *            String
-	 */
+
 	public void setModuleId(String moduleId) {
 		dbModuleId = moduleId;
 	}
 
-	/**
-	 * Method setSequenceId.
-	 * 
-	 * @param sequenceId
-	 *            int
-	 */
+
 	public void setSequenceId(int sequenceId) {
 		dbSequenceId = sequenceId;
 	}
 
-	/**
-	 * Method update.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean update() {
 		boolean result = false;
 		setErrorMessage("");

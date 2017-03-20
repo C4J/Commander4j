@@ -1,5 +1,32 @@
 package com.commander4j.util;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JHelp.java
+ * 
+ * Package Name : com.commander4j.util
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,20 +41,13 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
-//import edu.stanford.ejalbert.BrowserLauncher;
 
-/**
- */
 public class JHelp {
 
 	private String helpURL;
-	/**
-	 * Field HelpAvailable. Value: {@value HelpAvailable}
-	 */
+
 	private static boolean HelpAvailable = false;
-	/**
-	 * Field desktop. Value: {@value desktop}
-	 */
+
 	public static Desktop desktop;
 
 	final Logger logger = Logger.getLogger(JHelp.class);
@@ -36,12 +56,6 @@ public class JHelp {
 		init();
 	}
 
-	/**
-	 * Method setHelpURL.
-	 * 
-	 * @param value
-	 *            String
-	 */
 	private void setHelpURL(String value) {
 		if (value == null) {
 			value = "";
@@ -66,14 +80,6 @@ public class JHelp {
 		}
 	}
 
-	/**
-	 * Method enableHelpOnButton.
-	 * 
-	 * @param button
-	 *            JButton
-	 * @param helpsetID
-	 *            String
-	 */
 	public void enableHelpOnButton(JButton button, String helpsetID) {
 		if (HelpAvailable) {
 			try {
@@ -86,14 +92,6 @@ public class JHelp {
 		}
 	}
 
-	/**
-	 * Method enableHelpOnMenuItem.
-	 * 
-	 * @param button
-	 *            JMenuItem
-	 * @param helpsetID
-	 *            String
-	 */
 	public void enableHelpOnMenuItem(JMenuItem button, String helpsetID) {
 		if (HelpAvailable) {
 			try {
@@ -106,16 +104,8 @@ public class JHelp {
 		}
 	}
 
-	/**
-	 */
 	private class ButtonHandler implements ActionListener {
-		/**
-		 * Method actionPerformed.
-		 * 
-		 * @param event
-		 *            ActionEvent
-		 * @see java.awt.event.ActionListener#actionPerformed(ActionEvent)
-		 */
+
 		public void actionPerformed(ActionEvent event) {
 			if (HelpAvailable) {
 

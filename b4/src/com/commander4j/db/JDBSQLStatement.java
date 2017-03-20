@@ -1,5 +1,32 @@
 package com.commander4j.db;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBSQLStatement.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -10,9 +37,7 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.xml.JXMLSql;
 
-/**
- * @author David
- */
+
 public class JDBSQLStatement implements Comparable<String>
 {
 
@@ -29,11 +54,7 @@ public class JDBSQLStatement implements Comparable<String>
 	private final Logger logger = Logger.getLogger(JDBSQLStatement.class);
 	private boolean statementsLoaded = false;
 
-	/**
-	 * Method toString.
-	 * 
-	 * @return String
-	 */
+
 	public void setInitialised() {
 		statementsLoaded = true;
 	}
@@ -47,14 +68,7 @@ public class JDBSQLStatement implements Comparable<String>
 
 	}
 
-	/**
-	 * Constructor for JDBSQLStatement.
-	 * 
-	 * @param xmlfile
-	 *            String
-	 * @param driver
-	 *            String
-	 */
+
 	public JDBSQLStatement(String xmlfile, String driver)
 	{
 		super();
@@ -62,22 +76,12 @@ public class JDBSQLStatement implements Comparable<String>
 		setjdbcDriver(driver);
 	}
 
-	/**
-	 * Method getjdbcDriver.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcDriver() {
 		return jdbcDriver;
 	}
 
-	/**
-	 * Method getSQL.
-	 * 
-	 * @param id
-	 *            String
-	 * @return String
-	 */
+
 	public String getSQL(String id) {
 		String result = "";
 		String before = "";
@@ -133,31 +137,17 @@ public class JDBSQLStatement implements Comparable<String>
 		return result;
 	}
 
-	/**
-	 * Method getStatementId.
-	 * 
-	 * @return String
-	 * @uml.property name="statementId"
-	 */
+
 	public String getStatementId() {
 		return statementId;
 	}
 
-	/**
-	 * Method getStatementText.
-	 * 
-	 * @return String
-	 * @uml.property name="statementText"
-	 */
+
 	public String getStatementText() {
 		return statementText;
 	}
 
-	/**
-	 * Method getXMLFilename.
-	 * 
-	 * @return String
-	 */
+
 	public String getXMLFilename() {
 		return xmlfilename;
 	}
@@ -184,85 +174,43 @@ public class JDBSQLStatement implements Comparable<String>
 		}
 	}
 
-	/**
-	 * Method getSQLStatements.
-	 * 
-	 * @return LinkedList<JDBSQLStatement>
-	 */
+
 	public LinkedList<JDBSQLStatement> getSQLStatements() {
 		return sqlstatements;
 	}
 
-	/**
-	 * Method setjdbcDriver.
-	 * 
-	 * @param driver
-	 *            String
-	 */
+
 	public void setjdbcDriver(String driver) {
 		jdbcDriver = driver;
 	}
 
-	/**
-	 * Method setStatementId.
-	 * 
-	 * @param id
-	 *            String
-	 * @uml.property name="statementId"
-	 */
+
 	public void setStatementId(String id) {
 		statementId = id;
 	}
 
-	/**
-	 * Method setStatementText.
-	 * 
-	 * @param text
-	 *            String
-	 * @uml.property name="statementText"
-	 */
+
 	public void setStatementText(String text) {
 		statementText = text;
 	}
 
-	/**
-	 * Method setSubstitutions.
-	 * 
-	 * @param subs
-	 *            LinkedList<JDBSQLStatement>
-	 * @uml.property name="substitutions"
-	 */
+
 	public void setSubstitutions(LinkedList<JDBSQLStatement> subs) {
 		substitutions.clear();
 		substitutions.addAll(subs);
 	}
 
-	/**
-	 * Method setXMLFilename.
-	 * 
-	 * @param filename
-	 *            String
-	 */
+
 	public void setXMLFilename(String filename) {
 		xmlfilename = filename;
 	}
 
-	/**
-	 * Method toString.
-	 * 
-	 * @return String
-	 */
+
 	public String toString() {
 		return statementId;
 	}
 
-	/**
-	 * Method compareTo.
-	 * 
-	 * @param anothersqlstatementid
-	 *            String
-	 * @return int
-	 */
+
 	public int compareTo(String anothersqlstatementid) {
 		return statementId.toString().compareTo(anothersqlstatementid);
 	}

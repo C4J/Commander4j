@@ -1,61 +1,55 @@
-/*
- * Created on 10-Aug-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
 package com.commander4j.db;
 
 /**
  * @author David Garratt
  * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
- * @version $Revision: 1.0 $
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDatabaseParameters.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
  */
+
 public class JDatabaseParameters
 {
-	/**
-	 * @uml.property name="jdbcDriver"
-	 */
+
 	private String jdbcDriver;
-	/**
-	 * @uml.property name="jdbcUsername"
-	 */
+
 	private String jdbcUsername;
-	/**
-	 * @uml.property name="jdbcPassword"
-	 */
+
 	private String jdbcPassword;
 
 	private String jdbcPasswordEncryption;
-	/**
-	 * @uml.property name="jdbcDatabaseDateTimeToken"
-	 */
+
 	private String jdbcDatabaseDateTimeToken;
-	/**
-	 * @uml.property name="jdbcDatabaseSelectLimit"
-	 */
+
 	private String jdbcDatabaseSelectLimit;
-	/**
-	 * @uml.property name="jdbcDatabaseSchema"
-	 */
+
 	private String jdbcDatabaseSchema;
-	/**
-	 * @uml.property name="jdbcServer"
-	 */
+
 	private String jdbcServer;
-	/**
-	 * @uml.property name="jdbcPort"
-	 */
+
 	private String jdbcPort;
-	/**
-	 * @uml.property name="jdbcSID"
-	 */
+
 	private String jdbcSID;
-	/**
-	 * @uml.property name="jdbcDatabase"
-	 */
+
 	private String jdbcDatabase;
 
 	public JDatabaseParameters()
@@ -73,32 +67,17 @@ public class JDatabaseParameters
 		jdbcDatabase = "";
 	}
 
-	/**
-	 * Method setjdbcDriver.
-	 * 
-	 * @param value
-	 *            String
-	 */
+
 	public void setjdbcDriver(String value) {
 		jdbcDriver = value;
 	}
 
-	/**
-	 * Method setjdbcUsername.
-	 * 
-	 * @param value
-	 *            String
-	 */
+
 	public void setjdbcUsername(String value) {
 		jdbcUsername = value;
 	}
 
-	/**
-	 * Method setjdbcPassword.
-	 * 
-	 * @param value
-	 *            String
-	 */
+
 	public void setjdbcPassword(String value) {
 		jdbcPassword = value;
 	}
@@ -108,99 +87,52 @@ public class JDatabaseParameters
 		jdbcPasswordEncryption = value;
 	}
 
-	/**
-	 * Method setjdbcDatabaseDateTimeToken.
-	 * 
-	 * @param value
-	 *            String
-	 */
+
 	public void setjdbcDatabaseDateTimeToken(String value) {
 		jdbcDatabaseDateTimeToken = value;
 	}
 
-	/**
-	 * Method setjdbcDatabaseSelectLimit.
-	 * 
-	 * @param value
-	 *            String
-	 */
+
 	public void setjdbcDatabaseSelectLimit(String value) {
 		jdbcDatabaseSelectLimit = value;
 	}
 
-	/**
-	 * Method setjdbcDatabaseSchema.
-	 * 
-	 * @param value
-	 *            String
-	 */
+
 	public void setjdbcDatabaseSchema(String value) {
 		jdbcDatabaseSchema = com.commander4j.util.JUtility.replaceNullStringwithBlank(value);
 	}
 
-	/**
-	 * Method setjdbcServer.
-	 * 
-	 * @param value
-	 *            String
-	 */
+
 	public void setjdbcServer(String value) {
 		jdbcServer = value;
 	}
 
-	/**
-	 * Method setjdbcPort.
-	 * 
-	 * @param value
-	 *            String
-	 */
+
 	public void setjdbcPort(String value) {
 		jdbcPort = value;
 	}
 
-	/**
-	 * Method setjdbcSID.
-	 * 
-	 * @param value
-	 *            String
-	 */
+
 	public void setjdbcSID(String value) {
 		jdbcSID = value;
 	}
 
-	/**
-	 * Method setjdbcDatabase.
-	 * 
-	 * @param value
-	 *            String
-	 */
+
 	public void setjdbcDatabase(String value) {
 		jdbcDatabase = value;
 	}
 
-	/**
-	 * Method getjdbcDriver.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcDriver() {
 		return jdbcDriver;
 	}
 
-	/**
-	 * Method getjdbcUsername.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcUsername() {
 		return jdbcUsername;
 	}
 
-	/**
-	 * Method getjdbcPassword.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcPassword() {
 		return jdbcPassword;
 	}
@@ -210,11 +142,7 @@ public class JDatabaseParameters
 		return jdbcPasswordEncryption;
 	}
 
-	/**
-	 * Method getjdbcConnectString.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcConnectString() {
 
 		String value = "";
@@ -261,65 +189,37 @@ public class JDatabaseParameters
 		return value;
 	}
 
-	/**
-	 * Method getjdbcDatabaseDateTimeToken.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcDatabaseDateTimeToken() {
 		return jdbcDatabaseDateTimeToken;
 	}
 
-	/**
-	 * Method getjdbcDatabaseSelectLimit.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcDatabaseSelectLimit() {
 		return jdbcDatabaseSelectLimit;
 	}
 
-	/**
-	 * Method getjdbcDatabaseSchema.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcDatabaseSchema() {
 		return jdbcDatabaseSchema;
 	}
 
-	/**
-	 * Method getjdbcServer.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcServer() {
 		return jdbcServer;
 	}
 
-	/**
-	 * Method getjdbcPort.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcPort() {
 		return jdbcPort;
 	}
 
-	/**
-	 * Method getjdbcSID.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcSID() {
 		return jdbcSID;
 	}
 
-	/**
-	 * Method getjdbcDatabase.
-	 * 
-	 * @return String
-	 */
+
 	public String getjdbcDatabase() {
 		return jdbcDatabase;
 	}

@@ -1,5 +1,32 @@
 package com.commander4j.email;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JeMailHelper.java
+ * 
+ * Package Name : com.commander4j.email
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -21,47 +48,6 @@ import javax.mail.internet.MimeMultipart;
 
 import org.springframework.core.io.InputStreamSource;
 
-/**
- * Helper class for easy population of a
- * <code>javax.mail.internet.MimeMessage</code>.
- * 
- * <p>
- * Mirrors the simple setters of SimpleMailMessage, directly applying the values
- * to the underlying MimeMessage. Also offers support for typical mail
- * attachments. Advanced settings can still be applied directly to underlying
- * MimeMessage!
- * 
- * <p>
- * Typically used in MimeMessagePreparator implementations or JavaMailSender
- * client code: simply instantiating it as a facade to a MimeMessage, invoking
- * setters on the facade, using the underlying MimeMessage for mail sending.
- * Also used internally by JavaMailSenderImpl.
- * 
- * <p>
- * Sample code:
- * <p>
- * <code>
- * mailSender.send(new MimeMessagePreparator() {<br>
- * &nbsp;&nbsp;public void prepare(MimeMessage mimeMessage) throws MessagingException {<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true);<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;message.setFrom("me@mail.com");<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;message.setTo("you@mail.com");<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;message.setSubject("my subject");<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;message.setText("my text");<br>
- * &nbsp;&nbsp;&nbsp;&nbsp;message.addAttachment("logo.gif", new ClassPathResource("images/mylogo.gif"));<br>
- * &nbsp;&nbsp;}<br>
- * });
- * </code>
- * 
- * @author Juergen Hoeller
- * @since 19.01.2004
- * @see javax.mail.internet.MimeMessage
- * @see #getMimeMessage
- * @see MimeMessagePreparator
- * @see JavaMailSender
- * @see JavaMailSenderImpl
- * @see org.springframework.mail.SimpleMailMessage
- */
 public class JeMailHelper
 {
 
@@ -69,29 +55,11 @@ public class JeMailHelper
 
 	private MimeMultipart mimeMultipart = null;
 
-	/**
-	 * Create new MimeMessageHelper for the given MimeMessage, assuming a simple
-	 * text message (no multipart content).
-	 * 
-	 * @param mimeMessage
-	 *            MimeMessage to work on
-	 * @see #MimeMessageHelper(javax.mail.internet.MimeMessage, boolean)
-	 */
 	public JeMailHelper(MimeMessage mimeMessage)
 	{
 		this.mimeMessage = mimeMessage;
 	}
 
-	/**
-	 * Create new MimeMessageHelper for the given MimeMessage, in multipart mode
-	 * (supporting attachments) if requested.
-	 * 
-	 * @param mimeMessage
-	 *            MimeMessage to work on
-	 * @param multipart
-	 *            whether to create a multipart message that supports
-	 *            attachments
-	 */
 	public JeMailHelper(MimeMessage mimeMessage, boolean multipart) throws MessagingException
 	{
 		this.mimeMessage = mimeMessage;
@@ -102,9 +70,6 @@ public class JeMailHelper
 		}
 	}
 
-	/**
-	 * Return the underlying MimeMessage.
-	 */
 	public MimeMessage getMimeMessage() {
 		return mimeMessage;
 	}
@@ -154,16 +119,6 @@ public class JeMailHelper
 		setText(text, false);
 	}
 
-	/**
-	 * Sets the given text directly as content in non-multipart mode
-	 * respectively as default body part in multipart mode.
-	 * 
-	 * @param text
-	 *            text to set
-	 * @param html
-	 *            whether to apply content type "text/html" for an HTML mail,
-	 *            using default content type ("text/plain") else
-	 */
 	public void setText(final String text, boolean html) throws MessagingException {
 		Part partToUse = null;
 		if (this.mimeMultipart != null)
@@ -217,42 +172,10 @@ public class JeMailHelper
 		}
 	}
 
-	/**
-	 * Add an attachment to the given MimeMessage, taking the content from a
-	 * java.io.File.
-	 * <p>
-	 * The content type will be determined by the name of the given content
-	 * file. Do not use this for temporary files with arbitrary filenames
-	 * (possibly ending in ".tmp" or the like)!
-	 * 
-	 * @param attachmentFilename
-	 *            the name of the attachment as it will appear in the mail
-	 * @param file
-	 *            the File resource to take the content from
-	 * @throws MessagingException
-	 * @see #addAttachment(String,
-	 *      org.springframework.core.io.InputStreamSource)
-	 * @see #addAttachment(String, javax.activation.DataSource)
-	 */
 	public void addAttachment(String attachmentFilename, File file) throws MessagingException {
 		addAttachment(attachmentFilename, new FileDataSource(file));
 	}
 
-	/**
-	 * Add an attachment to the given MimeMessage, taking the content from an
-	 * org.springframework.core.InputStreamResource.
-	 * <p>
-	 * The content type will be determined by the given filename for the
-	 * attachment. Thus, any content source will be fine, including temporary
-	 * files with arbitrary filenames.
-	 * 
-	 * @param attachmentFilename
-	 *            the name of the attachment as it will appear in the mail
-	 * @param inputStreamSource
-	 *            the resource to take the content from
-	 * @see #addAttachment(String, File)
-	 * @see #addAttachment(String, javax.activation.DataSource)
-	 */
 	public void addAttachment(final String attachmentFilename, final InputStreamSource inputStreamSource) throws MessagingException {
 		addAttachment(attachmentFilename, new DataSource() {
 			public InputStream getInputStream() throws IOException {
@@ -273,26 +196,6 @@ public class JeMailHelper
 		});
 	}
 
-	/**
-	 * Add an attachment to the given MimeMessage, taking the content from a
-	 * <code>javax.activation.DataSource</code>.
-	 * <p>
-	 * Note that the InputStream returned by the DataSource implementation needs
-	 * to be a <i>fresh one on each call</i>, as JavaMail will invoke
-	 * getInputStream() multiple times.
-	 * 
-	 * @param attachmentFilename
-	 *            the name of the attachment as it will appear in the mail (the
-	 *            content type will be determined by this)
-	 * @param dataSource
-	 *            the <code>javax.activation.DataSource</code> to take the
-	 *            content from, determining the InputStream and the content type
-	 * @throws MessagingException
-	 *             in case of errors
-	 * @see #addAttachment(String, File)
-	 * @see #addAttachment(String,
-	 *      org.springframework.core.io.InputStreamSource)
-	 */
 	public void addAttachment(String attachmentFilename, DataSource dataSource) throws MessagingException {
 		if (this.mimeMultipart == null)
 		{

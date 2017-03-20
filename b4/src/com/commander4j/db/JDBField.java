@@ -1,34 +1,38 @@
 package com.commander4j.db;
 
 /**
- * @author David
- * @version $Revision: 1.0 $
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBField.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
  */
+
 public class JDBField
 {
-	/**
-	 * @uml.property name="fieldName"
-	 */
 	private String fieldName = "";
-	/**
-	 * @uml.property name="fieldType"
-	 */
 	private String fieldType = "";
-	/**
-	 * @uml.property name="fieldSize"
-	 */
 	private int fieldSize = 0;
 
-	/**
-	 * Constructor for JDBField.
-	 * 
-	 * @param name
-	 *            String
-	 * @param type
-	 *            String
-	 * @param size
-	 *            int
-	 */
 	public JDBField(String name, String type, int size)
 	{
 		fieldName = name;
@@ -36,29 +40,17 @@ public class JDBField
 		fieldSize = size;
 	}
 
-	/**
-	 * Method getfieldName.
-	 * 
-	 * @return String
-	 */
+
 	public String getfieldName() {
 		return fieldName;
 	}
 
-	/**
-	 * Method getfieldType.
-	 * 
-	 * @return String
-	 */
+
 	public String getfieldType() {
 		return fieldType;
 	}
 
-	/**
-	 * Method getfieldSize.
-	 * 
-	 * @return int
-	 */
+
 	public int getfieldSize() {
 		return fieldSize;
 

@@ -1,10 +1,31 @@
-// $codepro.audit.disable numericLiterals
-/*
- * 
- * Created on 19-May-2005
- *
- */
 package com.commander4j.db;
+
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBMenus.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -14,33 +35,18 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
-/**
- * @author David
- * 
- * @version $Revision: 1.0 $
- */
+
 public class JDBMenus
 {
-	/**
-	 * @uml.property name="dbErrorMessage"
-	 */
+
 	private String dbErrorMessage;
-	/**
-	 * @uml.property name="dbMenuId"
-	 */
+
 	private String dbMenuId;
-	/**
-	 * @uml.property name="dbModuleId"
-	 */
+
 	private String dbModuleId;
-	/**
-	 * @uml.property name="dbSequenceId"
-	 */
+
 	private int dbSequenceId;
-	/**
-	 * @uml.property name="logger"
-	 * @uml.associationEnd multiplicity="(1 1)"
-	 */
+
 	private final Logger logger = Logger.getLogger(JDBMenus.class);
 	private String hostID;
 	private String sessionID;
@@ -322,15 +328,7 @@ public class JDBMenus
 		return result;
 	}
 
-	/**
-	 * Method rewriteMenu.
-	 * 
-	 * @param lMenuId
-	 *            String
-	 * @param modules
-	 *            LinkedList<JDBListData>
-	 * @return boolean
-	 */
+
 	public boolean rewriteMenu(String lMenuId, LinkedList<JDBListData> modules) {
 		boolean result = false;
 		String lModuleId;

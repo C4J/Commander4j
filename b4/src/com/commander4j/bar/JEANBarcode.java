@@ -4,6 +4,33 @@
  */
 package com.commander4j.bar;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JEANBarcode.java
+ * 
+ * Package Name : com.commander4j.bar
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,11 +44,6 @@ import org.apache.log4j.Logger;
 import com.commander4j.db.JDBControl;
 import com.commander4j.sys.Common;
 
-/**
- * @author David
- * 
- * @version $Revision: 1.0 $
- */
 public class JEANBarcode
 {
 
@@ -89,13 +111,7 @@ public class JEANBarcode
 		return hostID;
 	}
 
-	/**
-	 * Method calcCheckdigit.
-	 * 
-	 * @param barcodeData
-	 *            String
-	 * @return String
-	 */
+
 	public String calcCheckdigit(String barcodeData) {
 		String result = "";
 
@@ -134,11 +150,7 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method displayDebug.
-	 * 
-	 * @return String
-	 */
+
 	public String displayDebug() {
 		return barcodeDebug;
 	}
@@ -208,11 +220,7 @@ public class JEANBarcode
 		
 		return result;
 	}
-	/**
-	 * Method generateNewSSCC.
-	 * 
-	 * @return String
-	 */
+
 	public String generateNewSSCC() {
 		String result = "error";
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
@@ -259,13 +267,7 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method getDataTypeforAppID.
-	 * 
-	 * @param key
-	 *            String
-	 * @return String
-	 */
+
 	public String getDataTypeforAppID(String key) {
 		String result;
 		int j = refappIDs.indexOf(key);
@@ -280,13 +282,7 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method getDateforAppID.
-	 * 
-	 * @param key
-	 *            String
-	 * @return Date
-	 */
+
 	public Date getDateforAppID(String key) {
 		final Logger logger = Logger.getLogger(JEANBarcode.class);
 
@@ -315,13 +311,7 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method getDecimalIndicatorforAppID.
-	 * 
-	 * @param key
-	 *            String
-	 * @return String
-	 */
+
 	public String getDecimalIndicatorforAppID(String key) {
 		String result;
 		int j = refappIDs.indexOf(key);
@@ -336,13 +326,7 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method getDescriptionforAppID.
-	 * 
-	 * @param key
-	 *            String
-	 * @return String
-	 */
+
 	public String getDescriptionforAppID(String key) {
 		String result;
 		int j = refappIDs.indexOf(key);
@@ -357,22 +341,12 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method getErrorMessage.
-	 * 
-	 * @return String
-	 */
+
 	public String getErrorMessage() {
 		return db_error_message;
 	}
 
-	/**
-	 * Method getMaxLengthforAppID.
-	 * 
-	 * @param key
-	 *            String
-	 * @return int
-	 */
+
 	public int getMaxLengthforAppID(String key) {
 		int result;
 		int j = refappIDs.indexOf(key);
@@ -387,13 +361,7 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method getNumberforAppID.
-	 * 
-	 * @param key
-	 *            String
-	 * @return double
-	 */
+
 	public double getNumberforAppID(String key) {
 		final Logger logger = Logger.getLogger(JEANBarcode.class);
 		double result = 0;
@@ -427,22 +395,12 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method getNumberofAppIDsParsed.
-	 * 
-	 * @return int
-	 */
+
 	public int getNumberofAppIDsParsed() {
 		return parsedappIDs.size();
 	}
 
-	/**
-	 * Method getStringforAppID.
-	 * 
-	 * @param key
-	 *            String
-	 * @return String
-	 */
+
 	public String getStringforAppID(String key) {
 		final Logger logger = Logger.getLogger(JEANBarcode.class);
 
@@ -457,13 +415,7 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method isCheckdigitRequired.
-	 * 
-	 * @param key
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean isCheckdigitRequired(String key) {
 		boolean result = false;
 		String cd;
@@ -480,13 +432,7 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method isDataAvailableforAppID.
-	 * 
-	 * @param key
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean isDataAvailableforAppID(String key) {
 		boolean result;
 		int j = parsedappIDs.indexOf(key);
@@ -500,13 +446,7 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method isValidAppID.
-	 * 
-	 * @param key
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean isValidAppID(String key) {
 		boolean result;
 		int j = refappIDs.indexOf(key);
@@ -548,13 +488,7 @@ public class JEANBarcode
 
 	}
 
-	/**
-	 * Method parseBarcodeData.
-	 * 
-	 * @param barcodeData
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean parseBarcodeData(String barcodeData) {
 
 		final Logger logger = Logger.getLogger(JEANBarcode.class);
@@ -669,23 +603,12 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method setErrorMessage.
-	 * 
-	 * @param ErrorMsg
-	 *            String
-	 */
+
 	private void setErrorMessage(String ErrorMsg) {
 		db_error_message = ErrorMsg;
 	}
 
-	/**
-	 * Method validateCheckdigit.
-	 * 
-	 * @param barcodeData
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean validateCheckdigit(String barcodeData) {
 		boolean result = false;
 
@@ -703,13 +626,7 @@ public class JEANBarcode
 		return result;
 	}
 
-	/**
-	 * Method isValidSSCCformat.
-	 * 
-	 * @param SSCC
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean isValidSSCCformat(String SSCC) {
 		boolean result = false;
 

@@ -1,5 +1,32 @@
 package com.commander4j.db;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBTable.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -8,18 +35,13 @@ import java.util.Vector;
 
 import com.commander4j.sys.Common;
 
-/**
- */
+
 public class JDBTable
 {
 
-	/**
-	 * @uml.property name="dbNoOfColumns"
-	 */
+
 	private int dbNoOfColumns = 0;
-	/**
-	 * @uml.property name="dbTableName"
-	 */
+
 	private String dbTableName = "";
 	private LinkedList<JDBField> fieldList = new LinkedList<JDBField>();
 
@@ -48,12 +70,7 @@ public class JDBTable
 		setSessionID(session);
 	}
 
-	/**
-	 * Constructor for JDBTable.
-	 * 
-	 * @param tableName
-	 *            String
-	 */
+
 	public JDBTable(String host, String session, String tableName)
 	{
 		setHostID(host);
@@ -110,11 +127,7 @@ public class JDBTable
 
 	}
 
-	/**
-	 * Method isValidTable.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isValidTable() {
 		boolean result = true;
 		PreparedStatement stmt = null;
@@ -142,25 +155,14 @@ public class JDBTable
 		return result;
 	}
 
-	/**
-	 * Method enumFields.
-	 * 
-	 * @param tableName
-	 *            String
-	 */
+
 	public void enumFields(String tableName) {
 
 		setTableName(tableName);
 		enumFields();
 	}
 
-	/**
-	 * Method getColumnNameForField.
-	 * 
-	 * @param pos
-	 *            int
-	 * @return String
-	 */
+
 	public String getColumnNameForField(int pos) {
 		String result = "";
 
@@ -169,13 +171,7 @@ public class JDBTable
 		return result;
 	}
 
-	/**
-	 * Method getColumnSizeForField.
-	 * 
-	 * @param pos
-	 *            int
-	 * @return int
-	 */
+
 	public int getColumnSizeForField(int pos) {
 		int result = 0;
 
@@ -184,13 +180,7 @@ public class JDBTable
 		return result;
 	}
 
-	/**
-	 * Method getColumnSizeForField.
-	 * 
-	 * @param fieldName
-	 *            String
-	 * @return int
-	 */
+
 	public int getColumnSizeForField(String fieldName) {
 		int result = 0;
 		if (getColumnTypeForField(fieldName).equals("java.sql.Timestamp"))
@@ -213,13 +203,7 @@ public class JDBTable
 		return result;
 	}
 
-	/**
-	 * Method getColumnTypeForField.
-	 * 
-	 * @param pos
-	 *            int
-	 * @return String
-	 */
+
 	public String getColumnTypeForField(int pos) {
 		String result = "";
 
@@ -228,13 +212,7 @@ public class JDBTable
 		return result;
 	}
 
-	/**
-	 * Method getColumnTypeForField.
-	 * 
-	 * @param fieldName
-	 *            String
-	 * @return String
-	 */
+
 	public String getColumnTypeForField(String fieldName) {
 		String result = "";
 
@@ -250,11 +228,7 @@ public class JDBTable
 		return result;
 	}
 
-	/**
-	 * Method getFieldNames.
-	 * 
-	 * @return Vector<String>
-	 */
+
 	public Vector<String> getFieldNames() {
 		Vector<String> result = new Vector<String>();
 		result.clear();
@@ -267,49 +241,27 @@ public class JDBTable
 		return result;
 	}
 
-	/**
-	 * Method getFields.
-	 * 
-	 * @return LinkedList<JDBField>
-	 */
+
 	public LinkedList<JDBField> getFields() {
 		return fieldList;
 	}
 
-	/**
-	 * Method getNumberOfColumns.
-	 * 
-	 * @return int
-	 */
+
 	public int getNumberOfColumns() {
 		return dbNoOfColumns;
 	}
 
-	/**
-	 * Method getTableName.
-	 * 
-	 * @return String
-	 */
+
 	public String getTableName() {
 		return dbTableName;
 	}
 
-	/**
-	 * Method setNumberOfColumns.
-	 * 
-	 * @param cols
-	 *            int
-	 */
+
 	public void setNumberOfColumns(int cols) {
 		dbNoOfColumns = cols;
 	}
 
-	/**
-	 * Method setTableName.
-	 * 
-	 * @param tableName
-	 *            String
-	 */
+
 	public void setTableName(String tableName) {
 		dbTableName = tableName;
 	}

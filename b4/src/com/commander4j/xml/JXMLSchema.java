@@ -1,5 +1,32 @@
 package com.commander4j.xml;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JXMLSchema.java
+ * 
+ * Package Name : com.commander4j.xml
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.LinkedList;
@@ -8,41 +35,17 @@ import com.commander4j.app.JVersion;
 import com.commander4j.db.JDBDDL;
 import com.commander4j.sys.Common;
 
-//import com.commander4j.util.JUtility;
 
-/**
- */
 public class JXMLSchema
 {
-	/**
-	 * 
-	 * Retrive the Schema Version number from the schema.xml file. This version
-	 * number is the correct number for the application and is compared to the
-	 * value held in the SYS_CONTROL table "SCHEMA VERSION" to determine if an
-	 * update is required during application startup.
-	 * 
-	 * @return int
-	 */
+
 
 	public static int getSchemaVersion() {
 
 		return JVersion.getSchemaVersion();
 	}
 
-	/**
-	 * 
-	 * @param driver
-	 *            - detemines the jdbc driver being used and is used to retrive
-	 *            the correct sql DDL commands from the file schema.xml
-	 * 
-	 * @param filename
-	 *            - determines the name of the xml file holding the schema DDL
-	 *            sql commands. Normally this should be xml/schema.xml
-	 * 
-	 * @return - returns a linked list of type DDL which is used by
-	 *         JFrameHostAdmin to build or upgrade the applications database
-	 *         schema. *
-	 */
+
 	public static LinkedList<JDBDDL> loadDDLStatements(String driver, String directory) {
 
 		// String Description = "";

@@ -1,5 +1,32 @@
 package com.commander4j.app;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDialogAssignLabelDataToLine.java
+ * 
+ * Package Name : com.commander4j.app
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -54,6 +81,10 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 	private JDBAutoLabeller autolab = new JDBAutoLabeller(Common.selectedHostID, Common.sessionID);
 	private JList4j<JDBListData> list;
 
+	/**
+	 * @param frame Parent Frame
+	 * @param unique Unique GUID passed from calling routine. This will be written to the database.
+	 */
 	public JDialogAssignLabelDataToLine(JFrame frame, String unique)
 	{
 
@@ -97,6 +128,9 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 
 	}
 
+	/**
+	 *  Used to enable all buttons
+	 */
 	private void enableButtons()
 	{
 		if (list.getValueIsAdjusting() == false)
@@ -108,6 +142,9 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		}
 	}
 
+	/**
+	 *  Method validates and then assigns the Process Order to the Production Line.
+	 */
 	private void assign()
 	{
 		if (list.getValueIsAdjusting() == false)
@@ -146,6 +183,9 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		}
 	}
 
+	/**
+	 * @param group populates the list of labelers on screen for the specified group
+	 */
 	private void populateList(String group)
 	{
 		jButtonAssign.setEnabled(false);
@@ -171,6 +211,9 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		enableButtons();
 	}
 
+	/**
+	 *  Method used to build GUI
+	 */
 	private void initGUI()
 	{
 		try

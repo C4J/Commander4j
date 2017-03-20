@@ -1,26 +1,46 @@
 package com.commander4j.sys;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JLaunchLookup.java
+ * 
+ * Package Name : com.commander4j.sys
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import com.commander4j.db.JDBTable;
 import com.commander4j.util.JUtility;
 
-/**
- */
+
 public class JLaunchLookup
 {
 	public String dlgKeyField;
 	public String dlgCriteriaField;
 	public String dlgOrderField;
-	/**
-	 * Field dlgCriteriaDefault. Value: {@value dlgCriteriaDefault}
-	 */
+
 	public static String dlgCriteriaDefault = "";
-	/**
-	 * Field dlgAutoExec. Value: {@value dlgAutoExec}
-	 */
+
 	public static boolean dlgAutoExec = false;
-	/**
-	 * Field dlgResult. Value: {@value dlgResult}
-	 */
+
 	public static String dlgResult = "";
 
 	public JLaunchLookup()
@@ -30,16 +50,7 @@ public class JLaunchLookup
 		dlgOrderField = "";
 	}
 
-	/**
-	 * Constructor for JLaunchLookup.
-	 * 
-	 * @param key
-	 *            String
-	 * @param criteria
-	 *            String
-	 * @param order
-	 *            String
-	 */
+
 	public JLaunchLookup(String key, String criteria, String order)
 	{
 		dlgKeyField = key;
@@ -47,11 +58,7 @@ public class JLaunchLookup
 		dlgOrderField = order;
 	}
 
-	/**
-	 * Method QM Inspections.
-	 * 
-	 * @return boolean
-	 */
+
 	public static boolean qmInspections() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_QM_INSPECTION"));
@@ -62,7 +69,6 @@ public class JLaunchLookup
 		JDialogLookup.dlg_orderBy_name_default = "inspection_id";
 		JDialogLookup.dlg_sort_descending = true;
 
-		// dlg_criteria_default = "";
 		dlgAutoExec = true;
 
 		JDialogLookup inst = new JDialogLookup(Common.mainForm);
@@ -74,11 +80,7 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 	
-	/**
-	 * Method processOrders.
-	 * 
-	 * @return boolean
-	 */
+
 	public static boolean processOrders() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_PROCESS_ORDER"));
@@ -89,7 +91,7 @@ public class JLaunchLookup
 		JDialogLookup.dlg_orderBy_name_default = "due_date";
 		JDialogLookup.dlg_sort_descending = true;
 
-		// dlg_criteria_default = "";
+
 		dlgAutoExec = true;
 
 		JDialogLookup inst = new JDialogLookup(Common.mainForm);
@@ -168,11 +170,7 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 	
-	/**
-	 * Method locations.
-	 * 
-	 * @return boolean
-	 */
+
 	public static boolean locations() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_LOCATION"));
@@ -195,11 +193,7 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 	
-	/**
-	 * Method locations.
-	 * 
-	 * @return boolean
-	 */
+
 	public static boolean resources() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_PROCESS_ORDER_RESOURCE"));
@@ -288,11 +282,7 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}	
 	
-	/**
-	 * Method materials.
-	 * 
-	 * @return boolean
-	 */
+
 	public static boolean materials() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_MATERIAL"));
@@ -314,11 +304,7 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 
-	/**
-	 * Method materialBatches.
-	 * 
-	 * @return boolean
-	 */
+
 	public static boolean materialBatches() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_MATERIAL_BATCH"));
@@ -341,11 +327,7 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 
-	/**
-	 * Method pallets.
-	 * 
-	 * @return boolean
-	 */
+
 	public static boolean pallets() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_PALLET"));

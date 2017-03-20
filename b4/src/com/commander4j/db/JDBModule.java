@@ -1,9 +1,31 @@
-// $codepro.audit.disable numericLiterals
-/*
- * Created on 17-Feb-2005
- *
- */
 package com.commander4j.db;
+
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBModule.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
 
 import java.io.File;
 import java.sql.PreparedStatement;
@@ -21,18 +43,9 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.JMenuOption;
 import com.commander4j.util.JUtility;
 
-// import javax.swing.JButton;
-
-/**
- * @author David
- * 
- * @version $Revision: 1.0 $
- */
 public class JDBModule
 {
-	/**
-	 * @uml.property name="dbDescription"
-	 */
+
 	private String dbResourceKey;
 	private String dbMnemonicStr;
 	private char dbMnemonicChar;
@@ -574,13 +587,7 @@ public class JDBModule
 		return modList;
 	}
 
-	/**
-	 * Method getModuleIdsByType.
-	 * 
-	 * @param module_type
-	 *            String
-	 * @return LinkedList<JDBListData>
-	 */
+
 	public LinkedList<JDBListData> getModuleIdsByType(String module_type) {
 		LinkedList<JDBListData> groupList = new LinkedList<JDBListData>();
 		PreparedStatement stmt;
@@ -614,11 +621,7 @@ public class JDBModule
 		return groupList;
 	}
 
-	/**
-	 * Method getModuleJDBListData.
-	 * 
-	 * @return JDBListData
-	 */
+
 	public JDBListData getModuleJDBListData() {
 
 		Icon icon;
@@ -627,13 +630,7 @@ public class JDBModule
 		return result;
 	}
 
-	/**
-	 * Method getModuleJDBListData.
-	 * 
-	 * @param module_id
-	 *            String
-	 * @return JDBListData
-	 */
+
 	public JDBListData getModuleJDBListData(String module_id) {
 		setModuleId(module_id);
 		getModuleProperties();
@@ -641,11 +638,7 @@ public class JDBModule
 	}
 
 
-	/**
-	 * Method getModuleProperties.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean getModuleProperties() {
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -702,11 +695,7 @@ public class JDBModule
 		return getModuleProperties();
 	}
 
-	/**
-	 * Method getModulesAssignedtoMenu.
-	 * 
-	 * @return LinkedList<JDBListData>
-	 */
+
 	public LinkedList<JDBListData> getModulesAssignedtoMenu() {
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
@@ -764,11 +753,7 @@ public class JDBModule
 		return moduleList;
 	}
 
-	/**
-	 * Method getModulesAssignedtoToolbar.
-	 * 
-	 * @return LinkedList<JDBListData>
-	 */
+
 	public LinkedList<JDBListData> getModulesAssignedtoToolbar() {
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
@@ -797,13 +782,7 @@ public class JDBModule
 		return moduleList;
 	}
 
-	/**
-	 * Method getModulesofTypeforUser.
-	 * 
-	 * @param type
-	 *            String
-	 * @return LinkedList<JDBListData>
-	 */
+
 	public LinkedList<JDBListData> getModulesofTypeforUser(String host, String session, String type) {
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
@@ -838,11 +817,7 @@ public class JDBModule
 		return moduleList;
 	}
 
-	/**
-	 * Method getModulesUnAssignedtoMenu.
-	 * 
-	 * @return LinkedList<JDBListData>
-	 */
+
 	public LinkedList<JDBListData> getModulesUnAssignedtoMenu() {
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
@@ -901,11 +876,7 @@ public class JDBModule
 
 		return moduleList;
 	}
-	/**
-	 * Method getModulesUnAssignedtoToolbar.
-	 * 
-	 * @return LinkedList<JDBListData>
-	 */
+
 	public LinkedList<JDBListData> getModulesUnAssignedtoToolbar() {
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
@@ -981,11 +952,7 @@ public class JDBModule
 		return JUtility.replaceNullStringwithBlank(dbResourceKey);
 	}
 
-	/**
-	 * Method getRFActive.
-	 * 
-	 * @return String
-	 */
+
 	public String getRFActive() {
 		return dbRFActive;
 	}
@@ -994,20 +961,12 @@ public class JDBModule
 		return sessionID;
 	}
 
-	/**
-	 * Method getType.
-	 * 
-	 * @return String
-	 */
+
 	public String getType() {
 		return dbModuleType;
 	}
 
-	/**
-	 * Method isDKModule.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isDKModule() {
 		boolean result = false;
 
@@ -1019,11 +978,7 @@ public class JDBModule
 		return result;
 	}
 
-	/**
-	 * Method isPrintDialog.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isPrintDialog() {
 		boolean result = false;
 
@@ -1035,11 +990,7 @@ public class JDBModule
 		return result;
 	}
 
-	/**
-	 * Method isPrintPreview.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isPrintPreview() {
 		boolean result = false;
 
@@ -1051,11 +1002,7 @@ public class JDBModule
 		return result;
 	}
 
-	/**
-	 * Method isRFModule.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isRFModule() {
 		boolean result = false;
 
@@ -1067,11 +1014,7 @@ public class JDBModule
 		return result;
 	}
 
-	/**
-	 * Method isValidModuleId.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean isValidModuleId() {
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -1105,13 +1048,7 @@ public class JDBModule
 
 	}
 
-	/**
-	 * Method removeGroup.
-	 * 
-	 * @param lgroup_id
-	 *            String
-	 * @return boolean
-	 */
+
 	public boolean removeGroup(String lgroup_id) {
 		boolean result = false;
 		try

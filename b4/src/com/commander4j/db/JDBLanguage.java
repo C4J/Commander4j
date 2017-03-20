@@ -1,5 +1,32 @@
 package com.commander4j.db;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBLanguage.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +52,8 @@ public class JDBLanguage
 	public static int field_resource_key = 50;
 	public static int field_mnemonic = 1;
 
-	public JDBLanguage(String host, String session) {
+	public JDBLanguage(String host, String session)
+	{
 		super();
 		setHostID(host);
 		setSessionID(session);
@@ -64,13 +92,11 @@ public class JDBLanguage
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Key already exists");
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -97,8 +123,7 @@ public class JDBLanguage
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -112,11 +137,10 @@ public class JDBLanguage
 		String language = JUtility.replaceNullStringwithBlank(Common.userList.getUser(getSessionID()).getLanguage());
 		try
 		{
-		result = get(key, language);
-		}
-		catch (Exception ex)
+			result = get(key, language);
+		} catch (Exception ex)
 		{
-			result="error";
+			result = key;
 		}
 		return result;
 	}
@@ -133,8 +157,7 @@ public class JDBLanguage
 		{
 			setText(Common.translation_Text.get(getHostID() + " " + key + " " + language));
 			setMnemonic(Common.translation_Mnemonic.get(getHostID() + " " + key + " " + language));
-		}
-		else
+		} else
 		{
 			if (getProperties(getHostID() + " " + key, language) == false)
 			{
@@ -176,8 +199,7 @@ public class JDBLanguage
 		{
 			rs = criteria.executeQuery();
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -192,8 +214,7 @@ public class JDBLanguage
 		try
 		{
 			result = dbMnemonic.charAt(0);
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			result = Integer.toString(0).charAt(0);
 		}
@@ -230,15 +251,13 @@ public class JDBLanguage
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Despatch No");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -256,8 +275,7 @@ public class JDBLanguage
 			setText(rs.getString("text"));
 			setMnemonic(rs.getString("mnemonic"));
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -290,16 +308,14 @@ public class JDBLanguage
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Key [" + getKey() + "]");
 			}
 			stmt.close();
 			rs.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -357,13 +373,11 @@ public class JDBLanguage
 
 				logger.debug(String.valueOf(counter) + " messages loaded.");
 
-			}
-			catch (SQLException e)
+			} catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
-		}
-		else
+		} else
 		{
 			logger.debug("Message preload request for host " + getHostID() + " language " + getLanguage() + " ignored.");
 		}
@@ -427,8 +441,7 @@ public class JDBLanguage
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}

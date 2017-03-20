@@ -1,5 +1,31 @@
-// $codepro.audit.disable numericLiterals
 package com.commander4j.db;
+
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JDBProcessOrder.java
+ * 
+ * Package Name : com.commander4j.db
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -16,9 +42,7 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
-/**
- * @author David
- */
+
 public class JDBProcessOrder
 {
 	private BigDecimal dbRequiredQuantity;
@@ -129,11 +153,7 @@ public class JDBProcessOrder
 		setRequiredQuantity(new BigDecimal(0));
 	}
 
-	/**
-	 * Method create.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean create()
 	{
 
@@ -169,11 +189,7 @@ public class JDBProcessOrder
 		return result;
 	}
 
-	/**
-	 * Method delete.
-	 * 
-	 * @return boolean
-	 */
+
 	public boolean delete()
 	{
 
@@ -216,11 +232,7 @@ public class JDBProcessOrder
 		return result;
 	}
 
-	/**
-	 * Method generateNewProcessOrderNo.
-	 * 
-	 * @return String
-	 */
+
 	public String generateNewProcessOrderNo()
 	{
 		String result = "error";
@@ -280,31 +292,19 @@ public class JDBProcessOrder
 
 	}
 
-	/**
-	 * Method getDescription.
-	 * 
-	 * @return String
-	 */
+
 	public String getDescription()
 	{
 		return dbDescription;
 	}
 
-	/**
-	 * Method getDueDate.
-	 * 
-	 * @return Timestamp
-	 */
+
 	public Timestamp getDueDate()
 	{
 		return dbDueDate;
 	}
 
-	/**
-	 * Method getErrorMessage.
-	 * 
-	 * @return String
-	 */
+
 	public String getErrorMessage()
 	{
 		return dbErrorMessage;
@@ -320,45 +320,25 @@ public class JDBProcessOrder
 		return JUtility.replaceNullStringwithBlank(dbInspectionID);
 	}
 
-	/**
-	 * Method getLocation.
-	 * 
-	 * @return String
-	 * @uml.property name="location"
-	 */
+
 	public String getLocation()
 	{
 		return dbLocationId;
 	}
 
-	/**
-	 * Method getMaterial.
-	 * 
-	 * @return String
-	 * @uml.property name="material"
-	 */
+
 	public String getMaterial()
 	{
 		return dbMaterial;
 	}
 
-	/**
-	 * Method getProcessOrder.
-	 * 
-	 * @return String
-	 */
+
 	public String getProcessOrder()
 	{
 		return dbProcessOrder;
 	}
 
-	/**
-	 * Method getProcessOrderData.
-	 * 
-	 * @param criteria
-	 *            PreparedStatement
-	 * @return Vector<JDBProcessOrder>
-	 */
+
 	public Vector<JDBProcessOrder> getProcessOrderData(PreparedStatement criteria)
 	{
 		ResultSet rs;

@@ -6,6 +6,33 @@
  */
 package com.commander4j.util;
 
+/**
+ * @author David Garratt
+ * 
+ * Project Name : Commander4j
+ * 
+ * Filename     : JUtility.java
+ * 
+ * Package Name : com.commander4j.util
+ * 
+ * License      : GNU General Public License
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the 
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public 
+ * License along with this program.  If not, see
+ * http://www.commander4j.com/website/license.html.
+ * 
+ */
+
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -46,12 +73,9 @@ import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBModule;
 import com.commander4j.sys.Common;
 
-/**
- */
 public class JUtility {
-	/**
-	 * Field field_timestamp. Value: {@value field_timestamp}
-	 */
+
+	
 	public static int field_timestamp = 20;
 	
 	
@@ -743,15 +767,7 @@ public class JUtility {
 		return result;
 	}
 
-	/**
-	 * Method getTimeStampStringFormat.
-	 * 
-	 * @param ts
-	 *            Timestamp
-	 * @param fmt
-	 *            String
-	 * @return String
-	 */
+
 	public static String getISOTimeStampStringFormat(Timestamp ts)
 	{
 		String result = "";
@@ -1379,12 +1395,7 @@ public class JUtility {
 		}
 	}
 
-	/**
-	 * Method SetLookAndFeel.
-	 * 
-	 * @param laf
-	 *            String
-	 */
+
 	public static void SetLookAndFeel(String LOOKANDFEEL, String THEME)
 	{
 		try
@@ -1453,13 +1464,7 @@ public class JUtility {
 		}
 	}
 
-	/**
-	 * Method substSchemaName.
-	 * 
-	 * @param sql
-	 *            String
-	 * @return String
-	 */
+
 	public static String substSchemaName(String schemaName, String sql)
 	{
 		String result = "";
@@ -1469,14 +1474,7 @@ public class JUtility {
 		return result;
 	}
 
-	/**
-	 * Method writeToTextFile.
-	 * 
-	 * @param filename
-	 *            String
-	 * @param text
-	 *            String
-	 */
+
 	public synchronized static void writeToTextFile(String filename, String text)
 	{
 		BufferedWriter bw = null;
