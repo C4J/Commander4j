@@ -39,6 +39,8 @@ import com.commander4j.util.JUtility;
 /**
  * JDBMaterialCustomerData class is used  to insert/update/delete the APP_MATERIAL_CUSTOMER_DATA table. 
  * This table is keyed on MATERIAL, CUSTOMER_ID and DATA_ID.
+ * <p>
+ * <img alt="" src="./doc-files/APP_MATERIAL_CUSTOMER_DATA.jpg" >
  */
 
 public class JDBMaterialCustomerData

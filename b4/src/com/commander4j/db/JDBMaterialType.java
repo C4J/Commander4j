@@ -41,7 +41,8 @@ import com.commander4j.util.JUtility;
  * JDBMaterialType class is used to insert/update/delete records from the
  * APP_MATERIAL_TYPE table. This table contains a list of valid types for a
  * Material. A type is used to filter materials for reporting purposes.
- *
+ * <p>
+ * <img alt="" src="./doc-files/APP_MATERIAL_TYPE.jpg" >
  */
 public class JDBMaterialType
 {

@@ -37,6 +37,13 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDBMHNReasons class is used to insert/update/delete records in the table
+ * APP_MHN_REASONS. This table contains a list of valid reasons which can be
+ * assigned to the Master Hold Notice.
+ * <p>
+ * <img alt="" src="./doc-files/APP_MHN_REASONS.jpg" >
+ */
 
 public class JDBMHNReasons
 {
@@ -49,19 +56,23 @@ public class JDBMHNReasons
 	private String hostID;
 	private String sessionID;
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
@@ -72,7 +83,8 @@ public class JDBMHNReasons
 
 	}
 
-	public boolean create(String reason, String description) {
+	public boolean create(String reason, String description)
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -93,13 +105,11 @@ public class JDBMHNReasons
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Reason already exists");
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -107,7 +117,8 @@ public class JDBMHNReasons
 		return result;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -125,8 +136,7 @@ public class JDBMHNReasons
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -134,7 +144,8 @@ public class JDBMHNReasons
 		return result;
 	}
 
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -151,8 +162,7 @@ public class JDBMHNReasons
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -160,7 +170,8 @@ public class JDBMHNReasons
 		return result;
 	}
 
-	public boolean renameTo(String newReason) {
+	public boolean renameTo(String newReason)
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -183,14 +194,12 @@ public class JDBMHNReasons
 
 					setReason(newReason);
 					result = true;
-				}
-				else
+				} else
 				{
 					setErrorMessage("New Reason Code is already in use.");
 				}
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -198,7 +207,8 @@ public class JDBMHNReasons
 		return result;
 	}
 
-	public boolean isValidReason() {
+	public boolean isValidReason()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
@@ -213,10 +223,9 @@ public class JDBMHNReasons
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
-				if (getReason().equals("")==false)
+				if (getReason().equals("") == false)
 				{
 					setErrorMessage("Invalid Reason [" + getReason() + "]");
 				}
@@ -224,8 +233,7 @@ public class JDBMHNReasons
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -242,29 +250,34 @@ public class JDBMHNReasons
 		setDescription(description);
 	}
 
-	public String getDescription() {
+	public String getDescription()
+	{
 		String result = "";
 		if (dbDescription != null)
 			result = dbDescription;
 		return result;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		// setType("");
 		setDescription("");
 		setErrorMessage("");
 	}
-	
-	public boolean getReasonProperties(String reason) {
+
+	public boolean getReasonProperties(String reason)
+	{
 		setReason(reason);
 		return getReasonProperties();
 	}
 
-	public boolean getReasonProperties() {
+	public boolean getReasonProperties()
+	{
 		boolean result = false;
 
 		PreparedStatement stmt;
@@ -285,25 +298,24 @@ public class JDBMHNReasons
 			{
 				setDescription(rs.getString("description"));
 				result = true;
-			}
-			else
+			} else
 			{
-				if (getReason().equals("")==false)
+				if (getReason().equals("") == false)
 				{
 					setErrorMessage("Invalid Reason");
 				}
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public Vector<JDBMHNReasons> getReasons() {
+	public Vector<JDBMHNReasons> getReasons()
+	{
 		Vector<JDBMHNReasons> typeList = new Vector<JDBMHNReasons>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -325,8 +337,7 @@ public class JDBMHNReasons
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -334,18 +345,21 @@ public class JDBMHNReasons
 		return typeList;
 	}
 
-	public String getReason() {
+	public String getReason()
+	{
 		String result = "";
 		if (dbReason != null)
 			result = dbReason;
 		return result;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(String description)
+	{
 		dbDescription = description;
 	}
 
-	private void setErrorMessage(String errorMsg) {
+	private void setErrorMessage(String errorMsg)
+	{
 		if (errorMsg.isEmpty() == false)
 		{
 			logger.error(errorMsg);
@@ -353,17 +367,18 @@ public class JDBMHNReasons
 		dbErrorMessage = errorMsg;
 	}
 
-	public void setReason(String reason) {
+	public void setReason(String reason)
+	{
 		dbReason = reason;
 	}
 
-	public String toString() {
+	public String toString()
+	{
 		String result = "";
 		if (getReason().equals("") == false)
 		{
 			result = JUtility.padString(getReason(), true, field_reason, " ") + " - " + getDescription();
-		}
-		else
+		} else
 		{
 			result = "";
 		}

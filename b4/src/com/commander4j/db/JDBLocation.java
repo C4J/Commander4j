@@ -37,8 +37,10 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 /**
- * JDBLocation class is used to insert/update/delete records from the APP_LOCATION table.
- *
+ * JDBLocation class is used to insert/update/delete records from the
+ * APP_LOCATION table.
+ * <p>
+ * <img alt="" src="./doc-files/APP_LOCATION.jpg" >
  */
 public class JDBLocation
 {
@@ -92,8 +94,7 @@ public class JDBLocation
 		clear();
 	}
 
-	public JDBLocation(String locationId, String plant, String warehouse, String gln, String description,
-			String location, String type, String section, String bin, String equipmenttrackingid, String enabled)
+	public JDBLocation(String locationId, String plant, String warehouse, String gln, String description, String location, String type, String section, String bin, String equipmenttrackingid, String enabled)
 	{
 		setLocationID(locationId);
 		setPlant(plant);
@@ -206,8 +207,7 @@ public class JDBLocation
 			try
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-						Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.create"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.create"));
 				stmtupdate.setString(1, getLocationID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
@@ -240,8 +240,7 @@ public class JDBLocation
 
 		try
 		{
-			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-					Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.delete"));
+			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.delete"));
 			stmtupdate.setString(1, getLocationID());
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
@@ -328,8 +327,7 @@ public class JDBLocation
 
 		journeyList.addAll(jlistdb.getJourneyList(defaultValue));
 
-		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">"
-				+ "<OPTION>";
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">" + "<OPTION>";
 
 		if (journeyList.size() > 0)
 		{
@@ -359,8 +357,7 @@ public class JDBLocation
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBLocation("location_id", "plant", "warehouse", "gln", "description", "location",
-					"type", "section", "bin", "equipment", "enabled"));
+			result.addElement(new JDBLocation("location_id", "plant", "warehouse", "gln", "description", "location", "type", "section", "bin", "equipment", "enabled"));
 		} else
 		{
 			try
@@ -369,11 +366,8 @@ public class JDBLocation
 
 				while (rs.next())
 				{
-					result.addElement(new JDBLocation(rs.getString("location_id"), rs.getString("plant"),
-							rs.getString("warehouse"), rs.getString("gln"), rs.getString("description"),
-							rs.getString("storage_location"), rs.getString("storage_type"),
-							rs.getString("storage_section"), rs.getString("storage_bin"),
-							rs.getString("equipment_tracking_id"), rs.getString("enabled")));
+					result.addElement(new JDBLocation(rs.getString("location_id"), rs.getString("plant"), rs.getString("warehouse"), rs.getString("gln"), rs.getString("description"), rs.getString("storage_location"), rs.getString("storage_type"),
+							rs.getString("storage_section"), rs.getString("storage_bin"), rs.getString("equipment_tracking_id"), rs.getString("enabled")));
 				}
 				rs.close();
 
@@ -418,8 +412,7 @@ public class JDBLocation
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-					Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.getLocationList"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.getLocationList"));
 			stmt.setFetchSize(25);
 			rs = stmt.executeQuery();
 
@@ -452,8 +445,7 @@ public class JDBLocation
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList
-					.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.getLocationProperties"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.getLocationProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, getLocationID());
 			rs = stmt.executeQuery();
@@ -711,8 +703,7 @@ public class JDBLocation
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-					Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.isValidLocation"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.isValidLocation"));
 			stmt.setString(1, getLocationID());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
@@ -959,8 +950,7 @@ public class JDBLocation
 			try
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-						Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.update"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.update"));
 
 				stmtupdate.setString(1, getPlant());
 				stmtupdate.setString(2, getWarehouse());

@@ -42,7 +42,8 @@ import com.commander4j.util.JUtility;
  * JDBMaterialUom class is used to insert/update/delete records from the
  * APP_MATERIAL_UOM table. This table contains a list of valid units of measure for a
  * Material. 
- *
+ * <p>
+ * <img alt="" src="./doc-files/APP_MATERIAL_UOM.jpg" >
  */
 public class JDBMaterialUom
 {

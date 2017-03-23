@@ -39,7 +39,8 @@ import com.commander4j.sys.Common;
  * JDBMenus class is used to insert/update/delete records from the SYS_MENUS
  * table. This table represents the structure of the menu's within the
  * application.
- *
+ * <p>
+ * <img alt="" src="./doc-files/SYS_MENUS.jpg" >
  */
 
 public class JDBMenus

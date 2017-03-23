@@ -41,7 +41,8 @@ import com.commander4j.sys.Common;
  * for a Material and if enabled via the system key SSCC_LOCATION_VALIDATION
  * will prevent a pallet from being moved to a Location which is not valid
  * for its material.
- *
+ * <p>
+ * <img alt="" src="./doc-files/APP_MATERIAL_LOCATION.jpg" >
  */
 public class JDBMaterialLocation
 {

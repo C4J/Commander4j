@@ -41,7 +41,8 @@ import com.commander4j.util.JUtility;
  * JDBLanguage is used to insert/update/delete records from the SYS_LANGUAGE
  * table. The table text for all buttons, labels within the application in
  * multiple languages.
- *
+ * <p>
+ * <img alt="" src="./doc-files/SYS_LANGUAGE.jpg" >
  */
 public class JDBLanguage
 {

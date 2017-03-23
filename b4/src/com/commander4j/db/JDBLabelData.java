@@ -51,7 +51,8 @@ import com.commander4j.util.JUtility;
  * data to a file for each labeller which needs to print the data. It should be
  * noted that the operator selects a production line when printing and each
  * production line can have one or more physical labellers.
- *
+ * <p>
+ * <img alt="" src="./doc-files/APP_LABEL_DATA.jpg" >
  */
 public class JDBLabelData
 {

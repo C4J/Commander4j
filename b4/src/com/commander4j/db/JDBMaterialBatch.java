@@ -43,12 +43,13 @@ import com.commander4j.util.JUtility;
  * JDBMaterialBatch class is used to insert/update/delete records in the
  * APP_MATERIAL_BATCH table. Each time a new pallet (SSCC) is created the
  * material and batch number used in the pallet record are used to verify if the
- * expiry date is consistent with all other pallets which share the same Material
- * and Batch (assuming the control record EXPIRY DATE MODE is set to "BATCH". If
- * the control record EXPIRY DATE MODE is set to SSCC then the expiry date is
- * stored in the SSCC record and can vary between each pallet even if they share
- * the same Material/Batch.
- *
+ * expiry date is consistent with all other pallets which share the same
+ * Material and Batch (assuming the control record EXPIRY DATE MODE is set to
+ * "BATCH". If the control record EXPIRY DATE MODE is set to SSCC then the
+ * expiry date is stored in the SSCC record and can vary between each pallet
+ * even if they share the same Material/Batch.
+ * <p>
+ * <img alt="" src="./doc-files/APP_MATERIAL_BATCH.jpg" >
  */
 public class JDBMaterialBatch
 {

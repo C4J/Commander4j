@@ -41,6 +41,14 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JColorPair;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDBMHNDecisions class is used to insert/update/delete records in the
+ * table APP_MHN_DECISIONS. This table contains a list of valid decisions which
+ * can be applied to the individual pallets which have been assigned to the
+ * Master Hold Notice.
+ * <p>
+ * <img alt="" src="./doc-files/APP_MHN_DECISIONS.jpg" >
+ */
 public class JDBMHNDecisions
 {
 	private String dbErrorMessage;
@@ -76,13 +84,15 @@ public class JDBMHNDecisions
 		return hostID;
 	}
 
-	public JDBMHNDecisions(String host, String session) {
+	public JDBMHNDecisions(String host, String session)
+	{
 		setHostID(host);
 		setSessionID(session);
 
 	}
 
-	public LinkedList<JDBMHNDecisions> getMHNDecisions() {
+	public LinkedList<JDBMHNDecisions> getMHNDecisions()
+	{
 		LinkedList<JDBMHNDecisions> uomList = new LinkedList<JDBMHNDecisions>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -105,16 +115,15 @@ public class JDBMHNDecisions
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return uomList;
 	}
-	
-	public boolean create(String decision, String description,String status)
+
+	public boolean create(String decision, String description, String status)
 	{
 		boolean result = false;
 		setErrorMessage("");
@@ -129,8 +138,7 @@ public class JDBMHNDecisions
 			if (isValidDecision() == false)
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-						.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.create"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.create"));
 				stmtupdate.setString(1, getDecision());
 				stmtupdate.setString(2, getDescription());
 				stmtupdate.setInt(3, Color.white.getRGB());
@@ -141,13 +149,11 @@ public class JDBMHNDecisions
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Decision already exists");
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -165,12 +171,11 @@ public class JDBMHNDecisions
 			if (isValidDecision() == true)
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-						.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.update"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.update"));
 				stmtupdate.setString(1, getDescription());
 				stmtupdate.setInt(2, getBackground().getRGB());
 				stmtupdate.setInt(3, getForeground().getRGB());
-				stmtupdate.setString(4,getStatus());
+				stmtupdate.setString(4, getStatus());
 				stmtupdate.setString(5, getDecision());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
@@ -178,8 +183,7 @@ public class JDBMHNDecisions
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -197,8 +201,7 @@ public class JDBMHNDecisions
 		{
 			if (isValidDecision() == true)
 			{
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-						.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.delete"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.delete"));
 				stmtupdate.setString(1, getDecision());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
@@ -206,8 +209,7 @@ public class JDBMHNDecisions
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -228,8 +230,7 @@ public class JDBMHNDecisions
 				mattype.setDecision(newDecision);
 				if (mattype.isValidDecision() == false)
 				{
-					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-							.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.renameTo"));
+					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.renameTo"));
 					stmtupdate.setString(1, newDecision);
 					stmtupdate.setString(2, getDecision());
 					stmtupdate.execute();
@@ -240,14 +241,12 @@ public class JDBMHNDecisions
 
 					setDecision(newDecision);
 					result = true;
-				}
-				else
+				} else
 				{
 					setErrorMessage("New Decision Code is already in use.");
 				}
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -263,8 +262,7 @@ public class JDBMHNDecisions
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-					.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.isValidDecision"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.isValidDecision"));
 			stmt.setString(1, getDecision());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
@@ -272,16 +270,14 @@ public class JDBMHNDecisions
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Decision [" + getDecision() + "]");
 			}
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -290,7 +286,8 @@ public class JDBMHNDecisions
 
 	}
 
-	public JDBMHNDecisions(String host, String session, String decision, String description,String status) {
+	public JDBMHNDecisions(String host, String session, String decision, String description, String status)
+	{
 		setHostID(host);
 		setSessionID(session);
 		setDecision(decision);
@@ -313,15 +310,14 @@ public class JDBMHNDecisions
 			result = dbStatus;
 		return result;
 	}
-	
+
 	public Color getForeground()
 	{
 		Color result = Color.black;
 		try
 		{
 			result = new Color(dbForeground);
-		}
-		catch (Exception ex)
+		} catch (Exception ex)
 		{
 			result = Color.black;
 		}
@@ -334,8 +330,7 @@ public class JDBMHNDecisions
 		try
 		{
 			result = new Color(dbBackground);
-		}
-		catch (Exception ex)
+		} catch (Exception ex)
 		{
 			result = Color.red;
 		}
@@ -360,7 +355,7 @@ public class JDBMHNDecisions
 		setDecision(decis);
 		return getDecisionProperties();
 	}
-	
+
 	public boolean getDecisionProperties()
 	{
 		boolean result = false;
@@ -374,8 +369,7 @@ public class JDBMHNDecisions
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-					.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.getDecisionProperties"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHNDecision.getDecisionProperties"));
 			stmt.setString(1, getDecision());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
@@ -387,24 +381,22 @@ public class JDBMHNDecisions
 				setBackground(rs.getInt("color_background"));
 				setStatus(rs.getString("status"));
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Decision");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public HashMap<String,JColorPair> getDecisionColors()
+	public HashMap<String, JColorPair> getDecisionColors()
 	{
-		HashMap<String,JColorPair> colorList = new HashMap<String,JColorPair>();
+		HashMap<String, JColorPair> colorList = new HashMap<String, JColorPair>();
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
@@ -419,21 +411,20 @@ public class JDBMHNDecisions
 			{
 				Color f = new Color(rs.getInt("color_foreground"));
 				Color b = new Color(rs.getInt("color_background"));
-				JColorPair cp = new JColorPair(f,b);
-				colorList.put(rs.getString("decision"),cp);
+				JColorPair cp = new JColorPair(f, b);
+				colorList.put(rs.getString("decision"), cp);
 			}
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return colorList;
 	}
-	
+
 	public Vector<JDBMHNDecisions> getDecisions()
 	{
 		Vector<JDBMHNDecisions> typeList = new Vector<JDBMHNDecisions>();
@@ -460,8 +451,7 @@ public class JDBMHNDecisions
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -481,7 +471,7 @@ public class JDBMHNDecisions
 	{
 		dbDescription = description;
 	}
-	
+
 	public void setStatus(String status)
 	{
 		dbStatus = status;
@@ -532,9 +522,8 @@ public class JDBMHNDecisions
 		String result = "";
 		if (getDecision().equals("") == false)
 		{
-			result = JUtility.padString(getDecision(), true, field_decision, " ") + " - "+JUtility.padString(getStatus(), true, field_status, " ")+ " - "+getDescription();
-		}
-		else
+			result = JUtility.padString(getDecision(), true, field_decision, " ") + " - " + JUtility.padString(getStatus(), true, field_status, " ") + " - " + getDescription();
+		} else
 		{
 			result = "";
 		}

@@ -48,7 +48,8 @@ import com.commander4j.util.JUtility;
  * as either inserted manually using the appropriate screen within the
  * application or read in from a XML message using the application interfacing
  * module.
- *
+ * <p>
+ * <img alt="" src="./doc-files/APP_JOURNEY.jpg" >
  */
 public class JDBJourney
 {
