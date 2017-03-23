@@ -42,7 +42,8 @@ import com.commander4j.util.JWait;
 /**
  * JDBControl class is used to insert/update/delete the SYS_CONTROL table. This
  * table is used to hold configuration information for the application.
- *
+ * <p>
+ * <img alt="" src="./doc-files/SYS_CONTROL.jpg" >
  */
 
 public class JDBControl

@@ -28,7 +28,8 @@ package com.commander4j.db;
  */
 
 /**
- * The JDBField class is used in conjunction with JDBStucture and JDBTable by the Clone4j Utility to copy data from one schema to another.
+ * The JDBField class is used in conjunction with JDBStucture and JDBTable by
+ * the Clone4j Utility to copy data from one schema to another.
  *
  */
 public class JDBField
@@ -44,22 +45,22 @@ public class JDBField
 		fieldSize = size;
 	}
 
-
-	public String getfieldName() {
+	public String getfieldName()
+	{
 		return fieldName;
 	}
 
-
-	public String getfieldType() {
+	public String getfieldType()
+	{
 		return fieldType;
 	}
 
-
-	public int getfieldSize() {
+	public int getfieldSize()
+	{
 		return fieldSize;
 
 	}
-	
+
 	public String toString()
 	{
 		return fieldName;

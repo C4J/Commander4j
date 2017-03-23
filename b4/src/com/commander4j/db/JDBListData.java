@@ -29,6 +29,13 @@ package com.commander4j.db;
 
 import javax.swing.Icon;
 
+/**
+ * JDBListData is a class which is used when displaying lists of data on screen
+ * via a JList with an optional graphical icon associated with each item. An
+ * example would be the list of users when some users have their accounts locked
+ * or disabled.
+ *
+ */
 public class JDBListData implements Comparable<JDBListData>
 {
 
@@ -40,7 +47,6 @@ public class JDBListData implements Comparable<JDBListData>
 
 	private Object mData;
 
-
 	public JDBListData(Icon icon, int index, boolean selectable, Object data)
 	{
 		mIcon = icon;
@@ -49,38 +55,38 @@ public class JDBListData implements Comparable<JDBListData>
 		mData = data;
 	}
 
-
-	public Object getmData() {
+	public Object getmData()
+	{
 		return mData;
 	}
 
-
-	public Icon getIcon() {
+	public Icon getIcon()
+	{
 		return mIcon;
 	}
 
-
-	public int getIndex() {
+	public int getIndex()
+	{
 		return mIndex;
 	}
 
-
-	public boolean isSelectable() {
+	public boolean isSelectable()
+	{
 		return mSelectable;
 	}
 
-
-	public Object getObject() {
+	public Object getObject()
+	{
 		return mData;
 	}
 
-
-	public String toString() {
+	public String toString()
+	{
 		return mData.toString();
 	}
 
-
-	public int compareTo(JDBListData anotherModuleListData) {
+	public int compareTo(JDBListData anotherModuleListData)
+	{
 		return mData.toString().compareTo(anotherModuleListData.toString());
 
 	}

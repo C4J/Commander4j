@@ -41,6 +41,8 @@ import com.commander4j.util.JUtility;
 /**
  * JDBAuditPermissions class is used to insert/update/delete the SYS_AUDIT_PERMISSIONS table.
  * The SYS_AUDIT_PERMISSIONS table is used to record all changes to Users, Groups and Permissions.
+ * <p>
+ * <img alt="" src="./doc-files/SYS_AUDIT_PERMISSIONS.jpg" >
  */
 
 public class JDBAuditPermissions

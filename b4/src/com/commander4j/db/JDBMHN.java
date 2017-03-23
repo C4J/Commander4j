@@ -38,6 +38,14 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDBMHN class is used to insert/update/delete records from the table
+ * APP_MHN. The letters MHN are an abbreviation for Master Hold Notice. If there
+ * is a potential quality issue with pallets which have been manufactured it is
+ * possible to record these pallets against a Master Hold Number.
+ * <p>
+ * <img alt="" src="./doc-files/APP_MHN.jpg" >
+ */
 public class JDBMHN
 {
 
@@ -55,15 +63,15 @@ public class JDBMHN
 	private String dbComments;
 	private String dbStatus;
 	private String dbResource;
-	
+
 	public static int field_mhn_number = 10;
 	public static int field_initiator = 20;
 	public static int field_recorder = 20;
 	public static int field_authorisor = 20;
-	public static int field_reason1 = 10;	
+	public static int field_reason1 = 10;
 	public static int field_reason2 = 10;
 	public static int field_reason3 = 10;
-	public static int field_comments = 250;	
+	public static int field_comments = 250;
 
 	private final Logger logger = Logger.getLogger(JDBMHN.class);
 
@@ -71,17 +79,20 @@ public class JDBMHN
 
 	private String sessionID;
 
-	public JDBMHN(ResultSet rs) {
+	public JDBMHN(ResultSet rs)
+	{
 		getPropertiesfromResultSet(rs);
 	}
-	
-	
-	public JDBMHN(String host, String session) {
+
+	public JDBMHN(String host, String session)
+	{
 		setHostID(host);
 		setSessionID(session);
 	}
-	
-	public JDBMHN(String MHNNumber, String initiator, String recorder, String authorisor,String reason1,String reason2,String reason3, Timestamp created,Timestamp expected,Timestamp resolved,String status,String comment,String resource,Integer count) {
+
+	public JDBMHN(String MHNNumber, String initiator, String recorder, String authorisor, String reason1, String reason2, String reason3, Timestamp created, Timestamp expected, Timestamp resolved, String status, String comment, String resource,
+			Integer count)
+	{
 		setMHNNumber(MHNNumber);
 		setInitiator(initiator);
 		setRecorder(recorder);
@@ -126,7 +137,7 @@ public class JDBMHN
 			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHN.create"));
 			stmtupdate.setString(1, getMHNNumber());
 			stmtupdate.setTimestamp(2, JUtility.getSQLDateTime());
-			stmtupdate.setString(3,"Active");
+			stmtupdate.setString(3, "Active");
 			setRecorder(Common.userList.getUser(getSessionID()).getUserId());
 			setDateExpected(null);
 			setDateResolved(null);
@@ -137,8 +148,7 @@ public class JDBMHN
 			stmtupdate.close();
 			update();
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -154,34 +164,33 @@ public class JDBMHN
 
 		try
 		{
-			
+
 			LinkedList<String> ssccs = new LinkedList<String>();
 			ssccs.addAll(getPalletsAssigned());
-			
+
 			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMHN.delete"));
 			stmtupdate.setString(1, getMHNNumber());
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
-			
-			if (ssccs.size()>0)
+
+			if (ssccs.size() > 0)
 			{
-				JDBPallet pal = new JDBPallet(getHostID(),getSessionID());
-				for (int idx=0;idx<ssccs.size();idx++)
+				JDBPallet pal = new JDBPallet(getHostID(), getSessionID());
+				for (int idx = 0; idx < ssccs.size(); idx++)
 				{
 					pal.getPalletProperties(ssccs.get(idx));
 					pal.updateMHNDecision("");
 					pal.updateMHNNumber("");
 				}
-				pal=null;
+				pal = null;
 			}
-			
+
 			stmtupdate.close();
-			
+
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -196,9 +205,9 @@ public class JDBMHN
 		result = delete();
 		return result;
 	}
-	
 
-	public String formatProcessOrderNo(String MHNNo) {
+	public String formatProcessOrderNo(String MHNNo)
+	{
 		String result = "error";
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
 		String MHNNoFormat = "{NNNNNNNN}";
@@ -209,8 +218,9 @@ public class JDBMHN
 		result = JUtility.formatNumber(MHNNo, MHNNoFormat);
 		return result;
 	}
-	
-	public String generateNewMHNNumber() {
+
+	public String generateNewMHNNumber()
+	{
 		String result = "error";
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
 		String MHNNo = "1";
@@ -238,8 +248,7 @@ public class JDBMHN
 				}
 			}
 
-		}
-		while (retry);
+		} while (retry);
 
 		return result;
 	}
@@ -261,7 +270,7 @@ public class JDBMHN
 
 	public Timestamp getDateExpected()
 	{
-		
+
 		return dbDateExpected;
 	}
 
@@ -294,8 +303,7 @@ public class JDBMHN
 		{
 			rs = criteria.executeQuery();
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -308,7 +316,7 @@ public class JDBMHN
 	{
 		return dbMHN_Number;
 	}
-	
+
 	public boolean getMHNProperties()
 	{
 		boolean result = false;
@@ -331,15 +339,13 @@ public class JDBMHN
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid MHN");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -351,8 +357,9 @@ public class JDBMHN
 		setMHNNumber(mhn);
 		return getMHNProperties();
 	}
-	
-	public LinkedList<String> getPalletsAssigned() {
+
+	public LinkedList<String> getPalletsAssigned()
+	{
 		LinkedList<String> decisionList = new LinkedList<String>();
 
 		PreparedStatement stmt;
@@ -374,16 +381,16 @@ public class JDBMHN
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return decisionList;
 	}
-	
-	public LinkedList<String> getPalletDecisionSummmary() {
+
+	public LinkedList<String> getPalletDecisionSummmary()
+	{
 		LinkedList<String> decisionList = new LinkedList<String>();
 
 		PreparedStatement stmt;
@@ -400,16 +407,14 @@ public class JDBMHN
 
 			while (rs.next())
 			{
-				String temp = JUtility.padString(rs.getString("Decision"), true, 10, " ")+
-				              JUtility.padString(String.valueOf(rs.getBigDecimal("sum_quantity")), false, 12, " ")+
-				              "   ( "+JUtility.padString(String.valueOf(rs.getInt("count_sscc")), false, 3, " ")+" )";
+				String temp = JUtility.padString(rs.getString("Decision"), true, 10, " ") + JUtility.padString(String.valueOf(rs.getBigDecimal("sum_quantity")), false, 12, " ") + "   ( "
+						+ JUtility.padString(String.valueOf(rs.getInt("count_sscc")), false, 3, " ") + " )";
 				decisionList.addLast(temp);
 			}
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -417,11 +422,11 @@ public class JDBMHN
 		return decisionList;
 	}
 
-	public LinkedList<String> getPalletDecisionSummmary(String number) {
+	public LinkedList<String> getPalletDecisionSummmary(String number)
+	{
 		setMHNNumber(number);
 		return getPalletDecisionSummmary();
 	}
-
 
 	public void getPropertiesfromResultSet(ResultSet rs)
 	{
@@ -441,11 +446,9 @@ public class JDBMHN
 
 			setDateResolved(rs.getTimestamp("date_resolved"));
 
-
 			setComment(rs.getString("comments"));
 			setResource(rs.getString("required_resource"));
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -465,7 +468,6 @@ public class JDBMHN
 	{
 		return JUtility.replaceNullStringwithBlank(dbReason3);
 	}
-
 
 	public String getRecorder()
 	{
@@ -487,7 +489,8 @@ public class JDBMHN
 		return dbStatus;
 	}
 
-	public boolean isValidMHN() {
+	public boolean isValidMHN()
+	{
 
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -503,19 +506,16 @@ public class JDBMHN
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid MHN [" + getMHNNumber() + "]");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
-
 
 		return result;
 
@@ -535,7 +535,7 @@ public class JDBMHN
 	{
 		dbDateCreated = created;
 	}
-	
+
 	public void setDateExpected(Timestamp expected)
 	{
 		dbDateExpected = expected;
@@ -559,7 +559,7 @@ public class JDBMHN
 	{
 		hostID = host;
 	}
-	
+
 	public void setInitiator(String initiator)
 	{
 		dbInitiator = initiator;
@@ -585,7 +585,6 @@ public class JDBMHN
 		dbReason3 = reason;
 	}
 
-	
 	public void setRecorder(String recorder)
 	{
 		dbRecorder = recorder;
@@ -629,11 +628,11 @@ public class JDBMHN
 			}
 			if (getStatus().equals("Closed"))
 			{
-				if (getDateResolved()==null)
+				if (getDateResolved() == null)
 				{
 					setDateResolved(JUtility.getSQLDateTime());
 				}
-			}		
+			}
 			stmtupdate.setTimestamp(7, getDateResolved());
 			stmtupdate.setString(8, getStatus());
 			stmtupdate.setString(9, getComments());
@@ -648,8 +647,7 @@ public class JDBMHN
 			stmtupdate.close();
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}

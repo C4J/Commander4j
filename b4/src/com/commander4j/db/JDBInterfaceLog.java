@@ -40,11 +40,13 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 /**
- * JDBInterfaceLog is used to record all activities of the interface module.
- * When a messages is processed, whether it be inbound or outbound its recorded
- * in this log along with the status, Success or Fail. A screen within the
- * application allows messages to be re-processed if needed.
- *
+ * JDBInterfaceLog is used to record all activities of the interface module. The
+ * data is stored in the table SYS_INTERFACE_LOG When a messages is processed,
+ * whether it be inbound or outbound its recorded in this log along with the
+ * status, Success or Fail. A screen within the application allows messages to
+ * be re-processed if needed.
+ * <p>
+ * <img alt="" src="./doc-files/SYS_INTERFACE_LOG.jpg" >
  */
 public class JDBInterfaceLog
 {

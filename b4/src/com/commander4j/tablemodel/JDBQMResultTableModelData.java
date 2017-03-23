@@ -1,7 +1,3 @@
-/*
- * Created on 02-Mar-2005
- *
- */
 package com.commander4j.tablemodel;
 
 /**
@@ -43,6 +39,15 @@ import com.commander4j.db.JDBQMTest;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDBQMResultTableModelData class is used in conjunction with the
+ * JDBQMResultTableModelIndex class. Within the Quality Module results entry
+ * screen the number and type of columns which can be used to record data is
+ * user configurable. The left hand of the table displayed on screen which is
+ * read only is displayed using JDBQMResultTableModelIndex and the right hand of
+ * the table which allows the user to type / pick values is controlled by this
+ * class.
+ */
 public class JDBQMResultTableModelData extends AbstractTableModel
 {
 
@@ -63,6 +68,14 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 	private JDBQMSelectList select;
 	private LinkedList<JDBQMDictionary> testPropertiesList = new LinkedList<JDBQMDictionary>();
 
+	/**
+	 * @param row
+	 *            Expects the table row number
+	 *            
+	 * @return    Returns the unique sample id for the record on the specified
+	 *            table row. This is part of the key for getting data from the
+	 *            APP_QM_RESULT table.
+	 */
 	public Long getSampleID(int row)
 	{
 		Long result = (long) -1;
@@ -95,28 +108,46 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 		this.host = host;
 	}
 
+	/**
+	 * @param hostid
+	 *            Used to access the database
+	 * @param sessionid
+	 *            Used to access the database
+	 * @param processOrder
+	 * 			  The Process Order selected
+	 * @param inspectionid
+	 * 			  The Inspection ID
+	 * @param activityid
+	 * 			  The Activity ID
+	 */
 	public JDBQMResultTableModelData(String hostid, String sessionid, String processOrder, String inspectionid, String activityid)
 	{
 		super();
 		setHost(hostid);
 		setSession(sessionid);
+	
 		JDBQMDictionary tempDict;
-		sample = new JDBQMSample(hostid, sessionid);
-		test = new JDBQMTest(hostid, sessionid);
+		
+		sample = new JDBQMSample(hostid, sessionid);		// Create a sample object with database connection details
+		test = new JDBQMTest(hostid, sessionid);			// Create a test object with database connection details
+		res = new JDBQMResult(hostid, sessionid);			// Create a result object with database connection details
+		select = new JDBQMSelectList(hostid, sessionid); 	// Create a select list object with database connection details
 
-		res = new JDBQMResult(hostid, sessionid);
-		select = new JDBQMSelectList(hostid, sessionid);
+		// Initialize the Linked List of type JDBQMDictionary for all the Tests relevant to the Inspection/Activity
 		testPropertiesList = test.getTestsPropertiesList(inspectionid, activityid);
 
+		// Initialize the Linked List of type JDBQMSample for all the Tests relevant to the Inspection/Activity
 		sampleList = sample.getSamples(processOrder, inspectionid, activityid);
+		
+		// Initialize the Linked List of type JDBQMTest for all the Tests relevant to the Inspection/Activity
 		testList = test.getTests(inspectionid, activityid);
 
 		for (int x = 0; x < testPropertiesList.size(); x++)
 		{
+			// Create a new instance of class JDBQMDictionary
 			tempDict = ((JDBQMDictionary) testPropertiesList.get(x));
-
+			// Add to the class listID of type LinkedList<String>
 			listID.addLast(tempDict.getSelectListID());
-
 		}
 	}
 
@@ -138,27 +169,38 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 	public void setValueAt(Object value, int row, int col)
 	{
 
+		// Get the Sample ID for the row
 		sampleID = sampleList.get(row).getSampleID();
+		
+		// Get the Test ID for the row
 		testID = testList.get(col).getTestID();
 
+		// Check to see if the data type of the column is list ( ComboBox )
 		if (testPropertiesList.get(col).getDataType().equals("list"))
 		{
 			try
 			{
+				// Value is the value of the Select List (not the full record including description).
 				newValue = ((JDBQMSelectList) value).getValue();
 			} catch (Exception ex)
 			{
+				// If all else fails return blank.
 				newValue = "";
 			}
 		} else
 		{
+			// If not a list (comboxBox) then return value as a String.
 			newValue = value.toString();
 		}
 
+		
+		// Search for a result which has a matching Sample ID and Test ID
 		if (res.getResultsProperties(sampleID, testID))
 		{
+			// Check if the newValue returned above is different to the existing value in the results table. 
 			if (newValue.equals(res.getValue()) == false)
 			{
+				// Update the results table.
 				res.setStatus("Updated");
 				res.setUserID(Common.userList.getUser(getSession()).getUserId());
 				res.setUpdated(JUtility.getSQLDateTime());
@@ -167,9 +209,10 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 			}
 		} else
 		{
-
+			// A result for the Sample ID and Test ID was not found in the database
 			if (newValue.equals("") == false)
 			{
+				// If the result is not blank then create a new result in the table.
 				res.setSampleID(sampleID);
 				res.setTestID(testID);
 				res.setProcessed(null);
@@ -199,11 +242,12 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 		// Check if a result exists for the selected row and column.
 		if (res.getResultsProperties(sampleID, testID))
 		{
-			// Ensure the result Object is populated with correct type;
+			// Check if the test defines a result of type numeric
 			if (testPropertiesList.get(col).getDataType().equals("numeric"))
 			{
 				try
 				{
+					// Convert the data from the table into the expected type of numeric 
 					result = new BigDecimal(res.getValue());
 				} catch (Exception ex)
 				{
@@ -211,10 +255,12 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 				}
 			}
 
+			// Check if the test defines a result of type boolean
 			if (testPropertiesList.get(col).getDataType().equals("boolean"))
 			{
 				try
 				{
+					// Convert the data from the table into the expected type of boolean 
 					result = Boolean.valueOf(res.getValue());
 				} catch (Exception ex)
 				{
@@ -222,18 +268,28 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 				}
 			}
 
+			// Check if the test defines a result of type list
 			if (testPropertiesList.get(col).getDataType().equals("list"))
 			{
 				try
 				{
-					JDBQMSelectList sl = new JDBQMSelectList();
-					sl.setSelectListID(listID.get(col));
-					//System.out.println("Cell value is :["+res.getValue()+  "] row "+String.valueOf(row)+" col "+String.valueOf(col));
-					sl.setValue(res.getValue());
-					select.setSelectListID(listID.get(col));
-					select.setValue(res.getValue());
-					select.getProperties();
-					sl.setDescription(select.getDescription());
+					// Convert the data from the table into the expected type of list 
+					
+					JDBQMSelectList sl = new JDBQMSelectList();			// Create a new select list
+					
+					sl.setSelectListID(listID.get(col));				// Store the List ID
+					sl.setValue(res.getValue());						// Store the Value
+
+					
+					select.setSelectListID(listID.get(col));			// Specify the List ID to find
+																		// JDBQMSelectList contains SELECT_LIST_ID, VALUE, DESCRIPTION & SEQUENCE
+					
+					select.setValue(res.getValue());					// Specify the Value to find.
+					select.getProperties();								// Find the select list item for the specified List ID and Value
+					
+					sl.setDescription(select.getDescription());			// Store the Description
+					sl.setSequence(select.getSequence());				// Store the Sequence
+					
 					result = sl;
 				} catch (Exception ex)
 				{
@@ -241,10 +297,12 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 				}
 			}
 
+			// Check if the test defines a result of type string
 			if (testPropertiesList.get(col).getDataType().equals("string"))
 			{
 				try
 				{
+					// Convert the data from the table into the expected type of string 
 					result = String.valueOf(res.getValue());
 				} catch (Exception ex)
 				{
@@ -252,10 +310,12 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 				}
 			}
 
+			// Check if the test defines a result of type integer
 			if (testPropertiesList.get(col).getDataType().equals("integer"))
 			{
 				try
 				{
+					// Convert the data from the table into the expected type of integer 
 					result = Integer.valueOf(res.getValue());
 				} catch (Exception ex)
 				{
@@ -268,11 +328,11 @@ public class JDBQMResultTableModelData extends AbstractTableModel
 			// if no result found return nothing.
 
 			result = null;
-			
+
 			if (testPropertiesList.get(col).getDataType().equals("boolean"))
 			{
-
-					result = false;
+				// Convert the data from the table into the expected type of boolean 
+				result = false;
 
 			}
 		}

@@ -5,7 +5,7 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="b4web">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../eclipse"/>
+    <property name="ECLIPSE_HOME" value="../../eclipse_neon/Eclipse.app/Contents/Eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
@@ -29,9 +29,10 @@
         <pathelement location="../../apache-tomcat-8.0.23/lib/annotations-api.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/catalina-ant.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/catalina-ha.jar"/>
+        <pathelement location="../../apache-tomcat-8.0.23/lib/catalina-storeconfig.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/catalina-tribes.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/catalina.jar"/>
-        <pathelement location="../../apache-tomcat-8.0.23/lib/ecj-4.4.jar"/>
+        <pathelement location="../../apache-tomcat-8.0.23/lib/ecj-4.4.2.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/el-api.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/jasper-el.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/jasper.jar"/>
@@ -44,8 +45,10 @@
         <pathelement location="../../apache-tomcat-8.0.23/lib/tomcat-i18n-fr.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/tomcat-i18n-ja.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../apache-tomcat-8.0.23/lib/tomcat-jni.jar"/>
+        <pathelement location="../../apache-tomcat-8.0.23/lib/tomcat-util-scan.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/tomcat-util.jar"/>
-        <pathelement location="../../apache-tomcat-8.0.23/lib/tomcat7-websocket.jar"/>
+        <pathelement location="../../apache-tomcat-8.0.23/lib/tomcat-websocket.jar"/>
         <pathelement location="../../apache-tomcat-8.0.23/lib/websocket-api.jar"/>
     </path>
     <path id="b4web.classpath">
@@ -56,17 +59,14 @@
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
-        <mkdir dir="dist" />
         <copy includeemptydirs="false" todir="build/classes">
             <fileset dir="src">
-                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
     </target>
     <target name="clean">
         <delete dir="build/classes"/>
-        <delete dir="dist" />
     </target>
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
@@ -92,13 +92,4 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    
-    <target name="war" depends="build">
-		  <war destfile="dist/b4web.war" webxml="WebContent/WEB-INF/web.xml">
-		  	<fileset dir="WebContent"/>
-		  	<lib dir="WebContent/WEB-INF/lib"/>
-		  	<classes dir="build/classes"/>
-		  </war>
-	  </target>
-	
 </project>

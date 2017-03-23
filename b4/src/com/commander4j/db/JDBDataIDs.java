@@ -44,6 +44,8 @@ import com.commander4j.util.JUtility;
  * it so a customer there is another table called APP_MATERIAL_CUSTOMER_DATA.
  * This second table is keyed on MATERIAL, CUSTOMER_ID and DATA_ID. The DATA_ID
  * can be anything meaningful name to describe the new data item being stored.
+ * <p>
+ * <img alt="" src="./doc-files/APP_MATERIAL_DATA_IDS.jpg" > 
  */
 
 public class JDBDataIDs

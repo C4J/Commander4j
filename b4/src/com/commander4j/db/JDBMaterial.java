@@ -40,7 +40,10 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
-
+/**
+ * JDBMaterial class is used to insert/update/delete records from the APP_MATERIAL table.
+ *
+ */
 public class JDBMaterial
 {
 

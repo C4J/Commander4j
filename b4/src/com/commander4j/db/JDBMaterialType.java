@@ -38,6 +38,10 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 /**
+ * JDBMaterialType class is used to insert/update/delete records from the
+ * APP_MATERIAL_TYPE table. This table contains a list of valid types for a
+ * Material. A type is used to filter materials for reporting purposes.
+ *
  */
 public class JDBMaterialType
 {
@@ -54,121 +58,120 @@ public class JDBMaterialType
 	private String dbOverride_Pallet_Label;
 	private String dbPack_Label_ModuleID;
 	private String dbPallet_Label_ModuleID;
-	
+
 	public void setOverridePackLabel(boolean yesno)
 	{
 		if (yesno)
 		{
 			setOverridePackLabel("Y");
-		}
-		else
+		} else
 		{
 			setOverridePackLabel("N");
 		}
 	}
-	
+
 	public void setOverridePackLabel(String yesno)
 	{
 		dbOverride_Pack_Label = JUtility.replaceNullStringwithBlank(yesno);
 	}
-	
+
 	public boolean isOverridePackLabel()
 	{
 		if (getOverridePackLabel().equals("Y"))
 		{
 			return true;
-		}
-		else
+		} else
 		{
 			return false;
 		}
 	}
-	
+
 	public String getOverridePackLabel()
 	{
 		dbOverride_Pack_Label = JUtility.replaceNullStringwithBlank(dbOverride_Pack_Label);
 		if (dbOverride_Pack_Label.equals(""))
 		{
-			dbOverride_Pack_Label="N";
+			dbOverride_Pack_Label = "N";
 		}
 		return dbOverride_Pack_Label;
 
 	}
-	
+
 	public void setPackLabelModuleID(String id)
 	{
 		dbPack_Label_ModuleID = id;
 	}
-	
+
 	public String getPackLabelModuleID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbPack_Label_ModuleID);
 	}
-	
-	
+
 	public void setOverridePalletLabel(boolean yesno)
 	{
 		if (yesno)
 		{
 			setOverridePalletLabel("Y");
-		}
-		else
+		} else
 		{
 			setOverridePalletLabel("N");
 		}
 	}
-	
+
 	public void setOverridePalletLabel(String yesno)
 	{
 		dbOverride_Pallet_Label = JUtility.replaceNullStringwithBlank(yesno);
 	}
-	
+
 	public boolean isOverridePalletLabel()
 	{
 		if (getOverridePalletLabel().equals("Y"))
 		{
 			return true;
-		}
-		else
+		} else
 		{
 			return false;
 		}
 	}
-	
+
 	public String getOverridePalletLabel()
 	{
 		dbOverride_Pallet_Label = JUtility.replaceNullStringwithBlank(dbOverride_Pallet_Label);
 		if (dbOverride_Pallet_Label.equals(""))
 		{
-			dbOverride_Pallet_Label="N";
+			dbOverride_Pallet_Label = "N";
 		}
 		return dbOverride_Pallet_Label;
 
 	}
-	
+
 	public void setPalletLabelModuleID(String id)
 	{
 		dbPallet_Label_ModuleID = id;
 	}
-	
+
 	public String getPalletLabelModuleID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbPallet_Label_ModuleID);
-	}	
+	}
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
@@ -178,7 +181,8 @@ public class JDBMaterialType
 		setSessionID(session);
 	}
 
-	public boolean create(String ltype, String ldescription) {
+	public boolean create(String ltype, String ldescription)
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -199,13 +203,11 @@ public class JDBMaterialType
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Material Type already exists");
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -213,7 +215,8 @@ public class JDBMaterialType
 		return result;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -224,10 +227,10 @@ public class JDBMaterialType
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialType.update"));
 				stmtupdate.setString(1, getDescription());
-				stmtupdate.setString(2,getOverridePackLabel());
-				stmtupdate.setString(3,getPackLabelModuleID());
-				stmtupdate.setString(4,getOverridePalletLabel());
-				stmtupdate.setString(5,getPalletLabelModuleID());	
+				stmtupdate.setString(2, getOverridePackLabel());
+				stmtupdate.setString(3, getPackLabelModuleID());
+				stmtupdate.setString(4, getOverridePalletLabel());
+				stmtupdate.setString(5, getPalletLabelModuleID());
 				stmtupdate.setString(6, getType());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
@@ -235,8 +238,7 @@ public class JDBMaterialType
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -244,7 +246,8 @@ public class JDBMaterialType
 		return result;
 	}
 
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -261,8 +264,7 @@ public class JDBMaterialType
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -270,7 +272,8 @@ public class JDBMaterialType
 		return result;
 	}
 
-	public boolean renameTo(String newType) {
+	public boolean renameTo(String newType)
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -293,14 +296,12 @@ public class JDBMaterialType
 
 					setType(newType);
 					result = true;
-				}
-				else
+				} else
 				{
 					setErrorMessage("Material Type is already in use.");
 				}
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -308,7 +309,8 @@ public class JDBMaterialType
 		return result;
 	}
 
-	public boolean isValidMaterialType() {
+	public boolean isValidMaterialType()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
@@ -323,16 +325,14 @@ public class JDBMaterialType
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Material Type [" + getType() + "]");
 			}
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -340,7 +340,7 @@ public class JDBMaterialType
 		return result;
 
 	}
-	
+
 	public boolean isValidMaterialType(String type)
 	{
 		setType(type);
@@ -355,29 +355,34 @@ public class JDBMaterialType
 		setDescription(description);
 	}
 
-	public String getDescription() {
+	public String getDescription()
+	{
 		String result = "";
 		if (dbMaterialDescription != null)
 			result = dbMaterialDescription;
 		return result;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		// setType("");
 		setDescription("");
 		setErrorMessage("");
 	}
 
-	public boolean getMaterialTypeProperties(String materialType) {
+	public boolean getMaterialTypeProperties(String materialType)
+	{
 		setType(materialType);
 		return getMaterialTypeProperties();
 	}
 
-	public boolean getMaterialTypeProperties() {
+	public boolean getMaterialTypeProperties()
+	{
 		boolean result = false;
 
 		PreparedStatement stmt;
@@ -402,22 +407,21 @@ public class JDBMaterialType
 				setOverridePalletLabel(rs.getString("override_pallet_label"));
 				setPalletLabelModuleID(rs.getString("pallet_label_module_id"));
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Material Type");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public Vector<JDBMaterialType> getMaterialTypes() {
+	public Vector<JDBMaterialType> getMaterialTypes()
+	{
 		Vector<JDBMaterialType> typeList = new Vector<JDBMaterialType>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -443,8 +447,7 @@ public class JDBMaterialType
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -452,20 +455,21 @@ public class JDBMaterialType
 		return typeList;
 	}
 
-
-	public String getType() {
+	public String getType()
+	{
 		String result = "";
 		if (dbMaterialType != null)
 			result = dbMaterialType;
 		return result;
 	}
 
-
-	public void setDescription(String description) {
+	public void setDescription(String description)
+	{
 		dbMaterialDescription = description;
 	}
 
-	private void setErrorMessage(String errorMsg) {
+	private void setErrorMessage(String errorMsg)
+	{
 		if (errorMsg.isEmpty() == false)
 		{
 			logger.error(errorMsg);
@@ -473,17 +477,18 @@ public class JDBMaterialType
 		dbErrorMessage = errorMsg;
 	}
 
-	public void setType(String type) {
+	public void setType(String type)
+	{
 		dbMaterialType = type;
 	}
 
-	public String toString() {
+	public String toString()
+	{
 		String result = "";
 		if (getType().equals("") == false)
 		{
 			result = JUtility.padString(getType(), true, field_material_type, " ") + " - " + getDescription();
-		}
-		else
+		} else
 		{
 			result = "";
 		}

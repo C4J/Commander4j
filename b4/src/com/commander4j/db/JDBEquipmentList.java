@@ -30,7 +30,8 @@ package com.commander4j.db;
 import com.commander4j.util.JUtility;
 
 /**
- * The JDBEquipmentList class is a utility class which is used to determine how many of each type of equipment (pallet types) are used on each despatch.
+ * The JDBEquipmentList class is a utility class which is used to determine how
+ * many of each type of equipment (pallet types) are used on each despatch.
  *
  */
 public class JDBEquipmentList
@@ -45,19 +46,23 @@ public class JDBEquipmentList
 
 	}
 
-	public int getCount() {
+	public int getCount()
+	{
 		return count;
 	}
 
-	public String getEquipmentID() {
+	public String getEquipmentID()
+	{
 		return equipmentID;
 	}
 
-	public void setCount(int count) {
+	public void setCount(int count)
+	{
 		this.count = count;
 	}
 
-	public void setEquipmentID(String equipmentID) {
+	public void setEquipmentID(String equipmentID)
+	{
 		this.equipmentID = JUtility.replaceNullStringwithBlank(equipmentID);
 	}
 

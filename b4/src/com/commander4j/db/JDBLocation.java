@@ -36,6 +36,10 @@ import java.util.Vector;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBLocation class is used to insert/update/delete records from the APP_LOCATION table.
+ *
+ */
 public class JDBLocation
 {
 	private String dbDescription;

@@ -35,6 +35,12 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
+/**
+ * JDBMenus class is used to insert/update/delete records from the SYS_MENUS
+ * table. This table represents the structure of the menu's within the
+ * application.
+ *
+ */
 
 public class JDBMenus
 {
@@ -51,19 +57,23 @@ public class JDBMenus
 	private String hostID;
 	private String sessionID;
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
@@ -73,18 +83,8 @@ public class JDBMenus
 		setSessionID(session);
 	}
 
-	/**
-	 * Method create.
-	 * 
-	 * @param lMenuId
-	 *            String
-	 * @param lModuleId
-	 *            String
-	 * @param lSequenceId
-	 *            int
-	 * @return boolean
-	 */
-	public boolean create(String lMenuId, String lModuleId, int lSequenceId) {
+	public boolean create(String lMenuId, String lModuleId, int lSequenceId)
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -105,8 +105,7 @@ public class JDBMenus
 			stmtupdate.close();
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -114,24 +113,14 @@ public class JDBMenus
 		return result;
 	}
 
-	/**
-	 * Method deleteMenusForMenuId.
-	 * 
-	 * @param menuid
-	 *            String
-	 * @return boolean
-	 */
-	public boolean deleteMenusForMenuId(String menuid) {
+	public boolean deleteMenusForMenuId(String menuid)
+	{
 		setMenuId(menuid);
 		return deleteMenusForMenuId();
 	}
 
-	/**
-	 * Method deleteMenusForMenuId.
-	 * 
-	 * @return boolean
-	 */
-	public boolean deleteMenusForMenuId() {
+	public boolean deleteMenusForMenuId()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -146,8 +135,7 @@ public class JDBMenus
 			stmtupdate.close();
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -155,24 +143,14 @@ public class JDBMenus
 		return result;
 	}
 
-	/**
-	 * Method deleteMenusForModuleId.
-	 * 
-	 * @param moduleid
-	 *            String
-	 * @return boolean
-	 */
-	public boolean deleteMenusForModuleId(String moduleid) {
+	public boolean deleteMenusForModuleId(String moduleid)
+	{
 		setModuleId(moduleid);
 		return deleteMenusForModuleId();
 	}
 
-	/**
-	 * Method deleteMenusForModuleId.
-	 * 
-	 * @return boolean
-	 */
-	public boolean deleteMenusForModuleId() {
+	public boolean deleteMenusForModuleId()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -187,8 +165,7 @@ public class JDBMenus
 			stmtupdate.close();
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -196,12 +173,8 @@ public class JDBMenus
 		return result;
 	}
 
-	/**
-	 * Method delete.
-	 * 
-	 * @return boolean
-	 */
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -217,8 +190,7 @@ public class JDBMenus
 			stmtupdate.close();
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -226,50 +198,28 @@ public class JDBMenus
 		return result;
 	}
 
-	/**
-	 * Method getErrorMessage.
-	 * 
-	 * @return String
-	 */
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	/**
-	 * Method getMenuId.
-	 * 
-	 * @return String
-	 */
-	public String getMenuId() {
+	public String getMenuId()
+	{
 		return dbMenuId;
 	}
 
-	/**
-	 * Method getModuleId.
-	 * 
-	 * @return String
-	 */
-	public String getModuleId() {
+	public String getModuleId()
+	{
 		return dbModuleId;
 	}
 
-	/**
-	 * Method getSequenceId.
-	 * 
-	 * @return int
-	 */
-	public int getSequenceId() {
+	public int getSequenceId()
+	{
 		return dbSequenceId;
 	}
 
-	/**
-	 * Method renameModuleTo.
-	 * 
-	 * @param newModuleId
-	 *            String
-	 * @return boolean
-	 */
-	public boolean renameModuleTo(String newModuleId) {
+	public boolean renameModuleTo(String newModuleId)
+	{
 		boolean result = false;
 
 		setErrorMessage("");
@@ -286,8 +236,7 @@ public class JDBMenus
 			stmtupdate.close();
 
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -295,14 +244,8 @@ public class JDBMenus
 		return result;
 	}
 
-	/**
-	 * Method renameMenuTo.
-	 * 
-	 * @param newMenuId
-	 *            String
-	 * @return boolean
-	 */
-	public boolean renameMenuTo(String newMenuId) {
+	public boolean renameMenuTo(String newMenuId)
+	{
 		boolean result = false;
 
 		setErrorMessage("");
@@ -319,8 +262,7 @@ public class JDBMenus
 			stmtupdate.close();
 
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -328,8 +270,8 @@ public class JDBMenus
 		return result;
 	}
 
-
-	public boolean rewriteMenu(String lMenuId, LinkedList<JDBListData> modules) {
+	public boolean rewriteMenu(String lMenuId, LinkedList<JDBListData> modules)
+	{
 		boolean result = false;
 		String lModuleId;
 		int lSequenceId = 0;
@@ -353,8 +295,7 @@ public class JDBMenus
 			}
 			result = true;
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -362,53 +303,29 @@ public class JDBMenus
 		return result;
 	}
 
-	/**
-	 * Method setErrorMessage.
-	 * 
-	 * @param errorMsg
-	 *            String
-	 */
-	private void setErrorMessage(String errorMsg) {
+	private void setErrorMessage(String errorMsg)
+	{
 		logger.error(errorMsg);
 		dbErrorMessage = errorMsg;
 	}
 
-	/**
-	 * Method setMenuId.
-	 * 
-	 * @param menuId
-	 *            String
-	 */
-	public void setMenuId(String menuId) {
+	public void setMenuId(String menuId)
+	{
 		dbMenuId = menuId;
 	}
 
-	/**
-	 * Method setModuleId.
-	 * 
-	 * @param moduleId
-	 *            String
-	 */
-	public void setModuleId(String moduleId) {
+	public void setModuleId(String moduleId)
+	{
 		dbModuleId = moduleId;
 	}
 
-	/**
-	 * Method setSequenceId.
-	 * 
-	 * @param sequenceId
-	 *            int
-	 */
-	public void setSequenceId(int sequenceId) {
+	public void setSequenceId(int sequenceId)
+	{
 		dbSequenceId = sequenceId;
 	}
 
-	/**
-	 * Method update.
-	 * 
-	 * @return boolean
-	 */
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -426,8 +343,7 @@ public class JDBMenus
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}

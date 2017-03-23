@@ -39,6 +39,17 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * JDBMaterialBatch class is used to insert/update/delete records in the
+ * APP_MATERIAL_BATCH table. Each time a new pallet (SSCC) is created the
+ * material and batch number used in the pallet record are used to verify if the
+ * expiry date is consistent with all other pallets which share the same Material
+ * and Batch (assuming the control record EXPIRY DATE MODE is set to "BATCH". If
+ * the control record EXPIRY DATE MODE is set to SSCC then the expiry date is
+ * stored in the SSCC record and can vary between each pallet even if they share
+ * the same Material/Batch.
+ *
+ */
 public class JDBMaterialBatch
 {
 	public static int field_batch_number = 12;
@@ -89,15 +100,15 @@ public class JDBMaterialBatch
 		setStatus(status);
 	}
 
-	public Boolean autoCreateMaterialBatch(String material, String batch, Timestamp expiryDate, String status) {
+	public Boolean autoCreateMaterialBatch(String material, String batch, Timestamp expiryDate, String status)
+	{
 
 		Timestamp expiry;
 
 		if (expiryMode.equals("SSCC"))
 		{
 			expiry = new Timestamp(0);
-		}
-		else
+		} else
 		{
 			expiry = expiryDate;
 		}
@@ -120,14 +131,12 @@ public class JDBMaterialBatch
 					if (expiry != null)
 					{
 						setExpiryDate(expiry);
-					}
-					else
+					} else
 					{
 						if (mat.getMaterialProperties(getMaterial()) == true)
 						{
 							setExpiryDate(expiry);
-						}
-						else
+						} else
 						{
 							setErrorMessage("Unknown Material " + getMaterial());
 						}
@@ -136,8 +145,7 @@ public class JDBMaterialBatch
 					if (status.length() > 0)
 					{
 						setStatus(status);
-					}
-					else
+					} else
 					{
 						setStatus(mat.getDefaultBatchStatus());
 					}
@@ -153,8 +161,7 @@ public class JDBMaterialBatch
 
 					}
 
-				}
-				else
+				} else
 				{
 					if (getExpiryDate() != null)
 					{
@@ -162,30 +169,25 @@ public class JDBMaterialBatch
 						{
 							if (expiry.equals(getExpiryDate()) == false)
 							{
-								setErrorMessage("Cannot override batch expiry date. Batch ["+getMaterial()+"/"+getBatch()+"] already exists with expiry date of " + getExpiryDate().toString());
-							}
-							else
+								setErrorMessage("Cannot override batch expiry date. Batch [" + getMaterial() + "/" + getBatch() + "] already exists with expiry date of " + getExpiryDate().toString());
+							} else
 							{
 								result = true;
 							}
-						}
-						else
+						} else
 						{
 							result = true;
 						}
-					}
-					else
+					} else
 					{
 						result = true;
 					}
 				}
-			}
-			else
+			} else
 			{
-				setErrorMessage("The format of the batch number ["+getBatch()+"] is not valid.\nFormat of batch number is defined in control key BATCH REGEX.");
+				setErrorMessage("The format of the batch number [" + getBatch() + "] is not valid.\nFormat of batch number is defined in control key BATCH REGEX.");
 			}
-		}
-		else
+		} else
 		{
 			result = true;
 		}
@@ -193,7 +195,8 @@ public class JDBMaterialBatch
 		return result;
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		/*
 		 * setMaterial(""); setBatch("");
 		 */
@@ -201,7 +204,8 @@ public class JDBMaterialBatch
 		setStatus("");
 	}
 
-	public boolean create() {
+	public boolean create()
+	{
 
 		logger.debug("create [" + getMaterial() + "][" + getBatch() + "]");
 
@@ -221,8 +225,7 @@ public class JDBMaterialBatch
 				stmtupdate.close();
 				update();
 				result = true;
-			}
-			catch (SQLException e)
+			} catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -231,7 +234,8 @@ public class JDBMaterialBatch
 		return result;
 	}
 
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -246,8 +250,7 @@ public class JDBMaterialBatch
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -255,7 +258,8 @@ public class JDBMaterialBatch
 		return result;
 	}
 
-	public boolean delete(String material, String batch) {
+	public boolean delete(String material, String batch)
+	{
 		boolean result = false;
 		setMaterial(material);
 		setBatch(batch);
@@ -264,11 +268,13 @@ public class JDBMaterialBatch
 		return result;
 	}
 
-	public String getBatch() {
+	public String getBatch()
+	{
 		return JUtility.replaceNullStringwithBlank(dbMaterialBatch);
 	}
 
-	public String getDefaultBatchNumber(String batchFormat, Calendar caldate, JDBProcessOrder po) {
+	public String getDefaultBatchNumber(String batchFormat, Calendar caldate, JDBProcessOrder po)
+	{
 		String result = "";
 
 		result = batchFormat;
@@ -327,23 +333,28 @@ public class JDBMaterialBatch
 		return result;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	public Timestamp getExpiryDate() {
+	public Timestamp getExpiryDate()
+	{
 		return dbMaterialBatchExpiry;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
-	public String getMaterial() {
+	public String getMaterial()
+	{
 		return dbMaterial;
 	}
 
-	public Vector<JDBMaterialBatch> getMaterialBatchData(PreparedStatement criteria) {
+	public Vector<JDBMaterialBatch> getMaterialBatchData(PreparedStatement criteria)
+	{
 		ResultSet rs;
 		Vector<JDBMaterialBatch> result = new Vector<JDBMaterialBatch>();
 
@@ -351,8 +362,7 @@ public class JDBMaterialBatch
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
 			result.addElement(new JDBMaterialBatch("material", "batch", "status", JUtility.getSQLDateTime()));
-		}
-		else
+		} else
 		{
 			try
 			{
@@ -364,8 +374,7 @@ public class JDBMaterialBatch
 				}
 
 				rs.close();
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -374,14 +383,14 @@ public class JDBMaterialBatch
 		return result;
 	}
 
-	public ResultSet getMaterialBatchDataResultSet(PreparedStatement criteria) {
+	public ResultSet getMaterialBatchDataResultSet(PreparedStatement criteria)
+	{
 		ResultSet rs;
 
 		try
 		{
 			rs = criteria.executeQuery();
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -390,14 +399,16 @@ public class JDBMaterialBatch
 		return rs;
 	}
 
-	public boolean getMaterialBatchProperties() {
+	public boolean getMaterialBatchProperties()
+	{
 		boolean result = false;
 
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
 
-		//logger.debug("getMaterialBatchProperties material=["+getMaterial()+ "] batch=["+getBatch()+"]");
+		// logger.debug("getMaterialBatchProperties material=["+getMaterial()+
+		// "] batch=["+getBatch()+"]");
 		clear();
 
 		try
@@ -412,15 +423,13 @@ public class JDBMaterialBatch
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Unknown Material Batch [" + getMaterial() + " " + getBatch() + "]");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -428,14 +437,16 @@ public class JDBMaterialBatch
 		return result;
 	}
 
-	public boolean getMaterialBatchProperties(String material, String batch) {
+	public boolean getMaterialBatchProperties(String material, String batch)
+	{
 		setMaterial(material);
 		setBatch(batch);
 
 		return getMaterialBatchProperties();
 	}
 
-	public void getPropertiesfromResultSet(ResultSet rs) {
+	public void getPropertiesfromResultSet(ResultSet rs)
+	{
 		try
 		{
 			clear();
@@ -443,22 +454,24 @@ public class JDBMaterialBatch
 			setBatch(rs.getString("batch_number"));
 			setStatus(rs.getString("status"));
 			setExpiryDate(rs.getTimestamp("expiry_date"));
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public String getStatus() {
+	public String getStatus()
+	{
 		return JUtility.replaceNullStringwithBlank(dbMaterialStatus);
 	}
 
-	public boolean isValid() {
+	public boolean isValid()
+	{
 		boolean result = true;
 
 		/* Check Material */
@@ -481,7 +494,8 @@ public class JDBMaterialBatch
 		return result;
 	}
 
-	public boolean isValidMaterialBatch() {
+	public boolean isValidMaterialBatch()
+	{
 
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -498,16 +512,14 @@ public class JDBMaterialBatch
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Material / Batch");
 			}
 
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -515,43 +527,52 @@ public class JDBMaterialBatch
 		return result;
 	}
 
-	public boolean isValidMaterialBatch(String material, String batch) {
+	public boolean isValidMaterialBatch(String material, String batch)
+	{
 		setMaterial(material);
 		setBatch(batch);
 
 		return isValidMaterialBatch();
 	}
 
-	public void setBatch(String batch) {
+	public void setBatch(String batch)
+	{
 		dbMaterialBatch = batch;
-		//.toUpperCase();
+		// .toUpperCase();
 	}
 
-	private void setErrorMessage(String errorMsg) {
+	private void setErrorMessage(String errorMsg)
+	{
 		dbErrorMessage = errorMsg;
 	}
 
-	public void setExpiryDate(Timestamp expiryDate) {
+	public void setExpiryDate(Timestamp expiryDate)
+	{
 		dbMaterialBatchExpiry = expiryDate;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setMaterial(String material) {
+	public void setMaterial(String material)
+	{
 		dbMaterial = material.toUpperCase();
 	}
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(String status)
+	{
 		dbMaterialStatus = status;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 
 		if (isValid() == true)
@@ -573,8 +594,7 @@ public class JDBMaterialBatch
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			catch (SQLException e)
+			} catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}

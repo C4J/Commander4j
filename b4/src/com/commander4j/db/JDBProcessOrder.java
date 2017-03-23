@@ -43,6 +43,10 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 
+/**
+ * The JDBProcessOrder class is responsible for updates to the table APP_PROCESS_ORDER.
+ *
+ */
 public class JDBProcessOrder
 {
 	private BigDecimal dbRequiredQuantity;

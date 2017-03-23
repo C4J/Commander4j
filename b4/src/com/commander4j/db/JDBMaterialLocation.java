@@ -35,6 +35,14 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
+/**
+ * JDBMaterialLocation class is used to insert/update/delete records from the
+ * APP_MATERIAL_LOCATION table. This table contains a list of valid locations
+ * for a Material and if enabled via the system key SSCC_LOCATION_VALIDATION
+ * will prevent a pallet from being moved to a Location which is not valid
+ * for its material.
+ *
+ */
 public class JDBMaterialLocation
 {
 	private String dbErrorMessage;
@@ -50,7 +58,8 @@ public class JDBMaterialLocation
 	private JDBControl ctrl;
 	private Boolean materialLocationLookupEnabled = false;
 
-	public JDBMaterialLocation(String host, String session) {
+	public JDBMaterialLocation(String host, String session)
+	{
 		setHostID(host);
 		setSessionID(session);
 		ctrl = new JDBControl(getHostID(), getSessionID());
@@ -81,8 +90,7 @@ public class JDBMaterialLocation
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-					.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.getProperties"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.getProperties"));
 			stmt.setString(1, getMaterial());
 			stmt.setString(2, getLocation());
 			stmt.setFetchSize(1);
@@ -92,15 +100,13 @@ public class JDBMaterialLocation
 			{
 				setStatus(rs.getString("status"));
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid Material/Location");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -121,8 +127,7 @@ public class JDBMaterialLocation
 			if (isValidMaterialLocation() == false)
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-						.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.create"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.create"));
 				stmtupdate.setString(1, getMaterial());
 				stmtupdate.setString(2, getLocation());
 				stmtupdate.execute();
@@ -130,13 +135,11 @@ public class JDBMaterialLocation
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Material " + getMaterial() + " Location " + getLocation() + " already exists");
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -155,8 +158,7 @@ public class JDBMaterialLocation
 			if (isValidMaterialLocation() == true)
 			{
 
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-						.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.delete"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.delete"));
 				stmtupdate.setString(1, getMaterial());
 				stmtupdate.setString(2, getLocation());
 				stmtupdate.execute();
@@ -165,8 +167,7 @@ public class JDBMaterialLocation
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -201,8 +202,7 @@ public class JDBMaterialLocation
 		try
 		{
 			rs = criteria.executeQuery();
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -219,8 +219,7 @@ public class JDBMaterialLocation
 			setMaterial(rs.getString("material"));
 			setLocation(rs.getString("location_id"));
 			setStatus(rs.getString("status"));
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -245,8 +244,7 @@ public class JDBMaterialLocation
 		ResultSet rs;
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-					.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.isValidMaterialLocation"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.isValidMaterialLocation"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, getMaterial());
 			stmt.setString(2, getLocation());
@@ -255,16 +253,14 @@ public class JDBMaterialLocation
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Material " + getMaterial() + " Location " + getLocation() + " not found.");
 			}
 			stmt.close();
 			rs.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -283,8 +279,7 @@ public class JDBMaterialLocation
 			ResultSet rs;
 			try
 			{
-				stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-						.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.isValidMaterialLocation"));
+				stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.isValidMaterialLocation"));
 				stmt.setFetchSize(1);
 				stmt.setString(1, getMaterial());
 				stmt.setString(2, getLocation());
@@ -293,7 +288,7 @@ public class JDBMaterialLocation
 				if (rs.next())
 				{
 					getPropertiesfromResultSet(rs);
-					if (getStatus().equals("Valid")==true)
+					if (getStatus().equals("Valid") == true)
 					{
 						result = true;
 					}
@@ -301,26 +296,23 @@ public class JDBMaterialLocation
 				stmt.close();
 				rs.close();
 
-			}
-			catch (SQLException e)
+			} catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
-		}
-		else
+		} else
 		{
 			result = true;
 		}
 
-		if (result==false)
+		if (result == false)
 		{
 			setErrorMessage("Material " + getMaterial() + " Location " + getLocation() + " not valid.");
-		}
-		else
+		} else
 		{
 			setErrorMessage("");
 		}
-		
+
 		return result;
 
 	}
@@ -376,8 +368,7 @@ public class JDBMaterialLocation
 			if (isValidMaterialLocation() == true)
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-						.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.update"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBMaterialLocation.update"));
 				stmtupdate.setString(1, getStatus());
 				stmtupdate.setString(2, getMaterial());
 				stmtupdate.setString(3, getLocation());
@@ -387,8 +378,7 @@ public class JDBMaterialLocation
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}

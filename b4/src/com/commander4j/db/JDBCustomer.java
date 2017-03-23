@@ -45,6 +45,8 @@ import com.commander4j.util.JUtility;
  * customer specific titles to appear on labels. The default customer ref of
  * SELF can be used for all Process Orders if the company name on the label is
  * constant.
+ * <p>
+ * <img alt="" src="./doc-files/APP_CUSTOMER.jpg" >
  */
 public class JDBCustomer
 {

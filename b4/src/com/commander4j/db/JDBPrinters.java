@@ -40,7 +40,14 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
-public class JDBPrinters {
+/**
+ * JDBPrinters class inserts/deletes/updates record from the table SYS_PRINTERS.
+ * This table will become more important during later releases of the
+ * application.
+ *
+ */
+public class JDBPrinters
+{
 
 	private String dbPrinterID;
 	private String dbPrinterType;
@@ -59,7 +66,7 @@ public class JDBPrinters {
 	private String dbExportFormat = "CSV";
 	private String dbEnableDirectPrint = "N";
 	private final Logger logger = Logger.getLogger(JDBPrinters.class);
-	
+
 	public static int field_printer_id = 20;
 	public static int field_printer_type = 20;
 	public static int field_ip_address = 25;
@@ -99,24 +106,23 @@ public class JDBPrinters {
 	{
 		dbEnableExport = enabled;
 	}
-	
+
 	public String getEnableExport()
 	{
 		return dbEnableExport;
 	}
-	
+
 	public void setEnableExport(boolean enabled)
 	{
 		if (enabled)
 		{
 			dbEnableExport = "Y";
-		}
-		else
+		} else
 		{
 			dbEnableExport = "N";
 		}
 	}
-	
+
 	public void setExportPath(String path)
 	{
 		dbExportPath = path;
@@ -130,12 +136,12 @@ public class JDBPrinters {
 		}
 		dbExportFormat = format;
 	}
-	
+
 	public String getExportPath()
 	{
 		return dbExportPath;
 	}
-	
+
 	public String getExportFormat()
 	{
 		if (dbExportFormat.equals(""))
@@ -144,29 +150,28 @@ public class JDBPrinters {
 		}
 		return dbExportFormat;
 	}
-	
+
 	public void setEnableDirectPrint(String enabled)
 	{
 		dbEnableDirectPrint = enabled;
 	}
-	
+
 	public String getEnableDirectPrint()
 	{
 		return dbEnableDirectPrint;
 	}
-	
+
 	public void setEnableDirectPrint(boolean enabled)
 	{
 		if (enabled)
 		{
 			dbEnableDirectPrint = "Y";
-		}
-		else
+		} else
 		{
 			dbEnableDirectPrint = "N";
 		}
 	}
-	
+
 	public boolean isExportEnabled()
 	{
 		boolean result = false;
@@ -176,7 +181,7 @@ public class JDBPrinters {
 		}
 		return result;
 	}
-	
+
 	public boolean isDirectPrintEnabled()
 	{
 		boolean result = false;
@@ -186,7 +191,7 @@ public class JDBPrinters {
 		}
 		return result;
 	}
-	
+
 	public boolean create()
 	{
 
@@ -215,7 +220,7 @@ public class JDBPrinters {
 		return result;
 	}
 
-	public boolean create(String printerId,String groupId)
+	public boolean create(String printerId, String groupId)
 	{
 		setPrinterID(printerId);
 		setGroupID(groupId);
@@ -227,7 +232,7 @@ public class JDBPrinters {
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
-		
+
 		try
 		{
 
@@ -239,9 +244,9 @@ public class JDBPrinters {
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
 			result = true;
-			
+
 			/* Remove all links to printer */
-			JDBPrinterLineMembership plm = new JDBPrinterLineMembership(getHostID(),getSessionID());
+			JDBPrinterLineMembership plm = new JDBPrinterLineMembership(getHostID(), getSessionID());
 			plm.deleteForPrinterID(getPrinterID());
 
 		} catch (SQLException e)
@@ -252,7 +257,7 @@ public class JDBPrinters {
 		return result;
 	}
 
-	public boolean delete(String printer,String group)
+	public boolean delete(String printer, String group)
 	{
 		setPrinterID(printer);
 		setGroupID(group);
@@ -285,12 +290,12 @@ public class JDBPrinters {
 	{
 		dbPrinterDPI = JUtility.replaceNullStringwithBlank(dpi);
 	}
-	
+
 	public String getDPI()
 	{
 		return JUtility.replaceNullStringwithBlank(dbPrinterDPI);
 	}
-	
+
 	private String getHostID()
 	{
 		return hostID;
@@ -374,7 +379,7 @@ public class JDBPrinters {
 			rs = stmt.executeQuery();
 
 			while (rs.next())
-			{	
+			{
 				getPropertiesfromResultSet(rs);
 				icon = getPrinterIcon();
 				JDBListData mld = new JDBListData(icon, index, true, rs.getString("printer_id"));
@@ -402,10 +407,9 @@ public class JDBPrinters {
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-					.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPrinters.getPrinterProperties"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPrinters.getPrinterProperties"));
 			stmt.setString(1, getPrinterID());
-			stmt.setString(2,getGroupID());
+			stmt.setString(2, getGroupID());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
@@ -427,7 +431,7 @@ public class JDBPrinters {
 		return result;
 	}
 
-	public boolean getPrinterProperties(String pid,String grp)
+	public boolean getPrinterProperties(String pid, String grp)
 	{
 		setPrinterID(pid);
 		setGroupID(grp);
@@ -482,7 +486,7 @@ public class JDBPrinters {
 			setExportPath(rs.getString("export_path"));
 			setEnableDirectPrint(rs.getString("enable_direct_print"));
 			setExportFormat(rs.getString("export_format"));
-			
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -509,7 +513,7 @@ public class JDBPrinters {
 	{
 		dbDescription = desc;
 	}
-	
+
 	private void setErrorMessage(String err)
 	{
 		dbErrorMessage = err;
@@ -550,13 +554,12 @@ public class JDBPrinters {
 		if (enabled)
 		{
 			this.dbEnabled = "Y";
-		}
-		else
+		} else
 		{
 			this.dbEnabled = "N";
 		}
 	}
-	
+
 	public void setPrinterID(String pid)
 	{
 		dbPrinterID = pid;
@@ -614,7 +617,7 @@ public class JDBPrinters {
 		return result;
 	}
 
-	public boolean update(String printid,String groupid)
+	public boolean update(String printid, String groupid)
 	{
 		Boolean result = false;
 		setPrinterID(printid);

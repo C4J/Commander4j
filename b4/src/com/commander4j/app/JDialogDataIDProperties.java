@@ -51,7 +51,14 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-
+/**
+ * JDialogDataIDProperties class is used to amend the APP_MATERIAL_DATA_IDS
+ * table. The default APP_MATERIAL table holds the basic material master data.
+ * However in order to extend the type of data which can be stored and also link
+ * it so a customer there is another table called APP_MATERIAL_CUSTOMER_DATA.
+ * This second table is keyed on MATERIAL, CUSTOMER_ID and DATA_ID. The DATA_ID
+ * can be anything meaningful name to describe the new data item being stored.
+ */
 public class JDialogDataIDProperties extends javax.swing.JDialog {
 	private static final long serialVersionUID = 1;
 

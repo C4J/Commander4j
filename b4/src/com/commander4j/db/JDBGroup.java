@@ -41,7 +41,8 @@ import com.commander4j.sys.Common;
  * The JDBGroup class is used to insert/update and delete records from the
  * SYS_GROUPS table. The table is part of the security / permissions within the
  * application.
- *
+ * <p>
+ * <img alt="" src="./doc-files/SYS_GROUPS.jpg" >
  */
 public class JDBGroup
 {

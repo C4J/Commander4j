@@ -42,7 +42,8 @@ import com.commander4j.util.JUtility;
  * JDBInterface is used to insert/update/delete records from the SYS_INTERFACE
  * table. This table holds the configuration for all inbound and outbound
  * interfaces.
- *
+ * <p>
+ * <img alt="" src="./doc-files/SYS_INTERFACE.jpg" >
  */
 public class JDBInterface
 {

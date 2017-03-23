@@ -45,7 +45,8 @@ import com.commander4j.util.JUtility;
  * generate an outbound message a request record is put into the table
  * SYS_INTERFACE_REQUEST The request record contains a reference to the
  * transaction number within the APP_PALLET_HISTORY_TABLE.
- *
+ * <p>
+ * <img alt="" src="./doc-files/SYS_INTERFACE_REQUEST.jpg" >
  */
 public class JDBInterfaceRequest
 {

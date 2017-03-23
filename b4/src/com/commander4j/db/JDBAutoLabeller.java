@@ -39,7 +39,8 @@ import com.commander4j.util.JUtility;
  * JDBAutoLabeller class is used to insert/update/delete the APP_AUTO_LABELLER table.
  * When an operator assigns data to an auto labeler (e.g. Case Labeling Screen) the list of destinations is retrieved from this class.
  * You should also refer to the classes JDBAutoLabellerResources, JDBPrinters and JDBPrinterLineMembership
- *
+ * <p>
+ * <img alt="" src="./doc-files/APP_AUTO_LABELLER.jpg" >
  */
 
 public class JDBAutoLabeller {

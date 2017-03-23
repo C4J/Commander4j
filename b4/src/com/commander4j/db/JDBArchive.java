@@ -42,12 +42,16 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 /**
- * JDBArchive class is used to insert/update/delete the SYS_ARCHIVE table.
- * The SYS_ARCHIVE table is a user definable auto archiving system. In essence a SQL delete statement with date parameter can be inserted into this table.
- * At a predetermined interval the Archiving Thread executes each statement in this table to remove old/unneeded records from tables.
- *
+ * JDBArchive class is used to insert/update/delete the SYS_ARCHIVE table. The
+ * SYS_ARCHIVE table is a user definable auto archiving system. In essence a SQL
+ * delete statement with date parameter can be inserted into this table. At a
+ * predetermined interval the Archiving Thread executes each statement in this
+ * table to remove old/unneeded records from tables.
+ * <p>
+ * <img alt="" src="./doc-files/SYS_ARCHIVE.jpg" >
  */
-public class JDBArchive {
+public class JDBArchive
+{
 
 	private final Logger logger = Logger.getLogger(JDBArchive.class);
 	private String dbErrorMessage;
@@ -71,7 +75,7 @@ public class JDBArchive {
 	private JDBLanguage lang;
 	private Long recordsDeleted = (long) 0;
 	private String dbEmailReport = "";
-	
+
 	public static int field_archive_id = 45;
 	public static int field_description = 40;
 	public static int field_sql_table = 32;
@@ -79,38 +83,40 @@ public class JDBArchive {
 
 	private void reportNew()
 	{
-		dbEmailReport="";
+		dbEmailReport = "";
 	}
-	
+
 	private void reportAddLine(String line)
 	{
 		dbEmailReport = dbEmailReport + line + "\n";
 	}
-	
+
 	private void reportAddBlankLine()
 	{
 		dbEmailReport = dbEmailReport + "\n";
 	}
-	
+
 	private void reportHeading()
 	{
 		reportAddLine("Database Archiving Report");
 		reportAddLine("=========================");
 		reportAddBlankLine();
 	}
-	
+
 	public String reportData()
 	{
-		return dbEmailReport+"\n\n";
+		return dbEmailReport + "\n\n";
 	}
-	
-	public JDBArchive(String host, String session) {
+
+	public JDBArchive(String host, String session)
+	{
 		setHostID(host);
 		setSessionID(session);
 		lang = new JDBLanguage(getHostID(), getSessionID());
 	}
 
-	public JDBArchive(String host, String session, String id, String name, String label) {
+	public JDBArchive(String host, String session, String id, String name, String label)
+	{
 		setHostID(host);
 		setSessionID(session);
 		setArchiveID(id);
@@ -151,7 +157,7 @@ public class JDBArchive {
 				result = true;
 			} else
 			{
-				setErrorMessage("Archive ID ["+getArchiveID()+"] already exists");
+				setErrorMessage("Archive ID [" + getArchiveID() + "] already exists");
 			}
 		} catch (SQLException e)
 		{
@@ -479,26 +485,26 @@ public class JDBArchive {
 		if (isEnabled() == false)
 		{
 			result = false;
-			setErrorMessage("Archive job ["+getArchiveID()+"] is DISABLED");
+			setErrorMessage("Archive job [" + getArchiveID() + "] is DISABLED");
 		} else
 		{
 
 			if (getSQLTable().equals(""))
 			{
 				result = false;
-				setErrorMessage("Archive job ["+getArchiveID()+"] - Table name cannot be empty");
+				setErrorMessage("Archive job [" + getArchiveID() + "] - Table name cannot be empty");
 			} else
 			{
 				if (getSQLCriteria().equals(""))
 				{
 					result = false;
-					setErrorMessage("Archive job ["+getArchiveID()+"] - Criteria cannot be empty");
+					setErrorMessage("Archive job [" + getArchiveID() + "] - Criteria cannot be empty");
 				} else
 				{
 					if (getSQLCriteria().contains("?") == false)
 					{
 						result = false;
-						setErrorMessage("Archive job ["+getArchiveID()+"] - Criteria must contain place marker [?] for parameter");
+						setErrorMessage("Archive job [" + getArchiveID() + "] - Criteria must contain place marker [?] for parameter");
 					}
 				}
 			}
@@ -571,7 +577,7 @@ public class JDBArchive {
 					result = true;
 				} else
 				{
-					setErrorMessage("New Archive ID ["+newID+"] is already in use.");
+					setErrorMessage("New Archive ID [" + newID + "] is already in use.");
 				}
 			}
 		} catch (SQLException e)
@@ -667,9 +673,9 @@ public class JDBArchive {
 					Timestamp end = JUtility.getSQLDateTime();
 					setRunStart(start);
 					setRunEnd(end);
-					setSQLResult(recordsDeleted.toString()+" records deleted.");
+					setSQLResult(recordsDeleted.toString() + " records deleted.");
 					setRecordsDeleted(recordsDeleted);
-					reportAddLine(JUtility.padString("[" + getArchiveID() + "]", true, 20, " ")+JUtility.padString(getDescription(), true, 41, " ") +JUtility.padString(recordsDeleted.toString()+" records deleted.", false, 30, " "));
+					reportAddLine(JUtility.padString("[" + getArchiveID() + "]", true, 20, " ") + JUtility.padString(getDescription(), true, 41, " ") + JUtility.padString(recordsDeleted.toString() + " records deleted.", false, 30, " "));
 
 					updateRunStats();
 				}

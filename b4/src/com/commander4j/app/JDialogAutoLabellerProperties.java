@@ -79,7 +79,17 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
-public class JDialogAutoLabellerProperties extends javax.swing.JDialog {
+/**
+ * This Dialog box allow you to edit the properties of the Auto Labeler. The
+ * data is stored in the table APP_AUTO_LABELLER. This form allows you to
+ * determine which Process Order Resources are associated with the Line, which
+ * Workstations are allowed to assign data to the Line and which physical
+ * printers are assigned to it.
+ *
+ */
+
+public class JDialogAutoLabellerProperties extends javax.swing.JDialog
+{
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonClose;
@@ -118,11 +128,6 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog {
 	private String selectedLine = "";
 	private String selectedGroup = "";
 
-	/**
-	 * @param frame Parent frame
-	 * @param line Production Line
-	 * @param group Group
-	 */
 	public JDialogAutoLabellerProperties(JFrame frame, String line, String group)
 	{
 		super(frame, "Line Properties", ModalityType.DOCUMENT_MODAL);
@@ -205,7 +210,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog {
 	}
 
 	/**
-	 *  Method used to build GUI
+	 * Method used to build GUI
 	 */
 	private void initGUI()
 	{
@@ -669,7 +674,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog {
 		if (listWorkstations.isSelectionEmpty() == false)
 		{
 			String item = ((String) listWorkstations.getSelectedValue()).toString();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("btn_Delete") +" "+lang.get("lbl_Workstation")+ " [" + item + "]", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("btn_Delete") + " " + lang.get("lbl_Workstation") + " [" + item + "]", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 			if (n == 0)
 			{
 
@@ -717,7 +722,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog {
 	{
 		JDBWorkstationLineMembership u = new JDBWorkstationLineMembership(Common.selectedHostID, Common.sessionID);
 		String lworkstation_id = "";
-		lworkstation_id = JOptionPane.showInputDialog(Common.mainForm, lang.get("btn_Add")+" "+lang.get("lbl_Workstation"));
+		lworkstation_id = JOptionPane.showInputDialog(Common.mainForm, lang.get("btn_Add") + " " + lang.get("lbl_Workstation"));
 		if (lworkstation_id != null)
 		{
 			if (lworkstation_id.equals("") == false)

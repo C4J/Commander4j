@@ -44,8 +44,10 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 /**
- * JDBDespatch class class is used to insert/update/delete the APP_DESPATCH
+ * JDBDespatch class is used to insert/update/delete the APP_DESPATCH
  * table.
+ * <p>
+ * <img alt="" src="./doc-files/APP_DESPATCH.jpg" >
  */
 
 public class JDBDespatch

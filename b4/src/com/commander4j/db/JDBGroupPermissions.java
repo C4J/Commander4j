@@ -42,7 +42,8 @@ import com.commander4j.sys.Common;
  * JDBGroupPermissions class is used to insert/update and delete records from
  * the SYS_GROUP_PERMISSIONS table. This table links the modules which a user is
  * allowed to access to the group(s) which they belong to.
- *
+ * <p>
+ * <img alt="" src="./doc-files/SYS_GROUP_PERMISSIONS.jpg" >
  */
 
 public class JDBGroupPermissions

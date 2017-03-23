@@ -1,7 +1,3 @@
-/*
- * Created on 02-Mar-2005
- *
- */
 package com.commander4j.tablemodel;
 
 /**
@@ -38,6 +34,16 @@ import javax.swing.table.AbstractTableModel;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBQMSample;
 
+/**
+ * The JDBQMResultTableModelData class is used in conjunction with the
+ * JDBQMResultTableModelIndex class. Within the Quality Module results entry
+ * screen the number and type of columns which can be used to record data is
+ * user configurable. The left hand of the table displayed on screen which is
+ * read only is displayed using JDBQMResultTableModelIndex and the right hand of
+ * the table which allows the user to type / pick values is controlled by this
+ * class.
+ */
+
 public class JDBQMResultTableModelIndex extends AbstractTableModel
 {
 
@@ -47,24 +53,36 @@ public class JDBQMResultTableModelIndex extends AbstractTableModel
 	private String host;
 	private LinkedList<JDBQMSample> sampleList = new LinkedList<JDBQMSample>();
 	private JDBLanguage lang;
-	private String[] colnames ={"Sample ID","Sample Date & Time","User Data1","User Data 2"};
+	private String[] colnames =
+	{ "Sample ID", "Sample Date & Time", "User Data1", "User Data 2" };
 	
-	public Long getSampleID(int row) 
+	/**
+	 * @param row
+	 *            Expects the tables row number.
+	 *            
+	 * @return    Returns the unique sample id for the record on the specified
+	 *            table row. This is part of the key for getting data from the
+	 *            APP_QM_SAMPLE table.
+	 */
+	public Long getSampleID(int row)
 	{
 		Long result = (long) -1;
 		result = sampleList.get(row).getSampleID();
 		return result;
 	}
-	
-	public String getSession() {
+
+	public String getSession()
+	{
 		return session;
 	}
 
-	public void setSession(String session) {
+	public void setSession(String session)
+	{
 		this.session = session;
 	}
 
-	public String getHost() {
+	public String getHost()
+	{
 		return host;
 	}
 
@@ -72,71 +90,76 @@ public class JDBQMResultTableModelIndex extends AbstractTableModel
 	{
 		return String.class;
 	}
-	
-	public void setHost(String host) {
+
+	public void setHost(String host)
+	{
 		this.host = host;
 	}
-	
-	public JDBQMResultTableModelIndex(String hostid,String sessionid,String processOrder,String inspectionid,String activityid)
+
+	public JDBQMResultTableModelIndex(String hostid, String sessionid, String processOrder, String inspectionid, String activityid)
 	{
 		super();
 		setHost(hostid);
 		setSession(sessionid);
 		sample = new JDBQMSample(hostid, sessionid);
 		lang = new JDBLanguage(hostid, sessionid);
-		colnames[2]=lang.get("lbl_User_Data1");
-		colnames[3]=lang.get("lbl_User_Data2");
-		sampleList = sample.getSamples(processOrder,inspectionid, activityid);
+		colnames[2] = lang.get("lbl_User_Data1");
+		colnames[3] = lang.get("lbl_User_Data2");
+		sampleList = sample.getSamples(processOrder, inspectionid, activityid);
 
 	}
-	
-	public int getColumnCount() {
+
+	public int getColumnCount()
+	{
 		return 4;
 	}
 
-	public int getRowCount() {
+	public int getRowCount()
+	{
 		return sampleList.size();
 	}
 
-	public boolean isCellEditable(int rowIndex,int columnIndex)
+	public boolean isCellEditable(int rowIndex, int columnIndex)
 	{
 
 		return false;
 	}
-	
-	public void setValueAt(Object value, int row, int col) {
-		
-	
+
+	public void setValueAt(Object value, int row, int col)
+	{
+
 	}
 
-	public String getColumnName(int col) {
+	public String getColumnName(int col)
+	{
 
 		return colnames[col];
 	}
 
-	public Object getValueAt(int row, int col) 
-	
-	{
-		Object result="";
+	public Object getValueAt(int row, int col)
 
-		switch (col) {
+	{
+		Object result = "";
+
+		switch (col)
+		{
 		case 0:
-			result =sampleList.get(row).getSampleID().toString();
+			result = sampleList.get(row).getSampleID().toString();
 			break;
 		case 1:
-			result =sampleList.get(row).getSampleDate().toString().substring(0, 16);
+			result = sampleList.get(row).getSampleDate().toString().substring(0, 16);
 			break;
 		case 2:
-			result =sampleList.get(row).getUserData1();
+			result = sampleList.get(row).getUserData1();
 			break;
 		case 3:
-			result =sampleList.get(row).getUserData2();
+			result = sampleList.get(row).getUserData2();
 			break;
 		default:
-			result="";
+			result = "";
 			break;
 		}
-	
+
 		return result;
 	}
 }
