@@ -43,6 +43,8 @@ import com.commander4j.sys.Common;
  * application.
  * <p>
  * <img alt="" src="./doc-files/SYS_GROUPS.jpg" >
+ * 
+ * @see com.commander4j.db.JDBGroupPermissions JDBGroupPermissions
  */
 public class JDBGroup
 {

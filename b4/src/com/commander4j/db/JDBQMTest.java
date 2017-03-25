@@ -37,6 +37,18 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDBQMTest inserts/updates/deletes rows into the APP_QM_TEST table. This
+ * table defines the tests which are required for the associated Inspection /
+ * Activity.
+ * <p>
+ * <img alt="" src="./doc-files/APP_SAMPLE_ID.jpg" >
+ * 
+ * @see com.commander4j.db.JDBQMInspection JDBQMInspection
+ * @see com.commander4j.db.JDBQMActivity JDBQMActivity
+ * @see com.commander4j.db.JDBQMDictionary JDBQMDictionary
+ * @see com.commander4j.db.JDBQMSample JDBQMSample
+ */
 public class JDBQMTest
 {
 	private String dbActivityID;

@@ -33,6 +33,10 @@ import javax.swing.JButton;
 
 import com.commander4j.sys.Common;
 
+/**
+ * Standard JButton4j which is used throughout the application permitting global changes to be applied to look feel etc.
+ *
+ */
 public class JButton4j extends JButton {
 
 	private static final long serialVersionUID = 1L;

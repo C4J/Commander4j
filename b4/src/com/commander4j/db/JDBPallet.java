@@ -50,6 +50,18 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.JWait;
 
+/**
+ * The JDBPallet is used to insert/update/delete records from the APP_PALLET
+ * table. The pallet table is one of the primary tables within the application
+ * and has strong ties to the APP_PALLET_HISTORY table. This class contains many
+ * helper methods which are used to perform high level transactions. Also a lot
+ * of validation is performed by this class.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/APP_PALLET.jpg" >
+ * 
+ * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
+ */
 public class JDBPallet
 {
 	public static int field_sscc = 18;
@@ -186,6 +198,9 @@ public class JDBPallet
 		return result;
 	}
 
+	/**
+	 * Reset internal fields with default / blank values.
+	 */
 	public void clear()
 	{
 		/* db_sscc=""; */
@@ -212,6 +227,18 @@ public class JDBPallet
 		setConfirmed(false);
 	}
 
+	/**
+	 * This method will confirm an unconfirmed pallet. When a pallet label is
+	 * printed it's default status is unconfirmed. An unconfirmed pallet won't
+	 * be interfaced to an external system until it's confirmed. The process of
+	 * confirming a pallet involves a lot of validation. If the confirmation is
+	 * successful the method will return True. If the method returns false the
+	 * reason for the failure can be determined by using the getErrorMessage()
+	 * 
+	 * @return Indicates of the method completed successfully
+	 * 
+	 * @see com.commander4j.db.JDBPallet#getErrorMessage() getErrorMessage()
+	 */
 	public Boolean confirm()
 	{
 		Boolean result = false;
@@ -313,7 +340,6 @@ public class JDBPallet
 		return create(0L, transactionType, transactionSubtye);
 	}
 
-
 	public boolean delete()
 	{
 
@@ -378,14 +404,12 @@ public class JDBPallet
 		return result;
 	}
 
-
 	public boolean delete(String sscc)
 	{
 		setSSCC(sscc);
 
 		return delete();
 	}
-
 
 	public BigDecimal getBaseQuantity()
 	{
@@ -410,7 +434,6 @@ public class JDBPallet
 		return result;
 	}
 
-
 	public String getBaseUom()
 	{
 		if (lastMaterialMaterial.equals(getMaterial()) == false)
@@ -426,7 +449,6 @@ public class JDBPallet
 	{
 		return dbBatchExpiry;
 	}
-
 
 	public String getBatchNumber()
 	{
@@ -482,18 +504,15 @@ public class JDBPallet
 		return JUtility.replaceNullStringwithBlank(dbDecision);
 	}
 
-
 	public String getDespatchNo()
 	{
 		return JUtility.replaceNullStringwithBlank(dbDespatchNo);
 	}
 
-
 	public String getEAN()
 	{
 		return dbEAN;
 	}
-
 
 	public String getErrorMessage()
 	{
@@ -509,7 +528,6 @@ public class JDBPallet
 	{
 		return dbLayers;
 	}
-
 
 	public String getLocationID()
 	{
@@ -527,7 +545,6 @@ public class JDBPallet
 		return location;
 	}
 
-
 	public String getMaterial()
 	{
 		return JUtility.replaceNullStringwithBlank(dbMaterial);
@@ -544,7 +561,6 @@ public class JDBPallet
 
 		return result;
 	}
-
 
 	public String getMaterialBatchStatus()
 	{
@@ -573,7 +589,6 @@ public class JDBPallet
 	{
 		return dbMHNNumber;
 	}
-
 
 	public Vector<JDBPallet> getPalletData(PreparedStatement criteria, boolean calcBaseQty)
 	{
@@ -622,7 +637,6 @@ public class JDBPallet
 		return rs;
 	}
 
-
 	public LinkedList<String> getPalletList(PreparedStatement criteria)
 	{
 		ResultSet rs;
@@ -652,7 +666,6 @@ public class JDBPallet
 
 		return result;
 	}
-
 
 	public boolean getPalletProperties()
 	{
@@ -691,7 +704,6 @@ public class JDBPallet
 		return result;
 	}
 
-
 	public boolean getPalletProperties(String sscc)
 	{
 		boolean result;
@@ -700,7 +712,6 @@ public class JDBPallet
 
 		return result;
 	}
-
 
 	public String getProcessOrder()
 	{
@@ -778,7 +789,6 @@ public class JDBPallet
 		}
 	}
 
-
 	public BigDecimal getQuantity()
 	{
 		return dbQuantity;
@@ -807,12 +817,10 @@ public class JDBPallet
 		return sessionID;
 	}
 
-
 	public String getSSCC()
 	{
 		return dbSSCC;
 	}
-
 
 	public String getStatus()
 	{
@@ -824,7 +832,6 @@ public class JDBPallet
 		return transactionRef;
 	}
 
-
 	public String getUom()
 	{
 		return dbUom;
@@ -834,7 +841,6 @@ public class JDBPallet
 	{
 		return JUtility.replaceNullStringwithBlank(dbUpdatedBy);
 	}
-
 
 	public String getVariant()
 	{
@@ -858,7 +864,6 @@ public class JDBPallet
 	{
 		return dbConfirmed;
 	}
-
 
 	public boolean isValidPallet()
 	{
@@ -898,7 +903,6 @@ public class JDBPallet
 		return isValidPallet();
 	}
 
-
 	public boolean isValidSSCCFormat()
 	{
 		boolean result = true;
@@ -925,7 +929,6 @@ public class JDBPallet
 
 		return result;
 	}
-
 
 	public boolean populateFromProcessOrder()
 	{
@@ -963,7 +966,6 @@ public class JDBPallet
 		ts.setNanos(0);
 		dbBatchExpiry = ts;
 	}
-
 
 	public void setBatchNumber(String batch)
 	{
@@ -1040,18 +1042,15 @@ public class JDBPallet
 		dbDecision = JUtility.replaceNullStringwithBlank(decision);
 	}
 
-
 	public void setDespatchNo(String despatchNo)
 	{
 		dbDespatchNo = JUtility.replaceNullStringwithBlank(despatchNo);
 	}
 
-
 	public void setEAN(String ean)
 	{
 		dbEAN = ean;
 	}
-
 
 	private void setErrorMessage(String ErrorMsg)
 	{
@@ -1073,12 +1072,10 @@ public class JDBPallet
 		dbLayers = layers;
 	}
 
-
 	public void setLocationID(String location_id)
 	{
 		dbLocationId = JUtility.replaceNullStringwithBlank(location_id);
 	}
-
 
 	public void setMaterial(String mat)
 	{
@@ -1090,12 +1087,10 @@ public class JDBPallet
 		dbMHNNumber = JUtility.replaceNullStringwithBlank(mhn);
 	}
 
-
 	public void setProcessOrder(String process_order)
 	{
 		dbProcessOrder = JUtility.replaceNullStringwithBlank(process_order);
 	}
-
 
 	public void setQuantity(BigDecimal quantity)
 	{
@@ -1112,24 +1107,20 @@ public class JDBPallet
 		sessionID = session;
 	}
 
-
 	public void setSSCC(String sscc)
 	{
 		dbSSCC = sscc;
 	}
-
 
 	public void setStatus(String status)
 	{
 		dbStatus = JUtility.replaceNullStringwithBlank(status);
 	}
 
-
 	public void setTransactionRef(long txn)
 	{
 		transactionRef = txn;
 	}
-
 
 	public void setUom(String u)
 	{
@@ -1140,7 +1131,6 @@ public class JDBPallet
 	{
 		dbUpdatedBy = by;
 	}
-
 
 	public void setVariant(String variant)
 	{
@@ -1207,7 +1197,6 @@ public class JDBPallet
 		bc = null;
 		return result;
 	}
-
 
 	public boolean update()
 	{

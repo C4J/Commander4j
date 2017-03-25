@@ -37,6 +37,10 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLDocument;
 
+/**
+ * All Commander4j xml messages have a standard format. The header section describes the content (data) component of the message.
+ *
+ */
 public class GenericMessageHeader
 {
 	private String hostRef = "";

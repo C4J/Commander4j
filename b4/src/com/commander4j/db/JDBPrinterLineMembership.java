@@ -37,7 +37,17 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
-public class JDBPrinterLineMembership {
+/**
+ * The JDBPrinterLineMembership class associates physical printers with a
+ * production line and updates the table SYS_PRINTER_LINE_MEMBERSHIP
+ * <p>
+ * <img alt="" src="./doc-files/SYS_PRINTER_LINE_MEMBERSHIP.jpg" >
+ * 
+ * @see com.commander4j.db.JDBPrinters JDBPrinters
+ * @see com.commander4j.db.JDBAutoLabeller JDBAutoLabeller
+ */
+public class JDBPrinterLineMembership
+{
 
 	private String db_error_message;
 	private Exception db_exception;
@@ -54,11 +64,11 @@ public class JDBPrinterLineMembership {
 		setSessionID(session);
 	}
 
-	public boolean addPrintertoLine(String line,String group, String printer)
+	public boolean addPrintertoLine(String line, String group, String printer)
 	{
 		boolean result = false;
 
-		result = create(line,group, printer);
+		result = create(line, group, printer);
 		return result;
 	}
 
@@ -94,7 +104,7 @@ public class JDBPrinterLineMembership {
 		return result;
 	}
 
-	public boolean renameLine(String oldLine,String newLine)
+	public boolean renameLine(String oldLine, String newLine)
 	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -122,7 +132,7 @@ public class JDBPrinterLineMembership {
 		return result;
 	}
 
-	public boolean create(String line, String group,String printer)
+	public boolean create(String line, String group, String printer)
 	{
 		setPrinterId(printer);
 		setLineId(line);
@@ -208,14 +218,14 @@ public class JDBPrinterLineMembership {
 	public String getGroupId()
 	{
 		return db_group_id;
-	}	
-	
+	}
+
 	public String getPrinterId()
 	{
 		return db_printer_id;
 	}
 
-	public LinkedList<JDBListData> getPrintersAssignedtoLine(String line,String group)
+	public LinkedList<JDBListData> getPrintersAssignedtoLine(String line, String group)
 	{
 
 		LinkedList<JDBListData> printerList = new LinkedList<JDBListData>();
@@ -247,7 +257,7 @@ public class JDBPrinterLineMembership {
 		return printerList;
 	}
 
-	public LinkedList<JDBListData> getPrintersNotAssignedtoLine(String line,String group)
+	public LinkedList<JDBListData> getPrintersNotAssignedtoLine(String line, String group)
 	{
 		LinkedList<JDBListData> printerList = new LinkedList<JDBListData>();
 
@@ -316,12 +326,12 @@ public class JDBPrinterLineMembership {
 
 	}
 
-	public boolean removeAllPrintersfromLine(String line,String group)
+	public boolean removeAllPrintersfromLine(String line, String group)
 	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
-		logger.debug("removeAllPrintersfromLine Line [" + getLineId()  + " / " + getGroupId()+ "]");
+		logger.debug("removeAllPrintersfromLine Line [" + getLineId() + " / " + getGroupId() + "]");
 		try
 		{
 			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLinePrinterMembership.removeAllPrintersfromLine"));
@@ -340,7 +350,7 @@ public class JDBPrinterLineMembership {
 		return result;
 	}
 
-	public boolean removePrinterfromLine(String line, String group,String printer)
+	public boolean removePrinterfromLine(String line, String group, String printer)
 	{
 		boolean result = false;
 
@@ -352,7 +362,7 @@ public class JDBPrinterLineMembership {
 		return result;
 	}
 
-	public boolean removePrinterfromAllLines(String printer,String group)
+	public boolean removePrinterfromAllLines(String printer, String group)
 	{
 		boolean result = false;
 		JDBAutoLabeller al = new JDBAutoLabeller(getHostID(), getSessionID());
@@ -365,7 +375,7 @@ public class JDBPrinterLineMembership {
 		{
 			line = ((JDBAutoLabeller) lineList.get(j).getObject()).getLine();
 			group = ((JDBAutoLabeller) lineList.get(j).getObject()).getGroup();
-			removePrinterfromLine(line, group,printer);
+			removePrinterfromLine(line, group, printer);
 		}
 
 		return result;
@@ -397,7 +407,7 @@ public class JDBPrinterLineMembership {
 	{
 		db_group_id = group;
 	}
-	
+
 	public void setPrinterId(String GroupId)
 	{
 		db_printer_id = GroupId;

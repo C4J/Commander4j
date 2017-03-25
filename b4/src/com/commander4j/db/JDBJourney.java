@@ -50,6 +50,8 @@ import com.commander4j.util.JUtility;
  * module.
  * <p>
  * <img alt="" src="./doc-files/APP_JOURNEY.jpg" >
+ * 
+ * @see com.commander4j.db.JDBDespatch JDBDespatch
  */
 public class JDBJourney
 {

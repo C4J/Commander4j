@@ -44,10 +44,13 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 /**
- * JDBDespatch class is used to insert/update/delete the APP_DESPATCH
+ * JDBDespatch class is used to insert/update/delete records in the APP_DESPATCH
  * table.
  * <p>
  * <img alt="" src="./doc-files/APP_DESPATCH.jpg" >
+ * 
+ * @see com.commander4j.db.JDBLocation JDBLocation
+ * @see com.commander4j.db.JDBJourney JDBJourney
  */
 
 public class JDBDespatch
@@ -106,13 +109,11 @@ public class JDBDespatch
 		journey = new JDBJourney(getHostID(), getSessionID());
 		ctrl.getProperties("DEFAULT_LOCATION");
 		home_location = ctrl.getKeyValue();
-		allowDespatchToSelf = Boolean
-				.valueOf(ctrl.getKeyValueWithDefault("DESPATCH_TO_SELF", "false", "Allow despatch to source location"));
+		allowDespatchToSelf = Boolean.valueOf(ctrl.getKeyValueWithDefault("DESPATCH_TO_SELF", "false", "Allow despatch to source location"));
 	}
 
-	public JDBDespatch(String host, String session, String despatchNo, Timestamp despatchDate, String locationIdFrom,
-			String locationIdTo, String status, int noofpallets, String trailer, String haulier, String loadNo,
-			String userID, String journeyRef)
+	public JDBDespatch(String host, String session, String despatchNo, Timestamp despatchDate, String locationIdFrom, String locationIdTo, String status, int noofpallets, String trailer, String haulier, String loadNo, String userID,
+			String journeyRef)
 	{
 		setHostID(host);
 		setSessionID(session);
@@ -136,8 +137,7 @@ public class JDBDespatch
 		ctrl = new JDBControl(getHostID(), getSessionID());
 		ctrl.getProperties("DEFAULT_LOCATION");
 		home_location = ctrl.getKeyValue();
-		allowDespatchToSelf = Boolean
-				.valueOf(ctrl.getKeyValueWithDefault("DESPATCH_TO_SELF", "false", "Allow despatch to source location"));
+		allowDespatchToSelf = Boolean.valueOf(ctrl.getKeyValueWithDefault("DESPATCH_TO_SELF", "false", "Allow despatch to source location"));
 	}
 
 	public Boolean assignSSCC(String sscc)
@@ -287,11 +287,8 @@ public class JDBDespatch
 
 			while (rs.next())
 			{
-				result.addLast(new JDBDespatch(getHostID(), getSessionID(), rs.getString("despatch_no"),
-						rs.getTimestamp("despatch_date"), rs.getString("location_id_from"),
-						rs.getString("location_id_to"), rs.getString("status"), rs.getInt("total_pallets"),
-						rs.getString("trailer"), rs.getString("haulier"), rs.getString("load_no"),
-						rs.getString("user_id"), rs.getString("journey_ref")));
+				result.addLast(new JDBDespatch(getHostID(), getSessionID(), rs.getString("despatch_no"), rs.getTimestamp("despatch_date"), rs.getString("location_id_from"), rs.getString("location_id_to"), rs.getString("status"),
+						rs.getInt("total_pallets"), rs.getString("trailer"), rs.getString("haulier"), rs.getString("load_no"), rs.getString("user_id"), rs.getString("journey_ref")));
 			}
 
 			rs.close();
@@ -347,9 +344,7 @@ public class JDBDespatch
 							logger.debug("Updating Despatch Status");
 							PreparedStatement stmtupdate0;
 
-							stmtupdate0 = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-									.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements()
-											.getSQL("JDBDespatch.setConfirmed"));
+							stmtupdate0 = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.setConfirmed"));
 							stmtupdate0.setLong(1, txn);
 							stmtupdate0.setString(2, "Confirmed");
 							stmtupdate0.setTimestamp(3, getDespatchDate());
@@ -363,9 +358,7 @@ public class JDBDespatch
 							logger.debug("Updating Pallet location_id records");
 							PreparedStatement stmtupdate1;
 
-							stmtupdate1 = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-									.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements()
-											.getSQL("JDBPalletHistory.insertFromPallet"));
+							stmtupdate1 = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPalletHistory.insertFromPallet"));
 							stmtupdate1.setLong(1, txn);
 							stmtupdate1.setString(2, "DESPATCH");
 							stmtupdate1.setString(3, "FROM");
@@ -380,9 +373,7 @@ public class JDBDespatch
 							logger.debug("Updating Pallet Locations");
 							PreparedStatement stmtupdate2;
 
-							stmtupdate2 = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-									.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements()
-											.getSQL("JDBPallet.updateLocationIDByDespatchNo"));
+							stmtupdate2 = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.updateLocationIDByDespatchNo"));
 							stmtupdate2.setString(1, getLocationIDTo());
 							stmtupdate2.setString(2, getUserID());
 							stmtupdate2.setTimestamp(3, getDespatchDate());
@@ -395,9 +386,7 @@ public class JDBDespatch
 							logger.debug("Writing TO Pallet History records");
 							PreparedStatement stmtupdate3;
 
-							stmtupdate3 = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-									.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements()
-											.getSQL("JDBPalletHistory.insertFromPallet"));
+							stmtupdate3 = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPalletHistory.insertFromPallet"));
 							stmtupdate3.setLong(1, txn);
 							stmtupdate3.setString(2, "DESPATCH");
 							stmtupdate3.setString(3, "TO");
@@ -479,8 +468,7 @@ public class JDBDespatch
 				PreparedStatement stmtupdate;
 				setStatus("Unconfirmed");
 				setTotalPallets(0);
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-						Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.create"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.create"));
 				stmtupdate.setString(1, getDespatchNo());
 				stmtupdate.setString(2, getStatus());
 				stmtupdate.execute();
@@ -539,7 +527,7 @@ public class JDBDespatch
 		if (isValid(false) == true)
 		{
 			String journeyRef = getJourneyRef();
-			
+
 			assignedList.clear();
 			assignedList.addAll(getAssignedSSCCs());
 
@@ -557,16 +545,15 @@ public class JDBDespatch
 
 			try
 			{
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-						Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.delete"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.delete"));
 				stmtupdate.setString(1, getDespatchNo());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 
 				stmtupdate.close();
-				
-				if (journeyRef.equals("")==false)
+
+				if (journeyRef.equals("") == false)
 				{
 					JDBJourney jrny = new JDBJourney(getHostID(), getSessionID());
 					if (jrny.getJourneyRefProperties(journeyRef))
@@ -576,7 +563,7 @@ public class JDBDespatch
 						jrny.update();
 					}
 				}
-				
+
 				result = true;
 			} catch (SQLException e)
 			{
@@ -672,8 +659,7 @@ public class JDBDespatch
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-					Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.getAssignedSSCCs"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.getAssignedSSCCs"));
 			stmt.setFetchSize(50);
 			stmt.setString(1, despatchNo);
 
@@ -702,8 +688,7 @@ public class JDBDespatch
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBDespatch(getHostID(), getSessionID(), "despatch_no", null, "location_id_from",
-					"location_id_to", "status", 0, "trailer", "haulier", "load_no", "user_id", "journey_ref"));
+			result.addElement(new JDBDespatch(getHostID(), getSessionID(), "despatch_no", null, "location_id_from", "location_id_to", "status", 0, "trailer", "haulier", "load_no", "user_id", "journey_ref"));
 		} else
 		{
 			try
@@ -712,11 +697,8 @@ public class JDBDespatch
 
 				while (rs.next())
 				{
-					result.addElement(new JDBDespatch(getHostID(), getSessionID(), rs.getString("despatch_no"),
-							rs.getTimestamp("despatch_date"), rs.getString("location_id_from"),
-							rs.getString("location_id_to"), rs.getString("status"), rs.getInt("total_pallets"),
-							rs.getString("trailer"), rs.getString("haulier"), rs.getString("load_no"),
-							rs.getString("user_id"), rs.getString("journey_ref")));
+					result.addElement(new JDBDespatch(getHostID(), getSessionID(), rs.getString("despatch_no"), rs.getTimestamp("despatch_date"), rs.getString("location_id_from"), rs.getString("location_id_to"), rs.getString("status"),
+							rs.getInt("total_pallets"), rs.getString("trailer"), rs.getString("haulier"), rs.getString("load_no"), rs.getString("user_id"), rs.getString("journey_ref")));
 				}
 
 				rs.close();
@@ -752,8 +734,7 @@ public class JDBDespatch
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-					Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.count"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.count"));
 			stmt.setFetchSize(50);
 			stmt.setString(1, getDespatchNo());
 			rs = stmt.executeQuery();
@@ -789,8 +770,7 @@ public class JDBDespatch
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList
-					.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.getDespatchProperties"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.getDespatchProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, getDespatchNo());
 			rs = stmt.executeQuery();
@@ -832,9 +812,7 @@ public class JDBDespatch
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-					.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements()
-							.getSQL("JDBDespatch.getDespatchPropertiesFromTransactionRef"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.getDespatchPropertiesFromTransactionRef"));
 			stmt.setFetchSize(1);
 			stmt.setLong(1, getTransactionRef());
 			rs = stmt.executeQuery();
@@ -1103,8 +1081,7 @@ public class JDBDespatch
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-					Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.isValidDespatch"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.isValidDespatch"));
 			stmt.setString(1, getDespatchNo());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
@@ -1259,8 +1236,7 @@ public class JDBDespatch
 			try
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-						Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.update"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.update"));
 
 				stmtupdate.setTimestamp(1, getDespatchDate());
 				stmtupdate.setString(2, getLocationIDFrom());
@@ -1328,8 +1304,7 @@ public class JDBDespatch
 			try
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(
-						Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.setUserID"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.setUserID"));
 
 				stmtupdate.setString(1, getUserID());
 				stmtupdate.setString(2, getDespatchNo());

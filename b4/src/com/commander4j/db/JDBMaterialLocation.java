@@ -43,7 +43,10 @@ import com.commander4j.sys.Common;
  * for its material.
  * <p>
  * <img alt="" src="./doc-files/APP_MATERIAL_LOCATION.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterial JDBMaterial
  */
+
 public class JDBMaterialLocation
 {
 	private String dbErrorMessage;

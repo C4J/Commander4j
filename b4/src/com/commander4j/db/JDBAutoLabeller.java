@@ -36,14 +36,21 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 /**
- * JDBAutoLabeller class is used to insert/update/delete the APP_AUTO_LABELLER table.
- * When an operator assigns data to an auto labeler (e.g. Case Labeling Screen) the list of destinations is retrieved from this class.
- * You should also refer to the classes JDBAutoLabellerResources, JDBPrinters and JDBPrinterLineMembership
+ * JDBAutoLabeller class is used to insert/update/delete the APP_AUTO_LABELLER
+ * table. When an operator assigns data to an auto labeler (e.g. Case Labeling
+ * Screen) the list of destinations is retrieved from this class. You should
+ * also refer to the classes JDBAutoLabellerResources, JDBPrinters and
+ * JDBPrinterLineMembership
  * <p>
  * <img alt="" src="./doc-files/APP_AUTO_LABELLER.jpg" >
+ * 
+ * @see com.commander4j.db.JDBAutoLabellerResources JDBAutoLabellerResources
+ * @see com.commander4j.db.JDBPrinters JDBPrinters
+ * @see com.commander4j.db.JDBPrinterLineMembership JDBPrinterLineMembership
  */
 
-public class JDBAutoLabeller {
+public class JDBAutoLabeller
+{
 	private String hostID;
 	private String sessionID;
 	private String db_line;
@@ -92,7 +99,7 @@ public class JDBAutoLabeller {
 	{
 		return db_ValidateWorkstation;
 	}
-	
+
 	public boolean isValidateResource()
 	{
 		if (db_ValidateResource.equals("Y"))
@@ -103,7 +110,7 @@ public class JDBAutoLabeller {
 			return false;
 		}
 	}
-	
+
 	public boolean isValidateWorkstation()
 	{
 		if (db_ValidateWorkstation.equals("Y"))
@@ -113,7 +120,7 @@ public class JDBAutoLabeller {
 		{
 			return false;
 		}
-	}	
+	}
 
 	public void setValidateResource(boolean yesno)
 	{
@@ -126,7 +133,6 @@ public class JDBAutoLabeller {
 		}
 	}
 
-	
 	public void setValidateWorkstation(boolean yesno)
 	{
 		if (yesno)
@@ -137,7 +143,7 @@ public class JDBAutoLabeller {
 			db_ValidateWorkstation = "N";
 		}
 	}
-	
+
 	public void setValidateResource(String yesno)
 	{
 		db_ValidateResource = yesno;
@@ -148,11 +154,10 @@ public class JDBAutoLabeller {
 		db_ValidateWorkstation = JUtility.replaceNullStringwithBlank(yesno);
 		if (db_ValidateWorkstation.equals(""))
 		{
-			db_ValidateWorkstation="N";
+			db_ValidateWorkstation = "N";
 		}
 	}
 
-	
 	public String getModified()
 	{
 		return db_modified;
@@ -185,7 +190,7 @@ public class JDBAutoLabeller {
 		db_modified = yesno;
 	}
 
-	public boolean resend(String line,String group, String modified)
+	public boolean resend(String line, String group, String modified)
 	{
 		boolean result = false;
 
@@ -216,7 +221,6 @@ public class JDBAutoLabeller {
 		return result;
 	}
 
-
 	public boolean create(String line, String description, String unique)
 	{
 		boolean result = false;
@@ -238,7 +242,7 @@ public class JDBAutoLabeller {
 				stmtupdate.setString(4, getUniqueID());
 				stmtupdate.setString(5, getModified());
 				stmtupdate.setString(6, getValidateResource());
-				stmtupdate.setString(7, getValidateWorkstation());				
+				stmtupdate.setString(7, getValidateWorkstation());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -269,7 +273,7 @@ public class JDBAutoLabeller {
 
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBAutoLabeller.delete"));
 				stmtupdate.setString(1, getLine());
-				stmtupdate.setString(2,getGroup());
+				stmtupdate.setString(2, getGroup());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -340,7 +344,7 @@ public class JDBAutoLabeller {
 			while (rs.next())
 			{
 				JDBAutoLabeller al = new JDBAutoLabeller(getHostID(), getSessionID());
-				al.getProperties(rs.getString("LINE"),rs.getString("GROUP_ID"));
+				al.getProperties(rs.getString("LINE"), rs.getString("GROUP_ID"));
 				JDBListData mld = new JDBListData(null, index, true, al);
 				intList.addLast(mld);
 			}
@@ -355,7 +359,6 @@ public class JDBAutoLabeller {
 		return intList;
 	}
 
-	
 	public LinkedList<JDBListData> getLabellerIDs()
 	{
 		LinkedList<JDBListData> intList = new LinkedList<JDBListData>();
@@ -373,7 +376,7 @@ public class JDBAutoLabeller {
 			while (rs.next())
 			{
 				JDBAutoLabeller al = new JDBAutoLabeller(getHostID(), getSessionID());
-				al.getProperties(rs.getString("LINE"),rs.getString("GROUP_ID"));
+				al.getProperties(rs.getString("LINE"), rs.getString("GROUP_ID"));
 				JDBListData mld = new JDBListData(null, index, true, al);
 				intList.addLast(mld);
 			}
@@ -392,13 +395,13 @@ public class JDBAutoLabeller {
 	{
 		return db_line;
 	}
-	
+
 	public String getGroup()
 	{
 		return db_group;
 	}
 
-	public boolean getProperties(String line,String group)
+	public boolean getProperties(String line, String group)
 	{
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -502,7 +505,7 @@ public class JDBAutoLabeller {
 				result = true;
 			} else
 			{
-				setErrorMessage("Invalid Line / Group - ("+getLine()+"/"+getGroup()+")");
+				setErrorMessage("Invalid Line / Group - (" + getLine() + "/" + getGroup() + ")");
 			}
 			stmt.close();
 			rs.close();
@@ -516,7 +519,7 @@ public class JDBAutoLabeller {
 
 	}
 
-	public boolean rename(String oldLine,String newLine,String group)
+	public boolean rename(String oldLine, String newLine, String group)
 	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
@@ -577,7 +580,7 @@ public class JDBAutoLabeller {
 	{
 		db_line = line;
 	}
-	
+
 	public void setGroup(String group)
 	{
 		db_group = group;
@@ -628,14 +631,13 @@ public class JDBAutoLabeller {
 
 	public String toString()
 	{
-		return JUtility.padString(getLine(), true, 20, " ")+getDescription();
+		return JUtility.padString(getLine(), true, 20, " ") + getDescription();
 	}
 
-	
 	public boolean isValidClientWorkstationID(String client)
 	{
 		boolean result = false;
-		
+
 		if (isValidateWorkstation())
 		{
 			wlm.setLineId(getLine());
@@ -644,16 +646,15 @@ public class JDBAutoLabeller {
 			if (wlm.isWorkstationAssignedToLine())
 			{
 				result = true;
-			}	
-		}
-		else
+			}
+		} else
 		{
 			result = true;
 		}
-		
+
 		return result;
 	}
-	
+
 	public boolean isValidProcessOrderResource(String pOrder)
 	{
 		boolean result = false;
@@ -663,7 +664,7 @@ public class JDBAutoLabeller {
 			if (po.getProcessOrderProperties(pOrder))
 			{
 
-				if (alr.isValidLineResource(getLine(),getGroup(), po.getRequiredResource()))
+				if (alr.isValidLineResource(getLine(), getGroup(), po.getRequiredResource()))
 				{
 					result = true;
 				}
@@ -692,7 +693,7 @@ public class JDBAutoLabeller {
 				stmtupdate.setString(3, getSSCCRangeEnable());
 				stmtupdate.setString(4, getModified());
 				stmtupdate.setString(5, getValidateResource());
-				stmtupdate.setString(6, getValidateWorkstation());				
+				stmtupdate.setString(6, getValidateWorkstation());
 				stmtupdate.setString(7, getLine());
 				stmtupdate.setString(8, getGroup());
 				stmtupdate.execute();

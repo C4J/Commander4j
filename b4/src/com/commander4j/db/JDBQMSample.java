@@ -38,6 +38,19 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDBQMSample inserts rows into the APP_QM_SAMPLE table when Sample Labels
+ * are printed. Each sample is allocated a unique sample id. When results are
+ * entered into the database they are linked back to the original sample using
+ * this sample id.
+ * <p>
+ * <img alt="" src="./doc-files/APP_SAMPLE_ID.jpg" >
+ * 
+ * @see com.commander4j.db.JDBQMInspection JDBQMInspection
+ * @see com.commander4j.db.JDBQMActivity JDBQMActivity
+ * @see com.commander4j.db.JDBQMDictionary JDBQMDictionary
+  * @see com.commander4j.db.JDBQMTest JDBQMTest
+ */
 public class JDBQMSample
 {
 	private String dbUserID;
@@ -55,22 +68,7 @@ public class JDBQMSample
 	private final Logger logger = Logger.getLogger(JDBQMSample.class);
 	private String hostID;
 	private String sessionID;
-	
-	/*
-	 * 
-		Table: APP_QM_SAMPLE
-		
-		Columns:
-		SAMPLE_ID			int(11) PK
-		PROCESS_ORDER		varchar(10)
-		MATERIAL			varchar(20)
-		INSPECTION_ID		varchar(20)
-		ACTIVITY_ID			varchar(10)
-		SAMPLE_DATE			datetime
-		USER_ID				varchar(20)
-	 * 
-	 */
-	
+
 	public Long generateSampleID()
 	{
 		Long result = (long) 0;
@@ -90,14 +88,12 @@ public class JDBQMSample
 				ctrl.setKeyValue(extensionID);
 				ctrl.update();
 				result = SeqNumber;
-			}
-			else
+			} else
 			{
 				result = (long) 1;
-				ctrl.create("QM SAMPLE ID","1","Unique Sample Record ID");
+				ctrl.create("QM SAMPLE ID", "1", "Unique Sample Record ID");
 			}
-		}
-		else
+		} else
 		{
 			result = (long) -1;
 			setErrorMessage(ctrl.getErrorMessage());
@@ -106,12 +102,14 @@ public class JDBQMSample
 		return result;
 	}
 
-	public JDBQMSample(String host, String session) {
+	public JDBQMSample(String host, String session)
+	{
 		setHostID(host);
 		setSessionID(session);
 	}
 
-	public JDBQMSample(String host, String session, Long sampleid,String inspectionid, String activityid, String processorder,String material,String userid,Timestamp sampledate,String userData1,String userData2) {
+	public JDBQMSample(String host, String session, Long sampleid, String inspectionid, String activityid, String processorder, String material, String userid, Timestamp sampledate, String userData1, String userData2)
+	{
 		setHostID(host);
 		setSessionID(session);
 		setSampleID(sampleid);
@@ -125,7 +123,8 @@ public class JDBQMSample
 		setUserData2(userData2);
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		setMaterial("");
 		setProcessOrder("");
 		setUserID("");
@@ -136,32 +135,36 @@ public class JDBQMSample
 		setUserData2("");
 	}
 
-	public ResultSet getQMSampleDataResultSet(String inspectionid,String activityid) {
+	public ResultSet getQMSampleDataResultSet(String inspectionid, String activityid)
+	{
 		PreparedStatement stmt;
 		ResultSet rs = null;
 		setErrorMessage("");
 		setInspectionID(inspectionid);
 		setActivityID(activityid);
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.getSamples"));
 			stmt.setString(1, getInspectionID());
 			stmt.setString(2, getActivityID());
 			stmt.setFetchSize(200);
 			rs = stmt.executeQuery();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return rs;
 	}
 
-	public boolean create(Long sampleid, String inspectionid, String activityid,String processOrder, String material,String userdata1,String userdata2,Timestamp sampleTime) {
+	public boolean create(Long sampleid, String inspectionid, String activityid, String processOrder, String material, String userdata1, String userdata2, Timestamp sampleTime)
+	{
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
+		try
+		{
 			setSampleID(sampleid);
 			setInspectionID(inspectionid);
 			setActivityID(activityid);
@@ -171,7 +174,8 @@ public class JDBQMSample
 			setUserData2(userdata2);
 			setSampleDate(sampleTime);
 
-			if (isValidSample() == false) {
+			if (isValidSample() == false)
+			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.create"));
 				stmtupdate.setLong(1, getSampleID());
@@ -179,7 +183,7 @@ public class JDBQMSample
 				stmtupdate.setString(3, getActivityID());
 				stmtupdate.setString(4, getProcessOrder());
 				stmtupdate.setString(5, getMaterial());
-				stmtupdate.setTimestamp(6,getSampleDate());
+				stmtupdate.setTimestamp(6, getSampleDate());
 				stmtupdate.setString(7, Common.userList.getUser(getSessionID()).getUserId());
 				stmtupdate.setString(8, getUserData1());
 				stmtupdate.setString(9, getUserData2());
@@ -188,49 +192,54 @@ public class JDBQMSample
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else {
+			} else
+			{
 				setErrorMessage("QMSample already exists");
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
 
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
-				if (isValidSample() == true) {
-					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.delete"));
-					stmtupdate.setLong(1, getSampleID());
-					stmtupdate.setString(2, getInspectionID());
-					stmtupdate.execute();
-					stmtupdate.clearParameters();
-					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-					stmtupdate.close();
-					result = true;
-				}
-		}
-		catch (Exception e) {
+		try
+		{
+			if (isValidSample() == true)
+			{
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.delete"));
+				stmtupdate.setLong(1, getSampleID());
+				stmtupdate.setString(2, getInspectionID());
+				stmtupdate.execute();
+				stmtupdate.clearParameters();
+				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+				stmtupdate.close();
+				result = true;
+			}
+		} catch (Exception e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
 
-	public boolean getResultsProperties(String inspectionid,String activityid) {
+	public boolean getResultsProperties(String inspectionid, String activityid)
+	{
 		setInspectionID(inspectionid);
 		setActivityID(activityid);
 		return getProperties();
 	}
 
-	public boolean getProperties() {
+	public boolean getProperties()
+	{
 		boolean result = false;
 
 		PreparedStatement stmt;
@@ -240,13 +249,15 @@ public class JDBQMSample
 
 		clear();
 
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.getProperties"));
-			stmt.setLong(1,getSampleID());
+			stmt.setLong(1, getSampleID());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			if (rs.next())
+			{
 				setInspectionID(rs.getString("inspection_id"));
 				setActivityID(rs.getString("activity_id"));
 				setProcessOrder(rs.getString("process_order"));
@@ -258,18 +269,19 @@ public class JDBQMSample
 				result = true;
 				rs.close();
 				stmt.close();
-			}
-			else {
+			} else
+			{
 				setErrorMessage("Invalid Sample ID");
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public LinkedList<JDBQMSample> getSamples(String processOrder,String inspectionid,String activityid) {
+	public LinkedList<JDBQMSample> getSamples(String processOrder, String inspectionid, String activityid)
+	{
 		LinkedList<JDBQMSample> typeList = new LinkedList<JDBQMSample>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -277,7 +289,8 @@ public class JDBQMSample
 		setProcessOrder(processOrder);
 		setInspectionID(inspectionid);
 		setActivityID(activityid);
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.getSamples"));
 			stmt.setString(1, getProcessOrder());
 			stmt.setString(2, getInspectionID());
@@ -285,7 +298,8 @@ public class JDBQMSample
 			stmt.setFetchSize(100);
 			rs = stmt.executeQuery();
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 				JDBQMSample mt = new JDBQMSample(getHostID(), getSessionID());
 				mt.setSampleID(rs.getLong("sample_id"));
 				mt.setInspectionID(rs.getString("inspection_id"));
@@ -301,107 +315,123 @@ public class JDBQMSample
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return typeList;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
-	public Long getSampleID() {
+	public Long getSampleID()
+	{
 		return dbSampleID;
 	}
 
-	public String getInspectionID() {
+	public String getInspectionID()
+	{
 		String result = "";
 		if (dbInspectionID != null)
 			result = dbInspectionID;
 		return result;
 	}
-	
-	public String getMaterial() {
+
+	public String getMaterial()
+	{
 		String result = "";
 		if (dbMaterial != null)
 			result = dbMaterial;
 		return result;
 	}
-	
-	public String getProcessOrder() {
+
+	public String getProcessOrder()
+	{
 		String result = "";
 		if (dbProcessOrder != null)
 			result = dbProcessOrder;
 		return result;
 	}
 
-	public String getUserData1() {
+	public String getUserData1()
+	{
 		String result = "";
 		if (dbUserData1 != null)
 			result = dbUserData1;
 		return result;
 	}
-	
-	public String getUserData2() {
+
+	public String getUserData2()
+	{
 		String result = "";
 		if (dbUserData2 != null)
 			result = dbUserData2;
 		return result;
 	}
-	
-	public String getUserID() {
+
+	public String getUserID()
+	{
 		String result = "";
 		if (dbUserID != null)
 			result = dbUserID;
 		return result;
 	}
 
-	public Timestamp getSampleDate() {
+	public Timestamp getSampleDate()
+	{
 		return dbSampleDate;
-	}	
-	
-	public String getActivityID() {
-		return dbActivityID;
-	}		
+	}
 
-	private String getSessionID() {
+	public String getActivityID()
+	{
+		return dbActivityID;
+	}
+
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public boolean isValidSample(Long sampleid) {
+	public boolean isValidSample(Long sampleid)
+	{
 		setSampleID(sampleid);
 		return isValidSample();
 	}
 
-	public boolean isValidSample() {
+	public boolean isValidSample()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
 
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.isValid"));
 			stmt.setLong(1, getSampleID());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			if (rs.next())
+			{
 				result = true;
-			}
-			else {
+			} else
+			{
 				setErrorMessage("Invalid Sample [" + String.valueOf(getSampleID()) + "]");
 			}
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
@@ -409,78 +439,93 @@ public class JDBQMSample
 
 	}
 
-
-	private void setErrorMessage(String errorMsg) {
-		if (errorMsg.isEmpty() == false) {
+	private void setErrorMessage(String errorMsg)
+	{
+		if (errorMsg.isEmpty() == false)
+		{
 			logger.error(errorMsg);
 		}
 		dbErrorMessage = errorMsg;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setSampleID(Long sampleid) {
+	public void setSampleID(Long sampleid)
+	{
 		dbSampleID = sampleid;
 	}
 
-	public void setInspectionID(String inspectid) {
+	public void setInspectionID(String inspectid)
+	{
 		dbInspectionID = inspectid;
 	}
-	
-	public void setUserID(String userid) {
+
+	public void setUserID(String userid)
+	{
 		dbUserID = userid;
 	}
 
-	public void setMaterial(String value) {
+	public void setMaterial(String value)
+	{
 		dbMaterial = value;
 	}
 
-	public void setProcessOrder(String po) {
+	public void setProcessOrder(String po)
+	{
 		dbProcessOrder = po;
 	}
 
-	public void setUserData1(String ud1) {
+	public void setUserData1(String ud1)
+	{
 		dbUserData1 = ud1;
 	}
-	
-	public void setUserData2(String ud2) {
+
+	public void setUserData2(String ud2)
+	{
 		dbUserData2 = ud2;
 	}
-	
+
 	public void setActivityID(String actid)
 	{
 		dbActivityID = actid;
 	}
-	
+
 	public void setSampleDate(Timestamp sampledate)
 	{
 		dbSampleDate = sampledate;
 	}
-	
-	private void setSessionID(String session) {
+
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public String toString() {
+	public String toString()
+	{
 		String result = "";
-		if (getInspectionID().equals("") == false) {
+		if (getInspectionID().equals("") == false)
+		{
 			result = JUtility.padString(getInspectionID(), true, JDBQMInspection.field_inspection_id, " ") + " - " + getSampleDate();
-		}
-		else {
+		} else
+		{
 			result = "";
 		}
 
 		return result;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
-			if (isValidSample() == true) {
+		try
+		{
+			if (isValidSample() == true)
+			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.update"));
 				stmtupdate.setString(1, getInspectionID());
@@ -490,7 +535,7 @@ public class JDBQMSample
 				stmtupdate.setTimestamp(5, getSampleDate());
 				stmtupdate.setString(6, Common.userList.getUser(getSessionID()).getUserId());
 				stmtupdate.setString(7, getUserData1());
-				stmtupdate.setString(8, getUserData2());				
+				stmtupdate.setString(8, getUserData2());
 				stmtupdate.setLong(9, getSampleID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
@@ -498,8 +543,8 @@ public class JDBQMSample
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 

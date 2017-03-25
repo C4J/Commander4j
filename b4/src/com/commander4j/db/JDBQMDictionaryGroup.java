@@ -41,25 +41,11 @@ public class JDBQMDictionaryGroup
 	private String dbGroup;
 	private String dbAccess;
 
-	
 	private String dbErrorMessage;
 	public static int field_activity_id = 20;
 	private final Logger logger = Logger.getLogger(JDBQMDictionaryGroup.class);
 	private String hostID;
 	private String sessionID;
-	
-	/*
-	 * 
-		Table APP_QM_DICTIONARY_GROUP
-		=============================
-		GROUP_ID, TEST_ID, ACCESS
-		-----------------------------
-		GROUP_ID         varchar(20) PK
-		TEST_ID          varchar(50)
-		ACCESS           varchar(20)
-
-	 * 
-	 */
 
 	public JDBQMDictionaryGroup(String host, String session) {
 		setHostID(host);

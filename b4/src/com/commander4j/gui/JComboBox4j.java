@@ -28,9 +28,12 @@ package com.commander4j.gui;
  */
 
 import javax.swing.JComboBox;
-
 import com.commander4j.sys.Common;
 
+/**
+ * Standard JComboBox4j which is used throughout the application permitting global changes to be applied to look feel etc.
+ *
+ */
 public class JComboBox4j<T> extends JComboBox<T> {
 
 	private static final long serialVersionUID = 1L;

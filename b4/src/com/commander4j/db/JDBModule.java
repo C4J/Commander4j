@@ -43,6 +43,17 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.JMenuOption;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDBModule is used to insert/update/delete records in the SYS_MODULES
+ * table. The modules database contains a definition of all screens/reports and
+ * functions available within the application. These modules are assigned to
+ * groups and groups are assigned to users.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/SYS_MODULES.jpg" >
+ * 
+ * @see com.commander4j.db.JDBGroupPermissions JDBGroupPermissions
+ */
 public class JDBModule
 {
 
@@ -88,7 +99,9 @@ public class JDBModule
 	private String hostID;
 
 	private String sessionID;
-	public static Icon getModuleIcon(String filename, String moduleType) {
+
+	public static Icon getModuleIcon(String filename, String moduleType)
+	{
 
 		Icon icon = new ImageIcon();
 
@@ -132,28 +145,27 @@ public class JDBModule
 				{
 					icon = Common.imageIconloader.getImageIcon(Common.image_user_report);
 				}
-			}
-			else
+			} else
 			{
 				File file;
 				file = new File(Common.image_path + filename);
 				if (file.exists())
 				{
 					icon = Common.imageIconloader.getImageIcon(filename);
-				}
-				else
+				} else
 				{
 					icon = new ImageIcon(Common.image_error);
 				}
 			}
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 		}
 		return icon;
 	}
-	public static LinkedList<JDBListData> moveElementDown(LinkedList<JDBListData> list, JDBListData element) {
+
+	public static LinkedList<JDBListData> moveElementDown(LinkedList<JDBListData> list, JDBListData element)
+	{
 		int position;
 		int size;
 
@@ -171,7 +183,9 @@ public class JDBModule
 		}
 		return list;
 	}
-	public static LinkedList<JDBListData> moveElementUp(LinkedList<JDBListData> list, JDBListData element) {
+
+	public static LinkedList<JDBListData> moveElementUp(LinkedList<JDBListData> list, JDBListData element)
+	{
 		int position;
 		int size;
 
@@ -189,7 +203,6 @@ public class JDBModule
 		return list;
 	}
 
-
 	public JDBModule(String host, String session)
 	{
 		setHostID(host);
@@ -197,7 +210,8 @@ public class JDBModule
 		lang = new JDBLanguage(host, session);
 	}
 
-	public boolean addGroup(String lGroupId) {
+	public boolean addGroup(String lGroupId)
+	{
 		boolean result = false;
 		try
 		{
@@ -214,15 +228,15 @@ public class JDBModule
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		setResourceKey("");
 		setDKActive("");
 		setHelpSetID("");
@@ -237,7 +251,8 @@ public class JDBModule
 		setRFActive("");
 	}
 
-	public boolean create(String lModuleId, String lresourceKey, String lDKActive, String lRFActive, String ltype, String lIconFilename, String lhelpsetid) {
+	public boolean create(String lModuleId, String lresourceKey, String lDKActive, String lRFActive, String ltype, String lIconFilename, String lhelpsetid)
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -264,13 +279,11 @@ public class JDBModule
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Module Id already exists");
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -278,13 +291,13 @@ public class JDBModule
 		return result;
 	}
 
-
 	/**
 	 * Method delete.
 	 * 
 	 * @return boolean
 	 */
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -314,8 +327,7 @@ public class JDBModule
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -323,34 +335,38 @@ public class JDBModule
 		return result;
 	}
 
-
-	public String getAutoLabelLabelFilename() {
+	public String getAutoLabelLabelFilename()
+	{
 		return dbAutoLabelLabelFile.toLowerCase();
 	}
 
-
-	public String getDescription() {
+	public String getDescription()
+	{
 		return dbDescription;
 	}
 
-
-	public String getDKActive() {
+	public String getDKActive()
+	{
 		return dbDKActive;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	public String getExecDir() {
+	public String getExecDir()
+	{
 		return dbExecDir;
 	}
 
-	public String getExecFilename() {
+	public String getExecFilename()
+	{
 		return dbExecFilename;
 	}
 
-	public LinkedList<String> getFormIds() {
+	public LinkedList<String> getFormIds()
+	{
 		LinkedList<String> moduleList = new LinkedList<String>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -366,8 +382,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -375,8 +390,9 @@ public class JDBModule
 		return moduleList;
 	}
 
-	public ResultSet getGroupsAssignedDataResultSet(String module) {
-		
+	public ResultSet getGroupsAssignedDataResultSet(String module)
+	{
+
 		PreparedStatement stmt;
 		ResultSet rs = null;
 		setErrorMessage("");
@@ -395,14 +411,15 @@ public class JDBModule
 
 		return rs;
 	}
-	
-	
-	public LinkedList<String> getGroupsAssigned(String module) {
+
+	public LinkedList<String> getGroupsAssigned(String module)
+	{
 		setModuleId(module);
 		return getGroupsAssigned();
 	}
-	
-	public LinkedList<String> getGroupsAssigned() {
+
+	public LinkedList<String> getGroupsAssigned()
+	{
 		LinkedList<String> moduleList = new LinkedList<String>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -419,8 +436,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -428,7 +444,8 @@ public class JDBModule
 		return moduleList;
 	}
 
-	public LinkedList<String> getGroupsUnAssigned() {
+	public LinkedList<String> getGroupsUnAssigned()
+	{
 		LinkedList<String> moduleList = new LinkedList<String>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -445,8 +462,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -454,27 +470,33 @@ public class JDBModule
 		return moduleList;
 	}
 
-	public String getHelpSetID() {
+	public String getHelpSetID()
+	{
 		return dbHelpsetId;
 	}
 
-	public String getHint() {
+	public String getHint()
+	{
 		return getDescription();
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
-	public String getIconFilename() {
+	public String getIconFilename()
+	{
 		return dbIconFilename.toLowerCase();
 	}
 
-	public String getLabelCommandFilename() {
+	public String getLabelCommandFilename()
+	{
 		return dbAutoLabelCommandFile.toLowerCase();
 	}
 
-	public LinkedList<JDBListData> getMenuIds() {
+	public LinkedList<JDBListData> getMenuIds()
+	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
 		PreparedStatement stmt;
@@ -493,8 +515,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -502,15 +523,18 @@ public class JDBModule
 		return moduleList;
 	}
 
-	public char getMnemonicChar() {
+	public char getMnemonicChar()
+	{
 		return dbMnemonicChar;
 	}
 
-	public String getMnemonicStr() {
+	public String getMnemonicStr()
+	{
 		return dbMnemonicStr;
 	}
 
-	public ResultSet getModuleData() {
+	public ResultSet getModuleData()
+	{
 		Statement stmt;
 		ResultSet rs = null;
 		setErrorMessage("");
@@ -521,8 +545,7 @@ public class JDBModule
 			stmt.setFetchSize(250);
 			rs = stmt.executeQuery(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBModule.getModuleIds"));
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -530,7 +553,8 @@ public class JDBModule
 		return rs;
 	}
 
-	public ResultSet getModuleDataByType(String module_type) {
+	public ResultSet getModuleDataByType(String module_type)
+	{
 		PreparedStatement stmt;
 		ResultSet rs = null;
 		setErrorMessage("");
@@ -542,20 +566,21 @@ public class JDBModule
 			stmt.setFetchSize(250);
 			rs = stmt.executeQuery();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return rs;
 	}
-	
-	public String getModuleId() {
+
+	public String getModuleId()
+	{
 		return dbModuleId;
 	}
-	
-	public LinkedList<JDBListData> getModuleIds() {
+
+	public LinkedList<JDBListData> getModuleIds()
+	{
 		LinkedList<JDBListData> modList = new LinkedList<JDBListData>();
 		Statement stmt;
 		ResultSet rs;
@@ -578,8 +603,7 @@ public class JDBModule
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -587,8 +611,8 @@ public class JDBModule
 		return modList;
 	}
 
-
-	public LinkedList<JDBListData> getModuleIdsByType(String module_type) {
+	public LinkedList<JDBListData> getModuleIdsByType(String module_type)
+	{
 		LinkedList<JDBListData> groupList = new LinkedList<JDBListData>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -612,8 +636,7 @@ public class JDBModule
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -621,8 +644,8 @@ public class JDBModule
 		return groupList;
 	}
 
-
-	public JDBListData getModuleJDBListData() {
+	public JDBListData getModuleJDBListData()
+	{
 
 		Icon icon;
 		icon = getModuleIcon(getIconFilename(), getType());
@@ -630,16 +653,15 @@ public class JDBModule
 		return result;
 	}
 
-
-	public JDBListData getModuleJDBListData(String module_id) {
+	public JDBListData getModuleJDBListData(String module_id)
+	{
 		setModuleId(module_id);
 		getModuleProperties();
 		return getModuleJDBListData();
 	}
 
-
-
-	public boolean getModuleProperties() {
+	public boolean getModuleProperties()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
@@ -672,15 +694,13 @@ public class JDBModule
 				setPrintDialog(rs.getString("print_dialog"));
 				setPrintCopies(rs.getInt("print_copies"));
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid ModuleId [" + getModuleId() + "]");
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -688,15 +708,14 @@ public class JDBModule
 		return result;
 	}
 
-
 	public boolean getModuleProperties(String mod)
 	{
 		setModuleId(mod);
 		return getModuleProperties();
 	}
 
-
-	public LinkedList<JDBListData> getModulesAssignedtoMenu() {
+	public LinkedList<JDBListData> getModulesAssignedtoMenu()
+	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
 		PreparedStatement stmt;
@@ -716,8 +735,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -725,7 +743,8 @@ public class JDBModule
 		return moduleList;
 	}
 
-	public LinkedList<JDBListData> getModulesAssignedtoRFMenu() {
+	public LinkedList<JDBListData> getModulesAssignedtoRFMenu()
+	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
 		PreparedStatement stmt;
@@ -744,8 +763,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -753,8 +771,8 @@ public class JDBModule
 		return moduleList;
 	}
 
-
-	public LinkedList<JDBListData> getModulesAssignedtoToolbar() {
+	public LinkedList<JDBListData> getModulesAssignedtoToolbar()
+	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
 		PreparedStatement stmt;
@@ -773,8 +791,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -782,8 +799,8 @@ public class JDBModule
 		return moduleList;
 	}
 
-
-	public LinkedList<JDBListData> getModulesofTypeforUser(String host, String session, String type) {
+	public LinkedList<JDBListData> getModulesofTypeforUser(String host, String session, String type)
+	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
 		PreparedStatement stmt;
@@ -808,8 +825,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -817,8 +833,8 @@ public class JDBModule
 		return moduleList;
 	}
 
-
-	public LinkedList<JDBListData> getModulesUnAssignedtoMenu() {
+	public LinkedList<JDBListData> getModulesUnAssignedtoMenu()
+	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
 		PreparedStatement stmt;
@@ -839,8 +855,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -848,8 +863,8 @@ public class JDBModule
 		return moduleList;
 	}
 
-	
-	public LinkedList<JDBListData> getModulesUnAssignedtoRFMenu() {
+	public LinkedList<JDBListData> getModulesUnAssignedtoRFMenu()
+	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
 		PreparedStatement stmt;
@@ -868,8 +883,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -877,7 +891,8 @@ public class JDBModule
 		return moduleList;
 	}
 
-	public LinkedList<JDBListData> getModulesUnAssignedtoToolbar() {
+	public LinkedList<JDBListData> getModulesUnAssignedtoToolbar()
+	{
 		LinkedList<JDBListData> moduleList = new LinkedList<JDBListData>();
 		Icon icon;
 		PreparedStatement stmt;
@@ -896,8 +911,7 @@ public class JDBModule
 			}
 			rs.close();
 			stmt.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -905,7 +919,8 @@ public class JDBModule
 		return moduleList;
 	}
 
-	public Integer getPrintCopies() {
+	public Integer getPrintCopies()
+	{
 		if (dbPrintCopies == 0)
 		{
 			dbPrintCopies = 1;
@@ -913,7 +928,8 @@ public class JDBModule
 		return dbPrintCopies;
 	}
 
-	public String getPrintDialog() {
+	public String getPrintDialog()
+	{
 		if (dbPrintDialog == null)
 		{
 			dbPrintDialog = "N";
@@ -921,7 +937,8 @@ public class JDBModule
 		return dbPrintDialog;
 	}
 
-	public String getPrintPreview() {
+	public String getPrintPreview()
+	{
 		if (dbPrintPreview == null)
 		{
 			dbPrintPreview = "Y";
@@ -929,18 +946,19 @@ public class JDBModule
 		return dbPrintPreview;
 	}
 
-	public String getReportFilename() {
+	public String getReportFilename()
+	{
 		return dbReportFilename.toLowerCase();
 	}
 
-	public String getReportType() {
+	public String getReportType()
+	{
 		if (JUtility.replaceNullStringwithBlank(dbReportType).equals(""))
 		{
 			if (getType().equals("REPORT"))
 			{
 				dbReportType = "Standard";
-			}
-			else
+			} else
 			{
 				dbReportType = "";
 			}
@@ -948,26 +966,28 @@ public class JDBModule
 		return dbReportType;
 	}
 
-	public String getResourceKey() {
+	public String getResourceKey()
+	{
 		return JUtility.replaceNullStringwithBlank(dbResourceKey);
 	}
 
-
-	public String getRFActive() {
+	public String getRFActive()
+	{
 		return dbRFActive;
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-
-	public String getType() {
+	public String getType()
+	{
 		return dbModuleType;
 	}
 
-
-	public boolean isDKModule() {
+	public boolean isDKModule()
+	{
 		boolean result = false;
 
 		if (getDKActive().equals("Y"))
@@ -978,8 +998,8 @@ public class JDBModule
 		return result;
 	}
 
-
-	public boolean isPrintDialog() {
+	public boolean isPrintDialog()
+	{
 		boolean result = false;
 
 		if (getPrintDialog().equals("Y"))
@@ -990,8 +1010,8 @@ public class JDBModule
 		return result;
 	}
 
-
-	public boolean isPrintPreview() {
+	public boolean isPrintPreview()
+	{
 		boolean result = false;
 
 		if (getPrintPreview().equals("Y"))
@@ -1002,8 +1022,8 @@ public class JDBModule
 		return result;
 	}
 
-
-	public boolean isRFModule() {
+	public boolean isRFModule()
+	{
 		boolean result = false;
 
 		if (getRFActive().equals("Y"))
@@ -1014,8 +1034,8 @@ public class JDBModule
 		return result;
 	}
 
-
-	public boolean isValidModuleId() {
+	public boolean isValidModuleId()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
@@ -1030,16 +1050,14 @@ public class JDBModule
 			if (rs.next())
 			{
 				result = true;
-			}
-			else
+			} else
 			{
 				setErrorMessage("Invalid ModuleId");
 			}
 			stmt.close();
 			rs.close();
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1048,8 +1066,8 @@ public class JDBModule
 
 	}
 
-
-	public boolean removeGroup(String lgroup_id) {
+	public boolean removeGroup(String lgroup_id)
+	{
 		boolean result = false;
 		try
 		{
@@ -1066,15 +1084,15 @@ public class JDBModule
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public boolean renameTo(String newModuleId) {
+	public boolean renameTo(String newModuleId)
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
@@ -1116,14 +1134,12 @@ public class JDBModule
 
 					setModuleId(newModuleId);
 					result = true;
-				}
-				else
+				} else
 				{
 					setErrorMessage("New module_id is already in use.");
 				}
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1131,7 +1147,8 @@ public class JDBModule
 		return result;
 	}
 
-	public void setAutoLabelCommandFilename(String CommandFilename) {
+	public void setAutoLabelCommandFilename(String CommandFilename)
+	{
 		if (CommandFilename == null)
 		{
 			CommandFilename = "";
@@ -1139,7 +1156,8 @@ public class JDBModule
 		dbAutoLabelCommandFile = CommandFilename;
 	}
 
-	public void setAutoLabelLabelFilename(String LabelFilename) {
+	public void setAutoLabelLabelFilename(String LabelFilename)
+	{
 		if (LabelFilename == null)
 		{
 			LabelFilename = "";
@@ -1147,11 +1165,13 @@ public class JDBModule
 		dbAutoLabelLabelFile = LabelFilename;
 	}
 
-	public void setDKActive(String Active) {
+	public void setDKActive(String Active)
+	{
 		dbDKActive = Active;
 	}
 
-	private void setErrorMessage(String ErrorMsg) {
+	private void setErrorMessage(String ErrorMsg)
+	{
 		if (ErrorMsg.isEmpty() == false)
 		{
 			logger.error(ErrorMsg);
@@ -1159,7 +1179,8 @@ public class JDBModule
 		dbErrorMessage = ErrorMsg;
 	}
 
-	public void setExecDir(String ExecDir) {
+	public void setExecDir(String ExecDir)
+	{
 		if (ExecDir == null)
 		{
 			ExecDir = "";
@@ -1167,7 +1188,8 @@ public class JDBModule
 		dbExecDir = ExecDir;
 	}
 
-	public void setExecFilename(String ExecFilename) {
+	public void setExecFilename(String ExecFilename)
+	{
 		if (ExecFilename == null)
 		{
 			ExecFilename = "";
@@ -1175,15 +1197,18 @@ public class JDBModule
 		dbExecFilename = ExecFilename;
 	}
 
-	public void setHelpSetID(String helpsetid) {
+	public void setHelpSetID(String helpsetid)
+	{
 		dbHelpsetId = helpsetid;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setIconFilename(String IconFilename) {
+	public void setIconFilename(String IconFilename)
+	{
 		if (IconFilename == null)
 		{
 			IconFilename = "";
@@ -1191,23 +1216,28 @@ public class JDBModule
 		dbIconFilename = IconFilename;
 	}
 
-	public void setModuleId(String GroupId) {
+	public void setModuleId(String GroupId)
+	{
 		dbModuleId = GroupId;
 	}
 
-	public void setPrintCopies(Integer Copies) {
+	public void setPrintCopies(Integer Copies)
+	{
 		dbPrintCopies = Copies;
 	}
 
-	public void setPrintDialog(String Dialog) {
+	public void setPrintDialog(String Dialog)
+	{
 		dbPrintDialog = Dialog;
 	}
-	
-	public void setPrintPreview(String Preview) {
+
+	public void setPrintPreview(String Preview)
+	{
 		dbPrintPreview = Preview;
-	}	
-	
-	public void setReportFilename(String ReportFilename) {
+	}
+
+	public void setReportFilename(String ReportFilename)
+	{
 		if (ReportFilename == null)
 		{
 			ReportFilename = "";
@@ -1215,7 +1245,8 @@ public class JDBModule
 		dbReportFilename = ReportFilename;
 	}
 
-	public void setReportType(String ReportType) {
+	public void setReportType(String ReportType)
+	{
 		if (ReportType == null)
 		{
 			ReportType = "";
@@ -1223,26 +1254,31 @@ public class JDBModule
 		dbReportType = ReportType;
 	}
 
-	public void setResourceKey(String key) {
+	public void setResourceKey(String key)
+	{
 		dbResourceKey = key;
 		dbDescription = lang.get(key);
 		dbMnemonicStr = lang.getMnemonicString();
 		dbMnemonicChar = lang.getMnemonicChar();
 	}
 
-	public void setRFActive(String Active) {
+	public void setRFActive(String Active)
+	{
 		dbRFActive = Active;
 	}
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public void setType(String Type) {
+	public void setType(String Type)
+	{
 		dbModuleType = Type;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 		setErrorMessage("");
 
@@ -1275,8 +1311,7 @@ public class JDBModule
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}

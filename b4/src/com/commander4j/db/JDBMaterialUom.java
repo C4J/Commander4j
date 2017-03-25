@@ -44,6 +44,8 @@ import com.commander4j.util.JUtility;
  * Material. 
  * <p>
  * <img alt="" src="./doc-files/APP_MATERIAL_UOM.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterial JDBMaterial
  */
 public class JDBMaterialUom
 {

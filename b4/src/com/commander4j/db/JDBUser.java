@@ -45,7 +45,18 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JCipher;
 import com.commander4j.util.JUtility;
 
-public class JDBUser {
+/**
+ * The JDBUser is used to insert/update/delete records in the SYS_USERS table.
+ * The users database contains one record for each user in the application. How
+ * a user is authenticated is also determined by some system controls in the
+ * SYS_CONTROL table.
+ * <p>
+ * <img alt="" src="./doc-files/SYS_USERS.jpg" >
+ * 
+ * @see com.commander4j.db.JDBGroup JDBGroup
+ */
+public class JDBUser
+{
 	private String dbAccountExpires;
 	private Timestamp dbAccountExpiryDate;
 	private String dbAccountLocked;
@@ -249,7 +260,7 @@ public class JDBUser {
 			} else
 			{
 				if (getAccountLocked().equals("Y") == true)
-				//if (isAccountLocked() == true)
+				// if (isAccountLocked() == true)
 				{
 					icon = Common.icon_user_locked;
 				} else
@@ -1281,8 +1292,11 @@ public class JDBUser {
 		{
 			try
 			{
-				//System.out.println("isPasswordExpired() - getPasswordChanged()    = "+getPasswordChanged().toGMTString());
-				//System.out.println("isPasswordExpired() - getPasswordExpiryDate() = "+getPasswordExpiryDate().toGMTString());
+				// System.out.println("isPasswordExpired() -
+				// getPasswordChanged() = "+getPasswordChanged().toGMTString());
+				// System.out.println("isPasswordExpired() -
+				// getPasswordExpiryDate() =
+				// "+getPasswordExpiryDate().toGMTString());
 				if (getPasswordChanged().after(getPasswordExpiryDate()))
 				{
 					result = false;
@@ -1330,13 +1344,13 @@ public class JDBUser {
 					result = true;
 					return result;
 				}
-				
+
 				if ((passwordMode.equals("PASSTHROUGH_FALLBACK")) && getUserId().equals(System.getProperty("user.name").toUpperCase()))
 				{
 					result = true;
 					return result;
 				}
-				
+
 			}
 
 		}

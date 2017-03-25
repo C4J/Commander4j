@@ -45,6 +45,7 @@ public class IncommingDespatchConfirmation
 	private String loadNo;
 	private String fromLocation;
 	private String toLocation;
+	private String journeyRef;
 	private String despatchDate;
 	private String numberOfPallets;
 	private Boolean repeat = true;
@@ -101,6 +102,7 @@ public class IncommingDespatchConfirmation
 		loadNo = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/despatchConfirmation/loadNo").trim());
 		fromLocation = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/despatchConfirmation/fromLocation").trim());
 		toLocation = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/despatchConfirmation/toLocation").trim());
+		journeyRef = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/despatchConfirmation/journeyRef").trim());
 		despatchDate = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/despatchConfirmation/despatchDate").trim());
 		numberOfPallets = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/despatchConfirmation/numberOfPallets").trim());
 
@@ -159,6 +161,7 @@ public class IncommingDespatchConfirmation
 							desp.setTotalPallets(Integer.valueOf(numberOfPallets));
 							desp.setLocationIDFrom(fromLocation);
 							desp.setLocationIDTo(toLocation);
+							desp.setJourneyRef(journeyRef);
 
 							if (desp.update() == false)
 							{

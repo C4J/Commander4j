@@ -36,11 +36,15 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
+
 /**
- * JDBMaterialCustomerData class is used  to insert/update/delete the APP_MATERIAL_CUSTOMER_DATA table. 
- * This table is keyed on MATERIAL, CUSTOMER_ID and DATA_ID.
+ * JDBMaterialCustomerData class is used to insert/update/delete the
+ * APP_MATERIAL_CUSTOMER_DATA table. This table is keyed on MATERIAL,
+ * CUSTOMER_ID and DATA_ID.
  * <p>
  * <img alt="" src="./doc-files/APP_MATERIAL_CUSTOMER_DATA.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterial JDBMaterial
  */
 
 public class JDBMaterialCustomerData
@@ -51,13 +55,13 @@ public class JDBMaterialCustomerData
 	private String dbCustomerID;
 	private String dbDataID;
 	private String dbData;
-	
+
 	private final Logger logger = Logger.getLogger(JDBMaterialCustomerData.class);
 	private String hostID;
 	private String sessionID;
 	public static int field_data_id = 20;
 	public static int field_data = 80;
-	
+
 	private void setSessionID(String session)
 	{
 		sessionID = session;
@@ -78,14 +82,12 @@ public class JDBMaterialCustomerData
 		return hostID;
 	}
 
-
-
 	public JDBMaterialCustomerData(String host, String session)
 	{
 		setHostID(host);
 		setSessionID(session);
 	}
-	
+
 	public JDBMaterialCustomerData(String host, String session, String material, String customer, String dataid, String data)
 	{
 		setHostID(host);
@@ -141,7 +143,6 @@ public class JDBMaterialCustomerData
 		setData("");
 	}
 
-
 	public boolean create()
 	{
 
@@ -180,8 +181,7 @@ public class JDBMaterialCustomerData
 		return result;
 	}
 
-
-	public boolean create(String material, String cust,String dataid)
+	public boolean create(String material, String cust, String dataid)
 	{
 		boolean result = false;
 		setMaterial(material);
@@ -190,7 +190,6 @@ public class JDBMaterialCustomerData
 		result = create();
 		return result;
 	}
-
 
 	public boolean delete()
 	{
@@ -220,8 +219,7 @@ public class JDBMaterialCustomerData
 		return result;
 	}
 
-
-	public boolean delete(String material, String cust,String dataid)
+	public boolean delete(String material, String cust, String dataid)
 	{
 		boolean result = false;
 		setMaterial(material);
@@ -230,7 +228,6 @@ public class JDBMaterialCustomerData
 		result = delete();
 		return result;
 	}
-
 
 	public String getDataID()
 	{
@@ -242,12 +239,10 @@ public class JDBMaterialCustomerData
 		return dbErrorMessage;
 	}
 
-
 	public String getMaterial()
 	{
 		return dbMaterial;
 	}
-
 
 	public Vector<JDBMaterialCustomerData> getMaterialCustomerData(PreparedStatement criteria)
 	{
@@ -277,7 +272,7 @@ public class JDBMaterialCustomerData
 
 		return result;
 	}
-	
+
 	public boolean getMaterialCustomerDataProperties()
 	{
 		boolean result = false;
@@ -317,8 +312,7 @@ public class JDBMaterialCustomerData
 		return result;
 	}
 
-
-	public boolean getMaterialCustomerDataProperties(String mat, String cust,String dataid)
+	public boolean getMaterialCustomerDataProperties(String mat, String cust, String dataid)
 	{
 		setMaterial(mat);
 		setCustomerID(cust);
@@ -326,30 +320,25 @@ public class JDBMaterialCustomerData
 		return getMaterialCustomerDataProperties();
 	}
 
-
 	public String getCustomerID()
 	{
 		return dbCustomerID;
 	}
-
 
 	public String getData()
 	{
 		return JUtility.replaceNullStringwithBlank(dbData);
 	}
 
-
 	public boolean isValid()
 	{
 		boolean result = true;
-
 
 		if (JUtility.isNullORBlank(dbMaterial) == true)
 		{
 			setErrorMessage("MATERIAL code cannot be null");
 			result = false;
 		}
-
 
 		if (result == true)
 		{
@@ -408,8 +397,7 @@ public class JDBMaterialCustomerData
 
 	}
 
-
-	public boolean isValidMaterialCustomerData(String material, String cust,String dataid)
+	public boolean isValidMaterialCustomerData(String material, String cust, String dataid)
 	{
 		setMaterial(material);
 		setCustomerID(cust);
@@ -432,7 +420,6 @@ public class JDBMaterialCustomerData
 		dbErrorMessage = errorMsg;
 	}
 
-
 	public void setMaterial(String material)
 	{
 		dbMaterial = material;
@@ -443,18 +430,16 @@ public class JDBMaterialCustomerData
 		dbCustomerID = cust;
 	}
 
-
 	public void setData(String data)
 	{
 		dbData = JUtility.replaceNullStringwithBlank(data);
 	}
 
-
 	public boolean update()
 	{
 		boolean result = false;
 
-		logger.debug("update [" + getMaterial() + "] [" + getCustomerID() + "] ["+ getDataID() + "]");
+		logger.debug("update [" + getMaterial() + "] [" + getCustomerID() + "] [" + getDataID() + "]");
 
 		if (isValid() == true)
 		{

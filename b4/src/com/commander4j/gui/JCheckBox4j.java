@@ -31,6 +31,10 @@ import javax.swing.JCheckBox;
 
 import com.commander4j.sys.Common;
 
+/**
+ * Standard JCheckBox4j which is used throughout the application permitting global changes to be applied to look feel etc.
+ *
+ */
 public class JCheckBox4j extends JCheckBox {
 
 	private static final long serialVersionUID = 1L;

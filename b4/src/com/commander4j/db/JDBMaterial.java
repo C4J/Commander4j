@@ -44,6 +44,12 @@ import com.commander4j.util.JUtility;
  * JDBMaterial class is used to insert/update/delete records from the APP_MATERIAL table.
  * <p>
  * <img alt="" src="./doc-files/APP_MATERIAL.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterialBatch JDBMaterialBatch
+ * @see com.commander4j.db.JDBMaterialLocation JDBMaterialLocation
+ * @see com.commander4j.db.JDBMaterialUom JDBMaterialUom
+ * @see com.commander4j.db.JDBMaterialCustomerData JDBMaterialCustomerData
+ * @see com.commander4j.db.JDBMaterialType JDBMaterialType
  */
 public class JDBMaterial
 {

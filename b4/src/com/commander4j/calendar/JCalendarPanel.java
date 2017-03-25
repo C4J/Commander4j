@@ -61,7 +61,14 @@ import javax.swing.event.ChangeListener;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JDateControl;
-
+/**
+ * The JCalendarPanel is used to provide a popup window showing a calendar control.
+ * <p>
+ * <img alt="" src="./doc-files/JCalendarDialog.jpg" >
+ * 
+ * @see com.commander4j.calendar.JCalendarButton JCalendarButton
+ * @see com.commander4j.calendar.JCalendarDialog JCalendarDialog
+ */
 public class JCalendarPanel extends JPanel
 {
 

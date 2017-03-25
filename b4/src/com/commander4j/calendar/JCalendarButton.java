@@ -37,7 +37,14 @@ import javax.swing.border.Border;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JDateControl;
-
+/**
+ * The JCalendarButton is used to provide a popup window showing a calendar control.
+ * <p>
+ * <img alt="" src="./doc-files/JCalendarDialog.jpg" >
+ * 
+ * @see com.commander4j.calendar.JCalendarPanel JCalendarPanel
+ * @see com.commander4j.calendar.JCalendarDialog JCalendarDialog
+ */
 public class JCalendarButton extends JButton
 {
 	private static final long serialVersionUID = 1L;

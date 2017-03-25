@@ -34,15 +34,22 @@ import java.util.LinkedList;
 import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
+
 /**
- * JDBAutoLabellerResources class is used  to insert/update/delete the APP_AUTO_LABELLER_RESOURCES table. 
- * It is used to determine which Process Order Resources are linked to which Production Lines.
- * When the data is assigned to the Production Line the Orders Resource is validated by checking it is linked to the Line in this table.
- * This prevents the wrong order being set to the printers/labelers on a line.
+ * JDBAutoLabellerResources class is used to insert/update/delete the
+ * APP_AUTO_LABELLER_RESOURCES table. It is used to determine which Process
+ * Order Resources are linked to which Production Lines. When the data is
+ * assigned to the Production Line the Orders Resource is validated by checking
+ * it is linked to the Line in this table. This prevents the wrong order being
+ * set to the printers/labelers on a line.
  * <p>
  * <img alt="" src="./doc-files/APP_AUTO_LABELLER_RESOURCES.jpg" >
+ * 
+ * @see com.commander4j.db.JDBAutoLabeller JDBAutoLabeller
+ * @see com.commander4j.db.JDBPrinters JDBPrinters
  */
-public class JDBAutoLabellerResources {
+public class JDBAutoLabellerResources
+{
 	private String dbErrorMessage;
 	private String dbRequiredResource;
 	private String dbLine;
@@ -64,7 +71,7 @@ public class JDBAutoLabellerResources {
 		setErrorMessage("");
 	}
 
-	public boolean create(String Line, String Group,String RequiredResource)
+	public boolean create(String Line, String Group, String RequiredResource)
 	{
 		boolean result = false;
 		setErrorMessage("");
@@ -72,12 +79,12 @@ public class JDBAutoLabellerResources {
 		try
 		{
 
-			if (isValidLineResource(Line, Group,RequiredResource) == false)
+			if (isValidLineResource(Line, Group, RequiredResource) == false)
 			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBAutoLabellerResources.create"));
 				stmtupdate.setString(1, Line);
-				stmtupdate.setString(2,Group);
+				stmtupdate.setString(2, Group);
 				stmtupdate.setString(3, RequiredResource);
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
@@ -104,7 +111,7 @@ public class JDBAutoLabellerResources {
 
 		try
 		{
-			if (isValidLineResource(Line,group, RequiredResource) == true)
+			if (isValidLineResource(Line, group, RequiredResource) == true)
 			{
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBAutoLabellerResources.delete"));
 				stmtupdate.setString(1, Line);
@@ -167,7 +174,7 @@ public class JDBAutoLabellerResources {
 			result = dbLine;
 		return result;
 	}
-	
+
 	public String getGroup()
 	{
 		String result = "";
@@ -181,7 +188,7 @@ public class JDBAutoLabellerResources {
 		return dbRequiredResource;
 	}
 
-	public LinkedList<String> getRequiredResourceList(String line,String group)
+	public LinkedList<String> getRequiredResourceList(String line, String group)
 	{
 		LinkedList<String> resourceList = new LinkedList<String>();
 		PreparedStatement stmt;
@@ -220,7 +227,7 @@ public class JDBAutoLabellerResources {
 		return sessionID;
 	}
 
-	public boolean isValidLineResource(String line,String group, String resource)
+	public boolean isValidLineResource(String line, String group, String resource)
 	{
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -233,7 +240,7 @@ public class JDBAutoLabellerResources {
 		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBAutoLabellerResources.isValid"));
 			stmt.setString(1, line);
-			stmt.setString(2,group);
+			stmt.setString(2, group);
 			stmt.setString(3, resource);
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
@@ -273,7 +280,7 @@ public class JDBAutoLabellerResources {
 	{
 		dbLine = Line;
 	}
-	
+
 	public void setGroup(String group)
 	{
 		dbGroup = group;

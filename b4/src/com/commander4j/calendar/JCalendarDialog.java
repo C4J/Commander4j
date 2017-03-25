@@ -44,7 +44,14 @@ import javax.swing.border.EtchedBorder;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JDateControl;
-
+/**
+ * The JCalendarDialog is used to provide a popup window showing a calendar control.
+ * <p>
+ * <img alt="" src="./doc-files/JCalendarDialog.jpg" >
+ * 
+ * @see com.commander4j.calendar.JCalendarPanel JCalendarPanel
+ * @see com.commander4j.calendar.JCalendarButton JCalendarButton
+ */
 public class JCalendarDialog extends JDialog
 {
 

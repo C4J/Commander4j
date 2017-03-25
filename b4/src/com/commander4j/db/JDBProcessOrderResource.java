@@ -36,6 +36,19 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDBProcessOrderResource class updates the table
+ * APP_PROCESS_ORDER_RESOURCE. This table contains a single row for each unique
+ * Process Order Resource as stored in the APP_PROCESS_ORDER table. This table
+ * holds information which can be linked directly to the Resource name. This
+ * table is automatically updated with resource names when a new Process is
+ * imported via the interfaces.
+ * <p>
+ * <img alt="" src="./doc-files/APP_PROCESS_ORDER_RESOURCE.jpg" >
+ * 
+ * @see com.commander4j.db.JDBProcessOrder JDBProcessOrder
+ *
+ */
 public class JDBProcessOrderResource
 {
 	public static int field_Resource_id = 50;
@@ -63,11 +76,11 @@ public class JDBProcessOrderResource
 		setDescription("");
 		setEnabled(false);
 	}
-	
+
 	public String getBatchSuffixForResource(String res)
 	{
 		String result = "";
-		
+
 		if (getResourceProperties(res))
 		{
 			if (isEnabled())
@@ -75,7 +88,7 @@ public class JDBProcessOrderResource
 				result = getBatchSuffix();
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -85,14 +98,13 @@ public class JDBProcessOrderResource
 		if (getEnabled().equals("Y"))
 		{
 			result = true;
-		}
-		else
+		} else
 		{
 			result = false;
 		}
 		return result;
 	}
-	
+
 	public boolean create(String res)
 	{
 		boolean result = false;
@@ -172,7 +184,7 @@ public class JDBProcessOrderResource
 		String result = JUtility.replaceNullStringwithBlank(dbEnabled);
 		if (result.equals(""))
 		{
-			dbEnabled="N";
+			dbEnabled = "N";
 			result = "N";
 		}
 		return result;
@@ -212,7 +224,7 @@ public class JDBProcessOrderResource
 			setResource(rs.getString("required_resource"));
 			setDescription(rs.getString("description"));
 			setBatchSuffix(rs.getString("batch_suffix"));
-			setEnabled(rs.getString("enabled")); 
+			setEnabled(rs.getString("enabled"));
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -248,7 +260,7 @@ public class JDBProcessOrderResource
 				result = true;
 			} else
 			{
-				setErrorMessage("Invalid Resource "+getResource());
+				setErrorMessage("Invalid Resource " + getResource());
 			}
 			rs.close();
 			stmt.close();
@@ -293,7 +305,7 @@ public class JDBProcessOrderResource
 				setErrorMessage("Resource " + getResource() + " not found.");
 			}
 			stmt.close();
-			rs.close(); 
+			rs.close();
 
 		} catch (SQLException e)
 		{
@@ -303,7 +315,7 @@ public class JDBProcessOrderResource
 		return result;
 
 	}
-	
+
 	public boolean isValidResource(String res)
 	{
 		setResource(res);
@@ -360,7 +372,7 @@ public class JDBProcessOrderResource
 	{
 		sessionID = session;
 	}
-	
+
 	public boolean update()
 	{
 		boolean result = false;

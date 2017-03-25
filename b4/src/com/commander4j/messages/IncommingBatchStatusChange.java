@@ -37,27 +37,33 @@ public class IncommingBatchStatusChange
 	private String sessionID;
 	private String errorMessage;
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return errorMessage;
 	}
 
-	private void setErrorMessage(String errorMessage) {
+	private void setErrorMessage(String errorMessage)
+	{
 		this.errorMessage = errorMessage;
 	}
 
-	public String getHostID() {
+	public String getHostID()
+	{
 		return hostID;
 	}
 
-	public void setHostID(String hostID) {
+	public void setHostID(String hostID)
+	{
 		this.hostID = hostID;
 	}
 
-	public String getSessionID() {
+	public String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public void setSessionID(String sessionID) {
+	public void setSessionID(String sessionID)
+	{
 		this.sessionID = sessionID;
 	}
 
@@ -67,7 +73,8 @@ public class IncommingBatchStatusChange
 		setHostID(host);
 	}
 
-	public Boolean processMessage(GenericMessageHeader gmh) {
+	public Boolean processMessage(GenericMessageHeader gmh)
+	{
 		Boolean result = false;
 
 		JDBMaterialBatch batch = new JDBMaterialBatch(getHostID(), getSessionID());
@@ -77,7 +84,6 @@ public class IncommingBatchStatusChange
 		int occur = 1;
 
 		while (material.length() > 0)
-
 		{
 			material = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/batchStatusChangel[" + String.valueOf(occur) + "]/materia").trim());
 			batchStr = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/batchStatusChange[" + String.valueOf(occur) + "]/batch").trim());
@@ -92,8 +98,7 @@ public class IncommingBatchStatusChange
 					batch.update();
 					result = true;
 					setErrorMessage(String.valueOf(occur) + " Batch(s) updated");
-				}
-				else
+				} else
 				{
 					result = false;
 					setErrorMessage("Material " + material + " Batch " + batchStr + " not found.");

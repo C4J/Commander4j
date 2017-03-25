@@ -47,6 +47,8 @@ import com.commander4j.util.JUtility;
  * transaction number within the APP_PALLET_HISTORY_TABLE.
  * <p>
  * <img alt="" src="./doc-files/SYS_INTERFACE_REQUEST.jpg" >
+ * 
+ * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
  */
 public class JDBInterfaceRequest
 {

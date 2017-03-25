@@ -38,7 +38,18 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 /**
+ * The JDBQMActivity class is part of a structure within the database which
+ * represents the SAP Inspection Lot hierarchy. This is the second level. Each
+ * activity belongs to an Inspection. The data is stored in a table called
+ * APP_QM_ACTIVITY.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/APP_QM_ACTIVITY.jpg" >
+ * 
+ * @see com.commander4j.db.JDBQMInspection JDBQMInspection
+ * @see com.commander4j.db.JDBQMDictionary JDBQMDictionary
  */
+
 public class JDBQMActivity
 {
 	private String dbActivityID;
@@ -52,28 +63,16 @@ public class JDBQMActivity
 	private String hostID;
 	private String sessionID;
 	private JDBQMExtension extension;
-	
-	/*
-	 * 
-	 * 
-	 * Table APP_QM_ACTIVITY
-		=====================
-	INSPECTION_ID, ACTIVITY_ID, LOCATION_ID, MATERIAL, REQUIRED_RESOURCE, DESCRIPTION, EXTENSION_ID
-	---------------------
-	INSPECTION_ID    varchar(20) PK
-	ACTIVITY_ID      varchar(10) PK
-	DESCRIPTION      varchar(50)
-	EXTENSION_ID     int(11)
-	 * 
-	 */
 
-	public JDBQMActivity(String host, String session) {
+	public JDBQMActivity(String host, String session)
+	{
 		setHostID(host);
 		setSessionID(session);
-		extension = new JDBQMExtension(host,session);
+		extension = new JDBQMExtension(host, session);
 	}
 
-	public JDBQMActivity(String host, String session, String inspectionid, String activityid,String description) {
+	public JDBQMActivity(String host, String session, String inspectionid, String activityid, String description)
+	{
 		setHostID(host);
 		setSessionID(session);
 		setInspectionID(inspectionid);
@@ -81,39 +80,45 @@ public class JDBQMActivity
 		setDescription(description);
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		setDescription("");
 		setExtensionID((long) -1);
 	}
 
-	public ResultSet getQMActivityDataResultSet(String inspectionid) {
+	public ResultSet getQMActivityDataResultSet(String inspectionid)
+	{
 		PreparedStatement stmt;
 		ResultSet rs = null;
 		setErrorMessage("");
 		setInspectionID(inspectionid);
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMActivity.getActivities"));
 			stmt.setString(1, getInspectionID());
 			stmt.setFetchSize(100);
 			rs = stmt.executeQuery();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return rs;
 	}
 
-	public boolean create(String inspectionid, String activityid, String description) {
+	public boolean create(String inspectionid, String activityid, String description)
+	{
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
+		try
+		{
 			setInspectionID(inspectionid);
 			setActivityID(activityid);
 			setDescription(description);
 
-			if (isValid() == false) {
+			if (isValid() == false)
+			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMActivity.create"));
 				stmtupdate.setString(1, getInspectionID());
@@ -126,95 +131,105 @@ public class JDBQMActivity
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else {
+			} else
+			{
 				setErrorMessage("QMActivity already exists");
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
 
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
-				if (isValid() == true) {
-					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMActivity.delete"));
-					stmtupdate.setString(1, getInspectionID());
-					stmtupdate.setString(2, getActivityID());
-					stmtupdate.execute();
-					stmtupdate.clearParameters();
-					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-					stmtupdate.close();
-					result = true;
-				}
-		}
-		catch (Exception e) {
+		try
+		{
+			if (isValid() == true)
+			{
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMActivity.delete"));
+				stmtupdate.setString(1, getInspectionID());
+				stmtupdate.setString(2, getActivityID());
+				stmtupdate.execute();
+				stmtupdate.clearParameters();
+				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+				stmtupdate.close();
+				result = true;
+			}
+		} catch (Exception e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
 
-	public boolean getProperties(String inspectionid,String activityid) {
+	public boolean getProperties(String inspectionid, String activityid)
+	{
 		setInspectionID(inspectionid);
 		setActivityID(activityid);
 		return getProperties();
 	}
 
-	public boolean getProperties() {
+	public boolean getProperties()
+	{
 		boolean result = false;
 
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
-		logger.debug("JDBQMActivity getProperties Inspection ["+getInspectionID()+"] Activity ["+getActivityID()+"]");
+		logger.debug("JDBQMActivity getProperties Inspection [" + getInspectionID() + "] Activity [" + getActivityID() + "]");
 
 		clear();
 
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMActivity.getProperties"));
-			stmt.setString(1,getInspectionID());
-			stmt.setString(2,getActivityID());
+			stmt.setString(1, getInspectionID());
+			stmt.setString(2, getActivityID());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			if (rs.next())
+			{
 				setDescription(rs.getString("description"));
 				setExtensionID(rs.getLong("extension_id"));
 				result = true;
 				rs.close();
 				stmt.close();
-			}
-			else {
+			} else
+			{
 				setErrorMessage("Invalid Activity [" + getInspectionID().toString() + "/" + getActivityID().toString() + "]");
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public LinkedList<JDBQMActivity> getActivities(String inspectionid) {
+	public LinkedList<JDBQMActivity> getActivities(String inspectionid)
+	{
 		LinkedList<JDBQMActivity> typeList = new LinkedList<JDBQMActivity>();
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
 		setInspectionID(inspectionid);
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMActivity.getActivities"));
 			stmt.setString(1, getInspectionID());
 			stmt.setFetchSize(100);
 			rs = stmt.executeQuery();
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 				JDBQMActivity mt = new JDBQMActivity(getHostID(), getSessionID());
 				mt.setInspectionID(rs.getString("inspection_id"));
 				mt.setActivityID(rs.getString("activity_id"));
@@ -225,84 +240,94 @@ public class JDBQMActivity
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return typeList;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
-	public String getInspectionID() {
+	public String getInspectionID()
+	{
 		String result = "";
 		if (dbInspectionID != null)
 			result = dbInspectionID;
 		return result;
 	}
 
-	public String getActivityID() {
+	public String getActivityID()
+	{
 		String result = "";
 		if (dbActivityID != null)
 			result = dbActivityID;
 		return result;
 	}
-	
 
-	public String getDescription() {
+	public String getDescription()
+	{
 		String result = "";
 		if (dbDescription != null)
 			result = dbDescription;
 		return result;
-	}	
-	
-	public Long getExtensionID() {
+	}
+
+	public Long getExtensionID()
+	{
 		Long result = (long) -1;
 		if (dbExtensionID != null)
 			result = dbExtensionID;
 		return result;
-	}		
+	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public boolean isValid(String inspectionid,String activityid) {
+	public boolean isValid(String inspectionid, String activityid)
+	{
 		setInspectionID(inspectionid);
 		setActivityID(activityid);
 		return isValid();
 	}
 
-	public boolean isValid() {
+	public boolean isValid()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
 
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMActivity.isValid"));
 			stmt.setString(1, getInspectionID());
 			stmt.setString(2, getActivityID());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			if (rs.next())
+			{
 				result = true;
-			}
-			else {
+			} else
+			{
 				setErrorMessage("Invalid Activity [" + getInspectionID().toString() + "/" + getActivityID().toString() + "]");
 			}
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
@@ -310,28 +335,32 @@ public class JDBQMActivity
 
 	}
 
-
-	private void setErrorMessage(String errorMsg) {
-		if (errorMsg.isEmpty() == false) {
+	private void setErrorMessage(String errorMsg)
+	{
+		if (errorMsg.isEmpty() == false)
+		{
 			logger.error(errorMsg);
 		}
 		dbErrorMessage = errorMsg;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setInspectionID(String inspectionid) {
+	public void setInspectionID(String inspectionid)
+	{
 		dbInspectionID = inspectionid;
 	}
 
-	public void setActivityID(String activityid) {
+	public void setActivityID(String activityid)
+	{
 		dbActivityID = activityid;
 	}
-	
 
-	public void setDescription(String description) {
+	public void setDescription(String description)
+	{
 		dbDescription = description;
 	}
 
@@ -339,29 +368,35 @@ public class JDBQMActivity
 	{
 		dbExtensionID = extensionid;
 	}
-	
-	private void setSessionID(String session) {
+
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public String toString() {
+	public String toString()
+	{
 		String result = "";
-		if (getActivityID().equals("") == false) {
+		if (getActivityID().equals("") == false)
+		{
 			result = JUtility.padString(getActivityID(), true, field_activity_id, " ") + " - " + getDescription();
-		}
-		else {
+		} else
+		{
 			result = "";
 		}
 
 		return result;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
-			if (isValid() == true) {
+		try
+		{
+			if (isValid() == true)
+			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMActivity.update"));
 				stmtupdate.setString(1, getDescription());
@@ -373,8 +408,8 @@ public class JDBQMActivity
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 

@@ -45,6 +45,8 @@ import com.commander4j.util.JUtility;
  * This table will become more important during later releases of the
  * application.
  *
+ * @see com.commander4j.db.JDBAutoLabeller JDBAutoLabeller
+ * @see com.commander4j.db.JDBAutoLabellerResources JDBAutoLabellerResources
  */
 public class JDBPrinters
 {

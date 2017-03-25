@@ -43,6 +43,8 @@ import com.commander4j.util.JUtility;
  * Material. A type is used to filter materials for reporting purposes.
  * <p>
  * <img alt="" src="./doc-files/APP_MATERIAL_TYPE.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterial JDBMaterial
  */
 public class JDBMaterialType
 {

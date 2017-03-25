@@ -53,6 +53,10 @@ import com.commander4j.util.JUtility;
  * production line can have one or more physical labellers.
  * <p>
  * <img alt="" src="./doc-files/APP_LABEL_DATA.jpg" >
+ * 
+ * @see com.commander4j.db.JDBAutoLabeller JDBAutoLabeller
+ * @see com.commander4j.db.JDBAutoLabellerResources JDBAutoLabellerResources
+ * @see com.commander4j.db.JDBPrinters JDBPrinters
  */
 public class JDBLabelData
 {

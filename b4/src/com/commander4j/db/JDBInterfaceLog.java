@@ -47,6 +47,8 @@ import com.commander4j.util.JUtility;
  * be re-processed if needed.
  * <p>
  * <img alt="" src="./doc-files/SYS_INTERFACE_LOG.jpg" >
+ * 
+ * @see com.commander4j.db.JDBInterfaceRequest JDBInterfaceRequest
  */
 public class JDBInterfaceLog
 {

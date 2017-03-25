@@ -37,6 +37,20 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDBPalletHistory class is used to write data to the APP_PALLET_HISTORY
+ * table. Each time a transaction is performed which updates the pallet master
+ * record which is held in the APP_PALLET table, a before and after snapshot of
+ * the pallet record is written to the Pallet History table. This serves two
+ * purposes. Initially it acts as an audit trail of all changes. Secondly the
+ * data is written to the Pallet History table using a unique Transaction Ref
+ * which can be used to drive outbound message generation.
+ * <p>
+ * <img alt="" src="./doc-files/APP_PALLET_HISTORY.jpg" >
+ * 
+ * @see com.commander4j.db.JDBPallet JDBPallet
+ * @see com.commander4j.db.JDBInterfaceRequest JDBInterfaceRequest
+ */
 public class JDBPalletHistory
 {
 	private long dbTransactionRef;
@@ -51,7 +65,8 @@ public class JDBPalletHistory
 	private String sessionID;
 	private long transaction_ref = 1;
 
-	public long getTransaction_ref() {
+	public long getTransaction_ref()
+	{
 		return transaction_ref;
 	}
 
@@ -66,7 +81,8 @@ public class JDBPalletHistory
 		setPallet(pallet);
 	}
 
-	public ResultSet getInterfacingData(Long transactionRef, String transactionType, String transactionSubtype, Long maxRecords, String sortBy, String ascDesc) {
+	public ResultSet getInterfacingData(Long transactionRef, String transactionType, String transactionSubtype, Long maxRecords, String sortBy, String ascDesc)
+	{
 
 		ResultSet rs = null;
 		String temp = "";
@@ -85,12 +101,11 @@ public class JDBPalletHistory
 		query.addParamtoSQL("transaction_subtype=", transactionSubtype);
 
 		query.appendSort(sortBy, ascDesc);
-		
+
 		if (maxRecords > 0)
 		{
 			query.applyRestriction(true, Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), maxRecords);
-		}
-		else
+		} else
 		{
 			query.applyRestriction(false, "none", 0);
 		}
@@ -99,8 +114,7 @@ public class JDBPalletHistory
 		try
 		{
 			rs = query.getPreparedStatement().executeQuery();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,7 +134,8 @@ public class JDBPalletHistory
 		dbPallet = new JDBPallet(getHostID(), getSessionID());
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		dbTransactionRef = Long.valueOf("0");
 		dbTransactionType = "";
 		dbTransactionSubtype = "";
@@ -129,14 +144,14 @@ public class JDBPalletHistory
 		try
 		{
 			dbPallet.clear();
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 	}
 
-	public long generateNewTransactionRef() {
+	public long generateNewTransactionRef()
+	{
 		long result = 0;
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
 		String temp = "";
@@ -165,14 +180,12 @@ public class JDBPalletHistory
 							retry = false;
 						}
 					}
-				}
-				else
+				} else
 				{
 					retry = true;
 					counter++;
 				}
-			}
-			while (retry);
+			} while (retry);
 		}
 
 		result = transaction_ref;
@@ -181,19 +194,23 @@ public class JDBPalletHistory
 		return result;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
-	public JDBPallet getPallet() {
+	public JDBPallet getPallet()
+	{
 		return dbPallet;
 	}
 
-	public ResultSet getPalletHistoryDataResultSet(PreparedStatement criteria) {
+	public ResultSet getPalletHistoryDataResultSet(PreparedStatement criteria)
+	{
 
 		ResultSet rs;
 
@@ -201,8 +218,7 @@ public class JDBPalletHistory
 		{
 			rs = criteria.executeQuery();
 
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -210,7 +226,8 @@ public class JDBPalletHistory
 		return rs;
 	}
 
-	public void getPropertiesfromResultSet(ResultSet rs) {
+	public void getPropertiesfromResultSet(ResultSet rs)
+	{
 		try
 		{
 			clear();
@@ -223,38 +240,44 @@ public class JDBPalletHistory
 
 			getPallet().getPropertiesfromResultSet(rs);
 
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 	}
 
-	private String getSessionID() {
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public Timestamp getTransactionDate() {
+	public Timestamp getTransactionDate()
+	{
 		return dbTransactionDate;
 	}
 
-	public long getTransactionRef() {
+	public long getTransactionRef()
+	{
 		return dbTransactionRef;
 	}
 
-	public String getTransactionSubtype() {
+	public String getTransactionSubtype()
+	{
 		return dbTransactionSubtype;
 	}
 
-	public String getTransactionType() {
+	public String getTransactionType()
+	{
 		return dbTransactionType;
 	}
 
-	public String getUserID() {
+	public String getUserID()
+	{
 		return dbUserId;
 	}
 
-	private void setErrorMessage(String ErrorMsg) {
+	private void setErrorMessage(String ErrorMsg)
+	{
 		ErrorMsg = JUtility.replaceNullStringwithBlank(ErrorMsg);
 		if (ErrorMsg.isEmpty() == false)
 		{
@@ -263,27 +286,33 @@ public class JDBPalletHistory
 		dbErrorMessage = ErrorMsg;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setPallet(JDBPallet pallet) {
+	public void setPallet(JDBPallet pallet)
+	{
 		dbPallet = pallet;
 	}
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public void setTransactionDate(Timestamp transactionDate) {
+	public void setTransactionDate(Timestamp transactionDate)
+	{
 		dbTransactionDate = transactionDate;
 	}
 
-	public void setTransactionRef(long transactionRef) {
+	public void setTransactionRef(long transactionRef)
+	{
 		dbTransactionRef = transactionRef;
 	}
 
-	public void setTransactionSubtype(String transactionSubtype) {
+	public void setTransactionSubtype(String transactionSubtype)
+	{
 		dbTransactionSubtype = transactionSubtype;
 	}
 
@@ -293,7 +322,8 @@ public class JDBPalletHistory
 	 * @param transactionType
 	 *            String
 	 */
-	public void setTransactionType(String transactionType) {
+	public void setTransactionType(String transactionType)
+	{
 		dbTransactionType = transactionType;
 	}
 
@@ -303,7 +333,8 @@ public class JDBPalletHistory
 	 * @param userid
 	 *            String
 	 */
-	public void setUserID(String userid) {
+	public void setUserID(String userid)
+	{
 		dbUserId = userid;
 	}
 
@@ -312,7 +343,8 @@ public class JDBPalletHistory
 	 * 
 	 * @return boolean
 	 */
-	public boolean write() {
+	public boolean write()
+	{
 		boolean result = false;
 
 		try
@@ -350,8 +382,7 @@ public class JDBPalletHistory
 			stmtupdate.close();
 			stmtupdate.close();
 			result = true;
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}

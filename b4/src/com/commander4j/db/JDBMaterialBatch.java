@@ -50,6 +50,8 @@ import com.commander4j.util.JUtility;
  * even if they share the same Material/Batch.
  * <p>
  * <img alt="" src="./doc-files/APP_MATERIAL_BATCH.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterial JDBMaterial
  */
 public class JDBMaterialBatch
 {
