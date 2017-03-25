@@ -61,7 +61,22 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.calendar.JCalendarButton;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-
+/**
+ * The JInternalFrameJourneyProperties class allows you to amend the APP_JOURNEY
+ * table. When Dispatching pallets to a location it is an option to capture an
+ * external tracking reference (Journey Ref). The option to determine the
+ * requirement of Journey Ref is determined by a property of the receiving
+ * location. See JDBLocation class and APP_LOCATION table. The Journey Refs
+ * which can be used as either inserted manually using the appropriate screen
+ * within the application or read in from a XML message using the application
+ * interfacing module.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameJourneyProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBDespatch JDBDespatch
+ * @see com.commander4j.app.JInternalFrameJourneyAdmin JInternalFrameJourneyAdmin
+ * @see com.commander4j.app.JInternalFrameJourneyProperties JInternalFrameJourneyProperties
+ */
 public class JInternalFrameJourneyProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

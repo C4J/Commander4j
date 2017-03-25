@@ -33,6 +33,15 @@ import com.commander4j.db.JDBLocation;
 import com.commander4j.db.JDBPallet;
 import com.commander4j.util.JUtility;
 
+/**
+ * IncommingDespatchConfirmation class allows an external system to generate a despatch transaction.
+ * 
+ * @see com.commander4j.db.JDBDespatch JDBDespatch
+ * @see com.commander4j.db.JDBJourney JDBJourney
+ * @see com.commander4j.app.JInternalFrameJourneyAdmin JInternalFrameJourneyAdmin
+ * @see com.commander4j.app.JInternalFrameJourneyProperties JInternalFrameJourneyProperties
+ * @see com.commander4j.app.JInternalFrameDespatch JInternalFrameDespatch
+ */
 public class IncommingDespatchConfirmation
 {
 

@@ -52,7 +52,19 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
-public class JDialogArchiveProperties extends JDialog {
+/**
+ * The class JDialogArchiveProperties allows you to edit records in the
+ * SYS_ARCHIVE table. This screen is invoked from the form
+ * JInternalFrameArchiveAdmin. 
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JDialogArchiveProperties.jpg" >
+ * 
+ * @see com.commander4j.sys.JInternalFrameArchiveAdmin JInternalFrameArchiveAdmin
+ * @see com.commander4j.db.JDBArchive JDBArchive
+ */
+public class JDialogArchiveProperties extends JDialog
+{
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 	private JLabel4j_std jLabelDescription;
@@ -75,7 +87,8 @@ public class JDialogArchiveProperties extends JDialog {
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_std label4jArchiveBefore = new JLabel4j_std();
 
-	public JDialogArchiveProperties(JFrame parent, String archiveID) {
+	public JDialogArchiveProperties(JFrame parent, String archiveID)
+	{
 
 		super(parent);
 
@@ -103,17 +116,20 @@ public class JDialogArchiveProperties extends JDialog {
 		jSpinnerRetention.setValue(arch.getRetentionDays());
 		jButtonUpdate.setEnabled(false);
 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				jTextFieldDescription.requestFocus();
 				jTextFieldDescription.setCaretPosition(jTextFieldDescription.getText().length());
 				jButtonUpdate.setEnabled(false);
-	
+
 			}
 		});
 	}
 
-	private boolean update() {
+	private boolean update()
+	{
 		boolean result = true;
 		arch.setDescription(jTextFieldDescription.getText());
 		arch.setSQLTable(jTextFieldSQLTable.getText());
@@ -127,8 +143,10 @@ public class JDialogArchiveProperties extends JDialog {
 		return result;
 	}
 
-	private void initGUI() {
-		try {
+	private void initGUI()
+	{
+		try
+		{
 			// setDefaultLookAndFeelDecorated(true);
 			setPreferredSize(new java.awt.Dimension(460, 163));
 			this.setBounds(25, 25, 678, 298);
@@ -175,8 +193,10 @@ public class JDialogArchiveProperties extends JDialog {
 					jButtonUpdate.setBounds(90, 222, 126, 32);
 					jButtonUpdate.setMnemonic(java.awt.event.KeyEvent.VK_S);
 					jButtonUpdate.setEnabled(false);
-					jButtonUpdate.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonUpdate.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							update();
 						}
 					});
@@ -187,8 +207,10 @@ public class JDialogArchiveProperties extends JDialog {
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setBounds(493, 222, 126, 32);
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -209,8 +231,10 @@ public class JDialogArchiveProperties extends JDialog {
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
 					jTextFieldDescription.setBounds(202, 49, 260, 21);
-					jTextFieldDescription.addKeyListener(new KeyAdapter() {
-						public void keyTyped(KeyEvent evt) {
+					jTextFieldDescription.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -222,8 +246,10 @@ public class JDialogArchiveProperties extends JDialog {
 					jTextFieldSQLTable.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldSQLTable.setFocusCycleRoot(true);
 					jTextFieldSQLTable.setBounds(202, 84, 260, 21);
-					jTextFieldSQLTable.addKeyListener(new KeyAdapter() {
-						public void keyTyped(KeyEvent evt) {
+					jTextFieldSQLTable.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -244,16 +270,20 @@ public class JDialogArchiveProperties extends JDialog {
 				jDesktopPane1.add(labelEnabled);
 
 				chckbxEnabled.setBounds(624, 12, 28, 23);
-				chckbxEnabled.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				chckbxEnabled.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						jButtonUpdate.setEnabled(true);
 					}
 				});
 				jDesktopPane1.add(chckbxEnabled);
-				
+
 				chckbxBackgroundTask.setBounds(624, 47, 28, 23);
-				chckbxBackgroundTask.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				chckbxBackgroundTask.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						jButtonUpdate.setEnabled(true);
 					}
 				});
@@ -279,14 +309,18 @@ public class JDialogArchiveProperties extends JDialog {
 
 				jSpinnerIntModel.setStepSize(1);
 				jSpinnerRetention = new JSpinner();
-				jSpinnerRetention.addKeyListener(new KeyAdapter() {
+				jSpinnerRetention.addKeyListener(new KeyAdapter()
+				{
 					@Override
-					public void keyTyped(KeyEvent e) {
+					public void keyTyped(KeyEvent e)
+					{
 						jButtonUpdate.setEnabled(true);
 					}
 				});
-				jSpinnerRetention.addChangeListener(new ChangeListener() {
-					public void stateChanged(ChangeEvent e) {
+				jSpinnerRetention.addChangeListener(new ChangeListener()
+				{
+					public void stateChanged(ChangeEvent e)
+					{
 						jButtonUpdate.setEnabled(true);
 						arch.setRetentionDays(Integer.valueOf(jSpinnerRetention.getValue().toString()));
 						label4jArchiveBefore.setText(arch.getSQLArchiveDate().toString().substring(0, 16));
@@ -307,14 +341,18 @@ public class JDialogArchiveProperties extends JDialog {
 
 				jSpinnerSeqModel.setStepSize(10);
 				jSpinnerSequence = new JSpinner();
-				jSpinnerSequence.addKeyListener(new KeyAdapter() {
+				jSpinnerSequence.addKeyListener(new KeyAdapter()
+				{
 					@Override
-					public void keyTyped(KeyEvent e) {
+					public void keyTyped(KeyEvent e)
+					{
 						jButtonUpdate.setEnabled(true);
 					}
 				});
-				jSpinnerSequence.addChangeListener(new ChangeListener() {
-					public void stateChanged(ChangeEvent e) {
+				jSpinnerSequence.addChangeListener(new ChangeListener()
+				{
+					public void stateChanged(ChangeEvent e)
+					{
 						jButtonUpdate.setEnabled(true);
 					}
 				});
@@ -333,9 +371,11 @@ public class JDialogArchiveProperties extends JDialog {
 				jTextFieldSQLCriteria.setPreferredSize(new Dimension(40, 20));
 				jTextFieldSQLCriteria.setFocusCycleRoot(true);
 				jTextFieldSQLCriteria.setBounds(202, 117, 450, 21);
-				jTextFieldSQLCriteria.addKeyListener(new KeyAdapter() {
+				jTextFieldSQLCriteria.addKeyListener(new KeyAdapter()
+				{
 					@Override
-					public void keyTyped(KeyEvent e) {
+					public void keyTyped(KeyEvent e)
+					{
 						jButtonUpdate.setEnabled(true);
 					}
 				});
@@ -349,8 +389,10 @@ public class JDialogArchiveProperties extends JDialog {
 				jDesktopPane1.add(label4j_Criteria);
 
 				JButton4j jButtonRun = new JButton4j(Common.icon_execute);
-				jButtonRun.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				jButtonRun.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						update();
 						JDBArchive c = new JDBArchive(Common.selectedHostID, Common.sessionID);
 						c.runManual(larchiveID);
@@ -360,7 +402,7 @@ public class JDialogArchiveProperties extends JDialog {
 				jButtonRun.setMnemonic(KeyEvent.VK_H);
 				jButtonRun.setBounds(222, 222, 126, 32);
 				jDesktopPane1.add(jButtonRun);
-				
+
 				JLabel4j_std label4jBackgroundTask = new JLabel4j_std();
 				label4jBackgroundTask.setText(lang.get("lbl_Background_Task"));
 				label4jBackgroundTask.setHorizontalTextPosition(SwingConstants.RIGHT);
@@ -368,7 +410,6 @@ public class JDialogArchiveProperties extends JDialog {
 				label4jBackgroundTask.setFont(Common.font_std);
 				label4jBackgroundTask.setBounds(468, 51, 151, 19);
 				jDesktopPane1.add(label4jBackgroundTask);
-				
 
 				label4jArchiveBefore.setText((String) null);
 				label4jArchiveBefore.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -377,7 +418,8 @@ public class JDialogArchiveProperties extends JDialog {
 				jDesktopPane1.add(label4jArchiveBefore);
 
 			}
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}

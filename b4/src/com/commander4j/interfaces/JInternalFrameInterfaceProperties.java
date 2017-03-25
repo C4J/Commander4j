@@ -28,6 +28,7 @@ package com.commander4j.interfaces;
  */
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -56,6 +57,16 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameInterfaceProperties is used to modify an interface. Changes are stored in a table SYS_INTERFACE
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameInterfaceAdmin.jpg" >
+ * 
+ * @see com.commander4j.interfaces.JInternalFrameInterfaceAdmin JInternalFrameInterfaceAdmin
+ * @see com.commander4j.db.JDBInterface JDBInterface
+ * @see com.commander4j.db.JDBInterfaceLog JDBInterfaceLog
+ */
 public class JInternalFrameInterfaceProperties extends JInternalFrame
 {
 	private JLabel jLabel2_2;

@@ -57,7 +57,16 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBMaterialUomTableModel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-
+/**
+ * The JInternalFrameMaterialUomAdmin is the screen for editing the units of measure which exist for the Material.
+ * For example a can of petfood can exist as a single can (Each), Case, Layer on Pallet or whole Pallet. 
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMaterialUomAdmin.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMaterialUomProperties JInternalFrameMaterialUomProperties
+ * @see com.commander4j.db.JDBMaterialUom JDBMaterialUom
+ */
 public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 {
 	private JLabel4j_std jStatusText;

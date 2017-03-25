@@ -49,6 +49,9 @@ import com.commander4j.util.JUtility;
  * table to remove old/unneeded records from tables.
  * <p>
  * <img alt="" src="./doc-files/SYS_ARCHIVE.jpg" >
+ * 
+ * @see com.commander4j.sys.JInternalFrameArchiveAdmin JInternalFrameArchiveAdmin
+ * @see com.commander4j.sys.JDialogArchiveProperties JDialogArchiveProperties
  */
 public class JDBArchive
 {

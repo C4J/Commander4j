@@ -54,6 +54,15 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import javax.swing.JCheckBox;
 
+/**
+ * The JInternalFrameMaterialUomProperties is the screen for editing a single unit of  measure record for a Material in the APP_MATERIAL_UOM table.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMaterialUomProperties.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMaterialUomAdmin JInternalFrameMaterialUomAdmin
+ * @see com.commander4j.db.JDBMaterialUom JDBMaterialUom
+ */
 public class JInternalFrameMaterialUomProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

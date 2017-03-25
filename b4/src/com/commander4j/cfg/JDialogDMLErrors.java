@@ -47,6 +47,14 @@ import com.commander4j.db.JDBDDL;
 import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
 
+/**
+ * The JDialogDMLErrors is used to display any SQL errors which are encountered
+ * when a database is being created or updated by the Setup4j application.
+ * 
+ * @see com.commander4j.cfg.JFrameHostAdmin JFrameHostAdmin
+ * @see com.commander4j.cfg.JDialogSetupPassword JDialogSetupPassword
+ * @see com.commander4j.cfg.Setup Setup
+ */
 public class JDialogDMLErrors extends javax.swing.JDialog
 {
 	private static final long serialVersionUID = 1;
@@ -55,7 +63,8 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 	private JButton jButtonClose;
 	private JScrollPane jScrollPane1;
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 
 	}
 
@@ -75,7 +84,8 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
-	private void populateList(LinkedList<JDBDDL> ddl) {
+	private void populateList(LinkedList<JDBDDL> ddl)
+	{
 		DefaultComboBoxModel<String> defComboBoxMod = new DefaultComboBoxModel<String>();
 
 		int s = ddl.size();
@@ -85,16 +95,15 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 			{
 				if (ddl.get(i).getError().equals("Success"))
 				{
-					// defComboBoxMod.addElement("Description    : "
+					// defComboBoxMod.addElement("Description : "
 					// + ddl.get(i).getDescription());
 					// defComboBoxMod
 					// .addElement("-----------------------------------------------------------------------------------------------------------------");
-				}
-				else
+				} else
 				{
 					defComboBoxMod.addElement("Schema Version : " + String.valueOf(ddl.get(i).getVersion()));
 					defComboBoxMod.addElement("Sequence       : " + String.valueOf(ddl.get(i).getSequence()));
-					// defComboBoxMod.addElement("Description    : "
+					// defComboBoxMod.addElement("Description : "
 					// + ddl.get(i).getDescription());
 					defComboBoxMod.addElement("DDL            : " + ddl.get(i).getText());
 					defComboBoxMod.addElement("Error Message  : " + ddl.get(i).getError());
@@ -109,7 +118,8 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			{
@@ -123,7 +133,8 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					jDesktopPane1.add(jScrollPane1);
 					jScrollPane1.setBounds(0, 0, 798, 238);
 					{
-						ListModel<String> jListErrorsModel = new DefaultComboBoxModel<String>(new String[] { "Item One", "Item Two" });
+						ListModel<String> jListErrorsModel = new DefaultComboBoxModel<String>(new String[]
+						{ "Item One", "Item Two" });
 						jListErrors = new JList4j<String>();
 						jScrollPane1.setViewportView(jListErrors);
 						jListErrors.setModel(jListErrorsModel);
@@ -136,16 +147,17 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
 					jButtonClose.setFont(Common.font_btn);
 					jButtonClose.setBounds(322, 245, 112, 28);
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
 				}
 			}
 			this.setSize(807, 310);
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}

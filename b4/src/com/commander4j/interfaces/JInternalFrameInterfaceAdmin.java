@@ -68,6 +68,19 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameInterfaceAdmin is used to administer the XML interfaces used by
+ * the application, both input and output. Any modifications are performed by
+ * the form JInternalFrameInterfaceProperties. Interface configuration is stored
+ * in a table SYS_INTERFACE.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameInterfaceAdmin.jpg" >
+ * 
+ * @see com.commander4j.interfaces.JInternalFrameInterfaceProperties JInternalFrameInterfaceProperties
+ * @see com.commander4j.db.JDBInterface JDBInterface
+ * @see com.commander4j.db.JDBInterfaceLog JDBInterfaceLog
+ */
 public class JInternalFrameInterfaceAdmin extends JInternalFrame
 {
 	private JButton4j jButtonDelete;
@@ -121,7 +134,8 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		setSequence(dlg_sort_descending);
 	}
 
-	private void clearFilter() {
+	private void clearFilter()
+	{
 
 		jTextFieldinterfaceType.setText("");
 
@@ -133,7 +147,8 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 	}
 
-	private void filterBy(String fieldname) {
+	private void filterBy(String fieldname)
+	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -168,19 +183,22 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		populateList();
 	}
 
-	private void search() {
+	private void search()
+	{
 		buildSQL();
 		populateList();
 	}
 
-	private void excel() {
+	private void excel()
+	{
 		JDBInterface interfaceConfig = new JDBInterface(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		buildSQL();
 		export.saveAs("interface.xls", interfaceConfig.getInterfaceDataResultSet(listStatement), Common.mainForm);
 	}
 
-	private void addRecord() {
+	private void addRecord()
+	{
 		String ltype = "";
 		String ldirection = "";
 		ltype = (String) JOptionPane.showInputDialog(Common.mainForm, "Interface", "Type", JOptionPane.PLAIN_MESSAGE, Common.icon_interface, Common.messageTypesexclBlank, "Interface Definition");
@@ -189,7 +207,8 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		{
 			if (ltype.equals("") == false)
 			{
-				Object[] directions = { "Input", "Output" };
+				Object[] directions =
+				{ "Input", "Output" };
 				ldirection = (String) JOptionPane.showInputDialog(Common.mainForm, "Interface", "Direction", JOptionPane.PLAIN_MESSAGE, Common.icon_interface, directions, "Output");
 
 				if (ldirection != null)
@@ -200,8 +219,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 						if (matbat.isValidInterface(ltype, ldirection) == false)
 						{
 							JLaunchMenu.runForm("FRM_ADMIN_INTERFACE_EDIT", ltype, ldirection);
-						}
-						else
+						} else
 						{
 							JOptionPane.showMessageDialog(Common.mainForm, "Interface [" + ltype + " / " + ldirection + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
 						}
@@ -212,7 +230,8 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 	}
 
-	private void deleteRecord() {
+	private void deleteRecord()
+	{
 		String ltype = "";
 		String ldirection = "";
 		int row = jTable1.getSelectedRow();
@@ -231,8 +250,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				{
 					JUtility.errorBeep();
 					JOptionPane.showMessageDialog(Common.mainForm, l.getErrorMessage(), "Delete error [" + ltype + "] [" + ldirection + "]", JOptionPane.WARNING_MESSAGE, Common.icon_confirm);
-				}
-				else
+				} else
 				{
 					buildSQL();
 					populateList();
@@ -241,19 +259,20 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		}
 	}
 
-	private void sortBy(String fieldname) {
+	private void sortBy(String fieldname)
+	{
 		jComboBoxSortBy.setSelectedItem(fieldname);
 		search();
 	}
 
-	private void setSequence(boolean descending) {
+	private void setSequence(boolean descending)
+	{
 		jToggleButtonSequence.setSelected(descending);
 		if (jToggleButtonSequence.isSelected() == true)
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
 			jToggleButtonSequence.setIcon(Common.icon_descending);
-		}
-		else
+		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
 			jToggleButtonSequence.setIcon(Common.icon_ascending);
@@ -271,10 +290,11 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		populateList();
 	}
 
-	private void buildSQL() {
+	private void buildSQL()
+	{
 
 		JDBQuery.closeStatement(listStatement);
-		
+
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 		query.clear();
 
@@ -282,14 +302,15 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		query.addParamtoSQL("interface_type=", jTextFieldinterfaceType.getText());
 		query.addParamtoSQL("path=", jTextFieldPath.getText());
 		query.addParamtoSQL("interface_direction=", jComboBoxInterfaceDirection.getSelectedItem().toString());
-		
+
 		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
 
 		query.bindParams();
 		listStatement = query.getPreparedStatement();
 	}
 
-	private void populateList() {
+	private void populateList()
+	{
 		JDBInterface interfaceConfig = new JDBInterface(Common.selectedHostID, Common.sessionID);
 		JDBInterfaceTableModel interfaceConfigTable = new JDBInterfaceTableModel(interfaceConfig.getInterfaceDataResultSet(listStatement));
 		TableRowSorter<JDBInterfaceTableModel> sorter = new TableRowSorter<JDBInterfaceTableModel>(interfaceConfigTable);
@@ -316,7 +337,8 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		JUtility.setResultRecordCountColour(jStatusText, false, 0, interfaceConfigTable.getRowCount());
 	}
 
-	private void editRecord() {
+	private void editRecord()
+	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -327,7 +349,8 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(497, 522));
@@ -347,7 +370,11 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
 					{
-						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
+						TableModel jTable1Model = new DefaultTableModel(new String[][]
+						{
+								{ "One", "Two" },
+								{ "Three", "Four" } }, new String[]
+						{ "Column 1", "Column 2" });
 						jTable1 = new JTable();
 						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
 						jScrollPane1.setViewportView(jTable1);
@@ -355,8 +382,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 						jTable1.getTableHeader().setFont(Common.font_table_header);
 						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
 						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-						jTable1.addMouseListener(new MouseAdapter() {
-							public void mouseClicked(MouseEvent evt) {
+						jTable1.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
 								if (evt.getClickCount() == 2)
 								{
 									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_EDIT"))
@@ -373,8 +402,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 							{
 								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_search);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										search();
 									}
 								});
@@ -385,8 +416,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 							{
 								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_add);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_ADD"));
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										addRecord();
 									}
 								});
@@ -397,8 +430,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 							{
 								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_delete);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_DELETE"));
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										deleteRecord();
 									}
 								});
@@ -409,8 +444,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 							{
 								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_edit);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_EDIT"));
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										editRecord();
 									}
 								});
@@ -420,8 +457,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 							{
 								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_XLS);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										excel();
 									}
 								});
@@ -436,8 +475,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 								{
 									final JMenuItem newItemMenuItem = new JMenuItem();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("INTERFACE_TYPE");
 										}
 									});
@@ -447,8 +488,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 								{
 									final JMenuItem newItemMenuItem = new JMenuItem();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("INTERFACE_DIRECTION");
 										}
 									});
@@ -458,8 +501,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 								{
 									final JMenuItem newItemMenuItem = new JMenuItem();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("PATH");
 										}
 									});
@@ -476,8 +521,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 								{
 									final JMenuItem newItemMenuItem = new JMenuItem();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy("INTERFACE_TYPE");
 										}
 									});
@@ -487,8 +534,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 								{
 									final JMenuItem newItemMenuItem = new JMenuItem();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy("INTERFACE_DIRECTION");
 										}
 									});
@@ -498,8 +547,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 								{
 									final JMenuItem newItemMenuItem = new JMenuItem();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy("PATH");
 										}
 									});
@@ -513,8 +564,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 								{
 									final JMenuItem newItemMenuItem = new JMenuItem();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											clearFilter();
 										}
 									});
@@ -530,8 +583,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					jButtonSearch.setBounds(1, 143, 134, 32);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
-					jButtonSearch.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonSearch.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							search();
 
 						}
@@ -544,8 +599,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_EDIT"));
-					jButtonEdit.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonEdit.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							editRecord();
 						}
 					});
@@ -563,8 +620,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JDBQuery.closeStatement(listStatement);
 							dispose();
 						}
@@ -602,7 +661,8 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "Interface_Type", "Interface_Direction", "Path" });
+					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
+					{ "Interface_Type", "Interface_Direction", "Path" });
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jComboBoxSortBy.setBounds(152, 110, 209, 23);
 					jDesktopPane1.add(jComboBoxSortBy);
@@ -616,7 +676,8 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(new String[] { "", "Input", "Output" });
+					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(new String[]
+					{ "", "Input", "Output" });
 					jComboBoxInterfaceDirection = new JComboBox4j<String>();
 					jComboBoxInterfaceDirection.setBounds(152, 44, 134, 23);
 					jDesktopPane1.add(jComboBoxInterfaceDirection);
@@ -626,8 +687,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					jToggleButtonSequence = new JToggleButton();
 					jToggleButtonSequence.setBounds(367, 110, 21, 21);
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jToggleButtonSequence.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							setSequence(jToggleButtonSequence.isSelected());
 						}
 					});
@@ -636,8 +699,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				{
 					jButtonAdd = new JButton4j(Common.icon_add);
 					jButtonAdd.setBounds(136, 143, 134, 32);
-					jButtonAdd.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					jButtonAdd.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							addRecord();
 						}
 					});
@@ -658,8 +723,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS);
 					jButtonExcel.setBounds(541, 143, 134, 32);
-					jButtonExcel.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					jButtonExcel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							excel();
 						}
 					});
@@ -671,8 +738,10 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				{
 					jButtonDelete = new JButton4j(Common.icon_delete);
 					jButtonDelete.setBounds(271, 143, 134, 32);
-					jButtonDelete.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					jButtonDelete.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							deleteRecord();
 						}
 					});
@@ -682,8 +751,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonDelete);
 				}
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -695,19 +763,24 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
 	 * with parent.
 	 */
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
+	private static void addPopup(Component component, final JPopupMenu popup)
+	{
+		component.addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			private void showMenu(MouseEvent e) {
+			private void showMenu(MouseEvent e)
+			{
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});

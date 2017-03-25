@@ -50,6 +50,15 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDialogMaterialCustomerDataProperties edits a customer specific element of data. It inserts/updates a record in the table APP_MATERIAL_CUSTOMER_DATA
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JDialogMaterialCustomerDataProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterialCustomerData JDBMaterialCustomerData
+ * @see com.commander4j.app.JInternalFrameMaterialCustomerDataAdmin JInternalFrameMaterialCustomerDataAdmin
+ */
 public class JDialogMaterialCustomerDataProperties extends javax.swing.JDialog
 {
 

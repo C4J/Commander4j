@@ -51,7 +51,19 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
-public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
+/**
+ * The class JInternalFrameArchiveAdmin allows you view the data in the
+ * SYS_ARCHIVE table. You can then insert/update/delete records from this
+ * screen. Edits to data are performed by JDialogArchiveProperties.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameArchiveAdmin.jpg" >
+ * 
+ * @see com.commander4j.sys.JDialogArchiveProperties JDialogArchiveProperties
+ * @see com.commander4j.db.JDBArchive JDBArchive
+ */
+public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
+{
 	private JButton4j jButtonExcel;
 	private static final long serialVersionUID = 1;
 	private JScrollPane jScrollPane1;
@@ -66,7 +78,8 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private PreparedStatement listStatement;
 
-	public JInternalFrameArchiveAdmin() {
+	public JInternalFrameArchiveAdmin()
+	{
 		super();
 		initGUI();
 
@@ -79,7 +92,8 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 
 	}
 
-	private void buildSQL() {
+	private void buildSQL()
+	{
 
 		JDBQuery.closeStatement(listStatement);
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
@@ -93,7 +107,8 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 		listStatement = query.getPreparedStatement();
 	}
 
-	private void populateList(String defaultitem) {
+	private void populateList(String defaultitem)
+	{
 
 		JDBArchive archive = new JDBArchive(Common.selectedHostID, Common.sessionID);
 		buildSQL();
@@ -118,14 +133,16 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.RetentionDays_Col).setPreferredWidth(60);
 		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.RetentionExpiryDate_Col).setPreferredWidth(125);
 		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Sequence_Col).setPreferredWidth(60);
-		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Result_Col).setPreferredWidth(200);		
-		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Run_Start_Col).setPreferredWidth(125);	
-		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Run_End_Col).setPreferredWidth(125);			
+		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Result_Col).setPreferredWidth(200);
+		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Run_Start_Col).setPreferredWidth(125);
+		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Run_End_Col).setPreferredWidth(125);
 		jScrollPane1.repaint();
 	}
 
-	private void initGUI() {
-		try {
+	private void initGUI()
+	{
+		try
+		{
 			this.setPreferredSize(new java.awt.Dimension(669, 341));
 			this.setBounds(0, 0, 968, 363);
 			setVisible(true);
@@ -150,10 +167,14 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 					jTable1.setDefaultRenderer(Boolean.class, Common.renderer_table);
 					jTable1.setFont(Common.font_list);
 					jTable1.setForeground(Common.color_listFontStandard);
-					jTable1.addMouseListener(new MouseAdapter() {
-						public void mouseClicked(MouseEvent evt) {
-							if (evt.getClickCount() == 2) {
-								if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_ARCHIVE_EDIT") == true) {
+					jTable1.addMouseListener(new MouseAdapter()
+					{
+						public void mouseClicked(MouseEvent evt)
+						{
+							if (evt.getClickCount() == 2)
+							{
+								if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_ARCHIVE_EDIT") == true)
+								{
 									editRecord();
 								}
 							}
@@ -171,8 +192,10 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 				jButtonEdit.setBounds(119, 275, 115, 30);
 				jButtonEdit.setMnemonic(lang.getMnemonicChar());
 				jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_ARCHIVE_EDIT"));
-				jButtonEdit.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				jButtonEdit.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						editRecord();
 					}
 				});
@@ -183,8 +206,10 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 				jButtonClose.setText(lang.get("btn_Close"));
 				jButtonClose.setBounds(821, 275, 115, 30);
 				jButtonClose.setMnemonic(lang.getMnemonicChar());
-				jButtonClose.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				jButtonClose.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						jButtonCloseActionPerformed(evt);
 					}
 				});
@@ -197,19 +222,25 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 				jButtonAdd.setBounds(2, 275, 115, 32);
 				jButtonAdd.setMnemonic(lang.getMnemonicChar());
 				jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_ARCHIVE_ADD"));
-				jButtonAdd.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				jButtonAdd.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						JDBArchive arch = new JDBArchive(Common.selectedHostID, Common.sessionID);
 
 						archID = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Archive_ID_Input"));
-						if (archID != null) {
-							if (archID.equals("") == false) {
+						if (archID != null)
+						{
+							if (archID.equals("") == false)
+							{
 								archID = archID.toUpperCase();
 								arch.clear();
-								if (arch.create(archID) == false) {
+								if (arch.create(archID) == false)
+								{
 									JUtility.errorBeep();
 									JOptionPane.showMessageDialog(Common.mainForm, arch.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
-								} else {
+								} else
+								{
 									arch.update();
 									populateList("");
 									JLaunchMenu.runDialog("FRM_ADMIN_ARCHIVE_EDIT", archID);
@@ -228,15 +259,19 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 				jButtonDelete.setBounds(236, 275, 115, 30);
 				jButtonDelete.setMnemonic(lang.getMnemonicChar());
 				jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_ARCHIVE_DELETE"));
-				jButtonDelete.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				jButtonDelete.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						int row = jTable1.getSelectedRow();
-						if (row >= 0) {
+						if (row >= 0)
+						{
 
 							archID = jTable1.getValueAt(row, 0).toString();
 
 							int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Archive_ID_Delete") + " " + archID + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
-							if (n == 0) {
+							if (n == 0)
+							{
 								JDBArchive c = new JDBArchive(Common.selectedHostID, Common.sessionID);
 								c.setArchiveID(archID);
 								c.delete();
@@ -253,8 +288,10 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 				jButtonPrint.setBounds(587, 275, 115, 30);
 				jButtonPrint.setMnemonic(lang.getMnemonicChar());
 				jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_ARCHIVE"));
-				jButtonPrint.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				jButtonPrint.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						JLaunchReport.runReport("RPT_ARCHIVE", null, "", null, "");
 					}
 				});
@@ -269,8 +306,10 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 			}
 			{
 				jButtonExcel = new JButton4j(Common.icon_XLS);
-				jButtonExcel.addActionListener(new ActionListener() {
-					public void actionPerformed(final ActionEvent e) {
+				jButtonExcel.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(final ActionEvent e)
+					{
 						JDBArchive arch = new JDBArchive(Common.selectedHostID, Common.sessionID);
 
 						JExcel export = new JExcel();
@@ -285,16 +324,19 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 			}
 
 			JButton4j button4jRun = new JButton4j(Common.icon_execute);
-			button4jRun.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			button4jRun.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
 					int row = jTable1.getSelectedRow();
-					if (row >= 0) {
+					if (row >= 0)
+					{
 
 						archID = jTable1.getValueAt(row, 0).toString();
 
 						JDBArchive c = new JDBArchive(Common.selectedHostID, Common.sessionID);
 						c.runManual(archID);
-						//String test = c.reportData();
+						// String test = c.reportData();
 						populateList(archID);
 					}
 				}
@@ -305,14 +347,17 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 			button4jRun.setBounds(353, 275, 115, 30);
 			button4jRun.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_ARCHIVE_RUN"));
 			getContentPane().add(button4jRun);
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
 
-	private void editRecord() {
+	private void editRecord()
+	{
 		int row = jTable1.getSelectedRow();
-		if (row >= 0) {
+		if (row >= 0)
+		{
 
 			archID = jTable1.getValueAt(row, 0).toString();
 
@@ -321,7 +366,8 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame {
 		}
 	}
 
-	private void jButtonCloseActionPerformed(ActionEvent evt) {
+	private void jButtonCloseActionPerformed(ActionEvent evt)
+	{
 		JDBQuery.closeStatement(listStatement);
 		dispose();
 	}

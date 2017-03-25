@@ -80,6 +80,22 @@ import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLHost;
 import com.commander4j.xml.JXMLSchema;
 
+/**
+ * JFrameHostAdmin is a Frame which allows the user to configure any number of
+ * database connections which are stored in a file called hosts.xml file.
+ * Changes to the host file can be password protected. If the file is password
+ * protected you will be prompted to enter the current configuration password using a
+ * dialog box called JDialogSetupPassword. When installing or upgrading a
+ * database any errors which occur as displayed using the dialog box
+ * JDialogDMLErrors
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JFrameHostAdmin.jpg" >
+ * 
+ * @see com.commander4j.cfg.JDialogDMLErrors JDialogDMLErrors
+ * @see com.commander4j.cfg.JDialogSetupPassword JDialogSetupPassword
+ * @see com.commander4j.cfg.Setup Setup
+ */
 public class JFrameHostAdmin extends JFrame
 {
 	private JTextField4j jTextFieldURL;
@@ -217,13 +233,12 @@ public class JFrameHostAdmin extends JFrame
 		setLocation((screenSize.width - getSize().width) / 2, (screenSize.height - getSize().height) / 2);
 
 		getHosts();
-		
-		if (Common.setupPassword.equals("")==false)
+
+		if (Common.setupPassword.equals("") == false)
 		{
-			JDialogSetupPassword u = new JDialogSetupPassword(null,Common.setupPassword);
+			JDialogSetupPassword u = new JDialogSetupPassword(null, Common.setupPassword);
 			u.setModal(true);
 		}
-		
 
 		populateList("");
 	}
@@ -735,20 +750,17 @@ public class JFrameHostAdmin extends JFrame
 									splash = "N";
 								}
 
-								if (JXMLHost.validateServiceHostPresent(hostList)==false)
+								if (JXMLHost.validateServiceHostPresent(hostList) == false)
 								{
 									JOptionPane.showMessageDialog(rootPane, "No host has been assigned to the interface service.", "Warning", JOptionPane.WARNING_MESSAGE);
 								}
-								
+
 								JXMLHost.writeHosts(hostList, splash, JTextFieldUpdateURL.getText(), getUpdateMode(), jTextField4jInstallDir.getText(), pass1);
 								jButtonSave.setEnabled(false);
 								jButtonUndo.setEnabled(false);
 							} else
 							{
-								JOptionPane.showMessageDialog(null,
-									    "Setup password has been changed but failed verification - please check.",
-									    "Error",
-									    JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Setup password has been changed but failed verification - please check.", "Error", JOptionPane.ERROR_MESSAGE);
 							}
 						}
 					});
@@ -790,7 +802,8 @@ public class JFrameHostAdmin extends JFrame
 				}
 				{
 
-					ComboBoxModel<String> jComboBoxjdbcDriverModel = new DefaultComboBoxModel<String>(new String[] { "", "mySQL", "Oracle", "SQL Server", "Web URL" });
+					ComboBoxModel<String> jComboBoxjdbcDriverModel = new DefaultComboBoxModel<String>(new String[]
+					{ "", "mySQL", "Oracle", "SQL Server", "Web URL" });
 					jComboBoxjdbcDriver = new JComboBox4j<String>();
 					desktopPane.add(jComboBoxjdbcDriver);
 					jComboBoxjdbcDriver.setModel(jComboBoxjdbcDriverModel);
@@ -1174,8 +1187,8 @@ public class JFrameHostAdmin extends JFrame
 
 								if (updrst.schema_updateRequired)
 								{
-									int continueUpdate = JOptionPane.showConfirmDialog(me, "Current Schema Version is " + String.valueOf(updrst.schema_CURVersion) + ", required version is " + String.valueOf(updrst.schema_NEWVersion)
-											+ ". Upgrade ?", "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+									int continueUpdate = JOptionPane.showConfirmDialog(me, "Current Schema Version is " + String.valueOf(updrst.schema_CURVersion) + ", required version is " + String.valueOf(updrst.schema_NEWVersion) + ". Upgrade ?",
+											"Connection to (" + hst.getSiteDescription() + ")", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 
 									if (continueUpdate == 0)
 									{
@@ -1195,8 +1208,8 @@ public class JFrameHostAdmin extends JFrame
 												JUtility.errorBeep();
 												JDialogDMLErrors dmlerrs = new JDialogDMLErrors(me, cmds);
 												dmlerrs.setModal(true);
-												int ignoreDDLErrors = JOptionPane.showConfirmDialog(me, "Ignore Errors and set SCHEMA version to " + String.valueOf(updrst.schema_NEWVersion) + " ?", "Connection to (" + hst.getSiteDescription()
-														+ ")", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+												int ignoreDDLErrors = JOptionPane.showConfirmDialog(me, "Ignore Errors and set SCHEMA version to " + String.valueOf(updrst.schema_NEWVersion) + " ?", "Connection to (" + hst.getSiteDescription() + ")",
+														JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 
 												if (ignoreDDLErrors == 0)
 												{
@@ -1377,27 +1390,25 @@ public class JFrameHostAdmin extends JFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					
+
 					if (jListHosts.getSelectedIndex() > -1)
 					{
 						int j = jListHosts.getSelectedIndex();
 						String desc = hostList.get(j).getSiteDescription();
-						
+
 						for (int x = 0; x < hostList.size(); x++)
 						{
-							if (x==j)
+							if (x == j)
 							{
 								hostList.get(x).setUniqueID("service");
-							}
-							else
+							} else
 							{
 								hostList.get(x).setUniqueID("");
 							}
 
 						}
-						
-						populateList(desc);
 
+						populateList(desc);
 
 						getHostData();
 						setSaveButtonState(true);
@@ -1483,16 +1494,17 @@ public class JFrameHostAdmin extends JFrame
 			desktopPane.add(jTextField4jInstallDir);
 
 			setupPasswordField = new JPasswordField(20);
-			setupPasswordField.addKeyListener(new KeyAdapter() {
+			setupPasswordField.addKeyListener(new KeyAdapter()
+			{
 				@Override
-				public void keyTyped(KeyEvent arg0) {
+				public void keyTyped(KeyEvent arg0)
+				{
 					jTextFieldKeyTyped();
 				}
 			});
 			setupPasswordField.setFocusCycleRoot(true);
 			setupPasswordField.setBounds(124, 444, 148, 21);
 			desktopPane.add(setupPasswordField);
-
 
 			JLabel4j_std label4j_std_3 = new JLabel4j_std();
 			label4j_std_3.setText("Setup Password");
@@ -1504,14 +1516,15 @@ public class JFrameHostAdmin extends JFrame
 			verifyPasswordField = new JPasswordField(20);
 			verifyPasswordField.setFocusCycleRoot(true);
 			verifyPasswordField.setBounds(124, 470, 148, 21);
-			verifyPasswordField.addKeyListener(new KeyAdapter() {
+			verifyPasswordField.addKeyListener(new KeyAdapter()
+			{
 				@Override
-				public void keyTyped(KeyEvent arg0) {
+				public void keyTyped(KeyEvent arg0)
+				{
 					jTextFieldKeyTyped();
 				}
 			});
 			desktopPane.add(verifyPasswordField);
-
 
 			JLabel4j_std label4j_std_4 = new JLabel4j_std();
 			label4j_std_4.setText("Verify Password");

@@ -48,6 +48,18 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The class JInternalFrameControlAdmin allows you to edit a single control
+ * record. Any changes made to an entry is record in the audit table.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JDialogControlProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBControl JDBControl
+ * @see com.commander4j.sys.JInternalFrameControlAdmin
+ *      JInternalFrameControlAdmin
+ * @see com.commander4j.db.JDBAuditPermissions JDBAuditPermissions
+ */
 public class JDialogControlProperties extends JDialog
 {
 	private static final long serialVersionUID = 1;
@@ -65,7 +77,7 @@ public class JDialogControlProperties extends JDialog
 	private JDBControl control = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBAuditPermissions audPerm = new JDBAuditPermissions(Common.selectedHostID, Common.sessionID);
-	
+
 	public JDialogControlProperties(JFrame parent, String systemKey)
 	{
 
@@ -86,18 +98,21 @@ public class JDialogControlProperties extends JDialog
 		jTextFieldKeyValue.setText(control.getKeyValue());
 		jTextFieldDescription.setText(control.getDescription());
 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				jTextFieldKeyValue.requestFocus();
 				jTextFieldKeyValue.setCaretPosition(jTextFieldKeyValue.getText().length());
 			}
 		});
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
-			//setDefaultLookAndFeelDecorated(true);
+			// setDefaultLookAndFeelDecorated(true);
 			setPreferredSize(new java.awt.Dimension(460, 163));
 			this.setBounds(25, 25, 488, 176);
 			setModal(true);
@@ -143,8 +158,10 @@ public class JDialogControlProperties extends JDialog
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(java.awt.event.KeyEvent.VK_S);
 					jButtonUpdate.setEnabled(false);
-					jButtonUpdate.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonUpdate.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							control.setDescription(jTextFieldDescription.getText());
 							control.setKeyValue(jTextFieldKeyValue.getText());
 							control.update();
@@ -160,8 +177,10 @@ public class JDialogControlProperties extends JDialog
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -182,8 +201,10 @@ public class JDialogControlProperties extends JDialog
 					jDesktopPane1.add(jTextFieldKeyValue);
 					jTextFieldKeyValue.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldKeyValue.setFocusCycleRoot(true);
-					jTextFieldKeyValue.addKeyListener(new KeyAdapter() {
-						public void keyTyped(KeyEvent evt) {
+					jTextFieldKeyValue.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -195,8 +216,10 @@ public class JDialogControlProperties extends JDialog
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.addKeyListener(new KeyAdapter() {
-						public void keyTyped(KeyEvent evt) {
+					jTextFieldDescription.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -209,8 +232,7 @@ public class JDialogControlProperties extends JDialog
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
 				}
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}

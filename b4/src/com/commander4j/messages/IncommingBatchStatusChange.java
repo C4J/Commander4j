@@ -30,6 +30,13 @@ package com.commander4j.messages;
 import com.commander4j.db.JDBMaterialBatch;
 import com.commander4j.util.JUtility;
 
+/**
+ * IncommingBatchStatusChange class allows an external system to update the APP_MATERIAL_BATCH table.
+ * <p>
+ * <img alt="" src="./doc-files/APP_MATERIAL_BATCH.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterialBatch JDBMaterialBatch
+ */
 public class IncommingBatchStatusChange
 {
 

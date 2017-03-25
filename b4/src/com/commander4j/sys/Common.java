@@ -53,6 +53,10 @@ import com.commander4j.renderer.TableCellRenderer_Default;
 import com.commander4j.util.JImageIconLoader;
 import com.commander4j.util.JSessionData;
 
+/**
+ * The Common classed is the place where all global variables are located.
+ *
+ */
 public class Common
 {
 	//LOGON STATUS

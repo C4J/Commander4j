@@ -53,6 +53,19 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The class JInternalFrameControlAdmin displays a list of all the system
+ * control values. When adding or changing a value this class invokes and
+ * instance of JDialogControlProperties Any user changes to the values held in
+ * this table are recorded in the audit module.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameControlAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBControl JDBControl
+ * @see com.commander4j.sys.JDialogControlProperties JDialogControlProperties
+ * @see com.commander4j.db.JDBAuditPermissions JDBAuditPermissions
+ */
 public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 {
 	private JButton4j jButtonExcel;
@@ -70,7 +83,6 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 	private PreparedStatement listStatement;
 	private JDBAuditPermissions audPerm = new JDBAuditPermissions(Common.selectedHostID, Common.sessionID);
 
-
 	public JInternalFrameControlAdmin()
 	{
 		super();
@@ -85,8 +97,10 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 
 		{
 			jButtonExcel = new JButton4j(Common.icon_XLS);
-			jButtonExcel.addActionListener(new ActionListener() {
-				public void actionPerformed(final ActionEvent e) {
+			jButtonExcel.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(final ActionEvent e)
+				{
 					JDBControl control = new JDBControl(Common.selectedHostID, Common.sessionID);
 
 					JExcel export = new JExcel();
@@ -102,8 +116,9 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 
 	}
 
-	private void buildSQL() {
-		
+	private void buildSQL()
+	{
+
 		JDBQuery.closeStatement(listStatement);
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 
@@ -116,7 +131,8 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 		listStatement = query.getPreparedStatement();
 	}
 
-	private void populateList(String defaultitem) {
+	private void populateList(String defaultitem)
+	{
 
 		JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 		buildSQL();
@@ -142,7 +158,8 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 		jScrollPane1.repaint();
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(669, 341));
@@ -167,8 +184,10 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 					jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
 					jTable1.setFont(Common.font_list);
 					jTable1.setForeground(Common.color_listFontStandard);
-					jTable1.addMouseListener(new MouseAdapter() {
-						public void mouseClicked(MouseEvent evt) {
+					jTable1.addMouseListener(new MouseAdapter()
+					{
+						public void mouseClicked(MouseEvent evt)
+						{
 							if (evt.getClickCount() == 2)
 							{
 								if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_SYSTEM_KEYS_EDIT") == true)
@@ -190,8 +209,10 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonEdit.setBounds(115, 275, 106, 30);
 				jButtonEdit.setMnemonic(lang.getMnemonicChar());
 				jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_SYSTEM_KEYS_EDIT"));
-				jButtonEdit.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				jButtonEdit.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						editRecord();
 					}
 				});
@@ -202,8 +223,10 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonClose.setText(lang.get("btn_Close"));
 				jButtonClose.setBounds(655, 275, 106, 30);
 				jButtonClose.setMnemonic(lang.getMnemonicChar());
-				jButtonClose.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				jButtonClose.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						jButtonCloseActionPerformed(evt);
 					}
 				});
@@ -216,8 +239,10 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonAdd.setBounds(7, 275, 106, 32);
 				jButtonAdd.setMnemonic(lang.getMnemonicChar());
 				jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_SYSTEM_KEYS_ADD"));
-				jButtonAdd.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				jButtonAdd.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						JDBControl ctl = new JDBControl(Common.selectedHostID, Common.sessionID);
 
 						systemKey = JOptionPane.showInputDialog(Common.mainForm, "Enter new System Key");
@@ -230,8 +255,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 								{
 									JUtility.errorBeep();
 									JOptionPane.showMessageDialog(Common.mainForm, ctl.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
-								}
-								else
+								} else
 								{
 									audPerm.generateNewAuditLogID();
 									audPerm.write(Common.userList.getUser(Common.sessionID).getUserId(), "CONTROL", "CREATE", systemKey, "");
@@ -253,15 +277,17 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonDelete.setBounds(223, 275, 106, 30);
 				jButtonDelete.setMnemonic(lang.getMnemonicChar());
 				jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_SYSTEM_KEYS_DELETE"));
-				jButtonDelete.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				jButtonDelete.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						int row = jTable1.getSelectedRow();
 						if (row >= 0)
 						{
 
 							systemKey = jTable1.getValueAt(row, 0).toString();
 
-							int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_System_Key_Delete")+" " + systemKey + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+							int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_System_Key_Delete") + " " + systemKey + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 							if (n == 0)
 							{
 								JDBControl c = new JDBControl(Common.selectedHostID, Common.sessionID);
@@ -282,9 +308,11 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonPrint.setBounds(439, 275, 106, 30);
 				jButtonPrint.setMnemonic(lang.getMnemonicChar());
 				jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_CONTROL"));
-				jButtonPrint.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
-						JLaunchReport.runReport("RPT_CONTROL",null,"",null,"");
+				jButtonPrint.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
+						JLaunchReport.runReport("RPT_CONTROL", null, "", null, "");
 					}
 				});
 			}
@@ -296,14 +324,14 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
 
-	private void editRecord() {
+	private void editRecord()
+	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -315,7 +343,8 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 		}
 	}
 
-	private void jButtonCloseActionPerformed(ActionEvent evt) {
+	private void jButtonCloseActionPerformed(ActionEvent evt)
+	{
 		JDBQuery.closeStatement(listStatement);
 		dispose();
 	}

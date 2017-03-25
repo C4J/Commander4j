@@ -31,15 +31,27 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.db.JDBLanguage;
 
+/**
+ * The JLanguage is probably used more than any other class in the application.
+ * Once a user has logged on his preferred language is read from his user
+ * profile. From that point on all text displayed on the screen is determined by
+ * this class. A token is passed to the routine which declares what label/text
+ * is required and this class returns the appropriate text in the users
+ * language. It is also used by the Servlet to display language on the web
+ * pages. All the text is stored in a database but read into memory on
+ * startup/logon so that it can return the appropriate text as quickly as
+ * possible. Although its possible to change text in the database those changes
+ * will only be shown when the application is re-launched.
+ */
 public class JLanguage
 {
 	private String hostID;
 	private String sessionID;
 	private String languageID;
 	private JDBLanguage lang;
-	private Boolean initialised=false;
+	private Boolean initialised = false;
 	private Logger logger = Logger.getLogger(JLanguage.class);
-	
+
 	public String getHostID()
 	{
 		return hostID;
@@ -49,65 +61,66 @@ public class JLanguage
 	{
 		return languageID;
 	}
-	
+
 	public String getSessionID()
 	{
 		return sessionID;
 	}
-	
-	public String getText(String id,String Lang)
+
+	public String getText(String id, String Lang)
 	{
-		String result="";
-		
+		String result = "";
+
 		setLanguageID(Lang);
-		
+
 		result = lang.get(id);
 		return result;
 	}
-	
+
 	public String getText(String id)
 	{
-		String result="";
-		
-		if (initialised==false)
+		String result = "";
+
+		if (initialised == false)
 		{
 			init();
 		}
-		
+
 		result = lang.get(id, getLanguageID());
-		logger.debug("getText ["+id+"] ("+getLanguageID()+")="+result);
+		logger.debug("getText [" + id + "] (" + getLanguageID() + ")=" + result);
 		return result;
 	}
-	
+
 	public void preload(String mask)
 	{
-		if (initialised==false)
+		if (initialised == false)
 		{
 			init();
 		}
 		lang.preLoad(mask);
 	}
-	
+
 	public void init()
 	{
-		lang = new JDBLanguage(getHostID(),getSessionID());
+		lang = new JDBLanguage(getHostID(), getSessionID());
 	}
-	
+
 	public void setHostID(String hostID)
 	{
-		logger.debug("hostID="+hostID);
+		logger.debug("hostID=" + hostID);
 		this.hostID = hostID;
 	}
+
 	public void setLanguageID(String languageID)
 	{
-		logger.debug("languageID="+languageID);
+		logger.debug("languageID=" + languageID);
 		this.languageID = languageID;
 	}
 
 	public void setSessionID(String sessionID)
 	{
-		logger.debug("sessionID="+sessionID);
+		logger.debug("sessionID=" + sessionID);
 		this.sessionID = sessionID;
 	}
-	
+
 }

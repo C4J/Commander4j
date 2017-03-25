@@ -44,6 +44,10 @@ import com.commander4j.util.JUtility;
  * interfaces.
  * <p>
  * <img alt="" src="./doc-files/SYS_INTERFACE.jpg" >
+ * 
+ * @see com.commander4j.interfaces.JInternalFrameInterfaceAdmin JInternalFrameInterfaceAdmin
+ * @see com.commander4j.interfaces.JInternalFrameInterfaceProperties JInternalFrameInterfaceProperties
+ * @see com.commander4j.db.JDBInterfaceLog JDBInterfaceLog
  */
 public class JDBInterface
 {

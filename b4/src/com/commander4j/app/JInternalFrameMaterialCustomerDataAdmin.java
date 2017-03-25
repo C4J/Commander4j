@@ -28,13 +28,14 @@ package com.commander4j.app;
  */
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
-import java.util.LinkedList; 
+import java.util.LinkedList;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -43,8 +44,6 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-//import javax.swing.table.DefaultTableModel;
-//import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import com.commander4j.db.JDBCustomer;
@@ -61,7 +60,18 @@ import com.commander4j.tablemodel.JDBMaterialCustomerDataTableModel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
-public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JInternalFrame {
+/**
+ * The JInternalFrameMaterialCustomerDataAdmin is the admin screen for Administering
+ * Material Data which is customer specific. To edit a specific item of data the dialog JDialogMaterialCustomerDataProperties is used.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMaterialCustomerDataAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterialCustomerData JDBMaterialCustomerData
+ * @see com.commander4j.app.JDialogMaterialCustomerDataProperties JDialogMaterialCustomerDataProperties
+ */
+public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JInternalFrame
+{
 	private JLabel4j_std jStatusText;
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
@@ -81,7 +91,8 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private PreparedStatement listStatement;
 
-	public JInternalFrameMaterialCustomerDataAdmin(String material) {
+	public JInternalFrameMaterialCustomerDataAdmin(String material)
+	{
 
 		initGUI();
 		final JHelp help = new JHelp();
@@ -160,8 +171,8 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][]
 						{
-						{ "One", "Two" },
-						{ "Three", "Four" } }, new String[]
+								{ "One", "Two" },
+								{ "Three", "Four" } }, new String[]
 						{ "Column 1", "Column 2" });
 						this.setClosable(true);
 						jTable1 = new JTable();
@@ -171,7 +182,8 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 						jTable1.getTableHeader().setFont(Common.font_table_header);
 						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
-						jTable1.addMouseListener(new MouseAdapter() {
+						jTable1.addMouseListener(new MouseAdapter()
+						{
 							public void mouseClicked(MouseEvent evt)
 							{
 								if (evt.getClickCount() == 2)
@@ -192,7 +204,8 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
 					jButtonAdd.setBounds(685, 7, 126, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_CUST_DATA_ADD"));
-					jButtonAdd.addActionListener(new ActionListener() {
+					jButtonAdd.addActionListener(new ActionListener()
+					{
 						public void actionPerformed(ActionEvent evt)
 						{
 							JDBMaterialCustomerData m = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
@@ -214,7 +227,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 									lcustomer = lcustomer.toUpperCase();
 									if (u.isValidCustomer(lcustomer))
 									{
-										
+
 										JDBDataIDs di = new JDBDataIDs(Common.selectedHostID, Common.sessionID);
 										LinkedList<JDBDataIDs> idList = di.getDataIDs();
 
@@ -264,7 +277,8 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
 					jButtonEdit.setBounds(685, 35, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_CUST_DATA_EDIT"));
-					jButtonEdit.addActionListener(new ActionListener() {
+					jButtonEdit.addActionListener(new ActionListener()
+					{
 						public void actionPerformed(ActionEvent evt)
 						{
 							editRecord();
@@ -279,7 +293,8 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
 					jButtonDelete.setBounds(685, 63, 126, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_CUST_DATA_DELETE"));
-					jButtonDelete.addActionListener(new ActionListener() {
+					jButtonDelete.addActionListener(new ActionListener()
+					{
 						public void actionPerformed(ActionEvent evt)
 						{
 							int row = jTable1.getSelectedRow();
@@ -318,7 +333,8 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.setBounds(685, 91, 126, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_MATERIAL_CUST_DATA"));
-					jButtonPrint.addActionListener(new ActionListener() {
+					jButtonPrint.addActionListener(new ActionListener()
+					{
 						public void actionPerformed(ActionEvent evt)
 						{
 
@@ -340,7 +356,8 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.setBounds(685, 175, 126, 32);
-					jButtonClose.addActionListener(new ActionListener() {
+					jButtonClose.addActionListener(new ActionListener()
+					{
 						public void actionPerformed(ActionEvent evt)
 						{
 							dispose();
@@ -353,7 +370,8 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setBounds(685, 119, 126, 32);
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.addActionListener(new ActionListener() {
+					jButtonRefresh.addActionListener(new ActionListener()
+					{
 						public void actionPerformed(ActionEvent evt)
 						{
 							populateList(lmaterial);

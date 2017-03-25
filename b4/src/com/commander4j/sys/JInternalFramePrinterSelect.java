@@ -45,6 +45,18 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JList4j;
 import com.commander4j.util.JPrint;
 
+/**
+ * The JInternalFramePrinterSelect class displays a form on screen with a list of installed printers. The user can then select the required printer which is made the default 
+ * operating system printer by invoking an operating system specific shell command.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFramePrinterSelect.jpg" >
+ * 
+ * @see com.commander4j.util.JPrint JPrint
+ * @see com.commander4j.bar.JLabelPrint JLabelPrint
+ * @see com.commander4j.util.JCUPSPrinterAttributes JCUPSPrinterAttributes
+ *
+ */
 public class JInternalFramePrinterSelect extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;

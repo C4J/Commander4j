@@ -81,6 +81,22 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameDespatch class allows you to manually build a despatch and confirm it. 
+ * A despatch will update the location of pallets in the database, record the movement 
+ * in the PALLET_HISTORY table and generate an outbound message to interface with an ERP system.
+ * There is also a web page for use on mobile had scanners which allows you to build a despatch 
+ * by scanning the SSCC barcode.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameDespatch.jpg" >
+ * 
+ * @see com.commander4j.db.JDBDespatch JDBDespatch
+ * @see com.commander4j.db.JDBJourney JDBJourney
+ * @see com.commander4j.app.JInternalFrameJourneyAdmin JInternalFrameJourneyAdmin
+ * @see com.commander4j.app.JInternalFrameJourneyProperties JInternalFrameJourneyProperties
+ * @see com.commander4j.servlet.Process Process
+ */
 public class JInternalFrameDespatch extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

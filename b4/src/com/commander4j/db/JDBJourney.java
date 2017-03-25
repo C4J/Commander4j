@@ -52,6 +52,8 @@ import com.commander4j.util.JUtility;
  * <img alt="" src="./doc-files/APP_JOURNEY.jpg" >
  * 
  * @see com.commander4j.db.JDBDespatch JDBDespatch
+ * @see com.commander4j.app.JInternalFrameJourneyAdmin JInternalFrameJourneyAdmin
+ * @see com.commander4j.app.JInternalFrameJourneyProperties JInternalFrameJourneyProperties
  */
 public class JDBJourney
 {

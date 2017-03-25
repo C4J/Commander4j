@@ -68,6 +68,32 @@ import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameMaterialProperties is the screen for editing the basic code
+ * Material Data. From this screen you can insert/update/delete records from the
+ * APP_MATERIAL and also launch additional screens for many of the related
+ * detail tables.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMaterialProperties.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMaterialAdmin
+ *      JInternalFrameMaterialProperties
+ * @see com.commander4j.app.JInternalFrameMaterialUomAdmin
+ *      JInternalFrameMaterialUomAdmin
+ * @see com.commander4j.app.JInternalFrameMaterialBatchAdmin
+ *      JInternalFrameMaterialBatchAdmin
+ * @see com.commander4j.app.JInternalFrameMaterialCustomerDataAdmin
+ *      JInternalFrameMaterialCustomerDataAdmin
+ * @see com.commander4j.app.JInternalFrameMaterialTypeAdmin
+ *      JInternalFrameMaterialTypeAdmin
+ * @see com.commander4j.db.JDBMaterial JDBMaterial
+ * @see com.commander4j.db.JDBMaterialUom JDBMaterialUom
+ * @see com.commander4j.db.JDBMaterialLocation JDBMaterialLocation
+ * @see com.commander4j.db.JDBMaterialType JDBMaterialType
+ * @see com.commander4j.db.JDBMaterialCustomerData JDBMaterialCustomerData
+ * @see com.commander4j.db.JDBMaterialBatch JDBMaterialBatch
+ */
 public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;

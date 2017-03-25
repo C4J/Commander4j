@@ -81,6 +81,22 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameJourneyAdmin class allows you to administer the APP_JOURNEY
+ * table. When Dispatching pallets to a location it is an option to capture an
+ * external tracking reference (Journey Ref). The option to determine the
+ * requirement of Journey Ref is determined by a property of the receiving
+ * location. See JDBLocation class and APP_LOCATION table. The Journey Refs
+ * which can be used as either inserted manually using the appropriate screen
+ * within the application or read in from a XML message using the application
+ * interfacing module.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameJourneyAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBDespatch JDBDespatch
+ * @see com.commander4j.app.JInternalFrameJourneyAdmin JInternalFrameJourneyAdmin
+ * @see com.commander4j.app.JInternalFrameJourneyProperties JInternalFrameJourneyProperties
+ */
 public class JInternalFrameJourneyAdmin extends JInternalFrame
 {
 	private JButton4j jButtonExcel;
@@ -165,7 +181,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		timeslotFrom.setEnabled(false);
 		jCheckBoxFrom.setSelected(false);
 		jCheckBoxTo.setSelected(false);
-		
+
 		jTextFieldLoadType.setText("");
 		jTextFieldLoadTypeDesc.setText("");
 		jTextFieldHaulier.setText("");
@@ -234,13 +250,13 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		buildSQL();
 		populateList();
 	}
-	
+
 	private void print()
 	{
 		buildSQL();
 		JLaunchReport.runReport("RPT_JOURNEYS", null, "", listStatement, "");
 	}
-	
+
 	private void search()
 	{
 		buildSQL();
@@ -323,7 +339,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		query.addParamtoSQL("despatch_no=", jTextFieldDespatchNo.getText());
 		query.addParamtoSQL("status=", jComboBoxStatus.getSelectedItem().toString());
 		query.addParamtoSQL("location_id_to=", jTextFieldLocationID.getText());
-		query.addParamtoSQL("upper(load_type)=", jTextFieldLoadType.getText().toUpperCase() );
+		query.addParamtoSQL("upper(load_type)=", jTextFieldLoadType.getText().toUpperCase());
 		query.addParamtoSQL("upper(load_type_desc)=", jTextFieldLoadTypeDesc.getText().toUpperCase());
 		query.addParamtoSQL("haulier=", jTextFieldHaulier.getText());
 
@@ -758,7 +774,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
-					{ "JOURNEY_REF", "LOCATION_ID_TO", "DESPATCH_NO", "STATUS", "TIMESLOT", "DATE_UPDATED","LOAD_TYPE" ,"LOAD_TYPE_DESC","HAULIER"});
+					{ "JOURNEY_REF", "LOCATION_ID_TO", "DESPATCH_NO", "STATUS", "TIMESLOT", "DATE_UPDATED", "LOAD_TYPE", "LOAD_TYPE_DESC", "HAULIER" });
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
@@ -896,7 +912,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					jButtonExcel.setBounds(660, 149, 110, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
-				
+
 				{
 					jButtonPrint = new JButton4j(Common.icon_print);
 					jButtonPrint.addActionListener(new ActionListener()
@@ -1026,28 +1042,28 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 						}
 					});
 				}
-				
+
 				JLabel4j_std label4j_stdLoadType = new JLabel4j_std();
 				label4j_stdLoadType.setText(lang.get("lbl_LoadType"));
 				label4j_stdLoadType.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_stdLoadType.setBounds(299, 45, 113, 21);
 				jDesktopPane1.add(label4j_stdLoadType);
-				
+
 				jTextFieldLoadType.setBounds(419, 44, 179, 23);
 				jDesktopPane1.add(jTextFieldLoadType);
-				
+
 				jTextFieldLoadTypeDesc.setBounds(719, 44, 262, 23);
 				jDesktopPane1.add(jTextFieldLoadTypeDesc);
-				
+
 				JLabel4j_std label4j_stdLoadTypeDesc = new JLabel4j_std();
 				label4j_stdLoadTypeDesc.setText(lang.get("lbl_LoadTypeDesc"));
 				label4j_stdLoadTypeDesc.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_stdLoadTypeDesc.setBounds(599, 45, 113, 21);
 				jDesktopPane1.add(label4j_stdLoadTypeDesc);
-				
+
 				jTextFieldHaulier.setBounds(132, 81, 168, 23);
 				jDesktopPane1.add(jTextFieldHaulier);
-				
+
 				JLabel4j_std label4j_stdHaulier = new JLabel4j_std();
 				label4j_stdHaulier.setText(lang.get("lbl_Haulier"));
 				label4j_stdHaulier.setHorizontalAlignment(SwingConstants.TRAILING);

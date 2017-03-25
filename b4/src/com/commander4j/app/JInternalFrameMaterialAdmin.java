@@ -77,6 +77,26 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameMaterialAdmin is the starting point for material admin,
+ * From this screen you can insert/update/delete records from the APP_MATERIAL
+ * and also launch additional screens for many of the related detail tables.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMaterialAdmin.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMaterialProperties JInternalFrameMaterialProperties
+ * @see com.commander4j.app.JInternalFrameMaterialUomAdmin JInternalFrameMaterialUomAdmin
+ * @see com.commander4j.app.JInternalFrameMaterialBatchAdmin JInternalFrameMaterialBatchAdmin
+ * @see com.commander4j.app.JInternalFrameMaterialCustomerDataAdmin JInternalFrameMaterialCustomerDataAdmin
+ * @see com.commander4j.app.JInternalFrameMaterialTypeAdmin JInternalFrameMaterialTypeAdmin
+ * @see com.commander4j.db.JDBMaterial JDBMaterial
+ * @see com.commander4j.db.JDBMaterialUom JDBMaterialUom
+ * @see com.commander4j.db.JDBMaterialLocation JDBMaterialLocation
+ * @see com.commander4j.db.JDBMaterialType JDBMaterialType
+ * @see com.commander4j.db.JDBMaterialCustomerData JDBMaterialCustomerData
+ * @see com.commander4j.db.JDBMaterialBatch JDBMaterialBatch
+ */
 public class JInternalFrameMaterialAdmin extends JInternalFrame
 {
 	private JButton4j jButtonClear;
@@ -128,7 +148,8 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 	private PreparedStatement listStatement;
 	private JTextField4j textFieldInspectionID;
 
-	private void clearFilter() {
+	private void clearFilter()
+	{
 
 		jTextFieldMaterial.setText("");
 
@@ -154,7 +175,8 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 	}
 
-	private void filterBy(String fieldname) {
+	private void filterBy(String fieldname)
+	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -206,34 +228,39 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		}
 	}
 
-	private void sortBy(String fieldname) {
+	private void sortBy(String fieldname)
+	{
 		jComboBoxSortBy.setSelectedItem(fieldname);
 		search();
 	}
 
-	private void export() {
+	private void export()
+	{
 		JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		PreparedStatement temp = buildSQLr();
 		export.saveAs("materials.xls", material.getMaterialDataResultSet(temp), Common.mainForm);
 	}
 
-	private void print() {
+	private void print()
+	{
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_MATERIALS", null, "", temp, "");
 	}
 
-	private void search() {
+	private void search()
+	{
 		buildSQL();
 		populateList();
 	}
 
-	private void deleteRecord() {
+	private void deleteRecord()
+	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
 			lmaterial = jTable1.getValueAt(row, 0).toString();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Material_Delete")+" " + lmaterial, lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Material_Delete") + " " + lmaterial, lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 			if (n == 0)
 			{
 				JDBMaterial m = new JDBMaterial(Common.selectedHostID, Common.sessionID);
@@ -243,8 +270,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				{
 					JUtility.errorBeep();
 					JOptionPane.showMessageDialog(Common.mainForm, m.getErrorMessage(), "Delete error (" + lmaterial + ")", JOptionPane.WARNING_MESSAGE);
-				}
-				else
+				} else
 				{
 					buildSQL();
 					populateList();
@@ -253,9 +279,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		}
 	}
 
-	private void addRecord() {
+	private void addRecord()
+	{
 		JDBMaterial m = new JDBMaterial(Common.selectedHostID, Common.sessionID);
-		lmaterial = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_Create"), null, JOptionPane.QUESTION_MESSAGE,Common.icon_confirm, null, null);
+		lmaterial = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_Create"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm, null, null);
 		if (lmaterial != null)
 		{
 			if (lmaterial.equals("") == false)
@@ -265,10 +292,9 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				if (m.isValidMaterial() == false)
 				{
 					JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_EDIT", lmaterial);
-				}
-				else
+				} else
 				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 				}
 				buildSQL();
 				populateList();
@@ -277,7 +303,8 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 	}
 
-	private void populateList() {
+	private void populateList()
+	{
 		JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 
 		JDBMaterialTableModel materialtable = new JDBMaterialTableModel(material.getMaterialDataResultSet(listStatement));
@@ -312,7 +339,8 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		JUtility.setResultRecordCountColour(jStatusText, false, 0, materialtable.getRowCount());
 	}
 
-	private void editRecord() {
+	private void editRecord()
+	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -321,8 +349,9 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		}
 	}
 
-	private PreparedStatement buildSQLr() {
-		
+	private PreparedStatement buildSQLr()
+	{
+
 		PreparedStatement result;
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 		query.clear();
@@ -346,24 +375,24 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		{
 			i = Integer.valueOf(jTextFieldShelfLife.getText());
 			query.addParamtoSQL("shelf_life=", i);
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 		}
 
 		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
 		query.applyRestriction(false, "none", 0);
 		query.bindParams();
-		
+
 		result = query.getPreparedStatement();
 		return result;
-		
-	}	
-	
-	private void buildSQL() {
-		
+
+	}
+
+	private void buildSQL()
+	{
+
 		JDBQuery.closeStatement(listStatement);
-		
+
 		listStatement = buildSQLr();
 	}
 
@@ -399,21 +428,22 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		setSequence(dlg_sort_descending);
 	}
 
-	private void setSequence(boolean descending) {
+	private void setSequence(boolean descending)
+	{
 		jToggleButtonSequence.setSelected(descending);
 		if (jToggleButtonSequence.isSelected())
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
 			jToggleButtonSequence.setIcon(Common.icon_descending);
-		}
-		else
+		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
 			jToggleButtonSequence.setIcon(Common.icon_ascending);
 		}
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(757, 535));
@@ -433,7 +463,11 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jDesktopPane1.add(jScrollPane1);
 					jScrollPane1.setBounds(0, 183, 963, 375);
 					{
-						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
+						TableModel jTable1Model = new DefaultTableModel(new String[][]
+						{
+								{ "One", "Two" },
+								{ "Three", "Four" } }, new String[]
+						{ "Column 1", "Column 2" });
 						jTable1 = new JTable();
 						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
 						jScrollPane1.setViewportView(jTable1);
@@ -441,8 +475,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 						jTable1.getTableHeader().setFont(Common.font_table_header);
 						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
-						jTable1.addMouseListener(new MouseAdapter() {
-							public void mouseClicked(MouseEvent evt) {
+						jTable1.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
 								if (evt.getClickCount() == 2)
 								{
 									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_EDIT"))
@@ -459,8 +495,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										search();
 									}
 								});
@@ -471,8 +509,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_ADD"));
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										addRecord();
 									}
 								});
@@ -483,8 +523,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_EDIT"));
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										editRecord();
 									}
 								});
@@ -495,8 +537,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_DELETE"));
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										deleteRecord();
 									}
 								});
@@ -506,8 +550,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										print();
 									}
 								});
@@ -517,8 +563,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										export();
 									}
 								});
@@ -533,8 +581,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("MATERIAL");
 										}
 									});
@@ -544,8 +594,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("MATERIAL_TYPE");
 										}
 									});
@@ -555,8 +607,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("DESCRIPTION");
 										}
 									});
@@ -566,8 +620,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("BASE_UOM");
 										}
 									});
@@ -577,8 +633,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("SHELF_LIFE");
 										}
 									});
@@ -588,8 +646,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("SHELF_LIFE_RULE");
 										}
 									});
@@ -599,8 +659,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("DEFAULT_BATCH_STATUS");
 										}
 									});
@@ -616,8 +678,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy(newItemMenuItem.getText());
 										}
 									});
@@ -627,8 +691,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy(newItemMenuItem.getText());
 										}
 									});
@@ -638,8 +704,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy(newItemMenuItem.getText());
 										}
 									});
@@ -649,8 +717,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy(newItemMenuItem.getText());
 										}
 									});
@@ -660,8 +730,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy(newItemMenuItem.getText());
 										}
 									});
@@ -671,8 +743,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy(newItemMenuItem.getText());
 										}
 									});
@@ -682,8 +756,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy(newItemMenuItem.getText());
 										}
 									});
@@ -697,8 +773,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											clearFilter();
 										}
 									});
@@ -715,8 +793,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setBounds(-1, 143, 109, 32);
 					jButtonSearch.setMnemonic(lang.getMnemonicChar());
-					jButtonSearch.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonSearch.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							search();
 
 						}
@@ -738,7 +818,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					textFieldInspectionID.setBounds(126, 110, 117, 21);
 					jDesktopPane1.add(textFieldInspectionID);
 					textFieldInspectionID.setColumns(10);
-				}	
+				}
 				{
 					ComboBoxModel<JDBMaterialType> jComboBox1Model = new DefaultComboBoxModel<JDBMaterialType>(typeList);
 					jComboBoxMaterialType = new JComboBox4j<JDBMaterialType>();
@@ -794,8 +874,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jButtonAdd.setBounds(215, 143, 109, 32);
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_ADD"));
-					jButtonAdd.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonAdd.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							addRecord();
 						}
 					});
@@ -807,8 +889,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jButtonEdit.setBounds(323, 143, 109, 32);
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_EDIT"));
-					jButtonEdit.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonEdit.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							editRecord();
 						}
 					});
@@ -820,8 +904,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jButtonDelete.setBounds(431, 143, 109, 32);
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_DELETE"));
-					jButtonDelete.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonDelete.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							deleteRecord();
 						}
 					});
@@ -872,8 +958,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setBounds(863, 143, 109, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JDBQuery.closeStatement(listStatement);
 							dispose();
 						}
@@ -886,8 +974,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jButtonPrint.setBounds(539, 143, 109, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_MATERIALS"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonPrint.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							print();
 						}
 					});
@@ -919,8 +1009,8 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jLabel10.setBounds(358, 110, 98, 21);
 				}
 				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "MATERIAL", "MATERIAL_TYPE", "DESCRIPTION", "BASE_UOM", "PRODUCTION_UOM", "ISSUE_UOM", "SHELF_LIFE", "SHELF_LIFE_RULE", "DEFAULT_PALLET_STATUS",
-							"DEFAULT_BATCH_STATUS" });
+					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
+					{ "MATERIAL", "MATERIAL_TYPE", "DESCRIPTION", "BASE_UOM", "PRODUCTION_UOM", "ISSUE_UOM", "SHELF_LIFE", "SHELF_LIFE_RULE", "DEFAULT_PALLET_STATUS", "DEFAULT_BATCH_STATUS" });
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
@@ -944,8 +1034,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jToggleButtonSequence = new JToggleButton();
 					jDesktopPane1.add(jToggleButtonSequence);
 					jToggleButtonSequence.setBounds(631, 110, 21, 21);
-					jToggleButtonSequence.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jToggleButtonSequence.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							setSequence(jToggleButtonSequence.isSelected());
 						}
 					});
@@ -961,8 +1053,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS);
-					jButtonExcel.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					jButtonExcel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							export();
 						}
 					});
@@ -975,8 +1069,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 				{
 					jButtonClear = new JButton4j(Common.icon_clear);
-					jButtonClear.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					jButtonClear.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							clearFilter();
 						}
 					});
@@ -988,8 +1084,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				{
 					JButton4j btnLookupInspection = new JButton4j("");
 					btnLookupInspection.setIcon(Common.icon_lookup);
-					btnLookupInspection.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					btnLookupInspection.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							JLaunchLookup.dlgCriteriaDefault = "";
 							JLaunchLookup.dlgAutoExec = true;
 							if (JLaunchLookup.qmInspections())
@@ -1002,8 +1100,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jDesktopPane1.add(btnLookupInspection);
 				}
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -1015,19 +1112,24 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
 	 * with parent.
 	 */
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
+	private static void addPopup(Component component, final JPopupMenu popup)
+	{
+		component.addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			private void showMenu(MouseEvent e) {
+			private void showMenu(MouseEvent e)
+			{
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
