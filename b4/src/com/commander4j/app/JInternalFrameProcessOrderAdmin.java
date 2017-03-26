@@ -83,6 +83,18 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameProcessOrderAdmin is used maintaining the APP_PROCESS_ORDER
+ * table. This form allows you to search the table and call other classes for
+ * editing or printing the data.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameProcessOrderAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBProcessOrder JDBProcesOrder 
+ * @see com.commander4j.app.JInternalFrameProcessOrderProperties JInternalFrameProcessOrderProperties
+ * @see com.commander4j.app.JInternalFrameProcessOrderLabel JInternalFrameProcessOrderLabel
+ */
 public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 {
 	private JButton4j jButtonClear;
@@ -124,7 +136,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 	private JTextField4j jTextFieldProcessOrder;
 	private JLabel4j_std jLabel2;
 	private JTextField4j jTextFieldMaterial;
-	private JTextField4j jTextFieldCustomer;	
+	private JTextField4j jTextFieldCustomer;
 	private JTextField4j jTextFieldDescription;
 	private JTextField4j jTextFieldCustomerID;
 	private JLabel4j_std jLabel3;
@@ -161,7 +173,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		query.bindParams();
 		listStatement = query.getPreparedStatement();
 		populateList();
-		
+
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -170,7 +182,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		setSequence(dlg_sort_descending);
 	}
 
-	private void filterBy(String fieldname) {
+	private void filterBy(String fieldname)
+	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -210,7 +223,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		}
 	}
 
-	private void clearFilter() {
+	private void clearFilter()
+	{
 		jTextFieldMaterial.setText("");
 		jTextFieldProcessOrder.setText("");
 		jTextFieldDescription.setText("");
@@ -223,13 +237,15 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		search();
 	}
 
-	private void sortBy(String orderField) {
+	private void sortBy(String orderField)
+	{
 		jComboBoxSortBy.setSelectedItem(orderField);
 		buildSQL();
 		populateList();
 	}
 
-	private void excel() {
+	private void excel()
+	{
 		JDBProcessOrder processOrder = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		export.setExcelRowLimit(jCheckBoxLimit, jSpinnerLimit);
@@ -237,7 +253,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		export.saveAs("process_orders.xls", processOrder.getProcessOrderDataResultSet(listStatement), Common.mainForm);
 	}
 
-	private void delete() {
+	private void delete()
+	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -253,8 +270,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				{
 					JUtility.errorBeep();
 					JOptionPane.showMessageDialog(Common.mainForm, p.getErrorMessage(), lang.get("dlg_Delete"), JOptionPane.WARNING_MESSAGE);
-				}
-				else
+				} else
 				{
 					buildSQL();
 					populateList();
@@ -263,12 +279,14 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		}
 	}
 
-	private void print() {
+	private void print()
+	{
 		PreparedStatement temp = buildSQLr();
-		JLaunchReport.runReport("RPT_PROCESS_ORDERS",null,"", temp,"");
+		JLaunchReport.runReport("RPT_PROCESS_ORDERS", null, "", temp, "");
 	}
 
-	private void addRecord() {
+	private void addRecord()
+	{
 		JDBProcessOrder p = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 		lprocessorder = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Process_Order_Add"));
 		if (lprocessorder != null)
@@ -276,8 +294,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			if (lprocessorder.equals("") == true)
 			{
 				lprocessorder = p.generateNewProcessOrderNo();
-			}
-			else
+			} else
 			{
 				lprocessorder = p.formatProcessOrderNo(lprocessorder);
 			}
@@ -286,17 +303,17 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			if (p.isValidProcessOrder() == false)
 			{
 				JLaunchMenu.runForm("FRM_ADMIN_PROCESS_ORDER_EDIT", lprocessorder);
-			}
-			else
+			} else
 			{
-				JOptionPane.showMessageDialog(Common.mainForm, "Process Order [" + lprocessorder + "] already exists", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+				JOptionPane.showMessageDialog(Common.mainForm, "Process Order [" + lprocessorder + "] already exists", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 			}
 			buildSQL();
 			populateList();
 		}
 	}
 
-	private void populateList() {
+	private void populateList()
+	{
 		JDBProcessOrder processorder = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 
 		JDBProcessOrderTableModel processordertable = new JDBProcessOrderTableModel(processorder.getProcessOrderDataResultSet(listStatement));
@@ -323,19 +340,21 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Required_Uom_Col).setPreferredWidth(35);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_DefaultBatchStatus_Col).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Required_Resource_Col).setPreferredWidth(120);
-		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Customer_Col).setPreferredWidth(120);		
-		
+		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Customer_Col).setPreferredWidth(120);
+
 		jScrollPane1.repaint();
 
 		JUtility.setResultRecordCountColour(jStatusText, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), processordertable.getRowCount());
 	}
 
-	private void search() {
+	private void search()
+	{
 		buildSQL();
 		populateList();
 	}
 
-	private void editRecord() {
+	private void editRecord()
+	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -344,7 +363,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		}
 	}
 
-	private void prodDec() {
+	private void prodDec()
+	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
@@ -353,36 +373,38 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		}
 	}
 
-	private void setSequence(boolean descending) {
+	private void setSequence(boolean descending)
+	{
 		jToggleButtonSequence.setSelected(descending);
 		if (jToggleButtonSequence.isSelected() == true)
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
 			jToggleButtonSequence.setIcon(Common.icon_descending);
-		}
-		else
+		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
 			jToggleButtonSequence.setIcon(Common.icon_ascending);
 		}
 	}
 
-	private void printLabels() {
+	private void printLabels()
+	{
 
 		String lprocessOrder = "";
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-				lprocessOrder = jTable1.getValueAt(row, 0).toString();
-				JLaunchMenu.runForm("FRM_PROCESS_ORDER_LABEL", lprocessOrder);
+			lprocessOrder = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_PROCESS_ORDER_LABEL", lprocessOrder);
 		}
 
-}
-	
-	private PreparedStatement buildSQLr() {
+	}
+
+	private PreparedStatement buildSQLr()
+	{
 
 		PreparedStatement result;
-		
+
 		String temp = "";
 
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
@@ -400,8 +422,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		query.addParamtoSQL("description like ", "%" + jTextFieldDescription.getText() + "%");
 		query.addParamtoSQL("required_resource = ", jTextFieldRequiredResource.getText());
 		query.addParamtoSQL("customer_id=", jTextFieldCustomer.getText());
-		query.addParamtoSQL("customer_id=",jTextFieldCustomerID.getText());
-		
+		query.addParamtoSQL("customer_id=", jTextFieldCustomerID.getText());
+
 		query.addParamtoSQL("required_uom=", ((JDBUom) jComboBoxUOM.getSelectedItem()).getInternalUom());
 
 		if (jCheckBoxDueDateFrom.isSelected())
@@ -413,7 +435,6 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			query.addParamtoSQL("due_date<=", JUtility.getTimestampFromDate(dueDateTo.getDate()));
 		}
 
-
 		if (jCheckBoxQuantity.isSelected())
 		{
 			if (jFormattedTextFieldQuantity.getText().equals("") == false)
@@ -422,26 +443,27 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			}
 		}
 
-
 		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
-		query.applyRestriction(jCheckBoxLimit.isSelected(),Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
+		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
 		query.bindParams();
 		result = query.getPreparedStatement();
 		return result;
 	}
-	
-	private void buildSQL() {
+
+	private void buildSQL()
+	{
 
 		JDBQuery.closeStatement(listStatement);
-		
+
 		listStatement = buildSQLr();
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(750, 498));
-			this.setBounds(0, 0, 1021+Common.LFAdjustWidth, 608+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 1021 + Common.LFAdjustWidth, 608 + Common.LFAdjustHeight);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -458,7 +480,11 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jScrollPane1.setBounds(0, 183, 991, 356);
 					jDesktopPane1.add(jScrollPane1);
 					{
-						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
+						TableModel jTable1Model = new DefaultTableModel(new String[][]
+						{
+								{ "One", "Two" },
+								{ "Three", "Four" } }, new String[]
+						{ "Column 1", "Column 2" });
 						jTable1 = new JTable();
 						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
 						jScrollPane1.setViewportView(jTable1);
@@ -466,8 +492,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 						jTable1.getTableHeader().setFont(Common.font_table_header);
 						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
 						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-						jTable1.addMouseListener(new MouseAdapter() {
-							public void mouseClicked(MouseEvent evt) {
+						jTable1.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
 								if (evt.getClickCount() == 2)
 								{
 									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PROCESS_ORDER_EDIT") == true)
@@ -484,8 +512,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										search();
 									}
 								});
@@ -495,8 +525,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										addRecord();
 									}
 								});
@@ -507,8 +539,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										editRecord();
 									}
 								});
@@ -519,8 +553,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										delete();
 									}
 								});
@@ -531,8 +567,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										print();
 									}
 								});
@@ -542,8 +580,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							}
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										printLabels();
 									}
 								});
@@ -553,8 +593,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							}
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										excel();
 									}
 								});
@@ -564,8 +606,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							}
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_scanner);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										prodDec();
 									}
 								});
@@ -581,8 +625,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("PROCESS_ORDER");
 										}
 									});
@@ -592,8 +638,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("MATERIAL");
 										}
 									});
@@ -603,8 +651,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("DESCRIPTION");
 										}
 									});
@@ -614,8 +664,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("STATUS");
 										}
 									});
@@ -625,8 +677,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("LOCATION_ID");
 										}
 									});
@@ -636,8 +690,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("DUE_DATE");
 										}
 									});
@@ -647,8 +703,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											sortBy("RECIPE_ID");
 										}
 									});
@@ -664,8 +722,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy("Process Order");
 										}
 									});
@@ -675,8 +735,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy("Material");
 										}
 									});
@@ -686,8 +748,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy("Description");
 										}
 									});
@@ -697,8 +761,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy("Status");
 										}
 									});
@@ -708,8 +774,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy("Recipe");
 										}
 									});
@@ -719,8 +787,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											filterBy("Location");
 										}
 									});
@@ -734,8 +804,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener() {
-										public void actionPerformed(final ActionEvent e) {
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
 											clearFilter();
 										}
 									});
@@ -752,8 +824,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(lang.getMnemonicChar());
-					jButtonSearch.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonSearch.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							search();
 
 						}
@@ -766,8 +840,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PROCESS_ORDER_ADD"));
-					jButtonAdd.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonAdd.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							addRecord();
 
 						}
@@ -780,8 +856,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PROCESS_ORDER_EDIT"));
-					jButtonEdit.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonEdit.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							editRecord();
 						}
 					});
@@ -793,8 +871,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PROCESS_ORDER_DELETE"));
-					jButtonDelete.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonDelete.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							delete();
 						}
 					});
@@ -806,8 +886,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.setEnabled(true);
-					jButtonPrint.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonPrint.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 
 							print();
 						}
@@ -815,8 +897,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				}
 				{
 					jButtonLabel = new JButton4j(Common.icon_report);
-					jButtonLabel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					jButtonLabel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							printLabels();
 						}
 					});
@@ -831,8 +915,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JDBQuery.closeStatement(listStatement);
 							dispose();
 						}
@@ -851,7 +937,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel12);
 					jLabel12.setText(lang.get("lbl_Customer_ID"));
 					jLabel12.setHorizontalAlignment(SwingConstants.TRAILING);
-				}				
+				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jLabel3.setBounds(521, 12, 98, 21);
@@ -873,7 +959,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jTextFieldCustomer = new JTextField4j(JDBCustomer.field_customer_id);
 					jTextFieldCustomer.setBounds(383, 12, 98, 21);
 					jDesktopPane1.add(jTextFieldCustomer);
-				}	
+				}
 				{
 					JLabel4j_std label4j_std = new JLabel4j_std();
 					label4j_std.setText(lang.get("lbl_Customer_ID"));
@@ -943,15 +1029,16 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jCheckBoxDueDateFrom.setBounds(146, 77, 21, 21);
 					jDesktopPane1.add(jCheckBoxDueDateFrom);
 					jCheckBoxDueDateFrom.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxDueDateFrom.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jCheckBoxDueDateFrom.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							System.out.println("jCheckBoxDueDateFrom.actionPerformed, event=" + evt);
 							if (jCheckBoxDueDateFrom.isSelected())
 							{
 								dueDateFrom.setEnabled(true);
 								calendarButtondueDateFrom.setEnabled(true);
-							}
-							else
+							} else
 							{
 								dueDateFrom.setEnabled(false);
 								calendarButtondueDateFrom.setEnabled(false);
@@ -964,15 +1051,16 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jCheckBoxDueDateTo.setBounds(352, 77, 21, 21);
 					jDesktopPane1.add(jCheckBoxDueDateTo);
 					jCheckBoxDueDateTo.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxDueDateTo.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jCheckBoxDueDateTo.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							System.out.println("jCheckBoxDueDateFrom.actionPerformed, event=" + evt);
 							if (jCheckBoxDueDateTo.isSelected())
 							{
 								dueDateTo.setEnabled(true);
 								calendarButtondueDateTo.setEnabled(true);
-							}
-							else
+							} else
 							{
 								dueDateTo.setEnabled(false);
 								calendarButtondueDateTo.setEnabled(false);
@@ -995,7 +1083,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
 				}
 				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "PROCESS_ORDER", "MATERIAL", "DESCRIPTION", "STATUS", "LOCATION_ID", "DUE_DATE", "RECIPE_ID" });
+					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
+					{ "PROCESS_ORDER", "MATERIAL", "DESCRIPTION", "STATUS", "LOCATION_ID", "DUE_DATE", "RECIPE_ID" });
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jComboBoxSortBy.setBounds(629, 110, 168, 21);
 					jDesktopPane1.add(jComboBoxSortBy);
@@ -1013,8 +1102,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jToggleButtonSequence = new JToggleButton();
 					jToggleButtonSequence.setBounds(795, 110, 21, 21);
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jToggleButtonSequence.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							setSequence(jToggleButtonSequence.isSelected());
 						}
 					});
@@ -1024,8 +1115,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jButtonMaterialLookuo = new JButton4j(Common.icon_lookup);
 					jButtonMaterialLookuo.setBounds(481, 46, 21, 21);
 					jDesktopPane1.add(jButtonMaterialLookuo);
-					jButtonMaterialLookuo.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonMaterialLookuo.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JLaunchLookup.dlgAutoExec = false;
 							JLaunchLookup.dlgCriteriaDefault = "";
 							if (JLaunchLookup.materials())
@@ -1036,26 +1129,30 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					});
 				}
 				{
-				jButtonCustomerLookup = new JButton4j(Common.icon_lookup);
-				jButtonCustomerLookup.setBounds(481, 12, 21, 21);
-				jDesktopPane1.add(jButtonCustomerLookup);
-				jButtonCustomerLookup.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
-						JLaunchLookup.dlgAutoExec = false;
-						JLaunchLookup.dlgCriteriaDefault = "";
-						if (JLaunchLookup.customers())
+					jButtonCustomerLookup = new JButton4j(Common.icon_lookup);
+					jButtonCustomerLookup.setBounds(481, 12, 21, 21);
+					jDesktopPane1.add(jButtonCustomerLookup);
+					jButtonCustomerLookup.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
 						{
-							jTextFieldCustomer.setText(JLaunchLookup.dlgResult);
+							JLaunchLookup.dlgAutoExec = false;
+							JLaunchLookup.dlgCriteriaDefault = "";
+							if (JLaunchLookup.customers())
+							{
+								jTextFieldCustomer.setText(JLaunchLookup.dlgResult);
+							}
 						}
-					}
-				});
-			}				
+					});
+				}
 				{
 					jButtonProcessOrderLookup = new JButton4j(Common.icon_lookup);
 					jButtonProcessOrderLookup.setBounds(253, 12, 21, 21);
 					jDesktopPane1.add(jButtonProcessOrderLookup);
-					jButtonProcessOrderLookup.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonProcessOrderLookup.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JLaunchLookup.dlgCriteriaDefault = "Ready";
 							JLaunchLookup.dlgAutoExec = true;
 							if (JLaunchLookup.processOrders())
@@ -1069,8 +1166,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jButtonLocationLookup = new JButton4j(Common.icon_lookup);
 					jButtonLocationLookup.setBounds(962, 46, 21, 21);
 					jDesktopPane1.add(jButtonLocationLookup);
-					jButtonLocationLookup.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonLocationLookup.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JLaunchLookup.dlgAutoExec = true;
 							JLaunchLookup.dlgCriteriaDefault = "Y";
 							if (JLaunchLookup.locations())
@@ -1093,13 +1192,14 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jDesktopPane1.add(jCheckBoxLimit);
 					jCheckBoxLimit.setSelected(true);
 					jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxLimit.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jCheckBoxLimit.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							if (jCheckBoxLimit.isSelected())
 							{
 								jSpinnerLimit.setEnabled(true);
-							}
-							else
+							} else
 							{
 								jSpinnerLimit.setEnabled(false);
 							}
@@ -1107,23 +1207,22 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					});
 				}
 				{
-					
+
 					SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
 					jSpinnerIntModel.setMinimum(1);
 					jSpinnerIntModel.setMaximum(5000);
-					jSpinnerIntModel.setStepSize(1);					
-					
+					jSpinnerIntModel.setStepSize(1);
+
 					jSpinnerLimit = new JSpinner();
 					jDesktopPane1.add(jSpinnerLimit);
-					
+
 					jSpinnerLimit.setModel(jSpinnerIntModel);
 					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-					ne.getTextField().setFont(Common.font_std); 
+					ne.getTextField().setFont(Common.font_std);
 					jSpinnerLimit.setEditor(ne);
 					jSpinnerLimit.setBounds(921, 110, 63, 21);
 					jSpinnerLimit.setValue(1000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
-					
 
 				}
 
@@ -1138,8 +1237,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS);
 					jButtonExcel.setBounds(771, 143, 109, 32);
-					jButtonExcel.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					jButtonExcel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							excel();
 						}
 					});
@@ -1161,14 +1262,15 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jCheckBoxQuantity.setBounds(625, 77, 21, 21);
 					jCheckBoxQuantity.setBackground(new Color(255, 255, 255));
 
-					jCheckBoxQuantity.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jCheckBoxQuantity.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							if (jCheckBoxQuantity.isSelected())
 							{
 								jFormattedTextFieldQuantity.setValue(0);
 								jFormattedTextFieldQuantity.setEnabled(true);
-							}
-							else
+							} else
 							{
 								jFormattedTextFieldQuantity.setValue(0);
 								jFormattedTextFieldQuantity.setEnabled(false);
@@ -1207,8 +1309,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 				{
 					jButtonClear = new JButton4j(Common.icon_clear);
-					jButtonClear.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					jButtonClear.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							clearFilter();
 						}
 					});
@@ -1216,11 +1320,13 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
 					jDesktopPane1.add(jButtonClear);
 				}
-				
+
 				{
 					JButton4j btnLookupCustomer = new JButton4j(Common.icon_lookup);
-					btnLookupCustomer.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					btnLookupCustomer.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							JLaunchLookup.dlgAutoExec = true;
 							JLaunchLookup.dlgCriteriaDefault = "";
 							if (JLaunchLookup.customers())
@@ -1243,24 +1349,26 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jTextFieldRequiredResource = new JTextField4j(JDBProcessOrder.field_required_resource);
 					jTextFieldRequiredResource.setBounds(148, 110, 105, 21);
 					jDesktopPane1.add(jTextFieldRequiredResource);
-					
+
 					calendarButtondueDateFrom = new JCalendarButton(dueDateFrom);
 					calendarButtondueDateFrom.setEnabled(false);
 					calendarButtondueDateFrom.setBounds(300, 79, 21, 21);
 					jDesktopPane1.add(calendarButtondueDateFrom);
-					
+
 					calendarButtondueDateTo = new JCalendarButton(dueDateTo);
 					calendarButtondueDateTo.setEnabled(false);
 					calendarButtondueDateTo.setBounds(510, 79, 21, 21);
 					jDesktopPane1.add(calendarButtondueDateTo);
-					
+
 					jTextFieldCustomerID = new JTextField4j(JDBCustomer.field_customer_id);
 					jTextFieldCustomerID.setBounds(383, 110, 117, 21);
 					jDesktopPane1.add(jTextFieldCustomerID);
-					
+
 					JButton4j btnLookupResource = new JButton4j(Common.icon_lookup);
-					btnLookupResource.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					btnLookupResource.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							JLaunchLookup.dlgAutoExec = true;
 							JLaunchLookup.dlgCriteriaDefault = "";
 							if (JLaunchLookup.resources())
@@ -1273,8 +1381,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jDesktopPane1.add(btnLookupResource);
 				}
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -1286,19 +1393,24 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
 	 * with parent.
 	 */
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
+	private static void addPopup(Component component, final JPopupMenu popup)
+	{
+		component.addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			private void showMenu(MouseEvent e) {
+			private void showMenu(MouseEvent e)
+			{
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});

@@ -59,6 +59,16 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameMaterialBatchProperties class allows you to update a record
+ * in the APP_MATERIAL_BATCH table and is called from the parent form
+ * JInternalFrameMaterialBatchAdmin
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMaterialBatchProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterialBatch JDBMaterialBatch
+ */
 public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
@@ -89,13 +99,15 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
-		
+
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				jComboBoxStatus.requestFocus();
 			}
 		});
@@ -120,14 +132,12 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 			try
 			{
 				dateTimePicker.setDate(materialbatch.getExpiryDate());
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 
 			}
 			jButtonUpdate.setEnabled(false);
-		}
-		else
+		} else
 		{
 			JDBMaterial mat = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 			mat.getMaterialProperties(material);
@@ -137,8 +147,7 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 			try
 			{
 				dateTimePicker.setDate(mat.calcBBE(de, mat.getShelfLife(), mat.getShelfLifeUom(), mat.getShelfLifeRule()));
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
 
 			}
@@ -147,7 +156,8 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(358, 207));
@@ -167,14 +177,15 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
 					jButtonUpdate.setBounds(7, 130, 112, 32);
-					jButtonUpdate.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonUpdate.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 
 							try
 							{
 								materialbatch.setStatus((String) jComboBoxStatus.getSelectedItem());
-							}
-							catch (Exception e)
+							} catch (Exception e)
 							{
 								materialbatch.setStatus("");
 							}
@@ -183,8 +194,7 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 							if (materialbatch.isValidMaterialBatch())
 							{
 								materialbatch.update();
-							}
-							else
+							} else
 							{
 								materialbatch.create();
 							}
@@ -205,8 +215,10 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
 					jButtonCancel.setBounds(231, 130, 112, 32);
-					jButtonCancel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonCancel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -254,8 +266,10 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 					jDesktopPane1.add(jComboBoxStatus);
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
 					jComboBoxStatus.setBounds(126, 69, 150, 21);
-					jComboBoxStatus.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jComboBoxStatus.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -269,13 +283,17 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 				}
 
 				{
-					dateTimePicker.getEditor().addKeyListener(new KeyAdapter() {
-						public void keyPressed(KeyEvent e) {
+					dateTimePicker.getEditor().addKeyListener(new KeyAdapter()
+					{
+						public void keyPressed(KeyEvent e)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
-					dateTimePicker.addChangeListener(new ChangeListener() {
-						public void stateChanged(final ChangeEvent e) {
+					dateTimePicker.addChangeListener(new ChangeListener()
+					{
+						public void stateChanged(final ChangeEvent e)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -290,8 +308,7 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 					jDesktopPane1.add(calendarButton);
 				}
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}

@@ -55,6 +55,25 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+
+/**
+* The JInternalFrameMaterialLocationProperties class allows the user to
+* view/edit a single record in the APP_LOCATION table. In addition to fields
+* containing meaningful identification information which can be used by
+* external ERP systems the Location record also has a number of flags which
+* determine when messages are generated. Within the record it is possible to
+* identify which pallet and batch status codes are allowed in a location. This
+* is typically used to block / allow pallets (SSCC's) to be moved into a
+* location by the despatch transaction.
+* 
+* <p>
+* <img alt="" src="./doc-files/JInternalFrameLocationProperties.jpg" >
+* 
+* @see com.commander4j.app.JInternalFrameLocationAdmin JInternalFrameLocationAdmin
+* @see com.commander4j.db.JDBLocation JDBLocation
+* @see com.commander4j.db.JDBDespatch JDBDespatch
+* @see com.commander4j.app.JInternalFrameDespatch JInternalFrameDespatch
+*/
 public class JInternalFrameLocationProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

@@ -91,6 +91,23 @@ import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.JWait;
 
+/**
+ * The JInternalFramePalletHistoryAdmin allows you to search the APP_PALLET_HISTORY table which
+ * contains a multiple records for each SSCC. The pallet history table is in effect an audit trail
+ * for all actions which effect a pallet. Each time a transaction is performed on a SSCC the system
+ * generates a new transaction number which is written to the pallet history table. This transaction 
+ * ref is optionally inserted into the SYS_INTERFACE_REQUEST table which will trigger the generation 
+ * of an interface message.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFramePalletHistoryAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBPallet JDBPallet
+ * @see com.commander4j.app.JInternalFramePalletHistoryAdmin JInternalFramePalletHistoryAdmin
+ * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
+ * @see com.commander4j.interfaces.JInternalFrameInterfaceLog JInternalFrameInterfaceLog
+ * @see com.commander4j.db.JDBInterfaceRequest JDBInterfaceRequest
+ */
 public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 {
 	private JButton4j jButtonClear;

@@ -69,6 +69,17 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameProcessOrderProperties is used editing a record in the APP_PROCESS_ORDER
+ * table. 
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameProcessOrderProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBProcessOrder JDBProcesOrder 
+ * @see com.commander4j.app.JInternalFrameProcessOrderAdmin JInternalFrameProcessOrderAdmin
+ * @see com.commander4j.app.JInternalFrameProcessOrderLabel JInternalFrameProcessOrderLabel
+ */
 public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 	private JTextField4j jTextFieldMaterialDescription;
 	private JLabel4j_std jLabelMaterialDesc;

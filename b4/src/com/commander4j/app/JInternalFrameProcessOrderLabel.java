@@ -57,6 +57,16 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameProcessOrderLabel is used for printing a label with a barcode representation of the Process Order Number. 
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameProcessOrderLabel.jpg" >
+ * 
+ * @see com.commander4j.db.JDBProcessOrder JDBProcesOrder 
+ * @see com.commander4j.app.JInternalFrameProcessOrderAdmin JInternalFrameProcessOrderAdmin
+ * @see com.commander4j.app.JInternalFrameProcessOrderProperties JInternalFrameProcessOrderProperties
+ */
 public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;

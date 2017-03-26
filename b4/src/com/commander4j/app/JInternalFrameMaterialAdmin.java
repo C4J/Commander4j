@@ -78,18 +78,25 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
 /**
- * The JInternalFrameMaterialAdmin is the starting point for material admin,
- * From this screen you can insert/update/delete records from the APP_MATERIAL
- * and also launch additional screens for many of the related detail tables.
+ * The JInternalFrameMaterialAdmin is the starting point maintaining the
+ * APP_MATERIAL table. There are a several other tables which also contain
+ * material related data and are linked to the APP_MATERIAL table via the
+ * "MATERIAL" key field. The associated tables can also be maintained by using
+ * the menu options on this screen.
  * 
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameMaterialAdmin.jpg" >
  * 
- * @see com.commander4j.app.JInternalFrameMaterialProperties JInternalFrameMaterialProperties
- * @see com.commander4j.app.JInternalFrameMaterialUomAdmin JInternalFrameMaterialUomAdmin
- * @see com.commander4j.app.JInternalFrameMaterialBatchAdmin JInternalFrameMaterialBatchAdmin
- * @see com.commander4j.app.JInternalFrameMaterialCustomerDataAdmin JInternalFrameMaterialCustomerDataAdmin
- * @see com.commander4j.app.JInternalFrameMaterialTypeAdmin JInternalFrameMaterialTypeAdmin
+ * @see com.commander4j.app.JInternalFrameMaterialProperties
+ *      JInternalFrameMaterialProperties
+ * @see com.commander4j.app.JInternalFrameMaterialUomAdmin
+ *      JInternalFrameMaterialUomAdmin
+ * @see com.commander4j.app.JInternalFrameMaterialBatchAdmin
+ *      JInternalFrameMaterialBatchAdmin
+ * @see com.commander4j.app.JInternalFrameMaterialCustomerDataAdmin
+ *      JInternalFrameMaterialCustomerDataAdmin
+ * @see com.commander4j.app.JInternalFrameMaterialTypeAdmin
+ *      JInternalFrameMaterialTypeAdmin
  * @see com.commander4j.db.JDBMaterial JDBMaterial
  * @see com.commander4j.db.JDBMaterialUom JDBMaterialUom
  * @see com.commander4j.db.JDBMaterialLocation JDBMaterialLocation

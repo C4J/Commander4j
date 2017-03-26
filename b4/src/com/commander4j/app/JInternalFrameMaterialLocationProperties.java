@@ -53,6 +53,21 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameMaterialLocationProperties class allows you to edit a
+ * record in the table APP_MATERIAL_LOCATION. This table is optional validation
+ * used when moving pallets into a new location. The system key
+ * SSCC_MATERIAL_LOCATION is used to enable/disables its use by setting it's
+ * value to True or False.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMaterialLocationProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterialLocation JDBMaterialLocation
+ * @see com.commander4j.app.JInternalFrameMaterialLocationAdmin
+ *      JInternalFrameMaterialLocationAdmin
+ * 
+ */
 public class JInternalFrameMaterialLocationProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
@@ -80,13 +95,15 @@ public class JInternalFrameMaterialLocationProperties extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_LOCATION_EDIT"));
-		
+
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				jComboBoxStatus.requestFocus();
 			}
 		});
@@ -104,15 +121,13 @@ public class JInternalFrameMaterialLocationProperties extends JInternalFrame
 		materiallocation.setLocation(llocation);
 		jTextFieldMaterial.setText(materiallocation.getMaterial());
 		jTextFieldLocation.setText(materiallocation.getLocation());
-		
 
 		if (materiallocation.getMaterialLocationProperties())
 		{
 			jComboBoxStatus.setSelectedItem(materiallocation.getStatus());
 
 			jButtonUpdate.setEnabled(false);
-		}
-		else
+		} else
 		{
 			jComboBoxStatus.setSelectedItem("Valid");
 			jButtonUpdate.setEnabled(true);
@@ -120,11 +135,12 @@ public class JInternalFrameMaterialLocationProperties extends JInternalFrame
 
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(358, 207));
-			this.setBounds(0, 0, 374+Common.LFAdjustWidth, 192+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 374 + Common.LFAdjustWidth, 192 + Common.LFAdjustHeight);
 			setVisible(true);
 			this.setClosable(true);
 			{
@@ -140,14 +156,15 @@ public class JInternalFrameMaterialLocationProperties extends JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
 					jButtonUpdate.setBounds(6, 100, 112, 32);
-					jButtonUpdate.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonUpdate.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 
 							try
 							{
 								materiallocation.setStatus((String) jComboBoxStatus.getSelectedItem());
-							}
-							catch (Exception e)
+							} catch (Exception e)
 							{
 								materiallocation.setStatus("");
 							}
@@ -155,10 +172,9 @@ public class JInternalFrameMaterialLocationProperties extends JInternalFrame
 							if (materiallocation.isValidMaterialLocation())
 							{
 								materiallocation.update();
-							}
-							else
+							} else
 							{
-								materiallocation.create(jTextFieldMaterial.getText(),jTextFieldLocation.getText());
+								materiallocation.create(jTextFieldMaterial.getText(), jTextFieldLocation.getText());
 								materiallocation.update();
 							}
 							jButtonUpdate.setEnabled(false);
@@ -178,8 +194,10 @@ public class JInternalFrameMaterialLocationProperties extends JInternalFrame
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
 					jButtonCancel.setBounds(230, 100, 112, 32);
-					jButtonCancel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonCancel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -220,8 +238,10 @@ public class JInternalFrameMaterialLocationProperties extends JInternalFrame
 					jDesktopPane1.add(jComboBoxStatus);
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
 					jComboBoxStatus.setBounds(126, 69, 190, 23);
-					jComboBoxStatus.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jComboBoxStatus.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -234,8 +254,7 @@ public class JInternalFrameMaterialLocationProperties extends JInternalFrame
 					jLabel2.setBounds(42, 69, 77, 21);
 				}
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}

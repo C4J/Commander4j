@@ -73,6 +73,22 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameMaterialLocationAdmin class allows the user to view/edit
+ * the table APP_LOCATION table. This table is designed to permit complex
+ * location identification methods to be addressed using a simple user friendly
+ * short code. The Location ID is used predominantly with the APP_PALLET,
+ * APP_PALLET_HISTORY and APP_DESPATCH tables. When messaging via the XML
+ * interfaces any of the additional fields present in the APP_LOCATION table can
+ * be included to satisfy the requirements of external ERP systems.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameLocationAdmin.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameLocationProperties
+ *      JInternalFrameMaterialLocationProperties
+ * @see com.commander4j.db.JDBLocation JDBLocation
+ */
 public class JInternalFrameLocationAdmin extends JInternalFrame
 {
 	private JButton4j jButtonClear;

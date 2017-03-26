@@ -59,6 +59,14 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDialogPalletRePrintLabel class is a Dialog box loaded from the
+ * JInternalFramePalletAdmin class which allows a user to reprint a pallet
+ * label.
+ * 
+ * @see com.commander4j.app.JInternalFramePalletAdmin JInternalFramePalletAdmin
+ *
+ */
 public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 {
 	private static final long serialVersionUID = 1;
@@ -71,8 +79,8 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 	private String lsscc;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-	private JDBPallet pal = new JDBPallet(Common.selectedHostID,Common.sessionID);
-	private JLabelPrint lab = new JLabelPrint(Common.selectedHostID,Common.sessionID);
+	private JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
+	private JLabelPrint lab = new JLabelPrint(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
 	private JSpinner jSpinnerQuantity = new JSpinner();
 	private JCheckBox4j checkBoxIncHeaderText = new JCheckBox4j();
@@ -80,11 +88,11 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 	private JSpinner jSpinnerCopies = new JSpinner();
 	private JLabel4j_std label_4;
 	private PreparedStatement listStatement;
-	private String defaultlabel="";
+	private String defaultlabel = "";
 
 	public JDialogPalletRePrintLabel(JFrame frame, String sscc)
 	{
-		
+
 		super(frame, "Pallet Label Reprint", ModalityType.DOCUMENT_MODAL);
 		lsscc = sscc;
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -109,12 +117,11 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_PAL_LABEL_COPIES"));
-		
+
 		pal.getPalletProperties(lsscc);
-		defaultlabel=lab.getPalletLabelReportName(pal.getProcessOrder());
-		
+		defaultlabel = lab.getPalletLabelReportName(pal.getProcessOrder());
+
 		initGUI();
-		
 
 		jTextFieldSSCC.setText(lsscc);
 
@@ -186,7 +193,7 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						
+
 						String pq = comboBoxPrintQueue.getSelectedItem().toString();
 						buildSQL1Record(jTextFieldSSCC.getText());
 						JLaunchReport.runReport(defaultlabel, listStatement, jCheckBoxAutoPreview.isSelected(), pq, Integer.valueOf(jSpinnerCopies.getValue().toString()), checkBoxIncHeaderText.isSelected());

@@ -73,6 +73,19 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameMaterialLocationAdmin class allows you to maintain the
+ * table APP_MATERIAL_LOCATION. This table is optional validation used when
+ * moving pallets into a new location. The system key SSCC_MATERIAL_LOCATION is
+ * used to enable/disables its use by setting it's value to True or False.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMaterialLocationAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterialLocation JDBMaterialLocation
+ * @see com.commander4j.app.JInternalFrameMaterialLocationProperties JInternalFrameMaterialLocationProperties
+ * 
+ */
 public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 {
 	private JButton4j jButtonExcel;
@@ -104,7 +117,8 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 	private JDBLanguage lang;
 	private PreparedStatement listStatement;
 
-	public JInternalFrameMaterialLocationAdmin() {
+	public JInternalFrameMaterialLocationAdmin()
+	{
 		super();
 		setIconifiable(true);
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
@@ -168,7 +182,8 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 		}
 	}
 
-	public JInternalFrameMaterialLocationAdmin(String material) {
+	public JInternalFrameMaterialLocationAdmin(String material)
+	{
 		this();
 		lmaterial = material;
 		jTextFieldMaterial.setText(lmaterial);
@@ -215,22 +230,19 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 								if (matloc.isValidMaterialLocation(lmaterial, llocation) == false)
 								{
 									JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_LOCATION_EDIT", lmaterial, llocation);
-								}
-								else
+								} else
 								{
-									JOptionPane.showMessageDialog(Common.mainForm, "Material/Location [" + lmaterial + " / " + llocation + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+									JOptionPane.showMessageDialog(Common.mainForm, "Material/Location [" + lmaterial + " / " + llocation + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 								}
-							}
-							else
+							} else
 							{
-								JOptionPane.showMessageDialog(Common.mainForm, "Location [" + llocation + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
-							}							
+								JOptionPane.showMessageDialog(Common.mainForm, "Location [" + llocation + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+							}
 						}
 					}
-				}
-				else
+				} else
 				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 				}
 			}
 		}
@@ -250,15 +262,15 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
 			jToggleButtonSequence.setIcon(Common.icon_descending);
-		}
-		else
+		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
 			jToggleButtonSequence.setIcon(Common.icon_ascending);
 		}
 	}
 
-	public JInternalFrameMaterialLocationAdmin(String material, String location) {
+	public JInternalFrameMaterialLocationAdmin(String material, String location)
+	{
 		this();
 		lmaterial = material;
 		lLocation = location;
@@ -270,7 +282,6 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 
 	private void buildSQL()
 	{
-		
 
 		JDBQuery.closeStatement(listStatement);
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
@@ -282,7 +293,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 		query.addParamtoSQL("status=", jComboBoxStatus.getSelectedItem().toString());
 
 		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
-		query.applyRestriction(false,"none",0);
+		query.applyRestriction(false, "none", 0);
 		query.bindParams();
 		listStatement = query.getPreparedStatement();
 	}
@@ -330,7 +341,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(497, 522));
-			this.setBounds(0, 0, 429+Common.LFAdjustWidth, 598+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 429 + Common.LFAdjustWidth, 598 + Common.LFAdjustHeight);
 			setVisible(true);
 			this.setClosable(true);
 			this.setTitle("Material Locations");
@@ -346,7 +357,11 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jScrollPane1);
 					jScrollPane1.setBounds(0, 196, 402, 333);
 					{
-						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
+						TableModel jTable1Model = new DefaultTableModel(new String[][]
+						{
+								{ "One", "Two" },
+								{ "Three", "Four" } }, new String[]
+						{ "Column 1", "Column 2" });
 						jTable1 = new JTable();
 						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
 						jScrollPane1.setViewportView(jTable1);
@@ -620,7 +635,8 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jLabel10.setBounds(0, 92, 91, 21);
 				}
 				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "MATERIAL", "LOCATION_ID", "STATUS" });
+					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
+					{ "MATERIAL", "LOCATION_ID", "STATUS" });
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
@@ -731,8 +747,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 				}
 
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
