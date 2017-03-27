@@ -92,6 +92,17 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameMHNAssign class allows the user to assign SSCC's (pallets) to a Master Hold Notice in the APP_MHN table.
+ * When pallets are assigned to a MHN an entry is put in the APP_PALLET_HISTORY table.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMHNAssign.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMHNProperties JInternalFrameMHNProperties
+ * @see com.commander4j.app.JInternalFrameMHNAdmin JInternalFrameMHNAdmin
+ * @see com.commander4j.db.JDBMHN JDBMHN
+ */
 public class JInternalFrameMHNAssign extends JInternalFrame
 {
 	private JButton4j jButtonClear;

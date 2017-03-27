@@ -50,6 +50,14 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameMHNReasonProperties class allows the user to edit a single record in the APP_MHN_REASONS table.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMHNReasonProperties.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMHNReasonAdmin JInternalFrameMHNReasonAdmin
+ * @see com.commander4j.db.JDBMHNReasons JDBMHNReasons
+ */
 public class JInternalFrameMHNReasonProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

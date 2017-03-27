@@ -57,6 +57,16 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameMaterialTypeProperties allows you edit a record held in the APP_MATERIAL_TYPE table. 
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMaterialTypeProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterialType JDBMaterialType
+ * @see com.commander4j.app.JInternalFrameMaterialTypeProperties JInternalFrameMaterialTypeProperties
+ *
+ */
 public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

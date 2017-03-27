@@ -51,6 +51,16 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameUomProperties class allows the user to edit a record in the APP_UOM table.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameUomProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterialType JDBMaterialType
+ * @see com.commander4j.app.JInternalFrameUomAdmin JInternalFrameUomAdmin
+ *
+ */
 public class JInternalFrameUomProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

@@ -55,6 +55,17 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameMaterialTypeAdmin allows you to administer the records held in the APP_MATERIAL_TYPE table. This table is provided so Materials can
+ * be grouped into types for reporting purposes. Records are typically added automatically by the inbound Material Master interface.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMaterialTypeAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMaterialType JDBMaterialType
+ * @see com.commander4j.app.JInternalFrameMaterialTypeProperties JInternalFrameMaterialTypeProperties
+ *
+ */
 public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

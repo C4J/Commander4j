@@ -54,6 +54,16 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameUomAdmin class allows a user to maintain the table APP_UOM.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameUomAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBUom JDBUom
+ * @see com.commander4j.app.JInternalFrameUomProperties JInternalFrameUomProperties
+ *
+ */
 public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 {
 	private JButton4j jButtonExcel;

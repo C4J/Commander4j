@@ -56,6 +56,14 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameMHNReasonAdmin class allows the user to insert/update/delete the APP_MHN_REASONS table.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMHNReasonAdmin.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMHNReasonProperties JInternalFrameMHNReasonProperties
+ * @see com.commander4j.db.JDBMHNReasons JDBMHNReasons
+ */
 public class JInternalFrameMHNReasonAdmin extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

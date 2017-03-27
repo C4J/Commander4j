@@ -55,6 +55,14 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameMHNDecisionAdmin class allows the user to insert/update/delete the APP_MHN_DECISIONS table.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMHNDecisionAdmin.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMHNDecisionProperties JInternalFrameMHNDecisionProperties
+ * @see com.commander4j.db.JDBMHNDecisions JDBMHNDecisions
+ */
 public class JInternalFrameMHNDecisionAdmin extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

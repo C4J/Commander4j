@@ -76,6 +76,15 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameMHNAdmin class allows the user to insert/update/delete Master Hold Notices in the APP_MHN table.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMHNAdmin.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMHNAssign JInternalFrameMHNAssign
+ * @see com.commander4j.app.JInternalFrameMHNProperties JInternalFrameMHNProperties
+ * @see com.commander4j.db.JDBMHN JDBMHN
+ */
 public class JInternalFrameMHNAdmin extends JInternalFrame
 {
 	private JButton4j jButtonClear;

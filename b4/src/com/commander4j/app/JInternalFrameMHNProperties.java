@@ -87,6 +87,15 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameMHNProperties class allows the user to edit a single Master Hold Notice in the APP_MHN table.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMHNProperties.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMHNAssign JInternalFrameMHNAssign
+ * @see com.commander4j.app.JInternalFrameMHNAdmin JInternalFrameMHNAdmin
+ * @see com.commander4j.db.JDBMHN JDBMHN
+ */
 public class JInternalFrameMHNProperties extends JInternalFrame
 {
 	private JLabel4j_std jStatusText;

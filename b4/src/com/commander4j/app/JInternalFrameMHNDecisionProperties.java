@@ -54,6 +54,14 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameMHNDecisionProperties class allows the user to edit a single record the APP_MHN_DECISIONS table.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMHNDecisionProperties.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameMHNDecisionAdmin JInternalFrameMHNDecisionAdmin
+ * @see com.commander4j.db.JDBMHNDecisions JDBMHNDecisions
+ */
 public class JInternalFrameMHNDecisionProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
