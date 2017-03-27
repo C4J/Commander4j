@@ -92,6 +92,21 @@ import com.commander4j.util.JPrint;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameProductionDeclaration class is the main class for creating and printing SSCC's. The form is driven by the operator selecting
+ * a Process Order and optionally amending the quantity and batch number. This class allows the operator to check an option which means that any
+ * SSCC's created will automatically be confirmed and interfaced to external systems. If the SSCC is not confirmed then this can be done via the
+ * form JInternalFrameProductionConfirmation or via the Servlet
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameProductionDeclaration.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameProductionConfirmation JInternalFrameProductionConfirmation
+ * @see com.commander4j.db.JDBPallet JDBPallet
+ * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
+ * @see com.commander4j.servlet.Process
+ */
+
 public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private static final long serialVersionUID = 1;
 	private JCheckBox4j jCheckBoxAutoConfirm;

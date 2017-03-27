@@ -57,7 +57,24 @@ import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.tablemodel.JDBAutoLabellerTableModel;
 import com.commander4j.util.JUtility;
 
-public class JInternalFrameAutoLabellerLines extends JInternalFrame {
+/**
+ * The JInternalFrameAutoLabellerLines class allows the user to manage the table
+ * APP_AUTO_LABELLER. The Production Line defined within the Auto Labeller table
+ * allows the operator to send data to a logical production line which may
+ * consist of one or more physical labelling machines. The actual labellers
+ * which are assigned to the Production line are defined using the form
+ * JDialogAutoLabellerProperties
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameAutoLabellerLines.jpg" >
+ * 
+ * @see com.commander4j.app.JDialogAutoLabellerProperties
+ *      JDialogAutoLabellerProperties
+ * @see com.commander4j.db.JDBAutoLabeller JDBAutoLabeller
+ *
+ */
+public class JInternalFrameAutoLabellerLines extends JInternalFrame
+{
 
 	private static final long serialVersionUID = 1;
 	private JButton4j jButtonClose;
@@ -232,7 +249,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame {
 					{
 						editLabeller = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
 						editGroup = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
-						autolab.resend(editLabeller,editGroup,"Y");
+						autolab.resend(editLabeller, editGroup, "Y");
 						refresh();
 					}
 				}
@@ -254,7 +271,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame {
 					{
 						line = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
 						group = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
-						JLaunchMenu.runForm("FRM_LABELLER_HISTORY", line,group);
+						JLaunchMenu.runForm("FRM_LABELLER_HISTORY", line, group);
 						refresh();
 					}
 
@@ -263,7 +280,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame {
 			button4jHistory.setText(lang.get("btn_History"));
 			button4jHistory.setBounds(726, 331, 120, 32);
 			jDesktopPane1.add(button4jHistory);
-			
+
 			jStatusText = new JLabel4j_std();
 			jStatusText.setForeground(Color.RED);
 			jStatusText.setBackground(Color.GRAY);
@@ -348,7 +365,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame {
 		{
 			jTable1.setRowSelectionInterval(selectedRow, selectedRow);
 		}
-		
+
 		JUtility.setResultRecordCountColour(jStatusText, false, 1000, jTable1.getRowCount());
 	}
 
@@ -360,25 +377,19 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame {
 		{
 			if (lineId.equals("") == false)
 			{
-				
-				Object[] printerGroups = Common.printerGroup;
-				String groupId = (String)JOptionPane.showInputDialog(
-						Common.mainForm,
-				                    lang.get("lbl_Group_ID"),
-				                    lang.get("lbl_Group_ID"),
-				                    JOptionPane.PLAIN_MESSAGE,
-				                    Common.icon_confirm,
-				                    printerGroups,
-				                    "Pack");
 
-				//If a string was returned, say so.
-				if ((groupId != null) && (groupId.length() > 0)) {
+				Object[] printerGroups = Common.printerGroup;
+				String groupId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Group_ID"), lang.get("lbl_Group_ID"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm, printerGroups, "Pack");
+
+				// If a string was returned, say so.
+				if ((groupId != null) && (groupId.length() > 0))
+				{
 					lineId = lineId.toUpperCase();
 					autolab.setLine(lineId);
 					autolab.setGroup(groupId);
 					if (autolab.isValidLineGroup() == false)
 					{
-						JLaunchMenu.runDialog("FRM_ADMIN_AUTO_LAB_EDIT", lineId,groupId);
+						JLaunchMenu.runDialog("FRM_ADMIN_AUTO_LAB_EDIT", lineId, groupId);
 					} else
 					{
 						JOptionPane.showMessageDialog(Common.mainForm, "Line ID [" + lineId + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
@@ -386,7 +397,6 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame {
 					buildSQL();
 					populateList(lineId);
 				}
-				
 
 			}
 		}
@@ -402,7 +412,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame {
 		{
 			editLabeller = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
 			editGroup = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
-			JLaunchMenu.runDialog("FRM_ADMIN_AUTO_LAB_EDIT", editLabeller,editGroup);
+			JLaunchMenu.runDialog("FRM_ADMIN_AUTO_LAB_EDIT", editLabeller, editGroup);
 			refresh();
 		}
 	}
@@ -417,14 +427,14 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame {
 		{
 			oldLabeller = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
 			oldGroup = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
-			newLabeller = JOptionPane.showInputDialog(Common.mainForm, "Rename to ("+oldGroup+")");
+			newLabeller = JOptionPane.showInputDialog(Common.mainForm, "Rename to (" + oldGroup + ")");
 			if (newLabeller != null)
 			{
 				if (newLabeller.equals("") == false)
 				{
 					newLabeller = newLabeller.toUpperCase();
 
-					if (autolab.rename(oldLabeller, newLabeller,oldGroup))
+					if (autolab.rename(oldLabeller, newLabeller, oldGroup))
 					{
 						if (plm.renameLine(oldLabeller, newLabeller))
 						{
@@ -463,11 +473,11 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame {
 				if (result == false)
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, autolab.getErrorMessage(), "Delete error (" + deleteLine  + " - " + deleteGroup+ ")", JOptionPane.WARNING_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, autolab.getErrorMessage(), "Delete error (" + deleteLine + " - " + deleteGroup + ")", JOptionPane.WARNING_MESSAGE, Common.icon_confirm);
 				} else
 				{
 					JDBPrinterLineMembership plm = new JDBPrinterLineMembership(Common.selectedHostID, Common.sessionID);
-					plm.removeAllPrintersfromLine(deleteLine,deleteGroup);
+					plm.removeAllPrintersfromLine(deleteLine, deleteGroup);
 					buildSQL();
 					populateList(deleteLine);
 				}

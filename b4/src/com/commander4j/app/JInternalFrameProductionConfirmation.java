@@ -60,6 +60,18 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
+
+/**
+ * The JInternalFrameProductionConfirmation class is used to confirm an already created SSCC.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameProductionConfirmation.jpg" >
+ * JInternalFrameProductionDeclaration
+ * @see com.commander4j.app.JInternalFrameProductionDeclaration JInternalFrameProductionConfirmation
+ * @see com.commander4j.db.JDBPallet JDBPallet
+ * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
+ * @see com.commander4j.servlet.Process
+ */
 public class JInternalFrameProductionConfirmation extends javax.swing.JInternalFrame
 {
 	private JTextField4j jTextFieldUom;

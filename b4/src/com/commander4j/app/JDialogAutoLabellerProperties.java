@@ -86,6 +86,12 @@ import com.commander4j.util.JUtility;
  * Workstations are allowed to assign data to the Line and which physical
  * printers are assigned to it.
  *
+ * <p>
+ * <img alt="" src="./doc-files/JDialogAutoLabellerProperties.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameAutoLabellerLines
+ *      JInternalFrameAutoLabellerLines
+ * @see com.commander4j.db.JDBAutoLabeller JDBAutoLabeller
  */
 
 public class JDialogAutoLabellerProperties extends javax.swing.JDialog
