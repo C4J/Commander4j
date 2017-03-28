@@ -50,6 +50,15 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JDialogeGroupProperties class is a form which allows a user edit a record within the table SYS_GROUPS. 
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameGroupAdmin.jpg" >
+ * 
+ * @see com.commander4j.sys.JInternalFrameGroupAdmin JInternalFrameGroupAdmin
+ * @see com.commander4j.db.JDBGroup JDBGroup
+ */
 public class JDialogeGroupProperties extends JDialog
 {
 	private static final long serialVersionUID = 1;

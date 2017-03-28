@@ -65,9 +65,14 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 
 /**
- * Called from the Case Labeling screen once the user has selected the required
+ * Called from the Case Labelling screen once the user has selected the required
  * process order this dialog box will allow the user to send the data to a
  * nominated Production Line.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JDialogAssignLabelDataToLine.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFramePackLabelPrint JInternalFramePackLabelPrint
  *
  */
 public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {

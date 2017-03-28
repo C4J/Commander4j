@@ -57,6 +57,21 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+
+/**
+ * JInternalFrameCustomerProperties class is used to update a record in the
+ * APP_CUSTOMER table. This table is used to hold customer names and label
+ * options. When printing labels the the system looks at the customer ref in the
+ * Process Order and then retrieves the customer details from the APP_CUSTOMER
+ * table. This permits customer specific titles to appear on labels. The default
+ * customer ref of SELF can be used for all Process Orders if the company name
+ * on the label is constant.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameCustomerProperties.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameCustomerAdmin JInternalFrameCustomerAdmin
+ * @see com.commander4j.db.JDBCustomer JDBCustomer
+ */
 public class JInternalFrameCustomerProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

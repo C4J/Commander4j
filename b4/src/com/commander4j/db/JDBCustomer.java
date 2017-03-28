@@ -47,6 +47,9 @@ import com.commander4j.util.JUtility;
  * constant.
  * <p>
  * <img alt="" src="./doc-files/APP_CUSTOMER.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameCustomerAdmin JInternalFrameCustomerAdmin
+ * @see com.commander4j.app.JInternalFrameCustomerProperties JInternalFrameCustomerProperties
  */
 public class JDBCustomer
 {

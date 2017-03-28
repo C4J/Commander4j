@@ -55,12 +55,26 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameCustomerAdmin class is used to insert/update/delete the
+ * APP_CUSTOMER table. This table is used to hold customer names and label
+ * options. When printing labels the the system looks at the customer ref in the
+ * Process Order and then retrieves the customer details from the APP_CUSTOMER
+ * table. This permits customer specific titles to appear on labels. The default
+ * customer ref of SELF can be used for all Process Orders if the company name
+ * on the label is constant.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameCustomerAdmin.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameCustomerProperties JInternalFrameCustomerProperties
+ * @see com.commander4j.db.JDBCustomer JDBCustomer
+ */
 public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 {
 	private JButton jButtonExcel;
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
-	private JList4j<JDBCustomer>   jListCustomers;
+	private JList4j<JDBCustomer> jListCustomers;
 	private JButton4j jButtonRename;
 	private JButton4j jButtonClose;
 	private JButton4j jButtonRefresh;
@@ -73,9 +87,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 	private String lcustid;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
-	private void addrecord() {
+	private void addrecord()
+	{
 		JDBCustomer u = new JDBCustomer(Common.selectedHostID, Common.sessionID);
-		lcustid = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Customer_Add"), null, JOptionPane.QUESTION_MESSAGE,Common.icon_confirm, null, null);
+		lcustid = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Customer_Add"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm, null, null);
 		if (lcustid != null)
 		{
 			if (lcustid.equals("") == false)
@@ -84,9 +99,8 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 				if (u.create(lcustid, "", "Y") == false)
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, u.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
-				}
-				else
+					JOptionPane.showMessageDialog(Common.mainForm, u.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+				} else
 				{
 					JLaunchMenu.runForm("FRM_ADMIN_CUSTOMER_EDIT", lcustid);
 				}
@@ -95,7 +109,8 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 		}
 	}
 
-	private void populateList(String defaultitem) {
+	private void populateList(String defaultitem)
+	{
 
 		DefaultComboBoxModel<JDBCustomer> DefComboBoxMod = new DefaultComboBoxModel<JDBCustomer>();
 
@@ -120,7 +135,8 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 		jListCustomers.ensureIndexIsVisible(sel);
 	}
 
-	private void editRecord() {
+	private void editRecord()
+	{
 		if (jListCustomers.isSelectionEmpty() == false)
 		{
 			lcustid = ((JDBCustomer) jListCustomers.getSelectedValue()).getID();
@@ -128,7 +144,8 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 		}
 	}
 
-	private void delete() {
+	private void delete()
+	{
 		if (jListCustomers.isSelectionEmpty() == false)
 		{
 			lcustid = ((JDBCustomer) jListCustomers.getSelectedValue()).getID();
@@ -143,11 +160,13 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 		}
 	}
 
-	private void print() {
-		JLaunchReport.runReport("RPT_CUSTOMER",null,"",null,"");
+	private void print()
+	{
+		JLaunchReport.runReport("RPT_CUSTOMER", null, "", null, "");
 	}
 
-	private void rename() {
+	private void rename()
+	{
 		if (jListCustomers.isSelectionEmpty() == false)
 		{
 			String lcust_from = ((JDBCustomer) jListCustomers.getSelectedValue()).getID();
@@ -163,7 +182,7 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 					if (u.renameTo(lcust_to) == false)
 					{
 						JUtility.errorBeep();
-						JOptionPane.showMessageDialog(Common.mainForm, u.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+						JOptionPane.showMessageDialog(Common.mainForm, u.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 					}
 					populateList(lcust_to);
 				}
@@ -171,7 +190,8 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 		}
 	}
 
-	private void excel() {
+	private void excel()
+	{
 		JDBCustomer customer = new JDBCustomer(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		export.saveAs("customers.xls", customer.getCustomerDataResultSet(), Common.mainForm);
@@ -186,11 +206,12 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 		populateList("");
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(455, 518));
-			this.setBounds(0, 0, 556+Common.LFAdjustWidth, 541+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 556 + Common.LFAdjustWidth, 541 + Common.LFAdjustHeight);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -208,8 +229,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 						ListModel<JDBCustomer> jList1Model = new DefaultComboBoxModel<JDBCustomer>();
 						jListCustomers = new JList4j<JDBCustomer>();
 						jScrollPane1.setViewportView(jListCustomers);
-						jListCustomers.addMouseListener(new MouseAdapter() {
-							public void mouseClicked(MouseEvent evt) {
+						jListCustomers.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
 								if (evt.getClickCount() == 2)
 								{
 									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER_EDIT") == true)
@@ -227,8 +250,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										addrecord();
 									}
 								});
@@ -239,8 +264,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										delete();
 									}
 								});
@@ -251,8 +278,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										editRecord();
 									}
 								});
@@ -263,8 +292,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_rename);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										rename();
 									}
 								});
@@ -275,8 +306,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										print();
 									}
 								});
@@ -287,8 +320,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										excel();
 									}
 								});
@@ -298,8 +333,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										populateList("");
 									}
 								});
@@ -316,8 +353,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
 					jButtonAdd.setBounds(398, 10, 125, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER_ADD"));
-					jButtonAdd.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonAdd.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							addrecord();
 
 						}
@@ -331,8 +370,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 					jButtonDelete.setBounds(398, 41, 125, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER_DELETE"));
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
-					jButtonDelete.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonDelete.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							delete();
 
 						}
@@ -345,8 +386,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
 					jButtonEdit.setBounds(398, 72, 125, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER_EDIT"));
-					jButtonEdit.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonEdit.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							editRecord();
 						}
 					});
@@ -358,8 +401,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 					jButtonRename.setMnemonic(lang.getMnemonicChar());
 					jButtonRename.setBounds(398, 103, 125, 32);
 					jButtonRename.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER_RENAME"));
-					jButtonRename.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonRename.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							rename();
 
 						}
@@ -372,8 +417,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.setBounds(398, 134, 125, 32);
 					jButtonPrint.setEnabled(true);
-					jButtonPrint.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonPrint.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							print();
 						}
 					});
@@ -391,8 +438,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
 					jButtonRefresh.setBounds(398, 196, 125, 32);
-					jButtonRefresh.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonRefresh.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							populateList("");
 						}
 					});
@@ -403,8 +452,10 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.setBounds(398, 258, 125, 32);
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -415,16 +466,17 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
 					jButtonExcel.setBounds(398, 165, 125, 32);
-					jButtonExcel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonExcel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							excel();
 						}
 					});
 					jDesktopPane1.add(jButtonExcel);
 				}
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -436,19 +488,24 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
 	 * with parent.
 	 */
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
+	private static void addPopup(Component component, final JPopupMenu popup)
+	{
+		component.addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			private void showMenu(MouseEvent e) {
+			private void showMenu(MouseEvent e)
+			{
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});

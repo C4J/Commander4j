@@ -64,6 +64,9 @@ import com.commander4j.util.JUtility;
  * JInternalFramePalletAdmin class which allows a user to reprint a pallet
  * label.
  * 
+ * <p>
+ * <img alt="" src="./doc-files/JDialogPalletRePrintLabel.jpg" >
+ * 
  * @see com.commander4j.app.JInternalFramePalletAdmin JInternalFramePalletAdmin
  *
  */

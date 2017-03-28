@@ -58,6 +58,16 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 import javax.swing.ListSelectionModel;
 
+/**
+ * The JInternalFrameGroupAdmin class is a form which allows a user to manage the groups held in the table SYS_GROUPS. This table is part of the
+ * security/permissions configuration within the system. A group will contain a list of modules which a user is allowed to access. A user is then 
+ * allocated one or more groups.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameGroupAdmin.jpg" >
+ * 
+ * @see com.commander4j.sys.JDialogeGroupProperties JDialogeGroupProperties
+ * @see com.commander4j.db.JDBGroup JDBGroup
+ */
 public class JInternalFrameGroupAdmin extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;
