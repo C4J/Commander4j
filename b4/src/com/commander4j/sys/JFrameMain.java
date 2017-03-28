@@ -64,6 +64,12 @@ import com.commander4j.db.JDBModule;
 import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.util.JHelp;
 
+/**
+ * JFrameMain is the main desktop for the Swing application as shown below.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JFrameMain.jpg" >
+ */
 public class JFrameMain extends JFrame implements ComponentListener
 {
 	private static final long serialVersionUID = 1;

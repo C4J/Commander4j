@@ -44,6 +44,13 @@ import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JUtility;
 
+
+/**
+ * The JDialogSysInfo class is a form which displays versions of libraries, programs and environment variables.
+ * <p>
+ * <img alt="" src="./doc-files/JDialogSysInfo.jpg" >
+ * 
+ */
 public class JDialogSysInfo extends javax.swing.JDialog
 {
 	private JTextField4j jTextFieldHosyUniqueRef;

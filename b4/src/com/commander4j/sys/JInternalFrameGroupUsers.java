@@ -59,6 +59,16 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameGroupUsers class is a form which displays a list of users who are assigned to the selected Group.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameGroupUsers.jpg" >
+ * 
+ * @see com.commander4j.sys.JInternalFrameGroupAdmin JInternalFrameGroupAdmin
+ * @see com.commander4j.sys.JDialogeGroupProperties JDialogeGroupProperties
+ * @see com.commander4j.db.JDBGroup JDBGroup
+ * @see com.commander4j.db.JDBUserGroupMembership JDBUserGroupMembership
+ */
 public class JInternalFrameGroupUsers extends javax.swing.JInternalFrame
 {
 	private JButton4j jButtonExcel;

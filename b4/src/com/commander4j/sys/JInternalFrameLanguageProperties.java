@@ -47,6 +47,16 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameLanguageProperties class is a form which displays allows you to edit a record in the SYS_LANGUAGE table
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameLanguageProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBLanguage JDBLanguage
+ * @see com.commander4j.sys.JInternalFrameLanguageAdmin JInternalFrameLanguageAdmin
+ * @see com.commander4j.bean.JLanguage JLanguage
+ */
 public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;

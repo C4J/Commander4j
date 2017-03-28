@@ -52,6 +52,18 @@ import com.commander4j.gui.JLabel4j_title;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+
+/**
+ * The JInternalFrameGroupPermissions class is a form which allows a user to manage permissions by assigning modules to a group. Groups are then assigned to a user.
+ * This class updates the table SYS_GROUP_PERMISSIONS
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameGroupPermissions.jpg" >
+ * 
+ * @see com.commander4j.sys.JDialogeGroupProperties JDialogeGroupProperties
+ * @see com.commander4j.sys.JInternalFrameGroupAdmin JInternalFrameGroupAdmin
+ * @see com.commander4j.db.JDBGroup JDBGroup
+ * @see com.commander4j.db.JDBGroupPermissions JDBGroupPermissions
+ */
 public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;

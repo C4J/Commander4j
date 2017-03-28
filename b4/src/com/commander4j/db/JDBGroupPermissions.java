@@ -45,10 +45,10 @@ import com.commander4j.sys.Common;
  * <p>
  * <img alt="" src="./doc-files/SYS_GROUP_PERMISSIONS.jpg" >
  * 
+ * @see com.commander4j.db.JDBGroupPermissions JDBGroupPermissions
  * @see com.commander4j.db.JDBGroup JDBGroup
  * @see com.commander4j.db.JDBModule JDBModule
  */
-
 public class JDBGroupPermissions
 {
 

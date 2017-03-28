@@ -65,6 +65,17 @@ import com.commander4j.util.JUtility;
 
 import javax.swing.DefaultComboBoxModel;
 
+/**
+ * The JInternalFrameLanguageAdmin class is a form which displays all the text used within the application filtered by language. Add text is stored in a
+ * table called SYS_LANGUAGE
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameLanguageAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBLanguage JDBLanguage
+ * @see com.commander4j.sys.JInternalFrameLanguageProperties JInternalFrameLanguageProperties
+ * @see com.commander4j.bean.JLanguage JLanguage
+ */
 public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 {
 	private JButton4j jButtonExcel;
