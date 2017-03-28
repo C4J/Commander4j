@@ -60,6 +60,16 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameModuleAdmin class allows a user to insert/update/delete records from the SYS_MODULES table.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameModuleAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBModule JDBModule
+ * @see com.commander4j.sys.JInternalFrameModuleProperties JInternalFrameModuleProperties
+ * @see com.commander4j.sys.JInternalFrameModuleGroups JInternalFrameModuleGroups
+ */
 public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 {
 	private JButton4j jButtonExcel;

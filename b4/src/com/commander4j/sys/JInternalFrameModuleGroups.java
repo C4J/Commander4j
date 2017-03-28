@@ -58,6 +58,16 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameModuleGroups class displays a list of all the groups which contain the selected module.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameModuleGroups.jpg" >
+ * 
+ * @see com.commander4j.db.JDBModule JDBModule
+ * @see com.commander4j.sys.JInternalFrameModuleAdmin JInternalFrameModuleAdmin
+ * @see com.commander4j.sys.JInternalFrameModuleProperties JInternalFrameModuleProperties
+ */
 public class JInternalFrameModuleGroups extends javax.swing.JInternalFrame
 {
 	private JButton4j jButtonExcel;

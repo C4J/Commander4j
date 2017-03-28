@@ -54,6 +54,14 @@ import com.commander4j.gui.JLabel4j_title;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameMenuStructure class allows you to customise the menu structure within the application and updates the table SYS_MENUS
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMenuStructure.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMenus JDBMenus
+ */
 public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;

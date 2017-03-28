@@ -35,6 +35,13 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
+/**
+ * JDBRFMenu class is used to insert/update/delete records from the
+ * SYS_RF_MENU table. 
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/SYS_RF_MENU.jpg" >
+ */
 public class JDBRFMenu
 {
 

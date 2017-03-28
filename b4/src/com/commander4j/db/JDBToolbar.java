@@ -35,6 +35,13 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
+/**
+ * JDBToolbar class is used to insert/update/delete records from the
+ * SYS_TOOLBAR table. 
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/SYS_TOOLBAR.jpg" >
+ */
 public class JDBToolbar
 {
 

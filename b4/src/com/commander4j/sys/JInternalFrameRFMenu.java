@@ -51,6 +51,16 @@ import com.commander4j.gui.JLabel4j_title;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameRFMenu class allows a user to pick which options (modules)
+ * appear on top level menu of the web page which is used on mobile devices. The
+ * toolbar options are stored in the table SYS_RF_MENU.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameRFMenu.jpg" >
+ * 
+ * @see com.commander4j.db.JDBRFMenu JDBRFMenu
+ */
 public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;
@@ -85,7 +95,8 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 		populateUnAssignedList();
 	}
 
-	public void setButtonState() {
+	public void setButtonState()
+	{
 		jButtonSave.setEnabled(true);
 		jButtonUndo.setEnabled(true);
 
@@ -112,17 +123,20 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 
 	}
 
-	public void addToList(LinkedList<JDBListData> list, JDBListData newValue, boolean sort) {
+	public void addToList(LinkedList<JDBListData> list, JDBListData newValue, boolean sort)
+	{
 		list.add(newValue);
 		if (sort == true)
 			Collections.sort(list);
 	}
 
-	public void removeFromList(LinkedList<JDBListData> list, Object oldValue) {
+	public void removeFromList(LinkedList<JDBListData> list, Object oldValue)
+	{
 		list.remove(list.indexOf(oldValue));
 	}
 
-	private void refreshJList(JDBModuleJList jlist, DefaultComboBoxModel<JDBListData> comboboxmodel, LinkedList<JDBListData> linkedlist) {
+	private void refreshJList(JDBModuleJList jlist, DefaultComboBoxModel<JDBListData> comboboxmodel, LinkedList<JDBListData> linkedlist)
+	{
 		comboboxmodel.removeAllElements();
 
 		for (int j = 0; j < linkedlist.size(); j++)
@@ -134,7 +148,8 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 		jlist.setModel(jList1Model);
 	}
 
-	private void populateAssignedList() {
+	private void populateAssignedList()
+	{
 		assignedModel.removeAllElements();
 
 		JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
@@ -149,8 +164,7 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 			}
 			jButtonUp.setEnabled(true);
 			jButtonDown.setEnabled(true);
-		}
-		else
+		} else
 		{
 			jButtonUp.setEnabled(false);
 			jButtonDown.setEnabled(false);
@@ -161,7 +175,8 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 		jListAssigned.setModel(jList1Model);
 	}
 
-	private void populateUnAssignedList() {
+	private void populateUnAssignedList()
+	{
 		unassignedModel.removeAllElements();
 
 		JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
@@ -181,11 +196,12 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 		jListUnAssigned.setModel(jList1Model);
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(538, 440));
-			this.setBounds(0, 0, 526+Common.LFAdjustWidth, 459+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 526 + Common.LFAdjustWidth, 459 + Common.LFAdjustHeight);
 			setVisible(true);
 
 			this.setClosable(true);
@@ -228,8 +244,10 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jButtonAssign = new JButton4j(Common.icon_arrow_left);
 					jDesktopPane1.add(jButtonAssign);
 					jButtonAssign.setBounds(238, 133, 25, 25);
-					jButtonAssign.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonAssign.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							if (jListUnAssigned.getSelectedIndex() > -1)
 							{
 								for (int j = jListUnAssigned.getMaxSelectionIndex(); j >= jListUnAssigned.getMinSelectionIndex(); j--)
@@ -266,8 +284,10 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jButtonUnAssign = new JButton4j(Common.icon_arrow_right);
 					jDesktopPane1.add(jButtonUnAssign);
 					jButtonUnAssign.setBounds(238, 168, 25, 25);
-					jButtonUnAssign.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonUnAssign.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							if (jListAssigned.getSelectedIndex() > -1)
 							{
 								for (int j = jListAssigned.getMaxSelectionIndex(); j >= jListAssigned.getMinSelectionIndex(); j--)
@@ -302,8 +322,10 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jButtonUp = new JButton4j(Common.icon_arrow_up);
 					jDesktopPane1.add(jButtonUp);
 					jButtonUp.setBounds(238, 100, 25, 25);
-					jButtonUp.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonUp.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							int sel = jListAssigned.getSelectedIndex();
 							JDBListData element = ((JDBListData) jListAssigned.getModel().getElementAt(sel));
 							assignedList = JDBModule.moveElementUp(assignedList, element);
@@ -318,8 +340,10 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jButtonDown = new JButton4j(Common.icon_arrow_down);
 					jDesktopPane1.add(jButtonDown);
 					jButtonDown.setBounds(238, 205, 25, 25);
-					jButtonDown.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonDown.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							int j = jListAssigned.getSelectedIndex();
 							JDBListData element = ((JDBListData) jListAssigned.getModel().getElementAt(j));
 							assignedList = JDBModule.moveElementDown(assignedList, element);
@@ -336,8 +360,10 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setBounds(369, 373, 110, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -356,8 +382,10 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jButtonSave.setBounds(30, 373, 112, 32);
 					jButtonSave.setEnabled(false);
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
-					jButtonSave.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonSave.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JDBRFMenu t = new JDBRFMenu(Common.selectedHostID, Common.sessionID);
 							t.rewriteRFMenu(assignedList);
 							jButtonSave.setEnabled(false);
@@ -372,8 +400,10 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jButtonUndo.setBounds(145, 373, 112, 32);
 					jButtonUndo.setEnabled(false);
 					jButtonUndo.setMnemonic(lang.getMnemonicChar());
-					jButtonUndo.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonUndo.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							populateAssignedList();
 							populateUnAssignedList();
 							jButtonSave.setEnabled(false);
@@ -396,8 +426,7 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jLabel2.setFont(Common.font_title);
 				}
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}

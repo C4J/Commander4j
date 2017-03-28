@@ -1,9 +1,4 @@
-/*
- * Created on 15-Oct-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
+
 package com.commander4j.sys;
 
 /**
@@ -68,6 +63,16 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.db.JDBModule;
 
+
+/**
+ * The JInternalFrameMenuTree class is responsible for displaying the menu tree as shown below.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameMenuTree.jpg" >
+ * 
+ * @see com.commander4j.db.JDBMenus JDBMenus
+ * @see com.commander4j.sys.JInternalFrameMenuStructure JInternalFrameMenuStructure
+ */
 public class JInternalFrameMenuTree extends JInternalFrame
 
 {

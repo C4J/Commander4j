@@ -61,6 +61,16 @@ import com.commander4j.util.JFileFilterTXT;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameModuleProperties class allows a user to update a record in the SYS_MODULES table.
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameModuleProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBModule JDBModule
+ * @see com.commander4j.sys.JInternalFrameModuleAdmin JInternalFrameModuleAdmin
+ * @see com.commander4j.sys.JInternalFrameModuleGroups JInternalFrameModuleGroups
+ */
 public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 {
 	private JSpinner jSpinnerPrintCopies;
