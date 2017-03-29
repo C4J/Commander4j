@@ -61,6 +61,7 @@
         <mkdir dir="build/classes"/>
         <copy includeemptydirs="false" todir="build/classes">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -92,4 +93,13 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+    
+    <target name="war" depends="build">
+		  <war destfile="dist/b4web.war" webxml="WebContent/WEB-INF/web.xml">
+		  	<fileset dir="WebContent"/>
+		  	<lib dir="WebContent/WEB-INF/lib"/>
+		  	<classes dir="build/classes"/>
+		  </war>
+	  </target>
+	
 </project>

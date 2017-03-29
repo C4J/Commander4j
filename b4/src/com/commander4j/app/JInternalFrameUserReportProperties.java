@@ -70,6 +70,19 @@ import java.awt.Font;
 import com.commander4j.util.JDateControl;
 import com.commander4j.calendar.JCalendarButton;
 
+/**
+ * The JInternalFrameUserReportProperties class allows a user to create simple
+ * reports by entering a SQL SELECT statement which can include a date range
+ * criteria.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameUserReportProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBUserReport JDBUserReport
+ * @see com.commander4j.app.JInternalFrameUserReportAdmin
+ *      JInternalFrameUserReportAdmin
+ *
+ */
 public class JInternalFrameUserReportProperties extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;

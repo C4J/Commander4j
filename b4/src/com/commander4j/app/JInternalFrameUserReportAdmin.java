@@ -64,7 +64,20 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
-public class JInternalFrameUserReportAdmin extends JInternalFrame {
+/**
+ * The JInternalFrameUserReportAdmin class allows a user manage a table called
+ * SYS_USER_REPORTS which contains user defined reports.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameUserReportAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBUserReport JDBUserReport
+ * @see com.commander4j.app.JInternalFrameUserReportProperties
+ *      JInternalFrameUserReportProperties
+ *
+ */
+public class JInternalFrameUserReportAdmin extends JInternalFrame
+{
 
 	/**
 	 * 
@@ -110,7 +123,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 		scrollPaneReports.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 		scrollPaneReports.setBounds(12, 30, 569, 253);
 		desktopPane.add(scrollPaneReports);
-		jListUserReports.addListSelectionListener(new ListSelectionListener() {
+		jListUserReports.addListSelectionListener(new ListSelectionListener()
+		{
 			public void valueChanged(ListSelectionEvent arg0)
 			{
 				if (arg0.getValueIsAdjusting() == false)
@@ -119,7 +133,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 				}
 			}
 		});
-		jListUserReports.addMouseListener(new MouseAdapter() {
+		jListUserReports.addMouseListener(new MouseAdapter()
+		{
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
@@ -137,7 +152,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 		scrollPaneShifts.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 		scrollPaneShifts.setBounds(12, 312, 569, 161);
 		desktopPane.add(scrollPaneShifts);
-		jListShifts.addMouseListener(new MouseAdapter() {
+		jListShifts.addMouseListener(new MouseAdapter()
+		{
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
@@ -148,7 +164,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 			}
 		});
 		jListShifts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		jListShifts.addListSelectionListener(new ListSelectionListener() {
+		jListShifts.addListSelectionListener(new ListSelectionListener()
+		{
 			public void valueChanged(ListSelectionEvent arg0)
 			{
 				if (arg0.getValueIsAdjusting() == false)
@@ -249,7 +266,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 
 		button4j_Backwards.setBounds(36, 115, 25, 25);
 		panelDateParams.add(button4j_Backwards);
-		button4j_Backwards.addActionListener(new ActionListener() {
+		button4j_Backwards.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent e)
 			{
 				dateAdjust(domDateFrom, -1);
@@ -260,7 +278,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 
 		button4j_Forwards.setBounds(73, 115, 25, 25);
 		panelDateParams.add(button4j_Forwards);
-		button4j_Forwards.addActionListener(new ActionListener() {
+		button4j_Forwards.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent e)
 			{
 				dateAdjust(domDateFrom, 1);
@@ -278,7 +297,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 
 		btn4jAdd.setBounds(20, 6, 126, 29);
 		panelButtons.add(btn4jAdd);
-		btn4jAdd.addActionListener(new ActionListener() {
+		btn4jAdd.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				addReport();
@@ -290,7 +310,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 
 		btn4jEdit.setBounds(20, 36, 126, 29);
 		panelButtons.add(btn4jEdit);
-		btn4jEdit.addActionListener(new ActionListener() {
+		btn4jEdit.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent e)
 			{
 				editReport();
@@ -302,7 +323,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 
 		btn4jDelete.setBounds(20, 66, 126, 29);
 		panelButtons.add(btn4jDelete);
-		btn4jDelete.addActionListener(new ActionListener() {
+		btn4jDelete.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				deleteReport();
@@ -313,7 +335,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 
 		btn4jCopy.setBounds(20, 96, 126, 29);
 		panelButtons.add(btn4jCopy);
-		btn4jCopy.addActionListener(new ActionListener() {
+		btn4jCopy.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent e)
 			{
 				copyReport();
@@ -324,7 +347,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 
 		btn4jRefresh.setBounds(20, 126, 126, 29);
 		panelButtons.add(btn4jRefresh);
-		btn4jRefresh.addActionListener(new ActionListener() {
+		btn4jRefresh.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent e)
 			{
 				if (jListUserReports.isSelectionEmpty() == false)
@@ -343,7 +367,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 
 		btn4jRun.setBounds(20, 156, 126, 29);
 		panelButtons.add(btn4jRun);
-		btn4jRun.addActionListener(new ActionListener() {
+		btn4jRun.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				if (jListUserReports.isSelectionEmpty() == false)
@@ -360,7 +385,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 					{
 						JUtility.errorBeep();
 						label4j_statusBar.setText(reportid.getErrorMessage());
-						JOptionPane.showMessageDialog(Common.mainForm, reportid.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+						JOptionPane.showMessageDialog(Common.mainForm, reportid.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 					} else
 					{
 						label4j_statusBar.setText("Created : " + reportid.getExportFilename());
@@ -378,7 +403,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 
 		btn4jClose.setBounds(20, 216, 126, 29);
 		panelButtons.add(btn4jClose);
-		btn4jClose.addActionListener(new ActionListener() {
+		btn4jClose.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				dispose();
@@ -394,7 +420,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 		panelShiftButtons.setLayout(null);
 
 		JButton4j button4jShiftAdd = new JButton4j(Common.icon_add);
-		button4jShiftAdd.addActionListener(new ActionListener() {
+		button4jShiftAdd.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				addShift();
@@ -407,8 +434,10 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 		button4jShiftAdd.setMnemonic('0');
 
 		JButton4j button4jShiftDelete = new JButton4j(Common.icon_delete);
-		button4jShiftDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		button4jShiftDelete.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				deleteShift();
 			}
 		});
@@ -419,7 +448,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 		button4jShiftDelete.setFont(Common.font_std);
 
 		JButton4j button4jShiftEdit = new JButton4j(Common.icon_edit);
-		button4jShiftEdit.addActionListener(new ActionListener() {
+		button4jShiftEdit.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent e)
 			{
 				editShift();
@@ -434,7 +464,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 		JButton4j button4jShiftRefresh = new JButton4j(Common.icon_refresh);
 		button4jShiftRefresh.setBounds(87, 0, 28, 28);
 		panelShiftButtons.add(button4jShiftRefresh);
-		button4jShiftRefresh.addActionListener(new ActionListener() {
+		button4jShiftRefresh.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				populateListUserShifts("");
@@ -446,7 +477,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 		populateListUserReports("");
 		populateListUserShifts("");
 		setButtonState();
-		
+
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(btn4jHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_USER_REPORT"));
 	}
@@ -515,7 +546,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 		if (jListUserReports.isSelectionEmpty() == false)
 		{
 			JDBUserReport reportid = (JDBUserReport) ((JDBListData) jListUserReports.getSelectedValue()).getObject();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_User_Report_Delete") +" " + reportid.getReportID() + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_User_Report_Delete") + " " + reportid.getReportID() + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 			if (n == 0)
 			{
 
@@ -533,7 +564,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 			{
 				JDBShifts shiftid = (JDBShifts) (jListShifts.getSelectedValue());
 
-				int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Shift_Delete") + " " + shiftid.getShiftID() + " - [" +shiftid.getDescription()+ "]" + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+				int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Shift_Delete") + " " + shiftid.getShiftID() + " - [" + shiftid.getDescription() + "]" + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0,
+						Common.icon_confirm);
 				if (n == 0)
 				{
 
@@ -559,7 +591,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 				if (rpt.create(reportId) == false)
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, rpt.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, rpt.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 				} else
 				{
 
@@ -586,7 +618,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame {
 				if (shift.isValid(shiftId))
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, shift.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, shift.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 				} else
 				{
 
