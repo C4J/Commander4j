@@ -53,23 +53,6 @@ public class JDBQMResult
 	private String 		hostID;
 	private String 		sessionID;
 	
-	/*
-	 * 
-		Table APP_QM_RESULT
-		===================
-		SAMPLE_ID, TEST_ID, VALUE, UPDATED, USER_ID, STATUS, PROCESSED
-		-------------------
-		SAMPLE_ID        int(11) PK
-		TEST_ID          varchar(50) PK
-		VALUE            varchar(50)
-		UPDATED          datetime
-		USER_ID          varchar(20)
-		STATUS           varchar(20)
-		PROCESSED        datetime
-
-	 * 
-	 */
-
 	public JDBQMResult(String host, String session) {
 		setHostID(host);
 		setSessionID(session);

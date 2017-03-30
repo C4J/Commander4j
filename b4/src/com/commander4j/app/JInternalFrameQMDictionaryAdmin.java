@@ -53,6 +53,18 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.util.JExcel;
 
+/**
+ * The JInternalFrameQMDictionaryAdmin class allows a user manage a table called
+ * APP_QM_DICTIONARY which field definitions which are used for data entry within the JDBQMResult input table/grid
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameQMDictionaryAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBQMDictionary JDBQMDictionary
+ * @see com.commander4j.app.JDialogQMDictionaryProperties JDialogQMDictionaryProperties
+ * @see com.commander4j.db.JDBQMResult JDBQMResult
+ *
+ */
 public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;
