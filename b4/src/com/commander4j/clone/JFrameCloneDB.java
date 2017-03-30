@@ -73,6 +73,17 @@ import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.JWait;
 
+/**
+ * The JFrameCloneDB class allows a user copy a commander4j schema between two
+ * databases which can be different type if required (MS SQL, mySQL or Oracle).
+ * The commander4j schema version number needs to be the same revision in the
+ * source and destination database. The database schema and program version are
+ * updated using the Setup4j program.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JFrameCloneDB.jpg" >
+ *
+ */
 public class JFrameCloneDB extends JFrame
 {
 	private static final long serialVersionUID = 1;
@@ -95,7 +106,6 @@ public class JFrameCloneDB extends JFrame
 	private String sessionTo = JUnique.getUniqueID();
 	private String hostIDFrom = "";
 	private String hostIDTo = "";
-
 
 	public static void main(String[] args)
 	{
@@ -225,12 +235,11 @@ public class JFrameCloneDB extends JFrame
 		try
 		{
 			Thread.sleep(10);
-		}
-		catch (InterruptedException ie)
+		} catch (InterruptedException ie)
 		{
 		}
 	}
-	
+
 	private void getHostDataTo()
 	{
 		int j = jListHostTo.getSelectedIndex();
@@ -322,7 +331,7 @@ public class JFrameCloneDB extends JFrame
 						setStatusBarText("Connecting to source...");
 						if (hstFrom.connect(sessionFrom, hostIDFrom))
 						{
-							
+
 							// Check we can connect to Destination //
 							setStatusBarText("Connecting to destination...");
 							if (hstTo.connect(sessionTo, hostIDTo))
@@ -359,19 +368,19 @@ public class JFrameCloneDB extends JFrame
 										for (int tf = 0; tf < tableCountFrom; tf++)
 										{
 											table = tablesFrom.get(tf);
-											progressBar.setValue(tf+1);
+											progressBar.setValue(tf + 1);
 											progressBar.paintImmediately(progressBar.getVisibleRect());
 											if (tablesTo.contains(table))
 											{
 
 												// GET FIELDS FOR CURRENT TABLE
-												setStatusBarText("Getting field names for "+table);
+												setStatusBarText("Getting field names for " + table);
 												LinkedList<JDBField> fieldNames = strucFrom.getFieldNames(table);
 												JWait.milliSec(100);
 
 												// CREATE INSERT STATEMENT FOR
 												// TARGET DATABASE //
-												setStatusBarText("Generating insert SQL for "+table);
+												setStatusBarText("Generating insert SQL for " + table);
 												String insertTable = "insert into " + table;
 												String insertFields = "";
 												String insertPlaceMarkers = "";
@@ -393,7 +402,7 @@ public class JFrameCloneDB extends JFrame
 												String insertStatement = insertTable + " (" + insertFields + ") values (" + insertPlaceMarkers + ")";
 
 												// SELECT ALL SOURCE RECORDS //
-												setStatusBarText("Copying table "+table);
+												setStatusBarText("Copying table " + table);
 												Long recordsCopied = (long) 0;
 												try
 												{
@@ -413,7 +422,6 @@ public class JFrameCloneDB extends JFrame
 													truncateData.close();
 													truncateData = null;
 
-
 													while (sourceResultset.next())
 													{
 														for (int fldfrom = 0; fldfrom < fieldNames.size(); fldfrom++)
@@ -424,32 +432,63 @@ public class JFrameCloneDB extends JFrame
 																String value;
 																value = sourceResultset.getString(field.getfieldName());
 																destinationData.setString(fldfrom + 1, value);
-																//System.out.println("Table = \"" + table + "\" Field = \"" + field.getfieldName() + "\" Value = \"" + value + "\"");
+																// System.out.println("Table
+																// = \"" + table
+																// + "\" Field =
+																// \"" +
+																// field.getfieldName()
+																// + "\" Value =
+																// \"" + value +
+																// "\"");
 															}
 															if ((field.getfieldType().toLowerCase().equals("decimal")) | (field.getfieldType().toLowerCase().equals("numeric")) | (field.getfieldType().toLowerCase().equals("float")))
 															{
 																BigDecimal value;
 																value = sourceResultset.getBigDecimal(field.getfieldName());
 																destinationData.setBigDecimal(fldfrom + 1, value);
-																//System.out.println("Table = \"" + table + "\" Field = \"" + field.getfieldName() + "\" Value = \"" + JUtility.replaceNullObjectwithBlank(value).toString() + "\"");
+																// System.out.println("Table
+																// = \"" + table
+																// + "\" Field =
+																// \"" +
+																// field.getfieldName()
+																// + "\" Value =
+																// \"" +
+																// JUtility.replaceNullObjectwithBlank(value).toString()
+																// + "\"");
 															}
 															if (field.getfieldType().toLowerCase().equals("datetime"))
 															{
 																Timestamp value;
 																value = sourceResultset.getTimestamp(field.getfieldName());
 																destinationData.setTimestamp(fldfrom + 1, value);
-																//System.out.println("Table = \"" + table + "\" Field = \"" + field.getfieldName() + "\" Value = \""
-																//		+ JUtility.replaceNullObjectwithBlank(value).toString() + "\"");
+																// System.out.println("Table
+																// = \"" + table
+																// + "\" Field =
+																// \"" +
+																// field.getfieldName()
+																// + "\" Value =
+																// \""
+																// +
+																// JUtility.replaceNullObjectwithBlank(value).toString()
+																// + "\"");
 															}
 															if ((field.getfieldType().toLowerCase().equals("int")) | (field.getfieldType().toLowerCase().equals("bigint")))
 															{
 																Integer value;
 																value = sourceResultset.getInt(field.getfieldName());
 																destinationData.setInt(fldfrom + 1, value);
-																//System.out.println("Table = \"" + table + "\" Field = \"" + field.getfieldName() + "\" Value = \""
-																//		+ JUtility.replaceNullObjectwithBlank(value).toString() + "\"");
+																// System.out.println("Table
+																// = \"" + table
+																// + "\" Field =
+																// \"" +
+																// field.getfieldName()
+																// + "\" Value =
+																// \""
+																// +
+																// JUtility.replaceNullObjectwithBlank(value).toString()
+																// + "\"");
 															}
-															field=null;
+															field = null;
 														}
 														try
 														{
@@ -457,7 +496,7 @@ public class JFrameCloneDB extends JFrame
 															hstTo.getConnection(sessionTo).commit();
 															destinationData.clearParameters();
 															recordsCopied++;
-															
+
 														} catch (Exception ex)
 														{
 															System.out.println(ex.getMessage());
@@ -474,24 +513,24 @@ public class JFrameCloneDB extends JFrame
 
 												} catch (SQLException e)
 												{
-													labelCommand.setText("Error reading "+table);
+													labelCommand.setText("Error reading " + table);
 												}
 
 											} else
 											{
-												labelCommand.setText("Table "+table+" does not exist in destination");
+												labelCommand.setText("Table " + table + " does not exist in destination");
 											}
 
 										}
 									} else
 									{
-										
-										labelCommand.setText("Number of tables mismatch "+String.valueOf(tableCountFrom)+"/"+String.valueOf(tableCountTo));
+
+										labelCommand.setText("Number of tables mismatch " + String.valueOf(tableCountFrom) + "/" + String.valueOf(tableCountTo));
 									}
 
 								} else
 								{
-									labelCommand.setText("Schema version mismatch "+String.valueOf(schemaFrom)+"/"+String.valueOf(schemaTo));
+									labelCommand.setText("Schema version mismatch " + String.valueOf(schemaFrom) + "/" + String.valueOf(schemaTo));
 								}
 
 							} else
