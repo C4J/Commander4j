@@ -76,6 +76,20 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameProcessOrderResourceAdmin class updates the table
+ * APP_PROCESS_ORDER_RESOURCE. This table contains a single row for each unique
+ * Process Order Resource. This table holds additional data which is associated
+ * with the factory resource. This table is automatically updated with resource
+ * names when a new Process is imported via the interfaces. Typical data which
+ * might be stored in this table include default batch numbers
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameProcessOrderResourceAdmin.jpg" >
+ *
+ * @see com.commander4j.db.JDBProcessOrderResource JDBProcessOrderResource
+ * @see com.commander4j.db.JDBProcessOrder JDBProcessOrder
+ *
+ */
 public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 {
 	private JButton4j jButtonExcel;
@@ -131,9 +145,11 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
 
 		setSequence(dlg_sort_descending);
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				jTextFieldResource.requestFocus();
 			}
 		});

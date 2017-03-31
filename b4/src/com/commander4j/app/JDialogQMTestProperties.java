@@ -55,6 +55,29 @@ import com.commander4j.util.JUtility;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
+/**
+ * The JDialogQMTestProperties is part of the Quality Module within the
+ * application. The structure of the screens and tables is loosely based upon
+ * the SAP Inspection Lot system. The tables APP_QM_INSPECTION, APP_QM_ACTIVITY
+ * and APP_QM_TEST are arranged in a 3 layer hierarchy. For each Inspection
+ * there can be one or more Activities. For each Activity there will typically
+ * be more than one Test.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JDialogQMTestProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBQMInspection JDBQMInspection
+ * @see com.commander4j.db.JDBQMActivity JDBQMActivity
+ * @see com.commander4j.db.JDBQMTest JDBQMTest
+ * @see com.commander4j.db.JDBQMSample JDBQMSample
+ * @see com.commander4j.db.JDBQMResult JDBQMResult
+ * @see com.commander4j.db.JDBQMDictionary JDBQMDictionary
+ * @see com.commander4j.app.JInternalFrameQMInspectionAdmin JInternalFrameQMInspectionAdmin
+ * @see com.commander4j.app.JDialogQMInspectionProperties JDialogQMInspectionProperties
+ * @see com.commander4j.app.JDialogQMActivityProperties JDialogQMActivityProperties
+ * @see com.commander4j.app.JDialogQMTestProperties JDialogQMTestProperties
+ *
+ */
 public class JDialogQMTestProperties extends javax.swing.JDialog
 {
 

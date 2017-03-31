@@ -28,6 +28,7 @@ package com.commander4j.app;
  */
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -73,6 +74,14 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameQMResultEnquiry is used for querying the APP_QM_RESULT table
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameQMResultEnquiry.jpg" >
+ * 
+ * @see com.commander4j.db.JDBQMResult JDBQMResult
+ */
 public class JInternalFrameQMResultEnquiry extends JInternalFrame
 {
 
@@ -197,28 +206,28 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		String groupSQL = "GROUP BY SAMPLE_ID,SAMPLE_DATE,Inspection_ID,Activity_ID,MATERIAL,PROCESS_ORDER,USER_DATA_1,USER_DATA_2";
 
 		String sqlHaving = "";
-		
+
 		if (x > 0)
 		{
 			int count = 0;
 			String limit = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit();
 			String fieldDelim1 = "";
 			String fieldDelim2 = "";
-			if (limit.equals("top")) 
+			if (limit.equals("top"))
 			{
 				fieldDelim1 = "'";
 				fieldDelim2 = "'";
 			}
-			if (limit.equals("rownum")) 
+			if (limit.equals("rownum"))
 			{
 				fieldDelim1 = "\"";
 				fieldDelim2 = "\"";
 			}
-			if (limit.equals("limit")) 
+			if (limit.equals("limit"))
 			{
 				fieldDelim1 = "`";
 				fieldDelim2 = "`";
-			}			
+			}
 			JCheckListItem tempItem;
 			for (int sel = 0; sel < x; sel++)
 			{
@@ -230,22 +239,21 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 
 					if (count == 0)
 					{
-						 sqlHaving = " HAVING ("+fieldDelim1+description+fieldDelim2+" IS NOT NULL) ";
-					}
-					else
+						sqlHaving = " HAVING (" + fieldDelim1 + description + fieldDelim2 + " IS NOT NULL) ";
+					} else
 					{
-						sqlHaving =sqlHaving+ " OR ("+fieldDelim1+description+fieldDelim2+" IS NOT NULL) ";
+						sqlHaving = sqlHaving + " OR (" + fieldDelim1 + description + fieldDelim2 + " IS NOT NULL) ";
 					}
 					count++;
 				}
 			}
 		}
-		
-		resultSQL = startSQL + " " + fieldsSQL + " " + joinSQL + " " + whereSQL + " " + groupSQL + " "+sqlHaving;
+
+		resultSQL = startSQL + " " + fieldsSQL + " " + joinSQL + " " + whereSQL + " " + groupSQL + " " + sqlHaving;
 
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 		query.setSqlText(resultSQL);
-		query.applyRestriction(jCheckBoxLimit.isSelected(),Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
+		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
 		if (dateParams > 0)
 		{
 			if (dateParams == 1)
@@ -286,17 +294,17 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 			model.setQuery(rs);
 
 			table.setModel(model);
-			table.setCellRenderers("","","", "result");
+			table.setCellRenderers("", "", "", "result");
 			table.setColumnWidths();
 
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
-		
+
 		JUtility.setResultRecordCountColour(lblStatusBar, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), table.getRowCount());
 	}
-	
+
 	private void editRecord()
 	{
 		int row = table.getSelectedRow();
@@ -636,22 +644,23 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		button.setBounds(503, 14, 21, 22);
 		desktopPane.add(button);
 
-		table = new JDBQMResultTable(Common.selectedHostID, Common.sessionID,"","", "result");
+		table = new JDBQMResultTable(Common.selectedHostID, Common.sessionID, "", "", "result");
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-
 		scrollPaneResults.setViewportView(table);
-		
+
 		JButton4j btnEdit = new JButton4j(lang.get("btn_Edit"));
-		btnEdit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnEdit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				editRecord();
 			}
 		});
 		btnEdit.setIcon(Common.icon_edit);
 		btnEdit.setBounds(162, 157, 117, 32);
 		desktopPane.add(btnEdit);
-		
+
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()

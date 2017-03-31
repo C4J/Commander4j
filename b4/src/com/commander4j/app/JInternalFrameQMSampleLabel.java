@@ -79,6 +79,14 @@ import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.UppercaseDocumentFilter;
 
+/**
+ * The JInternalFrameQMSampleLabel is used printing sample labels and populating the APP_QM_SAMPLE table
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameQMSampleLabel.jpg" >
+ * 
+ * @see com.commander4j.db.JDBQMSample JDBQMSample
+ */
 public class JInternalFrameQMSampleLabel extends JInternalFrame
 {
 

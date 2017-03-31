@@ -52,6 +52,20 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameProcessOrderResourceProperties class updates the table
+ * APP_PROCESS_ORDER_RESOURCE. This table contains a single row for each unique
+ * Process Order Resource. This table holds additional data which is associated
+ * with the factory resource. This table is automatically updated with resource
+ * names when a new Process is imported via the interfaces. Typical data which
+ * might be stored in this table include default batch numbers
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameProcessOrderResourceProperties.jpg" >
+ *
+ * @see com.commander4j.db.JDBProcessOrderResource JDBProcessOrderResource
+ * @see com.commander4j.db.JDBProcessOrder JDBProcessOrder
+ *
+ */
 public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;

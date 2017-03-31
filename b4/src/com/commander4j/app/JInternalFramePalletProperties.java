@@ -74,6 +74,17 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFramePalletProperties allows you to view/edit all the fields on a pallet record held in the APP_PALLET table. Any changes made will
+ * be written to the APP_PALLET_HISTORY_TABLE
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFramePalletProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBPallet JDBPallet
+ * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
+ *
+ */
 public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 	private JLabel4j_std jLabelProductionDate_1;
 	private JButton4j jButtonUndo;
