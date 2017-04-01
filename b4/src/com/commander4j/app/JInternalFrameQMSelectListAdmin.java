@@ -53,11 +53,25 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.util.JExcel;
 
+/**
+ * JInternalFrameQMSelectListAdmin is used to administer the lists which appear
+ * within the Quality Module results entry table. The data which appears within
+ * these lists is stored within a table called APP_QM_SELECTLIST. This table can
+ * contain multiple lists by use of a filter on a field called SELECT_LIST_ID
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameQMSelectListAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBQMSelectList JDBQMSelectList
+ * @see com.commander4j.app.JDialogQMSelectListProperties
+ *      JDialogQMSelectListProperties
+ * @see com.commander4j.db.JDBQMDictionary JDBQMDictionary 
+ */
 public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
-	private JList4j<JDBQMSelectList>   jListSelectLists;
+	private JList4j<JDBQMSelectList> jListSelectLists;
 	private JButton4j jButtonClose;
 	private JButton4j jButtonRefresh;
 	private JButton4j jButtonEdit;
@@ -68,30 +82,30 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 	private String llistval;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
-
 	public JInternalFrameQMSelectListAdmin()
 	{
 		super();
 		initGUI();
-		populateList("","");
+		populateList("", "");
 	}
-	
+
 	private void editRecord()
 	{
-		if (jListSelectLists.isSelectionEmpty()==false)
+		if (jListSelectLists.isSelectionEmpty() == false)
 		{
 			String id = ((JDBQMSelectList) jListSelectLists.getSelectedValue()).getSelectListID();
 			String val = ((JDBQMSelectList) jListSelectLists.getSelectedValue()).getValue();
-			JLaunchMenu.runDialog("FRM_QM_SELECTLIST", id,val);
+			JLaunchMenu.runDialog("FRM_QM_SELECTLIST", id, val);
 		}
 	}
 
 	private void addRecord()
 	{
-		JLaunchMenu.runDialog("FRM_QM_SELECTLIST", "","");
+		JLaunchMenu.runDialog("FRM_QM_SELECTLIST", "", "");
 	}
-	
-	private void populateList(String defaultid,String defaultval) {
+
+	private void populateList(String defaultid, String defaultval)
+	{
 
 		DefaultComboBoxModel<JDBQMSelectList> DefComboBoxMod = new DefaultComboBoxModel<JDBQMSelectList>();
 
@@ -117,25 +131,26 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 		jListSelectLists.ensureIndexIsVisible(sel);
 	}
 
-	private void deleteRecord() {
+	private void deleteRecord()
+	{
 		if (jListSelectLists.isSelectionEmpty() == false)
 		{
 			llistid = ((JDBQMSelectList) jListSelectLists.getSelectedValue()).getSelectListID();
 			llistval = ((JDBQMSelectList) jListSelectLists.getSelectedValue()).getValue();
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_SelectList_Delete") + " " + llistid + "/" + llistval +" ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_SelectList_Delete") + " " + llistid + "/" + llistval + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 			if (question == 0)
 			{
 				JDBQMSelectList u = new JDBQMSelectList(Common.selectedHostID, Common.sessionID);
 				u.setSelectListID(llistid);
 				u.setValue(llistval);
 				u.delete();
-				populateList("","");
+				populateList("", "");
 			}
 		}
 	}
 
-
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(455, 518));
@@ -157,8 +172,10 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 						ListModel<JDBQMSelectList> jList1Model = new DefaultComboBoxModel<JDBQMSelectList>();
 						jListSelectLists = new JList4j<JDBQMSelectList>();
 						jScrollPane1.setViewportView(jListSelectLists);
-						jListSelectLists.addMouseListener(new MouseAdapter() {
-							public void mouseClicked(MouseEvent evt) {
+						jListSelectLists.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
 								if (evt.getClickCount() == 2)
 								{
 									editRecord();
@@ -173,8 +190,10 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										addRecord();
 									}
 								});
@@ -185,8 +204,10 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										deleteRecord();
 									}
 								});
@@ -197,8 +218,10 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										editRecord();
 									}
 								});
@@ -209,9 +232,11 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
-										populateList("","");
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										populateList("", "");
 									}
 								});
 								newItemMenuItem.setText(lang.get("btn_Refresh"));
@@ -227,8 +252,10 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
 					jButtonAdd.setBounds(656, 10, 125, 32);
 					jButtonAdd.setEnabled(true);
-					jButtonAdd.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonAdd.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							addRecord();
 
 						}
@@ -242,8 +269,10 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 					jButtonDelete.setBounds(656, 41, 125, 32);
 					jButtonDelete.setEnabled(true);
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
-					jButtonDelete.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonDelete.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							deleteRecord();
 
 						}
@@ -256,8 +285,10 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
 					jButtonEdit.setBounds(656, 72, 125, 32);
 					jButtonEdit.setEnabled(true);
-					jButtonEdit.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonEdit.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							editRecord();
 						}
 					});
@@ -269,9 +300,11 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
 					jButtonRefresh.setBounds(656, 102, 125, 32);
-					jButtonRefresh.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
-							populateList("","");
+					jButtonRefresh.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+							populateList("", "");
 						}
 					});
 				}
@@ -281,17 +314,21 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.setBounds(656, 162, 125, 32);
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
-					
+
 					JButton4j btnExcel = new JButton4j(Common.icon_XLS);
 					btnExcel.setText(lang.get("btn_Excel"));
 					btnExcel.setBounds(656, 132, 125, 32);
-					btnExcel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					btnExcel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							excel();
 						}
 					});
@@ -299,13 +336,12 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 
 				}
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void excel()
 	{
 		JDBQMSelectList slist = new JDBQMSelectList(Common.selectedHostID, Common.sessionID);
@@ -318,7 +354,7 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
-		}		
+		}
 	}
 
 	/**
@@ -327,19 +363,24 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
 	 * with parent.
 	 */
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
+	private static void addPopup(Component component, final JPopupMenu popup)
+	{
+		component.addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			private void showMenu(MouseEvent e) {
+			private void showMenu(MouseEvent e)
+			{
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});

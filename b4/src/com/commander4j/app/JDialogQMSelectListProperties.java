@@ -50,6 +50,17 @@ import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
+/**
+ * JDialogQMSelectListProperties is used to administer a single record within the APP_QM_SELECTLIST table. 
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JDialogQMSelectListProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBQMSelectList JDBQMSelectList
+ * @see com.commander4j.app.JInternalFrameQMSelectListAdmin
+ *      JInternalFrameQMSelectListAdmin
+ * @see com.commander4j.db.JDBQMDictionary JDBQMDictionary 
+ */
 public class JDialogQMSelectListProperties extends javax.swing.JDialog
 {
 

@@ -37,6 +37,22 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
+/**
+ * The APP_QM_SELECTLIST table contains the lists which appear within the
+ * Quality Module results entry table. This table can contain multiple lists by
+ * use of a filter on a field called SELECT_LIST_ID
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/APP_QM_SELECTLIST.jpg" >
+ * 
+ * @see com.commander4j.app.JInternalFrameQMSelectListAdmin
+ *      JInternalFrameQMSelectListAdmin
+ * @see com.commander4j.app.JDialogQMSelectListProperties
+ *      JDialogQMSelectListProperties
+ * @see com.commander4j.db.JDBQMDictionary JDBQMDictionary    
+ *      
+ *
+ */
 public class JDBQMSelectList
 {
 	private String dbValueID;
@@ -51,74 +67,66 @@ public class JDBQMSelectList
 	private String hostID;
 	private String sessionID;
 	private Boolean displayModeLong = false;
-	
-	/*
-	 * 
-		Table: APP_QM_SELECTLIST
-		
-		Columns:
-		SELECT_LIST_ID	varchar(20) PK
-		VALUE        	varchar(20) PK
-		DESCRIPTION		varchar(50)
-		SEQUENCE		int(11)
-	 * 
-	 */
 
-	public JDBQMSelectList() {
+	public JDBQMSelectList()
+	{
 
 	}
-	
-	public PreparedStatement getSelectListPreparedStatement() {
+
+	public PreparedStatement getSelectListPreparedStatement()
+	{
 
 		PreparedStatement stmt;
 
-			try
-			{
-				stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.getLists"));
-				stmt.setFetchSize(100);
-			} catch (SQLException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				stmt=null;
-			}
-
-
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.getLists"));
+			stmt.setFetchSize(100);
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			stmt = null;
+		}
 
 		return stmt;
-	}	
+	}
 
-	public ResultSet getQMSelectListResultSet(PreparedStatement stmt) {
+	public ResultSet getQMSelectListResultSet(PreparedStatement stmt)
+	{
 
 		ResultSet rs;
 
-		try {
+		try
+		{
 			rs = stmt.executeQuery();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
-			rs=null;
+			rs = null;
 		}
 
 		return rs;
-	}	
-	
+	}
+
 	public Boolean isDisplayModeLong()
 	{
 		return displayModeLong;
 	}
-	
+
 	public void setDisplayModeLong(Boolean full)
 	{
-			displayModeLong = full;
+		displayModeLong = full;
 	}
-	
-	public JDBQMSelectList(String host, String session) {
+
+	public JDBQMSelectList(String host, String session)
+	{
 		setHostID(host);
 		setSessionID(session);
 	}
 
-	public JDBQMSelectList(String host, String session, String selectlistid, String value,String description,Long sequence) {
+	public JDBQMSelectList(String host, String session, String selectlistid, String value, String description, Long sequence)
+	{
 		setHostID(host);
 		setSessionID(session);
 		setSelectListID(selectlistid);
@@ -127,22 +135,26 @@ public class JDBQMSelectList
 		setSequence(sequence);
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		setDescription("");
 		setSequence((long) -1);
 	}
 
-	public boolean create(String sequenceid, String value, String description,Long sequence) {
+	public boolean create(String sequenceid, String value, String description, Long sequence)
+	{
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
+		try
+		{
 			setSelectListID(sequenceid);
 			setValue(value);
 			setDescription(description);
 			setSequence(sequence);
 
-			if (isValid() == false) {
+			if (isValid() == false)
+			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.create"));
 				stmtupdate.setString(1, getSelectListID());
@@ -154,126 +166,142 @@ public class JDBQMSelectList
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			}
-			else {
+			} else
+			{
 				setErrorMessage("QMSelectList List/Value already exists");
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
 
-	public boolean delete() {
+	public boolean delete()
+	{
 		PreparedStatement stmtupdate;
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
-				if (isValid() == true) {
-					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.delete"));
-					stmtupdate.setString(1, getSelectListID());
-					stmtupdate.setString(2, getValue());
-					stmtupdate.execute();
-					stmtupdate.clearParameters();
-					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-					stmtupdate.close();
-					result = true;
-				}
-		}
-		catch (Exception e) {
+		try
+		{
+			if (isValid() == true)
+			{
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.delete"));
+				stmtupdate.setString(1, getSelectListID());
+				stmtupdate.setString(2, getValue());
+				stmtupdate.execute();
+				stmtupdate.clearParameters();
+				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+				stmtupdate.close();
+				result = true;
+			}
+		} catch (Exception e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
 
-	public String getDescription() {
+	public String getDescription()
+	{
 		String result = "";
 		if (dbDescription != null)
 			result = dbDescription;
 		return result;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
 
-	public boolean getProperties() {
+	public boolean getProperties()
+	{
 		boolean result = false;
 
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
-		//logger.debug("JDBQMSequenceList getProperties SelectList ["+getSelectListID()+"] Value ["+getValue()+"]");
+		// logger.debug("JDBQMSequenceList getProperties SelectList
+		// ["+getSelectListID()+"] Value ["+getValue()+"]");
 
 		clear();
 
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.getProperties"));
-			stmt.setString(1,getSelectListID());
-			stmt.setString(2,getValue());
+			stmt.setString(1, getSelectListID());
+			stmt.setString(2, getValue());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			if (rs.next())
+			{
 				setDescription(rs.getString("description"));
 				setSequence(rs.getLong("sequence"));
 				result = true;
 				rs.close();
 				stmt.close();
-			}
-			else {
+			} else
+			{
 				setErrorMessage("Invalid SequenceID/Value [" + getSelectListID().toString() + "/" + getValue().toString() + "]");
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-	public boolean getProperties(String sequenceid,String value) {
+	public boolean getProperties(String sequenceid, String value)
+	{
 		setSelectListID(sequenceid);
 		setValue(value);
 		return getProperties();
 	}
 
-	public ResultSet getQMSelectListResultSet(String sequenceid) {
+	public ResultSet getQMSelectListResultSet(String sequenceid)
+	{
 		PreparedStatement stmt;
 		ResultSet rs = null;
 		setErrorMessage("");
 		setSelectListID(sequenceid);
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.getList"));
 			stmt.setString(1, getSelectListID());
 			stmt.setFetchSize(100);
 			rs = stmt.executeQuery();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return rs;
 	}
 
-	public LinkedList<JDBQMSelectList> getSelectLists() {
+	public LinkedList<JDBQMSelectList> getSelectLists()
+	{
 		LinkedList<JDBQMSelectList> typeList = new LinkedList<JDBQMSelectList>();
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.getLists"));
 			stmt.setFetchSize(100);
 			rs = stmt.executeQuery();
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 				JDBQMSelectList mt = new JDBQMSelectList();
 				mt.setSelectListID(rs.getString("select_list_id"));
 				mt.setValue(rs.getString("value"));
@@ -284,25 +312,28 @@ public class JDBQMSelectList
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return typeList;
 	}
-	
-	public LinkedList<String> getSelectListSummary() {
+
+	public LinkedList<String> getSelectListSummary()
+	{
 		LinkedList<String> typeList = new LinkedList<String>();
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.getSummary"));
 			stmt.setFetchSize(100);
 			rs = stmt.executeQuery();
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 				String mt = new String();
 				mt = rs.getString("select_list_id");
 				typeList.add(mt);
@@ -310,27 +341,30 @@ public class JDBQMSelectList
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return typeList;
 	}
-	
-	public LinkedList<JDBQMSelectList> getSelectList(String selectlistid) {
+
+	public LinkedList<JDBQMSelectList> getSelectList(String selectlistid)
+	{
 		LinkedList<JDBQMSelectList> typeList = new LinkedList<JDBQMSelectList>();
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
 		setSelectListID(selectlistid);
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.getList"));
 			stmt.setString(1, getSelectListID());
 			stmt.setFetchSize(100);
 			rs = stmt.executeQuery();
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 				JDBQMSelectList mt = new JDBQMSelectList();
 				mt.setSelectListID(rs.getString("select_list_id"));
 				mt.setValue(rs.getString("value"));
@@ -341,63 +375,69 @@ public class JDBQMSelectList
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return typeList;
 	}
 
-	public String getSelectListID() {
+	public String getSelectListID()
+	{
 		String result = "";
 		if (dbSelectListID != null)
 			result = dbSelectListID;
 		return result;
 	}
-	
 
-	public Long getSequence() {
+	public Long getSequence()
+	{
 		Long result = (long) -1;
 		if (dbSequence != null)
 			result = dbSequence;
 		return result;
-	}	
-	
-	private String getSessionID() {
-		return sessionID;
-	}		
+	}
 
-	public String getValue() {
+	private String getSessionID()
+	{
+		return sessionID;
+	}
+
+	public String getValue()
+	{
 		String result = "";
 		if (dbValueID != null)
 			result = dbValueID;
 		return result;
 	}
 
-	public boolean isValid() {
+	public boolean isValid()
+	{
 		PreparedStatement stmt;
 		ResultSet rs;
 		boolean result = false;
 
-		try {
+		try
+		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.isValid"));
 			stmt.setString(1, getSelectListID());
 			stmt.setString(2, getValue());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			if (rs.next())
+			{
 				result = true;
-			}
-			else {
+			} else
+			{
 				setErrorMessage("Invalid Sequence/Value [" + getSelectListID().toString() + "/" + getValue().toString() + "]");
 			}
 			rs.close();
 			stmt.close();
 
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 
@@ -405,72 +445,83 @@ public class JDBQMSelectList
 
 	}
 
-	public boolean isValid(String sequenceid,String value) {
+	public boolean isValid(String sequenceid, String value)
+	{
 		setSelectListID(sequenceid);
 		setValue(value);
 		return isValid();
 	}
 
-
-	public void setDescription(String description) {
+	public void setDescription(String description)
+	{
 		dbDescription = description;
 	}
 
-	private void setErrorMessage(String errorMsg) {
-		if (errorMsg.isEmpty() == false) {
+	private void setErrorMessage(String errorMsg)
+	{
+		if (errorMsg.isEmpty() == false)
+		{
 			logger.error(errorMsg);
 		}
 		dbErrorMessage = errorMsg;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setSelectListID(String selectlistid) {
+	public void setSelectListID(String selectlistid)
+	{
 		dbSelectListID = selectlistid;
 	}
-	
 
 	public void setSequence(Long sequence)
 	{
 		dbSequence = sequence;
 	}
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
-	
-	public void setValue(String value) {
+
+	public void setValue(String value)
+	{
 		dbValueID = value;
 	}
 
-	public String toString() {
+	public String toString()
+	{
 		String result = "";
-		if (getValue().equals("") == false) {
+		if (getValue().equals("") == false)
+		{
 			if (displayModeLong)
 			{
 				result = JUtility.padString(getSelectListID(), true, field_list_id, " ") + " - " + JUtility.padString(getValue(), true, field_value_id, " ") + " - " + getDescription();
-			}
-			else
+			} else
 			{
-				//result = JUtility.padString(getValue(), true, field_value_id, " ") + " - " + getDescription();	
-				result = getValue() + " - " + getDescription();	
+				// result = JUtility.padString(getValue(), true, field_value_id,
+				// " ") + " - " + getDescription();
+				result = getValue() + " - " + getDescription();
 			}
-		}
-		else {
+		} else
+		{
 			result = "";
 		}
 
 		return result;
 	}
 
-	public boolean update() {
+	public boolean update()
+	{
 		boolean result = false;
 		setErrorMessage("");
 
-		try {
-			if (isValid() == true) {
+		try
+		{
+			if (isValid() == true)
+			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.update"));
 				stmtupdate.setString(1, getDescription());
@@ -483,8 +534,8 @@ public class JDBQMSelectList
 				stmtupdate.close();
 				result = true;
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e)
+		{
 			setErrorMessage(e.getMessage());
 		}
 

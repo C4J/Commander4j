@@ -54,6 +54,15 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
 
+/**
+ * JInternalFrameLabelHistory is used view the records (print history) in the 
+ * APP_LABEL_DATA table.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameLabelHistory.jpg" >
+ * 
+ * @see com.commander4j.db.JDBLabelData JDBLabelData
+ * @see com.commander4j.db.JDBAutoLabeller JDBAutoLabeller
+ */
 public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 {
 	private JButton4j jButtonExcel;
