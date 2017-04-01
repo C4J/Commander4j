@@ -58,7 +58,9 @@ import com.commander4j.util.JUtility;
 
 /**
  * JDialogAbout is a modal dialog box which displays the application name and program version.
- *
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JDialogAbout.jpg" >
  */
 public class JDialogAbout extends javax.swing.JDialog
 {

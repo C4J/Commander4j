@@ -74,7 +74,8 @@ import com.commander4j.util.JUtility;
  * @see com.commander4j.db.JDBUserReport JDBUserReport
  * @see com.commander4j.app.JInternalFrameUserReportProperties
  *      JInternalFrameUserReportProperties
- *
+ * @see com.commander4j.app.JDialogShiftProperties
+ *      JDialogShiftProperties
  */
 public class JInternalFrameUserReportAdmin extends JInternalFrame
 {

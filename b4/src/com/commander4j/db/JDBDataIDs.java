@@ -46,6 +46,8 @@ import com.commander4j.util.JUtility;
  * can be anything meaningful name to describe the new data item being stored.
  * <p>
  * <img alt="" src="./doc-files/APP_MATERIAL_DATA_IDS.jpg" > 
+ * 
+ * @see com.commander4j.app.JInternalFrameDataIDAdmin JInternalFrameDataIDAdmin
  */
 
 public class JDBDataIDs

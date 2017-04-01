@@ -81,7 +81,8 @@ import com.commander4j.calendar.JCalendarButton;
  * @see com.commander4j.db.JDBUserReport JDBUserReport
  * @see com.commander4j.app.JInternalFrameUserReportAdmin
  *      JInternalFrameUserReportAdmin
- *
+ * @see com.commander4j.app.JDialogShiftProperties
+ *      JDialogShiftProperties
  */
 public class JInternalFrameUserReportProperties extends JInternalFrame {
 

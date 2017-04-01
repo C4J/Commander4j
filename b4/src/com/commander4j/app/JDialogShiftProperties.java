@@ -27,7 +27,7 @@ package com.commander4j.app;
  * 
  */
 
-import java.awt.Color; 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,7 +58,20 @@ import com.commander4j.util.JUtility;
 import javax.swing.BorderFactory;
 import javax.swing.border.BevelBorder;
 
-public class JDialogShiftProperties extends javax.swing.JDialog {
+/**
+ * JDialogShiftProperties allows you to define shifts. These shifts are then
+ * used within the User Definable Reports module to select start and end times
+ * quickly. The data is stored in a table called APP_SHIFTS
+ *
+ * <p>
+ * <img alt="" src="./doc-files/JDialogShiftProperties.jpg" >
+ * 
+ * @see com.commander4j.db.JDBShifts JDBShifts
+ * @see com.commander4j.app.JInternalFrameUserReportAdmin JInternalFrameUserReportAdmin
+ * @see com.commander4j.app.JInternalFrameUserReportProperties JInternalFrameUserReportProperties
+ */
+public class JDialogShiftProperties extends javax.swing.JDialog
+{
 
 	private static final long serialVersionUID = 1L;
 	private JTextField4j textFieldShiftID;
@@ -133,13 +146,11 @@ public class JDialogShiftProperties extends javax.swing.JDialog {
 					shifts.setDescription(textFieldDescription.getText());
 					shifts.update();
 				}
-			}
-			else
+			} else
 			{
 				statusBar.setText("Invalid End Time");
 			}
-		}
-		else
+		} else
 		{
 			statusBar.setText("Invalid Start Time");
 		}
@@ -186,7 +197,8 @@ public class JDialogShiftProperties extends javax.swing.JDialog {
 
 		btnSave = new JButton4j(lang.get("btn_Save"));
 		btnSave.setEnabled(false);
-		btnSave.addActionListener(new ActionListener() {
+		btnSave.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				save();
@@ -197,7 +209,8 @@ public class JDialogShiftProperties extends javax.swing.JDialog {
 		desktopPane.add(btnSave);
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
-		btnClose.addActionListener(new ActionListener() {
+		btnClose.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				dispose();
@@ -213,7 +226,8 @@ public class JDialogShiftProperties extends javax.swing.JDialog {
 		desktopPane.add(label4j_std_Description);
 
 		textFieldDescription = new JTextField4j(JDBShifts.field_description);
-		textFieldDescription.addKeyListener(new KeyAdapter() {
+		textFieldDescription.addKeyListener(new KeyAdapter()
+		{
 			@Override
 			public void keyReleased(KeyEvent arg0)
 			{
@@ -230,7 +244,8 @@ public class JDialogShiftProperties extends javax.swing.JDialog {
 		shifts.getProperties(shiftid);
 
 		textFieldDescription.setText(shifts.getDescription());
-		textField4jStartTime.addKeyListener(new KeyAdapter() {
+		textField4jStartTime.addKeyListener(new KeyAdapter()
+		{
 			@Override
 			public void keyReleased(KeyEvent arg0)
 			{
@@ -259,7 +274,8 @@ public class JDialogShiftProperties extends javax.swing.JDialog {
 
 		desktopPane.add(textField4jStartTime);
 
-		textField4jEndTime.addKeyListener(new KeyAdapter() {
+		textField4jEndTime.addKeyListener(new KeyAdapter()
+		{
 			@Override
 			public void keyReleased(KeyEvent arg0)
 			{
@@ -288,7 +304,8 @@ public class JDialogShiftProperties extends javax.swing.JDialog {
 		statusBar.setBounds(0, 147, 451, 21);
 		desktopPane.add(statusBar);
 
-		SwingUtilities.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable()
+		{
 			public void run()
 			{
 				textField4jStartTime.requestFocus();

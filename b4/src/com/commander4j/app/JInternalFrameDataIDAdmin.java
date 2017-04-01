@@ -55,6 +55,19 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFrameDataIDAdmin class is used to maintain the record in the
+ * APP_MATERIAL_DATA_IDS table. The default APP_MATERIAL table holds the basic
+ * material master data. However in order to extend the type of data which can
+ * be stored and also link it so a customer there is another table called
+ * APP_MATERIAL_CUSTOMER_DATA. This second table is keyed on MATERIAL,
+ * CUSTOMER_ID and DATA_ID. The DATA_ID can be anything meaningful name to
+ * describe the new data item being stored.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameDataIDAdmin.jpg" >
+ * 
+ * @see com.commander4j.db.JDBDataIDs JDBDataIDs
+ */
 public class JInternalFrameDataIDAdmin extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
@@ -71,7 +84,8 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 	private String lmattype;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
-	private void delete() {
+	private void delete()
+	{
 		if (jListDataIDs.isSelectionEmpty() == false)
 		{
 			lmattype = ((JDBDataIDs) jListDataIDs.getSelectedValue()).getID();
@@ -86,7 +100,8 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 		}
 	}
 
-	private void addrecord() {
+	private void addrecord()
+	{
 		JDBDataIDs u = new JDBDataIDs(Common.selectedHostID, Common.sessionID);
 		lmattype = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Data_ID_Add"));
 		if (lmattype != null)
@@ -97,9 +112,8 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 				if (u.create(lmattype) == false)
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, u.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
-				}
-				else
+					JOptionPane.showMessageDialog(Common.mainForm, u.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+				} else
 				{
 					JLaunchMenu.runForm("FRM_ADMIN_DATA_IDS_EDIT", lmattype);
 				}
@@ -108,11 +122,13 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 		}
 	}
 
-	private void print() {
-		JLaunchReport.runReport("RPT_DATA_IDS",null,"",null,"");
+	private void print()
+	{
+		JLaunchReport.runReport("RPT_DATA_IDS", null, "", null, "");
 	}
 
-	private void populateList(String defaultitem) {
+	private void populateList(String defaultitem)
+	{
 
 		DefaultComboBoxModel<JDBDataIDs> DefComboBoxMod = new DefaultComboBoxModel<JDBDataIDs>();
 
@@ -145,7 +161,8 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 		populateList("");
 	}
 
-	private void editRecord() {
+	private void editRecord()
+	{
 		if (jListDataIDs.isSelectionEmpty() == false)
 		{
 			lmattype = ((JDBDataIDs) jListDataIDs.getSelectedValue()).getID();
@@ -154,7 +171,8 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 		}
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(375, 402));
@@ -174,8 +192,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
 					jButtonAdd.setBounds(385, 7, 126, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DATA_IDS_ADD"));
-					jButtonAdd.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonAdd.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							addrecord();
 
 						}
@@ -189,8 +209,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 					jButtonDelete.setBounds(385, 36, 126, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DATA_IDS_DELETE"));
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
-					jButtonDelete.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonDelete.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							delete();
 
 						}
@@ -203,8 +225,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
 					jButtonEdit.setBounds(385, 65, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DATA_IDS_EDIT"));
-					jButtonEdit.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonEdit.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							editRecord();
 						}
 					});
@@ -213,11 +237,14 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 					jButtonPrint = new JButton4j(Common.icon_report);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setMnemonic(lang.getMnemonicChar());;
+					jButtonPrint.setMnemonic(lang.getMnemonicChar());
+					;
 					jButtonPrint.setBounds(385, 93, 126, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_DATA_IDS"));
-					jButtonPrint.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonPrint.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							print();
 						}
 					});
@@ -235,8 +262,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
 					jButtonRefresh.setBounds(385, 151, 126, 32);
-					jButtonRefresh.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonRefresh.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							populateList("");
 						}
 					});
@@ -247,8 +276,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.setBounds(385, 180, 126, 32);
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -262,8 +293,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 						jListDataIDs = new JList4j<JDBDataIDs>();
 						jListDataIDs.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 						jScrollPane1.setViewportView(jListDataIDs);
-						jListDataIDs.addMouseListener(new MouseAdapter() {
-							public void mouseClicked(MouseEvent evt) {
+						jListDataIDs.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
 								if (evt.getClickCount() == 2)
 								{
 									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DATA_IDS_EDIT") == true)
@@ -282,8 +315,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 
 						{
 							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
-							newItemMenuItem.addActionListener(new ActionListener() {
-								public void actionPerformed(final ActionEvent e) {
+							newItemMenuItem.addActionListener(new ActionListener()
+							{
+								public void actionPerformed(final ActionEvent e)
+								{
 									addrecord();
 								}
 							});
@@ -294,8 +329,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 
 						{
 							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
-							newItemMenuItem.addActionListener(new ActionListener() {
-								public void actionPerformed(final ActionEvent e) {
+							newItemMenuItem.addActionListener(new ActionListener()
+							{
+								public void actionPerformed(final ActionEvent e)
+								{
 									delete();
 								}
 							});
@@ -306,8 +343,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 
 						{
 							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
-							newItemMenuItem.addActionListener(new ActionListener() {
-								public void actionPerformed(final ActionEvent e) {
+							newItemMenuItem.addActionListener(new ActionListener()
+							{
+								public void actionPerformed(final ActionEvent e)
+								{
 									editRecord();
 								}
 							});
@@ -318,8 +357,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 
 						{
 							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
-							newItemMenuItem.addActionListener(new ActionListener() {
-								public void actionPerformed(final ActionEvent e) {
+							newItemMenuItem.addActionListener(new ActionListener()
+							{
+								public void actionPerformed(final ActionEvent e)
+								{
 									print();
 								}
 							});
@@ -330,8 +371,10 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 
 						{
 							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh);
-							newItemMenuItem.addActionListener(new ActionListener() {
-								public void actionPerformed(final ActionEvent e) {
+							newItemMenuItem.addActionListener(new ActionListener()
+							{
+								public void actionPerformed(final ActionEvent e)
+								{
 									populateList("");
 								}
 							});
@@ -341,8 +384,7 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 					}
 				}
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -354,19 +396,24 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
 	 * with parent.
 	 */
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
+	private static void addPopup(Component component, final JPopupMenu popup)
+	{
+		component.addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			private void showMenu(MouseEvent e) {
+			private void showMenu(MouseEvent e)
+			{
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
