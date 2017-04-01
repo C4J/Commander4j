@@ -43,14 +43,14 @@ import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
 
 /**
- * JDBLabelData is used to insert/update/delete record from the APP_LABEL_DATA
- * table. When printing case labels you have the option of sending a report
- * directly to a printer or using the "Assign to Labeller" option. If the assign
- * option is selected all of the data required to print the label is written to
- * a record in the table. A background thread is then used to write the required
- * data to a file for each labeller which needs to print the data. It should be
- * noted that the operator selects a production line when printing and each
- * production line can have one or more physical labellers.
+ * JDBLabelData is used to insert records into the APP_LABEL_DATA table. When
+ * printing case labels you have the option of sending a report directly to a
+ * printer or using the "Assign to Labeller" option. If the assign option is
+ * selected all of the data required to print the label is written to a record
+ * in the table. A background thread is then used to write the required data to
+ * a file for each labeller which needs to print the data. It should be noted
+ * that the operator selects a production line when printing and each production
+ * line can have one or more physical labellers.
  * <p>
  * <img alt="" src="./doc-files/APP_LABEL_DATA.jpg" >
  * 

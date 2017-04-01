@@ -66,6 +66,18 @@ import com.commander4j.util.JPrint;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
+/**
+ * JInternalFramePalletSplit allows a user to split a pallet into 2 pallets. You
+ * are prompted to enter a quantity of cases to remove from the current SSCC and
+ * this is automatically added to a new SSCC. The program also allows you to
+ * reprint labels for the old and new SSCC's
+  * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFramePalletSplit.jpg" >
+ * 
+ * @see com.commander4j.db.JDBPallet JDBPallet
+ * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
+ */
 public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 {
 	private static final long serialVersionUID = 1;
@@ -101,7 +113,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 	private JCheckBox4j checkBoxPrintOldSSCC = new JCheckBox4j("");
 	private JCheckBox4j checkBoxPrintNewSSCC = new JCheckBox4j("");
 	private JLabel4j_std labelCopies = new JLabel4j_std();
-	private String defaultlabel="";
+	private String defaultlabel = "";
 
 	public JInternalFramePalletSplit()
 	{
@@ -128,7 +140,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 			{
 				jTextFieldSSCC.requestFocus();
 				jTextFieldSSCC.setCaretPosition(jTextFieldSSCC.getText().length());
-				
+
 			}
 		});
 	}
@@ -169,7 +181,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 	{
 		String sscc = JUtility.replaceNullStringwithBlank(jTextFieldSSCC.getText());
 		String order = "";
-		
+
 		if (sscc.length() == 18)
 		{
 			if (pal.getPalletProperties(jTextFieldSSCC.getText()))
@@ -184,13 +196,12 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				jFormattedTextFieldQuantity.setValue(0);
 				jButtonSplit.setEnabled(false);
 			}
-		} 
-		else
+		} else
 		{
 			lblStatus.setText("");
 			jButtonSplit.setEnabled(false);
 		}
-		
+
 		defaultlabel = lab.getPalletLabelReportName(order);
 
 		if (mod.getModuleProperties(defaultlabel))
@@ -209,7 +220,8 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				jSpinnerCopies.setVisible(false);
 				labelCopies.setVisible(false);
 			}
-		};
+		}
+		;
 
 	}
 
@@ -351,7 +363,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 						String splitSSCC = pal.splitPallet(jTextFieldSSCC.getText(), new BigDecimal(jFormattedTextFieldSplitQuantity.getValue().toString()));
 						if (splitSSCC.equals("") == false)
 						{
-							lblStatus.setText("SSCC "+jTextFieldSSCC.getText()+" updated, SSCC "+splitSSCC+" created.");
+							lblStatus.setText("SSCC " + jTextFieldSSCC.getText() + " updated, SSCC " + splitSSCC + " created.");
 							jTextFieldNewSSCC.setText(splitSSCC);
 							jFormattedTextFieldNewQuantity.setValue(jFormattedTextFieldSplitQuantity.getValue());
 							String pq = comboBoxPrintQueue.getSelectedItem().toString();
@@ -485,12 +497,10 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				panel.setBounds(270, 6, 90, 75);
 				jDesktopPane1.add(panel);
 				panel.setLayout(null);
-				
 
 				checkBoxPrintOldSSCC.setSelected(true);
 				checkBoxPrintOldSSCC.setBounds(32, 17, 28, 23);
 				panel.add(checkBoxPrintOldSSCC);
-				
 
 				checkBoxPrintNewSSCC.setSelected(true);
 				checkBoxPrintNewSSCC.setBounds(32, 46, 28, 23);

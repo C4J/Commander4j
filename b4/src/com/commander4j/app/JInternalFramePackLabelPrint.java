@@ -27,7 +27,6 @@ package com.commander4j.app;
  * 
  */
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -95,7 +94,27 @@ import com.commander4j.util.JPrint;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
-public class JInternalFramePackLabelPrint extends JInternalFrame {
+/**
+ * JInternalFramePackLabelPrint is used to insert records into the
+ * APP_LABEL_DATA table and print a case/tray label either directly or via an
+ * interface to an external system. When printing case labels you have the
+ * option of sending a report directly to a printer or using the "Assign to
+ * Labeller" option. If the assign option is selected all of the data required
+ * to print the label is written to a record in the table. A background thread
+ * is then used to write the required data to a file for each labeller which
+ * needs to print the data. It should be noted that the operator selects a
+ * production line when printing and each production line can have one or more
+ * physical labellers.
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFramePackLabelPrint.jpg" >
+ * 
+ * @see com.commander4j.db.JDBLabelData JDBLabelData
+ * @see com.commander4j.db.JDBAutoLabeller JDBAutoLabeller
+ * @see com.commander4j.db.JDBAutoLabellerResources JDBAutoLabellerResources
+ * @see com.commander4j.db.JDBPrinters JDBPrinters
+ */
+public class JInternalFramePackLabelPrint extends JInternalFrame
+{
 	private static final long serialVersionUID = 1;
 	private JLabel4j_std jLabelPrintLabel_2;
 	private JSpinner jSpinnerQuantity;
@@ -156,7 +175,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame {
 	private SpinnerNumberModel shelflifenumbermodel = new SpinnerNumberModel();
 	private SpinnerNumberModel quantitynumbermodel = new SpinnerNumberModel();
 	private JDBProcessOrder processorder = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
-	private JDBProcessOrderResource processorderResource = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);	
+	private JDBProcessOrderResource processorderResource = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 	private JDBMaterialUom materialuom = new JDBMaterialUom(Common.selectedHostID, Common.sessionID);
 	private JDBMaterialBatch materialbatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
@@ -653,7 +672,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame {
 			jPanelProcessOrder.setLayout(null);
 			jPanelProcessOrder.setBackground(Common.color_app_window);
 			jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
-			jPanelProcessOrder.add(jTextFieldProcessOrder);;
+			jPanelProcessOrder.add(jTextFieldProcessOrder);
+			;
 			jTextFieldProcessOrder.setBounds(161, 21, 119, 21);
 			jTextFieldProcessOrder.addKeyListener(new KeyAdapter()
 			{
@@ -1172,8 +1192,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame {
 				if (jTextFieldProcessOrderStatus.getText().equals("Ready") || (jTextFieldProcessOrderStatus.getText().equals("Running")))
 				{
 					jTextFieldProcessOrderStatus.setBackground(Color.WHITE);
-				}
-				else
+				} else
 				{
 					jTextFieldProcessOrderStatus.setBackground(Color.RED);
 				}
@@ -1219,7 +1238,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame {
 
 	}
 
-	public class ClockListener implements ActionListener {
+	public class ClockListener implements ActionListener
+	{
 		public void actionPerformed(ActionEvent event)
 		{
 			Calendar rightNow = Calendar.getInstance();
