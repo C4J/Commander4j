@@ -62,43 +62,52 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
+/**
+ * The JInternalFrameQMSampleRecord is amend a sample record in the
+ * APP_QM_SAMPLE table. table. The records were originally added to the table
+ * via the form JInternalFrameQMSampleLabel.
+ * 
+ * <p>
+ * <img alt="" src="./doc-files/JInternalFrameQMSampleRecord.jpg" >
+ * 
+ * @see com.commander4j.db.JDBQMSample JDBQMSample
+ */
 public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 {
-	private JTextField4j 	jTextFieldInspectionID;
-	private JLabel4j_std 	lblInspectionID;
-	private JTextField4j 	jTextFieldUserData1;
+	private JTextField4j jTextFieldInspectionID;
+	private JLabel4j_std lblInspectionID;
+	private JTextField4j jTextFieldUserData1;
 	private static final long serialVersionUID = 1;
-	private JDesktopPane 	jDesktopPane1;
-	private JButton4j 		jButtonCancel;
-	private JLabel4j_std 	jStatusText;
-	private JButton4j 		jButtonSave;
-	private JTextField4j 	jTextFieldSampleID;
-	private JTextField4j 	jTextFieldActivityID;
-	private JLabel4j_std 	lblProcessOrderDescription;
-	private JTextField4j 	jTextFieldMaterialDescription;
-	private JLabel4j_std 	lblMaterialDescription;
-	private JTextField4j 	jTextFieldProcessOrderDescription;
-	private JLabel4j_std 	lblUserData1;
-	private JTextField4j 	jTextFieldUserData2;
-	private JTextField4j 	jTextFieldProcessOrder;
-	private JLabel4j_std 	lblProcessOrder;
-	private JLabel4j_std 	lblActivityID;
-	private JTextField4j 	jTextFieldMaterial;
-	private JLabel4j_std 	lblMaterial;
-	private JLabel4j_std 	lblUserData2;
-	private JLabel4j_std 	lblSampleID;
-	private JDBQMSample 	sample = new JDBQMSample(Common.selectedHostID, Common.sessionID);
-	private Long 			lsampleid;
-	private JDBMaterial 	material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
+	private JDesktopPane jDesktopPane1;
+	private JButton4j jButtonCancel;
+	private JLabel4j_std jStatusText;
+	private JButton4j jButtonSave;
+	private JTextField4j jTextFieldSampleID;
+	private JTextField4j jTextFieldActivityID;
+	private JLabel4j_std lblProcessOrderDescription;
+	private JTextField4j jTextFieldMaterialDescription;
+	private JLabel4j_std lblMaterialDescription;
+	private JTextField4j jTextFieldProcessOrderDescription;
+	private JLabel4j_std lblUserData1;
+	private JTextField4j jTextFieldUserData2;
+	private JTextField4j jTextFieldProcessOrder;
+	private JLabel4j_std lblProcessOrder;
+	private JLabel4j_std lblActivityID;
+	private JTextField4j jTextFieldMaterial;
+	private JLabel4j_std lblMaterial;
+	private JLabel4j_std lblUserData2;
+	private JLabel4j_std lblSampleID;
+	private JDBQMSample sample = new JDBQMSample(Common.selectedHostID, Common.sessionID);
+	private Long lsampleid;
+	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrder processOrder = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
-	private JDBLanguage 	lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JDateControl    sampleDate;
-	private JComboBox4j<String> 	comboBoxPrintQueue = new JComboBox4j<String>();
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDateControl sampleDate;
+	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
 	private PreparedStatement listStatement;
-	private JSpinner		spinnerCopies;
-	private JDBControl 		ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
+	private JSpinner spinnerCopies;
+	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 
-	
 	public JInternalFrameQMSampleRecord(String samp)
 	{
 		super();
@@ -107,7 +116,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 
 		jTextFieldSampleID.setText(samp);
 		refresh();
-		
+
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
@@ -115,26 +124,26 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				jTextFieldUserData1.requestFocus();
 				jTextFieldUserData1.setCaretPosition(jTextFieldUserData1.getText().length());
 				jTextFieldSampleID.setEnabled(false);
-				
+
 			}
 		});
 
 	}
-	
+
 	public JInternalFrameQMSampleRecord()
 	{
 		super();
 
 		initGUI();
 		blankfields();
-		
+
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
 			{
 				jTextFieldSampleID.requestFocus();
 				jTextFieldSampleID.setCaretPosition(jTextFieldSampleID.getText().length());
-				
+
 			}
 		});
 
@@ -151,7 +160,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 			sample.update();
 		}
 	}
-	
+
 	private void populatePrinterList(String defaultitem)
 	{
 		DefaultComboBoxModel<String> defComboBoxMod = new DefaultComboBoxModel<String>();
@@ -176,7 +185,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 			comboBoxPrintQueue.setEnabled(true);
 		}
 	}
-	
+
 	private void blankfields()
 	{
 		jTextFieldProcessOrder.setText("");
@@ -377,7 +386,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jTextFieldInspectionID.setEnabled(false);
 					jDesktopPane1.add(jTextFieldInspectionID);
 				}
-				
+
 				{
 					JLabel4j_std lblSampleDate = new JLabel4j_std();
 					lblSampleDate.setText(lang.get("lbl_Sample_Date"));
@@ -385,7 +394,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					lblSampleDate.setBounds(7, 40, 133, 21);
 					jDesktopPane1.add(lblSampleDate);
 				}
-				
+
 				{
 					sampleDate = new JDateControl();
 					jDesktopPane1.add(sampleDate);
@@ -396,8 +405,10 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				{
 					JButton4j btnPrint = new JButton4j(Common.icon_print);
 					btnPrint.setText(lang.get("btn_Print"));
-					btnPrint.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					btnPrint.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							updateRecord();
 							Long sampleID = sample.generateSampleID();
 							String pq = comboBoxPrintQueue.getSelectedItem().toString();
@@ -411,40 +422,40 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					btnPrint.setBounds(212, 333, 100, 32);
 					jDesktopPane1.add(btnPrint);
 				}
-				
+
 				comboBoxPrintQueue.setBounds(145, 272, 365, 25);
 				jDesktopPane1.add(comboBoxPrintQueue);
-				
+
 				{
 					JLabel4j_std lblNewLabel_5 = new JLabel4j_std(lang.get("lbl_Number_Of_Labels"));
 					lblNewLabel_5.setHorizontalAlignment(SwingConstants.TRAILING);
 					lblNewLabel_5.setBounds(6, 442, 138, 16);
 					jDesktopPane1.add(lblNewLabel_5);
 				}
-				
+
 				{
 					spinnerCopies = new JSpinner();
 					spinnerCopies.setBounds(149, 300, 37, 28);
 					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(spinnerCopies);
 					ne.getTextField().setFont(Common.font_std);
 					spinnerCopies.setEditor(ne);
-					jDesktopPane1.add(spinnerCopies);					
+					jDesktopPane1.add(spinnerCopies);
 				}
-				
+
 				JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Print_Queue"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_std.setBounds(0, 278, 138, 16);
 				jDesktopPane1.add(label4j_std);
-				
+
 				JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_Number_Of_Labels"));
 				label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_std_1.setBounds(0, 305, 138, 16);
 				jDesktopPane1.add(label4j_std_1);
-				
+
 				populatePrinterList(JPrint.getDefaultPrinterQueueName());
 				String numberOfLabels = ctrl.getKeyValueWithDefault("QM SAMPLE LABELS", "4", "Number of Labels per Sample");
 				spinnerCopies.setValue(Integer.valueOf(numberOfLabels));
-				
+
 			}
 		} catch (Exception e)
 		{
@@ -472,7 +483,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 		query.bindParams();
 		listStatement = query.getPreparedStatement();
 	}
-	
+
 	private void refresh()
 	{
 		try
@@ -497,7 +508,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 
 				material.getMaterialProperties(sample.getMaterial());
 				jTextFieldMaterialDescription.setText(material.getDescription());
-				
+
 				sampleDate.setDate(sample.getSampleDate());
 
 				jButtonSave.setEnabled(true);
@@ -507,13 +518,11 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				jStatusText.setText("Sample " + String.valueOf(sample.getSampleID()) + " does not exist.");
 				blankfields();
 			}
-		}
-		catch (Exception ex)
+		} catch (Exception ex)
 		{
 			lsampleid = 0l;
 			blankfields();
 		}
-		
 
 	}
 }

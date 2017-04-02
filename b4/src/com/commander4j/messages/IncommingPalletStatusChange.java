@@ -30,6 +30,11 @@ package com.commander4j.messages;
 import com.commander4j.db.JDBPallet;
 import com.commander4j.util.JUtility;
 
+/**
+ * IncommingPalletStatusChange as its name suggests updates the Pallet Status.
+ * This is not the same as updating the Batch Status.
+ *
+ */
 public class IncommingPalletStatusChange
 {
 
@@ -37,27 +42,33 @@ public class IncommingPalletStatusChange
 	private String sessionID;
 	private String errorMessage;
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return errorMessage;
 	}
 
-	private void setErrorMessage(String errorMessage) {
+	private void setErrorMessage(String errorMessage)
+	{
 		this.errorMessage = errorMessage;
 	}
 
-	public String getHostID() {
+	public String getHostID()
+	{
 		return hostID;
 	}
 
-	public void setHostID(String hostID) {
+	public void setHostID(String hostID)
+	{
 		this.hostID = hostID;
 	}
 
-	public String getSessionID() {
+	public String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public void setSessionID(String sessionID) {
+	public void setSessionID(String sessionID)
+	{
 		this.sessionID = sessionID;
 	}
 
@@ -67,7 +78,8 @@ public class IncommingPalletStatusChange
 		setHostID(host);
 	}
 
-	public Boolean processMessage(GenericMessageHeader gmh) {
+	public Boolean processMessage(GenericMessageHeader gmh)
+	{
 		Boolean result = true;
 
 		JDBPallet pal = new JDBPallet(getHostID(), getSessionID());
@@ -89,17 +101,15 @@ public class IncommingPalletStatusChange
 
 				if (pal.getPalletProperties(sscc) == true)
 				{
-					Long txn = pal.updateStatus(status,false);
-					if (txn>0)
+					Long txn = pal.updateStatus(status, false);
+					if (txn > 0)
 					{
 						updated++;
-					}
-					else
+					} else
 					{
 						notupdated++;
 					}
-				}
-				else
+				} else
 				{
 
 					notfound++;
@@ -109,23 +119,21 @@ public class IncommingPalletStatusChange
 			}
 		}
 		pal = null;
-		
-		if (notfound>0)
+
+		if (notfound > 0)
 		{
 			result = false;
 			String error = "Some SSCC's were not found in the Commander4j database. \n\n";
-					
-			error = error +String.valueOf(updated)+" Updated.\n";
-			error = error +String.valueOf(notupdated)+" Ignored (same).\n";
-			error = error +String.valueOf(notfound)+" Not found.\n\n";
+
+			error = error + String.valueOf(updated) + " Updated.\n";
+			error = error + String.valueOf(notupdated) + " Ignored (same).\n";
+			error = error + String.valueOf(notfound) + " Not found.\n\n";
 			setErrorMessage(error);
-		}
-		else
+		} else
 		{
-			setErrorMessage(String.valueOf(updated)+" Updated.");
+			setErrorMessage(String.valueOf(updated) + " Updated.");
 		}
-		
-		
+
 		return result;
 
 	}

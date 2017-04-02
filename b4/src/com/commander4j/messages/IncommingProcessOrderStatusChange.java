@@ -29,6 +29,14 @@ package com.commander4j.messages;
 
 import com.commander4j.db.JDBProcessOrder;
 
+/**
+ * IncommingProcessOrderStatusChange updates records in the APP_PROCESS_ORDER
+ * table. Each Process Order can have a number of different states depending on
+ * if the order is active or finished. This message allows an external system to
+ * change the status of a Process Order.
+ *
+ * @see com.commander4j.db.JDBProcessOrder JDBProcessOrder
+ */
 public class IncommingProcessOrderStatusChange
 {
 
@@ -39,27 +47,33 @@ public class IncommingProcessOrderStatusChange
 	private String status;
 	private String receipeId;
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return errorMessage;
 	}
 
-	private void setErrorMessage(String errorMessage) {
+	private void setErrorMessage(String errorMessage)
+	{
 		this.errorMessage = errorMessage;
 	}
 
-	public String getHostID() {
+	public String getHostID()
+	{
 		return hostID;
 	}
 
-	public void setHostID(String hostID) {
+	public void setHostID(String hostID)
+	{
 		this.hostID = hostID;
 	}
 
-	public String getSessionID() {
+	public String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public void setSessionID(String sessionID) {
+	public void setSessionID(String sessionID)
+	{
 		this.sessionID = sessionID;
 	}
 
@@ -69,7 +83,8 @@ public class IncommingProcessOrderStatusChange
 		setHostID(host);
 	}
 
-	public Boolean processMessage(GenericMessageHeader gmh) {
+	public Boolean processMessage(GenericMessageHeader gmh)
+	{
 		Boolean result = true;
 
 		JDBProcessOrder po = new JDBProcessOrder(getHostID(), getSessionID());
@@ -85,14 +100,12 @@ public class IncommingProcessOrderStatusChange
 			if (po.update() == true)
 			{
 				setErrorMessage("Process Order " + orderNo + " status updated.");
-			}
-			else
+			} else
 			{
 				result = false;
 				setErrorMessage("Process Order [" + orderNo + "] updated failed. [" + po.getErrorMessage() + "]");
 			}
-		}
-		else
+		} else
 		{
 			result = false;
 			setErrorMessage("Process Order [" + orderNo + "] not found.");

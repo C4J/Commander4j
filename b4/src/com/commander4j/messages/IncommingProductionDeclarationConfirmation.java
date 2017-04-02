@@ -34,6 +34,21 @@ import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBPallet;
 import com.commander4j.util.JUtility;
 
+/**
+ * IncommingProductionDeclarationConfirmation allows an external system
+ * (typically an auto-labeller) to declare a pallet (SSCC) as being created -
+ * successfully labelled.
+ * 
+ * From a transaction perspective this is exactly the same as printing and
+ * confirming a pallet from within the desktop application and subject to the
+ * exact same validation rules.
+ *
+ *
+ * @see com.commander4j.db.JDBPallet JDBPallet
+ * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
+ * @see com.commander4j.app.JInternalFrameProductionDeclaration JInternalFrameProductionDeclaration
+ * @see com.commander4j.app.JInternalFrameProductionConfirmation JInternalFrameProductionConfirmation
+ */
 public class IncommingProductionDeclarationConfirmation
 {
 
@@ -72,7 +87,8 @@ public class IncommingProductionDeclarationConfirmation
 		this.sessionID = sessionID;
 	}
 
-	public IncommingProductionDeclarationConfirmation(String host, String session) {
+	public IncommingProductionDeclarationConfirmation(String host, String session)
+	{
 		setSessionID(session);
 		setHostID(host);
 
@@ -109,8 +125,7 @@ public class IncommingProductionDeclarationConfirmation
 				{
 					result = false;
 					setErrorMessage("SSCC " + pal.getSSCC() + " Expiry Date in wrong format (" + expireString + ") yyyy-mm-ddThh:mm:ss");
-				}
-				else
+				} else
 				{
 
 					pal.setBatchExpiry(JUtility.getTimestampFromDate(mat.getRoundedExpiryTime(expireTime)));
@@ -119,16 +134,14 @@ public class IncommingProductionDeclarationConfirmation
 					{
 						result = false;
 						setErrorMessage("SSCC " + pal.getSSCC() + " has Expiry Date before Production Date.");
-					}
-					else
+					} else
 					{
 
 						if (pal.create("PROD DEC", "CREATE") == false)
 						{
 							result = false;
-							setErrorMessage("SSCC " + pal.getSSCC() + " "+pal.getErrorMessage());
-						}
-						else
+							setErrorMessage("SSCC " + pal.getSSCC() + " " + pal.getErrorMessage());
+						} else
 						{
 							result = true;
 							setErrorMessage("SSCC " + pal.getSSCC() + " created.");
@@ -136,15 +149,13 @@ public class IncommingProductionDeclarationConfirmation
 					}
 				}
 
-			}
-			else
+			} else
 			{
 				result = false;
-				setErrorMessage("SSCC " + pal.getSSCC() + " " +pal.getErrorMessage());
+				setErrorMessage("SSCC " + pal.getSSCC() + " " + pal.getErrorMessage());
 			}
 
-		}
-		else
+		} else
 		{
 			result = true;
 			// setErrorMessage("SSCC " + pal.getSSCC() + " already exists.");
@@ -166,13 +177,11 @@ public class IncommingProductionDeclarationConfirmation
 					{
 						result = false;
 						setErrorMessage(pal.getErrorMessage());
-					}
-					else
+					} else
 					{
 						setErrorMessage("SSCC " + pal.getSSCC() + " confirmed.");
 					}
-				}
-				else
+				} else
 				{
 					setErrorMessage("SSCC " + pal.getSSCC() + " already confirmed.");
 					result = false;

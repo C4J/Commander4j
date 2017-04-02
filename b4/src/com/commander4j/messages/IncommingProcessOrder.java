@@ -35,6 +35,14 @@ import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBUom;
 import com.commander4j.util.JUtility;
 
+/**
+ * IncommingProcessOrder creates or updates records in the APP_PROCESS_ORDER
+ * table. Some verification is performed before the table is updated. If errors
+ * are found the insert/update does not occur and an error is written to the
+ * SYS_INTERFACE_LOG table with a description of the failure reason.
+ *
+ * @see com.commander4j.db.JDBProcessOrder JDBProcessOrder
+ */
 public class IncommingProcessOrder
 {
 
@@ -56,36 +64,44 @@ public class IncommingProcessOrder
 	private String customerName;
 	private String inspectionID;
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return errorMessage;
 	}
 
-	private void setErrorMessage(String errorMessage) {
+	private void setErrorMessage(String errorMessage)
+	{
 		this.errorMessage = errorMessage;
 	}
 
-	public String getHostID() {
+	public String getHostID()
+	{
 		return hostID;
 	}
 
-	public void setHostID(String hostID) {
+	public void setHostID(String hostID)
+	{
 		this.hostID = hostID;
 	}
 
-	public String getSessionID() {
+	public String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public void setSessionID(String sessionID) {
+	public void setSessionID(String sessionID)
+	{
 		this.sessionID = sessionID;
 	}
 
-	public IncommingProcessOrder(String host, String session) {
+	public IncommingProcessOrder(String host, String session)
+	{
 		setSessionID(session);
 		setHostID(host);
 	}
 
-	public Boolean processMessage(GenericMessageHeader gmh) {
+	public Boolean processMessage(GenericMessageHeader gmh)
+	{
 		Boolean result = false;
 
 		JDBProcessOrder po = new JDBProcessOrder(getHostID(), getSessionID());
@@ -109,16 +125,17 @@ public class IncommingProcessOrder
 
 		defaultPalletStatus = gmh.getXMLDocument().findXPath("//message/messageData/processOrder/defaultPalletStatus").trim();
 		requiredResource = gmh.getXMLDocument().findXPath("//message/messageData/processOrder/requiredResource").trim();
-		
+
 		inspectionID = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/processOrder/inspectionID").trim());
 		customerID = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/processOrder/customerID").trim());
 		customerName = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/processOrder/customerName").trim());
 
 		boolean create = false;
-		if (po.getProcessOrderProperties(orderNo) == false) {
+		if (po.getProcessOrderProperties(orderNo) == false)
+		{
 			create = true;
-		}
-		else {
+		} else
+		{
 			create = false;
 		}
 
@@ -133,20 +150,22 @@ public class IncommingProcessOrder
 		po.setRequiredResource(requiredResource);
 		po.setInspectionID(inspectionID);
 
-		if (customerID.equals("") == false) {
-			if (cst.getCustomerProperties(customerID) == true) {
-				if (customerName.equals("") == false) {
+		if (customerID.equals("") == false)
+		{
+			if (cst.getCustomerProperties(customerID) == true)
+			{
+				if (customerName.equals("") == false)
+				{
 					cst.setName(customerName);
 					cst.update();
 				}
-			}
-			else {
+			} else
+			{
 				cst.clear();
 				cst.create(customerID, customerName, "Y");
 				cst.update();
 			}
-		}
-		else
+		} else
 		{
 			customerID = "SELF";
 		}
@@ -157,20 +176,23 @@ public class IncommingProcessOrder
 		java.sql.Timestamp ts2 = java.sql.Timestamp.valueOf(temp);
 		po.setDueDate(ts2);
 
-		if (create == true) {
-			if (po.create() == false) {
+		if (create == true)
+		{
+			if (po.create() == false)
+			{
 				setErrorMessage(po.getErrorMessage());
-			}
-			else {
+			} else
+			{
 				result = true;
 				setErrorMessage("Process Order " + po.getProcessOrder() + " created.");
 			}
-		}
-		else {
-			if (po.update() == false) {
-				setErrorMessage("Process Order "+orderNo+" : "+po.getErrorMessage());
-			}
-			else {
+		} else
+		{
+			if (po.update() == false)
+			{
+				setErrorMessage("Process Order " + orderNo + " : " + po.getErrorMessage());
+			} else
+			{
 				result = true;
 				setErrorMessage("Process Order " + po.getProcessOrder() + " updated.");
 			}

@@ -51,6 +51,18 @@ import com.commander4j.util.JFileIO;
 import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLDocument;
 
+/**
+ * The OutgoingProductionDeclarationConfirmation message is designed to output a
+ * message to an external system (typically an ERP system) to inform it that a
+ * pallet (SSCC) has been created and record production. All the core data from
+ * the APP_PALLET table is exported along with linked information from
+ * APP_LOCATION, APP_MATERIAL and APP_PROCESS_ORDER
+ * 
+ * @see com.commander4j.db.JDBPallet JDBPallet
+ * @see com.commander4j.db.JDBProcessOrder JDBProcessOrder
+ * @see com.commander4j.db.JDBMaterial JDBMaterial
+ * @see com.commander4j.db.JDBLocation JDBLocation
+ */
 public class OutgoingProductionDeclarationConfirmation
 {
 	private String hostID;
@@ -67,22 +79,26 @@ public class OutgoingProductionDeclarationConfirmation
 		setSessionID(session);
 	}
 
-	public Element addElement(Document doc, String name, String value) {
+	public Element addElement(Document doc, String name, String value)
+	{
 		Element temp = (Element) doc.createElement(name);
 		Text temp_value = doc.createTextNode(value);
 		temp.appendChild(temp_value);
 		return temp;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return errorMessage;
 	}
 
-	public String getHostID() {
+	public String getHostID()
+	{
 		return hostID;
 	}
 
-	public String getSessionID() {
+	public String getSessionID()
+	{
 		return sessionID;
 	}
 
@@ -152,7 +168,7 @@ public class OutgoingProductionDeclarationConfirmation
 
 					Element required_resource = addElement(document, "requiredResource", palhist.getPallet().getProcessOrderObj(false).getRequiredResource());
 					productionDeclaration.appendChild(required_resource);
-					
+
 					Element material = addElement(document, "material", palhist.getPallet().getMaterial());
 					productionDeclaration.appendChild(material);
 
@@ -160,14 +176,13 @@ public class OutgoingProductionDeclarationConfirmation
 					{
 						Element description = addElement(document, "description", mat.getDescription());
 						productionDeclaration.appendChild(description);
-						Element old_code = addElement(document,"old_code",mat.getOldMaterial());
+						Element old_code = addElement(document, "old_code", mat.getOldMaterial());
 						productionDeclaration.appendChild(old_code);
-					}
-					else
+					} else
 					{
 						Element description = addElement(document, "description", "");
 						productionDeclaration.appendChild(description);
-						Element old_code = addElement(document,"old_code","");
+						Element old_code = addElement(document, "old_code", "");
 						productionDeclaration.appendChild(old_code);
 					}
 
@@ -193,8 +208,7 @@ public class OutgoingProductionDeclarationConfirmation
 					{
 						Element expiryDate = addElement(document, "expiryDate", JUtility.getISOTimeStampStringFormat(palhist.getPallet().getMaterialBatchExpiryDate()));
 						productionDeclaration.appendChild(expiryDate);
-					}
-					else
+					} else
 					{
 						Element expiryDate = addElement(document, "expiryDate", JUtility.getISOTimeStampStringFormat(palhist.getPallet().getBatchExpiry()));
 						productionDeclaration.appendChild(expiryDate);
@@ -257,19 +271,18 @@ public class OutgoingProductionDeclarationConfirmation
 					{
 
 						path = inter.getRealPath();
-						if (fio.writeToDisk(path, document, transactionRef,"_"+ palhist.getPallet().getLocationID().replace(" ", "_")+"_ProductionDeclaration.xml") == true)
+						if (fio.writeToDisk(path, document, transactionRef, "_" + palhist.getPallet().getLocationID().replace(" ", "_") + "_ProductionDeclaration.xml") == true)
 						{
 							result = true;
 							il.write(gmh, GenericMessageHeader.msgStatusSuccess, "Processed OK", "File Write", fio.getFilename());
 							setErrorMessage("");
-							
+
 							if (device.equals("Email"))
 							{
-								ogm = new JeMailOutGoingMessage(inter,transactionRef,fio);
+								ogm = new JeMailOutGoingMessage(inter, transactionRef, fio);
 								ogm.sendEmail();
 							}
-						}
-						else
+						} else
 						{
 							result = false;
 							il.write(gmh, GenericMessageHeader.msgStatusError, fio.getErrorMessage(), "File Write", fio.getFilename());
@@ -285,14 +298,12 @@ public class OutgoingProductionDeclarationConfirmation
 					ex.printStackTrace();
 
 				}
-			}
-			else
+			} else
 			{
 				logger.debug("Could not find Pallet History Interfacing Data for Transaction Ref  " + String.valueOf(transactionRef));
 			}
 			rs.close();
-		}
-		catch (SQLException e)
+		} catch (SQLException e)
 		{
 			logger.debug("Error finding Pallet History Interfacing Data for Transaction Ref  " + String.valueOf(transactionRef) + " " + e.getMessage());
 		}
@@ -300,27 +311,30 @@ public class OutgoingProductionDeclarationConfirmation
 		return result;
 	}
 
-	private void setErrorMessage(String errorMessage) {
+	private void setErrorMessage(String errorMessage)
+	{
 		this.errorMessage = errorMessage;
 	}
 
-	public void setHostID(String host) {
+	public void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	public void setSessionID(String session) {
+	public void setSessionID(String session)
+	{
 		sessionID = session;
 	}
 
-	public void submit(long dbTransactionRef) {
+	public void submit(long dbTransactionRef)
+	{
 		JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 		inter.getInterfaceProperties("Production Declaration", "Output");
 		if (inter.isEnabled() == true)
 		{
 			JDBInterfaceRequest ir = new JDBInterfaceRequest(getHostID(), getSessionID());
 			ir.write(dbTransactionRef, "Production Declaration");
-		}
-		else
+		} else
 		{
 			logger.debug("Interface Production Declaration - Output is DISABLED");
 		}

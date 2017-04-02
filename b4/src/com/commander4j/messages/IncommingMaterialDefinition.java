@@ -42,6 +42,18 @@ import com.commander4j.db.JDBMaterialUom;
 import com.commander4j.db.JDBUom;
 import com.commander4j.util.JUtility;
 
+/**
+ * IncommingMaterialDefinition allows material master data to be imported from
+ * an external system. As the Material data is spread across multiple tables
+ * this import routine has to update all relevant tables as well.
+ * 
+ * @see com.commander4j.db.JDBMaterial JDBMaterial
+ * @see com.commander4j.db.JDBMaterialLocation JDBMaterialLocation
+ * @see com.commander4j.db.JDBMaterialType JDBMaterialType
+ * @see com.commander4j.db.JDBMaterialUom JDBMaterialUom
+ * @see com.commander4j.db.JDBMaterialCustomerData JDBMaterialCustomerData
+ *
+ */
 public class IncommingMaterialDefinition
 {
 
