@@ -990,7 +990,7 @@
 		</statement>
 		<statement>
 			<id>JDBMHN.update</id>
-			<text>update {schema}APP_MHN set recorder=?,initiator=?,reason1=?,reason2=?,reason3=?,date_expected=?,date_resolved=?,status=?,comments=?,required_resource=?,authorisor=? where mhn_number=?</text>
+			<text>update {schema}APP_MHN set recorder=?,initiator=?,reason1=?,reason2=?,reason3=?,date_expected=?,date_resolved=?,status=?,comments=?,required_resource=?,authorisor=?,write_off_ref=? where mhn_number=?</text>
 		</statement>
 		<statement>
 			<id>JDBMHN.palletDecisionSummary</id>

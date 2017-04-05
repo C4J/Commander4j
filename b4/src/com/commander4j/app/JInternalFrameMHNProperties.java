@@ -144,6 +144,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 	private JComboBox4j<JDBMHNReasons> textFieldReason3;
 	private JButton4j button_1;
 	private PreparedStatement listStatement;
+	private JTextField4j jTextFieldWriteOffRef = new JTextField4j(50);
 
 	private void sortBy(String fieldname)
 	{
@@ -309,6 +310,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		mhn.setRecorder(jTextFieldRecorder.getText());
 		mhn.setAuthorisor(jTextFieldAuthorisor.getText());
 		mhn.setResource(jTextFieldResource.getText());
+		mhn.setWriteOffRef(jTextFieldWriteOffRef.getText());
 		mhn.setStatus(jTextFieldStatus.getSelectedItem().toString());
 		Date d = dateControlExpected.getDate();
 		mhn.setDateExpected(JUtility.getTimestampFromDate(d));
@@ -350,7 +352,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		jTextFieldMHN.setText(mhnNumber);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(726, 40, 258, 145);
+		scrollPane.setBounds(726, 61, 258, 124);
 		jDesktopPane1.add(scrollPane);
 
 		ListModel<String> jList1Model = new DefaultComboBoxModel<String>(new String[] { "Item One", "Item Two" });
@@ -428,6 +430,15 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 			button_1.setBounds(964, 7, 21, 21);
 			jDesktopPane1.add(button_1);
 		}
+		
+		jTextFieldWriteOffRef.setBounds(834, 37, 149, 21);
+		jDesktopPane1.add(jTextFieldWriteOffRef);
+		
+		JLabel4j_std jLabelWriteOffRef = new JLabel4j_std();
+		jLabelWriteOffRef.setText(lang.get("lbl_Write_Off_Ref"));
+		jLabelWriteOffRef.setHorizontalAlignment(SwingConstants.TRAILING);
+		jLabelWriteOffRef.setBounds(688, 37, 141, 21);
+		jDesktopPane1.add(jLabelWriteOffRef);
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -459,6 +470,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 			jTextFieldRecorder.setText(mhn.getRecorder());
 			jTextFieldInitiator.setText(mhn.getInitiator());
 			jTextFieldAuthorisor.setText(mhn.getAuthorisor());
+			jTextFieldWriteOffRef.setText(mhn.getWriteOffRef());
 			jTextFieldMHN.setText(mhnNumber);
 			try
 			{

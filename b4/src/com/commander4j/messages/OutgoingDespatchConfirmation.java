@@ -45,6 +45,7 @@ import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceLog;
 import com.commander4j.db.JDBInterfaceRequest;
 import com.commander4j.db.JDBPalletHistory;
+import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBUom;
 import com.commander4j.email.JeMailOutGoingMessage;
 import com.commander4j.sys.Common;
@@ -97,6 +98,7 @@ public class OutgoingDespatchConfirmation
 		String defaultBatchStatus = "";
 
 		JDBInterfaceLog il = new JDBInterfaceLog(getHostID(), getSessionID());
+		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
 		GenericMessageHeader gmh = new GenericMessageHeader();
 		JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 		JDBUom uoml = new JDBUom(getHostID(), getSessionID());
@@ -116,6 +118,8 @@ public class OutgoingDespatchConfirmation
 		gmh.setMessageInformation("Despatch=" + desp.getDespatchNo());
 		gmh.setInterfaceDirection(inter.getInterfaceDirection());
 		gmh.setMessageDate(JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime()));
+		
+		String noJourneyPrefix = ctrl.getKeyValueWithDefault("NO JOURNEY PREFIX", "NJ_", "Prefix for No Journey Messages");
 		
 		if (desp.getDespatchPalletCount()==0)
 		{
@@ -167,7 +171,14 @@ public class OutgoingDespatchConfirmation
 				
 				if (desp.getLocationDBTo().getMsgJourneyRef().equals("Y"))
 				{
-					document = document + "RFF+SRN:" + desp.getJourneyRef() + "'";
+					if (desp.getJourneyRef().equals("NO JOURNEY"))
+					{
+						document = document + "RFF+SRN:" + noJourneyPrefix+desp.getDespatchNo() + "'";
+					}
+					else
+					{
+						document = document + "RFF+SRN:" + desp.getJourneyRef() + "'";
+					}
 					optional++;
 				}
 				

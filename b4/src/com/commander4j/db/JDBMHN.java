@@ -63,6 +63,7 @@ public class JDBMHN
 	private String dbComments;
 	private String dbStatus;
 	private String dbResource;
+	private String dbWriteOffRef;
 
 	public static int field_mhn_number = 10;
 	public static int field_initiator = 20;
@@ -90,7 +91,7 @@ public class JDBMHN
 		setSessionID(session);
 	}
 
-	public JDBMHN(String MHNNumber, String initiator, String recorder, String authorisor, String reason1, String reason2, String reason3, Timestamp created, Timestamp expected, Timestamp resolved, String status, String comment, String resource,
+	public JDBMHN(String MHNNumber, String initiator, String recorder, String authorisor, String reason1, String reason2, String reason3, Timestamp created, Timestamp expected, Timestamp resolved, String status, String comment, String resource,String wor,
 			Integer count)
 	{
 		setMHNNumber(MHNNumber);
@@ -106,6 +107,7 @@ public class JDBMHN
 		setStatus(status);
 		setComment(comment);
 		setResource(resource);
+		setWriteOffRef(wor);
 	}
 
 	public void clear()
@@ -122,6 +124,7 @@ public class JDBMHN
 		setStatus("Pending");
 		setComment("");
 		setResource("");
+		setWriteOffRef("");
 	}
 
 	public boolean create()
@@ -206,7 +209,7 @@ public class JDBMHN
 		return result;
 	}
 
-	public String formatProcessOrderNo(String MHNNo)
+	public String formatMHNNo(String MHNNo)
 	{
 		String result = "error";
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
@@ -237,7 +240,7 @@ public class JDBMHN
 					MHNNo = ctrl.getKeyValue();
 					SeqNumber = Integer.parseInt(MHNNo);
 
-					result = formatProcessOrderNo(MHNNo);
+					result = formatMHNNo(MHNNo);
 					setMHNNumber(result);
 					retry = false;
 
@@ -448,6 +451,7 @@ public class JDBMHN
 
 			setComment(rs.getString("comments"));
 			setResource(rs.getString("required_resource"));
+			setWriteOffRef(rs.getString("write_off_ref"));
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -479,6 +483,11 @@ public class JDBMHN
 		return dbResource;
 	}
 
+	public String getWriteOffRef()
+	{
+		return dbWriteOffRef;
+	}
+	
 	public String getSessionID()
 	{
 		return sessionID;
@@ -595,6 +604,11 @@ public class JDBMHN
 		dbResource = resource;
 	}
 
+	public void setWriteOffRef(String wor)
+	{
+		dbWriteOffRef = wor;
+	}
+	
 	private void setSessionID(String session)
 	{
 		sessionID = session;
@@ -638,7 +652,8 @@ public class JDBMHN
 			stmtupdate.setString(9, getComments());
 			stmtupdate.setString(10, getResource());
 			stmtupdate.setString(11, getAuthorisor());
-			stmtupdate.setString(12, getMHNNumber());
+			stmtupdate.setString(12, getWriteOffRef());
+			stmtupdate.setString(13, getMHNNumber());
 
 			stmtupdate.execute();
 			stmtupdate.clearParameters();

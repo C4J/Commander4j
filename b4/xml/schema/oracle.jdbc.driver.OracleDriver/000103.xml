@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	ALTER TABLE APP_MHN ADD WRITE_OFF_REF VARCHAR2(20) DEFAULT ''
+</statement>
+
+<statement>
+	ALTER TABLE APP_QM_SAMPLE ADD USER_DATA_3 VARCHAR2(20) DEFAULT ''
+</statement>
+
+<statement>
+	ALTER TABLE APP_QM_SAMPLE ADD USER_DATA_4 VARCHAR2(20) DEFAULT ''
+</statement>
+
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Write_Off_Ref', 'EN', 'Write Off Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Write_Off_Ref', 'NL', 'Write Off Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Write_Off_Ref', 'HU', 'Write Off Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Write_Off_Ref', 'IT', 'Write Off Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Write_Off_Ref', 'DE', 'Write Off Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Write_Off_Ref', 'ES', 'Write Off Ref', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Write_Off_Ref', 'PL', 'Write Off Ref', 'Q')
+</statement>
+
+
+</DDL>
