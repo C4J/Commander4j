@@ -43,5 +43,60 @@
 	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Write_Off_Ref', 'PL', 'Write Off Ref', 'Q')
 </statement>
 
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data3', 'EN', 'Shift ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data3', 'NL', 'Shift ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data3', 'HU', 'Shift ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data3', 'IT', 'Shift ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data3', 'DE', 'Shift ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data3', 'ES', 'Shift ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data3', 'PL', 'Shift ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data4', 'EN', 'Product Group', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data4', 'NL', 'Product Group', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data4', 'HU', 'Product Group', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data4', 'IT', 'Product Group', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data4', 'DE', 'Product Group', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data4', 'ES', 'Product Group', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_User_Data4', 'PL', 'Product Group', 'Q')
+</statement>
 
 </DDL>

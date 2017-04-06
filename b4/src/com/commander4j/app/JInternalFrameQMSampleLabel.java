@@ -64,6 +64,8 @@ import com.commander4j.db.JDBQMActivity;
 import com.commander4j.db.JDBQMInspection;
 import com.commander4j.db.JDBQMSample;
 import com.commander4j.db.JDBQuery;
+import com.commander4j.db.JDBUserReport;
+import com.commander4j.db.JUserReportParameter;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
@@ -103,6 +105,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JDBQMActivity activity = new JDBQMActivity(Common.selectedHostID, Common.sessionID);
 	private JDBQMSample sample = new JDBQMSample(Common.selectedHostID, Common.sessionID);
+	private JDBUserReport userReport = new JDBUserReport(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
 	private JSpinner spinnerCopies;
 	private JList4j<JDBQMActivity> listActivities;
@@ -124,6 +127,8 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 	private JRadioButton4j resolution_200dpi = new JRadioButton4j("200 dpi");
 	private JRadioButton4j resolution_300dpi = new JRadioButton4j("300 dpi");
 	private JRadioButton4j resolution_default = new JRadioButton4j("Default Resolution");
+	private JTextField4j textFieldUserData3;
+	private JTextField4j textFieldUserData4;
 
 	public class ClockListener implements ActionListener
 	{
@@ -199,6 +204,22 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			textFieldResource.setText(po.getRequiredResource());
 			dueDate.setDate(po.getDueDate());
 			processOrderValid = true;
+			
+			if (userReport.getUserReportProperties("USER_DATA_1"))
+			{
+				JUserReportParameter param1 = new JUserReportParameter();
+				param1.parameterPosition=1;
+				param1.parameterType="String";
+				param1.parameterStringValue=po.getProcessOrder();
+				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
+				paramList.add(param1);
+				userReport.setSYSTEMparameters(paramList);
+				if (userReport.runReport())
+				{
+					textFieldUserData3.setText(userReport.getSystemResultData());
+				}
+			}
+			
 			populateActivityList(po.getInspectionID());
 		} else
 		{
@@ -413,7 +434,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(lblInspectionID);
 
 		JLabel4j_std lblNewLabel_3 = new JLabel4j_std(lang.get("lbl_Activity_ID"));
-		lblNewLabel_3.setBounds(30, 199, 111, 16);
+		lblNewLabel_3.setBounds(30, 230, 111, 16);
 		desktopPane.add(lblNewLabel_3);
 
 		btnPrint = new JButton4j(lang.get("btn_Print"));
@@ -519,7 +540,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(textFieldStatus);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(30, 215, 515, 206);
+		scrollPane.setBounds(30, 248, 515, 173);
 		desktopPane.add(scrollPane);
 
 		listActivities = new JList4j<JDBQMActivity>();
@@ -646,6 +667,26 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		group.add(resolution_200dpi);
 		group.add(resolution_300dpi);
 		group.add(resolution_default);
+		
+		JLabel4j_std lblUserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
+		lblUserData3.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblUserData3.setBounds(6, 198, 111, 16);
+		desktopPane.add(lblUserData3);
+		
+		textFieldUserData3 = new JTextField4j(20);
+		textFieldUserData3.setColumns(20);
+		textFieldUserData3.setBounds(125, 193, 134, 22);
+		desktopPane.add(textFieldUserData3);
+		
+		JLabel4j_std lblUserData4 = new JLabel4j_std(lang.get("lbl_User_Data4"));
+		lblUserData4.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblUserData4.setBounds(288, 198, 111, 16);
+		desktopPane.add(lblUserData4);
+		
+		textFieldUserData4 = new JTextField4j(20);
+		textFieldUserData4.setColumns(20);
+		textFieldUserData4.setBounds(411, 193, 134, 22);
+		desktopPane.add(textFieldUserData4);
 		
 		populatePrinterList(JPrint.getDefaultPrinterQueueName());
 		

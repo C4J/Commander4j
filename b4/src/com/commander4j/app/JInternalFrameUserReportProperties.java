@@ -652,28 +652,30 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 				}
 			}
 		}
-
-		if (result)
+		if (comboBox4j_Destination.getSelectedItem().toString().equals("SYSTEM") == false)
 		{
-			if (checkBoxDateParameters.isSelected())
+			if (result)
 			{
-				if (textArea_SQL.getText().contains("?") == false)
+				if (checkBoxDateParameters.isSelected())
 				{
-					result = false;
-					reasonInvalid = "date params checkbox selected but no placeholders found in SQL";
+					if (textArea_SQL.getText().contains("?") == false)
+					{
+						result = false;
+						reasonInvalid = "date params checkbox selected but no placeholders found in SQL";
+					}
 				}
 			}
-		}
 
-		if (result)
-		{
-
-			if (textArea_SQL.getText().contains("?") == true)
+			if (result)
 			{
-				if (checkBoxDateParameters.isSelected() == false)
+
+				if (textArea_SQL.getText().contains("?") == true)
 				{
-					result = false;
-					reasonInvalid = "parameter placeholders found in SQL but date params checkbox not checked";
+					if (checkBoxDateParameters.isSelected() == false)
+					{
+						result = false;
+						reasonInvalid = "parameter placeholders found in SQL but date params checkbox not checked";
+					}
 				}
 			}
 		}

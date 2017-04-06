@@ -98,12 +98,12 @@ public class JDBUserReport {
 	private Timestamp paramDateTo;
 	private LinkedList<JUserReportParameter> systemParams = new LinkedList<JUserReportParameter>();
 	
-	public String getResultData()
+	public String getSystemResultData()
 	{
 		return JUtility.replaceNullStringwithBlank(systemResultData);
 	}
 	
-	private void setResultData(String data)
+	private void setSystemResultData(String data)
 	{
 		systemResultData = JUtility.replaceNullStringwithBlank(data);
 	}
@@ -116,6 +116,7 @@ public class JDBUserReport {
 	private boolean generateSYSTEM(ResultSet temp)
 	{
 		boolean result = true;
+		setSystemResultData("");
 
 		try
 		{			
@@ -124,7 +125,7 @@ public class JDBUserReport {
 				ResultSetMetaData rsmd = temp.getMetaData();
 				int colcount = rsmd.getColumnCount();
 				boolean dataColumnFound = false;
-				for (int x=0;x<colcount;x++)
+				for (int x=1;x<=colcount;x++)
 				{
 					if (rsmd.getColumnName(x).toLowerCase().equals("data"))
 					{
@@ -133,7 +134,7 @@ public class JDBUserReport {
 				}
 				if (dataColumnFound)
 				{
-					setResultData(temp.getString("data"));
+					setSystemResultData(temp.getString("data"));
 					result = true;
 				}
 				else
@@ -929,15 +930,19 @@ public class JDBUserReport {
 					
 					if (type.toLowerCase().equals("string"))
 					{
-						prepStatement.setString(systemParams.get(x).parameterPosition,(String) systemParams.get(x).parameterValue);
+						prepStatement.setString(systemParams.get(x).parameterPosition,systemParams.get(x).parameterStringValue);
 					}
 					if (type.toLowerCase().equals("integer"))
 					{
-						prepStatement.setInt(systemParams.get(x).parameterPosition,(Integer) systemParams.get(x).parameterValue);
+						prepStatement.setInt(systemParams.get(x).parameterPosition,systemParams.get(x).parameterIntegerValue);
+					}
+					if (type.toLowerCase().equals("long"))
+					{
+						prepStatement.setLong(systemParams.get(x).parameterPosition,systemParams.get(x).parameterLongValue);
 					}
 					if (type.toLowerCase().equals("timestamp"))
 					{
-						prepStatement.setTimestamp(systemParams.get(x).parameterPosition,(Timestamp) systemParams.get(x).parameterValue);
+						prepStatement.setTimestamp(systemParams.get(x).parameterPosition,systemParams.get(x).parameterTimestampValue);
 					}
 				}
 			}
