@@ -81,47 +81,48 @@ import com.commander4j.calendar.JCalendarButton;
  * @see com.commander4j.db.JDBUserReport JDBUserReport
  * @see com.commander4j.app.JInternalFrameUserReportAdmin
  *      JInternalFrameUserReportAdmin
- * @see com.commander4j.app.JDialogShiftProperties
- *      JDialogShiftProperties
+ * @see com.commander4j.app.JDialogShiftProperties JDialogShiftProperties
  */
-public class JInternalFrameUserReportProperties extends JInternalFrame {
+public class JInternalFrameUserReportProperties extends JInternalFrame
+{
 
 	private static final long serialVersionUID = 1L;
-	private JDBLanguage 	lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JDBUserReport 	ur = new JDBUserReport(Common.selectedHostID, Common.sessionID);
-	private JDBModule 		mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-	private JTextField4j 	textField4j_ReportID = new JTextField4j();
-	private JCheckBox4j 	chckbxEnabled = new JCheckBox4j("Enabled");
-	private JTextField4j 	textField4j_Description = new JTextField4j();
-	private JSpinner 		spinner_Sequence = new JSpinner();
-	private JTextArea 		textArea_SQL = new JTextArea();
-	private JComboBox4j<String> 	comboBox4j_Destination = new JComboBox4j<String>();
-	private JTextField4j 	textField4j_ModuleID = new JTextField4j();
-	private JCheckBox4j 		checkBox_Private = new JCheckBox4j("");
-	private JTextField4j 	textField4j_UserID = new JTextField4j();
-	private JTextField4j 	textField4j_GroupID = new JTextField4j();
-	private JLabel4j_std 	label4j_statusBar = new JLabel4j_std();
-	private JButton4j 		button4j_GroupLookup = new JButton4j(Common.icon_lookup);
-	private JButton4j 		button4j_UserLookup = new JButton4j(Common.icon_lookup);
-	private JLabel4j_std 	label4j_std_UserID = new JLabel4j_std();
-	private JLabel4j_std 	label4j_std_GroupID = new JLabel4j_std();
-	private JLabel4j_std 	label4j_std_Report_Path = new JLabel4j_std();
-	private JButton4j 		button4j_ModuleID = new JButton4j((Icon) null);
-	private JCheckBox4j 		checkBoxDateParameters = new JCheckBox4j("Date Parameters Required");
-	private JCheckBox4j 		checkBoxSaveAs = new JCheckBox4j("Save As");
-	private JCheckBox4j 		checkBoxPreview = new JCheckBox4j("Preview");
-	private JTextField4j 	textField4j_SavePath = new JTextField4j();
-	private JDateControl 	domDateFrom = new JDateControl();
-	private JDateControl 	domDateTo = new JDateControl();
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBUserReport ur = new JDBUserReport(Common.selectedHostID, Common.sessionID);
+	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
+	private JTextField4j textField4j_ReportID = new JTextField4j();
+	private JCheckBox4j chckbxEnabled = new JCheckBox4j("Enabled");
+	private JTextField4j textField4j_Description = new JTextField4j();
+	private JSpinner spinner_Sequence = new JSpinner();
+	private JTextArea textArea_SQL = new JTextArea();
+	private JComboBox4j<String> comboBox4j_Destination = new JComboBox4j<String>();
+	private JTextField4j textField4j_ModuleID = new JTextField4j();
+	private JCheckBox4j checkBox_Private = new JCheckBox4j("");
+	private JTextField4j textField4j_UserID = new JTextField4j();
+	private JTextField4j textField4j_GroupID = new JTextField4j();
+	private JLabel4j_std label4j_statusBar = new JLabel4j_std();
+	private JButton4j button4j_GroupLookup = new JButton4j(Common.icon_lookup);
+	private JButton4j button4j_UserLookup = new JButton4j(Common.icon_lookup);
+	private JLabel4j_std label4j_std_UserID = new JLabel4j_std();
+	private JLabel4j_std label4j_std_GroupID = new JLabel4j_std();
+	private JLabel4j_std label4j_std_Report_Path = new JLabel4j_std();
+	private JButton4j button4j_ModuleID = new JButton4j((Icon) null);
+	private JCheckBox4j checkBoxDateParameters = new JCheckBox4j("Date Parameters Required");
+	private JCheckBox4j checkBoxSaveAs = new JCheckBox4j("Save As");
+	private JCheckBox4j checkBoxPreview = new JCheckBox4j("Preview");
+	private JTextField4j textField4j_SavePath = new JTextField4j();
+	private JDateControl domDateFrom = new JDateControl();
+	private JDateControl domDateTo = new JDateControl();
 	private JCalendarButton button_CalendardomDateFrom = new JCalendarButton(domDateFrom);
 	private JCalendarButton button_CalendardomDateTo = new JCalendarButton(domDateTo);
-	private JLabel4j_std 	lblStart;
-	private JLabel4j_std 	label4jEnd;
-	private JCheckBox4j 		chckbxEmailEnabled = new JCheckBox4j();
-	private JCheckBox4j 		chckbxEmailPrompt = new JCheckBox4j();
-	private JTextField4j 	textField4j_EmailAddresses = new JTextField4j();
+	private JLabel4j_std lblStart;
+	private JLabel4j_std label4jEnd;
+	private JCheckBox4j chckbxEmailEnabled = new JCheckBox4j();
+	private JCheckBox4j chckbxEmailPrompt = new JCheckBox4j();
+	private JTextField4j textField4j_EmailAddresses = new JTextField4j();
 
-	public JInternalFrameUserReportProperties(String id) {
+	public JInternalFrameUserReportProperties(String id)
+	{
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
@@ -134,8 +135,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		getContentPane().add(desktopPane);
 
 		JButton4j btn4j_Save = new JButton4j(Common.icon_update);
-		btn4j_Save.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btn4j_Save.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				saveReportProperties(textField4j_ReportID.getText(), true);
 			}
 		});
@@ -153,8 +156,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		desktopPane.add(btn4j_Help);
 
 		JButton4j btn4j_Close = new JButton4j(Common.icon_close);
-		btn4j_Close.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btn4j_Close.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				dispose();
 			}
 		});
@@ -211,14 +216,18 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		label4j_std_SQL.setBounds(6, 189, 97, 15);
 		desktopPane.add(label4j_std_SQL);
 
-		comboBox4j_Destination.setModel(new DefaultComboBoxModel<String>(new String[] {"ACCESS", "CSV", "EXCEL", "JASPER_REPORTS", "PDF"}));
+		comboBox4j_Destination.setModel(new DefaultComboBoxModel<String>(new String[]
+		{ "ACCESS", "CSV", "EXCEL", "JASPER_REPORTS", "PDF", "SYSTEM" }));
 		comboBox4j_Destination.setBounds(117, 367, 198, 23);
 		desktopPane.add(comboBox4j_Destination);
-		comboBox4j_Destination.addItemListener(new ItemListener() {
+		comboBox4j_Destination.addItemListener(new ItemListener()
+		{
 
 			@Override
-			public void itemStateChanged(ItemEvent arg0) {
-				if (arg0.getStateChange() == ItemEvent.SELECTED) {
+			public void itemStateChanged(ItemEvent arg0)
+			{
+				if (arg0.getStateChange() == ItemEvent.SELECTED)
+				{
 					setDestinationButtons();
 				}
 			}
@@ -243,9 +252,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		textField4j_ModuleID.setBounds(452, 367, 254, 21);
 		desktopPane.add(textField4j_ModuleID);
 
-		button4j_ModuleID.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-
+		button4j_ModuleID.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent evt)
+			{
 
 				JLaunchLookup.dlgAutoExec = false;
 				JLaunchLookup.dlgCriteriaDefault = "REPORT";
@@ -267,8 +277,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		desktopPane.add(label4j_statusBar);
 
 		JButton4j button4j_Run = new JButton4j(Common.icon_execute);
-		button4j_Run.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		button4j_Run.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				runReport(textField4j_ReportID.getText());
 			}
 		});
@@ -278,8 +290,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		desktopPane.add(button4j_Run);
 
 		JButton4j button4j_ViewSchema = new JButton4j(Common.icon_help);
-		button4j_ViewSchema.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		button4j_ViewSchema.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				JLaunchMenu.runForm("FRM_ADMIN_SCHEMA_BROWSE");
 			}
 		});
@@ -318,8 +332,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		panel.add(button4j_UserLookup);
 		button4j_GroupLookup.setBounds(279, 75, 21, 21);
 		panel.add(button4j_GroupLookup);
-		checkBoxDateParameters.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		checkBoxDateParameters.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				setDateRangeButtons();
 			}
 		});
@@ -353,29 +369,36 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		desktopPane.add(textField4j_SavePath);
 
 		final JButton4j button4j_SavePath = new JButton4j((Icon) null);
-		button4j_SavePath.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		button4j_SavePath.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				JFileChooser loadDir = new JFileChooser();
 
-				try {
+				try
+				{
 					// Set the current directory
 					File f = new File(new File("").getCanonicalPath());
 					loadDir.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 					loadDir.setCurrentDirectory(f);
 					loadDir.setSelectedFile(new File(textField4j_SavePath.getText()));
 
-					if (loadDir.showOpenDialog(button4j_SavePath) == JFileChooser.APPROVE_OPTION) {
+					if (loadDir.showOpenDialog(button4j_SavePath) == JFileChooser.APPROVE_OPTION)
+					{
 						File selectedFile;
 						selectedFile = loadDir.getSelectedFile();
 
-						if (selectedFile != null) {
-							if (textField4j_SavePath.getText().compareTo(selectedFile.getCanonicalPath()) != 0) {
+						if (selectedFile != null)
+						{
+							if (textField4j_SavePath.getText().compareTo(selectedFile.getCanonicalPath()) != 0)
+							{
 								textField4j_SavePath.setText(selectedFile.getCanonicalPath());
 							}
 						}
 					}
 
-				} catch (Exception ex) {
+				} catch (Exception ex)
+				{
 				}
 			}
 		});
@@ -406,8 +429,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		label4jEnd.setHorizontalAlignment(SwingConstants.TRAILING);
 		label4jEnd.setBounds(277, 153, 63, 15);
 		desktopPane.add(label4jEnd);
-		chckbxEmailEnabled.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		chckbxEmailEnabled.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				setEmailButtons();
 				if (chckbxEmailEnabled.isSelected())
 				{
@@ -418,52 +443,60 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 				}
 			}
 		});
-		
+
 		chckbxEmailEnabled.setText(lang.get("lbl_Email_Output"));
 		chckbxEmailEnabled.setSelected(true);
 		chckbxEmailEnabled.setFont(new Font("Arial", Font.PLAIN, 11));
 		chckbxEmailEnabled.setBounds(117, 492, 248, 23);
 		desktopPane.add(chckbxEmailEnabled);
-		
+
 		chckbxEmailPrompt.setText(lang.get("lbl_Email_Prompt"));
 		chckbxEmailPrompt.setSelected(true);
 		chckbxEmailPrompt.setFont(new Font("Arial", Font.PLAIN, 11));
 		chckbxEmailPrompt.setBounds(458, 492, 248, 23);
 		desktopPane.add(chckbxEmailPrompt);
-		
+
 		textField4j_EmailAddresses.setText("");
 		textField4j_EmailAddresses.setCaretPosition(0);
 		textField4j_EmailAddresses.setBounds(117, 543, 589, 21);
 		desktopPane.add(textField4j_EmailAddresses);
-		
+
 		JLabel4j_std label4j_std = new JLabel4j_std();
 		label4j_std.setText(lang.get("lbl_Email_Addresses"));
 		label4j_std.setBounds(120, 527, 166, 15);
 		desktopPane.add(label4j_std);
 
-		button4j_GroupLookup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		button4j_GroupLookup.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				JLaunchLookup.dlgAutoExec = true;
 				JLaunchLookup.dlgCriteriaDefault = "";
 
-				if (JLaunchLookup.groups()) {
+				if (JLaunchLookup.groups())
+				{
 					textField4j_GroupID.setText(JLaunchLookup.dlgResult);
 				}
 			}
 		});
 
-		button4j_UserLookup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		button4j_UserLookup.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				JLaunchLookup.dlgAutoExec = true;
 				JLaunchLookup.dlgCriteriaDefault = "";
 
-				if (JLaunchLookup.users()) {
+				if (JLaunchLookup.users())
+				{
 					textField4j_UserID.setText(JLaunchLookup.dlgResult);
 				}
 			}
 		});
-		checkBox_Private.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {
+		checkBox_Private.addChangeListener(new ChangeListener()
+		{
+			public void stateChanged(ChangeEvent arg0)
+			{
 
 				setPrivateButtonState();
 			}
@@ -474,13 +507,15 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		setDestinationButtons();
 		setDateRangeButtons();
 		setEmailButtons();
-		
+
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(btn4j_Help, JUtility.getHelpSetIDforModule("FRM_ADMIN_USER_REPORT_PROP"));
 	}
 
-	private void setDestinationButtons() {
-		if (comboBox4j_Destination.getSelectedItem().toString().equals("JASPER_REPORTS")) {
+	private void setDestinationButtons()
+	{
+		if (comboBox4j_Destination.getSelectedItem().toString().equals("JASPER_REPORTS") | comboBox4j_Destination.getSelectedItem().toString().equals("SYSTEM"))
+		{
 			label4j_std_Report_Path.setEnabled(true);
 			textField4j_ModuleID.setEnabled(true);
 			button4j_ModuleID.setEnabled(true);
@@ -494,7 +529,13 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 				chckbxEmailEnabled.setSelected(false);
 				setEmailButtons();
 			}
-		} else {
+			if (comboBox4j_Destination.getSelectedItem().toString().equals("SYSTEM"))
+			{
+				checkBoxDateParameters.setSelected(false);
+				setDateRangeButtons();
+			}
+		} else
+		{
 			chckbxEmailEnabled.setEnabled(true);
 			label4j_std_Report_Path.setEnabled(false);
 			textField4j_ModuleID.setEnabled(false);
@@ -504,7 +545,8 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		}
 	}
 
-	private void setDateRangeButtons() {
+	private void setDateRangeButtons()
+	{
 		domDateFrom.setEnabled(checkBoxDateParameters.isSelected());
 		domDateTo.setEnabled(checkBoxDateParameters.isSelected());
 		button_CalendardomDateFrom.setEnabled(checkBoxDateParameters.isSelected());
@@ -513,7 +555,8 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		label4jEnd.setEnabled(checkBoxDateParameters.isSelected());
 	}
 
-	private void setPrivateButtonState() {
+	private void setPrivateButtonState()
+	{
 		textField4j_UserID.setEnabled(checkBox_Private.isSelected());
 		button4j_UserLookup.setEnabled(checkBox_Private.isSelected());
 		textField4j_GroupID.setEnabled(checkBox_Private.isSelected());
@@ -525,44 +568,54 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		chckbxEmailPrompt.setEnabled(chckbxEmailEnabled.isSelected());
 		textField4j_EmailAddresses.setEnabled(chckbxEmailEnabled.isSelected());
 	}
-	
-	private boolean isValidReport(String id) {
+
+	private boolean isValidReport(String id)
+	{
 		boolean result = true;
 		String reasonInvalid = "";
-		String illegalSQL[] = { "DELETE", "INSERT", "DROP" , "TRUNCATE", "GRANT ", "REVOKE","ALTER","DISABLE","ENABLE","CALL","MERGE","RENAME","COMMIT","ROLLBACK","TRANSACTION "   };
+		String illegalSQL[] =
+		{ "DELETE", "INSERT", "DROP", "TRUNCATE", "GRANT ", "REVOKE", "ALTER", "DISABLE", "ENABLE", "CALL", "MERGE", "RENAME", "COMMIT", "ROLLBACK", "TRANSACTION " };
 
 		if (result)
 		{
 			String examine = textArea_SQL.getText().toUpperCase();
-			for (int x=0;x<illegalSQL.length;x++)
+			for (int x = 0; x < illegalSQL.length; x++)
 			{
 				if (examine.contains(illegalSQL[x]))
 				{
 					result = false;
-					reasonInvalid = "Illegal DDL command "+illegalSQL[x]+" found in query";	
+					reasonInvalid = "Illegal DDL command " + illegalSQL[x] + " found in query";
 					break;
 				}
 			}
 		}
-		
-		if (result) {
-			if (textArea_SQL.getText().toUpperCase().contains("SYS_USERS")) {
+
+		if (result)
+		{
+			if (textArea_SQL.getText().toUpperCase().contains("SYS_USERS"))
+			{
 				result = false;
 				reasonInvalid = "reference to SYS_USER found in query";
 			}
 		}
 
-		if (result) {
-			if (textArea_SQL.getText().toUpperCase().contains("SYS_GROUP")) {
+		if (result)
+		{
+			if (textArea_SQL.getText().toUpperCase().contains("SYS_GROUP"))
+			{
 				result = false;
 				reasonInvalid = "reference to SYS_GROUP found in query";
 			}
 		}
 
-		if (result) {
-			if (checkBox_Private.isSelected()) {
-				if (textField4j_UserID.getText().equals("") == false) {
-					if (textField4j_UserID.getText().equals(Common.userList.getUser(Common.sessionID).getUserId()) == false) {
+		if (result)
+		{
+			if (checkBox_Private.isSelected())
+			{
+				if (textField4j_UserID.getText().equals("") == false)
+				{
+					if (textField4j_UserID.getText().equals(Common.userList.getUser(Common.sessionID).getUserId()) == false)
+					{
 						result = false;
 						reasonInvalid = "private User ID must be [" + Common.userList.getUser(Common.sessionID).getUserId() + "] or blank.";
 					}
@@ -570,13 +623,17 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 			}
 		}
 
-		if (result) {
-			if (checkBox_Private.isSelected()) {
-				if (textField4j_GroupID.getText().equals("") == false) {
+		if (result)
+		{
+			if (checkBox_Private.isSelected())
+			{
+				if (textField4j_GroupID.getText().equals("") == false)
+				{
 					JDBUserGroupMembership ugm = new JDBUserGroupMembership(Common.selectedHostID, Common.sessionID);
 					ugm.setUserId(Common.userList.getUser(Common.sessionID).getUserId());
 					ugm.setGroupId(textField4j_GroupID.getText());
-					if (ugm.isValidUserGroupMembership() == false) {
+					if (ugm.isValidUserGroupMembership() == false)
+					{
 						result = false;
 						reasonInvalid = "user [" + Common.userList.getUser(Common.sessionID).getUserId() + "] must be a member of the specified group [" + textField4j_GroupID.getText() + "]";
 					}
@@ -584,68 +641,80 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 			}
 		}
 
-		if (result) {
-			if (checkBox_Private.isSelected()) {
-				if (textField4j_UserID.getText().equals("") && textField4j_GroupID.getText().equals("")) {
+		if (result)
+		{
+			if (checkBox_Private.isSelected())
+			{
+				if (textField4j_UserID.getText().equals("") && textField4j_GroupID.getText().equals(""))
+				{
 					result = false;
 					reasonInvalid = "private reports require user or group to be defined";
 				}
 			}
 		}
-		
-		if (result) {
-			if (checkBoxDateParameters.isSelected()) {
-				if (textArea_SQL.getText().contains("?")==false){
+
+		if (result)
+		{
+			if (checkBoxDateParameters.isSelected())
+			{
+				if (textArea_SQL.getText().contains("?") == false)
+				{
 					result = false;
 					reasonInvalid = "date params checkbox selected but no placeholders found in SQL";
 				}
 			}
 		}
-		
-		if (result) {
 
-				if (textArea_SQL.getText().contains("?")==true){
-					if (checkBoxDateParameters.isSelected()==false) {
+		if (result)
+		{
+
+			if (textArea_SQL.getText().contains("?") == true)
+			{
+				if (checkBoxDateParameters.isSelected() == false)
+				{
 					result = false;
 					reasonInvalid = "parameter placeholders found in SQL but date params checkbox not checked";
 				}
 			}
 		}
 
-		if (result) {
-			if (comboBox4j_Destination.getSelectedItem().toString().equals("JASPER_REPORTS") | comboBox4j_Destination.getSelectedItem().toString().equals("PDF")) {
-				if (textField4j_ModuleID.getText().equals("")) {
+		if (result)
+		{
+			if (comboBox4j_Destination.getSelectedItem().toString().equals("JASPER_REPORTS") | comboBox4j_Destination.getSelectedItem().toString().equals("PDF"))
+			{
+				if (textField4j_ModuleID.getText().equals(""))
+				{
 					result = false;
 					reasonInvalid = "output is JASPER_REPORTS/PDF but no report module ID specified.";
-				}
-				else
+				} else
 				{
 					mod.setModuleId(textField4j_ModuleID.getText());
 					if (mod.getModuleProperties())
 					{
-						if (mod.getType().equals("REPORT")==false)
+						if (mod.getType().equals("REPORT") == false)
 						{
 							result = false;
-							reasonInvalid = "module id ["+textField4j_ModuleID.getText()+"] is not a report.";
+							reasonInvalid = "module id [" + textField4j_ModuleID.getText() + "] is not a report.";
 						}
-					}
-					else
+					} else
 					{
 						result = false;
-						reasonInvalid = "invalid module id ["+textField4j_ModuleID.getText()+"]";
+						reasonInvalid = "invalid module id [" + textField4j_ModuleID.getText() + "]";
 					}
 				}
 			}
 		}
-		
-		if (result == false) {
+
+		if (result == false)
+		{
 			label4j_statusBar.setText("Invalid Report - [" + reasonInvalid + "]");
 		}
 
 		return result;
 	}
 
-	private void runReport(String id) {
+	private void runReport(String id)
+	{
 		saveReportProperties(id, false);
 		ur.setReportID(id);
 		ur.setDescription(textField4j_Description.getText());
@@ -664,18 +733,29 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		ur.setParamFromDate(JUtility.getTimestampFromDate(domDateFrom.getDate()));
 		ur.setParamToDate(JUtility.getTimestampFromDate(domDateTo.getDate()));
 
-		label4j_statusBar.setText("Please wait....");
-		if (ur.runReport() == false) {
+		if (comboBox4j_Destination.getSelectedItem().toString().equals("SYSTEM") == false)
+		{
+			label4j_statusBar.setText("Please wait....");
+			if (ur.runReport() == false)
+			{
+				JUtility.errorBeep();
+				label4j_statusBar.setText(ur.getErrorMessage());
+				JOptionPane.showMessageDialog(Common.mainForm, ur.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+			} else
+			{
+				label4j_statusBar.setText("Created : " + ur.getExportFilename());
+			}
+		} else
+		{
 			JUtility.errorBeep();
-			label4j_statusBar.setText(ur.getErrorMessage());
-			JOptionPane.showMessageDialog(Common.mainForm, ur.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
-		} else {
-			label4j_statusBar.setText("Created : " + ur.getExportFilename());
+			label4j_statusBar.setText("");
+			JOptionPane.showMessageDialog(Common.mainForm, "SYSTEM reports cannot be run interactively.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 		}
 
 	}
 
-	private void loadReportProperties(String id) {
+	private void loadReportProperties(String id)
+	{
 		ur.getUserReportProperties(id);
 		ur.setReportID(id);
 		textField4j_ReportID.setText(ur.getReportID());
@@ -699,8 +779,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 		textField4j_EmailAddresses.setText(ur.getEmailAddresses());
 	}
 
-	private void saveReportProperties(String id, boolean realSave) {
-		if (isValidReport(id)) {
+	private void saveReportProperties(String id, boolean realSave)
+	{
+		if (isValidReport(id))
+		{
 			ur.setReportID(id);
 			ur.setDescription(textField4j_Description.getText());
 			ur.setSequence(Integer.valueOf(spinner_Sequence.getValue().toString()));
@@ -718,8 +800,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame {
 			ur.setEmailEnabled(chckbxEmailEnabled.isSelected());
 			ur.setEmailPromptEnabled(chckbxEmailPrompt.isSelected());
 			ur.setEmailAddresses(textField4j_EmailAddresses.getText());
-			if (realSave) {
-				if (ur.isValidUserReport(id) == false) {
+			if (realSave)
+			{
+				if (ur.isValidUserReport(id) == false)
+				{
 					ur.create();
 				}
 				ur.update();

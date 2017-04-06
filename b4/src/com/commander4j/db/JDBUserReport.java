@@ -94,9 +94,66 @@ public class JDBUserReport {
 	private Timestamp 	paramDateFrom;
 	private JeMail 	mail;
 	private JDBLanguage 	lang ;
-	
+	private String systemResultData = ""; 
 	private Timestamp paramDateTo;
+	private LinkedList<JUserReportParameter> systemParams = new LinkedList<JUserReportParameter>();
+	
+	public String getResultData()
+	{
+		return JUtility.replaceNullStringwithBlank(systemResultData);
+	}
+	
+	private void setResultData(String data)
+	{
+		systemResultData = JUtility.replaceNullStringwithBlank(data);
+	}
+	
+	public void setSYSTEMparameters(LinkedList<JUserReportParameter> params)
+	{
+		systemParams = params;
+	}
+	
+	private boolean generateSYSTEM(ResultSet temp)
+	{
+		boolean result = true;
 
+		try
+		{			
+			if (temp.next())
+			{
+				ResultSetMetaData rsmd = temp.getMetaData();
+				int colcount = rsmd.getColumnCount();
+				boolean dataColumnFound = false;
+				for (int x=0;x<colcount;x++)
+				{
+					if (rsmd.getColumnName(x).toLowerCase().equals("data"))
+					{
+						dataColumnFound=true;
+					}
+				}
+				if (dataColumnFound)
+				{
+					setResultData(temp.getString("data"));
+					result = true;
+				}
+				else
+				{
+					setErrorMessage("No field called 'data' returned by query.");
+				}
+
+			} else
+			{
+				setErrorMessage("No record returned by query.");
+			}
+
+		} catch (Exception e)
+		{
+			result = false;
+			setErrorMessage(e.getMessage());
+		}
+		return result;
+	}
+	
 	public static Icon getUserReportIcon(String enabled, String destination)
 	{
 
@@ -131,6 +188,10 @@ public class JDBUserReport {
 				{
 					icon = Common.imageIconloader.getImageIcon(Common.image_csv);
 				}
+				if (destination.equals("SYSTEM"))
+				{
+					icon = Common.imageIconloader.getImageIcon(Common.image_execute);
+				}				
 			}
 		} catch (Exception e)
 		{
@@ -860,6 +921,27 @@ public class JDBUserReport {
 				prepStatement.setTimestamp(2, getParamToDate());
 			}
 
+			if (getDestination().equals("SYSTEM"))
+			{
+				for (int x=0;x<systemParams.size();x++)
+				{
+					String type = systemParams.get(x).parameterType;
+					
+					if (type.toLowerCase().equals("string"))
+					{
+						prepStatement.setString(systemParams.get(x).parameterPosition,(String) systemParams.get(x).parameterValue);
+					}
+					if (type.toLowerCase().equals("integer"))
+					{
+						prepStatement.setInt(systemParams.get(x).parameterPosition,(Integer) systemParams.get(x).parameterValue);
+					}
+					if (type.toLowerCase().equals("timestamp"))
+					{
+						prepStatement.setTimestamp(systemParams.get(x).parameterPosition,(Timestamp) systemParams.get(x).parameterValue);
+					}
+				}
+			}
+			
 			ResultSet tempResult = prepStatement.executeQuery();
 
 			boolean dataReturned = true;
@@ -891,6 +973,11 @@ public class JDBUserReport {
 				if (getDestination().equals("CSV"))
 				{
 					generateCSV(tempResult);
+				}
+				
+				if (getDestination().equals("SYSTEM"))
+				{
+					generateSYSTEM(tempResult);
 				}
 
 				if (isPreviewRequired())

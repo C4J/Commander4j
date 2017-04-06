@@ -376,6 +376,9 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 				{
 					JDBUserReport reportid = (JDBUserReport) ((JDBListData) jListUserReports.getSelectedValue()).getObject();
 					reportid.getUserReportProperties();
+					
+					if (reportid.getDestination().equals("SYSTEM")==false)
+					{
 					if (reportid.isParamDateRequired())
 					{
 						reportid.setParamFromDate(JUtility.getTimestampFromDate(domDateFrom.getDate()));
@@ -390,6 +393,14 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 					} else
 					{
 						label4j_statusBar.setText("Created : " + reportid.getExportFilename());
+					}
+					}
+					else
+					{
+						JUtility.errorBeep();
+						label4j_statusBar.setText("");
+						JOptionPane.showMessageDialog(Common.mainForm, "SYSTEM reports cannot be run interactively.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+
 					}
 				}
 			}
