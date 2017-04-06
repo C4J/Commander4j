@@ -446,7 +446,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				Long sampleID = sample.generateSampleID();
 				String activityID = ((JDBQMActivity) listActivities.getSelectedValue()).getActivityID();
 				Timestamp ts = JUtility.getTimestampFromDate(sampleDateTime.getDate());
-				sample.create(sampleID, po.getInspectionID(), activityID, po.getProcessOrder(), po.getMaterial(), textFieldUserData1.getText(), textFieldUserData2.getText(), ts);
+				sample.create(sampleID, po.getInspectionID(), activityID, po.getProcessOrder(), po.getMaterial(), textFieldUserData1.getText(), textFieldUserData2.getText(), textFieldUserData3.getText(), textFieldUserData4.getText(),ts);
 				String pq = comboBoxPrintQueue.getSelectedItem().toString();
 				buildSQL1Record(sampleID);
 				String dpi = getDefaultDPI();

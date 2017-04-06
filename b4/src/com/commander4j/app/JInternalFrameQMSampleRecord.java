@@ -90,6 +90,8 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 	private JTextField4j jTextFieldProcessOrderDescription;
 	private JLabel4j_std lblUserData1;
 	private JTextField4j jTextFieldUserData2;
+	private JTextField4j jTextFieldUserData3;
+	private JTextField4j jTextFieldUserData4;
 	private JTextField4j jTextFieldProcessOrder;
 	private JLabel4j_std lblProcessOrder;
 	private JLabel4j_std lblActivityID;
@@ -143,7 +145,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 			{
 				jTextFieldSampleID.requestFocus();
 				jTextFieldSampleID.setCaretPosition(jTextFieldSampleID.getText().length());
-
+				
 			}
 		});
 
@@ -157,6 +159,8 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 			sample.setSampleDate(JUtility.getTimestampFromDate(sampleDate.getDate()));
 			sample.setUserData1(jTextFieldUserData1.getText());
 			sample.setUserData2(jTextFieldUserData2.getText());
+			sample.setUserData3(jTextFieldUserData3.getText());
+			sample.setUserData4(jTextFieldUserData4.getText());
 			sample.update();
 		}
 	}
@@ -205,7 +209,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(471, 531));
-			this.setBounds(0, 0, 540, 446);
+			this.setBounds(0, 0, 540, 497);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -235,7 +239,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jButtonSave.setEnabled(true);
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
-					jButtonSave.setBounds(111, 333, 100, 32);
+					jButtonSave.setBounds(109, 399, 100, 32);
 					jButtonSave.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -250,7 +254,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setBounds(315, 333, 100, 32);
+					jButtonCancel.setBounds(315, 399, 100, 32);
 					jButtonCancel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -270,7 +274,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				{
 					lblUserData2 = new JLabel4j_std();
 					jDesktopPane1.add(lblUserData2);
-					lblUserData2.setBounds(7, 250, 133, 21);
+					lblUserData2.setBounds(7, 246, 133, 21);
 					lblUserData2.setHorizontalAlignment(SwingConstants.TRAILING);
 					lblUserData2.setText(lang.get("lbl_User_Data2"));
 				}
@@ -280,7 +284,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lblMaterial);
 					lblMaterial.setText(lang.get("lbl_Material"));
 					lblMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMaterial.setBounds(7, 118, 133, 21);
+					lblMaterial.setBounds(7, 116, 133, 21);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
@@ -293,7 +297,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lblActivityID);
 					lblActivityID.setText(lang.get("lbl_Activity_ID"));
 					lblActivityID.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblActivityID.setBounds(7, 196, 133, 21);
+					lblActivityID.setBounds(7, 194, 133, 21);
 				}
 				{
 					jTextFieldActivityID = new JTextField4j(JDBQMActivity.field_activity_id);
@@ -307,7 +311,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lblProcessOrder);
 					lblProcessOrder.setText(lang.get("lbl_Process_Order"));
 					lblProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblProcessOrder.setBounds(7, 66, 133, 21);
+					lblProcessOrder.setBounds(7, 64, 133, 21);
 				}
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
@@ -327,7 +331,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lblUserData1);
 					lblUserData1.setText(lang.get("lbl_User_Data1"));
 					lblUserData1.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblUserData1.setBounds(7, 224, 133, 21);
+					lblUserData1.setBounds(7, 220, 133, 21);
 				}
 
 				{
@@ -341,14 +345,14 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jDesktopPane1.add(lblProcessOrderDescription);
 					lblProcessOrderDescription.setText(lang.get("lbl_Description"));
 					lblProcessOrderDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblProcessOrderDescription.setBounds(7, 92, 133, 21);
+					lblProcessOrderDescription.setBounds(7, 90, 133, 21);
 				}
 				{
 					lblMaterialDescription = new JLabel4j_std();
 					jDesktopPane1.add(lblMaterialDescription);
 					lblMaterialDescription.setText(lang.get("lbl_Description"));
 					lblMaterialDescription.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMaterialDescription.setBounds(7, 144, 133, 21);
+					lblMaterialDescription.setBounds(7, 142, 133, 21);
 				}
 				{
 					jTextFieldMaterialDescription = new JTextField4j(JDBMaterial.field_description);
@@ -362,7 +366,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jStatusText);
 					jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-					jStatusText.setBounds(0, 373, 510, 21);
+					jStatusText.setBounds(0, 440, 530, 21);
 				}
 
 				{
@@ -376,7 +380,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					lblInspectionID = new JLabel4j_std();
 					lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
 					lblInspectionID.setText(lang.get("lbl_Location_ID"));
-					lblInspectionID.setBounds(7, 170, 133, 21);
+					lblInspectionID.setBounds(7, 168, 133, 21);
 					jDesktopPane1.add(lblInspectionID);
 				}
 
@@ -419,23 +423,16 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					});
 					btnPrint.setMnemonic('0');
 					btnPrint.setEnabled(true);
-					btnPrint.setBounds(212, 333, 100, 32);
+					btnPrint.setBounds(212, 399, 100, 32);
 					jDesktopPane1.add(btnPrint);
 				}
 
-				comboBoxPrintQueue.setBounds(145, 272, 365, 25);
+				comboBoxPrintQueue.setBounds(147, 328, 365, 25);
 				jDesktopPane1.add(comboBoxPrintQueue);
 
 				{
-					JLabel4j_std lblNewLabel_5 = new JLabel4j_std(lang.get("lbl_Number_Of_Labels"));
-					lblNewLabel_5.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblNewLabel_5.setBounds(6, 442, 138, 16);
-					jDesktopPane1.add(lblNewLabel_5);
-				}
-
-				{
 					spinnerCopies = new JSpinner();
-					spinnerCopies.setBounds(149, 300, 37, 28);
+					spinnerCopies.setBounds(149, 359, 37, 28);
 					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(spinnerCopies);
 					ne.getTextField().setFont(Common.font_std);
 					spinnerCopies.setEditor(ne);
@@ -444,13 +441,37 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 
 				JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Print_Queue"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(0, 278, 138, 16);
+				label4j_std.setBounds(0, 333, 138, 16);
 				jDesktopPane1.add(label4j_std);
 
 				JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_Number_Of_Labels"));
 				label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std_1.setBounds(0, 305, 138, 16);
+				label4j_std_1.setBounds(0, 364, 138, 16);
 				jDesktopPane1.add(label4j_std_1);
+				
+				JLabel4j_std lblUserData3 = new JLabel4j_std();
+				lblUserData3.setText(lang.get("lbl_User_Data3"));
+				lblUserData3.setHorizontalAlignment(SwingConstants.TRAILING);
+				lblUserData3.setBounds(7, 274, 133, 21);
+				jDesktopPane1.add(lblUserData3);
+				
+				jTextFieldUserData3 = new JTextField4j(20);
+				jTextFieldUserData3.setText("");
+				jTextFieldUserData3.setFocusCycleRoot(true);
+				jTextFieldUserData3.setBounds(147, 274, 119, 21);
+				jDesktopPane1.add(jTextFieldUserData3);
+				
+				JLabel4j_std lblUserData4 = new JLabel4j_std();
+				lblUserData4.setText(lang.get("lbl_User_Data4"));
+				lblUserData4.setHorizontalAlignment(SwingConstants.TRAILING);
+				lblUserData4.setBounds(7, 300, 133, 21);
+				jDesktopPane1.add(lblUserData4);
+				
+				jTextFieldUserData4 = new JTextField4j(20);
+				jTextFieldUserData4.setText("");
+				jTextFieldUserData4.setFocusCycleRoot(true);
+				jTextFieldUserData4.setBounds(147, 300, 119, 21);
+				jDesktopPane1.add(jTextFieldUserData4);
 
 				populatePrinterList(JPrint.getDefaultPrinterQueueName());
 				String numberOfLabels = ctrl.getKeyValueWithDefault("QM SAMPLE LABELS", "4", "Number of Labels per Sample");
@@ -500,9 +521,12 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				jTextFieldActivityID.setText(sample.getActivityID());
 				jTextFieldInspectionID.setText(sample.getInspectionID());
 
-				jTextFieldUserData2.setText(sample.getUserData2());
 				jTextFieldUserData1.setText(sample.getUserData1());
+				jTextFieldUserData2.setText(sample.getUserData2());
 
+				jTextFieldUserData3.setText(sample.getUserData3());
+				jTextFieldUserData4.setText(sample.getUserData4());
+				
 				processOrder.getProcessOrderProperties(sample.getProcessOrder());
 				jTextFieldProcessOrderDescription.setText(processOrder.getDescription());
 

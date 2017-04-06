@@ -1145,7 +1145,7 @@
 		</statement>
 		<statement>
 			<id>JDBQMSample.create</id>
-			<text>insert into {schema}app_qm_sample (sample_id,inspection_id,activity_id,process_order,material,sample_date,user_id) values (?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_SAMPLE (sample_id,inspection_id,activity_id,process_order,material,sample_date,user_id,user_data_1,user_data_2,user_data_3,user_data_4) values (?,?,?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMSample.delete</id>
@@ -1161,7 +1161,7 @@
 		</statement>
 		<statement>
 			<id>JDBQMSample.update</id>
-			<text>update {schema}app_qm_sample set inspection_id=?,activity_id=?,process_order=?,material=?,sample_date=?,user_id=?,user_data_1=?,user_data_2=? where sample_id = ?</text>
+			<text>update {schema}APP_QM_SAMPLE set inspection_id=?,activity_id=?,process_order=?,material=?,sample_date=?,user_id=?,user_data_1=?,user_data_2=?,user_data_3=?,user_data_4=? where sample_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMSample.selectWithLimit</id>

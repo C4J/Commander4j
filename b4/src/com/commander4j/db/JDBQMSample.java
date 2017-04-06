@@ -62,6 +62,8 @@ public class JDBQMSample
 	private String dbErrorMessage;
 	private String dbUserData1;
 	private String dbUserData2;
+	private String dbUserData3;
+	private String dbUserData4;
 	private String dbActivityID;
 	public static int field_data_1 = 20;
 	public static int field_data_2 = 20;
@@ -108,7 +110,7 @@ public class JDBQMSample
 		setSessionID(session);
 	}
 
-	public JDBQMSample(String host, String session, Long sampleid, String inspectionid, String activityid, String processorder, String material, String userid, Timestamp sampledate, String userData1, String userData2)
+	public JDBQMSample(String host, String session, Long sampleid, String inspectionid, String activityid, String processorder, String material, String userid, Timestamp sampledate, String userData1, String userData2, String userData3, String userData4)
 	{
 		setHostID(host);
 		setSessionID(session);
@@ -121,6 +123,8 @@ public class JDBQMSample
 		setSampleDate(sampledate);
 		setUserData1(userData1);
 		setUserData2(userData2);
+		setUserData3(userData3);
+		setUserData4(userData4);		
 	}
 
 	public void clear()
@@ -133,6 +137,8 @@ public class JDBQMSample
 		setInspectionID("");
 		setUserData1("");
 		setUserData2("");
+		setUserData3("");
+		setUserData4("");
 	}
 
 	public ResultSet getQMSampleDataResultSet(String inspectionid, String activityid)
@@ -158,7 +164,7 @@ public class JDBQMSample
 		return rs;
 	}
 
-	public boolean create(Long sampleid, String inspectionid, String activityid, String processOrder, String material, String userdata1, String userdata2, Timestamp sampleTime)
+	public boolean create(Long sampleid, String inspectionid, String activityid, String processOrder, String material, String userdata1, String userdata2, String userdata3, String userdata4, Timestamp sampleTime)
 	{
 		boolean result = false;
 		setErrorMessage("");
@@ -172,6 +178,8 @@ public class JDBQMSample
 			setMaterial(material);
 			setUserData1(userdata1);
 			setUserData2(userdata2);
+			setUserData3(userdata3);
+			setUserData4(userdata4);
 			setSampleDate(sampleTime);
 
 			if (isValidSample() == false)
@@ -187,6 +195,8 @@ public class JDBQMSample
 				stmtupdate.setString(7, Common.userList.getUser(getSessionID()).getUserId());
 				stmtupdate.setString(8, getUserData1());
 				stmtupdate.setString(9, getUserData2());
+				stmtupdate.setString(10, getUserData3());
+				stmtupdate.setString(11, getUserData4());				
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -266,6 +276,8 @@ public class JDBQMSample
 				setUserID(rs.getString("user_id"));
 				setUserData1(rs.getString("user_data_1"));
 				setUserData2(rs.getString("user_data_2"));
+				setUserData3(rs.getString("user_data_3"));
+				setUserData4(rs.getString("user_data_4"));
 				result = true;
 				rs.close();
 				stmt.close();
@@ -310,6 +322,8 @@ public class JDBQMSample
 				mt.setSampleDate(rs.getTimestamp("sample_date"));
 				mt.setUserData1(rs.getString("user_data_1"));
 				mt.setUserData2(rs.getString("user_data_2"));
+				mt.setUserData3(rs.getString("user_data_3"));
+				mt.setUserData4(rs.getString("user_data_4"));
 				typeList.add(mt);
 			}
 			rs.close();
@@ -375,6 +389,22 @@ public class JDBQMSample
 		String result = "";
 		if (dbUserData2 != null)
 			result = dbUserData2;
+		return result;
+	}
+	
+	public String getUserData3()
+	{
+		String result = "";
+		if (dbUserData3 != null)
+			result = dbUserData3;
+		return result;
+	}
+	
+	public String getUserData4()
+	{
+		String result = "";
+		if (dbUserData4 != null)
+			result = dbUserData4;
 		return result;
 	}
 
@@ -488,6 +518,16 @@ public class JDBQMSample
 		dbUserData2 = ud2;
 	}
 
+	public void setUserData3(String ud3)
+	{
+		dbUserData3 = ud3;
+	}
+
+	public void setUserData4(String ud4)
+	{
+		dbUserData4 = ud4;
+	}
+	
 	public void setActivityID(String actid)
 	{
 		dbActivityID = actid;
@@ -536,7 +576,9 @@ public class JDBQMSample
 				stmtupdate.setString(6, Common.userList.getUser(getSessionID()).getUserId());
 				stmtupdate.setString(7, getUserData1());
 				stmtupdate.setString(8, getUserData2());
-				stmtupdate.setLong(9, getSampleID());
+				stmtupdate.setString(9, getUserData3());
+				stmtupdate.setString(10, getUserData4());
+				stmtupdate.setLong(11, getSampleID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
