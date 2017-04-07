@@ -62,7 +62,7 @@ public class JDBQueryTableModel extends AbstractTableModel
 		return ((Object[]) cache.elementAt(row))[col];
 	}
 
-	public void setQuery(ResultSet rs)
+	public void setQuery(ResultSet rs,String[] colNames)
 	{
 		cache = new Vector<Object[]>();
 		try
@@ -73,9 +73,18 @@ public class JDBQueryTableModel extends AbstractTableModel
 			headers = new String[colCount];
 			for (int h = 1; h <= colCount; h++)
 			{
-				headers[h - 1] = meta.getColumnName(h);
-			}
+				if ((h-1)>=colNames.length)
+				{
+					headers[h - 1] = meta.getColumnName(h);
 
+				}
+				else
+				{
+					headers[h - 1] = colNames[h-1];			
+				}
+			}
+			//headers = colNames;
+			
 			while (rs.next())
 			{
 				Object[] record = new Object[colCount];

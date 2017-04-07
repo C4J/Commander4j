@@ -123,22 +123,22 @@ public class JDBQMResultTable extends JTable
 		{
 			if (tableMode.equals("index"))
 			{
-				setColumnWidth(0, 80);
-				setColumnWidth(1, 130);
-				setColumnWidth(2, 80);
-				setColumnWidth(3, 80);
+				setColumnWidth(0, 70);
+				setColumnWidth(1, 125);
+				setColumnWidth(2, 85);
+				setColumnWidth(3, 85);
 			} else
 			{
 				if (tableMode.equals("result"))
 				{
-					setColumnWidth(0, 80);
-					setColumnWidth(1, 130);
-					setColumnWidth(2, 90);
-					setColumnWidth(3, 60);
-					setColumnWidth(4, 70);
-					setColumnWidth(5, 90);
-					setColumnWidth(6, 80);
-					setColumnWidth(7, 80);
+					setColumnWidth(0, 70);
+					setColumnWidth(1, 125);
+					setColumnWidth(2, 70);
+					setColumnWidth(3, 80);
+					setColumnWidth(4, 85);
+					setColumnWidth(5, 85);
+					setColumnWidth(6, 85);
+					setColumnWidth(7, 85);
 				}
 			}
 		}
