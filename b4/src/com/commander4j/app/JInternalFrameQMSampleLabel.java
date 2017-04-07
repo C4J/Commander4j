@@ -216,7 +216,52 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				userReport.setSYSTEMparameters(paramList);
 				if (userReport.runReport())
 				{
+					textFieldUserData1.setText(userReport.getSystemResultData());
+				}
+			}
+			
+			if (userReport.getUserReportProperties("USER_DATA_2"))
+			{
+				JUserReportParameter param1 = new JUserReportParameter();
+				param1.parameterPosition=1;
+				param1.parameterType="String";
+				param1.parameterStringValue=po.getProcessOrder();
+				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
+				paramList.add(param1);
+				userReport.setSYSTEMparameters(paramList);
+				if (userReport.runReport())
+				{
+					textFieldUserData2.setText(userReport.getSystemResultData());
+				}
+			}
+			
+			if (userReport.getUserReportProperties("USER_DATA_3"))
+			{
+				JUserReportParameter param1 = new JUserReportParameter();
+				param1.parameterPosition=1;
+				param1.parameterType="String";
+				param1.parameterStringValue=po.getProcessOrder();
+				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
+				paramList.add(param1);
+				userReport.setSYSTEMparameters(paramList);
+				if (userReport.runReport())
+				{
 					textFieldUserData3.setText(userReport.getSystemResultData());
+				}
+			}
+			
+			if (userReport.getUserReportProperties("USER_DATA_4"))
+			{
+				JUserReportParameter param1 = new JUserReportParameter();
+				param1.parameterPosition=1;
+				param1.parameterType="String";
+				param1.parameterStringValue=po.getProcessOrder();
+				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
+				paramList.add(param1);
+				userReport.setSYSTEMparameters(paramList);
+				if (userReport.runReport())
+				{
+					textFieldUserData4.setText(userReport.getSystemResultData());
 				}
 			}
 			
