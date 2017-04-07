@@ -479,6 +479,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 		JExcel export = new JExcel();
 		buildSQL();
 		export.saveAs("language.xls", language.getLanguageDataResultSet(listStatement), Common.mainForm);
+		populateList();
 	}
 
 	private void addrecord() {

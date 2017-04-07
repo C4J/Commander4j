@@ -195,6 +195,7 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 		JDBCustomer customer = new JDBCustomer(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		export.saveAs("customers.xls", customer.getCustomerDataResultSet(), Common.mainForm);
+		populateList("");
 	}
 
 	public JInternalFrameCustomerAdmin()

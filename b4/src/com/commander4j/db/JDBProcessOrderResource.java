@@ -76,6 +76,23 @@ public class JDBProcessOrderResource
 		setDescription("");
 		setEnabled(false);
 	}
+	
+	
+	public ResultSet getProcessOrderResourceResultSet(PreparedStatement criteria)
+	{
+		ResultSet rs;
+
+		try
+		{
+			rs = criteria.executeQuery();
+		} catch (Exception e)
+		{
+			rs = null;
+			setErrorMessage(e.getMessage());
+		}
+
+		return rs;
+	}
 
 	public String getBatchSuffixForResource(String res)
 	{

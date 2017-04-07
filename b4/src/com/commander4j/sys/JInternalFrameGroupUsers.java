@@ -168,6 +168,7 @@ public class JInternalFrameGroupUsers extends javax.swing.JInternalFrame
 		JDBUserGroupMembership userGroupMembership = new JDBUserGroupMembership(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		export.saveAs("Users_of_Group_"+getGroupID()+".xls", userGroupMembership.getUserGroupMembershipDataResultSet(getGroupID()), Common.mainForm);
+		populateList("");
 	}
 
 	private void initGUI() {

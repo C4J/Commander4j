@@ -217,6 +217,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 		export.setExcelRowLimit(jCheckBoxLimit, jSpinnerLimit);
 		buildSQL();
 		export.saveAs("audit_activity.xls", auditData.getAuditDataResultSet(listStatement), Common.mainForm);
+		populateList();
 	}
 
 	private void print() {

@@ -269,6 +269,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		buildSQL();
 		export.saveAs("journeys.xls", jref.getJourneyRefDataResultSet(listStatement), Common.mainForm);
+		populateList();
 	}
 
 	private void addRecord()

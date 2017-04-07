@@ -450,7 +450,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 					rs = null;
 
 				}
-
+				populateTable();
 			}
 		});
 		btnExcel.setIcon(Common.icon_XLS);

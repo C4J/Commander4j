@@ -1264,6 +1264,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		PreparedStatement temp = buildSQLr();
 		export.saveAs("mhn_list.xls", mhn.getMHNDataResultSet(temp), Common.mainForm);
+		populateList();
 	}
 
 	/**

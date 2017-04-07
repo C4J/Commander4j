@@ -195,6 +195,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		buildSQL();
 		export.saveAs("interface.xls", interfaceConfig.getInterfaceDataResultSet(listStatement), Common.mainForm);
+		populateList();
 	}
 
 	private void addRecord()

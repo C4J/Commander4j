@@ -276,6 +276,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 		JDBUser user = new JDBUser(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		export.saveAs("users.xls", user.getUserDataResultSet(), Common.mainForm);
+		populateList("");
 	}
 
 	private void initGUI()

@@ -355,6 +355,7 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 		{
 			e.printStackTrace();
 		}
+		populateList("", "");
 	}
 
 	/**

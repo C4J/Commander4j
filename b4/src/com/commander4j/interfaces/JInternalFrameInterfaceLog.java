@@ -454,6 +454,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 
 		}
 		export.saveAs("interface_log.xls", rs, Common.mainForm);
+		populateList();
 	}
 
 	private void buildSQL() {

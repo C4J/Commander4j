@@ -106,6 +106,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 					JExcel export = new JExcel();
 					buildSQL();
 					export.saveAs("control.xls", control.getControlDataResultSet(listStatement), Common.mainForm);
+					populateList("");
 				}
 			});
 			jButtonExcel.setText(lang.get("btn_Excel"));

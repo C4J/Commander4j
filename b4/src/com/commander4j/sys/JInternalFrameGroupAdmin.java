@@ -226,6 +226,7 @@ public class JInternalFrameGroupAdmin extends javax.swing.JInternalFrame
 
 		JExcel export = new JExcel();
 		export.saveAs("groups.xls", rs, Common.mainForm);
+		populateList("");
 	}
 	
 	private void initGUI() {

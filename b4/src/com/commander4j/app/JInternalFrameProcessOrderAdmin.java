@@ -251,6 +251,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		export.setExcelRowLimit(jCheckBoxLimit, jSpinnerLimit);
 		buildSQL();
 		export.saveAs("process_orders.xls", processOrder.getProcessOrderDataResultSet(listStatement), Common.mainForm);
+		populateList();
 	}
 
 	private void delete()

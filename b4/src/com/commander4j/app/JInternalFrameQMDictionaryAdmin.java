@@ -348,7 +348,8 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
-		}		
+		}	
+		populateList("","");
 	}
 	
 	/**

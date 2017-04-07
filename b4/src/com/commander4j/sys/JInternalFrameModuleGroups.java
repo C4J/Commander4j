@@ -166,6 +166,7 @@ public class JInternalFrameModuleGroups extends javax.swing.JInternalFrame
 		JDBModule moduleMembership = new JDBModule(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		export.saveAs("Groups_Using_Module_"+getModuleID()+".xls", moduleMembership.getGroupsAssignedDataResultSet(getModuleID()), Common.mainForm);
+		populateList("");
 	}
 
 	private void initGUI() {

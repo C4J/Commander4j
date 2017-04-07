@@ -983,6 +983,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		PreparedStatement temp = buildSQLr();
 		export.saveAs("locations.xls", location.getLocationDataResultSet(temp), Common.mainForm);
+		populateList();
 	}
 
 	/**

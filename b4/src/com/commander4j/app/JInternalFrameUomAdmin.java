@@ -184,6 +184,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 		JDBUom uom = new JDBUom(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		export.saveAs("uoms.xls", uom.getUomDataResultSet(), Common.mainForm);
+		populateList("");
 	}
 
 	public JInternalFrameUomAdmin()

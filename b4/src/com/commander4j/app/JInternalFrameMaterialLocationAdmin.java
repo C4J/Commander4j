@@ -204,6 +204,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		buildSQL();
 		export.saveAs("material_location.xls", materialLocation.getMaterialLocationDataResultSet(listStatement), Common.mainForm);
+		populateList();
 	}
 
 	private void addRecord()

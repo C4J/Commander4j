@@ -204,6 +204,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		export.setExcelRowLimit(jCheckBoxLimit, jSpinnerLimit);
 		buildSQL();
 		export.saveAs("pallet_history.xls", palletHistory.getPalletHistoryDataResultSet(listStatement), Common.mainForm);
+		populateList();
 	}
 
 	private void filterBy(String fieldname) {

@@ -77,6 +77,7 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
+import javax.swing.JSpinner;
 
 /**
  * The JInternalFrameMaterialBatchAdmin allows the user to view/edit the table
@@ -132,6 +133,8 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 	private JCalendarButton calendarButtonexpiryFrom;
 	private JCalendarButton calendarButtonexpiryTo;
 	private PreparedStatement listStatement;
+	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
+	private JSpinner jSpinnerLimit = new JSpinner();
 
 	public JInternalFrameMaterialBatchAdmin()
 	{
@@ -151,6 +154,8 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_BATCH"));
+		
+
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -245,6 +250,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		buildSQL();
 		export.saveAs("material_batch.xls", materialBatch.getMaterialBatchDataResultSet(listStatement), Common.mainForm);
+		populateList();
 	}
 
 	private void addRecord()
@@ -338,7 +344,8 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 		}
 
 		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
-		query.applyRestriction(false, "none", 0);
+		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
+
 		query.bindParams();
 		listStatement = query.getPreparedStatement();
 	}
@@ -366,7 +373,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 
 		jScrollPane1.repaint();
 
-		JUtility.setResultRecordCountColour(jStatusText, false, 0, materialBatchTable.getRowCount());
+		JUtility.setResultRecordCountColour(jStatusText, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), materialBatchTable.getRowCount());
 	}
 
 	private void editRecord()
@@ -386,7 +393,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(497, 522));
-			this.setBounds(0, 0, 448, 632);
+			this.setBounds(0, 0, 459, 645);
 			setVisible(true);
 			this.setClosable(true);
 			this.setTitle("Material Batches");
@@ -400,7 +407,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 210, 425, 349);
+					jScrollPane1.setBounds(0, 242, 425, 347);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][]
 						{
@@ -626,7 +633,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
-					jButtonSearch.setBounds(293, 10, 126, 32);
+					jButtonSearch.setBounds(307, 10, 126, 32);
 					jButtonSearch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -641,7 +648,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
-					jButtonEdit.setBounds(293, 68, 126, 32);
+					jButtonEdit.setBounds(307, 68, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener()
 					{
@@ -656,14 +663,14 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(293, 126, 126, 32);
+					jButtonHelp.setBounds(307, 126, 126, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(293, 155, 126, 32);
+					jButtonClose.setBounds(307, 155, 126, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -677,32 +684,32 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Material"));
-					jLabel1.setBounds(0, 11, 91, 21);
+					jLabel1.setBounds(0, 14, 124, 21);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(99, 11, 148, 21);
+					jTextFieldMaterial.setBounds(135, 10, 126, 25);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Material_Batch"));
-					jLabel3.setBounds(0, 44, 91, 21);
+					jLabel3.setBounds(0, 47, 124, 21);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
 					jDesktopPane1.add(jTextFieldBatch);
-					jTextFieldBatch.setBounds(99, 44, 148, 21);
+					jTextFieldBatch.setBounds(135, 43, 126, 25);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(0, 178, 91, 21);
+					jLabel10.setBounds(0, 209, 84, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
@@ -710,26 +717,26 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(99, 176, 141, 23);
+					jComboBoxSortBy.setBounds(90, 207, 118, 23);
 				}
 				{
 					jLabel5 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel5);
 					jLabel5.setText(lang.get("lbl_Material_Batch_Status"));
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5.setBounds(0, 79, 91, 21);
+					jLabel5.setBounds(0, 78, 124, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(Common.batchStatusIncBlank);
 					jComboBoxStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxStatus);
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
-					jComboBoxStatus.setBounds(99, 77, 141, 23);
+					jComboBoxStatus.setBounds(133, 76, 148, 23);
 				}
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(246, 178, 21, 21);
+					jToggleButtonSequence.setBounds(208, 207, 21, 23);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -753,7 +760,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 							}
 						}
 					});
-					jButtonLookupMaterial.setBounds(246, 11, 21, 21);
+					jButtonLookupMaterial.setBounds(260, 10, 21, 25);
 					jDesktopPane1.add(jButtonLookupMaterial);
 				}
 
@@ -772,18 +779,18 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 
 						}
 					});
-					jButtonLookupBatch.setBounds(246, 44, 21, 21);
+					jButtonLookupBatch.setBounds(260, 43, 21, 25);
 					jDesktopPane1.add(jButtonLookupBatch);
 				}
 
 				{
-					expiryFrom.setBounds(120, 110, 125, 25);
+					expiryFrom.setBounds(146, 111, 125, 25);
 					expiryFrom.setEnabled(false);
 					jDesktopPane1.add(expiryFrom);
 				}
 
 				{
-					expiryTo.setBounds(120, 143, 125, 25);
+					expiryTo.setBounds(146, 148, 125, 25);
 					expiryTo.setEnabled(false);
 					jDesktopPane1.add(expiryTo);
 				}
@@ -792,7 +799,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jLabel5_1 = new JLabel4j_std();
 					jLabel5_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel5_1.setText(lang.get("lbl_Material_Batch_Expiry_From"));
-					jLabel5_1.setBounds(0, 110, 91, 21);
+					jLabel5_1.setBounds(0, 111, 124, 25);
 					jDesktopPane1.add(jLabel5_1);
 				}
 
@@ -800,7 +807,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jLabel5_2 = new JLabel4j_std();
 					jLabel5_2.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel5_2.setText(lang.get("lbl_Material_Batch_Expiry_To"));
-					jLabel5_2.setBounds(0, 147, 91, 21);
+					jLabel5_2.setBounds(0, 148, 124, 25);
 					jDesktopPane1.add(jLabel5_2);
 				}
 
@@ -822,7 +829,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 						}
 					});
 					jCheckBoxFrom.setBackground(new Color(255, 255, 255));
-					jCheckBoxFrom.setBounds(99, 110, 21, 21);
+					jCheckBoxFrom.setBounds(125, 111, 21, 25);
 					jDesktopPane1.add(jCheckBoxFrom);
 				}
 
@@ -844,7 +851,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 						}
 					});
 					jCheckBoxTo.setBackground(new Color(255, 255, 255));
-					jCheckBoxTo.setBounds(99, 143, 21, 21);
+					jCheckBoxTo.setBounds(125, 148, 21, 25);
 					jDesktopPane1.add(jCheckBoxTo);
 				}
 
@@ -860,7 +867,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					});
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(293, 39, 126, 32);
+					jButtonAdd.setBounds(307, 39, 126, 32);
 					jDesktopPane1.add(jButtonAdd);
 				}
 
@@ -868,7 +875,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 559, 425, 21);
+					jStatusText.setBounds(0, 592, 438, 21);
 					jDesktopPane1.add(jStatusText);
 				}
 
@@ -884,22 +891,40 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(293, 97, 126, 32);
+					jButtonExcel.setBounds(307, 97, 126, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
 
 				{
 					calendarButtonexpiryFrom = new JCalendarButton(expiryFrom);
 					calendarButtonexpiryFrom.setEnabled(false);
-					calendarButtonexpiryFrom.setBounds(248, 110, 21, 21);
+					calendarButtonexpiryFrom.setBounds(274, 111, 21, 21);
 					jDesktopPane1.add(calendarButtonexpiryFrom);
 				}
 				{
 					calendarButtonexpiryTo = new JCalendarButton(expiryTo);
 					calendarButtonexpiryTo.setEnabled(false);
-					calendarButtonexpiryTo.setBounds(248, 145, 21, 21);
+					calendarButtonexpiryTo.setBounds(274, 150, 21, 21);
 					jDesktopPane1.add(calendarButtonexpiryTo);
 				}
+				
+				JLabel4j_std label4j_std = new JLabel4j_std();
+				label4j_std.setText(lang.get("lbl_Limit"));
+				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j_std.setBounds(230, 209, 84, 21);
+				jDesktopPane1.add(label4j_std);
+				
+				jCheckBoxLimit = new JCheckBox4j();
+				jCheckBoxLimit.setSelected(true);
+				jCheckBoxLimit.setBackground(Color.WHITE);
+				jCheckBoxLimit.setBounds(318, 209, 21, 21);
+				jDesktopPane1.add(jCheckBoxLimit);
+				
+				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
+				jSpinnerLimit.setEditor(ne);
+				jSpinnerLimit.setBounds(347, 209, 68, 21);
+				jSpinnerLimit.setValue(1000);
+				jDesktopPane1.add(jSpinnerLimit);
 			}
 		} catch (Exception e)
 		{

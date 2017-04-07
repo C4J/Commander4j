@@ -276,6 +276,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 		JExcel export = new JExcel();
 		export.saveAs("modules_" + moduleType + ".xls", rs, Common.mainForm);
+		populateList("");
 	}
 
 	private void initGUI() {

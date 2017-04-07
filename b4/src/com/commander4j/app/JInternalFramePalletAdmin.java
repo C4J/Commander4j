@@ -612,6 +612,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				export.saveAs("pallet.xls", pallet.getPalletDataResultSet(temp), Common.mainForm);
 			}
 		}
+		populateList();
 	}
 
 	private void filterBy(String fieldname)
@@ -665,7 +666,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(979, 535));
-			this.setBounds(0, 0, 1010, 618);
+			this.setBounds(0, 0, 1001, 608);
 			setVisible(true);
 			this.setClosable(true);
 			getContentPane().setLayout(null);

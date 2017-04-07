@@ -968,6 +968,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		JExcel export = new JExcel();
 		PreparedStatement temp = buildSQLr();
 		export.saveAs("mhn_" + masterHoldNoticeNumber + ".xls", mhn.getMHNDataResultSet(temp), Common.mainForm);
+		populateList();
 	}
 
 	/**

@@ -76,6 +76,8 @@ import com.commander4j.tablemodel.JDBMaterialTableModel;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
+import com.commander4j.gui.JCheckBox4j;
+import javax.swing.JSpinner;
 
 /**
  * The JInternalFrameMaterialAdmin is the starting point maintaining the
@@ -154,6 +156,8 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 	private JDBLanguage lang;
 	private PreparedStatement listStatement;
 	private JTextField4j textFieldInspectionID;
+	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
+	private JSpinner jSpinnerLimit = new JSpinner();
 
 	private void clearFilter()
 	{
@@ -247,6 +251,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		PreparedStatement temp = buildSQLr();
 		export.saveAs("materials.xls", material.getMaterialDataResultSet(temp), Common.mainForm);
+		populateList();
 	}
 
 	private void print()
@@ -342,8 +347,10 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		col = jTable1.getColumnModel().getColumn(6);
 		col.setPreferredWidth(80);
 		jScrollPane1.repaint();
+		
+		JUtility.setResultRecordCountColour(jStatusText, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), materialtable.getRowCount());
 
-		JUtility.setResultRecordCountColour(jStatusText, false, 0, materialtable.getRowCount());
+
 	}
 
 	private void editRecord()
@@ -387,7 +394,8 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		}
 
 		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
-		query.applyRestriction(false, "none", 0);
+		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
+
 		query.bindParams();
 
 		result = query.getPreparedStatement();
@@ -427,6 +435,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIALS"));
+		
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -1106,6 +1115,24 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					btnLookupInspection.setBounds(242, 110, 21, 21);
 					jDesktopPane1.add(btnLookupInspection);
 				}
+				
+				JLabel4j_std label4j_std = new JLabel4j_std();
+				label4j_std.setText(lang.get("lbl_Limit"));
+				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j_std.setBounds(752, 110, 84, 21);
+				jDesktopPane1.add(label4j_std);
+
+				jCheckBoxLimit.setSelected(true);
+				jCheckBoxLimit.setBackground(Color.WHITE);
+				jCheckBoxLimit.setBounds(840, 110, 21, 21);
+				jDesktopPane1.add(jCheckBoxLimit);
+
+				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
+				jSpinnerLimit.setEditor(ne);
+				jSpinnerLimit.setValue(1000);
+				jSpinnerLimit.setBounds(869, 110, 68, 21);
+				jDesktopPane1.add(jSpinnerLimit);
+
 			}
 		} catch (Exception e)
 		{

@@ -180,6 +180,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 		JExcel export = new JExcel();
 		buildSQL();
 		export.saveAs("interface_requests.xls", interfaceRequest.getInterfaceRequestResultSet(listStatement), Common.mainForm);
+		populateList();
 	}
 
 	private void deleteRecord() {
