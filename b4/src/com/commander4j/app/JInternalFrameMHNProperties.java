@@ -492,7 +492,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(770, 478));
-			this.setBounds(0, 0, 1031, 593);
+			this.setBounds(0, 0, 1016, 581);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);

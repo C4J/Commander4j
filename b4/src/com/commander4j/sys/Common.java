@@ -205,6 +205,7 @@ public class Common
 	public final static String auto_label_command = System.getProperty("user.dir")+File.separator+"autolabeller"+File.separator+"commands"+File.separator;
 	public final static String auto_label_labels = System.getProperty("user.dir")+File.separator+"autolabeller"+File.separator+"labels"+File.separator;
 	
+	public final static Icon icon_qm = Common.imageIconloader.getImageIcon(Common.image_qm);
 	public final static Icon icon_resend = Common.imageIconloader.getImageIcon(Common.image_resend);
 	public final static Icon icon_history = Common.imageIconloader.getImageIcon(Common.image_history);
 	public final static Icon icon_pdf = Common.imageIconloader.getImageIcon(Common.image_pdf);
@@ -282,6 +283,7 @@ public class Common
 	public final static Icon icon_despatch_remove = Common.imageIconloader.getImageIcon(Common.image_despatch_remove);
 	public final static Icon icon_despatch_add = Common.imageIconloader.getImageIcon(Common.image_despatch_add);
 	
+	public final static String image_qm = "qm.gif";
 	public final static String image_remove = "remove.gif";
 	public final static String image_resend = "resend.gif";
 	public final static String image_history = "pallet_history.gif";

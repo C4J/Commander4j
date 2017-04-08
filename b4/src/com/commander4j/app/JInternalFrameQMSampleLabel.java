@@ -48,6 +48,7 @@ import javax.swing.JSpinner;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -204,6 +205,15 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			textFieldResource.setText(po.getRequiredResource());
 			dueDate.setDate(po.getDueDate());
 			processOrderValid = true;
+			
+			if (textFieldStatus.getText().equals("Ready") || (textFieldStatus.getText().equals("Running")))
+			{
+				textFieldStatus.setBackground(Color.WHITE);
+			}
+			else
+			{
+				textFieldStatus.setBackground(Color.RED);
+			}
 			
 			if (userReport.getUserReportProperties("USER_DATA_1"))
 			{
@@ -398,17 +408,6 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 	}
 
 	public JInternalFrameQMSampleLabel(String processOrder)
-	{
-		super();
-
-		processOrderChanged(processOrder);
-
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public JInternalFrameQMSampleLabel()
 	{
 		addInternalFrameListener(new InternalFrameAdapter()
 		{
@@ -635,6 +634,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 
 		DocumentFilter filter = new UppercaseDocumentFilter();
 		textFieldUserData1 = new JTextField4j(JDBQMSample.field_data_1);
+		textFieldUserData1.setToolTipText("Custom Field USER_DATA_1");
 		textFieldUserData1.addKeyListener(new KeyAdapter()
 		{
 
@@ -651,6 +651,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(textFieldUserData1);
 
 		textFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
+		textFieldUserData2.setToolTipText("Custom Field USER_DATA_2");
 		textFieldUserData2.addKeyListener(new KeyAdapter()
 		{
 			@Override
@@ -719,6 +720,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(lblUserData3);
 		
 		textFieldUserData3 = new JTextField4j(20);
+		textFieldUserData3.setToolTipText("Custom Field USER_DATA_3");
 		textFieldUserData3.setColumns(20);
 		textFieldUserData3.setBounds(125, 193, 134, 22);
 		desktopPane.add(textFieldUserData3);
@@ -729,6 +731,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(lblUserData4);
 		
 		textFieldUserData4 = new JTextField4j(20);
+		textFieldUserData4.setToolTipText("Custom Field USER_DATA_4");
 		textFieldUserData4.setColumns(20);
 		textFieldUserData4.setBounds(411, 193, 134, 22);
 		desktopPane.add(textFieldUserData4);
@@ -741,6 +744,18 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			{
 				String pq = comboBoxPrintQueue.getSelectedItem().toString();
 				setDefaultDPI(pq);
+			}
+		});
+		
+		processOrderChanged(processOrder);
+		
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				textFieldProcessOrder.requestFocus();
+				textFieldProcessOrder.setCaretPosition(textFieldProcessOrder.getText().length());
+
 			}
 		});
 

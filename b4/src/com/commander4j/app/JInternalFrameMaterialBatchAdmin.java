@@ -633,7 +633,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
-					jButtonSearch.setBounds(307, 10, 126, 32);
+					jButtonSearch.setBounds(299, 10, 126, 32);
 					jButtonSearch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -648,7 +648,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
-					jButtonEdit.setBounds(307, 68, 126, 32);
+					jButtonEdit.setBounds(299, 68, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener()
 					{
@@ -663,14 +663,14 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(307, 126, 126, 32);
+					jButtonHelp.setBounds(299, 126, 126, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(307, 155, 126, 32);
+					jButtonClose.setBounds(299, 155, 126, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -684,25 +684,25 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Material"));
-					jLabel1.setBounds(0, 14, 124, 21);
+					jLabel1.setBounds(0, 14, 107, 21);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(135, 10, 126, 25);
+					jTextFieldMaterial.setBounds(126, 10, 126, 25);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Material_Batch"));
-					jLabel3.setBounds(0, 47, 124, 21);
+					jLabel3.setBounds(0, 51, 107, 21);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
 					jDesktopPane1.add(jTextFieldBatch);
-					jTextFieldBatch.setBounds(135, 43, 126, 25);
+					jTextFieldBatch.setBounds(126, 47, 126, 25);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
@@ -724,14 +724,14 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel5);
 					jLabel5.setText(lang.get("lbl_Material_Batch_Status"));
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5.setBounds(0, 78, 124, 21);
+					jLabel5.setBounds(0, 86, 107, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(Common.batchStatusIncBlank);
 					jComboBoxStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxStatus);
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
-					jComboBoxStatus.setBounds(133, 76, 148, 23);
+					jComboBoxStatus.setBounds(126, 84, 148, 23);
 				}
 				{
 					jToggleButtonSequence = new JToggleButton();
@@ -760,7 +760,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 							}
 						}
 					});
-					jButtonLookupMaterial.setBounds(260, 10, 21, 25);
+					jButtonLookupMaterial.setBounds(251, 10, 21, 25);
 					jDesktopPane1.add(jButtonLookupMaterial);
 				}
 
@@ -779,18 +779,18 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 
 						}
 					});
-					jButtonLookupBatch.setBounds(260, 43, 21, 25);
+					jButtonLookupBatch.setBounds(251, 47, 21, 25);
 					jDesktopPane1.add(jButtonLookupBatch);
 				}
 
 				{
-					expiryFrom.setBounds(146, 111, 125, 25);
+					expiryFrom.setBounds(137, 126, 125, 25);
 					expiryFrom.setEnabled(false);
 					jDesktopPane1.add(expiryFrom);
 				}
 
 				{
-					expiryTo.setBounds(146, 148, 125, 25);
+					expiryTo.setBounds(137, 162, 125, 25);
 					expiryTo.setEnabled(false);
 					jDesktopPane1.add(expiryTo);
 				}
@@ -799,7 +799,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jLabel5_1 = new JLabel4j_std();
 					jLabel5_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel5_1.setText(lang.get("lbl_Material_Batch_Expiry_From"));
-					jLabel5_1.setBounds(0, 111, 124, 25);
+					jLabel5_1.setBounds(0, 126, 107, 25);
 					jDesktopPane1.add(jLabel5_1);
 				}
 
@@ -807,7 +807,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jLabel5_2 = new JLabel4j_std();
 					jLabel5_2.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel5_2.setText(lang.get("lbl_Material_Batch_Expiry_To"));
-					jLabel5_2.setBounds(0, 148, 124, 25);
+					jLabel5_2.setBounds(0, 162, 107, 25);
 					jDesktopPane1.add(jLabel5_2);
 				}
 
@@ -829,7 +829,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 						}
 					});
 					jCheckBoxFrom.setBackground(new Color(255, 255, 255));
-					jCheckBoxFrom.setBounds(125, 111, 21, 25);
+					jCheckBoxFrom.setBounds(116, 126, 21, 25);
 					jDesktopPane1.add(jCheckBoxFrom);
 				}
 
@@ -851,7 +851,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 						}
 					});
 					jCheckBoxTo.setBackground(new Color(255, 255, 255));
-					jCheckBoxTo.setBounds(125, 148, 21, 25);
+					jCheckBoxTo.setBounds(116, 162, 21, 25);
 					jDesktopPane1.add(jCheckBoxTo);
 				}
 
@@ -867,7 +867,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					});
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(307, 39, 126, 32);
+					jButtonAdd.setBounds(299, 39, 126, 32);
 					jDesktopPane1.add(jButtonAdd);
 				}
 
@@ -891,20 +891,20 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(307, 97, 126, 32);
+					jButtonExcel.setBounds(299, 97, 126, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
 
 				{
 					calendarButtonexpiryFrom = new JCalendarButton(expiryFrom);
 					calendarButtonexpiryFrom.setEnabled(false);
-					calendarButtonexpiryFrom.setBounds(274, 111, 21, 21);
+					calendarButtonexpiryFrom.setBounds(265, 126, 21, 21);
 					jDesktopPane1.add(calendarButtonexpiryFrom);
 				}
 				{
 					calendarButtonexpiryTo = new JCalendarButton(expiryTo);
 					calendarButtonexpiryTo.setEnabled(false);
-					calendarButtonexpiryTo.setBounds(274, 150, 21, 21);
+					calendarButtonexpiryTo.setBounds(265, 166, 21, 21);
 					jDesktopPane1.add(calendarButtonexpiryTo);
 				}
 				

@@ -72,6 +72,8 @@ import com.commander4j.tablemodel.JDBMaterialLocationTableModel;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
+import com.commander4j.gui.JCheckBox4j;
+import javax.swing.JSpinner;
 
 /**
  * The JInternalFrameMaterialLocationAdmin class allows you to maintain the
@@ -116,6 +118,8 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private JDBLanguage lang;
 	private PreparedStatement listStatement;
+	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
+	private JSpinner jSpinnerLimit = new JSpinner();
 
 	public JInternalFrameMaterialLocationAdmin()
 	{
@@ -135,7 +139,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_LOCATION"));
-
+		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -294,7 +298,8 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 		query.addParamtoSQL("status=", jComboBoxStatus.getSelectedItem().toString());
 
 		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
-		query.applyRestriction(false, "none", 0);
+		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
+
 		query.bindParams();
 		listStatement = query.getPreparedStatement();
 	}
@@ -322,7 +327,8 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 
 		jScrollPane1.repaint();
 
-		JUtility.setResultRecordCountColour(jStatusText, false, 0, materialLocationTable.getRowCount());
+		JUtility.setResultRecordCountColour(jStatusText, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), materialLocationTable.getRowCount());
+
 	}
 
 	private void editRecord()
@@ -342,7 +348,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(497, 522));
-			this.setBounds(0, 0, 429 + Common.LFAdjustWidth, 598 + Common.LFAdjustHeight);
+			this.setBounds(0, 0, 421, 628);
 			setVisible(true);
 			this.setClosable(true);
 			this.setTitle("Material Locations");
@@ -356,7 +362,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 196, 402, 333);
+					jScrollPane1.setBounds(0, 228, 402, 345);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][]
 						{
@@ -557,7 +563,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
-					jButtonSearch.setBounds(10, 125, 126, 32);
+					jButtonSearch.setBounds(20, 154, 126, 32);
 					jButtonSearch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -572,7 +578,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
-					jButtonEdit.setBounds(266, 125, 126, 32);
+					jButtonEdit.setBounds(276, 154, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_LOCATION_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener()
 					{
@@ -587,14 +593,14 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(138, 155, 126, 32);
+					jButtonHelp.setBounds(148, 184, 126, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(266, 154, 126, 32);
+					jButtonClose.setBounds(276, 183, 126, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -719,7 +725,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					});
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(138, 125, 126, 32);
+					jButtonAdd.setBounds(148, 154, 126, 32);
 					jDesktopPane1.add(jButtonAdd);
 				}
 
@@ -727,7 +733,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 530, 402, 21);
+					jStatusText.setBounds(0, 575, 422, 21);
 					jDesktopPane1.add(jStatusText);
 				}
 
@@ -743,9 +749,27 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(10, 155, 126, 32);
+					jButtonExcel.setBounds(20, 184, 126, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
+				
+				JLabel4j_std label4j_std = new JLabel4j_std();
+				label4j_std.setText(lang.get("lbl_Limit"));
+				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j_std.setBounds(0, 121, 91, 21);
+				jDesktopPane1.add(label4j_std);
+					
+				jCheckBoxLimit.setSelected(true);
+				jCheckBoxLimit.setBackground(Color.WHITE);
+				jCheckBoxLimit.setBounds(99, 121, 21, 21);
+				jDesktopPane1.add(jCheckBoxLimit);
+	
+				JSpinner.NumberEditor ne_jSpinnerLimit = new JSpinner.NumberEditor(jSpinnerLimit);
+				jSpinnerLimit.setEditor(ne_jSpinnerLimit);
+				jSpinnerLimit.setValue(1000);
+				jSpinnerLimit.setBounds(128, 121, 68, 21);
+				jDesktopPane1.add(jSpinnerLimit);
+
 
 			}
 		} catch (Exception e)

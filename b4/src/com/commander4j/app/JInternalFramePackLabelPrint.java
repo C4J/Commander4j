@@ -201,7 +201,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 	private PreparedStatement listStatement;
 	private JButton4j jButtonAssign;
 
-	public JInternalFramePackLabelPrint()
+	public JInternalFramePackLabelPrint(String procOrder)
 	{
 		addInternalFrameListener(new InternalFrameAdapter()
 		{
@@ -242,7 +242,10 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		});
 
 		populatePrinterList(JPrint.getDefaultPrinterQueueName());
-		processOrderChanged("");
+		
+		procOrder = JUtility.replaceNullStringwithBlank(procOrder);
+
+		processOrderChanged(procOrder);
 	}
 
 	private void populatePrinterList(String defaultitem)

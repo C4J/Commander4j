@@ -463,7 +463,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(757, 535));
-			this.setBounds(0, 0, 994, 632);
+			this.setBounds(0, 0, 984, 617);
 			setVisible(true);
 			this.setTitle("Material Admin");
 			this.setClosable(true);

@@ -373,7 +373,27 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			JLaunchMenu.runForm("FRM_PAL_PROD_DEC", lprocessorder);
 		}
 	}
+	
+	private void labelPrint()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lprocessorder = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_LABEL_PRINT", lprocessorder);
+		}
+	}
 
+	private void samplePrint()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lprocessorder = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_QM_SAMPLE_LABEL", lprocessorder);
+		}
+	}
+	
 	private void setSequence(boolean descending)
 	{
 		jToggleButtonSequence.setSelected(descending);
@@ -618,7 +638,32 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PAL_PROD_DEC"));
 								popupMenu.add(newItemMenuItem);
 							}
-
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_auto_labeller);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										labelPrint();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_LABEL_PRINT"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_PRINT"));
+								popupMenu.add(newItemMenuItem);
+							}
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_qm);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										samplePrint();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_QM_SAMPLE_LABEL"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_SAMPLE_LABEL"));
+								popupMenu.add(newItemMenuItem);
+							}
 							{
 								final JMenu4j sortByMenu = new JMenu4j();
 								sortByMenu.setText(lang.get("lbl_Sort_By"));

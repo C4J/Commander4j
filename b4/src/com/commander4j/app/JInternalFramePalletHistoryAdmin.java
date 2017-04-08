@@ -532,7 +532,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(979, 535));
-			this.setBounds(0, 0, 1022, 613);
+			this.setBounds(0, 0, 1009, 599);
 			setVisible(true);
 			this.setClosable(true);
 			{

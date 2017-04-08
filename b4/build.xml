@@ -97,6 +97,7 @@
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
                 <exclude name="**/*.java"/>
+                <exclude name="**/*.jpg"/>
             </fileset>
         </copy>
     </target>

@@ -200,6 +200,8 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 		jTextFieldActivityID.setText("");
 		jTextFieldUserData1.setText("");
 		jTextFieldUserData2.setText("");
+		jTextFieldUserData3.setText("");
+		jTextFieldUserData4.setText("");
 		sampleDate.setDate(JUtility.getSQLDate());
 		jButtonSave.setEnabled(false);
 	}
@@ -231,7 +233,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jTextFieldSampleID);
 					jTextFieldSampleID.setEditable(true);
 					jTextFieldSampleID.setEnabled(true);
-					jTextFieldSampleID.setBounds(147, 12, 77, 21);
+					jTextFieldSampleID.setBounds(147, 12, 119, 21);
 				}
 				{
 					jButtonSave = new JButton4j(Common.icon_update);
@@ -322,6 +324,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				}
 				{
 					jTextFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
+					jTextFieldUserData2.setToolTipText("Custom Field USER_DATA_2");
 					jDesktopPane1.add(jTextFieldUserData2);
 					jTextFieldUserData2.setBounds(147, 246, 119, 21);
 					jTextFieldUserData2.setFocusCycleRoot(true);
@@ -371,6 +374,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 
 				{
 					jTextFieldUserData1 = new JTextField4j(JDBQMSample.field_data_1);
+					jTextFieldUserData1.setToolTipText("Custom Field USER_DATA_1");
 					jTextFieldUserData1.setFocusCycleRoot(true);
 					jTextFieldUserData1.setBounds(147, 220, 119, 21);
 					jDesktopPane1.add(jTextFieldUserData1);
@@ -456,6 +460,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				jDesktopPane1.add(lblUserData3);
 				
 				jTextFieldUserData3 = new JTextField4j(20);
+				jTextFieldUserData3.setToolTipText("Custom Field USER_DATA_3");
 				jTextFieldUserData3.setText("");
 				jTextFieldUserData3.setFocusCycleRoot(true);
 				jTextFieldUserData3.setBounds(147, 274, 119, 21);
@@ -468,6 +473,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				jDesktopPane1.add(lblUserData4);
 				
 				jTextFieldUserData4 = new JTextField4j(20);
+				jTextFieldUserData4.setToolTipText("Custom Field USER_DATA_4");
 				jTextFieldUserData4.setText("");
 				jTextFieldUserData4.setFocusCycleRoot(true);
 				jTextFieldUserData4.setBounds(147, 300, 119, 21);
