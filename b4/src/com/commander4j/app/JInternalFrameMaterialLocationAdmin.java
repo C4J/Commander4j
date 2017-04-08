@@ -563,7 +563,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
-					jButtonSearch.setBounds(20, 154, 126, 32);
+					jButtonSearch.setBounds(15, 154, 126, 32);
 					jButtonSearch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -578,7 +578,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
-					jButtonEdit.setBounds(276, 154, 126, 32);
+					jButtonEdit.setBounds(271, 154, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_LOCATION_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener()
 					{
@@ -593,14 +593,14 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(148, 184, 126, 32);
+					jButtonHelp.setBounds(143, 188, 126, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(276, 183, 126, 32);
+					jButtonClose.setBounds(271, 188, 126, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -614,32 +614,32 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jLabel1 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Material"));
-					jLabel1.setBounds(0, 10, 91, 21);
+					jLabel1.setBounds(20, 10, 106, 21);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(99, 10, 141, 21);
+					jTextFieldMaterial.setBounds(134, 10, 141, 23);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Location_ID"));
-					jLabel3.setBounds(0, 37, 91, 21);
+					jLabel3.setBounds(20, 37, 106, 21);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
 					jDesktopPane1.add(jTextFieldLocation);
-					jTextFieldLocation.setBounds(99, 37, 141, 21);
+					jTextFieldLocation.setBounds(134, 37, 141, 23);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(0, 92, 91, 21);
+					jLabel10.setBounds(20, 97, 106, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
@@ -647,26 +647,26 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(99, 92, 141, 23);
+					jComboBoxSortBy.setBounds(134, 95, 141, 23);
 				}
 				{
 					jLabel5 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel5);
 					jLabel5.setText(lang.get("lbl_Material_Location_Status"));
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5.setBounds(0, 65, 91, 21);
+					jLabel5.setBounds(20, 65, 106, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxStatusModel = new DefaultComboBoxModel<String>(Common.locationStatusIncBlank);
 					jComboBoxStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxStatus);
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
-					jComboBoxStatus.setBounds(99, 65, 141, 23);
+					jComboBoxStatus.setBounds(134, 65, 141, 23);
 				}
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(246, 92, 21, 21);
+					jToggleButtonSequence.setBounds(276, 95, 21, 23);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -690,7 +690,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 							}
 						}
 					});
-					jButtonLookupMaterial.setBounds(246, 10, 21, 21);
+					jButtonLookupMaterial.setBounds(276, 10, 21, 23);
 					jDesktopPane1.add(jButtonLookupMaterial);
 				}
 
@@ -709,7 +709,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 
 						}
 					});
-					jButtonLookupLocation.setBounds(246, 37, 21, 21);
+					jButtonLookupLocation.setBounds(276, 37, 21, 23);
 					jDesktopPane1.add(jButtonLookupLocation);
 				}
 
@@ -725,7 +725,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					});
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(148, 154, 126, 32);
+					jButtonAdd.setBounds(143, 154, 126, 32);
 					jDesktopPane1.add(jButtonAdd);
 				}
 
@@ -733,7 +733,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 575, 422, 21);
+					jStatusText.setBounds(0, 575, 411, 21);
 					jDesktopPane1.add(jStatusText);
 				}
 
@@ -749,25 +749,25 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(20, 184, 126, 32);
+					jButtonExcel.setBounds(15, 188, 126, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
 				
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Limit"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(0, 121, 91, 21);
+				label4j_std.setBounds(20, 123, 106, 21);
 				jDesktopPane1.add(label4j_std);
 					
 				jCheckBoxLimit.setSelected(true);
 				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(99, 121, 21, 21);
+				jCheckBoxLimit.setBounds(134, 123, 21, 21);
 				jDesktopPane1.add(jCheckBoxLimit);
 	
 				JSpinner.NumberEditor ne_jSpinnerLimit = new JSpinner.NumberEditor(jSpinnerLimit);
 				jSpinnerLimit.setEditor(ne_jSpinnerLimit);
 				jSpinnerLimit.setValue(1000);
-				jSpinnerLimit.setBounds(128, 121, 68, 21);
+				jSpinnerLimit.setBounds(163, 123, 68, 21);
 				jDesktopPane1.add(jSpinnerLimit);
 
 

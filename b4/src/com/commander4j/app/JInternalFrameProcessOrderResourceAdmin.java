@@ -361,7 +361,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 196, 510, 333);
+					jScrollPane1.setBounds(0, 196, 510, 345);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][]
 						{
@@ -689,7 +689,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 530, 495, 21);
+					jStatusText.setBounds(0, 545, 510, 21);
 					jDesktopPane1.add(jStatusText);
 				}
 
