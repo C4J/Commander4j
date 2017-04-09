@@ -193,7 +193,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 1251, 733);
+		setBounds(100, 100, 1027, 731);
 		getContentPane().setLayout(null);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
@@ -286,7 +286,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 		desktopPane.add(lblStatusBar);
 		
 		jScrollPane1 = new JScrollPane();
-		jScrollPane1.setBounds(8, 139, 1227, 535);
+		jScrollPane1.setBounds(8, 139, 993, 535);
 		jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 		desktopPane.setLayout(null);
 		desktopPane.add(jScrollPane1);

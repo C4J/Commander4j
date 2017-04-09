@@ -666,7 +666,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(979, 535));
-			this.setBounds(0, 0, 1001, 608);
+			this.setBounds(0, 0, 994, 608);
 			setVisible(true);
 			this.setClosable(true);
 			getContentPane().setLayout(null);
@@ -1358,7 +1358,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 			{
 				jStatusText = new JLabel4j_std();
-				jStatusText.setBounds(10, 545, 974, 21);
+				jStatusText.setBounds(0, 550, 980, 21);
 				jDesktopPane1.add(jStatusText);
 				jStatusText.setBackground(Color.GRAY);
 				jStatusText.setForeground(new Color(255, 0, 0));

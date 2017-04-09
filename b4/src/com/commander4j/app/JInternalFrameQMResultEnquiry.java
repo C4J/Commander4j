@@ -335,11 +335,11 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 1028, 721);
+		setBounds(100, 100, 1134, 721);
 		getContentPane().setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 1018, 689);
+		desktopPane.setBounds(0, 0, 1142, 689);
 		desktopPane.setBackground(Common.color_app_window);
 		getContentPane().add(desktopPane);
 		desktopPane.setLayout(null);
@@ -405,7 +405,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		desktopPane.add(lblStatusBar);
 
 		scrollPaneResults = new JScrollPane();
-		scrollPaneResults.setBounds(6, 240, 993, 410);
+		scrollPaneResults.setBounds(6, 240, 1105, 410);
 		scrollPaneResults.getViewport().setBackground(Common.color_tablebackground);
 		desktopPane.setLayout(null);
 		scrollPaneResults.setViewportView(table);
@@ -606,7 +606,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		jLabel10.setBounds(353, 152, 77, 22);
 
 		JScrollPane scrollPaneDictionary = new JScrollPane();
-		scrollPaneDictionary.setBounds(559, 32, 440, 194);
+		scrollPaneDictionary.setBounds(559, 32, 552, 194);
 
 		listDictionary = new JList4j<JCheckListItem>();
 

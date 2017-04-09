@@ -659,7 +659,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(320, 90, 21, 21);
+					jToggleButtonSequence.setBounds(320, 90, 21, 23);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)

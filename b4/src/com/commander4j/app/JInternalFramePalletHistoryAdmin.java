@@ -532,13 +532,13 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(979, 535));
-			this.setBounds(0, 0, 1009, 599);
+			this.setBounds(0, 0, 1010, 599);
 			setVisible(true);
 			this.setClosable(true);
 			{
 				jDesktopPane1 = new JDesktopPane();
 				jDesktopPane1.setBackground(Common.color_app_window);
-				jDesktopPane1.setBounds(0, 0, 1012, 569);
+				jDesktopPane1.setBounds(0, 0, 1003, 569);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(917, 504));
 				{
@@ -973,7 +973,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 								}
 								{
 									jStatusText = new JLabel4j_std();
-									jStatusText.setBounds(10, 540, 985, 21);
+									jStatusText.setBounds(0, 543, 1000, 21);
 									jDesktopPane1.add(jStatusText);
 									jStatusText.setForeground(new Color(255, 0, 0));
 									jStatusText.setBackground(Color.GRAY);
@@ -987,7 +987,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jButtonSearch1 = new JButton4j(Common.icon_search);
 					jDesktopPane1.add(jButtonSearch1);
 					jButtonSearch1.setText(lang.get("btn_Search"));
-					jButtonSearch1.setBounds(14, 176, 129, 32);
+					jButtonSearch1.setBounds(12, 176, 129, 32);
 					jButtonSearch1.setMnemonic(java.awt.event.KeyEvent.VK_S);
 					jButtonSearch1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -1040,14 +1040,14 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(582, 176, 129, 32);
+					jButtonHelp.setBounds(576, 176, 129, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(866, 176, 129, 32);
+					jButtonClose.setBounds(858, 176, 129, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -1060,7 +1060,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jButtonPrint = new JButton4j(Common.icon_report);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setBounds(298, 176, 129, 32);
+					jButtonPrint.setBounds(294, 176, 129, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PALLETS"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.addActionListener(new ActionListener() {
@@ -1073,7 +1073,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jButtonPrint = new JButton4j(Common.icon_report);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print_Summary"));
-					jButtonPrint.setBounds(440, 176, 129, 32);
+					jButtonPrint.setBounds(435, 176, 129, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_HIST_SUMMARY"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.addActionListener(new ActionListener() {
@@ -1442,7 +1442,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 						}
 					});
 					exportXlsButton.setText(lang.get("btn_Excel"));
-					exportXlsButton.setBounds(724, 176, 129, 32);
+					exportXlsButton.setBounds(717, 176, 129, 32);
 					jDesktopPane1.add(exportXlsButton);
 				}
 
@@ -1468,7 +1468,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 						}
 					});
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(156, 176, 129, 32);
+					jButtonClear.setBounds(153, 176, 129, 32);
 					jDesktopPane1.add(jButtonClear);
 				}
 			}

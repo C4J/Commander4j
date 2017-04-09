@@ -381,8 +381,11 @@ public class JDBQMDictionary
 			{
 				JDBQMDictionary mt = new JDBQMDictionary(getHostID(), getSessionID());
 				mt.getValuesFromResultSet(rs);
-				JCheckListItem ci = new JCheckListItem(mt);
-				testList.add(ci);
+				if (mt.getVisible().equals("Y"))
+				{
+					JCheckListItem ci = new JCheckListItem(mt);
+					testList.add(ci);
+				}
 			}
 			rs.close();
 			stmt.close();
