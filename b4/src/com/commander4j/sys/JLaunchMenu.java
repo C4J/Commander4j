@@ -86,6 +86,7 @@ import com.commander4j.app.JInternalFrameProductionConfirmation;
 import com.commander4j.app.JInternalFrameProductionDeclaration;
 import com.commander4j.app.JInternalFrameQMDictionaryAdmin;
 import com.commander4j.app.JInternalFrameQMInspectionAdmin;
+import com.commander4j.app.JInternalFrameQMResultAnalysis;
 import com.commander4j.app.JInternalFrameQMResultEnquiry;
 import com.commander4j.app.JInternalFrameQMSampleLabel;
 import com.commander4j.app.JInternalFrameQMSampleRecord;
@@ -622,6 +623,19 @@ public class JLaunchMenu
 			else
 			{
 				u = new JInternalFrameQMResultEnquiry();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_QM_RESULT_ANALYSIS"))
+		{
+			final JInternalFrameQMResultAnalysis u;
+			if (isLoaded(JInternalFrameQMResultAnalysis.class))
+				setVisible(JInternalFrameQMResultAnalysis.class);
+			else
+			{
+				u = new JInternalFrameQMResultAnalysis();
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
