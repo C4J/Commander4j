@@ -31,8 +31,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -41,8 +39,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -51,17 +51,15 @@ import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBProcessOrder;
-import com.commander4j.db.JDBQMDictionary;
+import com.commander4j.db.JDBQMAnalysis;
 import com.commander4j.db.JDBQMInspection;
 import com.commander4j.db.JDBQMSample;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
-import com.commander4j.gui.JCheckListItem;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
-import com.commander4j.renderer.MultiItemCheckListRenderer;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.util.JDateControl;
@@ -69,12 +67,13 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JUtility;
 
 /**
- * The JInternalFrameQMResultAnalysis is used for querying a user selectable view.
+ * The JInternalFrameQMResultAnalysis is used for querying a user selectable
+ * view.
  * 
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameQMResultAnalysis.jpg" >
  * 
- * @see com.commander4j.db.JDBQMResult JDBQMResult
+ * @see com.commander4j.db.JDBQMAnalysis JDBQMAnalysis
  */
 public class JInternalFrameQMResultAnalysis extends JInternalFrame
 {
@@ -83,7 +82,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 	private JTextField4j textFieldProcessOrder;
 	private JButton4j btnClose;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JDBQMDictionary dict = new JDBQMDictionary(Common.selectedHostID, Common.sessionID);
+	private JDBQMAnalysis dict = new JDBQMAnalysis(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_std lblStatusBar;
 	private JTextField4j textFieldMaterial;
 	private JLabel4j_std lbl_inspection;
@@ -92,7 +91,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 	private JDateControl dateSampleFrom;
 	private JCheckBox4j checkBoxSampleTo;
 	private JDateControl dateSampleTo;
-	private JList4j<JCheckListItem> listDictionary;
+	private JList4j<JDBQMAnalysis> listDictionary;
 	private JTextField4j textFieldUserData1;
 	private JTextField4j textFieldUserData2;
 	private JTextField4j textFieldUserData3;
@@ -102,202 +101,60 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 	private JSpinner jSpinnerLimit;
 	private JCheckBox4j jCheckBoxLimit;
 	private JLabel4j_std jLabel10;
+	private PreparedStatement listStatement;
+	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 
-	private PreparedStatement buildSQL()
+	private boolean buildSQL(String viewname,String sortOrder,Boolean ascending)
 	{
-		PreparedStatement result;
-		String resultSQL = "";
+		boolean result = false;
 
-		String startSQL = "SELECT  Sample_ID, Sample_Date,Material,Process_Order, User_Data_1, User_Data_2, User_Data_3, User_Data_4 ";
+		JDBQuery.closeStatement(listStatement);
+		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
+		query.clear();
 
-		String fieldsSQL = "";
-		int x = listDictionary.getModel().getSize();
-		if (x > 0)
-		{
-			JCheckListItem tempItem;
-			for (int sel = 0; sel < x; sel++)
-			{
-				tempItem = (JCheckListItem) listDictionary.getModel().getElementAt(sel);
-				if (tempItem.isSelected())
-				{
-					JDBQMDictionary dictItem = (JDBQMDictionary) tempItem.getValue();
-					String testID = dictItem.getTestID();
-					String description = dictItem.getDescription();
-					String tempField = ",MAX(CASE TEST_ID WHEN '" + testID + "' THEN RESULT ELSE NULL END) AS '" + description + "'";
-					if (fieldsSQL.equals(""))
-					{
-						fieldsSQL = tempField;
-					} else
-					{
-						fieldsSQL = fieldsSQL + tempField;
-					}
-				}
-			}
-		}
-
-		String joinSQL = "FROM VIEW_QM_RESULTS WHERE 1 = 1";
-
-		String whereSQL = "";
-
-		if (textFieldProcessOrder.getText().equals("") == false)
-		{
-			whereSQL = whereSQL + " AND PROCESS_ORDER = '" + textFieldProcessOrder.getText() + "'";
-		}
-
-		if (textFieldMaterial.getText().equals("") == false)
-		{
-			whereSQL = whereSQL + " AND MATERIAL = '" + textFieldMaterial.getText() + "'";
-		}
-
-		if (textFieldInspectionID.getText().equals("") == false)
-		{
-			whereSQL = whereSQL + " AND INSPECTION_ID = '" + textFieldInspectionID.getText() + "'";
-		}
-
-		if (textFieldUserData1.getText().equals("") == false)
-		{
-			whereSQL = whereSQL + " AND USER_DATA_1 = '" + textFieldUserData1.getText() + "'";
-		}
-
-		if (textFieldUserData2.getText().equals("") == false)
-		{
-			whereSQL = whereSQL + " AND USER_DATA_2 = '" + textFieldUserData2.getText() + "'";
-		}
-
-		if (textFieldUserData3.getText().equals("") == false)
-		{
-			whereSQL = whereSQL + " AND USER_DATA_3 = '" + textFieldUserData3.getText() + "'";
-		}
-
-		if (textFieldUserData4.getText().equals("") == false)
-		{
-			whereSQL = whereSQL + " AND USER_DATA_4 = '" + textFieldUserData4.getText() + "'";
-		}
-		
-		int dateParams = 0;
+		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}VIEW_QM_ANALYSIS_01"));
+		query.addParamtoSQL("material=", textFieldMaterial.getText());
 
 		if (checkBoxSampleFrom.isSelected())
 		{
-			dateParams++;
+			query.addParamtoSQL("expiry_date>=", JUtility.getTimestampFromDate(dateSampleFrom.getDate()));
+
 		}
+
 		if (checkBoxSampleTo.isSelected())
 		{
-			dateParams++;
+			query.addParamtoSQL("expiry_date<=", JUtility.getTimestampFromDate(dateSampleTo.getDate()));
 		}
 
-		if (dateParams > 0)
-		{
-			if (dateParams == 1)
-			{
-				if (checkBoxSampleFrom.isSelected())
-				{
-					whereSQL = whereSQL + " AND SAMPLE_DATE >= ? ";
-				}
-				if (checkBoxSampleTo.isSelected())
-				{
-					whereSQL = whereSQL + " AND SAMPLE_DATE <= ? ";
-				}
-			} else
-			{
-				if (dateParams == 2)
-				{
-					whereSQL = whereSQL + " AND SAMPLE_DATE >= ? AND SAMPLE_DATE <= ? ";
-				}
-			}
-		}
-
-		String groupSQL = "GROUP BY SAMPLE_ID,SAMPLE_DATE,MATERIAL,PROCESS_ORDER,USER_DATA_1,USER_DATA_2,USER_DATA_3,USER_DATA_4";
-
-		String sqlHaving = "";
-
-		if (x > 0)
-		{
-			int count = 0;
-			String limit = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit();
-			String fieldDelim1 = "";
-			String fieldDelim2 = "";
-			if (limit.equals("top"))
-			{
-				fieldDelim1 = "'";
-				fieldDelim2 = "'";
-			}
-			if (limit.equals("rownum"))
-			{
-				fieldDelim1 = "\"";
-				fieldDelim2 = "\"";
-			}
-			if (limit.equals("limit"))
-			{
-				fieldDelim1 = "`";
-				fieldDelim2 = "`";
-			}
-			JCheckListItem tempItem;
-			for (int sel = 0; sel < x; sel++)
-			{
-				tempItem = (JCheckListItem) listDictionary.getModel().getElementAt(sel);
-				if (tempItem.isSelected())
-				{
-					JDBQMDictionary dictItem = (JDBQMDictionary) tempItem.getValue();
-					String description = dictItem.getDescription();
-
-					if (count == 0)
-					{
-						sqlHaving = " HAVING (" + fieldDelim1 + description + fieldDelim2 + " IS NOT NULL) ";
-					} else
-					{
-						sqlHaving = sqlHaving + " OR (" + fieldDelim1 + description + fieldDelim2 + " IS NOT NULL) ";
-					}
-					count++;
-				}
-			}
-		}
-
-		resultSQL = startSQL + " " + fieldsSQL + " " + joinSQL + " " + whereSQL + " " + groupSQL + " " + sqlHaving;
-
-		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
-		query.setSqlText(resultSQL);
+		query.appendSort(sortOrder,ascending);
 		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
-		if (dateParams > 0)
-		{
-			if (dateParams == 1)
-			{
-				if (checkBoxSampleFrom.isSelected())
-				{
-					query.addParameter(JUtility.getTimestampFromDate(dateSampleFrom.getDate()));
-				}
-				if (checkBoxSampleTo.isSelected())
-				{
-					query.addParameter(JUtility.getTimestampFromDate(dateSampleTo.getDate()));
-				}
-			} else
-			{
-				if (dateParams == 2)
-				{
-					query.addParameter(JUtility.getTimestampFromDate(dateSampleFrom.getDate()));
-					query.addParameter(JUtility.getTimestampFromDate(dateSampleTo.getDate()));
-				}
-			}
-		}
 
 		query.bindParams();
-		result = query.getPreparedStatement();
-		System.out.println(resultSQL);
+		listStatement = query.getPreparedStatement();
+
+		result = true;
 
 		return result;
 	}
-
-
+	
 	public JInternalFrameQMResultAnalysis()
 	{
+
+		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
+		query.clear();
+		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_MATERIAL where 1=2"));
+		query.applyRestriction(false, "none", 0);
+		query.bindParams();
+		listStatement = query.getPreparedStatement();
 
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 1138, 282);
+		setBounds(100, 100, 1138, 278);
 		getContentPane().setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 1142, 689);
+		desktopPane.setBounds(0, 0, 1128, 249);
 		desktopPane.setBackground(Common.color_app_window);
 		getContentPane().add(desktopPane);
 		desktopPane.setLayout(null);
@@ -316,7 +173,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		textFieldProcessOrder.setColumns(10);
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
-		btnClose.setBounds(257, 194, 117, 32);
+		btnClose.setBounds(301, 186, 117, 32);
 		btnClose.setIcon(Common.icon_close);
 		btnClose.addActionListener(new ActionListener()
 		{
@@ -377,23 +234,25 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			public void actionPerformed(ActionEvent arg0)
 			{
 				JExcel export = new JExcel();
-				PreparedStatement temp = buildSQL();
-
-				ResultSet rs;
-
-				try
+				if (buildSQL("VIEW_QM_ANALYSIS_01","BATCH_SUFFIX,SAMPLE_DATE",true))
 				{
-					rs = temp.executeQuery();
-					export.saveAs("qm_results.xls", rs, Common.mainForm);
-				} catch (Exception e)
-				{
-					rs = null;
 
+					ResultSet rs;
+
+					try
+					{
+						rs = listStatement.executeQuery();
+						export.saveAs("qm_analysis.xls", rs, Common.mainForm);
+					} catch (Exception e)
+					{
+						rs = null;
+
+					}
 				}
 			}
 		});
 		btnExcel.setIcon(Common.icon_XLS);
-		btnExcel.setBounds(139, 194, 117, 32);
+		btnExcel.setBounds(142, 186, 117, 32);
 		desktopPane.add(btnExcel);
 
 		JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Sample_Date"));
@@ -462,22 +321,22 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		lbl_UserData2.setHorizontalAlignment(SwingConstants.TRAILING);
 		lbl_UserData2.setBounds(263, 44, 111, 22);
 		desktopPane.add(lbl_UserData2);
-		
+
 		JLabel4j_std lbl_UserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
 		lbl_UserData3.setHorizontalAlignment(SwingConstants.TRAILING);
 		lbl_UserData3.setBounds(6, 78, 111, 22);
 		desktopPane.add(lbl_UserData3);
-		
+
 		textFieldUserData3 = new JTextField4j(20);
 		textFieldUserData3.setColumns(20);
 		textFieldUserData3.setBounds(123, 78, 138, 22);
 		desktopPane.add(textFieldUserData3);
-		
+
 		JLabel4j_std lbl_UserData4 = new JLabel4j_std(lang.get("lbl_User_Data4"));
 		lbl_UserData4.setHorizontalAlignment(SwingConstants.TRAILING);
 		lbl_UserData4.setBounds(263, 78, 111, 22);
 		desktopPane.add(lbl_UserData4);
-		
+
 		textFieldUserData4 = new JTextField4j(20);
 		textFieldUserData4.setColumns(20);
 		textFieldUserData4.setBounds(386, 78, 138, 22);
@@ -514,7 +373,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		ne.getTextField().setFont(Common.font_std);
 		jSpinnerLimit.setEditor(ne);
 		jSpinnerLimit.setModel(jSpinnerIntModel);
-		jSpinnerLimit.setBounds(456, 152, 68, 25);
+		jSpinnerLimit.setBounds(397, 149, 68, 25);
 		jSpinnerLimit.setValue(1000);
 		jSpinnerLimit.getEditor().setSize(45, 21);
 		desktopPane.add(jSpinnerLimit);
@@ -522,7 +381,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		jCheckBoxLimit = new JCheckBox4j();
 		desktopPane.add(jCheckBoxLimit);
 		jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
-		jCheckBoxLimit.setBounds(433, 152, 21, 25);
+		jCheckBoxLimit.setBounds(374, 149, 21, 25);
 		jCheckBoxLimit.setSelected(true);
 		jCheckBoxLimit.addActionListener(new ActionListener()
 		{
@@ -542,43 +401,26 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		desktopPane.add(jLabel10);
 		jLabel10.setText(lang.get("lbl_Limit"));
 		jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-		jLabel10.setBounds(353, 152, 77, 22);
+		jLabel10.setBounds(294, 152, 77, 22);
 
 		JScrollPane scrollPaneDictionary = new JScrollPane();
-		scrollPaneDictionary.setBounds(559, 32, 552, 194);
+		scrollPaneDictionary.setBounds(559, 32, 552, 172);
 
-		listDictionary = new JList4j<JCheckListItem>();
+		listDictionary = new JList4j<JDBQMAnalysis>();
 
-		ComboBoxModel<JCheckListItem> model = new DefaultComboBoxModel<JCheckListItem>(dict.getTestCheckListList());
+
+		ComboBoxModel<JDBQMAnalysis> model = new DefaultComboBoxModel<JDBQMAnalysis>(dict.getAnalysisData());
 		listDictionary.setModel(model);
-		listDictionary.setCellRenderer(new MultiItemCheckListRenderer());
-		listDictionary.addMouseListener(new MouseAdapter()
-		{
-			public void mouseClicked(MouseEvent event)
-			{
-				JList4j<?> list = (JList4j<?>) event.getSource();
-
-				// Get index of item clicked
-
-				int index = list.locationToIndex(event.getPoint());
-				JCheckListItem item = (JCheckListItem) list.getModel().getElementAt(index);
-
-				// Toggle selected state
-
-				item.setSelected(!item.isSelected());
-
-				// Repaint cell
-
-				list.repaint(list.getCellBounds(index, index));
-			}
-		});
+		listDictionary.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listDictionary.setCellRenderer(Common.renderer_list);
+	
 
 		scrollPaneDictionary.setViewportView(listDictionary);
 
 		desktopPane.add(scrollPaneDictionary);
 
-		JLabel4j_std label4j_std_3 = new JLabel4j_std(lang.get("lbl_Test_ID"));
-		label4j_std_3.setBounds(559, 16, 111, 16);
+		JLabel4j_std label4j_std_3 = new JLabel4j_std(lang.get("mod_FRM_QM_RESULT_ANALYSIS"));
+		label4j_std_3.setBounds(559, 16, 218, 16);
 		desktopPane.add(label4j_std_3);
 
 		JButton btnInspectionIDLookup = new JButton();
@@ -616,6 +458,39 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		button.setIcon(Common.icon_lookup);
 		button.setBounds(503, 14, 21, 22);
 		desktopPane.add(button);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBackground(new Color(241, 241, 241));
+		panel.setBounds(559, 205, 120, 32);
+		desktopPane.add(panel);
+		
+		JButton4j button4jAdd = new JButton4j(Common.icon_add);
+		button4jAdd.setMnemonic('0');
+		button4jAdd.setFont(new Font("Arial", Font.PLAIN, 11));
+		button4jAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_RESULT_ANALYSIS_ADD"));
+		button4jAdd.setBounds(0, 0, 28, 28);
+		panel.add(button4jAdd);
+		
+		JButton4j button4jDelete = new JButton4j(Common.icon_delete);
+		button4jDelete.setMnemonic('0');
+		button4jDelete.setFont(new Font("Arial", Font.PLAIN, 11));
+		button4jDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_RESULT_ANALYSIS_DELETE"));
+		button4jDelete.setBounds(58, 0, 28, 28);
+		panel.add(button4jDelete);
+		
+		JButton4j button4jEdit = new JButton4j(Common.icon_edit);
+		button4jEdit.setMnemonic('0');
+		button4jEdit.setFont(new Font("Arial", Font.PLAIN, 11));
+		button4jEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_RESULT_ANALYSIS_EDIT"));
+		button4jEdit.setBounds(29, 0, 28, 28);
+		panel.add(button4jEdit);
+		
+		JButton4j button4jRefresh = new JButton4j(Common.icon_refresh);
+		button4jRefresh.setMnemonic('0');
+		button4jRefresh.setFont(new Font("Arial", Font.PLAIN, 11));
+		button4jRefresh.setBounds(87, 0, 28, 28);
+		panel.add(button4jRefresh);
 
 		SwingUtilities.invokeLater(new Runnable()
 		{
@@ -624,6 +499,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 				textFieldProcessOrder.requestFocus();
 				textFieldProcessOrder.setCaretPosition(textFieldProcessOrder.getText().length());
 				
+
 			}
 		});
 

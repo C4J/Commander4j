@@ -44,7 +44,7 @@ import com.commander4j.util.JUtility;
  * entered into the database they are linked back to the original sample using
  * this sample id.
  * <p>
- * <img alt="" src="./doc-files/APP_SAMPLE_ID.jpg" >
+ * <img alt="" src="./doc-files/APP_QM_SAMPLE.jpg" >
  * 
  * @see com.commander4j.db.JDBQMInspection JDBQMInspection
  * @see com.commander4j.db.JDBQMActivity JDBQMActivity

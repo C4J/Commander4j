@@ -1589,6 +1589,35 @@
 		<statement>
 			<id>JDBProcessOrderResource.getProperties</id>
 			<text>select * from {schema}app_process_order_resource where required_resource = ?</text>
-		</statement>														
+		</statement>	
+		<?JDBQMAnalysis?>	
+		<statement>
+			<id>JDBQMAnalysis.getAnalysis</id>
+			<text>select * from {schema}APP_QM_ANALYSIS where analysis_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMAnalysis.create</id>
+			<text>insert into {schema}APP_QM_ANALYSIS (analysis_id,description,view_name,sort_by,asc_desc,field_list,merge_spreadsheet,display_sequence) values (?,?,?,?,?,?,?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBQMAnalysis.delete</id>
+			<text>delete from {schema}APP_QM_ANALYSIS where analysis_id = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBQMAnalysis.getProperties</id>
+			<text>select * from {schema}APP_QM_ANALYSIS where analysis_id = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBQMAnalysis.getAnalysisData</id>
+			<text>select * from {schema}APP_QM_ANALYSIS order by display_sequence</text>
+		</statement>
+		<statement>
+			<id>JDBQMAnalysis.isValid</id>
+			<text>select * from {schema}APP_QM_ANALYSIS where analysis_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMSample.update</id>
+			<text>update {schema}APP_QM_ANALYSIS set sort_by=?,description=?,view_name=?,asc_desc=?,field_list=?,merge_spreadsheet=?,display_sequence=? where analysis_id=?</text>
+		</statement>															
 	</jdbcDriver>
 </SQL>
