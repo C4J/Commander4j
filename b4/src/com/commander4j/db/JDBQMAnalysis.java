@@ -118,6 +118,18 @@ public class JDBQMAnalysis
 		return rs;
 	}
 
+	public boolean isAscending()
+	{
+		boolean result = false;
+		
+		if (getAscDesc().equals("Y"))
+		{
+			result = true;
+		}
+		
+		return result;
+	}
+	
 	public boolean create(String analysisid, String sortby, String desc, String view, String ascdesc, String fields, String mergespreadsheet, int dispseq)
 	{
 		boolean result = false;
