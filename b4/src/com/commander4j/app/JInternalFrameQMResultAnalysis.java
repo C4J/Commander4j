@@ -31,8 +31,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -43,14 +41,13 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.ListSelectionModel;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import com.commander4j.calendar.JCalendarButton;
-import com.commander4j.db.JDBDespatch;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBProcessOrder;
@@ -58,7 +55,6 @@ import com.commander4j.db.JDBQMAnalysis;
 import com.commander4j.db.JDBQMSample;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
-import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
@@ -66,7 +62,6 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JDateControl;
-import com.commander4j.util.JExcel;
 import com.commander4j.util.JUtility;
 
 /**
@@ -88,9 +83,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 	private JDBQMAnalysis dict = new JDBQMAnalysis(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_std lblStatusBar;
 	private JTextField4j textFieldMaterial;
-	private JCheckBox4j checkBoxSampleFrom;
 	private JDateControl dateSampleFrom;
-	private JCheckBox4j checkBoxSampleTo;
 	private JDateControl dateSampleTo;
 	private JList4j<JDBQMAnalysis> listDictionary;
 	private JTextField4j textFieldUserData1;
@@ -99,53 +92,11 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 	private JTextField4j textFieldUserData4;
 	private JCalendarButton calendarButtonsampleDateFrom;
 	private JCalendarButton calendarButtonsampleDateTo;
-	private JSpinner jSpinnerLimit;
-	private JCheckBox4j jCheckBoxLimit;
-	private JLabel4j_std jLabel10;
-	private PreparedStatement listStatement;
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private JTextField4j textFieldBatchSuffix = new JTextField4j();
 	private JTextField4j textFieldResource = new JTextField4j();
-
-	private boolean buildSQL(String viewname, String sortOrder, Boolean ascending)
-	{
-		boolean result = false;
-
-		JDBQuery.closeStatement(listStatement);
-		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
-		query.clear();
-
-		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}"+viewname));
-		
-		query.addParamtoSQL("material=", textFieldMaterial.getText());
-		query.addParamtoSQL("batch_suffix like", textFieldBatchSuffix.getText());
-		query.addParamtoSQL("required_resource=", textFieldResource.getText());
-		query.addParamtoSQL("user_data_1 =", textFieldUserData1.getText());
-		query.addParamtoSQL("user_data_2 =", textFieldUserData2.getText());
-		query.addParamtoSQL("user_data_3 =", textFieldUserData3.getText());
-		query.addParamtoSQL("user_data_4 =", textFieldUserData4.getText());
-		
-		if (checkBoxSampleFrom.isSelected())
-		{
-			query.addParamtoSQL("sample_date>=", JUtility.getTimestampFromDate(dateSampleFrom.getDate()));
-
-		}
-
-		if (checkBoxSampleTo.isSelected())
-		{
-			query.addParamtoSQL("sample_date<=", JUtility.getTimestampFromDate(dateSampleTo.getDate()));
-		}
-
-		query.appendSort(sortOrder, ascending);
-		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
-
-		query.bindParams();
-		listStatement = query.getPreparedStatement();
-
-		result = true;
-
-		return result;
-	}
+	private JButton btnMaterialLookup = new JButton();
+	private JButton btnProcessOrderResourceLookup = new JButton();
 
 	public JInternalFrameQMResultAnalysis()
 	{
@@ -155,7 +106,6 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_MATERIAL where 1=2"));
 		query.applyRestriction(false, "none", 0);
 		query.bindParams();
-		listStatement = query.getPreparedStatement();
 
 		setVisible(true);
 		this.setClosable(true);
@@ -172,7 +122,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		setTitle("Results Enquiry");
 
 		JLabel4j_std lblProcessOrder = new JLabel4j_std(lang.get("lbl_Process_Order"));
-		lblProcessOrder.setBounds(275, 12, 111, 16);
+		lblProcessOrder.setBounds(267, 12, 119, 16);
 		lblProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
 		desktopPane.add(lblProcessOrder);
 
@@ -225,10 +175,10 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		JLabel4j_std lbl_material = new JLabel4j_std(lang.get("lbl_Material"));
 		lbl_material.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_material.setBounds(269, 46, 111, 16);
+		lbl_material.setBounds(267, 46, 119, 16);
 		desktopPane.add(lbl_material);
 
-		JButton4j btnReport = new JButton4j(lang.get("btn_Report"));
+		JButton4j btnReport = new JButton4j(lang.get("btn_Print"));
 		btnReport.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -236,40 +186,29 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 				if (listDictionary.isSelectionEmpty() == false)
 				{
 
-					String viewname;
-					String sortby;
-					boolean ascending;
-
-					viewname = ((JDBQMAnalysis) listDictionary.getSelectedValue()).getViewName();
-					sortby = ((JDBQMAnalysis) listDictionary.getSelectedValue()).getSortBy();
-					ascending = ((JDBQMAnalysis) listDictionary.getSelectedValue()).isAscending();
+					JDBQMAnalysis selectedReport = ((JDBQMAnalysis) listDictionary.getSelectedValue());
 					
-					//JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
+
 					HashMap<String, Object> parameters = new HashMap<String, Object>();
 					
-					parameters.put("P_BATCH_SUFFIX", textFieldBatchSuffix.getText());
-					parameters.put("P_SAMPLE_DATE_START", JUtility.getTimestampFromDate(dateSampleFrom.getDate()));
-					parameters.put("P_SAMPLE_DATE_END", JUtility.getTimestampFromDate(dateSampleTo.getDate()));
-					
-					JLaunchReport.runReport("RPT_QM_ANALYSIS_01", parameters, "", null, "");
-
-/*					JExcel export = new JExcel();
-
-					if (buildSQL(viewname, sortby, ascending))
+					if (selectedReport.getBatchSuffixReqd().equals("Y"))
 					{
+						parameters.put(selectedReport.getBatchSuffixParam(), textFieldBatchSuffix.getText());
+					}
+					
+					if (selectedReport.getSampleDateStartReqd().equals("Y"))
+					{
+						parameters.put(selectedReport.getSampleDateStartParam(), JUtility.getTimestampFromDate(dateSampleFrom.getDate()));
+					}
+				
+					if (selectedReport.getSampleDateEndReqd().equals("Y"))
+					{						
+						parameters.put(selectedReport.getSampleDateEndParam(), JUtility.getTimestampFromDate(dateSampleTo.getDate()));
+					}
+					
+					JLaunchReport.runReport(selectedReport.getModuleID(), parameters, "", null, "");
 
-						ResultSet rs;
 
-						try
-						{
-							rs = listStatement.executeQuery();
-							export.saveAs("qm_analysis.xls", rs, Common.mainForm);
-						} catch (Exception e)
-						{
-							rs = null;
-
-						}
-					}*/
 				}
 
 			}
@@ -280,74 +219,32 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Sample_Date"));
 		label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std.setBounds(12, 147, 108, 22);
+		label4j_std.setBounds(0, 146, 121, 22);
 		desktopPane.add(label4j_std);
-
-		checkBoxSampleFrom = new JCheckBox4j();
-		checkBoxSampleFrom.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				if (checkBoxSampleFrom.isSelected())
-				{
-					dateSampleFrom.setEnabled(true);
-					calendarButtonsampleDateFrom.setEnabled(true);
-				} else
-				{
-					dateSampleFrom.setEnabled(false);
-					calendarButtonsampleDateFrom.setEnabled(false);
-				}
-			}
-		});
-		checkBoxSampleFrom.setBackground(Color.WHITE);
-		checkBoxSampleFrom.setBounds(126, 144, 21, 25);
-		desktopPane.add(checkBoxSampleFrom);
 
 		dateSampleFrom = new JDateControl();
 		dateSampleFrom.setFont(new Font("Arial", Font.PLAIN, 11));
-		dateSampleFrom.setEnabled(false);
-		dateSampleFrom.setBounds(148, 144, 128, 22);
+		dateSampleFrom.setBounds(129, 143, 136, 25);
 		desktopPane.add(dateSampleFrom);
-
-		checkBoxSampleTo = new JCheckBox4j();
-		checkBoxSampleTo.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				if (checkBoxSampleTo.isSelected())
-				{
-					dateSampleTo.setEnabled(true);
-					calendarButtonsampleDateTo.setEnabled(true);
-				} else
-				{
-					dateSampleTo.setEnabled(false);
-					calendarButtonsampleDateTo.setEnabled(false);
-				}
-			}
-		});
-		checkBoxSampleTo.setBackground(Color.WHITE);
-		checkBoxSampleTo.setBounds(379, 144, 21, 25);
-		desktopPane.add(checkBoxSampleTo);
 
 		dateSampleTo = new JDateControl();
 		dateSampleTo.setFont(new Font("Arial", Font.PLAIN, 11));
-		dateSampleTo.setEnabled(false);
-		dateSampleTo.setBounds(402, 144, 128, 22);
+		dateSampleTo.setBounds(392, 143, 128, 22);
 		desktopPane.add(dateSampleTo);
 
 		JLabel4j_std lbl_UserData1 = new JLabel4j_std(lang.get("lbl_User_Data1"));
 		lbl_UserData1.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData1.setBounds(12, 74, 111, 22);
+		lbl_UserData1.setBounds(0, 76, 121, 22);
 		desktopPane.add(lbl_UserData1);
 
 		JLabel4j_std lbl_UserData2 = new JLabel4j_std(lang.get("lbl_User_Data2"));
 		lbl_UserData2.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData2.setBounds(269, 74, 111, 22);
+		lbl_UserData2.setBounds(267, 76, 119, 22);
 		desktopPane.add(lbl_UserData2);
 
 		JLabel4j_std lbl_UserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
 		lbl_UserData3.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData3.setBounds(12, 108, 111, 22);
+		lbl_UserData3.setBounds(0, 108, 121, 22);
 		desktopPane.add(lbl_UserData3);
 
 		textFieldUserData3 = new JTextField4j(20);
@@ -357,7 +254,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		JLabel4j_std lbl_UserData4 = new JLabel4j_std(lang.get("lbl_User_Data4"));
 		lbl_UserData4.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData4.setBounds(269, 108, 111, 22);
+		lbl_UserData4.setBounds(267, 108, 119, 22);
 		desktopPane.add(lbl_UserData4);
 
 		textFieldUserData4 = new JTextField4j(20);
@@ -367,69 +264,156 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		textFieldUserData1 = new JTextField4j(JDBQMSample.field_data_1);
 		textFieldUserData1.setColumns(20);
-		textFieldUserData1.setBounds(129, 74, 138, 22);
+		textFieldUserData1.setBounds(129, 76, 138, 22);
 		desktopPane.add(textFieldUserData1);
 
 		textFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
 		textFieldUserData2.setColumns(20);
-		textFieldUserData2.setBounds(392, 74, 138, 22);
+		textFieldUserData2.setBounds(392, 76, 138, 22);
 		desktopPane.add(textFieldUserData2);
 
 		calendarButtonsampleDateFrom = new JCalendarButton(dateSampleFrom);
 		calendarButtonsampleDateFrom.setSize(21, 25);
-		calendarButtonsampleDateFrom.setEnabled(false);
-		calendarButtonsampleDateFrom.setLocation(279, 144);
+		calendarButtonsampleDateFrom.setLocation(260, 143);
 		desktopPane.add(calendarButtonsampleDateFrom);
 
 		calendarButtonsampleDateTo = new JCalendarButton(dateSampleTo);
 		calendarButtonsampleDateTo.setSize(21, 25);
-		calendarButtonsampleDateTo.setEnabled(false);
-		calendarButtonsampleDateTo.setLocation(532, 144);
+		calendarButtonsampleDateTo.setLocation(522, 143);
 		desktopPane.add(calendarButtonsampleDateTo);
-
-		SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
-		jSpinnerIntModel.setMinimum(1);
-		jSpinnerIntModel.setMaximum(5000);
-		jSpinnerIntModel.setStepSize(1);
-		jSpinnerLimit = new JSpinner();
-		JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
-		ne.getTextField().setFont(Common.font_std);
-		jSpinnerLimit.setEditor(ne);
-		jSpinnerLimit.setModel(jSpinnerIntModel);
-		jSpinnerLimit.setBounds(299, 179, 68, 25);
-		jSpinnerLimit.setValue(1000);
-		jSpinnerLimit.getEditor().setSize(45, 21);
-		desktopPane.add(jSpinnerLimit);
-
-		jCheckBoxLimit = new JCheckBox4j();
-		desktopPane.add(jCheckBoxLimit);
-		jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
-		jCheckBoxLimit.setBounds(276, 179, 21, 25);
-		jCheckBoxLimit.setSelected(true);
-		jCheckBoxLimit.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent evt)
-			{
-				if (jCheckBoxLimit.isSelected())
-				{
-					jSpinnerLimit.setEnabled(true);
-				} else
-				{
-					jSpinnerLimit.setEnabled(false);
-				}
-			}
-		});
-
-		jLabel10 = new JLabel4j_std();
-		desktopPane.add(jLabel10);
-		jLabel10.setText(lang.get("lbl_Limit"));
-		jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-		jLabel10.setBounds(196, 182, 77, 22);
 
 		JScrollPane scrollPaneDictionary = new JScrollPane();
 		scrollPaneDictionary.setBounds(559, 32, 552, 172);
 
 		listDictionary = new JList4j<JDBQMAnalysis>();
+		listDictionary.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if (listDictionary.isSelectionEmpty() == false)
+				{
+
+					JDBQMAnalysis selectedReport = ((JDBQMAnalysis) listDictionary.getSelectedValue());
+					
+					if (selectedReport.getBatchSuffixReqd().equals("Y"))
+					{
+						textFieldBatchSuffix.setBackground(Color.YELLOW);
+						textFieldBatchSuffix.setEnabled(true);
+					}
+					else
+					{
+						textFieldBatchSuffix.setBackground(Color.WHITE);
+						textFieldBatchSuffix.setEnabled(false);
+					}
+					
+					if (selectedReport.getProcessOrderReqd().equals("Y"))
+					{
+						btnProcessOrderLookup.setEnabled(true);
+						textFieldProcessOrder.setBackground(Color.YELLOW);
+						textFieldProcessOrder.setEnabled(true);
+					}
+					else
+					{
+						btnProcessOrderLookup.setEnabled(false);
+						textFieldProcessOrder.setBackground(Color.WHITE);
+						textFieldProcessOrder.setEnabled(false);
+					}
+					
+					if (selectedReport.getMaterialReqd().equals("Y"))
+					{
+						btnMaterialLookup.setEnabled(true);
+						textFieldMaterial.setBackground(Color.YELLOW);
+						textFieldMaterial.setEnabled(true);
+					}
+					else
+					{
+						btnMaterialLookup.setEnabled(false);
+						textFieldMaterial.setBackground(Color.WHITE);
+						textFieldMaterial.setEnabled(false);
+					}
+					
+					if (selectedReport.getUserData1Reqd().equals("Y"))
+					{
+						textFieldUserData1.setBackground(Color.YELLOW);
+						textFieldUserData1.setEnabled(true);
+					}
+					else
+					{
+						textFieldUserData1.setBackground(Color.WHITE);
+						textFieldUserData1.setEnabled(false);
+					}
+					
+					if (selectedReport.getUserData2Reqd().equals("Y"))
+					{
+						textFieldUserData2.setBackground(Color.YELLOW);
+						textFieldUserData2.setEnabled(true);
+					}
+					else
+					{
+						textFieldUserData2.setBackground(Color.WHITE);
+						textFieldUserData2.setEnabled(false);
+					}
+					if (selectedReport.getUserData3Reqd().equals("Y"))
+					{
+						textFieldUserData3.setBackground(Color.YELLOW);
+						textFieldUserData3.setEnabled(true);
+					}
+					else
+					{
+						textFieldUserData3.setBackground(Color.WHITE);
+						textFieldUserData3.setEnabled(false);
+					}
+					
+					if (selectedReport.getUserData4Reqd().equals("Y"))
+					{
+						textFieldUserData4.setBackground(Color.YELLOW);
+						textFieldUserData4.setEnabled(true);
+					}
+					else
+					{
+						textFieldUserData4.setBackground(Color.WHITE);
+						textFieldUserData4.setEnabled(false);
+					}
+					
+					if (selectedReport.getSampleDateStartReqd().equals("Y"))
+					{
+						calendarButtonsampleDateFrom.setEnabled(true);
+						dateSampleFrom.setBackground(Color.YELLOW);
+						dateSampleFrom.setEnabled(true);
+					}
+					else
+					{
+						calendarButtonsampleDateFrom.setEnabled(false);
+						dateSampleFrom.setBackground(Color.WHITE);
+						dateSampleFrom.setEnabled(false);
+					}		
+
+					if (selectedReport.getSampleDateEndReqd().equals("Y"))
+					{
+						calendarButtonsampleDateTo.setEnabled(true);
+						dateSampleTo.setBackground(Color.YELLOW);
+						dateSampleTo.setEnabled(true);
+					}
+					else
+					{
+						calendarButtonsampleDateTo.setEnabled(false);
+						dateSampleTo.setBackground(Color.WHITE);
+						dateSampleTo.setEnabled(false);
+					}	
+
+					if (selectedReport.getResourceReqd().equals("Y"))
+					{
+						btnProcessOrderResourceLookup.setEnabled(true);
+						textFieldResource.setBackground(Color.YELLOW);
+						textFieldResource.setEnabled(true);
+					}
+					else
+					{
+						btnProcessOrderResourceLookup.setEnabled(false);
+						textFieldResource.setBackground(Color.WHITE);
+						textFieldResource.setEnabled(false);
+					}	
+				}
+			}
+		});
 
 		Vector<JDBQMAnalysis> vect= dict.getAnalysisData();
 		
@@ -451,8 +435,8 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		label4j_std_3.setBounds(559, 16, 218, 16);
 		desktopPane.add(label4j_std_3);
 
-		JButton button = new JButton();
-		button.addActionListener(new ActionListener()
+
+		btnMaterialLookup.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
@@ -465,9 +449,9 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 				}
 			}
 		});
-		button.setIcon(Common.icon_lookup);
-		button.setBounds(509, 44, 21, 22);
-		desktopPane.add(button);
+		btnMaterialLookup.setIcon(Common.icon_lookup);
+		btnMaterialLookup.setBounds(509, 44, 21, 22);
+		desktopPane.add(btnMaterialLookup);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -504,7 +488,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_Batch_Suffix"));
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_1.setBounds(12, 12, 111, 22);
+		label4j_std_1.setBounds(0, 12, 121, 22);
 		desktopPane.add(label4j_std_1);
 		
 		textFieldBatchSuffix.setBounds(129, 12, 138, 22);
@@ -512,16 +496,15 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		
 		JLabel4j_std label4j_std_2 = new JLabel4j_std(lang.get("lbl_Process_Order_Required_Resource"));
 		label4j_std_2.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_2.setBounds(10, 46, 111, 16);
+		label4j_std_2.setBounds(0, 46, 121, 16);
 		desktopPane.add(label4j_std_2);
 		
 
 		textFieldResource.setColumns(10);
 		textFieldResource.setCaretPosition(0);
-		textFieldResource.setBounds(127, 44, 119, 22);
+		textFieldResource.setBounds(129, 44, 119, 22);
 		desktopPane.add(textFieldResource);
 		
-		JButton btnProcessOrderResourceLookup = new JButton();
 		btnProcessOrderResourceLookup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JLaunchLookup.dlgCriteriaDefault = "Y";
