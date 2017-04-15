@@ -387,4 +387,68 @@ INSERT INTO SYS_MODULES (MODULE_ID,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,ICON_FIL
 	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Analysis_ID', 'PL', 'Analysis ID', 'Q')
 </statement>
 
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Delete','EN','Delete Analysis ?','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Add','EN','Add a new Analysis','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Delete','NL','Delete Analysis ?','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Add','NL','Add a new Analysis','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Delete','IT','Delete Analysis ?','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Add','IT','Add a new Analysis','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Delete','HU','Delete Analysis ?','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Add','HU','Add a new Analysis','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Delete','FR','Delete Analysis ?','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Add','FR','Add a new Analysis','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Delete','ES','Delete Analysis ?','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Add','ES','Add a new Analysis','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Delete','PL','Delete Analysis ?','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Add','PL','Add a new Analysis','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Delete','DE','Delete Analysis ?','')
+</statement>
+
+<statement>
+	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Add','DE','Add a new Analysis','')
+</statement>
+
 </DDL>

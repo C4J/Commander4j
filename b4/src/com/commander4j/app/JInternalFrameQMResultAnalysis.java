@@ -150,7 +150,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		JButton btnProcessOrderLookup = new JButton();
 		btnProcessOrderLookup.setEnabled(false);
 		btnProcessOrderLookup.setIcon(Common.icon_lookup);
-		btnProcessOrderLookup.setBounds(530, 12, 21, 22);
+		btnProcessOrderLookup.setBounds(533, 12, 21, 21);
 		btnProcessOrderLookup.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -320,26 +320,26 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 					if (selectedReport.getBatchSuffixReqd().equals("Y"))
 					{
-						textFieldBatchSuffix.setBackground(Color.YELLOW);
+						textFieldBatchSuffix.setBackground(Color.WHITE);
 						textFieldBatchSuffix.setEnabled(true);
 						textFieldBatchSuffix.requestFocus();
 						textFieldBatchSuffix.setCaretPosition(textFieldBatchSuffix.getText().length());
 					} else
 					{
-						textFieldBatchSuffix.setBackground(Color.WHITE);
+						textFieldBatchSuffix.setBackground(Common.color_edit_properties);
 						textFieldBatchSuffix.setEnabled(false);
 					}
 
 					if (selectedReport.getProcessOrderReqd().equals("Y"))
 					{
 						btnProcessOrderLookup.setEnabled(true);
-						textFieldProcessOrder.setBackground(Color.YELLOW);
+						textFieldProcessOrder.setBackground(Color.WHITE);
 						textFieldProcessOrder.setEnabled(true);
 						btnProcessOrderResourceLookup.setEnabled(true);
 					} else
 					{
 						btnProcessOrderLookup.setEnabled(false);
-						textFieldProcessOrder.setBackground(Color.WHITE);
+						textFieldProcessOrder.setBackground(Common.color_edit_properties);
 						textFieldProcessOrder.setEnabled(false);
 						btnProcessOrderResourceLookup.setEnabled(false);
 					}
@@ -347,66 +347,66 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 					if (selectedReport.getMaterialReqd().equals("Y"))
 					{
 						btnMaterialLookup.setEnabled(true);
-						textFieldMaterial.setBackground(Color.YELLOW);
+						textFieldMaterial.setBackground(Color.WHITE);
 						textFieldMaterial.setEnabled(true);
 						btnMaterialLookup.setEnabled(true);
 					} else
 					{
 						btnMaterialLookup.setEnabled(false);
-						textFieldMaterial.setBackground(Color.WHITE);
+						textFieldMaterial.setBackground(Common.color_edit_properties);
 						textFieldMaterial.setEnabled(false);
 						btnMaterialLookup.setEnabled(false);
 					}
 
 					if (selectedReport.getUserData1Reqd().equals("Y"))
 					{
-						textFieldUserData1.setBackground(Color.YELLOW);
+						textFieldUserData1.setBackground(Color.WHITE);
 						textFieldUserData1.setEnabled(true);
 					} else
 					{
-						textFieldUserData1.setBackground(Color.WHITE);
+						textFieldUserData1.setBackground(Common.color_edit_properties);
 						textFieldUserData1.setEnabled(false);
 					}
 
 					if (selectedReport.getUserData2Reqd().equals("Y"))
 					{
-						textFieldUserData2.setBackground(Color.YELLOW);
+						textFieldUserData2.setBackground(Color.WHITE);
 						textFieldUserData2.setEnabled(true);
 					} else
 					{
-						textFieldUserData2.setBackground(Color.WHITE);
+						textFieldUserData2.setBackground(Common.color_edit_properties);
 						textFieldUserData2.setEnabled(false);
 					}
 					if (selectedReport.getUserData3Reqd().equals("Y"))
 					{
-						textFieldUserData3.setBackground(Color.YELLOW);
+						textFieldUserData3.setBackground(Color.WHITE);
 						textFieldUserData3.setEnabled(true);
 					} else
 					{
-						textFieldUserData3.setBackground(Color.WHITE);
+						textFieldUserData3.setBackground(Common.color_edit_properties);
 						textFieldUserData3.setEnabled(false);
 					}
 
 					if (selectedReport.getUserData4Reqd().equals("Y"))
 					{
-						textFieldUserData4.setBackground(Color.YELLOW);
+						textFieldUserData4.setBackground(Color.WHITE);
 						textFieldUserData4.setEnabled(true);
 					} else
 					{
-						textFieldUserData4.setBackground(Color.WHITE);
+						textFieldUserData4.setBackground(Common.color_edit_properties);
 						textFieldUserData4.setEnabled(false);
 					}
 
 					if (selectedReport.getSampleDateStartReqd().equals("Y"))
 					{
 						calendarButtonsampleDateFrom.setEnabled(true);
-						dateSampleFrom.setBackground(Color.YELLOW);
+						dateSampleFrom.getEditor().getComponent(0).setBackground(Color.WHITE);
 						dateSampleFrom.setEnabled(true);
 						calendarButtonsampleDateFrom.setEnabled(true);
 					} else
 					{
 						calendarButtonsampleDateFrom.setEnabled(false);
-						dateSampleFrom.setBackground(Color.WHITE);
+						dateSampleFrom.getEditor().getComponent(0).setBackground(Common.color_edit_properties);
 						dateSampleFrom.setEnabled(false);
 						calendarButtonsampleDateFrom.setEnabled(false);
 					}
@@ -414,13 +414,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 					if (selectedReport.getSampleDateEndReqd().equals("Y"))
 					{
 						calendarButtonsampleDateTo.setEnabled(true);
-						dateSampleTo.setBackground(Color.YELLOW);
+						dateSampleTo.getEditor().getComponent(0).setBackground(Color.WHITE);
 						dateSampleTo.setEnabled(true);
 						calendarButtonsampleDateTo.setEnabled(true);
 					} else
 					{
 						calendarButtonsampleDateTo.setEnabled(false);
-						dateSampleTo.setBackground(Color.WHITE);
+						dateSampleTo.getEditor().getComponent(0).setBackground(Common.color_edit_properties);
 						dateSampleTo.setEnabled(false);
 						calendarButtonsampleDateTo.setEnabled(false);
 					}
@@ -428,13 +428,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 					if (selectedReport.getResourceReqd().equals("Y"))
 					{
 						btnProcessOrderResourceLookup.setEnabled(true);
-						textFieldResource.setBackground(Color.YELLOW);
+						textFieldResource.setBackground(Color.WHITE);
 						textFieldResource.setEnabled(true);
 						btnProcessOrderResourceLookup.setEnabled(true);
 					} else
 					{
 						btnProcessOrderResourceLookup.setEnabled(false);
-						textFieldResource.setBackground(Color.WHITE);
+						textFieldResource.setBackground(Common.color_edit_properties);
 						textFieldResource.setEnabled(false);
 						btnProcessOrderResourceLookup.setEnabled(false);
 					}
@@ -442,25 +442,16 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		});
 
-		/*
-		 * Vector<JDBQMAnalysis> vect= analdb.getAnalysisData();
-		 * 
-		 * ComboBoxModel<JDBQMAnalysis> model = new
-		 * DefaultComboBoxModel<JDBQMAnalysis>(vect);
-		 * listDictionary.setModel(model);
-		 * listDictionary.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		 * listDictionary.setCellRenderer(Common.renderer_list);
-		 */
-
 		populateList("");
 
 		scrollPaneDictionary.setViewportView(listDictionary);
 
 		desktopPane.add(scrollPaneDictionary);
 
-		/*
-		 * if (vect.size()>0) { listDictionary.setSelectedIndex(0); }
-		 */
+		if (listDictionary.getModel().getSize() > 0)
+		{
+			listDictionary.setSelectedIndex(0);
+		}
 
 		JLabel4j_std label4j_std_3 = new JLabel4j_std(lang.get("mod_FRM_QM_RESULT_ANALYSIS"));
 		label4j_std_3.setBounds(12, 190, 218, 16);
@@ -481,7 +472,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		});
 		btnMaterialLookup.setIcon(Common.icon_lookup);
-		btnMaterialLookup.setBounds(530, 46, 21, 22);
+		btnMaterialLookup.setBounds(533, 46, 21, 21);
 		desktopPane.add(btnMaterialLookup);
 
 		JPanel panel = new JPanel();
@@ -505,6 +496,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		panel.add(button4jAdd);
 
 		JButton4j button4jDelete = new JButton4j(Common.icon_delete);
+		button4jDelete.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				deleteRecord();
+			}
+		});
 		button4jDelete.setMnemonic('0');
 		button4jDelete.setFont(new Font("Arial", Font.PLAIN, 11));
 		button4jDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_RESULT_ANALYSIS_DELETE"));
@@ -580,7 +578,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		});
 		btnProcessOrderResourceLookup.setIcon(Common.icon_lookup);
-		btnProcessOrderResourceLookup.setBounds(265, 46, 21, 22);
+		btnProcessOrderResourceLookup.setBounds(269, 46, 21, 21);
 		desktopPane.add(btnProcessOrderResourceLookup);
 
 		SwingUtilities.invokeLater(new Runnable()
@@ -614,12 +612,31 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		}
 
 		listDictionary.setSelectedIndex(sel);
+	}
 
+	private void deleteRecord()
+	{
+
+		if (listDictionary.isSelectionEmpty() == false)
+		{
+
+			JDBQMAnalysis selectedReport = ((JDBQMAnalysis) listDictionary.getSelectedValue());
+
+			String analid = selectedReport.getAnalysisID();
+
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Analysis_Delete") + " " + analid + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			if (n == 0)
+			{
+				JDBQMAnalysis newAnal = new JDBQMAnalysis(Common.selectedHostID, Common.sessionID);
+				newAnal.setAnalysisID(analid);
+				newAnal.delete();
+				populateList("");
+			}
+		}
 	}
 
 	private void addRecord()
 	{
-
 		String analid;
 
 		analid = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Analysis_Add"));

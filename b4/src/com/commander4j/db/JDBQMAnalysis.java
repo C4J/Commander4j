@@ -109,7 +109,7 @@ public class JDBQMAnalysis
 		setUserData2Reqd("N");
 		setUserData2Param("P_USER_DATA_2");
 		setUserData3Reqd("N");
-		setUserData4Param("P_USER_DATA_3");
+		setUserData3Param("P_USER_DATA_3");
 		setUserData4Reqd("N");
 		setUserData4Param("P_USER_DATA_4");				
 		setResourceReqd("N");

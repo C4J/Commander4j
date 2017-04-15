@@ -399,4 +399,36 @@ INSERT INTO [dbo].[SYS_MODULES] ([MODULE_ID],[RF_ACTIVE],[DK_ACTIVE],[MODULE_TYP
 	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Analysis_ID', 'PL', 'Analysis ID', 'Q')
 </statement>
 
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Delete','EN','Delete Analysis ?','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Input','EN','Input new Analysis','')</statement>
+
+
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Delete','IT','Delete Analysis ?','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Input','IT','Input new Analysis','')</statement>
+
+
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Delete','NL','Delete Analysis ?','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Input','NL','Input new Analysis','')</statement>
+
+
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Delete','HU','Delete Analysis ?','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Input','HU','Input new Analysis','')</statement>
+
+
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Delete','FR','Delete Analysis ?','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Input','FR','Input new Analysis','')</statement>
+
+
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Delete','ES','Delete Analysis ?','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Input','ES','Input new Analysis','')</statement>
+
+
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Delete','PL','Delete Analysis ?','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Input','PL','Input new Analysis','')</statement>
+
+
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Delete','DE','Delete Analysis ?','')</statement>
+<statement>insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Analysis_Input','DE','Input new Analysis','')</statement>
+
+
 </DDL>

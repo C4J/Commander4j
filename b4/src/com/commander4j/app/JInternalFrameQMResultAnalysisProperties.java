@@ -111,20 +111,22 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 	private JCheckBox4j chckbxDateFromReqd;
 	private JCheckBox4j chckbxDateToReqd;
 	private JTextField4j jTextFieldDateFromParam;
-	private JTextField4j jTextFieldDateToParam ;
+	private JTextField4j jTextFieldDateToParam;
 
 	public JInternalFrameQMResultAnalysisProperties(String id)
 	{
 		super();
+		
+		id = id.toUpperCase();
 		lanalysisID = id;
 		moduleList.add(null);
 		moduleList.addAll(mod.getModuleIdsByType("REPORT"));
 
 		initGUI();
-		setTitle("Analysis Properties ["+id+"]");
-		
+		setTitle("Analysis Properties [" + id + "]");
+
 		jTextFieldAnalysisID.setText(id);
-		
+
 		load(id);
 
 		final JHelp help = new JHelp();
@@ -133,7 +135,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
-		
+
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
@@ -151,7 +153,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 		{
 			{
 				this.setPreferredSize(new java.awt.Dimension(448, 289));
-				this.setBounds(25, 25, 501, 547);
+				this.setBounds(25, 25, 501, 544);
 				setVisible(true);
 				this.setClosable(true);
 				this.setIconifiable(true);
@@ -164,7 +166,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 				jButtonSave = new JButton4j(Common.icon_update);
 				jDesktopPane1.add(jButtonSave);
 				jButtonSave.setText(lang.get("btn_Save"));
-				jButtonSave.setBounds(59, 465, 112, 32);
+				jButtonSave.setBounds(59, 461, 112, 32);
 				jButtonSave.setEnabled(false);
 				jButtonSave.addActionListener(new ActionListener()
 				{
@@ -195,7 +197,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 
 				jTextFieldDescription = new JTextField4j(JDBProcessOrder.field_description);
 				jDesktopPane1.add(jTextFieldDescription);
-				jTextFieldDescription.setBounds(178, 45, 294, 21);
+				jTextFieldDescription.setBounds(178, 45, 282, 21);
 				jTextFieldDescription.addKeyListener(new KeyAdapter()
 				{
 					public void keyTyped(KeyEvent evt)
@@ -206,7 +208,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 
 				jTextFieldBatchSuffixParam = new JTextField4j();
 				jDesktopPane1.add(jTextFieldBatchSuffixParam);
-				jTextFieldBatchSuffixParam.setBounds(224, 228, 248, 21);
+				jTextFieldBatchSuffixParam.setBounds(212, 224, 248, 21);
 				jTextFieldBatchSuffixParam.addKeyListener(new KeyAdapter()
 				{
 					public void keyTyped(KeyEvent evt)
@@ -217,7 +219,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 
 				jTextFieldProcessOrderParam = new JTextField4j();
 				jDesktopPane1.add(jTextFieldProcessOrderParam);
-				jTextFieldProcessOrderParam.setBounds(224, 257, 248, 21);
+				jTextFieldProcessOrderParam.setBounds(212, 253, 248, 21);
 				jTextFieldProcessOrderParam.addKeyListener(new KeyAdapter()
 				{
 					public void keyTyped(KeyEvent evt)
@@ -228,7 +230,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 
 				jTextFieldMaterialParam = new JTextField4j();
 				jDesktopPane1.add(jTextFieldMaterialParam);
-				jTextFieldMaterialParam.setBounds(224, 286, 248, 21);
+				jTextFieldMaterialParam.setBounds(212, 282, 248, 21);
 				jTextFieldMaterialParam.addKeyListener(new KeyAdapter()
 				{
 					public void keyTyped(KeyEvent evt)
@@ -239,7 +241,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 
 				jTextFieldResourceParam = new JTextField4j();
 				jDesktopPane1.add(jTextFieldResourceParam);
-				jTextFieldResourceParam.setBounds(224, 313, 248, 21);
+				jTextFieldResourceParam.setBounds(212, 309, 248, 21);
 				jTextFieldResourceParam.addKeyListener(new KeyAdapter()
 				{
 					public void keyTyped(KeyEvent evt)
@@ -250,7 +252,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 
 				jTextFieldUserData1Param = new JTextField4j();
 				jDesktopPane1.add(jTextFieldUserData1Param);
-				jTextFieldUserData1Param.setBounds(224, 340, 248, 21);
+				jTextFieldUserData1Param.setBounds(212, 336, 248, 21);
 				jTextFieldUserData1Param.addKeyListener(new KeyAdapter()
 				{
 					public void keyTyped(KeyEvent evt)
@@ -261,7 +263,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 
 				jTextFieldUserData2Param = new JTextField4j();
 				jDesktopPane1.add(jTextFieldUserData2Param);
-				jTextFieldUserData2Param.setBounds(224, 367, 248, 21);
+				jTextFieldUserData2Param.setBounds(212, 363, 248, 21);
 				jTextFieldUserData2Param.addKeyListener(new KeyAdapter()
 				{
 					public void keyTyped(KeyEvent evt)
@@ -272,7 +274,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 
 				jTextFieldUserData3Param = new JTextField4j();
 				jDesktopPane1.add(jTextFieldUserData3Param);
-				jTextFieldUserData3Param.setBounds(224, 394, 248, 21);
+				jTextFieldUserData3Param.setBounds(212, 390, 248, 21);
 				jTextFieldUserData3Param.addKeyListener(new KeyAdapter()
 				{
 					public void keyTyped(KeyEvent evt)
@@ -283,7 +285,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 
 				jTextFieldUserData4Param = new JTextField4j();
 				jDesktopPane1.add(jTextFieldUserData4Param);
-				jTextFieldUserData4Param.setBounds(224, 423, 248, 21);
+				jTextFieldUserData4Param.setBounds(212, 419, 248, 21);
 				jTextFieldUserData4Param.addKeyListener(new KeyAdapter()
 				{
 					public void keyTyped(KeyEvent evt)
@@ -295,12 +297,12 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 				jButtonHelp = new JButton4j(Common.icon_help);
 				jDesktopPane1.add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
-				jButtonHelp.setBounds(178, 465, 112, 32);
+				jButtonHelp.setBounds(178, 461, 112, 32);
 
 				jButtonClose = new JButton4j(Common.icon_close);
 				jDesktopPane1.add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
-				jButtonClose.setBounds(297, 465, 112, 32);
+				jButtonClose.setBounds(297, 461, 112, 32);
 				jButtonClose.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent evt)
@@ -317,7 +319,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 						jButtonSave.setEnabled(true);
 					}
 				});
-				chckbxBatchSuffixReqd.setBounds(12, 228, 204, 21);
+				chckbxBatchSuffixReqd.setBounds(33, 224, 171, 21);
 				jDesktopPane1.add(chckbxBatchSuffixReqd);
 
 				chckbxProcessOrderReqd = new JCheckBox4j(lang.get("lbl_Process_Order"));
@@ -328,7 +330,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 						jButtonSave.setEnabled(true);
 					}
 				});
-				chckbxProcessOrderReqd.setBounds(12, 257, 204, 21);
+				chckbxProcessOrderReqd.setBounds(33, 253, 171, 21);
 				jDesktopPane1.add(chckbxProcessOrderReqd);
 
 				chckbxMaterialReqd = new JCheckBox4j(lang.get("lbl_Material"));
@@ -339,7 +341,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 						jButtonSave.setEnabled(true);
 					}
 				});
-				chckbxMaterialReqd.setBounds(12, 286, 204, 21);
+				chckbxMaterialReqd.setBounds(33, 282, 171, 21);
 				jDesktopPane1.add(chckbxMaterialReqd);
 
 				chckbxResourceReqd = new JCheckBox4j(lang.get("lbl_Process_Order_Required_Resource"));
@@ -350,7 +352,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 						jButtonSave.setEnabled(true);
 					}
 				});
-				chckbxResourceReqd.setBounds(12, 313, 204, 21);
+				chckbxResourceReqd.setBounds(33, 309, 171, 21);
 				jDesktopPane1.add(chckbxResourceReqd);
 
 				chckbxUserData1Reqd = new JCheckBox4j(lang.get("lbl_User_Data1"));
@@ -361,7 +363,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 						jButtonSave.setEnabled(true);
 					}
 				});
-				chckbxUserData1Reqd.setBounds(12, 340, 204, 21);
+				chckbxUserData1Reqd.setBounds(33, 336, 171, 21);
 				jDesktopPane1.add(chckbxUserData1Reqd);
 
 				chckbxUserData2Reqd = new JCheckBox4j(lang.get("lbl_User_Data2"));
@@ -372,7 +374,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 						jButtonSave.setEnabled(true);
 					}
 				});
-				chckbxUserData2Reqd.setBounds(12, 367, 204, 21);
+				chckbxUserData2Reqd.setBounds(33, 363, 171, 21);
 				jDesktopPane1.add(chckbxUserData2Reqd);
 
 				chckbxUserData3Reqd = new JCheckBox4j(lang.get("lbl_User_Data3"));
@@ -383,7 +385,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 						jButtonSave.setEnabled(true);
 					}
 				});
-				chckbxUserData3Reqd.setBounds(12, 394, 204, 21);
+				chckbxUserData3Reqd.setBounds(33, 390, 171, 21);
 				jDesktopPane1.add(chckbxUserData3Reqd);
 
 				chckbxUserData4Reqd = new JCheckBox4j(lang.get("lbl_User_Data4"));
@@ -394,17 +396,19 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 						jButtonSave.setEnabled(true);
 					}
 				});
-				chckbxUserData4Reqd.setBounds(12, 423, 204, 21);
+				chckbxUserData4Reqd.setBounds(33, 419, 171, 21);
 				jDesktopPane1.add(chckbxUserData4Reqd);
 
 				ComboBoxModel<JDBListData> jComboBox1Model = new DefaultComboBoxModel<JDBListData>(moduleList);
-				comboBox4jModuleID.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				comboBox4jModuleID.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						jButtonSave.setEnabled(true);
 					}
 				});
 				comboBox4jModuleID.setModel(jComboBox1Model);
-				comboBox4jModuleID.setBounds(178, 110, 294, 21);
+				comboBox4jModuleID.setBounds(178, 110, 282, 21);
 				jDesktopPane1.add(comboBox4jModuleID);
 				spinnerSequence.setFont(new Font("Arial", Font.PLAIN, 11));
 				spinnerSequence.addChangeListener(new ChangeListener()
@@ -434,41 +438,45 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 				jLabelRequired.setFont(new Font("Arial", Font.BOLD, 11));
 				jLabelRequired.setText(lang.get("lbl_Input_Reqd"));
 				jLabelRequired.setHorizontalAlignment(SwingConstants.LEFT);
-				jLabelRequired.setBounds(12, 143, 187, 21);
+				jLabelRequired.setBounds(33, 139, 187, 21);
 				jDesktopPane1.add(jLabelRequired);
 
 				JLabel4j_std jLabelParameter = new JLabel4j_std();
 				jLabelParameter.setFont(new Font("Arial", Font.BOLD, 11));
 				jLabelParameter.setText(lang.get("lbl_Report_Parameter_Name"));
 				jLabelParameter.setHorizontalAlignment(SwingConstants.LEFT);
-				jLabelParameter.setBounds(224, 143, 248, 21);
+				jLabelParameter.setBounds(212, 143, 248, 21);
 				jDesktopPane1.add(jLabelParameter);
-				
-				chckbxDateFromReqd = new JCheckBox4j(lang.get("lbl_Sample_Date")+ " >=");
-				chckbxDateFromReqd.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+
+				chckbxDateFromReqd = new JCheckBox4j(lang.get("lbl_Sample_Date") + " >=");
+				chckbxDateFromReqd.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						jButtonSave.setEnabled(true);
 					}
 				});
-				chckbxDateFromReqd.setBounds(12, 172, 204, 21);
+				chckbxDateFromReqd.setBounds(33, 168, 171, 21);
 				jDesktopPane1.add(chckbxDateFromReqd);
-				
-				chckbxDateToReqd = new JCheckBox4j(lang.get("lbl_Sample_Date")+ " <=");
-				chckbxDateToReqd.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+
+				chckbxDateToReqd = new JCheckBox4j(lang.get("lbl_Sample_Date") + " <=");
+				chckbxDateToReqd.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						jButtonSave.setEnabled(true);
 					}
 				});
-				chckbxDateToReqd.setBounds(12, 201, 204, 21);
+				chckbxDateToReqd.setBounds(33, 197, 171, 21);
 				jDesktopPane1.add(chckbxDateToReqd);
-				
+
 				jTextFieldDateFromParam = new JTextField4j();
-				jTextFieldDateFromParam.setBounds(224, 172, 248, 21);
+				jTextFieldDateFromParam.setBounds(212, 168, 248, 21);
 				jDesktopPane1.add(jTextFieldDateFromParam);
-				
+
 				jTextFieldDateToParam = new JTextField4j();
-				jTextFieldDateToParam.setBounds(224, 201, 248, 21);
-				jDesktopPane1.add(jTextFieldDateToParam);				
+				jTextFieldDateToParam.setBounds(212, 197, 248, 21);
+				jDesktopPane1.add(jTextFieldDateToParam);
 
 			}
 		} catch (Exception e)
@@ -479,52 +487,54 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 
 	private void load(String lanalysisID)
 	{
-		if (analysis.getAnalysisProperties(lanalysisID))
+		if (analysis.getAnalysisProperties(lanalysisID) == false)
 		{
-			jTextFieldDescription.setText(analysis.getDescription());
-			spinnerSequence.setValue(analysis.getDisplaySequence());
-			chckbxBatchSuffixReqd.setSelected(analysis.isBatchSuffixReqd());
-			chckbxProcessOrderReqd.setSelected(analysis.isProcessOrderReqd());
-			chckbxMaterialReqd.setSelected(analysis.isMaterialReqd());
-			chckbxResourceReqd.setSelected(analysis.isResourceReqd());
-			chckbxUserData1Reqd.setSelected(analysis.isUserData1Reqd());
-			chckbxUserData2Reqd.setSelected(analysis.isUserData2Reqd());
-			chckbxUserData3Reqd.setSelected(analysis.isUserData3Reqd());
-			chckbxUserData4Reqd.setSelected(analysis.isUserData4Reqd());
-			chckbxDateFromReqd.setSelected(analysis.isSampleDateStartReqd());
-			chckbxDateToReqd.setSelected(analysis.isSampleDateEndReqd());
-			
-			jTextFieldBatchSuffixParam.setText(analysis.getBatchSuffixParam());
-			jTextFieldDescription.setText(analysis.getDescription());
-			jTextFieldProcessOrderParam.setText(analysis.getProcessOrderParam());
-			jTextFieldMaterialParam.setText(analysis.getMaterialParam());
-			jTextFieldResourceParam.setText(analysis.getResourceParam());
-			jTextFieldUserData1Param.setText(analysis.getUserData1Param());
-			jTextFieldUserData2Param.setText(analysis.getUserData2Param());
-			jTextFieldUserData3Param.setText(analysis.getUserData3Param());
-			jTextFieldUserData4Param.setText(analysis.getUserData4Param());
-			jTextFieldDateFromParam.setText(analysis.getSampleDateStartParam());
-			jTextFieldDateToParam.setText(analysis.getSampleDateEndParam());
-			
-			spinnerSequence.setValue(analysis.getDisplaySequence());
-			
-			for (int x = 1; x < moduleList.size(); x++)
-			{
-				if (moduleList.get(x).getmData().equals(analysis.getModuleID()))
-				{
-					comboBox4jModuleID.setSelectedIndex(x);
-				}
-			}
-
-			jButtonSave.setEnabled(false);
+			analysis.clear();
 		}
+		jTextFieldDescription.setText(analysis.getDescription());
+		spinnerSequence.setValue(analysis.getDisplaySequence());
+		chckbxBatchSuffixReqd.setSelected(analysis.isBatchSuffixReqd());
+		chckbxProcessOrderReqd.setSelected(analysis.isProcessOrderReqd());
+		chckbxMaterialReqd.setSelected(analysis.isMaterialReqd());
+		chckbxResourceReqd.setSelected(analysis.isResourceReqd());
+		chckbxUserData1Reqd.setSelected(analysis.isUserData1Reqd());
+		chckbxUserData2Reqd.setSelected(analysis.isUserData2Reqd());
+		chckbxUserData3Reqd.setSelected(analysis.isUserData3Reqd());
+		chckbxUserData4Reqd.setSelected(analysis.isUserData4Reqd());
+		chckbxDateFromReqd.setSelected(analysis.isSampleDateStartReqd());
+		chckbxDateToReqd.setSelected(analysis.isSampleDateEndReqd());
+
+		jTextFieldBatchSuffixParam.setText(analysis.getBatchSuffixParam());
+		jTextFieldDescription.setText(analysis.getDescription());
+		jTextFieldProcessOrderParam.setText(analysis.getProcessOrderParam());
+		jTextFieldMaterialParam.setText(analysis.getMaterialParam());
+		jTextFieldResourceParam.setText(analysis.getResourceParam());
+		jTextFieldUserData1Param.setText(analysis.getUserData1Param());
+		jTextFieldUserData2Param.setText(analysis.getUserData2Param());
+		jTextFieldUserData3Param.setText(analysis.getUserData3Param());
+		jTextFieldUserData4Param.setText(analysis.getUserData4Param());
+		jTextFieldDateFromParam.setText(analysis.getSampleDateStartParam());
+		jTextFieldDateToParam.setText(analysis.getSampleDateEndParam());
+
+		spinnerSequence.setValue(analysis.getDisplaySequence());
+
+		for (int x = 1; x < moduleList.size(); x++)
+		{
+			if (moduleList.get(x).getmData().equals(analysis.getModuleID()))
+			{
+				comboBox4jModuleID.setSelectedIndex(x);
+			}
+		}
+
+		jButtonSave.setEnabled(false);
+
 	}
 
 	private void save()
 	{
 		analysis.setAnalysisID(lanalysisID);
 		analysis.setDescription(jTextFieldDescription.getText());
-		
+
 		analysis.setBatchSuffixParam(jTextFieldBatchSuffixParam.getText());
 		analysis.setDescription(jTextFieldDescription.getText());
 		analysis.setProcessOrderParam(jTextFieldProcessOrderParam.getText());
@@ -536,7 +546,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 		analysis.setUserData4Param(jTextFieldUserData4Param.getText());
 		analysis.setSampleDateStartParam(jTextFieldDateFromParam.getText());
 		analysis.setSampleDateEndParam(jTextFieldDateToParam.getText());
-		
+
 		analysis.setBatchSuffixReqd(chckbxBatchSuffixReqd.isSelected());
 		analysis.setProcessOrderReqd(chckbxProcessOrderReqd.isSelected());
 		analysis.setMaterialReqd(chckbxMaterialReqd.isSelected());
@@ -546,11 +556,17 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 		analysis.setUserData3Reqd(chckbxUserData3Reqd.isSelected());
 		analysis.setUserData4Reqd(chckbxUserData4Reqd.isSelected());
 		analysis.setSampleDateStartReqd(chckbxDateFromReqd.isSelected());
-		analysis.setSampleDateEndReqd(chckbxDateToReqd.isSelected());		
-		
+		analysis.setSampleDateEndReqd(chckbxDateToReqd.isSelected());
+
 		analysis.setDisplaySequence(Integer.valueOf(spinnerSequence.getValue().toString()));
-		
-		analysis.setModuleID(comboBox4jModuleID.getSelectedItem().toString());
+
+		try
+		{
+			analysis.setModuleID(comboBox4jModuleID.getSelectedItem().toString());
+		} catch (Exception ex)
+		{
+			analysis.setModuleID("");
+		}
 
 		if (analysis.isValidAnalysis() == false)
 		{
