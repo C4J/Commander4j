@@ -110,11 +110,11 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 1138, 303);
+		setBounds(100, 100, 602, 491);
 		getContentPane().setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 1128, 274);
+		desktopPane.setBounds(0, 0, 598, 465);
 		desktopPane.setBackground(Common.color_app_window);
 		getContentPane().add(desktopPane);
 		desktopPane.setLayout(null);
@@ -122,18 +122,18 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		setTitle("Results Enquiry");
 
 		JLabel4j_std lblProcessOrder = new JLabel4j_std(lang.get("lbl_Process_Order"));
-		lblProcessOrder.setBounds(267, 12, 119, 16);
+		lblProcessOrder.setBounds(288, 14, 119, 16);
 		lblProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
 		desktopPane.add(lblProcessOrder);
 
 		textFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
-		textFieldProcessOrder.setBounds(392, 10, 119, 22);
+		textFieldProcessOrder.setBounds(413, 12, 119, 22);
 
 		desktopPane.add(textFieldProcessOrder);
 		textFieldProcessOrder.setColumns(10);
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
-		btnClose.setBounds(307, 216, 117, 32);
+		btnClose.setBounds(323, 414, 117, 32);
 		btnClose.setIcon(Common.icon_close);
 		btnClose.addActionListener(new ActionListener()
 		{
@@ -146,7 +146,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		JButton btnProcessOrderLookup = new JButton();
 		btnProcessOrderLookup.setIcon(Common.icon_lookup);
-		btnProcessOrderLookup.setBounds(509, 10, 21, 22);
+		btnProcessOrderLookup.setBounds(530, 12, 21, 22);
 		btnProcessOrderLookup.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)
@@ -170,12 +170,12 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		textFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 		textFieldMaterial.setColumns(10);
-		textFieldMaterial.setBounds(392, 44, 119, 22);
+		textFieldMaterial.setBounds(413, 46, 119, 22);
 		desktopPane.add(textFieldMaterial);
 
 		JLabel4j_std lbl_material = new JLabel4j_std(lang.get("lbl_Material"));
 		lbl_material.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_material.setBounds(267, 46, 119, 16);
+		lbl_material.setBounds(288, 48, 119, 16);
 		desktopPane.add(lbl_material);
 
 		JButton4j btnReport = new JButton4j(lang.get("btn_Print"));
@@ -214,76 +214,76 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		});
 		btnReport.setIcon(Common.icon_report);
-		btnReport.setBounds(148, 216, 117, 32);
+		btnReport.setBounds(164, 414, 117, 32);
 		desktopPane.add(btnReport);
 
 		JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Sample_Date"));
 		label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std.setBounds(0, 146, 121, 22);
+		label4j_std.setBounds(21, 148, 121, 22);
 		desktopPane.add(label4j_std);
 
 		dateSampleFrom = new JDateControl();
 		dateSampleFrom.setFont(new Font("Arial", Font.PLAIN, 11));
-		dateSampleFrom.setBounds(129, 143, 136, 25);
+		dateSampleFrom.setBounds(150, 145, 136, 25);
 		desktopPane.add(dateSampleFrom);
 
 		dateSampleTo = new JDateControl();
 		dateSampleTo.setFont(new Font("Arial", Font.PLAIN, 11));
-		dateSampleTo.setBounds(392, 143, 128, 22);
+		dateSampleTo.setBounds(413, 145, 128, 22);
 		desktopPane.add(dateSampleTo);
 
 		JLabel4j_std lbl_UserData1 = new JLabel4j_std(lang.get("lbl_User_Data1"));
 		lbl_UserData1.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData1.setBounds(0, 76, 121, 22);
+		lbl_UserData1.setBounds(21, 78, 121, 22);
 		desktopPane.add(lbl_UserData1);
 
 		JLabel4j_std lbl_UserData2 = new JLabel4j_std(lang.get("lbl_User_Data2"));
 		lbl_UserData2.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData2.setBounds(267, 76, 119, 22);
+		lbl_UserData2.setBounds(288, 78, 119, 22);
 		desktopPane.add(lbl_UserData2);
 
 		JLabel4j_std lbl_UserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
 		lbl_UserData3.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData3.setBounds(0, 108, 121, 22);
+		lbl_UserData3.setBounds(21, 110, 121, 22);
 		desktopPane.add(lbl_UserData3);
 
 		textFieldUserData3 = new JTextField4j(20);
 		textFieldUserData3.setColumns(20);
-		textFieldUserData3.setBounds(129, 108, 138, 22);
+		textFieldUserData3.setBounds(150, 110, 138, 22);
 		desktopPane.add(textFieldUserData3);
 
 		JLabel4j_std lbl_UserData4 = new JLabel4j_std(lang.get("lbl_User_Data4"));
 		lbl_UserData4.setHorizontalAlignment(SwingConstants.TRAILING);
-		lbl_UserData4.setBounds(267, 108, 119, 22);
+		lbl_UserData4.setBounds(288, 110, 119, 22);
 		desktopPane.add(lbl_UserData4);
 
 		textFieldUserData4 = new JTextField4j(20);
 		textFieldUserData4.setColumns(20);
-		textFieldUserData4.setBounds(392, 108, 138, 22);
+		textFieldUserData4.setBounds(413, 110, 138, 22);
 		desktopPane.add(textFieldUserData4);
 
 		textFieldUserData1 = new JTextField4j(JDBQMSample.field_data_1);
 		textFieldUserData1.setColumns(20);
-		textFieldUserData1.setBounds(129, 76, 138, 22);
+		textFieldUserData1.setBounds(150, 78, 138, 22);
 		desktopPane.add(textFieldUserData1);
 
 		textFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
 		textFieldUserData2.setColumns(20);
-		textFieldUserData2.setBounds(392, 76, 138, 22);
+		textFieldUserData2.setBounds(413, 78, 138, 22);
 		desktopPane.add(textFieldUserData2);
 
 		calendarButtonsampleDateFrom = new JCalendarButton(dateSampleFrom);
 		calendarButtonsampleDateFrom.setSize(21, 25);
-		calendarButtonsampleDateFrom.setLocation(260, 143);
+		calendarButtonsampleDateFrom.setLocation(281, 145);
 		desktopPane.add(calendarButtonsampleDateFrom);
 
 		calendarButtonsampleDateTo = new JCalendarButton(dateSampleTo);
 		calendarButtonsampleDateTo.setSize(21, 25);
-		calendarButtonsampleDateTo.setLocation(522, 143);
+		calendarButtonsampleDateTo.setLocation(543, 145);
 		desktopPane.add(calendarButtonsampleDateTo);
 
 		JScrollPane scrollPaneDictionary = new JScrollPane();
-		scrollPaneDictionary.setBounds(559, 32, 552, 172);
+		scrollPaneDictionary.setBounds(12, 206, 552, 172);
 
 		listDictionary = new JList4j<JDBQMAnalysis>();
 		listDictionary.addListSelectionListener(new ListSelectionListener() {
@@ -297,6 +297,8 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 					{
 						textFieldBatchSuffix.setBackground(Color.YELLOW);
 						textFieldBatchSuffix.setEnabled(true);
+						textFieldBatchSuffix.requestFocus();
+						textFieldBatchSuffix.setCaretPosition(textFieldBatchSuffix.getText().length());
 					}
 					else
 					{
@@ -432,7 +434,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		}
 
 		JLabel4j_std label4j_std_3 = new JLabel4j_std(lang.get("mod_FRM_QM_RESULT_ANALYSIS"));
-		label4j_std_3.setBounds(559, 16, 218, 16);
+		label4j_std_3.setBounds(12, 190, 218, 16);
 		desktopPane.add(label4j_std_3);
 
 
@@ -450,13 +452,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		});
 		btnMaterialLookup.setIcon(Common.icon_lookup);
-		btnMaterialLookup.setBounds(509, 44, 21, 22);
+		btnMaterialLookup.setBounds(530, 46, 21, 22);
 		desktopPane.add(btnMaterialLookup);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(new Color(241, 241, 241));
-		panel.setBounds(559, 205, 120, 32);
+		panel.setBounds(12, 380, 116, 30);
 		desktopPane.add(panel);
 
 		JButton4j button4jAdd = new JButton4j(Common.icon_add);
@@ -488,21 +490,21 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		JLabel4j_std label4j_std_1 = new JLabel4j_std(lang.get("lbl_Batch_Suffix"));
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_1.setBounds(0, 12, 121, 22);
+		label4j_std_1.setBounds(21, 14, 121, 22);
 		desktopPane.add(label4j_std_1);
 		
-		textFieldBatchSuffix.setBounds(129, 12, 138, 22);
+		textFieldBatchSuffix.setBounds(150, 14, 138, 22);
 		desktopPane.add(textFieldBatchSuffix);
 		
 		JLabel4j_std label4j_std_2 = new JLabel4j_std(lang.get("lbl_Process_Order_Required_Resource"));
 		label4j_std_2.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std_2.setBounds(0, 46, 121, 16);
+		label4j_std_2.setBounds(21, 48, 121, 16);
 		desktopPane.add(label4j_std_2);
 		
 
 		textFieldResource.setColumns(10);
 		textFieldResource.setCaretPosition(0);
-		textFieldResource.setBounds(129, 44, 119, 22);
+		textFieldResource.setBounds(150, 46, 119, 22);
 		desktopPane.add(textFieldResource);
 		
 		btnProcessOrderResourceLookup.addActionListener(new ActionListener() {
@@ -516,15 +518,15 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 			}
 		});
 		btnProcessOrderResourceLookup.setIcon(Common.icon_lookup);
-		btnProcessOrderResourceLookup.setBounds(244, 44, 21, 22);
+		btnProcessOrderResourceLookup.setBounds(265, 46, 21, 22);
 		desktopPane.add(btnProcessOrderResourceLookup);
 		
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
 			{
-				textFieldProcessOrder.requestFocus();
-				textFieldProcessOrder.setCaretPosition(textFieldProcessOrder.getText().length());
+				textFieldBatchSuffix.requestFocus();
+				textFieldBatchSuffix.setCaretPosition(textFieldBatchSuffix.getText().length());
 
 			}
 		});

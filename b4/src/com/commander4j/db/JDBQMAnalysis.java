@@ -665,7 +665,7 @@ public class JDBQMAnalysis
 		String result = "";
 		if (getDescription().equals("") == false)
 		{
-			result = getDescription();
+			result = getDescription() + " ("+getAnalysisID()+")";
 		} else
 		{
 			result = "";

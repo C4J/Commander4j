@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-14T11:40:13 -->
+<!-- 2017-04-15T09:09:10 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QM_Analysis_01" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a60b5bfd-a02c-4f20-acac-744e6b3a1044">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -75,7 +75,7 @@ ORDER BY `VIEW_QM_ANALYSIS_01`.`BATCH_SUFFIX` DESC,
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "QM_Analysis_01a.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport>
-					<reportElement x="340" y="-1" width="340" height="51" uuid="dfe2d76c-bd5b-44c0-9730-e13741bd0060"/>
+					<reportElement x="340" y="0" width="340" height="50" uuid="dfe2d76c-bd5b-44c0-9730-e13741bd0060"/>
 					<subreportParameter name="P_BATCH_SUFFIX">
 						<subreportParameterExpression><![CDATA[$P{P_BATCH_SUFFIX}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -103,7 +103,7 @@ ORDER BY `VIEW_QM_ANALYSIS_01`.`BATCH_SUFFIX` DESC,
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "QM_Analysis_01c.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport>
-					<reportElement x="340" y="60" width="340" height="152" uuid="5241084a-d2d2-46e1-9f4b-f340a58a54c1"/>
+					<reportElement x="340" y="62" width="340" height="153" uuid="5241084a-d2d2-46e1-9f4b-f340a58a54c1"/>
 					<subreportParameter name="P_BATCH_SUFFIX">
 						<subreportParameterExpression><![CDATA[$P{P_BATCH_SUFFIX}]]></subreportParameterExpression>
 					</subreportParameter>
