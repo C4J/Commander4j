@@ -87,6 +87,7 @@ import com.commander4j.app.JInternalFrameProductionDeclaration;
 import com.commander4j.app.JInternalFrameQMDictionaryAdmin;
 import com.commander4j.app.JInternalFrameQMInspectionAdmin;
 import com.commander4j.app.JInternalFrameQMResultAnalysis;
+import com.commander4j.app.JInternalFrameQMResultAnalysisProperties;
 import com.commander4j.app.JInternalFrameQMResultEnquiry;
 import com.commander4j.app.JInternalFrameQMSampleLabel;
 import com.commander4j.app.JInternalFrameQMSampleRecord;
@@ -1270,6 +1271,19 @@ public class JLaunchMenu
 	{
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
+		
+		if (optionName.equals("FRM_QM_RESULT_ANALYSIS_EDIT"))
+		{
+			final JInternalFrameQMResultAnalysisProperties u;
+			if (isLoaded(JInternalFrameQMResultAnalysisProperties.class))
+				setVisible(JInternalFrameQMResultAnalysisProperties.class);
+			else
+			{
+				u = new JInternalFrameQMResultAnalysisProperties(StrParam);
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
 
 		if (optionName.equals("FRM_QM_SAMPLE_LABEL"))
 		{

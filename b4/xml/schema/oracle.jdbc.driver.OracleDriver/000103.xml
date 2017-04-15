@@ -294,7 +294,91 @@ INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) VALUES ('ADMIN', 'FRM_QM_
 </statement>
 
 <statement>
-INSERT INTO SYS_MODULES (MODULE_ID,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES,REPORT_TYPE,RESOURCE_KEY) VALUES ('FRM_QM_RESULT_ANALYSIS_EDIT','N','Y','FUNCTION',NULL,null,null,null,null,null,'N','N',1,NULL ,NULL)
+INSERT INTO SYS_MODULES (MODULE_ID,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES,REPORT_TYPE,RESOURCE_KEY) VALUES ('FRM_QM_RESULT_ANALYSIS_EDIT','N','Y','FUNCTION',NULL,null,null,null,null,null,'N','N',1,NULL ,'mod_FRM_QM_RESULT_ANALYSIS')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Input_Reqd', 'EN', 'Input Required', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Input_Reqd', 'NL', 'Input Required', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Input_Reqd', 'HU', 'Input Required', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Input_Reqd', 'IT', 'Input Required', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Input_Reqd', 'DE', 'Input Required', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Input_Reqd', 'ES', 'Input Required', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Input_Reqd', 'PL', 'Input Required', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Report_Parameter_Name', 'EN', 'Report Parameter Name', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Report_Parameter_Name', 'NL', 'Report Parameter Name', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Report_Parameter_Name', 'HU', 'Report Parameter Name', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Report_Parameter_Name', 'IT', 'Report Parameter Name', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Report_Parameter_Name', 'DE', 'Report Parameter Name', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Report_Parameter_Name', 'ES', 'Report Parameter Name', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Report_Parameter_Name', 'PL', 'Report Parameter Name', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Analysis_ID', 'EN', 'Analysis ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Analysis_ID', 'NL', 'Analysis ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Analysis_ID', 'HU', 'Analysis ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Analysis_ID', 'IT', 'Analysis ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Analysis_ID', 'DE', 'Analysis ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Analysis_ID', 'ES', 'Analysis ID', 'Q')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Analysis_ID', 'PL', 'Analysis ID', 'Q')
 </statement>
 
 </DDL>

@@ -39,6 +39,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
@@ -60,9 +61,12 @@ import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
+import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JUtility;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * The JInternalFrameQMResultAnalysis is used for querying a user selectable
@@ -80,7 +84,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 	private JTextField4j textFieldProcessOrder;
 	private JButton4j btnClose;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JDBQMAnalysis dict = new JDBQMAnalysis(Common.selectedHostID, Common.sessionID);
+	private JDBQMAnalysis analdb = new JDBQMAnalysis(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_std lblStatusBar;
 	private JTextField4j textFieldMaterial;
 	private JDateControl dateSampleFrom;
@@ -119,14 +123,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		getContentPane().add(desktopPane);
 		desktopPane.setLayout(null);
 
-		setTitle("Results Enquiry");
-
 		JLabel4j_std lblProcessOrder = new JLabel4j_std(lang.get("lbl_Process_Order"));
 		lblProcessOrder.setBounds(288, 14, 119, 16);
 		lblProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
 		desktopPane.add(lblProcessOrder);
 
 		textFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
+		textFieldProcessOrder.setEnabled(false);
 		textFieldProcessOrder.setBounds(413, 12, 119, 22);
 
 		desktopPane.add(textFieldProcessOrder);
@@ -145,6 +148,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		desktopPane.add(btnClose);
 
 		JButton btnProcessOrderLookup = new JButton();
+		btnProcessOrderLookup.setEnabled(false);
 		btnProcessOrderLookup.setIcon(Common.icon_lookup);
 		btnProcessOrderLookup.setBounds(530, 12, 21, 22);
 		btnProcessOrderLookup.addActionListener(new ActionListener()
@@ -169,6 +173,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		desktopPane.setLayout(null);
 
 		textFieldMaterial = new JTextField4j(JDBMaterial.field_material);
+		textFieldMaterial.setEnabled(false);
 		textFieldMaterial.setColumns(10);
 		textFieldMaterial.setBounds(413, 46, 119, 22);
 		desktopPane.add(textFieldMaterial);
@@ -187,30 +192,26 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 				{
 
 					JDBQMAnalysis selectedReport = ((JDBQMAnalysis) listDictionary.getSelectedValue());
-					
 
 					HashMap<String, Object> parameters = new HashMap<String, Object>();
-					
+
 					if (selectedReport.getBatchSuffixReqd().equals("Y"))
 					{
 						parameters.put(selectedReport.getBatchSuffixParam(), textFieldBatchSuffix.getText());
 					}
-					
+
 					if (selectedReport.getSampleDateStartReqd().equals("Y"))
 					{
 						parameters.put(selectedReport.getSampleDateStartParam(), JUtility.getTimestampFromDate(dateSampleFrom.getDate()));
 					}
-				
+
 					if (selectedReport.getSampleDateEndReqd().equals("Y"))
-					{						
+					{
 						parameters.put(selectedReport.getSampleDateEndParam(), JUtility.getTimestampFromDate(dateSampleTo.getDate()));
 					}
-					
+
 					JLaunchReport.runReport(selectedReport.getModuleID(), parameters, "", null, "");
-
-
 				}
-
 			}
 		});
 		btnReport.setIcon(Common.icon_report);
@@ -223,11 +224,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		desktopPane.add(label4j_std);
 
 		dateSampleFrom = new JDateControl();
+		dateSampleFrom.setEnabled(false);
 		dateSampleFrom.setFont(new Font("Arial", Font.PLAIN, 11));
 		dateSampleFrom.setBounds(150, 145, 136, 25);
 		desktopPane.add(dateSampleFrom);
 
 		dateSampleTo = new JDateControl();
+		dateSampleTo.setEnabled(false);
 		dateSampleTo.setFont(new Font("Arial", Font.PLAIN, 11));
 		dateSampleTo.setBounds(413, 145, 128, 22);
 		desktopPane.add(dateSampleTo);
@@ -248,6 +251,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		desktopPane.add(lbl_UserData3);
 
 		textFieldUserData3 = new JTextField4j(20);
+		textFieldUserData3.setEnabled(false);
 		textFieldUserData3.setColumns(20);
 		textFieldUserData3.setBounds(150, 110, 138, 22);
 		desktopPane.add(textFieldUserData3);
@@ -258,26 +262,31 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		desktopPane.add(lbl_UserData4);
 
 		textFieldUserData4 = new JTextField4j(20);
+		textFieldUserData4.setEnabled(false);
 		textFieldUserData4.setColumns(20);
 		textFieldUserData4.setBounds(413, 110, 138, 22);
 		desktopPane.add(textFieldUserData4);
 
 		textFieldUserData1 = new JTextField4j(JDBQMSample.field_data_1);
+		textFieldUserData1.setEnabled(false);
 		textFieldUserData1.setColumns(20);
 		textFieldUserData1.setBounds(150, 78, 138, 22);
 		desktopPane.add(textFieldUserData1);
 
 		textFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
+		textFieldUserData2.setEnabled(false);
 		textFieldUserData2.setColumns(20);
 		textFieldUserData2.setBounds(413, 78, 138, 22);
 		desktopPane.add(textFieldUserData2);
 
 		calendarButtonsampleDateFrom = new JCalendarButton(dateSampleFrom);
+		calendarButtonsampleDateFrom.setEnabled(false);
 		calendarButtonsampleDateFrom.setSize(21, 25);
 		calendarButtonsampleDateFrom.setLocation(281, 145);
 		desktopPane.add(calendarButtonsampleDateFrom);
 
 		calendarButtonsampleDateTo = new JCalendarButton(dateSampleTo);
+		calendarButtonsampleDateTo.setEnabled(false);
 		calendarButtonsampleDateTo.setSize(21, 25);
 		calendarButtonsampleDateTo.setLocation(543, 145);
 		desktopPane.add(calendarButtonsampleDateTo);
@@ -286,69 +295,84 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		scrollPaneDictionary.setBounds(12, 206, 552, 172);
 
 		listDictionary = new JList4j<JDBQMAnalysis>();
-		listDictionary.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
+		listDictionary.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				if (e.getClickCount() == 2)
+				{
+					if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_RESULT_ANALYSIS_EDIT") == true)
+					{
+						editRecord();
+					}
+				}
+			}
+		});
+		listDictionary.addListSelectionListener(new ListSelectionListener()
+		{
+			public void valueChanged(ListSelectionEvent e)
+			{
 				if (listDictionary.isSelectionEmpty() == false)
 				{
 
 					JDBQMAnalysis selectedReport = ((JDBQMAnalysis) listDictionary.getSelectedValue());
-					
+
 					if (selectedReport.getBatchSuffixReqd().equals("Y"))
 					{
 						textFieldBatchSuffix.setBackground(Color.YELLOW);
 						textFieldBatchSuffix.setEnabled(true);
 						textFieldBatchSuffix.requestFocus();
 						textFieldBatchSuffix.setCaretPosition(textFieldBatchSuffix.getText().length());
-					}
-					else
+					} else
 					{
 						textFieldBatchSuffix.setBackground(Color.WHITE);
 						textFieldBatchSuffix.setEnabled(false);
 					}
-					
+
 					if (selectedReport.getProcessOrderReqd().equals("Y"))
 					{
 						btnProcessOrderLookup.setEnabled(true);
 						textFieldProcessOrder.setBackground(Color.YELLOW);
 						textFieldProcessOrder.setEnabled(true);
-					}
-					else
+						btnProcessOrderResourceLookup.setEnabled(true);
+					} else
 					{
 						btnProcessOrderLookup.setEnabled(false);
 						textFieldProcessOrder.setBackground(Color.WHITE);
 						textFieldProcessOrder.setEnabled(false);
+						btnProcessOrderResourceLookup.setEnabled(false);
 					}
-					
+
 					if (selectedReport.getMaterialReqd().equals("Y"))
 					{
 						btnMaterialLookup.setEnabled(true);
 						textFieldMaterial.setBackground(Color.YELLOW);
 						textFieldMaterial.setEnabled(true);
-					}
-					else
+						btnMaterialLookup.setEnabled(true);
+					} else
 					{
 						btnMaterialLookup.setEnabled(false);
 						textFieldMaterial.setBackground(Color.WHITE);
 						textFieldMaterial.setEnabled(false);
+						btnMaterialLookup.setEnabled(false);
 					}
-					
+
 					if (selectedReport.getUserData1Reqd().equals("Y"))
 					{
 						textFieldUserData1.setBackground(Color.YELLOW);
 						textFieldUserData1.setEnabled(true);
-					}
-					else
+					} else
 					{
 						textFieldUserData1.setBackground(Color.WHITE);
 						textFieldUserData1.setEnabled(false);
 					}
-					
+
 					if (selectedReport.getUserData2Reqd().equals("Y"))
 					{
 						textFieldUserData2.setBackground(Color.YELLOW);
 						textFieldUserData2.setEnabled(true);
-					}
-					else
+					} else
 					{
 						textFieldUserData2.setBackground(Color.WHITE);
 						textFieldUserData2.setEnabled(false);
@@ -357,86 +381,91 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 					{
 						textFieldUserData3.setBackground(Color.YELLOW);
 						textFieldUserData3.setEnabled(true);
-					}
-					else
+					} else
 					{
 						textFieldUserData3.setBackground(Color.WHITE);
 						textFieldUserData3.setEnabled(false);
 					}
-					
+
 					if (selectedReport.getUserData4Reqd().equals("Y"))
 					{
 						textFieldUserData4.setBackground(Color.YELLOW);
 						textFieldUserData4.setEnabled(true);
-					}
-					else
+					} else
 					{
 						textFieldUserData4.setBackground(Color.WHITE);
 						textFieldUserData4.setEnabled(false);
 					}
-					
+
 					if (selectedReport.getSampleDateStartReqd().equals("Y"))
 					{
 						calendarButtonsampleDateFrom.setEnabled(true);
 						dateSampleFrom.setBackground(Color.YELLOW);
 						dateSampleFrom.setEnabled(true);
-					}
-					else
+						calendarButtonsampleDateFrom.setEnabled(true);
+					} else
 					{
 						calendarButtonsampleDateFrom.setEnabled(false);
 						dateSampleFrom.setBackground(Color.WHITE);
 						dateSampleFrom.setEnabled(false);
-					}		
+						calendarButtonsampleDateFrom.setEnabled(false);
+					}
 
 					if (selectedReport.getSampleDateEndReqd().equals("Y"))
 					{
 						calendarButtonsampleDateTo.setEnabled(true);
 						dateSampleTo.setBackground(Color.YELLOW);
 						dateSampleTo.setEnabled(true);
-					}
-					else
+						calendarButtonsampleDateTo.setEnabled(true);
+					} else
 					{
 						calendarButtonsampleDateTo.setEnabled(false);
 						dateSampleTo.setBackground(Color.WHITE);
 						dateSampleTo.setEnabled(false);
-					}	
+						calendarButtonsampleDateTo.setEnabled(false);
+					}
 
 					if (selectedReport.getResourceReqd().equals("Y"))
 					{
 						btnProcessOrderResourceLookup.setEnabled(true);
 						textFieldResource.setBackground(Color.YELLOW);
 						textFieldResource.setEnabled(true);
-					}
-					else
+						btnProcessOrderResourceLookup.setEnabled(true);
+					} else
 					{
 						btnProcessOrderResourceLookup.setEnabled(false);
 						textFieldResource.setBackground(Color.WHITE);
 						textFieldResource.setEnabled(false);
-					}	
+						btnProcessOrderResourceLookup.setEnabled(false);
+					}
 				}
 			}
 		});
 
-		Vector<JDBQMAnalysis> vect= dict.getAnalysisData();
-		
-		ComboBoxModel<JDBQMAnalysis> model = new DefaultComboBoxModel<JDBQMAnalysis>(vect);
-		listDictionary.setModel(model);
-		listDictionary.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listDictionary.setCellRenderer(Common.renderer_list);
+		/*
+		 * Vector<JDBQMAnalysis> vect= analdb.getAnalysisData();
+		 * 
+		 * ComboBoxModel<JDBQMAnalysis> model = new
+		 * DefaultComboBoxModel<JDBQMAnalysis>(vect);
+		 * listDictionary.setModel(model);
+		 * listDictionary.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		 * listDictionary.setCellRenderer(Common.renderer_list);
+		 */
+
+		populateList("");
 
 		scrollPaneDictionary.setViewportView(listDictionary);
 
 		desktopPane.add(scrollPaneDictionary);
-		
-		if (vect.size()>0)
-		{
-			listDictionary.setSelectedIndex(0);
-		}
+
+		/*
+		 * if (vect.size()>0) { listDictionary.setSelectedIndex(0); }
+		 */
 
 		JLabel4j_std label4j_std_3 = new JLabel4j_std(lang.get("mod_FRM_QM_RESULT_ANALYSIS"));
 		label4j_std_3.setBounds(12, 190, 218, 16);
 		desktopPane.add(label4j_std_3);
-
+		btnMaterialLookup.setEnabled(false);
 
 		btnMaterialLookup.addActionListener(new ActionListener()
 		{
@@ -462,6 +491,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		desktopPane.add(panel);
 
 		JButton4j button4jAdd = new JButton4j(Common.icon_add);
+		button4jAdd.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				addRecord();
+			}
+		});
 		button4jAdd.setMnemonic('0');
 		button4jAdd.setFont(new Font("Arial", Font.PLAIN, 11));
 		button4jAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_RESULT_ANALYSIS_ADD"));
@@ -476,6 +512,13 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		panel.add(button4jDelete);
 
 		JButton4j button4jEdit = new JButton4j(Common.icon_edit);
+		button4jEdit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				editRecord();
+			}
+		});
 		button4jEdit.setMnemonic('0');
 		button4jEdit.setFont(new Font("Arial", Font.PLAIN, 11));
 		button4jEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_RESULT_ANALYSIS_EDIT"));
@@ -483,6 +526,21 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		panel.add(button4jEdit);
 
 		JButton4j button4jRefresh = new JButton4j(Common.icon_refresh);
+		button4jRefresh.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				if (listDictionary.isSelectionEmpty() == false)
+				{
+
+					JDBQMAnalysis selectedReport = ((JDBQMAnalysis) listDictionary.getSelectedValue());
+					populateList(selectedReport.getAnalysisID());
+				} else
+				{
+					populateList("");
+				}
+			}
+		});
 		button4jRefresh.setMnemonic('0');
 		button4jRefresh.setFont(new Font("Arial", Font.PLAIN, 11));
 		button4jRefresh.setBounds(87, 0, 28, 28);
@@ -492,23 +550,27 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		label4j_std_1.setBounds(21, 14, 121, 22);
 		desktopPane.add(label4j_std_1);
-		
+		textFieldBatchSuffix.setEnabled(false);
+
 		textFieldBatchSuffix.setBounds(150, 14, 138, 22);
 		desktopPane.add(textFieldBatchSuffix);
-		
+
 		JLabel4j_std label4j_std_2 = new JLabel4j_std(lang.get("lbl_Process_Order_Required_Resource"));
 		label4j_std_2.setHorizontalAlignment(SwingConstants.TRAILING);
 		label4j_std_2.setBounds(21, 48, 121, 16);
 		desktopPane.add(label4j_std_2);
-		
+		textFieldResource.setEnabled(false);
 
 		textFieldResource.setColumns(10);
 		textFieldResource.setCaretPosition(0);
 		textFieldResource.setBounds(150, 46, 119, 22);
 		desktopPane.add(textFieldResource);
-		
-		btnProcessOrderResourceLookup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnProcessOrderResourceLookup.setEnabled(false);
+
+		btnProcessOrderResourceLookup.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				JLaunchLookup.dlgCriteriaDefault = "Y";
 				JLaunchLookup.dlgAutoExec = true;
 				if (JLaunchLookup.resources())
@@ -520,7 +582,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		btnProcessOrderResourceLookup.setIcon(Common.icon_lookup);
 		btnProcessOrderResourceLookup.setBounds(265, 46, 21, 22);
 		desktopPane.add(btnProcessOrderResourceLookup);
-		
+
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
@@ -532,4 +594,64 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		});
 
 	}
+
+	private void populateList(String defaultitem)
+	{
+		Vector<JDBQMAnalysis> vect = analdb.getAnalysisData();
+
+		ComboBoxModel<JDBQMAnalysis> model = new DefaultComboBoxModel<JDBQMAnalysis>(vect);
+		listDictionary.setModel(model);
+		listDictionary.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listDictionary.setCellRenderer(Common.renderer_list);
+
+		int sel = -1;
+		for (int j = 0; j < vect.size(); j++)
+		{
+			if (((JDBQMAnalysis) vect.get(j)).getAnalysisID().equals(defaultitem))
+			{
+				sel = j;
+			}
+		}
+
+		listDictionary.setSelectedIndex(sel);
+
+	}
+
+	private void addRecord()
+	{
+
+		String analid;
+
+		analid = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Analysis_Add"));
+
+		if (analid != null)
+		{
+			if (analid.equals("") == false)
+			{
+				JDBQMAnalysis newAnal = new JDBQMAnalysis(Common.selectedHostID, Common.sessionID);
+				if (newAnal.isValidAnalysis(analid) == false)
+				{
+					JLaunchMenu.runForm("FRM_QM_RESULT_ANALYSIS_EDIT", analid);
+				} else
+				{
+					JOptionPane.showMessageDialog(Common.mainForm, "Analysis [" + analid + "] already exists", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+				}
+			}
+		}
+	}
+
+	private void editRecord()
+	{
+
+		if (listDictionary.isSelectionEmpty() == false)
+		{
+
+			JDBQMAnalysis selectedReport = ((JDBQMAnalysis) listDictionary.getSelectedValue());
+
+			String analid = selectedReport.getAnalysisID();
+
+			JLaunchMenu.runForm("FRM_QM_RESULT_ANALYSIS_EDIT", analid);
+		}
+	}
+
 }

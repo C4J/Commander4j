@@ -232,236 +232,6 @@ public class JDBQMAnalysis
 		return dbAnalysisID;
 	}
 
-	public String getSampleDateEndParam()
-	{
-		return dbSampleDateEndParam;
-	}
-
-	public String getSampleDateEndReqd()
-	{
-		return dbSampleDateEndReqd;
-	}
-	
-	public boolean isSampleDateEndReqd()
-	{
-		boolean result = false;
-		if (getSampleDateEndReqd().equals("Y"))
-		{
-			result = true;
-		}
-		return result;
-	}
-
-	public String getSampleDateStartParam()
-	{
-		return dbSampleDateStartParam;
-	}
-
-	public String getSampleDateStartReqd()
-	{
-		return dbSampleDateStartReqd;
-	}
-	
-	public boolean isSampleDateStartReqd()
-	{
-		boolean result = false;
-		if (getSampleDateStartReqd().equals("Y"))
-		{
-			result = true;
-		}
-		return result;
-	}
-
-	public String getUserData1Param()
-	{
-		return dbUserData1Param;
-	}
-
-	public String getUserData1Reqd()
-	{
-		return dbUserData1Reqd;
-	}
-	
-	public boolean isUserData1Reqd()
-	{
-		boolean result = false;
-		if (getUserData1Reqd().equals("Y"))
-		{
-			result = true;
-		}
-		return result;
-	}
-
-	public String getUserData2Param()
-	{
-		return dbUserData2Param;
-	}
-
-	public String getUserData2Reqd()
-	{
-		return dbUserData2Reqd;
-	}
-	
-	public boolean isUserData2Reqd()
-	{
-		boolean result = false;
-		if (getUserData2Reqd().equals("Y"))
-		{
-			result = true;
-		}
-		return result;
-	}
-
-	public String getUserData3Param()
-	{
-		return dbUserData3Param;
-	}
-
-	public String getUserData3Reqd()
-	{
-		return dbUserData3Reqd;
-	}
-	
-	public boolean isUserData3Reqd()
-	{
-		boolean result = false;
-		if (getUserData3Reqd().equals("Y"))
-		{
-			result = true;
-		}
-		return result;
-	}
-
-	public String getUserData4Param()
-	{
-		return dbUserData4Param;
-	}
-
-	public String getUserData4Reqd()
-	{
-		return dbUserData4Reqd;
-	}
-	
-	public boolean isUserData4Reqd()
-	{
-		boolean result = false;
-		if (getUserData4Reqd().equals("Y"))
-		{
-			result = true;
-		}
-		return result;
-	}
-
-	public String getDescription()
-	{
-		String result = "";
-		if (dbDescription != null)
-			result = dbDescription;
-		return result;
-	}
-
-	public int getDisplaySequence()
-	{
-		return dbDisplaySequence;
-	}
-
-	public String getErrorMessage()
-	{
-		return dbErrorMessage;
-	}
-
-	private String getHostID()
-	{
-		return hostID;
-	}
-
-	public String getMaterialParam()
-	{
-		String result = "";
-		if (dbMaterialParam != null)
-			result = dbMaterialParam;
-		return result;
-	}
-
-	public String getMaterialReqd()
-	{
-		String result = "";
-		if (dbMaterialReqd != null)
-			result = dbMaterialReqd;
-		return result;
-	}
-	
-	public boolean isMaterialReqd()
-	{
-		boolean result = false;
-		if (getMaterialReqd().equals("Y"))
-		{
-			result = true;
-		}
-		return result;
-	}
-
-	public String getModuleID()
-	{
-		String result = "";
-		if (dbModuleID != null)
-			result = dbModuleID;
-		return result;
-	}
-
-
-	public String getProcessOrderParam()
-	{
-		String result = "";
-		if (dbProcessOrderParam != null)
-			result = dbProcessOrderParam;
-		return result;
-	}
-
-	public String getProcessOrderReqd()
-	{
-		String result = "";
-		if (dbProcessOrderReqd != null)
-			result = dbProcessOrderReqd;
-		return result;
-	}
-	
-	public boolean isProcessOrderReqd()
-	{
-		boolean result = false;
-		if (getProcessOrderReqd().equals("Y"))
-		{
-			result = true;
-		}
-		return result;
-	}	
-	
-	public String getResourceParam()
-	{
-		String result = "";
-		if (dbResourceParam != null)
-			result = dbResourceParam;
-		return result;
-	}
-
-	public String getResourceReqd()
-	{
-		String result = "";
-		if (dbResourceReqd != null)
-			result = dbResourceReqd;
-		return result;
-	}	
-	
-	public boolean isResourceReqd()
-	{
-		boolean result = false;
-		if (getResourceReqd().equals("Y"))
-		{
-			result = true;
-		}
-		return result;
-	}
-
 	public boolean getAnalysisProperties()
 	{
 		boolean result = false;
@@ -519,7 +289,86 @@ public class JDBQMAnalysis
 		}
 		return result;
 	}
+
+	public boolean getAnalysisProperties(String analysisid)
+	{
+		setAnalysisID(analysisid);
+		return getAnalysisProperties();
+	}
 	
+	public String getBatchSuffixParam()
+	{
+		return dbBatchSuffixParam;
+	}
+
+	public String getBatchSuffixReqd()
+	{
+		return dbBatchSuffixReqd;
+	}
+
+	public String getDescription()
+	{
+		String result = "";
+		if (dbDescription != null)
+			result = dbDescription;
+		return result;
+	}
+	
+	public int getDisplaySequence()
+	{
+		return dbDisplaySequence;
+	}
+
+	public String getErrorMessage()
+	{
+		return dbErrorMessage;
+	}
+
+	private String getHostID()
+	{
+		return hostID;
+	}
+	
+	public String getMaterialParam()
+	{
+		String result = "";
+		if (dbMaterialParam != null)
+			result = dbMaterialParam;
+		return result;
+	}
+
+	public String getMaterialReqd()
+	{
+		String result = "";
+		if (dbMaterialReqd != null)
+			result = dbMaterialReqd;
+		return result;
+	}
+
+	public String getModuleID()
+	{
+		String result = "";
+		if (dbModuleID != null)
+			result = dbModuleID;
+		return result;
+	}
+	
+	public String getProcessOrderParam()
+	{
+		String result = "";
+		if (dbProcessOrderParam != null)
+			result = dbProcessOrderParam;
+		return result;
+	}
+
+	public String getProcessOrderReqd()
+	{
+		String result = "";
+		if (dbProcessOrderReqd != null)
+			result = dbProcessOrderReqd;
+		return result;
+	}
+
 	public ResultSet getQMAnalysisResultSet(String analysisID)
 	{
 		PreparedStatement stmt;
@@ -541,11 +390,41 @@ public class JDBQMAnalysis
 
 		return rs;
 	}
-
-	public boolean getAnalysisProperties(String analysisid)
+	
+	public String getResourceParam()
 	{
-		setAnalysisID(analysisid);
-		return getAnalysisProperties();
+		String result = "";
+		if (dbResourceParam != null)
+			result = dbResourceParam;
+		return result;
+	}
+
+	public String getResourceReqd()
+	{
+		String result = "";
+		if (dbResourceReqd != null)
+			result = dbResourceReqd;
+		return result;
+	}
+
+	public String getSampleDateEndParam()
+	{
+		return dbSampleDateEndParam;
+	}
+	
+	public String getSampleDateEndReqd()
+	{
+		return dbSampleDateEndReqd;
+	}
+
+	public String getSampleDateStartParam()
+	{
+		return dbSampleDateStartParam;
+	}
+
+	public String getSampleDateStartReqd()
+	{
+		return dbSampleDateStartReqd;
 	}
 
 	private String getSessionID()
@@ -553,6 +432,47 @@ public class JDBQMAnalysis
 		return sessionID;
 	}
 
+	public String getUserData1Param()
+	{
+		return dbUserData1Param;
+	}
+
+	public String getUserData1Reqd()
+	{
+		return dbUserData1Reqd;
+	}
+
+	public String getUserData2Param()
+	{
+		return dbUserData2Param;
+	}
+	
+	public String getUserData2Reqd()
+	{
+		return dbUserData2Reqd;
+	}
+
+	public String getUserData3Param()
+	{
+		return dbUserData3Param;
+	}
+
+
+	public String getUserData3Reqd()
+	{
+		return dbUserData3Reqd;
+	}
+
+	public String getUserData4Param()
+	{
+		return dbUserData4Param;
+	}
+	
+	public String getUserData4Reqd()
+	{
+		return dbUserData4Reqd;
+	}	
+	
 	public boolean isAscending()
 	{
 		boolean result = false;
@@ -562,6 +482,106 @@ public class JDBQMAnalysis
 			result = true;
 		}
 		
+		return result;
+	}
+
+	public boolean isBatchSuffixReqd()
+	{
+		boolean result = false;
+		if (getBatchSuffixReqd().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}	
+	
+	public boolean isMaterialReqd()
+	{
+		boolean result = false;
+		if (getMaterialReqd().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+
+	public boolean isProcessOrderReqd()
+	{
+		boolean result = false;
+		if (getProcessOrderReqd().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+	
+	public boolean isResourceReqd()
+	{
+		boolean result = false;
+		if (getResourceReqd().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+
+	public boolean isSampleDateEndReqd()
+	{
+		boolean result = false;
+		if (getSampleDateEndReqd().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+
+	public boolean isSampleDateStartReqd()
+	{
+		boolean result = false;
+		if (getSampleDateStartReqd().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+
+	public boolean isUserData1Reqd()
+	{
+		boolean result = false;
+		if (getUserData1Reqd().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+
+	public boolean isUserData2Reqd()
+	{
+		boolean result = false;
+		if (getUserData2Reqd().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+
+	public boolean isUserData3Reqd()
+	{
+		boolean result = false;
+		if (getUserData3Reqd().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+
+	public boolean isUserData4Reqd()
+	{
+		boolean result = false;
+		if (getUserData4Reqd().equals("Y"))
+		{
+			result = true;
+		}
 		return result;
 	}
 
@@ -607,65 +627,27 @@ public class JDBQMAnalysis
 	{
 		dbAnalysisID = analysisid;
 	}
-
-	public void setSampleDateEndParam(String dbSampleDateEndParam)
+	
+	public void setBatchSuffixParam(String ud3)
 	{
-		this.dbSampleDateEndParam = dbSampleDateEndParam;
+		dbBatchSuffixParam = ud3;
 	}
 
-	public void setSampleDateEndReqd(String dbSampleDateEndReqd)
+	public void setBatchSuffixReqd(boolean yesno)
 	{
-		this.dbSampleDateEndReqd = dbSampleDateEndReqd;
-	}
-
-	public void setSampleDateStartParam(String dbSampleDateStartParam)
-	{
-		this.dbSampleDateStartParam = dbSampleDateStartParam;
-	}
-
-	public void setSampleDateStartReqd(String dbSampleDateStartReqd)
-	{
-		this.dbSampleDateStartReqd = dbSampleDateStartReqd;
-	}
-
-	public void setUserData1Param(String dbUserData1Param)
-	{
-		this.dbUserData1Param = dbUserData1Param;
-	}
-
-	public void setUserData1Reqd(String dbUserData1Reqd)
-	{
-		this.dbUserData1Reqd = dbUserData1Reqd;
+		if (yesno)
+		{
+			this.dbBatchSuffixReqd = "Y";
+		}
+		else
+		{
+			this.dbBatchSuffixReqd = "N";
+		}
 	}
 	
-	public void setUserData2Param(String dbUserData2Param)
+	public void setBatchSuffixReqd(String ud3)
 	{
-		this.dbUserData2Param = dbUserData2Param;
-	}
-	
-	public void setUserData2Reqd(String dbUserData2Reqd)
-	{
-		this.dbUserData2Reqd = dbUserData2Reqd;
-	}
-
-	public void setUserData3Param(String dbUserData3Param)
-	{
-		this.dbUserData3Param = dbUserData3Param;
-	}
-
-	public void setUserData3Reqd(String dbUserData3Reqd)
-	{
-		this.dbUserData3Reqd = dbUserData3Reqd;
-	}
-
-	public void setUserData4Param(String dbUserData4Param)
-	{
-		this.dbUserData4Param = dbUserData4Param;
-	}
-
-	public void setUserData4Reqd(String dbUserData4Reqd)
-	{
-		this.dbUserData4Reqd = dbUserData4Reqd;
+		dbBatchSuffixReqd = ud3;
 	}
 
 	public void setDescription(String po)
@@ -677,6 +659,7 @@ public class JDBQMAnalysis
 	{
 		dbDisplaySequence = ud4;
 	}
+	
 
 	private void setErrorMessage(String errorMsg)
 	{
@@ -686,46 +669,28 @@ public class JDBQMAnalysis
 		}
 		dbErrorMessage = errorMsg;
 	}
-
+		
 	private void setHostID(String host)
 	{
 		hostID = host;
 	}
-
+	
 	public void setMaterialParam(String ud3)
 	{
 		dbMaterialParam = ud3;
 	}
 	
-	public void setBatchSuffixReqd(String ud3)
+	public void setMaterialReqd(boolean yesno)
 	{
-		dbBatchSuffixReqd = ud3;
-	}
-	
-	public String getBatchSuffixReqd()
-	{
-		return dbBatchSuffixReqd;
-	}
-	
-	public boolean isBatchSuffixReqd()
-	{
-		boolean result = false;
-		if (getBatchSuffixReqd().equals("Y"))
+		if (yesno)
 		{
-			result = true;
+			this.dbMaterialReqd = "Y";
 		}
-		return result;
-	}	
-	
-	public void setBatchSuffixParam(String ud3)
-	{
-		dbBatchSuffixParam = ud3;
+		else
+		{
+			this.dbMaterialReqd = "N";
+		}
 	}
-	
-	public String getBatchSuffixParam()
-	{
-		return dbBatchSuffixParam;
-	}	
 
 	public void setMaterialReqd(String inspectid)
 	{
@@ -741,6 +706,18 @@ public class JDBQMAnalysis
 	{
 		dbProcessOrderParam = ud2;
 	}
+	
+	public void setProcessOrderReqd(boolean yesno)
+	{
+		if (yesno)
+		{
+			this.dbProcessOrderReqd = "Y";
+		}
+		else
+		{
+			this.dbProcessOrderReqd = "N";
+		}
+	}
 
 	public void setProcessOrderReqd(String ud1)
 	{
@@ -750,16 +727,162 @@ public class JDBQMAnalysis
 	public void setResourceParam(String ud2)
 	{
 		dbResourceParam = ud2;
+	}	
+	
+	public void setResourceReqd(boolean yesno)
+	{
+		if (yesno)
+		{
+			this.dbResourceReqd = "Y";
+		}
+		else
+		{
+			this.dbResourceReqd = "N";
+		}
 	}
 
 	public void setResourceReqd(String ud1)
 	{
 		dbResourceReqd = ud1;
-	}	
+	}
+
+	public void setSampleDateEndParam(String dbSampleDateEndParam)
+	{
+		this.dbSampleDateEndParam = dbSampleDateEndParam;
+	}
+
+	public void setSampleDateEndReqd(boolean yesno)
+	{
+		if (yesno)
+		{
+			this.dbSampleDateEndReqd = "Y";
+		}
+		else
+		{
+			this.dbSampleDateEndReqd = "N";
+		}
+	}
+
+	public void setSampleDateEndReqd(String dbSampleDateEndReqd)
+	{
+		this.dbSampleDateEndReqd = dbSampleDateEndReqd;
+	}
+	
+	public void setSampleDateStartParam(String dbSampleDateStartParam)
+	{
+		this.dbSampleDateStartParam = dbSampleDateStartParam;
+	}
+	
+	public void setSampleDateStartReqd(boolean yesno)
+	{
+		if (yesno)
+		{
+			this.dbSampleDateStartReqd = "Y";
+		}
+		else
+		{
+			this.dbSampleDateStartReqd = "N";
+		}
+	}		
+	
+	public void setSampleDateStartReqd(String dbSampleDateStartReqd)
+	{
+		this.dbSampleDateStartReqd = dbSampleDateStartReqd;
+	}
 	
 	private void setSessionID(String session)
 	{
 		sessionID = session;
+	}	
+	
+	public void setUserData1Param(String dbUserData1Param)
+	{
+		this.dbUserData1Param = dbUserData1Param;
+	}
+	
+	public void setUserData1Reqd(boolean yesno)
+	{
+		if (yesno)
+		{
+			this.dbUserData1Reqd = "Y";
+		}
+		else
+		{
+			this.dbUserData1Reqd = "N";
+		}
+	}	
+
+	public void setUserData1Reqd(String dbUserData1Reqd)
+	{
+		this.dbUserData1Reqd = dbUserData1Reqd;
+	}
+	
+	
+	public void setUserData2Param(String dbUserData2Param)
+	{
+		this.dbUserData2Param = dbUserData2Param;
+	}		
+		
+
+	public void setUserData2Reqd(boolean yesno)
+	{
+		if (yesno)
+		{
+			this.dbUserData2Reqd = "Y";
+		}
+		else
+		{
+			this.dbUserData2Reqd = "N";
+		}
+	}
+
+	public void setUserData2Reqd(String dbUserData2Reqd)
+	{
+		this.dbUserData2Reqd = dbUserData2Reqd;
+	}
+
+	public void setUserData3Param(String dbUserData3Param)
+	{
+		this.dbUserData3Param = dbUserData3Param;
+	}
+	
+	public void setUserData3Reqd(boolean yesno)
+	{
+		if (yesno)
+		{
+			this.dbUserData3Reqd = "Y";
+		}
+		else
+		{
+			this.dbUserData3Reqd = "N";
+		}
+	}	
+
+	public void setUserData3Reqd(String dbUserData3Reqd)
+	{
+		this.dbUserData3Reqd = dbUserData3Reqd;
+	}
+
+	public void setUserData4Param(String dbUserData4Param)
+	{
+		this.dbUserData4Param = dbUserData4Param;
+	}	
+	
+	public void setUserData4Reqd(boolean yesno)
+	{
+		if (yesno)
+		{
+			this.dbUserData4Reqd = "Y";
+		}
+		else
+		{
+			this.dbUserData4Reqd = "N";
+		}
+	}		
+	
+	public void setUserData4Reqd(String dbUserData4Reqd)
+	{
+		this.dbUserData4Reqd = dbUserData4Reqd;
 	}
 
 	public String toString()
@@ -790,7 +913,7 @@ public class JDBQMAnalysis
 
 	
 				stmtupdate.setString(1, getDescription());
-				stmtupdate.setInt(2, getDisplaySequence());
+				stmtupdate.setInt(2, 	getDisplaySequence());
 				stmtupdate.setString(3, getModuleID());
 				stmtupdate.setString(4, getProcessOrderReqd());
 				stmtupdate.setString(5, getProcessOrderParam());
@@ -810,10 +933,10 @@ public class JDBQMAnalysis
 				stmtupdate.setString(19, getUserData4Param());
 				stmtupdate.setString(20, getBatchSuffixReqd());
 				stmtupdate.setString(21, getBatchSuffixParam());	
-				stmtupdate.setString(21, getResourceReqd());
-				stmtupdate.setString(22, getResourceParam());				
-				stmtupdate.setString(23, getAnalysisID());
-
+				stmtupdate.setString(22, getResourceReqd());
+				stmtupdate.setString(23, getResourceParam());				
+				stmtupdate.setString(24, getAnalysisID());
+				
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
