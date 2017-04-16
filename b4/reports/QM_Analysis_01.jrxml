@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-15T09:09:10 -->
+<!-- 2017-04-16T19:44:27 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QM_Analysis_01" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a60b5bfd-a02c-4f20-acac-744e6b3a1044">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Commander4j_DEV"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="232"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="761"/>
 	<parameter name="P_BATCH_SUFFIX" class="java.lang.String">
@@ -26,14 +26,14 @@
 	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT *
-FROM `VIEW_QM_ANALYSIS_01`
+FROM VIEW_QM_ANALYSIS_01
 WHERE 
-	 `VIEW_QM_ANALYSIS_01`.sample_date >= $P{P_SAMPLE_DATE_START} 
-	 AND `VIEW_QM_ANALYSIS_01`.sample_date <= $P{P_SAMPLE_DATE_END} 
-	 AND `VIEW_QM_ANALYSIS_01`.`BATCH_SUFFIX` =  $P{P_BATCH_SUFFIX} 
-ORDER BY `VIEW_QM_ANALYSIS_01`.`BATCH_SUFFIX` DESC,
-	`VIEW_QM_ANALYSIS_01`.`RESOURCE_DESCRIPTION` DESC,
-	`VIEW_QM_ANALYSIS_01`.`SAMPLE_ID` DESC]]>
+	 VIEW_QM_ANALYSIS_01.sample_date >= $P{P_SAMPLE_DATE_START} 
+	 AND VIEW_QM_ANALYSIS_01.sample_date <= $P{P_SAMPLE_DATE_END} 
+	 AND VIEW_QM_ANALYSIS_01.BATCH_SUFFIX =  $P{P_BATCH_SUFFIX} 
+ORDER BY VIEW_QM_ANALYSIS_01.BATCH_SUFFIX DESC,
+	VIEW_QM_ANALYSIS_01.RESOURCE_DESCRIPTION DESC,
+	VIEW_QM_ANALYSIS_01.SAMPLE_ID DESC]]>
 	</queryString>
 	<field name="BATCH_SUFFIX" class="java.lang.String"/>
 	<field name="RESOURCE_DESCRIPTION" class="java.lang.String"/>
