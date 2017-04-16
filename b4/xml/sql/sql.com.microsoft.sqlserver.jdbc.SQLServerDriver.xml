@@ -1301,7 +1301,7 @@
 		<?JDBShifts?>
 		<statement>
 			<id>JDBShifts.create</id>
-			<text>insert into {schema}APP_SHIFTS (SHIFT_ID) values (?)</text>
+			<text>insert into {schema}APP_SHIFTS (SHIFT_ID,START_TIME,END_TIME,DESCRIPTION) values (?,?,?,?)</text>
 		</statement>		
 		<statement>
 			<id>JDBShifts.delete</id>

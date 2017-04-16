@@ -41,7 +41,6 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -58,6 +57,7 @@ import com.commander4j.db.JDBShifts;
 import com.commander4j.db.JDBUserReport;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.util.JDateControl;
@@ -84,8 +84,8 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JList<JDBListData> jListUserReports = new JList<JDBListData>();
-	private JList<JDBShifts> jListShifts = new JList<JDBShifts>();
+	private JList4j<JDBListData> jListUserReports = new JList4j<JDBListData>();
+	private JList4j<JDBShifts> jListShifts = new JList4j<JDBShifts>();
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDateControl domDateFrom;
 	private JDateControl domDateTo;
