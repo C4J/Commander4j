@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-16T19:44:27 -->
+<!-- 2017-04-17T12:00:59 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QM_Analysis_01" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a60b5bfd-a02c-4f20-acac-744e6b3a1044">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Commander4j_DEV"/>
@@ -145,14 +145,14 @@ ORDER BY VIEW_QM_ANALYSIS_01.BATCH_SUFFIX DESC,
 				</textElement>
 				<textFieldExpression><![CDATA[$P{P_BATCH_SUFFIX}]]></textFieldExpression>
 			</textField>
-			<textField pattern="MMM d, yyyy h:mm:ss a">
+			<textField pattern="dd-MM-yyyy HH:mm:ss">
 				<reportElement x="249" y="34" width="118" height="15" forecolor="#3300FF" uuid="1879fe58-4809-4739-9767-4a1ffaa9dd2b"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{P_SAMPLE_DATE_START}]]></textFieldExpression>
 			</textField>
-			<textField pattern="MMM d, yyyy h:mm:ss a">
+			<textField pattern="dd-MM-yyyy HH:mm:ss">
 				<reportElement x="479" y="34" width="120" height="15" forecolor="#3300FF" uuid="f899ccd6-1fae-4a6e-ae51-46ac2ae18d7c"/>
 				<textElement>
 					<font isBold="true"/>

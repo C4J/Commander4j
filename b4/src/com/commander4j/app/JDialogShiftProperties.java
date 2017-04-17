@@ -145,6 +145,7 @@ public class JDialogShiftProperties extends javax.swing.JDialog
 					shifts.setEndTime(textField4jEndTime.getText());
 					shifts.setDescription(textFieldDescription.getText());
 					shifts.update();
+					btnSave.setEnabled(false);
 				}
 			} else
 			{
@@ -260,7 +261,7 @@ public class JDialogShiftProperties extends javax.swing.JDialog
 			MaskFormatter dateMask1 = new MaskFormatter("##:##:##");
 			dateMask1.install(textField4jStartTime);
 			MaskFormatter dateMask2 = new MaskFormatter("##:##:##");
-			dateMask2.install(textField4jStartTime);
+			dateMask2.install(textField4jEndTime);
 		} catch (ParseException ex)
 		{
 
