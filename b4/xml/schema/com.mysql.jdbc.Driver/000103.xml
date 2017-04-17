@@ -451,4 +451,8 @@ INSERT INTO SYS_MODULES (MODULE_ID,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,ICON_FIL
 	insert into SYS_LANGUAGE (`RESOURCE_KEY`,`LANGUAGE_ID`,`TEXT`,`MNEMONIC`) values ('dlg_Analysis_Add','DE','Add a new Analysis','')
 </statement>
 
+<statement>
+	INSERT INTO APP_SHIFTS (SHIFT_ID, START_TIME, END_TIME, DESCRIPTION) VALUES ('24', '00:00:00', '23:59:59', '24 Hour Day')
+</statement>
+
 </DDL>
