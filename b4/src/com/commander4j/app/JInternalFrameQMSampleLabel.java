@@ -54,8 +54,6 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.text.AbstractDocument;
-import javax.swing.text.DocumentFilter;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
@@ -80,7 +78,6 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
-import com.commander4j.util.UppercaseDocumentFilter;
 
 /**
  * The JInternalFrameQMSampleLabel is used printing sample labels and populating the APP_QM_SAMPLE table
@@ -632,7 +629,6 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		lblUserData2.setBounds(288, 167, 111, 16);
 		desktopPane.add(lblUserData2);
 
-		DocumentFilter filter = new UppercaseDocumentFilter();
 		textFieldUserData1 = new JTextField4j(JDBQMSample.field_data_1);
 		textFieldUserData1.setToolTipText("Custom Field USER_DATA_1");
 		textFieldUserData1.addKeyListener(new KeyAdapter()
@@ -645,7 +641,6 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			}
 		});
 
-		((AbstractDocument) textFieldUserData1.getDocument()).setDocumentFilter(filter);
 		textFieldUserData1.setColumns(20);
 		textFieldUserData1.setBounds(125, 162, 134, 22);
 		desktopPane.add(textFieldUserData1);
@@ -661,7 +656,6 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			}
 		});
 
-		((AbstractDocument) textFieldUserData2.getDocument()).setDocumentFilter(filter);
 		textFieldUserData2.setColumns(20);
 		textFieldUserData2.setBounds(411, 162, 134, 22);
 		desktopPane.add(textFieldUserData2);
@@ -720,6 +714,12 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(lblUserData3);
 		
 		textFieldUserData3 = new JTextField4j(20);
+		textFieldUserData3.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				printEnable();
+			}
+		});
 		textFieldUserData3.setToolTipText("Custom Field USER_DATA_3");
 		textFieldUserData3.setColumns(20);
 		textFieldUserData3.setBounds(125, 193, 134, 22);
@@ -731,6 +731,12 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(lblUserData4);
 		
 		textFieldUserData4 = new JTextField4j(20);
+		textFieldUserData4.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				printEnable();
+			}
+		});
 		textFieldUserData4.setToolTipText("Custom Field USER_DATA_4");
 		textFieldUserData4.setColumns(20);
 		textFieldUserData4.setBounds(411, 193, 134, 22);
