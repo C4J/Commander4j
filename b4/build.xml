@@ -89,7 +89,7 @@
         <pathelement location="lib/jasperlib/commons-javaflow-20160505.jar"/>
         <pathelement location="lib/jasperlib/core-3.2.1.jar"/>
         <pathelement location="lib/jasper/jasperreports-6.3.1.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-5.1.40-bin.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-5.1.41-bin.jar"/>
         <pathelement location="lib/db/sqljdbc42.jar"/>
     </path>
     <target name="init">
