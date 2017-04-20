@@ -49,8 +49,8 @@ import com.commander4j.util.JUtility;
  *      JInternalFrameQMSelectListAdmin
  * @see com.commander4j.app.JDialogQMSelectListProperties
  *      JDialogQMSelectListProperties
- * @see com.commander4j.db.JDBQMDictionary JDBQMDictionary    
- *      
+ * @see com.commander4j.db.JDBQMDictionary JDBQMDictionary
+ * 
  *
  */
 public class JDBQMSelectList
@@ -58,6 +58,7 @@ public class JDBQMSelectList
 	private String dbValueID;
 	private String dbSelectListID;
 	private String dbDescription;
+	private String dbVisible;
 	private String dbErrorMessage;
 	private Long dbSequence;
 	public static int field_list_id = 20;
@@ -141,7 +142,7 @@ public class JDBQMSelectList
 		setSequence((long) -1);
 	}
 
-	public boolean create(String sequenceid, String value, String description, Long sequence)
+	public boolean create(String sequenceid, String value, String description, Long sequence,String vis)
 	{
 		boolean result = false;
 		setErrorMessage("");
@@ -152,6 +153,7 @@ public class JDBQMSelectList
 			setValue(value);
 			setDescription(description);
 			setSequence(sequence);
+			setVisible(vis);
 
 			if (isValid() == false)
 			{
@@ -160,7 +162,8 @@ public class JDBQMSelectList
 				stmtupdate.setString(1, getSelectListID());
 				stmtupdate.setString(2, getValue());
 				stmtupdate.setString(3, getDescription());
-				stmtupdate.setLong(4, getSequence());
+				stmtupdate.setLong(4,getSequence());
+				stmtupdate.setString(5, getVisible());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -212,6 +215,16 @@ public class JDBQMSelectList
 			result = dbDescription;
 		return result;
 	}
+	
+	public String getVisible()
+	{
+		String result = JUtility.replaceNullStringwithBlank(dbVisible);
+		if (result.equals(""))
+		{
+			result = "Y";
+		}
+		return result;
+	}
 
 	public String getErrorMessage()
 	{
@@ -247,6 +260,7 @@ public class JDBQMSelectList
 			{
 				setDescription(rs.getString("description"));
 				setSequence(rs.getLong("sequence"));
+				setVisible(rs.getString("visible"));
 				result = true;
 				rs.close();
 				stmt.close();
@@ -306,6 +320,7 @@ public class JDBQMSelectList
 				mt.setSelectListID(rs.getString("select_list_id"));
 				mt.setValue(rs.getString("value"));
 				mt.setDescription(rs.getString("description"));
+				mt.setVisible(rs.getString("visible"));
 				mt.setDisplayModeLong(isDisplayModeLong());
 				typeList.add(mt);
 			}
@@ -365,12 +380,16 @@ public class JDBQMSelectList
 
 			while (rs.next())
 			{
-				JDBQMSelectList mt = new JDBQMSelectList();
-				mt.setSelectListID(rs.getString("select_list_id"));
-				mt.setValue(rs.getString("value"));
-				mt.setDescription(rs.getString("description"));
-				mt.setDisplayModeLong(isDisplayModeLong());
-				typeList.add(mt);
+				if (rs.getString("visible").equals("Y"))
+				{
+					JDBQMSelectList mt = new JDBQMSelectList();
+					mt.setSelectListID(rs.getString("select_list_id"));
+					mt.setValue(rs.getString("value"));
+					mt.setDescription(rs.getString("description"));
+					mt.setVisible(rs.getString("visible"));
+					mt.setDisplayModeLong(isDisplayModeLong());
+					typeList.add(mt);
+				}
 			}
 			rs.close();
 			stmt.close();
@@ -457,6 +476,16 @@ public class JDBQMSelectList
 		dbDescription = description;
 	}
 
+	public void setVisible(String vis)
+	{
+		vis = JUtility.replaceNullStringwithBlank(vis);
+		if (vis.equals(""))
+		{
+			vis = "Y";
+		}
+		dbVisible = vis;
+	}
+	
 	private void setErrorMessage(String errorMsg)
 	{
 		if (errorMsg.isEmpty() == false)
@@ -526,8 +555,9 @@ public class JDBQMSelectList
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSelectList.update"));
 				stmtupdate.setString(1, getDescription());
 				stmtupdate.setLong(2, getSequence());
-				stmtupdate.setString(3, getSelectListID());
-				stmtupdate.setString(4, getValue());
+				stmtupdate.setString(3, getVisible());
+				stmtupdate.setString(4, getSelectListID());
+				stmtupdate.setString(5, getValue());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

@@ -134,6 +134,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 			dict.setFieldWidth(Integer.valueOf(spinnerWidth.getValue().toString()));
 			dict.update();
 		}
+		btnSave.setEnabled(false);
 	}
 
 	public JDialogQMDictionaryProperties(JFrame frame, String testid)

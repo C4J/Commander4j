@@ -1203,7 +1203,7 @@
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.create</id>
-			<text>insert into {schema}APP_QM_SELECTLIST (select_list_id,value,description,sequence) values (?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_SELECTLIST (select_list_id,value,description,sequence,visible) values (?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.delete</id>
@@ -1219,7 +1219,7 @@
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.update</id>
-			<text>update {schema}APP_QM_SELECTLIST set description = ?,sequence=? where select_list_id = ? and value = ?</text>
+			<text>update {schema}APP_QM_SELECTLIST set description = ?,sequence=?,visible=? where select_list_id = ? and value = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMSelectList.getSummary</id>

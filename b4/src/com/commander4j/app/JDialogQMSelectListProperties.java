@@ -49,6 +49,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import com.commander4j.gui.JCheckBox4j;
 
 /**
  * JDialogQMSelectListProperties is used to administer a single record within the APP_QM_SELECTLIST table. 
@@ -73,6 +74,7 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 	private JButton4j btnSave;
 	private JButton4j btnClose;
 	private JSpinner spinnerSequence;
+	private JCheckBox4j chckbxVisible = new JCheckBox4j("");
 	
 	private void enableSave()
 	{
@@ -91,9 +93,20 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 		String val = textFieldValue.getText();
 		String description = textFieldDescription.getText();
 		
+		String visible;
+		if (chckbxVisible.isSelected())
+		{
+			visible = "Y";
+
+		} else
+		{
+			visible = "N";
+
+		}
+		
 		if (select.isValid(id, val)==false)
 		{
-			select.create(id, val,description,Long.valueOf(spinnerSequence.getValue().toString()));
+			select.create(id, val,description,Long.valueOf(spinnerSequence.getValue().toString()),visible);
 			textFieldListID.setEnabled(false);
 			textFieldValue.setEnabled(false);
 		}
@@ -101,8 +114,10 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 		{
 			select.setSequence(Long.valueOf(spinnerSequence.getValue().toString()));
 			select.setDescription(textFieldDescription.getText());
+			select.setVisible(visible);
 			select.update();				
 		}
+		btnSave.setEnabled(false);
 	}
 	
 	public JDialogQMSelectListProperties(JFrame frame,String listid,String val) {
@@ -231,6 +246,26 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 
 		textFieldDescription.setText(select.getDescription());
 		spinnerSequence.setValue(select.getSequence());
+		
+		JLabel4j_std lblVisible = new JLabel4j_std(lang.get("lbl_Visible"));
+		lblVisible.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblVisible.setBounds(257, 99, 92, 16);
+		desktopPane.add(lblVisible);
+		
+
+		chckbxVisible.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				enableSave();
+			}
+		});
+		chckbxVisible.setSelected(true);
+		chckbxVisible.setBounds(361, 96, 28, 23);
+		desktopPane.add(chckbxVisible);
+		
+		if (select.getVisible().equals("Y"))
+			chckbxVisible.setSelected(true);
+		else
+			chckbxVisible.setSelected(false);
 
 		if (listid.equals(""))
 		{
@@ -250,5 +285,7 @@ public class JDialogQMSelectListProperties extends javax.swing.JDialog
 		{
 			textFieldValue.setEnabled(false);
 		}
+		
+		btnSave.setEnabled(false);
 	}
 }
