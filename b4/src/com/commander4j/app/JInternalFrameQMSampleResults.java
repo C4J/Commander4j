@@ -90,6 +90,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 	private JTextField4j textField4jInspectionDescription;
 
 	private JScrollPane jScrollPane1;
+	private boolean tableclear;
 
 	
 	private void processOrderChanged(String processOrder)
@@ -104,14 +105,21 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 			insp.getProperties(po.getInspectionID());
 			textField4jInspectionDescription.setText(insp.getDescription());
 			populateActivityList(po.getInspectionID());
+			populateTable();
+			tableclear=false;
 		}
 		else
 		{
-			populateActivityList("");
-			textField4Material.setText("");
-			textFieldDescription.setText("");
+			if (tableclear==false)
+			{
+				populateActivityList("");
+				textField4Material.setText("");
+				textFieldDescription.setText("");
+				populateTable();
+				tableclear=true;
+			}
 		}
-		populateTable();
+		//populateTable();
 		lblStatusBar.setText("");
 	}
 	
