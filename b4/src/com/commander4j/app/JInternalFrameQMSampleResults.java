@@ -90,7 +90,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 	private JTextField4j textField4jInspectionDescription;
 
 	private JScrollPane jScrollPane1;
-	private boolean tableclear;
+	private boolean tableclear=true;
 
 	
 	private void processOrderChanged(String processOrder)
