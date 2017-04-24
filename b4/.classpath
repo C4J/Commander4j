@@ -23,7 +23,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/olap4j-0.9.7.309-JS-3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/castor-core-1.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/castor-xml-1.3.3.jar"/>
-	<classpathentry kind="lib" path="lib/db/ojdbc7.jar"/>
 	<classpathentry kind="lib" path="lib/devonly/i4jruntime.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-email-1.3.3.jar"/>
@@ -81,6 +80,7 @@
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/db/sqljdbc42.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-java-5.1.41-bin.jar"/>
+	<classpathentry kind="lib" path="lib/db/ojdbc8.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/Java SE 8 [1.8.0_131]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
