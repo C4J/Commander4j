@@ -226,6 +226,10 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 					textFieldUserData1.setText(userReport.getSystemResultData());
 				}
 			}
+			else
+			{
+				textFieldUserData1.setText("");
+			}
 			
 			if (userReport.getUserReportProperties("USER_DATA_2"))
 			{
@@ -240,6 +244,10 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				{
 					textFieldUserData2.setText(userReport.getSystemResultData());
 				}
+			}
+			else
+			{
+				textFieldUserData2.setText("");
 			}
 			
 			if (userReport.getUserReportProperties("USER_DATA_3"))
@@ -256,6 +264,10 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 					textFieldUserData3.setText(userReport.getSystemResultData());
 				}
 			}
+			else
+			{
+				textFieldUserData3.setText("");
+			}
 			
 			if (userReport.getUserReportProperties("USER_DATA_4"))
 			{
@@ -270,6 +282,10 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				{
 					textFieldUserData4.setText(userReport.getSystemResultData());
 				}
+			}
+			else
+			{
+				textFieldUserData4.setText("");
 			}
 			
 			populateActivityList(po.getInspectionID());
