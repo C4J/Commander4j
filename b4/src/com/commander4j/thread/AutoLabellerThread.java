@@ -158,7 +158,7 @@ public class AutoLabellerThread extends Thread {
 							logger.debug("Line Description =" + autolabview.getAutoLabellerObj().getDescription());
 							logger.debug("Printer ID       =" + autolabview.getPrinterObj().getPrinterID());
 							logger.debug("Printer Enabled  =" + autolabview.getPrinterObj().isEnabled());
-							logger.debug("Export Path      =" + autolabview.getPrinterObj().getExportPath());
+							logger.debug("Export Path      =" + autolabview.getPrinterObj().getExportRealPath());
 							logger.debug("Export Enabled   =" + autolabview.getPrinterObj().isExportEnabled());
 							logger.debug("Export Format    =" + autolabview.getPrinterObj().getExportFormat());
 							logger.debug("Direct Print     =" + autolabview.getPrinterObj().isDirectPrintEnabled());
@@ -172,7 +172,7 @@ public class AutoLabellerThread extends Thread {
 
 							if (autolabview.getPrinterObj().isExportEnabled())
 							{
-								String exportPath = JUtility.replaceNullStringwithBlank(JUtility.formatPath(autolabview.getPrinterObj().getExportPath()));
+								String exportPath = JUtility.replaceNullStringwithBlank(JUtility.formatPath(autolabview.getPrinterObj().getExportRealPath()));
 								if (exportPath.equals("") == false)
 								{
 									if (exportPath.substring(exportPath.length() - 1).equals(File.separator) == false)

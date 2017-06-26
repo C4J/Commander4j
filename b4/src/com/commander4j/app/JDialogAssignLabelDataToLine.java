@@ -165,7 +165,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 				String lineid = ((JDBAutoLabeller) ((JDBListData) list.getSelectedValue()).getmData()).getLine();
 				if (autolab.getProperties(lineid, labdat.getLabelType()))
 				{
-					int n = JOptionPane.showConfirmDialog(Common.mainForm, "Assign Process Order " + labdat.getProcessOrder() + " to " + lineid + " ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+					int n = JOptionPane.showConfirmDialog(this, "Assign Process Order " + labdat.getProcessOrder() + " to " + lineid + " ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 					if (n == 0)
 					{
 						if (autolab.isValidClientWorkstationID(JUtility.getClientName()))
@@ -179,13 +179,13 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 							} else
 							{
 								JUtility.errorBeep();
-								JOptionPane.showMessageDialog(Common.mainForm, "Process Order " + labdat.getProcessOrder() + " cannot be assigned to " + lineid + "\nResource is incorrect " + labdat.getRequiredResource(), lang.get("err_Error"),
+								JOptionPane.showMessageDialog(this, "Process Order " + labdat.getProcessOrder() + " cannot be assigned to " + lineid + "\nResource is incorrect " + labdat.getRequiredResource(), lang.get("err_Error"),
 										JOptionPane.ERROR_MESSAGE);
 							}
 						} else
 						{
 							JUtility.errorBeep();
-							JOptionPane.showMessageDialog(Common.mainForm, "Workstation ["+JUtility.getClientName()+"] cannot assign data to [" + lineid + "].", lang.get("err_Error"),
+							JOptionPane.showMessageDialog(this, "Workstation ["+JUtility.getClientName()+"] cannot assign data to [" + lineid + "].", lang.get("err_Error"),
 									JOptionPane.ERROR_MESSAGE);
 						}
 					}

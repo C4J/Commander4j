@@ -1035,7 +1035,7 @@ public class JDBDespatch
 					{
 						if (journey.getDespatchNo().equals(getDespatchNo()) == false)
 						{
-							setErrorMessage("Journey Ref used by " + getDespatchNo());
+							setErrorMessage("Journey Ref used by " + journey.getDespatchNo());
 							result = false;
 						}
 					}
@@ -1273,7 +1273,7 @@ public class JDBDespatch
 						if (getJourneyRef().equals("") == false)
 						{
 							journey.setDespatchNo(getDespatchNo());
-							journey.setStatus("Aassigned");
+							journey.setStatus("Assigned");
 							journey.update();
 						}
 					}

@@ -84,6 +84,7 @@ public class JDialogPrinterProperties extends JDialog
 	{
 
 		super(parent);
+		setResizable(false);
 
 		initGUI();
 
@@ -133,6 +134,12 @@ public class JDialogPrinterProperties extends JDialog
 			}
 		});
 		chckbxEnableDirectPrint.setSelected(printers.isDirectPrintEnabled());
+		jTextFieldExportPath.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				jButtonUpdate.setEnabled(true);
+			}
+		});
 		jTextFieldExportPath.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jButtonUpdate.setEnabled(true);
@@ -153,21 +160,19 @@ public class JDialogPrinterProperties extends JDialog
 
 	private void setEnabledObjects(boolean enabled)
 	{
-		jTextFieldExportPath.setEnabled(enabled);
-		jButtonExportPathChooser.setEnabled(enabled);
 	}
 	
 	private void initGUI() {
 		try
 		{
 			setPreferredSize(new java.awt.Dimension(460, 163));
-			this.setBounds(25, 25, 653, 449);
+			this.setBounds(25, 25, 819, 449);
 			setModal(true);
 			getContentPane().setLayout(null);
 
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 653, 474);
+				jDesktopPane1.setBounds(0, 0, 819, 427);
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new Dimension(452, 140));
@@ -201,7 +206,7 @@ public class JDialogPrinterProperties extends JDialog
 					jButtonUpdate = new JButton4j(Common.icon_update);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setText(lang.get("btn_Save"));
-					jButtonUpdate.setBounds(152, 372, 110, 32);
+					jButtonUpdate.setBounds(237, 371, 110, 32);
 					jButtonUpdate.setMnemonic(java.awt.event.KeyEvent.VK_S);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.addActionListener(new ActionListener() {
@@ -215,7 +220,9 @@ public class JDialogPrinterProperties extends JDialog
 							printers.setDPI(comboBoxDPI.getSelectedItem().toString());
 
 							printers.setPrinterEnabled(chckbxEnabled.isSelected());
-							printers.setExportPath(jTextFieldExportPath.getText());
+							String path = jTextFieldExportPath.getText();
+							path = path.replace(Common.base_dir, "{base_dir}");
+							printers.setExportPath(path);
 							printers.setEnableExport(chckbxEnableExport.isSelected());
 							printers.setEnableDirectPrint(chckbxEnableDirectPrint.isSelected());
 							printers.setExportFormat(JUtility.replaceNullStringwithBlank(comboBox4ExportFormat.getSelectedItem().toString()));
@@ -229,7 +236,7 @@ public class JDialogPrinterProperties extends JDialog
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(388, 372, 110, 32);
+					jButtonClose.setBounds(473, 371, 110, 32);
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -277,7 +284,7 @@ public class JDialogPrinterProperties extends JDialog
 					jButtonHelp = new JButton4j(Common.icon_help);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(276, 372, 100, 32);
+					jButtonHelp.setBounds(361, 371, 100, 32);
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
 				}
 				{
@@ -408,7 +415,7 @@ public class JDialogPrinterProperties extends JDialog
 			jTextFieldExportPath.setText("");
 			jTextFieldExportPath.setPreferredSize(new Dimension(40, 20));
 			jTextFieldExportPath.setFocusCycleRoot(true);
-			jTextFieldExportPath.setBounds(205, 274, 385, 21);
+			jTextFieldExportPath.setBounds(205, 274, 555, 21);
 			jDesktopPane1.add(jTextFieldExportPath);
 			
 			
@@ -445,7 +452,7 @@ public class JDialogPrinterProperties extends JDialog
 				}
 			});
 			jButtonExportPathChooser.setText("..");
-			jButtonExportPathChooser.setBounds(587, 274, 17, 21);
+			jButtonExportPathChooser.setBounds(761, 274, 17, 21);
 			jDesktopPane1.add(jButtonExportPathChooser);
 			
 			JLabel4j_std label4j_Direct = new JLabel4j_std();

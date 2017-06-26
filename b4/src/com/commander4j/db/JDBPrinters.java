@@ -144,6 +144,14 @@ public class JDBPrinters
 		return dbExportPath;
 	}
 
+	public String getExportRealPath()
+	{
+		String result = getExportPath();
+		result = result.replace("{base_dir}", Common.base_dir);
+		logger.debug(result);
+		return result;
+	}
+	
 	public String getExportFormat()
 	{
 		if (dbExportFormat.equals(""))
