@@ -30,6 +30,7 @@ package com.commander4j.util;
 import java.awt.Component;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,6 +49,7 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 
 import com.commander4j.gui.JCheckBox4j;
 
@@ -159,34 +161,34 @@ public class JExcel
 			HSSFSheet sheet = workbook.createSheet();
 
 			HSSFCellStyle cellStyle_varchar = workbook.createCellStyle();
-			cellStyle_varchar.setAlignment(HSSFCellStyle.ALIGN_LEFT);
+			cellStyle_varchar.setAlignment(HorizontalAlignment.LEFT);
 
 			HSSFCellStyle cellStyle_nvarchar = workbook.createCellStyle();
-			cellStyle_nvarchar.setAlignment(HSSFCellStyle.ALIGN_LEFT);
+			cellStyle_nvarchar.setAlignment(HorizontalAlignment.LEFT);
 			
 			HSSFCellStyle cellStyle_varchar2 = workbook.createCellStyle();
-			cellStyle_varchar2.setAlignment(HSSFCellStyle.ALIGN_LEFT);
+			cellStyle_varchar2.setAlignment(HorizontalAlignment.LEFT);
 			
 			HSSFCellStyle cellStyle_title = workbook.createCellStyle();
-			cellStyle_title.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+			cellStyle_title.setAlignment(HorizontalAlignment.CENTER);
 
 			HSSFCellStyle cellStyle_char = workbook.createCellStyle();
-			cellStyle_char.setAlignment(HSSFCellStyle.ALIGN_LEFT);
+			cellStyle_char.setAlignment(HorizontalAlignment.LEFT);
 
 			HSSFCellStyle cellStyle_date = workbook.createCellStyle();
-			cellStyle_date.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+			cellStyle_date.setAlignment(HorizontalAlignment.CENTER);
 			cellStyle_date.setDataFormat(HSSFDataFormat.getBuiltinFormat("m/d/yy h:mm"));
 
 			HSSFCellStyle cellStyle_timestamp = workbook.createCellStyle();
-			cellStyle_timestamp.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+			cellStyle_timestamp.setAlignment(HorizontalAlignment.CENTER);
 			cellStyle_timestamp.setDataFormat(HSSFDataFormat.getBuiltinFormat("m/d/yy h:mm"));
 
 			HSSFCellStyle cellStyle_decimal = workbook.createCellStyle();
-			cellStyle_decimal.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
+			cellStyle_decimal.setAlignment(HorizontalAlignment.RIGHT);
 
 			HSSFFont font_title = workbook.createFont();
 			font_title.setColor((short) 0xc);
-			font_title.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+			font_title.setBold(true);;
 			font_title.setItalic(true);
 			font_title.setUnderline(HSSFFont.U_DOUBLE);
 			cellStyle_title.setFont(font_title);
@@ -357,6 +359,14 @@ public class JExcel
 				}
 			}
 
+			try
+			{
+				workbook.close();
+			} catch (IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		catch (SQLException e)
 		{
