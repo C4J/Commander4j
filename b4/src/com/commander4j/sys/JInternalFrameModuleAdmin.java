@@ -49,6 +49,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBListData;
@@ -61,14 +63,17 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
 /**
- * The JInternalFrameModuleAdmin class allows a user to insert/update/delete records from the SYS_MODULES table.
+ * The JInternalFrameModuleAdmin class allows a user to insert/update/delete
+ * records from the SYS_MODULES table.
  *
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameModuleAdmin.jpg" >
  * 
  * @see com.commander4j.db.JDBModule JDBModule
- * @see com.commander4j.sys.JInternalFrameModuleProperties JInternalFrameModuleProperties
- * @see com.commander4j.sys.JInternalFrameModuleGroups JInternalFrameModuleGroups
+ * @see com.commander4j.sys.JInternalFrameModuleProperties
+ *      JInternalFrameModuleProperties
+ * @see com.commander4j.sys.JInternalFrameModuleGroups
+ *      JInternalFrameModuleGroups
  */
 public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 {
@@ -96,7 +101,9 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 	private String lModuleId;
 	private String statementText = "";
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private String selectedModuleType = "ALL";
+	private JButton4j jButtonAlternative;
 
 	public JInternalFrameModuleAdmin()
 	{
@@ -105,7 +112,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MODULES"));
-		
+
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -113,7 +120,8 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 		populateList("");
 	}
 
-	private void addRecord() {
+	private void addRecord()
+	{
 		JDBModule m = new JDBModule(Common.selectedHostID, Common.sessionID);
 
 		lModuleId = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Module_Create"));
@@ -122,7 +130,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 			if (lModuleId.equals("") == false)
 			{
 				lModuleId = lModuleId.toUpperCase();
-				
+
 				String modType = selectedModuleType;
 				if (modType.equals("ALL"))
 				{
@@ -132,8 +140,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				{
 					JUtility.errorBeep();
 					JOptionPane.showMessageDialog(Common.mainForm, m.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
-				}
-				else
+				} else
 				{
 
 					JLaunchMenu.runForm("FRM_ADMIN_MODULE_EDIT", lModuleId);
@@ -143,14 +150,60 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 		}
 	}
 
-	private void delete() {
+	private void copyRecord()
+	{
+
+		if (jListModules.isSelectionEmpty() == false)
+		{
+			String fromModuleId = ((JDBListData) jListModules.getSelectedValue()).toString();
+
+			JDBModule m = new JDBModule(Common.selectedHostID, Common.sessionID);
+			JDBModule m2 = new JDBModule(Common.selectedHostID, Common.sessionID);
+
+			if (m.getModuleProperties(fromModuleId))
+			{
+				m2.getModuleProperties(fromModuleId);
+				
+				String toModuleId = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Module_Create"));
+
+				if (toModuleId != null)
+				{
+					if (toModuleId.equals("") == false)
+					{
+						toModuleId = toModuleId.toUpperCase();
+
+						m.setModuleId(toModuleId);
+
+						if (m.create(toModuleId, m2.getResourceKey(), m2.getDKActive(), m2.getRFActive(), m2.getType(), m2.getIconFilename(), m2.getHelpSetID()) == false)
+						{
+							JUtility.errorBeep();
+							JOptionPane.showMessageDialog(Common.mainForm, m.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
+						} 
+						else
+						{
+						   lModuleId = toModuleId;
+							m = m2;
+							m.setModuleId(toModuleId);
+							m.update();
+							
+							JLaunchMenu.runForm("FRM_ADMIN_MODULE_EDIT", toModuleId);
+							populateList(toModuleId);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void delete()
+	{
 		if (jListModules.isSelectionEmpty() == false)
 		{
 
 			lModuleId = ((JDBListData) jListModules.getSelectedValue()).toString();
 			if (lModuleId.equals("root") == false)
 			{
-				int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Module_Delete")+" " + lModuleId + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+				int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Module_Delete") + " " + lModuleId + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 				if (n == 0)
 				{
 					JDBModule m = new JDBModule(Common.selectedHostID, Common.sessionID);
@@ -158,8 +211,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					m.delete();
 					populateList("");
 				}
-			}
-			else
+			} else
 			{
 				JUtility.errorBeep();
 				JOptionPane.showMessageDialog(null, "Cannot delete module " + lModuleId + " !", "Information", JOptionPane.WARNING_MESSAGE, Common.icon_confirm);
@@ -167,7 +219,8 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 		}
 	}
 
-	private void populateList(String defaultitem) {
+	private void populateList(String defaultitem)
+	{
 		DefaultComboBoxModel<JDBListData> defComboBoxMod = new DefaultComboBoxModel<JDBListData>();
 
 		JDBModule tempModule = new JDBModule(Common.selectedHostID, Common.sessionID);
@@ -177,8 +230,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 		if (jRadioButtonAll.isSelected())
 		{
 			tempModuleList = tempModule.getModuleIds();
-		}
-		else
+		} else
 		{
 			tempModuleList = tempModule.getModuleIdsByType(selectedModuleType);
 		}
@@ -201,7 +253,8 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 		jListModules.setCellRenderer(Common.renderer_list);
 	}
 
-	private void editRecord() {
+	private void editRecord()
+	{
 		if (jListModules.isSelectionEmpty() == false)
 		{
 			lModuleId = ((JDBListData) jListModules.getSelectedValue()).toString();
@@ -210,7 +263,8 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 		}
 	}
 
-	private void rename() {
+	private void rename()
+	{
 		if (jListModules.isSelectionEmpty() == false)
 		{
 			String lmodule_id_from = ((JDBListData) jListModules.getSelectedValue()).toString();
@@ -234,15 +288,18 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 		}
 	}
 
-	private void print() {
+	private void print()
+	{
 		statementText = "select * from " + Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema() + "SYS_MODULES order by module_type,module_id";
-		JLaunchReport.runReport("RPT_MODULES", null, statementText,null, "");
+		JLaunchReport.runReport("RPT_MODULES", null, statementText, null, "");
 	}
 
-	private void excel() {
+	private void excel()
+	{
 		JDBModule module = new JDBModule(Common.selectedHostID, Common.sessionID);
 		ResultSet rs = null;
 		String moduleType = "";
+
 		if (jRadioButtonAll.isSelected())
 		{
 			moduleType = "ALL";
@@ -279,11 +336,12 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 		populateList("");
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(518, 511));
-			this.setBounds(0, 0, 563, 594);
+			this.setBounds(0, 0, 563, 648);
 			setVisible(true);
 			this.setTitle("Module Admin");
 			this.setClosable(true);
@@ -302,16 +360,37 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jScrollPane1 = new JScrollPane();
-					jScrollPane1.setBounds(10, 10, 356, 525);
+					jScrollPane1.setBounds(10, 10, 356, 594);
 					jDesktopPane1.add(jScrollPane1);
 					jScrollPane1.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
 						ListModel<JDBListData> jListModulesModel = new DefaultComboBoxModel<JDBListData>();
 						jListModules = new JDBModuleJList(Common.selectedHostID, Common.sessionID);
+						jListModules.addListSelectionListener(new ListSelectionListener()
+						{
+							public void valueChanged(ListSelectionEvent e)
+							{
+								int sel = jListModules.getSelectedIndex();
+								if (sel > -1)
+								{
+									JDBListData item = (JDBListData) jListModules.getModel().getElementAt(sel);
+									mod.getModuleProperties(item.getmData().toString());
+									if (mod.getType().equals("REPORT"))
+									{
+										jButtonAlternative.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_ALTERNATE"));
+									} else
+									{
+										jButtonAlternative.setEnabled(false);
+									}
+								}
+							}
+						});
 						jScrollPane1.setViewportView(jListModules);
 						jListModules.setModel(jListModulesModel);
-						jListModules.addMouseListener(new MouseAdapter() {
-							public void mouseClicked(MouseEvent evt) {
+						jListModules.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
 								if (evt.getClickCount() == 2)
 								{
 									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_EDIT") == true)
@@ -328,8 +407,10 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										addRecord();
 									}
 								});
@@ -340,8 +421,10 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										delete();
 									}
 								});
@@ -352,8 +435,10 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										editRecord();
 									}
 								});
@@ -364,8 +449,10 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_rename);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										rename();
 									}
 								});
@@ -376,8 +463,10 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										print();
 									}
 								});
@@ -388,8 +477,10 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										excel();
 									}
 								});
@@ -399,8 +490,10 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh);
-								newItemMenuItem.addActionListener(new ActionListener() {
-									public void actionPerformed(final ActionEvent e) {
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
 										populateList("");
 									}
 								});
@@ -417,8 +510,10 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_ADD"));
-					jButtonAdd.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonAdd.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							addRecord();
 						}
 					});
@@ -431,8 +526,10 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_DELETE"));
-					jButtonDelete.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonDelete.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							delete();
 						}
 					});
@@ -444,33 +541,39 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_EDIT"));
-					jButtonEdit.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonEdit.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							editRecord();
 						}
 					});
 				}
 				{
 					jButtonPrint = new JButton4j(Common.icon_report);
-					jButtonPrint.setBounds(378, 165, 145, 32);
+					jButtonPrint.setBounds(378, 196, 145, 32);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_MODULES"));
-					jButtonPrint.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonPrint.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							print();
 						}
 					});
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
-					jButtonClose.setBounds(378, 289, 145, 32);
+					jButtonClose.setBounds(378, 352, 145, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -482,42 +585,48 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					jButtonRename.setText(lang.get("btn_Rename"));
 					jButtonRename.setMnemonic(lang.getMnemonicChar());
 					jButtonRename.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_RENAME"));
-					jButtonRename.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonRename.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							rename();
 						}
 					});
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help);
-					jButtonHelp.setBounds(378, 227, 145, 32);
+					jButtonHelp.setBounds(378, 290, 145, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh);
-					jButtonRefresh.setBounds(378, 258, 145, 32);
+					jButtonRefresh.setBounds(378, 321, 145, 32);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonRefresh.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							populateList("");
 						}
 					});
 				}
 				{
 					jRadioButtonAll = new JRadioButton();
-					jRadioButtonAll.setBounds(378, 333, 145, 28);
+					jRadioButtonAll.setBounds(378, 392, 145, 28);
 					jDesktopPane1.add(jRadioButtonAll);
 					jRadioButtonAll.setText(lang.get("lbl_Module_ALL"));
 					jRadioButtonAll.setFont(Common.font_bold);
 					buttonGroup1.add(jRadioButtonAll);
 					jRadioButtonAll.setBackground(Common.color_app_window);
 					jRadioButtonAll.setSelected(true);
-					jRadioButtonAll.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jRadioButtonAll.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							selectedModuleType = "ALL";
 							jRadioButtonActionPerformed(evt);
 						}
@@ -525,14 +634,16 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonForms = new JRadioButton();
-					jRadioButtonForms.setBounds(378, 361, 145, 28);
+					jRadioButtonForms.setBounds(378, 420, 145, 28);
 					jDesktopPane1.add(jRadioButtonForms);
 					jRadioButtonForms.setText(lang.get("lbl_Module_Form"));
 					jRadioButtonForms.setFont(Common.font_bold);
 					buttonGroup1.add(jRadioButtonForms);
 					jRadioButtonForms.setBackground(Common.color_app_window);
-					jRadioButtonForms.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jRadioButtonForms.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							selectedModuleType = "FORM";
 							jRadioButtonActionPerformed(evt);
 						}
@@ -540,14 +651,16 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonFunctions = new JRadioButton();
-					jRadioButtonFunctions.setBounds(378, 389, 145, 28);
+					jRadioButtonFunctions.setBounds(378, 448, 145, 28);
 					jDesktopPane1.add(jRadioButtonFunctions);
 					jRadioButtonFunctions.setText(lang.get("lbl_Module_Function"));
 					jRadioButtonFunctions.setFont(Common.font_bold);
 					buttonGroup1.add(jRadioButtonFunctions);
 					jRadioButtonFunctions.setBackground(Common.color_app_window);
-					jRadioButtonFunctions.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jRadioButtonFunctions.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							selectedModuleType = "FUNCTION";
 							jRadioButtonActionPerformed(evt);
 						}
@@ -555,14 +668,16 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonMenus = new JRadioButton();
-					jRadioButtonMenus.setBounds(378, 417, 145, 28);
+					jRadioButtonMenus.setBounds(378, 476, 145, 28);
 					jDesktopPane1.add(jRadioButtonMenus);
 					jRadioButtonMenus.setText(lang.get("lbl_Module_Menu"));
 					jRadioButtonMenus.setFont(Common.font_bold);
 					buttonGroup1.add(jRadioButtonMenus);
 					jRadioButtonMenus.setBackground(Common.color_app_window);
-					jRadioButtonMenus.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jRadioButtonMenus.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							selectedModuleType = "MENU";
 							jRadioButtonActionPerformed(evt);
 						}
@@ -570,14 +685,16 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonReports = new JRadioButton();
-					jRadioButtonReports.setBounds(378, 445, 145, 28);
+					jRadioButtonReports.setBounds(378, 504, 145, 28);
 					jDesktopPane1.add(jRadioButtonReports);
 					jRadioButtonReports.setText(lang.get("lbl_Module_Report"));
 					jRadioButtonReports.setFont(Common.font_bold);
 					buttonGroup1.add(jRadioButtonReports);
 					jRadioButtonReports.setBackground(Common.color_app_window);
-					jRadioButtonReports.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jRadioButtonReports.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							selectedModuleType = "REPORT";
 							jRadioButtonActionPerformed(evt);
 						}
@@ -585,30 +702,34 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonUserReports = new JRadioButton();
-					jRadioButtonUserReports.setBounds(378, 501, 145, 28);
+					jRadioButtonUserReports.setBounds(378, 560, 145, 28);
 					jDesktopPane1.add(jRadioButtonUserReports);
 					jRadioButtonUserReports.setText(lang.get("lbl_Module_UserReport"));
 					jRadioButtonUserReports.setFont(Common.font_bold);
 					buttonGroup1.add(jRadioButtonUserReports);
 					jRadioButtonUserReports.setBackground(Common.color_app_window);
-					jRadioButtonUserReports.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jRadioButtonUserReports.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							selectedModuleType = "USER";
 							jRadioButtonActionPerformed(evt);
 						}
 					});
 				}
-				
+
 				{
 					jRadioButtonExec = new JRadioButton();
-					jRadioButtonExec.setBounds(378, 473, 145, 28);
+					jRadioButtonExec.setBounds(378, 532, 145, 28);
 					jDesktopPane1.add(jRadioButtonExec);
 					jRadioButtonExec.setText(lang.get("lbl_Module_Executable"));
 					jRadioButtonExec.setFont(Common.font_bold);
 					jRadioButtonExec.setBackground(Common.color_app_window);
 					buttonGroup1.add(jRadioButtonExec);
-					jRadioButtonExec.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jRadioButtonExec.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							selectedModuleType = "EXEC";
 							jRadioButtonActionPerformed(evt);
 						}
@@ -617,9 +738,11 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS);
-					jButtonExcel.setBounds(378, 196, 145, 32);
-					jButtonExcel.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					jButtonExcel.setBounds(378, 258, 145, 32);
+					jButtonExcel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							excel();
 						}
 					});
@@ -629,35 +752,73 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					JButton4j jButtonGroups = new JButton4j(Common.icon_groups);
-					jButtonGroups.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					jButtonGroups.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							showGroupMembership();
 						}
 					});
 					jButtonGroups.setText(lang.get("mod_FRM_ADMIN_GROUPS"));
 					jButtonGroups.setMnemonic('G');
 					jButtonGroups.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_GROUPS"));
-					jButtonGroups.setBounds(378, 134, 145, 32);
+					jButtonGroups.setBounds(378, 165, 145, 32);
 					jDesktopPane1.add(jButtonGroups);
 				}
 
+				{
+					jButtonAlternative = new JButton4j(Common.icon_alternative);
+					jButtonAlternative.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							lModuleId = ((JDBListData) jListModules.getSelectedValue()).toString();
+							JLaunchMenu.runDialog("FRM_ADMIN_MODULE_ALTERNATE", lModuleId);
+							populateList(lModuleId);
+						}
+					});
+					jButtonAlternative.setText(lang.get("btn_Alternative"));
+					jButtonAlternative.setMnemonic('A');
+					jButtonAlternative.setEnabled(false);
+					jButtonAlternative.setBounds(378, 226, 145, 32);
+					jDesktopPane1.add(jButtonAlternative);
+
+				}
+
+				{
+					JButton4j jButtonCopy = new JButton4j(Common.icon_copy);
+					jButtonCopy.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							copyRecord();
+						}
+					});
+					jButtonCopy.setText(lang.get("btn_Copy"));
+					jButtonCopy.setMnemonic('0');
+					jButtonCopy.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_COPY"));
+					jButtonCopy.setBounds(378, 134, 145, 32);
+					jDesktopPane1.add(jButtonCopy);
+				}
+
 			}
-		}
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
-	private void showGroupMembership() {
-		if (jListModules.isSelectionEmpty()==false)
+
+	private void showGroupMembership()
+	{
+		if (jListModules.isSelectionEmpty() == false)
 		{
 			lModuleId = ((JDBListData) jListModules.getSelectedValue()).toString();
 			JLaunchMenu.runForm("FRM_ADMIN_MODULE_MEMBERS", lModuleId);
 		}
 	}
 
-	private void jRadioButtonActionPerformed(ActionEvent evt) {
+	private void jRadioButtonActionPerformed(ActionEvent evt)
+	{
 		populateList("");
 	}
 
@@ -667,19 +828,24 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 	 * It used by WindowBuilder to associate the {@link javax.swing.JPopupMenu}
 	 * with parent.
 	 */
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
+	private static void addPopup(Component component, final JPopupMenu popup)
+	{
+		component.addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent e)
+			{
 				if (e.isPopupTrigger())
 					showMenu(e);
 			}
 
-			private void showMenu(MouseEvent e) {
+			private void showMenu(MouseEvent e)
+			{
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});

@@ -60,6 +60,7 @@ import net.sf.jasperreports.export.SimplePrintServiceExporterConfiguration;
 import com.commander4j.bar.JLabelPrint;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBModule;
+import com.commander4j.db.JDBModuleAlternative;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.OSValidator;
@@ -68,6 +69,7 @@ public class JLaunchReport {
 
 	public static boolean silentExceptions = false;
 	public static JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
+	public static JDBModuleAlternative modalt = new JDBModuleAlternative(Common.selectedHostID, Common.sessionID);
 	public static Map<String, String> stdparams = new HashMap<String, String>();
 
 	public static void runReportToPDF(String moduleId, HashMap<String, Object> parameterValues, String sql, PreparedStatement preparedstatement, String filename)
@@ -81,6 +83,8 @@ public class JLaunchReport {
 
 		init();
 
+		moduleId = modalt.substituteAlternative(moduleId);
+		
 		mod.setModuleId(moduleId);
 
 		if (mod.getModuleProperties() == true)
@@ -181,6 +185,8 @@ public class JLaunchReport {
 		JRPrintServiceExporter exporter;
 		// PrintServiceAttributeSet serviceAttributeSet;
 		String reportFilename = "";
+		
+		moduleId = modalt.substituteAlternative(moduleId);
 
 		mod.setModuleId(moduleId);
 
@@ -307,6 +313,8 @@ public class JLaunchReport {
 
 	public static void runReport(String ModuleId, PreparedStatement ps, boolean preview, String printQueue, int labelCopies, boolean incHeaderText)
 	{
+		
+		ModuleId = modalt.substituteAlternative(ModuleId);
 		mod.setModuleId(ModuleId);
 		if (mod.getModuleProperties() == true)
 		{

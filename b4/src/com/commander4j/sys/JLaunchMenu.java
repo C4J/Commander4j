@@ -36,6 +36,7 @@ import javax.swing.JInternalFrame;
 import com.commander4j.app.JDialogAbout;
 import com.commander4j.app.JDialogAssignLabelDataToLine;
 import com.commander4j.app.JDialogMaterialCustomerDataProperties;
+import com.commander4j.app.JDialogModuleAlternative;
 import com.commander4j.app.JDialogPalletRePrintLabel;
 import com.commander4j.app.JDialogQMActivityProperties;
 import com.commander4j.app.JDialogQMDictionaryProperties;
@@ -351,6 +352,14 @@ public class JLaunchMenu
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
 
+		if (optionName.equals("FRM_ADMIN_MODULE_ALTERNATE"))
+		{
+			final JDialogModuleAlternative u;
+			u = new JDialogModuleAlternative(Common.mainForm, strParam);
+			displayDialog(u, optionName);
+
+		}
+		
 		if (optionName.equals("FRM_ADMIN_DATA_IDS_EDIT"))
 		{
 			final JDialogDataIDProperties u;

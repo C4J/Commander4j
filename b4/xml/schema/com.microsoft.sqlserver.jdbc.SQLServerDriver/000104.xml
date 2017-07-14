@@ -13,6 +13,10 @@
 </statement>
 
 <statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Alternative','ES','Alternativa','')
+</statement>
+
+<statement>
 		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Archive','ES','Archivo','')
 </statement>
 

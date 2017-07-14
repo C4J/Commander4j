@@ -282,7 +282,9 @@ public class Common
 	public final static Icon icon_remove = Common.imageIconloader.getImageIcon(Common.image_remove);
 	public final static Icon icon_despatch_remove = Common.imageIconloader.getImageIcon(Common.image_despatch_remove);
 	public final static Icon icon_despatch_add = Common.imageIconloader.getImageIcon(Common.image_despatch_add);
-	
+	public final static Icon icon_alternative = Common.imageIconloader.getImageIcon(Common.image_alternative);
+
+	public final static String image_alternative = "alternative.gif";
 	public final static String image_qm = "qm.gif";
 	public final static String image_remove = "remove.gif";
 	public final static String image_resend = "resend.gif";

@@ -680,7 +680,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 		if (listWorkstations.isSelectionEmpty() == false)
 		{
 			String item = ((String) listWorkstations.getSelectedValue()).toString();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("btn_Delete") + " " + lang.get("lbl_Workstation") + " [" + item + "]", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(this, lang.get("btn_Delete") + " " + lang.get("lbl_Workstation") + " [" + item + "]", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 			if (n == 0)
 			{
 
@@ -728,7 +728,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 	{
 		JDBWorkstationLineMembership u = new JDBWorkstationLineMembership(Common.selectedHostID, Common.sessionID);
 		String lworkstation_id = "";
-		lworkstation_id = JOptionPane.showInputDialog(Common.mainForm, lang.get("btn_Add") + " " + lang.get("lbl_Workstation"));
+		lworkstation_id = JOptionPane.showInputDialog(this, lang.get("btn_Add") + " " + lang.get("lbl_Workstation"));
 		if (lworkstation_id != null)
 		{
 			if (lworkstation_id.equals("") == false)
@@ -740,7 +740,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				if (u.isWorkstationAssignedToLine())
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, "Workstation ID already Assigned", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(this, "Workstation ID already Assigned", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
 				} else
 				{
 					u.create(selectedLine, selectedGroup, lworkstation_id);

@@ -257,7 +257,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(422, 483));
-			this.setBounds(0, 0, 684, 535);
+			this.setBounds(0, 0, 668, 535);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);

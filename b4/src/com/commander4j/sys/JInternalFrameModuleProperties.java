@@ -71,6 +71,7 @@ import com.commander4j.util.JUtility;
  * @see com.commander4j.sys.JInternalFrameModuleAdmin JInternalFrameModuleAdmin
  * @see com.commander4j.sys.JInternalFrameModuleGroups JInternalFrameModuleGroups
  */
+
 public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 {
 	private JSpinner jSpinnerPrintCopies;
@@ -111,6 +112,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 	private JButton4j jButtonUpdate;
 	private JTextField4j jTextFieldResourceKey;
 	private JTextField4j jTextFieldModuleId;
+	private JButton4j jButtonAlternative;
 	private JLabel4j_std jLabel1;
 	private JDBModule module = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private Object current_type = new Object();
@@ -137,8 +139,6 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 			public void run() {
 				jTextFieldResourceKey.requestFocus();
 				jTextFieldResourceKey.setCaretPosition(jTextFieldResourceKey.getText().length());
-
-				
 
 			}
 		});
@@ -269,7 +269,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
-					jButtonUpdate.setBounds(136, 424, 112, 32);
+					jButtonUpdate.setBounds(107, 424, 112, 32);
 					jButtonUpdate.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -326,7 +326,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(364, 424, 112, 32);
+					jButtonClose.setBounds(449, 424, 112, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -394,6 +394,15 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 									// module_updated = true;
 									jButtonUpdate.setEnabled(true);
 									jButtonIconPreview.setIcon(JDBModule.getModuleIcon(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
+								}
+								
+								if (new_type.equals("REPORT"))
+								{
+									jButtonAlternative.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_ALTERNATE"));
+								}
+								else
+								{
+									jButtonAlternative.setEnabled(false);
 								}
 
 								if (new_type.equals("REPORT") || new_type.equals("USER"))
@@ -591,7 +600,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(250, 424, 112, 32);
+					jButtonHelp.setBounds(335, 424, 112, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
@@ -1030,6 +1039,18 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 				label4j_std_AutoLabeller.setHorizontalAlignment(SwingConstants.CENTER);
 				label4j_std_AutoLabeller.setBounds(163, 341, 237, 21);
 				jDesktopPane1.add(label4j_std_AutoLabeller);
+				
+				jButtonAlternative = new JButton4j(Common.icon_alternative);
+				jButtonAlternative.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JLaunchMenu.runDialog("FRM_ADMIN_MODULE_ALTERNATE",lmodule_id);
+					}
+				});
+				jButtonAlternative.setText(lang.get("btn_Alternative"));
+				jButtonAlternative.setMnemonic('A');
+				jButtonAlternative.setEnabled(false);
+				jButtonAlternative.setBounds(221, 424, 112, 32);
+				jDesktopPane1.add(jButtonAlternative);
 				
 			}
 			postInitGUI();
