@@ -410,9 +410,14 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 					comboBox4jAlternativeModule.setSelectedItem(selectedAlternativeModule);
 				}
 
-				u.create(selectedModule, lworkstation_id, selectedAlternativeModule);
-				populateListWorkstations(lworkstation_id);
-
+				if (u.create(selectedModule, lworkstation_id, selectedAlternativeModule))
+				{
+					populateListWorkstations(lworkstation_id);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(this, "Workstation [" + lworkstation_id + "] already defined", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+				}
 			}
 		}
 	}

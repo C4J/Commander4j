@@ -281,7 +281,7 @@ public class JDBModule
 				result = true;
 			} else
 			{
-				setErrorMessage("Module Id already exists");
+				setErrorMessage("Module Id ["+lModuleId+"] already exists");
 			}
 		} catch (SQLException e)
 		{
