@@ -342,6 +342,10 @@
 			<text>select * from {schema}sys_users order by user_id</text>
 		</statement>
 		<statement>
+			<id>JDBUser.getUserPermisions</id>
+			<text>select * from {schema}view_permissions order by user_id,group_id,module_id</text>
+		</statement>
+		<statement>
 			<id>JDBUser.getUserProperties</id>
 			<text>select * from {schema}sys_users where user_id = ?</text>
 		</statement>

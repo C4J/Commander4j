@@ -948,6 +948,26 @@ public class JDBUser
 
 		return rs;
 	}
+	
+	public ResultSet getUserPermissionsResultSet()
+	{
+		Statement stmt;
+		ResultSet rs = null;
+		setErrorMessage("");
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).createStatement();
+			stmt.setFetchSize(250);
+			rs = stmt.executeQuery(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBUser.getUserPermisions"));
+
+		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return rs;
+	}
 
 	public LinkedList<JDBListData> getUserIds()
 	{
