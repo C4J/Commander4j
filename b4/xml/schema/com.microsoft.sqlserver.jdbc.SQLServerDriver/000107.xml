@@ -53,7 +53,7 @@
 </statement>
 
 <statement>
-		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Copy','IT','copia','')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Copy','IT','Copia','')
 </statement>
 
 <statement>
@@ -106,6 +106,10 @@
 
 <statement>
 		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Excel','IT','Excel','')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Export','IT','Exporteren','')
 </statement>
 
 <statement>

@@ -109,6 +109,10 @@
 </statement>
 
 <statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Export','ES','Exportar','')
+</statement>
+
+<statement>
 		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Find','ES','Encontrar','')
 </statement>
 

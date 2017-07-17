@@ -607,6 +607,15 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 				reasonInvalid = "reference to SYS_GROUP found in query";
 			}
 		}
+		
+		if (result)
+		{
+			if (textArea_SQL.getText().toUpperCase().contains("VIEW_PERMISSIONS"))
+			{
+				result = false;
+				reasonInvalid = "reference to VIEW_PERMISSIONS found in query";
+			}
+		}
 
 		if (result)
 		{
