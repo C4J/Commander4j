@@ -111,7 +111,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 			});
 			jButtonExcel.setText(lang.get("btn_Excel"));
 			jButtonExcel.setMnemonic(lang.getMnemonicChar());
-			jButtonExcel.setBounds(331, 275, 106, 30);
+			jButtonExcel.setBounds(403, 405, 106, 32);
 			getContentPane().add(jButtonExcel);
 		}
 
@@ -153,9 +153,9 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 		TableColumn col = jTable1.getColumnModel().getColumn(0);
 		col.setPreferredWidth(200);
 		col = jTable1.getColumnModel().getColumn(1);
-		col.setPreferredWidth(150);
+		col.setPreferredWidth(250);
 		col = jTable1.getColumnModel().getColumn(2);
-		col.setPreferredWidth(300);
+		col.setPreferredWidth(350);
 		jScrollPane1.repaint();
 	}
 
@@ -164,7 +164,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(669, 341));
-			this.setBounds(0, 0, 793, 363);
+			this.setBounds(0, 0, 914, 481);
 			setVisible(true);
 			this.setClosable(true);
 			this.getContentPane().setLayout(null);
@@ -174,7 +174,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jScrollPane1 = new JScrollPane();
 				jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 				this.getContentPane().add(jScrollPane1);
-				jScrollPane1.setBounds(3, 3, 765, 267);
+				jScrollPane1.setBounds(3, 3, 889, 390);
 				jScrollPane1.setFont(Common.font_std);
 				{
 					jTable1 = new JTable();
@@ -207,7 +207,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonEdit = new JButton4j(Common.icon_edit);
 				this.getContentPane().add(jButtonEdit);
 				jButtonEdit.setText(lang.get("btn_Edit"));
-				jButtonEdit.setBounds(115, 275, 106, 30);
+				jButtonEdit.setBounds(187, 405, 106, 32);
 				jButtonEdit.setMnemonic(lang.getMnemonicChar());
 				jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_SYSTEM_KEYS_EDIT"));
 				jButtonEdit.addActionListener(new ActionListener()
@@ -222,7 +222,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonClose = new JButton4j(Common.icon_close);
 				this.getContentPane().add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
-				jButtonClose.setBounds(655, 275, 106, 30);
+				jButtonClose.setBounds(727, 405, 106, 32);
 				jButtonClose.setMnemonic(lang.getMnemonicChar());
 				jButtonClose.addActionListener(new ActionListener()
 				{
@@ -237,7 +237,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonAdd = new JButton4j(Common.icon_add);
 				this.getContentPane().add(jButtonAdd);
 				jButtonAdd.setText(lang.get("btn_Add"));
-				jButtonAdd.setBounds(7, 275, 106, 32);
+				jButtonAdd.setBounds(79, 405, 106, 32);
 				jButtonAdd.setMnemonic(lang.getMnemonicChar());
 				jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_SYSTEM_KEYS_ADD"));
 				jButtonAdd.addActionListener(new ActionListener()
@@ -275,7 +275,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonDelete = new JButton4j(Common.icon_delete);
 				this.getContentPane().add(jButtonDelete);
 				jButtonDelete.setText(lang.get("btn_Delete"));
-				jButtonDelete.setBounds(223, 275, 106, 30);
+				jButtonDelete.setBounds(295, 405, 106, 32);
 				jButtonDelete.setMnemonic(lang.getMnemonicChar());
 				jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_SYSTEM_KEYS_DELETE"));
 				jButtonDelete.addActionListener(new ActionListener()
@@ -306,7 +306,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonPrint = new JButton4j(Common.icon_report);
 				this.getContentPane().add(jButtonPrint);
 				jButtonPrint.setText(lang.get("btn_Print"));
-				jButtonPrint.setBounds(439, 275, 106, 30);
+				jButtonPrint.setBounds(511, 405, 106, 32);
 				jButtonPrint.setMnemonic(lang.getMnemonicChar());
 				jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_CONTROL"));
 				jButtonPrint.addActionListener(new ActionListener()
@@ -321,7 +321,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jButtonHelp = new JButton4j(Common.icon_help);
 				this.getContentPane().add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
-				jButtonHelp.setBounds(547, 275, 106, 30);
+				jButtonHelp.setBounds(619, 405, 106, 32);
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 
 			}

@@ -148,7 +148,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		} else
 		{
 			logger.debug("Despatch " + despNo + " Confirmed");
-			// saveData(session, "despatchNo","", true);
+			session.setAttribute("_ErrorMessage", "");
 		}
 
 		return result;
@@ -321,12 +321,14 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 			if (button.equals("Confirm Despatch"))
 			{
+				session.setAttribute("_ErrorMessage", "");
 				response.sendRedirect("despatchConfirm.jsp");
 			}
 
 			if (button.equals("Print STN"))
 			{
 				despatchPrint(session);
+				session.setAttribute("_ErrorMessage", "");
 				response.sendRedirect("despatchHeader.jsp");
 			}
 

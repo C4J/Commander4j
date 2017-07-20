@@ -105,10 +105,54 @@ Insert into SYS_MENUS (MODULE_ID,MENU_ID,SEQUENCE_ID) values ('FRM_ADMIN_INTERFA
 Insert into SYS_MENUS (MODULE_ID,MENU_ID,SEQUENCE_ID) values ('FRM_ADMIN_INTERFACE_PROCESS','MENU_INTERFACE',1)
 </statement>
 
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_AUTH_REQD', 'true', 'SMTP Authentication Reqd')
+</statement>
 
 <statement>
-Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('INTERFACE LOG ID','1','Sequence Number for Interface Log')
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_HOST_NAME', 'mail.testsmtp.com', 'SMTP Server for sending emails')
 </statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_AUTH_USER', 'mailUser', 'SMTP Username')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_AUTH_PWD', 'mailPassword', 'SMTP Password')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_POP_HOST_NAME', 'mail.testsmtp.com', 'POP3 Server for receiving emails')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_POP_AUTH_USER', 'mailUser', 'POP3 Username')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_POP_AUTH_PWD', 'mailPassword', 'POP3 Password')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_FROM_ADRESS', 'Commander4j', 'From Email')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_PORT', '25', 'SMTP Port')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_USE_TLS', 'False', 'Use TLS')
+</statement>
+
+<statement>
+	Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('INTERFACE LOG ID','1','Sequence Number for Interface Log')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('UOM FULL PALLET QTY', 'PAL', 'Uom for full pallet')
+</statement>
+
 <statement>
 Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('DEFAULT BATCH STATUS','Restricted','Used if Material has no default batch status defined')
 </statement>

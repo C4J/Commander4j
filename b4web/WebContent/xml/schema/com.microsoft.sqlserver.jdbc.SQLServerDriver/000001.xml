@@ -663,6 +663,9 @@ INSERT [dbo].[SYS_INTERFACE] ([INTERFACE_TYPE], [INTERFACE_DIRECTION], [PATH], [
 INSERT [dbo].[SYS_INTERFACE] ([INTERFACE_TYPE], [INTERFACE_DIRECTION], [PATH], [ENABLED], [DEVICE], [SUBJECT], [TOPIC], [SERVER], [USERNAME], [PASSWORD], [FORMAT], [UOM_CONVERSION], [ENABLE_EMAIL_NOTIFICATIONS], [EMAIL_FLAGS], [EMAIL_ADDRESSES]) VALUES (N'Process Order Status Change', N'Input', N'{base_dir}\xml\interface\input\Process Order Status Change', N'Y', N'Disk', NULL, NULL, NULL, NULL, NULL, N'XML', NULL, NULL, N'', N'')
 </statement>
 <statement>
+Insert [dbo].[SYS_INTERFACE] ([INTERFACE_TYPE], [INTERFACE_DIRECTION], [PATH], [ENABLED], [DEVICE], [SUBJECT], [TOPIC], [SERVER], [USERNAME], [PASSWORD], [FORMAT], [UOM_CONVERSION], [ENABLE_EMAIL_NOTIFICATIONS], [EMAIL_FLAGS], [EMAIL_ADDRESSES]) VALUES (N'Batch Status Change',N'Input',N'{base_dir}\xml\interface\input\Batch Status Change', N'Y', N'Disk', NULL, NULL, NULL, NULL, NULL, N'XML', NULL, NULL, N'', N'')
+</statement>
+<statement>
 INSERT [dbo].[SYS_INTERFACE] ([INTERFACE_TYPE], [INTERFACE_DIRECTION], [PATH], [ENABLED], [DEVICE], [SUBJECT], [TOPIC], [SERVER], [USERNAME], [PASSWORD], [FORMAT], [UOM_CONVERSION], [ENABLE_EMAIL_NOTIFICATIONS], [EMAIL_FLAGS], [EMAIL_ADDRESSES]) VALUES (N'Production Declaration', N'Input', N'{base_dir}\xml\interface\input\Production Declaration', N'Y', N'Disk', NULL, NULL, NULL, NULL, NULL, N'XML', NULL, NULL, N'E', N'')
 </statement>
 <statement>
@@ -1182,6 +1185,15 @@ INSERT [dbo].[SYS_CONTROL] ([SYSTEM_KEY], [KEY_VALUE], [DESCRIPTION]) VALUES (N'
 <statement>
 INSERT [dbo].[SYS_CONTROL] ([SYSTEM_KEY], [KEY_VALUE], [DESCRIPTION]) VALUES (N'MAIL_SMTP_FROM_ADRESS', N'Commander4j', N'From Email')
 </statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_PORT', '25', 'SMTP Port')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_USE_TLS', 'False', 'Use TLS')
+</statement>
+
 <statement>
 INSERT [dbo].[BAR_EAN_DEFS] ([APPLICATION_ID], [DESCRIPTION], [DATA_TYPE], [DECIMAL_INDICATOR], [MAX_DATA_LENGTH], [FIXED_VARIABLE], [CHECK_DIGIT]) VALUES (N'00', N'SSCC-18', N'S', N'N', CAST(18 AS Numeric(10, 0)), N'F', N'Y')
 </statement>

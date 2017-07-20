@@ -1465,6 +1465,54 @@ INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('IN
 </statement>
 
 <statement>
+	INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('UOM BASE QTY PER LAYER', 'LAG', 'UOM Base Qty Per Layer');
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_AUTH_REQD', 'true', 'SMTP Authentication Reqd')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_HOST_NAME', 'mail.testsmtp.com', 'SMTP Server for sending emails')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_AUTH_USER', 'mailUser', 'SMTP Username')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_AUTH_PWD', 'mailPassword', 'SMTP Password')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_POP_HOST_NAME', 'mail.testsmtp.com', 'POP3 Server for receiving emails')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_POP_AUTH_USER', 'mailUser', 'POP3 Username')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_POP_AUTH_PWD', 'mailPassword', 'POP3 Password')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_FROM_ADRESS', 'Commander4j', 'From Email')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_PORT', '25', 'SMTP Port')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_USE_TLS', 'False', 'Use TLS')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('UOM FULL PALLET QTY', 'PAL', 'Uom for full pallet')
+</statement>
+
+<statement>
 INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('PASSWORD ATTEMPTS','3','Max password tries before account locked');
 </statement>
 <statement>
@@ -1922,6 +1970,9 @@ INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `E
 </statement>
 <statement>
 INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Despatch Confirmation','Output','{base_dir}\\xml\\interface\\output\\Despatch Confirmation','Y','Disk',NULL,NULL,NULL,NULL,NULL,'EANCOM','None',NULL,'','');
+</statement>
+<statement>
+Insert INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Despatch Confirmation','Input','{base_dir}\xml\interface\input\Despatch Confirmation','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
 </statement>
 <statement>
 INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Material Definition','Input','{base_dir}\\xml\\interface\\input\\Material Definition','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML',NULL,NULL,'','');
