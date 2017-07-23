@@ -58,7 +58,7 @@
         <pathelement location="lib/jasperlib/commons-javaflow-20160505.jar"/>
         <pathelement location="lib/jasperlib/core-3.2.1.jar"/>
         <pathelement location="lib/db/sqljdbc42.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-5.1.41-bin.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-5.1.43-bin.jar"/>
         <pathelement location="lib/db/ojdbc8.jar"/>
         <pathelement location="lib/jasperlib/batik-anim-1.9.jar"/>
         <pathelement location="lib/jasperlib/batik-awt-util-1.9.jar"/>
