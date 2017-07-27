@@ -104,6 +104,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private String selectedModuleType = "ALL";
 	private JButton4j jButtonAlternative;
+	private JButton4j jButtonTestHelp;
 
 	public JInternalFrameModuleAdmin()
 	{
@@ -341,7 +342,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(518, 511));
-			this.setBounds(0, 0, 563, 648);
+			this.setBounds(0, 0, 563, 703);
 			setVisible(true);
 			this.setTitle("Module Admin");
 			this.setClosable(true);
@@ -360,7 +361,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jScrollPane1 = new JScrollPane();
-					jScrollPane1.setBounds(10, 10, 356, 594);
+					jScrollPane1.setBounds(10, 10, 356, 649);
 					jDesktopPane1.add(jScrollPane1);
 					jScrollPane1.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
@@ -381,6 +382,13 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 									} else
 									{
 										jButtonAlternative.setEnabled(false);
+									}
+									if (mod.getType().equals("FORM"))
+									{
+										jButtonTestHelp.setEnabled(true);
+									} else
+									{
+										jButtonTestHelp.setEnabled(false);
 									}
 								}
 							}
@@ -505,7 +513,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jButtonAdd = new JButton4j(Common.icon_add);
-					jButtonAdd.setBounds(378, 10, 145, 32);
+					jButtonAdd.setBounds(378, 10, 167, 32);
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
@@ -520,7 +528,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jButtonDelete = new JButton4j(Common.icon_delete);
-					jButtonDelete.setBounds(378, 41, 145, 32);
+					jButtonDelete.setBounds(378, 41, 167, 32);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
@@ -536,7 +544,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jButtonEdit = new JButton4j(Common.icon_edit);
-					jButtonEdit.setBounds(378, 72, 145, 32);
+					jButtonEdit.setBounds(378, 72, 167, 32);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
@@ -551,7 +559,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jButtonPrint = new JButton4j(Common.icon_report);
-					jButtonPrint.setBounds(378, 196, 145, 32);
+					jButtonPrint.setBounds(378, 196, 167, 32);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
@@ -566,7 +574,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
-					jButtonClose.setBounds(378, 352, 145, 32);
+					jButtonClose.setBounds(378, 384, 167, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -580,7 +588,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jButtonRename = new JButton4j(Common.icon_rename);
-					jButtonRename.setBounds(378, 103, 145, 32);
+					jButtonRename.setBounds(378, 103, 167, 32);
 					jDesktopPane1.add(jButtonRename);
 					jButtonRename.setText(lang.get("btn_Rename"));
 					jButtonRename.setMnemonic(lang.getMnemonicChar());
@@ -595,14 +603,14 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help);
-					jButtonHelp.setBounds(378, 290, 145, 32);
+					jButtonHelp.setBounds(378, 322, 167, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh);
-					jButtonRefresh.setBounds(378, 321, 145, 32);
+					jButtonRefresh.setBounds(378, 353, 167, 32);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
@@ -616,7 +624,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonAll = new JRadioButton();
-					jRadioButtonAll.setBounds(378, 392, 145, 28);
+					jRadioButtonAll.setBounds(378, 424, 167, 28);
 					jDesktopPane1.add(jRadioButtonAll);
 					jRadioButtonAll.setText(lang.get("lbl_Module_ALL"));
 					jRadioButtonAll.setFont(Common.font_bold);
@@ -634,7 +642,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonForms = new JRadioButton();
-					jRadioButtonForms.setBounds(378, 420, 145, 28);
+					jRadioButtonForms.setBounds(378, 452, 167, 28);
 					jDesktopPane1.add(jRadioButtonForms);
 					jRadioButtonForms.setText(lang.get("lbl_Module_Form"));
 					jRadioButtonForms.setFont(Common.font_bold);
@@ -651,7 +659,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonFunctions = new JRadioButton();
-					jRadioButtonFunctions.setBounds(378, 448, 145, 28);
+					jRadioButtonFunctions.setBounds(378, 480, 167, 28);
 					jDesktopPane1.add(jRadioButtonFunctions);
 					jRadioButtonFunctions.setText(lang.get("lbl_Module_Function"));
 					jRadioButtonFunctions.setFont(Common.font_bold);
@@ -668,7 +676,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonMenus = new JRadioButton();
-					jRadioButtonMenus.setBounds(378, 476, 145, 28);
+					jRadioButtonMenus.setBounds(378, 508, 167, 28);
 					jDesktopPane1.add(jRadioButtonMenus);
 					jRadioButtonMenus.setText(lang.get("lbl_Module_Menu"));
 					jRadioButtonMenus.setFont(Common.font_bold);
@@ -685,7 +693,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonReports = new JRadioButton();
-					jRadioButtonReports.setBounds(378, 504, 145, 28);
+					jRadioButtonReports.setBounds(378, 536, 167, 28);
 					jDesktopPane1.add(jRadioButtonReports);
 					jRadioButtonReports.setText(lang.get("lbl_Module_Report"));
 					jRadioButtonReports.setFont(Common.font_bold);
@@ -702,7 +710,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				{
 					jRadioButtonUserReports = new JRadioButton();
-					jRadioButtonUserReports.setBounds(378, 560, 145, 28);
+					jRadioButtonUserReports.setBounds(378, 592, 167, 28);
 					jDesktopPane1.add(jRadioButtonUserReports);
 					jRadioButtonUserReports.setText(lang.get("lbl_Module_UserReport"));
 					jRadioButtonUserReports.setFont(Common.font_bold);
@@ -720,7 +728,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 				{
 					jRadioButtonExec = new JRadioButton();
-					jRadioButtonExec.setBounds(378, 532, 145, 28);
+					jRadioButtonExec.setBounds(378, 564, 167, 28);
 					jDesktopPane1.add(jRadioButtonExec);
 					jRadioButtonExec.setText(lang.get("lbl_Module_Executable"));
 					jRadioButtonExec.setFont(Common.font_bold);
@@ -738,7 +746,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS);
-					jButtonExcel.setBounds(378, 258, 145, 32);
+					jButtonExcel.setBounds(378, 290, 167, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -762,7 +770,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					jButtonGroups.setText(lang.get("mod_FRM_ADMIN_GROUPS"));
 					jButtonGroups.setMnemonic('G');
 					jButtonGroups.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_GROUPS"));
-					jButtonGroups.setBounds(378, 165, 145, 32);
+					jButtonGroups.setBounds(378, 165, 167, 32);
 					jDesktopPane1.add(jButtonGroups);
 				}
 
@@ -780,8 +788,29 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					jButtonAlternative.setText(lang.get("btn_Alternative"));
 					jButtonAlternative.setMnemonic('A');
 					jButtonAlternative.setEnabled(false);
-					jButtonAlternative.setBounds(378, 226, 145, 32);
+					jButtonAlternative.setBounds(378, 226, 167, 32);
 					jDesktopPane1.add(jButtonAlternative);
+
+				}
+				
+				{
+					jButtonTestHelp = new JButton4j(Common.icon_help);
+					jButtonTestHelp.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							lModuleId = ((JDBListData) jListModules.getSelectedValue()).toString();
+							JDBModule m = new JDBModule(Common.selectedHostID, Common.sessionID);
+							m.getModuleProperties(lModuleId);
+							JHelp help = new JHelp();
+							help.testHelpURL(m.getHelpSetID());
+						}
+					});
+					jButtonTestHelp.setText(lang.get("btn_TestHelp"));
+					jButtonTestHelp.setMnemonic('A');
+					jButtonTestHelp.setEnabled(false);
+					jButtonTestHelp.setBounds(378, 257, 167, 32);
+					jDesktopPane1.add(jButtonTestHelp);
 
 				}
 
@@ -797,7 +826,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					jButtonCopy.setText(lang.get("btn_Copy"));
 					jButtonCopy.setMnemonic('0');
 					jButtonCopy.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_COPY"));
-					jButtonCopy.setBounds(378, 134, 145, 32);
+					jButtonCopy.setBounds(378, 134, 167, 32);
 					jDesktopPane1.add(jButtonCopy);
 				}
 

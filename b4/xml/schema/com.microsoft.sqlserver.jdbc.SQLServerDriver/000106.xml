@@ -74,6 +74,10 @@
 </statement>
 
 <statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_TestHelp', 'EN', 'Show Help', '')
+</statement>
+
+<statement>
 	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Export', 'EN', 'Export', '')
 </statement>
 

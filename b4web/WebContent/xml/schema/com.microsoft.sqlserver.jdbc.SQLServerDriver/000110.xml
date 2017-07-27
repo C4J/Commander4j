@@ -9,6 +9,10 @@
 </statement>
 
 <statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_TestHelp','HU','Súgó megjelenítése','')
+</statement>
+
+<statement>
 		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Add','HU','Hozzáadás','')
 </statement>
 

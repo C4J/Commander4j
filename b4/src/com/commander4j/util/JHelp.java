@@ -41,8 +41,8 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
-
-public class JHelp {
+public class JHelp
+{
 
 	private String helpURL;
 
@@ -52,82 +52,132 @@ public class JHelp {
 
 	final Logger logger = Logger.getLogger(JHelp.class);
 
-	public JHelp() {
+	public JHelp()
+	{
 		init();
 	}
 
-	private void setHelpURL(String value) {
-		if (value == null) {
+	private void setHelpURL(String value)
+	{
+		if (value == null)
+		{
 			value = "";
 		}
-		if (value.isEmpty()) {
+		if (value.isEmpty())
+		{
 			helpURL = Common.helpURL;
-		} else {
+		} else
+		{
 			helpURL = value;
 		}
 	}
 
-	private void init() {
-		try {
-			if (Desktop.isDesktopSupported()) {
+	private void init()
+	{
+		try
+		{
+			if (Desktop.isDesktopSupported())
+			{
 				desktop = Desktop.getDesktop();
 				HelpAvailable = true;
-			} else {
+			} else
+			{
 				HelpAvailable = false;
 			}
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			HelpAvailable = false;
 		}
 	}
 
-	public void enableHelpOnButton(JButton button, String helpsetID) {
-		if (HelpAvailable) {
-			try {
+	public void enableHelpOnButton(JButton button, String helpsetID)
+	{
+		if (HelpAvailable)
+		{
+			try
+			{
 				setHelpURL(helpsetID);
 				ButtonHandler buttonhandler = new ButtonHandler();
 				button.addActionListener(buttonhandler);
-			} catch (Exception ex) {
+			} catch (Exception ex)
+			{
 				HelpAvailable = false;
 			}
 		}
 	}
 
-	public void enableHelpOnMenuItem(JMenuItem button, String helpsetID) {
-		if (HelpAvailable) {
-			try {
+	public void enableHelpOnMenuItem(JMenuItem button, String helpsetID)
+	{
+		if (HelpAvailable)
+		{
+			try
+			{
 				setHelpURL(helpsetID);
 				ButtonHandler buttonhandler = new ButtonHandler();
 				button.addActionListener(buttonhandler);
-			} catch (Exception ex) {
+			} catch (Exception ex)
+			{
 				HelpAvailable = false;
 			}
 		}
 	}
 
-	private class ButtonHandler implements ActionListener {
+	private class ButtonHandler implements ActionListener
+	{
 
-		public void actionPerformed(ActionEvent event) {
-			if (HelpAvailable) {
+		public void actionPerformed(ActionEvent event)
+		{
+			if (HelpAvailable)
+			{
 
-				try {
+				try
+				{
 					URI uri;
-					if (helpURL.contains("http")) {
+					if (helpURL.contains("http"))
+					{
 						uri = new URI(helpURL);
 						desktop.browse(uri);
 
-					} else {
+					} else
+					{
 						File file = new File(helpURL);
 						uri = file.toURI().normalize();
 						desktop.browse(uri);
 
 					}
-				} catch (Exception ex) {
+				} catch (Exception ex)
+				{
 					JUtility.errorBeep();
-					JOptionPane
-							.showMessageDialog(Common.mainForm,
-									ex.getMessage(), "Error",
-									JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(Common.mainForm, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
+			}
+		}
+	}
+
+	public void testHelpURL(String url)
+	{
+		if (url.isEmpty() == false)
+		{
+
+			try
+			{
+				URI uri;
+				if (url.contains("http"))
+				{
+					uri = new URI(url);
+					desktop.browse(uri);
+
+				} else
+				{
+					File file = new File(url);
+					uri = file.toURI().normalize();
+					desktop.browse(uri);
+
+				}
+			} catch (Exception ex)
+			{
+				JUtility.errorBeep();
+				JOptionPane.showMessageDialog(Common.mainForm, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
