@@ -120,25 +120,25 @@ public class OutgoingEquipmentTracking
 
 			if (desp.getDespatchPalletCount()==0)
 			{
-				setErrorMessage("Message Suppressed - 0 pallets assigned to despatch");
+				setErrorMessage("Message Suppressed - 0 pallets assigned to despatch ["+desp.getDespatchNo()+"]");
 				suppressMessage = true;			
 			}
 			
 			if (sourceEquipmentLocation.length() == 0)
 			{
-				setErrorMessage("Message Suppressed - No Equipment Destination (From) for Location [" + desp.getLocationIDFrom() + "]");
+				setErrorMessage("Message Suppressed - No Equipment Destination (From) for Location [" + desp.getLocationIDFrom() + "] despatch ["+desp.getDespatchNo()+"]");
 				suppressMessage = true;
 			}
 
 			if (destinationEquipmentLocation.length() == 0)
 			{
-				setErrorMessage("Message Suppressed - No Equipment Destination (To) for Location [" + desp.getLocationIDTo() + "]");
+				setErrorMessage("Message Suppressed - No Equipment Destination (To) for Location [" + desp.getLocationIDTo() + "] despatch ["+desp.getDespatchNo()+"]");
 				suppressMessage = true;
 			}
 		}
 		else
 		{
-			setErrorMessage("Message Suppressed - Unable to find Despatch with Transaction Ref [" + String.valueOf(transactionRef) + "]");
+			setErrorMessage("Message Suppressed - Unable to find Despatch with Transaction Ref [" + String.valueOf(transactionRef) + "] despatch ["+desp.getDespatchNo()+"]");
 			suppressMessage = true;
 
 		}
