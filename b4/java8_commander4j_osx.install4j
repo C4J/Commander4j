@@ -178,7 +178,7 @@
           <versionLine x="20" y="40" text="version ${compiler:sys.version}" fontSize="8" fontColor="0,0,0" bold="false" />
         </text>
       </splashScreen>
-      <java mainClass="com.commander4j.start.Init" mainMode="1" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:xml\log4j.xml -Dfile.encoding=Cp1252" arguments="Setup" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
+      <java mainClass="com.commander4j.start.Init" mainMode="1" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Setup" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
         </classPath>
@@ -214,7 +214,7 @@
           <versionLine x="20" y="40" text="version ${compiler:sys.version}" fontSize="8" fontColor="0,0,0" bold="false" />
         </text>
       </splashScreen>
-      <java mainClass="com.commander4j.start.Init" mainMode="1" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:xml\log4j.xml -Dfile.encoding=Cp1252" arguments="Desktop" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
+      <java mainClass="com.commander4j.start.Init" mainMode="1" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Desktop" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
         </classPath>
@@ -251,7 +251,7 @@
           <versionLine x="20" y="40" text="version ${compiler:sys.version}" fontSize="8" fontColor="0,0,0" bold="false" />
         </text>
       </splashScreen>
-      <java mainClass="com.commander4j.start.Init" mainMode="1" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:xml\log4j.xml -Dfile.encoding=Cp1252" arguments="Clone" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
+      <java mainClass="com.commander4j.start.Init" mainMode="1" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Clone" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
         </classPath>
@@ -288,7 +288,7 @@
           <versionLine x="20" y="40" text="version ${compiler:sys.version}" fontSize="8" fontColor="0,0,0" bold="false" />
         </text>
       </splashScreen>
-      <java mainClass="com.commander4j.service.Interface4j" mainMode="1" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:xml\log4j.xml -Dfile.encoding=Cp1252" arguments="Interface service" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
+      <java mainClass="com.commander4j.service.Interface4j" mainMode="1" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:./xml/log/log4j.xml  -Dfile.encoding=Cp1252" arguments="Interface service" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
         </classPath>
@@ -325,7 +325,7 @@
           <versionLine x="20" y="40" text="version ${compiler:sys.version}" fontSize="8" fontColor="0,0,0" bold="false" />
         </text>
       </splashScreen>
-      <java mainClass="com.commander4j.service.Interface4j" mainMode="1" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:xml\log4j.xml -Dfile.encoding=Cp1252" arguments="Interface service" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
+      <java mainClass="com.commander4j.service.Interface4j" mainMode="1" vmParameters="-Xms256m -Xmx1024m -Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Interface service" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
         </classPath>
