@@ -107,7 +107,7 @@ public class JDialogDataIDProperties extends javax.swing.JDialog {
 		initGUI();
 
 		final JHelp help = new JHelp();
-		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_DATA_IDS"));
+		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_DATA_IDS_EDIT"));
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run()
@@ -151,7 +151,7 @@ public class JDialogDataIDProperties extends javax.swing.JDialog {
 					jTextFieldType.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldType.setEditable(false);
 					jTextFieldType.setEnabled(false);
-					jTextFieldType.setBounds(185, 17, 104, 21);
+					jTextFieldType.setBounds(185, 17, 238, 21);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
