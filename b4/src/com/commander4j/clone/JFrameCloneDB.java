@@ -106,6 +106,8 @@ public class JFrameCloneDB extends JFrame
 	private String sessionTo = JUnique.getUniqueID();
 	private String hostIDFrom = "";
 	private String hostIDTo = "";
+	String lastError="";
+	String currentError="";
 
 	public static void main(String[] args)
 	{
@@ -368,6 +370,7 @@ public class JFrameCloneDB extends JFrame
 										for (int tf = 0; tf < tableCountFrom; tf++)
 										{
 											table = tablesFrom.get(tf);
+											//table = "APP_QM_ANALYSIS";
 											progressBar.setValue(tf + 1);
 											progressBar.paintImmediately(progressBar.getVisibleRect());
 											if (tablesTo.contains(table))
@@ -441,6 +444,20 @@ public class JFrameCloneDB extends JFrame
 																// \"" + value +
 																// "\"");
 															}
+															if (field.getfieldType().toLowerCase().equals("nvarchar"))
+															{
+																String value;
+																value = sourceResultset.getString(field.getfieldName());
+																destinationData.setString(fldfrom + 1, value);
+																// System.out.println("Table
+																// = \"" + table
+																// + "\" Field =
+																// \"" +
+																// field.getfieldName()
+																// + "\" Value =
+																// \"" + value +
+																// "\"");
+															}
 															if ((field.getfieldType().toLowerCase().equals("decimal")) | (field.getfieldType().toLowerCase().equals("numeric")) | (field.getfieldType().toLowerCase().equals("float")))
 															{
 																BigDecimal value;
@@ -499,7 +516,15 @@ public class JFrameCloneDB extends JFrame
 
 														} catch (Exception ex)
 														{
-															System.out.println(ex.getMessage());
+															
+															currentError = table+ " "+ex.getMessage();
+															if (currentError.equals(lastError)==false)
+															{
+																System.out.println(table+ " "+ex.getMessage());
+																setStatusBarText(currentError);
+																logger.debug(currentError);
+																lastError = currentError;
+															}
 														}
 													}
 
