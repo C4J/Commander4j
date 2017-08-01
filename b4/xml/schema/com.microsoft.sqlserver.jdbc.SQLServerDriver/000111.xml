@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<!-- MODULE MAINTENANCE - HELP LINKS -->
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Auto Archive Configuration',HELPSET_ID='http://www.commander4j.com/mw/index.php/Archive_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_ARCHIVE' WHERE MODULE_ID = 'FRM_ADMIN_ARCHIVE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a new Auto Archive Configuration',HELPSET_ID='http://www.commander4j.com/mw/index.php/Archive_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_ARCHIVE' WHERE MODULE_ID = 'FRM_ADMIN_ARCHIVE_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete Auto Archive Configuration',HELPSET_ID='http://www.commander4j.com/mw/index.php/Archive_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_ARCHIVE' WHERE MODULE_ID = 'FRM_ADMIN_ARCHIVE_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit an Auto Archive Configuration',HELPSET_ID='http://www.commander4j.com/mw/index.php/Archive_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_ARCHIVE' WHERE MODULE_ID = 'FRM_ADMIN_ARCHIVE_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Manually run Auto Archive',HELPSET_ID='http://www.commander4j.com/mw/index.php/Archive_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_ARCHIVE' WHERE MODULE_ID = 'FRM_ADMIN_ARCHIVE_RUN'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'View Permissions Audit Log',HELPSET_ID='http://www.commander4j.com/mw/index.php/Permissions', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_AUDIT_PERM' WHERE MODULE_ID = 'FRM_ADMIN_AUDIT_PERM'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add Auto Labeller Line',HELPSET_ID='http://www.commander4j.com/mw/index.php/Auto_Labeller', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_AUTO_LAB_ADD' WHERE MODULE_ID = 'FRM_ADMIN_AUTO_LAB_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete Auto Labeller Line',HELPSET_ID='http://www.commander4j.com/mw/index.php/Auto_Labeller', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_AUTO_LAB_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_AUTO_LAB_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Auto Labeller Line',HELPSET_ID='http://www.commander4j.com/mw/index.php/Auto_Labeller', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_AUTO_LAB_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_AUTO_LAB_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Rename Auto Labeller Line',HELPSET_ID='http://www.commander4j.com/mw/index.php/Auto_Labeller', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_AUTO_LAB_RENAME' WHERE MODULE_ID = 'FRM_ADMIN_AUTO_LAB_RENAME'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Auto Labeller',HELPSET_ID='http://www.commander4j.com/mw/index.php/Auto_Labeller', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_AUTO_LABELLER' WHERE MODULE_ID = 'FRM_ADMIN_AUTO_LABELLER'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a System Key',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=System_Keys', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_CONTROL_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_CONTROL_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Customer Administration',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Customers', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='lbl_Customer_Edit' WHERE MODULE_ID = 'FRM_ADMIN_CUSTOMER'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add Customer ',HELPSET_ID='http://www.commander4j.com/mw/index.php/Customers', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_CUSTOMER' WHERE MODULE_ID = 'FRM_ADMIN_CUSTOMER_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete Customer',HELPSET_ID='http://www.commander4j.com/mw/index.php/Customers', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_CUSTOMER_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Customer',HELPSET_ID='http://www.commander4j.com/mw/index.php/Customers', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='lbl_Customer_Edit' WHERE MODULE_ID = 'FRM_ADMIN_CUSTOMER_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Rename Customer',HELPSET_ID='http://www.commander4j.com/mw/index.php/Customers', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_CUSTOMER_RENAME'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Customer Data Fields for Materials',HELPSET_ID='http://www.commander4j.com/mw/index.php/Material_Data_ID%27s_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_DATA_IDS' WHERE MODULE_ID = 'FRM_ADMIN_DATA_IDS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add Custom Material Field',HELPSET_ID='http://www.commander4j.com/mw/index.php/Customers', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_DATA_IDS_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete Custom Material Field',HELPSET_ID='http://www.commander4j.com/mw/index.php/Customers', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_DATA_IDS_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Custom Fields',HELPSET_ID='http://www.commander4j.com/mw/index.php/Material_Data_ID%27s_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_DATA_IDS_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_DATA_IDS_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Despatch Pallets',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Despatch', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_DESPATCH' WHERE MODULE_ID = 'FRM_ADMIN_DESPATCH'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Maintain Journey References',HELPSET_ID='http://www.commander4j.com/mw/index.php/Journey_Reference', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_DESPATCH_NO_JOURNEY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add Group',HELPSET_ID='http://www.commander4j.com/mw/index.php/Groups', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_GROUP_ADD' WHERE MODULE_ID = 'FRM_ADMIN_GROUP_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete Group',HELPSET_ID='http://www.commander4j.com/mw/index.php/Groups', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_GROUP_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_GROUP_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Group Properties',HELPSET_ID='http://www.commander4j.com/mw/index.php/Groups', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_GROUP_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_GROUP_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Group Permissions',HELPSET_ID='http://www.commander4j.com/mw/index.php/Permissions', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_GROUP_PERM' WHERE MODULE_ID = 'FRM_ADMIN_GROUP_PERM'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Rename Group',HELPSET_ID='http://www.commander4j.com/mw/index.php/Groups', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_GROUP_RENAME' WHERE MODULE_ID = 'FRM_ADMIN_GROUP_RENAME'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Displays Users within Group',HELPSET_ID='http://www.commander4j.com/mw/index.php/Users_in_Group', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_GROUP_USERS' WHERE MODULE_ID = 'FRM_ADMIN_GROUP_USERS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Administer User Groups',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Groups', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_GROUPS' WHERE MODULE_ID = 'FRM_ADMIN_GROUPS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Interface Admin',HELPSET_ID='http://www.commander4j.com/mw/index.php/Interface_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_INTERFACE' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add Interface Configuration',HELPSET_ID='http://www.commander4j.com/mw/index.php/Interface_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_INTERFACE_ADD' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete Interface Configuration',HELPSET_ID='http://www.commander4j.com/mw/index.php/Interface_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_INTERFACE_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Interface Configuration',HELPSET_ID='http://www.commander4j.com/mw/index.php/Interface_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_INTERFACE_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Interface Log',HELPSET_ID='http://www.commander4j.com/mw/index.php/Interface_Log', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_INTERFACE_LOG' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE_LOG'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Manual Interface Control',HELPSET_ID='http://www.commander4j.com/mw/index.php/Manual_Interface_Control', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_INTERFACE_PROCESS' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE_PROCESS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Outbound Interface Request Queue',HELPSET_ID='http://www.commander4j.com/mw/index.php/Interface_Request_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_INTERFACE_REQUEST' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE_REQUEST'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Maintain Journey References',HELPSET_ID='http://www.commander4j.com/mw/index.php/Journey_Reference', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_JOURNEY' WHERE MODULE_ID = 'FRM_ADMIN_JOURNEY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Journey Reference Number',HELPSET_ID='http://www.commander4j.com/mw/index.php/Journey_Reference', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_JOURNEY_ADD' WHERE MODULE_ID = 'FRM_ADMIN_JOURNEY_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Journey Reference Number',HELPSET_ID='http://www.commander4j.com/mw/index.php/Journey_Reference', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_JOURNEY_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_JOURNEY_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Journey Reference Number',HELPSET_ID='http://www.commander4j.com/mw/index.php/Journey_Reference', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_JOURNEY_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_JOURNEY_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Unit of Measure Admin',HELPSET_ID='http://www.commander4j.com/mw/index.php/Language_%26_Translations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_LANGUAGE' WHERE MODULE_ID = 'FRM_ADMIN_LANGUAGE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Translation record',HELPSET_ID='http://www.commander4j.com/mw/index.php/Language_%26_Translations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_LANGUAGE_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Translation record',HELPSET_ID='http://www.commander4j.com/mw/index.php/Language_%26_Translations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_LANGUAGE_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Translation record',HELPSET_ID='http://www.commander4j.com/mw/index.php/Language_%26_Translations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_LANGUAGE_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Location',HELPSET_ID='http://www.commander4j.com/mw/index.php/Locations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_LOCATION_ADD' WHERE MODULE_ID = 'FRM_ADMIN_LOCATION_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Location',HELPSET_ID='http://www.commander4j.com/mw/index.php/Locations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_LOCATION_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_LOCATION_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Location',HELPSET_ID='http://www.commander4j.com/mw/index.php/Locations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_LOCATION_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_LOCATION_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Maintain the locations table',HELPSET_ID='http://www.commander4j.com/mw/index.php/Locations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_LOCATIONS' WHERE MODULE_ID = 'FRM_ADMIN_LOCATIONS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Material',HELPSET_ID='http://www.commander4j.com/mw/index.php/Materials', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_ADD' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Maintain Material Batches',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Material_Batches', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_BATCH' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_BATCH'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Material Batch Record',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Material_Batches', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_BATCH_ADD' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_BATCH_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Material Batch Record',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Material_Batches', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_BATCH_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_BATCH_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Customer Specific Material Data',HELPSET_ID='http://www.commander4j.com/mw/index.php/Customer_Specific_Material_Data', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_CUST_DATA' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_CUST_DATA'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add Customer Specific Material Data',HELPSET_ID='http://www.commander4j.com/mw/index.php/Customer_Specific_Material_Data', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_CUST_DATA_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete Customer Specific Material Data',HELPSET_ID='http://www.commander4j.com/mw/index.php/Customer_Specific_Material_Data', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_CUST_DATA_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Customer Specific Material Data',HELPSET_ID='http://www.commander4j.com/mw/index.php/Customer_Specific_Material_Data', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_CUST_DATA_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_CUST_DATA_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete Material',HELPSET_ID='http://www.commander4j.com/mw/index.php/Materials', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Material',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Material_Batches', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Maintain Material Locations',HELPSET_ID='http://www.commander4j.com/mw/index.php/Material_Locations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_LOCATION' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_LOCATION'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Material Location',HELPSET_ID='http://www.commander4j.com/mw/index.php/Material_Locations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_LOCATION_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Material Location',HELPSET_ID='http://www.commander4j.com/mw/index.php/Material_Locations', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_LOCATION_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Material Types',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Material_Types', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_TYPE' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_TYPE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Material Type',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Material_Types', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_TYPE_ADD' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_TYPE_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Material Type',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Material_Types', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_TYPE_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_TYPE_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Material Type',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Material_Types', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_TYPE_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_TYPE_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Print Material Types',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Material_Types', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_TYPE_PRINT' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_TYPE_PRINT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Rename a Material Type',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Material_Types', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_TYPE_RENAME' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_TYPE_RENAME'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Material Units of Measure Admin',HELPSET_ID='http://www.commander4j.com/mw/index.php/Material_UOMs', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_UOM' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_UOM'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Material Unit of Measure',HELPSET_ID='http://www.commander4j.com/mw/index.php/Material_UOMs', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_UOM_ADD' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_UOM_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Material Unit of Measure',HELPSET_ID='http://www.commander4j.com/mw/index.php/Material_UOMs', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_UOM_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_UOM_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Material Unit of Measure',HELPSET_ID='http://www.commander4j.com/mw/index.php/Material_UOMs', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIAL_UOM_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_UOM_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Create and update Materials',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Materials', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MATERIALS' WHERE MODULE_ID = 'FRM_ADMIN_MATERIALS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Change menu structure',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Menu_Maintenance', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MENU' WHERE MODULE_ID = 'FRM_ADMIN_MENU'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Administer Master Holds',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MHN' WHERE MODULE_ID = 'FRM_ADMIN_MHN'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Master Hold Notice',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MHN_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Assign Pallets to Master Hold Notice',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MHN_ASSIGN' WHERE MODULE_ID = 'FRM_ADMIN_MHN_ASSIGN'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Master Hold Decisions',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Decisions', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MHN_DECISION' WHERE MODULE_ID = 'FRM_ADMIN_MHN_DECISION'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Master Hold Decision',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Decisions', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MHN_DECISION_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Assign Decision to Master Hold',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Decisions', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MHN_DECISION_ASSIGN'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Master Hold Decision',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Decisions', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MHN_DECISION_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Master Hold Decision',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Decisions', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MHN_DECISION_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MHN_DECISION_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Rename a Master Hold Decision',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Decisions', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MHN_DECISION_RENAME'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Master Hold Decision',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MHN_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Master Hold Notice',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MHN_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MHN_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Reason Admin',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Reasons', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MHN_REASON' WHERE MODULE_ID = 'FRM_ADMIN_MHN_REASON'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Create a Master Hold Notice Reason',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Reasons', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MHN_REASON_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Master Hold Reason',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Reasons', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MHN_REASON_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Master Hold Reason',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Reasons', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MHN_REASON_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MHN_REASON_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Rename a Master Hold Reason',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control_Reasons', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MHN_REASON_RENAME'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Assign a Status to Master Hold Notice',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Quality_Control', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_MHN_STATUS_ASSIGN'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Create Module',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Modules', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MODULE_ADD' WHERE MODULE_ID = 'FRM_ADMIN_MODULE_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Workstation Specific Alternative Module',HELPSET_ID='http://www.commander4j.com/mw/index.php/Alternative_Modules', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MODULE_GROUPS' WHERE MODULE_ID = 'FRM_ADMIN_MODULE_ALTERNATE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Copy a Module',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Modules', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='btn_Copy' WHERE MODULE_ID = 'FRM_ADMIN_MODULE_COPY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Module',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Modules', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MODULE_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_MODULE_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Module',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Modules', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MODULE_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_MODULE_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Groups referencing Modules',HELPSET_ID='http://www.commander4j.com/mw/index.php/Groups_referring_to_a_Module', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MODULE_GROUPS' WHERE MODULE_ID = 'FRM_ADMIN_MODULE_GROUPS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Rename a Module',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Modules', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MODULE_RENAME' WHERE MODULE_ID = 'FRM_ADMIN_MODULE_RENAME'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Administer Modules',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Modules', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_MODULES' WHERE MODULE_ID = 'FRM_ADMIN_MODULES'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Pallet Record Manually',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_ADD' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Pallet',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Pallet',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Pallet Batch Record',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_EDIT_BATCH' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_EDIT_BATCH'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Pallet Location',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_EDIT_LOCATION' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_EDIT_LOCATION'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Pallet Material',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_EDIT_MATERIAL' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_EDIT_MATERIAL'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Pallet Process Order',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Pallet Production Date',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_EDIT_PROD_DATE' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_EDIT_PROD_DATE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Pallet Quantity',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_EDIT_QUANTITY' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_EDIT_QUANTITY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Pallet Status',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_EDIT_STATUS' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_EDIT_STATUS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Pallet Unit of Measure',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_EDIT_UOM' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_EDIT_UOM'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Pallet History',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Pallet_History', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_HISTORY' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_HISTORY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Print Pallet Label',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_PRINT' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_PRINT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Pallet Admin',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLETS' WHERE MODULE_ID = 'FRM_ADMIN_PALLETS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Maintain Resources',HELPSET_ID='http://www.commander4j.com/mw/index.php/Resource', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PO_RESOURCE' WHERE MODULE_ID = 'FRM_ADMIN_PO_RESOURCE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Create a Process Order Resource',HELPSET_ID='http://www.commander4j.com/mw/index.php/Resource', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_PO_RESOURCE_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Process Order Resource',HELPSET_ID='http://www.commander4j.com/mw/index.php/Resource', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_PO_RESOURCE_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Process Order Resource',HELPSET_ID='http://www.commander4j.com/mw/index.php/Resource', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PO_RESOURCE_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_PO_RESOURCE_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Label Printers',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Report_Admin_Screen', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PRINTERS' WHERE MODULE_ID = 'FRM_ADMIN_PRINTERS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Process Order Admin',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Process_Orders', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PROCESS_ORDER' WHERE MODULE_ID = 'FRM_ADMIN_PROCESS_ORDER'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Create a Process Order',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Process_Orders', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PROCESS_ORDER_ADD' WHERE MODULE_ID = 'FRM_ADMIN_PROCESS_ORDER_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Process Order',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Process_Orders', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PROCESS_ORDER_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_PROCESS_ORDER_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Process Order',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Process_Orders', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PROCESS_ORDER_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_PROCESS_ORDER_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Activity Properties',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Results_Dictionary_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_QM_DICTIONARY' WHERE MODULE_ID = 'FRM_ADMIN_QM_DICTIONARY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Inspection Admin',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Results_Inspection_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_QM_INSPECTION' WHERE MODULE_ID = 'FRM_ADMIN_QM_INSPECTION'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Selection List Admin',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Results_Selection_List_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_QM_SELECTLIST' WHERE MODULE_ID = 'FRM_ADMIN_QM_SELECTLIST'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Change the RF Menu',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=RF_Menu_Maintenance', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_RF_MENU' WHERE MODULE_ID = 'FRM_ADMIN_RF_MENU'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'User Report Properties',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Schema_Browser', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_SCHEMA_BROWSE' WHERE MODULE_ID = 'FRM_ADMIN_SCHEMA_BROWSE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Shift Admin',HELPSET_ID='http://www.commander4j.com/mw/index.php/Shift_Patterns', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_SHIFT' WHERE MODULE_ID = 'FRM_ADMIN_SHIFT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Create a new Shift',HELPSET_ID='http://www.commander4j.com/mw/index.php/Shift_Patterns', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_SHIFT_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Shift',HELPSET_ID='http://www.commander4j.com/mw/index.php/Shift_Patterns', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_SHIFT_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Shift',HELPSET_ID='http://www.commander4j.com/mw/index.php/Shift_Patterns', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_SHIFT_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Change the Toolbar contents',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Toolbar_Maintenance', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_TOOLBAR' WHERE MODULE_ID = 'FRM_ADMIN_TOOLBAR'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Setup standard UOM''s',HELPSET_ID='http://www.commander4j.com/mw/index.php/Units_of_Measure', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_UOM' WHERE MODULE_ID = 'FRM_ADMIN_UOM'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Create a Unit of Measure',HELPSET_ID='http://www.commander4j.com/mw/index.php/Units_of_Measure', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_UOM_ADD' WHERE MODULE_ID = 'FRM_ADMIN_UOM_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Unit of Measure',HELPSET_ID='http://www.commander4j.com/mw/index.php/Units_of_Measure', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_UOM_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_UOM_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Unit of Measure',HELPSET_ID='http://www.commander4j.com/mw/index.php/Units_of_Measure', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_UOM_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_UOM_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Print Unit of Measures',HELPSET_ID='http://www.commander4j.com/mw/index.php/Units_of_Measure', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_UOM_PRINT' WHERE MODULE_ID = 'FRM_ADMIN_UOM_PRINT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Rename Unit of Measure',HELPSET_ID='http://www.commander4j.com/mw/index.php/Units_of_Measure', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_UOM_RENAME' WHERE MODULE_ID = 'FRM_ADMIN_UOM_RENAME'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Create a User',HELPSET_ID='http://www.commander4j.com/mw/index.php/Users', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_USER_ADD' WHERE MODULE_ID = 'FRM_ADMIN_USER_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Copy a User',HELPSET_ID='http://www.commander4j.com/mw/index.php/Users', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_USER_COPY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a User',HELPSET_ID='http://www.commander4j.com/mw/index.php/Users', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_USER_DELETE' WHERE MODULE_ID = 'FRM_ADMIN_USER_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit User Details',HELPSET_ID='http://www.commander4j.com/mw/index.php/Users', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_USER_EDIT' WHERE MODULE_ID = 'FRM_ADMIN_USER_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'User Permissions',HELPSET_ID='http://www.commander4j.com/mw/index.php/Permissions', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_USER_PERM' WHERE MODULE_ID = 'FRM_ADMIN_USER_PERM'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Export User Permissions to Excel',HELPSET_ID='http://www.commander4j.com/mw/index.php/Permissions', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='btn_Export' WHERE MODULE_ID = 'FRM_ADMIN_USER_PERM_EXPORT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Rename a User',HELPSET_ID='http://www.commander4j.com/mw/index.php/Users', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_USER_RENAME' WHERE MODULE_ID = 'FRM_ADMIN_USER_RENAME'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'User Reports',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Report_Admin_Screen', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_USER_REPORT' WHERE MODULE_ID = 'FRM_ADMIN_USER_REPORT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Create a User Defined Report',HELPSET_ID='http://www.commander4j.com/mw/index.php/User_Reports_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_USER_REPORT_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Copy a User Defined Report',HELPSET_ID='http://www.commander4j.com/mw/index.php/User_Reports_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_USER_REPORT_COPY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a User Defined Report',HELPSET_ID='http://www.commander4j.com/mw/index.php/User_Reports_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_USER_REPORT_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a User Defined Report',HELPSET_ID='http://www.commander4j.com/mw/index.php/User_Reports_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_USER_REPORT_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'User Report Properties',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Report_Properties', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_USER_REPORT_PROP' WHERE MODULE_ID = 'FRM_ADMIN_USER_REPORT_PROP'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Run a User Defined Report',HELPSET_ID='http://www.commander4j.com/mw/index.php/Run_User_Report', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_ADMIN_USER_REPORT_RUN'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Administer User Accounts',HELPSET_ID='http://www.commander4j.com/mw/index.php/Users', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_USERS' WHERE MODULE_ID = 'FRM_ADMIN_USERS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Select default printer for reports.',HELPSET_ID='http://www.commander4j.com/mw/index.php/Select_Printer', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_CM_PRINTERS' WHERE MODULE_ID = 'FRM_CM_PRINTERS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Assign to Automatic Labeller',HELPSET_ID='http://www.commander4j.com/mw/index.php/Case_Label_Assign_to_Labeller', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_LABEL_DATA_ASSIGN' WHERE MODULE_ID = 'FRM_LABEL_DATA_ASSIGN'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Label Printing Print',HELPSET_ID='http://www.commander4j.com/mw/index.php/Case_Label_Assign_to_Labeller', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_MENU_LABELS' WHERE MODULE_ID = 'FRM_LABEL_DATA_ASSIGN_TO_AUTOLAB'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Label Printing Print',HELPSET_ID='http://www.commander4j.com/mw/index.php/Case_Label_Printing', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_MENU_LABELS' WHERE MODULE_ID = 'FRM_LABEL_DATA_ASSIGN_TO_PRINTER'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Label Printing',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Label_Printing', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_LABEL_PRINT' WHERE MODULE_ID = 'FRM_LABEL_PRINT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Display Labeller History',HELPSET_ID='http://www.commander4j.com/mw/index.php/Auto_Labeller_History', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_LABELLER_HISTORY' WHERE MODULE_ID = 'FRM_LABELLER_HISTORY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete Pallet',HELPSET_ID='http://www.commander4j.com/mw/index.php/Delete_Pallet', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_ADMIN_PALLET_DELETE' WHERE MODULE_ID = 'FRM_PAL_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Pallet Information',HELPSET_ID='http://www.commander4j.com/mw/index.php/Pallet_Information_Scanner', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_PAL_INFO' WHERE MODULE_ID = 'FRM_PAL_INFO'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Label Copies',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Production_Confirmation', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_PAL_LABEL_COPIES' WHERE MODULE_ID = 'FRM_PAL_LABEL_COPIES'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Manual Pallet Confirmation',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Production_Confirmation', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_PAL_PROD_CONFIRM' WHERE MODULE_ID = 'FRM_PAL_PROD_CONFIRM'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Declare a Pallet',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Production_Declaration', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_PAL_PROD_DEC' WHERE MODULE_ID = 'FRM_PAL_PROD_DEC'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Split Pallet',HELPSET_ID='http://www.commander4j.com/mw/index.php/Split_Pallet', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_PAL_SPLIT' WHERE MODULE_ID = 'FRM_PAL_SPLIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add Label Printer',HELPSET_ID='http://www.commander4j.com/mw/index.php/Auto_Labeller_Printer_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_PRINTER_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete Label Printer',HELPSET_ID='http://www.commander4j.com/mw/index.php/Auto_Labeller_Printer_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_PRINTER_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Label Printer',HELPSET_ID='http://www.commander4j.com/mw/index.php/Auto_Labeller_Printer_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_PRINTER_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Process Order Barcode Label',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Process_Orders', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_PROCESS_ORDER_LABEL' WHERE MODULE_ID = 'FRM_PROCESS_ORDER_LABEL'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Confirm a Pallet ',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Production_Declaration', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_PRODDEC_CONFIRM' WHERE MODULE_ID = 'FRM_PRODDEC_CONFIRM'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Preview Pallet Label',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Production_Declaration', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_PRODDEC_PREVIEW' WHERE MODULE_ID = 'FRM_PRODDEC_PREVIEW'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Print Pallet Label',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Production_Declaration', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_PRODDEC_PRINT' WHERE MODULE_ID = 'FRM_PRODDEC_PRINT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Reprint Pallet Label',HELPSET_ID='http://www.commander4j.com/mw/index.php?title=Production_Declaration', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='btn_Re_Print' WHERE MODULE_ID = 'FRM_PRODDEC_REPRINT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Quality Activity Record Properties',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Results_Activity_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_ACTIVITY' WHERE MODULE_ID = 'FRM_QM_ACTIVITY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Quality Dictionary Properties',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Results_Dictionary_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_DICTIONARY' WHERE MODULE_ID = 'FRM_QM_DICTIONARY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Quality Inspection Properties',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Results_Inspection_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_INSPECTION' WHERE MODULE_ID = 'FRM_QM_INSPECTION'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Results Analysis',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Control_Results_Analysis', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_RESULT_ANALYSIS' WHERE MODULE_ID = 'FRM_QM_RESULT_ANALYSIS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Add a Quality Results Analysis',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Control_Results_Analysis', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_QM_RESULT_ANALYSIS_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a Quality Results Analysis',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Control_Results_Analysis', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='' WHERE MODULE_ID = 'FRM_QM_RESULT_ANALYSIS_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a Quality Results Analysis',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Control_Results_Analysis', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_RESULT_ANALYSIS' WHERE MODULE_ID = 'FRM_QM_RESULT_ANALYSIS_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Results Enquiries',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Control_Results_Enquiry', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_RESULT_ENQUIRY' WHERE MODULE_ID = 'FRM_QM_RESULT_ENQUIRY'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit Sample',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Control_Sample_Edit', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_SAMPLE_EDIT' WHERE MODULE_ID = 'FRM_QM_SAMPLE_EDIT'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Print Sample Labels',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Control_Sample_Label', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_SAMPLE_LABEL' WHERE MODULE_ID = 'FRM_QM_SAMPLE_LABEL'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Enter Sample Results',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Control_Sample_Results', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_SAMPLE_RESULTS' WHERE MODULE_ID = 'FRM_QM_SAMPLE_RESULTS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Selection List Properties',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Control_Selection_Lists_Admin', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_SELECTLIST' WHERE MODULE_ID = 'FRM_QM_SELECTLIST'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Test Properties',HELPSET_ID='http://www.commander4j.com/mw/index.php/Quality_Control_Test_Definition', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_QM_TEST' WHERE MODULE_ID = 'FRM_QM_TEST'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Maintain System Keys',HELPSET_ID='http://www.commander4j.com/mw/index.php/System_Keys', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_SYSTEM_KEYS' WHERE MODULE_ID = 'FRM_SYSTEM_KEYS'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Create a System Key',HELPSET_ID='http://www.commander4j.com/mw/index.php/System_Keys', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_SYSTEM_KEYS_ADD' WHERE MODULE_ID = 'FRM_SYSTEM_KEYS_ADD'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Delete a System Key',HELPSET_ID='http://www.commander4j.com/mw/index.php/System_Keys', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_SYSTEM_KEYS_DELETE' WHERE MODULE_ID = 'FRM_SYSTEM_KEYS_DELETE'
+</statement>
+
+<statement>
+		UPDATE SYS_MODULES SET HINT = 'Edit a System Key',HELPSET_ID='http://www.commander4j.com/mw/index.php/System_Keys', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='mod_FRM_SYSTEM_KEYS_EDIT' WHERE MODULE_ID = 'FRM_SYSTEM_KEYS_EDIT'
+</statement>
+
+<statement>
+	UPDATE SYS_MODULES SET HINT = 'Change Password',HELPSET_ID='http://www.commander4j.com/mw/index.php/Password_Change_Scanner', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='web_Change_Password' WHERE MODULE_ID = 'FRM_USER_PASS_CHANGE'
+</statement>
+
+
+</DDL>
