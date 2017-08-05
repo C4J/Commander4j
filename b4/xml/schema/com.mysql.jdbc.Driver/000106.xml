@@ -36,6 +36,15 @@
 </statement>
 
 <statement>
+	DELETE FROM SYS_ARCHIVE WHERE ARCHIVE_ID = 'JOURNEY_REF'
+</statement>
+
+<statement>
+	INSERT INTO SYS_ARCHIVE (ARCHIVE_ID,DESCRIPTION,ENABLED,BACKGROUND_TASK,RETENTION_DAYS,SQL_TABLE,SQL_CRITERIA,SEQUENCE) VALUES 
+	                        ('JOURNEY_REF','Journey Refs','Y','Y',2,'APP_JOURNEY','STATUS = ''Unassigned'' AND TIMESLOT &lt; ?',20)
+</statement>
+
+<statement>
 	create view view_permissions as
 	SELECT
 	SYS_USERS.USER_ID,
