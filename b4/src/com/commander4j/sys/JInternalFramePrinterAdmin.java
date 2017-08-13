@@ -118,12 +118,12 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 
 		jTable1.setFont(Common.font_list);
 
-		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PrinterID_Col).setPreferredWidth(125);
+		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PrinterID_Col).setPreferredWidth(150);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Group_Col).setPreferredWidth(50);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PrinterType_Col).setPreferredWidth(55);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.IPAddress_Col).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Port_Col).setPreferredWidth(40);
-		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Description_Col).setPreferredWidth(170);
+		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Description_Col).setPreferredWidth(200);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Language_Col).setPreferredWidth(55);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.DPI_Col).setPreferredWidth(25);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Enabled_Col).setPreferredWidth(50);
@@ -163,7 +163,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(669, 341));
-			this.setBounds(0, 0, 1013, 434);
+			this.setBounds(0, 0, 1013, 444);
 			setVisible(true);
 			this.setClosable(true);
 			this.getContentPane().setLayout(null);
@@ -173,7 +173,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jScrollPane1 = new JScrollPane();
 				jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 				this.getContentPane().add(jScrollPane1);
-				jScrollPane1.setBounds(0, 0, 985, 323);
+				jScrollPane1.setBounds(0, 0, 998, 349);
 				jScrollPane1.setFont(Common.font_std);
 				{
 					jTable1 = new JTable();
@@ -206,7 +206,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonEdit = new JButton4j(Common.icon_edit);
 				this.getContentPane().add(jButtonEdit);
 				jButtonEdit.setText(lang.get("btn_Edit"));
-				jButtonEdit.setBounds(149, 328, 128, 32);
+				jButtonEdit.setBounds(144, 355, 146, 32);
 				jButtonEdit.setMnemonic(lang.getMnemonicChar());
 				jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRINTER_EDIT"));
 				jButtonEdit.addActionListener(new ActionListener()
@@ -221,7 +221,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonClose = new JButton4j(Common.icon_close);
 				this.getContentPane().add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
-				jButtonClose.setBounds(844, 328, 128, 32);
+				jButtonClose.setBounds(864, 354, 146, 32);
 				jButtonClose.setMnemonic(lang.getMnemonicChar());
 				jButtonClose.addActionListener(new ActionListener()
 				{
@@ -236,7 +236,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonAdd = new JButton4j(Common.icon_add);
 				this.getContentPane().add(jButtonAdd);
 				jButtonAdd.setText(lang.get("btn_Add"));
-				jButtonAdd.setBounds(10, 328, 128, 32);
+				jButtonAdd.setBounds(0, 355, 146, 32);
 				jButtonAdd.setMnemonic(lang.getMnemonicChar());
 				jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRINTER_ADD"));
 				jButtonAdd.addActionListener(new ActionListener()
@@ -280,7 +280,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonDelete = new JButton4j(Common.icon_delete);
 				this.getContentPane().add(jButtonDelete);
 				jButtonDelete.setText(lang.get("btn_Delete"));
-				jButtonDelete.setBounds(288, 328, 128, 32);
+				jButtonDelete.setBounds(288, 355, 146, 32);
 				jButtonDelete.setMnemonic(lang.getMnemonicChar());
 				jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRINTER_DELETE"));
 				jButtonDelete.addActionListener(new ActionListener()
@@ -315,7 +315,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonPrint = new JButton4j(Common.icon_report);
 				this.getContentPane().add(jButtonPrint);
 				jButtonPrint.setText(lang.get("btn_Print"));
-				jButtonPrint.setBounds(566, 328, 128, 32);
+				jButtonPrint.setBounds(576, 355, 146, 32);
 				jButtonPrint.setMnemonic(lang.getMnemonicChar());
 				jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PRINTERS"));
 				jButtonPrint.addActionListener(new ActionListener()
@@ -330,7 +330,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonHelp = new JButton4j(Common.icon_help);
 				this.getContentPane().add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
-				jButtonHelp.setBounds(705, 328, 128, 32);
+				jButtonHelp.setBounds(720, 355, 146, 32);
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 
 			}
@@ -351,13 +351,13 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				});
 				jButtonExcel.setText(lang.get("btn_Excel"));
 				jButtonExcel.setMnemonic(lang.getMnemonicChar());
-				jButtonExcel.setBounds(427, 328, 128, 32);
+				jButtonExcel.setBounds(432, 355, 146, 32);
 				getContentPane().add(jButtonExcel);
 			}
 
 			jStatusText.setForeground(Color.BLACK);
 			jStatusText.setBackground(Color.GRAY);
-			jStatusText.setBounds(0, 368, 985, 21);
+			jStatusText.setBounds(0, 391, 998, 21);
 			getContentPane().add(jStatusText);
 
 		} catch (Exception e)

@@ -96,7 +96,6 @@ public class JDBPrinters
 		setPort("8000");
 		setDescription("");
 		setLanguage("");
-		setGroupID("");
 		setEnableExport(false);
 		setExportPath("");
 		setExportFormat("");
@@ -598,6 +597,7 @@ public class JDBPrinters
 		{
 			PreparedStatement stmtupdate;
 			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPrinters.update"));
+
 			stmtupdate.setString(1, getPrinterType());
 			stmtupdate.setString(2, getEnabled());
 			stmtupdate.setString(3, getIPAddress());

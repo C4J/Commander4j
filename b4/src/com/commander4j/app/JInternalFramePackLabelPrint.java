@@ -602,7 +602,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(674, 474));
-			this.setBounds(0, 0, 785, 586);
+			this.setBounds(0, 0, 785, 567);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -1019,7 +1019,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jStatusText = new JLabel4j_std();
 			jDesktopPane1.add(jStatusText);
 			jStatusText.setForeground(new java.awt.Color(255, 0, 0));
-			jStatusText.setBounds(0, 513, 761, 21);
+			jStatusText.setBounds(0, 513, 775, 21);
 			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
 			final JPanel panel = new JPanel();

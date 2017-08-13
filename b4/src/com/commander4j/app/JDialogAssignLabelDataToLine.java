@@ -91,6 +91,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 	private JLabel4j_std lbl_BatchNumber;
 	private JDBAutoLabeller autolab = new JDBAutoLabeller(Common.selectedHostID, Common.sessionID);
 	private JList4j<JDBListData> list;
+	private String selectedGroup;
 
 	/**
 	 * @param frame Parent Frame
@@ -132,10 +133,12 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		mod.getModuleProperties("FRM_LABEL_DATA_ASSIGN");
 
 		setTitle(mod.getDescription() + " (" + labdat.getLabelType() + ")");
+		
+		selectedGroup = labdat.getLabelType();
 
 		initGUI();
 
-		populateList("Pack");
+		populateList(selectedGroup);
 
 	}
 
@@ -414,7 +417,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			{
 				public void actionPerformed(ActionEvent arg0)
 				{
-					populateList("Pack");
+					populateList(selectedGroup);
 				}
 			});
 			JButtonRefresh.setText(lang.get("btn_Refresh"));

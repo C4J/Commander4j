@@ -152,7 +152,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(669, 341));
-			this.setBounds(0, 0, 995, 442);
+			this.setBounds(0, 0, 995, 563);
 			setVisible(true);
 			this.setClosable(true);
 			this.getContentPane().setLayout(null);
@@ -162,7 +162,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				jScrollPane1 = new JScrollPane();
 				jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 				this.getContentPane().add(jScrollPane1);
-				jScrollPane1.setBounds(0, 3, 968, 334);
+				jScrollPane1.setBounds(0, 3, 968, 469);
 				jScrollPane1.setFont(Common.font_std);
 				{
 					jTable1 = new JTable();
@@ -181,7 +181,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				jButtonClose = new JButton4j(Common.icon_close);
 				this.getContentPane().add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
-				jButtonClose.setBounds(630, 349, 106, 30);
+				jButtonClose.setBounds(691, 484, 115, 35);
 				jButtonClose.setMnemonic(lang.getMnemonicChar());
 				jButtonClose.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
@@ -193,7 +193,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				jButtonPrint = new JButton4j(Common.icon_report);
 				this.getContentPane().add(jButtonPrint);
 				jButtonPrint.setText(lang.get("btn_Print"));
-				jButtonPrint.setBounds(414, 349, 106, 30);
+				jButtonPrint.setBounds(437, 484, 115, 35);
 				jButtonPrint.setMnemonic(lang.getMnemonicChar());
 				jButtonPrint.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
@@ -208,7 +208,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				jButtonHelp = new JButton4j(Common.icon_help);
 				this.getContentPane().add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
-				jButtonHelp.setBounds(522, 349, 106, 30);
+				jButtonHelp.setBounds(564, 484, 115, 35);
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 
 			}
@@ -226,7 +226,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				});
 				jButtonExcel.setText(lang.get("btn_Excel"));
 				jButtonExcel.setMnemonic(lang.getMnemonicChar());
-				jButtonExcel.setBounds(306, 349, 106, 30);
+				jButtonExcel.setBounds(310, 484, 115, 35);
 				getContentPane().add(jButtonExcel);
 			}
 			{
@@ -238,7 +238,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				});
 				jButtonRefresh.setText(lang.get("btn_Refresh"));
 				jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-				jButtonRefresh.setBounds(198, 349, 106, 30);
+				jButtonRefresh.setBounds(183, 484, 115, 35);
 				getContentPane().add(jButtonRefresh);
 			}
 		}

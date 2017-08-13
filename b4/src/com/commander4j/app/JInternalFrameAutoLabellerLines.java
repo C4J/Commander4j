@@ -131,7 +131,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
-			jButtonClose.setBounds(847, 331, 120, 32);
+			jButtonClose.setBounds(861, 350, 123, 32);
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -152,7 +152,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonRefresh.setIcon(Common.icon_refresh);
 			jButtonRefresh.setText(lang.get("btn_Refresh"));
 			jButtonRefresh.setMnemonic('0');
-			jButtonRefresh.setBounds(605, 331, 120, 32);
+			jButtonRefresh.setBounds(615, 350, 123, 32);
 			jDesktopPane1.add(jButtonRefresh);
 
 			JButton4j jButtonAdd = new JButton4j(Common.icon_add);
@@ -166,7 +166,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonAdd.setText(lang.get("btn_Add"));
 			jButtonAdd.setMnemonic('A');
 			jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_ADD"));
-			jButtonAdd.setBounds(0, 331, 120, 32);
+			jButtonAdd.setBounds(0, 350, 123, 32);
 			jDesktopPane1.add(jButtonAdd);
 
 			JButton4j JButtonEdit = new JButton4j(Common.icon_edit);
@@ -180,7 +180,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			JButtonEdit.setText(lang.get("btn_Edit"));
 			JButtonEdit.setMnemonic('E');
 			JButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_EDIT"));
-			JButtonEdit.setBounds(121, 331, 120, 32);
+			JButtonEdit.setBounds(123, 350, 123, 32);
 			jDesktopPane1.add(JButtonEdit);
 
 			JButton4j jButtonDelete = new JButton4j(Common.icon_delete);
@@ -194,7 +194,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonDelete.setText(lang.get("btn_Delete"));
 			jButtonDelete.setMnemonic('D');
 			jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_DELETE"));
-			jButtonDelete.setBounds(242, 331, 120, 32);
+			jButtonDelete.setBounds(246, 350, 123, 32);
 			jDesktopPane1.add(jButtonDelete);
 
 			JButton4j jButtonRename = new JButton4j(Common.icon_rename);
@@ -208,10 +208,10 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonRename.setText(lang.get("btn_Rename"));
 			jButtonRename.setMnemonic('D');
 			jButtonRename.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_RENAME"));
-			jButtonRename.setBounds(363, 331, 120, 32);
+			jButtonRename.setBounds(369, 350, 123, 32);
 			jDesktopPane1.add(jButtonRename);
 
-			scrollPane.setBounds(0, 0, 979, 326);
+			scrollPane.setBounds(0, 0, 979, 345);
 
 			jTable1 = new JTable();
 			jTable1.addMouseListener(new MouseAdapter()
@@ -255,7 +255,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 				}
 			});
 			button4jResend.setText(lang.get("btn_Resend"));
-			button4jResend.setBounds(484, 331, 120, 32);
+			button4jResend.setBounds(492, 350, 123, 32);
 			jDesktopPane1.add(button4jResend);
 
 			JButton4j button4jHistory = new JButton4j(Common.icon_history);
@@ -278,19 +278,19 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 				}
 			});
 			button4jHistory.setText(lang.get("btn_History"));
-			button4jHistory.setBounds(726, 331, 120, 32);
+			button4jHistory.setBounds(738, 350, 123, 32);
 			jDesktopPane1.add(button4jHistory);
 
 			jStatusText = new JLabel4j_std();
 			jStatusText.setForeground(Color.RED);
 			jStatusText.setBackground(Color.GRAY);
-			jStatusText.setBounds(0, 369, 985, 21);
+			jStatusText.setBounds(-1, 384, 985, 21);
 			jDesktopPane1.add(jStatusText);
 
 			mod.setModuleId("FRM_ADMIN_PRINTERS");
 			mod.getModuleProperties();
 
-			populateList("");
+			populateList("","");
 
 		} catch (Exception e)
 		{
@@ -301,18 +301,19 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 	private void refresh()
 	{
 		String currentLINE = "";
+		String currentGroupID = "";
 		int row = jTable1.getSelectedRow();
 		if (row > -1)
 		{
 			currentLINE = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
-			jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
+			currentGroupID = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
 
 		}
-		populateList(currentLINE);
+		populateList(currentLINE, currentGroupID);
 
 	}
 
-	private void populateList(String defaultLine)
+	private void populateList(String defaultLine, String defaultGroup)
 	{
 
 		JDBAutoLabeller al = new JDBAutoLabeller(Common.selectedHostID, Common.sessionID);
@@ -347,13 +348,19 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 		int rowCount = autolabeltable.getRowCount();
 		int selectedRow = -1;
 		String tableLine = "";
+		String tableGroup = "";
 		for (int currentRow = 0; currentRow < rowCount; currentRow++)
 		{
 			tableLine = (String) autolabeltable.getValueAt(currentRow, JDBAutoLabellerTableModel.Line_Col);
+			tableGroup = (String) autolabeltable.getValueAt(currentRow, JDBAutoLabellerTableModel.Group_Col);
+
 			if (tableLine.equals(defaultLine))
 			{
-				selectedRow = currentRow;
-				break;
+				if (tableGroup.equals(defaultGroup))
+				{
+					selectedRow = currentRow;
+					break;
+				}
 			}
 		}
 		if ((selectedRow == -1) && (rowCount > 0))
@@ -395,7 +402,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 						JOptionPane.showMessageDialog(Common.mainForm, "Line ID [" + lineId + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 					}
 					buildSQL();
-					populateList(lineId);
+					populateList(lineId,groupId);
 				}
 
 			}
@@ -479,7 +486,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 					JDBPrinterLineMembership plm = new JDBPrinterLineMembership(Common.selectedHostID, Common.sessionID);
 					plm.removeAllPrintersfromLine(deleteLine, deleteGroup);
 					buildSQL();
-					populateList(deleteLine);
+					populateList(deleteLine,deleteGroup);
 				}
 			}
 		}
