@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-05-23T21:12:14 -->
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MHN_Detail" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4ca9df7e-4c6c-4ae3-a9bb-5b871203bc3a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -74,7 +73,7 @@ ORDER BY
 		<band splitType="Stretch"/>
 	</background>
 	<columnHeader>
-		<band height="19" splitType="Stretch">
+		<band height="23" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
@@ -101,7 +100,7 @@ ORDER BY
 				<text><![CDATA[SSCC]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="128" y="0" width="68" height="18" uuid="54174e1e-c9ce-4e88-9566-f401792be851">
+				<reportElement x="206" y="0" width="68" height="18" uuid="54174e1e-c9ce-4e88-9566-f401792be851">
 					<property name="local_mesure_unity" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -113,7 +112,7 @@ ORDER BY
 				<text><![CDATA[Material]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="211" y="0" width="68" height="18" uuid="05a5105a-a991-4251-a3a8-fea4cf17167d">
+				<reportElement x="289" y="0" width="64" height="18" uuid="05a5105a-a991-4251-a3a8-fea4cf17167d">
 					<property name="local_mesure_unity" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -125,7 +124,7 @@ ORDER BY
 				<text><![CDATA[Batch]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="300" y="0" width="34" height="18" uuid="76e26c0c-db6c-477b-bc96-4288f7c1d32d">
+				<reportElement x="378" y="0" width="34" height="18" uuid="76e26c0c-db6c-477b-bc96-4288f7c1d32d">
 					<property name="local_mesure_unity" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -137,7 +136,7 @@ ORDER BY
 				<text><![CDATA[Qty]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="368" y="0" width="34" height="18" uuid="6ff9bd0f-cde4-4f82-99b4-43d8f0c81fad">
+				<reportElement x="422" y="0" width="34" height="18" uuid="6ff9bd0f-cde4-4f82-99b4-43d8f0c81fad">
 					<property name="local_mesure_unity" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -149,7 +148,7 @@ ORDER BY
 				<text><![CDATA[UOM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="0" width="75" height="18" uuid="2642edc0-6429-4dca-9751-6bdad3b32fe0">
+				<reportElement x="459" y="0" width="75" height="18" uuid="2642edc0-6429-4dca-9751-6bdad3b32fe0">
 					<property name="local_mesure_unity" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -171,10 +170,22 @@ ORDER BY
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 			</line>
+			<staticText>
+				<reportElement x="130" y="1" width="68" height="18" uuid="e3c72b37-a70b-4cd1-aff4-2176ee4f1893">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Order]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="19" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="116" height="18" uuid="e95414a8-daff-462c-8339-b09ea6d3cabc"/>
 				<textElement verticalAlignment="Middle">
@@ -183,29 +194,34 @@ ORDER BY
 				<textFieldExpression><![CDATA[$F{SSCC}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="128" y="0" width="83" height="18" uuid="f73b3f4b-3d3f-43fb-b2bc-40ce700654a5"/>
+				<reportElement x="206" y="0" width="83" height="18" uuid="f73b3f4b-3d3f-43fb-b2bc-40ce700654a5"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="211" y="0" width="64" height="18" uuid="13f65cd6-a1e7-484e-a35e-e8aebcf6fc58"/>
+				<reportElement x="289" y="0" width="64" height="18" uuid="13f65cd6-a1e7-484e-a35e-e8aebcf6fc58"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{BATCH_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="275" y="0" width="59" height="18" uuid="26f195ff-42f9-4625-a127-b35f8e0b65af"/>
+				<reportElement x="353" y="0" width="59" height="18" uuid="26f195ff-42f9-4625-a127-b35f8e0b65af"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="368" y="0" width="34" height="18" uuid="ec150e99-6e20-492f-9579-1fbb5041d0a9"/>
+				<reportElement x="422" y="0" width="34" height="18" uuid="ec150e99-6e20-492f-9579-1fbb5041d0a9"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{UOM}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="416" y="0" width="139" height="18" uuid="e2e3a302-252f-4dfb-8a77-f9838bcfaa71"/>
+				<reportElement x="459" y="0" width="89" height="18" uuid="e2e3a302-252f-4dfb-8a77-f9838bcfaa71"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{DECISION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="73" height="18" uuid="94b7fd56-85cf-4dc6-bea5-b724cdfb75ad"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PROCESS_ORDER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
