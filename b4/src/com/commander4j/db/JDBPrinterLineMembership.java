@@ -244,8 +244,11 @@ public class JDBPrinterLineMembership
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				JDBListData mld = new JDBListData(null, index, true, rs.getString("printer_id"));
-				printerList.addLast(mld);
+				if (rs.getString("group_id").equals(group))
+				{
+					JDBListData mld = new JDBListData(null, index, true, rs.getString("printer_id"));
+					printerList.addLast(mld);
+				}
 			}
 			rs.close();
 			stmt.close();
@@ -276,8 +279,11 @@ public class JDBPrinterLineMembership
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				JDBListData mld = new JDBListData(null, index, true, rs.getString("printer_id"));
-				printerList.addLast(mld);
+				if (rs.getString("group_id").equals(group))
+				{
+					JDBListData mld = new JDBListData(null, index, true, rs.getString("printer_id"));
+					printerList.addLast(mld);
+				}
 			}
 			rs.close();
 			stmt.close();

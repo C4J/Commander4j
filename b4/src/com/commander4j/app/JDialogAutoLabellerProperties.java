@@ -191,7 +191,8 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 		populateUnAssignedPrinterList();
 		populateAssignedPrinterList();
 		populateListWorkstations();
-
+		setButtonState();
+		
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
