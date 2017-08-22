@@ -39,6 +39,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -69,6 +70,7 @@ import com.commander4j.bar.JEANBarcode;
 import com.commander4j.bar.JLabelPrint;
 import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBControl;
+import com.commander4j.db.JDBLabelData;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBMaterialBatch;
@@ -85,6 +87,7 @@ import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
+import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
@@ -145,6 +148,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private JLabel4j_std jLabel2;
 	private JCheckBox4j jCheckBoxExpiry;
 	private JButton4j jButtonPOLookup;
+	private JButton4j jButtonAssign;
 	private JLabel4j_std jLabelSSCC;
 	private JQuantityInput jFormattedTextFieldProdQuantity;
 	private JLabel4j_std jLabelProductionEAN;
@@ -210,6 +214,9 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private PreparedStatement listStatement;
 	private JLabel4j_std labelCopies = new JLabel4j_std();
 	private JLabelPrint labelPrint = new JLabelPrint(Common.selectedHostID, Common.sessionID);
+	private BigDecimal caseDefaultQuantity;
+	private String jTextFieldBaseEAN;
+	private String jTextFieldBaseVariant;
 
 	public JInternalFrameProductionDeclaration(String procOrder)
 	{
@@ -346,7 +353,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 
 			pallet.setProcessOrder(po);
 			pallet.populateFromProcessOrder();
-
+			jButtonAssign.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_AUTOLAB"));
 			jTextFieldProcessOrderDescription.setText(processorder.getDescription());
 			jTextFieldMaterial.setText(processorder.getMaterial());
 
@@ -380,10 +387,12 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jTextFieldShelfLifeRoundingRule.setText(shelfliferoundingrule.toString());
 			jFormattedTextFieldProdQuantity.setValue(JUtility.stringToBigDecimal(processorder.getFullPalletQuantity()));
 			fullPalletDefaultQuantity = JUtility.stringToBigDecimal(processorder.getFullPalletQuantity());
+			caseDefaultQuantity = JUtility.stringToBigDecimal(processorder.getFullPalletQuantity());
 			jTextFieldLegacyCode.setText(material.getOldMaterial());
 			jTextFieldProductionUom.setText(processorder.getRequiredUom());
 			jTextFieldBaseUOM.setText(material.getBaseUom());
 			materialuom.getMaterialUomProperties(material.getMaterial(), processorder.getRequiredUom());
+
 			jTextFieldEAN.setText(materialuom.getEan());
 			jTextFieldVariant.setText(materialuom.getVariant());
 
@@ -393,10 +402,14 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jFormattedTextFieldBaseQuantity.setText(pallet.getBaseQuantityAsString());
 			
 			textFieldBatchExtension.setText(processorderResource.getBatchSuffixForResource(processorder.getRequiredResource()));
+			materialuom.getMaterialUomProperties(material.getMaterial(), material.getBaseUom());
+			jTextFieldBaseEAN = materialuom.getEan();
+			jTextFieldBaseVariant = materialuom.getVariant();
 
 			calcBBEBatch();
 		} else
 		{
+			jButtonAssign.setEnabled(false);
 			jButtonSave.setEnabled(false);
 		}
 	}
@@ -574,13 +587,113 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			// logger.debug(e.getMessage());
 		}
 	}
+	
+	private String createLabelData(int labels)
+	{
+		String result = "";
 
+		JDBLabelData labelData = new JDBLabelData(Common.selectedHostID, Common.sessionID);
+
+		labelData.generateUniqueID();
+		labelData.setPrintDate(JUtility.getSQLDateTime());
+		labelData.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
+		labelData.setWorkstationID(JUtility.getClientName());
+		labelData.setMaterial(processorder.getMaterial());
+		labelData.setMaterialType(material.getMaterialType());
+		labelData.setBatchNumber(jTextFieldBatch.getText() + textFieldBatchExtension.getText());
+		labelData.setProcessOrder(processorder.getProcessOrder());
+		labelData.setRequiredResource(processorder.getRequiredResource());
+		labelData.setLocationID(processorder.getLocation());
+		labelData.setProdQuantity(jFormattedTextFieldProdQuantity.getQuantity());
+		labelData.setProdUom(jTextFieldProductionUom.getText());
+		labelData.setBaseQuantity(jFormattedTextFieldBaseQuantity.getQuantity());
+		labelData.setBaseUom(jTextFieldBaseUOM.getText());
+		labelData.setDateofManufacture(JUtility.getTimestampFromDate(jSpinnerProductionDate.getDate()));
+		labelData.setExpiryDate(JUtility.getTimestampFromDate(jSpinnerExpiryDate.getDate()));
+		labelData.setExpiryMode(expiryMode);
+		labelData.setProdEAN(jTextFieldEAN.getText());
+		labelData.setProdVariant(jTextFieldVariant.getText());
+		labelData.setBaseEAN(jTextFieldBaseEAN);
+		labelData.setBaseVariant(jTextFieldBaseVariant);
+		labelData.setCustomer(processorder.getCustomerID());
+		labelData.setPrintCopies((long) labels);
+		labelData.setPrintQueue(comboBoxPrintQueue.getSelectedItem().toString());
+		labelData.setModuleID(labelPrint.getPalletLabelReportName(labelData.getProcessOrder()));
+		labelData.setBatchPrefix(jTextFieldBatch.getText());
+		labelData.setBatchSuffix(textFieldBatchExtension.getText());
+		labelData.setOverrideBatchPrefix(jCheckBoxBatch.isSelected());
+		labelData.setOverrideDateofManufacture(jCheckBoxProductionDate.isSelected());
+		labelData.setOverrideExpiryDate(jCheckBoxExpiry.isSelected());
+		labelData.setLabelType("Pallet");
+
+		labelData.create();
+		result = labelData.getUniqueID();
+
+		return result;
+	}	
+
+	private void printOrAssign(String mode)
+	{
+		int noOfLabels = Integer.valueOf(jSpinnerQuantity.getValue().toString());
+
+		Boolean confirmQuantity = true;
+		BigDecimal a = jFormattedTextFieldProdQuantity.getQuantity();
+
+		if (caseDefaultQuantity.compareTo(new BigDecimal("0")) > 0)
+		{
+			if (a.compareTo(caseDefaultQuantity) > 0)
+			{
+				if (JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Quantity_Confirm"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm) == JOptionPane.YES_OPTION)
+				{
+					confirmQuantity = true;
+				} else
+				{
+					confirmQuantity = false;
+				}
+			}
+		}
+
+		if (confirmQuantity == true)
+		{
+
+			String processOrder = processorder.getMaterial();
+			String batchNumber = jTextFieldBatch.getText() + textFieldBatchExtension.getText();
+			Timestamp expiryDate = JUtility.getTimestampFromDate(jSpinnerExpiryDate.getDate());
+
+			if (materialbatch.autoCreateMaterialBatch(processOrder, batchNumber, expiryDate, ""))
+			{
+
+				String key = createLabelData(noOfLabels);
+
+				if (mode.equals("Print"))
+				{
+
+					String pq = comboBoxPrintQueue.getSelectedItem().toString();
+					buildSQL(key);
+
+					JLaunchReport.runReport(labelPrint.getPackLabelReportName(processOrder), listStatement, jCheckBoxAutoPreview.isSelected(), pq, noOfLabels, checkBoxIncHeaderText.isSelected());
+
+				}
+
+				if (mode.equals("Assign"))
+				{
+					JLaunchMenu.runDialog("FRM_LABEL_DATA_ASSIGN", key);
+				}
+
+			} else
+			{
+				JUtility.errorBeep();
+				JOptionPane.showMessageDialog(Common.mainForm, materialbatch.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+			}
+		}
+	}
+	
 	private void initGUI()
 	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(674, 474));
-			this.setBounds(0, 0, 785 + Common.LFAdjustWidth, 603 + Common.LFAdjustHeight);
+			this.setBounds(0, 0, 793, 587);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -589,12 +702,29 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jDesktopPane1.setPreferredSize(new java.awt.Dimension(665, 490));
 			jDesktopPane1.setBackground(Common.color_app_window);
 			jDesktopPane1.setLayout(null);
+			
+			jButtonAssign = new JButton4j(Common.icon_auto_labeller);
+			jButtonAssign.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent arg0)
+				{
+					printOrAssign("Assign");
+				}
+			});
+			jButtonAssign.setText(lang.get("btn_Assign_to_Labeller"));
+			jButtonAssign.setMnemonic('0');
+			jButtonAssign.setEnabled(false);
+			jButtonAssign.setBounds(157, 492, 155, 32);
+			jButtonAssign.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_AUTOLAB"));
+			jDesktopPane1.add(jButtonAssign);
+			
+			
 			jButtonSave = new JButton4j(Common.icon_print);
 			jDesktopPane1.add(jButtonSave);
 			jButtonSave.setEnabled(false);
 			jButtonSave.setText(lang.get("btn_Print"));
 			jButtonSave.setMnemonic(lang.getMnemonicChar());
-			jButtonSave.setBounds(116, 492, 126, 32);
+			jButtonSave.setBounds(1, 492, 155, 32);
 			jButtonSave.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt)
 				{
@@ -751,7 +881,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
-			jButtonClose.setBounds(513, 492, 126, 32);
+			jButtonClose.setBounds(625, 492, 155, 32);
 			jButtonClose.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt)
 				{
@@ -769,7 +899,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jDesktopPane1.add(jButtonHelp);
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());
-			jButtonHelp.setBounds(380, 492, 126, 32);
+			jButtonHelp.setBounds(469, 492, 155, 32);
 			jPanelProcessOrder = new JPanel();
 			jPanelProcessOrder.setBackground(Common.color_app_window);
 			jPanelProcessOrder.setFont(Common.font_title);
@@ -1185,7 +1315,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jStatusText = new JLabel4j_std();
 			jDesktopPane1.add(jStatusText);
 			jStatusText.setForeground(new java.awt.Color(255, 0, 0));
-			jStatusText.setBounds(0, 532, 761, 21);
+			jStatusText.setBounds(0, 532, 783, 21);
 			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			jButtonReprint = new JButton4j(Common.icon_report);
 			jButtonReprint.addActionListener(new ActionListener() {
@@ -1201,7 +1331,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			});
 			jButtonReprint.setMnemonic(KeyEvent.VK_C);
 			jButtonReprint.setText(lang.get("btn_Re_Print"));
-			jButtonReprint.setBounds(248, 492, 126, 32);
+			jButtonReprint.setBounds(313, 492, 155, 32);
 			jButtonReprint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRODDEC_REPRINT"));
 			jDesktopPane1.add(jButtonReprint);
 
@@ -1350,5 +1480,26 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			{
 			}
 		}
+	}
+	
+	private void buildSQL(String key)
+	{
+		JDBQuery.closeStatement(listStatement);
+
+		String temp = "";
+
+		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
+		query.clear();
+
+		temp = Common.hostList.getHost(Common.selectedHostID).getSqlstatements().getSQL("JDBLabelData.select");
+
+		query.addText(temp);
+
+		query.addParameter(key);
+
+		query.applyRestriction(false, "none", 0);
+		query.bindParams();
+
+		listStatement = query.getPreparedStatement();
 	}
 }
