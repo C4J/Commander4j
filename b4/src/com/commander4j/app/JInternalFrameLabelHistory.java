@@ -162,7 +162,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				jScrollPane1 = new JScrollPane();
 				jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 				this.getContentPane().add(jScrollPane1);
-				jScrollPane1.setBounds(0, 3, 968, 469);
+				jScrollPane1.setBounds(0, 3, 978, 469);
 				jScrollPane1.setFont(Common.font_std);
 				{
 					jTable1 = new JTable();
