@@ -506,6 +506,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				jListUnAssignedPrinters = new JList4j<JDBListData>();
 				jListUnAssignedPrinters.setFont(new Font("Monospaced", Font.PLAIN, 11));
 				jListUnAssignedPrinters.setBackground(new Color(255, 240, 255));
+				jListUnAssignedPrinters.setCellRenderer(Common.renderer_list_unassigned);
 				jScrollPaneUnAssignedPrinters.setViewportView(jListUnAssignedPrinters);
 
 				JScrollPane jScrollPaneAssignedPrinters = new JScrollPane();

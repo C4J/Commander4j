@@ -235,6 +235,7 @@ public class JDBPrinterLineMembership
 		int index = 0;
 		setLineId(line);
 		setGroupId(group);
+		JDBPrinters prn = new JDBPrinters(getHostID(),getSessionID());
 
 		try
 		{
@@ -246,7 +247,17 @@ public class JDBPrinterLineMembership
 			{
 				if (rs.getString("group_id").equals(group))
 				{
-					JDBListData mld = new JDBListData(null, index, true, rs.getString("printer_id"));
+					JDBListData mld;
+					prn.getPrinterProperties(rs.getString("printer_id"), rs.getString("group_id"));
+					if (prn.getEnabled().equals("Y"))
+					{
+						mld = new JDBListData(Common.icon_ok, index, true, rs.getString("printer_id"));
+					}
+					else
+					{
+						mld = new JDBListData(Common.icon_cancel, index, true, rs.getString("printer_id"));
+					}
+	
 					printerList.addLast(mld);
 				}
 			}
@@ -270,6 +281,7 @@ public class JDBPrinterLineMembership
 		int index = 0;
 		setLineId(line);
 		setGroupId(group);
+		JDBPrinters prn = new JDBPrinters(getHostID(),getSessionID());
 
 		try
 		{
@@ -281,7 +293,16 @@ public class JDBPrinterLineMembership
 			{
 				if (rs.getString("group_id").equals(group))
 				{
-					JDBListData mld = new JDBListData(null, index, true, rs.getString("printer_id"));
+					JDBListData mld;
+					prn.getPrinterProperties(rs.getString("printer_id"), rs.getString("group_id"));
+					if (prn.getEnabled().equals("Y"))
+					{
+						mld = new JDBListData(Common.icon_ok, index, true, rs.getString("printer_id"));
+					}
+					else
+					{
+						mld = new JDBListData(Common.icon_cancel, index, true, rs.getString("printer_id"));
+					}
 					printerList.addLast(mld);
 				}
 			}
