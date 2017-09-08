@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <plantXXX>0933</plantXXX>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>MM 000000000043439302</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=43439302</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2017-09-08T14:50:17</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>43439302</material>
+         <old_material/>
+         <materialType>HALB</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>110.000</gross_weight>
+         <net_weight>100.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <!-->Text Description for Language [E]--><description>FELIX Snst GiG Beef&amp;Tom Pch BSt 100g XE</description>
+         <debug/>
+         <!-->Data from Basic Segment--><shelf_life>24</shelf_life>
+         <shelf_life_rule>+</shelf_life_rule>
+         <shelf_life_uom>M</shelf_life_uom>
+         <!-->Equipment from Warehouse Segment [734]--><equipment_Type>LPR</equipment_Type>
+         <validLocations>
+            <location>
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>BUK</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WISBECH</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WMP</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>FENLAND</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>NENE PARADE</id>
+               <status>Valid</status>
+            </location>
+            <location>
+               <id>WROCLAW</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean>7613033937828</ean>
+            <variant>77</variant>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean>7613033937828</ean>
+            <variant>00</variant>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <numerator>594</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <!--Converting LE Quantity from EA into EA before inserting calculated D97--><!--LE QTY is 4752--><!--LE UOM is EA--><!--EA numerator is 1--><!--D97 (in EA) = 4752(EA) x 1 = 4752--><!--Original Quantity is 4752--><!--Calculated Quantity is 4752--><numerator>4752</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+            <ean/>
+            <variant/>
+         </materialUOMDefinition>
+         <validUOMs><!-->New XML structure for future enhancement--><materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean>7613033937828</ean>
+               <variant>77</variant>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean>7613033937828</ean>
+               <variant>00</variant>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>LR</uom>
+               <numerator>594</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>D97</uom>
+               <!--Converting LE Quantity from EA into EA before inserting calculated D97--><!--LE QTY is 4752--><!--LE UOM is EA--><!--EA numerator is 1--><!--D97 (in EA) = 4752(EA) x 1 = 4752--><!--Original Quantity is 4752--><!--Calculated Quantity is 4752--><numerator>4752</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <materialUOMDefinition>
+               <uom>ZZ2</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </validUOMs>
+      </materialDefinition>
+   </messageData>
+</message>

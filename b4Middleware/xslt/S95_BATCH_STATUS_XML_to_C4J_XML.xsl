@@ -53,7 +53,7 @@
         <xsl:variable name="materialS" select="translate($materialL, '^0*', '' )" />
         <material><xsl:value-of select='$materialS'/></material>
         <xsl:variable name="batchStatus" select="globe_BatchRestrictedStatus"/>
-        <status><xsl:value-of select="c4j:getConfigItem('SAPStockStatus',string($batchStatus))"/></status>
+        <status><xsl:value-of select="c4j:getReferenceItem('SAPStockStatus',string($batchStatus))"/></status>
     </xsl:template>
     
     
@@ -70,6 +70,20 @@
         <xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
         
     </xsl:function>
+    
+    	<!-- ================
+        FUNCTION get reference data 
+        ================ -->
+	
+	<xsl:function name="c4j:getReferenceItem">
+		<xsl:param name="type"/>
+		<xsl:param name="string1"/>
+		
+		<xsl:variable name="item_info" select="document('referenceData.xml')/lookup"/>
+		
+		<xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
+		
+	</xsl:function>
 
 </xsl:stylesheet>
 

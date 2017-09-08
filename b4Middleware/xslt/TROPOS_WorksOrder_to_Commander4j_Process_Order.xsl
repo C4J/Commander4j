@@ -36,13 +36,13 @@
 				  	<orderNo><xsl:value-of select='ORDER_NUMBER'></xsl:value-of></orderNo>
 				  	<material><xsl:value-of select='ITEM_NUMBER' /></material>
 				  	<description><xsl:value-of select='DESCRIPTION' /></description>
-				  	<status><xsl:value-of select="c4j:getConfigItem('TroposStatus',$status)"/></status>
+				  	<status><xsl:value-of select="c4j:getReferenceItem('TroposStatus',$status)"/></status>
 				  	<location><xsl:value-of select='REC_STOR' />-<xsl:value-of select='REC_LOC' /></location>
 				  	<requiredResource><xsl:value-of select='MACHINE_NUMBER' /></requiredResource>
 					  <receipeId><xsl:value-of select='PROCESS_VERSION' /></receipeId>
 				  	<dueDate><xsl:value-of select="c4j_XSLT_Ext:date_DD_MMM_YY_to_ISO_Date($due_date)" xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/></dueDate>				  
 				      <requiredQuantity><xsl:value-of select='REQD_QTY' /></requiredQuantity>
-				      <requiredUom><xsl:value-of select="c4j:getConfigItem('TroposUOM',$uom)"/></requiredUom>			  	
+				      <requiredUom><xsl:value-of select="c4j:getReferenceItem('TroposUOM',$uom)"/></requiredUom>			  	
 				  	  <defaultPalletStatus>Unrestricted</defaultPalletStatus>
 				  	  <customerID><xsl:value-of select='CUST_CODE'/></customerID>
 				  	  <customerName><xsl:value-of select='CUST_NAME'/></customerName>
@@ -66,5 +66,18 @@
 		<xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
 		
 	</xsl:function>
-
+	
+		<!-- ================
+        FUNCTION get reference data 
+        ================ -->
+	
+	<xsl:function name="c4j:getReferenceItem">
+		<xsl:param name="type"/>
+		<xsl:param name="string1"/>
+		
+		<xsl:variable name="item_info" select="document('referenceData.xml')/lookup"/>
+		
+		<xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
+		
+	</xsl:function>
 </xsl:stylesheet>

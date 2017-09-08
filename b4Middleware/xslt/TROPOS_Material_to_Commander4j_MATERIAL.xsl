@@ -47,7 +47,7 @@
 				  <material><xsl:value-of select='ITEM_NUMBER' /></material>
 				  <materialType>FERT</materialType>
 				  <description><xsl:value-of select='DESCRIPTION' /></description>
-			  	  <base_uom><xsl:value-of select="c4j:getConfigItem('TroposUOM',$base_uom)"/></base_uom>
+			  	  <base_uom><xsl:value-of select="c4j:getReferenceItem('TroposUOM',$base_uom)"/></base_uom>
 				  <gross_weight>0</gross_weight>
 				  <net_weight>0</net_weight>
 				  <weight_uom>G</weight_uom>
@@ -57,21 +57,21 @@
 				  <shelf_life_uom>D</shelf_life_uom>
 				  <equipment_Type></equipment_Type>
 				  <materialUOMDefinition>
-				     	<uom><xsl:value-of select="c4j:getConfigItem('TroposUOM',$base_uom)"/></uom>
+				     	<uom><xsl:value-of select="c4j:getReferenceItem('TroposUOM',$base_uom)"/></uom>
 						<numerator>1</numerator>
 						<denominator>1</denominator>
 						<ean></ean>
 						<variant></variant>
 				  </materialUOMDefinition>
 				  <materialUOMDefinition>
-				  	     <uom><xsl:value-of select="c4j:getConfigItem('TroposUOM',$stock_uom)"/></uom>
+				  	     <uom><xsl:value-of select="c4j:getReferenceItem('TroposUOM',$stock_uom)"/></uom>
 					    <numerator><xsl:value-of select='$pack_conv' /></numerator>
 					    <denominator>1</denominator>
 					    <ean><xsl:value-of select='EAN_CASE' /></ean>
 				  	<variant><xsl:value-of select="c4j_XSLT_Ext:padVariant($variant)" xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/></variant>		  	    
 				  </materialUOMDefinition>
 				  <materialUOMDefinition>
-				  	  <uom><xsl:value-of select="c4j:getConfigItem('TroposUOM',$pallet_uom)"/></uom>
+				  	  <uom><xsl:value-of select="c4j:getReferenceItem('TroposUOM',$pallet_uom)"/></uom>
 					  <numerator><xsl:value-of select="number($stock_conv) * number($pack_conv)" /></numerator>
 					  <denominator>1</denominator>
 					  <ean></ean>
@@ -117,5 +117,18 @@
 		<xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
 		
 	</xsl:function>
-
+	
+		<!-- ================
+        FUNCTION get reference data 
+        ================ -->
+	
+	<xsl:function name="c4j:getReferenceItem">
+		<xsl:param name="type"/>
+		<xsl:param name="string1"/>
+		
+		<xsl:variable name="item_info" select="document('referenceData.xml')/lookup"/>
+		
+		<xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
+		
+	</xsl:function>
 </xsl:stylesheet>

@@ -361,18 +361,18 @@ public class InterfaceThread extends Thread {
 	{
 
 		logger.debug("Starting Inbound Interface Thread.....");
-		com.commander4j.util.JWait.milliSec(100);
+		com.commander4j.util.JWait.milliSec(250);
 		inboundThread = new InboundMessageThread(getHostID(), Common.interface_recovery_path, Common.interface_error_path, Common.interface_backup_path);
 		inboundThread.setName("C4J Inbound Interface");
 		inboundThread.start();
 
 		logger.debug("Starting Outbound Interface Thread.....");
-		com.commander4j.util.JWait.milliSec(100);
+		com.commander4j.util.JWait.milliSec(250);
 		outboundThread = new OutboundMessageThread(getHostID());
 		outboundThread.setName("C4J Outbound Interface");
 		outboundThread.start();
 
-		com.commander4j.util.JWait.milliSec(100);
+		com.commander4j.util.JWait.milliSec(250);
 		LinkedList<String> test1 = new LinkedList<String>();
 		JDBInterface interfaces = new JDBInterface(getHostID(), getSessionID());
 		test1 = interfaces.getInputPaths();
@@ -383,18 +383,18 @@ public class InterfaceThread extends Thread {
 		fileCollectThread.start();
 
 		logger.debug("Starting Reporting Thread.....");
-		com.commander4j.util.JWait.milliSec(100);
+		com.commander4j.util.JWait.milliSec(250);
 		reportingThread = new ReportingThread(getHostID());
 		reportingThread.setName("C4J Reporting Thread");
 		reportingThread.start();
 
 		logger.debug("Starting Auto Labeller Thread.....");
-		com.commander4j.util.JWait.milliSec(100);
+		com.commander4j.util.JWait.milliSec(250);
 		autoLabellerThread = new AutoLabellerThread(getHostID());
 		autoLabellerThread.setName("C4J Auto Labeller");
 		autoLabellerThread.start();
 
-		com.commander4j.util.JWait.milliSec(100);
+		com.commander4j.util.JWait.milliSec(250);
 		threadsRunning = true;
 	}
 
@@ -405,14 +405,14 @@ public class InterfaceThread extends Thread {
 		{
 
 			logger.debug("Stopping Reporting Thread.....");
-			com.commander4j.util.JWait.milliSec(100);
+			com.commander4j.util.JWait.milliSec(250);
 			reportingThread.allDone = true;
 			try
 			{
 				while (reportingThread.isAlive())
 				{
 					reportingThread.allDone = true;
-					com.commander4j.util.JWait.milliSec(100);
+					com.commander4j.util.JWait.milliSec(250);
 				}
 			} catch (Exception ex1)
 			{
@@ -422,18 +422,18 @@ public class InterfaceThread extends Thread {
 			reportingThread = null;
 			logger.debug("Reporting Thread Stopped.");
 
-			com.commander4j.util.JWait.milliSec(100);
+			com.commander4j.util.JWait.milliSec(250);
 			threadsRunning = false;
 
 			logger.debug("Stopping Inbound Interface Thread.....");
-			com.commander4j.util.JWait.milliSec(100);
+			com.commander4j.util.JWait.milliSec(250);
 			inboundThread.allDone = true;
 			try
 			{
 				while (inboundThread.isAlive())
 				{
 					inboundThread.allDone = true;
-					com.commander4j.util.JWait.milliSec(100);
+					com.commander4j.util.JWait.milliSec(250);
 				}
 			} catch (Exception ex)
 			{
@@ -442,14 +442,14 @@ public class InterfaceThread extends Thread {
 			logger.debug("Inbound Interface Thread Stopped.");
 
 			logger.debug("Stopping Outbound Interface Thread.....");
-			com.commander4j.util.JWait.milliSec(100);
+			com.commander4j.util.JWait.milliSec(250);
 			outboundThread.allDone = true;
 			try
 			{
 				while (outboundThread.isAlive())
 				{
 					outboundThread.allDone = true;
-					com.commander4j.util.JWait.milliSec(100);
+					com.commander4j.util.JWait.milliSec(250);
 				}
 			} catch (Exception ex1)
 			{
@@ -459,14 +459,14 @@ public class InterfaceThread extends Thread {
 			logger.debug("Outbound Interface Thread Stopped.");
 
 			logger.debug("Stopping File Collection Thread.....");
-			com.commander4j.util.JWait.milliSec(100);
+			com.commander4j.util.JWait.milliSec(250);
 			fileCollectThread.allDone = true;
 			try
 			{
 				while (fileCollectThread.isAlive())
 				{
 					fileCollectThread.allDone = true;
-					com.commander4j.util.JWait.milliSec(100);
+					com.commander4j.util.JWait.milliSec(250);
 				}
 			} catch (Exception ex2)
 			{
@@ -476,14 +476,14 @@ public class InterfaceThread extends Thread {
 			logger.debug("File Collection Thread Stopped.");
 
 			logger.debug("Stopping Auto Labeller Thread.....");
-			com.commander4j.util.JWait.milliSec(100);
+			com.commander4j.util.JWait.milliSec(250);
 			autoLabellerThread.allDone = true;
 			try
 			{
 				while (autoLabellerThread.isAlive())
 				{
 					autoLabellerThread.allDone = true;
-					com.commander4j.util.JWait.milliSec(100);
+					com.commander4j.util.JWait.milliSec(250);
 				}
 			} catch (Exception ex1)
 			{

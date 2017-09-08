@@ -8,7 +8,6 @@
     <xsl:output encoding="UTF-8" indent='yes' method="xml" />
     <xsl:strip-space  elements="*"/>
 
-
     <!-- CONFIG DATA -->
     <xsl:variable name="HOSTREF"><xsl:value-of select="c4j:getConfigItem('config','HostRef')"/></xsl:variable>
     <xsl:variable name="PLANT"><xsl:value-of select="c4j:getConfigItem('config','Plant')"/></xsl:variable>
@@ -77,7 +76,7 @@
                         <shelf_life><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$PLANT]/../../GLB_002F_RGTE1MARCMBBD/PLANT_MHDHB)" /></shelf_life>
                         <shelf_life_rule><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$PLANT]/../../GLB_002F_RGTE1MARCMBBD/PLANT_RDMHD)" /></shelf_life_rule>
                         <xsl:variable name="SHELF_UOM" select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$PLANT]/../../GLB_002F_RGTE1MARCMBBD/PLANT_IPRKZ)" />
-                        <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('ShelfLifeUom',$SHELF_UOM)" /></shelf_life_uom>
+                        <shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('ShelfLifeUom',$SHELF_UOM)" /></shelf_life_uom>
                         
                     </xsl:if>
                     
@@ -86,7 +85,7 @@
                         <shelf_life><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E1MARAM/MHDHB)" /></shelf_life>
                         <shelf_life_rule><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E1MARAM/RDMHD)" /></shelf_life_rule>
                         <xsl:variable name="SHELF_UOM" select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E1MARAM/IPRKZ)" />
-                        <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('ShelfLifeUom',$SHELF_UOM)" /></shelf_life_uom>
+                        <shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('ShelfLifeUom',$SHELF_UOM)" /></shelf_life_uom>
                     </xsl:if>
                     
                     <validLocations>
@@ -174,13 +173,13 @@
     
         <xsl:variable name="TEMP1" select="c4j_XSLT_Ext:concat($CURRENT_PLANT,'-')"  />
         <xsl:variable name="TEMP2" select="c4j_XSLT_Ext:concat($TEMP1,$CURRENT_LOCATION)"  />
-        <xsl:variable name="LOCATION2"><xsl:value-of select="c4j:getConfigItem('PlantSLOCtoLocation',$TEMP2)"/></xsl:variable>  
+        <xsl:variable name="LOCATION2"><xsl:value-of select="c4j:getReferenceItem('PlantSLOCtoLocation',$TEMP2)"/></xsl:variable>  
         
         <xsl:if test="$LOCATION2 != ''">
             <location><xsl:attribute name="id" select="$LOCATION2" />
                 <xsl:attribute name="id"><xsl:value-of select="c4j_XSLT_Ext:trim($LOCATION2)" /></xsl:attribute>
                 <id><xsl:value-of select="c4j_XSLT_Ext:trim($LOCATION2)" /></id>
-                <status><xsl:value-of select="c4j:getConfigItem('SAPMaterialStatus',$CURRENT_STATUS)" /></status>
+                <status><xsl:value-of select="c4j:getReferenceItem('SAPMaterialStatus',$CURRENT_STATUS)" /></status>
             </location>
         </xsl:if>      
     </xsl:template>
@@ -195,6 +194,19 @@
         <xsl:variable name="item_info" select="document('configData.xml')/lookup"/>
         <xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
     </xsl:function>
-   
+    
+ 		<!-- ================
+        FUNCTION get reference data 
+        ================ -->
+	
+	<xsl:function name="c4j:getReferenceItem">
+		<xsl:param name="type"/>
+		<xsl:param name="string1"/>
+		
+		<xsl:variable name="item_info" select="document('referenceData.xml')/lookup"/>
+		
+		<xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
+		
+	</xsl:function>  
 </xsl:stylesheet>
 

@@ -61,10 +61,10 @@
                         <shelf_life><xsl:value-of select='DATA[@type="Basic"]/FIELD[@name="ShelfLife"]/@value' /></shelf_life>
                         
                         <xsl:variable name="temp1" select='string(DATA[@type="Basic"]/FIELD[@name="RoundingRuleSLED"]/@value)'/>
-                        <shelf_life_rule><xsl:value-of select="c4j:getConfigItem('ShelfLifeRounding',$temp1)"/></shelf_life_rule>    
+                        <shelf_life_rule><xsl:value-of select="c4j:getReferenceItem('ShelfLifeRounding',$temp1)"/></shelf_life_rule>    
                                                
                         <xsl:variable name="temp2" select='string(DATA[@type="Basic"]/FIELD[@name="PeriodIndforSLED"]/@value)'/>
-                        <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('ShelfLifeDuration',$temp2)"/></shelf_life_uom>
+                        <shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('ShelfLifeDuration',$temp2)"/></shelf_life_uom>
                         
                     </xsl:if>
                     
@@ -128,9 +128,9 @@
     <xsl:template match='DATA [@type="Plant"]/FIELD[@name="Plant"][@value=$PLANT]'>
         <shelf_life><xsl:value-of select="parent::*/FIELD[@name='ShelfLife']/@value" /></shelf_life>
         <xsl:variable name="temp1" select='parent::*/FIELD[@name="RoundingRuleSLED"]/@value'/>
-        <shelf_life_rule><xsl:value-of select="c4j:getConfigItem('ShelfLifeRounding',$temp1)"/></shelf_life_rule>     
+        <shelf_life_rule><xsl:value-of select="c4j:getReferenceItem('ShelfLifeRounding',$temp1)"/></shelf_life_rule>     
         <xsl:variable name="temp2" select='parent::*/FIELD[@name="PeriodIndforSLED"]/@value'/>
-        <shelf_life_uom><xsl:value-of select="c4j:getConfigItem('ShelfLifeDuration',$temp2)"/></shelf_life_uom>
+        <shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('ShelfLifeDuration',$temp2)"/></shelf_life_uom>
     </xsl:template>
       
     <!-- ================
@@ -150,7 +150,7 @@
                     <xsl:comment>Using UOM Quantity for D97</xsl:comment>
                     <numerator><xsl:value-of select='FIELD[@name="Numerator"]/@value' /></numerator> 
                     <denominator><xsl:value-of select='FIELD[@name="Denominator"]/@value' /></denominator>
-                    <ean><xsl:value-of select='FIELD[@name="EANItemCode"]/@value' /></ean>
+                    <ean><xsl:value-of select='c4j_XSLT_Ext:padEAN(c4j_XSLT_Ext:trim(FIELD[@name="EANItemCode"]/@value))' /></ean>
                     <variant><xsl:value-of select='FIELD[@name="EANVariant"]/@value' /></variant>      
                 </xsl:if>  
                 
@@ -181,7 +181,7 @@
                     </xsl:if>
 
                     <denominator><xsl:value-of select='$D97_DENOMINATOR' /></denominator>
-                    <ean><xsl:value-of select='$D97_EAN' /></ean>
+                    <ean><xsl:value-of select='c4j_XSLT_Ext:padEAN(c4j_XSLT_Ext:trim($D97_EAN))' /></ean>
                     <variant><xsl:value-of select='$D97_VARIANT' /></variant>
                 </xsl:if>     
             </xsl:if>
@@ -190,7 +190,7 @@
                 <uom><xsl:value-of select='FIELD[@name="UOM"]/@value' /></uom>
                 <numerator><xsl:value-of select='FIELD[@name="Numerator"]/@value' /></numerator>
                 <denominator><xsl:value-of select='FIELD[@name="Denominator"]/@value' /></denominator>
-                <ean><xsl:value-of select='FIELD[@name="EANItemCode"]/@value' /></ean>
+                <ean><xsl:value-of select='c4j_XSLT_Ext:padEAN(c4j_XSLT_Ext:trim(FIELD[@name="EANItemCode"]/@value))' /></ean>
                 <variant><xsl:value-of select='FIELD[@name="EANVariant"]/@value' /></variant>        
             </xsl:if>           
             
@@ -208,12 +208,12 @@
         <xsl:variable name="LOCATION_SLOC" select='string(FIELD[@name="StorageLocation"]/@value)' />
         <xsl:variable name="LOCATION_BIN" select='string(FIELD[@name="StorageBin"]/@value)' />
         <xsl:variable name="LOCATION_STATUS" select="/MESSAGE/DATA[@type='Plant']/FIELD[@name='Plant'][@value=$LOCATION_PLANT]/parent::*/FIELD[@name='MaterialStatus']/@value" />
-        <xsl:variable name="ALIAS" select="c4j:getConfigItem('PlantSLOCtoLocation',concat(string($LOCATION_PLANT),'-',string($LOCATION_SLOC)))" />
+        <xsl:variable name="ALIAS" select="c4j:getReferenceItem('PlantSLOCtoLocation',concat(string($LOCATION_PLANT),'-',string($LOCATION_SLOC)))" />
     
         <xsl:if test="$ALIAS!=''">
         <location>
-            <id><xsl:value-of select="c4j:getConfigItem('PlantSLOCtoLocation',concat(string($LOCATION_PLANT),'-',string($LOCATION_SLOC)))"/></id>
-            <status><xsl:value-of select="c4j:getConfigItem('SAPMaterialStatus',$LOCATION_STATUS)"/></status>
+            <id><xsl:value-of select="c4j:getReferenceItem('PlantSLOCtoLocation',concat(string($LOCATION_PLANT),'-',string($LOCATION_SLOC)))"/></id>
+            <status><xsl:value-of select="c4j:getReferenceItem('SAPMaterialStatus',$LOCATION_STATUS)"/></status>
         </location>
         </xsl:if>
     </xsl:template>
@@ -232,6 +232,19 @@
         <xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
         
     </xsl:function>
-
+    
+		<!-- ================
+        FUNCTION get reference data 
+        ================ -->
+	
+	<xsl:function name="c4j:getReferenceItem">
+		<xsl:param name="type"/>
+		<xsl:param name="string1"/>
+		
+		<xsl:variable name="item_info" select="document('referenceData.xml')/lookup"/>
+		
+		<xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
+		
+	</xsl:function>
 </xsl:stylesheet>
 

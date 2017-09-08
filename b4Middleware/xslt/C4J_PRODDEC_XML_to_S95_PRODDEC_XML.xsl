@@ -98,7 +98,7 @@
 						<globe_Item>0001</globe_Item>
 						<xsl:variable name="STOCKTYPE" select="/message/messageData/productionDeclaration/status" />
 						<globe_StockType>
-                            <xsl:value-of select="c4j:getConfigItem('C4JStockType',$STOCKTYPE)"/>
+                            <xsl:value-of select="c4j:getReferenceItem('C4JStockType',$STOCKTYPE)"/>
 						</globe_StockType>
 						<globe_PostingDate>
 							<xsl:value-of select='$MESSAGEDATE' />
@@ -134,6 +134,20 @@
 		<xsl:param name="string1"/>
 		
 		<xsl:variable name="item_info" select="document('configData.xml')/lookup"/>
+		
+		<xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
+		
+	</xsl:function>
+	
+		<!-- ================
+        FUNCTION get reference data 
+        ================ -->
+	
+	<xsl:function name="c4j:getReferenceItem">
+		<xsl:param name="type"/>
+		<xsl:param name="string1"/>
+		
+		<xsl:variable name="item_info" select="document('referenceData.xml')/lookup"/>
 		
 		<xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
 		

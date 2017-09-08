@@ -54,7 +54,7 @@
             <storageLocation><xsl:value-of select='$sloc'/></storageLocation>
             <storageBin><xsl:value-of select='Location/Location/Location/EquipmentID'/></storageBin>
             <storageType><xsl:value-of select='Location/Location/EquipmentID'/></storageType>
-            <location><xsl:value-of select="c4j:getConfigItem('PlantSLOCtoLocation',concat(string($SAPPLANT),'-',string($sloc)))"/></location>
+            <location><xsl:value-of select="c4j:getReferenceItem('PlantSLOCtoLocation',concat(string($SAPPLANT),'-',string($sloc)))"/></location>
             <material><xsl:value-of select='$SAPMATERIAL_SHORT' /></material>
             <description><xsl:value-of select='Description'/></description>
             <requiredQuantity><xsl:value-of select='Quantity/QuantityString'/></requiredQuantity>
@@ -80,6 +80,19 @@
         <xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
         
     </xsl:function>
-
+    
+		<!-- ================
+        FUNCTION get reference data 
+        ================ -->
+	
+	<xsl:function name="c4j:getReferenceItem">
+		<xsl:param name="type"/>
+		<xsl:param name="string1"/>
+		
+		<xsl:variable name="item_info" select="document('referenceData.xml')/lookup"/>
+		
+		<xsl:value-of select="$item_info/item[@type=$type][@id=$string1]/value"/>
+		
+	</xsl:function>
 </xsl:stylesheet>
 
