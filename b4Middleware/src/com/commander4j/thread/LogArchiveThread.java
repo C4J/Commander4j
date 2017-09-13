@@ -9,7 +9,7 @@ import com.commander4j.util.JWait;
 public class LogArchiveThread extends Thread
 {
 	public boolean allDone = false;
-	Integer counter = 0;
+	Integer counter = 600;
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((LogArchiveThread.class));
 	JArchive archiver = new JArchive();

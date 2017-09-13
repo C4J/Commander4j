@@ -15,7 +15,7 @@ import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.FixedASCIIColumns;
 import com.commander4j.sys.FixedASCIIData;
-import com.commander4j.util.JFileIO;
+//import com.commander4j.util.JFileIO;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
@@ -23,7 +23,7 @@ public class InboundConnectorASCII extends InboundConnectorABSTRACT
 {
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorASCII.class));
-	JFileIO jfileio = new JFileIO();
+//	JFileIO jfileio = new JFileIO();
 	private LinkedList<FixedASCIIColumns> parseCols = new LinkedList<FixedASCIIColumns>();
 
 	public InboundConnectorASCII(InboundInterface inter)

@@ -57,6 +57,15 @@ public class Utility
 		String strDate = sdfDate.format(now);
 		return strDate;
 	}
+	
+	public static Timestamp getSQLDateTime()
+	{
+		Calendar caldate = Calendar.getInstance();
+		Timestamp t = new Timestamp(caldate.getTimeInMillis());
+		t.setTime(caldate.getTimeInMillis());
+
+		return t;
+	}
 
 	public static synchronized String nvl(String value, String defaultValue)
 	{

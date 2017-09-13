@@ -154,6 +154,7 @@ public class MiddlewareConfig
 				String inputPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/path").trim();
 				String inputMask = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/mask").trim();
 				String inputPattern = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/inputPattern").trim();
+				String inputIdocSchemaFilename = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/idocSchemaFilename").trim();
 				String pollingInterval = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/pollingInterval").trim();
 				String inputXSLT = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/XSLT").trim();
 
@@ -178,6 +179,7 @@ public class MiddlewareConfig
 				}
 				
 				inboundInterface.setInputPattern(inputPattern);
+				inboundInterface.setIdocSchemaFilename(inputIdocSchemaFilename);
 				inboundInterface.setPollingInterval(Long.valueOf(pollingInterval));
 
 				logger.debug("Loading input connector  : (" + inputId + ") " + inputDescription +" Type " +inboundInterface.getType()+" Mask "+inboundInterface.getInputFileMask());

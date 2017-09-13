@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.sys.Common;
-import com.commander4j.util.JFileIO;
+//import com.commander4j.util.JFileIO;
 import com.opencsv.CSVReader;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
@@ -20,7 +20,7 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT
 {
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorCSV.class));
-	JFileIO jfileio = new JFileIO();
+//	JFileIO jfileio = new JFileIO();
 
 	public InboundConnectorCSV(InboundInterface inter)
 	{

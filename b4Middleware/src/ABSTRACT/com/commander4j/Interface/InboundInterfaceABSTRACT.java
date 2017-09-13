@@ -38,6 +38,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	private String xsltPath = "";
 	private String description;
 	private String id = "";
+	private String idocSchemaFilename="";
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundInterfaceABSTRACT.class));
 
@@ -90,6 +91,11 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 		return this.inputFilename;
 	}
 
+	public String getIdocSchemaFilename()
+	{
+		return this.idocSchemaFilename;
+	}
+	
 	public Document getData()
 	{
 		return this.data;
@@ -111,13 +117,16 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	}
 
 	public void setInputFilename(String filename)
-
 	{
 		this.inputFilename = filename;
 	}
+	
+	public void setIdocSchemaFilename(String filename)
+	{
+		this.idocSchemaFilename = filename;
+	}
 
 	public void setInputPath(String path)
-
 	{
 		this.inputPath = path;
 	}

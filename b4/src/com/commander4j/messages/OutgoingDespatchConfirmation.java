@@ -208,8 +208,8 @@ public class OutgoingDespatchConfirmation
 				}
 
 				document = document + "TDT+20++30+31+::9:" + JUtility.stripEANCOMSpecialCharacters(JUtility.replaceNullStringwithBlank(desp.getHaulier())) + "+++:::" + JUtility.stripEANCOMSpecialCharacters(JUtility.replaceNullStringwithBlank(desp.getTrailer())) + "'";
-				document = document + "EQD+CN+123'";
-				document = document + "SEL+123+CA'";
+				document = document + "EQD+CN+"+desp.getDespatchNo()+"'";
+				document = document + "SEL+"+JUtility.replaceNullStringwithBlank(desp.getLoadNo())+"+CA'";
 
 				segments = 13 + optional;
 

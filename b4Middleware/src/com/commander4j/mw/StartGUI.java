@@ -125,7 +125,7 @@ public class StartGUI extends JFrame
 		setTitle("Commander4j Middleware" + " " + StartMain.version);
 		Utility.initLogging("");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 1058, 467);
+		setBounds(100, 100, 1058, 573);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -146,7 +146,7 @@ public class StartGUI extends JFrame
 				ConfirmExit();
 			}
 		});
-		btnClose.setBounds(780, 364, 150, 38);
+		btnClose.setBounds(771, 465, 150, 38);
 		contentPane.add(btnClose);
 
 		btnStart = new JButton(Common.icon_ok);
@@ -183,11 +183,11 @@ public class StartGUI extends JFrame
 		btnStart.setText("Start");
 		btnStart.setSelectedIcon(Common.icon_cancel);
 		btnStart.setOpaque(true);
-		btnStart.setBounds(130, 364, 150, 38);
+		btnStart.setBounds(121, 465, 150, 38);
 		contentPane.add(btnStart);
 
 		panelStatus.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelStatus.setBounds(0, 415, 1027, 30);
+		panelStatus.setBounds(0, 515, 1027, 30);
 		contentPane.add(panelStatus);
 		panelStatus.setLayout(null);
 
@@ -218,7 +218,7 @@ public class StartGUI extends JFrame
 
 		JScrollPane scrollPaneMaps = new JScrollPane();
 		scrollPaneMaps.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPaneMaps.setBounds(12, 65, 1034, 287);
+		scrollPaneMaps.setBounds(12, 65, 1034, 388);
 		contentPane.add(scrollPaneMaps);
 
 		scrollPaneMaps.setViewportView(listMaps);
@@ -226,7 +226,7 @@ public class StartGUI extends JFrame
 		JButton buttonHelp = new JButton((Icon) null);
 		buttonHelp.setFont(new Font("Dialog", Font.PLAIN, 12));
 		buttonHelp.setText("Help");
-		buttonHelp.setBounds(618, 364, 150, 38);
+		buttonHelp.setBounds(609, 465, 150, 38);
 		contentPane.add(buttonHelp);
 
 		JLabel lblIdDescriptionType = new JLabel("Id          Description                               Input   Output(s)        In      Out  XSLT Filename");
@@ -245,7 +245,7 @@ public class StartGUI extends JFrame
 		});
 		btnRefresh.setText("Refresh");
 		btnRefresh.setFont(new Font("Dialog", Font.PLAIN, 12));
-		btnRefresh.setBounds(456, 364, 150, 38);
+		btnRefresh.setBounds(447, 465, 150, 38);
 		contentPane.add(btnRefresh);
 
 		btnStop = new JButton(Common.icon_cancel);
@@ -268,7 +268,7 @@ public class StartGUI extends JFrame
 		btnStop.setOpaque(true);
 		btnStop.setMnemonic(KeyEvent.VK_ENTER);
 		btnStop.setFont(new Font("Dialog", Font.PLAIN, 12));
-		btnStop.setBounds(292, 364, 150, 38);
+		btnStop.setBounds(283, 465, 150, 38);
 		contentPane.add(btnStop);
 	}
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="7.0.1" transformSequenceNumber="7">
-  <directoryPresets config="./xslt/configData.xml" />
-  <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.36" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
+  <directoryPresets config="./xml/config/config.xml" />
+  <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.37" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
     <languages skipLanguageSelection="true" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
       <additionalLanguages>
@@ -48,7 +48,7 @@
       </dirEntry>
       <fileEntry mountPoint="32" file="./xml/config/log4j2.xml" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" />
       <fileEntry mountPoint="32" file="./xml/config/log4j2.dtd" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" />
-      <fileEntry mountPoint="32" file="./xml/config/config.xml" overwriteMode="5" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
+      <fileEntry mountPoint="32" file="./xml/config/config.xml" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="32" file="./xml/config/config.dtd" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" />
       <dirEntry mountPoint="32" file="./xml/config" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="config" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
@@ -59,12 +59,10 @@
       <dirEntry mountPoint="36" file="./logs" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="logs" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <dirEntry mountPoint="295" file="./xslt" overwriteMode="2" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="xslt" excludeSuffixes="" dirMode="755" overrideDirMode="false">
-        <exclude>
-          <entry location=".DS_Store" fileType="regular" />
-        </exclude>
+      <dirEntry mountPoint="295" file="./xslt" overwriteMode="1" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="xslt" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+        <exclude />
       </dirEntry>
-      <fileEntry mountPoint="295" file="./xslt/configData.xml" overwriteMode="5" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
+      <fileEntry mountPoint="295" file="./xslt/configData.xml" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <dirEntry mountPoint="296" file="./samples" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="samples" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>

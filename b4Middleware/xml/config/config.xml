@@ -3,7 +3,7 @@
 
     <logPath/>
     <XSLTPath/>
-    <logArchiveRetentionDays>10</logArchiveRetentionDays>
+    <logArchiveRetentionDays>3</logArchiveRetentionDays>
     <enableEmailNotifications>false</enableEmailNotifications>
     <statusReportTime>09:00:00</statusReportTime>
 
@@ -301,6 +301,22 @@
             <optionDelimeter>^</optionDelimeter>
             <csvOptions>separator=,^quote=none</csvOptions>
             <XSLT/>
+        </output>
+    </map>
+    
+        <map id="map18" enabed="Y" description="SAP Idoc Material Master to C4J XML">
+        <input id="in1" description="Read IDOC">
+            <type>IDOC</type>
+            <path>./interface/input/18 (SAP IDOC Material Master)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <idocSchemaFilename>./idoc/schema/ZMATMAS03.txt</idocSchemaFilename>
+            <XSLT>ROCKWELL_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML File">
+            <path>./interface/output/18 (C4J - Material)</path>
+            <type>XML</type>
         </output>
     </map>
 
