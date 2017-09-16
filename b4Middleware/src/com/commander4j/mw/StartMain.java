@@ -16,7 +16,7 @@ public class StartMain
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((StartMain.class));
 	public MiddlewareConfig cfg;
-	public static String version = "1.37";
+	public static String version = "1.40";
 	Boolean running = false;
 	LogArchiveThread archiveLog;
 	StatusThread statusthread;
@@ -68,7 +68,7 @@ public class StartMain
 			logger.debug("**      STARTED        **");
 			logger.debug("*************************");
 			
-			Common.emailqueue.addToQueue("Monitor", "Monitor "+Common.configName, "Program started", "");
+			Common.emailqueue.addToQueue("Monitor", "Starting ["+Common.configName+"] on "+ Utility.getClientName(), "Program started", "");
 			running = true;
 
 		} else
@@ -84,7 +84,7 @@ public class StartMain
 				errorMsg=errorMsg+cfg.getMapDirectoryErrors().get(x)+"\n";
 			}
 			
-			Common.emailqueue.addToQueue("Monitor", "Error Starting "+Common.configName, "Errors :-\n\n"+errorMsg, "");
+			Common.emailqueue.addToQueue("Monitor", "Error Starting ["+Common.configName+"] on "+ Utility.getClientName(), "Errors :-\n\n"+errorMsg, "");
 			result = false;
 		}
 
@@ -131,14 +131,15 @@ public class StartMain
 		cfg.stopMaps();
 		logger.debug("Maps Terminated");
 
-		logger.info(cfg.getInterfaceStatistics());
+		String statistics = cfg.getInterfaceStatistics();
+		logger.info(statistics);
 
 		logger.debug("*************************");
 		logger.debug("**      STOPPED        **");
 		logger.debug("*************************");
 		
 		
-		Common.emailqueue.addToQueue("Monitor", "Stopping "+Common.configName, "Program stopped", "");
+		Common.emailqueue.addToQueue("Monitor", "Stopping ["+Common.configName+"] on "+ Utility.getClientName(), statistics, "");
 		
 		
 		try

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="7.0.1" transformSequenceNumber="7">
-  <directoryPresets config="." />
-  <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.37" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
+  <directoryPresets config="./ZMATMAS03.txt" />
+  <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.40" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
     <languages skipLanguageSelection="true" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
       <additionalLanguages>
@@ -40,20 +40,18 @@
       <mountPoint id="405" root="" location="interface/log" mode="755" />
       <mountPoint id="510" root="" location="interface/intermediate" mode="755" />
       <mountPoint id="457" root="" location="licences" mode="755" />
-      <mountPoint id="94" root="" location="" mode="755" />
       <mountPoint id="619" root="" location="idoc" mode="755" />
+      <mountPoint id="94" root="" location="" mode="755" />
     </mountPoints>
     <entries>
       <dirEntry mountPoint="22" file="./images" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="images" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <fileEntry mountPoint="32" file="./xml/config/log4j2.xml" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" />
-      <fileEntry mountPoint="32" file="./xml/config/log4j2.dtd" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" />
+      <fileEntry mountPoint="32" file="./xml/config/log4j2.xml" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" />
+      <fileEntry mountPoint="32" file="./xml/config/log4j2.dtd" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" />
       <fileEntry mountPoint="32" file="./xml/config/config.xml" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
-      <fileEntry mountPoint="32" file="./xml/config/config.dtd" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" />
-      <dirEntry mountPoint="32" file="./xml/config" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="config" excludeSuffixes="" dirMode="755" overrideDirMode="false">
-        <exclude />
-      </dirEntry>
+      <fileEntry mountPoint="32" file="./xml/config/config.dtd" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
+      <fileEntry mountPoint="32" file="./xml/config/email.xml" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <dirEntry mountPoint="35" file="./lib" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="lib" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
@@ -64,6 +62,7 @@
         <exclude />
       </dirEntry>
       <fileEntry mountPoint="295" file="./xslt/configData.xml" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
+      <fileEntry mountPoint="295" file="./xslt/referenceData.xml" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <dirEntry mountPoint="296" file="./samples" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="samples" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
@@ -76,19 +75,20 @@
       <dirEntry mountPoint="404" file="./interface/output" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="output" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <dirEntry mountPoint="405" file="./interface/log" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="log" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+      <dirEntry mountPoint="405" file="./interface/log" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="log" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="510" file="./interface/intermediate" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="intermediate" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <dirEntry mountPoint="457" file="./licences" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="licences" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+      <dirEntry mountPoint="457" file="./licences" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="licences" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <fileEntry mountPoint="94" file="./c4jMiddleware.jar" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <dirEntry mountPoint="619" file="./idoc" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="idoc" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
+      <fileEntry mountPoint="619" file="./ZMATMAS03.txt" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
+      <fileEntry mountPoint="94" file="./c4jMiddleware.jar" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
     </entries>
     <components />
   </files>

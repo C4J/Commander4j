@@ -2,6 +2,7 @@ package com.commander4j.util;
 
 import java.io.File;
 import java.io.StringWriter;
+import java.net.InetAddress;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,6 +19,60 @@ import org.w3c.dom.Document;
 
 public class Utility
 {
+	
+	public static String getClientName()
+	{
+		String result = "";
+		String clientname = "";
+
+		try
+		{
+			clientname = System.getenv("Clientname").toString();
+
+			if (clientname.equals("Console"))
+			{
+				clientname = "unknown";
+			}
+		} catch (Exception e)
+		{
+			clientname = "unknown";
+		}
+
+		if (clientname.equals("unknown"))
+		{
+			try
+			{
+				clientname = InetAddress.getLocalHost().getHostName().toLowerCase();
+			} catch (Exception e)
+			{
+				clientname = "unknown";
+			}
+		}
+
+		result = left(clientname, 40);
+
+		return result;
+	}
+	
+	public static String left(String inputstr, int size)
+	{
+		String result = replaceNullStringwithBlank(inputstr);
+
+		if (size > inputstr.length())
+		{
+			size = inputstr.length();
+		}
+
+		if (size >= 0)
+		{
+			result = inputstr.substring(0, size);
+		} else
+		{
+			result = "";
+		}
+
+		return result;
+	}
 	
 	public static String getISODateStringFormat(Date ts)
 	{
