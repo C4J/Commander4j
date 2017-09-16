@@ -7,8 +7,6 @@ import java.util.Scanner;
 
 public class IdocParser
 {
-
-	private String _msgType;
 	private String _configFile;
 	private String _fileToProcess;
 	private ArrayList<ConfigData> _configValues;
@@ -42,8 +40,6 @@ public class IdocParser
 			Scanner in = new Scanner(cfgFile);
 			try
 			{
-			
-				//Read in line of config file.
 				while (in.hasNextLine())
 				{
 					String line = in.nextLine();
@@ -66,7 +62,6 @@ public class IdocParser
 							String[] msgTypeValues = msgType.split(" ");
 							if (msgTypeValues.length > 0 && !msgTypeValues[0].equals(""))
 							{
-								_msgType = msgTypeValues[0];
 								bFoundStartLine = true;
 								continue;
 							} else
@@ -130,17 +125,17 @@ public class IdocParser
 
 					cfgData.position = _configValues.size();
 					_configValues.add(cfgData);
-
 				}
-				
 
 			} catch (FileNotFoundException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally
+			{
+				in.close();
+				in = null;
 			}
-			in.close();
-			
+
 			if (!bFoundStartLine)
 				throw new Exception("Configuration file does not contain a #start line");
 
@@ -171,10 +166,9 @@ public class IdocParser
 			int nLowestIndex = 0;
 			int nStringStartPosition = 0;
 			String CurrentSegmentDescription = "";
-			String Key = "";
+
 			HashMap<String, String> subKeys = new HashMap<String, String>();
-			boolean containsData = false;
-			int lineNumber = 0;
+
 			String section = "";
 
 			boolean found = false;
@@ -207,10 +201,8 @@ public class IdocParser
 
 			while (true)
 			{
-				lineNumber++;
-				nLocationIndex = Integer.MAX_VALUE;
 
-				int searchLength = source.length() - nStringStartPosition;
+				nLocationIndex = Integer.MAX_VALUE;
 
 				for (String segname : distinctSegments)
 				{
@@ -223,9 +215,7 @@ public class IdocParser
 							nLocationIndex = nNewIndex;
 							nLowestIndex = getLowestConfigIndex(segname);
 							CurrentSegmentDescription = segname;
-							// no point looking for segs further away restrict
-							// future searches
-							searchLength = nNewIndex - nStringStartPosition;
+
 						}
 					}
 				}
@@ -319,10 +309,12 @@ public class IdocParser
 
 				nStringStartPosition = nLocationIndex + CurrentSegmentDescription.length();
 			}
+			srcScanner.close();
 		} else
 		{
 			throw new Exception("File not found");
 		}
+		dataFile = null;
 	}
 
 	private int getLowestConfigIndex(String segment)

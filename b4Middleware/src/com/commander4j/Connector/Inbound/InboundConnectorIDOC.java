@@ -6,18 +6,22 @@ import java.util.Set;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Element;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.idoc.DataSegment;
 import com.commander4j.idoc.IdocParser;
 import com.commander4j.idoc.OutputData;
+import com.commander4j.sys.Common;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
 public class InboundConnectorIDOC extends InboundConnectorABSTRACT
 {
 
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorIDOC.class));
+	
 	public InboundConnectorIDOC(InboundInterface inter)
 	{
 		super(Connector_IDOC, inter);
@@ -26,6 +30,8 @@ public class InboundConnectorIDOC extends InboundConnectorABSTRACT
 	@Override
 	public boolean connectorLoad(String fullFilename)
 	{
+		
+		logger.debug("connectorLoad [" + fullFilename + "]");		
 		boolean result = false;
 
 		if (backupInboundFile(fullFilename))
@@ -48,6 +54,7 @@ public class InboundConnectorIDOC extends InboundConnectorABSTRACT
 				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder builder = factory.newDocumentBuilder();
 				data = builder.newDocument();
+				result = true;
 				
 				String msgId= od.getMsgId();
 
@@ -93,15 +100,17 @@ public class InboundConnectorIDOC extends InboundConnectorABSTRACT
 				System.out.println("</MESSAGE>");
 
 				data.appendChild(message);
-				System.out.println(data.toString());
 
 				result = true;
 
-			} catch (Exception e)
+			} catch (Exception ex)
 			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				result = false;
+				logger.error("connectorLoad " + getType() + " " + ex.getMessage());
+				Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
+
 			}
+			idp = null;
 
 		}
 

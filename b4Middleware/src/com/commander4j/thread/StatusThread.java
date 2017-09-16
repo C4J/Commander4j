@@ -59,7 +59,7 @@ public class StatusThread extends Thread
 					
 					report = report+Common.smw.cfg.getInterfaceStatistics();
 					Common.smw.cfg.resetInterfaceStatistics();
-					Common.emailqueue.addToQueue("System", "Statistics", report, "");
+					Common.emailqueue.addToQueue("Monitor", "Statistics", report, "");
 					logger.debug(report);
 				}
 			}

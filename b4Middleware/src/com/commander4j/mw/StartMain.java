@@ -68,7 +68,7 @@ public class StartMain
 			logger.debug("**      STARTED        **");
 			logger.debug("*************************");
 			
-			Common.emailqueue.addToQueue("System", "Starting "+Common.configName, "Program started", "");
+			Common.emailqueue.addToQueue("Monitor", "Monitor "+Common.configName, "Program started", "");
 			running = true;
 
 		} else
@@ -84,7 +84,7 @@ public class StartMain
 				errorMsg=errorMsg+cfg.getMapDirectoryErrors().get(x)+"\n";
 			}
 			
-			Common.emailqueue.addToQueue("System", "Error Starting "+Common.configName, "Errors :-\n\n"+errorMsg, "");
+			Common.emailqueue.addToQueue("Monitor", "Error Starting "+Common.configName, "Errors :-\n\n"+errorMsg, "");
 			result = false;
 		}
 
@@ -138,7 +138,7 @@ public class StartMain
 		logger.debug("*************************");
 		
 		
-		Common.emailqueue.addToQueue("System", "Stopping "+Common.configName, "Program stopped", "");
+		Common.emailqueue.addToQueue("Monitor", "Stopping "+Common.configName, "Program stopped", "");
 		
 		
 		try

@@ -49,6 +49,8 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 		String[] extensions =  getInputFileMask();
 
 		List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, false);
+		if (files.size()>0)
+		{
 		for (File file : files)
 		{
 			if (file.length() > 0)
@@ -101,6 +103,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 					processConnectorToInterfaceData(connector.getFilename(), data);
 				}
 			}
+		}
 		}
 	}
 

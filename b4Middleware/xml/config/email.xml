@@ -5,26 +5,21 @@
         <property name="mail.smtp.auth" value="true"/>
         <property name="mail.smtp.starttls.enable" value="true"/>
         <property name="mail.smtp.host" value="smtp.gmail.com"/>
-        <property name="mail.smtp.user" value="middleware@gmail.com"/>
-        <property name="mail.smtp.password" value="rooq wpvb mwns psfo"/>
-        <property name="mail.smtp.port" value="587"/>
+        <property name="mail.smtp.socketFactory.port" value="465"/>
+        <property name="mail.smtp.user" value="c4jmiddleware@gmail.com"/>
+        <property name="mail.smtp.password" value="3TCrqg9zdeDLZp"/>
+        <property name="mail.smtp.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
+        <property name="mail.smtp.auth" value="true"/>
+        <property name="mail.smtp.port" value="465"/>
         <property name="mail.smtp.from" value="c4jmiddleware@gmail.com"/>
     </configuration>
 
-    <distributionList id="System" enabled="Y">
-        <toAddressList>c4jmiddleware@gmail.com,davegarratt@msn.com</toAddressList>
+    <distributionList id="Monitor" enabled="Y">
+        <toAddressList>monitor@commander4j.com</toAddressList>
     </distributionList>
 
     <distributionList id="Error" enabled="Y">
-        <toAddressList>support@commander4j.com</toAddressList>
-    </distributionList>
-
-    <distributionList id="3" enabled="N">
-        <toAddressList/>
-    </distributionList>
-
-    <distributionList id="4" enabled="N">
-        <toAddressList/>
+        <toAddressList>error@commander4j.com</toAddressList>
     </distributionList>
 
 </emailSettings>
