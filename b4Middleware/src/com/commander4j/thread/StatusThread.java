@@ -41,7 +41,11 @@ public class StatusThread extends Thread
 				{
 					lastRunDate = currentDate;
 					
-					String report="Garbage Collector Started.\n\n";
+					String report = Common.smw.cfg.getInterfaceStatistics();
+					Common.smw.cfg.resetInterfaceStatistics();
+					
+					report = report +"\n\n";
+					report = report+"Garbage Collector Started.\n\n";
 
 					report = report+"Before GC\n\n";
 					report = report+"  Used Memory  :" + (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb\n";
@@ -57,9 +61,8 @@ public class StatusThread extends Thread
 					
 					report = report+"Garbage Collector Finished.\n\n";
 					
-					report = report+Common.smw.cfg.getInterfaceStatistics();
-					Common.smw.cfg.resetInterfaceStatistics();
-					Common.emailqueue.addToQueue("Monitor", "Statistics", report, "");
+					Common.emailqueue.addToQueue("Monitor", "Statistics ["+Common.configName+"] on "+ Utility.getClientName(), report, "");
+					
 					logger.debug(report);
 				}
 			}
