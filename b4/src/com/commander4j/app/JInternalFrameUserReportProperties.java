@@ -144,7 +144,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		});
 
 		btn4j_Save.setText(lang.get("btn_Save"));
-		btn4j_Save.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_USER_REPORT_RUN"));
+		btn4j_Save.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_USER_REPORT_EDIT"));
 		btn4j_Save.setMnemonic('0');
 		btn4j_Save.setBounds(20, 576, 126, 32);
 		desktopPane.add(btn4j_Save);
