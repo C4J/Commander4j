@@ -35,6 +35,7 @@ import java.text.NumberFormat;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -209,7 +210,7 @@ public class OutgoingDespatchConfirmation
 
 				document = document + "TDT+20++30+31+::9:" + JUtility.stripEANCOMSpecialCharacters(JUtility.replaceNullStringwithBlank(desp.getHaulier())) + "+++:::" + JUtility.stripEANCOMSpecialCharacters(JUtility.replaceNullStringwithBlank(desp.getTrailer())) + "'";
 				document = document + "EQD+CN+"+desp.getDespatchNo()+"'";
-				document = document + "SEL+"+JUtility.replaceNullStringwithBlank(desp.getLoadNo())+"+CA'";
+				document = document + "SEL+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"+CA'";
 
 				segments = 13 + optional;
 

@@ -768,5 +768,24 @@
 	UPDATE SYS_MODULES SET HINT = 'Change Password',HELPSET_ID='http://www.commander4j.com/mw/index.php/Password_Change_Scanner', REPORT_FILENAME = '', PRINT_PREVIEW='N', PRINT_DIALOG='N',PRINT_COPIES=0,RESOURCE_KEY='web_Change_Password' WHERE MODULE_ID = 'FRM_USER_PASS_CHANGE'
 </statement>
 
+<statement>
+	ALTER TABLE `APP_LABEL_DATA` ADD COLUMN `TEMP_QUANTITY` DECIMAL(22,3) NULL AFTER `LINE`
+</statement>
+
+<statement>
+	UPDATE  `APP_LABEL_DATA` SET TEMP_QUANTITY = PROD_QUANTITY
+</statement> 
+
+<statement>  
+	UPDATE  `APP_LABEL_DATA` SET PROD_QUANTITY = BASE_QUANTITY
+</statement>
+
+<statement>  
+	UPDATE  `APP_LABEL_DATA` SET BASE_QUANTITY = TEMP_QUANTITY
+</statement>
+
+<statement>
+	ALTER TABLE `APP_LABEL_DATA` DROP COLUMN `TEMP_QUANTITY`
+</statement>
 
 </DDL>

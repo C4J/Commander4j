@@ -513,9 +513,11 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		labelData.setProcessOrder(processorder.getProcessOrder());
 		labelData.setRequiredResource(processorder.getRequiredResource());
 		labelData.setLocationID(processorder.getLocation());
-		labelData.setProdQuantity(jFormattedTextFieldRequiredUOMQuantity.getQuantity());
+		//labelData.setProdQuantity(jFormattedTextFieldRequiredUOMQuantity.getQuantity());
+		labelData.setProdQuantity(jFormattedTextFieldBaseUOMQuantity.getQuantity());		
 		labelData.setProdUom(jTextFieldRequiredUom.getText());
-		labelData.setBaseQuantity(jFormattedTextFieldBaseUOMQuantity.getQuantity());
+		//labelData.setBaseQuantity(jFormattedTextFieldBaseUOMQuantity.getQuantity());
+		labelData.setBaseQuantity(jFormattedTextFieldRequiredUOMQuantity.getQuantity());
 		labelData.setBaseUom(jTextFieldBaseUom.getText());
 		labelData.setDateofManufacture(JUtility.getTimestampFromDate(jSpinnerProductionDate.getDate()));
 		labelData.setExpiryDate(JUtility.getTimestampFromDate(jSpinnerExpiryDate.getDate()));
