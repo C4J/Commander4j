@@ -880,7 +880,7 @@ public class JDBDespatch
 
 	public String getJourneyRef()
 	{
-		return JUtility.replaceNullStringwithBlank(dbJourneyRef).toUpperCase();
+		return JUtility.replaceNullStringwithBlank(dbJourneyRef).toUpperCase().trim();
 	}
 
 	public String getJourneyRefOLD()
@@ -1139,7 +1139,7 @@ public class JDBDespatch
 	public void setJourneyRef(String jref)
 	{
 		// String oldValue = JUtility.replaceNullStringwithBlank(dbJourneyRef);
-		String newValue = JUtility.replaceNullStringwithBlank(jref).toUpperCase();
+		String newValue = JUtility.replaceNullStringwithBlank(jref).toUpperCase().trim();
 
 		dbJourneyRef = newValue;
 
