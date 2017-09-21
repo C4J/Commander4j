@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
-<!-- 2016-06-03T20:07:13 -->
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pallet_a5_x1" language="groovy" pageWidth="421" pageHeight="595" columnWidth="421" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="becf3d40-6d58-4af9-9427-c634540be3f8">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="commander4j_dev"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="SSCC" class="java.lang.String">
 		<parameterDescription><![CDATA[SSCC]]></parameterDescription>
 		<defaultValueExpression><![CDATA["350001612295858201"]]></defaultValueExpression>
@@ -122,11 +121,11 @@
 				</jr:EAN128>
 			</componentElement>
 			<componentElement>
-				<reportElement x="20" y="348" width="381" height="93" uuid="126e9a37-d275-458a-9aa2-251779af2647"/>
+				<reportElement x="20" y="348" width="385" height="93" uuid="126e9a37-d275-458a-9aa2-251779af2647"/>
 				<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.2" textPosition="none">
 					<jr:codeExpression><![CDATA["02"+org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")+
 "20"+org.apache.commons.lang.StringUtils.leftPad($F{VARIANT},2,"0")+
-"17"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
+"15"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("MM").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 "37"+org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") + "\u00F1" +
@@ -140,7 +139,7 @@ new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 				</textElement>
 				<textFieldExpression><![CDATA["(02)"+org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")+
 "(20)"+org.apache.commons.lang.StringUtils.leftPad($F{VARIANT},2,"0")+
-"(17)"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
+"(15)"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("MM").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 "(37)"+org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") +

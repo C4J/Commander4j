@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.0.4.final using JasperReports Library version 6.0.4  -->
-<!-- 2015-04-17T13:42:03 -->
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pallet_letter_x1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8a6b8bfe-70bc-4648-be9b-005cdbd2af30">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -125,7 +124,7 @@
 				<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.5" textPosition="none" checksumMode="auto">
 					<jr:codeExpression><![CDATA["02"+org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")+
 "20"+org.apache.commons.lang.StringUtils.leftPad($F{VARIANT},2,"0")+
-"17"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
+"15"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("MM").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 "37"+org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") + "\u00F1" +
@@ -139,7 +138,7 @@ new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 				</textElement>
 				<textFieldExpression><![CDATA["(02)"+org.apache.commons.lang.StringUtils.leftPad($F{EAN},14,"0")+
 "(20)"+org.apache.commons.lang.StringUtils.leftPad($F{VARIANT},2,"0")+
-"(17)"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
+"(15)"+new SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("MM").format($F{EXPIRY_DATE})+
 new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 "(37)"+org.apache.commons.lang.StringUtils.leftPad(($F{QUANTITY}.intValue()).toString(),4,"0") +
