@@ -31,6 +31,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import com.commander4j.db.JDBMaterial;
+import com.commander4j.db.JDBMaterialBatch;
 import com.commander4j.db.JDBPallet;
 import com.commander4j.util.JUtility;
 
@@ -113,6 +114,14 @@ public class IncommingProductionDeclarationConfirmation
 			{
 
 				pal.setBatchNumber(gmh.getXMLDocument().findXPath("//message/messageData/productionDeclaration/batch").trim());
+				
+				if (pal.getBatchNumber().length()>JDBMaterialBatch.field_batch_number)
+				{
+					result = false;
+					setErrorMessage("SSCC " + pal.getSSCC() + " Batch Number (" + pal.getBatchNumber() + ") is too long. Max length is "+String.valueOf(JDBMaterialBatch.field_batch_number)+" characters.");
+				}
+				
+				
 				pal.setQuantity(new BigDecimal(gmh.getXMLDocument().findXPath("//message/messageData/productionDeclaration/productionQuantity").trim()));
 
 				String prodDateString = gmh.getXMLDocument().findXPath("//message/messageData/productionDeclaration/productionDate").trim();
