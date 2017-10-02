@@ -909,7 +909,7 @@ public class JDBQMAnalysis
 			if (isValidAnalysis() == true)
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMSample.update"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMAnalysis.update"));
 
 	
 				stmtupdate.setString(1, getDescription());

@@ -1627,7 +1627,7 @@
 			<text>select * from {schema}APP_QM_ANALYSIS where analysis_id = ?</text>
 		</statement>
 		<statement>
-			<id>JDBQMSample.update</id>
+			<id>JDBQMAnalysis.update</id>
 			<text>update {schema}APP_QM_ANALYSIS set description=?,display_sequence=?,module_id=?,process_order_reqd=?,process_order_param=?,material_reqd=?,material_param=?,sample_date_start_reqd=?,sample_date_start_param=?,sample_date_end_reqd=?,sample_date_end_param=?,user_data_1_reqd=?,user_data_1_param=?,user_data_2_reqd=?,user_data_2_param=?,user_data_3_reqd=?,user_data_3_param=?,user_data_4_reqd=?,user_data_4_param=?,batch_suffix_reqd=?,batch_suffix_param=?,resource_reqd=?,resource_param=? where analysis_id=?</text>
 		</statement>	
 		<?JDBModuleAlternative ?>
