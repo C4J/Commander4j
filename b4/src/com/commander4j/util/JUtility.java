@@ -78,6 +78,32 @@ public class JUtility {
 	
 	public static int field_timestamp = 20;
 	
+	public static String yesNoToTrueFalse(String input)
+	{
+		String result = replaceNullStringwithBlank(input);
+		
+		if (result.equals("Y"))
+		{
+			result="True";
+		}
+		
+		if (result.toUpperCase().equals("YES"))
+		{
+			result="True";
+		}
+		
+		if (result.equals("N"))
+		{
+			result="False";
+		}
+		
+		if (result.toUpperCase().equals("NO"))
+		{
+			result="False";
+		}
+		
+		return result;
+	}
 	
 	public static String decodeControlChars(String input)
 	{

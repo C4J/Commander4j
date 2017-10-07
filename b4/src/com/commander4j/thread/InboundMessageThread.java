@@ -50,6 +50,7 @@ import com.commander4j.messages.IncommingBatchStatusChange;
 import com.commander4j.messages.IncommingDespatchConfirmation;
 import com.commander4j.messages.IncommingInspectionResult;
 import com.commander4j.messages.IncommingJourney;
+import com.commander4j.messages.IncommingLocation;
 import com.commander4j.messages.IncommingMaterialDefinition;
 import com.commander4j.messages.IncommingPalletStatusChange;
 import com.commander4j.messages.IncommingProcessOrder;
@@ -126,6 +127,7 @@ public class InboundMessageThread extends Thread {
 			IncommingProcessOrderStatusChange iposc = new IncommingProcessOrderStatusChange(getHostID(), getSessionID());
 			IncommingProductionDeclarationConfirmation ipd = new IncommingProductionDeclarationConfirmation(getHostID(), getSessionID());
 			IncommingProcessOrder ipo = new IncommingProcessOrder(getHostID(), getSessionID());
+			IncommingLocation ilocn = new IncommingLocation(getHostID(), getSessionID());
 			IncommingPalletStatusChange ipsc = new IncommingPalletStatusChange(getHostID(), getSessionID());
 			IncommingBatchStatusChange bsc = new IncommingBatchStatusChange(getHostID(), getSessionID());
 			IncommingJourney ij = new IncommingJourney(getHostID(), getSessionID());
@@ -262,6 +264,12 @@ public class InboundMessageThread extends Thread {
 												{
 													messageProcessedOK = ipo.processMessage(gmh);
 													errorMessage = ipo.getErrorMessage();
+												}
+												
+												if (interfaceType.equals("Location") == true)
+												{
+													messageProcessedOK = ilocn.processMessage(gmh);
+													errorMessage = ilocn.getErrorMessage();
 												}
 
 												if (interfaceType.equals("Pallet Status Change") == true)
