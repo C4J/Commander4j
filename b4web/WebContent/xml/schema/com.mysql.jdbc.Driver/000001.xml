@@ -1972,16 +1972,22 @@ INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `E
 INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Despatch Confirmation','Output','{base_dir}\\xml\\interface\\output\\Despatch Confirmation','Y','Disk',NULL,NULL,NULL,NULL,NULL,'EANCOM','None',NULL,'','');
 </statement>
 <statement>
-Insert INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Despatch Confirmation','Input','{base_dir}\xml\interface\input\Despatch Confirmation','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+Insert INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Despatch Confirmation','Input','{base_dir}\\xml\\interface\\input\\Despatch Confirmation','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
 </statement>
 <statement>
-INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Material Definition','Input','{base_dir}\\xml\\interface\\input\\Material Definition','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML',NULL,NULL,'','');
+Insert INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Despatch Pre Advice','Output','{base_dir}\\xml\\interface\\output\\Despatch Pre Advice','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+</statement>
+<statement>
+Insert INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Equipment Tracking','Output','{base_dir}\\xml\\interface\\output\\Equipment Tracking','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+</statement>
+<statement>
+INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Material Definition','Input','{base_dir}\\xml\\interface\\input\\Material Definition','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','ISO to INTERNAL',NULL,'','');
 </statement>
 <statement>
 INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Pallet Status Change','Input','{base_dir}\\xml\\interface\\input\\Pallet Status Change','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
 </statement>
 <statement>
-INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Process Order','Input','{base_dir}\\xml\\interface\\input\\Process Order','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Process Order','Input','{base_dir}\\xml\\interface\\input\\Process Order','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','Local to INTERNAL',NULL,'','');
 </statement>
 <statement>
 INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Process Order Status Change','Input','{base_dir}\\xml\\interface\\input\\Process Order Status Change','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
@@ -2473,7 +2479,7 @@ INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `
 INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('CHANDRAE','ADMIN','EN','Dave Garratt','2005-02-07 13:57:22','2004-12-29 18:34:34','N','N','Y','0','N','2005-10-01 00:00:00','');
 </statement>
 <statement>
-INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('DAVID','*','EN','David Garratt','2009-10-11 20:06:37','2006-03-05 16:08:53','N','N','Y','0','N','2005-06-29 20:25:00','');
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('DAVID','password','EN','David Garratt','2009-10-11 20:06:37','2006-03-05 16:08:53','N','N','Y','0','N','2005-06-29 20:25:00','');
 </statement>
 <statement>
 INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('DREADJ','password','EN',NULL,NULL,'2005-01-11 19:40:36','N','Y','Y','0','N','2005-10-01 00:00:00','');
