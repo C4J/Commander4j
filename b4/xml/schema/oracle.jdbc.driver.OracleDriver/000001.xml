@@ -2623,16 +2623,22 @@ Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVIC
 Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Despatch Confirmation','Output','{base_dir}\xml\interface\output\Despatch Confirmation','Y','Disk',null,null,null,null,null,'EANCOM','None',null,null,null)
 </statement>
 <statement>
+Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Despatch Pre Advice','Output','{base_dir}\xml\interface\output\Despatch Pre Advice','Y','Disk',null,null,null,null,null,'XML','None',null,null,null)
+</statement>
+<statement>
+Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Equipment Tracking','Output','{base_dir}\xml\interface\output\Equipment Tracking','Y','Disk',null,null,null,null,null,'XML','None',null,null,null)
+</statement>
+<statement>
 Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Production Declaration','Input','{base_dir}\xml\interface\input\Production Declaration','Y','Disk',null,null,null,null,null,'XML','None',null,null,null)
 </statement>
 <statement>
 Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Production Declaration','Output','{base_dir}\xml\interface\output\Production Declaration','Y','Disk',null,null,null,null,null,'XML','None',null,null,null)
 </statement>
 <statement>
-Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Material Definition','Input','{base_dir}\xml\interface\input\Material Definition','Y','Disk',null,null,null,null,null,'XML','INTERNAL to ISO',null,null,null)
+Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Material Definition','Input','{base_dir}\xml\interface\input\Material Definition','Y','Disk',null,null,null,null,null,'XML','ISO to INTERNAL',null,null,null)
 </statement>
 <statement>
-Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Process Order','Input','{base_dir}\xml\interface\input\Process Order','Y','Disk',null,null,null,null,null,'XML','INTERNAL to ISO',null,null,null)
+Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Process Order','Input','{base_dir}\xml\interface\input\Process Order','Y','Disk',null,null,null,null,null,'XML','Local to INTERNAL',null,null,null)
 </statement>
 <statement>
 Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Process Order Status Change','Input','{base_dir}\xml\interface\input\Process Order Status Change','Y','Disk',null,null,null,null,null,'XML','INTERNAL to ISO',null,null,null)

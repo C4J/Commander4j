@@ -307,9 +307,13 @@
 	</statement>	
 	
 	<statement>
-		Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Journey','Input','{base_dir}\xml\interface\input\Journey Definition','Y','Disk',null,null,null,null,null,'XML','INTERNAL to ISO',null,null,null)
+		Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Journey','Input','{base_dir}\xml\interface\input\Journey Definition','Y','Disk',null,null,null,null,null,'XML','None',null,null,null)
 	</statement>		
 	
+	<statement>
+		Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) values ('Location','Input','{base_dir}\xml\interface\input\Location','Y','Disk',null,null,null,null,null,'XML','None',null,null,null)
+	</statement>
+		
 	<statement>
 		insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Journey_Ref','PL','Journey Ref','')
 	</statement>	
