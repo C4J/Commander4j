@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-insert into `SYS_CONTROL` (`system_key`, `key_value`, `description`) values ('DEFAULT_LOCATION','default','Home.');
+insert into `SYS_CONTROL` (`system_key`, `key_value`, `description`) values ('DEFAULT_LOCATION','FACTORY1','Home.');
 </statement>
 
 <statement>

@@ -181,7 +181,7 @@ Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('PASSWORD ATT
 Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('SCHEMA VERSION','1','Database Version')
 </statement>
 <statement>
-Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('SSCC PREFIX','3500016122','Pallet Number Prefix')
+Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('SSCC PREFIX','0000000000','Pallet Number Prefix')
 </statement>
 <statement>
 Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('SSCC SEQUENCE','1','Next Pallet Number')

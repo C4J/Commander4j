@@ -1531,7 +1531,7 @@ INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('PR
 INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('SCHEMA VERSION','1','Database Version');
 </statement>
 <statement>
-INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('SSCC PREFIX','3500016122','Pallet Number Prefix');
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('SSCC PREFIX','0000000000','Pallet Number Prefix');
 </statement>
 <statement>
 INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('SSCC SEQUENCE','1','Next Pallet Number');
