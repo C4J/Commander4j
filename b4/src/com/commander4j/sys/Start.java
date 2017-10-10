@@ -63,7 +63,7 @@ public class Start {
 
 		JUtility.setLookandFeel();
 		JUtility.adjustForLookandFeel();
-
+		JConfig.loadConfig("config.xml");
 		JUtility.initLogging("");
 		Common.hostList.loadHosts();
 		com.commander4j.util.JUpdate.updateCheck();
@@ -87,11 +87,18 @@ public class Start {
 		logger.info("Application starting");
 		JSplashScreenUtils.updateProgress(20, "Preparing for Logon");
 
+		if (JUtility.getActiveHostCount()>1)
+		{
 		JSplashScreenUtils.hide();
 
 		hsts = new JDialogHosts(null);
 		hsts.setVisible(false);
 		hsts.dispose();
+		}
+		else
+		{
+			Common.selectedHostID = JUtility.getFirtActiveHost().getSiteNumber();
+		}
 
 		if (Common.selectedHostID.equals("Cancel") == false)
 		{

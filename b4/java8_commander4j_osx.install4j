@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="7.0.3" transformSequenceNumber="7">
-  <directoryPresets config="./images/Launcher" />
+  <directoryPresets config="./xml" />
   <application name="Commander4j" distributionSourceDir="" applicationId="6923-0356-2321-8111" mediaDir="../../Distribution/java8/Commander4j" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="5.39" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
     <languages skipLanguageSelection="true" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
@@ -37,6 +37,7 @@
       <mountPoint id="109" root="" location="xml/schema" mode="755" />
       <mountPoint id="110" root="" location="xml/sql" mode="755" />
       <mountPoint id="111" root="" location="xml/view" mode="755" />
+      <mountPoint id="1004" root="" location="xml/config" mode="755" />
       <mountPoint id="34" root="" location="lib" mode="755" />
       <mountPoint id="35" root="" location="logs" mode="755" />
       <mountPoint id="36" root="" location="help" mode="755" />
@@ -72,6 +73,9 @@
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="111" file="./xml/view" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="view" excludeSuffixes="" dirMode="755" overrideDirMode="true">
+        <exclude />
+      </dirEntry>
+      <dirEntry mountPoint="1004" file="./xml/config" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="config" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="34" file="./lib" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="lib" excludeSuffixes="" dirMode="755" overrideDirMode="true">

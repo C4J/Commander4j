@@ -70,6 +70,13 @@ public class Common
 	
 	public static HashMap<Integer, RenderColumnPrefs> defaultColumnPrefs = new HashMap<Integer, RenderColumnPrefs>();
 
+	public static String appDisplayName="Commander4j";
+	public static String appWebsite="http://www.commander4j.com";
+	public static String appAuthor="David Garratt";
+	public static String appSupportEmail="support@commander4j.com";
+	
+	
+	
 	public static int LFAdjustWidth=0;
 	public static int LFAdjustHeight=0;
 	public static int LFTreeMenuAdjustWidth=0;
@@ -351,7 +358,7 @@ public class Common
 	public final static String image_collapse_all = "collapseall.gif";
 	public final static String image_expand_node = "expandnode.gif";
 	public final static String image_collapse_node = "collapsenode.gif";
-	public final static String image_splash = "splash.gif";
+	public static String image_splash = "splash.gif";
 	public final static String image_osx_commander4j = "osx_commander4j.gif";
 	public final static String image_osx_setup4j = "osx_setup4j.gif";
 	public final static String image_osx_clone4j = "osx_clone4j.gif";

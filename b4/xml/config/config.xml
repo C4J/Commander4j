@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <appDisplayName>Commander4j</appDisplayName>
+    <appWebsite>http://www.commander4j.com</appWebsite>
+    <appAuthor>David Garratt</appAuthor>
+    <appSupportEmail>support@commander4j.com</appSupportEmail>
+    <appSplashScreenImage>splash.gif</appSplashScreenImage>
+</config>

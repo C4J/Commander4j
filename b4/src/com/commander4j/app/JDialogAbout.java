@@ -90,8 +90,8 @@ public class JDialogAbout extends javax.swing.JDialog
 			if (Desktop.isDesktopSupported())
 			{
 				desktop = Desktop.getDesktop();
-				helpURI = new URI("http://www.commander4j.com");
-				mailtoURI = new URI("mailto:support@commander4j.com");
+				helpURI = new URI(Common.appWebsite);
+				mailtoURI = new URI("mailto:"+Common.appSupportEmail);
 				HelpAvailable = true;
 			} else
 			{
@@ -150,7 +150,7 @@ public class JDialogAbout extends javax.swing.JDialog
 					{
 						jLabelAuthor = new JLabel4j_std();
 						jDesktopPane1.add(jLabelAuthor);
-						jLabelAuthor.setText("David Garratt");
+						jLabelAuthor.setText(Common.appAuthor);
 						jLabelAuthor.setBounds(119, 133, 105, 14);
 						jLabelAuthor.setFont(new java.awt.Font("Dialog", 0, 12));
 						jLabelAuthor.setHorizontalAlignment(SwingConstants.CENTER);
@@ -159,7 +159,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jLabelWebPage = new JLabel4j_std();
 						jLabelWebPage.setHorizontalAlignment(SwingConstants.CENTER);
 						jDesktopPane1.add(jLabelWebPage);
-						jLabelWebPage.setText("http://www.commander4j.com");
+						jLabelWebPage.setText(Common.appWebsite);
 						jLabelWebPage.setBounds(48, 175, 241, 14);
 						jLabelWebPage.setForeground(new java.awt.Color(0, 0, 255));
 						jLabelWebPage.addMouseListener(new MouseAdapter()
@@ -196,7 +196,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jLabelEmail = new JLabel4j_std();
 						jLabelEmail.setHorizontalAlignment(SwingConstants.CENTER);
 						jDesktopPane1.add(jLabelEmail);
-						jLabelEmail.setText("Email : support@commander4j.com");
+						jLabelEmail.setText("Email : "+Common.appSupportEmail);
 						jLabelEmail.setBounds(44, 154, 242, 14);
 						jLabelEmail.setForeground(new java.awt.Color(0, 0, 255));
 						jLabelEmail.addMouseListener(new MouseAdapter()
@@ -238,7 +238,7 @@ public class JDialogAbout extends javax.swing.JDialog
 					{
 						jLabelVersion = new JLabel4j_std();
 						jDesktopPane1.add(jLabelVersion);
-						jLabelVersion.setText("Commander4j " + JVersion.getProgramVersion());
+						jLabelVersion.setText(Common.appDisplayName+" " + JVersion.getProgramVersion());
 						jLabelVersion.setBounds(14, 7, 322, 35);
 						jLabelVersion.setFont(new java.awt.Font("Serif", 1, 28));
 						jLabelVersion.setForeground(new java.awt.Color(255, 0, 0));

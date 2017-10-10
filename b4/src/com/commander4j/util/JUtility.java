@@ -72,11 +72,49 @@ import org.apache.log4j.xml.DOMConfigurator;
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBModule;
 import com.commander4j.sys.Common;
+import com.commander4j.sys.JHost;
 
 public class JUtility {
 
 	
 	public static int field_timestamp = 20;
+	
+	public static int getActiveHostCount() {
+		int result = 0;
+
+		JHost hst = new JHost();
+		LinkedList<JHost> temp = Common.hostList.getHosts();
+		for (int j = 0; j < temp.size(); j++)
+		{
+			hst = (JHost) temp.get(j);
+			if (hst.getEnabled().equals("Y"))
+			{
+				if (hst.getDatabaseParameters().getjdbcDriver().equals("http")==false)
+				{
+					result++;
+				}
+			}
+		}
+		return result;
+	}
+	
+	public static JHost getFirtActiveHost() {
+
+		JHost hst = new JHost();
+		LinkedList<JHost> temp = Common.hostList.getHosts();
+		for (int j = 0; j < temp.size(); j++)
+		{
+			hst = (JHost) temp.get(j);
+			if (hst.getEnabled().equals("Y"))
+			{
+				if (hst.getDatabaseParameters().getjdbcDriver().equals("http")==false)
+				{
+					return hst;
+				}
+			}
+		}
+		return hst;
+	}
 	
 	public static String yesNoToTrueFalse(String input)
 	{

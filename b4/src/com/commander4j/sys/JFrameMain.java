@@ -175,7 +175,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 	public JFrameMain()
 	{
 
-		super("Commander4j " + JVersion.getProgramVersion() + " (" + Common.hostList.getHost(Common.selectedHostID).getSiteDescription() + ")");
+		super(Common.appDisplayName+" " + JVersion.getProgramVersion() + " (" + Common.hostList.getHost(Common.selectedHostID).getSiteDescription() + ")");
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize(screenSize.width, screenSize.height - 50);
