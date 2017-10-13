@@ -151,7 +151,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jLabelAuthor = new JLabel4j_std();
 						jDesktopPane1.add(jLabelAuthor);
 						jLabelAuthor.setText(Common.appAuthor);
-						jLabelAuthor.setBounds(119, 133, 105, 14);
+						jLabelAuthor.setBounds(14, 133, 322, 14);
 						jLabelAuthor.setFont(new java.awt.Font("Dialog", 0, 12));
 						jLabelAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 					}
@@ -160,7 +160,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jLabelWebPage.setHorizontalAlignment(SwingConstants.CENTER);
 						jDesktopPane1.add(jLabelWebPage);
 						jLabelWebPage.setText(Common.appWebsite);
-						jLabelWebPage.setBounds(48, 175, 241, 14);
+						jLabelWebPage.setBounds(14, 175, 322, 14);
 						jLabelWebPage.setForeground(new java.awt.Color(0, 0, 255));
 						jLabelWebPage.addMouseListener(new MouseAdapter()
 						{
@@ -197,7 +197,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jLabelEmail.setHorizontalAlignment(SwingConstants.CENTER);
 						jDesktopPane1.add(jLabelEmail);
 						jLabelEmail.setText("Email : "+Common.appSupportEmail);
-						jLabelEmail.setBounds(44, 154, 242, 14);
+						jLabelEmail.setBounds(24, 154, 303, 14);
 						jLabelEmail.setForeground(new java.awt.Color(0, 0, 255));
 						jLabelEmail.addMouseListener(new MouseAdapter()
 						{
