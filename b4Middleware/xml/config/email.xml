@@ -6,20 +6,20 @@
         <property name="mail.smtp.starttls.enable" value="true"/>
         <property name="mail.smtp.host" value="smtp.gmail.com"/>
         <property name="mail.smtp.socketFactory.port" value="465"/>
-        <property name="mail.smtp.user" value="c4jmiddleware@gmail.com"/>
+        <property name="mail.smtp.user" value="middleware@gmail.com"/>
         <property name="mail.smtp.password" value="3TCrqg9zdeDLZp"/>
         <property name="mail.smtp.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
         <property name="mail.smtp.auth" value="true"/>
         <property name="mail.smtp.port" value="465"/>
-        <property name="mail.smtp.from" value="c4jmiddleware@gmail.com"/>
+        <property name="mail.smtp.from" value="middleware@gmail.com"/>
     </configuration>
 
     <distributionList id="Monitor" enabled="Y">
-        <toAddressList>monitor@commander4j.com</toAddressList>
+        <toAddressList>admin@gmail.com</toAddressList>
     </distributionList>
 
     <distributionList id="Error" enabled="Y">
-        <toAddressList>error@commander4j.com</toAddressList>
+        <toAddressList>admin@gmail.com</toAddressList>
     </distributionList>
 
 </emailSettings>
