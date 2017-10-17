@@ -73,6 +73,7 @@ public class JDBArchive
 	private Timestamp dbRunStart;
 	private Timestamp dbRunEnd;
 	private Long dbRecordsDeleted;
+	private Long dbMaxDelete;
 	public static int Action_Select = 0;
 	public static int Action_Delete = 1;
 	private JDBLanguage lang;
@@ -137,6 +138,7 @@ public class JDBArchive
 		setSequence(10);
 		setRetentionDays(30);
 		setErrorMessage("");
+		setMaxDelete((long) 0);
 	}
 
 	public boolean create(String archID)
@@ -395,6 +397,7 @@ public class JDBArchive
 			setRunStart(rs.getTimestamp("run_start_time"));
 			setRunEnd(rs.getTimestamp("run_end_time"));
 			setRecordsDeleted(rs.getLong("records_deleted"));
+			setMaxDelete(rs.getLong("max_delete"));
 
 		} catch (SQLException e)
 		{
@@ -407,6 +410,16 @@ public class JDBArchive
 		return dbRecordsDeleted;
 	}
 
+	public Long getMaxDelete()
+	{
+		return dbMaxDelete;
+	}
+	
+	public void setMaxDelete(Long max)
+	{
+		dbMaxDelete = max;
+	}
+	
 	public int getRetentionDays()
 	{
 		return dbRetentionDays;
@@ -628,20 +641,56 @@ public class JDBArchive
 		setErrorMessage("");
 		if (isRunable())
 		{
-
+			String limit = Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabaseSelectLimit();
+			
 			String sql = "";
-			if (action == Action_Select)
+			
+			if (limit.equals("limit"))
 			{
-				sql = "SELECT COUNT(*) AS ROWS_FOUND FROM " + getSQLTable() + " WHERE " + getSQLCriteria();
-				logger.debug(sql);
-			}
+				if (action == Action_Select)
+				{
+					sql = "SELECT COUNT(*) AS ROWS_FOUND FROM (SELECT *  FROM  " + getSQLTable() +  " WHERE " + getSQLCriteria()+" LIMIT "+getMaxDelete().toString()+") AS A";
+					logger.debug(sql);
+				}
 
-			if (action == Action_Delete)
+				if (action == Action_Delete)
+				{
+					sql = "DELETE FROM " + getSQLTable() + " WHERE " + getSQLCriteria()+ " LIMIT "+getMaxDelete().toString();
+					logger.debug(sql);
+				}				
+			}
+			
+			if (limit.equals("top"))
 			{
-				sql = "DELETE FROM " + getSQLTable() + " WHERE " + getSQLCriteria();
-				logger.debug(sql);
-			}
+				if (action == Action_Select)
+				{
+					sql = "SELECT COUNT(*) AS ROWS_FOUND FROM (SELECT TOP ("+getMaxDelete().toString()+") * FROM  " + getSQLTable() +  " WHERE " + getSQLCriteria()+") AS A";
+					logger.debug(sql);
+				}
 
+				if (action == Action_Delete)
+				{
+					sql = "DELETE TOP ("+getMaxDelete().toString()+") FROM " + getSQLTable() + " WHERE " + getSQLCriteria();
+					logger.debug(sql);
+				}
+			}
+			
+			if (limit.equals("rownum"))
+			{
+				if (action == Action_Select)
+				{
+					sql = "SELECT COUNT(*) AS ROWS_FOUND FROM " + getSQLTable() +  " WHERE " + getSQLCriteria()+" AND ROWNUM <= "+getMaxDelete().toString();
+					//sql = "SELECT COUNT(*) AS ROWS_FOUND FROM " + getSQLTable() + " WHERE " + getSQLCriteria()+ " {?}";
+					logger.debug(sql);
+				}
+
+				if (action == Action_Delete)
+				{
+					sql = "DELETE FROM " + getSQLTable() + " WHERE " + getSQLCriteria()+ " AND ROWNUM <= "+getMaxDelete().toString();
+					logger.debug(sql);
+				}	
+			}
+			
 			try
 			{
 				PreparedStatement stmtupdate;
@@ -868,7 +917,8 @@ public class JDBArchive
 				stmtupdate.setString(5, getSQLCriteria());
 				stmtupdate.setInt(6, getRetentionDays());
 				stmtupdate.setInt(7, getSequence());
-				stmtupdate.setString(8, getArchiveID());
+				stmtupdate.setLong(8, getMaxDelete());
+				stmtupdate.setString(9, getArchiveID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

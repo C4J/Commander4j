@@ -121,7 +121,7 @@ public class TableCellRenderer_Default extends DefaultTableCellRenderer
 			if (value.getClass().equals(Integer.class))
 			{
 				setHorizontalAlignment(JLabel.RIGHT);
-				this.setText(JUtility.bigDecimaltoString((BigDecimal) value));
+				this.setText(String.valueOf(value));
 			}
 		}
 		catch (Exception ex)
@@ -129,6 +129,19 @@ public class TableCellRenderer_Default extends DefaultTableCellRenderer
 
 		}
 
+		try
+		{
+			if (value.getClass().equals(Long.class))
+			{
+				setHorizontalAlignment(JLabel.RIGHT);
+				this.setText(String.valueOf(value));
+			}
+		}
+		catch (Exception ex)
+		{
+
+		}
+		
 		return this;
 	}
 }

@@ -125,14 +125,15 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 
 		jTable1.setFont(Common.font_list);
 
-		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.ArchiveID_Col).setPreferredWidth(150);
+		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.ArchiveID_Col).setPreferredWidth(130);
 		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Description_Col).setPreferredWidth(150);
-		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Enabled_Col).setPreferredWidth(60);
+		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Enabled_Col).setPreferredWidth(55);
 		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Background_Col).setPreferredWidth(60);
 		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.SQLTable_Col).setPreferredWidth(150);
-		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.RetentionDays_Col).setPreferredWidth(60);
-		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.RetentionExpiryDate_Col).setPreferredWidth(125);
-		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Sequence_Col).setPreferredWidth(60);
+		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.RetentionDays_Col).setPreferredWidth(55);
+		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.MaxDelete_Col).setPreferredWidth(75);
+		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.RetentionExpiryDate_Col).setPreferredWidth(120);
+		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Sequence_Col).setPreferredWidth(55);
 		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Result_Col).setPreferredWidth(200);
 		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Run_Start_Col).setPreferredWidth(125);
 		jTable1.getColumnModel().getColumn(JDBArchiveDataTableModel.Run_End_Col).setPreferredWidth(125);
@@ -144,7 +145,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(669, 341));
-			this.setBounds(0, 0, 968, 363);
+			this.setBounds(0, 0, 999, 363);
 			setVisible(true);
 			this.setClosable(true);
 			this.getContentPane().setLayout(null);
@@ -154,7 +155,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				jScrollPane1 = new JScrollPane();
 				jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 				this.getContentPane().add(jScrollPane1);
-				jScrollPane1.setBounds(3, 3, 941, 267);
+				jScrollPane1.setBounds(3, 3, 986, 267);
 				jScrollPane1.setFont(Common.font_std);
 				{
 					jTable1 = new JTable();
@@ -189,7 +190,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				jButtonEdit = new JButton4j(Common.icon_edit);
 				this.getContentPane().add(jButtonEdit);
 				jButtonEdit.setText(lang.get("btn_Edit"));
-				jButtonEdit.setBounds(119, 275, 115, 30);
+				jButtonEdit.setBounds(124, 275, 122, 32);
 				jButtonEdit.setMnemonic(lang.getMnemonicChar());
 				jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_ARCHIVE_EDIT"));
 				jButtonEdit.addActionListener(new ActionListener()
@@ -204,7 +205,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				jButtonClose = new JButton4j(Common.icon_close);
 				this.getContentPane().add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
-				jButtonClose.setBounds(821, 275, 115, 30);
+				jButtonClose.setBounds(862, 275, 122, 32);
 				jButtonClose.setMnemonic(lang.getMnemonicChar());
 				jButtonClose.addActionListener(new ActionListener()
 				{
@@ -219,7 +220,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				jButtonAdd = new JButton4j(Common.icon_add);
 				this.getContentPane().add(jButtonAdd);
 				jButtonAdd.setText(lang.get("btn_Add"));
-				jButtonAdd.setBounds(2, 275, 115, 32);
+				jButtonAdd.setBounds(1, 275, 122, 32);
 				jButtonAdd.setMnemonic(lang.getMnemonicChar());
 				jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_ARCHIVE_ADD"));
 				jButtonAdd.addActionListener(new ActionListener()
@@ -256,7 +257,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				jButtonDelete = new JButton4j(Common.icon_delete);
 				this.getContentPane().add(jButtonDelete);
 				jButtonDelete.setText(lang.get("btn_Delete"));
-				jButtonDelete.setBounds(236, 275, 115, 30);
+				jButtonDelete.setBounds(247, 275, 122, 32);
 				jButtonDelete.setMnemonic(lang.getMnemonicChar());
 				jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_ARCHIVE_DELETE"));
 				jButtonDelete.addActionListener(new ActionListener()
@@ -285,7 +286,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				jButtonPrint = new JButton4j(Common.icon_report);
 				this.getContentPane().add(jButtonPrint);
 				jButtonPrint.setText(lang.get("btn_Print"));
-				jButtonPrint.setBounds(587, 275, 115, 30);
+				jButtonPrint.setBounds(616, 275, 122, 32);
 				jButtonPrint.setMnemonic(lang.getMnemonicChar());
 				jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_ARCHIVE"));
 				jButtonPrint.addActionListener(new ActionListener()
@@ -300,7 +301,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				jButtonHelp = new JButton4j(Common.icon_help);
 				this.getContentPane().add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
-				jButtonHelp.setBounds(704, 275, 115, 30);
+				jButtonHelp.setBounds(739, 275, 122, 32);
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 
 			}
@@ -320,7 +321,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				});
 				jButtonExcel.setText(lang.get("btn_Excel"));
 				jButtonExcel.setMnemonic(lang.getMnemonicChar());
-				jButtonExcel.setBounds(470, 275, 115, 30);
+				jButtonExcel.setBounds(493, 275, 122, 32);
 				getContentPane().add(jButtonExcel);
 			}
 
@@ -345,7 +346,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 			button4jRun.setText(lang.get("btn_Run"));
 			button4jRun.setMnemonic('0');
 			button4jRun.setEnabled(false);
-			button4jRun.setBounds(353, 275, 115, 30);
+			button4jRun.setBounds(370, 275, 122, 32);
 			button4jRun.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_ARCHIVE_RUN"));
 			getContentPane().add(button4jRun);
 		} catch (Exception e)

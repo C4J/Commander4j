@@ -82,6 +82,7 @@ public class JDialogArchiveProperties extends JDialog
 	private JLabel4j_std labelEnabled = new JLabel4j_std();
 	private JSpinner jSpinnerRetention = new JSpinner();
 	private JSpinner jSpinnerSequence = new JSpinner();
+	private JSpinner jSpinnerMaxDelete = new JSpinner();
 	private JTextField4j jTextFieldSQLCriteria = new JTextField4j(JDBArchive.field_sql_criteria);
 	private JDBArchive arch = new JDBArchive(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
@@ -114,6 +115,7 @@ public class JDialogArchiveProperties extends JDialog
 
 		jSpinnerSequence.setValue(arch.getSequence());
 		jSpinnerRetention.setValue(arch.getRetentionDays());
+		jSpinnerMaxDelete.setValue(arch.getMaxDelete());
 		jButtonUpdate.setEnabled(false);
 
 		SwingUtilities.invokeLater(new Runnable()
@@ -138,6 +140,7 @@ public class JDialogArchiveProperties extends JDialog
 		arch.setBackgroundTask(chckbxBackgroundTask.isSelected());
 		arch.setSequence(Integer.valueOf(jSpinnerSequence.getValue().toString()));
 		arch.setRetentionDays(Integer.valueOf(jSpinnerRetention.getValue().toString()));
+		arch.setMaxDelete(Long.valueOf(jSpinnerMaxDelete.getValue().toString()));
 		arch.update();
 		jButtonUpdate.setEnabled(false);
 		return result;
@@ -149,14 +152,14 @@ public class JDialogArchiveProperties extends JDialog
 		{
 			// setDefaultLookAndFeelDecorated(true);
 			setPreferredSize(new java.awt.Dimension(460, 163));
-			this.setBounds(25, 25, 678, 298);
+			this.setBounds(25, 25, 678, 330);
 			setModal(true);
 			this.setTitle("Archive Properties");
 			getContentPane().setLayout(null);
 
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 678, 274);
+				jDesktopPane1.setBounds(0, 0, 678, 308);
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new Dimension(452, 140));
@@ -190,7 +193,7 @@ public class JDialogArchiveProperties extends JDialog
 					jButtonUpdate = new JButton4j(Common.icon_update);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setText(lang.get("btn_Save"));
-					jButtonUpdate.setBounds(90, 222, 126, 32);
+					jButtonUpdate.setBounds(90, 264, 126, 32);
 					jButtonUpdate.setMnemonic(java.awt.event.KeyEvent.VK_S);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.addActionListener(new ActionListener()
@@ -205,7 +208,7 @@ public class JDialogArchiveProperties extends JDialog
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(493, 222, 126, 32);
+					jButtonClose.setBounds(490, 264, 126, 32);
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
 					jButtonClose.addActionListener(new ActionListener()
 					{
@@ -258,7 +261,7 @@ public class JDialogArchiveProperties extends JDialog
 					jButtonHelp = new JButton4j(Common.icon_help);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(360, 222, 126, 32);
+					jButtonHelp.setBounds(355, 264, 126, 32);
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
 				}
 
@@ -302,6 +305,14 @@ public class JDialogArchiveProperties extends JDialog
 				label4j_Sequence.setHorizontalAlignment(SwingConstants.RIGHT);
 				label4j_Sequence.setBounds(5, 191, 185, 19);
 				jDesktopPane1.add(label4j_Sequence);
+				
+				
+				JLabel4j_std label4j_MaxDelete = new JLabel4j_std();
+				label4j_MaxDelete.setText(lang.get("lbl_Max_Delete"));
+				label4j_MaxDelete.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_MaxDelete.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_MaxDelete.setBounds(5, 222, 185, 19);
+				jDesktopPane1.add(label4j_MaxDelete);
 
 				SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
 				jSpinnerIntModel.setMinimum(1);
@@ -327,7 +338,7 @@ public class JDialogArchiveProperties extends JDialog
 					}
 				});
 				jSpinnerRetention.setModel(jSpinnerIntModel);
-				jSpinnerRetention.setBounds(202, 152, 79, 28);
+				jSpinnerRetention.setBounds(202, 153, 79, 28);
 
 				jSpinnerRetention.getEditor().setSize(45, 21);
 				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerRetention);
@@ -366,7 +377,41 @@ public class JDialogArchiveProperties extends JDialog
 				jSpinnerSequence.getEditor().setSize(45, 21);
 
 				jDesktopPane1.add(jSpinnerSequence);
+				
+		
+				SpinnerNumberModel jSpinnerIntModel2 = new SpinnerNumberModel();
+				jSpinnerIntModel2.setMinimum(-1);
+				jSpinnerIntModel2.setMaximum(999999);
 
+				jSpinnerIntModel2.setStepSize(1000);
+				jSpinnerMaxDelete = new JSpinner();
+				jSpinnerMaxDelete.addKeyListener(new KeyAdapter()
+				{
+					@Override
+					public void keyTyped(KeyEvent e)
+					{
+						jButtonUpdate.setEnabled(true);
+					}
+				});
+				jSpinnerMaxDelete.addChangeListener(new ChangeListener()
+				{
+					public void stateChanged(ChangeEvent e)
+					{
+						jButtonUpdate.setEnabled(true);
+						arch.setMaxDelete(Long.valueOf(jSpinnerMaxDelete.getValue().toString()));
+						label4jArchiveBefore.setText(arch.getSQLArchiveDate().toString().substring(0, 16));
+					}
+				});
+				jSpinnerMaxDelete.setModel(jSpinnerIntModel2);
+				jSpinnerMaxDelete.setBounds(202, 218, 79, 28);
+
+				jSpinnerMaxDelete.getEditor().setSize(45, 21);
+				JSpinner.NumberEditor ne3 = new JSpinner.NumberEditor(jSpinnerMaxDelete);
+				ne3.getTextField().setFont(Common.font_std);
+				jSpinnerMaxDelete.setEditor(ne3);
+				jDesktopPane1.add(jSpinnerMaxDelete);
+
+		
 				jTextFieldSQLCriteria.setText("");
 				jTextFieldSQLCriteria.setPreferredSize(new Dimension(40, 20));
 				jTextFieldSQLCriteria.setFocusCycleRoot(true);
@@ -400,7 +445,7 @@ public class JDialogArchiveProperties extends JDialog
 				});
 				jButtonRun.setText(lang.get("btn_Run"));
 				jButtonRun.setMnemonic(KeyEvent.VK_H);
-				jButtonRun.setBounds(222, 222, 126, 32);
+				jButtonRun.setBounds(222, 264, 126, 32);
 				jDesktopPane1.add(jButtonRun);
 
 				JLabel4j_std label4jBackgroundTask = new JLabel4j_std();

@@ -42,16 +42,17 @@ public class JDBArchiveDataTableModel extends AbstractTableModel
 	public static final int ArchiveID_Col = 0;
 	public static final int Description_Col = 1;
 	public static final int RetentionDays_Col = 2;
-	public static final int Enabled_Col = 3;
-	public static final int Background_Col = 4;
-	public static final int SQLTable_Col = 5;
-	public static final int RetentionExpiryDate_Col = 6;	
-	public static final int Sequence_Col = 7;
-	public static final int Result_Col = 8;
-	public static final int Run_Start_Col = 9;
-	public static final int Run_End_Col = 10;
+	public static final int MaxDelete_Col = 3;
+	public static final int Enabled_Col = 4;
+	public static final int Background_Col = 5;
+	public static final int SQLTable_Col = 6;
+	public static final int RetentionExpiryDate_Col = 7;	
+	public static final int Sequence_Col = 8;
+	public static final int Result_Col = 9;
+	public static final int Run_Start_Col = 10;
+	public static final int Run_End_Col = 11;
 
-	private String[] mcolNames = { "Archive ID", "Description", "Retention","Enabled","Background", "Table","Archive Date","Sequence","Result","Run Start","Run End"};
+	private String[] mcolNames = { "Archive ID", "Description", "Retention","Max Delete","Enabled","Background", "Table","Archive Date","Sequence","Result","Run Start","Run End"};
 	private ResultSet mResultSet;
 
 	private int prowCount = -1;
@@ -123,6 +124,8 @@ public class JDBArchiveDataTableModel extends AbstractTableModel
 				return cache.get(row).getSQLTable();
 			case RetentionDays_Col:
 				return cache.get(row).getRetentionDays();
+			case MaxDelete_Col:
+				return cache.get(row).getMaxDelete();
 			case RetentionExpiryDate_Col:
 				return cache.get(row).getSQLArchiveDate().toString().substring(0, 16);				
 			case Sequence_Col:
@@ -157,7 +160,7 @@ public class JDBArchiveDataTableModel extends AbstractTableModel
 		return new String();
 	}
 	
-    @Override
+  /*  @Override
     public Class<?> getColumnClass(int columnIndex) {
     	
 		switch (columnIndex)
@@ -174,6 +177,8 @@ public class JDBArchiveDataTableModel extends AbstractTableModel
 			return String.class;
 		case RetentionDays_Col:
 			return Integer.class;
+		case MaxDelete_Col:
+			return Long.class;
 		case RetentionExpiryDate_Col:
 			return String.class;
 		case Sequence_Col:
@@ -186,5 +191,5 @@ public class JDBArchiveDataTableModel extends AbstractTableModel
 			return String.class;					
 		}
         return String.class;
-    }
+    }*/
 }

@@ -1484,7 +1484,7 @@
 		</statement>	
 		<statement>
 			<id>JDBArchive.getArchives</id>
-			<text>select * from {schema}SYS_ARCHIVE order archive_id</text>
+			<text>select * from {schema}SYS_ARCHIVE order sequence,archive_id</text>
 		</statement>	
 		<statement>
 			<id>JDBArchive.getProperties</id>
@@ -1500,7 +1500,7 @@
 		</statement>	
 		<statement>
 			<id>JDBArchive.update</id>
-			<text>update {schema}SYS_ARCHIVE set description=?,enabled=?,background_task=?,sql_table=?,sql_criteria=?,retention_days=?,sequence=? where archive_id=?</text>
+			<text>update {schema}SYS_ARCHIVE set description=?,enabled=?,background_task=?,sql_table=?,sql_criteria=?,retention_days=?,sequence=?,max_delete=? where archive_id=?</text>
 		</statement>	
 		<statement>
 			<id>JDBArchive.updateRunStats</id>
