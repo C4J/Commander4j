@@ -1,5 +1,7 @@
 package com.commander4j.db;
 
+import java.awt.Component;
+
 /**
  * @author David Garratt
  * 
@@ -604,7 +606,7 @@ public class JDBArchive
 		return result;
 	}
 
-	public void runManual(String archid)
+	public void runManual(Component comp,String archid)
 	{
 		setArchiveID(archid);
 		if (getArchiveProperties())
@@ -614,22 +616,22 @@ public class JDBArchive
 				Long toDelete = runSQLSelect(getArchiveID());
 				if (toDelete > 0)
 				{
-					int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Delete") + " " + toDelete.toString() + " " + lang.get("lbl_Rows") + ".", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+					int n = JOptionPane.showConfirmDialog(comp, lang.get("dlg_Delete") + " " + toDelete.toString() + " " + lang.get("lbl_Rows") + ".", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
 					if (n == 0)
 					{
 						runSQLDelete(getArchiveID());
-						JOptionPane.showMessageDialog(Common.mainForm, lang.get("dlg_Archive_Complete"), lang.get("dlg_Information"), JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(comp, lang.get("dlg_Archive_Complete"), lang.get("dlg_Information"), JOptionPane.INFORMATION_MESSAGE);
 					}
 				} else
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, getDescription() + "\n" + toDelete.toString() + " " + lang.get("lbl_Rows_Found") + ".", lang.get("dlg_Information"), JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(comp, getDescription() + "\n" + toDelete.toString() + " " + lang.get("lbl_Rows_Found") + ".", lang.get("dlg_Information"), JOptionPane.INFORMATION_MESSAGE);
 				}
 
 			} else
 			{
 				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(Common.mainForm, getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(comp, getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

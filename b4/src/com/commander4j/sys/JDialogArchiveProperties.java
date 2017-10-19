@@ -438,9 +438,7 @@ public class JDialogArchiveProperties extends JDialog
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						update();
-						JDBArchive c = new JDBArchive(Common.selectedHostID, Common.sessionID);
-						c.runManual(larchiveID);
+						runArchive();
 					}
 				});
 				jButtonRun.setText(lang.get("btn_Run"));
@@ -467,5 +465,12 @@ public class JDialogArchiveProperties extends JDialog
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	private void runArchive()
+	{
+		update();
+		JDBArchive c = new JDBArchive(Common.selectedHostID, Common.sessionID);
+		c.runManual(this,larchiveID);
 	}
 }

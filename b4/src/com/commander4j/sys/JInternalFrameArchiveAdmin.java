@@ -335,10 +335,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 					{
 
 						archID = jTable1.getValueAt(row, 0).toString();
-
-						JDBArchive c = new JDBArchive(Common.selectedHostID, Common.sessionID);
-						c.runManual(archID);
-						// String test = c.reportData();
+						runArchive(archID);
 						populateList(archID);
 					}
 				}
@@ -355,6 +352,12 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 		}
 	}
 
+	private void runArchive(String archID)
+	{
+		JDBArchive c = new JDBArchive(Common.selectedHostID, Common.sessionID);
+		c.runManual(this,archID);
+	}
+	
 	private void editRecord()
 	{
 		int row = jTable1.getSelectedRow();
