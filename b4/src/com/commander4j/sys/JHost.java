@@ -36,7 +36,7 @@ import java.util.Hashtable;
 
 import javax.swing.JOptionPane;
 
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.text.WordUtils;
 import org.apache.log4j.Logger;
 
 import com.commander4j.db.JDBSQLStatement;
