@@ -218,8 +218,11 @@ public class OutgoingDespatchConfirmation
 					desp.setLoadNo("123");
 				}
 				
-				document = document + "EQD+CN+"+desp.getDespatchNo()+"'";
-			    document = document + "SEL+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"+CA'";
+				//document = document + "EQD+CN+"+desp.getDespatchNo()+"'";
+			   // document = document + "SEL+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"+CA'";
+			    
+				document = document + "EQD+CN+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"'";
+			    document = document + "SEL+"+desp.getDespatchNo()+"+CA'";
 
 				segments = 13 + optional;
 
