@@ -21,6 +21,9 @@
 	%>
 </h2>
 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/user-login-icon.gif">
+<br>
+<br>
 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
     <td width="50%" height="20"><div align="right">User :&nbsp;&nbsp;</div></td>

@@ -104,7 +104,10 @@ public class IncommingJourney
 		int created = 0;
 		int deleted = 0;
 		int updated = 0;
+		int errors = 0;
 
+		setErrorMessage("");
+		
 		while (ref.length() > 0)
 
 		{
@@ -136,9 +139,15 @@ public class IncommingJourney
 						{
 							created++;
 						}
+						else
+						{
+							setErrorMessage(journey.getErrorMessage());
+							errors++;
+						}
 					} else
 					{
-						result = true;
+						setErrorMessage("Cannot create Journey ["+ref+"] - already exists.");
+						errors++;
 					}
 				}
 
@@ -170,6 +179,11 @@ public class IncommingJourney
 							}
 						}
 					}
+					else
+					{
+						setErrorMessage("Cannot delete Journey ["+ref+"] - not found.");
+						errors++;
+					}
 				}
 
 				if (action.equals("update"))
@@ -184,9 +198,16 @@ public class IncommingJourney
 							journey.setLoadType(loadType);
 							journey.setLoadTypeDesc(loadTypeDesc);
 							journey.setHaulier(haulier);
-							journey.update();
-							result = true;
-							updated++;
+							result = journey.update();
+							if (result)
+							{
+								updated++;
+							}
+							else
+							{
+								setErrorMessage(journey.getErrorMessage());
+								errors++;
+							}
 						}
 						else
 						{
@@ -207,13 +228,18 @@ public class IncommingJourney
 							}
 						}
 					}
+					else
+					{
+						setErrorMessage("Cannot update Journey ["+ref+"] - not found.");
+						errors++;
+					}
 				}
 				
 				occur++;
 			}
 		}
-		setErrorMessage(
-				String.valueOf(created) + " Journey(s) created, " + String.valueOf(updated) + " Journey(s) updated, " +String.valueOf(deleted) + " Journey(s) deleted");
+		String reason = getErrorMessage();
+		setErrorMessage("Journey(s) : " + String.valueOf(created) + " created, " + String.valueOf(updated) + " updated, " +String.valueOf(deleted) + " deleted, " + String.valueOf(errors) + " errors. ["+reason+"]");
 
 		journey = null;
 		return result;

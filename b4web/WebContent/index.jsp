@@ -9,19 +9,16 @@
 <META HTTP-Equiv="scanner" Content="enabled">
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
-<META HTTP-Equiv="quitbutton" Content="hide">
-<!-- <META HTTP-Equiv="quitbutton" Content="x=220"> -->
-<!-- <META HTTP-Equiv="quitbutton" Content="y=1"> -->
+<META HTTP-Equiv="quitbutton" Content="show">
+<META HTTP-Equiv="quitbutton" Content="x=0">
+<META HTTP-Equiv="quitbutton" Content="y=300">
 <META HTTP-Equiv="battery" Content="show">
-<!-- <META HTTP-Equiv="battery" Content="x=2"> -->
-<!-- <META HTTP-Equiv="battery" Content="y=250"> -->
 <META HTTP-Equiv="battery" Content="Bottom_GrowFromRight">
 <META HTTP-Equiv="battery" Content="RGB:FF,00,00">   
 <META HTTP-Equiv="signal" Content="show">
-<!-- <META HTTP-Equiv="signal" Content="x=230"> -->
-<!-- <META HTTP-Equiv="signal" Content="y=250"> -->
 <META HTTP-Equiv="signal" Content="Bottom_GrowFromRight">
 <META HTTP-Equiv="signal" Content="RGB:FF,00,00">
+<meta http-equiv="volume" content="0x1000">
 <META HTTP-Equiv="unattended" content="enabled">
 
 <title>Welcome</title>

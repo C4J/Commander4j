@@ -221,10 +221,17 @@ public class OutgoingDespatchConfirmation
 				//document = document + "EQD+CN+"+desp.getDespatchNo()+"'";
 			   // document = document + "SEL+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"+CA'";
 			    
-				document = document + "EQD+CN+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"'";
-			    document = document + "SEL+"+desp.getDespatchNo()+"+CA'";
-
-				segments = 13 + optional;
+				document = document + "EQD+CN+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getTrailer(), 10))+"'";
+			    //document = document + "SEL+"+desp.getDespatchNo()+"+CA'";
+			    //document = document + "SEL+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"+CU'";
+			    
+			    document = document + "SEL+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"+CA'";
+			    document = document + "SEL+"+desp.getDespatchNo()+"+CU'";
+			    //document = document + "SEL+"+desp.getDespatchNo()+"+CA'";
+			    //document = document + "SEL+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"+CU'";
+			    
+			    //  document = document + "SEL+"+desp.getDespatchNo()+"+CU'";
+				segments = 14 + optional;
 
 				JDBPalletHistory palhist = new JDBPalletHistory(getHostID(), getSessionID());
 				ResultSet rs = palhist.getInterfacingData(transactionRef, "DESPATCH", "TO", Long.valueOf(0), "SSCC", "asc");

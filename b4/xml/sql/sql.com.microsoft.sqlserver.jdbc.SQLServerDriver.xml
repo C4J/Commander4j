@@ -1650,6 +1650,10 @@
 			<id>JDBModuleAlternative.update</id>
 			<text>update {schema}SYS_MODULES_ALTERNATIVE set alt_module_id=? where module_id = ? and workstation_id=?</text>
 		</statement>		
-										
+		<?JDBViewBarcodeValidate?>
+		<statement>
+			<id>JDBViewBarcodeValidate.getProperties</id>
+			<text>select * from {schema}view_barcode_validate where process_order = ?</text>
+		</statement>											
 	</jdbcDriver>
 </SQL>

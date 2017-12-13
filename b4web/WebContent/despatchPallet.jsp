@@ -4,10 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="expires" content="0">
+
+<META http-equiv="Pragma" content="no-cache">
+<META http-equiv="expires" content="0">
+<META http-equiv="volume" content="0x1000">
 <META HTTP-Equiv="scanner" Content="enabled">
-<META HTTP-Equiv="scanner" Content="autoenter">
+<META HTTP-Equiv="ean13" Content="enabled">
+<META HTTP-Equiv="code128-ean128" Content="true">
+<META HTTP-Equiv="code128-maxlength" Content="20">
+<META HTTP-Equiv="scannernavigate" Content="Javascript:doScan('%s', '%s', %s, '%s', %s);">
+<META HTTP-Equiv="scanner" Content="DecodeEvent:url('javascript:doScan('%s', '%s', %s, '%s', %s);')">
+<META http-equiv="Volume" content="0x1000">
+
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Despatch Pallet</title>
 <link href="commander.css" rel="stylesheet" type="text/css">
@@ -27,46 +35,42 @@
 <form id="despatchPallet" name="despatchPallet" action="Process" method="post">
 <h2>
 <%=Lang.getText("lbl_Despatch_No") %>&nbsp;<%out.println(despatchNo);%>
-</h2>
-SSCC:
+</h2><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/pallet_sscc.gif">
+<br>	
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SSCC
 <br><p>
 <%
 	String sscc = (String) session.getAttribute("sscc");
 	if (sscc == null) sscc = "";
 	sscc = sscc.trim();
-	out.println("<input tabindex=\"1\" name=\"sscc\" type=\"text\" id=\"sscc\" size=\"20\" maxlength=\"20\" value=\""+sscc+"\"/>");
+	out.println("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input tabindex=\"1\" name=\"sscc\" type=\"text\" id=\"sscc\" size=\"20\" maxlength=\"20\" value=\""+sscc+"\"/>");
 	%>
 </p>	
-  <p>
+ <p>
 <label>
-<input name="addRemoveMode" accesskey="A" type="radio" id="radio" value="add" checked="checked" onClick="focusIt()"/>
-<%=Lang.getText("web_Add") %>
-<input  name="addRemoveMode" accesskey="R" type="radio" id="radio" value="remove"  onClick="focusIt()" />
-<%=Lang.getText("web_Remove") %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="addRemoveMode" accesskey="A" type="radio" id="radio" value="add" checked="checked" onClick="focusIt()"/><%=Lang.getText("web_Add") %>
+<input  name="addRemoveMode" accesskey="R" type="radio" id="radio" value="remove"  onClick="focusIt()" /><%=Lang.getText("web_Remove") %>
 </label> 
 </p>	
-	<table width="153" height="54" border="0">
+<table width="153" height="54" border="0">
 	<tr>
-		
-		
+		<td><div align="right">&nbsp;&nbsp;&nbsp;&nbsp;Pallet Count :</div></td>
+	    <td><% String palletCount = (String) session.getAttribute("despatchPalletCount");if (palletCount == null) palletCount = "";out.println(palletCount);%></td>
 	</tr>
-	<tr>
-		<td><div align="left">Pallet Count :</div></td>
-		<td>
-<%
-String palletCount = (String) session.getAttribute("despatchPalletCount");
-if (palletCount == null) palletCount = "";
-out.println(palletCount);
-%></td>
-	</tr>
+
 	<tr>
 		<td>
-		<div align="left">
-			<input tabindex='3' type="submit"	name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit") %>" onclick="document.despatchPallet.button.value='Submit';" />
+		<div align="right">
+	        <input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>" onclick="document.despatchPallet.button.value='Submit';document.despatchPallet.submit();"> 		
 		</div>
 		</td>
 		<td>
-			<input tabindex='4' type="submit" name="buttonCancel"	id="buttonCancel" value="<%=Lang.getText("web_Cancel") %>" onclick="document.despatchPallet.button.value='Cancel';" />
+		<div align="right">
+	        <input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>" onclick="document.despatchPallet.button.value='Cancel';document.despatchPallet.submit();"> 
+		</div>
+			<input type="hidden" name="barcodeType" value="none" />
+	 		<input type="hidden" name="barcodeLength" value="0"  /> 
 		</td>
 	</tr>
 </table>
@@ -81,11 +85,24 @@ out.println("<p>"+errormessage+"</p>");
 <input type="hidden" id="button" name="button" value="Submit" />  
 </p>
 </form>
-<script type="text/javascript">
-function focusIt()
-{
-	document.despatchPallet.sscc.focus();
-}
-</script>
+	<script language="javascript" type="text/javascript">
+
+		function focusIt() {
+			document.despatchPallet.sscc.focus();
+		}
+
+		function doScan(data, source, type, time, length) {
+			document.despatchPallet.button.value = 'Submit';
+			document.despatchPallet.sscc.value = data;
+			document.despatchPallet.barcodeType.value = type;
+			document.despatchPallet.barcodeLength.value = length;
+			document.despatchPallet.submit();
+		}
+
+		function goBack() {
+			window.history.back();
+		}
+		
+	</script>
 </body>
 </html>

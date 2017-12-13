@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pack_Label_01" language="groovy" pageWidth="447" pageHeight="226" columnWidth="437" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="6a374093-6218-4553-891f-5e2d4f4ddd33">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Commander4j mySQL"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
 	<property name="com.jaspersoft.studio.unit." value="mm"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<queryString>
-		<![CDATA[SELECT *
-  FROM VIEW_LABEL_DATA]]>
+		<![CDATA[SELECT * FROM VIEW_LABEL_DATA]]>
 	</queryString>
 	<field name="UNIQUE_ID" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -110,7 +110,7 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<detail>
-		<band height="215" splitType="Stretch">
+		<band height="216" splitType="Stretch">
 			<textField>
 				<reportElement x="3" y="97" width="427" height="20" uuid="a1e72fdc-cc84-4233-9d3d-8c83e20e8b6a"/>
 				<textElement textAlignment="Center">
@@ -150,12 +150,12 @@
 				<text><![CDATA[Best Before :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="193" width="430" height="22" uuid="a8b43aae-3f37-4365-8083-b694a882e8db"/>
+				<reportElement x="5" y="188" width="427" height="26" uuid="a8b43aae-3f37-4365-8083-b694a882e8db"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA["(02)"+com.commander4j.util.JUtility.padString($F{PROD_EAN},false,14,"0")+
-"(20)"+com.commander4j.util.JUtility.padString($F{PROD_VARIANT},false,2,"0")+
+				<textFieldExpression><![CDATA["(01)"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0") +
+"(20)"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_VARIANT},2,"0") +
 "(15)"+new java.text.SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
 "(10)"+$F{BATCH_NUMBER}]]></textFieldExpression>
@@ -203,10 +203,11 @@ new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
 					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
 				</reportElement>
 				<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="2.0" textPosition="none">
-					<jr:codeExpression><![CDATA["02"+com.commander4j.util.JUtility.padString($F{PROD_EAN},false,14,"0")+"20"+com.commander4j.util.JUtility.padString($F{PROD_VARIANT},false,2,"0")+"15"+
-new java.text.SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
-new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+
-"00"+"10"+$F{BATCH_NUMBER}]]></jr:codeExpression>
+					<jr:codeExpression><![CDATA["01"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0") +
+"20"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_VARIANT},2,"0") +
+"15"+new java.text.SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
+new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
+"10"+$F{BATCH_NUMBER}]]></jr:codeExpression>
 				</jr:EAN128>
 			</componentElement>
 			<textField pattern="" isBlankWhenNull="true">

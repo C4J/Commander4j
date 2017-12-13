@@ -1,5 +1,19 @@
 package com.commander4j.servlet;
 
+import java.io.IOException;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionAttributeListener;
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+
+import org.apache.log4j.Logger;
+
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBDespatch;
@@ -8,22 +22,18 @@ import com.commander4j.db.JDBLocation;
 import com.commander4j.db.JDBPallet;
 import com.commander4j.db.JDBReportRequest;
 import com.commander4j.db.JDBUser;
-
-import com.commander4j.html.*;
-
+import com.commander4j.db.JDBViewBarcodeValidate;
+import com.commander4j.html.JMenuRFDespatchList;
+import com.commander4j.html.JMenuRFMenu;
+import com.commander4j.html.JMenuRFPrinterList;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JHost;
+import com.commander4j.util.JPlaySound;
+import com.commander4j.util.JPrint;
+import com.commander4j.util.JUtility;
 
-import com.commander4j.util.*;
-
-import org.apache.log4j.Logger;
-
-import java.io.IOException;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-
-public class Process extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet, HttpSessionListener, HttpSessionAttributeListener {
+public class Process extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet, HttpSessionListener, HttpSessionAttributeListener
+{
 	private static final long serialVersionUID = 1;
 	private String xmlfilename;
 	private String logfilename;
@@ -182,7 +192,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				saveData(session, "despatchTrailer", "", true);
 				saveData(session, "despatchHaulier", "", true);
 				saveData(session, "despatchLoadNo", "", true);
-				saveData(session,"despatchJourneyRef","",true);
+				saveData(session, "despatchJourneyRef", "", true);
 			} else
 			{
 				result = "";
@@ -294,9 +304,6 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		HttpSession session = request.getSession();
 		String sessionID = session.getId();
 
-		saveData(session, "lastAddRemoveMode", "", true);
-		saveData(session, "lastSSCCdespatched", "", true);
-
 		if (despatchDataSavetoDB(Common.sd.getData(sessionID, "despatchNo"), request, session))
 		{
 			if (button.equals("Add Pallets"))
@@ -339,7 +346,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			}
 		} else
 		{
-			//session.setAttribute("_ErrorMessage", "");
+			// session.setAttribute("_ErrorMessage", "");
 			response.sendRedirect("despatchHeader.jsp");
 		}
 	}
@@ -409,9 +416,6 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		String addRemoveMode = request.getParameter("addRemoveMode");
 		saveData(session, "addRemoveMode", addRemoveMode, true);
 
-		String lastSSCC = JUtility.replaceNullStringwithBlank(Common.sd.getData(sessionID, "lastSSCCdespatched"));
-		String lastAddRemoveMode = JUtility.replaceNullStringwithBlank(Common.sd.getData(sessionID, "lastAddRemoveMode"));
-
 		if (button.equals(""))
 		{
 			button = "Submit";
@@ -420,90 +424,62 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		if (button.equals("Submit"))
 		{
 
-			String dupCountString = JUtility.replaceNullStringwithBlank(Common.sd.getData(sessionID, "dupCountString"));
-
-			if (dupCountString.equals("") == true)
-			{
-				dupCountString = "0";
-			}
-
-			int dupCountint = Integer.valueOf(dupCountString);
-
 			if (sscc.equals("") == false)
 			{
 
-				if ((sscc.equals(lastSSCC) == false) | ((sscc.equals(lastSSCC) == true) & (lastAddRemoveMode.equals(addRemoveMode) == false)))
+				if (bcode.parseBarcodeData(sscc) == true)
 				{
-					dupCountint++;
-					lastSSCC = sscc;
+					sscc = bcode.getStringforAppID("00");
 
-					saveData(session, "lastAddRemoveMode", addRemoveMode, true);
-					saveData(session, "lastSSCCdespatched", sscc, true);
-
-					if (bcode.parseBarcodeData(sscc) == true)
+					if (bcode.isValidSSCCformat(sscc) == true)
 					{
-						logger.debug("DEBUG 3 parsed ok");
-						sscc = bcode.getStringforAppID("00");
 
-						if (bcode.isValidSSCCformat(sscc) == true)
+						JDBDespatch desp = new JDBDespatch(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+
+						String despNo = Common.sd.getData(sessionID, "despatchNo");
+
+						if (desp.getDespatchProperties(Common.sd.getData(sessionID, "despatchNo")) == true)
 						{
 
-							JDBDespatch desp = new JDBDespatch(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-
-							String despNo = Common.sd.getData(sessionID, "despatchNo");
-
-							if (desp.getDespatchProperties(Common.sd.getData(sessionID, "despatchNo")) == true)
+							if (addRemoveMode.equals("add") == true)
 							{
-								lastAddRemoveMode = addRemoveMode;
-								if (addRemoveMode.equals("add") == true)
+								if (desp.assignSSCC(sscc) == true)
 								{
-									if (desp.assignSSCC(sscc) == true)
-									{
-										logger.debug(sscc + " added to despatch " + despNo);
-										session.setAttribute("sscc", "");
-										session.setAttribute("_ErrorMessage", "");
-										saveData(session, "despatchPalletCount", String.valueOf(desp.getDespatchPalletCount()), true);
-									} else
-									{
-										session.setAttribute("_ErrorMessage", desp.getErrorMessage());
-									}
-								}
-								if (addRemoveMode.equals("remove") == true)
+									logger.debug(sscc + " added to despatch " + despNo);
+									session.setAttribute("sscc", "");
+									session.setAttribute("_ErrorMessage", "");
+									saveData(session, "despatchPalletCount", String.valueOf(desp.getDespatchPalletCount()), true);
+								} else
 								{
-									if (desp.unassignSSCC(sscc) == true)
-									{
-										logger.debug(sscc + " sscc removed from despatch " + despNo);
-										session.setAttribute("sscc", "");
-										session.setAttribute("_ErrorMessage", "");
-										saveData(session, "despatchPalletCount", String.valueOf(desp.getDespatchPalletCount()), true);
-									} else
-									{
-										session.setAttribute("_ErrorMessage", desp.getErrorMessage());
-									}
+									session.setAttribute("_ErrorMessage", desp.getErrorMessage());
 								}
-							} else
+							}
+							if (addRemoveMode.equals("remove") == true)
 							{
-								session.setAttribute("_ErrorMessage", "Despatch not found.");
+								if (desp.unassignSSCC(sscc) == true)
+								{
+									logger.debug(sscc + " sscc removed from despatch " + despNo);
+									session.setAttribute("sscc", "");
+									session.setAttribute("_ErrorMessage", "");
+									saveData(session, "despatchPalletCount", String.valueOf(desp.getDespatchPalletCount()), true);
+								} else
+								{
+									session.setAttribute("_ErrorMessage", desp.getErrorMessage());
+								}
 							}
 						} else
 						{
-							session.setAttribute("_ErrorMessage", "Invalid SSCC format.");
+							session.setAttribute("_ErrorMessage", "Despatch not found.");
 						}
 					} else
 					{
-						session.setAttribute("_ErrorMessage", "Invalid barcode.");
+						session.setAttribute("_ErrorMessage", "Invalid SSCC format.");
 					}
 				} else
 				{
-					dupCountint++;
-
-					if (dupCountint == 2)
-					{
-						dupCountint = 0;
-						saveData(session, "lastSSCCdespatched", "", true);
-						session.setAttribute("_ErrorMessage", "");
-					}
+					session.setAttribute("_ErrorMessage", "Invalid barcode.");
 				}
+
 			} else
 			{
 				session.setAttribute("_ErrorMessage", "");
@@ -670,13 +646,6 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		logger.removeAllAppenders();
 		logger = null;
 
-		// int active = Thread.activeCount();
-		// Thread all[] = new Thread[active];
-		// Thread.enumerate(all);
-		// for (int i = 0; i < active; i++) {
-		// System.out.println(i + ": " + all[i]);
-		// logger.debug(i + ": " + all[i]);
-		// }
 	}
 
 	protected synchronized void displayHosts(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
@@ -697,8 +666,6 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 						& (Common.hostList.getHost(Common.sd.getData(sessionID, "selectedHost")).getDatabaseParameters().getjdbcDriver().equals("http") == true))
 
 				{
-					// If url specified and not jdbc driver specified then
-					// redirect to the url.
 					response.sendRedirect(Common.hostList.getHost(Common.sd.getData(sessionID, "selectedHost")).getSiteURL());
 				} else
 				{
@@ -725,8 +692,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 								bcode = new JEANBarcode(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 							}
 							session.setAttribute("_ErrorMessage", "");
-						}
-						else
+						} else
 						{
 							session.setAttribute("_ErrorMessage", "Unable to connect to database (host)");
 						}
@@ -867,6 +833,12 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					saveData(session, "selectedHost", "", true);
 					displayHostSelect(request, response);
 				}
+				if (button.equals("Quit"))
+				{
+					saveData(session, "selectedHost", "", true);
+					Common.hostList.disconnectSessionAllHosts(sessionID);
+					response.sendRedirect("quit.jsp");
+				}
 			}
 
 			// ******************************************
@@ -951,6 +923,62 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			if (formName.equals("productionConfirm.jsp"))
 			{
 				palletConfirm(request, response, button);
+			}
+
+			// ******************************************
+			// ********* PRODUCTION CONFIRMATION +*******
+			// ******************************************
+			if (formName.equals("productionConfirmPlusSSCC.jsp"))
+			{
+				palletConfirmPlusSSCC(request, response, button);
+			}
+
+			// ******************************************
+			// ********* PRODUCTION CONFIRMATION +*******
+			// ******************************************
+			if (formName.equals("productionConfirmPlusDU.jsp"))
+			{
+				palletConfirmPlusDU(request, response, button);
+			}
+
+			// ******************************************
+			// ********* VALIDATE PALLET DU *************
+			// ******************************************
+			if (formName.equals("validateDUPallet.jsp"))
+			{
+				validateDUPallet(request, response, button);
+			}
+
+			// ******************************************
+			// ********* VALIDATE TRAY DU ***************
+			// ******************************************
+			if (formName.equals("validateDUTray.jsp"))
+			{
+				validateDUTray(request, response, button);
+			}
+
+			// ******************************************
+			// ********* VALIDATE TRAY DU ***************
+			// ******************************************
+			if (formName.equals("validateDUResult.jsp"))
+			{
+				validateDUResult(request, response, button);
+			}
+
+			// ******************************************
+			// ********* CONFIRM SSCC TRAY DU ERROR DU **
+			// ******************************************
+			if (formName.equals("productionConfirmPlusError.jsp"))
+			{
+				palletConfirmPlusError(request, response, button);
+			}
+			
+			// ******************************************
+			// ********* VALIDATE TRAY DU ***************
+			// ******************************************
+			if (formName.equals("validateDUSelect.jsp"))
+			{
+				validateDUSelect(request, response, button);
 			}
 
 			// ******************************************
@@ -1091,7 +1119,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 			saveData(session, "newPassword1", request.getParameter("newPassword1"), true);
 			saveData(session, "newPassword2", request.getParameter("newPassword2"), true);
-			
+
 			JDBUser usr = new JDBUser(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 			usr.setUserId(currentUser);
 			usr.setLoginPassword(currentPass);
@@ -1115,7 +1143,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 		} else
 		{
-			//saveData(session, "selectedMenuOption", "", true);
+			// saveData(session, "selectedMenuOption", "", true);
 			String next = Common.sd.getData(sessionID, "changePasswordCancelScreen");
 			if (next.equals("displayMenu"))
 			{
@@ -1140,7 +1168,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		{
 			logger.debug("Process - Connect Succeeded");
 			saveData(session, "screenAfterLogon", "displayMenu", true);
-			
+
 			JDBControl control = new JDBControl(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 
 			control.setSystemKey("PASSWORD EXPIRY");
@@ -1154,8 +1182,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			{
 				Common.user_max_password_attempts = Integer.parseInt(control.getKeyValue());
 			}
-			
-			
+
 			JDBUser usr = new JDBUser(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 			usr.setUserId(Common.sd.getData(sessionID, "username").toUpperCase());
 			usr.setLoginPassword(Common.sd.getData(sessionID, "password"));
@@ -1224,6 +1251,17 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				response.sendRedirect("productionConfirm.jsp");
 			}
 
+			if (selectedMenuOption.equals("FRM_PAL_PROD_CONFIRM+"))
+			{
+				saveData(session, "confirmCount", "0", false);
+				response.sendRedirect("productionConfirmPlusSSCC.jsp");
+			}
+
+			if (selectedMenuOption.equals("FRM_BARCODE_VALIDATE"))
+			{
+				response.sendRedirect("validateDUSelect.jsp");
+			}
+
 			if (selectedMenuOption.equals("FRM_PAL_DELETE"))
 			{
 				saveData(session, "deleteCount", "0", false);
@@ -1282,59 +1320,34 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			String sscc = JUtility.replaceNullStringwithBlank(request.getParameter("sscc"));
 			saveData(session, "sscc", sscc, true);
 
-			String dupCountString = JUtility.replaceNullStringwithBlank(Common.sd.getData(sessionID, "dupCountString"));
-
-			if (dupCountString.equals("") == true)
-			{
-				dupCountString = "0";
-			}
-
-			int dupCountint = Integer.valueOf(dupCountString);
-
 			if (sscc.equals("") == false)
 			{
-
-				String lastSSCC = JUtility.replaceNullStringwithBlank(Common.sd.getData(sessionID, "lastSSCCconfirmed"));
-				logger.debug("Last SSCC confirmed = " + lastSSCC);
-
-				if (sscc.equals(lastSSCC) == false)
+				if (bcode.parseBarcodeData(sscc) == true)
 				{
-					dupCountint++;
-					lastSSCC = sscc;
-					saveData(session, "lastSSCCconfirmed", sscc, true);
+					sscc = bcode.getStringforAppID("00");
 
-					if (bcode.parseBarcodeData(sscc) == true)
+					if (bcode.isValidSSCCformat(sscc) == true)
 					{
-						sscc = bcode.getStringforAppID("00");
+						JDBPallet pallet = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 
-						if (bcode.isValidSSCCformat(sscc) == true)
+						if (pallet.getPalletProperties(sscc))
 						{
+							pallet.setDateOfManufacture(JUtility.getSQLDateTime());
 
-							JDBPallet pallet = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-
-							if (pallet.getPalletProperties(sscc))
+							if (pallet.confirm())
 							{
-								pallet.setDateOfManufacture(JUtility.getSQLDateTime());
-
-								if (pallet.confirm())
-								{
-
-									int confirmCount = Integer.valueOf(Common.sd.getData(sessionID, "confirmCount"));
-									confirmCount++;
-									session.setAttribute("_ErrorMessage", "SSCC " + sscc + " confirmed.");
-									saveData(session, "confirmCount", String.valueOf(confirmCount), false);
-									logger.debug(sscc + " confirmed. (" + String.valueOf(confirmCount) + ")");
-								} else
-								{
-									session.setAttribute("_ErrorMessage", pallet.getErrorMessage());
-								}
+								int confirmCount = Integer.valueOf(Common.sd.getData(sessionID, "confirmCount"));
+								confirmCount++;
+								session.setAttribute("_ErrorMessage", "SSCC " + sscc + " confirmed.");
+								saveData(session, "confirmCount", String.valueOf(confirmCount), false);
+								logger.debug(sscc + " confirmed. (" + String.valueOf(confirmCount) + ")");
 							} else
 							{
-								session.setAttribute("_ErrorMessage", "SSCC not found.");
+								session.setAttribute("_ErrorMessage", pallet.getErrorMessage());
 							}
 						} else
 						{
-							session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
+							session.setAttribute("_ErrorMessage", "SSCC not found.");
 						}
 					} else
 					{
@@ -1342,15 +1355,9 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					}
 				} else
 				{
-					dupCountint++;
-
-					if (dupCountint == 2)
-					{
-						dupCountint = 0;
-						saveData(session, "lastSSCCconfirmed", "", true);
-						session.setAttribute("_ErrorMessage", "");
-					}
+					session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
 				}
+
 			} else
 			{
 				session.setAttribute("_ErrorMessage", "");
@@ -1364,7 +1371,224 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			session.setAttribute("_ErrorMessage", "");
 			displayMenu(request, response);
 		}
+	}
 
+	private synchronized void palletConfirmPlusSSCC(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
+	{
+
+		HttpSession session = request.getSession();
+		String sessionID = session.getId();
+
+		if (button.equals(""))
+		{
+			button = "Submit";
+		}
+
+		if (button.equals("Submit"))
+		{
+			String sscc = JUtility.replaceNullStringwithBlank(request.getParameter("sscc"));
+			saveData(session, "sscc", sscc, true);
+
+			if (sscc.equals("") == false)
+			{
+				if (bcode.parseBarcodeData(sscc) == true)
+				{
+					sscc = bcode.getStringforAppID("00");
+					
+					if (bcode.isValidSSCCformat(sscc) == true)
+					{
+						JDBPallet pallet = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+
+						if (pallet.getPalletProperties(sscc))
+						{
+							if (pallet.isConfirmed())
+							{
+								session.setAttribute("sscc", "");
+								session.setAttribute("_ErrorMessage", "Pallet already confirmed.");
+								response.sendRedirect("productionConfirmPlusSSCC.jsp");
+							} else
+							{
+								JDBViewBarcodeValidate pOrder = new JDBViewBarcodeValidate(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+
+								pOrder.getProperties(pallet.getProcessOrder());
+
+								saveData(session, "materialDescription", pOrder.getDescription(), false);
+								saveData(session, "sscc", String.valueOf(pallet.getSSCC()), false);
+								saveData(session, "validateOrder", String.valueOf(pallet.getProcessOrder()), false);
+								saveData(session, "palletGTIN", pallet.getEAN(), true);
+								saveData(session, "palletVariant", pallet.getVariant(), true);
+								saveData(session, "materialDU_EAN", pOrder.getProdEan(), true);
+								saveData(session, "materialDU_VARIANT", pOrder.getProdVariant(), true);
+								session.setAttribute("_ErrorMessage", "");
+								response.sendRedirect("productionConfirmPlusDU.jsp");
+							}
+						} else
+						{
+							session.setAttribute("sscc", "");
+							session.setAttribute("_ErrorMessage", "SSCC not found.");
+							response.sendRedirect("productionConfirmPlusSSCC.jsp");
+						}
+					} else
+					{
+						session.setAttribute("sscc", "");
+						session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
+						response.sendRedirect("productionConfirmPlusSSCC.jsp");
+					}
+				} else
+				{
+					session.setAttribute("sscc", "");
+					session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
+					response.sendRedirect("productionConfirmPlusSSCC.jsp");
+				}
+
+			} else
+			{
+				session.setAttribute("sscc", "");
+				session.setAttribute("_ErrorMessage", "");
+				response.sendRedirect("productionConfirmPlusSSCC.jsp");
+			}
+
+		} else
+		{
+			saveData(session, "validateOrder", "", true);
+			saveData(session, "sscc", "", true);
+			session.setAttribute("sscc", "");
+			session.setAttribute("_ErrorMessage", "");
+			displayMenu(request, response);
+		}
+	}
+
+	private synchronized void palletConfirmPlusDU(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
+	{
+
+		HttpSession session = request.getSession();
+		String sessionID = session.getId();
+
+		if (button.equals(""))
+		{
+			button = "Submit";
+		}
+
+		if (button.equals("Submit"))
+		{
+
+			String barcodeData = JUtility.replaceNullStringwithBlank(request.getParameter("trayDU"));
+
+			String trayGTIN = "";
+			String trayVariant = "";
+			String palletGTIN = "";
+			String palletVariant = "";
+			String materialDU_EAN = "";
+			String materialDU_Variant = "";
+			boolean trayGTINCorrect = true;
+			boolean trayVariantCorrect = true;
+			boolean palletGTINCorrect = true;
+			boolean palletVariantCorrect = true;
+
+			if (bcode.parseBarcodeData(barcodeData) == true)
+			{
+				if (bcode.isDataAvailableforAppID("01"))
+				{
+					saveData(session, "_ErrorMessage", "", true);
+
+					trayGTIN = bcode.getStringforAppID("01");
+					trayVariant = bcode.getStringforAppID("20");
+					saveData(session, "trayGTIN", trayGTIN, true);
+					saveData(session, "trayVariant", trayVariant, true);
+					materialDU_EAN = Common.sd.getData(sessionID, "materialDU_EAN");
+					materialDU_Variant = Common.sd.getData(sessionID, "materialDU_VARIANT");
+					palletGTIN = Common.sd.getData(sessionID, "palletGTIN");
+					palletVariant = Common.sd.getData(sessionID, "palletVariant");
+
+					trayGTINCorrect = trayGTIN.equals(materialDU_EAN);
+					trayVariantCorrect = trayVariant.equals(materialDU_Variant);
+					
+					palletGTINCorrect = palletGTIN.equals(materialDU_EAN);
+					palletVariantCorrect = palletVariant.equals(materialDU_Variant);
+
+					if ((trayGTINCorrect) && (trayVariantCorrect) && (palletGTINCorrect) && (palletVariantCorrect))
+					{
+
+						String sscc = Common.sd.getData(sessionID, "sscc");
+						saveData(session, "sscc", sscc, true);
+
+						JDBPallet pallet = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+
+						if (pallet.getPalletProperties(sscc))
+						{
+
+							pallet.setDateOfManufacture(JUtility.getSQLDateTime());
+
+							if (pallet.confirm())
+							{
+								int confirmCount = Integer.valueOf(Common.sd.getData(sessionID, "confirmCount"));
+								confirmCount++;
+								session.setAttribute("_ErrorMessage", "SSCC " + sscc + " confirmed.");
+								saveData(session, "confirmCount", String.valueOf(confirmCount), false);
+								session.setAttribute("sscc", "");
+								response.sendRedirect("productionConfirmPlusSSCC.jsp");
+							} else
+							{
+								session.setAttribute("_ErrorMessage", pallet.getErrorMessage());
+								session.setAttribute("sscc", "");
+								session.setAttribute("_ErrorMessage", "");
+								response.sendRedirect("productionConfirmPlusDU.jsp");
+							}
+
+						} else
+						{
+							session.setAttribute("_ErrorMessage", "SSCC not found.");
+							response.sendRedirect("productionConfirmPlusSSCC.jsp");
+						}
+
+					} else
+					{
+
+						if (palletGTINCorrect)
+							saveData(session, "palletGTINColor","green",true);
+						else
+							saveData(session, "palletGTINColor","red",true);
+								
+						if (palletVariantCorrect)
+							saveData(session, "palletVariantColor","green",true);
+						else
+							saveData(session, "palletVariantColor","red",true);
+								
+						if (trayGTINCorrect)
+							saveData(session, "trayGTINColor","green",true);
+						else
+							saveData(session, "trayGTINColor","red",true);
+								
+						if (trayVariantCorrect)
+							saveData(session, "trayVariantColor","green",true);
+						else
+							saveData(session, "trayVariantColor","red",true);		
+
+						saveData(session, "_ErrorMessage", "Barcodes do not match", true);
+						response.sendRedirect("productionConfirmPlusError.jsp");
+					}
+
+				} else
+				{
+					// WRONG BARCODE
+					saveData(session, "_ErrorMessage", "Wrong Barcode.", true);
+					saveData(session, "barcodeData", "", true);
+					response.sendRedirect("productionConfirmPlusDU.jsp");
+
+				}
+			} else
+			{
+				// INVALID BARCODE
+				saveData(session, "_ErrorMessage", "Invalid Barcode. Not EAN128", true);
+				response.sendRedirect("productionConfirmPlusDU.jsp");
+			}
+
+		} else
+		{
+			session.setAttribute("sscc", "");
+			session.setAttribute("_ErrorMessage", "");
+			response.sendRedirect("productionConfirmPlusSSCC.jsp");
+		}
 	}
 
 	private synchronized void palletDelete(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
@@ -1383,68 +1607,39 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			String sscc = JUtility.replaceNullStringwithBlank(request.getParameter("sscc"));
 			saveData(session, "sscc", sscc, true);
 
-			String dupCountString = JUtility.replaceNullStringwithBlank(Common.sd.getData(sessionID, "dupCountString"));
-
-			if (dupCountString.equals("") == true)
-			{
-				dupCountString = "0";
-			}
-
-			int dupCountint = Integer.valueOf(dupCountString);
-
 			if (sscc.equals("") == false)
 			{
 
-				String lastSSCC = JUtility.replaceNullStringwithBlank(Common.sd.getData(sessionID, "lastSSCCdeleted"));
-				logger.debug("Last SSCC confirmed = " + lastSSCC);
-
-				if (sscc.equals(lastSSCC) == false)
+				if (bcode.parseBarcodeData(sscc) == true)
 				{
-					dupCountint++;
-					lastSSCC = sscc;
+					sscc = bcode.getStringforAppID("00");
 
-					saveData(session, "lastSSCCdeleted", sscc, true);
-
-					if (bcode.parseBarcodeData(sscc) == true)
+					if (bcode.isValidSSCCformat(sscc) == true)
 					{
-						sscc = bcode.getStringforAppID("00");
 
-						if (bcode.isValidSSCCformat(sscc) == true)
+						JDBPallet pallet = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+
+						if (pallet.delete(sscc))
 						{
-
-							JDBPallet pallet = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-
-							if (pallet.delete(sscc))
-							{
-								int deleteCount = Integer.valueOf(Common.sd.getData(sessionID, "deleteCount"));
-								deleteCount++;
-								session.setAttribute("_ErrorMessage", "SSCC " + sscc + " deleted.");
-								saveData(session, "deleteCount", String.valueOf(deleteCount), false);
-								logger.debug(sscc + " deleted. (" + String.valueOf(deleteCount) + ")");
-							} else
-							{
-								session.setAttribute("_ErrorMessage", pallet.getErrorMessage());
-							}
-
+							int deleteCount = Integer.valueOf(Common.sd.getData(sessionID, "deleteCount"));
+							deleteCount++;
+							session.setAttribute("_ErrorMessage", "SSCC " + sscc + " deleted.");
+							saveData(session, "deleteCount", String.valueOf(deleteCount), false);
+							logger.debug(sscc + " deleted. (" + String.valueOf(deleteCount) + ")");
 						} else
 						{
-							session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
+							session.setAttribute("_ErrorMessage", pallet.getErrorMessage());
 						}
+
 					} else
 					{
 						session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
 					}
 				} else
 				{
-					dupCountint++;
-
-					if (dupCountint == 2)
-					{
-						dupCountint = 0;
-						saveData(session, "lastSSCCdeleted", "", true);
-						session.setAttribute("_ErrorMessage", "");
-					}
+					session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
 				}
+
 			} else
 			{
 				session.setAttribute("_ErrorMessage", "");
@@ -1477,84 +1672,56 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			String sscc = JUtility.replaceNullStringwithBlank(request.getParameter("sscc"));
 			saveData(session, "sscc", sscc, true);
 
-			String dupCountString = JUtility.replaceNullStringwithBlank(Common.sd.getData(sessionID, "dupCountString"));
-
-			if (dupCountString.equals("") == true)
-			{
-				dupCountString = "0";
-			}
-
-			int dupCountint = Integer.valueOf(dupCountString);
-
 			if (sscc.equals("") == false)
 			{
 
-				String lastSSCC = JUtility.replaceNullStringwithBlank(Common.sd.getData(sessionID, "lastSSCCinfo"));
-
-				if (sscc.equals(lastSSCC) == false)
+				if (bcode.parseBarcodeData(sscc) == true)
 				{
-					dupCountint++;
-					lastSSCC = sscc;
+					sscc = bcode.getStringforAppID("00");
 
-					saveData(session, "lastSSCCinfo", sscc, true);
-
-					if (bcode.parseBarcodeData(sscc) == true)
+					if (bcode.isValidSSCCformat(sscc) == true)
 					{
-						sscc = bcode.getStringforAppID("00");
 
-						if (bcode.isValidSSCCformat(sscc) == true)
+						JDBPallet pallet = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+						pallet.setDateOfManufacture(JUtility.getSQLDateTime());
+
+						if (pallet.getPalletProperties(sscc))
 						{
 
-							JDBPallet pallet = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-							pallet.setDateOfManufacture(JUtility.getSQLDateTime());
-
-							if (pallet.getPalletProperties(sscc))
+							session.setAttribute("_ErrorMessage", "");
+							if (pallet.isConfirmed())
 							{
-
-								session.setAttribute("_ErrorMessage", "");
-								if (pallet.isConfirmed())
-								{
-									session.setAttribute("material", pallet.getMaterial());
-									session.setAttribute("location", pallet.getLocationID());
-									session.setAttribute("despatchNo", pallet.getDespatchNo());
-									session.setAttribute("batch", pallet.getBatchNumber());
-									session.setAttribute("processOrder", pallet.getProcessOrder());
-									session.setAttribute("palletStatus", pallet.getStatus());
-									session.setAttribute("batchStatus", pallet.getMaterialBatchStatus());
-									session.setAttribute("quantity", String.valueOf(pallet.getQuantity()));
-									session.setAttribute("uom", pallet.getUom());
-									session.setAttribute("dom", pallet.getDateOfManufacture().toString().substring(0, 16));
-									session.setAttribute("expiry", pallet.getMaterialBatchExpiryDate().toString().substring(0, 16));
-									error = false;
-									saveData(session, "lastSSCCinfo", "", true);
-									response.sendRedirect("palletInfoDisplay.jsp");
-								} else
-								{
-									session.setAttribute("_ErrorMessage", "SSCC not confirmed.");
-								}
+								session.setAttribute("processOrder", pallet.getProcessOrder());
+								session.setAttribute("material", pallet.getMaterial());
+								session.setAttribute("location", pallet.getLocationID());
+								session.setAttribute("despatchNo", pallet.getDespatchNo());
+								session.setAttribute("batch", pallet.getBatchNumber());
+								session.setAttribute("processOrder", pallet.getProcessOrder());
+								session.setAttribute("palletStatus", pallet.getStatus());
+								session.setAttribute("batchStatus", pallet.getMaterialBatchStatus());
+								session.setAttribute("quantity", String.valueOf(pallet.getQuantity()));
+								session.setAttribute("uom", pallet.getUom());
+								session.setAttribute("dom", pallet.getDateOfManufacture().toString().substring(0, 16));
+								session.setAttribute("expiry", pallet.getMaterialBatchExpiryDate().toString().substring(0, 16));
+								error = false;
+								response.sendRedirect("palletInfoDisplay.jsp");
 							} else
 							{
-								session.setAttribute("_ErrorMessage", "SSCC not found.");
+								session.setAttribute("_ErrorMessage", "SSCC not confirmed.");
 							}
 						} else
 						{
-							session.setAttribute("_ErrorMessage", "Invalid SSCC format.");
+							session.setAttribute("_ErrorMessage", "SSCC not found.");
 						}
 					} else
 					{
-						session.setAttribute("_ErrorMessage", "Invalid barcode.");
+						session.setAttribute("_ErrorMessage", "Invalid SSCC format.");
 					}
 				} else
 				{
-					dupCountint++;
-
-					if (dupCountint == 2)
-					{
-						dupCountint = 0;
-						saveData(session, "lastSSCCinfo", "", true);
-						session.setAttribute("_ErrorMessage", "");
-					}
+					session.setAttribute("_ErrorMessage", "Invalid barcode.");
 				}
+
 			} else
 			{
 				session.setAttribute("_ErrorMessage", "");
@@ -1572,7 +1739,6 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 			displayMenu(request, response);
 		}
-
 	}
 
 	private synchronized void palletInformationDisplay(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
@@ -1602,6 +1768,285 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		displayMenu(request, response);
 	}
 
+	private synchronized void validateDUPallet(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
+	{
+
+		HttpSession session = request.getSession();
+
+		if (button.equals(""))
+		{
+			button = "Submit";
+		}
+
+		if (button.equals("Submit"))
+		{
+			String barcodeData = JUtility.replaceNullStringwithBlank(request.getParameter("palletDU"));
+
+			String palletGTIN = "";
+			String palletVariant = "";
+
+			if (bcode.parseBarcodeData(barcodeData) == true)
+			{
+				if (bcode.isDataAvailableforAppID("02"))
+				{
+					// PALLET LABEL - DU CODE
+					saveData(session, "_ErrorMessage", "Pallet DU scanned.", true);
+					palletGTIN = bcode.getStringforAppID("02");
+					palletVariant = bcode.getStringforAppID("20");
+
+					saveData(session, "palletGTIN", palletGTIN, true);
+					saveData(session, "palletVariant", palletVariant, true);
+
+					response.sendRedirect("validateDUTray.jsp");
+
+				} else
+				{
+					// WRONG BARCODE
+					saveData(session, "_ErrorMessage", "Wrong Barcode.", true);
+					response.sendRedirect("validateDUPallet.jsp");
+
+				}
+			} else
+			{
+				// INVALID BARCODE
+				saveData(session, "_ErrorMessage", "Invalid Barcode. Not EAN128", true);
+				response.sendRedirect("validateDUPallet.jsp");
+			}
+		} else
+		{
+			saveData(session, "validateSSCC", "", true);
+			saveData(session, "validateOrder", "", true);
+			saveData(session, "_ErrorMessage", "", true);
+			response.sendRedirect("validateDUSelect.jsp");
+		}
+
+	}
+
+	private synchronized void validateDUTray(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
+	{
+
+		HttpSession session = request.getSession();
+		String sessionID = session.getId();
+
+		if (button.equals(""))
+		{
+			button = "Submit";
+		}
+
+		if (button.equals("Submit"))
+		{
+			String barcodeData = JUtility.replaceNullStringwithBlank(request.getParameter("trayDU"));
+
+			String trayGTIN = "";
+			String trayVariant = "";
+			String palletGTIN = "";
+			String palletVariant = "";
+			String materialDU_EAN = "";
+			String materialDU_Variant = "";
+			boolean trayGTINCorrect = true;
+			boolean trayVariantCorrect = true;
+			boolean palletGTINCorrect = true;
+			boolean palletVariantCorrect = true;
+
+			if (bcode.parseBarcodeData(barcodeData) == true)
+			{
+				if (bcode.isDataAvailableforAppID("01"))
+				{
+					// PALLET LABEL - DU CODE
+					saveData(session, "_ErrorMessage", "", true);
+
+					trayGTIN = bcode.getStringforAppID("01");
+					trayVariant = bcode.getStringforAppID("20");
+					palletGTIN = Common.sd.getData(sessionID, "palletGTIN");
+					palletVariant = Common.sd.getData(sessionID, "palletVariant");
+					materialDU_EAN = Common.sd.getData(sessionID, "materialDU_EAN");
+					materialDU_Variant = Common.sd.getData(sessionID, "materialDU_VARIANT");
+
+					saveData(session, "trayGTIN", trayGTIN, true);
+					saveData(session, "trayVariant", trayVariant, true);
+
+					trayGTINCorrect = trayGTIN.equals(materialDU_EAN);
+					trayVariantCorrect = trayVariant.equals(materialDU_Variant);
+					palletGTINCorrect = palletGTIN.equals(materialDU_EAN);
+					palletVariantCorrect = palletVariant.equals(materialDU_Variant);
+
+					if (trayGTINCorrect)
+						saveData(session, "trayGTINColor", "green", true);
+					else
+						saveData(session, "trayGTINColor", "red", true);
+
+					if (trayVariantCorrect)
+						saveData(session, "trayVariantColor", "green", true);
+					else
+						saveData(session, "trayVariantColor", "red", true);
+
+					if (palletGTINCorrect)
+						saveData(session, "palletGTINColor", "green", true);
+					else
+						saveData(session, "palletGTINColor", "red", true);
+
+					if (palletVariantCorrect)
+						saveData(session, "palletVariantColor", "green", true);
+					else
+						saveData(session, "palletVariantColor", "red", true);
+
+					if ((trayGTINCorrect) && (trayVariantCorrect) && (palletGTINCorrect) && (palletVariantCorrect))
+					{
+						saveData(session, "resultImage", "./images/valid.gif", true);
+						saveData(session, "_ErrorMessage", "Barcodes consistent", true);
+					} else
+					{
+						saveData(session, "resultImage", "./images/invalid.gif", true);
+						saveData(session, "_ErrorMessage", "Barcodes do not match", true);
+					}
+
+					response.sendRedirect("validateDUResult.jsp");
+
+				} else
+				{
+					// WRONG BARCODE
+					saveData(session, "_ErrorMessage", "Wrong Barcode.", true);
+					saveData(session, "barcodeData", "", true);
+					response.sendRedirect("validateDUTray.jsp");
+
+				}
+			} else
+			{
+				// INVALID BARCODE
+				saveData(session, "_ErrorMessage", "Invalid Barcode. Not EAN128", true);
+				response.sendRedirect("validateDUTray.jsp");
+			}
+
+		} else
+		{
+			saveData(session, "_ErrorMessage", "", true);
+			response.sendRedirect("validateDUPallet.jsp");
+		}
+
+	}
+
+	private synchronized void validateDUSelect(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
+	{
+
+		HttpSession session = request.getSession();
+		String sessionID = session.getId();
+
+		if (button.equals(""))
+		{
+			button = "Submit";
+		}
+
+		if (button.equals("Submit"))
+		{
+			String validateOrder = JUtility.replaceNullStringwithBlank(request.getParameter("validateOrder"));
+			saveData(session, "validateOrder", validateOrder, true);
+
+			String validateSSCC = JUtility.replaceNullStringwithBlank(request.getParameter("validateSSCC"));
+			saveData(session, "validateSSCC", validateSSCC, true);
+
+			if (validateSSCC.equals("") == false)
+			{
+				if (bcode.parseBarcodeData(validateSSCC) == true)
+				{
+					if (bcode.isDataAvailableforAppID("00"))
+					{
+						JDBPallet pallet = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+						if (pallet.getPalletProperties(bcode.getStringforAppID("00")))
+						{
+							validateOrder = pallet.getProcessOrder();
+						}
+					}
+				}
+			}
+
+			if (validateOrder.equals("") == false)
+			{
+
+				JDBViewBarcodeValidate pOrder = new JDBViewBarcodeValidate(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+
+				if (pOrder.getProperties(validateOrder))
+				{
+					session.setAttribute("_ErrorMessage", "");
+					saveData(session, "validateOrder", String.valueOf(validateOrder), false);
+					saveData(session, "material", pOrder.getMaterial(), false);
+					saveData(session, "materialDU_UOM", pOrder.getProdUom(), false);
+					saveData(session, "materialDescription", pOrder.getDescription(), false);
+					saveData(session, "materialCU_UOM", pOrder.getBaseUom(), false);
+					saveData(session, "materialDU_EAN", pOrder.getProdEan(), true);
+					saveData(session, "materialDU_VARIANT", pOrder.getProdVariant(), true);
+					saveData(session, "materialCU_EAN", pOrder.getBaseEan(), true);
+					saveData(session, "materialCU_VARIANT", pOrder.getBaseVariant(), true);
+					response.sendRedirect("validateDUPallet.jsp");
+				} else
+				{
+					session.setAttribute("_ErrorMessage", pOrder.getErrorMessage());
+					saveData(session, "validateOrder", "", true);
+					saveData(session, "validateSSCC", "", true);
+					response.sendRedirect("validateDUSelect.jsp");
+				}
+
+			} else
+			{
+				saveData(session, "validateOrder", "", true);
+				saveData(session, "validateSSCC", "", true);
+				session.setAttribute("_ErrorMessage", "");
+				response.sendRedirect("validateDUSelect.jsp");
+			}
+
+		} else
+		{
+			saveData(session, "validateOrder", "", true);
+			saveData(session, "validateSSCC", "", true);
+			session.setAttribute("_ErrorMessage", "");
+			displayMenu(request, response);
+		}
+
+	}
+
+	private synchronized void validateDUResult(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
+	{
+		HttpSession session = request.getSession();
+
+		if (button.equals(""))
+		{
+			button = "Submit";
+		}
+
+		if (button.equals("Submit"))
+		{
+			saveData(session, "_ErrorMessage", "", true);
+			response.sendRedirect("validateDUPallet.jsp");
+		} else
+		{
+			saveData(session, "_ErrorMessage", "", true);
+			response.sendRedirect("validateDUPallet.jsp");
+		}
+
+	}
+
+	private synchronized void palletConfirmPlusError(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
+	{
+		HttpSession session = request.getSession();
+
+		if (button.equals(""))
+		{
+			button = "Submit";
+		}
+		
+		saveData(session, "sscc", "", true);
+		
+		if (button.equals("Submit"))
+		{
+			saveData(session, "_ErrorMessage", "", true);
+			response.sendRedirect("productionConfirmPlusSSCC.jsp");
+		} else
+		{
+			saveData(session, "_ErrorMessage", "", true);
+			response.sendRedirect("productionConfirmPlusSSCC.jsp");
+		}
+	}
+	
+	
 	private void releaseSessionResources(HttpSession session)
 	{
 		String sessionID = session.getId();

@@ -34,6 +34,15 @@
 	</tr>
 	<tr>
 		<td width="75" height="20">
+		<div align="right"><%=Lang.getText("lbl_Process_Order") %></div>
+		</td>
+		<td width="5">&nbsp;</td>
+		<td width="150" height="20">
+		<%out.println(session.getAttribute("processOrder"));%>
+		</td>
+	</tr>	
+	<tr>
+		<td width="75" height="20">
 		<div align="right"><%=Lang.getText("lbl_Material") %></div>
 		</td>
 		<td width="5">&nbsp;</td>
