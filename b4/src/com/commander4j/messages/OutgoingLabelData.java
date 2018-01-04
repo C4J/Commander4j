@@ -131,7 +131,8 @@ public class OutgoingLabelData {
 						}
 						String filename = path + "LabelData_"+labdata.getLine() + "_" + unique + ".csv";
 
-						CSVWriter writer = new CSVWriter(new FileWriter(filename), ',');
+						CSVWriter writer = new CSVWriter(new FileWriter(filename), CSVWriter.DEFAULT_SEPARATOR,CSVWriter.DEFAULT_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER,CSVWriter.DEFAULT_LINE_END);
+
 						writer.writeNext(heading);
 						writer.writeNext(data);
 						writer.close();

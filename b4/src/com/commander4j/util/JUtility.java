@@ -42,6 +42,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.InetAddress;
+import java.net.URI;
+import java.nio.file.FileStore;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -65,7 +70,6 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
-import org.apache.commons.io.FileSystemUtils;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
@@ -74,12 +78,13 @@ import com.commander4j.db.JDBModule;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JHost;
 
-public class JUtility {
+public class JUtility
+{
 
-	
 	public static int field_timestamp = 20;
-	
-	public static int getActiveHostCount() {
+
+	public static int getActiveHostCount()
+	{
 		int result = 0;
 
 		JHost hst = new JHost();
@@ -89,7 +94,7 @@ public class JUtility {
 			hst = (JHost) temp.get(j);
 			if (hst.getEnabled().equals("Y"))
 			{
-				if (hst.getDatabaseParameters().getjdbcDriver().equals("http")==false)
+				if (hst.getDatabaseParameters().getjdbcDriver().equals("http") == false)
 				{
 					result++;
 				}
@@ -97,8 +102,9 @@ public class JUtility {
 		}
 		return result;
 	}
-	
-	public static JHost getFirtActiveHost() {
+
+	public static JHost getFirtActiveHost()
+	{
 
 		JHost hst = new JHost();
 		LinkedList<JHost> temp = Common.hostList.getHosts();
@@ -107,7 +113,7 @@ public class JUtility {
 			hst = (JHost) temp.get(j);
 			if (hst.getEnabled().equals("Y"))
 			{
-				if (hst.getDatabaseParameters().getjdbcDriver().equals("http")==false)
+				if (hst.getDatabaseParameters().getjdbcDriver().equals("http") == false)
 				{
 					return hst;
 				}
@@ -115,135 +121,142 @@ public class JUtility {
 		}
 		return hst;
 	}
-	
+
 	public static String yesNoToTrueFalse(String input)
 	{
 		String result = replaceNullStringwithBlank(input);
-		
+
 		if (result.equals("Y"))
 		{
-			result="True";
+			result = "True";
 		}
-		
+
 		if (result.toUpperCase().equals("YES"))
 		{
-			result="True";
+			result = "True";
 		}
-		
+
 		if (result.equals("N"))
 		{
-			result="False";
+			result = "False";
 		}
-		
+
 		if (result.toUpperCase().equals("NO"))
 		{
-			result="False";
+			result = "False";
 		}
-		
+
 		return result;
 	}
-	
+
 	public static String decodeControlChars(String input)
 	{
 		String result = input;
-		
-		result = result.replaceAll(Pattern.quote("\u0000"),"<NUL>");
-		result = result.replaceAll(Pattern.quote("\u0001"),"<SOH>");
-		result = result.replaceAll(Pattern.quote("\u0002"),"<STX>");
-		result = result.replaceAll(Pattern.quote("\u0003"),"<ETX>");
-		result = result.replaceAll(Pattern.quote("\u0004"),"<EOT>");
-		result = result.replaceAll(Pattern.quote("\u0005"),"<ENQ>");
-		result = result.replaceAll(Pattern.quote("\u0006"),"<ACK>");
-		result = result.replaceAll(Pattern.quote("\u0007"),"<BEL>");
-		result = result.replaceAll(Pattern.quote("\u0008"),"<BS>");
-		result = result.replaceAll(Pattern.quote("\t"),"<HT>");
-		result = result.replaceAll(Pattern.quote("\n"),"<LF>");
-		result = result.replaceAll(Pattern.quote("\u000B"),"<VT>");
-		result = result.replaceAll(Pattern.quote("\u000C"),"<FF>");
-		result = result.replaceAll(Pattern.quote("\r"),"<CR>");
-		result = result.replaceAll(Pattern.quote("\u000E"),"<SO>");
-		result = result.replaceAll(Pattern.quote("\u000F"),"<SI>");
-		result = result.replaceAll(Pattern.quote("\u0010"),"<DLE>");
-		result = result.replaceAll(Pattern.quote("\u0011"),"<DC1>");
-		result = result.replaceAll(Pattern.quote("\u0012"),"<DC2>");
-		result = result.replaceAll(Pattern.quote("\u0013"),"<DC3>");
-		result = result.replaceAll(Pattern.quote("\u0014"),"<DC4>");
-		result = result.replaceAll(Pattern.quote("\u0015"),"<NAK>");
-		result = result.replaceAll(Pattern.quote("\u0016"),"<SYN>");
-		result = result.replaceAll(Pattern.quote("\u0017"),"<ETB>");
-		result = result.replaceAll(Pattern.quote("\u0018"),"<CAN>");
-		result = result.replaceAll(Pattern.quote("\u0019"),"<EM>");
-		result = result.replaceAll(Pattern.quote("\u001A"),"<SUB>");
-		result = result.replaceAll(Pattern.quote("\u001B"),"<ESC>");
-		result = result.replaceAll(Pattern.quote("\u001C"),"<FS>");
-		result = result.replaceAll(Pattern.quote("\u001D"),"<GS>");
-		result = result.replaceAll(Pattern.quote("\u001E"),"<RS>");
-		result = result.replaceAll(Pattern.quote("\u001F"),"<US>");	
-		
+
+		result = result.replaceAll(Pattern.quote("\u0000"), "<NUL>");
+		result = result.replaceAll(Pattern.quote("\u0001"), "<SOH>");
+		result = result.replaceAll(Pattern.quote("\u0002"), "<STX>");
+		result = result.replaceAll(Pattern.quote("\u0003"), "<ETX>");
+		result = result.replaceAll(Pattern.quote("\u0004"), "<EOT>");
+		result = result.replaceAll(Pattern.quote("\u0005"), "<ENQ>");
+		result = result.replaceAll(Pattern.quote("\u0006"), "<ACK>");
+		result = result.replaceAll(Pattern.quote("\u0007"), "<BEL>");
+		result = result.replaceAll(Pattern.quote("\u0008"), "<BS>");
+		result = result.replaceAll(Pattern.quote("\t"), "<HT>");
+		result = result.replaceAll(Pattern.quote("\n"), "<LF>");
+		result = result.replaceAll(Pattern.quote("\u000B"), "<VT>");
+		result = result.replaceAll(Pattern.quote("\u000C"), "<FF>");
+		result = result.replaceAll(Pattern.quote("\r"), "<CR>");
+		result = result.replaceAll(Pattern.quote("\u000E"), "<SO>");
+		result = result.replaceAll(Pattern.quote("\u000F"), "<SI>");
+		result = result.replaceAll(Pattern.quote("\u0010"), "<DLE>");
+		result = result.replaceAll(Pattern.quote("\u0011"), "<DC1>");
+		result = result.replaceAll(Pattern.quote("\u0012"), "<DC2>");
+		result = result.replaceAll(Pattern.quote("\u0013"), "<DC3>");
+		result = result.replaceAll(Pattern.quote("\u0014"), "<DC4>");
+		result = result.replaceAll(Pattern.quote("\u0015"), "<NAK>");
+		result = result.replaceAll(Pattern.quote("\u0016"), "<SYN>");
+		result = result.replaceAll(Pattern.quote("\u0017"), "<ETB>");
+		result = result.replaceAll(Pattern.quote("\u0018"), "<CAN>");
+		result = result.replaceAll(Pattern.quote("\u0019"), "<EM>");
+		result = result.replaceAll(Pattern.quote("\u001A"), "<SUB>");
+		result = result.replaceAll(Pattern.quote("\u001B"), "<ESC>");
+		result = result.replaceAll(Pattern.quote("\u001C"), "<FS>");
+		result = result.replaceAll(Pattern.quote("\u001D"), "<GS>");
+		result = result.replaceAll(Pattern.quote("\u001E"), "<RS>");
+		result = result.replaceAll(Pattern.quote("\u001F"), "<US>");
+
 		return result;
 	}
 
 	public static String encodeControlChars(String input)
 	{
 		String result = input;
-		
-		result = result.replaceAll(Pattern.quote("<NUL>"),"\u0000");
-		result = result.replaceAll(Pattern.quote("<SOH>"),"\u0001");
-		result = result.replaceAll(Pattern.quote("<STX>"),"\u0002");
-		result = result.replaceAll(Pattern.quote("<ETX>"),"\u0003");
-		result = result.replaceAll(Pattern.quote("<EOT>"),"\u0004");
-		result = result.replaceAll(Pattern.quote("<ENQ>"),"\u0005");
-		result = result.replaceAll(Pattern.quote("<ACK>"),"\u0006");
-		result = result.replaceAll(Pattern.quote("<BEL>"),"\u0007");
-		result = result.replaceAll(Pattern.quote("<BS>"),"\u0008");
-		result = result.replaceAll(Pattern.quote("<HT>"),"\u0009");
-		result = result.replaceAll(Pattern.quote("<LF>"),"\n");
-		result = result.replaceAll(Pattern.quote("<VT>"),"\u000B");
-		result = result.replaceAll(Pattern.quote("<FF>"),"\u000C");
-		result = result.replaceAll(Pattern.quote("<CR>"),"\r");
-		result = result.replaceAll(Pattern.quote("<SO>"),"\u000E");
-		result = result.replaceAll(Pattern.quote("<SI>"),"\u000F");
-		result = result.replaceAll(Pattern.quote("<DLE>"),"\u0010");
-		result = result.replaceAll(Pattern.quote("<DC1>"),"\u0011");
-		result = result.replaceAll(Pattern.quote("<DC2>"),"\u0012");
-		result = result.replaceAll(Pattern.quote("<DC3>"),"\u0013");
-		result = result.replaceAll(Pattern.quote("<DC4>"),"\u0014");
-		result = result.replaceAll(Pattern.quote("<NAK>"),"\u0015");
-		result = result.replaceAll(Pattern.quote("<SYN>"),"\u0016");
-		result = result.replaceAll(Pattern.quote("<ETB>"),"\u0017");
-		result = result.replaceAll(Pattern.quote("<CAN>"),"\u0018");
-		result = result.replaceAll(Pattern.quote("<EM>"),"\u0019");
-		result = result.replaceAll(Pattern.quote("<SUB>"),"\u001A");
-		result = result.replaceAll(Pattern.quote("<ESC>"),"\u001B");
-		result = result.replaceAll(Pattern.quote("<FS>"),"\u001C");
-		result = result.replaceAll(Pattern.quote("<GS>"),"\u001D");
-		result = result.replaceAll(Pattern.quote("<RS>"),"\u001E");
-		result = result.replaceAll(Pattern.quote("<US>"),"\u001F");
+
+		result = result.replaceAll(Pattern.quote("<NUL>"), "\u0000");
+		result = result.replaceAll(Pattern.quote("<SOH>"), "\u0001");
+		result = result.replaceAll(Pattern.quote("<STX>"), "\u0002");
+		result = result.replaceAll(Pattern.quote("<ETX>"), "\u0003");
+		result = result.replaceAll(Pattern.quote("<EOT>"), "\u0004");
+		result = result.replaceAll(Pattern.quote("<ENQ>"), "\u0005");
+		result = result.replaceAll(Pattern.quote("<ACK>"), "\u0006");
+		result = result.replaceAll(Pattern.quote("<BEL>"), "\u0007");
+		result = result.replaceAll(Pattern.quote("<BS>"), "\u0008");
+		result = result.replaceAll(Pattern.quote("<HT>"), "\u0009");
+		result = result.replaceAll(Pattern.quote("<LF>"), "\n");
+		result = result.replaceAll(Pattern.quote("<VT>"), "\u000B");
+		result = result.replaceAll(Pattern.quote("<FF>"), "\u000C");
+		result = result.replaceAll(Pattern.quote("<CR>"), "\r");
+		result = result.replaceAll(Pattern.quote("<SO>"), "\u000E");
+		result = result.replaceAll(Pattern.quote("<SI>"), "\u000F");
+		result = result.replaceAll(Pattern.quote("<DLE>"), "\u0010");
+		result = result.replaceAll(Pattern.quote("<DC1>"), "\u0011");
+		result = result.replaceAll(Pattern.quote("<DC2>"), "\u0012");
+		result = result.replaceAll(Pattern.quote("<DC3>"), "\u0013");
+		result = result.replaceAll(Pattern.quote("<DC4>"), "\u0014");
+		result = result.replaceAll(Pattern.quote("<NAK>"), "\u0015");
+		result = result.replaceAll(Pattern.quote("<SYN>"), "\u0016");
+		result = result.replaceAll(Pattern.quote("<ETB>"), "\u0017");
+		result = result.replaceAll(Pattern.quote("<CAN>"), "\u0018");
+		result = result.replaceAll(Pattern.quote("<EM>"), "\u0019");
+		result = result.replaceAll(Pattern.quote("<SUB>"), "\u001A");
+		result = result.replaceAll(Pattern.quote("<ESC>"), "\u001B");
+		result = result.replaceAll(Pattern.quote("<FS>"), "\u001C");
+		result = result.replaceAll(Pattern.quote("<GS>"), "\u001D");
+		result = result.replaceAll(Pattern.quote("<RS>"), "\u001E");
+		result = result.replaceAll(Pattern.quote("<US>"), "\u001F");
 
 		return result;
 	}
-	
+
 	public static String diskFree()
 	{
 		String result = "";
 		long free = 0;
 		File f = new File(System.getProperty("user.dir"));
 		String root = "";
-		
+
 		while (f.getParent() != null)
 		{
 			root = f.getParent();
 			f = new File(root);
 		}
-		
+
 		try
 		{
-			free = FileSystemUtils.freeSpaceKb(root);
-			result = String.valueOf(free) + " bytes on " + root;
-		} catch (IOException e)
+			URI rootURI = new URI("file:///");
+			Path rootPath = Paths.get(rootURI);
+			Path dirPath = rootPath.resolve(root);
+			FileStore dirFileStore = Files.getFileStore(dirPath);
+
+			free = dirFileStore.getUsableSpace() / 1048576;
+			result = String.valueOf(free) + " mb on " + root;
+
+		} catch (Exception e)
 		{
-			result = "Error trying to determine free disk space "+e.getLocalizedMessage();
+			result = "Error trying to determine free disk space " + e.getLocalizedMessage();
 		}
+
 		return result;
 	}
 
@@ -255,8 +268,8 @@ public class JUtility {
 		result = result.replace("'", " ");
 		result = result.replace(":", " ");
 		result = result.replace("?", " ");
-		//result = result.replace("*", " ");
-		
+		// result = result.replace("*", " ");
+
 		return result;
 	}
 
@@ -554,7 +567,7 @@ public class JUtility {
 			if (Common.applicationMode.equals("SwingClient"))
 			{
 
-				JOptionPane.showMessageDialog(Common.mainForm, "External application not found or configured incorrectly.\n\n"+command+"\n\nCheck the EXECUTABLE's section within Module Admin", "Information", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(Common.mainForm, "External application not found or configured incorrectly.\n\n" + command + "\n\nCheck the EXECUTABLE's section within Module Admin", "Information", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
@@ -831,7 +844,6 @@ public class JUtility {
 		return result;
 	}
 
-
 	public static String getISOTimeStampStringFormat(Timestamp ts)
 	{
 		String result = "";
@@ -1004,17 +1016,17 @@ public class JUtility {
 			hour = Integer.valueOf(isoString.substring(11, 13));
 			min = Integer.valueOf(isoString.substring(14, 16));
 			second = Integer.valueOf(isoString.substring(17, 19));
-			
-			if ((month <1) | (month>12))
+
+			if ((month < 1) | (month > 12))
 			{
-				throw new Exception("Invalid month "+String.valueOf(month));
+				throw new Exception("Invalid month " + String.valueOf(month));
 			}
 
-			if ((day <1) | (day>31))
+			if ((day < 1) | (day > 31))
 			{
-				throw new Exception("Invalid day "+String.valueOf(day));
+				throw new Exception("Invalid day " + String.valueOf(day));
 			}
-			
+
 			caldate.set(year, month - 1, day, hour, min, second);
 
 			result = new Timestamp(caldate.getTimeInMillis());
@@ -1434,10 +1446,10 @@ public class JUtility {
 			Common.LFAdjustHeight = 0;
 			Common.LFTreeMenuAdjustWidth = 13;
 			Common.LFTreeMenuAdjustHeight = 13;
-			
+
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Commander4j");
-			
+
 		} else
 		{
 			Common.LFAdjustWidth = -13;
@@ -1459,7 +1471,6 @@ public class JUtility {
 		}
 	}
 
-
 	public static void SetLookAndFeel(String LOOKANDFEEL, String THEME)
 	{
 		try
@@ -1472,8 +1483,8 @@ public class JUtility {
 					MetalLookAndFeel.setCurrentTheme(new OceanTheme());
 
 				UIManager.setLookAndFeel(new MetalLookAndFeel());
-				
-				//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+				// UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			}
 		} catch (Exception e)
 		{
@@ -1528,7 +1539,6 @@ public class JUtility {
 		}
 	}
 
-
 	public static String substSchemaName(String schemaName, String sql)
 	{
 		String result = "";
@@ -1537,7 +1547,6 @@ public class JUtility {
 
 		return result;
 	}
-
 
 	public synchronized static void writeToTextFile(String filename, String text)
 	{

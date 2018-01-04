@@ -340,7 +340,8 @@ public class JDBUserReport {
 
 		try
 		{
-			CSVWriter writer = new CSVWriter(new FileWriter(getExportFilename()), ',');
+			
+			CSVWriter writer = new CSVWriter(new FileWriter(getExportFilename()), CSVWriter.DEFAULT_SEPARATOR,CSVWriter.DEFAULT_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER,CSVWriter.DEFAULT_LINE_END);
 			writer.writeAll(temp, true);
 			writer.close();
 		} catch (Exception e)

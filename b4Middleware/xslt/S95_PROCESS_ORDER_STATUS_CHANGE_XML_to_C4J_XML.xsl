@@ -30,11 +30,11 @@
             <interfaceDirection>Input</interfaceDirection>
             <messageDate><xsl:value-of select="$MESSAGEDATE"/></messageDate>
             <messageData>
-                <processOrder>
+                <processOrderStatusChange>
                     <orderNo><xsl:value-of select='$SAPORDER_SHORT' /></orderNo>
                     <receipeId><xsl:value-of select='ProductionRequest/SegmentRequirement/ID'/></receipeId>
                     <status><xsl:value-of select='/ProductionSchedule/ProductionRequest[1]/SegmentRequirement[1]/globe_SegmentState[1]'/></status>
-                </processOrder>
+                </processOrderStatusChange>
             </messageData>
         </message>
     </xsl:template>

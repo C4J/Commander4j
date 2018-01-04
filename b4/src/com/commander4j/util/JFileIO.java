@@ -124,7 +124,7 @@ public class JFileIO
 
 		try
 		{
-			result = FileUtils.readFileToString(file);
+			result = FileUtils.readFileToString(file,"UTF-8");
 
 		} catch (IOException e)
 		{
@@ -247,7 +247,7 @@ public class JFileIO
 		File from = new File(filename);
 		try
 		{
-			result = FileUtils.readLines(from);
+			result = FileUtils.readLines(from,"UTF-8");
 		} catch (IOException e)
 		{
 			logger.debug("readFileLines error :" + e.getMessage());

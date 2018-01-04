@@ -204,7 +204,8 @@ public class AutoLabellerThread extends Thread {
 
 										rs = stmt.executeQuery();
 
-										CSVWriter writer = new CSVWriter(new FileWriter(exportFilename), ',');
+										CSVWriter writer = new CSVWriter(new FileWriter(exportFilename), CSVWriter.DEFAULT_SEPARATOR,CSVWriter.DEFAULT_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER,CSVWriter.DEFAULT_LINE_END);
+										
 										writer.writeAll(rs, true);
 
 										rs.close();
