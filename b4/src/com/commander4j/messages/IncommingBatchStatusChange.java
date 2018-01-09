@@ -90,7 +90,7 @@ public class IncommingBatchStatusChange
 
 		while (material.length() > 0)
 		{
-			material = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/batchStatusChangel[" + String.valueOf(occur) + "]/materia").trim());
+			material = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/batchStatusChange[" + String.valueOf(occur) + "]/material").trim());
 			batchStr = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/batchStatusChange[" + String.valueOf(occur) + "]/batch").trim());
 			status = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/batchStatusChange[" + String.valueOf(occur) + "]/status").trim());
 
