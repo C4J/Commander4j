@@ -259,7 +259,8 @@
         <output id="out1" enabed="Y" description="Write ASCII File">
             <path>./interface/output/15 (C4J Equipment Tracking)</path>
             <type>ASCII</type>
-            <outputPattern>1-4,5-12,13-14,15-16,17-19,20-21,26-27</outputPattern>
+            <outputPattern>1-4,5-12,13-16,17-18,19-20,21-28,29-30,31-32,33-34,35-40,41-50</outputPattern>
+            <outputFileExtension>PAL</outputFileExtension>
             <XSLT/>
         </output>
     </map>

@@ -875,7 +875,7 @@ public class JDBDespatch
 
 	public String getHaulier()
 	{
-		return JUtility.replaceNullStringwithBlank(dbHaulier);
+		return JUtility.replaceNullStringwithBlank(dbHaulier).trim();
 	}
 
 	public String getJourneyRef()
@@ -972,12 +972,12 @@ public class JDBDespatch
 
 	public String getTrailer()
 	{
-		return JUtility.replaceNullStringwithBlank(dbTrailer);
+		return JUtility.replaceNullStringwithBlank(dbTrailer).trim();
 	}
 
 	public String getLoadNo()
 	{
-		return JUtility.replaceNullStringwithBlank(dbLoadNo);
+		return JUtility.replaceNullStringwithBlank(dbLoadNo).trim();
 	}
 
 	public String getUserID()
@@ -1202,12 +1202,12 @@ public class JDBDespatch
 
 	public void setTrailer(String trailer)
 	{
-		dbTrailer = trailer;
+		dbTrailer = trailer.trim();
 	}
 
 	public void setLoadNo(String loadNo)
 	{
-		dbLoadNo = loadNo;
+		dbLoadNo = loadNo.trim();
 	}
 
 	public void setUserID(String userID)
