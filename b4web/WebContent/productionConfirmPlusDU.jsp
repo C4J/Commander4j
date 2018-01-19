@@ -13,7 +13,7 @@
 <META HTTP-Equiv="code128-maxlength" Content="55">
 <META HTTP-Equiv="scannernavigate" Content="Javascript:doScan('%s', '%s', %s, '%s', %s);">
 <META HTTP-Equiv="scanner" Content="DecodeEvent:url('javascript:doScan('%s', '%s', %s, '%s', %s);')">
-<META http-equiv="Volume" content="0x1000">
+<META http-equiv="Volume" content="SetVolume:0xFFFF">
 
 
 <title>Validate Barcode</title>

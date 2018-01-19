@@ -39,7 +39,11 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 
 		setData(data);
 		setFilename(filename);
-		connectorSave(filename);
+		while (connectorSave(filename)==false)
+		{
+			logger.error("processOutboundData - remote path unavailable ["+filename+"] - waiting 20 seconds before retry");
+			com.commander4j.util.JWait.milliSec(20000);
+		}
 	}
 
 	public OutboundConnectorABSTRACT(String type, OutboundInterface outer)

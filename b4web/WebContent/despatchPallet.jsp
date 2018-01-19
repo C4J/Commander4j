@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,79 +13,88 @@
 <META HTTP-Equiv="code128-maxlength" Content="20">
 <META HTTP-Equiv="scannernavigate" Content="Javascript:doScan('%s', '%s', %s, '%s', %s);">
 <META HTTP-Equiv="scanner" Content="DecodeEvent:url('javascript:doScan('%s', '%s', %s, '%s', %s);')">
-<META http-equiv="Volume" content="0x1000">
-
+<META http-equiv="Volume" content="SetVolume:0xFFFF">
+<META HTTP-Equiv="SIP" Content="Manual">
+<META HTTP-Equiv="SIP" Content="Left:640;Top:0">
 <META HTTP-Equiv="acceleratekey" content="all">
+
 <title>Despatch Pallet</title>
 <link href="commander.css" rel="stylesheet" type="text/css">
 <%
-	 String despatchNo = (String) session.getAttribute("despatchNo");
-     despatchNo = despatchNo.trim();
+	String despatchNo = (String) session.getAttribute("despatchNo");
+	despatchNo = despatchNo.trim();
 %>
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
-    <jsp:setProperty name="Lang" property="hostID" value="<%= session.getAttribute(\"selectedHost\") %>" />
-    <jsp:setProperty name="Lang" property="sessionID" value="<%= session.getId() %>" />
-    <jsp:setProperty name="Lang" property="languageID" value="<%= session.getAttribute(\"language\") %>" />
+	<jsp:setProperty name="Lang" property="hostID" value="<%=session.getAttribute(\"selectedHost\")%>" />
+	<jsp:setProperty name="Lang" property="sessionID" value="<%=session.getId()%>" />
+	<jsp:setProperty name="Lang" property="languageID" value="<%=session.getAttribute(\"language\")%>" />
 </jsp:useBean>
 
-<body  onLoad = "focusIt()">
-<form id="despatchPallet" name="despatchPallet" action="Process" method="post">
-<h2>
-<%=Lang.getText("lbl_Despatch_No") %>&nbsp;<%out.println(despatchNo);%>
-</h2><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/pallet_sscc.gif">
-<br>	
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SSCC
-<br><p>
-<%
-	String sscc = (String) session.getAttribute("sscc");
-	if (sscc == null) sscc = "";
-	sscc = sscc.trim();
-	out.println("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input tabindex=\"1\" name=\"sscc\" type=\"text\" id=\"sscc\" size=\"20\" maxlength=\"20\" value=\""+sscc+"\"/>");
-	%>
-</p>	
- <p>
-<label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="addRemoveMode" accesskey="A" type="radio" id="radio" value="add" checked="checked" onClick="focusIt()"/><%=Lang.getText("web_Add") %>
-<input  name="addRemoveMode" accesskey="R" type="radio" id="radio" value="remove"  onClick="focusIt()" /><%=Lang.getText("web_Remove") %>
-</label> 
-</p>	
-<table width="153" height="54" border="0">
-	<tr>
-		<td><div align="right">&nbsp;&nbsp;&nbsp;&nbsp;Pallet Count :</div></td>
-	    <td><% String palletCount = (String) session.getAttribute("despatchPalletCount");if (palletCount == null) palletCount = "";out.println(palletCount);%></td>
-	</tr>
+<body onLoad="focusIt()">
+	<form id="despatchPallet" name="despatchPallet" action="Process" method="post">
+		<h2><%=Lang.getText("lbl_Despatch_No")%>&nbsp;<%
+			out.println(despatchNo);
+		%>
+		</h2>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/pallet_sscc.gif"> <br>
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 10%; text-align: right"><%=Lang.getText("web_SSCC")%></td>
+				<td style="width: 90%; text-align: left">
+					<%
+						String sscc = (String) session.getAttribute("sscc");
+						if (sscc == null)
+							sscc = "";
+						sscc = sscc.trim();
+						out.println(
+								"<input tabindex=\"1\" name=\"sscc\" type=\"text\" id=\"sscc\" size=\"20\" maxlength=\"20\" value=\""
+										+ sscc + "\"/>");
+					%>
+				</td>
+			</tr>
+		</table>
 
-	<tr>
-		<td>
-		<div align="right">
-	        <input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>" onclick="document.despatchPallet.button.value='Submit';document.despatchPallet.submit();"> 		
-		</div>
-		</td>
-		<td>
-		<div align="right">
-	        <input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>" onclick="document.despatchPallet.button.value='Cancel';document.despatchPallet.submit();"> 
-		</div>
-			<input type="hidden" name="barcodeType" value="none" />
-	 		<input type="hidden" name="barcodeLength" value="0"  /> 
-		</td>
-	</tr>
-</table>
-<%
-String errormessage = (String) session.getAttribute("_ErrorMessage");
-if (errormessage == null) errormessage = "";
-errormessage = errormessage.trim();
-out.println("<p>"+errormessage+"</p>");
-%>
-<p>
-<input type="hidden" name="formName" value="despatchPallet.jsp" />
-<input type="hidden" id="button" name="button" value="Submit" />  
-</p>
-</form>
+		<table style="width: 100%" border="0">
+			<tr>
+				<td style="width: 33%; text-align: right"><label><input name="addRemoveMode" accesskey="A" type="radio" id="radio" value="add" checked="checked" onClick="focusIt()" /><%=Lang.getText("web_Add")%></label></td>
+				<td style="width: 33%; text-align: left"><label><input name="addRemoveMode" accesskey="R" type="radio" id="radio" value="remove" onClick="focusIt()" /><%=Lang.getText("web_Remove")%></label></td>
+				<td style="width: 34%; text-align: left">Count : <%
+					String palletCount = (String) session.getAttribute("despatchPalletCount");
+					if (palletCount == null)
+						palletCount = "";
+					out.println(palletCount);
+				%>
+				</td>
+			</tr>
+		</table>
+
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 100%; text-align: left">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
+				</td>
+			</tr>
+		</table>
+
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+			<tr>
+				<td width="100%" height="20" align="center"><input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"
+					onclick="document.despatchPallet.button.value='Submit';document.despatchPallet.submit();">&nbsp; <input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"
+					onclick="document.despatchPallet.button.value='Cancel';document.despatchPallet.submit();"> <input type="hidden" id="button" name="button" value="Submit" /> <input type="hidden" name="formName" value="despatchPallet.jsp" /> <input
+					type="hidden" name="barcodeType" value="none" /> <input type="hidden" name="barcodeLength" value="0" /></td>
+			</tr>
+		</table>
+
+	</form>
 	<script language="javascript" type="text/javascript">
-
 		function focusIt() {
 			document.despatchPallet.sscc.focus();
 		}
@@ -102,7 +110,6 @@ out.println("<p>"+errormessage+"</p>");
 		function goBack() {
 			window.history.back();
 		}
-		
 	</script>
 </body>
 </html>

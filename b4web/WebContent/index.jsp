@@ -18,7 +18,8 @@
 <META HTTP-Equiv="signal" Content="show">
 <META HTTP-Equiv="signal" Content="Bottom_GrowFromRight">
 <META HTTP-Equiv="signal" Content="RGB:FF,00,00">
-<meta http-equiv="volume" content="0x1000">
+<META http-equiv="Volume" content="SetVolume:0xFFFF">
+<META HTTP-Equiv="wake" Content="wakeLock:Enabled;wifiLock:Enabled">
 <META HTTP-Equiv="unattended" content="enabled">
 
 <title>Welcome</title>
@@ -52,7 +53,7 @@
 	</tr>
 	<tr>
 		<td align="center" style="height: 34px">
-		Version : 5.41
+		Version : 5.42
 	</tr>
 	<tr>
 		<td align="center" style="height: 70px"><input type="submit" name="buttonStart"

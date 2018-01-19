@@ -12,7 +12,7 @@
 <META HTTP-Equiv="code128-maxlength" Content="20">
 <META HTTP-Equiv="scannernavigate" Content="Javascript:doScan('%s', '%s', %s, '%s', %s);">
 <META HTTP-Equiv="scanner" Content="DecodeEvent:url('javascript:doScan('%s', '%s', %s, '%s', %s);')">
-<META http-equiv="Volume" content="0x1000">
+<META http-equiv="Volume" content="SetVolume:0xFFFF">
 
 <title>Pallet Info</title>
 <link href="commander.css" rel="stylesheet" type="text/css" />
@@ -29,16 +29,21 @@
 <h2>
 <%=Lang.getText("mod_FRM_PAL_INFO") %>
 </h2>
-<br>	<br>	<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/pallet_sscc.gif">
-<br>	<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=Lang.getText("web_SSCC") %><br><%
+<br>
+<table style="width:100%">
+  <tr>
+    <td style="width:10%;text-align:right"><%=Lang.getText("web_SSCC") %></td>
+    <td style="width:90%;text-align:left">
+    <%
 	String sscc = (String) session.getAttribute("sscc");
 	if (sscc == null) sscc = "";
 	sscc = sscc.trim();
-	out.println("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input tabindex=\"1\" name=\"sscc\" type=\"text\" id=\"sscc\" size=\"20\" maxlength=\"20\" value=\""+sscc+"\"/>");
+	out.println("<input tabindex=\"1\" name=\"sscc\" type=\"text\" id=\"sscc\" size=\"20\" maxlength=\"20\" value=\""+sscc+"\"/>");
 	%>
-	<br><br>	<br>	<br>
+    </td>
+  </tr>
+</table>
 <table  width="100%" border="1" cellpadding="0" cellspacing="0"  align="center">
 	<tr>
 	<td width="100%"  height="20" align="center">
