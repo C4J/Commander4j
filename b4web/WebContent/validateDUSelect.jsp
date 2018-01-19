@@ -32,41 +32,65 @@
 		<h2>
 			<%=Lang.getText("web_Barcode_Validate")%>
 		</h2>
-		<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=Lang.getText("lbl_Process_Order")%><br>
-		<%
-			String validateOrder = (String) session.getAttribute("validateOrder");
-			if (validateOrder == null)
-				validateOrder = "";
-			validateOrder = validateOrder.trim();
-			out.println(
-					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input tabindex=\"1\" name=\"validateOrder\" type=\"text\" id=\"validateOrder\" size=\"10\" maxlength=\"10\" value=\""
-							+ validateOrder + "\"/>");
-		%>
-		<br>
-		<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/pallet_sscc.gif"> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=Lang.getText("web_SSCC")%><br>
-		<%
-			String validateSSCC = (String) session.getAttribute("validateSSCC");
-			if (validateSSCC == null)
-				validateSSCC = "";
-			validateSSCC = validateSSCC.trim();
-			out.println(
-					"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input tabindex=\"1\" name=\"validateSSCC\" type=\"text\" id=\"validateSSCC\" size=\"20\" maxlength=\"20\" value=\""
-							+ validateSSCC + "\"/>");
-		%>
-		<br>
-		<%
-			String errormessage = (String) session.getAttribute("_ErrorMessage");
-			if (errormessage == null)
-				errormessage = "";
-			errormessage = errormessage.trim();
-			out.println("<p>" + errormessage + "</p>");
-		%>
-		<br> <br>
+
+
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 40%; text-align: right"><%=Lang.getText("lbl_Process_Order")%></td>
+				<td style="width: 60%; text-align: left">
+					<%
+						String validateOrder = (String) session.getAttribute("validateOrder");
+						if (validateOrder == null)
+							validateOrder = "";
+						validateOrder = validateOrder.trim();
+						out.println(
+								"<input tabindex=\"1\" name=\"validateOrder\" type=\"text\" id=\"validateOrder\" size=\"10\" maxlength=\"10\" value=\""
+										+ validateOrder + "\"/>");
+					%>
+				</td>
+			</tr>
+		</table>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/pallet_sscc.gif">
+
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 10%; text-align: right"><%=Lang.getText("web_SSCC")%></td>
+				<td style="width: 90%; text-align: left">
+					<%
+						String sscc = (String) session.getAttribute("validateSSCC");
+						if (sscc == null)
+							sscc = "";
+						sscc = sscc.trim();
+						out.println(
+								"<input tabindex=\"1\" name=\"validateSSCC\" type=\"text\" id=\"validateSSCC\" size=\"20\" maxlength=\"20\" value=\""
+										+ sscc + "\"/>");
+					%>
+				</td>
+			</tr>
+		</table>
+
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 100%; text-align: left">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
+				</td>
+			</tr>
+		</table>
+
 		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
 			<tr>
-				<td width="100%" height="20" align="center"><input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"
-					onclick="document.validateDUSelect.button.value='Submit';document.validateDUSelect.submit();"> &nbsp; <input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"
-					onclick="document.validateDUSelect.button.value='Cancel';document.validateDUSelect.submit();"> <input type="hidden" id="button" name="button" value="Submit" /> <input type="hidden" name="formName" value="validateDUSelect.jsp" /></td>
+				<td width="100%" height="20" align="center">
+				<input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"onclick="document.validateDUSelect.button.value='Submit';document.validateDUSelect.submit();"> &nbsp; 
+				<input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"onclick="document.validateDUSelect.button.value='Cancel';document.validateDUSelect.submit();">
+				<input type="hidden" id="button" name="button" value="Submit" /> 
+				<input type="hidden" name="formName" value="validateDUSelect.jsp" />
+				</td>
 			</tr>
 		</table>
 	</form>

@@ -79,10 +79,12 @@
 
 		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
 			<tr>
-				<td width="100%" height="20" align="center"><input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"
-					onclick="document.productionConfirm.button.value='Submit';document.productionConfirm.submit();">&nbsp; <input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"
-					onclick="document.productionConfirm.button.value='Cancel';document.productionConfirm.submit();"> <input type="hidden" id="button" name="button" value="Submit" /> <input type="hidden" name="formName" value="productionConfirm.jsp" /> <input
-					type="hidden" name="barcodeType" value="none" /> <input type="hidden" name="barcodeLength" value="0" /></td>
+				<td width="100%" height="20" align="center">
+				    <input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"onclick="document.productionConfirm.button.value='Submit';document.productionConfirm.submit();">&nbsp; 
+					<input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"onclick="document.productionConfirm.button.value='Cancel';document.productionConfirm.submit();"> 
+					<input type="hidden" id="button" name="button" value="Submit" /> <input type="hidden" name="formName" value="productionConfirm.jsp" /> 
+					<input type="hidden" name="barcodeType" value="none" /> <input type="hidden" name="barcodeLength" value="0" />
+				</td>
 			</tr>
 		</table>
 	</form>

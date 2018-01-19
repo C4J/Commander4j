@@ -27,67 +27,67 @@
 		</h2>
 		<table width="100%" border="0" cellpadding="0" cellspacing="0">
 			<tr>
-				<td width="25%" height="5"></td>
+				<td width="35%" height="5"></td>
 				<td></td>
-				<td width="75%"></td>
+				<td width="65%"></td>
 			</tr>
 			<tr>
-				<td width="25%" height="24">
+				<td width="35%" height="24">
 					<div align="right"><%=Lang.getText("web_From")%></div>
 				</td>
 				<td width="4">&nbsp;</td>
-				<td width="75%">
+				<td width="65%">
 					<%
 						out.println(session.getAttribute("despatchFromLocationCombo"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="25%">
+				<td width="35%">
 					<div align="right"><%=Lang.getText("web_To")%></div>
 				</td>
 				<td width="4">&nbsp;</td>
-				<td width="75%">
+				<td width="65%">
 					<%
 						out.println(session.getAttribute("despatchToLocationCombo"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="25%">
+				<td width="35%">
 					<div align="right"><%=Lang.getText("lbl_Trailer")%></div>
 				</td>
 				<td>&nbsp;</td>
-				<td width="75%"><input name="despatchTrailer" type="text" id="despatchTrailer" tabindex="3" value="<%out.println(session.getAttribute("despatchTrailer"));%>" size="15" maxlength="15"></td>
+				<td width="65%"><input name="despatchTrailer" type="text" id="despatchTrailer" tabindex="3" value="<%out.println(session.getAttribute("despatchTrailer"));%>" size="15" maxlength="15"></td>
 			</tr>
 			<tr>
-				<td width="25%" height="24">
+				<td width="35%" height="24">
 					<div align="right"><%=Lang.getText("lbl_Haulier")%></div>
 				</td>
 				<td>&nbsp;</td>
-				<td width="75%"><input name="despatchHaulier" type="text" id="despatchHaulier" tabindex="4" value="<%out.println(session.getAttribute("despatchHaulier"));%>" size="15" maxlength="15"></td>
+				<td width="65%"><input name="despatchHaulier" type="text" id="despatchHaulier" tabindex="4" value="<%out.println(session.getAttribute("despatchHaulier"));%>" size="15" maxlength="15"></td>
 			</tr>
 			<tr>
-				<td width="25%" height="24">
+				<td width="35%" height="24">
 					<div align="right"><%=Lang.getText("lbl_Load_No")%></div>
 				</td>
 				<td>&nbsp;</td>
-				<td width="75%"><input name="despatchLoadNo" type="text" id="despatchLoadNo" tabindex="5" value="<%out.println(session.getAttribute("despatchLoadNo"));%>" size="15" maxlength="15"></td>
+				<td width="65%"><input name="despatchLoadNo" type="text" id="despatchLoadNo" tabindex="5" value="<%out.println(session.getAttribute("despatchLoadNo"));%>" size="15" maxlength="15"></td>
 			</tr>
 			<tr>
-				<td width="25%" height="24">
+				<td width="35%" height="24">
 					<div align="right"><%=Lang.getText("lbl_Journey_Ref")%></div>
 				</td>
 				<td>&nbsp;</td>
-				<td width="75%"><input name="despatchJourneyRef" type="text" id="despatchJourneyRef" tabindex="5" value="<%out.println(session.getAttribute("despatchJourneyRef"));%>" size="15" maxlength="15"></td>
+				<td width="65%"><input name="despatchJourneyRef" type="text" id="despatchJourneyRef" tabindex="5" value="<%out.println(session.getAttribute("despatchJourneyRef"));%>" size="15" maxlength="15"></td>
 			</tr>
 			<tr>
 			<tr>
-				<td width="25%">
+				<td width="35%">
 					<div align="right"><%=Lang.getText("web_Count")%></div>
 				</td>
 				<td></td>
-				<td width="75%">
+				<td width="65%">
 					<%
 						String palletCount = (String) session.getAttribute("despatchPalletCount");
 						if (palletCount == null)
@@ -113,12 +113,12 @@
 		</table>
 		<input type="hidden" name="formName" value="despatchHeader.jsp" /> <input type="hidden" id="button" name="button" value="Add Pallets" />
 	</form>
-	
+
 	<script language="javascript" type="text/javascript">
 		function focusIt() {
 			document.despatchHeader.despatchFromLocation.focus();
 		}
 	</script>
-	
+
 </body>
 </html>

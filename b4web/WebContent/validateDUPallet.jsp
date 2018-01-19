@@ -33,7 +33,7 @@
 		     	String validateOrder = (String) session.getAttribute("validateOrder");
 				out.println(" " + validateOrder + "");
 			%>
-			<br><br>
+			<br>
 			<%
 		     	String materialDescription = (String) session.getAttribute("materialDescription");
 				out.println(" " + materialDescription + "");

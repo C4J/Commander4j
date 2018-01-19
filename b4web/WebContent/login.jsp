@@ -19,7 +19,7 @@
 				out.println(siteDescription);
 			%>
 		</h2>
-
+		<br>
 		<table style="width: 100%" border="0">
 			<tr>
 				<td style="width: 30%; text-align: right"></td>
