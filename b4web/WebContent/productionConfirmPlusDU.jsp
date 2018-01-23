@@ -15,9 +15,9 @@
 <META HTTP-Equiv="scanner" Content="DecodeEvent:url('javascript:doScan('%s', '%s', %s, '%s', %s);')">
 <META http-equiv="Volume" content="SetVolume:0xFFFF">
 
-
 <title>Validate Barcode</title>
 <link href="commander.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -29,30 +29,64 @@
 <body onLoad="focusIt()">
 	<form id="productionConfirmPlusDU" name="productionConfirmPlusDU" action="Process" method="post">
 		<h2><%=Lang.getText("web_Barcode_Validate")%></h2>
-		<p>
-			&nbsp; &nbsp; <%=Lang.getText("lbl_Process_Order")%>
-			<%
-		     	String validateOrder = (String) session.getAttribute("validateOrder");
-				out.println(" " + validateOrder + "");
-			%>
-			<br><br>
-			<%
-		     	String materialDescription = (String) session.getAttribute("materialDescription");
-				out.println(" " + materialDescription + "");
-			%>
-		</p>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/tray_du.gif">
-         <br>
-		<%=Lang.getText("web_Scan_Barcode")%><br>
-		<input tabindex="1" type="text" name="trayDU" id="trayDU" size="55" maxlength="55" value=""/> 
-		<br>	
-		<%
-			String errormessage = (String) session.getAttribute("_ErrorMessage");
-			if (errormessage == null)
-				errormessage = "";
-			errormessage = errormessage.trim();
-			out.println("<p>" + errormessage + "</p>");
-		%>
+
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 50%; text-align: right"><%=Lang.getText("lbl_Process_Order")%></td>
+				<td style="width: 50%; text-align: left">
+					<%
+						String validateOrder = (String) session.getAttribute("validateOrder");
+						out.println(" " + validateOrder + "");
+					%>
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 50%; text-align: right"><%=Lang.getText("lbl_Material")%></td>
+				<td style="width: 50%; text-align: left">
+					<%
+						String validateMaterial = (String) session.getAttribute("material");
+						out.println(" " + validateMaterial + "");
+					%>
+				</td>
+			</tr>			
+		</table>
+		
+
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 50%; text-align: left">
+					<%
+						String materialDescription = (String) session.getAttribute("materialDescription");
+						out.println(" " + materialDescription + "");
+					%>
+				</td>
+
+			</tr>
+		</table>		
+		
+		<img src="./images/tray_du.gif" style="margin-left: 45px">
+         
+		<table style="width:100%;" align="center">
+			<tr>
+				<td style="width: 50%; text-align: right"><%=Lang.getText("web_Scan_Barcode")%></td>
+				<td style="width: 50%; text-align: left"><input tabindex="1" type="text" name="trayDU" id="trayDU" size="55" maxlength="55" value="" /></td>
+			</tr>
+		</table>
+		
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 50%; text-align: left">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
+				</td>
+			</tr>
+		</table>
+		
 		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td width="100%" height="20" align="center">

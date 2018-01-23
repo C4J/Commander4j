@@ -27,48 +27,74 @@
 <body onLoad="focusIt()">
 	<form id="validateDUTray" name="validateDUTray" action="Process" method="post">
 		<h2><%=Lang.getText("web_Barcode_Validate")%></h2>
-		<p>
-			&nbsp; &nbsp; <%=Lang.getText("lbl_Process_Order")%>
-			<%
-		     	String validateOrder = (String) session.getAttribute("validateOrder");
-				out.println(" " + validateOrder + "");
-			%>
-			<br><br>
-			<%
-		     	String materialDescription = (String) session.getAttribute("materialDescription");
-				out.println(" " + materialDescription + "");
-			%>
-		</p>
-		<br>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/tray_du.gif">
-         <br>
-		<%=Lang.getText("web_Scan_Barcode")%><br>
-		<input tabindex="1" type="text" name="trayDU" id="trayDU" size="55" maxlength="55" value=""/> 
-		<br>	
-		<%
-			String errormessage = (String) session.getAttribute("_ErrorMessage");
-			if (errormessage == null)
-				errormessage = "";
-			errormessage = errormessage.trim();
-			out.println("<p>" + errormessage + "</p>");
-		%>
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+
+		<table style="width: 100%">
 			<tr>
-				<td width="100%" height="20" align="center">
-				<input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>" onclick="document.validateDUTray.button.value='Submit';document.validateDUTray.submit();">
-				&nbsp; 
-				<input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>" onclick="document.validateDUTray.button.value='Cancel';document.validateDUTray.submit();"> 
-				<input type="hidden" id="button" name="button" value="Submit" /> 
-				<input type="hidden" name="formName" value="validateDUTray.jsp" />
-				<input type="hidden" name="barcodeType" value="none" />
-				<input type="hidden" name="barcodeLength" value="0" />
+				<td style="width: 50%; text-align: right"><%=Lang.getText("lbl_Process_Order")%></td>
+				<td style="width: 50%; text-align: left">
+					<%
+						String validateOrder = (String) session.getAttribute("validateOrder");
+						out.println(" " + validateOrder + "");
+					%>
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 50%; text-align: right"><%=Lang.getText("lbl_Material")%></td>
+				<td style="width: 50%; text-align: left">
+					<%
+						String validateMaterial = (String) session.getAttribute("material");
+						out.println(" " + validateMaterial + "");
+					%>
 				</td>
 			</tr>
 		</table>
-	</form>
-	
-	<script language="javascript" type="text/javascript">
 
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 50%; text-align: left">
+					<%
+						String materialDescription = (String) session.getAttribute("materialDescription");
+						out.println(" " + materialDescription + "");
+					%>
+				</td>
+
+			</tr>
+		</table>
+
+		<img src="./images/tray_du.gif" style="margin-left: 45px">
+
+		<table style="width:100%;" align="center">
+			<tr>
+				<td style="width: 50%; text-align: right"><%=Lang.getText("web_Scan_Barcode")%></td>
+				<td style="width: 50%; text-align: left"><input tabindex="1" type="text" name="trayDU" id="trayDU" size="55" maxlength="55" value="" /></td>
+			</tr>
+		</table>
+
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 50%; text-align: left">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
+				</td>
+			</tr>
+		</table>
+
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+			<tr>
+				<td width="100%" height="20" align="center"><input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"
+					onclick="document.validateDUTray.button.value='Submit';document.validateDUTray.submit();"> &nbsp; <input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"
+					onclick="document.validateDUTray.button.value='Cancel';document.validateDUTray.submit();"> <input type="hidden" id="button" name="button" value="Submit" /> <input type="hidden" name="formName" value="validateDUTray.jsp" /> <input
+					type="hidden" name="barcodeType" value="none" /> <input type="hidden" name="barcodeLength" value="0" /></td>
+			</tr>
+		</table>
+	</form>
+
+	<script language="javascript" type="text/javascript">
 		function focusIt() {
 			document.validateDUTray.trayDU.focus();
 		}
@@ -84,7 +110,6 @@
 		function goBack() {
 			window.history.back();
 		}
-		
 	</script>
 </body>
 </html>

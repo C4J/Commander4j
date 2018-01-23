@@ -38,8 +38,8 @@
 			out.println(despatchNo);
 		%>
 		</h2>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/pallet_sscc.gif"> <br>
-		<table style="width: 100%">
+		<img src="./images/pallet_sscc.gif" style="margin-left: 45px">
+		<table style="width:100%;" align="center">
 			<tr>
 				<td style="width: 10%; text-align: right"><%=Lang.getText("web_SSCC")%></td>
 				<td style="width: 90%; text-align: left">
@@ -60,7 +60,7 @@
 			<tr>
 				<td style="width: 33%; text-align: right"><label><input name="addRemoveMode" accesskey="A" type="radio" id="radio" value="add" checked="checked" onClick="focusIt()" /><%=Lang.getText("web_Add")%></label></td>
 				<td style="width: 33%; text-align: left"><label><input name="addRemoveMode" accesskey="R" type="radio" id="radio" value="remove" onClick="focusIt()" /><%=Lang.getText("web_Remove")%></label></td>
-				<td style="width: 34%; text-align: left">Count : <%
+				<td style="width: 33%; text-align: left">Count : <%
 					String palletCount = (String) session.getAttribute("despatchPalletCount");
 					if (palletCount == null)
 						palletCount = "";

@@ -1412,6 +1412,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 								pOrder.getProperties(pallet.getProcessOrder());
 
+								saveData(session, "material", pOrder.getMaterial(), false);
 								saveData(session, "materialDescription", pOrder.getDescription(), false);
 								saveData(session, "sscc", String.valueOf(pallet.getSSCC()), false);
 								saveData(session, "validateOrder", String.valueOf(pallet.getProcessOrder()), false);

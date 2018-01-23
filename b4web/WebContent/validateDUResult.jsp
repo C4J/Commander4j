@@ -31,18 +31,40 @@
 		<h2>
 			<%=Lang.getText("web_Barcode_Validate")%>
 		</h2>
-		<p>
-			&nbsp; &nbsp; <%=Lang.getText("lbl_Process_Order")%>
-			<%
-		     	String validateOrder = (String) session.getAttribute("validateOrder");
-				out.println(" " + validateOrder + "");
-			%>
-			<br><br>
-			<%
-		     	String materialDescription = (String) session.getAttribute("materialDescription");
-				out.println(" " + materialDescription + "");
-			%>
-		</p>
+		
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 50%; text-align: right"><%=Lang.getText("lbl_Process_Order")%></td>
+				<td style="width: 50%; text-align: left">
+					<%
+						String validateOrder = (String) session.getAttribute("validateOrder");
+						out.println(" " + validateOrder + "");
+					%>
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 50%; text-align: right"><%=Lang.getText("lbl_Material")%></td>
+				<td style="width: 50%; text-align: left">
+					<%
+						String validateMaterial = (String) session.getAttribute("material");
+						out.println(" " + validateMaterial + "");
+					%>
+				</td>
+			</tr>			
+		</table>
+
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 50%; text-align: left">
+					<%
+						String materialDescription = (String) session.getAttribute("materialDescription");
+						out.println(" " + materialDescription + "");
+					%>
+				</td>
+
+			</tr>
+		</table>
+		
 		<table style="width:100%">
 		  <tr>
 		    <th></th> 
@@ -65,14 +87,21 @@
 		    <td><font color="<%String trayVariantColor = (String) session.getAttribute("trayVariantColor");out.println(" " + trayVariantColor + "");%>"><%String trayVariant = (String) session.getAttribute("trayVariant");out.println(" " + trayVariant + "");%></font></td>
 		  </tr>
 		</table>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="<%String resultImage = (String) session.getAttribute("resultImage");out.println(" " + resultImage + "");%>"><br>	
-		<%
-			String errormessage = (String) session.getAttribute("_ErrorMessage");
-			if (errormessage == null)
-				errormessage = "";
-			errormessage = errormessage.trim();
-			out.println("<p>" + errormessage + "</p>");
-		%>
+		<img src="<%String resultImage = (String) session.getAttribute("resultImage");out.println(" " + resultImage + "");%>" style="margin-left: 45px"><br>	
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 50%; text-align: left">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
+				</td>
+			</tr>
+		</table>
+		
 		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td width="100%" height="20" align="center">

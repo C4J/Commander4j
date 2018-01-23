@@ -33,11 +33,10 @@
 			<%=Lang.getText("web_Barcode_Validate")%>
 		</h2>
 
-
-		<table style="width: 100%">
+		<table style="width:100%;" align="center">
 			<tr>
-				<td style="width: 40%; text-align: right"><%=Lang.getText("lbl_Process_Order")%></td>
-				<td style="width: 60%; text-align: left">
+				<td style="width: 50%; text-align: right"><%=Lang.getText("lbl_Process_Order")%></td>
+				<td style="width: 50%; text-align: left">
 					<%
 						String validateOrder = (String) session.getAttribute("validateOrder");
 						if (validateOrder == null)
@@ -50,9 +49,10 @@
 				</td>
 			</tr>
 		</table>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/pallet_sscc.gif">
+		
+		<img src="./images/pallet_sscc.gif" style="margin-left: 45px">
 
-		<table style="width: 100%">
+		<table style="width:100%;" align="center">
 			<tr>
 				<td style="width: 10%; text-align: right"><%=Lang.getText("web_SSCC")%></td>
 				<td style="width: 90%; text-align: left">
@@ -85,12 +85,9 @@
 
 		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
 			<tr>
-				<td width="100%" height="20" align="center">
-				<input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"onclick="document.validateDUSelect.button.value='Submit';document.validateDUSelect.submit();"> &nbsp; 
-				<input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"onclick="document.validateDUSelect.button.value='Cancel';document.validateDUSelect.submit();">
-				<input type="hidden" id="button" name="button" value="Submit" /> 
-				<input type="hidden" name="formName" value="validateDUSelect.jsp" />
-				</td>
+				<td width="100%" height="20" align="center"><input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"
+					onclick="document.validateDUSelect.button.value='Submit';document.validateDUSelect.submit();"> &nbsp; <input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"
+					onclick="document.validateDUSelect.button.value='Cancel';document.validateDUSelect.submit();"> <input type="hidden" id="button" name="button" value="Submit" /> <input type="hidden" name="formName" value="validateDUSelect.jsp" /></td>
 			</tr>
 		</table>
 	</form>

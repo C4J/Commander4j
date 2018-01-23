@@ -32,62 +32,95 @@
 			<%=Lang.getText("web_Barcode_Validate")%>
 		</h2>
 		<p>
-			&nbsp; &nbsp; <%=Lang.getText("lbl_Process_Order")%>
+			&nbsp; &nbsp;
+			<%=Lang.getText("lbl_Process_Order")%>
 			<%
-		     	String validateOrder = (String) session.getAttribute("validateOrder");
+				String validateOrder = (String) session.getAttribute("validateOrder");
 				out.println(" " + validateOrder + "");
 			%>
-			<br><br>
+			<br> <br>
 			<%
-		     	String materialDescription = (String) session.getAttribute("materialDescription");
+				String materialDescription = (String) session.getAttribute("materialDescription");
 				out.println(" " + materialDescription + "");
 			%>
 		</p>
-		<table style="width:100%">
-		  <tr>
-		    <th></th> 
-		    <th>EAN</th>
-		    <th>Variant</th> 
-		  </tr>
-		  <tr>
-		    <td><font color="black"><b>Order</b></font></td>
-		    <td><font color="green"><%String materialDU_EAN = (String) session.getAttribute("materialDU_EAN");out.println(" " + materialDU_EAN + "");%></font></td>
-		    <td><font color="green"><%String materialDU_VARIANT = (String) session.getAttribute("materialDU_VARIANT");out.println(" " + materialDU_VARIANT + "");%></font></td>
-		  </tr>
-		  <tr>
-		    <td><font color="black"><b>Pallet</b></font></td>
-		    <td><font color="<%String palletGTINColor = (String) session.getAttribute("palletGTINColor");out.println(" " + palletGTINColor + "");%>"><%String palletGTIN = (String) session.getAttribute("palletGTIN");out.println(" " + palletGTIN + "");%></font></td>
-		    <td><font color="<%String palletVariantColor = (String) session.getAttribute("palletVariantColor");out.println(" " + palletVariantColor + "");%>"><%String palletVariant = (String) session.getAttribute("palletVariant");out.println(" " + palletVariant + "");%></font></td>
-		  </tr>
-		  <tr>
-		    <td><font color="black"><b>Case/Tray</b></font></td>
-		    <td><font color="<%String trayGTINColor = (String) session.getAttribute("trayGTINColor");out.println(" " + trayGTINColor + "");%>"><%String trayGTIN = (String) session.getAttribute("trayGTIN");out.println(" " + trayGTIN + "");%></font></td>
-		    <td><font color="<%String trayVariantColor = (String) session.getAttribute("trayVariantColor");out.println(" " + trayVariantColor + "");%>"><%String trayVariant = (String) session.getAttribute("trayVariant");out.println(" " + trayVariant + "");%></font></td>
-		  </tr>
-		</table>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/invalid.gif"><br>	
-		<%
-			String errormessage = (String) session.getAttribute("_ErrorMessage");
-			if (errormessage == null)
-				errormessage = "";
-			errormessage = errormessage.trim();
-			out.println("<p>" + errormessage + "</p>");
-		%>
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table style="width: 100%">
 			<tr>
-				<td width="100%" height="20" align="center">
-				<input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("btn_Ok")%>" onclick="document.productionConfirmPlusError.button.value='Submit';document.productionConfirmPlusError .submit();"> 
-				<input type="hidden" id="button" name="button" value="Submit" /> 
-				<input type="hidden" name="formName" value="productionConfirmPlusError.jsp" />
-				<input type="hidden" name="barcodeType" value="none" />
-				<input type="hidden" name="barcodeLength" value="0" />
+				<th></th>
+				<th>EAN</th>
+				<th>Variant</th>
+			</tr>
+			<tr>
+				<td><font color="black"><b>Order</b></font></td>
+				<td><font color="green"> <%
+ 	String materialDU_EAN = (String) session.getAttribute("materialDU_EAN");
+ 	out.println(" " + materialDU_EAN + "");
+ %>
+				</font></td>
+				<td><font color="green"> <%
+ 	String materialDU_VARIANT = (String) session.getAttribute("materialDU_VARIANT");
+ 	out.println(" " + materialDU_VARIANT + "");
+ %>
+				</font></td>
+			</tr>
+			<tr>
+				<td><font color="black"><b>Pallet</b></font></td>
+				<td><font color="<%String palletGTINColor = (String) session.getAttribute("palletGTINColor");
+			out.println(" " + palletGTINColor + "");%>"> <%
+ 	String palletGTIN = (String) session.getAttribute("palletGTIN");
+ 	out.println(" " + palletGTIN + "");
+ %>
+				</font></td>
+				<td><font color="<%String palletVariantColor = (String) session.getAttribute("palletVariantColor");
+			out.println(" " + palletVariantColor + "");%>"> <%
+ 	String palletVariant = (String) session.getAttribute("palletVariant");
+ 	out.println(" " + palletVariant + "");
+ %>
+				</font></td>
+			</tr>
+			<tr>
+				<td><font color="black"><b>Case/Tray</b></font></td>
+				<td><font color="<%String trayGTINColor = (String) session.getAttribute("trayGTINColor");
+			out.println(" " + trayGTINColor + "");%>"> <%
+ 	String trayGTIN = (String) session.getAttribute("trayGTIN");
+ 	out.println(" " + trayGTIN + "");
+ %>
+				</font></td>
+				<td><font color="<%String trayVariantColor = (String) session.getAttribute("trayVariantColor");
+			out.println(" " + trayVariantColor + "");%>"> <%
+ 	String trayVariant = (String) session.getAttribute("trayVariant");
+ 	out.println(" " + trayVariant + "");
+ %>
+				</font></td>
+			</tr>
+		</table>
+
+		<img src="./images/invalid.gif" style="margin-left: 45px">
+
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 100%; text-align: left">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
 				</td>
 			</tr>
 		</table>
-	</form>
-	
-	<script language="javascript" type="text/javascript">
 
+		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+			<tr>
+				<td width="100%" height="20" align="center"><input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("btn_Ok")%>"
+					onclick="document.productionConfirmPlusError.button.value='Submit';document.productionConfirmPlusError .submit();"> <input type="hidden" id="button" name="button" value="Submit" /> <input type="hidden" name="formName"
+					value="productionConfirmPlusError.jsp" /> <input type="hidden" name="barcodeType" value="none" /> <input type="hidden" name="barcodeLength" value="0" /></td>
+			</tr>
+		</table>
+	</form>
+
+	<script language="javascript" type="text/javascript">
 		function focusIt() {
 			document.productionConfirmPlusError.buttonSubmit.focus();
 		}
@@ -103,7 +136,6 @@
 		function goBack() {
 			window.history.back();
 		}
-		
 	</script>
 </body>
 </html>

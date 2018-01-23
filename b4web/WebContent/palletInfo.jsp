@@ -16,6 +16,7 @@
 
 <title>Pallet Info</title>
 <link href="commander.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -29,9 +30,9 @@
 <h2>
 <%=Lang.getText("mod_FRM_PAL_INFO") %>
 </h2>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/pallet_sscc.gif">
-<br>
-<table style="width:100%">
+<img src="./images/pallet_sscc.gif" style="margin-left: 45px">
+
+<table style="width:100%;" align="center">
   <tr>
     <td style="width:10%;text-align:right"><%=Lang.getText("web_SSCC") %></td>
     <td style="width:90%;text-align:left">

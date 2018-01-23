@@ -19,14 +19,9 @@
 				out.println(siteDescription);
 			%>
 		</h2>
-		<br>
-		<table style="width: 100%" border="0">
-			<tr>
-				<td style="width: 30%; text-align: right"></td>
-				<td style="width: 70%; text-align: left"><img src="./images/user-login-icon.gif" alt="logon"></td>
-			</tr>
-		</table>
-		<br>
+		<br> 
+		<img src="./images/user-login-icon.gif" style="margin-left: 90px"> 
+		<br><br>
 		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
 			<tr>
 				<td width="50%" height="20"><div align="right">User :&nbsp;&nbsp;</div></td>
@@ -55,21 +50,36 @@
 				%>
 			</tr>
 		</table>
-		<%
-			String errormessage = (String) session.getAttribute("_ErrorMessage");
-			if (errormessage == null)
-				errormessage = "";
-			errormessage = errormessage.trim();
-			out.println("<p>" + errormessage + "</p>");
-		%>
-		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+		
+		<table style="width: 100%">
 			<tr>
-				<td width="49%" height="20" align="right"><input tabindex="3" name="buttonSubmit" id="buttonSubmit" value="Submit" onclick="document.login.button.value='Submit';" type="submit"></td>
-				<td width="2%" height="20"></td>
-				<td width="49%" height="20" align="left"><input tabindex="4" name="buttonCancel" id="buttonCancel" value="Cancel" onclick="document.login.button.value='Cancel';" type="submit"></td>
+				<td style="width: 50%; text-align: left">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
+				</td>
 			</tr>
 		</table>
-		<br> <input type="hidden" name="selectedAction" value="validateLogon" /> <input type="hidden" name="formName" value="login.jsp" /> <input type="hidden" id="button" name="button" value="Submit" />
+
+		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td width="49%" height="20" align="right">
+					<input tabindex="3" name="buttonSubmit" id="buttonSubmit" value="Submit" onclick="document.login.button.value='Submit';" type="submit">
+				</td>
+				<td width="2%" height="20"></td>
+				<td width="49%" height="20" align="left">
+					<input tabindex="4" name="buttonCancel" id="buttonCancel" value="Cancel" onclick="document.login.button.value='Cancel';" type="submit">
+				</td>
+			</tr>
+		</table>
+		<br> 
+		<input type="hidden" name="selectedAction" value="validateLogon" /> 
+		<input type="hidden" name="formName" value="login.jsp" /> 
+		<input type="hidden" id="button" name="button" value="Submit" />
 
 	</form>
 	<script language="javascript" type="text/javascript">

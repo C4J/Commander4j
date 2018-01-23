@@ -17,9 +17,9 @@
 <META HTTP-Equiv="SIP" Content="Manual">
 <META HTTP-Equiv="SIP" Content="Left:640;Top:0">
 
-
 <title>Production Confirmation</title>
 <link href="commander.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -33,8 +33,8 @@
 		<h2>
 			<%=Lang.getText("web_Prod_Dec_Confirm")%>
 		</h2>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./images/pallet_sscc.gif">
-		<table style="width: 100%">
+		<img src="./images/pallet_sscc.gif" style="margin-left: 45px">
+		<table style="width:100%;" align="center">
 			<tr>
 				<td style="width: 10%; text-align: right"><%=Lang.getText("web_SSCC")%></td>
 				<td style="width: 90%; text-align: left">
