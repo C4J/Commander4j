@@ -85,7 +85,8 @@ import javax.swing.JSpinner;
  * <img alt="" src="./doc-files/JInternalFrameMaterialLocationAdmin.jpg" >
  * 
  * @see com.commander4j.db.JDBMaterialLocation JDBMaterialLocation
- * @see com.commander4j.app.JInternalFrameMaterialLocationProperties JInternalFrameMaterialLocationProperties
+ * @see com.commander4j.app.JInternalFrameMaterialLocationProperties
+ *      JInternalFrameMaterialLocationProperties
  * 
  */
 public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
@@ -139,7 +140,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_LOCATION"));
-		
+
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -223,27 +224,36 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 				JDBMaterial mat = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 				if (mat.isValidMaterial(lmaterial))
 				{
-					llocation = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_Location_Input"));
-					if (llocation != null)
+					JDBLocation locn = new JDBLocation(Common.selectedHostID, Common.sessionID);
+					if (locn.getLocationList().size() > 0)
 					{
-						if (llocation.equals("") == false)
+						String[] x = locn.getLocationListArray();
+						llocation = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_Location_Input"), "Input", JOptionPane.QUESTION_MESSAGE, null, x, ""); // Initial
+																																														// choice
+						if (llocation != null)
 						{
-							JDBLocation locn = new JDBLocation(Common.selectedHostID, Common.sessionID);
-							if (locn.isValidLocation(llocation))
+							if (llocation.equals("") == false)
 							{
-								JDBMaterialLocation matloc = new JDBMaterialLocation(Common.selectedHostID, Common.sessionID);
-								if (matloc.isValidMaterialLocation(lmaterial, llocation) == false)
+
+								if (locn.isValidLocation(llocation))
 								{
-									JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_LOCATION_EDIT", lmaterial, llocation);
+									JDBMaterialLocation matloc = new JDBMaterialLocation(Common.selectedHostID, Common.sessionID);
+									if (matloc.isValidMaterialLocation(lmaterial, llocation) == false)
+									{
+										JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_LOCATION_EDIT", lmaterial, llocation);
+									} else
+									{
+										JOptionPane.showMessageDialog(Common.mainForm, "Material/Location [" + lmaterial + " / " + llocation + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+									}
 								} else
 								{
-									JOptionPane.showMessageDialog(Common.mainForm, "Material/Location [" + lmaterial + " / " + llocation + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+									JOptionPane.showMessageDialog(Common.mainForm, "Location [" + llocation + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 								}
-							} else
-							{
-								JOptionPane.showMessageDialog(Common.mainForm, "Location [" + llocation + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 							}
 						}
+					} else
+					{
+						JOptionPane.showMessageDialog(Common.mainForm, "No Locations defined or enabled.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 					}
 				} else
 				{
@@ -752,24 +762,23 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					jButtonExcel.setBounds(15, 188, 126, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
-				
+
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Limit"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_std.setBounds(20, 123, 106, 21);
 				jDesktopPane1.add(label4j_std);
-					
+
 				jCheckBoxLimit.setSelected(true);
 				jCheckBoxLimit.setBackground(Color.WHITE);
 				jCheckBoxLimit.setBounds(134, 123, 21, 21);
 				jDesktopPane1.add(jCheckBoxLimit);
-	
+
 				JSpinner.NumberEditor ne_jSpinnerLimit = new JSpinner.NumberEditor(jSpinnerLimit);
 				jSpinnerLimit.setEditor(ne_jSpinnerLimit);
 				jSpinnerLimit.setValue(1000);
 				jSpinnerLimit.setBounds(163, 123, 68, 21);
 				jDesktopPane1.add(jSpinnerLimit);
-
 
 			}
 		} catch (Exception e)

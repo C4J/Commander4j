@@ -433,6 +433,29 @@ public class JDBLocation
 		return locationList;
 	}
 
+	public String[] getLocationListArray()
+	{
+		LinkedList<JDBLocation> llist = getLocationList();
+		
+		String[] result;
+		
+		if (llist.size() > 0)
+		{
+			result = new String[llist.size()];
+
+			for (int x = 0; x < llist.size(); x++)
+			{
+				result[x] = ((JDBLocation) llist.get(x)).getLocationID();
+			}
+			
+		} else
+		{
+			result = new String[0];
+		}
+
+		return result;
+	}
+
 	public boolean getLocationProperties()
 	{
 		boolean result = false;

@@ -16,12 +16,12 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/db/ojdbc8.jar 
  lib/db/mssql-jdbc-6.2.2.jre8.jar 
  lib/devonly/i4jruntime.jar 
- lib/jasper/jasperreports-6.5.0.jar 
- lib/jasper/jasperreports-chart-customizers-6.5.0.jar 
- lib/jasper/jasperreports-chart-themes-6.5.0.jar 
- lib/jasper/jasperreports-fonts-6.5.0.jar 
- lib/jasper/jasperreports-functions-6.5.0.jar 
- lib/jasper/jasperreports-javaflow-6.5.0.jar  
+ lib/jasper/jasperreports-6.5.1.jar 
+ lib/jasper/jasperreports-chart-customizers-6.5.1.jar 
+ lib/jasper/jasperreports-chart-themes-6.5.1.jar 
+ lib/jasper/jasperreports-fonts-6.5.1.jar 
+ lib/jasper/jasperreports-functions-6.5.1.jar 
+ lib/jasper/jasperreports-javaflow-6.5.1.jar  
  lib/jasperlib/ant-1.7.1.jar 
  lib/jasperlib/antlr-2.7.5.jar 
  lib/jasperlib/barbecue-1.5-beta1.jar 
