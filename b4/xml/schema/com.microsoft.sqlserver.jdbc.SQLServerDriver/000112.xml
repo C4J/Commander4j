@@ -7,6 +7,10 @@
 	<statement>
 		ALTER TABLE [dbo].SYS_ARCHIVE ADD MAX_DELETE [int] NULL
 	</statement>
+	
+	<statement>
+		UPDATE [dbo].SYS_ARCHIVE SET MAX_DELETE = 500000
+	</statement>
 
 	<statement>	
 		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Max_Delete','EN','Max Records to Delete','')

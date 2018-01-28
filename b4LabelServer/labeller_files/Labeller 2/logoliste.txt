@@ -1,0 +1,16 @@
+IMG,/c0/nologo.pcx
+IMG,/c0/rhoenspr.pcx
+IMG,/c0/alnatura.pcx
+IMG,/c0/bauer.pcx
+IMG,/c0/bio1.pcx
+IMG,/c0/biona3.pcx
+IMG,/c0/dmbio2.pcx
+IMG,/c0/frau1.pcx
+IMG,/c0/globusk2.pcx
+IMG,/c0/heur1.pcx
+IMG,/c0/rsgbl.pcx
+IMG,/c0/rsgsig.pcx
+IMG,/c0/sq.pcx
+IMG,/c0/tegut.pcx
+IMG,/c0/trinks.pcx
+IMG,/c0/rg.pcx

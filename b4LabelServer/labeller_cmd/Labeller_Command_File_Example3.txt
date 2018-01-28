@@ -1,0 +1,129 @@
+
+/*  Logppak Case Labeller Script for Purina Wisbech */
+
+/*34567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890 */
+/*LABEL          COMMAND                       PARAMS                                                */
+/*34567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890 */
+/*        1        2         3         4         5        6          7         8         9         0 */
+
+/*                    N.B. Use spaces between columns - not tabs.                                    */
+
+Initialise        STRING_DELIMITER              "
+                  STATUS                        "Initialising"
+                  VARIABLE                      $variable_Plant="0933"
+                  VARIABLE                      $variable_Template="manual.llf"
+                  VARIABLE                      $variable_PROD_VARIANT="01"
+                  VARIABLE                      $variable_DESCRIPTION="Felix"
+                  VARIABLE                      $variable_MATERIAL="12345678"  
+                  VARIABLE                      $variable_BATCH_NUMBER="1234567890"  
+                  VARIABLE                      $variable_PROCESS_ORDER="18536231"  
+                  VARIABLE                      $variable_PROD_QUANTITY="1"  
+                  VARIABLE                      $variable_BASE_EAN="1234567890123"
+                  VARIABLE                      $variable_PROD_EAN="09876543210987"    
+                  VARIABLE                      $variable_BASE_QUANTITY="1"
+                  VARIABLE                      $variable_EXPIRY_DAY="01"   
+                  VARIABLE                      $variable_EXPIRY_MONTH="12"   
+                  VARIABLE                      $variable_EXPIRY_YEAR="2019"   
+                  USER_INPUTx                   "Enter Description :","Dog Food","$variable_DESCRIPTION" 
+                  SEND_DELAY                    100
+                  SEND_EOL                      "<CR>"
+                  RESPONSE_EOL                  "<CR>"
+                  TIMEOUT_SEND                  2000
+                  RECONNECT_DELAY               3000
+                  KEEP_ALIVE_INACTIVITY         5000
+                  KEEP_ALIVE_SEND               "?online"
+                  
+                  IGNORE_RESPONSE               "CMD->"
+                  IGNORE_RESPONSE               ""
+                  
+                  SUCCESS_RESPONSE              "0 No error(s)."
+                  SUCCESS_RESPONSE              "0 No Error(s)"
+                  SUCCESS_RESPONSE              "0 no error(s)."
+                  SUCCESS_RESPONSE              "0 No Error(s)."
+                  SUCCESS_RESPONSE              "0 No error(s)."
+                  SUCCESS_RESPONSE              "000<ACK>"
+                  SUCCESS_RESPONSE              ">ONLINE"
+
+                  FAIL_RESPONSE                 "Error(s)."
+                  FAIL_RESPONSE                 "error(s)."
+                  FAIL_RESPONSE                 "991 unknown command !"
+                  FAIL_RESPONSE                 "993 Checksum error!"
+                  FAIL_RESPONSE                 "994 Hex format error!"
+                  FAIL_RESPONSE                 "996 Timeout"
+                  FAIL_RESPONSE                 "997 Buffer overflow"
+                  FAIL_RESPONSE                 "1601 Unknown command:"
+                  FAIL_RESPONSE                 "63 Couldn't open file /c0/$variable_Template !"   
+                  FAIL_RESPONSE                 "992 File access error!"
+                  FAIL_RESPONSE                 "999<NAK>"
+                                                                                                                         
+                  ON_ERROR_RESONSE_GOTO         "Abort"
+                  ON_ERROR_COMMS_GOTO           "Initialise"
+                  ON_ERROR_TIMEOUT_GOTO         "Timeout"
+                  
+                  STATUS                        "Opening Connection"
+                  CONNECTION_OPEN
+                  
+                  STATUS                        "Setup Labeller"
+                  SEND                          "*VERBOSE"
+                  CHECK_SUCCESS
+                  SEND                          "*RDR"
+                  CHECK_SUCCESS
+                  SEND                          "LK,1"
+                  CHECK_SUCCESS
+                  GOTO                          Start
+                  
+Start             STATUS                        "Sending Data"
+                  SEND_FILE_INTELHEX            "manual.llf"  
+                  SEND_FILE_INTELHEX            "nestlelogo.pcx"
+                  MESSAGE_INFO                  "Starting Test"
+                  RETRIEVE_DATA
+                  SEND                          "<STX>LOAD,/c0/$variable_Template"
+                  SEND                          "FD,44,$variable_PROD_VARIANT"
+                  SEND                          "FD,1,$variable_DESCRIPTION"
+                  SEND                          "FD,112,$variable_MATERIAL"
+                  SEND                          "FD,123,$variable_BATCH_NUMBER"
+                  SEND                          "FD,124,$variable_PROCESS_ORDER"
+                  SEND                          "FD,71,$variable_PROD_QUANTITY"
+                  SEND                          "FD,72,$variable_BASE_EAN"
+                  SEND                          "FD,62,$variable_PROD_EAN"
+                  SEND                          "FD,61,$variable_BASE_QUANTITY"
+                  SEND                          "FD,51,$variable_EXPIRY_DAY"
+                  SEND                          "FD,52,$variable_EXPIRY_MONTH"
+                  SEND                          "FD,53,$variable_EXPIRY_YEAR"
+                  SEND                          "FD,43,$variable_Plant"
+                  SEND                          "FD,10,$variable_PROD_VARIANT"                  
+                  SEND                          "<ETX><CR>"
+                  
+                  FILE_DEFINE                   "file1.txt"
+                  FILE_WRITE                    "Hello World<CR>"
+                  FILE_WRITE                    $variable_DESCRIPTION                
+                  SEND_FILE_INTELHEX            "file2.txt"  
+ 
+                  DIR_REMOTE                    *.*
+                  
+                  DIR_REMOTE                    *.lqf
+                  
+                  RECEIVE_FILE_INTELHEX         "*.pcx"               
+
+                  DIR_REMOTE                    "file2.txt"                  
+                  DELETE_FILE                   "file2.txt"
+                  DIR_REMOTE                    "file2.txt"
+                            
+                  DIR_REMOTE                    "kuehne.lqf"
+                  
+                  BACKUP_REMOTE                 *.ldf
+                                                
+                  KEEP_ALIVE_ON
+                  GOTO                          Finish
+
+Finish            STATUS                        "Success"
+                  CONNECTION_CLOSE
+                  EXIT
+
+Abort             STATUS                        "Error"
+                  CONNECTION_CLOSE
+                  EXIT
+
+Timeout           STATUS                        "Timeout"
+                  CONNECTION_CLOSE
+                  EXIT

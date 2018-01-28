@@ -67,7 +67,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 						filename_imported = filename_imported + ".xml";
 					}
 					
-					jfileio.writeToDisk(Common.logDir, data, filename_imported);
+					Boolean writeSuccess = jfileio.writeToDisk(Common.logDir, data, filename_imported);
 
 					if (getXSLTFilename().equals("") == false)
 					{
@@ -100,7 +100,14 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 						}
 					}
 
-					processConnectorToInterfaceData(connector.getFilename(), data);
+					if (writeSuccess)
+					{
+						processConnectorToInterfaceData(connector.getFilename(), data);
+					}
+					else
+					{
+						Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]","Unable to save inbound xml"+ "\n\n", filename_imported);
+					}
 				}
 			}
 		}

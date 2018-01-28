@@ -90,7 +90,7 @@ public class InboundConnectorIDOC extends InboundConnectorABSTRACT
 						/* FIELD */
 						Element outputfield = (Element) data.createElement("FIELD");
 						outputfield.setAttribute("name", obj.toString());
-						outputfield.setAttribute("value", val.toString());
+						outputfield.setAttribute("value", org.apache.commons.lang3.StringEscapeUtils.escapeXml11(val.toString()));
 						outputdata.appendChild(outputfield);
 
 					}
