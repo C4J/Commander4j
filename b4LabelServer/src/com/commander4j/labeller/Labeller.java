@@ -272,11 +272,21 @@ public class Labeller extends Thread
 			case "SUCCESS_RESPONSE":
 				rx.successResponses.add(VAL);
 				break;
+			case "LOCAL_DELETE_FILE":
+				String localfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
+				System.out.println("[" + prop.getId() + "]" + " Local Delete  [" + localfilename + "]");
+				File fileDelete = new File(localfilename);
+				FileUtils.deleteQuietly(fileDelete);
+				fileDelete=null;
+				break;				
 			case "FILE_DEFINE":
 				String writefilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
-				System.out.println("[" + prop.getId() + "]" + " File Defined as  [" + VAL + "]");
-				FileUtils.deleteQuietly(fileWrite);
+				System.out.println("[" + prop.getId() + "]" + " File Defined as  [" + writefilename + "]");
 				fileWrite = new File(writefilename);
+				if (FileUtils.deleteQuietly(fileWrite))
+				{
+					System.out.println("[" + prop.getId() + "]" + " Existing file deleted  [" + writefilename + "]");
+				}
 				break;
 			case "FILE_WRITE":
 				File writePath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId());

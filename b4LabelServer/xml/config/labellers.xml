@@ -5,14 +5,14 @@
         <enabled>Y</enabled>
         <ipAddres>10.1.50.176</ipAddres>
         <portNumber>8000</portNumber>
-        <commandFile>Labeller_Command_File_Example1.txt</commandFile>
+        <commandFile>Labeller_Command_File_Example1a.txt</commandFile>
         <inputPath>./labeller_requests/direct/</inputPath>
         <inputFile>POUCH2-LINE4_LABELLER5.CSV</inputFile>
         <mode>direct</mode>
     </labeller>
     
     <labeller id="Labeller 2"> 
-        <enabled>Y</enabled>
+        <enabled>N</enabled>
         <ipAddres>10.1.50.176</ipAddres>
         <portNumber>8004</portNumber>
         <commandFile>Labeller_Command_File_Example2.txt</commandFile>

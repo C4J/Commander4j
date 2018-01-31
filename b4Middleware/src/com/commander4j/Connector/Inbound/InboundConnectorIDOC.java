@@ -90,7 +90,30 @@ public class InboundConnectorIDOC extends InboundConnectorABSTRACT
 						/* FIELD */
 						Element outputfield = (Element) data.createElement("FIELD");
 						outputfield.setAttribute("name", obj.toString());
-						outputfield.setAttribute("value", org.apache.commons.lang3.StringEscapeUtils.escapeXml11(val.toString()));
+						
+						
+						if (val.toString().length()>0)
+						{
+						    StringBuilder filtered = new StringBuilder(val.toString().length());
+						    for (int i = 0; i < val.toString().length(); i++) {
+						        char current = val.toString().charAt(i);
+						        
+						        if ((current >= 0x20) || (current == 0x13) || (current == 0x10)) {
+						            filtered.append(current);
+						        }
+						        else
+						        {
+						        		filtered.append("_");
+						        }
+
+						    }
+						    outputfield.setAttribute("value",filtered.toString());
+						}
+						else
+						{
+							outputfield.setAttribute("value",val.toString());
+						}
+						
 						outputdata.appendChild(outputfield);
 
 					}

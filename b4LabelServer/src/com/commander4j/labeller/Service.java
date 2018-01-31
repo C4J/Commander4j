@@ -75,14 +75,13 @@ public class Service
 
 	public static void main(String[] args)
 	{
-		//LabellerCMDFile.execFunctions("");
 		
 		LabellerUtility utils = new LabellerUtility();
 		System.out.println("Starting");
-		//Service service = new Service();
+
 		Server server = new Server();
 		server.start();
-		//service.start(args);
+
 		while (server.started==false)
 		{
 			utils.pause(100);
@@ -90,16 +89,13 @@ public class Service
 		}
 		System.out.println(".");
 		
-		//server.requestPrint("Labeller 1");
-		
-		utils.pause(150000);
-		
-		//server.requestPrint("Labeller 2");
-		server.stop(0);
 		while (server.isAlive())
 		{
 			utils.pause(100);
 		}
+		
+		server.stop(0);
+		
 		System.exit(0);
 	}
 }

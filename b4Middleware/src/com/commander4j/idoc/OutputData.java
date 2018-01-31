@@ -3,13 +3,6 @@ package com.commander4j.idoc;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * @author James Farrer
- *
- * Stores all the IDOC segments from the parsed IDOC file
- * and allows you to add and retrieve those segments
- *
- */
 public class OutputData {
 	
 	private ArrayList<DataSegment> DataSegments;

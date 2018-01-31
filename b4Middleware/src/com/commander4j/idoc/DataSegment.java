@@ -3,12 +3,6 @@ package com.commander4j.idoc;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author James Farrer
- *
- * Stores an IDOC segment and all its associated values
- *
- */
 public class DataSegment {
 	public String SegmentName;
 	public Map<String,String> Properties;

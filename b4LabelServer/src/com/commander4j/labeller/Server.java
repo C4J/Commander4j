@@ -11,6 +11,7 @@ public class Server extends Thread
 
 	LabellerUtility utils = new LabellerUtility();
 	public boolean started = false;
+	public boolean shutdown = false;
 	HashMap<String, Labeller> labellers = new HashMap<String, Labeller>();
 
 	private void requestStop()
@@ -24,6 +25,10 @@ public class Server extends Thread
 		System.out.println("Server - Run");
 		startupInterface();
 		started = true;
+		while ((shutdown==false) && (started==true))
+		{
+			utils.pause(100);
+		}
 
 	}
 
@@ -34,6 +39,7 @@ public class Server extends Thread
 		{
 			requestStop();
 			utils.pause(100);
+			started = false;
 
 		} catch (Exception ex)
 		{

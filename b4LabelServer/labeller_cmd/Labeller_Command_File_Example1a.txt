@@ -11,20 +11,8 @@
 Initialise        STRING_DELIMITER              "
                   STATUS                        "Initialising"
                   VARIABLE                      $variable_Plant="0933"
-                  VARIABLE                      $variable_Template="manual.llf"
-                  VARIABLE                      $variable_PROD_VARIANT="01"
-                  VARIABLE                      $variable_DESCRIPTION="Felix"
-                  VARIABLE                      $variable_MATERIAL="12345678"  
-                  VARIABLE                      $variable_BATCH_NUMBER="1234567890"  
-                  VARIABLE                      $variable_PROCESS_ORDER="18536231"  
-                  VARIABLE                      $variable_PROD_QUANTITY="1"  
-                  VARIABLE                      $variable_BASE_EAN="1234567890123"
-                  VARIABLE                      $variable_PROD_EAN="09876543210987"    
-                  VARIABLE                      $variable_BASE_QUANTITY="1"
-                  VARIABLE                      $variable_EXPIRY_DAY="01"   
-                  VARIABLE                      $variable_EXPIRY_MONTH="12"   
-                  VARIABLE                      $variable_EXPIRY_YEAR="2019"   
-                  USER_INPUTx                   "Enter Description :","Dog Food","$variable_DESCRIPTION" 
+                  VARIABLE                      $variable_Template="manual.llf" 
+                  USER_INPUTx                   "Enter Description :","Dog Food","$data_MATERIAL_DESCRIPTION" 
                   SEND_DELAY                    100
                   SEND_EOL                      "<CR>"
                   RESPONSE_EOL                  "<CR>"
@@ -78,40 +66,54 @@ Start             STATUS                        "Sending Data"
                   MESSAGE_INFO                  "Starting Test"
                   RETRIEVE_DATA
                   SEND                          "<STX>LOAD,/c0/$variable_Template"
-                  SEND                          "FD,44,$variable_PROD_VARIANT"
-                  SEND                          "FD,1,$variable_DESCRIPTION"
-                  SEND                          "FD,112,$variable_MATERIAL"
-                  SEND                          "FD,123,$variable_BATCH_NUMBER"
-                  SEND                          "FD,124,$variable_PROCESS_ORDER"
-                  SEND                          "FD,71,$variable_PROD_QUANTITY"
-                  SEND                          "FD,72,$variable_BASE_EAN"
-                  SEND                          "FD,62,$variable_PROD_EAN"
-                  SEND                          "FD,61,$variable_BASE_QUANTITY"
-                  SEND                          "FD,51,$variable_EXPIRY_DAY"
-                  SEND                          "FD,52,$variable_EXPIRY_MONTH"
-                  SEND                          "FD,53,$variable_EXPIRY_YEAR"
+                  SEND                          "FD,44,PADLEFT($data_PROD_VARIANT,2,0)"
+                  SEND                          "FD,1,$data_MATERIAL_DESCRIPTION"
+                  SEND                          "FD,112,$data_MATERIAL"
+                  SEND                          "FD,123,$data_BATCH_NUMBER"
+                  SEND                          "FD,124,$data_PROCESS_ORDER"
+                  SEND                          "FD,71,REPLACE($data_PROD_QUANTITY,.000,)"
+                  SEND                          "FD,72,PADLEFT($data_BASE_EAN,14,0)"
+                  SEND                          "FD,62,PADLEFT($data_PROD_EAN,14,0)"
+                  SEND                          "FD,61,REPLACE($data_BASE_QUANTITY,.000,)"
+                  SEND                          "FD,51,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,dd)"
+                  SEND                          "FD,52,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,MM)"
+                  SEND                          "FD,53,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,yyyy)"
                   SEND                          "FD,43,$variable_Plant"
-                  SEND                          "FD,10,$variable_PROD_VARIANT"                  
+                  SEND                          "FD,10,PADLEFT($data_PROD_VARIANT,2,0)"                 
                   SEND                          "<ETX><CR>"
                   
                   FILE_DEFINE                   "file1.txt"
                   FILE_WRITE                    "Hello World<CR>"
-                  FILE_WRITE                    $variable_DESCRIPTION                
-                  SEND_FILE_INTELHEX            "file2.txt"  
+                  FILE_WRITE                    $data_MATERIAL_DESCRIPTION                
+                  SEND_FILE_INTELHEX            "file2.txt"                    
+                                                     
+                  FILE_DEFINE                   "file3.txt"
+                  FILE_WRITE                    "FD,112,$data_MATERIAL<CR>"
+                  FILE_WRITE                    "LOAD,/c0/$variable_Template<CR>"
+                  FILE_WRITE                    "FD,44,PADLEFT($data_PROD_VARIANT,2,0)<CR>"
+                  FILE_WRITE                    "FD,1,$data_MATERIAL_DESCRIPTION<CR>"
+                  FILE_WRITE                    "FD,112,$data_MATERIAL<CR>"
+                  FILE_WRITE                    "FD,123,$data_BATCH_NUMBER<CR>"
+                  FILE_WRITE                    "FD,124,$data_PROCESS_ORDER<CR>"
+                  FILE_WRITE                    "FD,71,REPLACE($data_PROD_QUANTITY,.000,)<CR>"
+                  FILE_WRITE                    "FD,72,PADLEFT($data_BASE_EAN,14,0)<CR>"
+                  FILE_WRITE                    "FD,62,PADLEFT($data_PROD_EAN,14,0)<CR>"
+                  FILE_WRITE                    "FD,61,REPLACE($data_BASE_QUANTITY,.000,)<CR>"
+                  FILE_WRITE                    "FD,51,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,dd)<CR>"
+                  FILE_WRITE                    "FD,52,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,MM)<CR>"
+                  FILE_WRITE                    "FD,53,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,yyyy)<CR>"
+                  FILE_WRITE                    "FD,43,$variable_Plant<CR>"
+                  FILE_WRITE                    "FD,10,PADLEFT($data_PROD_VARIANT,2,0)<CR>"                   
+                  SEND_FILE_INTELHEX            "file3.txt"  
  
-                  DIR_REMOTE                    *.*
-                  EXIT                  
                   DIR_REMOTE                    *.lqf
-                  
+                  EXIT
+                                    
                   RECEIVE_FILE_INTELHEX         "*.pcx"               
-
-                  DIR_REMOTE                    "file2.txt"                  
-                  DELETE_FILE                   "file2.txt"
-                  DIR_REMOTE                    "file2.txt"
                             
                   DIR_REMOTE                    "kuehne.lqf"
                   
-                  BACKUP_REMOTE                 *.ldf
+                  BACKUP_REMOTE                 "*.ldf"
                                                 
                   KEEP_ALIVE_ON
                   GOTO                          Finish
