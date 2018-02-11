@@ -111,7 +111,7 @@ public class LabellerCMDFile
 	public static String execFunctions(String VAL)
 	{
 		String result = VAL;
-
+		Logger logger = org.apache.logging.log4j.LogManager.getLogger((LabellerCMDFile.class));
 		String func = "EXTRACT_DATE";
 
 		while (result.contains(func))
@@ -148,7 +148,7 @@ public class LabellerCMDFile
 
 				result = beforeFunction + outputDate + afterFunction;
 
-				System.out.println("EXTRACT_DATE: " + result);
+				logger.info("EXTRACT_DATE: " + result);
 
 			} catch (Exception ex)
 			{
@@ -211,7 +211,7 @@ public class LabellerCMDFile
 
 				result = beforeFunction + outputString + afterFunction;
 
-				System.out.println("REPLACE: " + result);
+				logger.info("REPLACE: " + result);
 
 			} catch (Exception ex)
 			{
@@ -279,7 +279,7 @@ public class LabellerCMDFile
 
 				result = beforeFunction + inputString + afterFunction;
 
-				System.out.println("PADLEFT : " + result);
+				logger.info("PADLEFT : " + result);
 
 			} catch (Exception ex)
 			{
@@ -327,7 +327,7 @@ public class LabellerCMDFile
 
 		filename = System.getProperty("user.dir") + java.io.File.separator + "labeller_cmd" + java.io.File.separator + filename;
 		System.out.println("");
-		System.out.println("[" + prop.getId() + "]" + " loadFile [" + filename + "]");
+		logger.info("[" + prop.getId() + "]" + " loadFile [" + filename + "]");
 		System.out.println("");
 		try
 		{
@@ -347,7 +347,7 @@ public class LabellerCMDFile
 
 						addLine(cmdLine);
 
-						System.out.println("[" + prop.getId() + "]" + " Line > " + cmdLine);
+						logger.info("[" + prop.getId() + "]" + " Line > " + cmdLine);
 					}
 				}
 			}

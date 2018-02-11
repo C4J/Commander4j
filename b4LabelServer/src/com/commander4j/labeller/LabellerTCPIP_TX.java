@@ -42,7 +42,7 @@ public class LabellerTCPIP_TX extends Thread
 	{
 		setStatus(status_IDLE);
 		
-		System.out.println("["+prop.getId()+"]"+" TX Status " + prop + " started.");
+		logger.info("["+prop.getId()+"]"+" TX Status " + prop + " started.");
 		try
 		{
 			outputStream = socket.getOutputStream();
@@ -57,12 +57,12 @@ public class LabellerTCPIP_TX extends Thread
 			setStatus(status_ERROR);
 		}
 
-		System.out.println("["+prop.getId()+"]"+" TX Status " + prop + " stopped.");
+		logger.info("["+prop.getId()+"]"+" TX Status " + prop + " stopped.");
 	}
 
 	public void shutdown()
 	{
-		System.out.println("["+prop.getId()+"]"+" TX Status " + prop + " Shutdown requested.");
+		logger.info("["+prop.getId()+"]"+" TX Status " + prop + " Shutdown requested.");
 		setStatus(status_SHUTDOWN_REQUESTED);
 		shutdown = true;
 		utils.pause(100);
@@ -72,6 +72,7 @@ public class LabellerTCPIP_TX extends Thread
 			outputStream.close();
 		} catch (Exception e)
 		{
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -106,7 +107,7 @@ public class LabellerTCPIP_TX extends Thread
 
 			} catch (IOException e)
 			{
-				System.out.println("["+prop.getId()+"]"+" TX ERROR-->{"+e.getMessage()+"}");
+				logger.info("["+prop.getId()+"]"+" TX ERROR-->{"+e.getMessage()+"}");
 				setStatus(status_ERROR);
 			}
 		}

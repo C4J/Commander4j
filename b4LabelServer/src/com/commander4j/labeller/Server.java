@@ -19,13 +19,13 @@ public class Server extends Thread
 
 	private void requestStop()
 	{
-		System.out.println("Server - requestStop");
+		logger.info("Server - requestStop");
 		stopAllLabellers();
 	}
 
 	public void run()
 	{
-		System.out.println("Server - Run");
+		logger.info("Server - Run");
 		startupInterface();
 		started = true;
 		while ((shutdown==false) && (started==true))
@@ -37,7 +37,7 @@ public class Server extends Thread
 
 	public int stop(int exitCode)
 	{
-		System.out.println("Server - stop");
+		logger.info("Server - stop");
 		try
 		{
 			requestStop();
@@ -53,7 +53,7 @@ public class Server extends Thread
 
 	public void addLabeller(LabellerProperties prop, String script)
 	{
-		System.out.println("Server - addLabeller [" + prop.getId() + "]");
+		logger.info("Server - addLabeller [" + prop.getId() + "]");
 		Labeller labeller = new Labeller(prop, script);
 		labeller.setName(prop.getId());
 		labellers.put(prop.getId(), labeller);
@@ -61,19 +61,19 @@ public class Server extends Thread
 
 	public void startLabeller(String id)
 	{
-		System.out.println("Server - startLabeller [" + id + "]");
+		logger.info("Server - startLabeller [" + id + "]");
 		labellers.get(id).start();
 		while (labellers.get(id).isAlive() == false)
 		{
-			System.out.println("Server - waiting for Labeller  [" + id + "] thread to start.");
+			logger.info("Server - waiting for Labeller  [" + id + "] thread to start.");
 			utils.pause(10);
 		}
-		System.out.println("Server - Labeller  [" + id + "] thread started.");
+		logger.info("Server - Labeller  [" + id + "] thread started.");
 	}
 
 	public void startAllLabellers()
 	{
-		System.out.println("Server - startAllLabellers");
+		logger.info("Server - startAllLabellers");
 		Iterator<Entry<String, Labeller>> it = labellers.entrySet().iterator();
 		while (it.hasNext())
 		{
@@ -84,7 +84,7 @@ public class Server extends Thread
 
 	public void stopLabeller(String id)
 	{
-		System.out.println("Server - stopLabeller - [" + id + "]");
+		logger.info("Server - stopLabeller - [" + id + "]");
 		if (labellers.get(id).isAlive())
 		{
 			labellers.get(id).shutdown();
@@ -98,7 +98,7 @@ public class Server extends Thread
 
 	public void stopAllLabellers()
 	{
-		System.out.println("Server - stopAllLabellers");
+		logger.info("Server - stopAllLabellers");
 		Iterator<Entry<String, Labeller>> it = labellers.entrySet().iterator();
 		while (it.hasNext())
 		{
@@ -119,7 +119,7 @@ public class Server extends Thread
 
 	public void startupInterface()
 	{
-		System.out.println("Server - startupInterface");
+		logger.info("Server - startupInterface");
 		loadLabellers();
 		startAllLabellers();
 	}
@@ -130,23 +130,23 @@ public class Server extends Thread
 		{
 			if (labellers.get(id).isAlive())
 			{
-				System.out.println("Server - requestPrint - ["+id+"]");
+				logger.info("Server - requestPrint - ["+id+"]");
 				labellers.get(id).requestPrint();
 			}
 			else
 			{
-				System.out.println("Server - requestPrint - Labeller Thread not running for ["+id+"]");
+				logger.error("Server - requestPrint - Labeller Thread not running for ["+id+"]");
 			}
 		}
 		else
 		{
-			System.out.println("Server - requestPrint - Labeller Thread not loaded for ["+id+"]");
+			logger.error("Server - requestPrint - Labeller Thread not loaded for ["+id+"]");
 		}
 	}
 
 	public void loadLabellers()
 	{
-		System.out.println("Server - loadLabellers");
+		logger.info("Server - loadLabellers");
 
 		JXMLDocument xmltest = new JXMLDocument("./xml/config/labellers.xml");
 
@@ -183,10 +183,10 @@ public class Server extends Thread
 
 	public static void main(String[] args)
 	{
+		Logger logger = org.apache.logging.log4j.LogManager.getLogger((Server.class));
+		logger.info("Application starting");
 
-		System.out.println("Application starting");
-
-		System.out.println("Server starting");
+		logger.info("Server starting");
 		System.out.println("");
 		LabellerUtility utils = new LabellerUtility();
 		Server server = new Server();
@@ -203,8 +203,8 @@ public class Server extends Thread
 
 		// consider adding loop here waiting for shutdown ****
 
-		System.out.println(server);
-		System.out.println(server.labellers);
+		logger.info(server);
+		logger.info(server.labellers);
 		server.labellers.get("Labeller 1").requestPrint();
 
 		while (server.labellers.get("Labeller 1").requestRunning() == true)
@@ -215,7 +215,7 @@ public class Server extends Thread
 		server.requestStop();
 
 		System.out.println("");
-		System.out.println("Server finished.");
+		logger.info("Server finished.");
 		System.exit(0);
 	}
 
