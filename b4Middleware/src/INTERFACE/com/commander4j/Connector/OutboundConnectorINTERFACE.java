@@ -6,6 +6,7 @@ public interface OutboundConnectorINTERFACE
 {
 
 	public final static String Connector_ASCII = "ASCII";
+	public final static String Connector_EMAIL = "EMAIL";	
 	public final static String Connector_CSV = "CSV";
 	public final static String Connector_IDOC = "IDOC";
 	public final static String Connector_XML = "XML";

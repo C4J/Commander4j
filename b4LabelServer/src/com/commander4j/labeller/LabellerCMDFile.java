@@ -18,12 +18,14 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;
 
 public class LabellerCMDFile
 {
 
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((LabellerCMDFile.class));
 	public HashMap<String, String> variables = new HashMap<String, String>();
 	public HashMap<String, String> fileData = new HashMap<String, String>();
 	public ArrayList<String> labelIndex = new ArrayList<String>();

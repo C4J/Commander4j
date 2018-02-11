@@ -198,6 +198,9 @@ public class MiddlewareConfig
 					String optionDelimeter = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/optionDelimeter").trim();
 					String csvOptions = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/csvOptions").trim();
 					String outputFileExtension = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/outputFileExtension").trim();
+					String emailSubject = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/subject").trim();
+					String emailMessage = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/message").trim();
+					String emailListID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/emailListID").trim();
 
 					OutboundInterface outboundInterface = new OutboundInterface(map, outputDescription);
 					outboundInterface.setId(outputId);
@@ -210,6 +213,9 @@ public class MiddlewareConfig
 					outboundInterface.setCSVOptions(csvOptions);
 					outboundInterface.setOptionDelimeter(optionDelimeter);
 					outboundInterface.setOutputFileExtension(outputFileExtension);
+					outboundInterface.setEmailSubject(emailSubject);
+					outboundInterface.setEmailMessage(emailMessage);
+					outboundInterface.setEmailListID(emailListID);
 
 					if (fio.isValidDirectory(outputPath) == false)
 					{
@@ -218,6 +224,7 @@ public class MiddlewareConfig
 
 					logger.debug("Loading output connector : (" + outputId + ") " + outputDescription);
 
+					
 					map.addOutboundInterface(outboundInterface);
 
 					outputSeq++;

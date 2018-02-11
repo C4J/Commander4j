@@ -51,7 +51,7 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT
 				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder builder = factory.newDocumentBuilder();
 
-				data = builder.newDocument();
+				data = builder.newDocument(); 
 
 				Element message = (Element) data.createElement("data");
 				message.setAttribute("type", Connector_CSV);

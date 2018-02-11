@@ -6,8 +6,11 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import org.apache.logging.log4j.Logger;
+
 public class LabellerTCPIP_RX extends Thread
 {
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((LabellerTCPIP_RX.class));
 	private LabellerProperties prop;
 	public volatile boolean shutdown = false;
 	private BufferedInputStream bufferedInputStream;

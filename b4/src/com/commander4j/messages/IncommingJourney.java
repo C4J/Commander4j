@@ -90,8 +90,8 @@ public class IncommingJourney
 		Boolean result = false;
 
 		JDBJourney journey = new JDBJourney(getHostID(), getSessionID());
-		JDBDespatch despatch  = new JDBDespatch(getHostID(), getSessionID());
-		
+		JDBDespatch despatch = new JDBDespatch(getHostID(), getSessionID());
+
 		String ref = "12345";
 		String action = "";
 		String timestampString = "";
@@ -107,19 +107,19 @@ public class IncommingJourney
 		int errors = 0;
 
 		setErrorMessage("");
-		
+
 		while (ref.length() > 0)
 
 		{
 			ref = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/ref").trim());
 			action = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/action").trim()).toLowerCase();
-		    timestampString = gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/timeslot").trim();			
-			timeslot = JUtility.getTimeStampFromISOString(timestampString);	
+			timestampString = gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/timeslot").trim();
+			timeslot = JUtility.getTimeStampFromISOString(timestampString);
 			location_to = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/destination").trim());
 			loadType = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/loadType").trim());
 			loadTypeDesc = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/loadTypeDesc").trim());
 			haulier = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/journeyDefinition[" + String.valueOf(occur) + "]/haulier").trim());
-			
+
 			if (ref.length() > 0)
 			{
 
@@ -138,15 +138,14 @@ public class IncommingJourney
 						if (result)
 						{
 							created++;
-						}
-						else
+						} else
 						{
 							setErrorMessage(journey.getErrorMessage());
 							errors++;
 						}
 					} else
 					{
-						setErrorMessage("Cannot create Journey ["+ref+"] - already exists.");
+						setErrorMessage("Cannot create Journey [" + ref + "] - already exists.");
 						errors++;
 					}
 				}
@@ -161,8 +160,7 @@ public class IncommingJourney
 							journey.delete();
 							result = true;
 							deleted++;
-						}
-						else
+						} else
 						{
 							if (despatch.getDespatchProperties(journey.getDespatchNo()))
 							{
@@ -170,7 +168,7 @@ public class IncommingJourney
 								{
 									despatch.setJourneyRef("");
 									despatch.update();
-									
+
 									journey.setJourneyRef(ref);
 									journey.delete();
 									result = true;
@@ -178,10 +176,9 @@ public class IncommingJourney
 								}
 							}
 						}
-					}
-					else
+					} else
 					{
-						setErrorMessage("Cannot delete Journey ["+ref+"] - not found.");
+						setErrorMessage("Cannot delete Journey [" + ref + "] - not found.");
 						errors++;
 					}
 				}
@@ -202,14 +199,12 @@ public class IncommingJourney
 							if (result)
 							{
 								updated++;
-							}
-							else
+							} else
 							{
 								setErrorMessage(journey.getErrorMessage());
 								errors++;
 							}
-						}
-						else
+						} else
 						{
 							if (despatch.getDespatchProperties(journey.getDespatchNo()))
 							{
@@ -227,19 +222,24 @@ public class IncommingJourney
 								}
 							}
 						}
-					}
-					else
+					} else
 					{
-						setErrorMessage("Cannot update Journey ["+ref+"] - not found.");
+						setErrorMessage("Cannot update Journey [" + ref + "] - not found.");
 						errors++;
 					}
 				}
-				
+
 				occur++;
 			}
 		}
+
+		if (errors == 0)
+		{
+			result = true;
+		}
+
 		String reason = getErrorMessage();
-		setErrorMessage("Journey(s) : " + String.valueOf(created) + " created, " + String.valueOf(updated) + " updated, " +String.valueOf(deleted) + " deleted, " + String.valueOf(errors) + " errors. ["+reason+"]");
+		setErrorMessage("Journey(s) : " + String.valueOf(created) + " created, " + String.valueOf(updated) + " updated, " + String.valueOf(deleted) + " deleted, " + String.valueOf(errors) + " errors. [" + reason + "]");
 
 		journey = null;
 		return result;

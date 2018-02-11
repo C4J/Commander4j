@@ -84,13 +84,19 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 		setFilename(filename);
 		if (connectorLoad(inint.getInputPath() + File.separator + filename))
 		{
-			result = true;
+			if (connectorDelete(filename))
+			{
+				result = true;
+			}
 			
 		}
-		connectorDelete(filename);
+		
+		if (result==false)
+		{
+			com.commander4j.util.JWait.milliSec(1000);
+		}
 
 		return result;
-
 	}
 
 	private void setFilename(String filename)

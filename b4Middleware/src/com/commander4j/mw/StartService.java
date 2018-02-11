@@ -1,13 +1,15 @@
 package com.commander4j.mw;
 
+import org.apache.logging.log4j.Logger;
+
 import com.commander4j.sys.Common;
 import com.commander4j.util.JWait;
 
 public class StartService
 {
 
-	// StartMW smw= new StartMW();
 	public Boolean shutdown = false;
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((StartService.class));
 
 	public StartService()
 	{
@@ -18,9 +20,6 @@ public class StartService
 		Integer result = 0;
 		AddShutdownHookSample sample = new AddShutdownHookSample();
 		sample.attachShutDownHook();
-
-		//Common.sgui = new StartGUI();
-		//Common.sgui.setVisible(false);
 
 		if (Common.smw.StartMiddleware())
 		{
@@ -62,14 +61,18 @@ public class StartService
 				@Override
 				public void run()
 				{
-					System.out.println("Shutdown detected - requesting threads stop.");
+					logger.info("Shutdown detected - requesting threads stop.");
 
-					System.out.println("Waiting for threads to stop.");
+					logger.info("Waiting for threads to stop.");
+					
 					Common.smw.StopMiddleware();
-					System.out.println("All threads have stopped.");
+					
+					logger.info("All threads have stopped.");;
 				}
 			});
-			System.out.println("Shut Down Hook Active.");
+			
+			logger.info("Shut Down Hook Active.");
+
 		}
 	}
 }

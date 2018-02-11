@@ -1,8 +1,10 @@
 package com.commander4j.Connector.Outbound;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
@@ -43,7 +45,11 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT
 				{
 					filename = filename + "." + getType().toLowerCase();
 				}
-				FOS = new FileOutputStream(filename);
+
+				String tempFilename = filename + ".tmp";
+				String finalFilename = filename;
+
+				FOS = new FileOutputStream(tempFilename);
 				LSO.setByteStream((OutputStream) FOS);
 
 				LSSerializer LSS = DOMiLS.createLSSerializer();
@@ -51,13 +57,16 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT
 				LSS.write(getData(), LSO);
 
 				FOS.close();
+
+				FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
+
 				result = true;
 			}
 		} catch (Exception ex)
 		{
 			result = false;
 			logger.error(ex.getMessage());
-			Common.emailqueue.addToQueue("Error", "Error Writing File ["+filename+"]", ex.getMessage()+"\n\n", "");
+			Common.emailqueue.addToQueue("Error", "Error Writing File [" + filename + "]", ex.getMessage() + "\n\n", "");
 
 		}
 

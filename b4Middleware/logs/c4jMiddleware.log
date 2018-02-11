@@ -1,0 +1,205 @@
+2018-02-11 08:52:21,763 DEBUG c.c.m.StartMain [main] *************************
+2018-02-11 08:52:21,766 DEBUG c.c.m.StartMain [main] **     STARTING        **
+2018-02-11 08:52:21,766 DEBUG c.c.m.StartMain [main] *************************
+2018-02-11 08:52:21,771 DEBUG c.c.u.JXMLDocument [main] setDocument :/Users/dave/Commander4j/workspace.development/b4Middleware/xml/config/config.xml
+2018-02-11 08:52:21,816 DEBUG c.c.s.MiddlewareConfig [main] Config Name :c4jMiddleware Example
+2018-02-11 08:52:21,816 DEBUG c.c.s.MiddlewareConfig [main] Log Path :/Users/dave/Commander4j/workspace.development/b4Middleware/interface/log
+2018-02-11 08:52:21,822 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map01) Rockwell Material Master to C4J Material Master
+2018-02-11 08:52:21,933 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read Rockwell Material Master Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:21,963 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write Commander4j Material Master
+2018-02-11 08:52:21,966 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map02) S95 Process Order to C4J Process Order
+2018-02-11 08:52:21,969 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read SAP S95 CR XML Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:21,974 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write Commander4j Process Order XML
+2018-02-11 08:52:21,976 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map03) Synchro CSV
+2018-02-11 08:52:21,980 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read CSV Example Type CSV Mask [Ljava.lang.String;@fd07cbb
+2018-02-11 08:52:21,984 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write XML Example
+2018-02-11 08:52:21,985 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map04) S95 Batch Status Change to C4J Batch Status Change
+2018-02-11 08:52:21,989 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read S95 Batch Status Change Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,014 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write Commander4j Batch Status Change
+2018-02-11 08:52:22,016 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map05) S95 Transfer Schedule to C4J Pallet Status Change
+2018-02-11 08:52:22,018 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read SAP S95 TRANSFER ORDER XML Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,022 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write Commander4j Pallet Status Change XML
+2018-02-11 08:52:22,024 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map06) S95 Process Order Status Change to C4J Process Order Status Change
+2018-02-11 08:52:22,026 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read SAP S95 CRST XML Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,030 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write Commander4j Process Order Status Change XML
+2018-02-11 08:52:22,031 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map07) C4J Production Declaration to S95 Production Declaration
+2018-02-11 08:52:22,034 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read C4J Prod Dec XML Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,038 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write S95 Prod Dec XML
+2018-02-11 08:52:22,041 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map08) ASCII Flat File Fixed Column to XML
+2018-02-11 08:52:22,044 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read ASCII Flat File Type ASCII Mask [Ljava.lang.String;@3571b748
+2018-02-11 08:52:22,048 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write XML
+2018-02-11 08:52:22,050 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map09) Tropos Material XML
+2018-02-11 08:52:22,053 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,057 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write XML
+2018-02-11 08:52:22,059 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map10) Tropos Works Order XML
+2018-02-11 08:52:22,061 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,066 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write XML
+2018-02-11 08:52:22,067 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map11) C4J Production Declaration to TROPOS Goods Receipt
+2018-02-11 08:52:22,069 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,073 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write CSV
+2018-02-11 08:52:22,075 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map12) C4J Production Declaration to ASCII Flat File
+2018-02-11 08:52:22,078 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,081 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write ASCII File
+2018-02-11 08:52:22,083 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map13) C4J Production Dec to ASCII and CSV Files
+2018-02-11 08:52:22,085 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,088 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write ASCII File
+2018-02-11 08:52:22,090 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out2) Write CSV
+2018-02-11 08:52:22,092 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map14) W-ware FFMW Material to C4J MM
+2018-02-11 08:52:22,094 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read FFMW Material Master Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,098 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write Commander4j Material
+2018-02-11 08:52:22,099 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map15) C4J Equipment Tracking to ASCII Flat File
+2018-02-11 08:52:22,101 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,104 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write ASCII File
+2018-02-11 08:52:22,105 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map16) Split inbound XML into 2 outbounds
+2018-02-11 08:52:22,107 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,110 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write XML Copy 1
+2018-02-11 08:52:22,113 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out2) Write XML Copy 2
+2018-02-11 08:52:22,114 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map17) Excel Spreadsheet to CSV
+2018-02-11 08:52:22,125 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read Excel File Type XLS Mask [Ljava.lang.String;@2f54a33d
+2018-02-11 08:52:22,128 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write CSV File
+2018-02-11 08:52:22,130 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map18) SAP Idoc Material Master to C4J XML
+2018-02-11 08:52:22,132 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read IDOC Type IDOC Mask [Ljava.lang.String;@1018bde2
+2018-02-11 08:52:22,137 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write XML File
+2018-02-11 08:52:22,138 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map19) Pre Advice XML to Excel Spreadsheet
+2018-02-11 08:52:22,141 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,144 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write Excel XML File
+2018-02-11 08:52:22,145 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map20) Pre Advice XML to ASCII File
+2018-02-11 08:52:22,148 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read XML File Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,151 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write ASCII File
+2018-02-11 08:52:22,152 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map21) Email Send
+2018-02-11 08:52:22,155 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read File Type EMAIL Mask null
+2018-02-11 08:52:22,157 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write File
+2018-02-11 08:52:22,159 DEBUG c.c.s.MiddlewareConfig [main] Loading map              : (map22) Atlas XML filtered to C4J XML
+2018-02-11 08:52:22,161 DEBUG c.c.s.MiddlewareConfig [main] Loading input connector  : (in1) Read Atlas XML Type XML Mask [Ljava.lang.String;@32910148
+2018-02-11 08:52:22,164 DEBUG c.c.s.MiddlewareConfig [main] Loading output connector : (out1) Write Commander4j XML
+2018-02-11 08:52:22,164 DEBUG c.c.m.StartMain [main] *************************
+2018-02-11 08:52:22,164 DEBUG c.c.m.StartMain [main] **     MAPS LOADED     **
+2018-02-11 08:52:22,165 DEBUG c.c.m.StartMain [main] *************************
+2018-02-11 08:52:22,166 DEBUG c.c.t.LogArchiveThread [Log Archiver] LogArchiveThread started.
+2018-02-11 08:52:22,166 DEBUG c.c.t.StatusThread [Status Thread] StatusThread started.
+2018-02-11 08:52:22,166 DEBUG c.c.s.MiddlewareConfig [main] startMaps
+2018-02-11 08:52:22,166 DEBUG c.c.I.M.Map [main] Map [map01] Description [Rockwell Material Master to C4J Material Master] setEnabled true
+2018-02-11 08:52:22,167 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,166 DEBUG c.c.t.EmailThread [Email Thread] EmailThread started.
+2018-02-11 08:52:22,167 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write Commander4j Material Master]
+2018-02-11 08:52:22,167 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,167 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read Rockwell Material Master]
+2018-02-11 08:52:22,167 DEBUG c.c.I.M.Map [main] Map [map02] Description [S95 Process Order to C4J Process Order] setEnabled true
+2018-02-11 08:52:22,167 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,167 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write Commander4j Process Order XML]
+2018-02-11 08:52:22,167 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,167 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read SAP S95 CR XML]
+2018-02-11 08:52:22,167 DEBUG c.c.I.M.Map [main] Map [map03] Description [Synchro CSV] setEnabled true
+2018-02-11 08:52:22,167 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,167 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write XML Example]
+2018-02-11 08:52:22,168 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,168 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read CSV Example]
+2018-02-11 08:52:22,168 DEBUG c.c.I.M.Map [main] Map [map04] Description [S95 Batch Status Change to C4J Batch Status Change] setEnabled true
+2018-02-11 08:52:22,168 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,168 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write Commander4j Batch Status Change]
+2018-02-11 08:52:22,168 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,168 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read S95 Batch Status Change]
+2018-02-11 08:52:22,168 DEBUG c.c.I.M.Map [main] Map [map05] Description [S95 Transfer Schedule to C4J Pallet Status Change] setEnabled true
+2018-02-11 08:52:22,168 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,168 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write Commander4j Pallet Status Change XML]
+2018-02-11 08:52:22,168 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,168 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read SAP S95 TRANSFER ORDER XML]
+2018-02-11 08:52:22,168 DEBUG c.c.I.M.Map [main] Map [map06] Description [S95 Process Order Status Change to C4J Process Order Status Change] setEnabled true
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write Commander4j Process Order Status Change XML]
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read SAP S95 CRST XML]
+2018-02-11 08:52:22,169 DEBUG c.c.I.M.Map [main] Map [map07] Description [C4J Production Declaration to S95 Production Declaration] setEnabled true
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write S95 Prod Dec XML]
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read C4J Prod Dec XML]
+2018-02-11 08:52:22,169 DEBUG c.c.I.M.Map [main] Map [map08] Description [ASCII Flat File Fixed Column to XML] setEnabled true
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write XML]
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,169 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read ASCII Flat File]
+2018-02-11 08:52:22,170 DEBUG c.c.I.M.Map [main] Map [map09] Description [Tropos Material XML] setEnabled true
+2018-02-11 08:52:22,170 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,170 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write XML]
+2018-02-11 08:52:22,170 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,170 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read XML File]
+2018-02-11 08:52:22,170 DEBUG c.c.I.M.Map [main] Map [map10] Description [Tropos Works Order XML] setEnabled true
+2018-02-11 08:52:22,170 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,170 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write XML]
+2018-02-11 08:52:22,170 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,170 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read XML File]
+2018-02-11 08:52:22,170 DEBUG c.c.I.M.Map [main] Map [map11] Description [C4J Production Declaration to TROPOS Goods Receipt] setEnabled true
+2018-02-11 08:52:22,170 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,170 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write CSV]
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read XML File]
+2018-02-11 08:52:22,171 DEBUG c.c.I.M.Map [main] Map [map12] Description [C4J Production Declaration to ASCII Flat File] setEnabled true
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write ASCII File]
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read XML File]
+2018-02-11 08:52:22,171 DEBUG c.c.I.M.Map [main] Map [map13] Description [C4J Production Dec to ASCII and CSV Files] setEnabled true
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write ASCII File]
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write CSV]
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,171 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read XML File]
+2018-02-11 08:52:22,172 DEBUG c.c.I.M.Map [main] Map [map14] Description [W-ware FFMW Material to C4J MM] setEnabled true
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write Commander4j Material]
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read FFMW Material Master]
+2018-02-11 08:52:22,172 DEBUG c.c.I.M.Map [main] Map [map15] Description [C4J Equipment Tracking to ASCII Flat File] setEnabled true
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write ASCII File]
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read XML File]
+2018-02-11 08:52:22,172 DEBUG c.c.I.M.Map [main] Map [map16] Description [Split inbound XML into 2 outbounds] setEnabled true
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write XML Copy 1]
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write XML Copy 2]
+2018-02-11 08:52:22,172 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read XML File]
+2018-02-11 08:52:22,173 DEBUG c.c.I.M.Map [main] Map [map17] Description [Excel Spreadsheet to CSV] setEnabled true
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write CSV File]
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read Excel File]
+2018-02-11 08:52:22,173 DEBUG c.c.I.M.Map [main] Map [map18] Description [SAP Idoc Material Master to C4J XML] setEnabled true
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write XML File]
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read IDOC]
+2018-02-11 08:52:22,173 DEBUG c.c.I.M.Map [main] Map [map19] Description [Pre Advice XML to Excel Spreadsheet] setEnabled true
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,173 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write Excel XML File]
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read XML File]
+2018-02-11 08:52:22,174 DEBUG c.c.I.M.Map [main] Map [map20] Description [Pre Advice XML to ASCII File] setEnabled true
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write ASCII File]
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read XML File]
+2018-02-11 08:52:22,174 DEBUG c.c.I.M.Map [main] Map [map21] Description [Email Send] setEnabled true
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write File]
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read File]
+2018-02-11 08:52:22,174 DEBUG c.c.I.M.Map [main] Map [map22] Description [Atlas XML filtered to C4J XML] setEnabled true
+2018-02-11 08:52:22,174 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,175 DEBUG A.c.c.I.OutboundInterfaceABSTRACT [main] Start Requested : [Write Commander4j XML]
+2018-02-11 08:52:22,175 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] setEnabled true
+2018-02-11 08:52:22,175 DEBUG A.c.c.I.InboundInterfaceABSTRACT [main] Start Requested : [Read Atlas XML]
+2018-02-11 08:52:22,175 DEBUG c.c.m.StartMain [main] *************************
+2018-02-11 08:52:22,175 DEBUG c.c.m.StartMain [main] **      STARTED        **
+2018-02-11 08:52:22,175 DEBUG c.c.m.StartMain [main] *************************
+2018-02-11 08:52:23,173 DEBUG c.c.u.JArchive [Log Archiver] Removing log file [.DS_Store, Date: Wed Feb 07 14:27:11 GMT 2018] from [log]
+2018-02-11 08:52:35,980 INFO c.c.m.StartService [Thread-1] Shutdown detected - requesting threads stop.
+2018-02-11 08:52:35,981 INFO c.c.m.StartService [Thread-1] Waiting for threads to stop.
+2018-02-11 08:52:35,981 DEBUG c.c.m.StartMain [Thread-1] *************************
+2018-02-11 08:52:35,981 DEBUG c.c.m.StartMain [Thread-1] **      STOPPING       **
+2018-02-11 08:52:35,982 DEBUG c.c.m.StartMain [Thread-1] *************************
+2018-02-11 08:52:35,982 DEBUG c.c.m.StartMain [Thread-1] Shutting down Log File Archiver

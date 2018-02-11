@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 
+import org.apache.logging.log4j.Logger;
+
 public class LabellerTCPIP_TX extends Thread
 {
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((LabellerTCPIP_TX.class));
 	private LabellerProperties prop;
 	private OutputStream outputStream;
 	public volatile boolean shutdown = false;

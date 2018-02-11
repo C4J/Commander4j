@@ -61,6 +61,9 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
+
 /*import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.LoggerContext;*/
 
@@ -70,7 +73,20 @@ public class JUtility {
 	
 	public static int field_timestamp = 20;
 	
+	public static void initLogging(String filename)
+	{
+		if (filename.isEmpty())
+		{
+			filename = "xml" + File.separator + "config" + File.separator + "log4j2.xml";
+		}
 
+		LoggerContext context = (org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false);
+		File file = new File(filename);
+
+		// this will force a reconfiguration
+		context.setConfigLocation(file.toURI());
+
+	}
 	
 	public static String yesNoToTrueFalse(String input)
 	{

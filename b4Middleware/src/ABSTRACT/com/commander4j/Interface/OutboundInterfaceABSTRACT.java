@@ -13,6 +13,7 @@ import INTERFACE.com.commander4j.Interface.OutboundInterfaceINTERFACE;
 import com.commander4j.Connector.Outbound.OutboundConnectorASCII;
 import com.commander4j.Connector.Outbound.OutboundConnectorCSV;
 import com.commander4j.Connector.Outbound.OutboundConnectorDB;
+import com.commander4j.Connector.Outbound.OutboundConnectorEmail;
 import com.commander4j.Connector.Outbound.OutboundConnectorIDOC;
 import com.commander4j.Connector.Outbound.OutboundConnectorXML;
 import com.commander4j.Interface.Mapping.Map;
@@ -41,6 +42,9 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	private String csvOptions = "";
 	private String delimeter = "";
 	private String outputFileExtension = "";
+	private String emailSubject="";
+	private String emailMessage="";
+	private String emailListID = "";
 
 	public void setDescription(String description)
 	{
@@ -186,6 +190,10 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 			connector = new OutboundConnectorCSV((OutboundInterface) this);
 			setOutputFileExtension("csv");
 			break;
+		case OutboundConnectorINTERFACE.Connector_EMAIL:
+			connector = new OutboundConnectorEmail((OutboundInterface) this);
+			setOutputFileExtension("");
+			break;
 		case OutboundConnectorINTERFACE.Connector_DB:
 			connector = new OutboundConnectorDB((OutboundInterface) this);
 			setOutputFileExtension("db");
@@ -204,6 +212,36 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 	}
 
+	public void  setEmailSubject(String subject)
+	{
+		this.emailSubject = subject;
+	}
+
+	public void  setEmailMessage(String message)
+	{
+		this.emailMessage = message;
+	}
+	
+	public void  setEmailListID(String address)
+	{
+		this.emailListID = address;
+	}
+	
+	public String getEmailSubject()
+	{
+		return this.emailSubject;
+	}
+	
+	public String getEmailMessage()
+	{
+		return this.emailMessage;
+	}
+	
+	public String getEmailListID()
+	{
+		return this.emailListID;
+	}
+	
 	public String getXSLTPath()
 	{
 		if (xsltPath.equals(""))

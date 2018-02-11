@@ -353,6 +353,37 @@
             <XSLT/>
         </output>
     </map>
+    
+    <map id="map21" enabed="Y" description="Email Send">
+        <input id="in1" description="Read File">
+            <type>EMAIL</type>
+            <mask/>
+            <path>./interface/input/21 (Email Send)</path>
+            <pollingInterval>1000</pollingInterval>
+        </input>
+        <output id="out1" enabed="Y" description="Write File">
+            <path>./interface/output/21 (Email Send)</path>
+            <type>EMAIL</type>
+            <subject>Test Email</subject>
+            <message>Open Attached using Excel</message>
+            <emailListID>Excel</emailListID>
+        </output>
+    </map>
 
+    <map id="map22" enabed="Y" description="Atlas XML filtered to C4J XML">
+        <input id="in1" description="Read Atlas XML">
+            <type>XML</type>
+            <path>./interface/input/22 (Atlas Journey XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>ATLAS_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write Commander4j XML">
+            <path>./interface/output/22 (C4J Journey XML)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
 
 </config>

@@ -11,6 +11,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;
 import com.opencsv.CSVReader;
@@ -32,6 +33,7 @@ public class Labeller extends Thread
 	private int waitRetries = 20;
 	private int waitDelay = 15;
 	public volatile ConcurrentLinkedQueue<LabellerFile> directory = new ConcurrentLinkedQueue<LabellerFile>();
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((Labeller.class));
 
 	public void requestPrint()
 	{

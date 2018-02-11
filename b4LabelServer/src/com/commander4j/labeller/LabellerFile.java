@@ -2,8 +2,11 @@ package com.commander4j.labeller;
 
 import java.sql.Timestamp;
 
+import org.apache.logging.log4j.Logger;
+
 public class LabellerFile
 {
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((LabellerFile.class));
 	private volatile String filename;
 	private volatile Long size;
 	private volatile Timestamp datetime;

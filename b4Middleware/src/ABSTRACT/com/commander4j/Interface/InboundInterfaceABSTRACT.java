@@ -12,6 +12,7 @@ import com.commander4j.Connector.Inbound.InboundConnectorCSV;
 import com.commander4j.Connector.Inbound.InboundConnectorDB;
 import com.commander4j.Connector.Inbound.InboundConnectorExcel;
 import com.commander4j.Connector.Inbound.InboundConnectorIDOC;
+import com.commander4j.Connector.Inbound.InboundConnectorEmail;
 import com.commander4j.Connector.Inbound.InboundConnectorXML;
 import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.Interface.Mapping.Map;
@@ -113,7 +114,14 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 
 	public String[] getInputFileMask()
 	{
+		if (this.inputFileMask.length==0)
+		{
+			return null;
+		}
+		else
+		{
 		return this.inputFileMask;
+		}
 	}
 
 	public void setInputFilename(String filename)
@@ -213,6 +221,10 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 		case InboundConnectorINTERFACE.Connector_CSV:
 			connector = new InboundConnectorCSV((InboundInterface) this);
 			setInputFileMask(InboundConnectorINTERFACE.Mask_CSV);
+			break;
+		case InboundConnectorINTERFACE.Connector_EMAIL:
+			connector = new InboundConnectorEmail((InboundInterface) this);
+			setInputFileMask(InboundConnectorINTERFACE.Mask_EMAIL);
 			break;
 		case InboundConnectorINTERFACE.Connector_Excel:
 			connector = new InboundConnectorExcel((InboundInterface) this);

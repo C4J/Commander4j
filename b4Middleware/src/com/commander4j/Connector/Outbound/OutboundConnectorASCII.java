@@ -1,10 +1,12 @@
 package com.commander4j.Connector.Outbound;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.util.LinkedList;
 
 import javax.xml.transform.TransformerException;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.Interface.Outbound.OutboundInterface;
@@ -95,7 +97,11 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 			{
 				try
 				{
-					FileWriter fw = new FileWriter(filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase());
+					filename = filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase();
+					String tempFilename = filename + ".tmp";
+					String finalFilename = filename;					
+					
+					FileWriter fw = new FileWriter(tempFilename);
 
 					// Read new row value from XML
 
@@ -150,6 +156,9 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 
 					// Close output file
 					fw.close();
+					
+					FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
+					
 					result=true;
 
 				} catch (Exception ex)

@@ -82,7 +82,7 @@ public class InboundMessageCollectionThread extends Thread
 			for (int i = 0; i < chld.length; i++)
 			{
 				fileName = chld[i].getName();
-				if (fileName.indexOf(".xml") > 0)
+				if (fileName.toLowerCase().endsWith(".xml"))
 				{
 					Result.addLast(fileName);
 				}

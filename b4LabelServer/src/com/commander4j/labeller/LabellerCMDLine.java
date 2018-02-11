@@ -1,5 +1,7 @@
 package com.commander4j.labeller;
 
+import org.apache.logging.log4j.Logger;
+
 import com.commander4j.util.JUtility;
 
 public class LabellerCMDLine
@@ -7,6 +9,7 @@ public class LabellerCMDLine
 	public String label = "";
 	public String command = "";
 	public String val = "";
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((LabellerCMDLine.class));
 	
 	public String toString()
 	{

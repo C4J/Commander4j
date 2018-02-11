@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import org.apache.logging.log4j.Logger;
+
 import com.commander4j.xml.JXMLDocument;
 
 public class Server extends Thread
 {
 
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((Server.class));
 	LabellerUtility utils = new LabellerUtility();
 	public boolean started = false;
 	public boolean shutdown = false;
@@ -52,8 +55,8 @@ public class Server extends Thread
 	{
 		System.out.println("Server - addLabeller [" + prop.getId() + "]");
 		Labeller labeller = new Labeller(prop, script);
+		labeller.setName(prop.getId());
 		labellers.put(prop.getId(), labeller);
-		// labellers.get(prop.getId()).start();
 	}
 
 	public void startLabeller(String id)

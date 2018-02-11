@@ -5,9 +5,13 @@ import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
+import org.apache.logging.log4j.Logger;
+
 
 public class LabellerUtility {
     
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((LabellerUtility.class));
+	
 	public Timestamp getTimeStampFromlogopakDIRString(String date,String time)
 	{
 		Timestamp result;

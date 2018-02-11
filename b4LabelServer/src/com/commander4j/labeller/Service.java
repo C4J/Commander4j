@@ -1,11 +1,16 @@
 package com.commander4j.labeller;
 
+import org.apache.logging.log4j.Logger;
+
+import com.commander4j.util.JUtility;
+
 public class Service
 {
 
 	public Server server;
 	LabellerUtility utils = new LabellerUtility();
 	public Boolean shutdown = false;
+	Logger logger = org.apache.logging.log4j.LogManager.getLogger((Service.class));
 
 	public Service()
 	{
@@ -18,7 +23,7 @@ public class Service
 		AddShutdownHookSample shutdownHook = new AddShutdownHookSample();
 		shutdownHook.attachShutDownHook();
 
-		System.out.println("Service - start");
+		logger.info("Service - start");
 
 		server = new Server();
 
@@ -36,7 +41,8 @@ public class Service
 
 	public int stop(int exitCode)
 	{
-		System.out.println("Service - stop");
+		logger.info("Service - stop");
+
 		try
 		{
 			server.stop(0);
@@ -58,18 +64,22 @@ public class Service
 				@Override
 				public void run()
 				{
-					System.out.println("Shutdown detected - requesting threads stop.");
+					logger.info("Shutdown detected - requesting threads stop.");
 
 					server.stop(0);
-					System.out.println("Waiting for threads to stop.");
+					
+					logger.info("Waiting for threads to stop.");
+					
 					while (server.isAlive())
 					{
 						utils.pause(100);
 					}
-					System.out.println("All threads have stopped.");
+					
+					logger.info("Service - stop");
 				}
 			});
-			System.out.println("Shut Down Hook Active.");
+			
+			logger.info("Shut Down Hook Active.");
 		}
 	}
 
@@ -77,7 +87,11 @@ public class Service
 	{
 		
 		LabellerUtility utils = new LabellerUtility();
-		System.out.println("Starting");
+		
+		JUtility.initLogging("");
+		Logger logger = org.apache.logging.log4j.LogManager.getLogger((Service.class));
+		
+		logger.info("Starting");
 
 		Server server = new Server();
 		server.start();
