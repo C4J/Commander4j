@@ -385,5 +385,21 @@
             <XSLT/>
         </output>
     </map>
+    
+    <map id="map22" enabed="Y" description="Atlas XML filtered to C4J XML">
+        <input id="in1" description="Read Atlas XML">
+            <type>XML</type>
+            <path>./interface/input/22 (Atlas Journey XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>ATLAS_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write Commander4j XML">
+            <path>./interface/output/22 (C4J Journey XML)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
 
 </config>

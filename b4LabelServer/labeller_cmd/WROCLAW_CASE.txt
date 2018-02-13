@@ -56,38 +56,9 @@ Initialise        STRING_DELIMITER              "
                   CHECK_SUCCESS
                   SEND                          "*RDR"
                   CHECK_SUCCESS
-                  SEND                          "LK,1"
-                  CHECK_SUCCESS
                   GOTO                          Start
                   
-Start             STATUS                        "Sending Data"
-                  SEND_FILE_INTELHEX            "manual.llf"  
-                  SEND_FILE_INTELHEX            "nestlelogo.pcx"
-                  MESSAGE_INFO                  "Starting Test"
-                  RETRIEVE_DATA
-                  SEND                          "<STX>LOAD,/c0/$variable_Template"
-                  SEND                          "FD,44,PADLEFT($data_PROD_VARIANT,2,0)"
-                  SEND                          "FD,1,$data_MATERIAL_DESCRIPTION"
-                  SEND                          "FD,112,$data_MATERIAL"
-                  SEND                          "FD,123,$data_BATCH_NUMBER"
-                  SEND                          "FD,124,$data_PROCESS_ORDER"
-                  SEND                          "FD,71,REPLACE($data_PROD_QUANTITY,.000,)"
-                  SEND                          "FD,72,PADLEFT($data_BASE_EAN,14,0)"
-                  SEND                          "FD,62,PADLEFT($data_PROD_EAN,14,0)"
-                  SEND                          "FD,61,REPLACE($data_BASE_QUANTITY,.000,)"
-                  SEND                          "FD,51,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,dd)"
-                  SEND                          "FD,52,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,MM)"
-                  SEND                          "FD,53,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,yyyy)"
-                  SEND                          "FD,43,$variable_Plant"
-                  SEND                          "FD,10,PADLEFT($data_PROD_VARIANT,2,0)"                 
-                  SEND                          "<ETX><CR>"
-                  
-                  FILE_DEFINE                   "file1.txt"
-                  FILE_WRITE                    "Hello World<CR>"
-                  FILE_WRITE                    $data_MATERIAL_DESCRIPTION                
-                  SEND_FILE_INTELHEX            "file2.txt"                    
-                                                     
-                  FILE_DEFINE                   "$data_PROCESS_ORDER_$data_BATCH_NUMBER.ldf"
+Start             FILE_DEFINE                   "$data_PROCESS_ORDER_$data_BATCH_NUMBER.ldf"
                   FILE_WRITE                    "FD,112,$data_MATERIAL<CR>"
                   FILE_WRITE                    "LOAD,/c0/$variable_Template<CR>"
                   FILE_WRITE                    "FD,44,PADLEFT($data_PROD_VARIANT,2,0)<CR>"
@@ -106,16 +77,14 @@ Start             STATUS                        "Sending Data"
                   FILE_WRITE                    "FD,10,PADLEFT($data_PROD_VARIANT,2,0)<CR>"                   
                   SEND_FILE_INTELHEX            "$data_PROCESS_ORDER_$data_BATCH_NUMBER.ldf" 
  
-                  DIR_REMOTE                    *.lqf
-                  EXIT
-                                    
-                  RECEIVE_FILE_INTELHEX         "*.pcx"               
-                            
-                  DIR_REMOTE                    "kuehne.lqf"
+                  DIR_REMOTE                    $data_PROCESS_ORDER_$data_BATCH_NUMBER.ldf
                   
-                  BACKUP_REMOTE                 "*.ldf"
-                                                
-                  KEEP_ALIVE_ON
+                  DIR_REMOTE_FILTER             *.ldf,$data_PROCESS_ORDER_$data_BATCH_NUMBER
+                  
+                  DIR_REMOTE_FILTER             *.ldf,$data_PROCESS_ORDER_
+                  
+                  DELETE_DIR_FILTER             *.ldf,$data_PROCESS_ORDER_
+                  
                   GOTO                          Finish
 
 Finish            STATUS                        "Success"

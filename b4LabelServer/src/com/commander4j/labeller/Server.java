@@ -161,7 +161,7 @@ public class Server extends Thread
 			String commandFile = xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/commandFile").trim();
 			String inputPath = xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/inputPath").trim();
 			String inputFile = xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/inputFile").trim();
-			System.out.println(id);
+			logger.info("Read config for ["+id+"]");
 
 			if (enabled.toUpperCase().equals("Y"))
 			{

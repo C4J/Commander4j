@@ -5,7 +5,7 @@
         <enabled>Y</enabled>
         <ipAddres>10.1.50.176</ipAddres>
         <portNumber>8000</portNumber>
-        <commandFile>Labeller_Command_File_Example1a.txt</commandFile>
+        <commandFile>WROCLAW_CASE.txt</commandFile>
         <inputPath>./labeller_requests/direct/</inputPath>
         <inputFile>POUCH2-LINE4_LABELLER5.CSV</inputFile>
         <mode>direct</mode>

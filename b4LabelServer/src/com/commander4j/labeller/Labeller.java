@@ -153,8 +153,6 @@ public class Labeller extends Thread
 		logger.info("Labeller run end");
 
 	}
-	
-
 
 	public boolean runScript()
 	{
@@ -182,7 +180,6 @@ public class Labeller extends Thread
 			LBL = labellerCMDFile.commandLines.get(exePosition).label;
 			CMD = labellerCMDFile.commandLines.get(exePosition).command;
 			VAL = labellerCMDFile.getValueAtLine(exePosition).replaceAll("~", "\"");
-
 
 			logger.info("[" + prop.getId() + "]" + " runScript :" + JUtility.padString(String.valueOf(exePosition + 1), false, 5, "0") + " - " + JUtility.padString(LBL, true, 18, " ") + JUtility.padString(CMD, true, 30, " ")
 					+ JUtility.padString(VAL, true, 50, " "));
@@ -238,11 +235,16 @@ public class Labeller extends Thread
 				System.out.println(VAL);
 				break;
 			case "DELETE_FILE":
-				tx.send("*DELETE," + VAL + "<CR>");
-				checkSuccess();
+				DELETE_FILE(VAL);
 				break;
 			case "DIR_REMOTE":
 				if (DIR_REMOTE(VAL) == false)
+				{
+					scriptError = true;
+				}
+				break;
+			case "DIR_REMOTE_FILTER":
+				if (DIR_REMOTE_FILTER(VAL) == false)
 				{
 					scriptError = true;
 				}
@@ -279,8 +281,8 @@ public class Labeller extends Thread
 				logger.info("[" + prop.getId() + "]" + " Local Delete  [" + localfilename + "]");
 				File fileDelete = new File(localfilename);
 				FileUtils.deleteQuietly(fileDelete);
-				fileDelete=null;
-				break;				
+				fileDelete = null;
+				break;
 			case "FILE_DEFINE":
 				String writefilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
 				logger.info("[" + prop.getId() + "]" + " File Defined as  [" + writefilename + "]");
@@ -335,6 +337,16 @@ public class Labeller extends Thread
 		}
 
 		return true;
+	}
+
+	public boolean DELETE_FILE(String VAL)
+	{
+		boolean result = false;
+		logger.info("[" + prop.getId() + "] - DELETE FILE " + VAL);
+		tx.send("*DELETE," + VAL + "<CR>");
+		checkSuccess();
+		result = true;
+		return result;
 	}
 
 	public boolean BACKUP_REMOTE(String mask)
@@ -494,10 +506,41 @@ public class Labeller extends Thread
 	public boolean DIR_REMOTE(String VAL)
 	{
 		boolean result = false;
+		result = DELETE_DIR_FILTER(VAL);
+		return result;
+	}
+
+	public boolean DELETE_DIR_FILTER(String VAL)
+	{
+		boolean result = false;
+
+		result = DIR_REMOTE_FILTER(VAL);
+
+		if (result)
+		{
+
+			while ((directory.peek() != null) && (result == true) && (shutdown == false))
+			{
+				String deleteFilename = directory.poll().getFilename();
+				DELETE_FILE(deleteFilename);
+			}
+		}
+
+		result = true;
+		
+		return result;
+	}
+
+	public boolean DIR_REMOTE_FILTER(String VAL)
+	{
+		boolean result = false;
+
+		String dirParams = VAL;
+		String[] dirCMDFilter = StringUtils.split(labellerCMDFile.removeDelimitors(dirParams), ",");
 
 		directory.clear();
 		rx.clearQueue();
-		tx.send("*DIR," + VAL + ",SDT<CR>");
+		tx.send("*DIR," + dirCMDFilter[0] + ",SDT<CR>");
 		waitForReply();
 
 		utils.pause(250);
@@ -523,9 +566,22 @@ public class Labeller extends Thread
 			file.setFilename(DTS[0]);
 			file.setDateTime(DTS[2], DTS[3]);
 			file.setSize(Long.valueOf(DTS[1]));
-			directory.add(file);
 
-			logger.info("[" + prop.getId() + "] - " + file.toString());
+			if (dirCMDFilter.length == 2)
+			{
+				if (file.getFilename().contains(dirCMDFilter[1]))
+				{
+					logger.info("[" + prop.getId() + "] - " + file.toString());
+					directory.add(file);
+				} else
+				{
+					logger.info("[" + prop.getId() + "] - " + "Filter ignoring :" + file.getFilename());
+				}
+			} else
+			{
+				directory.add(file);
+				logger.info("[" + prop.getId() + "] - " + file.toString());
+			}
 		}
 		logger.info("[" + prop.getId() + "] -----------------------------------------------------------------------");
 		logger.info("[" + prop.getId() + "]   " + directory.size() + " file(s).");
