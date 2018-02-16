@@ -51,10 +51,10 @@ public class Server extends Thread
 		return exitCode;
 	}
 
-	public void addLabeller(LabellerProperties prop, String script)
+	public void addLabeller(LabellerProperties prop, String script,HashMap<String,LabellerDBLink>  dblinks)
 	{
 		logger.info("Server - addLabeller [" + prop.getId() + "]");
-		Labeller labeller = new Labeller(prop, script);
+		Labeller labeller = new Labeller(prop, script, dblinks);
 		labeller.setName(prop.getId());
 		labellers.put(prop.getId(), labeller);
 	}
@@ -147,6 +147,8 @@ public class Server extends Thread
 	public void loadLabellers()
 	{
 		logger.info("Server - loadLabellers");
+		
+		HashMap<String,LabellerDBLink>  dblinks = loadDatabaseLinks();
 
 		JXMLDocument xmltest = new JXMLDocument("./xml/config/labellers.xml");
 
@@ -173,12 +175,68 @@ public class Server extends Thread
 				prop1.setPortNumber(Integer.valueOf(portNumber));
 				prop1.setInputPath(inputPath);
 				prop1.setInputFile(inputFile);
-				addLabeller(prop1, commandFile);
+				addLabeller(prop1, commandFile,dblinks);
 			}
 
 			labeller++;
 		}
 
+	}
+	
+	public HashMap<String,LabellerDBLink> loadDatabaseLinks()
+	{
+		HashMap<String,LabellerDBLink> result = new HashMap<String,LabellerDBLink>();
+		
+		logger.info("Server - loadDatabaseLinks");
+
+		JXMLDocument xmltest = new JXMLDocument("./xml/config/databases.xml");
+
+		int dbSeq = 1;
+
+		while (xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/@id").trim().equals("") == false)
+		{
+			String id = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/@id").trim();
+
+			logger.info("Reading config for Database Link : ["+id+"]");
+			
+			String jdbcDriver = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/jdbcDriver").trim();
+			String jdbcUsername = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/jdbcUsername").trim();
+			String jdbcPassword = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/jdbcPassword").trim();
+			String jdbcServer = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/jdbcServer").trim();
+			String jdbcPort = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/jdbcPort").trim();
+			String jdbcSID = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/jdbcSID").trim();
+			String jdbcDatabase = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/jdbcDatabase").trim();
+			
+			LabellerDBLink dbLink = new LabellerDBLink();
+			
+			dbLink.setJdbcDriver(jdbcDriver);
+			dbLink.setJdbcUsername(jdbcUsername);
+			dbLink.setJdbcPassword(jdbcPassword);
+			dbLink.setJdbcServer(jdbcServer);
+			dbLink.setJdbcPort(jdbcPort);
+			dbLink.setJdbcSID(jdbcSID);
+			dbLink.setJdbcDatabase(jdbcDatabase);
+
+			int sqlSeq = 1;
+			
+			while (xmltest.findXPath("//databases/database/sqlSelect[" + String.valueOf(sqlSeq) + "]/@id").trim().equals("") == false)
+			{
+				String idsql = xmltest.findXPath("//databases/database/sqlSelect[" + String.valueOf(sqlSeq) + "]/@id").trim();
+				String statement = xmltest.findXPath("//databases/database/sqlSelect[" + String.valueOf(sqlSeq) + "]/statement").trim();
+				
+				dbLink.addSQL(idsql, statement);
+
+				logger.info("Reading config for Database Link : ["+id+"] : SQL statement id ["+idsql+"]");
+				
+				sqlSeq++;
+			}
+			
+			result.put(id, dbLink);
+
+			dbSeq++;
+		}
+		
+		return result;
 	}
 
 	public static void main(String[] args)

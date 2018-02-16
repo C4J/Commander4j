@@ -7,7 +7,7 @@
         <portNumber>8000</portNumber>
         <commandFile>WROCLAW_CASE.txt</commandFile>
         <inputPath>./labeller_requests/direct/</inputPath>
-        <inputFile>POUCH2-LINE4_LABELLER5.CSV</inputFile>
+        <inputFile>DATA_WROCLAW.CSV</inputFile>
         <mode>direct</mode>
     </labeller>
     
@@ -15,9 +15,9 @@
         <enabled>N</enabled>
         <ipAddres>10.1.50.176</ipAddres>
         <portNumber>8004</portNumber>
-        <commandFile>Labeller_Command_File_Example2.txt</commandFile>
+        <commandFile>BUK_CASE.txt</commandFile>
         <inputPath>./labeller_requests/direct/</inputPath>
-        <inputFile>POUCH2-LINE4_LABELLER6.CSV</inputFile>
+        <inputFile>DATA_BUK.CSV</inputFile>
         <mode>transfer</mode>
     </labeller>
     

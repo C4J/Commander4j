@@ -1,5 +1,5 @@
 
-/*  Logppak Case Labeller Script for Purina Wroclaw */
+/*  Logopak Case Labeller Script for Purina Buk */
 
 /*34567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890 */
 /*LABEL          COMMAND                       PARAMS                                                */
@@ -55,38 +55,28 @@ Initialise        STRING_DELIMITER              "
                   CHECK_SUCCESS
                   SEND                          "*RDR"
                   CHECK_SUCCESS
-
-/*                                              "Connection Name,SQL Select Name,Criteria,Returned Field,Storage Variable"        */
-                  DB_QUERY                      "mySQL Test,Query Controls,PLANT,KEY_VALUE,$variable_Plant"                   
-                  
+                                 
+                  DB_QUERY                      "mySQL Test,Query Controls,PLANT,KEY_VALUE,$variable_Plant"    
+                                    
                   GOTO                          Start
                   
-Start             FILE_DEFINE                   "PO_$data_PROCESS_ORDER_$data_BATCH_NUMBER.ldf"
-                  FILE_WRITE                    "FD,112,$data_MATERIAL<CR>"
-                  FILE_WRITE                    "LOAD,/c0/$variable_Template<CR>"
-                  FILE_WRITE                    "FD,44,PADLEFT($data_PROD_VARIANT,2,0)<CR>"
-                  FILE_WRITE                    "FD,1,$data_MATERIAL_DESCRIPTION<CR>"
-                  FILE_WRITE                    "FD,112,$data_MATERIAL<CR>"
-                  FILE_WRITE                    "FD,123,$data_BATCH_NUMBER<CR>"
-                  FILE_WRITE                    "FD,124,$data_PROCESS_ORDER<CR>"
-                  FILE_WRITE                    "FD,71,REPLACE($data_PROD_QUANTITY,.000,)<CR>"
-                  FILE_WRITE                    "FD,72,PADLEFT($data_BASE_EAN,14,0)<CR>"
-                  FILE_WRITE                    "FD,62,PADLEFT($data_PROD_EAN,14,0)<CR>"
-                  FILE_WRITE                    "FD,61,REPLACE($data_BASE_QUANTITY,.000,)<CR>"
-                  FILE_WRITE                    "FD,51,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,dd)<CR>"
-                  FILE_WRITE                    "FD,52,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,MM)<CR>"
-                  FILE_WRITE                    "FD,53,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,yyyy)<CR>"
-                  FILE_WRITE                    "FD,43,$variable_Plant<CR>"
-                  FILE_WRITE                    "FD,10,PADLEFT($data_PROD_VARIANT,2,0)<CR>"                   
-                  SEND_FILE_INTELHEX            "PO_$data_PROCESS_ORDER_$data_BATCH_NUMBER.ldf" 
- 
-                  DIR_REMOTE                    PO_$data_PROCESS_ORDER_$data_BATCH_NUMBER.ldf
-                  
-                  DIR_REMOTE_FILTER             *.ldf,PO_$data_PROCESS_ORDER_$data_BATCH_NUMBER
-                  
-                  DIR_REMOTE_FILTER             *.ldf,PO_
-                  
-                  ARCHIVE_FILENAMES1            *.ldf,PO_,_,mySQL Test,Query Order Status,STATUS,Discarded             
+Start             SEND                          "<STX>LOAD,/c0/$variable_Template<CR>"
+                  SEND                          "FD,112,$data_MATERIAL<CR>"
+                  SEND                          "FD,44,PADLEFT($data_PROD_VARIANT,2,0)<CR>"
+                  SEND                          "FD,1,$data_MATERIAL_DESCRIPTION<CR>"
+                  SEND                          "FD,112,$data_MATERIAL<CR>"
+                  SEND                          "FD,123,$data_BATCH_NUMBER<CR>"
+                  SEND                          "FD,124,$data_PROCESS_ORDER<CR>"
+                  SEND                          "FD,71,REPLACE($data_PROD_QUANTITY,.000,)<CR>"
+                  SEND                          "FD,72,PADLEFT($data_BASE_EAN,14,0)<CR>"
+                  SEND                          "FD,62,PADLEFT($data_PROD_EAN,14,0)<CR>"
+                  SEND                          "FD,61,REPLACE($data_BASE_QUANTITY,.000,)<CR>"
+                  SEND                          "FD,51,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,dd)<CR>"
+                  SEND                          "FD,52,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,MM)<CR>"
+                  SEND                          "FD,53,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,yyyy)<CR>"
+                  SEND                          "FD,43,$variable_Plant<CR>"
+                  SEND                          "FD,10,PADLEFT($data_PROD_VARIANT,2,0)<CR>"                   
+                  SEND                          "<ETX><CR>"
                   
                   GOTO                          Finish
 

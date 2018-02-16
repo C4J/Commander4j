@@ -402,4 +402,21 @@
         </output>
     </map>
 
+
+    <map id="map23" enabed="Y" description="CSV to DB">
+        <input id="in1" description="Read CSV Example">
+            <type>CSV</type>
+            <path>./interface/input/23 (CSV)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>CSV_to_DB_Example.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write DB">
+            <path>./interface/output/23 (DB)</path>
+            <type>DB</type>
+            <XSLT/>
+        </output>
+    </map>
+    
 </config>

@@ -9,5 +9,8 @@
 	<classpathentry kind="lib" path="lib/app/opencsv-4.1.jar"/>
 	<classpathentry kind="lib" path="lib/app/log4j-api-2.10.0.jar"/>
 	<classpathentry kind="lib" path="lib/app/log4j-core-2.10.0.jar"/>
+	<classpathentry kind="lib" path="lib/db/mssql-jdbc-6.2.2.jre8.jar"/>
+	<classpathentry kind="lib" path="lib/db/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="lib" path="lib/db/ojdbc8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

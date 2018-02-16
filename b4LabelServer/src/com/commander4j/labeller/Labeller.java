@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -34,6 +35,7 @@ public class Labeller extends Thread
 	private int waitDelay = 15;
 	public volatile ConcurrentLinkedQueue<LabellerFile> directory = new ConcurrentLinkedQueue<LabellerFile>();
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((Labeller.class));
+	private HashMap<String, LabellerDBLink> dblinks;
 
 	public void requestPrint()
 	{
@@ -186,6 +188,9 @@ public class Labeller extends Thread
 
 			switch (CMD)
 			{
+			case "DB_QUERY":
+				DB_QUERY(VAL);
+				break;
 			case "MESSAGE_INFO":
 				tx.send("*MSG,info," + VAL + "<CR>");
 				checkSuccess();
@@ -236,6 +241,9 @@ public class Labeller extends Thread
 				break;
 			case "DELETE_FILE":
 				DELETE_FILE(VAL);
+				break;
+			case "ARCHIVE_FILENAMES1":
+				ARCHIVE_FILENAMES1(VAL);
 				break;
 			case "DIR_REMOTE":
 				if (DIR_REMOTE(VAL) == false)
@@ -337,6 +345,83 @@ public class Labeller extends Thread
 		}
 
 		return true;
+	}
+
+	public boolean DB_QUERY(String VAL)
+	{
+		boolean result = false;
+		String variableDefinition3 = VAL;
+		String[] varArray3 = StringUtils.split(variableDefinition3, ",");
+		dblinks.get(varArray3[0]).connect();
+		String resultString = dblinks.get(varArray3[0]).queryExecute(varArray3[1], varArray3[2], varArray3[3]);
+		labellerCMDFile.variables.put(varArray3[4], resultString);
+		logger.info("Query result = [" + varArray3[4] + "]=[" + resultString + "]");
+		dblinks.get(varArray3[0]).disconnect();
+		return result;
+	}
+
+	public boolean ARCHIVE_FILENAMES1(String VAL)
+	{
+		boolean result = false;
+		String variableDefinition3 = VAL;
+		String[] varArray3 = StringUtils.split(variableDefinition3, ",");
+
+		String filenameMask = varArray3[0];
+		String filenameOrderPrefix = varArray3[1];
+		String filenameOrderSuffix = varArray3[2];
+		dblinks.get(varArray3[3]).connect();
+
+		result = DIR_REMOTE(filenameMask);
+
+		while ((directory.peek() != null) && (result == true) && (shutdown == false))
+		{
+			String deleteFilename = directory.poll().getFilename();
+
+			int startpos;
+			if (filenameOrderPrefix.equals(""))
+			{
+				startpos = 0;
+			} 
+			else
+			{
+				startpos = deleteFilename.toLowerCase().indexOf(filenameOrderPrefix.toLowerCase());
+			}
+
+			if (startpos >= 0)
+			{
+				int endpos;
+
+				if (filenameOrderSuffix.equals(""))
+				{
+					endpos = deleteFilename.toLowerCase().indexOf(".", startpos + filenameOrderPrefix.length());
+				} 
+				else
+				{
+					endpos = deleteFilename.toLowerCase().indexOf(filenameOrderSuffix.toLowerCase(), startpos + filenameOrderPrefix.length());
+				}
+
+				if (endpos >= 0)
+				{
+					String order = deleteFilename.substring(startpos + filenameOrderPrefix.length(), endpos);
+					String resultString = dblinks.get(varArray3[3]).queryExecute(varArray3[4], order, varArray3[5]);
+
+					logger.info("[" + prop.getId() + "] - ARCHIVE_FILENAMES1 " + deleteFilename + " Order [" + order + "] Status [" + resultString + "]");
+
+					if (resultString.equals(varArray3[5]))
+					{
+						logger.info("[" + prop.getId() + "] - DELETE FILE " + deleteFilename);
+						DELETE_FILE(deleteFilename);
+					} else
+					{
+						logger.info("[" + prop.getId() + "] - IGNORE FILE " + deleteFilename);
+					}
+				}
+			}
+
+		}
+
+		dblinks.get(varArray3[3]).disconnect();
+		return result;
 	}
 
 	public boolean DELETE_FILE(String VAL)
@@ -506,7 +591,7 @@ public class Labeller extends Thread
 	public boolean DIR_REMOTE(String VAL)
 	{
 		boolean result = false;
-		result = DELETE_DIR_FILTER(VAL);
+		result = DIR_REMOTE_FILTER(VAL);
 		return result;
 	}
 
@@ -527,7 +612,7 @@ public class Labeller extends Thread
 		}
 
 		result = true;
-		
+
 		return result;
 	}
 
@@ -760,10 +845,11 @@ public class Labeller extends Thread
 		shutdown = true;
 	}
 
-	public Labeller(LabellerProperties prop, String commandFile)
+	public Labeller(LabellerProperties prop, String commandFile, HashMap<String, LabellerDBLink> dblinks)
 	{
 		this.commandFile = commandFile;
 		this.prop = prop;
+		this.dblinks = dblinks;
 		rx = new LabellerTCPIP_RX();
 		rx.setLabellerProperties(prop);
 		tx = new LabellerTCPIP_TX();

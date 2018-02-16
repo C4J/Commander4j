@@ -58,8 +58,16 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT
 
 				FOS.close();
 
+				FileUtils.deleteQuietly( new File(finalFilename));
 				FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
 
+				DOMiLS = null;
+				LSO = null;
+				LSS = null;
+				FOS = null;
+				tempFilename = null;
+				finalFilename = null;
+				
 				result = true;
 			}
 		} catch (Exception ex)
