@@ -116,6 +116,9 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 					}
 				}
 			}
+			files=null;
+			dir=null;
+			
 		}
 		catch (Exception ex)
 		{

@@ -60,7 +60,7 @@
       <dirEntry mountPoint="106" file="./xml/barcode" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="barcode" excludeSuffixes="" dirMode="755" overrideDirMode="true">
         <exclude />
       </dirEntry>
-      <dirEntry mountPoint="107" file="./xml/interface" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="interface" excludeSuffixes="" dirMode="755" overrideDirMode="true">
+      <dirEntry mountPoint="107" file="./xml/interface" overwriteMode="1" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="interface" excludeSuffixes="" dirMode="755" overrideDirMode="true">
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="108" file="./xml/log" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="log" excludeSuffixes="" dirMode="755" overrideDirMode="true">

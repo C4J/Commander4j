@@ -49,7 +49,8 @@ import com.commander4j.util.JPrint;
 import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
 
-public class InterfaceThread extends Thread {
+public class InterfaceThread extends Thread
+{
 
 	private String hostID = "";
 	private Boolean shutdown = false;
@@ -103,7 +104,8 @@ public class InterfaceThread extends Thread {
 		if (hostID.length() > 0)
 		{
 			logger.debug("Host ID identified for service is  [" + hostID + "]");
-		} else
+		}
+		else
 		{
 			logger.debug("No Host has been identified to be target for service - check hosts file unique id.");
 
@@ -214,20 +216,15 @@ public class InterfaceThread extends Thread {
 								String subject = "";
 								if (houseKeeping == true)
 								{
-									// subject = "Commander4j
-									// "+JVersion.getProgramVersion()+"
-									// Interface maintenance restart for [" +
-									// siteName + "] on
-									// "+JUtility.getClientName();
-									// mail.postMail(emailList, subject,
-									// "Interface service has started.", "",
-									// "");
-								} else
+
+								}
+								else
 								{
 									subject = "Commander4j " + JVersion.getProgramVersion() + " Interface startup for [" + siteName + "] on " + JUtility.getClientName();
 									mail.postMail(emailList, subject, "Interface service has started.", "", "");
 								}
-							} catch (Exception ex)
+							}
+							catch (Exception ex)
 							{
 								logger.error("InterfaceThread Unable to send emails");
 							}
@@ -248,8 +245,6 @@ public class InterfaceThread extends Thread {
 						{
 							com.commander4j.util.JWait.milliSec(1000);
 							secondsRemaining--;
-							// logger.debug("Housekeeping scheduled in
-							// "+String.valueOf(secondsRemaining)+" seconds.");
 
 							if (secondsRemaining == 0)
 							{
@@ -271,26 +266,22 @@ public class InterfaceThread extends Thread {
 								String subject = "";
 								if (houseKeeping == true)
 								{
-									// subject = "Commander4j
-									// "+JVersion.getProgramVersion()+"
-									// Interface maintenance shutdown for [" +
-									// siteName + "] on
-									// "+JUtility.getClientName();
-									// mail.postMail(emailList, subject,
-									// "Interface service has stopped.", "",
-									// "");
-								} else
+
+								}
+								else
 								{
 									subject = "Commander4j " + JVersion.getProgramVersion() + " Interface shutdown for [" + siteName + "] on " + JUtility.getClientName();
 									mail.postMail(emailList, subject, "Interface service has stopped.", "", "");
 								}
-							} catch (Exception ex)
+							}
+							catch (Exception ex)
 							{
 								logger.error("InterfaceThread Unable to send emails");
 							}
 						}
 
-					} else
+					}
+					else
 					{
 						logger.debug("Interface routine failed to logon to application using account INTERFACE");
 
@@ -299,21 +290,25 @@ public class InterfaceThread extends Thread {
 					try
 					{
 						backupMessageRetention = Integer.valueOf(ctrl.getKeyValueWithDefault("INTERFACE BACKUP RETENTION", "30", "NUMBER OF DAYS TO KEEP BACKUP MESSAGES"));
-					} catch (Exception ex)
+					}
+					catch (Exception ex)
 					{
 						backupMessageRetention = 30;
 					}
 
-					logger.debug("Initiating data archiving....");
-					JDBArchive c = new JDBArchive(getHostID(), getSessionID());
-					c.runSQLJobList();
-					String archiveReportString = c.reportData();
-					c = null;
-					logger.debug("Data archiving complete....");
+					String archiveReportString = "";
+					if (shutdown == false)
+					{
+						logger.debug("Initiating data archiving....");
+						JDBArchive c = new JDBArchive(getHostID(), getSessionID());
+						c.runSQLJobList();
+						archiveReportString = c.reportData();
+						c = null;
+						logger.debug("Data archiving complete....");
 
-					logger.debug("Disconnecting from database.");
-					Common.hostList.getHost(getHostID()).disconnectAll();
-					// .disconnect(Common.sessionID);
+						logger.debug("Disconnecting from database.");
+						Common.hostList.getHost(getHostID()).disconnectAll();
+					}
 
 					if (houseKeeping == true)
 					{
@@ -324,7 +319,8 @@ public class InterfaceThread extends Thread {
 						if (backupMessageRetention > 0)
 						{
 							archivedFiles = archivedFiles + String.valueOf(JArchive.archiveBackupFiles(System.getProperty("user.dir") + File.separator + Common.interface_backup_path, backupMessageRetention));
-						} else
+						}
+						else
 						{
 							archivedFiles = "Auto archive of messages disabled";
 						}
@@ -343,7 +339,8 @@ public class InterfaceThread extends Thread {
 							{
 								mail.postMail(emailList, "Commander4j " + JVersion.getProgramVersion() + " Interface maintenance for [" + siteName + "] on " + JUtility.getClientName(), memoryBefore + "\n\n" + memoryAfter + "\n\n" + archivedFiles
 										+ "\n\n" + freeSpace + "\n\n" + "Maintenance is scheduled to occur every " + String.valueOf(secondsBeforeHousekeeping) + " seconds.\n\n\n\n" + stats + "\n\n\n" + archiveReportString, "", "");
-							} catch (Exception ex)
+							}
+							catch (Exception ex)
 							{
 								logger.error("InterfaceThread Unable to send emails");
 							}
@@ -414,7 +411,8 @@ public class InterfaceThread extends Thread {
 					reportingThread.allDone = true;
 					com.commander4j.util.JWait.milliSec(250);
 				}
-			} catch (Exception ex1)
+			}
+			catch (Exception ex1)
 			{
 
 			}
@@ -435,7 +433,8 @@ public class InterfaceThread extends Thread {
 					inboundThread.allDone = true;
 					com.commander4j.util.JWait.milliSec(250);
 				}
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 			}
 			inboundThread = null;
@@ -451,7 +450,8 @@ public class InterfaceThread extends Thread {
 					outboundThread.allDone = true;
 					com.commander4j.util.JWait.milliSec(250);
 				}
-			} catch (Exception ex1)
+			}
+			catch (Exception ex1)
 			{
 
 			}
@@ -468,7 +468,8 @@ public class InterfaceThread extends Thread {
 					fileCollectThread.allDone = true;
 					com.commander4j.util.JWait.milliSec(250);
 				}
-			} catch (Exception ex2)
+			}
+			catch (Exception ex2)
 			{
 
 			}
@@ -485,7 +486,8 @@ public class InterfaceThread extends Thread {
 					autoLabellerThread.allDone = true;
 					com.commander4j.util.JWait.milliSec(250);
 				}
-			} catch (Exception ex1)
+			}
+			catch (Exception ex1)
 			{
 
 			}

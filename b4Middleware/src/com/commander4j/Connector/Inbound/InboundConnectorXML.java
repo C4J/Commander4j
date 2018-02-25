@@ -38,6 +38,9 @@ public class InboundConnectorXML extends InboundConnectorABSTRACT
 				DocumentBuilder builder = factory.newDocumentBuilder();
 				data = builder.parse(new File(fullFilename));
 				result = true;
+				
+				factory=null;
+				builder=null;
 
 			} catch (Exception ex)
 			{

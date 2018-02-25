@@ -71,7 +71,6 @@ public class InboundConnectorIDOC extends InboundConnectorABSTRACT
 				for (int x = 1; x <= dscount; x++)
 				{
 					DataSegment ds = od.GetDataSegments().get(x - 1);
-					System.out.println("   <DATA type=\"" + ds.SegmentName + "\">");
 
 					/* DATA */
 					Element outputdata = (Element) data.createElement("DATA");
@@ -85,7 +84,6 @@ public class InboundConnectorIDOC extends InboundConnectorABSTRACT
 						Object obj = it.next();
 
 						Object val = ds.Properties.get(obj.toString());
-						System.out.println("      <FIELD name=\"" + obj.toString() + "\" value=\"" + val + "\"/>");
 
 						/* FIELD */
 						Element outputfield = (Element) data.createElement("FIELD");
@@ -117,13 +115,18 @@ public class InboundConnectorIDOC extends InboundConnectorABSTRACT
 						outputdata.appendChild(outputfield);
 
 					}
-					System.out.println("   </DATA>");
 					message.appendChild(outputdata);
+					it=null;
+					ds=null;
+					outputdata=null;
 				}
-				System.out.println("</MESSAGE>");
 
 				data.appendChild(message);
-
+				
+				message=null;
+				factory=null;
+				builder=null;
+				
 				result = true;
 
 			} catch (Exception ex)
@@ -133,6 +136,7 @@ public class InboundConnectorIDOC extends InboundConnectorABSTRACT
 				Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
 
 			}
+			
 			idp = null;
 
 		}

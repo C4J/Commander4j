@@ -219,11 +219,13 @@ public class OutgoingDespatchConfirmation
 	    
 				// NEXT 2 LINES COMMENTS NEED TO BE RESTORED FOR SAP EWM
 				
-			    //document = document + "SEL+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"+CA'";
+				// Next line needs commenting pre SAP EWM
+			    document = document + "SEL+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getLoadNo(), 10))+"+CA'";
 			    document = document + "SEL+"+desp.getDespatchNo()+"+CU'";
 
-				//segments = 14 + optional;
-				segments = 13 + optional;
+			    // Next line needs amending pre SAP EWM
+				segments = 14 + optional;
+				//segments = 13 + optional;
 
 				JDBPalletHistory palhist = new JDBPalletHistory(getHostID(), getSessionID());
 				ResultSet rs = palhist.getInterfacingData(transactionRef, "DESPATCH", "TO", Long.valueOf(0), "SSCC", "asc");
