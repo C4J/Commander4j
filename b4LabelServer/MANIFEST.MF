@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Main-Class: com.commander4j.labeller.Service
+Class-Path: lib/opencsv-3.8.jar 
+ lib/commons-codec-1.11.jar 
+ lib/commons-io-2.6.jar 
+ lib/log4j-api-2.10.0.jar 
+ lib/log4j-core-2.10.0.jar 
+ lib/javax.mail-1.6.0.jar 
+ lib/commons-lang3-3.7.jar 
+ lib/opencsv-4.1.jar 
+ db/mssql-jdbc-6.2.2.jre8.jar 
+ db/mysql-connector-java-5.1.45-bin.jar 
+ dbojdbc8.jar 
+

@@ -385,23 +385,6 @@
             <XSLT/>
         </output>
     </map>
-    
-    <map id="map22" enabed="Y" description="Atlas XML filtered to C4J XML">
-        <input id="in1" description="Read Atlas XML">
-            <type>XML</type>
-            <path>./interface/input/22 (Atlas Journey XML)</path>
-            <mask/>
-            <pollingInterval>1000</pollingInterval>
-            <XSLT>ATLAS_XML_to_C4J_XML.xsl</XSLT>
-        </input>
-        
-        <output id="out1" enabed="Y" description="Write Commander4j XML">
-            <path>./interface/output/22 (C4J Journey XML)</path>
-            <type>XML</type>
-            <XSLT/>
-        </output>
-    </map>
-
 
     <map id="map23" enabed="Y" description="CSV to DB">
         <input id="in1" description="Read CSV Example">
@@ -416,6 +399,22 @@
             <path>./interface/output/23 (DB)</path>
             <type>DB</type>
             <XSLT/>
+        </output>
+    </map>
+    
+    <map id="map24" enabed="Y" description="Pre Advice XML to CSV">
+        <input id="in1" description="Read XML">
+            <type>XML</type>
+            <path>./interface/input/24 (XML Pre Advice to CSV)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>Commander4j_to_PreAdvice_CSV.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write CSV">
+            <path>./interface/output/24 (XML Pre Advice to CSV)</path>
+            <type>RAW</type>
+            <XSLT></XSLT>
         </output>
     </map>
     

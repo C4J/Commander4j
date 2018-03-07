@@ -15,6 +15,7 @@ import com.commander4j.Connector.Outbound.OutboundConnectorCSV;
 import com.commander4j.Connector.Outbound.OutboundConnectorDB;
 import com.commander4j.Connector.Outbound.OutboundConnectorEmail;
 import com.commander4j.Connector.Outbound.OutboundConnectorIDOC;
+import com.commander4j.Connector.Outbound.OutboundConnectorRAW;
 import com.commander4j.Connector.Outbound.OutboundConnectorXML;
 import com.commander4j.Interface.Mapping.Map;
 import com.commander4j.Interface.Outbound.OutboundInterface;
@@ -206,6 +207,10 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 			connector = new OutboundConnectorXML((OutboundInterface) this);
 			setOutputFileExtension("xml");
 			break;
+		case OutboundConnectorINTERFACE.Connector_RAW:
+			connector = new OutboundConnectorRAW((OutboundInterface) this);
+			setOutputFileExtension("dat");
+			break;			
 		default:
 			throw new IllegalArgumentException();
 		}

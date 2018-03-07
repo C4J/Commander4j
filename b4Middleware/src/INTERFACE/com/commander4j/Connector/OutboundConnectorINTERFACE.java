@@ -10,6 +10,7 @@ public interface OutboundConnectorINTERFACE
 	public final static String Connector_CSV = "CSV";
 	public final static String Connector_IDOC = "IDOC";
 	public final static String Connector_XML = "XML";
+	public final static String Connector_RAW = "RAW";
 	public final static String Connector_DB = "DB";
 
 	public boolean connectorSave(String filename);
