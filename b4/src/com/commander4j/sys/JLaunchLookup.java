@@ -132,11 +132,11 @@ public class JLaunchLookup
 		JDialogLookup.dlg_title = "Journeys";
 
 		JDialogLookup.dlg_key_field_name = "journey_ref";
-		JDialogLookup.dlg_criteria_field_name_default = "LOAD_TYPE";
+		JDialogLookup.dlg_criteria_field_name_default = "LOCATION_ID_TO";
 		JDialogLookup.dlg_orderBy_name_default = "DESCRIPTION";
 		JDialogLookup.dlg_sort_descending = true;
 
-		dlgCriteriaDefault = "";
+		//dlgCriteriaDefault = "";
 		dlgAutoExec = true;
 
 		JDialogLookup inst = new JDialogLookup(Common.mainForm);

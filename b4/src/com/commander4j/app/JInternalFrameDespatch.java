@@ -1013,7 +1013,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				JLaunchLookup.dlgAutoExec = true;
-				JLaunchLookup.dlgCriteriaDefault = "Y";
+				JLaunchLookup.dlgCriteriaDefault = textFieldDespatchLocationTo.getText();
 
 				JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
 

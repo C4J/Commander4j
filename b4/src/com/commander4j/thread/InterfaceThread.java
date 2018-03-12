@@ -52,9 +52,27 @@ import com.commander4j.util.JUtility;
 public class InterfaceThread extends Thread
 {
 
+	private String currentDateTime = "";
+	private String currentTime = "";
+	private String currentDate = "";
+	private String lastRunDate = "";
 	private String hostID = "";
 	private Boolean shutdown = false;
 	private String sessionID = "";
+	private OutboundMessageThread outboundThread;
+	private AutoLabellerThread autoLabellerThread;
+	private ReportingThread reportingThread;
+	private InboundMessageCollectionThread fileCollectThread;
+	private InboundMessageThread inboundThread;
+	private boolean threadsRunning = false;
+	private boolean houseKeeping = false;
+	private Boolean enableEnterfaceStatusEmails = false;
+	private String siteName = "";
+	private String interfaceEmailAddresses = "";
+	private final Logger logger = Logger.getLogger(InterfaceThread.class);
+	private boolean abortThread = false;
+	private int backupMessageRetention = 30;
+
 
 	public String getSessionID()
 	{
@@ -64,24 +82,8 @@ public class InterfaceThread extends Thread
 	public void setSessionID(String sessionID)
 	{
 		this.sessionID = sessionID;
-	}
-
-	private OutboundMessageThread outboundThread;
-	private AutoLabellerThread autoLabellerThread;
-	private ReportingThread reportingThread;
-	private InboundMessageCollectionThread fileCollectThread;
-	private InboundMessageThread inboundThread;
-	private boolean threadsRunning = false;
-	private boolean houseKeeping = false;
-	private int secondsBeforeHousekeeping = 86400;
-	private Boolean enableEnterfaceStatusEmails = false;
-	private String siteName = "";
-	private String interfaceEmailAddresses = "";
-	private int secondsRemaining = secondsBeforeHousekeeping;
-	private final Logger logger = Logger.getLogger(InterfaceThread.class);
-	private boolean abortThread = false;
-	private int backupMessageRetention = 30;
-
+	}	
+	
 	public InterfaceThread(String host, String session)
 	{
 		setHostID(host);
@@ -168,7 +170,6 @@ public class InterfaceThread extends Thread
 			while (shutdown == false)
 			{
 
-				secondsRemaining = secondsBeforeHousekeeping;
 				logger.debug("Connecting to database.");
 				while ((Common.hostList.getHost(getHostID()).isConnected(getSessionID()) == false) && (shutdown == false))
 				{
@@ -236,21 +237,24 @@ public class InterfaceThread extends Thread
 
 						logger.debug("Starting Threads....");
 
-						secondsBeforeHousekeeping = Integer.valueOf(ctrl.getKeyValueWithDefault("INTERFACE HOUSEKEEPING INTERVAL", "86400", "Frequency in seconds."));
-						secondsRemaining = secondsBeforeHousekeeping;
-
 						startupThreads();
 
 						while ((shutdown == false) & (houseKeeping == false))
 						{
 							com.commander4j.util.JWait.milliSec(1000);
-							secondsRemaining--;
-
-							if (secondsRemaining == 0)
+							currentDateTime = JUtility.getDateTimeString("yyyy-MM-dd HH:mm:ss");
+							currentDate = currentDateTime.substring(0, 10);
+							currentTime = currentDateTime.substring(11, 19);
+							
+							if (currentTime.substring(0, 5).equals(Common.statusReportTime.substring(0, 5)))
 							{
-								houseKeeping = true;
-
+								if (currentDate.equals(lastRunDate) == false)
+								{
+									lastRunDate = currentDate;
+									houseKeeping = true;
+								}
 							}
+							
 						}
 
 						logger.debug("Stopping Threads....");
@@ -338,7 +342,7 @@ public class InterfaceThread extends Thread
 							try
 							{
 								mail.postMail(emailList, "Commander4j " + JVersion.getProgramVersion() + " Interface maintenance for [" + siteName + "] on " + JUtility.getClientName(), memoryBefore + "\n\n" + memoryAfter + "\n\n" + archivedFiles
-										+ "\n\n" + freeSpace + "\n\n" + "Maintenance is scheduled to occur every " + String.valueOf(secondsBeforeHousekeeping) + " seconds.\n\n\n\n" + stats + "\n\n\n" + archiveReportString, "", "");
+										+ "\n\n" + freeSpace + "\n\n" + "Maintenance is scheduled to occur at " + Common.statusReportTime + " each day.\n\n\n\n" + stats + "\n\n\n" + archiveReportString, "", "");
 							}
 							catch (Exception ex)
 							{

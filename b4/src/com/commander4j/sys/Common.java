@@ -380,6 +380,7 @@ public class Common
 	public final static String image_despatch_add = "journey_add.gif";
 	public final static String image_despatch_remove = "journey_remove.gif";
 	
+	public static String statusReportTime = "00:00:00";
 	public static int user_password_expiry_days = 14;
 	public static int user_max_password_attempts = 3;
 	public static boolean active_mq_enabled = false;
@@ -406,6 +407,8 @@ public class Common
 		{
 			datatypeClass.put(dataTypes[x], dataClasses[x]);
 		}
+		
+		statusReportTime = control.getKeyValueWithDefault("INTERFACE MAINTENANCE TIME","09:00:00", "Time of day for interface maintenance");
 
 	}
 

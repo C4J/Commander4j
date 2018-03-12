@@ -112,8 +112,7 @@ public class JDBDespatch
 		allowDespatchToSelf = Boolean.valueOf(ctrl.getKeyValueWithDefault("DESPATCH_TO_SELF", "false", "Allow despatch to source location"));
 	}
 
-	public JDBDespatch(String host, String session, String despatchNo, Timestamp despatchDate, String locationIdFrom, String locationIdTo, String status, int noofpallets, String trailer, String haulier, String loadNo, String userID,
-			String journeyRef)
+	public JDBDespatch(String host, String session, String despatchNo, Timestamp despatchDate, String locationIdFrom, String locationIdTo, String status, int noofpallets, String trailer, String haulier, String loadNo, String userID, String journeyRef)
 	{
 		setHostID(host);
 		setSessionID(session);
@@ -192,39 +191,48 @@ public class JDBDespatch
 										{
 											result = true;
 											setErrorMessage("");
-										} else
+										}
+										else
 										{
 											setErrorMessage(pal.getErrorMessage());
 										}
-									} else
+									}
+									else
 									{
 										setErrorMessage("Batch status is " + pal.getMaterialBatchStatus());
 									}
-								} else
+								}
+								else
 								{
 									setErrorMessage("Pallet status is " + pal.getStatus());
 								}
-							} else
+							}
+							else
 							{
 								setErrorMessage("Already Assigned to " + pal.getDespatchNo());
 							}
-						} else
+						}
+						else
 						{
 							setErrorMessage("Material " + pal.getMaterial() + " invalid for " + getLocationIDTo());
 						}
-					} else
+					}
+					else
 					{
 						setErrorMessage("Pallet is not in source location " + getLocationIDFrom());
 					}
-				} else
+				}
+				else
 				{
 					setErrorMessage(sscc + " not confirmed.");
 				}
-			} else
+			}
+			else
 			{
 				setErrorMessage(pal.getErrorMessage());
 			}
-		} else
+		}
+		else
 		{
 			setErrorMessage(getDespatchNo() + " already confirmed.");
 		}
@@ -287,14 +295,15 @@ public class JDBDespatch
 
 			while (rs.next())
 			{
-				result.addLast(new JDBDespatch(getHostID(), getSessionID(), rs.getString("despatch_no"), rs.getTimestamp("despatch_date"), rs.getString("location_id_from"), rs.getString("location_id_to"), rs.getString("status"),
-						rs.getInt("total_pallets"), rs.getString("trailer"), rs.getString("haulier"), rs.getString("load_no"), rs.getString("user_id"), rs.getString("journey_ref")));
+				result.addLast(new JDBDespatch(getHostID(), getSessionID(), rs.getString("despatch_no"), rs.getTimestamp("despatch_date"), rs.getString("location_id_from"), rs.getString("location_id_to"), rs.getString("status"), rs.getInt("total_pallets"),
+						rs.getString("trailer"), rs.getString("haulier"), rs.getString("load_no"), rs.getString("user_id"), rs.getString("journey_ref")));
 			}
 
 			rs.close();
 
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -322,7 +331,8 @@ public class JDBDespatch
 		if (getStatus().equals("Confirmed") == true)
 		{
 			setErrorMessage("Despatch already confirmed.");
-		} else
+		}
+		else
 		{
 			if (isValid(true) == true)
 			{
@@ -429,20 +439,23 @@ public class JDBDespatch
 
 							result = true;
 
-						} catch (SQLException e)
+						}
+						catch (SQLException e)
 						{
 							logger.error("Confirm2 error )" + e.getMessage());
 							try
 							{
 								Common.hostList.getHost(getHostID()).getConnection(getSessionID()).rollback();
 								logger.error("Confirm2 failed (rollback success)");
-							} catch (SQLException e1)
+							}
+							catch (SQLException e1)
 							{
 								logger.error("Confirm2 failed (rollback failure)" + e1.getMessage());
 							}
 						}
 
-					} else
+					}
+					else
 					{
 						logger.error("Unable to get Transaction Number - retrying");
 					}
@@ -495,7 +508,8 @@ public class JDBDespatch
 
 				update();
 				result = true;
-			} catch (SQLException e)
+			}
+			catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -565,7 +579,8 @@ public class JDBDespatch
 				}
 
 				result = true;
-			} catch (SQLException e)
+			}
+			catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -613,7 +628,8 @@ public class JDBDespatch
 		{
 			result = bar.generateNewSSCCs(1).get(0);
 			setDespatchNo(result);
-		} else
+		}
+		else
 		{
 			if (ctrl.lockRecord("DESPATCH NUMBER") == true)
 			{
@@ -629,12 +645,14 @@ public class JDBDespatch
 					despatchNo = String.valueOf(SeqNumber);
 					ctrl.setKeyValue(despatchNo);
 					ctrl.update();
-				} else
+				}
+				else
 				{
 					result = "";
 					setErrorMessage(ctrl.getErrorMessage());
 				}
-			} else
+			}
+			else
 			{
 				result = "";
 				setErrorMessage(ctrl.getErrorMessage());
@@ -673,7 +691,8 @@ public class JDBDespatch
 			rs.close();
 
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -689,7 +708,8 @@ public class JDBDespatch
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
 			result.addElement(new JDBDespatch(getHostID(), getSessionID(), "despatch_no", null, "location_id_from", "location_id_to", "status", 0, "trailer", "haulier", "load_no", "user_id", "journey_ref"));
-		} else
+		}
+		else
 		{
 			try
 			{
@@ -702,7 +722,8 @@ public class JDBDespatch
 				}
 
 				rs.close();
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -743,14 +764,16 @@ public class JDBDespatch
 			{
 				result = rs.getInt("pallet_count");
 				setTotalPallets(result);
-			} else
+			}
+			else
 			{
 				result = -1;
 				setErrorMessage("Invalid Despatch No");
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -779,13 +802,15 @@ public class JDBDespatch
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Invalid Despatch No");
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -821,13 +846,15 @@ public class JDBDespatch
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Invalid Despatch No");
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -860,7 +887,8 @@ public class JDBDespatch
 
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -949,7 +977,8 @@ public class JDBDespatch
 			setUserID(rs.getString("user_id"));
 			setJourneyRef(rs.getString("journey_ref"));
 			setJourneyRefOLD(rs.getString("journey_ref"));
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1031,21 +1060,32 @@ public class JDBDespatch
 			{
 				if (journey.getJourneyRefProperties(getJourneyRef()))
 				{
-					if (journey.getDespatchNo().equals("") == false)
+					if (journey.getLocationTo().equals(getLocationIDTo()))
 					{
-						if (journey.getDespatchNo().equals(getDespatchNo()) == false)
+						if (journey.getDespatchNo().equals("") == false)
 						{
-							setErrorMessage("Journey Ref used by " + journey.getDespatchNo());
-							result = false;
+							if (journey.getDespatchNo().equals(getDespatchNo()) == false)
+							{
+								setErrorMessage("Journey Ref used by " + journey.getDespatchNo());
+								result = false;
+							}
 						}
 					}
-				} else
+					else
+					{
+						setErrorMessage("Journey is for " + journey.getLocationTo());
+						result = false;
+					}
+
+				}
+				else
 				{
 					setErrorMessage("Invalid Journey Ref");
 					result = false;
 				}
 			}
-		} else
+		}
+		else
 		{
 			if (getJourneyRef().equals("") == false)
 			{
@@ -1089,14 +1129,16 @@ public class JDBDespatch
 			if (rs.next())
 			{
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Invalid Despatch No [" + getDespatchNo() + "]");
 			}
 
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1138,23 +1180,9 @@ public class JDBDespatch
 
 	public void setJourneyRef(String jref)
 	{
-		// String oldValue = JUtility.replaceNullStringwithBlank(dbJourneyRef);
 		String newValue = JUtility.replaceNullStringwithBlank(jref).toUpperCase().trim();
 
 		dbJourneyRef = newValue;
-
-		/*
-		 * if (oldValue.equals(newValue) == false) { // something has changed
-		 * 
-		 * if (oldValue.equals("") == false) {
-		 * journey.getJourneyRefProperties(oldValue); journey.setDespatchNo("");
-		 * journey.update(); }
-		 * 
-		 * if (newValue.equals("") == false) {
-		 * journey.getJourneyRefProperties(newValue);
-		 * journey.setDespatchNo(getDespatchNo()); journey.update(); } }
-		 */
-
 	}
 
 	public void setJourneyRefOLD(String jref)
@@ -1281,7 +1309,8 @@ public class JDBDespatch
 				}
 
 				result = true;
-			} catch (SQLException e)
+			}
+			catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -1315,7 +1344,8 @@ public class JDBDespatch
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			} catch (SQLException e)
+			}
+			catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
