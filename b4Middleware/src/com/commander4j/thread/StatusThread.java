@@ -35,7 +35,7 @@ public class StatusThread extends Thread
 			currentDate = currentDateTime.substring(0, 10);
 			currentTime = currentDateTime.substring(11, 19);
 
-			if (currentTime.equals(Common.statusReportTime))
+			if (currentTime.substring(0, 5).equals(Common.statusReportTime.substring(0, 5)))
 			{
 				if (currentDate.equals(lastRunDate) == false)
 				{
