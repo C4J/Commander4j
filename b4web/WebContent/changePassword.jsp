@@ -9,7 +9,7 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Change Password</title>
-<link href="commander.css" rel="stylesheet" type="text/css" />
+<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -27,11 +27,12 @@
 			%>
 		</h2>
 		<br>
-				
+	    <img src="./images/user-login-icon.gif" width="60" style="display:block; margin-left:auto; margin-right:auto;">
+		<br>
 		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
 			<tr>
-		     	<td style="width: 60%; text-align: right">User :</td>
-		     	<td style="width: 40%; text-align: left">
+		     	<td style="width: 40%; text-align: right">User :</td>
+		     	<td style="width: 60%; text-align: left">
 				<%
 					String username = (String) session.getAttribute("username");
 					if (username == null) username = "";
@@ -41,33 +42,45 @@
 			</tr>
 			
 			<tr>
-		     	<td style="width: 60%; text-align: right">Current :</td>
-		     	<td style="width: 40%; text-align: left">
+		     	<td style="width: 40%; text-align: right">Current :</td>
+		     	<td style="width: 60%; text-align: left">
 		     	<%
 				out.print("<input tabindex=\"1\" name=\"password\" id=\"password\" type=\"password\" size=\"20\" maxlength=\"20\"  value=\"\"/>");
 				%>
 			</tr>
 			
 			<tr>
-		     	<td style="width: 60%; text-align: right">New :</td>
-		     	<td style="width: 40%; text-align: left">
+		     	<td style="width: 40%; text-align: right">New :</td>
+		     	<td style="width: 60%; text-align: left">
 		     	<%
 				out.print("<input tabindex=\"2\" name=\"newPassword1\" id=\"newPassword1\" type=\"password\" size=\"20\" maxlength=\"20\"  value=\"\"/>");
 				%>
 			</tr>
 			
 			<tr>
-		     	<td style="width: 60%; text-align: right">Verify :</td>
-		     	<td style="width: 40%; text-align: left">
+		     	<td style="width: 40%; text-align: right">Verify :</td>
+		     	<td style="width: 60%; text-align: left">
 		     	<%
 				out.print("<input tabindex=\"3\" name=\"newPassword2\" id=\"newPassword2\" type=\"password\"  size=\"20\" maxlength=\"20\" value=\"\"/>");
 				%>
-			</tr>
-			
+			</tr>			
 		</table>
-		<br>
-
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 50%; text-align: left">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
+				</td>
+			</tr>
+		</table>		
+		
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td width="100%" height="20" align="center">
 				<input tabindex="4" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"onclick="document.changePassword.button.value='Submit';document.changePassword.submit();"> &nbsp; 
@@ -77,15 +90,6 @@
 				</td>
 			</tr>
 		</table>
-
-		<%
-			String errormessage = (String) session.getAttribute("_ErrorMessage");
-			if (errormessage == null)
-				errormessage = "";
-			errormessage = errormessage.trim();
-			out.println("<p>" + errormessage + "</p>");
-		%>
-
 	</form>
 	
 	<script language="javascript" type="text/javascript">

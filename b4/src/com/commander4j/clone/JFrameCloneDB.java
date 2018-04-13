@@ -534,7 +534,9 @@ public class JFrameCloneDB extends JFrame
 													destinationData = null;
 													sourceData.close();
 													sourceData = null;
+
 													setStatusBarText("Copying complete");
+
 
 												} catch (SQLException e)
 												{
@@ -562,11 +564,13 @@ public class JFrameCloneDB extends JFrame
 							{
 								labelCommand.setText("Cannot connect to destination.");
 							}
-							hstFrom.disconnect(Common.sessionID);
+
 						} else
 						{
 							labelCommand.setText("Cannot connect to source.");
 						}
+						hstFrom.disconnectAll();
+						hstTo.disconnectAll();
 					} else
 					{
 						labelCommand.setText("Cannot clone to self.");

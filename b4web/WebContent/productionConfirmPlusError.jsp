@@ -16,7 +16,7 @@
 <META http-equiv="Volume" content="SetVolume:0xFFFF">
 
 <title>Validate Barcode</title>
-<link href="commander.css" rel="stylesheet" type="text/css" />
+<link href="style/commander.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -111,7 +111,7 @@
 			</tr>
 		</table>
 
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="height: 90px; ">
 			<tr>
 				<td width="100%" height="20" align="center"><input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("btn_Ok")%>"
 					onclick="document.productionConfirmPlusError.button.value='Submit';document.productionConfirmPlusError .submit();"> <input type="hidden" id="button" name="button" value="Submit" /> <input type="hidden" name="formName"

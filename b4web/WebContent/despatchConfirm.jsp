@@ -9,7 +9,7 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Confirm Despatch</title>
-<link href="commander.css" rel="stylesheet" type="text/css">
+<link href="style/commander.css" rel="stylesheet" type="text/css">
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">

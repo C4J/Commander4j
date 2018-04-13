@@ -11,12 +11,13 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Host Select</title>
-<link href="commander.css" rel="stylesheet" type="text/css" />
+<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad = "focusIt()">
 <form id="hosts" name="hosts" action="Process" method="post">
 
 <h2>Hosts</h2>
+<br>
 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
   <tr>
     <td width="5%" height="20"></td>
@@ -33,7 +34,7 @@ out.println(hostList);
 </table><br>
 
 <label for="Submit"></label>
-<table border="0" cellpadding="0" cellspacing="0">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <td width="230" height="20" align="center">
 <input type="submit" name="buttonSubmit" value="Submit" id="buttonSubmit" onclick="document.hosts.button.value='Submit';" />&nbsp;

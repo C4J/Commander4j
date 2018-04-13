@@ -46,7 +46,7 @@ public class LabellerDBLink
 			stmt.close();
 		} catch (SQLException e)
 		{
-			logger.debug(e.getMessage());
+			logger.error(e.getMessage());
 		}
 
 		return result;
@@ -61,7 +61,7 @@ public class LabellerDBLink
 			Class.forName(getJdbcDriver()).newInstance();
 			try
 			{
-				logger.debug(getjdbcConnectString());
+				logger.error(getjdbcConnectString());
 				jdbcConnection = DriverManager.getConnection(getjdbcConnectString(), getJdbcUsername(), getJdbcPassword());
 				jdbcConnection.setAutoCommit(false);
 				jdbcConnection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);

@@ -98,7 +98,7 @@ public class LabellerTCPIP_TX extends Thread
 			
 			try
 			{
-				System.out.println("["+prop.getId()+"]"+" TX------->{"+utils.decodeControlChars(data)+"}");
+				logger.info("["+prop.getId()+"]"+" TX------->{"+utils.decodeControlChars(data)+"}");
 				outputStream.write(sendData.getBytes());
 				outputStream.flush();
 				
@@ -107,7 +107,7 @@ public class LabellerTCPIP_TX extends Thread
 
 			} catch (IOException e)
 			{
-				logger.info("["+prop.getId()+"]"+" TX ERROR-->{"+e.getMessage()+"}");
+				logger.error("["+prop.getId()+"]"+" TX ERROR-->{"+e.getMessage()+"}");
 				setStatus(status_ERROR);
 			}
 		}

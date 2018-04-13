@@ -73,7 +73,8 @@ public class Labeller extends Thread
 
 			result = true;
 
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			logger.error("Labeller [" + prop.getId() + "] parseInputData error :" + ex.getMessage());
 		}
@@ -101,7 +102,7 @@ public class Labeller extends Thread
 
 			if (requestPrint)
 			{
-				logger.debug("[" + prop.getId() + "] detected input file [" + prop.getInputPath() + prop.getInputFile() + "]");
+				logger.info("[" + prop.getId() + "] detected input file [" + prop.getInputPath() + prop.getInputFile() + "]");
 				parseInputData(prop.getInputPath() + prop.getInputFile());
 
 				if (connected == false)
@@ -126,7 +127,8 @@ public class Labeller extends Thread
 						}
 					}
 
-				} else
+				}
+				else
 				{
 
 					if (requestPrint == true)
@@ -144,7 +146,8 @@ public class Labeller extends Thread
 						disconnect();
 					}
 				}
-			} else
+			}
+			else
 			{
 				// System.out.println("Labeller ["+ prop.getId()+"] waiting for
 				// request to print");
@@ -183,7 +186,7 @@ public class Labeller extends Thread
 			CMD = labellerCMDFile.commandLines.get(exePosition).command;
 			VAL = labellerCMDFile.getValueAtLine(exePosition).replaceAll("~", "\"");
 
-			logger.info("[" + prop.getId() + "]" + " runScript :" + JUtility.padString(String.valueOf(exePosition + 1), false, 5, "0") + " - " + JUtility.padString(LBL, true, 18, " ") + JUtility.padString(CMD, true, 30, " ")
+			logger.debug("[" + prop.getId() + "]" + " runScript :" + JUtility.padString(String.valueOf(exePosition + 1), false, 5, "0") + " - " + JUtility.padString(LBL, true, 18, " ") + JUtility.padString(CMD, true, 30, " ")
 					+ JUtility.padString(VAL, true, 50, " "));
 
 			switch (CMD)
@@ -305,7 +308,8 @@ public class Labeller extends Thread
 				try
 				{
 					FileUtils.forceMkdir(writePath);
-				} catch (IOException e)
+				}
+				catch (IOException e)
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -314,7 +318,8 @@ public class Labeller extends Thread
 				{
 					logger.info("[" + prop.getId() + "]" + " Write to file [" + fileWrite.getName() + "] <-- [" + VAL + "]");
 					FileUtils.writeStringToFile(fileWrite, utils.encodeControlChars(VAL), "UTF-8", true);
-				} catch (IOException e)
+				}
+				catch (IOException e)
 				{
 					logger.error("[" + prop.getId() + "]" + " ERROR [" + e.getMessage() + "]");
 					scriptError = true;
@@ -369,58 +374,61 @@ public class Labeller extends Thread
 		String filenameMask = varArray3[0];
 		String filenameOrderPrefix = varArray3[1];
 		String filenameOrderSuffix = varArray3[2];
-		dblinks.get(varArray3[3]).connect();
-
-		result = DIR_REMOTE(filenameMask);
-
-		while ((directory.peek() != null) && (result == true) && (shutdown == false))
+		if (dblinks.get(varArray3[3]).connect())
 		{
-			String deleteFilename = directory.poll().getFilename();
 
-			int startpos;
-			if (filenameOrderPrefix.equals(""))
-			{
-				startpos = 0;
-			} 
-			else
-			{
-				startpos = deleteFilename.toLowerCase().indexOf(filenameOrderPrefix.toLowerCase());
-			}
+			result = DIR_REMOTE(filenameMask);
 
-			if (startpos >= 0)
+			while ((directory.peek() != null) && (result == true) && (shutdown == false))
 			{
-				int endpos;
+				String deleteFilename = directory.poll().getFilename();
 
-				if (filenameOrderSuffix.equals(""))
+				int startpos;
+				if (filenameOrderPrefix.equals(""))
 				{
-					endpos = deleteFilename.toLowerCase().indexOf(".", startpos + filenameOrderPrefix.length());
-				} 
+					startpos = 0;
+				}
 				else
 				{
-					endpos = deleteFilename.toLowerCase().indexOf(filenameOrderSuffix.toLowerCase(), startpos + filenameOrderPrefix.length());
+					startpos = deleteFilename.toLowerCase().indexOf(filenameOrderPrefix.toLowerCase());
 				}
 
-				if (endpos >= 0)
+				if (startpos >= 0)
 				{
-					String order = deleteFilename.substring(startpos + filenameOrderPrefix.length(), endpos);
-					String resultString = dblinks.get(varArray3[3]).queryExecute(varArray3[4], order, varArray3[5]);
+					int endpos;
 
-					logger.info("[" + prop.getId() + "] - ARCHIVE_FILENAMES1 " + deleteFilename + " Order [" + order + "] Status [" + resultString + "]");
+					if (filenameOrderSuffix.equals(""))
+					{
+						endpos = deleteFilename.toLowerCase().indexOf(".", startpos + filenameOrderPrefix.length());
+					}
+					else
+					{
+						endpos = deleteFilename.toLowerCase().indexOf(filenameOrderSuffix.toLowerCase(), startpos + filenameOrderPrefix.length());
+					}
 
-					if (resultString.equals(varArray3[5]))
+					if (endpos >= 0)
 					{
-						logger.info("[" + prop.getId() + "] - DELETE FILE " + deleteFilename);
-						DELETE_FILE(deleteFilename);
-					} else
-					{
-						logger.info("[" + prop.getId() + "] - IGNORE FILE " + deleteFilename);
+						String order = deleteFilename.substring(startpos + filenameOrderPrefix.length(), endpos);
+						String resultString = dblinks.get(varArray3[3]).queryExecute(varArray3[4], order, varArray3[5]);
+
+						logger.info("[" + prop.getId() + "] - ARCHIVE_FILENAMES1 " + deleteFilename + " Order [" + order + "] Status [" + resultString + "]");
+
+						if (resultString.equals(varArray3[5]))
+						{
+							logger.info("[" + prop.getId() + "] - DELETE FILE " + deleteFilename);
+							DELETE_FILE(deleteFilename);
+						}
+						else
+						{
+							logger.info("[" + prop.getId() + "] - IGNORE FILE " + deleteFilename);
+						}
 					}
 				}
+
 			}
 
+			dblinks.get(varArray3[3]).disconnect();
 		}
-
-		dblinks.get(varArray3[3]).disconnect();
 		return result;
 	}
 
@@ -449,7 +457,8 @@ public class Labeller extends Thread
 		try
 		{
 			FileUtils.forceMkdir(sendPath);
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -481,7 +490,8 @@ public class Labeller extends Thread
 				rx.clearQueue();
 				logger.info("[" + prop.getId() + "]" + " SEND file [" + VAL + "] Complete.");
 				result = true;
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				logger.error("[" + prop.getId() + "]" + " SEND file [" + VAL + "] Error." + e.getMessage());
 
@@ -503,7 +513,8 @@ public class Labeller extends Thread
 		{
 			downloadPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_backups" + java.io.File.separator + prop.getId() + java.io.File.separator
 					+ JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime()).substring(0, 16).replaceAll(":", "-").replaceAll("T", "-"));
-		} else
+		}
+		else
 		{
 			downloadPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId());
 		}
@@ -511,7 +522,8 @@ public class Labeller extends Thread
 		try
 		{
 			FileUtils.forceMkdir(downloadPath);
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			logger.error(e.getMessage());
 		}
@@ -563,7 +575,8 @@ public class Labeller extends Thread
 						LabellerIntelHex ohc = new LabellerIntelHex();
 						ohc.convertFromIntelHex(outFile1, outFile2);
 						FileUtils.deleteQuietly(outFile1);
-					} catch (Exception ex)
+					}
+					catch (Exception ex)
 					{
 						result = false;
 						logger.error("[" + prop.getId() + "]" + " DOWNLOAD Error " + ex.getMessage());
@@ -648,24 +661,29 @@ public class Labeller extends Thread
 			response = response.replace("CMD->", "");
 			String[] DTS = response.split(",");
 			LabellerFile file = new LabellerFile();
-			file.setFilename(DTS[0]);
-			file.setDateTime(DTS[2], DTS[3]);
-			file.setSize(Long.valueOf(DTS[1]));
+			if (DTS.length == 4)
+			{
+				file.setFilename(DTS[0]);
+				file.setDateTime(DTS[2], DTS[3]);
+				file.setSize(Long.valueOf(DTS[1]));
 
-			if (dirCMDFilter.length == 2)
-			{
-				if (file.getFilename().contains(dirCMDFilter[1]))
+				if (dirCMDFilter.length == 2)
 				{
-					logger.info("[" + prop.getId() + "] - " + file.toString());
-					directory.add(file);
-				} else
-				{
-					logger.info("[" + prop.getId() + "] - " + "Filter ignoring :" + file.getFilename());
+					if (file.getFilename().contains(dirCMDFilter[1]))
+					{
+						logger.info("[" + prop.getId() + "] - " + file.toString());
+						directory.add(file);
+					}
+					else
+					{
+						logger.info("[" + prop.getId() + "] - " + "Filter ignoring :" + file.getFilename());
+					}
 				}
-			} else
-			{
-				directory.add(file);
-				logger.info("[" + prop.getId() + "] - " + file.toString());
+				else
+				{
+					directory.add(file);
+					logger.info("[" + prop.getId() + "] - " + file.toString());
+				}
 			}
 		}
 		logger.info("[" + prop.getId() + "] -----------------------------------------------------------------------");
@@ -694,7 +712,8 @@ public class Labeller extends Thread
 				// stabalised.
 				utils.pause(waitDelay);
 				timeout--;
-			} else
+			}
+			else
 			{
 				// Changes so reset timeout.
 				timeout = waitRetries;
@@ -705,9 +724,10 @@ public class Labeller extends Thread
 			{
 				if (rx.responseQueue.size() > 0)
 				{
-					logger.info("[" + prop.getId() + "]" + " **** STABALISED ****");
+					logger.debug("[" + prop.getId() + "]" + " **** STABALISED ****");
 					cont = false;
-				} else
+				}
+				else
 				{
 					logger.error("[" + prop.getId() + "]" + " **** TIMEOUT NO RESPONSE ****");
 					cont = true;
@@ -793,6 +813,8 @@ public class Labeller extends Thread
 		System.out.println("");
 
 		logger.info("[" + prop.getId() + "]" + " Disconnected.");
+
+		connected = false;
 	}
 
 	public boolean connect()
@@ -812,13 +834,13 @@ public class Labeller extends Thread
 				System.out.println("");
 
 				rx = new LabellerTCPIP_RX();
-				rx.setName(prop.getId() + " RX");
+				rx.setName(prop.getId());
 				rx.setSocketConnection(socket);
 				rx.setLabellerProperties(prop);
 				rx.start();
 
 				tx = new LabellerTCPIP_TX();
-				tx.setName(prop.getId() + " TX");
+				tx.setName(prop.getId());
 				tx.setSocketConnection(socket);
 				tx.setLabellerProperties(prop);
 				tx.start();
@@ -826,7 +848,8 @@ public class Labeller extends Thread
 				connected = true;
 				result = true;
 
-			} catch (IOException e)
+			}
+			catch (IOException e)
 			{
 				utils.pause(500);
 				logger.error("[" + prop.getId() + "]" + " Connect Error : " + e.getMessage());

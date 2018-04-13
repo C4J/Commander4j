@@ -2,7 +2,7 @@
 <labellers>
     
     <labeller id="Labeller 1"> 
-        <enabled>Y</enabled>
+        <enabled>N</enabled>
         <ipAddres>10.1.50.176</ipAddres>
         <portNumber>8000</portNumber>
         <commandFile>WROCLAW_CASE.txt</commandFile>
@@ -12,12 +12,12 @@
     </labeller>
     
     <labeller id="Labeller 2"> 
-        <enabled>N</enabled>
+        <enabled>Y</enabled>
         <ipAddres>10.1.50.176</ipAddres>
-        <portNumber>8004</portNumber>
+        <portNumber>8000</portNumber>
         <commandFile>BUK_CASE.txt</commandFile>
         <inputPath>./labeller_requests/direct/</inputPath>
-        <inputFile>DATA_BUK.CSV</inputFile>
+        <inputFile>SCHUBERT 1_FEGE_ LGP515.CSV</inputFile>
         <mode>transfer</mode>
     </labeller>
     

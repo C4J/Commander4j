@@ -10,7 +10,7 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Menu</title>
-<link href="commander.css" rel="stylesheet" type="text/css" />
+<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -22,7 +22,8 @@
 <body onLoad="focusIt()">
 	<form id="menus" name="menus" action="Process" method="post">
 		<h2><%=Lang.getText("mod_root")%></h2>
-		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+		<br>
+		<table class='tableText' align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
 			<tr>
 				<td width="5%" height="20"></td>
 				<td width="90%" height="20" align="left">
@@ -37,8 +38,9 @@
 				<td width="5%" height="20"></td>
 			</tr>
 		</table>
+		<br>
 		<label for="Submit"></label>
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td width="100%" height="20" align="center"><input type="submit" name="buttonSubmit" value="<%=Lang.getText("web_Submit")%>" id="buttonSubmit" onclick="document.menus.button.value='Submit';" />&nbsp; <input type="submit" name="buttonCancel"
 					value="<%=Lang.getText("web_Cancel")%>" id="buttonCancel" onclick="document.menus.button.value='Cancel';" /></td>

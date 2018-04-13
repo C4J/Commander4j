@@ -115,7 +115,7 @@ public class LabellerTCPIP_RX extends Thread
 						afterEOL = responseBuffer.substring(beforeEOL.length() + encodedEOL.length(), responseBuffer.length());
 						if (beforeEOL.equals("") == false)
 						{
-							logger.info("["+prop.getId()+"]"+" RAW RX<---{"+utils.decodeControlChars(beforeEOL)+"}");
+							logger.info("["+prop.getId()+"]"+" RX<---{"+utils.decodeControlChars(beforeEOL)+"}");
 							
 							if (ignoredResponses.contains(beforeEOL) == false)
 							{

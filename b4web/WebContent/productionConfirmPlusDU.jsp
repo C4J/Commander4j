@@ -16,7 +16,7 @@
 <META http-equiv="Volume" content="SetVolume:0xFFFF">
 
 <title>Validate Barcode</title>
-<link href="commander.css" rel="stylesheet" type="text/css" />
+<link href="style/commander.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -29,7 +29,7 @@
 <body onLoad="focusIt()">
 	<form id="productionConfirmPlusDU" name="productionConfirmPlusDU" action="Process" method="post">
 		<h2><%=Lang.getText("web_Barcode_Validate")%></h2>
-
+		<br>
 		<table style="width: 100%">
 			<tr>
 				<td style="width: 50%; text-align: right"><%=Lang.getText("lbl_Process_Order")%></td>
@@ -64,7 +64,7 @@
 			</tr>
 		</table>		
 		
-		<img src="./images/tray_du.gif" style="margin-left: 45px">
+		<img src="./images/tray_du.gif" width="200" style="display:block; margin-left:auto; margin-right:auto;">		
          
 		<table style="width:100%;" align="center">
 			<tr>
@@ -87,7 +87,7 @@
 			</tr>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="height: 90px; ">
 			<tr>
 				<td width="100%" height="20" align="center">
 				<input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>" onclick="document.productionConfirmPlusDU.button.value='Submit';document.productionConfirmPlusDU.submit();">

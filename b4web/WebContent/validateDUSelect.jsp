@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
 
 <META http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,7 +18,7 @@
 <META http-equiv="Volume" content="SetVolume:0xFFFF">
 
 <title>Process Order Select</title>
-<link href="commander.css" rel="stylesheet" type="text/css" />
+<link href="style/commander.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -32,7 +33,6 @@
 		<h2>
 			<%=Lang.getText("web_Barcode_Validate")%>
 		</h2>
-
 		<table style="width:100%;" align="center">
 			<tr>
 				<td style="width: 50%; text-align: right"><%=Lang.getText("lbl_Process_Order")%></td>
@@ -49,26 +49,24 @@
 				</td>
 			</tr>
 		</table>
-		
-		<img src="./images/pallet_sscc.gif" style="margin-left: 45px">
-
+		<br>
+		<img src="./images/pallet_sscc.gif" width="150" style="display:block; margin-left:auto; margin-right:auto;">
 		<table style="width:100%;" align="center">
 			<tr>
-				<td style="width: 10%; text-align: right"><%=Lang.getText("web_SSCC")%></td>
-				<td style="width: 90%; text-align: left">
+				<td style="width: 30%; text-align: right"><%=Lang.getText("web_SSCC")%></td>
+				<td style="width: 70%; text-align: left">
 					<%
 						String sscc = (String) session.getAttribute("validateSSCC");
 						if (sscc == null)
 							sscc = "";
 						sscc = sscc.trim();
 						out.println(
-								"<input tabindex=\"1\" name=\"validateSSCC\" type=\"text\" id=\"validateSSCC\" size=\"20\" maxlength=\"20\" value=\""
+								"<input tabindex=\"2\" name=\"validateSSCC\" type=\"text\" id=\"validateSSCC\" size=\"20\" maxlength=\"20\" value=\""
 										+ sscc + "\"/>");
 					%>
 				</td>
 			</tr>
 		</table>
-
 		<table style="width: 100%">
 			<tr>
 				<td style="width: 100%; text-align: left">
@@ -83,11 +81,16 @@
 			</tr>
 		</table>
 
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
-				<td width="100%" height="20" align="center"><input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"
-					onclick="document.validateDUSelect.button.value='Submit';document.validateDUSelect.submit();"> &nbsp; <input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"
-					onclick="document.validateDUSelect.button.value='Cancel';document.validateDUSelect.submit();"> <input type="hidden" id="button" name="button" value="Submit" /> <input type="hidden" name="formName" value="validateDUSelect.jsp" /></td>
+				<td width="100%" height="20" align="center">				
+				    <input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"	onclick="document.validateDUSelect.button.value='Submit';document.validateDUSelect.submit();"/> &nbsp; 
+					<input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"	onclick="document.validateDUSelect.button.value='Cancel';document.validateDUSelect.submit();"/> 
+					<input type="hidden" id="button" name="button" value="Submit" /> 
+					<input type="hidden" name="formName" value="validateDUSelect.jsp" />
+					<input type="hidden" name="barcodeType" value="none" /> 
+					<input type="hidden" name="barcodeLength" value="0" />
+				</td>
 			</tr>
 		</table>
 	</form>
@@ -110,3 +113,5 @@
 
 </body>
 </html>
+
+

@@ -9,7 +9,7 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Pallet Information Display</title>
-<link href="commander.css" rel="stylesheet" type="text/css">
+<link href="style/commander.css" rel="stylesheet" type="text/css">
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -23,132 +23,166 @@
 		<h2><%=Lang.getText("mod_FRM_PAL_INFO")%></h2>
 		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("web_SSCC")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("sscc"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("lbl_Process_Order")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+				<td width="5%">
+
+				</td>
+				<td width="55%" >
 					<%
 						out.println(session.getAttribute("processOrder"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("lbl_Material")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("material"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("lbl_Location_ID")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("location"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("lbl_Despatch_No")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("despatchNo"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("lbl_Pallet_Status")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("palletStatus"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("lbl_Batch")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("batch"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("lbl_Batch_Status")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("batchStatus"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("lbl_Pallet_Quantity")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("quantity"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("lbl_Pallet_UOM")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("uom"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("web_DOM")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("dom"));
 					%>
 				</td>
 			</tr>
 			<tr>
-				<td width="75" height="20">
+				<td width="40%">
 					<div align="right"><%=Lang.getText("lbl_Material_Batch_Expiry_Date")%></div>
 				</td>
-				<td width="5">&nbsp;</td>
-				<td width="150" height="20">
+
+				<td width="5%">
+
+				</td>
+				<td width="55%">
 					<%
 						out.println(session.getAttribute("expiry"));
 					%>
@@ -156,7 +190,7 @@
 			</tr>
 
 		</table>
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td width="230" height="20" align="center"><input type="submit" tabindex='8' name="buttonExit" value="<%=Lang.getText("web_Exit")%>" id="buttonExit" onclick="document.palletInfoDisplay.button.value='Exit';" /></td>
 			</tr>

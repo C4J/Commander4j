@@ -1,0 +1,1 @@
+java -cp c4jMiddleware.jar:lib/* com.commander4j.mw.StartMain

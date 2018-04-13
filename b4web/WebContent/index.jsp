@@ -22,43 +22,33 @@
 <META HTTP-Equiv="wake" Content="wakeLock:Enabled;wifiLock:Enabled">
 <META HTTP-Equiv="unattended" content="enabled">
 
+
 <title>Welcome</title>
-<link href="commander.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-<!--
-.style5 {
-	font-size: large
-}
-.style6 {
-	color: #FF0000;
-	font-size: x-large;
-}
-.style7 {font-size: x-large}
--->
-</style>
+<link href="style/commander.css" rel="stylesheet" type="text/css">
+
 </head>
 <body  onLoad = "focusIt()">
 <form id="index" name="index" action="Process" method="POST">
 
-<table border="0" cellpadding="0" cellspacing="0">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 		<td style="height: 20px"></td>
 	</tr>
 	<tr>
-		<td width="230" height="20" align="center" style="height: 77px">
-		<p align="center" class="style5"><span class="style7">Commander</span><span
-			class="style6">4j</span></p>
+		<td width="230" height="20" align="center" style="height: 97px">
+		<p align="center"><span class="splashTitleCommander">Commander</span><span
+			class="splashTitle4J">4j</span></p>
 
 		</td>
 	</tr>
 	<tr>
-		<td align="center" style="height: 34px">
-		Version : 5.42
+		<td align="center" style="height: 86px" class="splashTitleVersion">
+		Version : 5.51
 	</tr>
 	<tr>
-		<td align="center" style="height: 70px"><input type="submit" name="buttonStart"
-			id="buttonStart" value="Start"
-			onclick="document.index.button.value='Start';"></td>
+		<td align="center" style="height: 70px">
+			<input type="submit" name="buttonStart"	id="buttonStart" value="Start" 	onclick="document.index.button.value='Start';">
+		</td>
 	</tr>
 </table>
 <input type="hidden" name="formName" value="index.jsp" />

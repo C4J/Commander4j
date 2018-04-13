@@ -9,7 +9,7 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Despatch Header</title>
-<link href="commander.css" rel="stylesheet" type="text/css">
+<link href="style/commander.css" rel="stylesheet" type="text/css">
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -101,7 +101,7 @@
 			out.println(session.getAttribute("_ErrorMessage"));
 		%>
 
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td width="100%" height="30" align="center"><input type="submit" tabindex='6' name="buttonAdd" value="<%=Lang.getText("web_Add_SSCC")%>" id="buttonAdd" onclick="document.despatchHeader.button.value='Add Pallets';" />&nbsp; <input
 					type="submit" tabindex='7' name="buttonPrint" value="<%=Lang.getText("web_Print_STN")%>" id="buttonPrint" onclick="document.despatchHeader.button.value='Print STN';" /></td>

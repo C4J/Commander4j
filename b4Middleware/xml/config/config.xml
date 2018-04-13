@@ -311,7 +311,7 @@
             <path>./interface/input/18 (SAP IDOC Material Master)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <idocSchemaFilename>./idoc/schema/ZMATMAS03.txt</idocSchemaFilename>
+            <idocSchemaFilename>./idoc/schema/ZMATMAS03c.txt</idocSchemaFilename>
             <XSLT>ROCKWELL_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
         </input>
 

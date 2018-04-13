@@ -70,6 +70,7 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
@@ -90,6 +91,17 @@ public class JUtility
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 		return sdf.format(cal.getTime());
+	}
+	
+	public static String removePathSeparators(String path)
+	{
+		String result = path;
+
+		result = StringUtils.replaceChars(result, String.valueOf(":"),"_");
+		result = StringUtils.replaceChars(result, String.valueOf("\\"),"_");
+		result = StringUtils.replaceChars(result, String.valueOf("/"),"_");
+		
+		return result;
 	}
 
 	public static int getActiveHostCount()

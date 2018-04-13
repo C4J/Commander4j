@@ -15,7 +15,7 @@
 <META http-equiv="Volume" content="SetVolume:0xFFFF">
 
 <title>Validate Barcode</title>
-<link href="commander.css" rel="stylesheet" type="text/css" />
+<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -27,7 +27,7 @@
 <body onLoad="focusIt()">
 	<form id="validateDUPallet" name="validateDUPallet" action="Process" method="post">
 		<h2><%=Lang.getText("web_Barcode_Validate")%></h2>
-		
+	
 		<table style="width: 100%">
 			<tr>
 				<td style="width: 50%; text-align: right"><%=Lang.getText("lbl_Process_Order")%></td>
@@ -61,12 +61,12 @@
 			</tr>
 		</table>
 
-		<img src="./images/pallet_du.gif" style="margin-left: 45px">
+		<img src="./images/pallet_du.gif" width="150" style="display:block; margin-left:auto; margin-right:auto;">
 		
 		<table style="width:100%;" align="center">
 			<tr>
 				<td style="width: 50%; text-align: right"><%=Lang.getText("web_Scan_Barcode")%></td>
-				<td style="width: 50%; text-align: left"><input tabindex="1" type="text" name="palletDU" id="palletDU" size="55" maxlength="55" value="" /></td>
+				<td style="width: 50%; text-align: left"><input tabindex="1" type="text" name="palletDU" id="palletDU" size="20" maxlength="55" value="" /></td>
 			</tr>
 		</table>
 		
@@ -84,7 +84,7 @@
 			</tr>
 		</table>
 
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td width="100%" height="20" align="center">
 				<input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"onclick="document.validateDUPallet.button.value='Submit';document.validateDUPallet.submit();"> &nbsp; 

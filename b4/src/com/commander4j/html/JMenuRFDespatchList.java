@@ -116,6 +116,11 @@ public class JMenuRFDespatchList
 
 		Double temp = java.lang.Math.ceil(Double.valueOf((list.size()/Double.valueOf(itemsPerPage))));
 		int pages = temp.intValue();
+		
+		if (pages==0)
+		{
+			pages = 1;
+		}
 
 		setMaxPages(pages);
 		

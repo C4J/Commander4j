@@ -10,7 +10,7 @@
 
 Initialise        STRING_DELIMITER              "
                   STATUS                        "Initialising"
-                  VARIABLE                      $variable_Template="manual.llf" 
+                  VARIABLE                      $variable_Template="buk160x60case_pc.llf" 
                   USER_INPUTx                   "Enter Description :","Dog Food","$data_MATERIAL_DESCRIPTION" 
                   SEND_DELAY                    100
                   SEND_EOL                      "<CR>"
@@ -51,32 +51,28 @@ Initialise        STRING_DELIMITER              "
                   CONNECTION_OPEN
                   
                   STATUS                        "Setup Labeller"
+                      				  
                   SEND                          "*VERBOSE"
                   CHECK_SUCCESS
                   SEND                          "*RDR"
                   CHECK_SUCCESS
-                                 
-                  DB_QUERY                      "mySQL Test,Query Controls,PLANT,KEY_VALUE,$variable_Plant"    
-                                    
+                                     
                   GOTO                          Start
                   
-Start             SEND                          "<STX>LOAD,/c0/$variable_Template<CR>"
-                  SEND                          "FD,112,$data_MATERIAL<CR>"
-                  SEND                          "FD,44,PADLEFT($data_PROD_VARIANT,2,0)<CR>"
-                  SEND                          "FD,1,$data_MATERIAL_DESCRIPTION<CR>"
-                  SEND                          "FD,112,$data_MATERIAL<CR>"
-                  SEND                          "FD,123,$data_BATCH_NUMBER<CR>"
-                  SEND                          "FD,124,$data_PROCESS_ORDER<CR>"
-                  SEND                          "FD,71,REPLACE($data_PROD_QUANTITY,.000,)<CR>"
-                  SEND                          "FD,72,PADLEFT($data_BASE_EAN,14,0)<CR>"
-                  SEND                          "FD,62,PADLEFT($data_PROD_EAN,14,0)<CR>"
-                  SEND                          "FD,61,REPLACE($data_BASE_QUANTITY,.000,)<CR>"
-                  SEND                          "FD,51,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,dd)<CR>"
-                  SEND                          "FD,52,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,MM)<CR>"
-                  SEND                          "FD,53,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,yyyy)<CR>"
-                  SEND                          "FD,43,$variable_Plant<CR>"
-                  SEND                          "FD,10,PADLEFT($data_PROD_VARIANT,2,0)<CR>"                   
-                  SEND                          "<ETX><CR>"
+Start                        
+                  SEND                          "LK,1"                 
+                  SEND                          "<STX>LOAD,/c0/$variable_Template"
+                  SEND                          "FD,1,$data_BATCH_NUMBER"
+                  SEND                          "FD,2,$data_MATERIAL_DESCRIPTION"
+                  SEND                          "FD,5,PADLEFT($data_PROD_VARIANT,2,0)"
+                  SEND                          "FD,8,$data_MATERIAL"
+                  SEND                          "FD,9,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,yyyy)"  
+                  SEND                          "FD,10,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,MM)"
+                  SEND                          "FD,15,PADLEFT($data_PROD_EAN,14,0)"
+                  SEND                          "FD,21,PADLEFT($data_BASE_EAN,14,0)"
+                  SEND                          "FD,22,REPLACE($data_BASE_QUANTITY,.000,)"                
+                  SEND                          "FD,110,$data_BATCH_SUFFIX"                                     
+                  SEND                          "<ETX>"
                   
                   GOTO                          Finish
 

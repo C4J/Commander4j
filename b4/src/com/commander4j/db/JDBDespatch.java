@@ -318,6 +318,8 @@ public class JDBDespatch
 		setLocationIDTo("");
 		setStatus("");
 		setTotalPallets(0);
+		setJourneyRef("");
+		setJourneyRefOLD("");
 	}
 
 	public boolean confirm()

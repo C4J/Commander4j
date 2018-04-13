@@ -19,7 +19,7 @@
 <META HTTP-Equiv="acceleratekey" content="all">
 
 <title>Despatch Pallet</title>
-<link href="commander.css" rel="stylesheet" type="text/css">
+<link href="style/commander.css" rel="stylesheet" type="text/css">
 <%
 	String despatchNo = (String) session.getAttribute("despatchNo");
 	despatchNo = despatchNo.trim();
@@ -38,11 +38,13 @@
 			out.println(despatchNo);
 		%>
 		</h2>
-		<img src="./images/pallet_sscc.gif" style="margin-left: 45px">
+		<br>
+		<img src="./images/pallet_sscc.gif" width="150" style="display:block; margin-left:auto; margin-right:auto;">
+		<br>
 		<table style="width:100%;" align="center">
 			<tr>
-				<td style="width: 10%; text-align: right"><%=Lang.getText("web_SSCC")%></td>
-				<td style="width: 90%; text-align: left">
+				<td style="width: 30%; text-align: right"><%=Lang.getText("web_SSCC")%></td>
+				<td style="width: 70%; text-align: left">
 					<%
 						String sscc = (String) session.getAttribute("sscc");
 						if (sscc == null)
@@ -55,12 +57,20 @@
 				</td>
 			</tr>
 		</table>
-
 		<table style="width: 100%" border="0">
 			<tr>
-				<td style="width: 33%; text-align: right"><label><input name="addRemoveMode" accesskey="A" type="radio" id="radio" value="add" checked="checked" onClick="focusIt()" /><%=Lang.getText("web_Add")%></label></td>
-				<td style="width: 33%; text-align: left"><label><input name="addRemoveMode" accesskey="R" type="radio" id="radio" value="remove" onClick="focusIt()" /><%=Lang.getText("web_Remove")%></label></td>
-				<td style="width: 33%; text-align: left">Count : <%
+				<td style="width: 50%; text-align: right"><label><input name="addRemoveMode" accesskey="A" type="radio" id="radio" value="add" checked="checked" onClick="focusIt()" /><%=Lang.getText("web_Add")%></label></td>
+				<td style="width: 50%; text-align: left"><label><input name="addRemoveMode" accesskey="R" type="radio" id="radio" value="remove" onClick="focusIt()" /><%=Lang.getText("web_Remove")%></label></td>
+
+			</tr>
+			<tr>
+		 	    <td style="width: 50%"></td>
+				<td style="width: 50%"></td>  
+		   </tr>			
+			<tr>
+		 	    <td style="width: 50%; text-align: right">Count :</td>
+				<td style="width: 50%; text-align: left">
+				 <%
 					String palletCount = (String) session.getAttribute("despatchPalletCount");
 					if (palletCount == null)
 						palletCount = "";
@@ -69,7 +79,6 @@
 				</td>
 			</tr>
 		</table>
-
 		<table style="width: 100%">
 			<tr>
 				<td style="width: 100%; text-align: left">
@@ -83,8 +92,7 @@
 				</td>
 			</tr>
 		</table>
-
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td width="100%" height="20" align="center"><input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>"
 					onclick="document.despatchPallet.button.value='Submit';document.despatchPallet.submit();">&nbsp; <input tabindex="4" type="button" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>"

@@ -16,7 +16,7 @@
 <META http-equiv="Volume" content="SetVolume:0xFFFF">
 
 <title>Validate Barcode</title>
-<link href="commander.css" rel="stylesheet" type="text/css" />
+<link href="style/commander.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -87,7 +87,7 @@
 		    <td><font color="<%String trayVariantColor = (String) session.getAttribute("trayVariantColor");out.println(" " + trayVariantColor + "");%>"><%String trayVariant = (String) session.getAttribute("trayVariant");out.println(" " + trayVariant + "");%></font></td>
 		  </tr>
 		</table>
-		<img src="<%String resultImage = (String) session.getAttribute("resultImage");out.println(" " + resultImage + "");%>" style="margin-left: 45px"><br>	
+		<img src="<%String resultImage = (String) session.getAttribute("resultImage");out.println(" " + resultImage + "");%>" style="display:block; margin-left:auto; margin-right:auto;"><br>	
 		<table style="width: 100%">
 			<tr>
 				<td style="width: 50%; text-align: left">
@@ -102,7 +102,7 @@
 			</tr>
 		</table>
 		
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center"  style="height: 90px; ">
 			<tr>
 				<td width="100%" height="20" align="center">
 				<input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("btn_Ok")%>" onclick="document.validateDUResult.button.value='Submit';document.validateDUResult.submit();"> 

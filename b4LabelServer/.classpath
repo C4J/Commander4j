@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="lib/db/mssql-jdbc-6.2.2.jre8.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-java-5.1.45-bin.jar"/>
 	<classpathentry kind="lib" path="lib/db/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="xml/config"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

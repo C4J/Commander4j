@@ -89,7 +89,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					result = false;
 					errormessage = "Despatch is assigned to " + assignedUser;
 					session.setAttribute("_ErrorMessage", errormessage);
-				} else
+				}
+				else
 				{
 					session.setAttribute("_ErrorMessage", "");
 				}
@@ -113,7 +114,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			if (test.equals(""))
 			{
 				response.sendRedirect("despatchSelect.jsp");
-			} else
+			}
+			else
 			{
 				if (despatchDataConfirm(Common.sd.getData(sessionID, "despatchNo"), request, session))
 				{
@@ -128,12 +130,14 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					}
 					saveData(session, "despatchNo", "", true);
 					despatchMenuDisplay(request, response);
-				} else
+				}
+				else
 				{
 					response.sendRedirect("despatchHeader.jsp");
 				}
 			}
-		} else
+		}
+		else
 		{
 			response.sendRedirect("despatchHeader.jsp");
 		}
@@ -155,7 +159,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			result = false;
 			session.setAttribute("_ErrorMessage", desp.getErrorMessage());
 			logger.debug("Cannot confirm Despatch " + despNo + " - " + desp.getErrorMessage());
-		} else
+		}
+		else
 		{
 			logger.debug("Despatch " + despNo + " Confirmed");
 			session.setAttribute("_ErrorMessage", "");
@@ -193,7 +198,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				saveData(session, "despatchHaulier", "", true);
 				saveData(session, "despatchLoadNo", "", true);
 				saveData(session, "despatchJourneyRef", "", true);
-			} else
+			}
+			else
 			{
 				result = "";
 				session.setAttribute("_ErrorMessage", desp.getErrorMessage());
@@ -201,7 +207,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 			saveData(session, "despatchFromLocationCombo", locationDBComboBox("despatchFromLocation", "", session), true);
 			saveData(session, "despatchToLocationCombo", locationDBComboBox("despatchToLocation", "", session), true);
-		} else
+		}
+		else
 		{
 			session.setAttribute("_ErrorMessage", desp.getErrorMessage());
 			result = "";
@@ -234,7 +241,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				saveData(session, "despatchFromLocationCombo", locationDBComboBox("despatchFromLocation", desp.getLocationIDFrom(), session), true);
 				saveData(session, "despatchToLocationCombo", locationDBComboBox("despatchToLocation", desp.getLocationIDTo(), session), true);
 				result = true;
-			} else
+			}
+			else
 			{
 				saveData(session, "despatchFromLocation", "", true);
 				saveData(session, "despatchToLocation", "", true);
@@ -272,24 +280,29 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 		if (desp.getDespatchProperties(despNo))
 		{
-			saveData(session, "despatchPalletCount", String.valueOf(desp.getDespatchPalletCount()), true);
-			desp.setLocationIDTo(Common.sd.getData(sessionID, "despatchToLocation"));
-			desp.setLocationIDFrom(Common.sd.getData(sessionID, "despatchFromLocation"));
-			desp.setTrailer(Common.sd.getData(sessionID, "despatchTrailer"));
-			desp.setHaulier(Common.sd.getData(sessionID, "despatchHaulier"));
-			desp.setLoadNo(Common.sd.getData(sessionID, "despatchLoadNo"));
-			desp.setJourneyRef(Common.sd.getData(sessionID, "despatchJourneyRef"));
-			desp.setDespatchDate(JUtility.getSQLDateTime());
+			if (desp.getStatus().equals("Unconfirmed"))
+			{
+				saveData(session, "despatchPalletCount", String.valueOf(desp.getDespatchPalletCount()), true);
+				desp.setLocationIDTo(Common.sd.getData(sessionID, "despatchToLocation"));
+				desp.setLocationIDFrom(Common.sd.getData(sessionID, "despatchFromLocation"));
+				desp.setTrailer(Common.sd.getData(sessionID, "despatchTrailer"));
+				desp.setHaulier(Common.sd.getData(sessionID, "despatchHaulier"));
+				desp.setLoadNo(Common.sd.getData(sessionID, "despatchLoadNo"));
+				desp.setJourneyRef(Common.sd.getData(sessionID, "despatchJourneyRef"));
+				desp.setDespatchDate(JUtility.getSQLDateTime());
 
-			if (desp.update() == false)
-			{
-				result = false;
-				session.setAttribute("_ErrorMessage", desp.getErrorMessage());
-			} else
-			{
-				logger.debug("Despatch " + despNo + " updated.");
+				if (desp.update() == false)
+				{
+					result = false;
+					session.setAttribute("_ErrorMessage", desp.getErrorMessage());
+				}
+				else
+				{
+					logger.debug("Despatch " + despNo + " updated.");
+				}
 			}
-		} else
+		}
+		else
 		{
 			result = false;
 			session.setAttribute("_ErrorMessage", desp.getErrorMessage());
@@ -314,12 +327,14 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					{
 						session.setAttribute("_ErrorMessage", "");
 						response.sendRedirect("despatchPallet.jsp");
-					} else
+					}
+					else
 					{
 						session.setAttribute("_ErrorMessage", "Select TO Location");
 						response.sendRedirect("despatchHeader.jsp");
 					}
-				} else
+				}
+				else
 				{
 					session.setAttribute("_ErrorMessage", "Select FROM Location");
 					response.sendRedirect("despatchHeader.jsp");
@@ -344,7 +359,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				session.setAttribute("_ErrorMessage", "");
 				despatchMenuDisplay(request, response);
 			}
-		} else
+		}
+		else
 		{
 			// session.setAttribute("_ErrorMessage", "");
 			response.sendRedirect("despatchHeader.jsp");
@@ -395,7 +411,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			}
 			logger.debug("subscript=" + subscript);
 			despatchIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() {document.despatchSelect.elements[\"despatchNo\"]" + subscript + ".focus(); } " + "</script>";
-		} else
+		}
+		else
 		{
 			despatchIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() {document.despatchSelect.buttonAmend.focus(); } " + "</script>";
 		}
@@ -449,7 +466,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 									session.setAttribute("sscc", "");
 									session.setAttribute("_ErrorMessage", "");
 									saveData(session, "despatchPalletCount", String.valueOf(desp.getDespatchPalletCount()), true);
-								} else
+								}
+								else
 								{
 									session.setAttribute("_ErrorMessage", desp.getErrorMessage());
 								}
@@ -462,32 +480,38 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 									session.setAttribute("sscc", "");
 									session.setAttribute("_ErrorMessage", "");
 									saveData(session, "despatchPalletCount", String.valueOf(desp.getDespatchPalletCount()), true);
-								} else
+								}
+								else
 								{
 									session.setAttribute("_ErrorMessage", desp.getErrorMessage());
 								}
 							}
-						} else
+						}
+						else
 						{
 							session.setAttribute("_ErrorMessage", "Despatch not found.");
 						}
-					} else
+					}
+					else
 					{
 						session.setAttribute("_ErrorMessage", "Invalid SSCC format.");
 					}
-				} else
+				}
+				else
 				{
 					session.setAttribute("_ErrorMessage", "Invalid barcode.");
 				}
 
-			} else
+			}
+			else
 			{
 				session.setAttribute("_ErrorMessage", "");
 			}
 
 			session.setAttribute("sscc", "");
 			response.sendRedirect("despatchPallet.jsp");
-		} else
+		}
+		else
 		{
 			session.setAttribute("sscc", "");
 			session.setAttribute("_ErrorMessage", "");
@@ -497,7 +521,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			if (despatchDataRetrieveFromDB(despNo, session))
 			{
 				response.sendRedirect("despatchHeader.jsp");
-			} else
+			}
+			else
 			{
 				response.sendRedirect("despatchSelect.jsp");
 			}
@@ -530,7 +555,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				{
 					response.sendRedirect("despatchHeader.jsp");
 				}
-			} else
+			}
+			else
 			{
 				despatchMenuDisplay(request, response);
 			}
@@ -592,7 +618,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				String[] tokens = selectedDespatchNo.split(delims);
 				selectedDespatchNo = tokens[0];
 
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				logger.debug("Exception parsing despatch No");
 				selectedDespatchNo = "";
@@ -611,17 +638,20 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					{
 						logger.debug("Load despatchHeader for [" + despNo + "]");
 						response.sendRedirect("despatchHeader.jsp");
-					} else
+					}
+					else
 					{
 						logger.debug("Despatch assigned to a different user");
 						despatchMenuDisplay(request, response);
 					}
-				} else
+				}
+				else
 				{
 					logger.debug("Despatch Not Found !");
 					despatchMenuDisplay(request, response);
 				}
-			} else
+			}
+			else
 			{
 				logger.debug("Despatch NOT SELECTED");
 				despatchMenuDisplay(request, response);
@@ -667,7 +697,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 				{
 					response.sendRedirect(Common.hostList.getHost(Common.sd.getData(sessionID, "selectedHost")).getSiteURL());
-				} else
+				}
+				else
 				{
 
 					boolean connectedOK = false;
@@ -692,11 +723,13 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 								bcode = new JEANBarcode(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 							}
 							session.setAttribute("_ErrorMessage", "");
-						} else
+						}
+						else
 						{
 							session.setAttribute("_ErrorMessage", "Unable to connect to database (host)");
 						}
-					} else
+					}
+					else
 					{
 						connectedOK = true;
 					}
@@ -704,17 +737,20 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					if (connectedOK)
 					{
 						response.sendRedirect("login.jsp");
-					} else
+					}
+					else
 					{
 						response.sendRedirect("hosts.jsp");
 					}
 				}
 
-			} else
+			}
+			else
 			{
 				displayHostSelect(request, response);
 			}
-		} else
+		}
+		else
 		{
 			response.sendRedirect("index.jsp");
 		}
@@ -739,7 +775,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		if (checkedIndex > 0)
 		{
 			hostIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() {document.hosts.elements[\"selectedHost\"][" + String.valueOf(checkedIndex) + "].focus(); } " + "</script>";
-		} else
+		}
+		else
 		{
 			hostIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() { document.hosts.buttonSubmit.focus(); } " + "</script>";
 		}
@@ -766,7 +803,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		if (checkedIndex >= 0)
 		{
 			menuIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() {document.menus.elements[\"selectedMenuOption\"][" + String.valueOf(checkedIndex) + "].focus(); } " + "</script>";
-		} else
+		}
+		else
 		{
 			menuIndexFocus = "<script language=\"javascript\" type=\"text/javascript\">" + " function focusIt() { document.menus.buttonSubmit.focus(); } " + "</script>";
 		}
@@ -806,7 +844,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			{
 				formName = "New Session";
 				response.sendRedirect("sessionTimeout.jsp");
-			} else
+			}
+			else
 			{
 				button = JUtility.replaceNullObjectwithBlank((String) request.getParameter("button"));
 				formName = JUtility.replaceNullObjectwithBlank((String) request.getParameter("formName"));
@@ -972,7 +1011,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			{
 				palletConfirmPlusError(request, response, button);
 			}
-			
+
 			// ******************************************
 			// ********* VALIDATE TRAY DU ***************
 			// ******************************************
@@ -1079,7 +1118,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			{
 				displayMenu(request, response);
 				saveData(session, "_ErrorMessage", "", true);
-			} else
+			}
+			else
 			{
 
 				String next = Common.sd.getData(sessionID, "screenAfterLogon");
@@ -1090,7 +1130,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				}
 				response.sendRedirect(next);
 			}
-		} else
+		}
+		else
 		{
 			saveData(session, "password", "", true);
 			saveData(session, "username", "", true);
@@ -1134,21 +1175,24 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				saveData(session, "newPassword1", "", true);
 				saveData(session, "newPassword2", "", true);
 				displayMenu(request, response);
-			} else
+			}
+			else
 			{
 				saveData(session, "_ErrorMessage", usr.getErrorMessage(), true);
 				response.sendRedirect("changePassword.jsp");
 			}
 			session.setAttribute("sscc", "");
 
-		} else
+		}
+		else
 		{
 			// saveData(session, "selectedMenuOption", "", true);
 			String next = Common.sd.getData(sessionID, "changePasswordCancelScreen");
 			if (next.equals("displayMenu"))
 			{
 				displayMenu(request, response);
-			} else
+			}
+			else
 			{
 				saveData(session, "username", "", true);
 				saveData(session, "password", "", true);
@@ -1205,12 +1249,14 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					saveData(session, "changePasswordCancelScreen", "login.jsp", true);
 					saveData(session, "screenAfterLogon", "changePassword.jsp", true);
 					result = false;
-				} else
+				}
+				else
 				{
 					result = true;
 				}
 
-			} else
+			}
+			else
 			{
 				logger.debug("User " + usr.getUserId() + " logon error : " + usr.getErrorMessage());
 				saveData(session, "_ErrorMessage", usr.getErrorMessage(), true);
@@ -1218,7 +1264,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				saveData(session, "screenAfterLogon", "login.jsp", true);
 			}
 
-		} else
+		}
+		else
 		{
 			logger.debug("Logon - Host Connect Failure");
 		}
@@ -1295,7 +1342,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				response.sendRedirect("changePassword.jsp");
 			}
 
-		} else
+		}
+		else
 		{
 			saveData(session, "username", "", true);
 			saveData(session, "password", "", true);
@@ -1341,31 +1389,37 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 								session.setAttribute("_ErrorMessage", "SSCC " + sscc + " confirmed.");
 								saveData(session, "confirmCount", String.valueOf(confirmCount), false);
 								logger.debug(sscc + " confirmed. (" + String.valueOf(confirmCount) + ")");
-							} else
+							}
+							else
 							{
 								session.setAttribute("_ErrorMessage", pallet.getErrorMessage());
 							}
-						} else
+						}
+						else
 						{
 							session.setAttribute("_ErrorMessage", "SSCC not found.");
 						}
-					} else
+					}
+					else
 					{
 						session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
 					}
-				} else
+				}
+				else
 				{
 					session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
 				}
 
-			} else
+			}
+			else
 			{
 				session.setAttribute("_ErrorMessage", "");
 			}
 
 			session.setAttribute("sscc", "");
 			response.sendRedirect("productionConfirm.jsp");
-		} else
+		}
+		else
 		{
 			session.setAttribute("sscc", "");
 			session.setAttribute("_ErrorMessage", "");
@@ -1394,7 +1448,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				if (bcode.parseBarcodeData(sscc) == true)
 				{
 					sscc = bcode.getStringforAppID("00");
-					
+
 					if (bcode.isValidSSCCformat(sscc) == true)
 					{
 						JDBPallet pallet = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
@@ -1406,7 +1460,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 								session.setAttribute("sscc", "");
 								session.setAttribute("_ErrorMessage", "Pallet already confirmed.");
 								response.sendRedirect("productionConfirmPlusSSCC.jsp");
-							} else
+							}
+							else
 							{
 								JDBViewBarcodeValidate pOrder = new JDBViewBarcodeValidate(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 
@@ -1423,33 +1478,38 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 								session.setAttribute("_ErrorMessage", "");
 								response.sendRedirect("productionConfirmPlusDU.jsp");
 							}
-						} else
+						}
+						else
 						{
 							session.setAttribute("sscc", "");
 							session.setAttribute("_ErrorMessage", "SSCC not found.");
 							response.sendRedirect("productionConfirmPlusSSCC.jsp");
 						}
-					} else
+					}
+					else
 					{
 						session.setAttribute("sscc", "");
 						session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
 						response.sendRedirect("productionConfirmPlusSSCC.jsp");
 					}
-				} else
+				}
+				else
 				{
 					session.setAttribute("sscc", "");
 					session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
 					response.sendRedirect("productionConfirmPlusSSCC.jsp");
 				}
 
-			} else
+			}
+			else
 			{
 				session.setAttribute("sscc", "");
 				session.setAttribute("_ErrorMessage", "");
 				response.sendRedirect("productionConfirmPlusSSCC.jsp");
 			}
 
-		} else
+		}
+		else
 		{
 			saveData(session, "validateOrder", "", true);
 			saveData(session, "sscc", "", true);
@@ -1503,7 +1563,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 					trayGTINCorrect = trayGTIN.equals(materialDU_EAN);
 					trayVariantCorrect = trayVariant.equals(materialDU_Variant);
-					
+
 					palletGTINCorrect = palletGTIN.equals(materialDU_EAN);
 					palletVariantCorrect = palletVariant.equals(materialDU_Variant);
 
@@ -1528,7 +1588,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 								saveData(session, "confirmCount", String.valueOf(confirmCount), false);
 								session.setAttribute("sscc", "");
 								response.sendRedirect("productionConfirmPlusSSCC.jsp");
-							} else
+							}
+							else
 							{
 								session.setAttribute("_ErrorMessage", pallet.getErrorMessage());
 								session.setAttribute("sscc", "");
@@ -1536,40 +1597,43 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 								response.sendRedirect("productionConfirmPlusDU.jsp");
 							}
 
-						} else
+						}
+						else
 						{
 							session.setAttribute("_ErrorMessage", "SSCC not found.");
 							response.sendRedirect("productionConfirmPlusSSCC.jsp");
 						}
 
-					} else
+					}
+					else
 					{
 
 						if (palletGTINCorrect)
-							saveData(session, "palletGTINColor","green",true);
+							saveData(session, "palletGTINColor", "green", true);
 						else
-							saveData(session, "palletGTINColor","red",true);
-								
+							saveData(session, "palletGTINColor", "red", true);
+
 						if (palletVariantCorrect)
-							saveData(session, "palletVariantColor","green",true);
+							saveData(session, "palletVariantColor", "green", true);
 						else
-							saveData(session, "palletVariantColor","red",true);
-								
+							saveData(session, "palletVariantColor", "red", true);
+
 						if (trayGTINCorrect)
-							saveData(session, "trayGTINColor","green",true);
+							saveData(session, "trayGTINColor", "green", true);
 						else
-							saveData(session, "trayGTINColor","red",true);
-								
+							saveData(session, "trayGTINColor", "red", true);
+
 						if (trayVariantCorrect)
-							saveData(session, "trayVariantColor","green",true);
+							saveData(session, "trayVariantColor", "green", true);
 						else
-							saveData(session, "trayVariantColor","red",true);		
+							saveData(session, "trayVariantColor", "red", true);
 
 						saveData(session, "_ErrorMessage", "Barcodes do not match", true);
 						response.sendRedirect("productionConfirmPlusError.jsp");
 					}
 
-				} else
+				}
+				else
 				{
 					// WRONG BARCODE
 					saveData(session, "_ErrorMessage", "Wrong Barcode.", true);
@@ -1577,14 +1641,16 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					response.sendRedirect("productionConfirmPlusDU.jsp");
 
 				}
-			} else
+			}
+			else
 			{
 				// INVALID BARCODE
 				saveData(session, "_ErrorMessage", "Invalid Barcode. Not EAN128", true);
 				response.sendRedirect("productionConfirmPlusDU.jsp");
 			}
 
-		} else
+		}
+		else
 		{
 			session.setAttribute("sscc", "");
 			session.setAttribute("_ErrorMessage", "");
@@ -1627,28 +1693,33 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 							session.setAttribute("_ErrorMessage", "SSCC " + sscc + " deleted.");
 							saveData(session, "deleteCount", String.valueOf(deleteCount), false);
 							logger.debug(sscc + " deleted. (" + String.valueOf(deleteCount) + ")");
-						} else
+						}
+						else
 						{
 							session.setAttribute("_ErrorMessage", pallet.getErrorMessage());
 						}
 
-					} else
+					}
+					else
 					{
 						session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
 					}
-				} else
+				}
+				else
 				{
 					session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
 				}
 
-			} else
+			}
+			else
 			{
 				session.setAttribute("_ErrorMessage", "");
 			}
 
 			session.setAttribute("sscc", "");
 			response.sendRedirect("palletDelete.jsp");
-		} else
+		}
+		else
 		{
 			session.setAttribute("sscc", "");
 			session.setAttribute("_ErrorMessage", "");
@@ -1706,24 +1777,29 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 								session.setAttribute("expiry", pallet.getMaterialBatchExpiryDate().toString().substring(0, 16));
 								error = false;
 								response.sendRedirect("palletInfoDisplay.jsp");
-							} else
+							}
+							else
 							{
 								session.setAttribute("_ErrorMessage", "SSCC not confirmed.");
 							}
-						} else
+						}
+						else
 						{
 							session.setAttribute("_ErrorMessage", "SSCC not found.");
 						}
-					} else
+					}
+					else
 					{
 						session.setAttribute("_ErrorMessage", "Invalid SSCC format.");
 					}
-				} else
+				}
+				else
 				{
 					session.setAttribute("_ErrorMessage", "Invalid barcode.");
 				}
 
-			} else
+			}
+			else
 			{
 				session.setAttribute("_ErrorMessage", "");
 			}
@@ -1733,7 +1809,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				session.setAttribute("sscc", "");
 				response.sendRedirect("palletInfo.jsp");
 			}
-		} else
+		}
+		else
 		{
 			session.setAttribute("sscc", "");
 			session.setAttribute("_ErrorMessage", "");
@@ -1800,20 +1877,23 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 					response.sendRedirect("validateDUTray.jsp");
 
-				} else
+				}
+				else
 				{
 					// WRONG BARCODE
 					saveData(session, "_ErrorMessage", "Wrong Barcode.", true);
 					response.sendRedirect("validateDUPallet.jsp");
 
 				}
-			} else
+			}
+			else
 			{
 				// INVALID BARCODE
 				saveData(session, "_ErrorMessage", "Invalid Barcode. Not EAN128", true);
 				response.sendRedirect("validateDUPallet.jsp");
 			}
-		} else
+		}
+		else
 		{
 			saveData(session, "validateSSCC", "", true);
 			saveData(session, "validateOrder", "", true);
@@ -1895,7 +1975,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					{
 						saveData(session, "resultImage", "./images/valid.gif", true);
 						saveData(session, "_ErrorMessage", "Barcodes consistent", true);
-					} else
+					}
+					else
 					{
 						saveData(session, "resultImage", "./images/invalid.gif", true);
 						saveData(session, "_ErrorMessage", "Barcodes do not match", true);
@@ -1903,7 +1984,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 					response.sendRedirect("validateDUResult.jsp");
 
-				} else
+				}
+				else
 				{
 					// WRONG BARCODE
 					saveData(session, "_ErrorMessage", "Wrong Barcode.", true);
@@ -1911,14 +1993,16 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					response.sendRedirect("validateDUTray.jsp");
 
 				}
-			} else
+			}
+			else
 			{
 				// INVALID BARCODE
 				saveData(session, "_ErrorMessage", "Invalid Barcode. Not EAN128", true);
 				response.sendRedirect("validateDUTray.jsp");
 			}
 
-		} else
+		}
+		else
 		{
 			saveData(session, "_ErrorMessage", "", true);
 			response.sendRedirect("validateDUPallet.jsp");
@@ -1978,7 +2062,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					saveData(session, "materialCU_EAN", pOrder.getBaseEan(), true);
 					saveData(session, "materialCU_VARIANT", pOrder.getBaseVariant(), true);
 					response.sendRedirect("validateDUPallet.jsp");
-				} else
+				}
+				else
 				{
 					session.setAttribute("_ErrorMessage", pOrder.getErrorMessage());
 					saveData(session, "validateOrder", "", true);
@@ -1986,7 +2071,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					response.sendRedirect("validateDUSelect.jsp");
 				}
 
-			} else
+			}
+			else
 			{
 				saveData(session, "validateOrder", "", true);
 				saveData(session, "validateSSCC", "", true);
@@ -1994,7 +2080,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				response.sendRedirect("validateDUSelect.jsp");
 			}
 
-		} else
+		}
+		else
 		{
 			saveData(session, "validateOrder", "", true);
 			saveData(session, "validateSSCC", "", true);
@@ -2017,7 +2104,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		{
 			saveData(session, "_ErrorMessage", "", true);
 			response.sendRedirect("validateDUPallet.jsp");
-		} else
+		}
+		else
 		{
 			saveData(session, "_ErrorMessage", "", true);
 			response.sendRedirect("validateDUPallet.jsp");
@@ -2033,21 +2121,21 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		{
 			button = "Submit";
 		}
-		
+
 		saveData(session, "sscc", "", true);
-		
+
 		if (button.equals("Submit"))
 		{
 			saveData(session, "_ErrorMessage", "", true);
 			response.sendRedirect("productionConfirmPlusSSCC.jsp");
-		} else
+		}
+		else
 		{
 			saveData(session, "_ErrorMessage", "", true);
 			response.sendRedirect("productionConfirmPlusSSCC.jsp");
 		}
 	}
-	
-	
+
 	private void releaseSessionResources(HttpSession session)
 	{
 		String sessionID = session.getId();

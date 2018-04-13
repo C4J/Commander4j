@@ -9,7 +9,7 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Despatch Select</title>
-<link href="commander.css" rel="stylesheet" type="text/css">
+<link href="style/commander.css" rel="stylesheet" type="text/css">
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -32,6 +32,7 @@
 				out.println(pageTitle + " page " + currentDespatchListPage + " of " + maxDespatchPages);
 			%>
 		</h2>
+
 		<%
 			String despatchList = (String) session.getAttribute("despatchList");
 			if (despatchList == null)
@@ -40,8 +41,7 @@
 			out.println(despatchList);
 			out.println(session.getAttribute("_ErrorMessage") + " ");
 		%>
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
-
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td width="100%" height="30" align="center"><input tabindex='1' type="submit" name="buttonAmend" value="<%=Lang.getText("web_Amend")%>" id="buttonAmend" onclick="document.despatchSelect.button.value='Amend';" />&nbsp; <input tabindex='2'
 					type="submit" name="buttonCreate" value="<%=Lang.getText("web_Create")%>" id="buttonCreate" onclick="document.despatchSelect.button.value='Create';" />&nbsp; <input tabindex='3' type="submit" name="buttonExit"

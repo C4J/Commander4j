@@ -170,6 +170,7 @@ public class AutoLabellerThread extends Thread {
 							logger.debug("Module ID        =" + autolabview.getModuleObj().getModuleId());
 							logger.debug("Module Type      =" + autolabview.getModuleObj().getType());
 
+
 							if (autolabview.getPrinterObj().isExportEnabled())
 							{
 								String exportPath = JUtility.replaceNullStringwithBlank(JUtility.formatPath(autolabview.getPrinterObj().getExportRealPath()));
@@ -184,8 +185,10 @@ public class AutoLabellerThread extends Thread {
 									exportPath = Common.interface_output_path + "Auto Labeller" + File.separator;
 								}
 
-								String exportFilename = exportPath + autolabview.getAutoLabellerObj().getLine() + "_" + autolabview.getPrinterObj().getPrinterID() + "."
+								String exportFilename = exportPath + JUtility.removePathSeparators(autolabview.getAutoLabellerObj().getLine()) + "_" + JUtility.removePathSeparators(autolabview.getPrinterObj().getPrinterID()) + "."
 										+ autolabview.getPrinterObj().getExportFormat();
+								
+								logger.debug("Export Filename  =" + exportFilename);
 
 								/* ================CSV================ */
 
@@ -204,6 +207,8 @@ public class AutoLabellerThread extends Thread {
 
 										rs = stmt.executeQuery();
 
+										logger.debug("Writing CSV");
+										
 										CSVWriter writer = new CSVWriter(new FileWriter(exportFilename), CSVWriter.DEFAULT_SEPARATOR,CSVWriter.DEFAULT_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER,CSVWriter.DEFAULT_LINE_END);
 										
 										writer.writeAll(rs, true);

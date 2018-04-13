@@ -119,7 +119,7 @@ public class JXMLDocument
 
 	public Boolean setDocument(String filename) {
 		Boolean result = false;
-		//logger.debug("setDocument :" + filename);
+
 		try
 		{
 			document = builder.parse(new File(filename));
@@ -127,7 +127,7 @@ public class JXMLDocument
 		}
 		catch (Exception ex)
 		{
-			//logger.error("JXMLDocument.setDocument " + ex.getMessage());
+
 		}
 		return result;
 	}
@@ -137,7 +137,6 @@ public class JXMLDocument
 	}
 
 	public void setDocumentText(String text) {
-		//logger.debug("setDocumentText :" + text);
 		try
 		{
 			document = builder.parse(new InputSource(new StringReader(text)));
@@ -146,7 +145,6 @@ public class JXMLDocument
 		catch (Exception ex)
 		{
 			System.out.println(ex.getMessage());
-			//logger.error("JXMLDocument.setDocumentText " + ex.getMessage());
 		}
 	}
 

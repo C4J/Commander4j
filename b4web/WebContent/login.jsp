@@ -9,7 +9,7 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Login</title>
-<link href="commander.css" rel="stylesheet" type="text/css" />
+<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 <body onLoad="focusIt()">
 	<form id="login" name="login" action="Process" method="post">
@@ -20,9 +20,9 @@
 			%>
 		</h2>
 		<br> 
-		<img src="./images/user-login-icon.gif" style="margin-left: 90px"> 
-		<br><br>
-		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+		<img src="./images/user-login-icon.gif" width="60" style="display:block; margin-left:auto; margin-right:auto;">
+		<br>
+		<table class='tableText' align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
 			<tr>
 				<td width="50%" height="20"><div align="right">User :&nbsp;&nbsp;</div></td>
 				<%
@@ -50,7 +50,7 @@
 				%>
 			</tr>
 		</table>
-		
+		<br>
 		<table style="width: 100%">
 			<tr>
 				<td style="width: 50%; text-align: left">
@@ -76,7 +76,7 @@
 				</td>
 			</tr>
 		</table>
-		<br> 
+
 		<input type="hidden" name="selectedAction" value="validateLogon" /> 
 		<input type="hidden" name="formName" value="login.jsp" /> 
 		<input type="hidden" id="button" name="button" value="Submit" />
@@ -84,6 +84,7 @@
 	</form>
 	<script language="javascript" type="text/javascript">
 		function focusIt() {
+		    document.login.password.value = '';
 			document.login.username.focus();
 		}
 	</script>

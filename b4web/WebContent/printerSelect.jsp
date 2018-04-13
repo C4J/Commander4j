@@ -9,7 +9,7 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Printer Select</title>
-<link href="commander.css" rel="stylesheet" type="text/css">
+<link href="style/commander.css" rel="stylesheet" type="text/css">
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -28,8 +28,8 @@
 		</td>
 	</tr>
 </table>
-<br/>
-<table width="100%" border="1" cellpadding="0" cellspacing="0"  align="center">
+<br/><br><br><br><br><br><br><br>
+<table width="100%" border="0" cellpadding="0" cellspacing="0"  align="center" style="height: 90px; ">
 <tr>
 <td width="100%" height="20" align="center">
 <input type="submit" tabindex='8' name="buttonSelect" value="<%=Lang.getText("btn_Select") %>" id="buttonSelect" onclick="document.printerSelect.button.value='Select';" />&nbsp;

@@ -744,7 +744,7 @@
 		</statement>
 		<statement>
 			<id>JDBDespatch.update</id>
-			<text>update {schema}app_despatch set despatch_date=?,location_id_from=?,status=?,trailer=?,haulier=?,total_pallets=?,location_id_to=?,transaction_ref=?,load_no=?,journey_ref=? where despatch_no=?</text>
+			<text>update {schema}app_despatch set despatch_date=?,location_id_from=?,status=?,trailer=?,haulier=?,total_pallets=?,location_id_to=?,transaction_ref=?,load_no=?,journey_ref=? where despatch_no=? and status = 'Unconfirmed'</text>
 		</statement>
 		<statement>
 			<id>JDBDespatch.setUserID</id>

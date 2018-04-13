@@ -9,7 +9,7 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Session Timeout</title>
-<link href="commander.css" rel="stylesheet" type="text/css" />
+<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<form id="sessionTimeout" name="sessionTimeout" action="Process" method="post">
@@ -25,7 +25,7 @@
 		</table>
 		<br>
 		<br>		
-		<table width="100%" border="1" cellpadding="0" cellspacing="0" align="center">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td width="100%" height="20" align="center">
 					<input type="submit" tabindex='1' name="buttonRestart" value="Restart" id="buttonRestart" onclick="document.sessionTimeout.button.value='Restart';" /> 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="7.0.4" transformSequenceNumber="7">
-  <directoryPresets config="./xml" />
-  <application name="Labeller Service" distributionSourceDir="" applicationId="8461-5694-2977-9757" mediaDir="../../Distribution/java8/LabelServer" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="Labeller Service" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.00" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="e839608d493c536c" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
+  <directoryPresets config="./start.sh" />
+  <application name="Labeller Service" distributionSourceDir="" applicationId="8461-5694-2977-9757" mediaDir="../../Distribution/java8/LabelServer" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="Labeller Service" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.01" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="e839608d493c536c" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
     <languages skipLanguageSelection="false" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
       <additionalLanguages />
@@ -33,25 +33,27 @@
       <dirEntry mountPoint="59" file="./lib" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="lib" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <dirEntry mountPoint="60" file="./labeller_requests" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="labeller_requests" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+      <dirEntry mountPoint="60" file="./labeller_requests" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="labeller_requests" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="61" file="./labeller_files" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="labeller_files" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <dirEntry mountPoint="62" file="./labeller_cmd" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="labeller_cmd" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+      <dirEntry mountPoint="62" file="./labeller_cmd" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="labeller_cmd" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <dirEntry mountPoint="63" file="./labeller_backups" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="labeller_backups" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+      <dirEntry mountPoint="63" file="./labeller_backups" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="labeller_backups" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
-      <dirEntry mountPoint="64" file="./logs" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="logs" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+      <dirEntry mountPoint="64" file="./logs" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="logs" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="164" file="./xml/config" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="config" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
       <fileEntry mountPoint="58" file="./LabelServer.jar" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" />
+      <fileEntry mountPoint="58" file="./start.cmd" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" />
+      <fileEntry mountPoint="58" file="./start.sh" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" />
     </entries>
     <components />
   </files>
@@ -69,6 +71,7 @@
       <java mainClass="com.commander4j.labeller.Service" mainMode="1" vmParameters="" arguments="" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
         <classPath>
           <archive location="LabelServer.jar" failOnError="false" />
+          <directory location="xml/config" failOnError="false" />
         </classPath>
         <modulePath />
         <nativeLibraryDirectories />

@@ -1,5 +1,7 @@
 package com.commander4j.db;
 
+import java.io.File;
+
 /**
  * @author David Garratt
  * 
@@ -35,6 +37,7 @@ import java.util.LinkedList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
@@ -147,6 +150,8 @@ public class JDBPrinters
 	{
 		String result = getExportPath();
 		result = result.replace("{base_dir}", Common.base_dir);
+		result = StringUtils.replaceChars(result, "\\", String.valueOf(File.separatorChar));
+		result = StringUtils.replaceChars(result, "/", String.valueOf(File.separatorChar));
 		logger.debug(result);
 		return result;
 	}
