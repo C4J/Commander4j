@@ -43,7 +43,7 @@
 	</tr>
 	<tr>
 		<td align="center" style="height: 86px" class="splashTitleVersion">
-		Version : 5.51
+		Version : 5.52
 	</tr>
 	<tr>
 		<td align="center" style="height: 70px">

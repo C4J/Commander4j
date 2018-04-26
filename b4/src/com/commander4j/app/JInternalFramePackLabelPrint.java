@@ -567,11 +567,12 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		if (confirmQuantity == true)
 		{
 
-			String processOrder = processorder.getMaterial();
+			String processOrder = processorder.getProcessOrder();
+			String material = processorder.getMaterial();
 			String batchNumber = jTextFieldBatchPrefix.getText() + jTextFieldBatchSuffix.getText();
 			Timestamp expiryDate = JUtility.getTimestampFromDate(jSpinnerExpiryDate.getDate());
 
-			if (materialbatch.autoCreateMaterialBatch(processOrder, batchNumber, expiryDate, ""))
+			if (materialbatch.autoCreateMaterialBatch(material, batchNumber, expiryDate, ""))
 			{
 
 				String key = createLabelData(noOfLabels);

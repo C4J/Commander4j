@@ -10,7 +10,7 @@
 
 Initialise        STRING_DELIMITER              "
                   STATUS                        "Initialising"
-                  VARIABLE                      $variable_Template="buk160x60case_pc.llf" 
+                  
                   USER_INPUTx                   "Enter Description :","Dog Food","$data_MATERIAL_DESCRIPTION" 
                   SEND_DELAY                    100
                   SEND_EOL                      "<CR>"
@@ -56,10 +56,45 @@ Initialise        STRING_DELIMITER              "
                   CHECK_SUCCESS
                   SEND                          "*RDR"
                   CHECK_SUCCESS
-                                     
-                  GOTO                          Start
+
+                  SEND_FILE_INTELHEX            "c4j_160x80_sled.llf"                  
+                  SEND_FILE_INTELHEX            "c4j_160x80_prod.llf"  
                   
-Start                        
+                  IF REMOTE FILE EXISTS         "'nestle.pcx' GOTO NestleLogoFound"
+                  SEND_FILE_INTELHEX            "nestle.pcx"  
+
+NestleLogoFound   IF REMOTE FILE EXISTS         "'c4j_160x80_sled.llf' GOTO SLEDLayoutFound"
+                  SEND_FILE_INTELHEX            "c4j_160x80_sled.llf"  
+                  
+SLEDLayoutFound   IF REMOTE FILE EXISTS         "'c4j_160x80_prod.llf' GOTO PRODLayoutFound"
+                  SEND_FILE_INTELHEX            "c4j_160x80_prod.llf"  
+
+PRODLayoutFound
+                  
+Start             IF                            "($data_MODULE_ID='RPT_PACK_LABEL_PROD') GOTO PRODLayout"
+                  GOTO                          SLEDLayout
+   
+PRODLayout        VARIABLE                      $variable_Template="c4j_160x80_prod.llf" 
+                  SEND                          "LK,1"                 
+                  SEND                          "<STX>LOAD,/c0/$variable_Template"
+                  SEND                          "FD,1,$data_BATCH_NUMBER"
+                  SEND                          "FD,2,$data_MATERIAL_DESCRIPTION"
+                  SEND                          "FD,5,PADLEFT($data_PROD_VARIANT,2,0)"
+                  SEND                          "FD,8,$data_MATERIAL"
+                  SEND                          "FD,9,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,yyyy)"  
+                  SEND                          "FD,10,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,MM)"                  
+                  SEND                          "FD,25,EXTRACT_DATE($data_DATE_OF_MANUFACTURE,dd-MMM-yyyy HH:mm:ss,yyyy)"  
+                  SEND                          "FD,26,EXTRACT_DATE($data_DATE_OF_MANUFACTURE,dd-MMM-yyyy HH:mm:ss,MM)"
+                  SEND                          "FD,27,EXTRACT_DATE($data_DATE_OF_MANUFACTURE,dd-MMM-yyyy HH:mm:ss,dd)"
+                  SEND                          "FD,15,PADLEFT($data_PROD_EAN,14,0)"
+                  SEND                          "FD,21,PADLEFT($data_BASE_EAN,14,0)"
+                  SEND                          "FD,22,REPLACE($data_BASE_QUANTITY,.000,)"                
+                  SEND                          "FD,110,$data_BATCH_SUFFIX"                                     
+                  SEND                          "<ETX>"
+/*                SEND                          "P<CR>"                                                           */                  
+                  GOTO                          Finish
+                  
+SLEDLayout        VARIABLE                      $variable_Template="c4j_160x80_sled.llf" 
                   SEND                          "LK,1"                 
                   SEND                          "<STX>LOAD,/c0/$variable_Template"
                   SEND                          "FD,1,$data_BATCH_NUMBER"
@@ -72,8 +107,8 @@ Start
                   SEND                          "FD,21,PADLEFT($data_BASE_EAN,14,0)"
                   SEND                          "FD,22,REPLACE($data_BASE_QUANTITY,.000,)"                
                   SEND                          "FD,110,$data_BATCH_SUFFIX"                                     
-                  SEND                          "<ETX>"
-                  
+                  SEND                          "<ETX>"  
+/*                SEND                          "P<CR>"                                                           */                      
                   GOTO                          Finish
 
 Finish            STATUS                        "Success"

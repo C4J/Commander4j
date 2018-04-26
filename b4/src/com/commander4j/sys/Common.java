@@ -114,7 +114,7 @@ public class Common
 	public static JSessionData sd = new JSessionData();
 
 	public static String[] dataTypes = new String[] { "string", "numeric","boolean", "date", "time", "timestamp","integer" ,"list"};
-	public static String[] printerTypes = new String[] { "Logopak","Zebra"};
+	public static String[] printerTypes = new String[] { "Logopak","Videojet","Zebra"};
 	public static String[] printerDPI = new String[] { "200","300"};
 	public static String[] printerGroup = new String[] { "Pack","Pallet"};
 	public static String[] linePrinterType = new String[] {"Both", "Pack","Pallet"};

@@ -227,6 +227,8 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			checkBoxOverridePackLabel.setSelected(material.isOverridePackLabel());
 			checkBoxOverridePalletLabel.setSelected(material.isOverridePalletLabel());
 			
+			comboBoxPackModuleID.setSelectedIndex(-1);
+			comboBoxPalletModuleID.setSelectedIndex(-1);
 			for (int x=1;x<moduleList.size();x++)
 			{
 				if (moduleList.get(x).getmData().equals(material.getPackLabelModuleID()))

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 public class LabellerProperties
 {
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((LabellerProperties.class));
+	private String site = "site1";
 	private String id = "Printer1";
 	private String ipAddress = "127.0.0.1";
 	private int portNumber = 8000;	
@@ -50,6 +51,15 @@ public class LabellerProperties
 		this.id = id;
 	}
 
+	public String getSite()
+	{
+		return site;
+	}
+	public void setSite(String site)
+	{
+		this.site = site;
+	}
+	
 	public String getIpAddress()
 	{
 		return ipAddress;

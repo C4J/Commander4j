@@ -16,6 +16,7 @@ public class Server extends Thread
 	public boolean started = false;
 	public boolean shutdown = false;
 	HashMap<String, Labeller> labellers = new HashMap<String, Labeller>();
+	public static String Site = "Test";
 
 	private void requestStop()
 	{
@@ -120,6 +121,7 @@ public class Server extends Thread
 	public void startupInterface()
 	{
 		logger.info("Server - startupInterface");
+		loadSite();
 		loadLabellers();
 		startAllLabellers();
 	}
@@ -144,25 +146,33 @@ public class Server extends Thread
 		}
 	}
 
+	public void loadSite()
+	{
+		logger.info("Server - loadSite");
+		JXMLDocument xmltest = new JXMLDocument("./xml/config/config.xml");
+		Site = xmltest.findXPath("//config/site[1]/@id");
+	}
+	
 	public void loadLabellers()
 	{
 		logger.info("Server - loadLabellers");
 		
 		HashMap<String,LabellerDBLink>  dblinks = loadDatabaseLinks();
 
-		JXMLDocument xmltest = new JXMLDocument("./xml/config/labellers.xml");
+		JXMLDocument xmltest = new JXMLDocument("./xml/config/"+Site+"/labellers.xml");
 
+		String site = xmltest.findXPath("//labellers/site[1]/@id");
 		int labeller = 1;
 
-		while (xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/@id").trim().equals("") == false)
+		while (xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/@id").trim().equals("") == false)
 		{
-			String id = xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/@id").trim();
-			String enabled = xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/enabled").trim();
-			String ipAddress = xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/ipAddres").trim();
-			String portNumber = xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/portNumber").trim();
-			String commandFile = xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/commandFile").trim();
-			String inputPath = xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/inputPath").trim();
-			String inputFile = xmltest.findXPath("//labellers/labeller[" + String.valueOf(labeller) + "]/inputFile").trim();
+			String id = xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/@id").trim();
+			String enabled = xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/enabled").trim();
+			String ipAddress = xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/ipAddress").trim();
+			String portNumber = xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/portNumber").trim();
+			String commandFile = xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/commandFile").trim();
+			String inputPath = xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/inputPath").trim();
+			String inputFile = xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/inputFile").trim();
 			logger.info("Read config for ["+id+"]");
 
 			if (enabled.toUpperCase().equals("Y"))
@@ -170,6 +180,7 @@ public class Server extends Thread
 
 				LabellerProperties prop1 = new LabellerProperties();
 
+				prop1.setSite(site);
 				prop1.setId(id);
 				prop1.setIpAddress(ipAddress);
 				prop1.setPortNumber(Integer.valueOf(portNumber));
@@ -189,7 +200,7 @@ public class Server extends Thread
 		
 		logger.info("Server - loadDatabaseLinks");
 
-		JXMLDocument xmltest = new JXMLDocument("./xml/config/databases.xml");
+		JXMLDocument xmltest = new JXMLDocument("./xml/config/"+Site+"/databases.xml");
 
 		int dbSeq = 1;
 

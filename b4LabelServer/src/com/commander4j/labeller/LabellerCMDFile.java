@@ -325,7 +325,7 @@ public class LabellerCMDFile
 	{
 		Boolean result = true;
 
-		filename = System.getProperty("user.dir") + java.io.File.separator + "labeller_cmd" + java.io.File.separator + filename;
+		filename = System.getProperty("user.dir") + java.io.File.separator + "labeller_cmd" + java.io.File.separator + prop.getSite() + java.io.File.separator + filename;
 		System.out.println("");
 		logger.debug("[" + prop.getId() + "]" + " loadFile [" + filename + "]");
 		System.out.println("");

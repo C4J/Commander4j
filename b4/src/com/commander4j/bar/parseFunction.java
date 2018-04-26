@@ -96,7 +96,7 @@ public class parseFunction {
 		// Supported Expressions using format
 
 		String[] Functions = new String[]
-		{"<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(", "<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(" };
+		{"<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(", "<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(" , "<PRODDATE("};
 
 		// For each expression above
 		for (int x = 0; x < Functions.length; x++)
@@ -412,6 +412,37 @@ public class parseFunction {
 				}
 			}
 
+			if (functionName.equals("PRODDATE"))
+			{
+				if (params.length == 1)
+				{
+					try
+					{
+						if (params[0].equals(""))
+						{
+							params[0] = "dd/MM/yyyy";
+						}
+
+						Timestamp dateOfManufacture;
+
+						dateOfManufacture = rs.getTimestamp("date_of_manufacture");
+
+
+						dateOfManufacture.setNanos(0);
+						DateFormat dateFormat = new SimpleDateFormat(params[0]);
+
+						result = dateFormat.format(dateOfManufacture);
+
+					} catch (Exception ex)
+					{
+						result = functionName + incorrectDateTimeFormat;
+					}
+				} else
+				{
+					result = functionName + incorrectNoParams;
+				}
+			}
+			
 			if (functionName.equals("DATETIME"))
 			{
 				String fieldname = "";

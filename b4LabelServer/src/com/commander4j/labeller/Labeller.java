@@ -5,6 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.FileTime;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -236,6 +240,35 @@ public class Labeller extends Thread
 			case "GOTO":
 				exePosition = labellerCMDFile.getLinefromLabel(VAL) - 1;
 				break;
+			case "IF":
+				/* "($data_MODULE_ID='RPT_CASE_RU') GOTO label" */
+				String[] split1 = StringUtils.splitByWholeSeparator(VAL, "GOTO");
+				String criteria = split1[0];
+				String[] comparison = StringUtils.split(criteria, "=");
+				comparison[0] = StringUtils.replace(comparison[0], "'", "", -1).trim();
+				comparison[0] = StringUtils.replace(comparison[0], "(", "", -1).trim();
+
+				comparison[1] = StringUtils.replace(comparison[1], "'", "", -1).trim();
+				comparison[1] = StringUtils.replace(comparison[1], ")", "", -1).trim();
+
+				if (comparison[0].equals(comparison[1]))
+				{
+					String destination = split1[1].trim();
+					exePosition = labellerCMDFile.getLinefromLabel(destination) - 1;
+				}
+				break;
+			case "IF REMOTE FILE EXISTS":
+				/* 'nestle.pcx' GOTO label" */
+				String[] split2 = StringUtils.splitByWholeSeparator(VAL, "GOTO");
+				String find = split2[0];
+				find = StringUtils.replace(find, "'", "", -1).trim();
+
+				if (IF_EXISTS(find))
+				{
+					String destination = split2[1].trim();
+					exePosition = labellerCMDFile.getLinefromLabel(destination) - 1;
+				}
+				break;
 			case "PAUSE":
 				utils.pause(Integer.valueOf(VAL));
 				break;
@@ -288,14 +321,14 @@ public class Labeller extends Thread
 				rx.successResponses.add(VAL);
 				break;
 			case "LOCAL_DELETE_FILE":
-				String localfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
+				String localfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
 				logger.info("[" + prop.getId() + "]" + " Local Delete  [" + localfilename + "]");
 				File fileDelete = new File(localfilename);
 				FileUtils.deleteQuietly(fileDelete);
 				fileDelete = null;
 				break;
 			case "FILE_DEFINE":
-				String writefilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
+				String writefilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
 				logger.info("[" + prop.getId() + "]" + " File Defined as  [" + writefilename + "]");
 				fileWrite = new File(writefilename);
 				if (FileUtils.deleteQuietly(fileWrite))
@@ -304,7 +337,7 @@ public class Labeller extends Thread
 				}
 				break;
 			case "FILE_WRITE":
-				File writePath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId());
+				File writePath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId());
 				try
 				{
 					FileUtils.forceMkdir(writePath);
@@ -362,6 +395,28 @@ public class Labeller extends Thread
 		labellerCMDFile.variables.put(varArray3[4], resultString);
 		logger.info("Query result = [" + varArray3[4] + "]=[" + resultString + "]");
 		dblinks.get(varArray3[0]).disconnect();
+		return result;
+	}
+
+	public boolean IF_EXISTS(String filename)
+	{
+		boolean result = false;
+
+		if (DIR_REMOTE(filename))
+		{
+
+			while ((directory.peek() != null) )
+			{
+				String foundFilename = directory.poll().getFilename().toLowerCase().trim();
+				if (filename.toLowerCase().trim().equals(foundFilename))
+				{
+					result = true;
+					break;
+				}
+			}
+
+		}
+
 		return result;
 	}
 
@@ -467,7 +522,7 @@ public class Labeller extends Thread
 		System.out.println("");
 		logger.info("[" + prop.getId() + "]" + " SEND file [" + VAL + "] Started.");
 		rx.clearQueue();
-		String sendfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
+		String sendfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
 		tx.send("*HEXFILE," + VAL + "<CR>");
 		result = checkSuccess();
 		if (result == true)
@@ -511,12 +566,12 @@ public class Labeller extends Thread
 		File downloadPath;
 		if (isBackup)
 		{
-			downloadPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_backups" + java.io.File.separator + prop.getId() + java.io.File.separator
+			downloadPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_backups"  + java.io.File.separator + prop.getSite()+ java.io.File.separator + prop.getId() + java.io.File.separator
 					+ JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime()).substring(0, 16).replaceAll(":", "-").replaceAll("T", "-"));
 		}
 		else
 		{
-			downloadPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId());
+			downloadPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId());
 		}
 
 		try
@@ -531,7 +586,11 @@ public class Labeller extends Thread
 		System.out.println("");
 		while ((directory.peek() != null) && (result == true) && (shutdown == false))
 		{
-			String downloadFilename = directory.poll().getFilename();
+			
+			LabellerFile labfile = directory.poll();
+			String downloadFilename = labfile.getFilename();	
+			Timestamp labfiledatetime = labfile.getDatetime();
+					
 			System.out.println("");
 			logger.info("[" + prop.getId() + "]" + " DOWNLOAD Start " + downloadFilename);
 
@@ -574,6 +633,10 @@ public class Labeller extends Thread
 						FileUtils.writeLines(outFile1, "UTF-8", fileData, utils.encodeControlChars("<CR><LF>"));
 						LabellerIntelHex ohc = new LabellerIntelHex();
 						ohc.convertFromIntelHex(outFile1, outFile2);
+						outFile2.setLastModified(labfiledatetime.getTime());
+						Path outPath2 = outFile2.toPath();
+						FileTime time = FileTime.fromMillis((labfiledatetime.getTime()));
+						Files.setAttribute(outPath2, "creationTime", time);		
 						FileUtils.deleteQuietly(outFile1);
 					}
 					catch (Exception ex)
