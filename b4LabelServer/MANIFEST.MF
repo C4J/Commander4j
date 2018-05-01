@@ -4,8 +4,8 @@ Class-Path: lib/app/commons-io-2.6.jar
  lib/app/commons-lang3-3.7.jar 
  lib/app/commons-codec-1.11.jar 
  lib/app/opencsv-4.1.jar 
- lib/app/log4j-api-2.10.0.jar 
- lib/app/log4j-core-2.10.0.jar 
- lib/db/mssql-jdbc-6.2.2.jre8.jar 
- lib/db/mysql-connector-java-5.1.45-bin.jar 
+ lib/app/log4j-api-2.11.0.jar 
+ lib/app/log4j-core-2.11.0.jar 
+ lib/db/mssql-jdbc-6.4.0.jre8.jar 
+ lib/db/mysql-connector-java-8.0.11-bin.jar 
  lib/db/ojdbc8.jar 

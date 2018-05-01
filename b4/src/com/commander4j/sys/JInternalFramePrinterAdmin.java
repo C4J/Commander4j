@@ -221,7 +221,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonClose = new JButton4j(Common.icon_close);
 				this.getContentPane().add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
-				jButtonClose.setBounds(864, 354, 146, 32);
+				jButtonClose.setBounds(864, 355, 146, 32);
 				jButtonClose.setMnemonic(lang.getMnemonicChar());
 				jButtonClose.addActionListener(new ActionListener()
 				{

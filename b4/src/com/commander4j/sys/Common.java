@@ -99,6 +99,8 @@ public class Common
 	public static String updateURL = "";
 	public static String updateMODE = "";
 	public static String updateInstallDir = "";
+	public static String hostVersion = "";
+	public static String hostUpdatePath = "";
 	public static String setupPassword = "";
 	public static int buttonToolbarSize = 55;
 	public static int spacerToolBarSize = 10;
@@ -231,7 +233,7 @@ public class Common
 	public final static Icon icon_cascade = Common.imageIconloader.getImageIcon(Common.image_cascade);
 	public final static Icon icon_minimize = Common.imageIconloader.getImageIcon(Common.image_minimize);
 	public final static Icon icon_restore = Common.imageIconloader.getImageIcon(Common.image_restore);
-	//public final static Icon icon_save = Common.imageIconloader.getImageIcon(Common.image_save);
+	public final static Icon icon_open = Common.imageIconloader.getImageIcon(Common.image_open);
 	public final static Icon icon_find = Common.imageIconloader.getImageIcon(Common.image_find);
 	public final static Icon icon_close = Common.imageIconloader.getImageIcon(Common.image_close);
 	public final static Icon icon_lookup = Common.imageIconloader.getImageIcon(Common.image_lookup);
@@ -330,6 +332,7 @@ public class Common
 	public final static String image_close = "exit.gif";
 	public final static String image_mhn = "mhn.gif";
 	public final static String image_lookup = "lookup.gif";
+	public final static String image_open = "open.gif";
 	public final static String image_print = "print.gif";
 	public final static String image_help = "help.gif";
 	public final static String image_delete = "delete.gif";

@@ -70,7 +70,7 @@ public class JXMLHost {
 		
 	}
 
-	public static void writeHosts(LinkedList<JHost> hostList, String splash, String updatePath, String updateMode, String installDir, String setupPassword)
+	public static void writeHosts(String filename,LinkedList<JHost> hostList, String splash, String updatePath, String updateMode, String installDir, String setupPassword,String hostVersion,String hostUpdatePath)
 	{
 		final Logger logger = Logger.getLogger(JXMLHost.class);
 		final JFileIO fio = new JFileIO();
@@ -116,6 +116,16 @@ public class JXMLHost {
 			updateDIR.appendChild(text);
 			hosts.appendChild(updateDIR);
 
+			Element hostVer = (Element) document.createElement("hostVersion");
+			text = document.createTextNode(hostVersion);
+			hostVer.appendChild(text);
+			hosts.appendChild(hostVer);
+			
+			Element hostUpdate = (Element) document.createElement("hostUpdatePath");
+			text = document.createTextNode(hostUpdatePath);
+			hostUpdate.appendChild(text);
+			hosts.appendChild(hostUpdate);		
+			
 			Element configPassword = (Element) document.createElement("SetupPassword");
 			text = document.createTextNode(JEncryption.encrypt(setupPassword));
 			configPassword.appendChild(text);
@@ -226,7 +236,7 @@ public class JXMLHost {
 
 			document.appendChild(hosts);
 
-			fio.writeToDisk("xml/hosts/", document, -1, "hosts.xml");
+			fio.writeToDisk(filename, document);
 
 		} catch (ParserConfigurationException pce)
 		{
@@ -246,6 +256,23 @@ public class JXMLHost {
 		return iNumberOfHosts;
 	}
 
+	public static Double checkHostVersion(String filename)
+	{
+		Double result = (double) 0;
+		
+		JXMLDocument xmltest = new JXMLDocument(filename);
+		
+		String hostVersion = xmltest.findXPath("//Hosts/hostVersion");
+		
+		if (hostVersion.equals(""))
+		{
+			hostVersion = "1";
+		}
+		
+		result = Double.valueOf(hostVersion);
+		
+		return result;
+	}
 
 	public static LinkedList<JHost> loadHosts(String filename, boolean parse)
 	{
@@ -254,6 +281,8 @@ public class JXMLHost {
 		String splash = "Y";
 		String updateURL = "";
 		String updateMODE = "";
+		String hostVersion = "";
+		String hostUpdatePath ="";
 		String updateDIR = "";
 		String setupPassword = "";
 		String jdbcDriver = "";
@@ -289,6 +318,14 @@ public class JXMLHost {
 		iNumberOfHosts = Integer.valueOf(sNumberOfSites).intValue();
 		splash = xmltest.findXPath("//Hosts/SplashScreen");
 		updateURL = xmltest.findXPath("//Hosts/UpdateURL");
+		
+		hostVersion = xmltest.findXPath("//Hosts/hostVersion");
+		if (hostVersion.equals(""))
+		{
+			hostVersion = "1";
+		}
+		hostUpdatePath = xmltest.findXPath("//Hosts/hostUpdatePath");
+		
 		updateMODE = xmltest.findXPath("//Hosts/UpdateMODE");
 		updateDIR = xmltest.findXPath("//Hosts/UpdateDIR");
 		setupPassword = JEncryption.decrypt(xmltest.findXPath("//Hosts/SetupPassword"));
@@ -302,6 +339,8 @@ public class JXMLHost {
 		Common.updateMODE = updateMODE;
 		Common.updateInstallDir = updateDIR;
 		Common.setupPassword = setupPassword;
+		Common.hostVersion = hostVersion;
+		Common.hostUpdatePath = hostUpdatePath;
 
 		if (splash.equals("N"))
 		{
@@ -328,6 +367,10 @@ public class JXMLHost {
 				}
 
 				jdbcDriver = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDriver").trim();
+				if (jdbcDriver.equals("com.mysql.jdbc.Driver"))
+				{
+					jdbcDriver = "com.mysql.cj.jdbc.Driver";
+				}
 				jdbcConnectString = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcConnectString").trim();
 				jdbcDatabaseDateTimeToken = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseDateTimeToken").trim();
 				jdbcDatabaseSelectLimit = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseSelectLimit").trim();

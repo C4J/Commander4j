@@ -1655,7 +1655,7 @@
 		<?JDBViewBarcodeValidate?>
 		<statement>
 			<id>JDBViewBarcodeValidate.getProperties</id>
-			<text>select * from {schema}view_barcode_validate where process_order = ?</text>
+			<text>select * from {schema}VIEW_BARCODE_VALIDATE where process_order = ?</text>
 		</statement>			
 	</jdbcDriver>
 </SQL>

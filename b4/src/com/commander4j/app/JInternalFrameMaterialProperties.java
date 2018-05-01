@@ -145,6 +145,9 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private SpinnerNumberModel netweightnumbermodel = new SpinnerNumberModel((double) 0, null, null, 1);
 	private JLabel4j_std lblEquipment;
 	private JLabel4j_std lblInspectionID;
+	private JLabel4j_std lblValidateScanPallet;
+	private JLabel4j_std lblValidateScanCase;
+	private JLabel4j_std lblValidateScanEach;
 	private JTextField4j jTextFieldEquipmentType;
 	private JTextField4j jTextFieldInspectionID;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
@@ -156,6 +159,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JComboBox4j<JDBListData> comboBoxPackModuleID = new JComboBox4j<JDBListData>();
 	private JComboBox4j<JDBListData> comboBoxPalletModuleID = new JComboBox4j<JDBListData>();
 	private JButton4j jButtonCustomerData = new JButton4j();
+	
+	private JCheckBox4j checkBoxValidateScanPallet = new JCheckBox4j();
+	private JCheckBox4j checkBoxValidateScanCase = new JCheckBox4j();
+	private JCheckBox4j checkBoxValidateScanEach = new JCheckBox4j();
 
 	public JInternalFrameMaterialProperties(String mat)
 	{
@@ -226,6 +233,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			
 			checkBoxOverridePackLabel.setSelected(material.isOverridePackLabel());
 			checkBoxOverridePalletLabel.setSelected(material.isOverridePalletLabel());
+			
+			checkBoxValidateScanPallet.setSelected(material.isValidateScanPallet());
+			checkBoxValidateScanCase.setSelected(material.isValidateScanCase());
+			checkBoxValidateScanEach.setSelected(material.isValidateScanEach());
 			
 			comboBoxPackModuleID.setSelectedIndex(-1);
 			comboBoxPalletModuleID.setSelectedIndex(-1);
@@ -627,6 +638,32 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					}
 				});
 				
+				checkBoxValidateScanPallet.setBackground(Color.WHITE);
+				checkBoxValidateScanPallet.setBounds(449, 328, 21, 24);
+				jDesktopPane1.add(checkBoxValidateScanPallet);
+				checkBoxValidateScanPallet.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						jButtonSave.setEnabled(true);
+					}
+				});
+				
+				checkBoxValidateScanCase.setBackground(Color.WHITE);
+				checkBoxValidateScanCase.setBounds(449, 358, 21, 24);
+				jDesktopPane1.add(checkBoxValidateScanCase);
+				checkBoxValidateScanCase.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						jButtonSave.setEnabled(true);
+					}
+				});	
+				
+				checkBoxValidateScanEach.setBackground(Color.WHITE);
+				checkBoxValidateScanEach.setBounds(449, 387, 21, 24);
+				jDesktopPane1.add(checkBoxValidateScanEach);
+				checkBoxValidateScanEach.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						jButtonSave.setEnabled(true);
+					}
+				});
 
 				checkBoxOverridePalletLabel.setBackground(Color.WHITE);
 				checkBoxOverridePalletLabel.setBounds(166, 450, 21, 24);
@@ -705,7 +742,25 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
 					lblInspectionID.setBounds(6, 390, 159, 21);
 					jDesktopPane1.add(lblInspectionID);
-				}		
+				}
+				{
+					lblValidateScanPallet = new JLabel4j_std();
+					lblValidateScanPallet.setText(lang.get("lbl_Validate_Pallet_GTIN"));
+					lblValidateScanPallet.setBounds(472, 331, 159, 21);
+					jDesktopPane1.add(lblValidateScanPallet);
+				}	
+				{
+					lblValidateScanCase = new JLabel4j_std();
+					lblValidateScanCase.setText(lang.get("lbl_Validate_Case_GTIN"));
+					lblValidateScanCase.setBounds(472, 361, 159, 21);
+					jDesktopPane1.add(lblValidateScanCase);
+				}	
+				{
+					lblValidateScanEach = new JLabel4j_std();
+					lblValidateScanEach.setText(lang.get("lbl_Validate_Each_GTIN"));
+					lblValidateScanEach.setBounds(472, 390, 159, 21);
+					jDesktopPane1.add(lblValidateScanEach);
+				}	
 				{
 					jTextFieldEquipmentType = new JTextField4j(JDBMaterial.field_equipment_type);
 					jTextFieldEquipmentType.addKeyListener(new KeyAdapter() {
@@ -808,6 +863,39 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		material.setEquipmentType(jTextFieldEquipmentType.getText());
 		
 		material.setInspectionID(jTextFieldInspectionID.getText());
+		
+		if (checkBoxValidateScanPallet.isSelected())
+		{
+
+			material.setValidateScanPallet("Y");
+		}
+		else
+		{
+			material.setValidateScanPallet("N");
+
+		}
+		
+		if (checkBoxValidateScanCase.isSelected())
+		{
+
+			material.setValidateScanCase("Y");
+		}
+		else
+		{
+			material.setValidateScanCase("N");
+
+		}
+		
+		if (checkBoxValidateScanEach.isSelected())
+		{
+
+			material.setValidateScanEach("Y");
+		}
+		else
+		{
+			material.setValidateScanEach("N");
+
+		}		
 
 		if (checkBoxOverridePackLabel.isSelected())
 		{

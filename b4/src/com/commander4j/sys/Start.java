@@ -40,7 +40,8 @@ import com.commander4j.util.JSplashScreenUtils;
 import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
 
-public class Start {
+public class Start
+{
 	public static void main(String[] args)
 	{
 		Logger logger = Logger.getLogger(Start.class);
@@ -65,7 +66,15 @@ public class Start {
 		JUtility.adjustForLookandFeel();
 		JConfig.loadConfig("config.xml");
 		JUtility.initLogging("");
+
 		Common.hostList.loadHosts();
+		
+		if (Common.hostList.checkUpdatedHosts()==true)
+		{
+			logger.debug("Reloading Host File");
+			Common.hostList.loadHosts();
+		}
+
 		com.commander4j.util.JUpdate.updateCheck();
 
 		JSplashScreenUtils.create();
@@ -87,13 +96,13 @@ public class Start {
 		logger.info("Application starting");
 		JSplashScreenUtils.updateProgress(20, "Preparing for Logon");
 
-		if (JUtility.getActiveHostCount()>1)
+		if (JUtility.getActiveHostCount() > 1)
 		{
-		JSplashScreenUtils.hide();
+			JSplashScreenUtils.hide();
 
-		hsts = new JDialogHosts(null);
-		hsts.setVisible(false);
-		hsts.dispose();
+			hsts = new JDialogHosts(null);
+			hsts.setVisible(false);
+			hsts.dispose();
 		}
 		else
 		{
@@ -145,7 +154,6 @@ public class Start {
 				ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 				passwordMode = ctrl.getKeyValue("PASSWORD MODE");
 
-
 				// OS LOGON
 				if (passwordMode.equals("PASSTHROUGH") || passwordMode.equals("PASSTHROUGH_FALLBACK"))
 				{
@@ -158,22 +166,24 @@ public class Start {
 					// Try and logon using OS username.
 					if (user.login())
 					{
-						//Add os user to list (no dialog)
+						// Add os user to list (no dialog)
 						Common.userList.addUser(Common.sessionID, user);
 						Common.validatedUsername = user.getUserId();
 						Common.validatedPassword = user.getLoginPassword();
 						Common.logonValidated = true;
 
-					} else
+					}
+					else
 					{
 						// If OS username no goood and passthrough enabled try
 						// local as fallback.
 						if (passwordMode.equals("PASSTHROUGH"))
 						{
 							JUtility.errorBeep();
-							JOptionPane.showMessageDialog(null, "Error during logon for user [" + user.getUserId()+"]\n"+user.getErrorMessage(), "Login", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Error during logon for user [" + user.getUserId() + "]\n" + user.getErrorMessage(), "Login", JOptionPane.ERROR_MESSAGE);
 							System.exit(0);
-						} else
+						}
+						else
 						{
 							passwordMode = "LOCAL";
 						}
@@ -237,16 +247,19 @@ public class Start {
 					Common.mainForm.setIconImage(Common.imageIconloader.getImageIcon(Common.image_osx_commander4j).getImage());
 					Common.mainForm.setVisible(true);
 
-				} else
+				}
+				else
 				{
 					Common.hostList.getHost(Common.selectedHostID).disconnect(Common.sessionID);
 					System.exit(0);
 				}
-			} else
+			}
+			else
 			{
 				System.exit(0);
 			}
-		} else
+		}
+		else
 		{
 			System.exit(0);
 		}

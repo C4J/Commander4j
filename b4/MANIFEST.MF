@@ -12,9 +12,9 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/barcode/commons-cli-1.3.1.jar 
  lib/barcode/jdom-2.0.6.jar 
  lib/cups4j/cups4j.runnable-0.6.4.jar 
- lib/db/mysql-connector-java-5.1.45-bin.jar 
+ lib/db/mysql-connector-java-8.0.11.jar 
  lib/db/ojdbc8.jar 
- lib/db/mssql-jdbc-6.2.2.jre8.jar 
+ lib/db/mssql-jdbc-6.4.0.jre8.jar 
  lib/jasper/jasperreports-6.5.1.jar 
  lib/jasper/jasperreports-chart-customizers-6.5.1.jar 
  lib/jasper/jasperreports-chart-themes-6.5.1.jar 

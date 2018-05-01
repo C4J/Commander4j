@@ -152,7 +152,7 @@ public class JDatabaseParameters
 			value = "jdbc:db2://jdbcServer:jdbcPort/jdbcDatabase";
 		}
 
-		if (getjdbcDriver().equals("com.mysql.jdbc.Driver"))
+		if (getjdbcDriver().equals("com.mysql.cj.jdbc.Driver"))
 		{
 			value = "jdbc:mysql://jdbcServer/jdbcDatabase";
 		}

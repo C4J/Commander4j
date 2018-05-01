@@ -1,5 +1,9 @@
 package com.commander4j.sys;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 /**
  * @author David Garratt
  * 
@@ -30,6 +34,7 @@ package com.commander4j.sys;
 import java.util.Hashtable;
 import java.util.LinkedList;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import com.commander4j.util.JUtility;
@@ -118,6 +123,49 @@ public class JHostList
 
 	public void loadHosts(String filename) {
 		addHosts(JXMLHost.loadHosts(filename, true));
+	}
+	
+	public boolean checkUpdatedHosts()
+	{
+		boolean result = false;
+	
+		Double currentHostVersion = Double.valueOf(Common.hostVersion);
+		logger.debug("Current Host File Version = " + String.valueOf(currentHostVersion));
+
+		// See if updatedHosts location specified
+		if (Common.hostUpdatePath.equals("") == false)
+		{
+			logger.debug("Update Host Path = " + Common.hostUpdatePath);
+			if (Files.exists(Paths.get(Common.hostUpdatePath)))
+			{
+				logger.debug("Update Host Path = " + Common.hostUpdatePath + " found.");
+
+				Double updatedHostVersion = JXMLHost.checkHostVersion(Common.hostUpdatePath);
+				logger.debug("Updated Host File Version = " + String.valueOf(updatedHostVersion));
+
+				if (updatedHostVersion > currentHostVersion)
+				{
+					logger.debug("Copying Updated Host File");
+					try
+					{
+						File destDir = new File(System.getProperty("user.dir") + File.separator + "xml"+File.separator+"hosts");
+						File srcFile = new File(Common.hostUpdatePath);
+						FileUtils.copyFileToDirectory(srcFile, destDir);
+						result = true;
+					}
+					catch (Exception e)
+					{
+						logger.debug("Error Copying Updated Host File :" + e.getMessage());
+					}
+				}
+			}
+			else
+			{
+				logger.debug("Update Host Path = " + Common.hostUpdatePath + " not found.");
+			}
+		}		
+		
+		return result;
 	}
 
 	public void loadHosts() {

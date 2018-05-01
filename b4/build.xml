@@ -54,7 +54,7 @@
         <pathelement location="lib/app/log4j-1.2.15.jar"/>
         <pathelement location="lib/jasperlib/commons-javaflow-20160505.jar"/>
         <pathelement location="lib/jasperlib/core-3.2.1.jar"/>
-        <pathelement location="lib/db/mssql-jdbc-6.2.2.jre8.jar"/>
+        <pathelement location="lib/db/mssql-jdbc-6.4.0.jre8.jar"/>
         <pathelement location="lib/db/ojdbc8.jar"/>
         <pathelement location="lib/jasperlib/batik-anim-1.9.jar"/>
         <pathelement location="lib/jasperlib/batik-awt-util-1.9.jar"/>
@@ -85,7 +85,7 @@
         <pathelement location="lib/jasperlib/xmlgraphics-commons-2.2.jar"/>
         <pathelement location="lib/jasperlib/serializer-2.7.2.jar"/>
         <pathelement location="lib/jasperlib/joda-time-2.9.9.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-5.1.45-bin.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-8.0.11.jar"/>
         <pathelement location="lib/jasperlib/ecj-4.4.2.jar"/>
         <pathelement location="lib/jasperlib/commons-codec-1.5.jar"/>
         <pathelement location="lib/jasper/jasperreports-6.5.1.jar"/>

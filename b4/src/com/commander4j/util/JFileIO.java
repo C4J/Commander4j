@@ -240,6 +240,49 @@ public class JFileIO
 		}
 		return result;
 	}
+	
+	public Boolean writeToDisk(String filename, Document document)
+	{
+		Boolean result = true;
+		try
+		{
+			setFilename(filename);
+			setShortFilename(filename);
+			// ===============================
+
+			DOMImplementationLS DOMiLS = null;
+			FileOutputStream FOS = null;
+
+			// testing the support for DOM Load and Save
+			if ((document.getFeature("Core", "3.0") != null) && (document.getFeature("LS", "3.0") != null))
+			{
+				DOMiLS = (DOMImplementationLS) (document.getImplementation()).getFeature("LS", "3.0");
+
+				// get a LSOutput object
+				LSOutput LSO = DOMiLS.createLSOutput();
+
+				FOS = new FileOutputStream(filename);
+				LSO.setByteStream((OutputStream) FOS);
+
+				// get a LSSerializer object
+				LSSerializer LSS = DOMiLS.createLSSerializer();
+
+				// do the serialization
+				LSS.write(document, LSO);
+
+				FOS.close();
+			} 
+
+			// ===============================
+
+		} catch (Exception ex)
+		{
+			logger.debug("writeToDisk error :" + ex.getMessage());
+			setErrorMessage("Error writing message to disk. " + ex.getMessage());
+			result = false;
+		}
+		return result;
+	}
 
 	public List<String> readFileLines(String filename)
 	{

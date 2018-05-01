@@ -87,6 +87,134 @@ public class JDBMaterial
 	private String dbPack_Label_ModuleID;
 	private String dbPallet_Label_ModuleID;
 	
+	private String dbValidateScanPallet = "N";
+	private String dbValidateScanCase = "N";
+	private String dbValidateScanEach = "N";
+	
+	public void setValidateScanPallet(boolean yesno)
+	{
+		if (yesno)
+		{
+			setValidateScanPallet("Y");
+		}
+		else
+		{
+			setValidateScanPallet("N");
+		}
+	}
+	
+	public void setValidateScanPallet(String yesno)
+	{
+		dbValidateScanPallet = JUtility.replaceNullStringwithBlank(yesno);
+	}
+	
+
+	
+	public boolean isValidateScanPallet()
+	{
+		if (getValidateScanPallet().equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public String getValidateScanPallet()
+	{
+		dbValidateScanPallet = JUtility.replaceNullStringwithBlank(dbValidateScanPallet);
+		if (dbValidateScanPallet.equals(""))
+		{
+			dbValidateScanPallet="N";
+		}
+		return dbValidateScanPallet;
+
+	}
+	
+	public void setValidateScanCase(boolean yesno)
+	{
+		if (yesno)
+		{
+			setValidateScanCase("Y");
+		}
+		else
+		{
+			setValidateScanCase("N");
+		}
+	}
+	
+	public void setValidateScanCase(String yesno)
+	{
+		dbValidateScanCase = JUtility.replaceNullStringwithBlank(yesno);
+	}
+	
+	
+	public boolean isValidateScanCase()
+	{
+		if (getValidateScanCase().equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public String getValidateScanCase()
+	{
+		dbValidateScanCase = JUtility.replaceNullStringwithBlank(dbValidateScanCase);
+		if (dbValidateScanCase.equals(""))
+		{
+			dbValidateScanCase="N";
+		}
+		return dbValidateScanCase;
+
+	}
+	
+	public void setValidateScanEach(boolean yesno)
+	{
+		if (yesno)
+		{
+			setValidateScanEach("Y");
+		}
+		else
+		{
+			setValidateScanEach("N");
+		}
+	}
+	
+	public void setValidateScanEach(String yesno)
+	{
+		dbValidateScanEach = JUtility.replaceNullStringwithBlank(yesno);
+	}
+	
+	
+	public boolean isValidateScanEach()
+	{
+		if (getValidateScanEach().equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public String getValidateScanEach()
+	{
+		dbValidateScanEach = JUtility.replaceNullStringwithBlank(dbValidateScanEach);
+		if (dbValidateScanEach.equals(""))
+		{
+			dbValidateScanEach="N";
+		}
+		return dbValidateScanEach;
+
+	}	
+	
 	public void setOverridePackLabel(boolean yesno)
 	{
 		if (yesno)
@@ -202,7 +330,7 @@ public class JDBMaterial
 		uom = new JDBUom(getHostID(), getSessionID());
 	}
 
-	public JDBMaterial(String material, String description, String type, String baseUom, Integer shelflife, String shelflifeuom, String shelfliferule, String equipmentType,String overridePackLabel,String packLabelModule,String overridePalletLabel,String palletLabelModule)
+	public JDBMaterial(String material, String description, String type, String baseUom, Integer shelflife, String shelflifeuom, String shelfliferule, String equipmentType,String overridePackLabel,String packLabelModule,String overridePalletLabel,String palletLabelModule, String validateScanPallet,String validateScanCase,String validateScanEach)
 	{
 		setMaterial(material);
 		setDescription(description);
@@ -216,6 +344,9 @@ public class JDBMaterial
 		setPackLabelModuleID(packLabelModule);
 		setOverridePalletLabel(overridePalletLabel);
 		setPalletLabelModuleID(palletLabelModule);
+		setValidateScanPallet(validateScanPallet);
+		setValidateScanCase(validateScanCase);
+		setValidateScanEach(validateScanEach);
 	}
 
 	public Date calcBBE(Date dateOfManufacture, Integer shelfLife, String shelfLifeUom, String shelfLifeRule)
@@ -277,6 +408,9 @@ public class JDBMaterial
 		setPackLabelModuleID("");
 		setOverridePalletLabel("");
 		setPalletLabelModuleID("");
+		setValidateScanPallet("");
+		setValidateScanCase("");
+		setValidateScanEach("");
 	}
 
 	public BigDecimal convertQuantitytoBaseUOM(BigDecimal quantity, String uom)
@@ -553,7 +687,7 @@ public class JDBMaterial
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBMaterial("material", "description", "type", "base_uom", 0, "shelf life uom", "rounding rule", "equipmentType","overridePack","packModule","overridePallet","palletModule"));
+			result.addElement(new JDBMaterial("material", "description", "type", "base_uom", 0, "shelf life uom", "rounding rule", "equipmentType","overridePack","packModule","overridePallet","palletModule","validateScanPallet","validateScanCase","validateScanEach"));
 		} else
 		{
 			try
@@ -563,7 +697,7 @@ public class JDBMaterial
 				while (rs.next())
 				{
 					result.addElement(new JDBMaterial(rs.getString("material"), rs.getString("description"), rs.getString("material_type"), rs.getString("base_uom"), rs.getInt("shelf_life"), rs.getString("shelf_life_uom"), rs
-							.getString("shelf_life_rule"), rs.getString("equipment_type"),rs.getString("override_pack_label"),rs.getString("pack_label_module_id"),rs.getString("override_pallet_label"),rs.getString("pallet_label_module_id")));
+							.getString("shelf_life_rule"), rs.getString("equipment_type"),rs.getString("override_pack_label"),rs.getString("pack_label_module_id"),rs.getString("override_pallet_label"),rs.getString("pallet_label_module_id"),rs.getString("validate_scan_pallet"),rs.getString("validate_scan_case"),rs.getString("validate_scan_each")));
 				}
 				rs.close();
 
@@ -746,6 +880,9 @@ public class JDBMaterial
 			setPackLabelModuleID(rs.getString("pack_label_module_id"));
 			setOverridePalletLabel(rs.getString("override_pallet_label"));
 			setPalletLabelModuleID(rs.getString("pallet_label_module_id"));
+			setValidateScanPallet(rs.getString("validate_scan_pallet"));
+			setValidateScanCase(rs.getString("validate_scan_case"));
+			setValidateScanEach(rs.getString("validate_scan_each"));
 
 		} catch (SQLException e)
 		{
@@ -1057,8 +1194,11 @@ public class JDBMaterial
 				stmtupdate.setString(15,getOverridePackLabel());
 				stmtupdate.setString(16,getPackLabelModuleID());
 				stmtupdate.setString(17,getOverridePalletLabel());
-				stmtupdate.setString(18,getPalletLabelModuleID());				
-				stmtupdate.setString(19, getMaterial());
+				stmtupdate.setString(18,getPalletLabelModuleID());	
+				stmtupdate.setString(19,getValidateScanPallet());	
+				stmtupdate.setString(20,getValidateScanCase());
+				stmtupdate.setString(21,getValidateScanEach());
+				stmtupdate.setString(22, getMaterial());
 
 				stmtupdate.execute();
 				stmtupdate.clearParameters();

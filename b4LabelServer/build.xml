@@ -16,10 +16,10 @@
         <pathelement location="lib/app/commons-codec-1.11.jar"/>
         <pathelement location="lib/devonly/i4jruntime.jar"/>
         <pathelement location="lib/app/opencsv-4.1.jar"/>
-        <pathelement location="lib/app/log4j-api-2.10.0.jar"/>
-        <pathelement location="lib/app/log4j-core-2.10.0.jar"/>
-        <pathelement location="lib/db/mssql-jdbc-6.2.2.jre8.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-5.1.45-bin.jar"/>
+        <pathelement location="lib/app/log4j-api-2.11.0.jar"/>
+        <pathelement location="lib/app/log4j-core-2.11.0.jar"/>
+        <pathelement location="lib/db/mssql-jdbc-6.4.0.jre8.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-8.0.11-bin.jar"/>
         <pathelement location="lib/db/ojdbc8.jar"/>
     </path>
     <target name="init">

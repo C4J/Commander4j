@@ -104,7 +104,7 @@ public class JDBStructure
 				required_schema = Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcUsername();
 			}
 
-			if (driver.equals("com.mysql.jdbc.Driver"))
+			if (driver.equals("com.mysql.cj.jdbc.Driver"))
 			{
 				required_schema = Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabase();
 			}
@@ -162,7 +162,7 @@ public class JDBStructure
 				try
 				{
 					actual_schema = rs.getString("TABLE_CAT");
-					if (driver.equals("com.mysql.jdbc.Driver"))
+					if (driver.equals("com.mysql.cj.jdbc.Driver"))
 					{
 						if (actual_schema.equals(required_schema) == true)
 						{

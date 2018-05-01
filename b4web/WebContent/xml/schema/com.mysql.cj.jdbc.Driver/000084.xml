@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	ALTER TABLE `APP_AUTO_LABELLER` ADD COLUMN `MODIFIED` VARCHAR(1) NULL DEFAULT 'N';
+</statement>
+
+<statement>
+ALTER VIEW VIEW_AUTO_LABELLER_PRINTER 
+AS 
+SELECT 
+		APP_AUTO_LABELLER.LINE, 
+		APP_AUTO_LABELLER.MODIFIED, 
+		APP_AUTO_LABELLER.UNIQUE_ID, 
+		APP_LABEL_DATA.LABEL_TYPE, 
+		SYS_PRINTER_LINE_MEMBERSHIP.PRINTER_ID, 
+		SYS_PRINTERS.ENABLED, 
+		SYS_PRINTERS.PRINTER_TYPE, 
+		SYS_PRINTERS.IP_ADDRESS, 
+		SYS_PRINTERS.PORT, 
+		SYS_PRINTERS.GROUP_ID, 
+		SYS_PRINTERS.LANGUAGE, 
+		SYS_PRINTERS.PRINTER_DPI, 
+		APP_LABEL_DATA.PROCESS_ORDER, 
+		APP_LABEL_DATA.MATERIAL, 
+		APP_LABEL_DATA.MATERIAL_TYPE, 
+		APP_MATERIAL.DESCRIPTION AS MATERIAL_DESCRIPTION, 
+		APP_MATERIAL.SHELF_LIFE_UOM, 
+		APP_MATERIAL.SHELF_LIFE, 
+		APP_MATERIAL.SHELF_LIFE_RULE, 
+		APP_LABEL_DATA.BATCH_NUMBER, 
+		APP_LABEL_DATA.REQUIRED_RESOURCE, 		
+		(SELECT KEY_VALUE FROM SYS_CONTROL WHERE SYSTEM_KEY = 'PLANT') AS PLANT, 
+		APP_LABEL_DATA.LOCATION_ID, 
+		APP_LABEL_DATA.DATE_OF_MANUFACTURE, 
+		APP_LABEL_DATA.EXPIRY_DATE, 	
+		APP_LABEL_DATA.PROD_EAN, 
+		APP_LABEL_DATA.PROD_VARIANT, 
+		APP_LABEL_DATA.PROD_QUANTITY, 
+		APP_LABEL_DATA.PROD_UOM, 		
+		APP_LABEL_DATA.BASE_EAN, 
+		APP_LABEL_DATA.BASE_VARIANT, 
+		APP_LABEL_DATA.BASE_QUANTITY, 
+		APP_LABEL_DATA.BASE_UOM, 			
+		APP_LABEL_DATA.CUSTOMER_ID, 
+		APP_CUSTOMER.CUSTOMER_NAME, 		
+		APP_LABEL_DATA.PRINT_COPIES, 
+		APP_LABEL_DATA.MODULE_ID, 
+		APP_LABEL_DATA.OVERRIDE_MANUFACTURE_DATE, 
+		APP_LABEL_DATA.OVERRIDE_EXPIRY_DATE, 
+		APP_LABEL_DATA.OVERRIDE_BATCH_PREFIX, 
+		APP_LABEL_DATA.BATCH_PREFIX, 
+		APP_LABEL_DATA.BATCH_SUFFIX, 
+		SYS_MODULES.REPORT_TYPE, 
+		SYS_MODULES.MODULE_TYPE,
+		SYS_MODULES.REPORT_FILENAME 
+FROM SYS_PRINTER_LINE_MEMBERSHIP INNER JOIN APP_AUTO_LABELLER ON SYS_PRINTER_LINE_MEMBERSHIP.LINE = APP_AUTO_LABELLER.LINE
+	 INNER JOIN APP_LABEL_DATA ON APP_AUTO_LABELLER.UNIQUE_ID = APP_LABEL_DATA.UNIQUE_ID
+	 INNER JOIN APP_MATERIAL ON APP_LABEL_DATA.MATERIAL = APP_MATERIAL.MATERIAL
+	 INNER JOIN APP_CUSTOMER ON APP_LABEL_DATA.CUSTOMER_ID = APP_CUSTOMER.CUSTOMER_ID
+	 INNER JOIN SYS_MODULES ON APP_LABEL_DATA.MODULE_ID = SYS_MODULES.MODULE_ID
+	 INNER JOIN SYS_PRINTERS ON SYS_PRINTERS.PRINTER_ID = SYS_PRINTER_LINE_MEMBERSHIP.PRINTER_ID
+WHERE SYS_PRINTERS.ENABLED = 'Y'
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Resend', 'EN', 'Resend', 'P')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Resend', 'NL', 'Opnieuw', 'D')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Resend', 'HU', 'Küldje el újra', 'F')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Resend', 'IT', 'Inviare di nuovo', 'S')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Resend', 'ES', 'Reenviar', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Resend', 'FR', 'Renvoyer', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Resend', 'DE', 'Erneut senden', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Resend', 'PL', 'Wyślij ponownie', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_History', 'EN', 'History', 'P')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_History', 'NL', 'Geschiedenis', 'D')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_History', 'HU', 'Történelem', 'F')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_History', 'IT', 'Storia', 'S')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_History', 'ES', 'Historia', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_History', 'FR', 'Histoire', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_History', 'DE', 'Geschichte', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_History', 'PL', 'Historia', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Process_Order_Resource', 'EN', 'Validate Process Order Resource', 'P')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Process_Order_Resource', 'NL', 'Valideren Resource orderproces', 'D')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Process_Order_Resource', 'HU', 'Érvényesítse Resource Rendelés folyamata', 'F')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Process_Order_Resource', 'IT', 'Convalidare Resource Ordine di processo', 'S')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Process_Order_Resource', 'ES', 'Validar Proceso de Orden de Recursos', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Process_Order_Resource', 'FR', 'Valider l ordre de process ressources', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Process_Order_Resource', 'DE', 'Validieren Ressourcenbestellvorgang', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Validate_Process_Order_Resource', 'PL', 'Walidacji procesu zamówienia zasób', 'I')
+</statement>
+
+<statement>
+CREATE TABLE `APP_AUTO_LABELLER_RESOURCES` (
+  `LINE` VARCHAR(20) NOT NULL,
+  `REQUIRED_RESOURCE` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`LINE`, `REQUIRED_RESOURCE`));
+</statement>
+
+
+<statement>
+	ALTER TABLE `APP_AUTO_LABELLER` ADD COLUMN `VALIDATE_RESOURCE` VARCHAR(1) NULL DEFAULT 'N';
+</statement>
+
+<statement>
+	ALTER TABLE `SYS_MODULES` ADD COLUMN `AUTO_LABELLER_COMMAND_FILE` VARCHAR(80) NULL DEFAULT '';
+</statement>
+
+<statement>
+	ALTER TABLE `SYS_MODULES` ADD COLUMN `AUTO_LABELLER_LABEL_FILE` VARCHAR(80) NULL DEFAULT '';
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Auto_Labeller', 'EN', 'Automatic Labeller', 'P')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Auto_Labeller', 'NL', 'Automatische etikettering', 'D')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Auto_Labeller', 'HU', 'Automatikus feliratozó', 'F')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Auto_Labeller', 'IT', 'Etichettatrice automatica', 'S')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Auto_Labeller', 'ES', 'Etiquetadora automática', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Auto_Labeller', 'FR', 'étiqueteuse automatique', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Auto_Labeller', 'DE', 'Etikettierer', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Auto_Labeller', 'PL', 'Maszyny do etykietowania', 'I')
+</statement>
+
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Command_File', 'EN', 'Command File', 'P')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Command_File', 'NL', 'Comando del archivo', 'D')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Command_File', 'HU', 'Parancs fájlt', 'F')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Command_File', 'IT', 'Command File', 'S')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Command_File', 'ES', 'Comando del archivo', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Command_File', 'FR', 'Fichier de commande', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Command_File', 'DE', 'Befehl Datei', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Command_File', 'PL', 'polecenie Plik', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Label_File', 'EN', 'Label Filename', 'P')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Label_File', 'NL', 'Label Bestandsnaam', 'D')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Label_File', 'HU', 'Label Fájlnév', 'F')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Label_File', 'IT', 'Etichetta Nome del file', 'S')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Label_File', 'ES', 'Etiqueta Nombre del archivo', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Label_File', 'FR', 'étiquette Nom du fichier', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Label_File', 'DE', 'Label Dateiname', 'I')
+</statement>
+
+<statement>
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Label_File', 'PL', 'Nazwa pliku etykiet', 'I')
+</statement>
+
+</DDL>

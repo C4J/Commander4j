@@ -7,7 +7,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.1.50.176</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BUK_CASE_160x80.txt</commandFile>
+            <commandFile>TEST_160x80.txt</commandFile>
             <inputPath>./labeller_requests/direct/</inputPath>
             <inputFile>160x80Prod.CSV</inputFile>
             <mode>transfer</mode>
@@ -17,7 +17,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.1.50.176</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BUK_CASE_160x80.txt</commandFile>
+            <commandFile>TEST_160x80.txt</commandFile>
             <inputPath>./labeller_requests/direct/</inputPath>
             <inputFile>160x80SLED.CSV</inputFile>
             <mode>transfer</mode>
