@@ -42,7 +42,7 @@ public class JPlaySound
 {
 
 	private static final int EXTERNAL_BUFFER_SIZE = 128000;
-	private static boolean Enabled;
+	private static boolean Enabled = false;
 
 	public static void enable() {
 		Enabled = true;

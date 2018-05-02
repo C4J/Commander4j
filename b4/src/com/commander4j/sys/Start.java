@@ -35,6 +35,7 @@ import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBSchema;
 import com.commander4j.db.JDBUser;
+import com.commander4j.util.JPlaySound;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JSplashScreenUtils;
 import com.commander4j.util.JUnique;
@@ -61,7 +62,7 @@ public class Start
 		Common.sessionID = JUnique.getUniqueID();
 		Common.sd.setData(Common.sessionID, "silentExceptions", "No", true);
 		Common.applicationMode = "SwingClient";
-
+		JPlaySound.enable();
 		JUtility.setLookandFeel();
 		JUtility.adjustForLookandFeel();
 		JConfig.loadConfig("config.xml");

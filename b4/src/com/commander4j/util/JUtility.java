@@ -554,7 +554,7 @@ public class JUtility
 
 	public static void errorBeep()
 	{
-		JPlaySound s = new JPlaySound("audio/error.wav");
+		JPlaySound s = new JPlaySound(System.getProperty("user.dir")+File.separator+"audio"+File.separator+"beep.wav");
 
 		if (s.equals(s))
 		{

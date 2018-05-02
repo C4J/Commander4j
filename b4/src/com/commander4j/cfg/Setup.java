@@ -30,6 +30,7 @@ package com.commander4j.cfg;
 import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
+import com.commander4j.util.JPlaySound;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
@@ -42,6 +43,7 @@ public class Setup
 		JUtility.initLogging("");
 		Common.base_dir = System.getProperty("user.dir");
 		Common.applicationMode = "SwingClient";
+		JPlaySound.enable();
 		logger.info("Application starting");
 		JPrint.init();
 		JFrameHostAdmin hostadmin = new JFrameHostAdmin();

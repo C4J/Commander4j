@@ -37,6 +37,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
@@ -87,9 +89,9 @@ import com.commander4j.xml.JXMLSchema;
  * JFrameHostAdmin is a Frame which allows the user to configure any number of
  * database connections which are stored in a file called hosts.xml file.
  * Changes to the host file can be password protected. If the file is password
- * protected you will be prompted to enter the current configuration password using a
- * dialog box called JDialogSetupPassword. When installing or upgrading a
- * database any errors which occur as displayed using the dialog box
+ * protected you will be prompted to enter the current configuration password
+ * using a dialog box called JDialogSetupPassword. When installing or upgrading
+ * a database any errors which occur as displayed using the dialog box
  * JDialogDMLErrors
  * 
  * <p>
@@ -178,18 +180,19 @@ public class JFrameHostAdmin extends JFrame
 				{
 					JFrameHostAdmin frame = new JFrameHostAdmin();
 					frame.setVisible(true);
-				} catch (Exception e)
+				}
+				catch (Exception e)
 				{
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-	
+
 	private void setHostsFilename(String name)
 	{
 		hostsFilename = name;
-		this.setTitle("Host Administration " + JVersion.getProgramVersion()+"  ["+hostsFilename+"]");
+		this.setTitle("Host Administration " + JVersion.getProgramVersion() + "  [" + hostsFilename + "]");
 	}
 
 	private void setUpdateMode(String mode)
@@ -240,7 +243,7 @@ public class JFrameHostAdmin extends JFrame
 
 		initGUI();
 
-		setHostsFilename(System.getProperty("user.dir") + File.separator + "xml"+File.separator+"hosts"+File.separator+ "hosts.xml");
+		setHostsFilename(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts" + File.separator + "hosts.xml");
 		setIconImage(Common.imageIconloader.getImageIcon(Common.image_osx_setup4j).getImage());
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation((screenSize.width - getSize().width) / 2, (screenSize.height - getSize().height) / 2);
@@ -336,7 +339,8 @@ public class JFrameHostAdmin extends JFrame
 		{
 			jButtonUp.setEnabled(true);
 			jButtonDown.setEnabled(true);
-		} else
+		}
+		else
 		{
 			jButtonUp.setEnabled(false);
 			jButtonDown.setEnabled(false);
@@ -399,7 +403,8 @@ public class JFrameHostAdmin extends JFrame
 			jButtonUpdate.setEnabled(false);
 			btnSchema.setEnabled(false);
 
-		} else
+		}
+		else
 		{
 			jTextFieldDescription.setText("");
 			jTextFieldURL.setText("");
@@ -589,7 +594,8 @@ public class JFrameHostAdmin extends JFrame
 									}
 								}
 
-							} while (found);
+							}
+							while (found);
 
 							JHost hst = new JHost();
 							hst.setSiteNumber(siteNo);
@@ -761,7 +767,8 @@ public class JFrameHostAdmin extends JFrame
 								if (jCheckBoxSplash.isSelected())
 								{
 									splash = "Y";
-								} else
+								}
+								else
 								{
 									splash = "N";
 								}
@@ -771,10 +778,11 @@ public class JFrameHostAdmin extends JFrame
 									JOptionPane.showMessageDialog(rootPane, "No host has been assigned to the interface service.", "Warning", JOptionPane.WARNING_MESSAGE);
 								}
 
-								JXMLHost.writeHosts(hostsFilename,hostList, splash, JTextFieldUpdateURL.getText(), getUpdateMode(), jTextField4jInstallDir.getText(), pass1,jTextField4jHostVersion.getText(),jTextField4jHostUpdatePath.getText());
+								JXMLHost.writeHosts(hostsFilename, hostList, splash, JTextFieldUpdateURL.getText(), getUpdateMode(), jTextField4jInstallDir.getText(), pass1, jTextField4jHostVersion.getText(), jTextField4jHostUpdatePath.getText());
 								jButtonSave.setEnabled(false);
 								jButtonUndo.setEnabled(false);
-							} else
+							}
+							else
 							{
 								JOptionPane.showMessageDialog(null, "Setup password has been changed but failed verification - please check.", "Error", JOptionPane.ERROR_MESSAGE);
 							}
@@ -1181,7 +1189,8 @@ public class JFrameHostAdmin extends JFrame
 								btnSchema.setEnabled(true);
 								jButtonUpdate.setEnabled(true);
 								Common.hostList.getHost(Common.selectedHostID).disconnect(Common.sessionID);
-							} else
+							}
+							else
 							{
 								jButtonUpdate.setEnabled(false);
 								btnSchema.setEnabled(false);
@@ -1231,7 +1240,8 @@ public class JFrameHostAdmin extends JFrame
 											{
 												updateCtrl = true;
 
-											} else
+											}
+											else
 											{
 												JUtility.errorBeep();
 												JDialogDMLErrors dmlerrs = new JDialogDMLErrors(me, cmds);
@@ -1244,7 +1254,8 @@ public class JFrameHostAdmin extends JFrame
 													updateCtrl = true;
 												}
 											}
-										} else
+										}
+										else
 										{
 											JOptionPane.showMessageDialog(me, "No DDL Commands found", "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.WARNING_MESSAGE);
 
@@ -1257,7 +1268,8 @@ public class JFrameHostAdmin extends JFrame
 											{
 												ctrl.setKeyValue(String.valueOf(updrst.schema_NEWVersion));
 												ctrl.update();
-											} else
+											}
+											else
 											{
 												ctrl.create("SCHEMA VERSION", String.valueOf(updrst.schema_NEWVersion), "Schema Version");
 											}
@@ -1266,7 +1278,8 @@ public class JFrameHostAdmin extends JFrame
 										}
 
 									}
-								} else
+								}
+								else
 								{
 									JOptionPane.showMessageDialog(me, "No Schema update Required", "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.INFORMATION_MESSAGE);
 								}
@@ -1279,7 +1292,8 @@ public class JFrameHostAdmin extends JFrame
 									{
 										ctrl.setKeyValue(JVersion.getProgramVersion());
 										ctrl.update();
-									} else
+									}
+									else
 									{
 										ctrl.create("PROGRAM VERSION", JVersion.getProgramVersion(), "Program Version");
 									}
@@ -1393,7 +1407,8 @@ public class JFrameHostAdmin extends JFrame
 								struct.saveAs("SCHEMA " + Common.hostList.getHost(Common.selectedHostID).getSiteDescription() + ".txt", Common.mainForm);
 								Common.hostList.getHost(Common.selectedHostID).disconnect(Common.sessionID);
 
-							} else
+							}
+							else
 							{
 								jButtonUpdate.setEnabled(false);
 								btnSchema.setEnabled(false);
@@ -1432,7 +1447,8 @@ public class JFrameHostAdmin extends JFrame
 							if (x == j)
 							{
 								hostList.get(x).setUniqueID("service");
-							} else
+							}
+							else
 							{
 								hostList.get(x).setUniqueID("");
 							}
@@ -1478,7 +1494,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			JTextFieldUpdateURL.setFocusCycleRoot(true);
-			JTextFieldUpdateURL.setBounds(425, 470, 518, 21);
+			JTextFieldUpdateURL.setBounds(425, 470, 490, 21);
 			desktopPane.add(JTextFieldUpdateURL);
 
 			rdbtnManual.setSelected(true);
@@ -1522,7 +1538,7 @@ public class JFrameHostAdmin extends JFrame
 
 			jTextField4jInstallDir.setText("");
 			jTextField4jInstallDir.setFocusCycleRoot(true);
-			jTextField4jInstallDir.setBounds(425, 496, 518, 21);
+			jTextField4jInstallDir.setBounds(425, 496, 490, 21);
 			desktopPane.add(jTextField4jInstallDir);
 
 			setupPasswordField = new JPasswordField(20);
@@ -1566,11 +1582,13 @@ public class JFrameHostAdmin extends JFrame
 			label4j_std_4.setHorizontalAlignment(SwingConstants.RIGHT);
 			label4j_std_4.setBounds(14, 496, 98, 21);
 			desktopPane.add(label4j_std_4);
-			
+
 			JButton4j jButtonOpen = new JButton4j(Common.icon_open);
-			jButtonOpen.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
+			jButtonOpen.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+
 					JFileChooser chooser = new JFileChooser();
 					JFileFilterXML xmlFilter = new JFileFilterXML();
 					chooser.setFileFilter(xmlFilter);
@@ -1579,48 +1597,53 @@ public class JFrameHostAdmin extends JFrame
 					chooser.addChoosableFileFilter(xmlFilter);
 
 					int returnVal = chooser.showSaveDialog(jButtonOpen);
-					if (returnVal == JFileChooser.APPROVE_OPTION) {
-					    setHostsFilename( chooser.getSelectedFile().getAbsolutePath());
-					    getHosts();
-					    populateList("");
+					if (returnVal == JFileChooser.APPROVE_OPTION)
+					{
+						setHostsFilename(chooser.getSelectedFile().getAbsolutePath());
+						getHosts();
+						populateList("");
 					}
 				}
 			});
 			jButtonOpen.setText("Open Hosts File");
 			jButtonOpen.setBounds(783, 37, 160, 36);
 			desktopPane.add(jButtonOpen);
-			
+
 			JLabel4j_std label4j_std_5 = new JLabel4j_std();
 			label4j_std_5.setText("URL for Hosts Update");
 			label4j_std_5.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_5.setHorizontalAlignment(SwingConstants.RIGHT);
 			label4j_std_5.setBounds(291, 550, 127, 21);
 			desktopPane.add(label4j_std_5);
-			
+
 			jTextField4jHostUpdatePath = new JTextField4j();
-			jTextField4jHostUpdatePath.addKeyListener(new KeyAdapter() {
+			jTextField4jHostUpdatePath.addKeyListener(new KeyAdapter()
+			{
 				@Override
-				public void keyTyped(KeyEvent e) {
+				public void keyTyped(KeyEvent e)
+				{
 					jTextFieldKeyTyped();
 				}
 			});
 			jTextField4jHostUpdatePath.setBackground(Common.color_list_assigned);
 			jTextField4jHostUpdatePath.setText("");
 			jTextField4jHostUpdatePath.setFocusCycleRoot(true);
-			jTextField4jHostUpdatePath.setBounds(425, 550, 518, 21);
+			jTextField4jHostUpdatePath.setBounds(425, 550, 490, 21);
 			desktopPane.add(jTextField4jHostUpdatePath);
-			
+
 			JLabel4j_std label4j_std_6 = new JLabel4j_std();
 			label4j_std_6.setText("Hosts FIle Version");
 			label4j_std_6.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_6.setHorizontalAlignment(SwingConstants.RIGHT);
 			label4j_std_6.setBounds(291, 524, 127, 21);
 			desktopPane.add(label4j_std_6);
-			
+
 			jTextField4jHostVersion = new JTextField4j();
-			jTextField4jHostVersion.addKeyListener(new KeyAdapter() {
+			jTextField4jHostVersion.addKeyListener(new KeyAdapter()
+			{
 				@Override
-				public void keyTyped(KeyEvent e) {
+				public void keyTyped(KeyEvent e)
+				{
 					jTextFieldKeyTyped();
 				}
 			});
@@ -1629,6 +1652,52 @@ public class JFrameHostAdmin extends JFrame
 			jTextField4jHostVersion.setFocusCycleRoot(true);
 			jTextField4jHostVersion.setBounds(425, 524, 53, 21);
 			desktopPane.add(jTextField4jHostVersion);
+
+			JButton4j button4j = new JButton4j(Common.icon_search);
+			button4j.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					String filePath = JUtility.replaceNullStringwithBlank(JTextFieldUpdateURL.getText());
+					if (filePath.equals("") == false)
+					{
+						if (Files.exists(Paths.get(filePath)))
+						{
+							JOptionPane.showMessageDialog(jTextFieldPort, "Path is valid.", "Host Path", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else
+						{
+							JUtility.errorBeep();
+							JOptionPane.showMessageDialog(jTextFieldPort, "Cannot locate [" + filePath + "]", "Host Path", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+			});
+			button4j.setBounds(915, 470, 21, 21);
+			desktopPane.add(button4j);
+
+			JButton4j button4j_1 = new JButton4j(Common.icon_search);
+			button4j_1.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					String filePath = JUtility.replaceNullStringwithBlank(jTextField4jHostUpdatePath.getText());
+					if (filePath.equals("") == false)
+					{
+						if (Files.exists(Paths.get(filePath)))
+						{
+							JOptionPane.showMessageDialog(jTextFieldPort, "Path is valid.", "Update Path", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else
+						{
+							JUtility.errorBeep();
+							JOptionPane.showMessageDialog(jTextFieldPort, "Cannot locate [" + filePath + "]", "Update Path", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+			});
+			button4j_1.setBounds(915, 550, 21, 21);
+			desktopPane.add(button4j_1);
 
 			jTextField4jInstallDir.addKeyListener(new KeyAdapter()
 			{
@@ -1639,7 +1708,8 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
