@@ -80,6 +80,7 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JHost;
 import com.commander4j.util.JFileFilterXML;
+import com.commander4j.util.JHelp;
 import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLHost;
@@ -169,6 +170,7 @@ public class JFrameHostAdmin extends JFrame
 	private JTextField4j jTextField4jHostVersion;
 	private JTextField4j jTextField4jHostUpdatePath;
 	private String hostsFilename = "";
+	private JButton4j jButtonHelp;
 
 	public static void main(String[] args)
 	{
@@ -243,6 +245,9 @@ public class JFrameHostAdmin extends JFrame
 
 		initGUI();
 
+		final JHelp help = new JHelp();
+		help.enableHelpOnButton(jButtonHelp, "http://commander4j.com/mw/index.php?title=Setup4j");
+		
 		setHostsFilename(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts" + File.separator + "hosts.xml");
 		setIconImage(Common.imageIconloader.getImageIcon(Common.image_osx_setup4j).getImage());
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -283,7 +288,6 @@ public class JFrameHostAdmin extends JFrame
 		JTextFieldUpdateURL.setText(Common.updateURL);
 		jTextField4jInstallDir.setBackground(Common.color_list_assigned);
 		jTextField4jInstallDir.setText(Common.updateInstallDir);
-		jTextField4jHostVersion.setText(Common.hostVersion);
 		jTextField4jHostUpdatePath.setText(Common.hostUpdatePath);
 		if (Common.updateInstallDir.equals(""))
 		{
@@ -555,7 +559,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonAdd = new JButton4j(Common.icon_add);
 					desktopPane.add(jButtonAdd);
 					jButtonAdd.setText("Add DB Connection");
-					jButtonAdd.setBounds(783, 69, 160, 36);
+					jButtonAdd.setBounds(783, 47, 160, 36);
 					jButtonAdd.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -613,7 +617,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonApply = new JButton4j(Common.icon_ok);
 					desktopPane.add(jButtonApply);
 					jButtonApply.setText("Confirm Changes");
-					jButtonApply.setBounds(783, 197, 160, 36);
+					jButtonApply.setBounds(783, 175, 160, 36);
 					jButtonApply.setEnabled(false);
 					jButtonApply.addActionListener(new ActionListener()
 					{
@@ -638,7 +642,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonDelete = new JButton4j(Common.icon_delete);
 					desktopPane.add(jButtonDelete);
 					jButtonDelete.setText("Delete DB Connection");
-					jButtonDelete.setBounds(783, 101, 160, 36);
+					jButtonDelete.setBounds(783, 79, 160, 36);
 					jButtonDelete.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -713,7 +717,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonClose = new JButton4j(Common.icon_close);
 					desktopPane.add(jButtonClose);
 					jButtonClose.setText("Close");
-					jButtonClose.setBounds(783, 389, 160, 36);
+					jButtonClose.setBounds(783, 405, 160, 36);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -727,7 +731,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonUndo = new JButton4j(Common.icon_undo);
 					desktopPane.add(jButtonUndo);
 					jButtonUndo.setText("Undo Changes");
-					jButtonUndo.setBounds(783, 293, 160, 36);
+					jButtonUndo.setBounds(783, 271, 160, 36);
 					jButtonUndo.setEnabled(false);
 					jButtonUndo.addActionListener(new ActionListener()
 					{
@@ -749,7 +753,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonSave = new JButton4j(Common.icon_update);
 					desktopPane.add(jButtonSave);
 					jButtonSave.setText("Save DB Connections");
-					jButtonSave.setBounds(783, 229, 160, 36);
+					jButtonSave.setBounds(783, 207, 160, 36);
 					jButtonSave.setEnabled(false);
 					jButtonSave.addActionListener(new ActionListener()
 					{
@@ -1071,6 +1075,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 				{
 					jCheckBoxEnabled = new JCheckBox4j();
+					jCheckBoxEnabled.setToolTipText("If disabled the site will not appear in the list seen by the user.");
 					jCheckBoxEnabled.setFont(Common.font_std);
 					desktopPane.add(jCheckBoxEnabled);
 					jCheckBoxEnabled.setText("Enabled");
@@ -1086,6 +1091,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 				{
 					jCheckBoxSplash = new JCheckBox4j();
+					jCheckBoxSplash.setToolTipText("<html>Can be used to disable the splash screen which can be useful<br> \nif using Citrix as it reduces the amount of screen drawing and <br>\nhence network bandwidth.</html>");
 					jCheckBoxSplash.setSelected(true);
 					jCheckBoxSplash.setFont(Common.font_std);
 					desktopPane.add(jCheckBoxSplash);
@@ -1112,7 +1118,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonCancel = new JButton4j(Common.icon_cancel);
 					desktopPane.add(jButtonCancel);
 					jButtonCancel.setText("Cancel");
-					jButtonCancel.setBounds(783, 357, 160, 36);
+					jButtonCancel.setBounds(783, 335, 160, 36);
 					jButtonCancel.setEnabled(false);
 					jButtonCancel.addActionListener(new ActionListener()
 					{
@@ -1172,7 +1178,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonTest = new JButton4j(Common.icon_connect);
 					desktopPane.add(jButtonTest);
 					jButtonTest.setText("Connect to DB");
-					jButtonTest.setBounds(783, 133, 160, 36);
+					jButtonTest.setBounds(783, 111, 160, 36);
 					jButtonTest.setToolTipText("Connect to selected Host Database");
 					jButtonTest.addActionListener(new ActionListener()
 					{
@@ -1202,7 +1208,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonUpdate = new JButton4j(Common.icon_update);
 					desktopPane.add(jButtonUpdate);
 					jButtonUpdate.setText("Create/Update Tables");
-					jButtonUpdate.setBounds(783, 165, 160, 36);
+					jButtonUpdate.setBounds(783, 143, 160, 36);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setToolTipText("Create or Upgrade Application Database Schema");
 					jButtonUpdate.addActionListener(new ActionListener()
@@ -1417,7 +1423,7 @@ public class JFrameHostAdmin extends JFrame
 					});
 					btnSchema.setText("DB Schema Report");
 					btnSchema.setEnabled(false);
-					btnSchema.setBounds(783, 325, 160, 36);
+					btnSchema.setBounds(783, 303, 160, 36);
 					desktopPane.add(btnSchema);
 				}
 			}
@@ -1465,7 +1471,7 @@ public class JFrameHostAdmin extends JFrame
 			});
 			btnService.setToolTipText("Connect to selected Host Database");
 			btnService.setText("Assign to Service");
-			btnService.setBounds(783, 261, 160, 36);
+			btnService.setBounds(783, 239, 160, 36);
 			desktopPane.add(btnService);
 
 			JLabel4j_std label4j_std = new JLabel4j_std();
@@ -1477,13 +1483,14 @@ public class JFrameHostAdmin extends JFrame
 			desktopPane.add(label4j_std);
 
 			JLabel4j_std JLabelUpdateHostURL = new JLabel4j_std();
-			JLabelUpdateHostURL.setText("URL for Update");
+			JLabelUpdateHostURL.setText("URL for Application Update");
 			JLabelUpdateHostURL.setHorizontalTextPosition(SwingConstants.RIGHT);
 			JLabelUpdateHostURL.setHorizontalAlignment(SwingConstants.RIGHT);
-			JLabelUpdateHostURL.setBounds(291, 470, 127, 21);
+			JLabelUpdateHostURL.setBounds(278, 470, 140, 21);
 			desktopPane.add(JLabelUpdateHostURL);
 
 			JTextFieldUpdateURL = new JTextField4j();
+			JTextFieldUpdateURL.setToolTipText("<html>This should contail the path or network url which points to the<br>\nupdate directory. The update directory should contain the latest version<br>\nof the application plus the file updates.xml<br><br>\nThe URL should also include the name of the file updates.xml file at the end.<br>\nAn example path would look like this :-<br><br>\nfile://servername/sharename/directory/subdirectory/updates.xml\n</html>");
 			JTextFieldUpdateURL.setBackground(Common.color_list_assigned);
 			JTextFieldUpdateURL.addKeyListener(new KeyAdapter()
 			{
@@ -1496,6 +1503,7 @@ public class JFrameHostAdmin extends JFrame
 			JTextFieldUpdateURL.setFocusCycleRoot(true);
 			JTextFieldUpdateURL.setBounds(425, 470, 490, 21);
 			desktopPane.add(JTextFieldUpdateURL);
+			rdbtnManual.setToolTipText("<html>\nYou can determine if a install can be updated automatically via the checkbox’s<br>\nMANUAL v AUTOMATIC. Normally end user workstations would have a hosts<br>\nfile which would be set to Automatic. A server install which includes the interface<br>\nservice would be more appropriatly set to manual updates.<br>\n</html>");
 
 			rdbtnManual.setSelected(true);
 			rdbtnManual.addActionListener(new ActionListener()
@@ -1509,6 +1517,7 @@ public class JFrameHostAdmin extends JFrame
 			rdbtnManual.setBounds(425, 444, 106, 23);
 			rdbtnManual.setBackground(Common.color_app_window);
 			desktopPane.add(rdbtnManual);
+			rdbtnAutomatic.setToolTipText("<html>\nYou can determine if a install can be updated automatically via the checkbox’s<br>\nMANUAL v AUTOMATIC. Normally end user workstations would have a hosts<br>\nfile which would be set to Automatic. A server install which includes the interface<br>\nservice would be more appropriatly set to manual updates.<br>\n</html>");
 
 			rdbtnAutomatic.addActionListener(new ActionListener()
 			{
@@ -1523,10 +1532,10 @@ public class JFrameHostAdmin extends JFrame
 			desktopPane.add(rdbtnAutomatic);
 
 			JLabel4j_std label4j_std_1 = new JLabel4j_std();
-			label4j_std_1.setText("Update Mode");
+			label4j_std_1.setText("Application Update Mode");
 			label4j_std_1.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_1.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_1.setBounds(291, 448, 127, 21);
+			label4j_std_1.setBounds(278, 448, 140, 21);
 			desktopPane.add(label4j_std_1);
 
 			JLabel4j_std label4j_std_2 = new JLabel4j_std();
@@ -1542,6 +1551,7 @@ public class JFrameHostAdmin extends JFrame
 			desktopPane.add(jTextField4jInstallDir);
 
 			setupPasswordField = new JPasswordField(20);
+			setupPasswordField.setToolTipText("Password protect these settings");
 			setupPasswordField.setBackground(Common.color_list_unassigned);
 			setupPasswordField.addKeyListener(new KeyAdapter()
 			{
@@ -1596,7 +1606,7 @@ public class JFrameHostAdmin extends JFrame
 					chooser.setSelectedFile(new File(hostsFilename));
 					chooser.addChoosableFileFilter(xmlFilter);
 
-					int returnVal = chooser.showSaveDialog(jButtonOpen);
+					int returnVal = chooser.showSaveDialog(jTextFieldUsername);
 					if (returnVal == JFileChooser.APPROVE_OPTION)
 					{
 						setHostsFilename(chooser.getSelectedFile().getAbsolutePath());
@@ -1606,17 +1616,18 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			jButtonOpen.setText("Open Hosts File");
-			jButtonOpen.setBounds(783, 37, 160, 36);
+			jButtonOpen.setBounds(783, 15, 160, 36);
 			desktopPane.add(jButtonOpen);
 
 			JLabel4j_std label4j_std_5 = new JLabel4j_std();
-			label4j_std_5.setText("URL for Hosts Update");
+			label4j_std_5.setText("URL for Hosts File Update");
 			label4j_std_5.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_5.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_5.setBounds(291, 550, 127, 21);
+			label4j_std_5.setBounds(278, 550, 140, 21);
 			desktopPane.add(label4j_std_5);
 
 			jTextField4jHostUpdatePath = new JTextField4j();
+			jTextField4jHostUpdatePath.setToolTipText("<html>This should contail the path or network url which points to the<br>\ncurrent or updated hosts file. The URL should point to the latest version<br>\nof the hosts.xml settings file. The version number in the current version is<br>\ncompared with the version number in the remote file to determine if the current<br>\nversion needs to be updated.<br><br>\nThe URL should also include the name of the file hosts.xml file at the end.<br>\nAn example path would look like this :-<br><br>\nfile://servername/sharename/directory/subdirectory/hosts.xml\n</html>");
 			jTextField4jHostUpdatePath.addKeyListener(new KeyAdapter()
 			{
 				@Override
@@ -1639,6 +1650,7 @@ public class JFrameHostAdmin extends JFrame
 			desktopPane.add(label4j_std_6);
 
 			jTextField4jHostVersion = new JTextField4j();
+			jTextField4jHostVersion.setToolTipText("<html>If the desktop version determines that the URL for hosts update contains<br>\na file with higher version number than it's own then it will automatically<br>\nupdate itself.</html>");
 			jTextField4jHostVersion.addKeyListener(new KeyAdapter()
 			{
 				@Override
@@ -1654,6 +1666,7 @@ public class JFrameHostAdmin extends JFrame
 			desktopPane.add(jTextField4jHostVersion);
 
 			JButton4j button4j = new JButton4j(Common.icon_search);
+			button4j.setToolTipText("Validate");
 			button4j.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -1663,12 +1676,12 @@ public class JFrameHostAdmin extends JFrame
 					{
 						if (Files.exists(Paths.get(filePath)))
 						{
-							JOptionPane.showMessageDialog(jTextFieldPort, "Path is valid.", "Host Path", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(jTextFieldPort, "Valid.", "Host Path", JOptionPane.INFORMATION_MESSAGE);
 						}
 						else
 						{
 							JUtility.errorBeep();
-							JOptionPane.showMessageDialog(jTextFieldPort, "Cannot locate [" + filePath + "]", "Host Path", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(jTextFieldPort, "Invalid Path [" + filePath + "]", "Host Path", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				}
@@ -1677,6 +1690,7 @@ public class JFrameHostAdmin extends JFrame
 			desktopPane.add(button4j);
 
 			JButton4j button4j_1 = new JButton4j(Common.icon_search);
+			button4j_1.setToolTipText("Validate");
 			button4j_1.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -1686,18 +1700,23 @@ public class JFrameHostAdmin extends JFrame
 					{
 						if (Files.exists(Paths.get(filePath)))
 						{
-							JOptionPane.showMessageDialog(jTextFieldPort, "Path is valid.", "Update Path", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(jTextFieldPort, "Valid.", "Update Path", JOptionPane.INFORMATION_MESSAGE);
 						}
 						else
 						{
 							JUtility.errorBeep();
-							JOptionPane.showMessageDialog(jTextFieldPort, "Cannot locate [" + filePath + "]", "Update Path", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(jTextFieldPort, "Invalid Path [" + filePath + "]", "Update Path", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				}
 			});
 			button4j_1.setBounds(915, 550, 21, 21);
 			desktopPane.add(button4j_1);
+			
+			jButtonHelp = new JButton4j(Common.icon_help);
+			jButtonHelp.setText("Help");
+			jButtonHelp.setBounds(783, 370, 160, 36);
+			desktopPane.add(jButtonHelp);
 
 			jTextField4jInstallDir.addKeyListener(new KeyAdapter()
 			{

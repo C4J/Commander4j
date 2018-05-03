@@ -154,7 +154,14 @@ public class JDatabaseParameters
 
 		if (getjdbcDriver().equals("com.mysql.cj.jdbc.Driver"))
 		{
-			value = "jdbc:mysql://jdbcServer/jdbcDatabase";
+			if (getjdbcPort().equals(""))
+			{
+				value = "jdbc:mysql://jdbcServer/jdbcDatabase";
+			}
+			else
+			{
+				value = "jdbc:mysql://jdbcServer:jdbcPort/jdbcDatabase";
+			}
 		}
 
 		if (getjdbcDriver().equals("oracle.jdbc.driver.OracleDriver"))
