@@ -3,7 +3,7 @@ Main-Class: com.commander4j.start.Init
 Class-Path: lib/app/commons-email-1.5.jar 
  lib/app/commons-io-2.6.jar 
  lib/app/commons-lang-2.6.jar 
- lib/app/commons-lang3-3.6.jar 
+ lib/app/commons-lang3-3.7.jar 
  lib/app/commons-text-1.2.jar 
  lib/app/jackcess-2.1.9.jar 
  lib/app/log4j-1.2.15.jar 

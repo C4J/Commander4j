@@ -16,7 +16,7 @@
         <pathelement location="WebContent/WEB-INF/lib/commander4j.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commons-io-2.6.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commons-lang-2.6.jar"/>   	
-        <pathelement location="WebContent/WEB-INF/lib/commons-lang3-3.3.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-lang3-3.7.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/cups4j.runnable-0.6.4.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/jaxen-1.1.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/jcommon-1.0.23.jar"/>

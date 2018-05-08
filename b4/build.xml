@@ -92,7 +92,7 @@
         <pathelement location="lib/jasper/jasperreports-fonts-6.5.1.jar"/>
         <pathelement location="lib/jasper/jasperreports-javaflow-6.5.1.jar"/>
         <pathelement location="lib/app/commons-text-1.2.jar"/>
-        <pathelement location="lib/app/commons-lang3-3.6.jar"/>
+        <pathelement location="lib/app/commons-lang3-3.7.jar"/>
         <pathelement location="lib/app/commons-lang-2.6.jar"/>
         <pathelement location="lib/jasper/jasperreports-chart-customizers-6.5.1.jar"/>
         <pathelement location="lib/jasper/jasperreports-chart-themes-6.5.1.jar"/>

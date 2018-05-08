@@ -5,7 +5,7 @@ body {
 	padding: 1px;
 	border-style: none;
 	font-family: Verdana, Helvetica, sans-serif;
-    font-size: .6em;
+    font-size: .8em;
 	text-align: left;
 }
 
@@ -119,4 +119,9 @@ input[type="radio"] {
     -ms-transform: scale(1.3);
     -webkit-transform: scale(1.3);
     transform: scale(1.3);
+}
+
+input[type="checkbox"]{
+  width: 60px; /*Desired width*/
+  height: 60px; /*Desired height*/
 }

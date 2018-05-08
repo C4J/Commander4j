@@ -26,7 +26,7 @@
         <labeller id="03 CAMA13_14">
             <enabled>Y</enabled>
             <ipAddress>10.25.37.197</ipAddress>
-            <portNumber>8300</portNumber>
+            <portNumber>8000</portNumber>
             <commandFile>BACKUP.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>3.CSV</inputFile>
@@ -185,11 +185,21 @@
 
         <labeller id="19 P4_CERMIX">
             <enabled>Y</enabled>
-            <ipAddress>10.25.37.184</ipAddress>
+            <ipAddress>10.25.37.194</ipAddress>
             <portNumber>8300</portNumber>
             <commandFile>BACKUP.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>19.CSV</inputFile>
+            <mode>transfer</mode>
+        </labeller>
+		
+		<labeller id="20 CARTONBOX3">
+            <enabled>Y</enabled>
+            <ipAddress>10.25.37.189</ipAddress>
+            <portNumber>8300</portNumber>
+            <commandFile>BACKUP.txt</commandFile>
+            <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
+            <inputFile>20.CSV</inputFile>
             <mode>transfer</mode>
         </labeller>
 

@@ -9,7 +9,14 @@
 <META HTTP-Equiv="scanner" Content="autoenter">
 <META HTTP-Equiv="acceleratekey" content="all">
 <title>Confirm Despatch</title>
-<link href="style/commander.css" rel="stylesheet" type="text/css">
+<link href="style/commander.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+label {
+	font-size: 24pt;
+	color: #0000FF;
+	font-weight: bold;
+}
+        </style>
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -26,7 +33,8 @@
 				out.println(session.getAttribute("despatchNo"));
 			%>
 		</h2>
-		<br> <INPUT TYPE=CHECKBOX NAME="printSTNonConfirm">&nbsp;<%=Lang.getText("web_Print_STN")%>
+		<br> 
+		<input type="checkbox" name="printSTNonConfirm" id="printSTNonConfirm"/><label for="printSTNonConfirm"><%=Lang.getText("web_Print_STN")%></label>
 		<br>
 		<br>
 		<%

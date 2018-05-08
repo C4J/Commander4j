@@ -6,7 +6,7 @@ LAY,1,0,0,1896,960,OD,T0,0,Z0
 FONT,sw050bsn
 SPD,swis721b
 FONT,sw020bsn
-IMG,/c0/nestle.pcx
+IMG,/c0/c4j_nestle.pcx
 T,1,1160,947,0,Fsw050bsn,ODU,R8,Z1,1
 S,2,156.0,50.9,Fswis721b,H6.4,A180,W64,OU
 L,3,1827,890,Lnestle,OU,R8,Z1,1

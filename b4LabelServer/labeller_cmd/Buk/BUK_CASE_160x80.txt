@@ -62,8 +62,8 @@ Initialise        STRING_DELIMITER              "
                   SEND_FILE_INTELHEX            "c4j_160x80_sled.llf"                  
                   SEND_FILE_INTELHEX            "c4j_160x80_prod.llf"  
                   
-                  IF REMOTE FILE EXISTS         "'nestle.pcx' GOTO NestleLogoFound"
-                  SEND_FILE_INTELHEX            "nestle.pcx"  
+                  IF REMOTE FILE EXISTS         "'c4j_nestle.pcx' GOTO NestleLogoFound"
+                  SEND_FILE_INTELHEX            "c4j_nestle.pcx"  
 
 NestleLogoFound   IF REMOTE FILE EXISTS         "'c4j_160x80_sled.llf' GOTO SLEDLayoutFound"
                   SEND_FILE_INTELHEX            "c4j_160x80_sled.llf"  
