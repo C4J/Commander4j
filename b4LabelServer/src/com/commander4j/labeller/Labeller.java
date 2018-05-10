@@ -55,7 +55,7 @@ public class Labeller extends Thread
 	private boolean parseInputData(String fullFilename)
 	{
 		boolean result = false;
-		logger.info("Labeller [" + prop.getId() + "] parseInputData [" + fullFilename + "]");
+		logger.debug("parseInputData [" + fullFilename + "]");
 
 		try
 		{
@@ -80,7 +80,7 @@ public class Labeller extends Thread
 		}
 		catch (Exception ex)
 		{
-			logger.error("Labeller [" + prop.getId() + "] parseInputData error :" + ex.getMessage());
+			logger.error("parseInputData error :" + ex.getMessage());
 		}
 
 		return result;
@@ -89,8 +89,7 @@ public class Labeller extends Thread
 	@Override
 	public void run()
 	{
-		logger.info("Labeller run start");
-		logger.info("Labeller " + prop.getId());
+		logger.debug("Labeller run start");
 
 		connected = false;
 		shutdown = false;
@@ -106,11 +105,12 @@ public class Labeller extends Thread
 
 			if (requestPrint)
 			{
-				logger.info("[" + prop.getId() + "] detected input file [" + prop.getInputPath() + prop.getInputFile() + "]");
+				logger.info("Detected input file [" + prop.getInputPath() + prop.getInputFile() + "]");
 				parseInputData(prop.getInputPath() + prop.getInputFile());
 
 				if (connected == false)
 				{
+					logger.info("Connected = false");
 					connected = connect();
 
 					if (connected)
@@ -134,7 +134,7 @@ public class Labeller extends Thread
 				}
 				else
 				{
-
+					logger.info("Connected = true");
 					if (requestPrint == true)
 					{
 						if (runScript())
@@ -159,7 +159,7 @@ public class Labeller extends Thread
 			}
 		}
 
-		logger.info("Labeller run end");
+		logger.debug("Labeller run end");
 
 	}
 
@@ -190,7 +190,7 @@ public class Labeller extends Thread
 			CMD = labellerCMDFile.commandLines.get(exePosition).command;
 			VAL = labellerCMDFile.getValueAtLine(exePosition).replaceAll("~", "\"");
 
-			logger.debug("[" + prop.getId() + "]" + " runScript :" + JUtility.padString(String.valueOf(exePosition + 1), false, 5, "0") + " - " + JUtility.padString(LBL, true, 18, " ") + JUtility.padString(CMD, true, 30, " ")
+			logger.debug("runScript :" + JUtility.padString(String.valueOf(exePosition + 1), false, 5, "0") + " - " + JUtility.padString(LBL, true, 18, " ") + JUtility.padString(CMD, true, 30, " ")
 					+ JUtility.padString(VAL, true, 50, " "));
 
 			switch (CMD)
@@ -322,18 +322,18 @@ public class Labeller extends Thread
 				break;
 			case "LOCAL_DELETE_FILE":
 				String localfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
-				logger.info("[" + prop.getId() + "]" + " Local Delete  [" + localfilename + "]");
+				logger.info("Local Delete  [" + localfilename + "]");
 				File fileDelete = new File(localfilename);
 				FileUtils.deleteQuietly(fileDelete);
 				fileDelete = null;
 				break;
 			case "FILE_DEFINE":
 				String writefilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
-				logger.info("[" + prop.getId() + "]" + " File Defined as  [" + writefilename + "]");
+				logger.info("File Defined as  [" + writefilename + "]");
 				fileWrite = new File(writefilename);
 				if (FileUtils.deleteQuietly(fileWrite))
 				{
-					logger.info("[" + prop.getId() + "]" + " Existing file deleted  [" + writefilename + "]");
+					logger.info("Existing file deleted  [" + writefilename + "]");
 				}
 				break;
 			case "FILE_WRITE":
@@ -349,12 +349,12 @@ public class Labeller extends Thread
 				}
 				try
 				{
-					logger.info("[" + prop.getId() + "]" + " Write to file [" + fileWrite.getName() + "] <-- [" + VAL + "]");
+					logger.info("Write to file [" + fileWrite.getName() + "] <-- [" + VAL + "]");
 					FileUtils.writeStringToFile(fileWrite, utils.encodeControlChars(VAL), "UTF-8", true);
 				}
 				catch (IOException e)
 				{
-					logger.error("[" + prop.getId() + "]" + " ERROR [" + e.getMessage() + "]");
+					logger.error("ERROR [" + e.getMessage() + "]");
 					scriptError = true;
 				}
 				break;
@@ -508,7 +508,8 @@ public class Labeller extends Thread
 	{
 		boolean result = false;
 
-		File sendPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getId());
+		File sendPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId());
+
 		try
 		{
 			FileUtils.forceMkdir(sendPath);
@@ -520,7 +521,7 @@ public class Labeller extends Thread
 		}
 
 		System.out.println("");
-		logger.info("[" + prop.getId() + "]" + " SEND file [" + VAL + "] Started.");
+		logger.info("SEND file [" + VAL + "] Started.");
 		rx.clearQueue();
 		String sendfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
 		tx.send("*HEXFILE," + VAL + "<CR>");
@@ -543,12 +544,12 @@ public class Labeller extends Thread
 				tx.send(ihc.getEOFBlock());
 				result = checkSuccess();
 				rx.clearQueue();
-				logger.info("[" + prop.getId() + "]" + " SEND file [" + VAL + "] Complete.");
+				logger.info("SEND file [" + VAL + "] Complete.");
 				result = true;
 			}
 			catch (Exception e)
 			{
-				logger.error("[" + prop.getId() + "]" + " SEND file [" + VAL + "] Error." + e.getMessage());
+				logger.error("SEND file [" + VAL + "] Error." + e.getMessage());
 
 			}
 			System.out.println("");
@@ -592,7 +593,7 @@ public class Labeller extends Thread
 			Timestamp labfiledatetime = labfile.getDatetime();
 					
 			System.out.println("");
-			logger.info("[" + prop.getId() + "]" + " DOWNLOAD Start " + downloadFilename);
+			logger.info("DOWNLOAD Start " + downloadFilename);
 
 			LinkedList<String> fileData = new LinkedList<String>();
 			String temp = "";
@@ -642,10 +643,10 @@ public class Labeller extends Thread
 					catch (Exception ex)
 					{
 						result = false;
-						logger.error("[" + prop.getId() + "]" + " DOWNLOAD Error " + ex.getMessage());
+						logger.error("DOWNLOAD Error " + ex.getMessage());
 					}
 
-					logger.info("[" + prop.getId() + "]" + " DOWNLOAD Complete " + downloadFilename);
+					logger.info("DOWNLOAD Complete " + downloadFilename);
 					System.out.println("");
 
 					// result = checkSuccess();
@@ -656,7 +657,7 @@ public class Labeller extends Thread
 
 		if (result == false)
 		{
-			logger.error("[" + prop.getId() + "]" + " DOWNLOAD `Failed");
+			logger.error("DOWNLOAD `Failed");
 
 		}
 
@@ -739,7 +740,7 @@ public class Labeller extends Thread
 					}
 					else
 					{
-						logger.info("[" + prop.getId() + "] - " + "Filter ignoring :" + file.getFilename());
+						logger.debug("[" + prop.getId() + "] - " + "Filter ignoring :" + file.getFilename());
 					}
 				}
 				else
@@ -787,12 +788,12 @@ public class Labeller extends Thread
 			{
 				if (rx.responseQueue.size() > 0)
 				{
-					logger.debug("[" + prop.getId() + "]" + " **** STABALISED ****");
+					logger.debug("**** STABALISED ****");
 					cont = false;
 				}
 				else
 				{
-					logger.error("[" + prop.getId() + "]" + " **** TIMEOUT NO RESPONSE ****");
+					logger.debug("**** TIMEOUT NO RESPONSE ****");
 					cont = true;
 				}
 			}
@@ -822,7 +823,7 @@ public class Labeller extends Thread
 				if (response.equals("SUCCESS"))
 				{
 					System.out.println("");
-					logger.info("[" + prop.getId() + "]" + " Result [" + response + "]");
+					logger.debug("Result [" + response + "]");
 					System.out.println("");
 					success = true;
 					timeout = waitRetries;
@@ -832,7 +833,7 @@ public class Labeller extends Thread
 				if (response.equals("FAILED"))
 				{
 					System.out.println("");
-					logger.error("[" + prop.getId() + "]" + " Result [" + response + "]");
+					logger.debug("Result [" + response + "]");
 					System.out.println("");
 					success = false;
 					timeout = waitRetries;
@@ -864,7 +865,7 @@ public class Labeller extends Thread
 			tx.shutdown();
 		}
 		System.out.println("");
-		logger.info("[" + prop.getId() + "]" + " TX Shutdown Reason [" + tx.getStatusName() + "]");
+		logger.debug("TX Shutdown Reason [" + tx.getStatusName() + "]");
 		System.out.println("");
 
 		while (rx.isAlive())
@@ -872,10 +873,10 @@ public class Labeller extends Thread
 			rx.shutdown();
 		}
 		System.out.println("");
-		logger.info("[" + prop.getId() + "]" + " RX Shutdown Reason [" + tx.getStatusName() + "]");
+		logger.debug("RX Shutdown Reason [" + tx.getStatusName() + "]");
 		System.out.println("");
 
-		logger.info("[" + prop.getId() + "]" + " Disconnected.");
+		logger.debug("Disconnected.");
 
 		connected = false;
 	}
@@ -893,7 +894,7 @@ public class Labeller extends Thread
 				socket.setKeepAlive(true);
 
 				System.out.println("");
-				logger.info("[" + prop.getId() + "]" + " Connected.");
+				logger.debug("Connected.");
 				System.out.println("");
 
 				rx = new LabellerTCPIP_RX();
@@ -915,7 +916,7 @@ public class Labeller extends Thread
 			catch (IOException e)
 			{
 				utils.pause(500);
-				logger.error("[" + prop.getId() + "]" + " Connect Error : " + e.getMessage());
+				logger.error("Connect Error : " + e.getMessage());
 				result = false;
 			}
 		}
@@ -926,7 +927,7 @@ public class Labeller extends Thread
 	public void shutdown()
 	{
 		System.out.println("");
-		logger.info("[" + prop.getId() + "]" + " Shutdown requested.");
+		logger.info("Shutdown requested.");
 		System.out.println("");
 		shutdown = true;
 	}

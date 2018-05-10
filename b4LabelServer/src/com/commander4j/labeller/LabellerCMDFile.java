@@ -116,13 +116,13 @@ public class LabellerCMDFile
 
 		while (result.contains(func))
 		{
-			int functionNameStartPos = result.indexOf(func); // Start of function name
+			int functionNameStartPos = VAL.indexOf(func); // Start of function name
 
-			String beforeFunction = result.substring(0, functionNameStartPos); // String before function name
+			String beforeFunction = VAL.substring(0, functionNameStartPos); // String before function name
 
 			int functionNameEndPos = functionNameStartPos + func.length(); // End of Function name
 
-			String stringAfterFunctionName = result.substring(functionNameEndPos); // String after Function name
+			String stringAfterFunctionName = VAL.substring(functionNameEndPos); // String after Function name
 
 			int closingBracketPosition = stringAfterFunctionName.indexOf(")"); // Position of end of function
 
@@ -161,13 +161,13 @@ public class LabellerCMDFile
 
 		while (result.contains(func))
 		{
-			int functionNameStartPos = result.indexOf(func); // Start of function name
+			int functionNameStartPos = VAL.indexOf(func); // Start of function name
 
-			String beforeFunction = result.substring(0, functionNameStartPos); // String before function name
+			String beforeFunction = VAL.substring(0, functionNameStartPos); // String before function name
 
 			int functionNameEndPos = functionNameStartPos + func.length(); // End of Function name
 
-			String stringAfterFunctionName = result.substring(functionNameEndPos); // String after Function name
+			String stringAfterFunctionName = VAL.substring(functionNameEndPos); // String after Function name
 
 			int closingBracketPosition = stringAfterFunctionName.indexOf(")"); // Position of end of function
 
@@ -224,13 +224,13 @@ public class LabellerCMDFile
 
 		while (result.contains(func))
 		{
-			int functionNameStartPos = result.indexOf(func); // Start of function name
+			int functionNameStartPos = VAL.indexOf(func); // Start of function name
 
-			String beforeFunction = result.substring(0, functionNameStartPos); // String before function name
+			String beforeFunction = VAL.substring(0, functionNameStartPos); // String before function name
 
 			int functionNameEndPos = functionNameStartPos + func.length(); // End of Function name
 
-			String stringAfterFunctionName = result.substring(functionNameEndPos); // String after Function name
+			String stringAfterFunctionName = VAL.substring(functionNameEndPos); // String after Function name
 
 			int closingBracketPosition = stringAfterFunctionName.indexOf(")"); // Position of end of function
 
@@ -314,12 +314,8 @@ public class LabellerCMDFile
 		Iterator<Entry<String, String>> iterator = set.iterator();
 		while (iterator.hasNext())
 		{
-
 			Map.Entry<String, String> mentry = (Map.Entry<String, String>) iterator.next();
-			while(result.contains(mentry.getKey().toString()))
-			{
 			result = StringUtils.replaceOnce(result, mentry.getKey().toString(), mentry.getValue().toString().toString().replace(",", "±"));
-			}
 		}
 
 		return result;
@@ -331,7 +327,7 @@ public class LabellerCMDFile
 
 		filename = System.getProperty("user.dir") + java.io.File.separator + "labeller_cmd" + java.io.File.separator + prop.getSite() + java.io.File.separator + filename;
 		System.out.println("");
-		logger.debug("[" + prop.getId() + "]" + " loadFile [" + filename + "]");
+		logger.debug("loadFile [" + filename + "]");
 		System.out.println("");
 		try
 		{
@@ -351,7 +347,7 @@ public class LabellerCMDFile
 
 						addLine(cmdLine);
 
-						logger.debug("[" + prop.getId() + "]" + " Line > " + cmdLine);
+						logger.debug("Line > " + cmdLine);
 					}
 				}
 			}

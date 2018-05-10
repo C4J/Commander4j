@@ -7,7 +7,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.196</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>1.CSV</inputFile>
             <mode>transfer</mode>
@@ -17,7 +17,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.180</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>2.CSV</inputFile>
             <mode>transfer</mode>
@@ -27,7 +27,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.197</ipAddress>
             <portNumber>8000</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>3.CSV</inputFile>
             <mode>transfer</mode>
@@ -37,7 +37,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.198</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>4.CSV</inputFile>
             <mode>transfer</mode>
@@ -47,7 +47,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.181</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>5.CSV</inputFile>
             <mode>transfer</mode>
@@ -57,7 +57,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.186</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>6.CSV</inputFile>
             <mode>transfer</mode>
@@ -67,7 +67,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.187</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>7.CSV</inputFile>
             <mode>transfer</mode>
@@ -77,7 +77,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.195</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>8.CSV</inputFile>
             <mode>transfer</mode>
@@ -87,7 +87,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.184</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>9.CSV</inputFile>
             <mode>transfer</mode>
@@ -97,7 +97,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.185</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>10.CSV</inputFile>
             <mode>transfer</mode>
@@ -107,7 +107,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.190</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>11.CSV</inputFile>
             <mode>transfer</mode>
@@ -117,7 +117,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.191</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>12.CSV</inputFile>
             <mode>transfer</mode>
@@ -127,7 +127,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.183</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>13.CSV</inputFile>
             <mode>transfer</mode>
@@ -137,7 +137,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.192</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>14.CSV</inputFile>
             <mode>transfer</mode>
@@ -147,7 +147,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.199</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>15.CSV</inputFile>
             <mode>transfer</mode>
@@ -157,7 +157,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.182</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>16.CSV</inputFile>
             <mode>transfer</mode>
@@ -167,7 +167,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.188</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>17.CSV</inputFile>
             <mode>transfer</mode>
@@ -177,7 +177,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.193</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>18.CSV</inputFile>
             <mode>transfer</mode>
@@ -187,7 +187,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.194</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+            <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>19.CSV</inputFile>
             <mode>transfer</mode>
@@ -197,7 +197,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.25.37.189</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BACKUP.txt</commandFile>
+		    <commandFile>WRC_CASE_160x80.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\Wroclaw\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>20.CSV</inputFile>
             <mode>transfer</mode>

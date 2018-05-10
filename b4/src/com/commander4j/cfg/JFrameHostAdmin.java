@@ -289,6 +289,7 @@ public class JFrameHostAdmin extends JFrame
 		jTextField4jInstallDir.setBackground(Common.color_list_assigned);
 		jTextField4jInstallDir.setText(Common.updateInstallDir);
 		jTextField4jHostUpdatePath.setText(Common.hostUpdatePath);
+		jTextField4jHostVersion.setText(Common.hostVersion);
 		if (Common.updateInstallDir.equals(""))
 		{
 			jTextField4jInstallDir.setText(Common.base_dir);

@@ -79,7 +79,7 @@ public class LabellerTCPIP_RX extends Thread
 	public void run()
 	{
 		setStatus(status_RUNNING);
-		logger.info("["+prop.getId()+"]"+" RX Status " + prop + " started.");
+		logger.debug("RX Status started.");
 
 		try
 		{
@@ -115,7 +115,7 @@ public class LabellerTCPIP_RX extends Thread
 						afterEOL = responseBuffer.substring(beforeEOL.length() + encodedEOL.length(), responseBuffer.length());
 						if (beforeEOL.equals("") == false)
 						{
-							logger.info("["+prop.getId()+"]"+" RX<---{"+utils.decodeControlChars(beforeEOL)+"}");
+							logger.info("RX<---{"+utils.decodeControlChars(beforeEOL)+"}");
 							
 							if (ignoredResponses.contains(beforeEOL) == false)
 							{
@@ -173,7 +173,7 @@ public class LabellerTCPIP_RX extends Thread
 
 			utils.pause(10);
 		}
-		logger.info("["+prop.getId()+"]"+" RX Status " + prop + " stopped.");
+		logger.debug("RX Status stopped.");
 	}
 
 	private String readInputStream(BufferedInputStream _in) throws IOException
@@ -211,7 +211,7 @@ public class LabellerTCPIP_RX extends Thread
 
 	public void shutdown()
 	{
-		logger.info("["+prop.getId()+"]"+" RX Status " + prop + " Shutdown requested.");
+		logger.debug("RX Status " + prop + " Shutdown requested.");
 		setStatus(status_SHUTDOWN_REQUESTED);
 		shutdown = true;
 		utils.pause(10);

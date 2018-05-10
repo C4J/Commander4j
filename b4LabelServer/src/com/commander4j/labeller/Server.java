@@ -26,6 +26,7 @@ public class Server extends Thread
 
 	public void run()
 	{
+		setName("Server");
 		logger.info("Server - Run");
 		startupInterface();
 		started = true;
@@ -54,7 +55,7 @@ public class Server extends Thread
 
 	public void addLabeller(LabellerProperties prop, String script,HashMap<String,LabellerDBLink>  dblinks)
 	{
-		logger.info("Server - addLabeller [" + prop.getId() + "]");
+		logger.debug("Server - addLabeller [" + prop.getId() + "]");
 		Labeller labeller = new Labeller(prop, script, dblinks);
 		labeller.setName(prop.getId());
 		labellers.put(prop.getId(), labeller);
@@ -62,11 +63,11 @@ public class Server extends Thread
 
 	public void startLabeller(String id)
 	{
-		logger.info("Server - startLabeller [" + id + "]");
+		logger.debug("Server - startLabeller [" + id + "]");
 		labellers.get(id).start();
 		while (labellers.get(id).isAlive() == false)
 		{
-			logger.info("Server - waiting for Labeller  [" + id + "] thread to start.");
+			logger.debug("Server - waiting for Labeller  [" + id + "] thread to start.");
 			utils.pause(10);
 		}
 		logger.info("Server - Labeller  [" + id + "] thread started.");
@@ -74,7 +75,7 @@ public class Server extends Thread
 
 	public void startAllLabellers()
 	{
-		logger.info("Server - startAllLabellers");
+		logger.debug("Server - startAllLabellers");
 		Iterator<Entry<String, Labeller>> it = labellers.entrySet().iterator();
 		while (it.hasNext())
 		{
@@ -85,7 +86,7 @@ public class Server extends Thread
 
 	public void stopLabeller(String id)
 	{
-		logger.info("Server - stopLabeller - [" + id + "]");
+		logger.debug("Server - stopLabeller - [" + id + "]");
 		if (labellers.get(id).isAlive())
 		{
 			labellers.get(id).shutdown();
@@ -99,7 +100,7 @@ public class Server extends Thread
 
 	public void stopAllLabellers()
 	{
-		logger.info("Server - stopAllLabellers");
+		logger.debug("Server - stopAllLabellers");
 		Iterator<Entry<String, Labeller>> it = labellers.entrySet().iterator();
 		while (it.hasNext())
 		{
@@ -137,12 +138,12 @@ public class Server extends Thread
 			}
 			else
 			{
-				logger.error("Server - requestPrint - Labeller Thread not running for ["+id+"]");
+				logger.warn("Server - requestPrint - Labeller Thread not running for ["+id+"]");
 			}
 		}
 		else
 		{
-			logger.error("Server - requestPrint - Labeller Thread not loaded for ["+id+"]");
+			logger.warn("Server - requestPrint - Labeller Thread not loaded for ["+id+"]");
 		}
 	}
 
@@ -173,7 +174,7 @@ public class Server extends Thread
 			String commandFile = xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/commandFile").trim();
 			String inputPath = xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/inputPath").trim();
 			String inputFile = xmltest.findXPath("//labellers/site/labeller[" + String.valueOf(labeller) + "]/inputFile").trim();
-			logger.info("Read config for ["+id+"]");
+			logger.debug("Read config for ["+id+"]");
 
 			if (enabled.toUpperCase().equals("Y"))
 			{
@@ -208,7 +209,7 @@ public class Server extends Thread
 		{
 			String id = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/@id").trim();
 
-			logger.info("Reading config for Database Link : ["+id+"]");
+			logger.debug("Reading config for Database Link : ["+id+"]");
 			
 			String jdbcDriver = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/jdbcDriver").trim();
 			String jdbcUsername = xmltest.findXPath("//databases/database[" + String.valueOf(dbSeq) + "]/jdbcUsername").trim();
@@ -237,7 +238,7 @@ public class Server extends Thread
 				
 				dbLink.addSQL(idsql, statement);
 
-				logger.info("Reading config for Database Link : ["+id+"] : SQL statement id ["+idsql+"]");
+				logger.debug("Reading config for Database Link : ["+id+"] : SQL statement id ["+idsql+"]");
 				
 				sqlSeq++;
 			}
@@ -253,7 +254,6 @@ public class Server extends Thread
 	public static void main(String[] args)
 	{
 		Logger logger = org.apache.logging.log4j.LogManager.getLogger((Server.class));
-		logger.info("Application starting");
 
 		logger.info("Server starting");
 		System.out.println("");
@@ -272,8 +272,6 @@ public class Server extends Thread
 
 		// consider adding loop here waiting for shutdown ****
 
-		logger.info(server);
-		logger.info(server.labellers);
 		server.labellers.get("Labeller 1").requestPrint();
 
 		while (server.labellers.get("Labeller 1").requestRunning() == true)

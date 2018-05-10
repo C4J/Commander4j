@@ -42,7 +42,7 @@ public class LabellerTCPIP_TX extends Thread
 	{
 		setStatus(status_IDLE);
 		
-		logger.info("["+prop.getId()+"]"+" TX Status " + prop + " started.");
+		logger.debug("TX Status started.");
 		try
 		{
 			outputStream = socket.getOutputStream();
@@ -57,12 +57,12 @@ public class LabellerTCPIP_TX extends Thread
 			setStatus(status_ERROR);
 		}
 
-		logger.info("["+prop.getId()+"]"+" TX Status " + prop + " stopped.");
+		logger.debug("TX Status stopped.");
 	}
 
 	public void shutdown()
 	{
-		logger.info("["+prop.getId()+"]"+" TX Status " + prop + " Shutdown requested.");
+		logger.debug("TX Status Shutdown requested.");
 		setStatus(status_SHUTDOWN_REQUESTED);
 		shutdown = true;
 		utils.pause(100);
@@ -84,6 +84,7 @@ public class LabellerTCPIP_TX extends Thread
 	public void setLabellerProperties(LabellerProperties prop)
 	{
 		this.prop = prop;
+		logger.debug("Labeller properties stored for "+prop.getId());
 
 	}
 
@@ -98,7 +99,7 @@ public class LabellerTCPIP_TX extends Thread
 			
 			try
 			{
-				logger.info("["+prop.getId()+"]"+" TX------->{"+utils.decodeControlChars(data)+"}");
+				logger.info("TX------->{"+utils.decodeControlChars(data)+"}");
 				outputStream.write(sendData.getBytes());
 				outputStream.flush();
 				
@@ -107,7 +108,7 @@ public class LabellerTCPIP_TX extends Thread
 
 			} catch (IOException e)
 			{
-				logger.error("["+prop.getId()+"]"+" TX ERROR-->{"+e.getMessage()+"}");
+				logger.error("TX ERROR-->{"+e.getMessage()+"}");
 				setStatus(status_ERROR);
 			}
 		}

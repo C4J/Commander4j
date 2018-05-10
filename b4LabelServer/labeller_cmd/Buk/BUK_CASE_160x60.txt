@@ -59,24 +59,21 @@ Initialise        STRING_DELIMITER              "
                   SEND                          "*RDR"
                   CHECK_SUCCESS
 
-                  SEND_FILE_INTELHEX            "c4j_160x60_sled.llf"                  
-                  SEND_FILE_INTELHEX            "c4j_160x60_prod.llf"  
-                  
-                  IF REMOTE FILE EXISTS         "'c4j_nestle.pcx' GOTO NestleLogoFound"
-                  SEND_FILE_INTELHEX            "c4j_nestle.pcx"  
+                  IF REMOTE FILE EXISTS         "'c4j_buk_nestle.pcx' GOTO NestleLogoFound"
+                  SEND_FILE_INTELHEX            "c4j_buk_nestle.pcx"  
 
-NestleLogoFound   IF REMOTE FILE EXISTS         "'c4j_160x60_sled.llf' GOTO SLEDLayoutFound"
-                  SEND_FILE_INTELHEX            "c4j_160x60_sled.llf"  
+NestleLogoFound   IF REMOTE FILE EXISTS         "'c4j_buk_160x60_sled.llf' GOTO SLEDLayoutFound"
+                  SEND_FILE_INTELHEX            "c4j_buk_160x60_sled.llf"  
                   
-SLEDLayoutFound   IF REMOTE FILE EXISTS         "'c4j_160x60_prod.llf' GOTO PRODLayoutFound"
-                  SEND_FILE_INTELHEX            "c4j_160x60_prod.llf"  
+SLEDLayoutFound   IF REMOTE FILE EXISTS         "'c4j_buk_160x60_prod.llf' GOTO PRODLayoutFound"
+                  SEND_FILE_INTELHEX            "c4j_buk_160x60_prod.llf"  
 
 PRODLayoutFound
                   
 Start             IF                            "($data_MODULE_ID='RPT_PACK_LABEL_PROD') GOTO PRODLayout"
                   GOTO                          SLEDLayout
    
-PRODLayout        VARIABLE                      $variable_Template="c4j_160x60_prod.llf" 
+PRODLayout        VARIABLE                      $variable_Template="c4j_buk_160x60_prod.llf" 
                   SEND                          "LK,1"                 
                   SEND                          "<STX>LOAD,/c0/$variable_Template"
                   SEND                          "FD,1,$data_BATCH_NUMBER"
@@ -96,7 +93,7 @@ PRODLayout        VARIABLE                      $variable_Template="c4j_160x60_p
 /*                SEND                          "P<CR>"                                                           */               
                   GOTO                          Finish
                   
-SLEDLayout        VARIABLE                      $variable_Template="c4j_160x60_sled.llf" 
+SLEDLayout        VARIABLE                      $variable_Template="c4j_buk_160x60_sled.llf" 
                   SEND                          "LK,1"                 
                   SEND                          "<STX>LOAD,/c0/$variable_Template"
                   SEND                          "FD,1,$data_BATCH_NUMBER"
