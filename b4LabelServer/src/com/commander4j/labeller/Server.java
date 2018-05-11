@@ -70,12 +70,12 @@ public class Server extends Thread
 			logger.debug("Server - waiting for Labeller  [" + id + "] thread to start.");
 			utils.pause(10);
 		}
-		logger.info("Server - Labeller  [" + id + "] thread started.");
+		//logger.info("Server - Labeller  [" + id + "] thread started.");
 	}
 
 	public void startAllLabellers()
 	{
-		logger.debug("Server - startAllLabellers");
+		logger.info("Server - startAllLabellers");
 		Iterator<Entry<String, Labeller>> it = labellers.entrySet().iterator();
 		while (it.hasNext())
 		{

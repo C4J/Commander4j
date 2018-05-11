@@ -59,6 +59,10 @@ Initialise        STRING_DELIMITER              "
                   SEND                          "*RDR"
                   CHECK_SUCCESS
 
+/*                SEND_FILE_INTELHEX            "c4j_buk_nestle.pcx"  
+/*                SEND_FILE_INTELHEX            "c4j_buk_160x60_sled.llf"  
+/*                SEND_FILE_INTELHEX            "c4j_buk_160x60_prod.llf"  
+
                   IF REMOTE FILE EXISTS         "'c4j_buk_nestle.pcx' GOTO NestleLogoFound"
                   SEND_FILE_INTELHEX            "c4j_buk_nestle.pcx"  
 

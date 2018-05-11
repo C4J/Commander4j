@@ -48,17 +48,18 @@ public class JDBPrintersTableModel extends AbstractTableModel
 	public static final int Description_Col = 2;
 	public static final int PrinterType_Col = 3;
 	public static final int Language_Col = 4;
-	public static final int DPI_Col = 5;	
-	public static final int IPAddress_Col = 6;
-	public static final int Port_Col = 7;
-	public static final int Enabled_Col = 8;
-	public static final int Direct_Enable_Col = 9;
-	public static final int Export_Enable_Col = 10;
-	public static final int Export_Format_Col = 11;
-	public static final int Export_Path_Col = 12;
+	public static final int DPI_Col = 5;
+	public static final int PaperSize_Col = 6;	
+	public static final int IPAddress_Col = 7;
+	public static final int Port_Col = 8;
+	public static final int Enabled_Col = 9;
+	public static final int Direct_Enable_Col = 10;
+	public static final int Export_Enable_Col = 11;
+	public static final int Export_Format_Col = 12;
+	public static final int Export_Path_Col = 13;
 
 	// Names of the columns
-	private String[] mcolNames = { "Printer ID","Group", "Description", "Type","Language","DPI", "IP Address", "Port", "Enabled", "Direct","Export","Format","Path" };
+	private String[] mcolNames = { "Printer ID","Group", "Description", "Type","Language","DPI", "Paper Size","IP Address", "Port", "Enabled", "Direct","Export","Format","Path" };
 	private ResultSet mResultSet;
 	private int prowCount = -1;
 	private HashMap<Integer,JDBPrinters> cache = new HashMap<Integer,JDBPrinters>();
@@ -130,7 +131,9 @@ public class JDBPrintersTableModel extends AbstractTableModel
 			case Language_Col:
 				return cache.get(row).getLanguage();
 			case DPI_Col:
-				return cache.get(row).getDPI();				
+				return cache.get(row).getDPI();	
+			case PaperSize_Col:
+				return cache.get(row).getPaperSize();				
 			case Group_Col:
 				return cache.get(row).getGroupID();				
 			case Enabled_Col:

@@ -99,9 +99,9 @@ public class Service
 		while (server.started==false)
 		{
 			utils.pause(100);
-			System.out.print(".");
+
 		}
-		System.out.println(".");
+
 		
 		while (server.isAlive())
 		{

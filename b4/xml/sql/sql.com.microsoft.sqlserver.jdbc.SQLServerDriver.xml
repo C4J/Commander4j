@@ -1338,7 +1338,7 @@
 		</statement>
 		<statement>
 			<id>JDBPrinters.update</id>
-			<text>update {schema}SYS_PRINTERS set PRINTER_TYPE=?,ENABLED=?,IP_ADDRESS=?,PORT=?,DESCRIPTION=?,LANGUAGE=?,PRINTER_DPI=?,ENABLE_EXPORT=?,EXPORT_PATH=?,ENABLE_DIRECT_PRINT=?,EXPORT_FORMAT=? where PRINTER_ID= ? and GROUP_ID=?</text>
+			<text>update {schema}SYS_PRINTERS set PRINTER_TYPE=?,ENABLED=?,IP_ADDRESS=?,PORT=?,DESCRIPTION=?,LANGUAGE=?,PRINTER_DPI=?,ENABLE_EXPORT=?,EXPORT_PATH=?,ENABLE_DIRECT_PRINT=?,EXPORT_FORMAT=?,PAPER_SIZE=? where PRINTER_ID= ? and GROUP_ID=?</text>
 		</statement>
 		<statement>
 			<id>JDBPrinters.delete</id>

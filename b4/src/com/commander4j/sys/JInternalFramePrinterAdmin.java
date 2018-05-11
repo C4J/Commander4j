@@ -125,7 +125,8 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Port_Col).setPreferredWidth(40);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Description_Col).setPreferredWidth(200);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Language_Col).setPreferredWidth(55);
-		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.DPI_Col).setPreferredWidth(25);
+		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.DPI_Col).setPreferredWidth(30);
+		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PaperSize_Col).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Enabled_Col).setPreferredWidth(50);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Direct_Enable_Col).setPreferredWidth(45);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Export_Enable_Col).setPreferredWidth(45);

@@ -59,6 +59,20 @@ Initialise        STRING_DELIMITER              "
                   SEND                          "*RDR"
                   CHECK_SUCCESS
 
+/*                SEND_FILE_INTELHEX            "c4j_buk_nestle.pcx"  
+/*                SEND_FILE_INTELHEX            "c4j_buk_160x60_sled.llf"  
+/*                SEND_FILE_INTELHEX            "c4j_buk_160x60_prod.llf"  
+
+                  IF REMOTE FILE EXISTS         "'c4j_buk_nestle.pcx' GOTO NestleLogoFound"
+                  SEND_FILE_INTELHEX            "c4j_buk_nestle.pcx"  
+
+NestleLogoFound   IF REMOTE FILE EXISTS         "'c4j_buk_160x60_sled.llf' GOTO SLEDLayoutFound"
+                  SEND_FILE_INTELHEX            "c4j_buk_160x60_sled.llf"  
+                  
+SLEDLayoutFound   IF REMOTE FILE EXISTS         "'c4j_buk_160x60_prod.llf' GOTO PRODLayoutFound"
+                  SEND_FILE_INTELHEX            "c4j_buk_160x60_prod.llf"  
+
+PRODLayoutFound
                   
 Start             IF                            "($data_MODULE_ID='RPT_PACK_LABEL_PROD') GOTO PRODLayout"
                   GOTO                          SLEDLayout

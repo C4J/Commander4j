@@ -42,7 +42,7 @@ public class LabellerTCPIP_TX extends Thread
 	{
 		setStatus(status_IDLE);
 		
-		logger.debug("TX Status started.");
+		logger.info("TX Status started.");
 		try
 		{
 			outputStream = socket.getOutputStream();
@@ -57,7 +57,7 @@ public class LabellerTCPIP_TX extends Thread
 			setStatus(status_ERROR);
 		}
 
-		logger.debug("TX Status stopped.");
+		logger.info("TX Status stopped.");
 	}
 
 	public void shutdown()
@@ -84,7 +84,7 @@ public class LabellerTCPIP_TX extends Thread
 	public void setLabellerProperties(LabellerProperties prop)
 	{
 		this.prop = prop;
-		logger.debug("Labeller properties stored for "+prop.getId());
+		logger.debug("Labeller properties stored for "+this.prop.getId());
 
 	}
 

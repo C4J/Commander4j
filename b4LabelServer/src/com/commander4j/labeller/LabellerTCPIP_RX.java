@@ -79,7 +79,7 @@ public class LabellerTCPIP_RX extends Thread
 	public void run()
 	{
 		setStatus(status_RUNNING);
-		logger.debug("RX Status started.");
+		logger.info("RX Status started.");
 
 		try
 		{
@@ -173,7 +173,7 @@ public class LabellerTCPIP_RX extends Thread
 
 			utils.pause(10);
 		}
-		logger.debug("RX Status stopped.");
+		logger.info("RX Status stopped.");
 	}
 
 	private String readInputStream(BufferedInputStream _in) throws IOException
@@ -206,7 +206,7 @@ public class LabellerTCPIP_RX extends Thread
 	public void setLabellerProperties(LabellerProperties prop)
 	{
 		this.prop = prop;
-
+		logger.debug("Labeller properties stored for "+this.prop.getId());
 	}
 
 	public void shutdown()

@@ -66,6 +66,7 @@ public class JDBPrinters
 	private String hostID;
 	private String sessionID;
 	private String dbPrinterDPI;
+	private String dbPaperSize;	
 	private String dbEnableExport = "N";
 	private String dbExportPath = "";
 	private String dbExportFormat = "CSV";
@@ -304,12 +305,25 @@ public class JDBPrinters
 	{
 		dbPrinterDPI = JUtility.replaceNullStringwithBlank(dpi);
 	}
+	
+	public void setPaperSize(String size)
+	{
+		String result = JUtility.replaceNullStringwithBlank(size).toLowerCase();
+		dbPaperSize = StringUtils.remove(result, " ");
+	}
 
 	public String getDPI()
 	{
 		return JUtility.replaceNullStringwithBlank(dbPrinterDPI);
 	}
 
+	public String getPaperSize()
+	{
+		String result = JUtility.replaceNullStringwithBlank(dbPaperSize).toLowerCase();
+		result = StringUtils.remove(result, " ");
+		return result;
+	}
+	
 	private String getHostID()
 	{
 		return hostID;
@@ -496,6 +510,7 @@ public class JDBPrinters
 			setLanguage(rs.getString("language"));
 			setGroupID(rs.getString("group_id"));
 			setDPI(rs.getString("printer_dpi"));
+			setPaperSize(rs.getString("paper_size"));
 			setEnableExport(rs.getString("enable_export"));
 			setExportPath(rs.getString("export_path"));
 			setEnableDirectPrint(rs.getString("enable_direct_print"));
@@ -614,8 +629,9 @@ public class JDBPrinters
 			stmtupdate.setString(9, getExportPath());
 			stmtupdate.setString(10, getEnableDirectPrint());
 			stmtupdate.setString(11, getExportFormat());
-			stmtupdate.setString(12, getPrinterID());
-			stmtupdate.setString(13, getGroupID());
+			stmtupdate.setString(12, getPaperSize());
+			stmtupdate.setString(13, getPrinterID());
+			stmtupdate.setString(14, getGroupID());
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			if (Common.hostList.getHost(getHostID()).getConnection(getSessionID()).getAutoCommit() == false)

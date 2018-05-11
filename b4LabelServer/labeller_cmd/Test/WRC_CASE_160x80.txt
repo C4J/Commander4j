@@ -43,6 +43,7 @@ Initialise        STRING_DELIMITER              "
                   FAIL_RESPONSE                 "1601 Unknown command:"
                   FAIL_RESPONSE                 "63 Couldn't open file /c0/$variable_Template !"   
                   FAIL_RESPONSE                 "992 File access error!"
+                  FAIL_RESPONSE                 "990 Unlicensed access to /v0/layout.pcx!"                 
                   FAIL_RESPONSE                 "999<NAK>"
 
                   ON_ERROR_RESONSE_GOTO         "Abort"
@@ -58,9 +59,27 @@ Initialise        STRING_DELIMITER              "
                   CHECK_SUCCESS
                   SEND                          "*RDR"
                   CHECK_SUCCESS
-                           
+
+                  SEND_FILE_INTELHEX            "c4j_wrc_nestle.pcx"  
+                  SEND_FILE_INTELHEX            "c4j_wrc_160x80_sled.lqf"  
+                  SEND_FILE_INTELHEX            "c4j_wrc_160x80_prod.lqf"  
                   
-Start             IF                            "($data_MODULE_ID='RPT_PACK_LABEL_PROD') GOTO PRODLayout"
+                  IF REMOTE FILE EXISTS         "'c4j_wrc_nestle.pcx' GOTO NestleLogoFound"
+                  SEND_FILE_INTELHEX            "c4j_wrc_nestle.pcx"  
+
+NestleLogoFound   IF REMOTE FILE EXISTS         "'c4j_wrc_160x80_sled.lqf' GOTO SLEDLayoutFound"
+                  SEND_FILE_INTELHEX            "c4j_wrc_160x80_sled.lqf"  
+                  
+SLEDLayoutFound   IF REMOTE FILE EXISTS         "'c4j_wrc_160x80_prod.lqf' GOTO PRODLayoutFound"
+                  SEND_FILE_INTELHEX            "c4j_wrc_160x80_prod.lqf"  
+
+PRODLayoutFound                           
+                  
+Start             SET_REMOTE_FOLDER             "/c0/"   
+                  SET_REMOTE_FOLDER             "/c0"     
+                  SET_REMOTE_FOLDER             "c0/"  
+                  SET_REMOTE_FOLDER             "c0"        
+                  IF                            "($data_MODULE_ID='RPT_PACK_LABEL_PROD') GOTO PRODLayout"
                   GOTO                          SLEDLayout
    
 PRODLayout        VARIABLE                      $variable_Template="c4j_wrc_160x80_prod.lqf" 
@@ -78,8 +97,10 @@ PRODLayout        VARIABLE                      $variable_Template="c4j_wrc_160x
 /*                SEND                          "FD,25,EXTRACT_DATE($data_DATE_OF_MANUFACTURE,dd-MMM-yyyy HH:mm:ss,yyyy)"  
 /*                SEND                          "FD,26,EXTRACT_DATE($data_DATE_OF_MANUFACTURE,dd-MMM-yyyy HH:mm:ss,MM)"
 /*                SEND                          "FD,27,EXTRACT_DATE($data_DATE_OF_MANUFACTURE,dd-MMM-yyyy HH:mm:ss,dd)"                                            
-                  SEND                          "<ETX>"
+                  SEND                          "<ETX>"  
+/*                SEND                          "P<CR>"                  
                   GOTO                          Finish
+                  
                   
 SLEDLayout        VARIABLE                      $variable_Template="c4j_wrc_160x80_sled.lqf" 
                   SEND                          "<STX>LOAD,/c0/$variable_Template"
@@ -99,7 +120,11 @@ SLEDLayout        VARIABLE                      $variable_Template="c4j_wrc_160x
 /*                SEND                          "P<CR>" 
                   GOTO                          Finish
 
-Finish            STATUS                        "Success"
+Finish            SEND                          "MAKE,1"  
+/*                  SET_REMOTE_FOLDER             "/v0/"           
+/*                  RECEIVE_FILE_INTELHEX         "layout.pcx"
+/*                  SET_REMOTE_FOLDER             "/c0/"                   
+                  STATUS                        "Success"
                   CONNECTION_CLOSE
                   EXIT
 

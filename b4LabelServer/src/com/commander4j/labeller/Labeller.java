@@ -24,6 +24,7 @@ import com.opencsv.CSVReader;
 public class Labeller extends Thread
 {
 	private LabellerProperties prop;
+	private String defaultRemoteFolder = "/c0/";
 	private Socket socket = new Socket();
 	private volatile boolean shutdown = false;
 	private LabellerTCPIP_RX rx;
@@ -89,8 +90,7 @@ public class Labeller extends Thread
 	@Override
 	public void run()
 	{
-		logger.debug("Labeller run start");
-
+		logger.info("Labeller thread started. ["+prop.getIpAddress()+"/"+String.valueOf(prop.getPortNumber()));
 		connected = false;
 		shutdown = false;
 
@@ -158,9 +158,7 @@ public class Labeller extends Thread
 				utils.pause(250);
 			}
 		}
-
-		logger.debug("Labeller run end");
-
+		logger.info("Labeller thread stopped. ["+prop.getIpAddress()+"/"+String.valueOf(prop.getPortNumber()));
 	}
 
 	public boolean runScript()
@@ -190,11 +188,33 @@ public class Labeller extends Thread
 			CMD = labellerCMDFile.commandLines.get(exePosition).command;
 			VAL = labellerCMDFile.getValueAtLine(exePosition).replaceAll("~", "\"");
 
-			logger.debug("runScript :" + JUtility.padString(String.valueOf(exePosition + 1), false, 5, "0") + " - " + JUtility.padString(LBL, true, 18, " ") + JUtility.padString(CMD, true, 30, " ")
-					+ JUtility.padString(VAL, true, 50, " "));
+			logger.debug("runScript :" + JUtility.padString(String.valueOf(exePosition + 1), false, 5, "0") + " - " + JUtility.padString(LBL, true, 18, " ") + JUtility.padString(CMD, true, 30, " ") + JUtility.padString(VAL, true, 50, " "));
 
 			switch (CMD)
 			{
+			case "SET_REMOTE_FOLDER":
+				
+				String folder = labellerCMDFile.removeDelimitors(VAL);
+				
+				if (folder.equals(""))
+				{
+					folder = "/c0/";
+				}
+				
+				if (StringUtils.right(folder, 1).equals("/") == false)
+				{
+					folder = folder+"/";
+				}
+				
+				if (StringUtils.left(folder, 1).equals("/") == false)
+				{
+					folder = "/" + folder;
+				}
+				defaultRemoteFolder = folder;
+				
+				logger.info("SET_REMOTE_FOLDER ["+defaultRemoteFolder+"]");
+				
+				break;
 			case "DB_QUERY":
 				DB_QUERY(VAL);
 				break;
@@ -321,14 +341,14 @@ public class Labeller extends Thread
 				rx.successResponses.add(VAL);
 				break;
 			case "LOCAL_DELETE_FILE":
-				String localfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
+				String localfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
 				logger.info("Local Delete  [" + localfilename + "]");
 				File fileDelete = new File(localfilename);
 				FileUtils.deleteQuietly(fileDelete);
 				fileDelete = null;
 				break;
 			case "FILE_DEFINE":
-				String writefilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
+				String writefilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
 				logger.info("File Defined as  [" + writefilename + "]");
 				fileWrite = new File(writefilename);
 				if (FileUtils.deleteQuietly(fileWrite))
@@ -337,7 +357,7 @@ public class Labeller extends Thread
 				}
 				break;
 			case "FILE_WRITE":
-				File writePath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId());
+				File writePath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId());
 				try
 				{
 					FileUtils.forceMkdir(writePath);
@@ -405,7 +425,7 @@ public class Labeller extends Thread
 		if (DIR_REMOTE(filename))
 		{
 
-			while ((directory.peek() != null) )
+			while ((directory.peek() != null))
 			{
 				String foundFilename = directory.poll().getFilename().toLowerCase().trim();
 				if (filename.toLowerCase().trim().equals(foundFilename))
@@ -508,7 +528,7 @@ public class Labeller extends Thread
 	{
 		boolean result = false;
 
-		File sendPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId());
+		File sendPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId());
 
 		try
 		{
@@ -523,7 +543,7 @@ public class Labeller extends Thread
 		System.out.println("");
 		logger.info("SEND file [" + VAL + "] Started.");
 		rx.clearQueue();
-		String sendfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files"+java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
+		String sendfilename = System.getProperty("user.dir") + java.io.File.separator + "labeller_files" + java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator + VAL;
 		tx.send("*HEXFILE," + VAL + "<CR>");
 		result = checkSuccess();
 		if (result == true)
@@ -560,6 +580,13 @@ public class Labeller extends Thread
 	public boolean RECEIVE_FILE_INTELHEX(String VAL, boolean isBackup)
 	{
 		boolean result = false;
+		result = RECEIVE_FILE_INTELHEX(VAL, isBackup, "");
+		return result;
+	}
+
+	public boolean RECEIVE_FILE_INTELHEX(String VAL, boolean isBackup, String downloadFilenameOverride)
+	{
+		boolean result = false;
 
 		String downloadFileMask = VAL;
 		result = DIR_REMOTE(downloadFileMask);
@@ -567,7 +594,7 @@ public class Labeller extends Thread
 		File downloadPath;
 		if (isBackup)
 		{
-			downloadPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_backups"  + java.io.File.separator + prop.getSite()+ java.io.File.separator + prop.getId() + java.io.File.separator
+			downloadPath = new File(System.getProperty("user.dir") + java.io.File.separator + "labeller_backups" + java.io.File.separator + prop.getSite() + java.io.File.separator + prop.getId() + java.io.File.separator
 					+ JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime()).substring(0, 16).replaceAll(":", "-").replaceAll("T", "-"));
 		}
 		else
@@ -587,11 +614,11 @@ public class Labeller extends Thread
 		System.out.println("");
 		while ((directory.peek() != null) && (result == true) && (shutdown == false))
 		{
-			
+
 			LabellerFile labfile = directory.poll();
-			String downloadFilename = labfile.getFilename();	
+			String downloadFilename = labfile.getFilename();
 			Timestamp labfiledatetime = labfile.getDatetime();
-					
+
 			System.out.println("");
 			logger.info("DOWNLOAD Start " + downloadFilename);
 
@@ -602,7 +629,17 @@ public class Labeller extends Thread
 			rx.setResponseEOL("<CR><LF>");
 			rx.clearQueue();
 
-			String outfilename2 = downloadPath + java.io.File.separator + downloadFilename;
+			String outfilename2 = "";
+
+			if (downloadFilenameOverride.equals(""))
+			{
+				outfilename2 = downloadPath + java.io.File.separator + downloadFilename;
+			}
+			else
+			{
+				outfilename2 = downloadPath + java.io.File.separator + downloadFilenameOverride;
+			}
+
 			String outfilename1 = outfilename2 + ".hex";
 
 			File outFile1 = new File(outfilename1);
@@ -610,7 +647,7 @@ public class Labeller extends Thread
 
 			FileUtils.deleteQuietly(outFile2);
 
-			result = tx.send("*TYPEHEX," + downloadFilename + "<CR>");
+			result = tx.send("*TYPEHEX," + defaultRemoteFolder+downloadFilename + "<CR>");
 
 			if (result == true)
 			{
@@ -637,7 +674,7 @@ public class Labeller extends Thread
 						outFile2.setLastModified(labfiledatetime.getTime());
 						Path outPath2 = outFile2.toPath();
 						FileTime time = FileTime.fromMillis((labfiledatetime.getTime()));
-						Files.setAttribute(outPath2, "creationTime", time);		
+						Files.setAttribute(outPath2, "creationTime", time);
 						FileUtils.deleteQuietly(outFile1);
 					}
 					catch (Exception ex)
@@ -702,13 +739,13 @@ public class Labeller extends Thread
 
 		directory.clear();
 		rx.clearQueue();
-		tx.send("*DIR," + dirCMDFilter[0] + ",SDT<CR>");
+		tx.send("*DIR," + defaultRemoteFolder+dirCMDFilter[0] + ",SDT<CR>");
 		waitForReply();
 
 		utils.pause(250);
 		String response = "";
 		System.out.println("");
-		logger.info("Directory Listing");
+		logger.info("Directory Listing of "+ defaultRemoteFolder+dirCMDFilter[0]);
 		logger.info("[" + prop.getId() + "] -----------------------------------------------------------------------");
 		while (rx.responseQueue.size() > 0)
 		{
