@@ -157,6 +157,8 @@ public class JHostList
 				logger.debug("Using application update url to check for updated hosts.");
 			}
 		}
+		
+		Common.hostUpdatePath = hostUpdatePath;
 
 		// See if updatedHosts location specified
 		if (hostUpdatePath.equals("") == false)
