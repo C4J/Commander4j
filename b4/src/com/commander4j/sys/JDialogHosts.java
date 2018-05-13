@@ -67,7 +67,7 @@ public class JDialogHosts extends JDialog
 		super(frame);
 		initGUI();
 
-		setTitle("Hosts "+JVersion.getProgramVersion());
+		setTitle("C4J Ver "+JVersion.getProgramVersion()+" ["+Common.hostVersion+"]");
 
 		populateList("");
 

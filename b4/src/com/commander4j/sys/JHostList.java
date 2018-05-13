@@ -35,6 +35,7 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.commander4j.util.JUtility;
@@ -49,7 +50,8 @@ public class JHostList
 	// private int numberOfHosts = 0;
 	private final Logger logger = Logger.getLogger(JHostList.class);
 
-	public void addHost(JHost hst) {
+	public void addHost(JHost hst)
+	{
 		if (isValidSite(hst.getSiteNumber()) == false)
 		{
 			hosts.put(hst.getSiteNumber(), hst);
@@ -58,20 +60,24 @@ public class JHostList
 		}
 	}
 
-	public void clear() {
+	public void clear()
+	{
 		// numberOfHosts = 0;
 		hosts.clear();
 	}
 
-	public int getCheckedIndex() {
+	public int getCheckedIndex()
+	{
 		return checkedIndex;
 	}
 
-	public String getCheckedIndexString() {
+	public String getCheckedIndexString()
+	{
 		return String.valueOf(checkedIndex);
 	}
 
-	public String getHTMLmenu(String defaultItem) {
+	public String getHTMLmenu(String defaultItem)
+	{
 		String selected = "";
 		String data = "";
 		String result = "";
@@ -108,7 +114,7 @@ public class JHostList
 						selected = "";
 					}
 
-					data = "<label><input type=\"radio\" name=\"selectedHost\" value=\"" + hst.getSiteNumber() + "\" " + selected + "/>" + hst.getSiteDescription() + "</label><br/>"+CRLF;
+					data = "<label><input type=\"radio\" name=\"selectedHost\" value=\"" + hst.getSiteNumber() + "\" " + selected + "/>" + hst.getSiteDescription() + "</label><br/>" + CRLF;
 					result = result + data;
 				}
 			}
@@ -121,35 +127,55 @@ public class JHostList
 		return result;
 	}
 
-	public void loadHosts(String filename) {
+	public void loadHosts(String filename)
+	{
 		addHosts(JXMLHost.loadHosts(filename, true));
 	}
-	
+
 	public boolean checkUpdatedHosts()
 	{
 		boolean result = false;
-	
+
 		Double currentHostVersion = Double.valueOf(Common.hostVersion);
 		logger.debug("Current Host File Version = " + String.valueOf(currentHostVersion));
 
-		// See if updatedHosts location specified
-		if (Common.hostUpdatePath.equals("") == false)
+		String hostUpdatePath = Common.hostUpdatePath;
+		if (hostUpdatePath.equals("") == true)
 		{
-			logger.debug("Update Host Path = " + Common.hostUpdatePath);
-			if (Files.exists(Paths.get(Common.hostUpdatePath)))
+			logger.debug("No hosts file update location specified, checking application update url.");
+			
+			hostUpdatePath = Common.updateURL;
+			if (hostUpdatePath.equals("") == true)
 			{
-				logger.debug("Update Host Path = " + Common.hostUpdatePath + " found.");
+				logger.debug("No application update location specified. Hosts update will not occur.");
+			}
+			else
+			{
+				hostUpdatePath = StringUtils.removeIgnoreCase(hostUpdatePath, "file:");
+				hostUpdatePath = JUtility.formatPath(hostUpdatePath);
+				hostUpdatePath = StringUtils.replaceIgnoreCase(hostUpdatePath, "updates.xml", "hosts.xml");
+				logger.debug("Using application update url to check for updated hosts.");
+			}
+		}
 
-				Double updatedHostVersion = JXMLHost.checkHostVersion(Common.hostUpdatePath);
+		// See if updatedHosts location specified
+		if (hostUpdatePath.equals("") == false)
+		{
+			logger.debug("Updated Host Path = [" + hostUpdatePath + "]");
+			if (Files.exists(Paths.get(hostUpdatePath)))
+			{
+				logger.debug("Updated Host Path = [" + hostUpdatePath + "] found.");
+
+				Double updatedHostVersion = JXMLHost.checkHostVersion(hostUpdatePath);
 				logger.debug("Updated Host File Version = " + String.valueOf(updatedHostVersion));
 
 				if (updatedHostVersion > currentHostVersion)
 				{
-					logger.debug("Copying Updated Host File");
+					logger.debug("Copying Updated Host File [" + hostUpdatePath + "]");
 					try
 					{
-						File destDir = new File(System.getProperty("user.dir") + File.separator + "xml"+File.separator+"hosts");
-						File srcFile = new File(Common.hostUpdatePath);
+						File destDir = new File(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts");
+						File srcFile = new File(hostUpdatePath);
 						FileUtils.copyFileToDirectory(srcFile, destDir);
 						result = true;
 					}
@@ -158,25 +184,32 @@ public class JHostList
 						logger.debug("Error Copying Updated Host File :" + e.getMessage());
 					}
 				}
+				else
+				{
+					logger.debug("Current hosts file is up to date "+currentHostVersion.toString());
+				}
 			}
 			else
 			{
-				logger.debug("Update Host Path = " + Common.hostUpdatePath + " not found.");
+				logger.debug("Updated Host Path = " + hostUpdatePath + " not found.");
 			}
-		}		
-		
+		}
+
 		return result;
 	}
 
-	public void loadHosts() {
+	public void loadHosts()
+	{
 		loadHosts("");
 	}
 
-	public int size() {
+	public int size()
+	{
 		return hosts.size();
 	}
 
-	public void addHosts(LinkedList<JHost> hsts) {
+	public void addHosts(LinkedList<JHost> hsts)
+	{
 		int s = hsts.size();
 		hosts.clear();
 
@@ -191,7 +224,8 @@ public class JHostList
 		}
 	}
 
-	public boolean isValidSite(String siteNumber) {
+	public boolean isValidSite(String siteNumber)
+	{
 		boolean result = false;
 
 		if (hosts.size() > 0)
@@ -205,7 +239,8 @@ public class JHostList
 		return result;
 	}
 
-	public String getHostIDforUniqueId(String uniqueid) {
+	public String getHostIDforUniqueId(String uniqueid)
+	{
 		String result = "";
 
 		if (size() > 0)
@@ -224,7 +259,8 @@ public class JHostList
 		return result;
 	}
 
-	public JHost getHost(String siteNumber) {
+	public JHost getHost(String siteNumber)
+	{
 		JHost hst = new JHost();
 
 		if (isValidSite(siteNumber))
@@ -239,7 +275,8 @@ public class JHostList
 		return hst;
 	}
 
-	public void disconnectAll() {
+	public void disconnectAll()
+	{
 		LinkedList<JHost> hl = new LinkedList<JHost>();
 		hl = getHosts();
 
@@ -257,8 +294,9 @@ public class JHostList
 		}
 	}
 
-	public void disconnectSessionAllHosts(String sessionID) {
-		logger.debug("disconnectSessionAllHosts size="+String.valueOf(size()));
+	public void disconnectSessionAllHosts(String sessionID)
+	{
+		logger.debug("disconnectSessionAllHosts size=" + String.valueOf(size()));
 		if (size() > 0)
 		{
 			for (int x = 1; x <= size(); x++)
@@ -268,7 +306,8 @@ public class JHostList
 		}
 	}
 
-	public LinkedList<JHost> getHosts() {
+	public LinkedList<JHost> getHosts()
+	{
 		final LinkedList<JHost> temphostlist = new LinkedList<JHost>();
 		temphostlist.clear();
 

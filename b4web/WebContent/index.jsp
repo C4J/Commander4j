@@ -27,6 +27,7 @@
 <link href="style/commander.css" rel="stylesheet" type="text/css">
 
 </head>
+
 <body  onLoad = "focusIt()">
 <form id="index" name="index" action="Process" method="POST">
 
@@ -43,7 +44,7 @@
 	</tr>
 	<tr>
 		<td align="center" style="height: 86px" class="splashTitleVersion">
-		Version : 5.52
+		Version : <%=com.commander4j.app.JVersion.getProgramVersion() %>
 	</tr>
 	<tr>
 		<td align="center" style="height: 70px">
