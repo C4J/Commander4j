@@ -1607,7 +1607,7 @@ public class JFrameHostAdmin extends JFrame
 					chooser.setSelectedFile(new File(hostsFilename));
 					chooser.addChoosableFileFilter(xmlFilter);
 
-					int returnVal = chooser.showSaveDialog(jTextFieldUsername);
+					int returnVal = chooser.showOpenDialog(jTextFieldUsername);
 					if (returnVal == JFileChooser.APPROVE_OPTION)
 					{
 						setHostsFilename(chooser.getSelectedFile().getAbsolutePath());

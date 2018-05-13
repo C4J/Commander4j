@@ -142,6 +142,7 @@ public class JHostList
 		String hostUpdatePath = Common.hostUpdatePath;
 		if (hostUpdatePath.equals("") == true)
 		{
+			
 			logger.debug("No hosts file update location specified, checking application update url.");
 			
 			hostUpdatePath = Common.updateURL;
@@ -151,7 +152,15 @@ public class JHostList
 			}
 			else
 			{
+
 				hostUpdatePath = StringUtils.removeIgnoreCase(hostUpdatePath, "file:");
+				
+				int windowsDriveLetter = hostUpdatePath.indexOf(":");
+				if (windowsDriveLetter > 0)
+				{
+					hostUpdatePath = StringUtils.substring(hostUpdatePath, windowsDriveLetter-1);
+				}
+				
 				hostUpdatePath = JUtility.formatPath(hostUpdatePath);
 				hostUpdatePath = StringUtils.replaceIgnoreCase(hostUpdatePath, "updates.xml", "hosts.xml");
 				logger.debug("Using application update url to check for updated hosts.");
@@ -159,7 +168,7 @@ public class JHostList
 		}
 		
 		Common.hostUpdatePath = hostUpdatePath;
-
+		
 		// See if updatedHosts location specified
 		if (hostUpdatePath.equals("") == false)
 		{
