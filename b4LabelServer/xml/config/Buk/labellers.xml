@@ -117,7 +117,7 @@
             <enabled>Y</enabled>
             <ipAddress>10.231.151.175</ipAddress>
             <portNumber>8300</portNumber>
-            <commandFile>BUK_CASE_160x80.txt</commandFile>
+            <commandFile>BUK_CASE_160x60.txt</commandFile>
             <inputPath>F:\Apps\PreProduction\BUK\Commander4j\xml\interface\output\Auto Labeller\</inputPath>
             <inputFile>FEGE_FEGE_ LGP515.CSV</inputFile>
             <mode>direct</mode>

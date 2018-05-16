@@ -136,73 +136,77 @@ public class JHostList
 	{
 		boolean result = false;
 
-		Double currentHostVersion = Double.valueOf(Common.hostVersion);
-		logger.debug("Current Host File Version = " + String.valueOf(currentHostVersion));
-
-		String hostUpdatePath = Common.hostUpdatePath;
-		if (hostUpdatePath.equals("") == true)
+		if (Common.updateMODE.equals("AUTOMATIC"))
 		{
-			
-			logger.debug("No hosts file update location specified, checking application update url.");
-			
-			hostUpdatePath = Common.updateURL;
+
+			Double currentHostVersion = Double.valueOf(Common.hostVersion);
+			logger.debug("Current Host File Version = " + String.valueOf(currentHostVersion));
+
+			String hostUpdatePath = Common.hostUpdatePath;
 			if (hostUpdatePath.equals("") == true)
 			{
-				logger.debug("No application update location specified. Hosts update will not occur.");
-			}
-			else
-			{
 
-				hostUpdatePath = StringUtils.removeIgnoreCase(hostUpdatePath, "file:");
-				
-				int windowsDriveLetter = hostUpdatePath.indexOf(":");
-				if (windowsDriveLetter > 0)
+				logger.debug("No hosts file update location specified, checking application update url.");
+
+				hostUpdatePath = Common.updateURL;
+				if (hostUpdatePath.equals("") == true)
 				{
-					hostUpdatePath = StringUtils.substring(hostUpdatePath, windowsDriveLetter-1);
+					logger.debug("No application update location specified. Hosts update will not occur.");
 				}
-				
-				hostUpdatePath = JUtility.formatPath(hostUpdatePath);
-				hostUpdatePath = StringUtils.replaceIgnoreCase(hostUpdatePath, "updates.xml", "hosts.xml");
-				logger.debug("Using application update url to check for updated hosts.");
-			}
-		}
-		
-		Common.hostUpdatePath = hostUpdatePath;
-		
-		// See if updatedHosts location specified
-		if (hostUpdatePath.equals("") == false)
-		{
-			logger.debug("Updated Host Path = [" + hostUpdatePath + "]");
-			if (Files.exists(Paths.get(hostUpdatePath)))
-			{
-				logger.debug("Updated Host Path = [" + hostUpdatePath + "] found.");
-
-				Double updatedHostVersion = JXMLHost.checkHostVersion(hostUpdatePath);
-				logger.debug("Updated Host File Version = " + String.valueOf(updatedHostVersion));
-
-				if (updatedHostVersion > currentHostVersion)
+				else
 				{
-					logger.debug("Copying Updated Host File [" + hostUpdatePath + "]");
-					try
+
+					hostUpdatePath = StringUtils.removeIgnoreCase(hostUpdatePath, "file:");
+
+					int windowsDriveLetter = hostUpdatePath.indexOf(":");
+					if (windowsDriveLetter > 0)
 					{
-						File destDir = new File(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts");
-						File srcFile = new File(hostUpdatePath);
-						FileUtils.copyFileToDirectory(srcFile, destDir);
-						result = true;
+						hostUpdatePath = StringUtils.substring(hostUpdatePath, windowsDriveLetter - 1);
 					}
-					catch (Exception e)
+
+					hostUpdatePath = JUtility.formatPath(hostUpdatePath);
+					hostUpdatePath = StringUtils.replaceIgnoreCase(hostUpdatePath, "updates.xml", "hosts.xml");
+					logger.debug("Using application update url to check for updated hosts.");
+				}
+			}
+
+			Common.hostUpdatePath = hostUpdatePath;
+
+			// See if updatedHosts location specified
+			if (hostUpdatePath.equals("") == false)
+			{
+				logger.debug("Updated Host Path = [" + hostUpdatePath + "]");
+				if (Files.exists(Paths.get(hostUpdatePath)))
+				{
+					logger.debug("Updated Host Path = [" + hostUpdatePath + "] found.");
+
+					Double updatedHostVersion = JXMLHost.checkHostVersion(hostUpdatePath);
+					logger.debug("Updated Host File Version = " + String.valueOf(updatedHostVersion));
+
+					if (updatedHostVersion > currentHostVersion)
 					{
-						logger.debug("Error Copying Updated Host File :" + e.getMessage());
+						logger.debug("Copying Updated Host File [" + hostUpdatePath + "]");
+						try
+						{
+							File destDir = new File(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts");
+							File srcFile = new File(hostUpdatePath);
+							FileUtils.copyFileToDirectory(srcFile, destDir);
+							result = true;
+						}
+						catch (Exception e)
+						{
+							logger.debug("Error Copying Updated Host File :" + e.getMessage());
+						}
+					}
+					else
+					{
+						logger.debug("Current hosts file is up to date " + currentHostVersion.toString());
 					}
 				}
 				else
 				{
-					logger.debug("Current hosts file is up to date "+currentHostVersion.toString());
+					logger.debug("Updated Host Path = " + hostUpdatePath + " not found.");
 				}
-			}
-			else
-			{
-				logger.debug("Updated Host Path = " + hostUpdatePath + " not found.");
 			}
 		}
 

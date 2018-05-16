@@ -228,6 +228,19 @@ public class JDialogSysInfo extends javax.swing.JDialog
 		textField4j_1.setEditable(false);
 		textField4j_1.setBounds(127, 74, 622, 20);
 		jDesktopPane1.add(textField4j_1);
+		
+		JLabel4j_std label4j_std_4 = new JLabel4j_std();
+		label4j_std_4.setText("Update Mode :");
+		label4j_std_4.setHorizontalAlignment(SwingConstants.TRAILING);
+		label4j_std_4.setBounds(479, 9, 88, 21);
+		jDesktopPane1.add(label4j_std_4);
+		
+		JTextField4j jTextFieldUpdateMode = new JTextField4j();
+		jTextFieldUpdateMode.setText(Common.updateMODE);
+		jTextFieldUpdateMode.setEnabled(false);
+		jTextFieldUpdateMode.setEditable(false);
+		jTextFieldUpdateMode.setBounds(582, 11, 167, 20);
+		jDesktopPane1.add(jTextFieldUpdateMode);
 	}
 
 	private void initGUI() {

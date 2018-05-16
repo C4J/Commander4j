@@ -144,7 +144,8 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 	private JComboBox4j<JDBMHNReasons> textFieldReason3;
 	private JButton4j button_1;
 	private PreparedStatement listStatement;
-	private JTextField4j jTextFieldWriteOffRef = new JTextField4j(50);
+	private JTextField4j jTextFieldWriteOffRef = new JTextField4j(20);
+	private JTextField4j jTextFieldGS_GSTD_REF = new JTextField4j(10);
 
 	private void sortBy(String fieldname)
 	{
@@ -311,6 +312,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		mhn.setAuthorisor(jTextFieldAuthorisor.getText());
 		mhn.setResource(jTextFieldResource.getText());
 		mhn.setWriteOffRef(jTextFieldWriteOffRef.getText());
+		mhn.setGS_GSTD_REF(jTextFieldGS_GSTD_REF.getText());
 		mhn.setStatus(jTextFieldStatus.getSelectedItem().toString());
 		Date d = dateControlExpected.getDate();
 		mhn.setDateExpected(JUtility.getTimestampFromDate(d));
@@ -352,7 +354,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		jTextFieldMHN.setText(mhnNumber);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(726, 61, 258, 124);
+		scrollPane.setBounds(726, 91, 258, 90);
 		jDesktopPane1.add(scrollPane);
 
 		ListModel<String> jList1Model = new DefaultComboBoxModel<String>(new String[] { "Item One", "Item Two" });
@@ -439,6 +441,15 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		jLabelWriteOffRef.setHorizontalAlignment(SwingConstants.TRAILING);
 		jLabelWriteOffRef.setBounds(688, 37, 141, 21);
 		jDesktopPane1.add(jLabelWriteOffRef);
+		
+		JLabel4j_std jlabelGS_GSTD_REF = new JLabel4j_std(); 
+		jlabelGS_GSTD_REF.setText("GS GSTD Ref");
+		jlabelGS_GSTD_REF.setHorizontalAlignment(SwingConstants.TRAILING);
+		jlabelGS_GSTD_REF.setBounds(688, 65, 141, 21);
+		jDesktopPane1.add(jlabelGS_GSTD_REF);
+		
+		jTextFieldGS_GSTD_REF.setBounds(834, 65, 149, 21);
+		jDesktopPane1.add(jTextFieldGS_GSTD_REF);
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -471,6 +482,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 			jTextFieldInitiator.setText(mhn.getInitiator());
 			jTextFieldAuthorisor.setText(mhn.getAuthorisor());
 			jTextFieldWriteOffRef.setText(mhn.getWriteOffRef());
+			jTextFieldGS_GSTD_REF.setText(mhn.getGS_GSTD_REF());
 			jTextFieldMHN.setText(mhnNumber);
 			try
 			{

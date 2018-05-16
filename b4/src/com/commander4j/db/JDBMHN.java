@@ -64,6 +64,7 @@ public class JDBMHN
 	private String dbStatus;
 	private String dbResource;
 	private String dbWriteOffRef;
+	private String dbGS_GSTD_REF;
 
 	public static int field_mhn_number = 10;
 	public static int field_initiator = 20;
@@ -91,7 +92,7 @@ public class JDBMHN
 		setSessionID(session);
 	}
 
-	public JDBMHN(String MHNNumber, String initiator, String recorder, String authorisor, String reason1, String reason2, String reason3, Timestamp created, Timestamp expected, Timestamp resolved, String status, String comment, String resource,String wor,
+	public JDBMHN(String MHNNumber, String initiator, String recorder, String authorisor, String reason1, String reason2, String reason3, Timestamp created, Timestamp expected, Timestamp resolved, String status, String comment, String resource,String wor,String ref,
 			Integer count)
 	{
 		setMHNNumber(MHNNumber);
@@ -108,6 +109,7 @@ public class JDBMHN
 		setComment(comment);
 		setResource(resource);
 		setWriteOffRef(wor);
+		setGS_GSTD_REF(ref);
 	}
 
 	public void clear()
@@ -125,6 +127,7 @@ public class JDBMHN
 		setComment("");
 		setResource("");
 		setWriteOffRef("");
+		setGS_GSTD_REF("");
 	}
 
 	public boolean create()
@@ -452,6 +455,7 @@ public class JDBMHN
 			setComment(rs.getString("comments"));
 			setResource(rs.getString("required_resource"));
 			setWriteOffRef(rs.getString("write_off_ref"));
+			setGS_GSTD_REF(rs.getString("gs_gstd_ref"));
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -486,6 +490,11 @@ public class JDBMHN
 	public String getWriteOffRef()
 	{
 		return dbWriteOffRef;
+	}
+	
+	public String getGS_GSTD_REF()
+	{
+		return dbGS_GSTD_REF;
 	}
 	
 	public String getSessionID()
@@ -609,6 +618,11 @@ public class JDBMHN
 		dbWriteOffRef = wor;
 	}
 	
+	public void setGS_GSTD_REF(String ref)
+	{
+		dbGS_GSTD_REF = ref;
+	}
+	
 	private void setSessionID(String session)
 	{
 		sessionID = session;
@@ -653,7 +667,8 @@ public class JDBMHN
 			stmtupdate.setString(10, getResource());
 			stmtupdate.setString(11, getAuthorisor());
 			stmtupdate.setString(12, getWriteOffRef());
-			stmtupdate.setString(13, getMHNNumber());
+			stmtupdate.setString(13, getGS_GSTD_REF());
+			stmtupdate.setString(14, getMHNNumber());
 
 			stmtupdate.execute();
 			stmtupdate.clearParameters();

@@ -93,6 +93,8 @@ public class IncommingMaterialDefinition
 	private String dataID;
 	private String dataValue;
 	private String customer_name;
+	private String override_pack_label;
+	private String pack_label_module_id;
 
 	public String getErrorMessage()
 	{
@@ -180,6 +182,10 @@ public class IncommingMaterialDefinition
 		weight_uom = uomdb.convertUom(inter.getUOMConversion(), weight_uom);
 
 		old_material = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/old_material").trim());
+		
+		override_pack_label = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("/message/messageData/materialDefinition/override_pack_label").trim());
+		pack_label_module_id = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("/message/messageData[1]/materialDefinition/pack_label_module_id").trim());
+		
 		inspection_id = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/inspection_id").trim());
 		default_batch_status = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/default_batch_status").trim());
 
@@ -418,6 +424,16 @@ public class IncommingMaterialDefinition
 		mat.setOldMaterial(JUtility.getDefaultValue(old_material, mat.getOldMaterial(), ""));
 		mat.setInspectionID(JUtility.getDefaultValue(inspection_id, mat.getInspectionID(), ""));
 		mat.setDefaultBatchStatus(JUtility.getDefaultValue(default_batch_status, mat.getDefaultBatchStatus(), defaultBatchStatus));
+		
+		if (override_pack_label.equals("")==false)
+		{
+			if (override_pack_label.equals("N"))
+			{
+				pack_label_module_id="";
+			}
+			mat.setOverridePackLabel(override_pack_label);
+			mat.setPackLabelModuleID(pack_label_module_id);
+		}
 
 		if (mat.update() == false)
 		{

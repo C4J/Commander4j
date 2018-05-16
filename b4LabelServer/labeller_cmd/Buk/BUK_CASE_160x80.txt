@@ -59,9 +59,9 @@ Initialise        STRING_DELIMITER              "
                   SEND                          "*RDR"
                   CHECK_SUCCESS
 
-/*                SEND_FILE_INTELHEX            "c4j_buk_nestle.pcx"  
-/*                SEND_FILE_INTELHEX            "c4j_buk_160x80_sled.llf"  
-/*                SEND_FILE_INTELHEX            "c4j_buk_160x80_prod.llf"  
+                  SEND_FILE_INTELHEX            "c4j_buk_nestle.pcx"  
+                  SEND_FILE_INTELHEX            "c4j_buk_160x80_sled.llf"  
+                  SEND_FILE_INTELHEX            "c4j_buk_160x80_prod.llf"  
                   
                   IF REMOTE FILE EXISTS         "'c4j_buk_nestle.pcx' GOTO NestleLogoFound"
                   SEND_FILE_INTELHEX            "c4j_buk_nestle.pcx"  
@@ -94,7 +94,8 @@ PRODLayout        VARIABLE                      $variable_Template="c4j_buk_160x
                   SEND                          "FD,22,REPLACE($data_BASE_QUANTITY,.000,)"                
                   SEND                          "FD,110,$data_BATCH_SUFFIX"                                     
                   SEND                          "<ETX>"
-/*                SEND                          "P<CR>"                                                           */                  
+/*                SEND                          "P<CR>"                                                           */ 
+/*                SEND                          "?errors<CR>"                  */
                   GOTO                          Finish
                   
 SLEDLayout        VARIABLE                      $variable_Template="c4j_buk_160x80_sled.llf" 
@@ -112,6 +113,7 @@ SLEDLayout        VARIABLE                      $variable_Template="c4j_buk_160x
                   SEND                          "FD,110,$data_BATCH_SUFFIX"                                     
                   SEND                          "<ETX>"  
 /*                SEND                          "P<CR>"                                                           */                      
+/*                SEND                          "?errors<CR>"                  */
                   GOTO                          Finish
 
 Finish            STATUS                        "Success"
