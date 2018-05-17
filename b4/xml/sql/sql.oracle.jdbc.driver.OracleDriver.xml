@@ -971,10 +971,14 @@
 			<id>JDBMHNDecision.isValidDecision</id>
 			<text>select * from {schema}app_mhn_decisions where Decision = ?</text>
 		</statement>
-		<?JDBMHN ?>JDBMHN.delete
+		<?JDBMHN ?>
 		<statement>
 			<id>JDBMHN.create</id>
 			<text>insert into {schema}app_mhn (mhn_number,date_created,status,recorder) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBMHN.delete</id>
+			<text>delete from {schema}app_mhn where mhn_number=?</text>
 		</statement>
 		<statement>
 			<id>JDBMHN.delete</id>
