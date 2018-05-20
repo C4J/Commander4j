@@ -31,6 +31,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -41,13 +42,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-import com.commander4j.bar.JBarcodePanel;
 import com.commander4j.bar.JEANImage;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
@@ -82,6 +84,7 @@ public class JDialogAbout extends javax.swing.JDialog
 	public JDialogAbout(JFrame frame)
 	{
 		super(frame);
+		setUndecorated(true);
 		getContentPane().setLayout(null);
 		initGUI();
 
@@ -120,8 +123,8 @@ public class JDialogAbout extends javax.swing.JDialog
 				this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 				{
 					jDesktopPane1 = new JDesktopPane();
-					jDesktopPane1.setBackground(Common.color_edit_properties);
-					jDesktopPane1.setBounds(0, 0, 356, 242);
+					jDesktopPane1.setBackground(Color.WHITE);
+					jDesktopPane1.setBounds(0, 0, 406, 322);
 					this.getContentPane().add(jDesktopPane1);
 					jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 231));
 					jDesktopPane1.setLayout(null);
@@ -130,7 +133,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jDesktopPane1.add(jButtonOk);
 						jButtonOk.setText(lang.get("btn_Ok"));
 						jButtonOk.setMnemonic(lang.getMnemonicChar());
-						jButtonOk.setBounds(126, 196, 91, 28);
+						jButtonOk.setBounds(165, 288, 91, 28);
 						jButtonOk.addActionListener(new ActionListener()
 						{
 							public void actionPerformed(ActionEvent evt)
@@ -143,7 +146,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jLabelBy = new JLabel4j_std();
 						jDesktopPane1.add(jLabelBy);
 						jLabelBy.setText("by");
-						jLabelBy.setBounds(147, 112, 56, 21);
+						jLabelBy.setBounds(6, 203, 398, 21);
 						jLabelBy.setFont(new java.awt.Font("Dialog", 0, 12));
 						jLabelBy.setHorizontalAlignment(SwingConstants.CENTER);
 					}
@@ -151,7 +154,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jLabelAuthor = new JLabel4j_std();
 						jDesktopPane1.add(jLabelAuthor);
 						jLabelAuthor.setText(Common.appAuthor);
-						jLabelAuthor.setBounds(14, 133, 322, 14);
+						jLabelAuthor.setBounds(6, 224, 398, 14);
 						jLabelAuthor.setFont(new java.awt.Font("Dialog", 0, 12));
 						jLabelAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 					}
@@ -160,7 +163,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jLabelWebPage.setHorizontalAlignment(SwingConstants.CENTER);
 						jDesktopPane1.add(jLabelWebPage);
 						jLabelWebPage.setText(Common.appWebsite);
-						jLabelWebPage.setBounds(14, 175, 322, 14);
+						jLabelWebPage.setBounds(6, 266, 398, 14);
 						jLabelWebPage.setForeground(new java.awt.Color(0, 0, 255));
 						jLabelWebPage.addMouseListener(new MouseAdapter()
 						{
@@ -197,7 +200,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jLabelEmail.setHorizontalAlignment(SwingConstants.CENTER);
 						jDesktopPane1.add(jLabelEmail);
 						jLabelEmail.setText("Email : "+Common.appSupportEmail);
-						jLabelEmail.setBounds(24, 154, 303, 14);
+						jLabelEmail.setBounds(6, 245, 398, 14);
 						jLabelEmail.setForeground(new java.awt.Color(0, 0, 255));
 						jLabelEmail.addMouseListener(new MouseAdapter()
 						{
@@ -238,28 +241,23 @@ public class JDialogAbout extends javax.swing.JDialog
 					{
 						jLabelVersion = new JLabel4j_std();
 						jDesktopPane1.add(jLabelVersion);
-						jLabelVersion.setText(Common.appDisplayName+" " + JVersion.getProgramVersion());
-						jLabelVersion.setBounds(14, 7, 322, 35);
-						jLabelVersion.setFont(new java.awt.Font("Serif", 1, 28));
-						jLabelVersion.setForeground(new java.awt.Color(255, 0, 0));
+						jLabelVersion.setText("Version " + JVersion.getProgramVersion());
+						jLabelVersion.setBounds(6, 170, 398, 28);
+						jLabelVersion.setFont(new Font("Dialog", Font.BOLD, 22));
+						jLabelVersion.setForeground(Color.RED);
 						jLabelVersion.setHorizontalAlignment(SwingConstants.CENTER);
 					}
-
-					{
-						final JBarcodePanel panelBarcode = new JBarcodePanel();
-						panelBarcode.setBackground(Color.WHITE);
-						panelBarcode.setLayout(null);
-						panelBarcode.setBounds(14, 48, 314, 60);
-						panelBarcode.setImage(i);
-						jDesktopPane1.add(panelBarcode);
-					}
+					
+					JLabel labelLogo = new JLabel("New label");
+					labelLogo.setIcon(new ImageIcon("/Users/dave/Commander4j/workspace.development/b4/images/about.jpg"));
+					labelLogo.setBounds(0, 0, 406, 169);
+					jDesktopPane1.add(labelLogo);
 				}
 			}
-			this.setSize(356, 264);
+			this.setSize(402, 324);
 		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
-
 }
