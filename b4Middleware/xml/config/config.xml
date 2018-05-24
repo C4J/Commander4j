@@ -120,7 +120,7 @@
             <XSLT/>
         </output>
     </map>
-
+    
     <map id="map08" enabed="Y" description="ASCII Flat File Fixed Column to XML">
         <input id="in1" description="Read ASCII Flat File">
             <type>ASCII</type>
@@ -415,6 +415,22 @@
             <path>./interface/output/24 (XML Pre Advice to CSV)</path>
             <type>RAW</type>
             <XSLT></XSLT>
+        </output>
+    </map>
+    
+    <map id="map25" enabed="Y" description="C4J Production Declaration Rounded Expiry Time">
+        <input id="in1" description="Read C4J Prod Dec XML">
+            <type>XML</type>
+            <path>./interface/input/25 (C4J Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_EXPIRY_23_59_59.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write S95 Prod Dec XML">
+            <path>./interface/output/25 (C4J Production Declaration Expiry 235959)</path>
+            <type>XML</type>
+            <XSLT/>
         </output>
     </map>
     

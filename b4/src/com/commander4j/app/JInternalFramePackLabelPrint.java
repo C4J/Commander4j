@@ -1051,7 +1051,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jLabelPrintLabel_2.setBounds(315, 15, 138, 21);
 			panel.add(jLabelPrintLabel_2);
 			jLabelQuantity_1 = new JLabel4j_std();
-			jLabelQuantity_1.setBounds(528, 15, 154, 21);
+			jLabelQuantity_1.setBounds(507, 15, 154, 21);
 			panel.add(jLabelQuantity_1);
 			jLabelQuantity_1.setHorizontalAlignment(SwingConstants.RIGHT);
 			jLabelQuantity_1.setText(lang.get("lbl_No_Of_Labels"));
@@ -1067,14 +1067,14 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 						jSpinnerQuantity.setValue(1);
 					}
 
-					if (t > 50)
+					if (t > 1500)
 					{
-						jSpinnerQuantity.setValue(50);
+						jSpinnerQuantity.setValue(1500);
 					}
 				}
 			});
 
-			jSpinnerQuantity.setBounds(687, 15, 49, 21);
+			jSpinnerQuantity.setBounds(665, 15, 71, 21);
 			jSpinnerQuantity.setInputVerifier(null);
 			jSpinnerQuantity.setModel(quantitynumbermodel);
 			jSpinnerQuantity.setValue(1);
