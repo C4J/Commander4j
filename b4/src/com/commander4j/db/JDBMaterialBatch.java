@@ -40,14 +40,9 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 /**
- * JDBMaterialBatch class is used to insert/update/delete records in the
- * APP_MATERIAL_BATCH table. Each time a new pallet (SSCC) is created the
- * material and batch number used in the pallet record are used to verify if the
- * expiry date is consistent with all other pallets which share the same
- * Material and Batch (assuming the control record EXPIRY DATE MODE is set to
- * "BATCH". If the control record EXPIRY DATE MODE is set to SSCC then the
- * expiry date is stored in the SSCC record and can vary between each pallet
- * even if they share the same Material/Batch.
+ * JDBMaterialBatch class is used to insert/update/delete records in the APP_MATERIAL_BATCH table. Each time a new pallet (SSCC) is created the material and batch number used in the pallet record are used to verify if the expiry date is consistent with all
+ * other pallets which share the same Material and Batch (assuming the control record EXPIRY DATE MODE is set to "BATCH". If the control record EXPIRY DATE MODE is set to SSCC then the expiry date is stored in the SSCC record and can vary between each
+ * pallet even if they share the same Material/Batch.
  * <p>
  * <img alt="" src="./doc-files/APP_MATERIAL_BATCH.jpg" >
  * 
@@ -111,7 +106,8 @@ public class JDBMaterialBatch
 		if (expiryMode.equals("SSCC"))
 		{
 			expiry = new Timestamp(0);
-		} else
+		}
+		else
 		{
 			expiry = expiryDate;
 		}
@@ -134,12 +130,14 @@ public class JDBMaterialBatch
 					if (expiry != null)
 					{
 						setExpiryDate(expiry);
-					} else
+					}
+					else
 					{
 						if (mat.getMaterialProperties(getMaterial()) == true)
 						{
 							setExpiryDate(expiry);
-						} else
+						}
+						else
 						{
 							setErrorMessage("Unknown Material " + getMaterial());
 						}
@@ -148,7 +146,8 @@ public class JDBMaterialBatch
 					if (status.length() > 0)
 					{
 						setStatus(status);
-					} else
+					}
+					else
 					{
 						setStatus(mat.getDefaultBatchStatus());
 					}
@@ -164,7 +163,8 @@ public class JDBMaterialBatch
 
 					}
 
-				} else
+				}
+				else
 				{
 					if (getExpiryDate() != null)
 					{
@@ -173,24 +173,29 @@ public class JDBMaterialBatch
 							if (expiry.equals(getExpiryDate()) == false)
 							{
 								setErrorMessage("Cannot override batch expiry date. Batch [" + getMaterial() + "/" + getBatch() + "] already exists with expiry date of " + getExpiryDate().toString());
-							} else
+							}
+							else
 							{
 								result = true;
 							}
-						} else
+						}
+						else
 						{
 							result = true;
 						}
-					} else
+					}
+					else
 					{
 						result = true;
 					}
 				}
-			} else
+			}
+			else
 			{
 				setErrorMessage("The format of the batch number [" + getBatch() + "] is not valid.\nFormat of batch number is defined in control key BATCH REGEX.");
 			}
-		} else
+		}
+		else
 		{
 			result = true;
 		}
@@ -228,7 +233,8 @@ public class JDBMaterialBatch
 				stmtupdate.close();
 				update();
 				result = true;
-			} catch (SQLException e)
+			}
+			catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -253,7 +259,8 @@ public class JDBMaterialBatch
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
 			result = true;
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -343,6 +350,10 @@ public class JDBMaterialBatch
 
 	public Timestamp getExpiryDate()
 	{
+		if (dbMaterialBatchExpiry != null)
+		{
+			dbMaterialBatchExpiry.setNanos(0);
+		}
 		return dbMaterialBatchExpiry;
 	}
 
@@ -365,7 +376,8 @@ public class JDBMaterialBatch
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
 			result.addElement(new JDBMaterialBatch("material", "batch", "status", JUtility.getSQLDateTime()));
-		} else
+		}
+		else
 		{
 			try
 			{
@@ -377,7 +389,8 @@ public class JDBMaterialBatch
 				}
 
 				rs.close();
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -393,7 +406,8 @@ public class JDBMaterialBatch
 		try
 		{
 			rs = criteria.executeQuery();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -426,13 +440,15 @@ public class JDBMaterialBatch
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Unknown Material Batch [" + getMaterial() + " " + getBatch() + "]");
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -457,7 +473,8 @@ public class JDBMaterialBatch
 			setBatch(rs.getString("batch_number"));
 			setStatus(rs.getString("status"));
 			setExpiryDate(rs.getTimestamp("expiry_date"));
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -515,14 +532,16 @@ public class JDBMaterialBatch
 			if (rs.next())
 			{
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Invalid Material / Batch");
 			}
 
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -551,6 +570,10 @@ public class JDBMaterialBatch
 
 	public void setExpiryDate(Timestamp expiryDate)
 	{
+		if (expiryDate != null)
+		{
+			expiryDate.setNanos(0);
+		}
 		dbMaterialBatchExpiry = expiryDate;
 	}
 
@@ -597,7 +620,8 @@ public class JDBMaterialBatch
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			} catch (SQLException e)
+			}
+			catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}

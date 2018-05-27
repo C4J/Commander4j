@@ -1008,6 +1008,7 @@ public class JUtility
 		caldate.setTime(d);
 
 		Timestamp t = new Timestamp(caldate.getTimeInMillis());
+		t.setNanos(0);
 		t.setTime(caldate.getTimeInMillis());
 
 		return t;

@@ -190,6 +190,7 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 								materialbatch.setStatus("");
 							}
 							Date d = dateTimePicker.getDate();
+
 							materialbatch.setExpiryDate(JUtility.getTimestampFromDate(d));
 							if (materialbatch.isValidMaterialBatch())
 							{
@@ -304,6 +305,11 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 				}
 				{
 					calendarButton = new JCalendarButton(dateTimePicker);
+					calendarButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							jButtonUpdate.setEnabled(true);
+						}
+					});
 					calendarButton.setBounds(255, 101, 21, 21);
 					jDesktopPane1.add(calendarButton);
 				}
