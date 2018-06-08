@@ -200,6 +200,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 	private JLabelPrint labelPrint = new JLabelPrint(Common.selectedHostID, Common.sessionID);
 	private PreparedStatement listStatement;
 	private JButton4j jButtonAssign;
+	private boolean DOMEditable = true;;
+	private boolean ExpiryEditable = true;;
 
 	public JInternalFramePackLabelPrint(String procOrder)
 	{
@@ -216,6 +218,9 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				timer = null;
 			}
 		});
+		
+		DOMEditable = Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_MANUAL_EDIT_DOM");
+		ExpiryEditable = Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_MANUAL_EDIT_EXPIRY");
 
 		initGUI();
 		clearFields();
@@ -359,7 +364,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jCheckBoxExpiryOverride.setEnabled(true);
 			jCheckBoxBatchPrefixOverride.setEnabled(true);
 			enableField(jSpinnerProductionDate, jCheckBoxDOMOverride.isSelected());
-			enableField(jSpinnerExpiryDate, jCheckBoxExpiryOverride.isSelected());
+			enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiryOverride.isSelected()));
 			enableField(jTextFieldBatchPrefix, jCheckBoxBatchPrefixOverride.isSelected());
 			jTextFieldBatchSuffix.setEnabled(true);
 		} else
@@ -373,7 +378,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jCheckBoxDOMOverride.setSelected(false);
 			jCheckBoxDOMOverride.setEnabled(false);
 
-			jSpinnerExpiryDate.setEnabled(false);
+			jSpinnerExpiryDate.setEnabled(getExpiryDateManualEditStatus(false));
 			jCheckBoxExpiryOverride.setSelected(false);
 			jCheckBoxExpiryOverride.setEnabled(false);
 
@@ -420,7 +425,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		enableField(jSpinnerProductionDate, jCheckBoxDOMOverride.isSelected());
 
 		jCheckBoxExpiryOverride.setSelected(false);
-		enableField(jSpinnerExpiryDate, jCheckBoxExpiryOverride.isSelected());
+		enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiryOverride.isSelected()));
 
 		jCheckBoxBatchPrefixOverride.setSelected(false);
 		enableField(jTextFieldBatchPrefix, jCheckBoxBatchPrefixOverride.isSelected());
@@ -451,7 +456,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 
 			if (jCheckBoxExpiryOverride.isSelected() == false)
 			{
-				jSpinnerExpiryDate.setEnabled(false);
+				jSpinnerExpiryDate.setEnabled(getExpiryDateManualEditStatus(false));
 
 				if (material.getMaterial().length() > 0)
 				{
@@ -693,7 +698,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jPanelProcessOrder.add(jLabelProcessOrder);
 			jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
 			jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelProcessOrder.setBounds(12, 21, 142, 21);
+			jLabelProcessOrder.setBounds(10, 21, 142, 21);
 			jTextFieldProcessOrderDescription = new JTextField4j();
 			jPanelProcessOrder.add(jTextFieldProcessOrderDescription);
 			jTextFieldProcessOrderDescription.setBounds(449, 21, 287, 21);
@@ -719,7 +724,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jPanelProcessOrder.add(jLabelDueDate);
 			jLabelDueDate.setText(lang.get("lbl_Process_Order_Due_Date"));
 			jLabelDueDate.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelDueDate.setBounds(12, 49, 142, 21);
+			jLabelDueDate.setBounds(10, 49, 142, 21);
 			jTextFieldProcessOrderStatus = new JTextField4j();
 			jPanelProcessOrder.add(jTextFieldProcessOrderStatus);
 			jTextFieldProcessOrderStatus.setBounds(449, 49, 126, 21);
@@ -734,7 +739,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jPanelProcessOrder.add(jLabelRecipe);
 			jLabelRecipe.setText(lang.get("lbl_Process_Order_Recipe"));
 			jLabelRecipe.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelRecipe.setBounds(12, 77, 142, 21);
+			jLabelRecipe.setBounds(10, 77, 142, 21);
 			jTextFieldLocation = new JTextField4j();
 			jPanelProcessOrder.add(jTextFieldLocation);
 			jTextFieldLocation.setBounds(449, 77, 126, 21);
@@ -779,7 +784,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jPanelMaterial.add(jLabelMaterial);
 			jLabelMaterial.setText(lang.get("lbl_Material"));
 			jLabelMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelMaterial.setBounds(12, 21, 142, 21);
+			jLabelMaterial.setBounds(10, 21, 142, 21);
 			jTextFieldMaterialDescription = new JTextField4j();
 			jPanelMaterial.add(jTextFieldMaterialDescription);
 			jTextFieldMaterialDescription.setBounds(449, 21, 287, 21);
@@ -822,7 +827,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jPanelMaterial.add(jLabelShelfLife);
 			jLabelShelfLife.setText(lang.get("lbl_Material_Shelf_Life"));
 			jLabelShelfLife.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelShelfLife.setBounds(12, 49, 142, 21);
+			jLabelShelfLife.setBounds(10, 49, 142, 21);
 			jTextFieldLegacyCode = new JTextField4j();
 			jPanelMaterial.add(jTextFieldLegacyCode);
 			jTextFieldLegacyCode.setBounds(161, 77, 128, 21);
@@ -832,7 +837,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jPanelMaterial.add(jLabelLegacyCode);
 			jLabelLegacyCode.setText(lang.get("lbl_Material_Legacy_Code"));
 			jLabelLegacyCode.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelLegacyCode.setBounds(12, 77, 142, 21);
+			jLabelLegacyCode.setBounds(10, 77, 142, 21);
 			jPanelLabel = new JPanel();
 			jDesktopPane1.add(jPanelLabel);
 			jPanelLabel.setBounds(7, 231, 748, 136);
@@ -866,7 +871,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			try
 			{
 				jSpinnerProductionDate.setDate(JUtility.getSQLDate());
-				jSpinnerProductionDate.setEnabled(false);
+				jSpinnerProductionDate.setEnabled(getProductionDateManualEditStatus(false));
 			} catch (Exception e)
 			{
 			}
@@ -875,7 +880,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jPanelLabel.add(jLabelProductionDate);
 			jLabelProductionDate.setText(lang.get("lbl_Pallet_DOM"));
 			jLabelProductionDate.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelProductionDate.setBounds(46, 21, 108, 21);
+			jLabelProductionDate.setBounds(10, 21, 142, 21);
 
 			jFormattedTextFieldBaseUOMQuantity = new JQuantityInput(new BigDecimal("0"));
 			jFormattedTextFieldBaseUOMQuantity.setEditable(false);
@@ -951,20 +956,20 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					enableField(jSpinnerProductionDate, jCheckBoxDOMOverride.isSelected());
+					enableField(jSpinnerProductionDate, getProductionDateManualEditStatus(jCheckBoxDOMOverride.isSelected()));
 					enableField(calendarButtonjSpinnerProductionDate, jCheckBoxDOMOverride.isSelected());
 				}
 			});
 
 			calendarButtonjSpinnerProductionDate = new JCalendarButton(jSpinnerProductionDate);
-			calendarButtonjSpinnerProductionDate.setEnabled(false);
+			calendarButtonjSpinnerProductionDate.setEnabled(getProductionDateManualEditStatus(false));
 			calendarButtonjSpinnerProductionDate.setBounds(308, 21, 21, 21);
 			jPanelLabel.add(calendarButtonjSpinnerProductionDate);
 			jLabelBatch = new JLabel4j_std();
 			jPanelLabel.add(jLabelBatch);
 			jLabelBatch.setText(lang.get("lbl_Material_Batch"));
 			jLabelBatch.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelBatch.setBounds(46, 85, 108, 21);
+			jLabelBatch.setBounds(10, 85, 142, 21);
 			jTextFieldBatchPrefix = new JTextField4j(JDBMaterialBatch.field_batch_number);
 			jPanelLabel.add(jTextFieldBatchPrefix);
 			jTextFieldBatchPrefix.setBounds(176, 85, 108, 21);
@@ -984,12 +989,12 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jSpinnerExpiryDate.setBounds(176, 52, 135, 25);
 			jSpinnerExpiryDate.getEditor().setPreferredSize(new java.awt.Dimension(87, 19));
 			jSpinnerExpiryDate.getEditor().setSize(87, 21);
-			jSpinnerExpiryDate.setEnabled(false);
+			jSpinnerExpiryDate.setEnabled(getExpiryDateManualEditStatus(false));
 			jLabelBatchExpiry = new JLabel4j_std();
 			jPanelLabel.add(jLabelBatchExpiry);
 			jLabelBatchExpiry.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
 			jLabelBatchExpiry.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelBatchExpiry.setBounds(46, 56, 108, 21);
+			jLabelBatchExpiry.setBounds(10, 56, 142, 21);
 			jCheckBoxExpiryOverride = new JCheckBox4j();
 			jPanelLabel.add(jCheckBoxExpiryOverride);
 			jCheckBoxExpiryOverride.setBounds(153, 53, 21, 21);
@@ -999,7 +1004,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
-					enableField(jSpinnerExpiryDate, jCheckBoxExpiryOverride.isSelected());
+					enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiryOverride.isSelected()));
 					enableField(calendarButtonjSpinnerExpiryDate, jCheckBoxExpiryOverride.isSelected());
 					calcBBEBatch();
 				}
@@ -1187,6 +1192,30 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		}
 	}
 
+	private boolean getProductionDateManualEditStatus(boolean requestedStatus)
+	{
+		boolean result = DOMEditable;
+		
+		if (DOMEditable)
+		{
+			result = requestedStatus;
+		}
+		
+		return result;
+	}
+	
+	private boolean getExpiryDateManualEditStatus(boolean requestedStatus)
+	{
+		boolean result = ExpiryEditable;
+		
+		if (ExpiryEditable)
+		{
+			result = requestedStatus;
+		}
+		
+		return result;
+	}	
+	
 	private void checkFieldColours()
 	{
 		Color background = Color.WHITE;

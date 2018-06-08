@@ -217,6 +217,8 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private BigDecimal caseDefaultQuantity;
 	private String jTextFieldBaseEAN;
 	private String jTextFieldBaseVariant;
+	private boolean DOMEditable = true;;
+	private boolean ExpiryEditable = true;;
 
 	public JInternalFrameProductionDeclaration(String procOrder)
 	{
@@ -238,6 +240,9 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 
 		copiesnumbermodel = new SpinnerNumberModel(copies, 1, 100, 1);
 
+		DOMEditable = Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PAL_PROD_DEC_MANUAL_EDIT_DOM");
+		ExpiryEditable = Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PAL_PROD_DEC_MANUAL_EDIT_EXPIRY");
+		
 		initGUI();
 		clearFields();
 
@@ -449,7 +454,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 		enableField(jSpinnerProductionDate, jCheckBoxProductionDate.isSelected());
 
 		jCheckBoxExpiry.setSelected(false);
-		enableField(jSpinnerExpiryDate, jCheckBoxExpiry.isSelected());
+		enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiry.isSelected()));
 
 		jCheckBoxBatch.setSelected(false);
 		enableField(jTextFieldBatch, jCheckBoxBatch.isSelected());
@@ -494,8 +499,8 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jCheckBoxProductionDate.setEnabled(true);
 			jCheckBoxExpiry.setEnabled(true);
 			jCheckBoxBatch.setEnabled(true);
-			enableField(jSpinnerProductionDate, jCheckBoxProductionDate.isSelected());
-			enableField(jSpinnerExpiryDate, jCheckBoxExpiry.isSelected());
+			enableField(jSpinnerProductionDate, getProductionDateManualEditStatus(jCheckBoxProductionDate.isSelected()));
+			enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiry.isSelected()));
 			enableField(jTextFieldBatch, jCheckBoxBatch.isSelected());
 			textFieldBatchExtension.setEnabled(true);
 		} else
@@ -505,11 +510,11 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 
 			jFormattedTextFieldProdQuantity.setEnabled(false);
 
-			jSpinnerProductionDate.setEnabled(false);
+			jSpinnerProductionDate.setEnabled(getProductionDateManualEditStatus(false));
 			jCheckBoxProductionDate.setSelected(false);
 			jCheckBoxProductionDate.setEnabled(false);
 
-			jSpinnerExpiryDate.setEnabled(false);
+			jSpinnerExpiryDate.setEnabled(getExpiryDateManualEditStatus(false));
 			jCheckBoxExpiry.setSelected(false);
 			jCheckBoxExpiry.setEnabled(false);
 
@@ -542,7 +547,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 
 			if (jCheckBoxExpiry.isSelected() == false)
 			{
-				jSpinnerExpiryDate.setEnabled(false);
+				jSpinnerExpiryDate.setEnabled(getExpiryDateManualEditStatus(false));
 
 				if (material.getMaterial().length() > 0)
 				{
@@ -1137,7 +1142,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			try
 			{
 				jSpinnerProductionDate.setDate(JUtility.getSQLDate());
-				jSpinnerProductionDate.setEnabled(false);
+				jSpinnerProductionDate.setEnabled(getProductionDateManualEditStatus(false));
 			} catch (Exception e)
 			{
 			}
@@ -1225,12 +1230,12 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jCheckBoxProductionDate = new JCheckBox4j();
 			jPanelPallet.add(jCheckBoxProductionDate);
 			jCheckBoxProductionDate.setBackground(new java.awt.Color(255, 255, 255));
-			jCheckBoxProductionDate.setBounds(139, 45, 21, 21);
+			jCheckBoxProductionDate.setBounds(139, 46, 21, 21);
 			jCheckBoxProductionDate.setEnabled(false);
 			jCheckBoxProductionDate.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt)
 				{
-					enableField(jSpinnerProductionDate, jCheckBoxProductionDate.isSelected());
+					enableField(jSpinnerProductionDate, getProductionDateManualEditStatus(jCheckBoxProductionDate.isSelected()));
 					enableField(calendarButtonjSpinnerProductionDate, jCheckBoxProductionDate.isSelected());
 				}
 			});
@@ -1282,7 +1287,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jSpinnerExpiryDate.setBounds(161, 17, 135, 25);
 			jSpinnerExpiryDate.getEditor().setPreferredSize(new java.awt.Dimension(87, 19));
 			jSpinnerExpiryDate.getEditor().setSize(87, 21);
-			jSpinnerExpiryDate.setEnabled(false);
+			jSpinnerExpiryDate.setEnabled(getExpiryDateManualEditStatus(false));
 			jLabelBatchExpiry = new JLabel4j_std();
 			jPanelBatch.add(jLabelBatchExpiry);
 			jLabelBatchExpiry.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
@@ -1290,13 +1295,13 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jLabelBatchExpiry.setBounds(12, 17, 122, 21);
 			jCheckBoxExpiry = new JCheckBox4j();
 			jPanelBatch.add(jCheckBoxExpiry);
-			jCheckBoxExpiry.setBounds(139, 17, 21, 21);
+			jCheckBoxExpiry.setBounds(139, 18, 21, 21);
 			jCheckBoxExpiry.setBackground(new java.awt.Color(255, 255, 255));
 			jCheckBoxExpiry.setEnabled(false);
 			jCheckBoxExpiry.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt)
 				{
-					enableField(jSpinnerExpiryDate, jCheckBoxExpiry.isSelected());
+					enableField(jSpinnerExpiryDate, getExpiryDateManualEditStatus(jCheckBoxExpiry.isSelected()));
 					enableField(calendarButtonjSpinnerExpiryDate, jCheckBoxExpiry.isSelected());
 					calcBBEBatch();
 				}
@@ -1482,6 +1487,30 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			}
 		}
 	}
+	
+	private boolean getProductionDateManualEditStatus(boolean requestedStatus)
+	{
+		boolean result = DOMEditable;
+		
+		if (DOMEditable)
+		{
+			result = requestedStatus;
+		}
+		
+		return result;
+	}
+	
+	private boolean getExpiryDateManualEditStatus(boolean requestedStatus)
+	{
+		boolean result = ExpiryEditable;
+		
+		if (ExpiryEditable)
+		{
+			result = requestedStatus;
+		}
+		
+		return result;
+	}	
 	
 	private void buildSQL(String key)
 	{
