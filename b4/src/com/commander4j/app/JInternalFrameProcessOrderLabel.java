@@ -195,7 +195,7 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 		query.clear();
 
-		temp = Common.hostList.getHost(Common.selectedHostID).getSqlstatements().getSQL("JDBProcessOrder.selectWithLimit");
+		temp = Common.hostList.getHost(Common.selectedHostID).getSqlstatements().getSQL("JDBProcessOrder.ViewResource");
 
 		query.addText(temp);
 

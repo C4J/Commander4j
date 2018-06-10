@@ -644,8 +644,8 @@
 			<text>select * from {schema}APP_PROCESS_ORDER as APP_PROCESS_ORDER</text>
 		</statement>
 	    <statement>
-			<id>JDBProcessOrderResource</id>
-			<text>select * from view_process_order_resource where process_order = ?</text>
+			<id>JDBProcessOrder.ViewResource</id>
+			<text>select * from view_process_order_resource</text>
 		</statement>
 		<?JDBLocation ?>
 		<statement>
