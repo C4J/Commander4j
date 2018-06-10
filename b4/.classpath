@@ -11,13 +11,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/servlet-api-2.4.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/avalon-framework-4.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/cups4j/cups4j.runnable-0.6.4.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/jackson-annotations-2.1.4.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/jackson-core-2.1.4.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/jackson-databind-2.1.4.jar"/>
 	<classpathentry kind="lib" path="lib/mail/javax.mail.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/lucene-analyzers-common-4.5.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/lucene-core-4.5.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/lucene-queryparser-4.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/olap4j-0.9.7.309-JS-3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/castor-core-1.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/castor-xml-1.3.3.jar"/>
@@ -69,28 +63,41 @@
 	<classpathentry kind="lib" path="lib/jasperlib/httpclient-4.3.6.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/httpcore-4.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/xmlgraphics-commons-2.2.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/serializer-2.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/joda-time-2.9.9.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/ecj-4.4.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-codec-1.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.5.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.5.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.5.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.5.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/app/opencsv-4.1.jar"/>
 	<classpathentry kind="lib" path="lib/app/jackcess-2.1.9.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.11.jar"/>
 	<classpathentry kind="lib" path="lib/db/mssql-jdbc-6.4.0.jre8.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-text-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-io-2.6.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+	<classpathentry kind="lib" path="lib/app/commons-lang3-3.7.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.api-2.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.providers.asm5-2.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.tools.ant-2.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.tools.jar-2.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/asm-all-5.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/jackson-annotations-2.9.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/jackson-core-2.9.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/jackson-databind-2.9.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/jasperreports-annotation-processors-6.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/jasperreports-metadata-6.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/lucene-analyzers-common-7.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/lucene-core-7.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/lucene-queryparser-7.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/barcode/serializer-2.7.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 (1.8.0_172)">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/app/commons-lang3-3.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
