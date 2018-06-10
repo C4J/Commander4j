@@ -643,6 +643,10 @@
 			<id>JDBProcessOrder.selectWithLimit</id>
 			<text>select * from {schema}app_process_order</text>
 		</statement>
+		<statement>
+			<id>JDBProcessOrderResource</id>
+			<text>select * from view_process_order_resource where process_order = ?</text>
+		</statement>
 		<?JDBLocation ?>
 		<statement>
 			<id>JDBLocation.create</id>

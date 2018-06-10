@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	CREATE VIEW `VIEW_PROCESS_ORDER_RESOURCE` AS (
+		SELECT
+			`app_process_order`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+			`app_process_order`.`MATERIAL` AS `MATERIAL`,
+			`app_process_order`.`STATUS` AS `STATUS`,
+			`app_process_order`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE`,
+			`app_process_order_resource`.`DESCRIPTION` AS `RESOURCE_NAME`,
+			`app_process_order_resource`.`BATCH_SUFFIX` AS `BATCH_SUFFIX`,
+			`app_material`.`DESCRIPTION` AS `DESCRIPTION`,
+			`app_material`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+			`app_location`.`PLANT` AS `PLANT` 
+		FROM
+			(
+				(
+					(
+						`app_process_order`
+						LEFT JOIN `app_process_order_resource` ON ( ( `app_process_order_resource`.`REQUIRED_RESOURCE` = `app_process_order`.`REQUIRED_RESOURCE` ) ) 
+					)
+					LEFT JOIN `app_material` ON ( ( `app_material`.`MATERIAL` = `app_process_order`.`MATERIAL` ) ) 
+				)
+			LEFT JOIN `app_location` ON ( ( `app_location`.`LOCATION_ID` = `app_process_order`.`LOCATION_ID` ) ) 
+			))
+</statement>
+		
+</DDL>
