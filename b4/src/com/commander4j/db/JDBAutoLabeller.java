@@ -614,17 +614,7 @@ public class JDBAutoLabeller
 
 	public void setUniqueID(String po)
 	{
-		po = JUtility.replaceNullStringwithBlank(po);
-		if (db_unique_id.equals(po) == false)
-		{
-			setModified("Y");
-		}
-
-		else
-		{
-			setModified("N");
-		}
-		db_unique_id = po;
+		db_unique_id = JUtility.replaceNullStringwithBlank(po);
 		labdata.getProperties(db_unique_id);
 
 	}

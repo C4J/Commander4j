@@ -177,8 +177,9 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 							{
 								labdat.updateLine(unique_id, lineid);
 								autolab.setUniqueID(unique_id);
+								autolab.setModified(true);
 								autolab.update();
-								labdat.sendMessage();
+								//labdat.sendMessage();
 							} else
 							{
 								JUtility.errorBeep();

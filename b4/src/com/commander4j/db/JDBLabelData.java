@@ -37,7 +37,6 @@ import org.apache.log4j.Logger;
 
 import com.opencsv.ResultSetHelperService;
 
-import com.commander4j.messages.OutgoingLabelData;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
@@ -179,12 +178,6 @@ public class JDBLabelData
 		setBatchSuffix("");
 		setLabelType("");
 		setLine("");
-	}
-
-	public void sendMessage()
-	{
-		OutgoingLabelData old = new OutgoingLabelData(getHostID(), getSessionID());
-		old.submit(getUniqueID());
 	}
 
 	public boolean create()

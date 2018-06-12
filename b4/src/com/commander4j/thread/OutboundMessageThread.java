@@ -43,7 +43,6 @@ import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.messages.OutgoingDespatchConfirmation;
 import com.commander4j.messages.OutgoingDespatchPreAdvice;
 import com.commander4j.messages.OutgoingEquipmentTracking;
-import com.commander4j.messages.OutgoingLabelData;
 import com.commander4j.messages.OutgoingPalletDelete;
 import com.commander4j.messages.OutgoingPalletSplit;
 import com.commander4j.messages.OutgoingPalletStatusChange;
@@ -125,7 +124,6 @@ public class OutboundMessageThread extends Thread
 			OutgoingPalletStatusChange psc = new OutgoingPalletStatusChange(getHostID(), getSessionID());
 			OutgoingPalletSplit ops = new OutgoingPalletSplit(getHostID(), getSessionID());
 			OutgoingPalletDelete opd = new OutgoingPalletDelete(getHostID(), getSessionID());
-			OutgoingLabelData old = new OutgoingLabelData(getHostID(), getSessionID());
 			LinkedList<Long> irqList = new LinkedList<Long>();
 			int noOfMessages = 0;
 
@@ -227,13 +225,6 @@ public class OutboundMessageThread extends Thread
 								GenericMessageHeader.updateStats("Output","Equipment Tracking", messageProcessedOK.toString());
 							}
 							
-							if (ir.getInterfaceType().equals("Label Data"))
-							{
-								messageProcessedOK = old.processMessage(ir.getUniqueID());
-								errorMessage = oet.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Label Data", messageProcessedOK.toString());
-							}
-
 							if (messageProcessedOK == true)
 							{
 								ir.delete();

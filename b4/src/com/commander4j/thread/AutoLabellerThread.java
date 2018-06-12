@@ -39,6 +39,7 @@ import java.util.LinkedList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -188,6 +189,8 @@ public class AutoLabellerThread extends Thread {
 								String exportFilename = exportPath + JUtility.removePathSeparators(autolabview.getAutoLabellerObj().getLine()) + "_" + JUtility.removePathSeparators(autolabview.getPrinterObj().getPrinterID()) + "."
 										+ autolabview.getPrinterObj().getExportFormat();
 								
+								String exportFilenameTemp = exportFilename+".out";
+								
 								logger.debug("Export Filename  =" + exportFilename);
 
 								/* ================CSV================ */
@@ -209,7 +212,7 @@ public class AutoLabellerThread extends Thread {
 
 										logger.debug("Writing CSV");
 										
-										CSVWriter writer = new CSVWriter(new FileWriter(exportFilename), CSVWriter.DEFAULT_SEPARATOR,CSVWriter.DEFAULT_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER,CSVWriter.DEFAULT_LINE_END);
+										CSVWriter writer = new CSVWriter(new FileWriter(exportFilenameTemp), CSVWriter.DEFAULT_SEPARATOR,CSVWriter.DEFAULT_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER,CSVWriter.DEFAULT_LINE_END);
 										
 										writer.writeAll(rs, true);
 
@@ -218,6 +221,17 @@ public class AutoLabellerThread extends Thread {
 										stmt.close();
 
 										writer.close();
+										
+										File fromFile=new File(exportFilenameTemp);
+										File toFile=new File(exportFilename);
+
+										FileUtils.deleteQuietly(toFile);
+										FileUtils.moveFile(fromFile, toFile);
+										
+										fromFile=null;
+										toFile=null;
+										
+										
 									} catch (Exception e)
 									{
 										messageProcessedOK = false;
@@ -349,7 +363,7 @@ public class AutoLabellerThread extends Thread {
 							autolabview.getAutoLabellerObj().update();
 						} else
 						{
-							logger.error(messageError);
+							logger.debug(messageError);
 						}
 
 						autolabview = null;
