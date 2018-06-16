@@ -38,7 +38,6 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -100,12 +99,14 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
      	jDesktopPane1.add(label_1);
 	
      	jSpinnerQuantity.setEnabled(true);
+		jSpinnerQuantity.setValue(1);
 		JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerQuantity);
 		ne.getTextField().setFont(Common.font_std); 
 		jSpinnerQuantity.setEditor(ne);
-		jSpinnerQuantity.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		//jSpinnerQuantity.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), new Integer(1), new Integer(1)));
 		jSpinnerQuantity.setFont(Common.font_std);
-		jSpinnerQuantity.setBounds(415, 41, 39, 21);
+		jSpinnerQuantity.setBounds(415, 41, 66, 21);
+		jSpinnerQuantity.setValue(1);
 		jDesktopPane1.add(jSpinnerQuantity);
 		
 		JLabel4j_std label_3 = new JLabel4j_std(lang.get("lbl_Print_Queue"));
