@@ -155,13 +155,13 @@ public class JDialogSysInfo extends javax.swing.JDialog
 		JLabel4j_std lblLocale = new JLabel4j_std();
 		lblLocale.setText("Locale :");
 		lblLocale.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblLocale.setBounds(474, 108, 58, 21);
+		lblLocale.setBounds(604, 106, 58, 21);
 		jDesktopPane1.add(lblLocale);
 		
 		textFieldLocale = new JTextField4j();
 		textFieldLocale.setEnabled(false);
 		textFieldLocale.setEditable(false);
-		textFieldLocale.setBounds(537, 107, 58, 20);
+		textFieldLocale.setBounds(669, 107, 80, 20);
 		jDesktopPane1.add(textFieldLocale);
 		textFieldLocale.setText(Locale.getDefault().getCountry()+","+Locale.getDefault().getLanguage());
 		
@@ -288,7 +288,7 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText("Java VM Version :");
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel3.setBounds(230, 106, 119, 21);
+					jLabel3.setBounds(358, 106, 119, 21);
 				}
 				{
 					jLabel4 = new JLabel4j_std();
@@ -309,14 +309,14 @@ public class JDialogSysInfo extends javax.swing.JDialog
 					jDesktopPane1.add(jLabel8);
 					jLabel8.setText("OS Architecture :");
 					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel8.setBounds(230, 168, 118, 21);
+					jLabel8.setBounds(359, 168, 118, 21);
 				}
 				{
 					jLabel9 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel9);
 					jLabel9.setText("OS Version :");
 					jLabel9.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel9.setBounds(479, 168, 95, 21);
+					jLabel9.setBounds(567, 168, 95, 21);
 				}
 				{
 					jLabel10 = new JLabel4j_std();
@@ -342,35 +342,35 @@ public class JDialogSysInfo extends javax.swing.JDialog
 				{
 					jTextFieldJavaVersion = new JTextField4j();
 					jDesktopPane1.add(jTextFieldJavaVersion);
-					jTextFieldJavaVersion.setBounds(127, 107, 100, 20);
+					jTextFieldJavaVersion.setBounds(127, 107, 231, 20);
 					jTextFieldJavaVersion.setEditable(false);
 					jTextFieldJavaVersion.setEnabled(false);
 				}
 				{
 					jTextFieldJavaVMVersion = new JTextField4j();
 					jDesktopPane1.add(jTextFieldJavaVMVersion);
-					jTextFieldJavaVMVersion.setBounds(358, 107, 100, 20);
+					jTextFieldJavaVMVersion.setBounds(486, 107, 100, 20);
 					jTextFieldJavaVMVersion.setEditable(false);
 					jTextFieldJavaVMVersion.setEnabled(false);
 				}
 				{
 					jTextFieldOSName = new JTextField4j();
 					jDesktopPane1.add(jTextFieldOSName);
-					jTextFieldOSName.setBounds(127, 169, 100, 20);
+					jTextFieldOSName.setBounds(127, 169, 231, 20);
 					jTextFieldOSName.setEditable(false);
 					jTextFieldOSName.setEnabled(false);
 				}
 				{
 					jTextFieldOSArchitecture = new JTextField4j();
 					jDesktopPane1.add(jTextFieldOSArchitecture);
-					jTextFieldOSArchitecture.setBounds(358, 169, 100, 20);
+					jTextFieldOSArchitecture.setBounds(486, 169, 100, 20);
 					jTextFieldOSArchitecture.setEditable(false);
 					jTextFieldOSArchitecture.setEnabled(false);
 				}
 				{
 					jTextFieldOSVersion = new JTextField4j();
 					jDesktopPane1.add(jTextFieldOSVersion);
-					jTextFieldOSVersion.setBounds(580, 169, 169, 20);
+					jTextFieldOSVersion.setBounds(669, 169, 80, 20);
 					jTextFieldOSVersion.setEditable(false);
 					jTextFieldOSVersion.setEnabled(false);
 				}

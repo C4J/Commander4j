@@ -513,14 +513,14 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			JTextField4j textField4j_Prod_Quantity = new JTextField4j();
 			textField4j_Prod_Quantity.setEnabled(false);
 			textField4j_Prod_Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
-			textField4j_Prod_Quantity.setBounds(154, 132, 74, 21);
+			textField4j_Prod_Quantity.setBounds(154, 165, 74, 21);
 			textField4j_Prod_Quantity.setText(labdat.getProdQuantity().toString());
 			jDesktopPane1.add(textField4j_Prod_Quantity);
 
 			JTextField4j textField4j_Base_Quantity = new JTextField4j();
 			textField4j_Base_Quantity.setEnabled(false);
 			textField4j_Base_Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
-			textField4j_Base_Quantity.setBounds(154, 165, 74, 21);
+			textField4j_Base_Quantity.setBounds(154, 132, 74, 21);
 			textField4j_Base_Quantity.setText(labdat.getBaseQuantity().toString());
 			jDesktopPane1.add(textField4j_Base_Quantity);
 

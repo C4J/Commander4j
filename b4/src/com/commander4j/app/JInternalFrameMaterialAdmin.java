@@ -1128,6 +1128,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				jDesktopPane1.add(jCheckBoxLimit);
 
 				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
+				ne.getTextField().setFont(Common.font_std);
 				jSpinnerLimit.setEditor(ne);
 				jSpinnerLimit.setValue(1000);
 				jSpinnerLimit.setBounds(869, 110, 68, 21);
