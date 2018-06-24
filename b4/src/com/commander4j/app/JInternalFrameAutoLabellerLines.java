@@ -56,6 +56,8 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.tablemodel.JDBAutoLabellerTableModel;
 import com.commander4j.util.JUtility;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 /**
  * The JInternalFrameAutoLabellerLines class allows the user to manage the table
@@ -90,11 +92,32 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 	private PreparedStatement listStatement;
 	private JDBAutoLabellerTableModel autolabeltable = new JDBAutoLabellerTableModel(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_std jStatusText;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JRadioButton rdbtnAll = new JRadioButton("All");
+	private JRadioButton rdbtnPack = new JRadioButton("Pack");
+	private JRadioButton rdbtnPallet = new JRadioButton("Pallet");
 
 	public JInternalFrameAutoLabellerLines()
 	{
 		initGUI();
 		refresh();
+	}
+	
+	private String getFilterString()
+	{
+		String result = "%";
+		
+		if (rdbtnPack.isSelected())
+		{
+			result = "Pack";
+		}
+		
+		if (rdbtnPallet.isSelected())
+		{
+			result = "Pallet";
+		}		
+		
+		return result;
 	}
 
 	private void buildSQL()
@@ -105,7 +128,8 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 
 		query.clear();
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_AUTO_LABELLER order by line"));
+		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_AUTO_LABELLER WHERE GROUP_ID LIKE ? order by GROUP_ID,LINE"));
+		query.addParameter(getFilterString());
 		query.applyRestriction(false, "none", 0);
 		query.bindParams();
 
@@ -117,7 +141,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(674, 474));
-			this.setBounds(0, 0, 998, 437);
+			this.setBounds(0, 0, 1025, 521);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -131,7 +155,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
-			jButtonClose.setBounds(861, 350, 123, 32);
+			jButtonClose.setBounds(871, 445, 123, 32);
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -152,7 +176,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonRefresh.setIcon(Common.icon_refresh);
 			jButtonRefresh.setText(lang.get("btn_Refresh"));
 			jButtonRefresh.setMnemonic('0');
-			jButtonRefresh.setBounds(615, 350, 123, 32);
+			jButtonRefresh.setBounds(625, 445, 123, 32);
 			jDesktopPane1.add(jButtonRefresh);
 
 			JButton4j jButtonAdd = new JButton4j(Common.icon_add);
@@ -166,7 +190,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonAdd.setText(lang.get("btn_Add"));
 			jButtonAdd.setMnemonic('A');
 			jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_ADD"));
-			jButtonAdd.setBounds(0, 350, 123, 32);
+			jButtonAdd.setBounds(10, 445, 123, 32);
 			jDesktopPane1.add(jButtonAdd);
 
 			JButton4j JButtonEdit = new JButton4j(Common.icon_edit);
@@ -180,7 +204,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			JButtonEdit.setText(lang.get("btn_Edit"));
 			JButtonEdit.setMnemonic('E');
 			JButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_EDIT"));
-			JButtonEdit.setBounds(123, 350, 123, 32);
+			JButtonEdit.setBounds(133, 445, 123, 32);
 			jDesktopPane1.add(JButtonEdit);
 
 			JButton4j jButtonDelete = new JButton4j(Common.icon_delete);
@@ -194,7 +218,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonDelete.setText(lang.get("btn_Delete"));
 			jButtonDelete.setMnemonic('D');
 			jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_DELETE"));
-			jButtonDelete.setBounds(246, 350, 123, 32);
+			jButtonDelete.setBounds(256, 445, 123, 32);
 			jDesktopPane1.add(jButtonDelete);
 
 			JButton4j jButtonRename = new JButton4j(Common.icon_rename);
@@ -208,10 +232,10 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonRename.setText(lang.get("btn_Rename"));
 			jButtonRename.setMnemonic('D');
 			jButtonRename.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_RENAME"));
-			jButtonRename.setBounds(369, 350, 123, 32);
+			jButtonRename.setBounds(379, 445, 123, 32);
 			jDesktopPane1.add(jButtonRename);
 
-			scrollPane.setBounds(0, 0, 979, 345);
+			scrollPane.setBounds(0, 34, 1003, 399);
 
 			jTable1 = new JTable();
 			jTable1.addMouseListener(new MouseAdapter()
@@ -255,7 +279,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 				}
 			});
 			button4jResend.setText(lang.get("btn_Resend"));
-			button4jResend.setBounds(492, 350, 123, 32);
+			button4jResend.setBounds(502, 445, 123, 32);
 			jDesktopPane1.add(button4jResend);
 
 			JButton4j button4jHistory = new JButton4j(Common.icon_history);
@@ -278,7 +302,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 				}
 			});
 			button4jHistory.setText(lang.get("btn_History"));
-			button4jHistory.setBounds(738, 350, 123, 32);
+			button4jHistory.setBounds(748, 445, 123, 32);
 			jDesktopPane1.add(button4jHistory);
 
 			jStatusText = new JLabel4j_std();
@@ -286,11 +310,44 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jStatusText.setBackground(Color.GRAY);
 			jStatusText.setBounds(-1, 384, 985, 21);
 			jDesktopPane1.add(jStatusText);
+			rdbtnAll.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					refresh();
+				}
+			});
+			
+
+			rdbtnAll.setSelected(true);
+			rdbtnAll.setBackground(Common.color_app_window);
+			buttonGroup.add(rdbtnAll);
+			rdbtnAll.setBounds(8, 8, 54, 23);
+			jDesktopPane1.add(rdbtnAll);
+			
+			rdbtnPack.setBackground(Common.color_app_window);
+			buttonGroup.add(rdbtnPack);
+			rdbtnPack.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					refresh();
+				}
+			});
+			rdbtnPack.setBounds(81, 8, 62, 23);
+			jDesktopPane1.add(rdbtnPack);
+			
+			rdbtnPallet.setBackground(Common.color_app_window);
+			buttonGroup.add(rdbtnPallet);
+			rdbtnPallet.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					refresh();
+				}
+			});
+			rdbtnPallet.setBounds(156, 8, 67, 23);
+			jDesktopPane1.add(rdbtnPallet);
 
 			mod.setModuleId("FRM_ADMIN_PRINTERS");
 			mod.getModuleProperties();
 
-			populateList("","");
+			//populateList("","");
+			refresh();
 
 		} catch (Exception e)
 		{
@@ -332,15 +389,15 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 		jTable1.setFont(Common.font_list);
 
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Line_Col).setPreferredWidth(110);
-		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Description_Col).setPreferredWidth(200);
-		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.ProcessOrder_Col).setPreferredWidth(100);
-		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Material_Col).setPreferredWidth(100);
-		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Batch_Col).setPreferredWidth(100);
+		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Description_Col).setPreferredWidth(190);
+		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.ProcessOrder_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Material_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Batch_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.SSCC_Prefix_Col).setWidth(150);
-		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Use_SSCC_Range_Col).setWidth(50);
+		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Use_SSCC_Range_Col).setWidth(40);
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.SSCC_Range_Col).setWidth(150);
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Expiry_Col).setPreferredWidth(120);
-		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Modified_Col).setPreferredWidth(60);
+		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Modified_Col).setPreferredWidth(50);
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Group_Col).setPreferredWidth(60);
 
 		scrollPane.repaint();

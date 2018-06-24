@@ -954,6 +954,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonLabel);
 					jButtonLabel.setText(lang.get("btn_Label"));
 					jButtonLabel.setMnemonic(java.awt.event.KeyEvent.VK_H);
+					jButtonLabel.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PROCESS_ORDER_LABEL"));
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);

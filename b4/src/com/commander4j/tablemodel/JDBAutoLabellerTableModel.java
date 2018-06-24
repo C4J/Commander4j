@@ -59,43 +59,48 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 	private String ssccPrefix = "";
 	private String hostID;
 	private String sessionID;
-    private JDBControl ctrl;
-    private JDBLabelData labdata;
-	private String[] mcolNames = { "Line","Group","Description", "Process Order", "Material", "Batch","Expiry Date","Modified","Use SSCC","SSCC Prefix","Sequence No" };
+	private JDBControl ctrl;
+	private JDBLabelData labdata;
+	private String[] mcolNames =
+	{ "Line", "Group", "Description", "Process Order", "Material", "Batch", "Expiry Date", "Modified", "Use SSCC", "SSCC Prefix", "Sequence" };
 	private String lastUniqueFound = "";
 	private ResultSet mResultSet;
 
 	private int prowCount = -1;
-	private HashMap<Integer,JDBAutoLabeller> cache = new HashMap<Integer,JDBAutoLabeller>();
-	
-	public JDBAutoLabellerTableModel(String host,String session)
+	private HashMap<Integer, JDBAutoLabeller> cache = new HashMap<Integer, JDBAutoLabeller>();
+
+	public JDBAutoLabellerTableModel(String host, String session)
 	{
 		setHostID(host);
 		setSessionID(session);
-		ctrl = new JDBControl(getHostID(),getSessionID());
-		labdata = new JDBLabelData(getHostID(),getSessionID());
+		ctrl = new JDBControl(getHostID(), getSessionID());
+		labdata = new JDBLabelData(getHostID(), getSessionID());
 		ssccPrefix = ctrl.getKeyValue("SSCC PREFIX");
 	}
-	
-	private String getSessionID() {
+
+	private String getSessionID()
+	{
 		return sessionID;
 	}
 
-	private String getHostID() {
+	private String getHostID()
+	{
 		return hostID;
 	}
-	
-	private void setHostID(String host) {
+
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	private void setSessionID(String session) {
+	private void setSessionID(String session)
+	{
 		sessionID = session;
 	}
-	
+
 	public void setResultSet(ResultSet rs)
 	{
-		
+
 		try
 		{
 			cache.clear();
@@ -110,11 +115,13 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 		mResultSet = rs;
 	}
 
-	public int getColumnCount() {
+	public int getColumnCount()
+	{
 		return mcolNames.length;
 	}
 
-	public int getRowCount() {
+	public int getRowCount()
+	{
 		try
 		{
 			if (prowCount <= 0)
@@ -132,20 +139,22 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 		}
 	}
 
-	public void setValueAt(Object value, int row, int col) {
+	public void setValueAt(Object value, int row, int col)
+	{
 
 	}
 
-	public String getColumnName(int col) {
+	public String getColumnName(int col)
+	{
 		return mcolNames[col];
 	}
-    
-	
-	public Object getValueAt(int row, int col) {
+
+	public Object getValueAt(int row, int col)
+	{
 
 		try
 		{
-			if (cache.containsKey(row)==false)
+			if (cache.containsKey(row) == false)
 			{
 				mResultSet.absolute(row + 1);
 				final JDBAutoLabeller prow = new JDBAutoLabeller(Common.selectedHostID, Common.sessionID);
@@ -162,7 +171,7 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 			case Description_Col:
 				return cache.get(row).getDescription();
 			case ProcessOrder_Col:
-				if ( cache.get(row).getUniqueID().equals(lastUniqueFound)==false)
+				if (cache.get(row).getUniqueID().equals(lastUniqueFound) == false)
 				{
 					if (labdata.getProperties(cache.get(row).getUniqueID()))
 					{
@@ -180,7 +189,7 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 					return labdata.getProcessOrder();
 				}
 			case Material_Col:
-				if ( cache.get(row).getUniqueID().equals(lastUniqueFound)==false)
+				if (cache.get(row).getUniqueID().equals(lastUniqueFound) == false)
 				{
 					if (labdata.getProperties(cache.get(row).getUniqueID()))
 					{
@@ -196,9 +205,9 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 				else
 				{
 					return labdata.getMaterial();
-				}		
+				}
 			case Batch_Col:
-				if ( cache.get(row).getUniqueID().equals(lastUniqueFound)==false)
+				if (cache.get(row).getUniqueID().equals(lastUniqueFound) == false)
 				{
 					if (labdata.getProperties(cache.get(row).getUniqueID()))
 					{
@@ -214,9 +223,9 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 				else
 				{
 					return labdata.getBatchNumber();
-				}		
+				}
 			case Expiry_Col:
-				if ( cache.get(row).getUniqueID().equals(lastUniqueFound)==false)
+				if (cache.get(row).getUniqueID().equals(lastUniqueFound) == false)
 				{
 					if (labdata.getProperties(cache.get(row).getUniqueID()))
 					{
@@ -231,8 +240,15 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 				}
 				else
 				{
-					return labdata.getExpirtDate().toString().substring(0, 16);
-				}					
+					try
+					{
+						return labdata.getExpirtDate().toString().substring(0, 16);
+					}
+					catch (Exception ex)
+					{
+						return "";
+					}
+				}
 			case SSCC_Prefix_Col:
 				return ssccPrefix;
 			case Use_SSCC_Range_Col:
@@ -242,7 +258,6 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 			case Modified_Col:
 				return cache.get(row).isModified();
 			}
-
 
 		}
 		catch (Exception ex)
