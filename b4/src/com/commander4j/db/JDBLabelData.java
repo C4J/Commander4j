@@ -92,17 +92,62 @@ public class JDBLabelData
 	private String dbBatchSuffix;
 	private String dbLabelType;
 	private String dbLine;
+	private JDBControl ctrl;
+	private JDBMaterialUom matuom;
+	private String layerUOM = "LAG";
+	private Long dbLayers = (long) 0; 
 
 	private final Logger logger = Logger.getLogger(JDBLabelData.class);
 
 	private String hostID;
 
 	private String sessionID;
+	
+	public Long getLayers()
+	{
+		return dbLayers;
+	}
 
+	private void setLayers(Long val)
+	{
+		dbLayers = val;
+	}
+	
+	private Long calculateLayers()
+	{
+		Long result = (long) 0; 
+
+		if (getLabelType().equals("Pallet"))
+		{			
+			/* Covert Prod UOM Qty int Base UOM Qty */
+			
+			matuom.getMaterialUomProperties(getMaterial(), getProdUom());
+			int prodQty = getProdQuantity().intValue() * matuom.getNumerator() / matuom.getDenominator();
+			logger.debug("Production Qty in Base UOM = "+prodQty);
+			
+			if (matuom.getMaterialUomProperties(getMaterial(), layerUOM))
+			{
+				int numerator = matuom.getNumerator();
+				int denominator = matuom.getDenominator();
+				Float temp =  ((float) prodQty / (float) numerator * (float) denominator);
+				
+				logger.debug("Number of layers = "+temp.toString());
+				logger.debug("Rounded Up Number of layers = "+(Math.ceil(temp)));
+				
+				result = (long) (Math.ceil(temp));
+			}
+		}
+		
+		return result;
+	}
+	
 	public JDBLabelData(String host, String session)
 	{
 		setHostID(host);
 		setSessionID(session);
+		ctrl = new JDBControl(getHostID(), getSessionID());
+		matuom = new JDBMaterialUom(getHostID(), getSessionID());
+		layerUOM = ctrl.getKeyValueWithDefault("UOM BASE QTY PER LAYER", "LAG", "UOM Base Qty Per Layer");
 	}
 
 	public JDBLabelData(String uid, Timestamp printTime, String user, Long copies, String workstation, String mat, String matType, String batch, String order, String resource, String locn, BigDecimal prodqty, String produom, BigDecimal baseqty,
@@ -224,7 +269,9 @@ public class JDBLabelData
 			stmtupdate.setString(30, getBatchSuffix());
 			stmtupdate.setString(31, getLabelType());
 			stmtupdate.setString(32, getLine());
-
+			setLayers(calculateLayers());
+			stmtupdate.setLong(33, getLayers());
+			
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

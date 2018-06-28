@@ -201,9 +201,9 @@ public class AutoLabellerThread extends Thread {
 									{
 										PreparedStatement stmt = null;
 										ResultSet rs;
-
+										String labelType=autolabview.getLabelDataObj().getLabelType();
 										stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID())
-												.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("DBVIEW_AUTO_LABELLER_PRINTER.getProperties"));
+												.prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("DBVIEW_AUTO_LABELLER_PRINTER.getProperties"+"_"+labelType));
 										stmt.setString(1, autolabview.getAutoLabellerObj().getLine());
 										stmt.setString(2, autolabview.getPrinterObj().getPrinterID());
 										stmt.setFetchSize(50);
