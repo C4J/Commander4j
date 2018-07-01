@@ -229,12 +229,12 @@ public class JFrameHostAdmin extends JFrame
 	{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 970, 659);
+		setBounds(100, 100, 1068, 659);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		desktopPane.setBounds(0, 0, 964, 637);
+		desktopPane.setBounds(0, 0, 1068, 637);
 		desktopPane.setBackground(Color.WHITE);
 		contentPane.add(desktopPane);
 
@@ -560,7 +560,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonAdd = new JButton4j(Common.icon_add);
 					desktopPane.add(jButtonAdd);
 					jButtonAdd.setText("Add DB Connection");
-					jButtonAdd.setBounds(783, 47, 160, 36);
+					jButtonAdd.setBounds(885, 47, 160, 36);
 					jButtonAdd.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -618,7 +618,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonApply = new JButton4j(Common.icon_ok);
 					desktopPane.add(jButtonApply);
 					jButtonApply.setText("Confirm Changes");
-					jButtonApply.setBounds(783, 175, 160, 36);
+					jButtonApply.setBounds(885, 175, 160, 36);
 					jButtonApply.setEnabled(false);
 					jButtonApply.addActionListener(new ActionListener()
 					{
@@ -643,7 +643,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonDelete = new JButton4j(Common.icon_delete);
 					desktopPane.add(jButtonDelete);
 					jButtonDelete.setText("Delete DB Connection");
-					jButtonDelete.setBounds(783, 79, 160, 36);
+					jButtonDelete.setBounds(885, 79, 160, 36);
 					jButtonDelete.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -718,7 +718,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonClose = new JButton4j(Common.icon_close);
 					desktopPane.add(jButtonClose);
 					jButtonClose.setText("Close");
-					jButtonClose.setBounds(783, 405, 160, 36);
+					jButtonClose.setBounds(885, 405, 160, 36);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -732,7 +732,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonUndo = new JButton4j(Common.icon_undo);
 					desktopPane.add(jButtonUndo);
 					jButtonUndo.setText("Undo Changes");
-					jButtonUndo.setBounds(783, 271, 160, 36);
+					jButtonUndo.setBounds(885, 271, 160, 36);
 					jButtonUndo.setEnabled(false);
 					jButtonUndo.addActionListener(new ActionListener()
 					{
@@ -754,7 +754,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonSave = new JButton4j(Common.icon_update);
 					desktopPane.add(jButtonSave);
 					jButtonSave.setText("Save DB Connections");
-					jButtonSave.setBounds(783, 207, 160, 36);
+					jButtonSave.setBounds(885, 207, 160, 36);
 					jButtonSave.setEnabled(false);
 					jButtonSave.addActionListener(new ActionListener()
 					{
@@ -799,7 +799,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldDescription.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldDescription);
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(425, 40, 325, 21);
+					jTextFieldDescription.setBounds(425, 40, 435, 21);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -813,7 +813,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldURL.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldURL);
 					jTextFieldURL.setFocusCycleRoot(true);
-					jTextFieldURL.setBounds(425, 65, 325, 21);
+					jTextFieldURL.setBounds(425, 65, 435, 21);
 					jTextFieldURL.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -848,27 +848,37 @@ public class JFrameHostAdmin extends JFrame
 							{
 								jTextFieldDriver.setText("oracle.jdbc.driver.OracleDriver");
 								jTextFieldConnect.setText("jdbc:oracle:thin:@jdbcServer:jdbcPort:jdbcSID");
+								jTextFieldDatabase.setText("database_name");
+								jTextFieldUsername.setText("sql_username");
+								jTextFieldPassword.setText("sql_password");
+								jTextFieldSID.setText("orcl");
 								jTextFieldDateTime.setText("sysdate");
 								jTextFieldSelectLimit.setText("rownum");
-								jTextFieldServer.setText("localhost");
+								jTextFieldServer.setText("ip_address");
 								jTextFieldPort.setText("1521");
 							}
 							if (jComboBoxjdbcDriver.getSelectedItem().toString().equals("mySQL"))
 							{
 								jTextFieldDriver.setText("com.mysql.cj.jdbc.Driver");
 								jTextFieldConnect.setText("jdbc:mysql://jdbcServer/jdbcDatabase");
+								jTextFieldDatabase.setText("database_name?autoReconnect=true");
+								jTextFieldUsername.setText("sql_username");
+								jTextFieldPassword.setText("sql_password");
 								jTextFieldDateTime.setText("sysdate");
 								jTextFieldSelectLimit.setText("limit");
-								jTextFieldServer.setText("localhost");
+								jTextFieldServer.setText("ip_address");
 								jTextFieldPort.setText("3306");
 							}
 							if (jComboBoxjdbcDriver.getSelectedItem().toString().equals("SQL Server"))
 							{
 								jTextFieldDriver.setText("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 								jTextFieldConnect.setText("jdbc:sqlserver://jdbcServer\\jdbcSID");
+								jTextFieldDatabase.setText("database_name;selectMethod=direct");
+								jTextFieldUsername.setText("sql_username");
+								jTextFieldPassword.setText("sql_password");
 								jTextFieldDateTime.setText("sysdate");
 								jTextFieldSelectLimit.setText("top");
-								jTextFieldServer.setText("localhost");
+								jTextFieldServer.setText("ip_address");
 								jTextFieldPort.setText("1433");
 							}
 							if (jComboBoxjdbcDriver.getSelectedItem().toString().equals("Web URL"))
@@ -889,7 +899,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldConnect.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldConnect);
 					jTextFieldConnect.setFocusCycleRoot(true);
-					jTextFieldConnect.setBounds(425, 145, 325, 21);
+					jTextFieldConnect.setBounds(425, 145, 435, 21);
 					jTextFieldConnect.setEditable(false);
 					jTextFieldConnect.setEnabled(false);
 					jTextFieldConnect.setDisabledTextColor(Common.color_text_disabled);
@@ -977,7 +987,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldDateTime.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldDateTime);
 					jTextFieldDateTime.setFocusCycleRoot(true);
-					jTextFieldDateTime.setBounds(425, 320, 325, 21);
+					jTextFieldDateTime.setBounds(425, 320, 435, 21);
 					jTextFieldDateTime.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -991,7 +1001,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldUsername.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldUsername);
 					jTextFieldUsername.setFocusCycleRoot(true);
-					jTextFieldUsername.setBounds(425, 270, 325, 21);
+					jTextFieldUsername.setBounds(425, 270, 435, 21);
 					jTextFieldUsername.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1005,7 +1015,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldPassword.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldPassword);
 					jTextFieldPassword.setFocusCycleRoot(true);
-					jTextFieldPassword.setBounds(425, 295, 325, 21);
+					jTextFieldPassword.setBounds(425, 295, 435, 21);
 					jTextFieldPassword.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1019,7 +1029,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldPort.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldPort);
 					jTextFieldPort.setFocusCycleRoot(true);
-					jTextFieldPort.setBounds(425, 220, 325, 21);
+					jTextFieldPort.setBounds(425, 220, 435, 21);
 					jTextFieldPort.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1033,7 +1043,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldSID.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldSID);
 					jTextFieldSID.setFocusCycleRoot(true);
-					jTextFieldSID.setBounds(425, 245, 325, 21);
+					jTextFieldSID.setBounds(425, 245, 435, 21);
 					jTextFieldSID.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1062,7 +1072,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldDriver.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldDriver);
 					jTextFieldDriver.setFocusCycleRoot(true);
-					jTextFieldDriver.setBounds(425, 117, 325, 21);
+					jTextFieldDriver.setBounds(425, 117, 435, 21);
 					jTextFieldDriver.setEditable(false);
 					jTextFieldDriver.setEnabled(false);
 					jTextFieldDriver.setDisabledTextColor(Common.color_text_disabled);
@@ -1119,7 +1129,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonCancel = new JButton4j(Common.icon_cancel);
 					desktopPane.add(jButtonCancel);
 					jButtonCancel.setText("Cancel");
-					jButtonCancel.setBounds(783, 335, 160, 36);
+					jButtonCancel.setBounds(885, 335, 160, 36);
 					jButtonCancel.setEnabled(false);
 					jButtonCancel.addActionListener(new ActionListener()
 					{
@@ -1134,7 +1144,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldServer.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldServer);
 					jTextFieldServer.setFocusCycleRoot(true);
-					jTextFieldServer.setBounds(425, 170, 325, 21);
+					jTextFieldServer.setBounds(425, 170, 435, 21);
 					jTextFieldServer.setEnabled(false);
 					jTextFieldServer.addKeyListener(new KeyAdapter()
 					{
@@ -1158,7 +1168,7 @@ public class JFrameHostAdmin extends JFrame
 					desktopPane.add(jTextFieldDatabase);
 					jTextFieldDatabase.setEnabled(false);
 					jTextFieldDatabase.setFocusCycleRoot(true);
-					jTextFieldDatabase.setBounds(425, 195, 325, 21);
+					jTextFieldDatabase.setBounds(425, 195, 435, 21);
 					jTextFieldDatabase.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1179,7 +1189,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonTest = new JButton4j(Common.icon_connect);
 					desktopPane.add(jButtonTest);
 					jButtonTest.setText("Connect to DB");
-					jButtonTest.setBounds(783, 111, 160, 36);
+					jButtonTest.setBounds(885, 111, 160, 36);
 					jButtonTest.setToolTipText("Connect to selected Host Database");
 					jButtonTest.addActionListener(new ActionListener()
 					{
@@ -1209,7 +1219,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonUpdate = new JButton4j(Common.icon_update);
 					desktopPane.add(jButtonUpdate);
 					jButtonUpdate.setText("Create/Update Tables");
-					jButtonUpdate.setBounds(783, 143, 160, 36);
+					jButtonUpdate.setBounds(885, 143, 160, 36);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setToolTipText("Create or Upgrade Application Database Schema");
 					jButtonUpdate.addActionListener(new ActionListener()
@@ -1316,7 +1326,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldSelectLimit = new JTextField4j();
 					jTextFieldSelectLimit.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldSelectLimit);
-					jTextFieldSelectLimit.setBounds(425, 345, 325, 21);
+					jTextFieldSelectLimit.setBounds(425, 345, 435, 21);
 					jTextFieldSelectLimit.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1349,7 +1359,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldSchema.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldSchema);
 					jTextFieldSchema.setEnabled(false);
-					jTextFieldSchema.setBounds(425, 370, 325, 21);
+					jTextFieldSchema.setBounds(425, 370, 435, 21);
 					jTextFieldSchema.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1381,7 +1391,7 @@ public class JFrameHostAdmin extends JFrame
 						}
 					});
 					jTextFieldUniqueID.setEditable(true);
-					jTextFieldUniqueID.setBounds(425, 395, 325, 21);
+					jTextFieldUniqueID.setBounds(425, 395, 435, 21);
 					desktopPane.add(jTextFieldUniqueID);
 				}
 
@@ -1424,17 +1434,17 @@ public class JFrameHostAdmin extends JFrame
 					});
 					btnSchema.setText("DB Schema Report");
 					btnSchema.setEnabled(false);
-					btnSchema.setBounds(783, 303, 160, 36);
+					btnSchema.setBounds(885, 303, 160, 36);
 					desktopPane.add(btnSchema);
 				}
 			}
 
-			progressBar.setBounds(10, 578, 933, 28);
+			progressBar.setBounds(10, 578, 1035, 28);
 			progressBar.setBackground(Color.WHITE);
 			progressBar.setForeground(Color.BLUE);
 			desktopPane.add(progressBar);
 
-			labelCommand.setBounds(10, 608, 933, 23);
+			labelCommand.setBounds(10, 608, 1052, 23);
 			labelCommand.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			desktopPane.add(labelCommand);
 
@@ -1472,7 +1482,7 @@ public class JFrameHostAdmin extends JFrame
 			});
 			btnService.setToolTipText("Connect to selected Host Database");
 			btnService.setText("Assign to Service");
-			btnService.setBounds(783, 239, 160, 36);
+			btnService.setBounds(885, 239, 160, 36);
 			desktopPane.add(btnService);
 
 			JLabel4j_std label4j_std = new JLabel4j_std();
@@ -1502,7 +1512,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			JTextFieldUpdateURL.setFocusCycleRoot(true);
-			JTextFieldUpdateURL.setBounds(425, 470, 490, 21);
+			JTextFieldUpdateURL.setBounds(425, 470, 599, 21);
 			desktopPane.add(JTextFieldUpdateURL);
 			rdbtnManual.setToolTipText("<html>\nYou can determine if a install can be updated automatically via the checkbox’s<br>\nMANUAL v AUTOMATIC. Normally end user workstations would have a hosts<br>\nfile which would be set to Automatic. A server install which includes the interface<br>\nservice would be more appropriatly set to manual updates.<br>\n</html>");
 
@@ -1548,7 +1558,7 @@ public class JFrameHostAdmin extends JFrame
 
 			jTextField4jInstallDir.setText("");
 			jTextField4jInstallDir.setFocusCycleRoot(true);
-			jTextField4jInstallDir.setBounds(425, 496, 490, 21);
+			jTextField4jInstallDir.setBounds(425, 496, 599, 21);
 			desktopPane.add(jTextField4jInstallDir);
 
 			setupPasswordField = new JPasswordField(20);
@@ -1617,7 +1627,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			jButtonOpen.setText("Open Hosts File");
-			jButtonOpen.setBounds(783, 15, 160, 36);
+			jButtonOpen.setBounds(885, 15, 160, 36);
 			desktopPane.add(jButtonOpen);
 
 			JLabel4j_std label4j_std_5 = new JLabel4j_std();
@@ -1640,7 +1650,7 @@ public class JFrameHostAdmin extends JFrame
 			jTextField4jHostUpdatePath.setBackground(Common.color_list_assigned);
 			jTextField4jHostUpdatePath.setText("");
 			jTextField4jHostUpdatePath.setFocusCycleRoot(true);
-			jTextField4jHostUpdatePath.setBounds(425, 550, 490, 21);
+			jTextField4jHostUpdatePath.setBounds(425, 550, 599, 21);
 			desktopPane.add(jTextField4jHostUpdatePath);
 
 			JLabel4j_std label4j_std_6 = new JLabel4j_std();
@@ -1687,7 +1697,7 @@ public class JFrameHostAdmin extends JFrame
 					}
 				}
 			});
-			button4j.setBounds(915, 470, 21, 21);
+			button4j.setBounds(1024, 470, 21, 21);
 			desktopPane.add(button4j);
 
 			JButton4j button4j_1 = new JButton4j(Common.icon_search);
@@ -1711,12 +1721,12 @@ public class JFrameHostAdmin extends JFrame
 					}
 				}
 			});
-			button4j_1.setBounds(915, 550, 21, 21);
+			button4j_1.setBounds(1024, 550, 21, 21);
 			desktopPane.add(button4j_1);
 			
 			jButtonHelp = new JButton4j(Common.icon_help);
 			jButtonHelp.setText("Help");
-			jButtonHelp.setBounds(783, 370, 160, 36);
+			jButtonHelp.setBounds(885, 370, 160, 36);
 			desktopPane.add(jButtonHelp);
 
 			jTextField4jInstallDir.addKeyListener(new KeyAdapter()
