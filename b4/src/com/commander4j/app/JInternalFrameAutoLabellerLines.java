@@ -52,12 +52,13 @@ import com.commander4j.db.JDBPrinterLineMembership;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JRadioButton4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.tablemodel.JDBAutoLabellerTableModel;
 import com.commander4j.util.JUtility;
-import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.SwingConstants;
 
 /**
  * The JInternalFrameAutoLabellerLines class allows the user to manage the table
@@ -93,9 +94,9 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 	private JDBAutoLabellerTableModel autolabeltable = new JDBAutoLabellerTableModel(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_std jStatusText;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JRadioButton rdbtnAll = new JRadioButton("All");
-	private JRadioButton rdbtnPack = new JRadioButton("Pack");
-	private JRadioButton rdbtnPallet = new JRadioButton("Pallet");
+	private JRadioButton4j rdbtnAll = new JRadioButton4j("All");
+	private JRadioButton4j rdbtnPack = new JRadioButton4j("Pack");
+	private JRadioButton4j rdbtnPallet = new JRadioButton4j("Pallet");
 
 	public JInternalFrameAutoLabellerLines()
 	{
@@ -320,7 +321,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			rdbtnAll.setSelected(true);
 			rdbtnAll.setBackground(Common.color_app_window);
 			buttonGroup.add(rdbtnAll);
-			rdbtnAll.setBounds(8, 8, 54, 23);
+			rdbtnAll.setBounds(120, 8, 54, 23);
 			jDesktopPane1.add(rdbtnAll);
 			
 			rdbtnPack.setBackground(Common.color_app_window);
@@ -330,7 +331,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 					refresh();
 				}
 			});
-			rdbtnPack.setBounds(81, 8, 62, 23);
+			rdbtnPack.setBounds(193, 8, 62, 23);
 			jDesktopPane1.add(rdbtnPack);
 			
 			rdbtnPallet.setBackground(Common.color_app_window);
@@ -340,8 +341,14 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 					refresh();
 				}
 			});
-			rdbtnPallet.setBounds(156, 8, 67, 23);
+			rdbtnPallet.setBounds(268, 8, 67, 23);
 			jDesktopPane1.add(rdbtnPallet);
+			
+			JLabel4j_std label4j_std = new JLabel4j_std();
+			label4j_std.setText("Group");
+			label4j_std.setHorizontalAlignment(SwingConstants.RIGHT);
+			label4j_std.setBounds(12, 9, 75, 21);
+			jDesktopPane1.add(label4j_std);
 
 			mod.setModuleId("FRM_ADMIN_PRINTERS");
 			mod.getModuleProperties();

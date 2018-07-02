@@ -1,5 +1,7 @@
 package com.commander4j.sys;
 
+import java.awt.Color;
+
 /**
  * @author David Garratt
  * 
@@ -36,6 +38,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -47,14 +51,14 @@ import com.commander4j.db.JDBPrinterLineMembership;
 import com.commander4j.db.JDBPrinters;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JRadioButton4j;
 import com.commander4j.tablemodel.JDBPrintersTableModel;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import com.commander4j.gui.JLabel4j_std;
-import java.awt.Color;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
+import javax.swing.SwingConstants;
 
 public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 	private JButton4j jButtonExcel;
@@ -73,9 +77,10 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 	private PreparedStatement listStatement;
 	private JLabel4j_std jStatusText = new JLabel4j_std();
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JRadioButton rdbtnAll = new JRadioButton("All");
-	private JRadioButton rdbtnPack = new JRadioButton("Pack");
-	private JRadioButton rdbtnPallet = new JRadioButton("Pallet");
+	private JRadioButton4j rdbtnAll = new JRadioButton4j("All");
+	private JRadioButton4j rdbtnPack = new JRadioButton4j("Pack");
+	private JRadioButton4j rdbtnPallet = new JRadioButton4j("Pallet");
+	private JComboBox4j<String> comboBoxPrinterTypes = new JComboBox4j<String>();
 	
 	public JInternalFramePrinterAdmin()
 	{
@@ -84,14 +89,14 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_PRINTERS"));
-
+				
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
 
 	}
 	
-	private String getFilterString()
+	private String getFilterGroupString()
 	{
 		String result = "%";
 		
@@ -104,6 +109,26 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 		{
 			result = "Pallet";
 		}		
+		
+		return result;
+	}
+	
+	private String getFilterPrinterTypeString()
+	{
+		String result = "%";
+		
+		try
+		{
+		if (comboBoxPrinterTypes.getSelectedItem().toString().equals("") == false)
+		{
+			result = comboBoxPrinterTypes.getSelectedItem().toString();
+		}
+		}
+		catch(Exception ex)
+		{
+			result = "%";
+		}
+
 		
 		return result;
 	}
@@ -131,8 +156,9 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 
 		query.clear();
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}SYS_PRINTERS  WHERE GROUP_ID LIKE ? order by printer_id"));
-		query.addParameter(getFilterString());
+		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}SYS_PRINTERS  WHERE GROUP_ID LIKE ? AND PRINTER_TYPE LIKE ? order by printer_id"));
+		query.addParameter(getFilterGroupString());
+		query.addParameter(getFilterPrinterTypeString());
 		query.applyRestriction(false, "none", 0);
 		query.bindParams();
 
@@ -159,10 +185,10 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PrinterID_Col).setPreferredWidth(150);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Group_Col).setPreferredWidth(50);
-		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PrinterType_Col).setPreferredWidth(55);
+		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PrinterType_Col).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.IPAddress_Col).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Port_Col).setPreferredWidth(40);
-		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Description_Col).setPreferredWidth(200);
+		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Description_Col).setPreferredWidth(285);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.Language_Col).setPreferredWidth(55);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.DPI_Col).setPreferredWidth(30);
 		jTable1.getColumnModel().getColumn(JDBPrintersTableModel.PaperSize_Col).setPreferredWidth(70);
@@ -402,8 +428,8 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				}
 			});
 			rdbtnAll.setSelected(true);
-			rdbtnAll.setBackground(new Color(241, 241, 241));
-			rdbtnAll.setBounds(8, 8, 54, 23);
+			rdbtnAll.setBackground(Common.color_app_window);
+			rdbtnAll.setBounds(120, 8, 54, 23);
 			getContentPane().add(rdbtnAll);
 			
 			buttonGroup.add(rdbtnPack);
@@ -412,8 +438,8 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 					refresh();
 				}
 			});
-			rdbtnPack.setBackground(new Color(241, 241, 241));
-			rdbtnPack.setBounds(81, 8, 62, 23);
+			rdbtnPack.setBackground(Common.color_app_window);
+			rdbtnPack.setBounds(193, 8, 62, 23);
 			getContentPane().add(rdbtnPack);
 			
 			buttonGroup.add(rdbtnPallet);
@@ -422,14 +448,35 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 					refresh();
 				}
 			});
-			rdbtnPallet.setBackground(new Color(241, 241, 241));
-			rdbtnPallet.setBounds(156, 8, 67, 23);
+			rdbtnPallet.setBackground(Common.color_app_window);;
+			rdbtnPallet.setBounds(268, 8, 67, 23);
 			getContentPane().add(rdbtnPallet);
 
 			jStatusText.setForeground(Color.BLACK);
 			jStatusText.setBackground(Color.GRAY);
 			jStatusText.setBounds(0, 391, 998, 21);
 			getContentPane().add(jStatusText);
+			comboBoxPrinterTypes.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					refresh();
+				}
+			});
+
+			comboBoxPrinterTypes.setModel(new DefaultComboBoxModel<String>(Common.printerTypesAll));
+			comboBoxPrinterTypes.setBounds(473, 8, 155, 24);
+			getContentPane().add(comboBoxPrinterTypes);
+			
+			JLabel4j_std label4j_Type = new JLabel4j_std();
+			label4j_Type.setText("Type");
+			label4j_Type.setHorizontalAlignment(SwingConstants.RIGHT);
+			label4j_Type.setBounds(387, 10, 75, 21);
+			getContentPane().add(label4j_Type);
+			
+			JLabel4j_std label4j_Group = new JLabel4j_std();
+			label4j_Group.setText("Group");
+			label4j_Group.setHorizontalAlignment(SwingConstants.RIGHT);
+			label4j_Group.setBounds(12, 9, 75, 21);
+			getContentPane().add(label4j_Group);
 
 		} catch (Exception e)
 		{
