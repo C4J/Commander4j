@@ -121,7 +121,7 @@ public class Common
 	public static String[] printerDPI = new String[] { "200","300"};
 	public static String[] printerGroup = new String[] { "Pack","Pallet"};
 	public static String[] linePrinterType = new String[] {"Both", "Pack","Pallet"};
-	public static String[] printerLanguage = new String[] { "LEAP","ZPL"};
+	public static String[] printerLanguage = new String[] { "LEAP","ZPL","Zipher"};
 	public static String[] printerExportFormat = new String[] { "CSV","LQF","XML"};
 	public static String[] languages = new String[] {"EN", "ES", "DE", "FR", "HU", "IT", "NL", "PL"};
 	public static String[] customerDataTypes = new String[] {"PART_NO"};
