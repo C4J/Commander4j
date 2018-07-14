@@ -61,6 +61,7 @@ import javax.swing.table.TableRowSorter;
 
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.calendar.JCalendarButton;
+import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBCustomer;
 import com.commander4j.db.JDBDespatch;
 import com.commander4j.db.JDBLanguage;
@@ -219,6 +220,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private JCheckBox4j jCheckBoxUpdatedTo;
 	private JTextField4j textFieldUserCreated;
 	private JTextField4j textFieldUserUpdated;
+	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 
 	public JInternalFramePalletAdmin()
 	{
@@ -694,7 +696,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 						{
 							buildSQL();
 							OutgoingPalletExportXML export = new OutgoingPalletExportXML(Common.selectedHostID, Common.sessionID);
-							export.saveAs("export.xml", listStatement, Common.mainForm,jStatusText);
+							export.saveAs(ctrl.getKeyValue("DEFAULT_LOCATION")+"Pallet_Export.xml", listStatement, Common.mainForm,jStatusText);
 						}
 					});
 				}
@@ -710,7 +712,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 						public void actionPerformed(ActionEvent evt)
 						{
 							IncommingPalletImportXML import1 = new IncommingPalletImportXML(Common.selectedHostID, Common.sessionID);
-							import1.loadFrom("export.xml",  Common.mainForm, jStatusText);
+							import1.loadFrom("Pallet_Export.xml",  Common.mainForm, jStatusText);
 						}
 					});
 				}				
@@ -859,7 +861,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jButtonPrint = new JButton4j(Common.icon_report);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setBounds(822, 226, 162, 32);
+					jButtonPrint.setBounds(658, 260, 162, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PALLETS"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.addActionListener(new ActionListener()
@@ -1310,7 +1312,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 						}
 					});
 					exportXlsButton.setText(lang.get("btn_Excel"));
-					exportXlsButton.setBounds(658, 260, 162, 32);
+					exportXlsButton.setBounds(822, 226, 162, 32);
 					jDesktopPane1.add(exportXlsButton);
 				}
 

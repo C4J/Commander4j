@@ -129,6 +129,10 @@ public class IncommingPalletImportXML
 					updateStatus(jStatusText, "Import completed from " + importtFilename);
 				}
 			}
+			else
+			{
+				updateStatus(jStatusText,"");
+			}
 		}
 		catch (Exception ex)
 

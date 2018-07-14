@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		INSERT INTO `SYS_MODULES` (`MODULE_ID`, `RF_ACTIVE`, `DK_ACTIVE`, `MODULE_TYPE`, `HINT`, `MNEMONIC`, `ICON_FILENAME`, `HELPSET_ID`, `REPORT_FILENAME`, `EXEC_FILENAME`, `EXEC_DIR`, `PRINT_PREVIEW`, `PRINT_DIALOG`, `PRINT_COPIES`, `REPORT_TYPE`, `RESOURCE_KEY`) VALUES 
+		('FRM_ADMIN_PALLET_IMPORT', 'N', 'Y', 'FUNCTION', 'Import Pallet Data from XML', '0', '', '', '', '', '', 'N', 'N', '0', '', '')
+	</statement>
+	
+	<statement>
+		INSERT INTO `SYS_MODULES` (`MODULE_ID`, `RF_ACTIVE`, `DK_ACTIVE`, `MODULE_TYPE`, `HINT`, `MNEMONIC`, `ICON_FILENAME`, `HELPSET_ID`, `REPORT_FILENAME`, `EXEC_FILENAME`, `EXEC_DIR`, `PRINT_PREVIEW`, `PRINT_DIALOG`, `PRINT_COPIES`, `REPORT_TYPE`, `RESOURCE_KEY`) VALUES 
+		('FRM_ADMIN_PALLET_EXPORT', 'N', 'Y', 'FUNCTION', 'Export Pallet Data to XML', '0', '', '', '', '', '', 'N', 'N', '0', '', '')
+	</statement>
+
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Import', 'EN', 'Import', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Import', 'FR', 'Import', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Import', 'DE', 'Import', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Import', 'IT', 'Import', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Import', 'NL', 'Import', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Import', 'ES', 'Import', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Import', 'HU', 'Import', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Import', 'PL', 'Import', '0')
+	</statement>
+		
+</DDL>

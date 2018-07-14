@@ -46,6 +46,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
+import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBField;
 import com.commander4j.db.JDBStructure;
 import com.commander4j.gui.JLabel4j_std;
@@ -140,6 +141,10 @@ public class OutgoingPalletExportXML
 					updateStatus(jStatusText,"Export completed to "+exportFilename);
 				}
 			}
+			else
+			{
+				updateStatus(jStatusText,"");
+			}
 		}
 		catch (Exception ex)
 
@@ -171,14 +176,15 @@ public class OutgoingPalletExportXML
 			Document document = builder.newDocument();
 
 			// Message Header Section //
+			JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
 			Element message = (Element) document.createElement("message");
-			Element hostUniqueID = addElement(document, "hostRef", Common.hostList.getHost(getHostID()).getUniqueID());
+			Element hostUniqueID = addElement(document, "hostRef", ctrl.getKeyValue("DEFAULT_LOCATION"));
 			message.appendChild(hostUniqueID);
-			Element messageRef = addElement(document, "messageRef", "na");
+			Element messageRef = addElement(document, "messageRef", Common.userList.getUser(Common.sessionID).getUserId());
 			message.appendChild(messageRef);
-			Element messageType = addElement(document, "interfaceType", "Pallet Export");
+			Element messageType = addElement(document, "interfaceType", "Pallet Data XML");
 			message.appendChild(messageType);
-			Element messageInformation = addElement(document, "messageInformation", "SSCC Export");
+			Element messageInformation = addElement(document, "messageInformation",ctrl.getKeyValue("SCHEMA VERSION"));
 			message.appendChild(messageInformation);
 			Element messageDirection = addElement(document, "interfaceDirection", "Output");
 			message.appendChild(messageDirection);
@@ -197,6 +203,7 @@ public class OutgoingPalletExportXML
 			try
 			{
 				ResultSet rs = getTableResultSet(stmtPallet);
+				
 				String material = "";
 				String batch = "";
 				String uom = "";
