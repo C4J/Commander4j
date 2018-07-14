@@ -111,14 +111,15 @@ public class JDBStructure
 		}
 
 		required_schema = required_schema.replace(".", "");
-		
+
 		tableNames.clear();
 		output.clear();
 
 		try
 		{
 			DatabaseMetaData dbm = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).getMetaData();
-			String[] types = { "TABLE" };
+			String[] types =
+			{ "TABLE" };
 			ResultSet rs = dbm.getTables(null, null, "%", types);
 			while (rs.next())
 			{
@@ -151,10 +152,11 @@ public class JDBStructure
 							if (rs.getString("TABLE_NAME").toUpperCase().startsWith("SYS_"))
 							{
 								includeTable = true;
-							}							
+							}
 						}
 					}
-				} catch (Exception ex)
+				}
+				catch (Exception ex)
 				{
 					actual_schema = "";
 				}
@@ -169,20 +171,22 @@ public class JDBStructure
 							includeTable = true;
 						}
 					}
-				} catch (Exception ex)
+				}
+				catch (Exception ex)
 				{
 					actual_schema = "";
 				}
 
 				if (includeTable)
 				{
-					if (rs.getString("TABLE_NAME").equals("sysdiagrams")==false)
+					if (rs.getString("TABLE_NAME").equals("sysdiagrams") == false)
 					{
 						tableNames.addLast(rs.getString("TABLE_NAME").toUpperCase());
 					}
 				}
 			}
-		} catch (SQLException s)
+		}
+		catch (SQLException s)
 		{
 			setErrorMessage(s.getMessage());
 			logger.debug("No tables found in the database");
@@ -192,6 +196,82 @@ public class JDBStructure
 		Collections.sort(tableNames);
 
 		return tableNames;
+	}
+
+	public LinkedList<String> getPrimaryKey(String tablename)
+	{
+		LinkedList<String> result = new LinkedList<String>();
+		try
+		{
+			DatabaseMetaData dmd = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).getMetaData();
+			ResultSet rs = dmd.getPrimaryKeys(Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabase(), null, tablename);
+
+			while (rs.next())
+			{
+
+				logger.debug("COLUMN_NAME = " + rs.getString("COLUMN_NAME"));
+				logger.debug("TABLE_CAT   = " + rs.getString("TABLE_CAT"));
+				logger.debug("TABLE_SCHEM = " + rs.getString("TABLE_SCHEM"));
+				logger.debug("TABLE_NAME  = " + rs.getString("TABLE_NAME"));
+				logger.debug("KEY_SEQ     = " + rs.getString("KEY_SEQ"));
+				logger.debug("PK_NAME     = " + rs.getString("PK_NAME"));
+
+				if (result.contains(rs.getString("COLUMN_NAME")) == false)
+				{
+					result.add(rs.getString("COLUMN_NAME"));
+					logger.debug("PRIMARY KEY FIELD FOUND = " + rs.getString("COLUMN_NAME"));
+				}
+			}
+
+			rs.close();
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+		return result;
+	}
+
+	public LinkedList<String> getUniqueIndexes(String tablename)
+	{
+		LinkedList<String> result = new LinkedList<String>();
+		try
+		{
+			DatabaseMetaData dmd = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).getMetaData();
+			ResultSet rs = dmd.getIndexInfo(Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabase(), null, tablename, true, false);
+
+			while (rs.next())
+			{
+
+				logger.debug("TABLE_CAT         = " + rs.getString("TABLE_CAT"));
+				logger.debug("TABLE_SCHEM       = " + rs.getString("TABLE_SCHEM"));
+				logger.debug("TABLE_NAME        = " + rs.getString("TABLE_NAME"));
+				logger.debug("NON_UNIQUE        = " + rs.getBoolean("NON_UNIQUE"));
+				logger.debug("INDEX_QUALIFIER   = " + rs.getString("INDEX_QUALIFIER"));
+				logger.debug("INDEX_NAME	    = " + rs.getString("INDEX_NAME"));
+				logger.debug("TYPE 				= " + rs.getShort("TYPE"));
+				logger.debug("ORDINAL_POSITION 	= " + rs.getShort("ORDINAL_POSITION"));
+				logger.debug("COLUMN_NAME       = " + rs.getString("COLUMN_NAME"));
+				logger.debug("ASC_OR_DESC       = " + rs.getString("ASC_OR_DESC"));
+				logger.debug("CARDINALITY       = " + rs.getLong("CARDINALITY"));
+				logger.debug("PAGES             = " + rs.getLong("PAGES"));
+				logger.debug("FILTER_CONDITION  = " + rs.getString("FILTER_CONDITION"));
+
+				if (result.contains(rs.getString("COLUMN_NAME")) == false)
+				{
+					result.add(rs.getString("COLUMN_NAME"));
+					logger.debug("PRIMARY KEY FIELD FOUND = " + rs.getString("COLUMN_NAME"));
+				}
+			}
+
+			rs.close();
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+		return result;
 	}
 
 	public LinkedList<JDBField> getFieldNames(String table_name)
@@ -204,7 +284,10 @@ public class JDBStructure
 		String select_prefix = "";
 		int col = 0;
 		String required_schema = Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabaseSchema();
-		select_prefix = required_schema + ".";
+		if (required_schema.equals("") == false)
+		{
+			select_prefix = required_schema + ".";
+		}
 
 		try
 		{
@@ -218,11 +301,12 @@ public class JDBStructure
 				col_name = md.getColumnName(i);
 				col_type = md.getColumnTypeName(i);
 				col_size = md.getColumnDisplaySize(i);
-				JDBField field = new JDBField(col_name,col_type,col_size);
+				JDBField field = new JDBField(col_name, col_type, col_size);
 				fieldNames.addLast(field);
 			}
 
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			col = 0;
 		}
@@ -269,7 +353,8 @@ public class JDBStructure
 						output.addLast("");
 						output.addLast("Column Name                      Type               Size  Precision     Scale");
 						output.addLast("-------------------------------  ------------ ----------  ---------  --------");
-					} catch (Exception ex)
+					}
+					catch (Exception ex)
 					{
 						col = 0;
 					}
@@ -284,7 +369,8 @@ public class JDBStructure
 						{
 							col_precision = "";
 							col_scale = "";
-						} else
+						}
+						else
 						{
 							col_precision = JUtility.padString(String.valueOf(md.getPrecision(i)), true, 10, " ");
 							col_scale = JUtility.padString(String.valueOf(md.getScale(i)), true, 10, " ");
@@ -300,7 +386,8 @@ public class JDBStructure
 						output.addLast(col_name + " " + col_type + " " + String.valueOf(col_size) + " " + String.valueOf(col_precision) + " " + String.valueOf(col_scale));
 					}
 				}
-			} catch (SQLException s)
+			}
+			catch (SQLException s)
 			{
 				setErrorMessage(s.getMessage());
 				System.out.println("SQL statement is not executed!");
@@ -332,7 +419,8 @@ public class JDBStructure
 				saveTXT.setCurrentDirectory(f);
 				saveTXT.addChoosableFileFilter(new JFileFilterTXT());
 				saveTXT.setSelectedFile(new File(defaultFilename));
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 			}
 
@@ -362,14 +450,16 @@ public class JDBStructure
 						fw.newLine();
 						fw.flush();
 						fw.close();
-					} catch (IOException e)
+					}
+					catch (IOException e)
 					{
 						JUtility.errorBeep();
 						JOptionPane.showMessageDialog(Common.mainForm, e.getMessage(), "Export Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
-		} else
+		}
+		else
 		{
 			JUtility.errorBeep();
 			JOptionPane.showMessageDialog(Common.mainForm, "No tables in selected schema", "Export Error", JOptionPane.WARNING_MESSAGE);

@@ -987,7 +987,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jButtonSearch1 = new JButton4j(Common.icon_search);
 					jDesktopPane1.add(jButtonSearch1);
 					jButtonSearch1.setText(lang.get("btn_Search"));
-					jButtonSearch1.setBounds(12, 176, 129, 32);
+					jButtonSearch1.setBounds(2, 176, 140, 32);
 					jButtonSearch1.setMnemonic(java.awt.event.KeyEvent.VK_S);
 					jButtonSearch1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -1040,14 +1040,14 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(576, 176, 129, 32);
+					jButtonHelp.setBounds(570, 176, 140, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(858, 176, 129, 32);
+					jButtonClose.setBounds(854, 176, 140, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -1060,7 +1060,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jButtonPrint = new JButton4j(Common.icon_report);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setBounds(294, 176, 129, 32);
+					jButtonPrint.setBounds(286, 176, 140, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PALLETS"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.addActionListener(new ActionListener() {
@@ -1073,7 +1073,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jButtonPrint = new JButton4j(Common.icon_report);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print_Summary"));
-					jButtonPrint.setBounds(435, 176, 129, 32);
+					jButtonPrint.setBounds(428, 176, 140, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_HIST_SUMMARY"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.addActionListener(new ActionListener() {
@@ -1442,7 +1442,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 						}
 					});
 					exportXlsButton.setText(lang.get("btn_Excel"));
-					exportXlsButton.setBounds(717, 176, 129, 32);
+					exportXlsButton.setBounds(712, 176, 140, 32);
 					jDesktopPane1.add(exportXlsButton);
 				}
 
@@ -1468,7 +1468,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 						}
 					});
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(153, 176, 129, 32);
+					jButtonClear.setBounds(144, 176, 140, 32);
 					jDesktopPane1.add(jButtonClear);
 				}
 			}

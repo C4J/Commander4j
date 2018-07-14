@@ -420,7 +420,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					});
 					btnExcel.setText(lang.get("btn_Excel"));
 					btnExcel.setMnemonic(lang.getMnemonicChar());
-					btnExcel.setBounds(628, 110, 103, 32);
+					btnExcel.setBounds(637, 110, 105, 32);
 					jDesktopPane1.add(btnExcel);
 				}
 				{
@@ -859,7 +859,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(lang.getMnemonicChar());
-					jButtonSearch.setBounds(4, 110, 103, 32);
+					jButtonSearch.setBounds(1, 110, 105, 32);
 					jButtonSearch.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							search();
@@ -873,7 +873,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_LOCATION_ADD"));
-					jButtonAdd.setBounds(212, 110, 103, 32);
+					jButtonAdd.setBounds(213, 110, 105, 32);
 					jButtonAdd.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							addRecord();
@@ -886,7 +886,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_LOCATION_EDIT"));
-					jButtonEdit.setBounds(316, 110, 103, 32);
+					jButtonEdit.setBounds(319, 110, 105, 32);
 					jButtonEdit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							editRecord();
@@ -899,7 +899,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_LOCATION_DELETE"));
-					jButtonDelete.setBounds(420, 110, 103, 32);
+					jButtonDelete.setBounds(425, 110, 105, 32);
 					jButtonDelete.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							deleteRecord();
@@ -911,7 +911,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(524, 110, 103, 32);
+					jButtonPrint.setBounds(531, 110, 105, 32);
 					jButtonPrint.setEnabled(true);
 					jButtonPrint.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -924,7 +924,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(732, 110, 103, 32);
+					jButtonHelp.setBounds(743, 110, 105, 32);
 				}
 				{
 
@@ -932,7 +932,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(836, 110, 103, 32);
+					jButtonClose.setBounds(849, 110, 105, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							JDBQuery2.closeStatement(listStatement);
@@ -967,7 +967,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 						}
 					});
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(108, 110, 103, 32);
+					jButtonClear.setBounds(107, 110, 105, 32);
 					jDesktopPane1.add(jButtonClear);
 				}
 			}

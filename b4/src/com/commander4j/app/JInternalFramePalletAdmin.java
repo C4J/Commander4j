@@ -83,6 +83,8 @@ import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.messages.IncommingPalletImportXML;
+import com.commander4j.messages.OutgoingPalletExportXML;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
@@ -121,6 +123,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private static boolean dlg_sort_descending = false;
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonSearch1;
+	private JButton4j jButtonExport;
+	private JButton4j jButtonImport;
 	private JTextField4j jTextFieldLocation;
 	private JLabel4j_std jLabel4;
 	private JLabel4j_std jLabel23;
@@ -666,23 +670,55 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(979, 535));
-			this.setBounds(0, 0, 994, 608);
+			this.setBounds(0, 0, 994, 646);
 			setVisible(true);
 			this.setClosable(true);
 			getContentPane().setLayout(null);
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 990, 574);
+				jDesktopPane1.setBounds(0, 0, 990, 614);
 				jDesktopPane1.setBackground(Common.color_app_window);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(917, 504));
 				jDesktopPane1.setLayout(null);
-
+				{
+					jButtonExport = new JButton4j(Common.icon_export);
+					jDesktopPane1.add(jButtonExport);
+					jButtonExport.setText(lang.get("btn_Export"));
+					jButtonExport.setBounds(166, 260, 162, 32);
+					jButtonExport.setMnemonic(lang.getMnemonicChar());
+					jButtonExport.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EXPORT"));
+					jButtonExport.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+							buildSQL();
+							OutgoingPalletExportXML export = new OutgoingPalletExportXML(Common.selectedHostID, Common.sessionID);
+							export.saveAs("export.xml", listStatement, Common.mainForm,jStatusText);
+						}
+					});
+				}
+				{
+					jButtonImport = new JButton4j(Common.icon_open);
+					jDesktopPane1.add(jButtonImport);
+					jButtonImport.setText(lang.get("btn_Import"));
+					jButtonImport.setBounds(2, 260, 162, 32);
+					jButtonImport.setMnemonic(lang.getMnemonicChar());
+					jButtonImport.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_IMPORT"));
+					jButtonImport.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+							IncommingPalletImportXML import1 = new IncommingPalletImportXML(Common.selectedHostID, Common.sessionID);
+							import1.loadFrom("export.xml",  Common.mainForm, jStatusText);
+						}
+					});
+				}				
 				{
 					jButtonSearch1 = new JButton4j(Common.icon_search);
 					jDesktopPane1.add(jButtonSearch1);
 					jButtonSearch1.setText(lang.get("btn_Search"));
-					jButtonSearch1.setBounds(0, 226, 98, 32);
+					jButtonSearch1.setBounds(2, 226, 162, 32);
 					jButtonSearch1.setMnemonic(lang.getMnemonicChar());
 					jButtonSearch1.addActionListener(new ActionListener()
 					{
@@ -748,7 +784,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jButtonAdd = new JButton4j(Common.icon_add);
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
-					jButtonAdd.setBounds(196, 226, 98, 32);
+					jButtonAdd.setBounds(330, 226, 162, 32);
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_ADD"));
 					jButtonAdd.addActionListener(new ActionListener()
@@ -763,7 +799,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jButtonEdit = new JButton4j(Common.icon_edit);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
-					jButtonEdit.setBounds(294, 226, 98, 32);
+					jButtonEdit.setBounds(494, 226, 162, 32);
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener()
@@ -778,7 +814,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jButtonDelete = new JButton4j(Common.icon_delete);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
-					jButtonDelete.setBounds(392, 226, 98, 32);
+					jButtonDelete.setBounds(658, 226, 162, 32);
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_DELETE"));
 					jButtonDelete.addActionListener(new ActionListener()
@@ -800,7 +836,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					});
 					jDesktopPane1.add(jButtonSummary);
 					jButtonSummary.setText(lang.get("btn_Print_Summary"));
-					jButtonSummary.setBounds(686, 226, 98, 32);
+					jButtonSummary.setBounds(494, 260, 162, 32);
 					jButtonSummary.setMnemonic(lang.getMnemonicChar());
 					jButtonSummary.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PAL_SUMMARY"));
 				}
@@ -808,7 +844,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(882, 226, 98, 32);
+					jButtonClose.setBounds(822, 260, 162, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener()
 					{
@@ -823,7 +859,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jButtonPrint = new JButton4j(Common.icon_report);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setBounds(490, 226, 98, 32);
+					jButtonPrint.setBounds(822, 226, 162, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PALLETS"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.addActionListener(new ActionListener()
@@ -1238,7 +1274,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonLabel);
 					jButtonLabel.setText(lang.get("btn_Label"));
 					jButtonLabel.setMnemonic(java.awt.event.KeyEvent.VK_L);
-					jButtonLabel.setBounds(588, 226, 98, 32);
+					jButtonLabel.setBounds(330, 260, 162, 32);
 					jButtonLabel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1274,7 +1310,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 						}
 					});
 					exportXlsButton.setText(lang.get("btn_Excel"));
-					exportXlsButton.setBounds(784, 226, 98, 32);
+					exportXlsButton.setBounds(658, 260, 162, 32);
 					jDesktopPane1.add(exportXlsButton);
 				}
 
@@ -1305,7 +1341,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 						}
 					});
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(98, 226, 98, 32);
+					jButtonClear.setBounds(166, 226, 162, 32);
 					jDesktopPane1.add(jButtonClear);
 				}
 
@@ -1358,13 +1394,13 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 			{
 				jStatusText = new JLabel4j_std();
-				jStatusText.setBounds(0, 550, 980, 21);
+				jStatusText.setBounds(0, 593, 980, 21);
 				jDesktopPane1.add(jStatusText);
 				jStatusText.setBackground(Color.GRAY);
 				jStatusText.setForeground(new Color(255, 0, 0));
 			}
 			jScrollPane1 = new JScrollPane();
-			jScrollPane1.setBounds(0, 262, 984, 284);
+			jScrollPane1.setBounds(0, 300, 984, 290);
 			jDesktopPane1.add(jScrollPane1);
 			jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 			jTable1 = new JTable();
