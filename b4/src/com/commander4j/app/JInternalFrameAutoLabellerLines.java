@@ -142,7 +142,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(674, 474));
-			this.setBounds(0, 0, 1025, 521);
+			this.setBounds(0, 0, 1025, 528);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -156,7 +156,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
-			jButtonClose.setBounds(871, 445, 123, 32);
+			jButtonClose.setBounds(883, 440, 125, 32);
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -177,7 +177,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonRefresh.setIcon(Common.icon_refresh);
 			jButtonRefresh.setText(lang.get("btn_Refresh"));
 			jButtonRefresh.setMnemonic('0');
-			jButtonRefresh.setBounds(625, 445, 123, 32);
+			jButtonRefresh.setBounds(631, 440, 125, 32);
 			jDesktopPane1.add(jButtonRefresh);
 
 			JButton4j jButtonAdd = new JButton4j(Common.icon_add);
@@ -191,7 +191,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonAdd.setText(lang.get("btn_Add"));
 			jButtonAdd.setMnemonic('A');
 			jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_ADD"));
-			jButtonAdd.setBounds(10, 445, 123, 32);
+			jButtonAdd.setBounds(1, 440, 125, 32);
 			jDesktopPane1.add(jButtonAdd);
 
 			JButton4j JButtonEdit = new JButton4j(Common.icon_edit);
@@ -205,7 +205,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			JButtonEdit.setText(lang.get("btn_Edit"));
 			JButtonEdit.setMnemonic('E');
 			JButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_EDIT"));
-			JButtonEdit.setBounds(133, 445, 123, 32);
+			JButtonEdit.setBounds(127, 440, 125, 32);
 			jDesktopPane1.add(JButtonEdit);
 
 			JButton4j jButtonDelete = new JButton4j(Common.icon_delete);
@@ -219,7 +219,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonDelete.setText(lang.get("btn_Delete"));
 			jButtonDelete.setMnemonic('D');
 			jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_DELETE"));
-			jButtonDelete.setBounds(256, 445, 123, 32);
+			jButtonDelete.setBounds(253, 440, 125, 32);
 			jDesktopPane1.add(jButtonDelete);
 
 			JButton4j jButtonRename = new JButton4j(Common.icon_rename);
@@ -233,7 +233,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonRename.setText(lang.get("btn_Rename"));
 			jButtonRename.setMnemonic('D');
 			jButtonRename.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_AUTO_LAB_RENAME"));
-			jButtonRename.setBounds(379, 445, 123, 32);
+			jButtonRename.setBounds(379, 440, 125, 32);
 			jDesktopPane1.add(jButtonRename);
 
 			scrollPane.setBounds(0, 34, 1003, 399);
@@ -280,7 +280,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 				}
 			});
 			button4jResend.setText(lang.get("btn_Resend"));
-			button4jResend.setBounds(502, 445, 123, 32);
+			button4jResend.setBounds(505, 440, 125, 32);
 			jDesktopPane1.add(button4jResend);
 
 			JButton4j button4jHistory = new JButton4j(Common.icon_history);
@@ -303,13 +303,13 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 				}
 			});
 			button4jHistory.setText(lang.get("btn_History"));
-			button4jHistory.setBounds(748, 445, 123, 32);
+			button4jHistory.setBounds(757, 440, 125, 32);
 			jDesktopPane1.add(button4jHistory);
 
 			jStatusText = new JLabel4j_std();
 			jStatusText.setForeground(Color.RED);
 			jStatusText.setBackground(Color.GRAY);
-			jStatusText.setBounds(-1, 384, 985, 21);
+			jStatusText.setBounds(1, 475, 985, 21);
 			jDesktopPane1.add(jStatusText);
 			rdbtnAll.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

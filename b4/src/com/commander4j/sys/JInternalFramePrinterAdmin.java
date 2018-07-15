@@ -229,7 +229,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(669, 341));
-			this.setBounds(0, 0, 1025, 485);
+			this.setBounds(0, 0, 1025, 491);
 			setVisible(true);
 			this.setClosable(true);
 			this.getContentPane().setLayout(null);
@@ -272,7 +272,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonEdit = new JButton4j(Common.icon_edit);
 				this.getContentPane().add(jButtonEdit);
 				jButtonEdit.setText(lang.get("btn_Edit"));
-				jButtonEdit.setBounds(144, 409, 146, 32);
+				jButtonEdit.setBounds(144, 400, 146, 32);
 				jButtonEdit.setMnemonic(lang.getMnemonicChar());
 				jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRINTER_EDIT"));
 				jButtonEdit.addActionListener(new ActionListener()
@@ -287,7 +287,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonClose = new JButton4j(Common.icon_close);
 				this.getContentPane().add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
-				jButtonClose.setBounds(864, 409, 146, 32);
+				jButtonClose.setBounds(864, 400, 146, 32);
 				jButtonClose.setMnemonic(lang.getMnemonicChar());
 				jButtonClose.addActionListener(new ActionListener()
 				{
@@ -302,7 +302,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonAdd = new JButton4j(Common.icon_add);
 				this.getContentPane().add(jButtonAdd);
 				jButtonAdd.setText(lang.get("btn_Add"));
-				jButtonAdd.setBounds(0, 409, 146, 32);
+				jButtonAdd.setBounds(0, 400, 146, 32);
 				jButtonAdd.setMnemonic(lang.getMnemonicChar());
 				jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRINTER_ADD"));
 				jButtonAdd.addActionListener(new ActionListener()
@@ -346,7 +346,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonDelete = new JButton4j(Common.icon_delete);
 				this.getContentPane().add(jButtonDelete);
 				jButtonDelete.setText(lang.get("btn_Delete"));
-				jButtonDelete.setBounds(288, 409, 146, 32);
+				jButtonDelete.setBounds(288, 400, 146, 32);
 				jButtonDelete.setMnemonic(lang.getMnemonicChar());
 				jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PRINTER_DELETE"));
 				jButtonDelete.addActionListener(new ActionListener()
@@ -381,7 +381,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonPrint = new JButton4j(Common.icon_report);
 				this.getContentPane().add(jButtonPrint);
 				jButtonPrint.setText(lang.get("btn_Print"));
-				jButtonPrint.setBounds(576, 409, 146, 32);
+				jButtonPrint.setBounds(576, 400, 146, 32);
 				jButtonPrint.setMnemonic(lang.getMnemonicChar());
 				jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PRINTERS"));
 				jButtonPrint.addActionListener(new ActionListener()
@@ -396,7 +396,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jButtonHelp = new JButton4j(Common.icon_help);
 				this.getContentPane().add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
-				jButtonHelp.setBounds(720, 409, 146, 32);
+				jButtonHelp.setBounds(720, 400, 146, 32);
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 
 			}
@@ -417,7 +417,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				});
 				jButtonExcel.setText(lang.get("btn_Excel"));
 				jButtonExcel.setMnemonic(lang.getMnemonicChar());
-				jButtonExcel.setBounds(432, 409, 146, 32);
+				jButtonExcel.setBounds(432, 400, 146, 32);
 				getContentPane().add(jButtonExcel);
 			}
 			
@@ -454,7 +454,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 
 			jStatusText.setForeground(Color.BLACK);
 			jStatusText.setBackground(Color.GRAY);
-			jStatusText.setBounds(0, 391, 998, 21);
+			jStatusText.setBounds(0, 435, 998, 21);
 			getContentPane().add(jStatusText);
 			comboBoxPrinterTypes.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
