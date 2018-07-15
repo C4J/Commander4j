@@ -40,6 +40,7 @@ import javax.swing.JFileChooser;
 
 import org.apache.log4j.Logger;
 
+import com.commander4j.db.JDBControl;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileFilterXML;
@@ -126,7 +127,7 @@ public class IncommingPalletImportXML
 					String importtFilename = selectedFile.getAbsolutePath();
 					processMessage(importtFilename, jStatusText);
 					result = true;
-					updateStatus(jStatusText, "Import completed from " + importtFilename);
+					updateStatus(jStatusText, "Import complete.");
 				}
 			}
 			else
@@ -148,7 +149,9 @@ public class IncommingPalletImportXML
 		Boolean result = false;
 
 		JXMLDocument xmlDoc = new JXMLDocument(filename);
-
+		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
+		String defaultLocation = ctrl.getKeyValue("DEFAULT_LOCATION");
+		
 		int tableInstance = 1;
 		String tableName = "";
 
@@ -246,8 +249,25 @@ public class IncommingPalletImportXML
 						default:
 							logger.debug("Unhandled type " + fieldTypes.get(x));
 						}
-
+						
+						// Override Pallet Location and Old Despatch No
+						if (tableName.toUpperCase().equals("APP_PALLET"))
+						{
+							if (fieldNames.get(x).toUpperCase().equals("LOCATION_ID"))
+							{
+								stmtupdate.setString(x + 1,defaultLocation);
+							}
+							if (fieldNames.get(x).toUpperCase().equals("DESPATCH_NO"))
+							{
+								stmtupdate.setString(x + 1,"");
+							}		
+							if (fieldNames.get(x).toUpperCase().equals("MHN_NUMBER"))
+							{
+								stmtupdate.setString(x + 1,"");
+							}	
+						}
 					}
+					
 					logger.debug(stmtupdate.toString());
 
 					stmtupdate.execute();
