@@ -258,7 +258,7 @@ public class OutgoingPalletExportXML
 					{
 						SSCCs.add(sscc);
 					}					
-					updateStatus(jStatusText,"Found "+String.valueOf(materials.size())+"Materials. "+String.valueOf(materialBatches.size())+"Material Batches. "+String.valueOf(processOrders.size())+"Process Order. "+String.valueOf(SSCCs.size())+"SSCCs. ");
+					updateStatus(jStatusText,"Found "+String.valueOf(materials.size())+" Materials. "+String.valueOf(materialBatches.size())+" Material Batches. "+String.valueOf(processOrders.size())+" Process Orders. "+String.valueOf(SSCCs.size())+" SSCCs. ");
 
 				}
 				rs.close();

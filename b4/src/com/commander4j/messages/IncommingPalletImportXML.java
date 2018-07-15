@@ -254,6 +254,7 @@ public class IncommingPalletImportXML
 					stmtupdate.clearParameters();
 					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 					stmtupdate.close();
+					updateStatus(jStatusText, "Table ["+tableName+"] rows inserted ["+String.valueOf(recordNo)+"]");
 					result = true;
 				}
 				catch (SQLException e)

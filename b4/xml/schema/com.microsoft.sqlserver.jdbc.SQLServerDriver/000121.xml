@@ -43,5 +43,12 @@
 	<statement>	
 		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Import', 'PL', 'Import', '0')
 	</statement>	
-		
+	
+	<statement>	 
+		INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_PALLET_EXPORT')
+	</statement>
+	
+	<statement>	 
+		INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_PALLET_IMPORT')
+	</statement>		
 </DDL>

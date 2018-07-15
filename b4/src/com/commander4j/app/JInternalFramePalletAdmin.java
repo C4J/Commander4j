@@ -694,9 +694,12 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
+							int maxrows = Integer.valueOf(ctrl.getKeyValueWithDefault("PALLET EXPORT MAX ROWS", "100","Max rows which can be exported to XML"));
+							jCheckBoxLimit.setSelected(true);
+							jSpinnerLimit.setValue(maxrows);
 							buildSQL();
 							OutgoingPalletExportXML export = new OutgoingPalletExportXML(Common.selectedHostID, Common.sessionID);
-							export.saveAs(ctrl.getKeyValue("DEFAULT_LOCATION")+"Pallet_Export.xml", listStatement, Common.mainForm,jStatusText);
+							export.saveAs(ctrl.getKeyValue("DEFAULT_LOCATION")+"_Pallet_Export.xml", listStatement, Common.mainForm,jStatusText);
 						}
 					});
 				}
