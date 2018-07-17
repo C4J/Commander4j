@@ -50,5 +50,131 @@
 	
 	<statement>	 
 		INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_PALLET_IMPORT')
+	</statement>	
+	
+	<statement>	 	
+			CREATE OR REPLACE  VIEW `view_sync1` AS SELECT
+			`app_label_data`.`PRINT_DATE` AS `PRINT_DATE`,
+			`app_auto_labeller`.`UNIQUE_ID` AS `UNIQUE_ID`,
+			`app_auto_labeller`.`LINE` AS `LINE`,
+			`app_auto_labeller`.`GROUP_ID` AS `GROUP_ID`,
+			`app_label_data`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+			`app_process_order`.`STATUS` AS `STATUS`,
+			`app_label_data`.`MATERIAL` AS `MATERIAL`,
+			`app_label_data`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+			`app_material`.`DESCRIPTION` AS `DESCRIPTION`,
+			`app_material`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+			`app_label_data`.`BATCH_NUMBER` AS `BATCH_NUMBER`,
+			`app_label_data`.`BATCH_PREFIX` AS `BATCH_PREFIX`,
+			`app_label_data`.`BATCH_SUFFIX` AS `BATCH_SUFFIX`,
+			`app_label_data`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE`,
+			`app_label_data`.`DATE_OF_MANUFACTURE` AS `DATE_OF_MANUFACTURE`,
+			`app_label_data`.`EXPIRY_DATE` AS `EXPIRY_DATE`,
+			`app_label_data`.`PROD_EAN` AS `PROD_EAN`,
+			`app_label_data`.`PROD_VARIANT` AS `PROD_VARIANT`,
+			`app_label_data`.`PROD_QUANTITY` AS `PROD_QUANTITY`,
+			`app_label_data`.`PROD_UOM` AS `PROD_UOM`,
+			`app_label_data`.`BASE_EAN` AS `BASE_EAN`,
+			`app_label_data`.`BASE_VARIANT` AS `BASE_VARIANT`,
+			`app_label_data`.`BASE_QUANTITY` AS `BASE_QUANTITY`,
+			`app_label_data`.`BASE_UOM` AS `BASE_UOM`,
+			`app_label_data`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+			`app_customer`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+			`app_label_data`.`LAYERS` AS `LAYERS`,
+			`app_material`.`UPDATED` AS `MATERIAL_UPDATED`,
+			`app_process_order`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+			`app_material`.`OVERRIDE_PACK_LABEL` AS `OVERRIDE_PACK_LABEL`,
+			`app_material`.`PACK_LABEL_MODULE_ID` AS `PACK_LABEL_MODULE_ID`,
+			`app_material`.`OVERRIDE_PALLET_LABEL` AS `OVERRIDE_PALLET_LABEL`,
+			`app_material`.`PALLET_LABEL_MODULE_ID` AS `PALLET_LABEL_MODULE_ID` 
+		FROM
+			(
+				(
+					(
+						(
+							`app_label_data`
+							JOIN `app_auto_labeller` ON ( ( `app_label_data`.`UNIQUE_ID` = `app_auto_labeller`.`UNIQUE_ID` ) ) 
+						)
+						JOIN `app_customer` ON ( ( `app_customer`.`CUSTOMER_ID` = `app_label_data`.`CUSTOMER_ID` ) ) 
+					)
+					JOIN `app_material` ON ( ( `app_material`.`MATERIAL` = `app_label_data`.`MATERIAL` ) ) 
+				)
+			JOIN `app_process_order` ON ( ( `app_process_order`.`PROCESS_ORDER` = `app_label_data`.`PROCESS_ORDER` ) ) 
+			)
+	</statement>		
+	
+	<statement>	 	
+		CREATE OR REPLACE VIEW `view_sync2` AS SELECT
+			`app_label_data`.`PRINT_DATE` AS `PRINT_DATE`,
+			`app_auto_labeller`.`UNIQUE_ID` AS `UNIQUE_ID`,
+			`app_auto_labeller`.`LINE` AS `LINE`,
+			`app_auto_labeller`.`GROUP_ID` AS `GROUP_ID`,
+			`app_label_data`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+			`app_process_order`.`STATUS` AS `STATUS`,
+			`app_label_data`.`MATERIAL` AS `MATERIAL`,
+			`app_label_data`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+			`app_material`.`DESCRIPTION` AS `DESCRIPTION`,
+			`app_material`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+			`app_label_data`.`BATCH_NUMBER` AS `BATCH_NUMBER`,
+			`app_label_data`.`BATCH_PREFIX` AS `BATCH_PREFIX`,
+			`app_label_data`.`BATCH_SUFFIX` AS `BATCH_SUFFIX`,
+			`app_label_data`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE`,
+			`app_label_data`.`DATE_OF_MANUFACTURE` AS `DATE_OF_MANUFACTURE`,
+			`app_label_data`.`EXPIRY_DATE` AS `EXPIRY_DATE`,
+			`app_label_data`.`PROD_EAN` AS `PROD_EAN`,
+			`app_label_data`.`PROD_VARIANT` AS `PROD_VARIANT`,
+			`app_label_data`.`PROD_QUANTITY` AS `PROD_QUANTITY`,
+			`app_label_data`.`PROD_UOM` AS `PROD_UOM`,
+			`app_label_data`.`BASE_EAN` AS `BASE_EAN`,
+			`app_label_data`.`BASE_VARIANT` AS `BASE_VARIANT`,
+			`app_label_data`.`BASE_QUANTITY` AS `BASE_QUANTITY`,
+			`app_label_data`.`BASE_UOM` AS `BASE_UOM`,
+			`app_label_data`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+			`app_customer`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+			`app_label_data`.`LAYERS` AS `LAYERS`,
+			`app_material`.`UPDATED` AS `MATERIAL_UPDATED`,
+			`app_process_order`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+			`app_material`.`OVERRIDE_PACK_LABEL` AS `OVERRIDE_PACK_LABEL`,
+			`app_material`.`PACK_LABEL_MODULE_ID` AS `PACK_LABEL_MODULE_ID`,
+			`app_material`.`OVERRIDE_PALLET_LABEL` AS `OVERRIDE_PALLET_LABEL`,
+			`app_material`.`PALLET_LABEL_MODULE_ID` AS `PALLET_LABEL_MODULE_ID`,
+			`sys_printers`.`PRINTER_ID` AS `PRINTER_ID`,
+			`sys_printers`.`PRINTER_TYPE` AS `PRINTER_TYPE`,
+			`sys_printers`.`IP_ADDRESS` AS `IP_ADDRESS`,
+			`sys_printers`.`PORT` AS `PORT`,
+			`sys_printers`.`ENABLED` AS `ENABLED`,
+			`sys_printers`.`PRINTER_DPI` AS `PRINTER_DPI`,
+			`sys_printers`.`PAPER_SIZE` AS `PAPER_SIZE` 
+		FROM
+			(
+				(
+					(
+						(
+							(
+								(
+									`app_label_data`
+									JOIN `app_auto_labeller` ON ( ( `app_label_data`.`UNIQUE_ID` = `app_auto_labeller`.`UNIQUE_ID` ) ) 
+								)
+								JOIN `app_customer` ON ( ( `app_customer`.`CUSTOMER_ID` = `app_label_data`.`CUSTOMER_ID` ) ) 
+							)
+							JOIN `app_material` ON ( ( `app_material`.`MATERIAL` = `app_label_data`.`MATERIAL` ) ) 
+						)
+						JOIN `app_process_order` ON ( ( `app_process_order`.`PROCESS_ORDER` = `app_label_data`.`PROCESS_ORDER` ) ) 
+					)
+					JOIN `sys_printer_line_membership` ON (
+						(
+							( `app_auto_labeller`.`LINE` = `sys_printer_line_membership`.`LINE` ) 
+							AND ( `app_auto_labeller`.`GROUP_ID` = `sys_printer_line_membership`.`GROUP_ID` ) 
+						) 
+					) 
+				)
+				JOIN `sys_printers` ON (
+					(
+						( `sys_printer_line_membership`.`GROUP_ID` = `sys_printers`.`GROUP_ID` ) 
+						AND ( `sys_printer_line_membership`.`PRINTER_ID` = `sys_printers`.`PRINTER_ID` ) 
+					) 
+				) 
+			)
 	</statement>			
+			
 </DDL>
