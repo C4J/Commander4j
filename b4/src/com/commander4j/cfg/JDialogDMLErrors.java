@@ -28,6 +28,7 @@ package com.commander4j.cfg;
  */
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -38,6 +39,7 @@ import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
@@ -46,6 +48,12 @@ import javax.swing.WindowConstants;
 import com.commander4j.db.JDBDDL;
 import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
+import com.commander4j.util.JFileFilterXML;
+
+import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileWriter;
 
 /**
  * The JDialogDMLErrors is used to display any SQL errors which are encountered
@@ -62,17 +70,16 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 	private JList4j<String> jListErrors;
 	private JButton jButtonClose;
 	private JScrollPane jScrollPane1;
+	private LinkedList<JDBDDL> ddlLocal;
+	private JDialogDMLErrors me = this;
 
-	public static void main(String[] args)
-	{
-
-	}
 
 	public JDialogDMLErrors(JFrame frame, LinkedList<JDBDDL> ddl)
 	{
 		super(frame);
 		initGUI();
 
+		ddlLocal = ddl;
 		populateList(ddl);
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -146,7 +153,19 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					jButtonClose.setText("Close");
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
 					jButtonClose.setFont(Common.font_btn);
-					jButtonClose.setBounds(419, 453, 112, 28);
+					jButtonClose.setBounds(473, 453, 112, 28);
+					
+					JButton jButtonSave = new JButton(Common.icon_file_save);
+					jButtonSave.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							saveAs("Errors.txt",me);
+						}
+					});
+					jButtonSave.setText("Save to File");
+					jButtonSave.setMnemonic(KeyEvent.VK_S);
+					jButtonSave.setFont(new Font("Arial", Font.PLAIN, 11));
+					jButtonSave.setBounds(359, 453, 112, 28);
+					jDesktopPane1.add(jButtonSave);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -162,5 +181,67 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 			e.printStackTrace();
 		}
 	}
+	
+	public Boolean saveAs(String filename, Component parent)
+	{
 
+		Boolean result = false;
+		JFileChooser saveTXT = new JFileChooser();
+
+		try
+		{
+			File f = new File(new File(System.getProperty("user.home")).getCanonicalPath());
+			saveTXT.setCurrentDirectory(f);
+			saveTXT.addChoosableFileFilter(new JFileFilterXML());
+			saveTXT.setSelectedFile(new File(filename));
+
+			int r = saveTXT.showSaveDialog(parent);
+
+			if (r == 0)
+			{
+				File selectedFile;
+				selectedFile = saveTXT.getSelectedFile();
+				if (selectedFile != null)
+				{
+					String exportFilename = selectedFile.getAbsolutePath();
+					try
+					{
+
+						FileWriter fw = new FileWriter(exportFilename);
+						fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+						for (int x = 0; x < ddlLocal.size();x++)
+						{
+							fw.write("Schema Version : " + ddlLocal.get(x).getVersion()+"\n");
+							fw.write("Sequence       : " + String.valueOf(ddlLocal.get(x).getSequence())+"\n");
+							fw.write("DDL            : " + ddlLocal.get(x).getText()+"\n");
+							fw.write("Error Message  : " + ddlLocal.get(x).getError()+"\n");
+							fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+							fw.flush();
+						}
+
+						fw.close();
+						
+						result=true;
+
+					} catch (Exception ex)
+					{
+
+
+					}
+					result = true;
+				}
+			}
+			else
+			{
+
+			}
+		}
+		catch (Exception ex)
+
+		{
+
+		}
+
+		return result;
+	}
 }

@@ -368,7 +368,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 
 		jTable1.getColumnModel().getColumn(0).setPreferredWidth(95);
 		jTable1.getColumnModel().getColumn(1).setPreferredWidth(95);
-		jTable1.getColumnModel().getColumn(2).setPreferredWidth(95);
+		jTable1.getColumnModel().getColumn(2).setPreferredWidth(105);
 		jTable1.getColumnModel().getColumn(3).setPreferredWidth(120);
 
 		jScrollPane1.repaint();
@@ -393,7 +393,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(497, 522));
-			this.setBounds(0, 0, 459, 645);
+			this.setBounds(0, 0, 459, 666);
 			setVisible(true);
 			this.setClosable(true);
 			this.setTitle("Material Batches");
@@ -407,7 +407,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 242, 425, 347);
+					jScrollPane1.setBounds(0, 242, 443, 362);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][]
 						{
@@ -875,7 +875,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 592, 438, 21);
+					jStatusText.setBounds(0, 613, 443, 21);
 					jDesktopPane1.add(jStatusText);
 				}
 
@@ -921,6 +921,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 				jDesktopPane1.add(jCheckBoxLimit);
 				
 				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
+				ne.getTextField().setFont(Common.font_std);
 				jSpinnerLimit.setEditor(ne);
 				jSpinnerLimit.setBounds(347, 209, 68, 21);
 				jSpinnerLimit.setValue(1000);

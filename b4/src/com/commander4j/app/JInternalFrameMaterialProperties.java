@@ -580,6 +580,11 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					if (enabled)
 					{
 						jButtonLocations.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_LOCATION"));
+						jButtonLocations.setToolTipText("");
+					}
+					else
+					{
+						jButtonLocations.setToolTipText("System key SSCC_LOCATION_VALIDATION is set to false");
 					}
 					jButtonLocations.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
