@@ -46,6 +46,7 @@ import javax.swing.ListModel;
 import javax.swing.WindowConstants;
 
 import com.commander4j.db.JDBDDL;
+import com.commander4j.db.JDBUpdateRequest;
 import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileFilterXML;
@@ -72,14 +73,16 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 	private JScrollPane jScrollPane1;
 	private LinkedList<JDBDDL> ddlLocal;
 	private JDialogDMLErrors me = this;
+	JDBUpdateRequest updateRequest;
 
 
-	public JDialogDMLErrors(JFrame frame, LinkedList<JDBDDL> ddl)
+	public JDialogDMLErrors(JFrame frame, LinkedList<JDBDDL> ddl,JDBUpdateRequest updrst)
 	{
 		super(frame);
 		initGUI();
 
 		ddlLocal = ddl;
+		updateRequest = updrst;
 		populateList(ddl);
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -206,11 +209,20 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					String exportFilename = selectedFile.getAbsolutePath();
 					try
 					{
-
 						FileWriter fw = new FileWriter(exportFilename);
+						fw.write("*********************************************************************************************************************************************************\n");
+						fw.write("Host ID        : "+Common.hostList.getHost(Common.selectedHostID).getSiteNumber()+"\n");
+						fw.write("Description    : "+Common.hostList.getHost(Common.selectedHostID).getSiteDescription()+"\n");
+						fw.write("Database       : "+Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabase()+"\n");
+						fw.write("jdbc Driver    : "+Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver()+"\n");
+						fw.write("Server         : "+Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcServer()+"\n");
+						fw.write("Port           : "+Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcPort()+"\n");
+						fw.write("Connection     : "+Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcConnectString()+"\n");
+						fw.write("Updating from Schema Version "+String.valueOf(updateRequest.schema_CURVersion+" to "+String.valueOf(updateRequest.schema_NEWVersion))+"\n");
+						fw.write("*********************************************************************************************************************************************************\n\n\n");
 						fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 						for (int x = 0; x < ddlLocal.size();x++)
-						{
+						{            
 							fw.write("Schema Version : " + ddlLocal.get(x).getVersion()+"\n");
 							fw.write("Sequence       : " + String.valueOf(ddlLocal.get(x).getSequence())+"\n");
 							fw.write("DDL            : " + ddlLocal.get(x).getText()+"\n");
@@ -218,7 +230,7 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 							fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 							fw.flush();
 						}
-
+						fw.write("\nNo of Errors   : " +String.valueOf(ddlLocal.size())+"\n");
 						fw.close();
 						
 						result=true;

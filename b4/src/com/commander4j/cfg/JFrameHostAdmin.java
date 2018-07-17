@@ -1262,7 +1262,7 @@ public class JFrameHostAdmin extends JFrame
 											else
 											{
 												JUtility.errorBeep();
-												JDialogDMLErrors dmlerrs = new JDialogDMLErrors(me, cmds);
+												JDialogDMLErrors dmlerrs = new JDialogDMLErrors(me, cmds, updrst);
 												dmlerrs.setModal(true);
 												int ignoreDDLErrors = JOptionPane.showConfirmDialog(me, "Ignore Errors and set SCHEMA version to " + String.valueOf(updrst.schema_NEWVersion) + " ?", "Connection to (" + hst.getSiteDescription() + ")",
 														JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
