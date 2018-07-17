@@ -1,5 +1,7 @@
 package com.commander4j.db;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * @author David Garratt
  * 
@@ -147,20 +149,15 @@ public class JDatabaseParameters
 
 		String value = "";
 
-		if (getjdbcDriver().equals("com.ibm.db2.jcc.DB2Driver"))
-		{
-			value = "jdbc:db2://jdbcServer:jdbcPort/jdbcDatabase";
-		}
-
 		if (getjdbcDriver().equals("com.mysql.cj.jdbc.Driver"))
 		{
 			if (getjdbcPort().equals(""))
 			{
-				value = "jdbc:mysql://jdbcServer/jdbcDatabase";
+				value = "jdbc:mysql://jdbcServer/jdbcDatabase?autoReconnect=true";
 			}
 			else
 			{
-				value = "jdbc:mysql://jdbcServer:jdbcPort/jdbcDatabase";
+				value = "jdbc:mysql://jdbcServer:jdbcPort/jdbcDatabase?autoReconnect=true";
 			}
 		}
 
@@ -173,11 +170,11 @@ public class JDatabaseParameters
 		{
 			if (getjdbcSID().equals("") == true)
 			{
-				value = "jdbc:sqlserver://jdbcServer";
+				value = "jdbc:sqlserver://jdbcServer;selectMethod=direct";
 			}
 			else
 			{
-				value = "jdbc:sqlserver://jdbcServer\\jdbcSID";
+				value = "jdbc:sqlserver://jdbcServer\\jdbcSID;selectMethod=direct";
 			}
 			if (getjdbcPort().equals("")==false)
 			{
@@ -213,7 +210,10 @@ public class JDatabaseParameters
 
 
 	public String getjdbcServer() {
-		return jdbcServer;
+		String result = jdbcServer;
+		result = StringUtils.removeIgnoreCase(result, ";selectMethod=direct");
+		result = StringUtils.removeIgnoreCase(result, ";autoReconnect=true");
+		return  result;
 	}
 
 
@@ -228,7 +228,10 @@ public class JDatabaseParameters
 
 
 	public String getjdbcDatabase() {
-		return jdbcDatabase;
+		String result = jdbcDatabase;
+		result = StringUtils.removeIgnoreCase(result, ";selectMethod=direct");
+		result = StringUtils.removeIgnoreCase(result, ";autoReconnect=true");
+		return  result;
 	}
 
 }

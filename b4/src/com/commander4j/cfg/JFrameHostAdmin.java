@@ -1247,6 +1247,7 @@ public class JFrameHostAdmin extends JFrame
 									if (continueUpdate == 0)
 									{
 
+										labelCommand.setText("Loading SQL commands, please wait....");
 										LinkedList<JDBDDL> cmds = new LinkedList<JDBDDL>();
 										cmds.clear();
 										cmds = JXMLSchema.loadDDLStatements(jTextFieldDriver.getText(), "xml/schema/" + Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver() + "/");

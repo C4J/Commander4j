@@ -131,7 +131,7 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 0, 798, 238);
+					jScrollPane1.setBounds(0, 0, 956, 441);
 					{
 						ListModel<String> jListErrorsModel = new DefaultComboBoxModel<String>(new String[]
 						{ "Item One", "Item Two" });
@@ -146,7 +146,7 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					jButtonClose.setText("Close");
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
 					jButtonClose.setFont(Common.font_btn);
-					jButtonClose.setBounds(322, 245, 112, 28);
+					jButtonClose.setBounds(419, 453, 112, 28);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -156,7 +156,7 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					});
 				}
 			}
-			this.setSize(807, 310);
+			this.setSize(962, 521);
 		} catch (Exception e)
 		{
 			e.printStackTrace();
