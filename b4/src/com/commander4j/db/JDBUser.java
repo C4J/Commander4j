@@ -34,6 +34,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.LinkedList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -46,10 +47,7 @@ import com.commander4j.util.JCipher;
 import com.commander4j.util.JUtility;
 
 /**
- * The JDBUser is used to insert/update/delete records in the SYS_USERS table.
- * The users database contains one record for each user in the application. How
- * a user is authenticated is also determined by some system controls in the
- * SYS_CONTROL table.
+ * The JDBUser is used to insert/update/delete records in the SYS_USERS table. The users database contains one record for each user in the application. How a user is authenticated is also determined by some system controls in the SYS_CONTROL table.
  * <p>
  * <img alt="" src="./doc-files/SYS_USERS.jpg" >
  * 
@@ -89,6 +87,7 @@ public class JDBUser
 	private JDBAuditPermissions auditPerm;
 	private JDBLanguage lang;
 	private String complexAlphabet = "abcdefghijklmnopqrstuvwxyz";
+	private String specialAlphabet = "0123456789!@£$%^&*()_+?:;[]{}'#";
 	private boolean complexPassword = false;
 	private int complexUppercase = 0;
 	private int complexLowercase = 0;
@@ -126,11 +125,13 @@ public class JDBUser
 					}
 					result = true;
 				}
-			} else
+			}
+			else
 			{
 				setErrorMessage("UserId " + oldUserID + " not found.");
 			}
-		} else
+		}
+		else
 		{
 			setErrorMessage("UserId " + newUserID + " already exists.");
 		}
@@ -257,24 +258,28 @@ public class JDBUser
 			if (isAccountEnabled() == false)
 			{
 				icon = Common.icon_user_disabled;
-			} else
+			}
+			else
 			{
 				if (getAccountLocked().equals("Y") == true)
 				// if (isAccountLocked() == true)
 				{
 					icon = Common.icon_user_locked;
-				} else
+				}
+				else
 				{
 					if (isAccountExpired() == true)
 					{
 						icon = Common.icon_user_expired;
-					} else
+					}
+					else
 					{
 						icon = Common.icon_user;
 					}
 				}
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			System.out.println(e.getMessage());
 		}
@@ -319,7 +324,8 @@ public class JDBUser
 						JCipher advancedEncryptionStandard = new JCipher(Common.encryptionKey);
 						cipherText = advancedEncryptionStandard.encode(newPassword);
 
-					} else
+					}
+					else
 					{
 						cipherText = newPassword;
 					}
@@ -348,7 +354,8 @@ public class JDBUser
 					}
 				}
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -376,7 +383,8 @@ public class JDBUser
 			stmtupdate.close();
 			result = true;
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -406,7 +414,8 @@ public class JDBUser
 			stmtupdate.close();
 			result = true;
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -444,7 +453,8 @@ public class JDBUser
 					{
 						result = true;
 					}
-				} else
+				}
+				else
 				{
 					result = true;
 				}
@@ -452,11 +462,13 @@ public class JDBUser
 				auditPerm.generateNewAuditLogID();
 				auditPerm.write(actionedBy, "USER", "CREATE", getUserId(), "");
 
-			} else
+			}
+			else
 			{
 				setErrorMessage("UserId already exists");
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -502,7 +514,8 @@ public class JDBUser
 				deletePasswordHistory(luser_id);
 
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -531,7 +544,8 @@ public class JDBUser
 			stmtupdate.close();
 			result = true;
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -561,7 +575,8 @@ public class JDBUser
 			stmtupdate.close();
 			result = true;
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -595,7 +610,8 @@ public class JDBUser
 				auditPerm.generateNewAuditLogID();
 				auditPerm.write(actionedBy, "USER", "LOCK", getUserId(), "");
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -630,7 +646,8 @@ public class JDBUser
 				auditPerm.write(actionedBy, "USER", "UNLOCK", getUserId(), "");
 
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -663,7 +680,8 @@ public class JDBUser
 				auditPerm.generateNewAuditLogID();
 				auditPerm.write(actionedBy, "USER", "DISABLE", getUserId(), "");
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -698,7 +716,8 @@ public class JDBUser
 				auditPerm.write(actionedBy, "USER", "ENABLE", getUserId(), "");
 
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -796,7 +815,8 @@ public class JDBUser
 		if (yesNo)
 		{
 			dbPasswordEncrypted = "Y";
-		} else
+		}
+		else
 		{
 			dbPasswordEncrypted = "N";
 		}
@@ -807,7 +827,8 @@ public class JDBUser
 		if (dbPasswordEncrypted.equals("Y"))
 		{
 			return true;
-		} else
+		}
+		else
 		{
 			return false;
 		}
@@ -844,7 +865,8 @@ public class JDBUser
 			JCipher advancedEncryptionStandard = new JCipher(Common.encryptionKey);
 
 			result = advancedEncryptionStandard.decode(dbPasswordCurrent);
-		} else
+		}
+		else
 		{
 			result = dbPasswordCurrent;
 		}
@@ -916,7 +938,8 @@ public class JDBUser
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -941,14 +964,15 @@ public class JDBUser
 			stmt.setFetchSize(250);
 			rs = stmt.executeQuery(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBUser.getUserIds"));
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return rs;
 	}
-	
+
 	public ResultSet getUserPermissionsResultSet()
 	{
 		Statement stmt;
@@ -961,7 +985,8 @@ public class JDBUser
 			stmt.setFetchSize(250);
 			rs = stmt.executeQuery(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBUser.getUserPermisions"));
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1011,7 +1036,8 @@ public class JDBUser
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1064,11 +1090,13 @@ public class JDBUser
 				result = true;
 				rs.close();
 				stmt.close();
-			} else
+			}
+			else
 			{
 				setErrorMessage("Invalid UserId [" + getUserId() + "]");
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1093,11 +1121,13 @@ public class JDBUser
 				if (getAccountExpiryDate().after(curdate))
 				{
 					result = false;
-				} else
+				}
+				else
 				{
 					result = true;
 				}
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				result = true;
 			}
@@ -1135,7 +1165,8 @@ public class JDBUser
 				try
 				{
 					diffMinutes = now.getTime() - whenLocked.getTime();
-				} catch (Exception ex)
+				}
+				catch (Exception ex)
 				{
 					diffMinutes = 0;
 				}
@@ -1150,11 +1181,13 @@ public class JDBUser
 					// number of minutes specified in "PASSWORD AUTO UNLOCK"
 					unlock("SYSTEM");
 					result = false;
-				} else
+				}
+				else
 				{
 					result = true;
 				}
-			} else
+			}
+			else
 			{
 				result = true;
 			}
@@ -1193,6 +1226,112 @@ public class JDBUser
 		return dbLoggedIn;
 	}
 
+	public String generateRandomPassword()
+	{
+		String result = "";
+		Boolean valid = false;
+
+		int minsize = Integer.valueOf(ctrl.getKeyValue("PASSWORD MIN SIZE"));
+		int maxsize = Integer.valueOf(ctrl.getKeyValue("PASSWORD MAX SIZE"));
+		int complexUppercase = Integer.valueOf(ctrl.getKeyValueWithDefault("PASSWORD COMPLEX UPPER REQD", "3", "Number of upper case characters required"));
+		int complexLowercase = Integer.valueOf(ctrl.getKeyValueWithDefault("PASSWORD COMPLEX LOWER REQD", "3", "Number of lower case characters required"));
+		int complexSpecial = Integer.valueOf(ctrl.getKeyValueWithDefault("PASSWORD COMPLEX SPECIAL REQD", "3", "Number of special characters required"));
+		int lowerFound = 0;
+		int upperFound = 0;
+		int specialFound = 0;
+		int randomNum = 0;
+		Boolean lowerOK = false;
+		Boolean upperOK = false;
+		Boolean specialOK = false;
+
+		while (valid == false)
+		{
+
+			while ((lowerOK==false) | (upperOK==false) | (specialOK==false))
+			{
+
+				for (int x = 0; x < result.length(); x++)
+				{
+					String c = result.substring(x, x + 1);
+
+					if (complexAlphabet.toLowerCase().contains(c))
+						lowerFound++;
+					if (complexAlphabet.toUpperCase().contains(c))
+						upperFound++;
+					if ((complexAlphabet.toUpperCase() + complexAlphabet.toLowerCase()).contains(c) == false)
+						specialFound++;
+				}
+
+				if (lowerFound < complexLowercase)
+				{
+					randomNum = ThreadLocalRandom.current().nextInt(0, complexAlphabet.length());
+					result = result + complexAlphabet.toLowerCase().substring(randomNum, randomNum + 1);
+				}
+				else
+				{
+					lowerOK= true;
+				}
+
+				if (upperFound < complexUppercase)
+				{
+					randomNum = ThreadLocalRandom.current().nextInt(0, complexAlphabet.length());
+					result = result + complexAlphabet.toUpperCase().substring(randomNum, randomNum + 1);
+				}
+				else
+				{
+					upperOK= true;
+				}
+
+				if (specialFound < complexSpecial)
+				{
+					randomNum = ThreadLocalRandom.current().nextInt(0, specialAlphabet.length());
+					result = result + specialAlphabet.toUpperCase().substring(randomNum, randomNum + 1);
+				}
+				else
+				{
+					specialOK = true;
+				}
+
+			}
+			
+			
+			int actual = ThreadLocalRandom.current().nextInt(minsize, maxsize+1);
+			
+			while (result.length()  != actual)
+			{
+				if (result.length() != actual)
+				{
+					randomNum = ThreadLocalRandom.current().nextInt(0, complexAlphabet.length());
+					result = result + complexAlphabet.toLowerCase().substring(randomNum, randomNum + 1);
+				}
+
+				if (result.length() != actual)
+				{
+					randomNum = ThreadLocalRandom.current().nextInt(0, complexAlphabet.length());
+					result = result + complexAlphabet.toUpperCase().substring(randomNum, randomNum + 1);
+				}
+
+				if (result.length() != actual)
+				{
+					randomNum = ThreadLocalRandom.current().nextInt(0, specialAlphabet.length());
+					result = result + specialAlphabet.toUpperCase().substring(randomNum, randomNum + 1);
+				}
+			}
+			
+			setPasswordNew(result);
+			setPasswordVerify(result);
+
+			valid = isNewPasswordValid();
+			if (valid)
+			{
+				valid = isPasswordComplex(result);
+			}
+
+		}
+
+		return result;
+	}
+
 	public boolean isNewPasswordValid()
 	{
 		boolean result = false;
@@ -1209,7 +1348,8 @@ public class JDBUser
 				if ((getPasswordNew().length() < minsize) | (getPasswordNew().length() > maxsize))
 				{
 					setErrorMessage("Password size must be between " + String.valueOf(minsize) + " and " + String.valueOf(maxsize));
-				} else
+				}
+				else
 				{
 					if (isPasswordComplex(getPasswordNew()))
 					{
@@ -1218,25 +1358,30 @@ public class JDBUser
 							if (getPasswordNew().toUpperCase().contains(getUserId().toUpperCase()) == false)
 							{
 								result = true;
-							} else
+							}
+							else
 							{
 								setErrorMessage("Password cannot contain user id.");
 							}
-						} else
+						}
+						else
 						{
 							setErrorMessage("Password used previously");
 						}
-					} else
+					}
+					else
 					{
 						// use error message from the isPasswordComplex
 						// function.
 					}
 				}
-			} else
+			}
+			else
 			{
 				setErrorMessage("New password not verified");
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			setErrorMessage("Error during password validation");
 		}
@@ -1274,7 +1419,8 @@ public class JDBUser
 				setErrorMessage("Password used previously");
 			}
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1320,11 +1466,13 @@ public class JDBUser
 				if (getPasswordChanged().after(getPasswordExpiryDate()))
 				{
 					result = false;
-				} else
+				}
+				else
 				{
 					result = true;
 				}
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				result = true;
 			}
@@ -1392,7 +1540,8 @@ public class JDBUser
 					{
 						result = true;
 					}
-				} else
+				}
+				else
 				{
 					if (getLoginPassword().toUpperCase().equals(decodedStoredPass.toUpperCase()))
 					{
@@ -1409,7 +1558,8 @@ public class JDBUser
 				setErrorMessage("Invalid username or password");
 			}
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1448,13 +1598,15 @@ public class JDBUser
 				{
 					setPasswordVersion(rs.getInt("PASSWORD_VERSION"));
 					result = true;
-				} else
+				}
+				else
 				{
 					setErrorMessage("Invalid UserId [" + getUserId() + "]");
 				}
 				rs.close();
 				stmt.close();
-			} catch (SQLException e)
+			}
+			catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -1482,7 +1634,8 @@ public class JDBUser
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1543,7 +1696,8 @@ public class JDBUser
 								setLoggedIn(true);
 								loadModules();
 								stmtupdate.close();
-							} else
+							}
+							else
 							{
 								updateBadPasswordCount();
 								getBadPasswordCount();
@@ -1554,20 +1708,24 @@ public class JDBUser
 									setErrorMessage("Account Locked");
 								}
 							}
-						} else
+						}
+						else
 						{
 							setErrorMessage("Account Expired");
 						}
-					} else
+					}
+					else
 					{
 						setErrorMessage("Account Locked");
 					}
-				} else
+				}
+				else
 				{
 					setErrorMessage("Account Disabled");
 				}
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			logger.error("login :" + e.getMessage());
 		}
@@ -1606,11 +1764,13 @@ public class JDBUser
 				result = true;
 				rs.close();
 				stmt.close();
-			} else
+			}
+			else
 			{
 				setErrorMessage("Invalid UserId [" + getUserId() + "]");
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1632,7 +1792,8 @@ public class JDBUser
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			}
 			stmtupdate.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1683,12 +1844,14 @@ public class JDBUser
 
 					setUserId(newUserId);
 					result = true;
-				} else
+				}
+				else
 				{
 					setErrorMessage("New user_id is already in use.");
 				}
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1725,7 +1888,8 @@ public class JDBUser
 		if (AccountLocked)
 		{
 			setAccountLocked("Y");
-		} else
+		}
+		else
 		{
 			setAccountLocked("N");
 		}
@@ -1815,7 +1979,8 @@ public class JDBUser
 		try
 		{
 			dbPasswordChanged = PasswordChanged;
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			dbPasswordChanged = null;
 		}
@@ -1826,7 +1991,8 @@ public class JDBUser
 		try
 		{
 			dbLockedDate = lockdate;
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			dbLockedDate = JUtility.getSQLDateTime();
 		}
@@ -1902,7 +2068,8 @@ public class JDBUser
 				stmtupdate.close();
 				result = true;
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}

@@ -28,9 +28,11 @@ package com.commander4j.sys;
  */
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -48,6 +50,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBUser;
@@ -59,9 +62,9 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import java.awt.Color;
 
-public class JDialogUserProperties extends JDialog {
+public class JDialogUserProperties extends JDialog
+{
 	private JLabel4j_std jLabel2_1;
 	private JTextField4j lbl_EmailAddress;
 	private static final long serialVersionUID = 1;
@@ -108,27 +111,30 @@ public class JDialogUserProperties extends JDialog {
 	private boolean modified_Enabled = false;
 	private boolean newUser = false;
 	private JCheckBox4j jCheckBoxPasswordChangeRequired;
+	private JLabel4j_std jStatusText = new JLabel4j_std();
 
 	private void displayUserProperties()
 	{
 		if (user.getUserProperties())
 		{
 			newUser = false;
-		} else
+		}
+		else
 		{
 			newUser = true;
 		}
 
 		jTextFieldComment.setText(user.getComment());
 		lbl_EmailAddress.setText(user.getEmailAddress());
-		jPasswordField1.setText(user.getPassword());
-		jPasswordField2.setText(user.getPassword());
+		jPasswordField1.setText(user.getDecodedPassword());
+		jPasswordField2.setText(user.getDecodedPassword());
 		jComboBoxLanguage.setSelectedItem(user.getLanguage());
 
 		try
 		{
 			jTextFieldLastLogon.setText(DateFormat.getDateTimeInstance().format(user.getLastLoginTimestamp()));
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			jTextFieldLastLogon.setText("Never");
 		}
@@ -136,7 +142,8 @@ public class JDialogUserProperties extends JDialog {
 		try
 		{
 			jTextFieldLastPasswordChange.setText(DateFormat.getDateTimeInstance().format(user.getPasswordChanged()));
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			jTextFieldLastLogon.setText("Never");
 		}
@@ -167,7 +174,7 @@ public class JDialogUserProperties extends JDialog {
 			jCheckBoxPasswordChangeRequired.setSelected(true);
 		else
 			jCheckBoxPasswordChangeRequired.setSelected(false);
-		
+
 		if (user.isPasswordExpiring())
 			jCheckBoxPasswordExpires.setSelected(true);
 		else
@@ -179,7 +186,8 @@ public class JDialogUserProperties extends JDialog {
 		{
 			lbl_accountExpiryDate.setBounds(201, 333, 128, 25);
 			lbl_accountExpiryDate.setDate(user.getAccountExpiryDate());
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 
 		}
@@ -192,6 +200,7 @@ public class JDialogUserProperties extends JDialog {
 	{
 
 		super(parent);
+		setResizable(false);
 
 		initGUI();
 
@@ -209,7 +218,7 @@ public class JDialogUserProperties extends JDialog {
 		});
 
 		jTextFieldUserID.setText(userid);
-		
+
 		setTitle(getTitle() + " - " + userid);
 		luserid = userid;
 
@@ -233,18 +242,37 @@ public class JDialogUserProperties extends JDialog {
 		{
 			calendarButton.setEnabled(true);
 			lbl_accountExpiryDate.setEnabled(true);
-		} else
+		}
+		else
 		{
 			lbl_accountExpiryDate.setEnabled(false);
 			calendarButton.setEnabled(false);
 		}
+	}
+	
+	private String randomPassword()
+	{
+		String result = "";
+		String genPass = user.generateRandomPassword();
+		user.setPasswordNew(genPass);
+		user.setPasswordVerify(genPass);
+		jPasswordField1.setText(genPass);
+		jPasswordField2.setText(genPass);
+		userPasswordUpdated = true;
+		userUpdated = true;
+		jButtonSave.setEnabled(true);
+		StringSelection stringSelection = new StringSelection(genPass);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+		jStatusText.setText("New password copied to clipboard.");
+		result = genPass;
+		return result;
 	}
 
 	public void initGUI()
 	{
 
 		this.setPreferredSize(new java.awt.Dimension(417, 432));
-		this.setBounds(0, 0, 418, 495);
+		this.setBounds(0, 0, 418, 508);
 		setModal(true);
 		this.setTitle("User Properties");
 		getContentPane().setLayout(null);
@@ -345,7 +373,7 @@ public class JDialogUserProperties extends JDialog {
 			lbl_Password2.setText(lang.get("lbl_User_Account_Password_Verify"));
 			jDesktopPane1.add(lbl_Password2);
 			lbl_Password2.setHorizontalAlignment(SwingConstants.TRAILING);
-			
+
 			jCheckBoxPasswordChangeRequired = new JCheckBox4j();
 			jCheckBoxPasswordChangeRequired.setBackground(Color.WHITE);
 			jCheckBoxPasswordChangeRequired.setBounds(169, 363, 22, 21);
@@ -590,8 +618,26 @@ public class JDialogUserProperties extends JDialog {
 			lbl_AccountEnabled.setBounds(0, 198, 158, 20);
 			jDesktopPane1.add(lbl_AccountEnabled);
 
+			JButton4j jButtonLock = new JButton4j(Common.icon_lock);
+			jButtonLock.setToolTipText("Assign system generated password (also copied to clipboard).");
+			jButtonLock.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					randomPassword();
+				}
+			});
+			jButtonLock.setBounds(326, 60, 21, 25);
+			jDesktopPane1.add(jButtonLock);
+
+			jStatusText.setForeground(Color.RED);
+			jStatusText.setBackground(Color.GRAY);
+			jStatusText.setBounds(0, 464, 418, 21);
+			jDesktopPane1.add(jStatusText);
+
 			postInitGUI();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -637,7 +683,7 @@ public class JDialogUserProperties extends JDialog {
 				user.setPasswordChangeRequired("Y");
 			else
 				user.setPasswordChangeRequired("N");
-			
+
 			if (jCheckBoxPasswordExpires.isSelected())
 				user.setPasswordExpires("Y");
 			else
@@ -661,8 +707,15 @@ public class JDialogUserProperties extends JDialog {
 			if (newUser)
 			{
 				user.create(luserid, Common.userList.getUser(Common.sessionID).getUserId());
-				newUser=false;
+				if (userPasswordUpdated==false)
+				{
+					pass1 = randomPassword();
+					pass2 = pass1;
+					userPasswordUpdated=true;
+				}
+				newUser = false;
 			}
+
 
 			if (userPasswordUpdated)
 			{
@@ -672,15 +725,17 @@ public class JDialogUserProperties extends JDialog {
 					{
 						user.changePassword();
 						userPasswordUpdated = false;
-					} else
+					}
+					else
 					{
 						JUtility.errorBeep();
-						JOptionPane.showMessageDialog(null, "<html>"+user.getErrorMessage()+"</html>", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "<html>" + user.getErrorMessage() + "</html>", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
 					}
-				} else
+				}
+				else
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(null, "<html>"+user.getErrorMessage()+"</html>", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "<html>" + user.getErrorMessage() + "</html>", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE);
 				}
 			}
 
@@ -690,8 +745,8 @@ public class JDialogUserProperties extends JDialog {
 					user.lock(luserid, Common.userList.getUser(Common.sessionID).getUserId());
 				else
 					user.unlock(Common.userList.getUser(Common.sessionID).getUserId());
-				
-				modified_Locked= false;
+
+				modified_Locked = false;
 			}
 
 			if (modified_Enabled)
@@ -700,7 +755,7 @@ public class JDialogUserProperties extends JDialog {
 					user.enable(luserid, Common.userList.getUser(Common.sessionID).getUserId());
 				else
 					user.disable(luserid, Common.userList.getUser(Common.sessionID).getUserId());
-				
+
 				modified_Enabled = false;
 			}
 
@@ -710,7 +765,7 @@ public class JDialogUserProperties extends JDialog {
 					user.setPasswordChangeRequired("Y");
 				else
 					user.setPasswordChangeRequired("N");
-				
+
 				if (user.update())
 				{
 					userUpdated = false;
@@ -774,7 +829,7 @@ public class JDialogUserProperties extends JDialog {
 		jButtonSave.setEnabled(true);
 		modified_Enabled = true;
 	}
-	
+
 	protected void jCheckBoxPasswordExpiresActionPerformed(ActionEvent evt)
 	{
 		userUpdated = true;
@@ -801,7 +856,7 @@ public class JDialogUserProperties extends JDialog {
 		}
 		jButtonSave.setEnabled(true);
 	}
-	
+
 	private void jCheckBoxAccountExpiresActionPerformed(ActionEvent evt)
 	{
 		userUpdated = true;

@@ -861,7 +861,7 @@ public class JFrameHostAdmin extends JFrame
 							{
 								jTextFieldDriver.setText("com.mysql.cj.jdbc.Driver");
 								jTextFieldConnect.setText("jdbc:mysql://jdbcServer/jdbcDatabase");
-								jTextFieldDatabase.setText("database_name?autoReconnect=true");
+								jTextFieldDatabase.setText("database_name");
 								jTextFieldUsername.setText("sql_username");
 								jTextFieldPassword.setText("sql_password");
 								jTextFieldDateTime.setText("sysdate");
@@ -873,7 +873,7 @@ public class JFrameHostAdmin extends JFrame
 							{
 								jTextFieldDriver.setText("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 								jTextFieldConnect.setText("jdbc:sqlserver://jdbcServer\\jdbcSID");
-								jTextFieldDatabase.setText("database_name;selectMethod=direct");
+								jTextFieldDatabase.setText("database_name");
 								jTextFieldUsername.setText("sql_username");
 								jTextFieldPassword.setText("sql_password");
 								jTextFieldDateTime.setText("sysdate");

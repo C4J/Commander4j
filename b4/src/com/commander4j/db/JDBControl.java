@@ -234,7 +234,7 @@ public class JDBControl
 
 	public String getKeyValueWithDefault(String key, String dflt, String desc)
 	{
-		logger.debug("JDBControl.getKeyValueWithDefault " + key);
+
 		if (getProperties(key))
 		{
 			dbKeyValue = JUtility.replaceNullObjectwithBlank(getKeyValue());
@@ -245,6 +245,8 @@ public class JDBControl
 			create(key, dflt, desc);
 			dbKeyValue = dflt;
 		}
+		
+		//logger.debug("JDBControl.getKeyValueWithDefault " + key+ " " +dbKeyValue);
 		return dbKeyValue;
 	}
 

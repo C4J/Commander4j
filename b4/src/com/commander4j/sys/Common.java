@@ -295,7 +295,9 @@ public class Common
 	public final static Icon icon_despatch_remove = Common.imageIconloader.getImageIcon(Common.image_despatch_remove);
 	public final static Icon icon_despatch_add = Common.imageIconloader.getImageIcon(Common.image_despatch_add);
 	public final static Icon icon_alternative = Common.imageIconloader.getImageIcon(Common.image_alternative);
+	public final static Icon icon_lock = Common.imageIconloader.getImageIcon(Common.image_lock);
 
+	public final static String image_lock = "lock.gif";
 	public final static String image_file_save = "file_save.gif";
 	public final static String image_export = "export.gif";
 	public final static String image_alternative = "alternative.gif";
