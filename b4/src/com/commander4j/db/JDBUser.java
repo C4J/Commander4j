@@ -777,7 +777,7 @@ public class JDBUser
 
 	public String getComment()
 	{
-		return dbComment;
+		return JUtility.replaceNullStringwithBlank(dbComment);
 	}
 
 	public String getEmailAddress()
@@ -993,6 +993,11 @@ public class JDBUser
 
 		return rs;
 	}
+	
+	public String toString()
+	{
+		return JUtility.padString(getUserId(), true, field_user_id, " ") + " " + getComment();
+	}
 
 	public LinkedList<JDBListData> getUserIds()
 	{
@@ -1012,26 +1017,27 @@ public class JDBUser
 
 			while (rs.next())
 			{
+				JDBUser u = new JDBUser(getHostID(), getSessionID());
+				u.setUserId(rs.getString("user_id"));
+				u.setPassword(rs.getString("password"));
+				u.setComment(rs.getString("user_comment"));
+				u.setEmailAddress(rs.getString("email_address"));
+				u.setLanguage(rs.getString("language_id"));
+				u.setLastLogin(rs.getTimestamp("last_logon"));
+				u.setPasswordExpires(rs.getString("password_expires"));
+				u.setPasswordChanged(rs.getTimestamp("last_password_change"));
+				u.setBadPasswordAttempts(rs.getInt("bad_password_attempts"));
+				u.setAccountLocked(rs.getString("account_locked"));
+				u.setAccountLockedDate(rs.getTimestamp("account_locked_date"));
+				u.setAccountEnabled(rs.getString("account_enabled"));
+				u.setPasswordChangeAllowed(rs.getString("password_change_allowed"));
+				u.setAccountExpires(rs.getString("account_expires"));
+				u.setAccountExpiryDate(rs.getTimestamp("account_expiry_date"));
+				u.setPasswordVersion(rs.getInt("password_version"));
+				u.setPasswordChangeRequired(rs.getString("password_change_required"));
+				icon = u.getUserIcon();
 
-				setPassword(rs.getString("password"));
-				setComment(rs.getString("user_comment"));
-				setEmailAddress(rs.getString("email_address"));
-				setLanguage(rs.getString("language_id"));
-				setLastLogin(rs.getTimestamp("last_logon"));
-				setPasswordExpires(rs.getString("password_expires"));
-				setPasswordChanged(rs.getTimestamp("last_password_change"));
-				setBadPasswordAttempts(rs.getInt("bad_password_attempts"));
-				setAccountLocked(rs.getString("account_locked"));
-				setAccountLockedDate(rs.getTimestamp("account_locked_date"));
-				setAccountEnabled(rs.getString("account_enabled"));
-				setPasswordChangeAllowed(rs.getString("password_change_allowed"));
-				setAccountExpires(rs.getString("account_expires"));
-				setAccountExpiryDate(rs.getTimestamp("account_expiry_date"));
-				setPasswordVersion(rs.getInt("password_version"));
-				setPasswordChangeRequired(rs.getString("password_change_required"));
-				icon = getUserIcon();
-
-				JDBListData mld = new JDBListData(icon, index, true, rs.getString("user_id"));
+				JDBListData mld = new JDBListData(icon, index, true, u);
 				userList.addLast(mld);
 			}
 			rs.close();

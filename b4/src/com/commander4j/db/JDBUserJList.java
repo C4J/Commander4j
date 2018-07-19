@@ -92,7 +92,8 @@ public class JDBUserJList extends JList<JDBListData>
 			int index = locationToIndex(e.getPoint());
 			if (index > -1)
 			{
-				key = ((JDBListData) getModel().getElementAt(index)).toString();
+				
+				key = ((JDBUser) getModel().getElementAt(index).getObject()).getUserId();
 
 				usr.setUserId(key);
 				if (usr.getUserProperties() == true)
