@@ -126,7 +126,14 @@ public class JDialogUserProperties extends JDialog
 
 		jTextFieldComment.setText(user.getComment());
 		lbl_EmailAddress.setText(user.getEmailAddress());
-		jPasswordField1.setText(user.getDecodedPassword());
+		if (user.isPasswordEncrypted())
+		{
+			jPasswordField1.setText(user.getDecodedPassword());
+		}
+		else
+		{
+			jPasswordField1.setText(user.getPassword());
+		}
 		jPasswordField2.setText(user.getDecodedPassword());
 		jComboBoxLanguage.setSelectedItem(user.getLanguage());
 
@@ -249,7 +256,7 @@ public class JDialogUserProperties extends JDialog
 			calendarButton.setEnabled(false);
 		}
 	}
-	
+
 	private String randomPassword()
 	{
 		String result = "";
@@ -707,15 +714,14 @@ public class JDialogUserProperties extends JDialog
 			if (newUser)
 			{
 				user.create(luserid, Common.userList.getUser(Common.sessionID).getUserId());
-				if (userPasswordUpdated==false)
+				if (userPasswordUpdated == false)
 				{
 					pass1 = randomPassword();
 					pass2 = pass1;
-					userPasswordUpdated=true;
+					userPasswordUpdated = true;
 				}
 				newUser = false;
 			}
-
 
 			if (userPasswordUpdated)
 			{

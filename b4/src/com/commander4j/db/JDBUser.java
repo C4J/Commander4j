@@ -76,7 +76,7 @@ public class JDBUser
 	private java.util.Date dbPasswordExpiryDate;
 	private String dbPasswordNew;
 	private String dbPasswordVerify;
-	private String dbPasswordEncrypted;
+	private String dbPasswordEncrypted = "N";
 	private String dbUserId;
 	private boolean initialised = false;
 	private LinkedList<String> allowedModules = new LinkedList<String>();
@@ -1093,6 +1093,7 @@ public class JDBUser
 			}
 			else
 			{
+				setPasswordEncrypted("N");
 				setErrorMessage("Invalid UserId [" + getUserId() + "]");
 			}
 		}
