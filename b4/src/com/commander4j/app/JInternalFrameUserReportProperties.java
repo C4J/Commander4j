@@ -100,7 +100,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 	private JCheckBox4j checkBox_Private = new JCheckBox4j("");
 	private JTextField4j textField4j_UserID = new JTextField4j();
 	private JTextField4j textField4j_GroupID = new JTextField4j();
-	private JLabel4j_std label4j_statusBar = new JLabel4j_std();
+	private JLabel4j_std jStatusBar = new JLabel4j_std();
 	private JButton4j button4j_GroupLookup = new JButton4j(Common.icon_lookup);
 	private JButton4j button4j_UserLookup = new JButton4j(Common.icon_lookup);
 	private JLabel4j_std label4j_std_UserID = new JLabel4j_std();
@@ -126,11 +126,11 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 786, 691);
+		setBounds(100, 100, 774, 676);
 		getContentPane().setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 768, 645);
+		desktopPane.setBounds(0, 0, 768, 653);
 		desktopPane.setBackground(Common.color_edit_properties);
 		getContentPane().add(desktopPane);
 
@@ -271,10 +271,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		button4j_ModuleID.setBounds(705, 367, 21, 21);
 		desktopPane.add(button4j_ModuleID);
 
-		label4j_statusBar.setForeground(Color.RED);
-		label4j_statusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-		label4j_statusBar.setBounds(0, 618, 762, 21);
-		desktopPane.add(label4j_statusBar);
+		jStatusBar.setForeground(Color.RED);
+		jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		jStatusBar.setBounds(0, 618, 762, 21);
+		desktopPane.add(jStatusBar);
 
 		JButton4j button4j_Run = new JButton4j(Common.icon_execute);
 		button4j_Run.addActionListener(new ActionListener()
@@ -718,7 +718,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 
 		if (result == false)
 		{
-			label4j_statusBar.setText("Invalid Report - [" + reasonInvalid + "]");
+			jStatusBar.setText("Invalid Report - [" + reasonInvalid + "]");
 		}
 
 		return result;
@@ -746,20 +746,20 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 
 		if (comboBox4j_Destination.getSelectedItem().toString().equals("SYSTEM") == false)
 		{
-			label4j_statusBar.setText("Please wait....");
+			jStatusBar.setText("Please wait....");
 			if (ur.runReport() == false)
 			{
 				JUtility.errorBeep();
-				label4j_statusBar.setText(ur.getErrorMessage());
+				jStatusBar.setText(ur.getErrorMessage());
 				JOptionPane.showMessageDialog(Common.mainForm, ur.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 			} else
 			{
-				label4j_statusBar.setText("Created : " + ur.getExportFilename());
+				jStatusBar.setText("Created : " + ur.getExportFilename());
 			}
 		} else
 		{
 			JUtility.errorBeep();
-			label4j_statusBar.setText("");
+			jStatusBar.setText("");
 			JOptionPane.showMessageDialog(Common.mainForm, "SYSTEM reports cannot be run interactively.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 		}
 
@@ -784,7 +784,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		checkBoxPreview.setSelected(ur.isPreviewRequired());
 		checkBoxSaveAs.setSelected(ur.isPromptSaveAsRequired());
 		textField4j_SavePath.setText(ur.getSavePath());
-		label4j_statusBar.setText("Report [" + id + "] loaded.");
+		jStatusBar.setText("Report [" + id + "] loaded.");
 		chckbxEmailEnabled.setSelected(ur.isEmailEnabled());
 		chckbxEmailPrompt.setSelected(ur.isEmailPromptEnabled());
 		textField4j_EmailAddresses.setText(ur.getEmailAddresses());
@@ -818,7 +818,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 					ur.create();
 				}
 				ur.update();
-				label4j_statusBar.setText("Report [" + id + "] saved.");
+				jStatusBar.setText("Report [" + id + "] saved.");
 			}
 
 		}

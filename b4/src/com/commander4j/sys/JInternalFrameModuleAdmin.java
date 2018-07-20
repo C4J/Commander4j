@@ -361,7 +361,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				jDesktopPane1.setLayout(null);
 				{
 					jScrollPane1 = new JScrollPane();
-					jScrollPane1.setBounds(10, 10, 356, 649);
+					jScrollPane1.setBounds(0, 0, 365, 671);
 					jDesktopPane1.add(jScrollPane1);
 					jScrollPane1.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{

@@ -213,7 +213,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(10, 10, 287, 476);
+					jScrollPane1.setBounds(0, 0, 287, 509);
 					{
 						ListModel<JDBUom> jList1Model = new DefaultComboBoxModel<JDBUom>();
 						jListUoms = new JList4j<JDBUom>();
@@ -324,7 +324,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(307, 9, 125, 32);
+					jButtonAdd.setBounds(300, 9, 125, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_UOM_ADD"));
 					jButtonAdd.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -338,7 +338,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(307, 40, 125, 32);
+					jButtonDelete.setBounds(300, 40, 125, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_UOM_DELETE"));
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
 					jButtonDelete.addActionListener(new ActionListener() {
@@ -353,7 +353,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(307, 71, 125, 32);
+					jButtonEdit.setBounds(300, 71, 125, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_UOM_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -366,7 +366,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonRename);
 					jButtonRename.setText(lang.get("btn_Rename"));
 					jButtonRename.setMnemonic(lang.getMnemonicChar());
-					jButtonRename.setBounds(307, 102, 125, 32);
+					jButtonRename.setBounds(300, 102, 125, 32);
 					jButtonRename.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_UOM_RENAME"));
 					jButtonRename.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -380,7 +380,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(307, 133, 125, 32);
+					jButtonPrint.setBounds(300, 133, 125, 32);
 					jButtonPrint.setEnabled(true);
 					jButtonPrint.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -393,14 +393,14 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(307, 226, 125, 32);
+					jButtonHelp.setBounds(300, 226, 125, 32);
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.setBounds(307, 195, 125, 32);
+					jButtonRefresh.setBounds(300, 195, 125, 32);
 					jButtonRefresh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							populateList("");
@@ -412,7 +412,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(307, 257, 125, 32);
+					jButtonClose.setBounds(300, 257, 125, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -424,7 +424,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 					jButtonExcel = new JButton4j(Common.icon_XLS);
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(307, 164, 125, 32);
+					jButtonExcel.setBounds(300, 164, 125, 32);
 					jButtonExcel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							excel();

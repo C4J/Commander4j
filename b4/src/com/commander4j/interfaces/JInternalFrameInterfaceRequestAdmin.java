@@ -39,6 +39,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -54,6 +55,7 @@ import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -72,7 +74,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 {
 	private JButton jButtonDelete;
 	private JButton jButtonExcel;
-	private JLabel jStatusText;
+	private JLabel jStatusBar;
 
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
@@ -118,7 +120,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 		});
 		btnReSubmit.setText(lang.get("btn_Resubmit"));
 		btnReSubmit.setFont(Common.font_btn);
-		btnReSubmit.setBounds(125, 79, 121, 32);
+		btnReSubmit.setBounds(125, 43, 122, 32);
 		jDesktopPane1.add(btnReSubmit);
 
 		JButton buttonHold = new JButton(Common.icon_hold);
@@ -130,7 +132,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 		});
 		buttonHold.setText(lang.get("btn_Hold"));
 		buttonHold.setFont(Common.font_btn);
-		buttonHold.setBounds(247, 79, 121, 32);
+		buttonHold.setBounds(248, 43, 122, 32);
 		jDesktopPane1.add(buttonHold);
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -266,7 +268,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 
 		jScrollPane1.repaint();
 
-		JUtility.setResultRecordCountColour(jStatusText, false, 0, interfaceRequestTable.getRowCount());
+		JUtility.setResultRecordCountColour(jStatusBar, false, 0, interfaceRequestTable.getRowCount());
 	}
 
 	private void updateRecord(String newStatus) {
@@ -288,7 +290,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(497, 522));
-			this.setBounds(0, 0, 886+Common.LFAdjustWidth, 527+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 877, 524);
 			setVisible(true);
 			this.setClosable(true);
 			this.setTitle("Interface Requests");
@@ -302,7 +304,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 113, 858, 347);
+					jScrollPane1.setBounds(0, 87, 858, 373);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
 						jTable1 = new JTable();
@@ -463,7 +465,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setFont(Common.font_btn);
-					jButtonSearch.setBounds(3, 79, 121, 32);
+					jButtonSearch.setBounds(2, 43, 122, 32);
 					jButtonSearch.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							search();
@@ -475,14 +477,14 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setFont(Common.font_btn);
-					jButtonHelp.setBounds(613, 79, 121, 32);
+					jButtonHelp.setBounds(617, 43, 122, 32);
 				}
 				{
 					jButtonClose = new JButton(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setFont(Common.font_btn);
-					jButtonClose.setBounds(735, 79, 121, 32);
+					jButtonClose.setBounds(740, 43, 122, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							JDBQuery.closeStatement(listStatement);
@@ -495,7 +497,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Interface_Type"));
 					jLabel1.setFont(Common.font_std);
-					jLabel1.setBounds(26, 12, 131, 21);
+					jLabel1.setBounds(10, 10, 90, 21);
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -503,14 +505,14 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					comboInterfaceType.setModel(new DefaultComboBoxModel<String>(new String[] { "", "Production Declaration", "Despatch Confirmation", "Despatch Pre Advice", "Equipment Tracking" }));
 					jDesktopPane1.add(comboInterfaceType);
 					comboInterfaceType.setFont(Common.font_combo);
-					comboInterfaceType.setBounds(165, 12, 207, 23);
+					comboInterfaceType.setBounds(108, 8, 138, 23);
 				}
 				{
 					jLabel3 = new JLabel();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Message_Status"));
 					jLabel3.setFont(Common.font_std);
-					jLabel3.setBounds(390, 12, 152, 21);
+					jLabel3.setBounds(250, 10, 139, 21);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -518,7 +520,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					comboStatus.setModel(new DefaultComboBoxModel<String>(new String[] { "", "Ready", "Held", "Failed" }));
 					jDesktopPane1.add(comboStatus);
 					comboStatus.setFont(Common.font_combo);
-					comboStatus.setBounds(550, 12, 209, 23);
+					comboStatus.setBounds(397, 8, 138, 23);
 				}
 				{
 					jLabel10 = new JLabel();
@@ -526,7 +528,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel10.setFont(Common.font_std);
-					jLabel10.setBounds(203, 45, 138, 21);
+					jLabel10.setBounds(549, 10, 90, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "EVENT_TIME", "INTERFACE_REQUEST_ID", "INTERFACE_TYPE", "STATUS" });
@@ -534,13 +536,13 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
 					jComboBoxSortBy.setFont(Common.font_combo);
-					jComboBoxSortBy.setBounds(349, 45, 209, 23);
+					jComboBoxSortBy.setBounds(645, 8, 166, 23);
 				}
 
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(564, 45, 21, 21);
+					jToggleButtonSequence.setBounds(817, 10, 21, 21);
 					jToggleButtonSequence.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							setSequence(jToggleButtonSequence.isSelected());
@@ -549,11 +551,12 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 				}
 
 				{
-					jStatusText = new JLabel();
-					jStatusText.setForeground(new Color(255, 0, 0));
-					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(5, 460, 848, 21);
-					jDesktopPane1.add(jStatusText);
+					jStatusBar = new JLabel();
+					jStatusBar.setForeground(new Color(255, 0, 0));
+					jStatusBar.setBackground(Color.GRAY);
+					jStatusBar.setBounds(0, 468, 865, 21);
+					jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+					jDesktopPane1.add(jStatusBar);
 				}
 
 				{
@@ -565,7 +568,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					});
 					jButtonExcel.setFont(Common.font_btn);
 					jButtonExcel.setText(lang.get("btn_Excel"));
-					jButtonExcel.setBounds(491, 79, 121, 32);
+					jButtonExcel.setBounds(494, 43, 122, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
 
@@ -579,7 +582,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					});
 					jButtonDelete.setFont(Common.font_bold);
 					jButtonDelete.setText(lang.get("btn_Delete"));
-					jButtonDelete.setBounds(369, 79, 121, 32);
+					jButtonDelete.setBounds(371, 43, 122, 32);
 					jDesktopPane1.add(jButtonDelete);
 				}
 			}
