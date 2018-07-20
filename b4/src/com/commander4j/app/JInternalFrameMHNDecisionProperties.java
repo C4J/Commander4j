@@ -28,6 +28,7 @@ package com.commander4j.app;
  */
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -94,26 +95,31 @@ public class JInternalFrameMHNDecisionProperties extends JInternalFrame
 				JButton4j btnSelect = new JButton4j("Background Color");
 				btnSelect.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						 decis.setBackground(JColorChooser.showDialog(Common.mainForm, "Change Background",
-								 decis.getBackground()));
-						 jTextFieldDescription.setBackground(decis.getBackground());
-						 jButtonUpdate.setEnabled(true);
+						Color clrv = JColorChooser.showDialog(Common.mainForm, "Change Background", decis.getBackground());
+						if (clrv != null)
+						{
+							 decis.setBackground(clrv);
+							 jTextFieldDescription.setBackground(decis.getBackground());
+							 jButtonUpdate.setEnabled(true);
+						}
 					}
 				});
-				btnSelect.setBounds(46, 110, 133, 28);
+				btnSelect.setBounds(45, 110, 123, 32);
 				jDesktopPane1.add(btnSelect);
 				{
 					btnForground = new JButton4j("Forground Color");
 					btnForground.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							 decis.setForeground(JColorChooser.showDialog(Common.mainForm, "Change Foreground",
-									 decis.getForeground()));
-							 jTextFieldDescription.setForeground(decis.getForeground());
-							 jButtonUpdate.setEnabled(true);
-							
+							Color clrv = JColorChooser.showDialog(Common.mainForm, "Change Foreground", decis.getForeground());
+							if (clrv != null)
+							{
+								 decis.setForeground(clrv);
+								 jTextFieldDescription.setForeground(decis.getForeground());
+								 jButtonUpdate.setEnabled(true);
+							}
 						}
 					});
-					btnForground.setBounds(185, 110, 133, 28);
+					btnForground.setBounds(213, 110, 123, 32);
 					jDesktopPane1.add(btnForground);
 				}
 				jTextFieldDescription.setBackground(decis.getBackground());
@@ -203,7 +209,7 @@ public class JInternalFrameMHNDecisionProperties extends JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
 					jButtonUpdate.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonUpdate.setBounds(10, 144, 112, 32);
+					jButtonUpdate.setBounds(3, 155, 123, 32);
 					jButtonUpdate.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							decis.setDescription(jTextFieldDescription.getText());
@@ -218,14 +224,14 @@ public class JInternalFrameMHNDecisionProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(129, 144, 112, 32);
+					jButtonHelp.setBounds(129, 155, 123, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(248, 144, 112, 32);
+					jButtonClose.setBounds(255, 155, 123, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();

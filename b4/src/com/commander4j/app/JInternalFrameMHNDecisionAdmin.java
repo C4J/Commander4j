@@ -313,7 +313,7 @@ public class JInternalFrameMHNDecisionAdmin extends JInternalFrame
 							public void mouseClicked(MouseEvent evt) {
 								if (evt.getClickCount() == 2)
 								{
-									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DECISION_EDIT") == true)
+									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_DECISION_EDIT") == true)
 									{
 										editRecord();
 									}
