@@ -46,6 +46,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
@@ -63,6 +64,7 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -188,7 +190,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(979, 535));
-			this.setBounds(0, 0, 1005+Common.LFAdjustWidth, 618+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 997, 605);
 			setVisible(true);
 			this.setClosable(true);
 			{
@@ -398,11 +400,12 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 					button.setBounds(3, 75, 120, 32);
 					jDesktopPane1.add(button);
 
-					JLabel4j_std label = new JLabel4j_std();
-					label.setForeground(Color.RED);
-					label.setBackground(Color.GRAY);
-					label.setBounds(0, 550, 976, 21);
-					jDesktopPane1.add(label);
+					JLabel4j_std jStatusBar = new JLabel4j_std();
+					jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+					jStatusBar.setForeground(Color.RED);
+					jStatusBar.setBackground(Color.GRAY);
+					jStatusBar.setBounds(0, 550, 985, 21);
+					jDesktopPane1.add(jStatusBar);
 
 					JLabel4j_std label_1 = new JLabel4j_std();
 					label_1.setHorizontalTextPosition(SwingConstants.RIGHT);

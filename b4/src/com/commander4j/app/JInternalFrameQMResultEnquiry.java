@@ -38,6 +38,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -49,6 +50,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
 
 import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBLanguage;
@@ -90,7 +92,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 	private JButton4j btnClose;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBQMDictionary dict = new JDBQMDictionary(Common.selectedHostID, Common.sessionID);
-	private JLabel4j_std lblStatusBar;
+	private JLabel4j_std jStatusBar;
 	private JDBQMResultTable table;
 	private JTextField4j textFieldMaterial;
 	private JLabel4j_std lbl_inspection;
@@ -316,7 +318,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 			e.printStackTrace();
 		}
 
-		JUtility.setResultRecordCountColour(lblStatusBar, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), table.getRowCount());
+		JUtility.setResultRecordCountColour(jStatusBar, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), table.getRowCount());
 	}
 
 	private void editRecord()
@@ -335,7 +337,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 1134, 721);
+		setBounds(100, 100, 1134, 713);
 		getContentPane().setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();
@@ -398,11 +400,12 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		});
 		desktopPane.add(btnProcessOrderLookup);
 
-		lblStatusBar = new JLabel4j_std();
-		lblStatusBar.setBounds(0, 662, 1012, 21);
-		lblStatusBar.setForeground(Color.RED);
-		lblStatusBar.setBackground(Color.GRAY);
-		desktopPane.add(lblStatusBar);
+		jStatusBar = new JLabel4j_std();
+		jStatusBar.setBounds(0, 657, 1123, 21);
+		jStatusBar.setForeground(Color.RED);
+		jStatusBar.setBackground(Color.GRAY);
+		jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		desktopPane.add(jStatusBar);
 
 		scrollPaneResults = new JScrollPane();
 		scrollPaneResults.setBounds(6, 240, 1105, 410);

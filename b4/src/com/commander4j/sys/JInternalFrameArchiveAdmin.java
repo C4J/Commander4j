@@ -145,7 +145,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(669, 341));
-			this.setBounds(0, 0, 999, 363);
+			this.setBounds(0, 0, 999, 348);
 			setVisible(true);
 			this.setClosable(true);
 			this.getContentPane().setLayout(null);

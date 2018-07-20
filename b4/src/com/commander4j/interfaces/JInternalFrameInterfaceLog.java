@@ -44,6 +44,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
@@ -55,6 +56,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableRowSorter;
@@ -104,7 +106,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 	private JComboBox4j<String> comboBoxAction = new JComboBox4j<String>();
 	private JTextField4j textFielderrorMessage;
 	private JButton4j button_1;
-	private JLabel4j_std jStatusText = new JLabel4j_std();
+	private JLabel4j_std jStatusBar = new JLabel4j_std();
 	private JLabel4j_std lblFilename;
 	private JTextField4j textFieldFilename;
 	private JMenuItem4j mntmResubmit;
@@ -213,10 +215,11 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 		jDesktopPane1.add(button_1);
 		{
 
-			jStatusText.setForeground(Color.BLACK);
-			jStatusText.setBackground(Color.GRAY);
-			jStatusText.setBounds(1, 558, 966, 24);
-			jDesktopPane1.add(jStatusText);
+			jStatusBar.setForeground(Color.BLACK);
+			jStatusBar.setBackground(Color.GRAY);
+			jStatusBar.setBounds(1, 569, 1004, 24);
+			jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+			jDesktopPane1.add(jStatusBar);
 		}
 		{
 			lblFilename = new JLabel4j_std(lang.get("lbl_Interface_Filename"));
@@ -551,7 +554,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 
 		jScrollPane1.repaint();
 
-		JUtility.setResultRecordCountColour(jStatusText, checkBoxLimit.isSelected(), Integer.valueOf(spinner.getValue().toString()), jTable1.getRowCount());
+		JUtility.setResultRecordCountColour(jStatusBar, checkBoxLimit.isSelected(), Integer.valueOf(spinner.getValue().toString()), jTable1.getRowCount());
 		
 	}
 

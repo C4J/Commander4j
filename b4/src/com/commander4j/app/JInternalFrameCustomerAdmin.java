@@ -225,7 +225,7 @@ public class JInternalFrameCustomerAdmin extends javax.swing.JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(10, 10, 376, 476);
+					jScrollPane1.setBounds(10, 10, 376, 485);
 					{
 						ListModel<JDBCustomer> jList1Model = new DefaultComboBoxModel<JDBCustomer>();
 						jListCustomers = new JList4j<JDBCustomer>();

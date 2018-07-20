@@ -40,6 +40,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
@@ -53,6 +54,7 @@ import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -85,7 +87,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 {
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonExcel;
-	private JLabel4j_std jStatusText;
+	private JLabel4j_std jStatusBar;
 	private JButton4j jButtonAdd;
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
@@ -335,7 +337,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 
 		jScrollPane1.repaint();
 
-		JUtility.setResultRecordCountColour(jStatusText, false, 0, interfaceConfigTable.getRowCount());
+		JUtility.setResultRecordCountColour(jStatusBar, false, 0, interfaceConfigTable.getRowCount());
 	}
 
 	private void editRecord()
@@ -355,7 +357,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(497, 522));
-			this.setBounds(0, 0, 976, 562);
+			this.setBounds(0, 0, 976, 576);
 			setVisible(true);
 			this.setClosable(true);
 			this.setTitle("Interface Configuration");
@@ -366,7 +368,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
 				{
 					jScrollPane1 = new JScrollPane();
-					jScrollPane1.setBounds(0, 187, 948, 304);
+					jScrollPane1.setBounds(0, 187, 955, 327);
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
@@ -714,11 +716,12 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				}
 
 				{
-					jStatusText = new JLabel4j_std();
-					jStatusText.setBounds(0, 488, 948, 22);
-					jStatusText.setForeground(new Color(255, 0, 0));
-					jStatusText.setBackground(Color.GRAY);
-					jDesktopPane1.add(jStatusText);
+					jStatusBar = new JLabel4j_std();
+					jStatusBar.setBounds(0, 519, 966, 22);
+					jStatusBar.setForeground(new Color(255, 0, 0));
+					jStatusBar.setBackground(Color.GRAY);
+					jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+					jDesktopPane1.add(jStatusBar);
 				}
 
 				{

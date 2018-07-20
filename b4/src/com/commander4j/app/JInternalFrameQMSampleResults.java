@@ -35,6 +35,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -44,6 +45,7 @@ import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBProcessOrder;
@@ -75,7 +77,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 	private JDBQMActivity activity = new JDBQMActivity(Common.selectedHostID,Common.sessionID);
 	private JDBQMInspection insp = new JDBQMInspection(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<JDBQMActivity> comboboxActivities;
-	private JLabel4j_std lblStatusBar;
+	private JLabel4j_std jStatusBar;
 	private JDBQMResultTable jTableIndex;
 	private JDBQMResultTable jTableData;
 	private JViewport viewport;
@@ -120,7 +122,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 			}
 		}
 		//populateTable();
-		lblStatusBar.setText("");
+		jStatusBar.setText("");
 	}
 	
 	private void populateActivityList(String inspectionid) {
@@ -172,7 +174,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 		jTableData.repaint();
 		jScrollPane1.repaint();
 		
-		JUtility.setResultRecordCountColour(lblStatusBar, false, 99999, jTableData.getRowCount());
+		JUtility.setResultRecordCountColour(jStatusBar, false, 99999, jTableData.getRowCount());
 	}
 	
 	private void editRecord()
@@ -201,7 +203,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 1027, 731);
+		setBounds(100, 100, 1027, 739);
 		getContentPane().setLayout(null);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
@@ -287,11 +289,12 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 		});
 		desktopPane.add(comboboxActivities);
 		
-		lblStatusBar = new JLabel4j_std();
-		lblStatusBar.setBounds(4, 673, 1231, 21);
-		lblStatusBar.setForeground(Color.RED);
-		lblStatusBar.setBackground(Color.GRAY);
-		desktopPane.add(lblStatusBar);
+		jStatusBar = new JLabel4j_std();
+		jStatusBar.setBounds(0, 680, 1020, 21);
+		jStatusBar.setForeground(Color.RED);
+		jStatusBar.setBackground(Color.GRAY);
+		jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		desktopPane.add(jStatusBar);
 		
 		jScrollPane1 = new JScrollPane();
 		jScrollPane1.setBounds(8, 139, 993, 535);
