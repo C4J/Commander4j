@@ -305,7 +305,7 @@ public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(7, 7, 217, 357);
+					jScrollPane1.setBounds(0, 0, 217, 383);
 					{
 						ListModel<JDBMaterialType> jList1Model = new DefaultComboBoxModel<JDBMaterialType>();
 						jListMaterialTypes = new JList4j<JDBMaterialType>();

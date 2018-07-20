@@ -37,11 +37,13 @@ import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 import java.util.LinkedList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -72,7 +74,7 @@ import com.commander4j.util.JUtility;
  */
 public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JInternalFrame
 {
-	private JLabel4j_std jStatusText;
+	private JLabel4j_std jStatusBar;
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonAdd;
@@ -133,7 +135,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 
 		jScrollPane1.repaint();
 
-		JUtility.setResultRecordCountColour(jStatusText, false, 0, materialcustdatatable.getRowCount());
+		JUtility.setResultRecordCountColour(jStatusBar, false, 0, materialcustdatatable.getRowCount());
 
 	}
 
@@ -155,7 +157,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(625, 245));
-			this.setBounds(0, 0, 852, 279);
+			this.setBounds(0, 0, 835, 279);
 			setVisible(true);
 			this.setIconifiable(true);
 			{
@@ -380,11 +382,12 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 				}
 
 				{
-					jStatusText = new JLabel4j_std();
-					jStatusText.setForeground(new Color(255, 0, 0));
-					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(10, 185, 466, 21);
-					jDesktopPane1.add(jStatusText);
+					jStatusBar = new JLabel4j_std();
+					jStatusBar.setForeground(new Color(255, 0, 0));
+					jStatusBar.setBackground(Color.GRAY);
+					jStatusBar.setBounds(0, 224, 822, 21);
+					jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+					jDesktopPane1.add(jStatusBar);
 				}
 			}
 		} catch (Exception e)

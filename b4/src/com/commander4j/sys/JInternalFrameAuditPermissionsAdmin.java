@@ -39,6 +39,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
@@ -51,6 +52,7 @@ import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -78,7 +80,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 	private JComboBox4j<String> jComboBoxEventType;
 	private JLabel4j_std lbl_EventType;
 	private JButton4j jButtonExcel;
-	private JLabel4j_std jStatusText;
+	private JLabel4j_std jStatusBar;
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonPrint;
@@ -254,7 +256,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 		
 		jScrollPane1.repaint();
 
-		JUtility.setResultRecordCountColour(jStatusText, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), audittable.getRowCount());
+		JUtility.setResultRecordCountColour(jStatusBar, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), audittable.getRowCount());
 	}
 
 	private void search() {
@@ -327,14 +329,14 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(750, 498));
-			this.setBounds(0, 0, 1021+Common.LFAdjustWidth, 608+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 1011, 600);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
 			{
 				jDesktopPane1 = new JDesktopPane();
 				jDesktopPane1.setBackground(Common.color_app_window);
-				jDesktopPane1.setBounds(0, 0, 1006, 562);
+				jDesktopPane1.setBounds(0, 0, 1011, 576);
 				jDesktopPane1.setLayout(null);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(757, 468));
@@ -811,11 +813,12 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 				}
 
 				{
-					jStatusText = new JLabel4j_std();
-					jStatusText.setBounds(0, 540, 979, 21);
-					jStatusText.setForeground(new Color(255, 0, 0));
-					jStatusText.setBackground(Color.GRAY);
-					jDesktopPane1.add(jStatusText);
+					jStatusBar = new JLabel4j_std();
+					jStatusBar.setBounds(0, 545, 1000, 21);
+					jStatusBar.setForeground(new Color(255, 0, 0));
+					jStatusBar.setBackground(Color.GRAY);
+					jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+					jDesktopPane1.add(jStatusBar);
 				}
 
 				{

@@ -287,7 +287,7 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(7, 7, 366, 357);
+					jScrollPane1.setBounds(0, 0, 366, 383);
 					{
 						ListModel<JDBDataIDs> jList1Model = new DefaultComboBoxModel<JDBDataIDs>();
 						jListDataIDs = new JList4j<JDBDataIDs>();

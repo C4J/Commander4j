@@ -112,7 +112,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 814, 583);
+		setBounds(100, 100, 795, 568);
 		getContentPane().setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();
@@ -226,7 +226,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 
 		label4j_statusBar.setForeground(Color.RED);
 		label4j_statusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-		label4j_statusBar.setBounds(0, 514, 817, 25);
+		label4j_statusBar.setBounds(0, 514, 782, 21);
 		desktopPane.add(label4j_statusBar);
 		panelDateParams.setBackground(Common.color_app_window);
 

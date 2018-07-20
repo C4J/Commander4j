@@ -217,21 +217,21 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 
 			jStatusBar.setForeground(Color.BLACK);
 			jStatusBar.setBackground(Color.GRAY);
-			jStatusBar.setBounds(1, 569, 1004, 24);
+			jStatusBar.setBounds(1, 579, 1004, 24);
 			jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			jDesktopPane1.add(jStatusBar);
 		}
 		{
 			lblFilename = new JLabel4j_std(lang.get("lbl_Interface_Filename"));
 			lblFilename.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblFilename.setBounds(11, 530, 96, 21);
+			lblFilename.setBounds(11, 536, 96, 21);
 			jDesktopPane1.add(lblFilename);
 		}
 
 		textFieldFilename = new JTextField4j();
 		textFieldFilename.setEditable(false);
 		textFieldFilename.setColumns(10);
-		textFieldFilename.setBounds(112, 531, 860, 20);
+		textFieldFilename.setBounds(112, 536, 860, 20);
 		jDesktopPane1.add(textFieldFilename);
 
 		JButton4j btnResubmit = new JButton4j(Common.icon_release);
@@ -591,7 +591,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(497, 522));
-			this.setBounds(0, 0, 1015+Common.LFAdjustWidth, 628+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 1015, 638);
 			setVisible(true);
 			this.setClosable(true);
 			this.setTitle("Interface Log");
@@ -723,14 +723,14 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 					}
 					{
 						JLabel4j_std lblErrorMessage = new JLabel4j_std(lang.get("lbl_Message_Error"));
-						lblErrorMessage.setBounds(11, 499, 96, 21);
+						lblErrorMessage.setBounds(11, 506, 96, 21);
 						lblErrorMessage.setHorizontalAlignment(SwingConstants.TRAILING);
 						jDesktopPane1.add(lblErrorMessage);
 					}
 					{
 						errorMessage = new JTextField4j();
 						errorMessage.setEditable(false);
-						errorMessage.setBounds(112, 500, 860, 20);
+						errorMessage.setBounds(112, 506, 860, 20);
 						jDesktopPane1.add(errorMessage);
 						errorMessage.setColumns(10);
 					}
@@ -743,26 +743,26 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 
 					lblMessageDate = new JLabel4j_std(lang.get("lbl_Message_Date"));
 					lblMessageDate.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMessageDate.setBounds(21, 470, 84, 21);
+					lblMessageDate.setBounds(21, 476, 84, 21);
 					jDesktopPane1.add(lblMessageDate);
 					{
 						messageDate = new JTextField4j();
 						messageDate.setEditable(false);
 						messageDate.setColumns(10);
-						messageDate.setBounds(112, 470, 146, 20);
+						messageDate.setBounds(112, 476, 146, 20);
 						jDesktopPane1.add(messageDate);
 					}
 					{
 						workstation = new JTextField4j();
 						workstation.setEditable(false);
 						workstation.setColumns(10);
-						workstation.setBounds(370, 470, 376, 20);
+						workstation.setBounds(370, 476, 376, 20);
 						jDesktopPane1.add(workstation);
 					}
 					{
 						JLabel4j_std lblWorkstation = new JLabel4j_std(lang.get("lbl_Workstation"));
 						lblWorkstation.setHorizontalAlignment(SwingConstants.TRAILING);
-						lblWorkstation.setBounds(282, 470, 81, 21);
+						lblWorkstation.setBounds(282, 476, 81, 21);
 						jDesktopPane1.add(lblWorkstation);
 					}
 					{

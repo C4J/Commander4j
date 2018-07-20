@@ -315,7 +315,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(10, 10, 410, 520);
+					jScrollPane1.setBounds(0, 0, 410, 542);
 					jScrollPane1.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
 						ListModel<JDBListData> jList1Model = new DefaultComboBoxModel<JDBListData>();
