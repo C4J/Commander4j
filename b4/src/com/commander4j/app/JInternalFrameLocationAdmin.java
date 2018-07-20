@@ -39,6 +39,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
@@ -50,6 +51,7 @@ import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
@@ -444,7 +446,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jScrollPane1 = new JScrollPane();
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 150, 946, 335);
+					jScrollPane1.setBounds(0, 150, 946, 355);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
 						jTable1 = new JTable();
@@ -955,7 +957,8 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 487, 941, 21);
+					jStatusText.setBounds(0, 505, 953, 21);
+					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 					jDesktopPane1.add(jStatusText);
 				}
 

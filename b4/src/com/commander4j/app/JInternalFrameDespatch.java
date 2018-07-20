@@ -1065,7 +1065,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		desktopPane.add(jButtonAddJourneyRef);
 
 		jStatusText = new JLabel4j_std("");
-		jStatusText.setBounds(0, 460, 830, 21);
+		jStatusText.setBounds(0, 460, 845, 21);
 		getContentPane().add(jStatusText);
 		jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 		jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));

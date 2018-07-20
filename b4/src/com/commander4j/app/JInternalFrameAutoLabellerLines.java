@@ -57,8 +57,11 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.tablemodel.JDBAutoLabellerTableModel;
 import com.commander4j.util.JUtility;
+
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 
 /**
  * The JInternalFrameAutoLabellerLines class allows the user to manage the table
@@ -309,7 +312,8 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jStatusText = new JLabel4j_std();
 			jStatusText.setForeground(Color.RED);
 			jStatusText.setBackground(Color.GRAY);
-			jStatusText.setBounds(1, 475, 985, 21);
+			jStatusText.setBounds(1, 475, 1010, 21);
+			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			jDesktopPane1.add(jStatusText);
 			rdbtnAll.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

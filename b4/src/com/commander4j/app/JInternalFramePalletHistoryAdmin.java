@@ -41,6 +41,7 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
@@ -53,6 +54,7 @@ import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -977,6 +979,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 									jDesktopPane1.add(jStatusText);
 									jStatusText.setForeground(new Color(255, 0, 0));
 									jStatusText.setBackground(Color.GRAY);
+									jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 								}
 							}
 						}

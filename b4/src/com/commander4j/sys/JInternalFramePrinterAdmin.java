@@ -38,6 +38,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -59,6 +60,7 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 
 public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 	private JButton4j jButtonExcel;
@@ -454,7 +456,8 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 
 			jStatusText.setForeground(Color.BLACK);
 			jStatusText.setBackground(Color.GRAY);
-			jStatusText.setBounds(0, 435, 998, 21);
+			jStatusText.setBounds(0, 435, 1010, 21);
+			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			getContentPane().add(jStatusText);
 			comboBoxPrinterTypes.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

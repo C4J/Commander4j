@@ -41,6 +41,7 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -57,6 +58,7 @@ import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -523,7 +525,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(979, 535));
-			this.setBounds(0, 0, 1002+Common.LFAdjustWidth, 596+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 1002, 585);
 			this.setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -537,7 +539,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
-					jScrollPane1.setBounds(2, 178, 971, 348);
+					jScrollPane1.setBounds(2, 178, 980, 348);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
 						jTable1 = new JTable();
@@ -1302,9 +1304,10 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 
 				{
 					jStatusText = new JLabel4j_std();
-					jStatusText.setBounds(2, 527, 971, 21);
+					jStatusText.setBounds(2, 530, 987, 21);
 					jStatusText.setBackground(Color.GRAY);
 					jStatusText.setForeground(new Color(255, 0, 0));
+					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 				}
 
 				{

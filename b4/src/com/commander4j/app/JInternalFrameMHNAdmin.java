@@ -39,6 +39,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
@@ -50,6 +51,7 @@ import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -446,7 +448,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(770, 478));
-			this.setBounds(0, 0, 997+Common.LFAdjustWidth, 563+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 990, 554);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -943,7 +945,8 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 495, 962, 21);
+					jStatusText.setBounds(0, 497, 978, 21);
+					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 					jDesktopPane1.add(jStatusText);
 				}
 

@@ -41,6 +41,7 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
@@ -54,6 +55,7 @@ import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -483,22 +485,22 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 	{
 		try
 		{
-			this.setPreferredSize(new java.awt.Dimension(750, 498));
-			this.setBounds(0, 0, 1021 + Common.LFAdjustWidth, 608 + Common.LFAdjustHeight);
+			this.setPreferredSize(new Dimension(750, 494));
+			this.setBounds(0, 0, 1010, 607);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
 			{
 				jDesktopPane1 = new JDesktopPane();
 				jDesktopPane1.setBackground(Common.color_app_window);
-				jDesktopPane1.setBounds(0, 0, 1006, 654);
+				jDesktopPane1.setBounds(0, 0, 1006, 591);
 				jDesktopPane1.setLayout(null);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(757, 468));
 				{
 					jScrollPane1 = new JScrollPane();
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
-					jScrollPane1.setBounds(0, 183, 991, 356);
+					jScrollPane1.setBounds(0, 183, 991, 365);
 					jDesktopPane1.add(jScrollPane1);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][]
@@ -1275,9 +1277,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 				{
 					jStatusText = new JLabel4j_std();
-					jStatusText.setBounds(0, 540, 979, 21);
+					jStatusText.setBounds(0, 553, 1000, 21);
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
+					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 					jDesktopPane1.add(jStatusText);
 				}
 

@@ -42,6 +42,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
@@ -53,6 +54,7 @@ import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -407,7 +409,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 242, 443, 362);
+					jScrollPane1.setBounds(0, 242, 443, 367);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][]
 						{
@@ -875,7 +877,8 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 613, 443, 21);
+					jStatusText.setBounds(0, 611, 447, 21);
+					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 					jDesktopPane1.add(jStatusText);
 				}
 
