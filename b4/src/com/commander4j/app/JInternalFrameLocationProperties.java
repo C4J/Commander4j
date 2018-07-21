@@ -223,7 +223,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(450, 340));
-			this.setBounds(0, 0, 506, 635);
+			this.setBounds(0, 0, 489, 617);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);

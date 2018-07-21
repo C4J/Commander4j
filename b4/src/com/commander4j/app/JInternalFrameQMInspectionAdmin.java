@@ -118,7 +118,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		setClosable(true);
 		setTitle("Inspection Admin");
 		setIconifiable(true);
-		setBounds(100, 100, 845, 729);
+		setBounds(100, 100, 845, 706);
 		getContentPane().setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();

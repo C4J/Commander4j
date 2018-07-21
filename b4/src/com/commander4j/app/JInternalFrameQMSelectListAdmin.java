@@ -167,7 +167,7 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(10, 10, 623, 476);
+					jScrollPane1.setBounds(0, 0, 638, 509);
 					{
 						ListModel<JDBQMSelectList> jList1Model = new DefaultComboBoxModel<JDBQMSelectList>();
 						jListSelectLists = new JList4j<JDBQMSelectList>();

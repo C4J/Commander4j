@@ -198,7 +198,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 		{
 
 			this.setPreferredSize(new java.awt.Dimension(683, 465));
-			this.setBounds(0, 0, 695+Common.LFAdjustWidth, 487+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 692, 562);
 
 			setVisible(true);
 			this.setTitle("Permissions - " + lGroupId);
@@ -215,18 +215,18 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 					jLabelAssigned = new JLabel4j_title();
 					jDesktopPane1.add(jLabelAssigned);
 					jLabelAssigned.setText(lang.get("lbl_Assigned"));
-					jLabelAssigned.setBounds(15, 0, 70, 21);
+					jLabelAssigned.setBounds(15, 0, 152, 21);
 				}
 				{
 					jLabelAvailable = new JLabel4j_title();
 					jDesktopPane1.add(jLabelAvailable);
 					jLabelAvailable.setText(lang.get("lbl_Unassigned"));
-					jLabelAvailable.setBounds(355, 0, 70, 21);
+					jLabelAvailable.setBounds(370, 0, 142, 21);
 				}
 				{
 					jButtonAssign = new JButton4j(Common.icon_arrow_left);
 					jDesktopPane1.add(jButtonAssign);
-					jButtonAssign.setBounds(322, 154, 26, 24);
+					jButtonAssign.setBounds(327, 205, 26, 24);
 					jButtonAssign.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							if (jListUnassigned.getSelectedIndex() > -1)
@@ -250,7 +250,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 				{
 					jButtonUnAssign = new JButton4j(Common.icon_arrow_right);
 					jDesktopPane1.add(jButtonUnAssign);
-					jButtonUnAssign.setBounds(322, 182, 26, 24);
+					jButtonUnAssign.setBounds(327, 233, 26, 24);
 					jButtonUnAssign.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							if (jListAssigned.getSelectedIndex() > -1)
@@ -274,7 +274,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 				{
 					jScrollPaneUnassigned = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneUnassigned);
-					jScrollPaneUnassigned.setBounds(357, 21, 301, 371);
+					jScrollPaneUnassigned.setBounds(370, 21, 301, 453);
 					jScrollPaneUnassigned.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 					jScrollPaneUnassigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
@@ -289,7 +289,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 				{
 					jScrollPaneAssigned = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneAssigned);
-					jScrollPaneAssigned.setBounds(14, 21, 301, 371);
+					jScrollPaneAssigned.setBounds(14, 21, 301, 453);
 					jScrollPaneAssigned.setFocusable(false);
 					jScrollPaneAssigned.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 					jScrollPaneAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
@@ -307,7 +307,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 					jButtonUndo = new JButton4j(Common.icon_undo);
 					jDesktopPane1.add(jButtonUndo);
 					jButtonUndo.setText(lang.get("btn_Undo"));
-					jButtonUndo.setBounds(112, 399, 112, 32);
+					jButtonUndo.setBounds(116, 486, 112, 32);
 					jButtonUndo.setMnemonic(lang.getMnemonicChar());
 					jButtonUndo.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -319,7 +319,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 					jButtonSave = new JButton4j(Common.icon_update);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setText(lang.get("btn_Save"));
-					jButtonSave.setBounds(224, 399, 112, 32);
+					jButtonSave.setBounds(228, 486, 112, 32);
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -342,7 +342,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(448, 399, 112, 32);
+					jButtonClose.setBounds(452, 486, 112, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -354,7 +354,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(336, 399, 112, 32);
+					jButtonHelp.setBounds(340, 486, 112, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 			}

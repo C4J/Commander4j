@@ -40,6 +40,7 @@ import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.util.Date;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
@@ -48,6 +49,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -640,6 +642,7 @@ public class JDialogUserProperties extends JDialog
 			jStatusText.setForeground(Color.RED);
 			jStatusText.setBackground(Color.GRAY);
 			jStatusText.setBounds(0, 464, 418, 21);
+			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			jDesktopPane1.add(jStatusText);
 
 			postInitGUI();

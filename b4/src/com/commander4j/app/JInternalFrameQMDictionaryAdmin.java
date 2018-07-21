@@ -147,7 +147,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(455, 518));
-			this.setBounds(0, 0, 541, 555);
+			this.setBounds(0, 0, 522, 555);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -160,7 +160,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(10, 10, 353, 476);
+					jScrollPane1.setBounds(0, 0, 363, 523);
 					{
 						ListModel<JDBQMDictionary> jList1Model = new DefaultComboBoxModel<JDBQMDictionary>();
 						jListDictionary = new JList4j<JDBQMDictionary>();

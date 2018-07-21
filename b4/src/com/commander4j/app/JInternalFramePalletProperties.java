@@ -576,7 +576,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 	private void initGUI() {
 		try {
 			this.setPreferredSize(new java.awt.Dimension(471, 531));
-			this.setBounds(0, 0, 482, 613);
+			this.setBounds(0, 0, 476, 598);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -1007,7 +1007,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jStatusText);
 					jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-					jStatusText.setBounds(0, 540, 455, 21);
+					jStatusText.setBounds(0, 540, 466, 21);
 				}
 				{
 					jButton1 = new JButton4j(Common.icon_lookup);

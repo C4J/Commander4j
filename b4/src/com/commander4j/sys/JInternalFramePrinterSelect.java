@@ -114,7 +114,7 @@ public class JInternalFramePrinterSelect extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(637, 311));
-			this.setBounds(25, 25, 637, 334);
+			this.setBounds(25, 25, 707, 389);
 			setVisible(true);
 			this.setTitle("Printer Selection");
 			this.setClosable(true);
@@ -127,7 +127,7 @@ public class JInternalFramePrinterSelect extends javax.swing.JInternalFrame
 				{
 					jScrollPanePrinters = new JScrollPane();
 					jDesktopPane1.add(jScrollPanePrinters);
-					jScrollPanePrinters.setBounds(3, 3, 620, 231);
+					jScrollPanePrinters.setBounds(0, 0, 700, 304);
 					{
 						ListModel<String> jList1Model = new DefaultComboBoxModel<String>(new String[] { "Item One", "Item Two" });
 						jListPrinters = new JList4j<String>();
@@ -148,7 +148,7 @@ public class JInternalFramePrinterSelect extends javax.swing.JInternalFrame
 					jButtonSelect = new JButton4j(Common.icon_select);
 					jDesktopPane1.add(jButtonSelect);
 					jButtonSelect.setText(lang.get("btn_Select"));
-					jButtonSelect.setBounds(141, 241, 110, 32);
+					jButtonSelect.setBounds(185, 316, 110, 32);
 					jButtonSelect.setMnemonic(lang.getMnemonicChar());
 					jButtonSelect.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -161,7 +161,7 @@ public class JInternalFramePrinterSelect extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setFont(Common.font_btn);
-					jButtonCancel.setBounds(375, 241, 110, 32);
+					jButtonCancel.setBounds(419, 316, 110, 32);
 					jButtonCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -172,7 +172,7 @@ public class JInternalFramePrinterSelect extends javax.swing.JInternalFrame
 					jButtonRefresh = new JButton4j(Common.icon_refresh);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
-					jButtonRefresh.setBounds(258, 241, 110, 32);
+					jButtonRefresh.setBounds(302, 316, 110, 32);
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
 					jButtonRefresh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {

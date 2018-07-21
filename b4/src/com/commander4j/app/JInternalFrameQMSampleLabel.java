@@ -442,7 +442,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		setVisible(true);
 		this.setClosable(true);
 		this.setIconifiable(true);
-		setBounds(100, 100, 598, 643);
+		setBounds(100, 100, 581, 618);
 		getContentPane().setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();

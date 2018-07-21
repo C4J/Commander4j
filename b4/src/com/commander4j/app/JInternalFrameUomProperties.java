@@ -138,7 +138,7 @@ public class JInternalFrameUomProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 424, 239);
+			this.setBounds(25, 25, 424, 224);
 			setVisible(true);
 			this.setTitle("UOM Properties");
 			{

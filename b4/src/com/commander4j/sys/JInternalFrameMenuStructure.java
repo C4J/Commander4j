@@ -27,7 +27,6 @@ package com.commander4j.sys;
  * 
  */
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -227,20 +226,22 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(761, 450));
-			this.setBounds(0, 0, 839+Common.LFAdjustWidth, 465+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 825, 543);
 			setVisible(true);
 			this.setTitle("Menu Structure");
 			this.setClosable(true);
+			getContentPane().setLayout(null);
 			{
 				jDesktopPane1 = new JDesktopPane();
+				jDesktopPane1.setBounds(0, 0, 829, 531);
 				jDesktopPane1.setBackground(Common.color_app_window);
-				this.getContentPane().add(jDesktopPane1, BorderLayout.NORTH);
+				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new Dimension(792, 429));
 				jDesktopPane1.setLayout(null);
 				{
 					jScrollPaneMenus = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneMenus);
-					jScrollPaneMenus.setBounds(10, 25, 245, 345);
+					jScrollPaneMenus.setBounds(10, 25, 245, 434);
 					jScrollPaneMenus.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
 						ListModel<JDBListData> jListMenusModel = new DefaultComboBoxModel<JDBListData>();
@@ -269,7 +270,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 				{
 					jScrollPaneUnAssigned = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneUnAssigned);
-					jScrollPaneUnAssigned.setBounds(561, 25, 245, 345);
+					jScrollPaneUnAssigned.setBounds(561, 25, 245, 434);
 					jScrollPaneUnAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
 						ListModel<JDBListData> jListUnAssignedModel = new DefaultComboBoxModel<JDBListData>();
@@ -284,7 +285,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 				{
 					jScrollPaneAssigned = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneAssigned);
-					jScrollPaneAssigned.setBounds(267, 25, 245, 345);
+					jScrollPaneAssigned.setBounds(267, 25, 245, 434);
 					jScrollPaneAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
 						ListModel<JDBListData> jListAssignedModel = new DefaultComboBoxModel<JDBListData>();
@@ -408,7 +409,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(504, 377, 116, 32);
+					jButtonClose.setBounds(510, 471, 116, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -438,7 +439,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					jButtonSave = new JButton4j(Common.icon_update);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setText(lang.get("btn_Save"));
-					jButtonSave.setBounds(150, 377, 116, 32);
+					jButtonSave.setBounds(156, 471, 116, 32);
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setEnabled(false);
 					jButtonSave.addActionListener(new ActionListener() {
@@ -457,14 +458,14 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(386, 377, 116, 32);
+					jButtonHelp.setBounds(392, 471, 116, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonUndo = new JButton4j(Common.icon_undo);
 					jDesktopPane1.add(jButtonUndo);
 					jButtonUndo.setText(lang.get("btn_Undo"));
-					jButtonUndo.setBounds(268, 377, 116, 32);
+					jButtonUndo.setBounds(274, 471, 116, 32);
 					jButtonUndo.setEnabled(false);
 					jButtonUndo.setMnemonic(lang.getMnemonicChar());
 					jButtonUndo.addActionListener(new ActionListener() {

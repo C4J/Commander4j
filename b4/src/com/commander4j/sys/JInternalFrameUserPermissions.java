@@ -179,7 +179,7 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 		{
 
 			this.setPreferredSize(new java.awt.Dimension(346, 318));
-			this.setBounds(0, 0, 420, 453);
+			this.setBounds(0, 0, 487, 542);
 
 			setVisible(true);
 			this.setTitle("Permissions - " + lUserId);
@@ -202,12 +202,12 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 					jLabelAvailable = new JLabel4j_title();
 					jDesktopPane1.add(jLabelAvailable);
 					jLabelAvailable.setText(lang.get("lbl_Unassigned"));
-					jLabelAvailable.setBounds(216, 11, 166, 18);
+					jLabelAvailable.setBounds(260, 11, 166, 18);
 				}
 				{
 					jButtonAssign = new JButton4j(Common.icon_arrow_left);
 					jDesktopPane1.add(jButtonAssign);
-					jButtonAssign.setBounds(183, 139, 26, 24);
+					jButtonAssign.setBounds(222, 186, 26, 24);
 					jButtonAssign.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							if (jListUnassigned.getSelectedIndex() > -1)
@@ -231,7 +231,7 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 				{
 					jButtonUnAssign = new JButton4j(Common.icon_arrow_right);
 					jDesktopPane1.add(jButtonUnAssign);
-					jButtonUnAssign.setBounds(183, 171, 26, 23);
+					jButtonUnAssign.setBounds(222, 218, 26, 23);
 					jButtonUnAssign.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							if (jListAssigned.getSelectedIndex() > -1)
@@ -255,7 +255,7 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 				{
 					jScrollPaneUnassigned = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneUnassigned);
-					jScrollPaneUnassigned.setBounds(221, 30, 161, 315);
+					jScrollPaneUnassigned.setBounds(260, 30, 200, 423);
 					jScrollPaneUnassigned.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 					jScrollPaneUnassigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
@@ -270,7 +270,7 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 				{
 					jScrollPaneAssigned = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneAssigned);
-					jScrollPaneAssigned.setBounds(10, 30, 161, 315);
+					jScrollPaneAssigned.setBounds(10, 30, 200, 423);
 					jScrollPaneAssigned.setFocusable(false);
 					jScrollPaneAssigned.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 					jScrollPaneAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
@@ -290,7 +290,7 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 					jButtonUndo = new JButton4j(Common.icon_undo);
 					jDesktopPane1.add(jButtonUndo);
 					jButtonUndo.setText(lang.get("btn_Undo"));
-					jButtonUndo.setBounds(42, 357, 105, 32);
+					jButtonUndo.setBounds(72, 465, 105, 32);
 					jButtonUndo.setMnemonic(lang.getMnemonicChar());
 					jButtonUndo.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -302,7 +302,7 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 					jButtonSave = new JButton4j(Common.icon_update);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setText(lang.get("btn_Save"));
-					jButtonSave.setBounds(150, 357, 105, 32);
+					jButtonSave.setBounds(180, 465, 105, 32);
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -326,7 +326,7 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(257, 357, 105, 32);
+					jButtonClose.setBounds(287, 465, 105, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {

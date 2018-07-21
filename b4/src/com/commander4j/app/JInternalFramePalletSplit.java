@@ -37,6 +37,7 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.util.LinkedList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
@@ -46,6 +47,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 
 import com.commander4j.bar.JLabelPrint;
@@ -109,7 +111,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 	private JLabel4j_std labelSSCCQuantity;
 	private JLabel4j_std labelNewSSCCQuantity;
 	private SpinnerNumberModel copiesnumbermodel;
-	private JLabel4j_std lblStatus = new JLabel4j_std();
+	private JLabel4j_std jStatusBar = new JLabel4j_std();
 	private JCheckBox4j checkBoxPrintOldSSCC = new JCheckBox4j("");
 	private JCheckBox4j checkBoxPrintNewSSCC = new JCheckBox4j("");
 	private JLabel4j_std labelCopies = new JLabel4j_std();
@@ -188,17 +190,17 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 			{
 				jFormattedTextFieldQuantity.setValue(pal.getQuantity());
 				jButtonSplit.setEnabled(true);
-				lblStatus.setText(jTextFieldSSCC.getText() + " retrieved.");
+				jStatusBar.setText(jTextFieldSSCC.getText() + " retrieved.");
 				order = pal.getProcessOrder();
 			} else
 			{
-				lblStatus.setText(pal.getErrorMessage());
+				jStatusBar.setText(pal.getErrorMessage());
 				jFormattedTextFieldQuantity.setValue(0);
 				jButtonSplit.setEnabled(false);
 			}
 		} else
 		{
-			lblStatus.setText("");
+			jStatusBar.setText("");
 			jButtonSplit.setEnabled(false);
 		}
 
@@ -363,7 +365,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 						String splitSSCC = pal.splitPallet(jTextFieldSSCC.getText(), new BigDecimal(jFormattedTextFieldSplitQuantity.getValue().toString()));
 						if (splitSSCC.equals("") == false)
 						{
-							lblStatus.setText("SSCC " + jTextFieldSSCC.getText() + " updated, SSCC " + splitSSCC + " created.");
+							jStatusBar.setText("SSCC " + jTextFieldSSCC.getText() + " updated, SSCC " + splitSSCC + " created.");
 							jTextFieldNewSSCC.setText(splitSSCC);
 							jFormattedTextFieldNewQuantity.setValue(jFormattedTextFieldSplitQuantity.getValue());
 							String pq = comboBoxPrintQueue.getSelectedItem().toString();
@@ -467,7 +469,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				jDesktopPane1.add(label_3);
 
 				comboBoxPrintQueue.setSelectedIndex(-1);
-				comboBoxPrintQueue.setBounds(121, 170, 471, 23);
+				comboBoxPrintQueue.setBounds(121, 170, 499, 23);
 				jDesktopPane1.add(comboBoxPrintQueue);
 
 				jCheckBoxAutoPreview = new JCheckBox4j();
@@ -486,10 +488,11 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				labelPreview.setText(lang.get("lbl_Preview"));
 				jDesktopPane1.add(labelPreview);
 
-				lblStatus.setForeground(Color.RED);
-				lblStatus.setBackground(Color.GRAY);
-				lblStatus.setBounds(2, 235, 610, 21);
-				jDesktopPane1.add(lblStatus);
+				jStatusBar.setForeground(Color.RED);
+				jStatusBar.setBackground(Color.GRAY);
+				jStatusBar.setBounds(0, 249, 632, 21);
+				jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+				jDesktopPane1.add(jStatusBar);
 
 				JPanel panel = new JPanel();
 				panel.setBackground(Common.color_edit_properties);

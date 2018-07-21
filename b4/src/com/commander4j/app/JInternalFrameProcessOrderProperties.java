@@ -242,7 +242,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 			{
 
 				this.setPreferredSize(new java.awt.Dimension(448, 289));
-				this.setBounds(25, 25, 501, 541);
+				this.setBounds(25, 25, 491, 531);
 				setVisible(true);
 				this.setClosable(true);
 				this.setIconifiable(true);
