@@ -52,6 +52,30 @@
 		INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_PALLET_IMPORT')
 	</statement>		
 	
+	<statement>
+	    IF OBJECT_ID('VIEW_SYNC1', 'V') IS NOT NULL DROP VIEW VIEW_SYNC1;
+	</statement>
+	
+	<statement>
+	    IF OBJECT_ID('VIEW_SYNC2', 'V') IS NOT NULL DROP VIEW VIEW_SYNC2;
+	</statement>
+	
+	<statement>
+	    IF OBJECT_ID('VIEW_SYNC3a', 'V') IS NOT NULL DROP VIEW VIEW_SYNC3a;
+	</statement>
+	
+	<statement>
+	    IF OBJECT_ID('VIEW_SYNC3b', 'V') IS NOT NULL DROP VIEW VIEW_SYNC3b;
+	</statement>
+	
+	<statement>
+	    IF OBJECT_ID('VIEW_SYNC4a', 'V') IS NOT NULL DROP VIEW VIEW_SYNC4a;
+	</statement>
+	
+	<statement>
+	    IF OBJECT_ID('VIEW_SYNC4b', 'V') IS NOT NULL DROP VIEW VIEW_SYNC4b;
+	</statement>
+	
 	<statement>		
 		CREATE VIEW [dbo].[VIEW_SYNC1] AS SELECT
 		[APP_LABEL_DATA].[PRINT_DATE],
