@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<install4j version="7.0.4" transformSequenceNumber="7">
+<install4j version="7.0.6" transformSequenceNumber="7">
   <directoryPresets config="./start.sh" />
-  <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.53" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
+  <application name="Commander4j Middleware" distributionSourceDir="" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.54" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
     <languages skipLanguageSelection="true" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
       <additionalLanguages>
@@ -1207,7 +1207,7 @@ return console.askYesNo(message, true);
     </styles>
   </installerGui>
   <mediaSets>
-    <macosFolder name="Mac OS X Folder (with JRE)" id="86" customizedId="" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="${compiler:sys.fullName}" overridePrincipalLanguage="false" jreBitType="all" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" downloadURL="" includeAllDownloadableComponents="false" includedJRE="macosx-amd64-1.8.0_172" manualJREEntry="false" bundleType="1" jreURL="" jreShared="false" directDownload="false" installOnlyIfNecessary="false" requiredVmIdPrefix="" customInstallBaseDir="" contentFilesType="1" installerName="${i18n:InstallerName(${compiler:sys.fullName})}" volumeName="${compiler:sys.shortName}" compressDmg="false" signLaunchers="false">
+    <macosFolder name="Mac OS X Folder (with JRE)" id="86" customizedId="" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="${compiler:sys.fullName}" overridePrincipalLanguage="false" jreBitType="all" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" downloadURL="" includeAllDownloadableComponents="false" includedJRE="macosx-amd64-1.8.0_181" manualJREEntry="false" bundleType="1" jreURL="" jreShared="false" directDownload="false" installOnlyIfNecessary="false" requiredVmIdPrefix="" customInstallBaseDir="" contentFilesType="1" installerName="${i18n:InstallerName(${compiler:sys.fullName})}" volumeName="${compiler:sys.shortName}" compressDmg="false" signLaunchers="false">
       <excludedComponents />
       <includedDownloadableComponents />
       <excludedLaunchers />
@@ -1221,7 +1221,7 @@ return console.askYesNo(message, true);
       </autoUpdate>
       <topLevelFiles />
     </macosFolder>
-    <windows name="Windows 64bit (with JRE)" id="88" customizedId="" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="${compiler:sys.shortName}" overridePrincipalLanguage="false" jreBitType="64" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" downloadURL="" includeAllDownloadableComponents="false" includedJRE="windows-amd64-1.8.0_172" manualJREEntry="false" bundleType="1" jreURL="" jreShared="false" directDownload="false" installOnlyIfNecessary="false" customInstallBaseDir="C:\" contentFilesType="1" verifyIntegrity="true">
+    <windows name="Windows 64bit (with JRE)" id="88" customizedId="" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="${compiler:sys.shortName}" overridePrincipalLanguage="false" jreBitType="64" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" downloadURL="" includeAllDownloadableComponents="false" includedJRE="windows-amd64-1.8.0_181" manualJREEntry="false" bundleType="1" jreURL="" jreShared="false" directDownload="false" installOnlyIfNecessary="false" customInstallBaseDir="C:\" contentFilesType="1" verifyIntegrity="true">
       <excludedComponents />
       <includedDownloadableComponents />
       <excludedLaunchers />
@@ -1234,7 +1234,7 @@ return console.askYesNo(message, true);
         <customAttributes />
       </autoUpdate>
     </windows>
-    <windows name="Windows 32bit (with JRE)" id="89" customizedId="" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="${compiler:sys.shortName}" overridePrincipalLanguage="false" jreBitType="32" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" downloadURL="" includeAllDownloadableComponents="false" includedJRE="windows-x86-1.8.0_172" manualJREEntry="false" bundleType="1" jreURL="" jreShared="false" directDownload="false" installOnlyIfNecessary="false" customInstallBaseDir="C:\" contentFilesType="1" verifyIntegrity="true">
+    <windows name="Windows 32bit (with JRE)" id="89" customizedId="" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="${compiler:sys.shortName}" overridePrincipalLanguage="false" jreBitType="32" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" downloadURL="" includeAllDownloadableComponents="false" includedJRE="windows-x86-1.8.0_181" manualJREEntry="false" bundleType="1" jreURL="" jreShared="false" directDownload="false" installOnlyIfNecessary="false" customInstallBaseDir="C:\" contentFilesType="1" verifyIntegrity="true">
       <excludedComponents />
       <includedDownloadableComponents />
       <excludedLaunchers />

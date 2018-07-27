@@ -79,7 +79,7 @@ public class JDialogPrinterProperties extends JDialog
 	private JCheckBox4j chckbxEnableExport = new JCheckBox4j("");
 	private JCheckBox4j chckbxEnableDirectPrint = new JCheckBox4j("");
 	private JComboBox4j<String> comboBox4ExportFormat = new JComboBox4j<String>();
-	private JTextField4j textField4jPaperSize = new JTextField4j(10);
+	private JTextField4j jTextFieldPaperSize = new JTextField4j(10);
 
 	public JDialogPrinterProperties(JFrame parent, String prn_id,String grp_id)
 	{
@@ -156,7 +156,7 @@ public class JDialogPrinterProperties extends JDialog
 		comboBox4ExportFormat.setSelectedItem(printers.getExportFormat());
 		
 		jButtonUpdate.setEnabled(false);
-		textField4jPaperSize.addKeyListener(new KeyAdapter() {
+		jTextFieldPaperSize.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				jButtonUpdate.setEnabled(true);
@@ -164,26 +164,26 @@ public class JDialogPrinterProperties extends JDialog
 		});
 		
 
-		textField4jPaperSize.setText(printers.getPaperSize());
-		textField4jPaperSize.setPreferredSize(new Dimension(40, 20));
-		textField4jPaperSize.setFocusCycleRoot(true);
-		textField4jPaperSize.setBounds(177, 178, 89, 21);
-		jDesktopPane1.add(textField4jPaperSize);
+		jTextFieldPaperSize.setText(printers.getPaperSize());
+		jTextFieldPaperSize.setPreferredSize(new Dimension(40, 20));
+		jTextFieldPaperSize.setFocusCycleRoot(true);
+		jTextFieldPaperSize.setBounds(141, 178, 89, 21);
+		jDesktopPane1.add(jTextFieldPaperSize);
 		
-		JLabel4j_std label4j_std = new JLabel4j_std();
-		label4j_std.setText("Paper Size");
-		label4j_std.setHorizontalTextPosition(SwingConstants.RIGHT);
-		label4j_std.setHorizontalAlignment(SwingConstants.RIGHT);
-		label4j_std.setBounds(9, 180, 157, 19);
-		jDesktopPane1.add(label4j_std);
+		JLabel4j_std jLabel_PaperSize = new JLabel4j_std();
+		jLabel_PaperSize.setText("Paper Size");
+		jLabel_PaperSize.setHorizontalTextPosition(SwingConstants.RIGHT);
+		jLabel_PaperSize.setHorizontalAlignment(SwingConstants.RIGHT);
+		jLabel_PaperSize.setBounds(9, 180, 125, 19);
+		jDesktopPane1.add(jLabel_PaperSize);
 		
-		JLabel4j_std label4j_std_1 = new JLabel4j_std();
-		label4j_std_1.setEnabled(false);
-		label4j_std_1.setText("(widthxheight)");
-		label4j_std_1.setHorizontalTextPosition(SwingConstants.LEFT);
-		label4j_std_1.setHorizontalAlignment(SwingConstants.LEFT);
-		label4j_std_1.setBounds(270, 178, 157, 19);
-		jDesktopPane1.add(label4j_std_1);
+		JLabel4j_std jLabelSizeHint = new JLabel4j_std();
+		jLabelSizeHint.setEnabled(false);
+		jLabelSizeHint.setText("(widthxheight)");
+		jLabelSizeHint.setHorizontalTextPosition(SwingConstants.LEFT);
+		jLabelSizeHint.setHorizontalAlignment(SwingConstants.LEFT);
+		jLabelSizeHint.setBounds(234, 178, 157, 19);
+		jDesktopPane1.add(jLabelSizeHint);
 		
 	}
 
@@ -195,13 +195,13 @@ public class JDialogPrinterProperties extends JDialog
 		try
 		{
 			setPreferredSize(new java.awt.Dimension(460, 163));
-			this.setBounds(25, 25, 819, 484);
+			this.setBounds(25, 25, 581, 448);
 			setModal(true);
 			getContentPane().setLayout(null);
 
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 819, 462);
+				jDesktopPane1.setBounds(0, 0, 581, 437);
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new Dimension(452, 140));
@@ -210,7 +210,7 @@ public class JDialogPrinterProperties extends JDialog
 					jLabelDescription = new JLabel4j_std();
 					jDesktopPane1.add(jLabelDescription);
 					jLabelDescription.setText(lang.get("lbl_Description"));
-					jLabelDescription.setBounds(9, 208, 157, 19);
+					jLabelDescription.setBounds(9, 208, 125, 19);
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelDescription.setHorizontalTextPosition(SwingConstants.RIGHT);
 				}
@@ -220,7 +220,7 @@ public class JDialogPrinterProperties extends JDialog
 					jLabelID.setText(lang.get("lbl_Printer_ID"));
 					jLabelID.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelID.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelID.setBounds(9, 15, 157, 19);
+					jLabelID.setBounds(9, 15, 125, 19);
 				}
 				{
 					jLabelType = new JLabel4j_std();
@@ -228,14 +228,14 @@ public class JDialogPrinterProperties extends JDialog
 					jLabelType.setText(lang.get("lbl_Printer_Type"));
 					jLabelType.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelType.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelType.setBounds(9, 81, 157, 19);
+					jLabelType.setBounds(9, 81, 125, 19);
 				}
 				{
 
 					jButtonUpdate = new JButton4j(Common.icon_update);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setText(lang.get("btn_Save"));
-					jButtonUpdate.setBounds(237, 404, 110, 32);
+					jButtonUpdate.setBounds(92, 373, 130, 32);
 					jButtonUpdate.setMnemonic(java.awt.event.KeyEvent.VK_S);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.addActionListener(new ActionListener() {
@@ -247,7 +247,7 @@ public class JDialogPrinterProperties extends JDialog
 							printers.setPort(jTextFieldPort.getText());
 							printers.setGroupID(comboBox4jGroup.getSelectedItem().toString());
 							printers.setDPI(comboBoxDPI.getSelectedItem().toString());
-							printers.setPaperSize(textField4jPaperSize.getText());
+							printers.setPaperSize(jTextFieldPaperSize.getText());
 							printers.setPrinterEnabled(chckbxEnabled.isSelected());
 							String path = jTextFieldExportPath.getText();
 							path = path.replace(Common.base_dir, "{base_dir}");
@@ -265,7 +265,7 @@ public class JDialogPrinterProperties extends JDialog
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(473, 404, 110, 32);
+					jButtonClose.setBounds(356, 373, 130, 32);
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -280,7 +280,7 @@ public class JDialogPrinterProperties extends JDialog
 					jTextFieldPrinterID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldPrinterID.setEditable(false);
 					jTextFieldPrinterID.setPreferredSize(new java.awt.Dimension(100, 20));
-					jTextFieldPrinterID.setBounds(178, 13, 252, 21);
+					jTextFieldPrinterID.setBounds(142, 13, 252, 21);
 					jTextFieldPrinterID.setEnabled(false);
 				}
 				{
@@ -294,7 +294,7 @@ public class JDialogPrinterProperties extends JDialog
 					jDesktopPane1.add(comboBoxPrinterType);
 					comboBoxPrinterType.setPreferredSize(new java.awt.Dimension(40, 20));
 					comboBoxPrinterType.setFocusCycleRoot(true);
-					comboBoxPrinterType.setBounds(178, 79, 167, 21);
+					comboBoxPrinterType.setBounds(142, 79, 167, 21);
 
 				}
 				{
@@ -302,7 +302,7 @@ public class JDialogPrinterProperties extends JDialog
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
-					jTextFieldDescription.setBounds(177, 206, 337, 21);
+					jTextFieldDescription.setBounds(141, 206, 325, 21);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonUpdate.setEnabled(true);
@@ -313,13 +313,13 @@ public class JDialogPrinterProperties extends JDialog
 					jButtonHelp = new JButton4j(Common.icon_help);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(361, 404, 100, 32);
+					jButtonHelp.setBounds(224, 373, 130, 32);
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
 				}
 				{
 					comboBoxDPI.setPreferredSize(new Dimension(40, 20));
 					comboBoxDPI.setFocusCycleRoot(true);
-					comboBoxDPI.setBounds(177, 145, 89, 21);
+					comboBoxDPI.setBounds(141, 145, 89, 21);
 					comboBoxDPI.setModel(new DefaultComboBoxModel<String>(Common.printerDPI));
 					comboBoxDPI.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -336,28 +336,28 @@ public class JDialogPrinterProperties extends JDialog
 					jButtonUpdate.setEnabled(true);
 				}
 			});
-			chckbxEnabled.setBounds(595, 11, 28, 23);
+			chckbxEnabled.setBounds(511, 44, 28, 23);
 			jDesktopPane1.add(chckbxEnabled);
 			
-			JLabel4j_std label4jIPaddress = new JLabel4j_std();
-			label4jIPaddress.setText(lang.get("lbl_IP_Address"));
-			label4jIPaddress.setHorizontalTextPosition(SwingConstants.RIGHT);
-			label4jIPaddress.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4jIPaddress.setBounds(9, 241, 157, 19);
-			jDesktopPane1.add(label4jIPaddress);
+			JLabel4j_std jLabelIPAddress = new JLabel4j_std();
+			jLabelIPAddress.setText(lang.get("lbl_IP_Address"));
+			jLabelIPAddress.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabelIPAddress.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabelIPAddress.setBounds(9, 241, 125, 19);
+			jDesktopPane1.add(jLabelIPAddress);
 			
-			JLabel4j_std label4jPort = new JLabel4j_std();
-			label4jPort.setText(lang.get("lbl_Port"));
-			label4jPort.setHorizontalTextPosition(SwingConstants.RIGHT);
-			label4jPort.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4jPort.setBounds(9, 274, 157, 19);
-			jDesktopPane1.add(label4jPort);
+			JLabel4j_std jLabelPort = new JLabel4j_std();
+			jLabelPort.setText(lang.get("lbl_Port"));
+			jLabelPort.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabelPort.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabelPort.setBounds(9, 274, 125, 19);
+			jDesktopPane1.add(jLabelPort);
 			
 			JLabel4j_std label4j_line = new JLabel4j_std();
 			label4j_line.setText(lang.get("lbl_Language"));
 			label4j_line.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_line.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_line.setBounds(9, 114, 157, 19);
+			label4j_line.setBounds(9, 114, 125, 19);
 			jDesktopPane1.add(label4j_line);
 			
 
@@ -370,7 +370,7 @@ public class JDialogPrinterProperties extends JDialog
 			jTextFieldIPAddress.setText((String) null);
 			jTextFieldIPAddress.setPreferredSize(new Dimension(40, 20));
 			jTextFieldIPAddress.setFocusCycleRoot(true);
-			jTextFieldIPAddress.setBounds(177, 239, 168, 21);
+			jTextFieldIPAddress.setBounds(141, 239, 168, 21);
 			jDesktopPane1.add(jTextFieldIPAddress);
 			
 
@@ -383,7 +383,7 @@ public class JDialogPrinterProperties extends JDialog
 			jTextFieldPort.setText((String) null);
 			jTextFieldPort.setPreferredSize(new Dimension(40, 20));
 			jTextFieldPort.setFocusCycleRoot(true);
-			jTextFieldPort.setBounds(177, 272, 168, 21);
+			jTextFieldPort.setBounds(141, 272, 75, 21);
 			jDesktopPane1.add(jTextFieldPort);
 			
 			comboBoxLanguage.setModel(new DefaultComboBoxModel<String>(Common.printerLanguage));
@@ -395,26 +395,26 @@ public class JDialogPrinterProperties extends JDialog
 			});
 			comboBoxLanguage.setPreferredSize(new Dimension(40, 20));
 			comboBoxLanguage.setFocusCycleRoot(true);
-			comboBoxLanguage.setBounds(178, 112, 168, 21);
+			comboBoxLanguage.setBounds(142, 112, 168, 21);
 			jDesktopPane1.add(comboBoxLanguage);
 			
 			JLabel4j_std jTextFieldEnabled = new JLabel4j_std();
 			jTextFieldEnabled.setText(lang.get("lbl_Enabled"));
 			jTextFieldEnabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 			jTextFieldEnabled.setHorizontalAlignment(SwingConstants.RIGHT);
-			jTextFieldEnabled.setBounds(426, 15, 157, 19);
+			jTextFieldEnabled.setBounds(395, 46, 110, 19);
 			jDesktopPane1.add(jTextFieldEnabled);
 			
 			JLabel4j_std label4j_std = new JLabel4j_std();
 			label4j_std.setText(lang.get("lbl_Group_ID"));
 			label4j_std.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std.setBounds(9, 48, 157, 19);
+			label4j_std.setBounds(9, 48, 125, 19);
 			jDesktopPane1.add(label4j_std);
 						
 			comboBox4jGroup.setPreferredSize(new Dimension(40, 20));
 			comboBox4jGroup.setFocusCycleRoot(true);
-			comboBox4jGroup.setBounds(178, 46, 167, 21);
+			comboBox4jGroup.setBounds(142, 46, 167, 21);
 			comboBox4jGroup.setModel(new DefaultComboBoxModel<String>(Common.printerGroup));
 			comboBox4jGroup.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -427,24 +427,24 @@ public class JDialogPrinterProperties extends JDialog
 			label4j_std1.setText("DPI");
 			label4j_std1.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std1.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std1.setBounds(9, 145, 157, 19);
+			label4j_std1.setBounds(9, 145, 125, 19);
 			jDesktopPane1.add(label4j_std1);
 			
-			JLabel4j_std label4j_Export = new JLabel4j_std();
-			label4j_Export.setText(lang.get("lbl_Export_Path"));
-			label4j_Export.setHorizontalTextPosition(SwingConstants.RIGHT);
-			label4j_Export.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_Export.setBounds(9, 309, 157, 19);
-			jDesktopPane1.add(label4j_Export);
+			JLabel4j_std jLabelExportPath = new JLabel4j_std();
+			jLabelExportPath.setText(lang.get("lbl_Export_Path"));
+			jLabelExportPath.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabelExportPath.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabelExportPath.setBounds(9, 309, 125, 19);
+			jDesktopPane1.add(jLabelExportPath);
 			
 
-			chckbxEnableExport.setBounds(178, 305, 28, 23);
+			chckbxEnableExport.setBounds(142, 305, 28, 23);
 			jDesktopPane1.add(chckbxEnableExport);
 			
 			jTextFieldExportPath.setText("");
 			jTextFieldExportPath.setPreferredSize(new Dimension(40, 20));
 			jTextFieldExportPath.setFocusCycleRoot(true);
-			jTextFieldExportPath.setBounds(205, 307, 555, 21);
+			jTextFieldExportPath.setBounds(169, 307, 358, 21);
 			jDesktopPane1.add(jTextFieldExportPath);
 			
 			
@@ -481,32 +481,32 @@ public class JDialogPrinterProperties extends JDialog
 				}
 			});
 			jButtonExportPathChooser.setText("..");
-			jButtonExportPathChooser.setBounds(761, 307, 17, 21);
+			jButtonExportPathChooser.setBounds(526, 306, 17, 21);
 			jDesktopPane1.add(jButtonExportPathChooser);
 			
 			JLabel4j_std label4j_Direct = new JLabel4j_std();
 			label4j_Direct.setText(lang.get("lbl_Direct_Print"));
 			label4j_Direct.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_Direct.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_Direct.setBounds(9, 374, 157, 19);
+			label4j_Direct.setBounds(378, 81, 125, 19);
 			jDesktopPane1.add(label4j_Direct);
 			
-			chckbxEnableDirectPrint.setBounds(178, 370, 28, 23);
+			chckbxEnableDirectPrint.setBounds(511, 77, 28, 23);
 			jDesktopPane1.add(chckbxEnableDirectPrint);
 			
 
 			comboBox4ExportFormat.setPreferredSize(new Dimension(40, 20));
 			comboBox4ExportFormat.setFocusCycleRoot(true);
-			comboBox4ExportFormat.setBounds(177, 340, 89, 21);
+			comboBox4ExportFormat.setBounds(141, 340, 89, 21);
 			comboBox4ExportFormat.setModel(new DefaultComboBoxModel<String>(Common.printerExportFormat));
 			jDesktopPane1.add(comboBox4ExportFormat);
 			
-			JLabel4j_std label4j_ExportFormat = new JLabel4j_std();
-			label4j_ExportFormat.setText(lang.get("lbl_Interface_Format"));
-			label4j_ExportFormat.setHorizontalTextPosition(SwingConstants.RIGHT);
-			label4j_ExportFormat.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_ExportFormat.setBounds(9, 340, 157, 19);
-			jDesktopPane1.add(label4j_ExportFormat);
+			JLabel4j_std jLabelInterfaceFormat = new JLabel4j_std();
+			jLabelInterfaceFormat.setText(lang.get("lbl_Interface_Format"));
+			jLabelInterfaceFormat.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabelInterfaceFormat.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabelInterfaceFormat.setBounds(9, 340, 125, 19);
+			jDesktopPane1.add(jLabelInterfaceFormat);
 			setEnabledObjects(printers.isExportEnabled());
 			
 		}

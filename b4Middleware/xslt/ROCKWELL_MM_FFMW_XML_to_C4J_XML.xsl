@@ -49,7 +49,7 @@
                 <materialDefinition>
                     <xsl:apply-templates select='DATA [@type="Basic"]' />
                     <xsl:apply-templates select='DATA [@type="Text"]' />
-                    <debug><xsl:value-of select="$USE_PLANT" /></debug>
+                    <!--<debug><xsl:value-of select="$USE_PLANT" /></debug>-->
                     
                     <xsl:if test="$USE_PLANT='X'">
                         <xsl:comment>>Data from Plant [<xsl:value-of select="$PLANT"/>] Segment</xsl:comment>
@@ -119,6 +119,13 @@
     <xsl:template match='DATA [@type="Text"]/FIELD[@name="Language"][@value=$LANGUAGE]'>
         <xsl:comment>>Text Description for Language [<xsl:value-of select="$LANGUAGE"/>]</xsl:comment>
         <description><xsl:value-of select="parent::*/FIELD[@name='Description']/@value" /></description>
+        <xsl:variable name="temp1" select='parent::*/FIELD[@name="Description"]/@value'/>
+        <xsl:if test="starts-with($temp1,'ZZ')">
+            <enabled>N</enabled>
+        </xsl:if> 
+        <xsl:if test="not(starts-with($temp1,'ZZ'))">
+            <enabled>Y</enabled>
+        </xsl:if> 
     </xsl:template>
     
     <!-- ================

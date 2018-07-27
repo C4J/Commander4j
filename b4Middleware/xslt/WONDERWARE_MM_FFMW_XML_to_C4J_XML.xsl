@@ -115,6 +115,13 @@
             <xsl:variable name="DESC_LANGUAGE" select="string(SPRAS)" />
             <xsl:if test="$DESC_LANGUAGE = $LANGUAGE">
                 <description><xsl:value-of select="c4j_XSLT_Ext:trim(MAKTX)" /></description>
+                <xsl:variable name="temp1" select='c4j_XSLT_Ext:trim(MAKTX)'/>
+                <xsl:if test="starts-with($temp1,'ZZ')">
+                    <enabled>N</enabled>
+                </xsl:if> 
+                <xsl:if test="not(starts-with($temp1,'ZZ'))">
+                    <enabled>Y</enabled>
+                </xsl:if> 
             </xsl:if>
         </xsl:for-each>
     </xsl:template>   
@@ -132,7 +139,6 @@
             <ean><xsl:value-of select="$CURRENT_EAN" /></ean>
             <variant><xsl:value-of select="$CURRENT_VARIANT" /></variant>
      
-        
             <xsl:if test="$CURRENT_UOM='D97'">           
                 <xsl:comment>Converting LE Quantity from <xsl:value-of select='$LE_UOM' /> into <xsl:value-of select='$BASE_UOM' /> before inserting calculated D97</xsl:comment> 
                 <xsl:comment>LE QTY is <xsl:value-of select='$LE_QTY' /></xsl:comment> 

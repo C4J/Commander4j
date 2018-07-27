@@ -5,27 +5,19 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * @author David Garratt
  * 
- * Project Name : Commander4j
+ *         Project Name : Commander4j
  * 
- * Filename     : JDatabaseParameters.java
+ *         Filename : JDatabaseParameters.java
  * 
- * Package Name : com.commander4j.db
+ *         Package Name : com.commander4j.db
  * 
- * License      : GNU General Public License
+ *         License : GNU General Public License
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
+ *         This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ *         This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
+ *         You should have received a copy of the GNU General Public License along with this program. If not, see http://www.commander4j.com/website/license.html.
  * 
  */
 
@@ -69,83 +61,83 @@ public class JDatabaseParameters
 		jdbcDatabase = "";
 	}
 
-
-	public void setjdbcDriver(String value) {
+	public void setjdbcDriver(String value)
+	{
 		jdbcDriver = value;
 	}
 
-
-	public void setjdbcUsername(String value) {
+	public void setjdbcUsername(String value)
+	{
 		jdbcUsername = value;
 	}
 
-
-	public void setjdbcPassword(String value) {
+	public void setjdbcPassword(String value)
+	{
 		jdbcPassword = value;
 	}
-	
+
 	public void setjdbcPasswordEncryption(String value)
 	{
 		jdbcPasswordEncryption = value;
 	}
 
-
-	public void setjdbcDatabaseDateTimeToken(String value) {
+	public void setjdbcDatabaseDateTimeToken(String value)
+	{
 		jdbcDatabaseDateTimeToken = value;
 	}
 
-
-	public void setjdbcDatabaseSelectLimit(String value) {
+	public void setjdbcDatabaseSelectLimit(String value)
+	{
 		jdbcDatabaseSelectLimit = value;
 	}
 
-
-	public void setjdbcDatabaseSchema(String value) {
+	public void setjdbcDatabaseSchema(String value)
+	{
 		jdbcDatabaseSchema = com.commander4j.util.JUtility.replaceNullStringwithBlank(value);
 	}
 
-
-	public void setjdbcServer(String value) {
+	public void setjdbcServer(String value)
+	{
 		jdbcServer = value;
 	}
 
-
-	public void setjdbcPort(String value) {
+	public void setjdbcPort(String value)
+	{
 		jdbcPort = value;
 	}
 
-
-	public void setjdbcSID(String value) {
+	public void setjdbcSID(String value)
+	{
 		jdbcSID = value;
 	}
 
-
-	public void setjdbcDatabase(String value) {
+	public void setjdbcDatabase(String value)
+	{
 		jdbcDatabase = value;
 	}
 
-
-	public String getjdbcDriver() {
+	public String getjdbcDriver()
+	{
 		return jdbcDriver;
 	}
 
-
-	public String getjdbcUsername() {
+	public String getjdbcUsername()
+	{
 		return jdbcUsername;
 	}
 
-
-	public String getjdbcPassword() {
+	public String getjdbcPassword()
+	{
 		return jdbcPassword;
 	}
-	
+
 	public String getjdbcPasswordEncryption()
 	{
 		return jdbcPasswordEncryption;
 	}
 
-
-	public String getjdbcConnectString() {
+	public String getjdbcConnectString()
+	{
 
 		String value = "";
 
@@ -163,75 +155,81 @@ public class JDatabaseParameters
 
 		if (getjdbcDriver().equals("oracle.jdbc.driver.OracleDriver"))
 		{
-			value = "jdbc:oracle:thin:@jdbcServer:jdbcPort:jdbcSID";
+//			value = "jdbc:oracle:thin:@jdbcServer:jdbcPort:jdbcSID";
+			value = "jdbc:oracle:thin:@//jdbcServer:jdbcPort/jdbcSID";
 		}
 
 		if (getjdbcDriver().equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
 		{
-			if (getjdbcSID().equals("") == true)
-			{
-				value = "jdbc:sqlserver://jdbcServer;selectMethod=direct";
-			}
-			else
-			{
-				value = "jdbc:sqlserver://jdbcServer\\jdbcSID;selectMethod=direct";
-			}
-			if (getjdbcPort().equals("")==false)
-			{
-				if (getjdbcPort().equals("1433")==false)
-				{
-					value = value + ":"+"jdbcPort";
-				}
-			}
+
+			value = "jdbc:sqlserver://jdbcServer\\jdbcSID:jdbcPort;databaseName=jdbcDatabase;selectMethod=direct";
+
 		}
 
 		value = value.replaceAll("jdbcServer", getjdbcServer());
-		value = value.replaceAll("jdbcPort", getjdbcPort());
-		value = value.replaceAll("jdbcSID", getjdbcSID());
+
+		if (getjdbcPort().equals(""))
+		{
+			value = value.replaceAll(":jdbcPort", "");
+		}
+		else
+		{
+			value = value.replaceAll("jdbcPort", getjdbcPort());
+		}
+
+		if (getjdbcSID().equals(""))
+		{
+			value = StringUtils.remove(value, "\\jdbcSID");
+		}
+		else
+		{
+			value = value.replaceAll("jdbcSID", getjdbcSID());
+		}
+
 		value = value.replaceAll("jdbcDatabase", getjdbcDatabase());
 
 		return value;
 	}
 
-
-	public String getjdbcDatabaseDateTimeToken() {
+	public String getjdbcDatabaseDateTimeToken()
+	{
 		return jdbcDatabaseDateTimeToken;
 	}
 
-
-	public String getjdbcDatabaseSelectLimit() {
+	public String getjdbcDatabaseSelectLimit()
+	{
 		return jdbcDatabaseSelectLimit;
 	}
 
-
-	public String getjdbcDatabaseSchema() {
+	public String getjdbcDatabaseSchema()
+	{
 		return jdbcDatabaseSchema;
 	}
 
-
-	public String getjdbcServer() {
+	public String getjdbcServer()
+	{
 		String result = jdbcServer;
 		result = StringUtils.removeIgnoreCase(result, ";selectMethod=direct");
 		result = StringUtils.removeIgnoreCase(result, ";autoReconnect=true");
-		return  result;
+		return result;
 	}
 
-
-	public String getjdbcPort() {
+	public String getjdbcPort()
+	{
 		return jdbcPort;
 	}
 
-
-	public String getjdbcSID() {
+	public String getjdbcSID()
+	{
 		return jdbcSID;
 	}
 
-
-	public String getjdbcDatabase() {
+	public String getjdbcDatabase()
+	{
 		String result = jdbcDatabase;
 		result = StringUtils.removeIgnoreCase(result, ";selectMethod=direct");
 		result = StringUtils.removeIgnoreCase(result, ";autoReconnect=true");
-		return  result;
+		return result;
 	}
 
 }
