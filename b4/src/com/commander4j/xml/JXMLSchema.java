@@ -1,5 +1,7 @@
 package com.commander4j.xml;
 
+import java.awt.Rectangle;
+
 /**
  * @author David Garratt
  * 
@@ -31,6 +33,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.LinkedList;
 
+import javax.swing.JLabel;
+
 import com.commander4j.app.JVersion;
 import com.commander4j.db.JDBDDL;
 import com.commander4j.sys.Common;
@@ -46,7 +50,7 @@ public class JXMLSchema
 	}
 
 
-	public static LinkedList<JDBDDL> loadDDLStatements(String driver, String directory) {
+	public static LinkedList<JDBDDL> loadDDLStatements(String driver, String directory,JLabel commandLabel) {
 
 		// String Description = "";
 		String Text = "";
@@ -59,6 +63,20 @@ public class JXMLSchema
 
 			NumberFormat formatter = new DecimalFormat("000000");
 			String filename = directory + formatter.format(ver) + ".xml";
+			
+		
+			commandLabel.setText("Please wait, loading SQL commands from "+formatter.format(ver) + ".xml");
+			Rectangle progressRect = commandLabel.getBounds();
+			progressRect.x = 0;
+			progressRect.y = 0;
+			commandLabel.paintImmediately(progressRect);
+			try
+			{
+				Thread.sleep(10);
+			} catch (InterruptedException ie)
+			{
+			}
+			
 			JXMLDocument xmltest = new JXMLDocument(filename);
 			@SuppressWarnings("unused")
 			int counter = 0;

@@ -327,7 +327,10 @@ public class JDBStructure
 		String select_prefix = "";
 		int col = 0;
 		String required_schema = Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabaseSchema();
-		select_prefix = required_schema + ".";
+		if (required_schema.equals("") == false)
+		{
+			select_prefix = required_schema + ".";
+		}
 
 		Collections.sort(tableNames);
 		int tableCount = tableNames.size();

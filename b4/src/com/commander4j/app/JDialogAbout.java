@@ -40,6 +40,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.net.URI;
 
 import javax.swing.ImageIcon;
@@ -249,7 +250,7 @@ public class JDialogAbout extends javax.swing.JDialog
 					}
 					
 					JLabel labelLogo = new JLabel("New label");
-					labelLogo.setIcon(new ImageIcon("/Users/dave/Commander4j/workspace.development/b4/images/about.jpg"));
+					labelLogo.setIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"images"+File.separator+"about.jpg"));
 					labelLogo.setBounds(0, 0, 406, 169);
 					jDesktopPane1.add(labelLogo);
 				}

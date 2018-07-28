@@ -104,7 +104,7 @@ public class JDBSchema {
 
 			result.program_NEWVersion = new Double("-1");
 			result.program_CURVersion = JVersion.getProgramVersionValue();
-			result.program_updateRequired = false;
+			result.program_updateRequired = true;
 
 			if (showWarnings)
 			{
