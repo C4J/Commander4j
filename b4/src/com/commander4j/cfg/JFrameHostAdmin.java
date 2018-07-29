@@ -543,6 +543,8 @@ public class JFrameHostAdmin extends JFrame
 
 	private void checkVersions()
 	{
+		String result = "";
+		
 		JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 		String currentProgramVersion = ctrl.getKeyValue("PROGRAM VERSION");
 		String requiredProgramVersion = JVersion.getProgramVersion();
@@ -560,10 +562,12 @@ public class JFrameHostAdmin extends JFrame
 			if (currentProgramVersion.equals(""))
 			{
 				labelActualProgramVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "empty-db.gif"));
+				result="Commander4j version not found in database, use the AUTO Update option to install them";
 			}
 			else
 			{
 				labelActualProgramVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "fail-cross.png"));
+				result="Commander4j version needs updating, use the AUTO Update option to update it";
 			}
 		}
 
@@ -576,12 +580,15 @@ public class JFrameHostAdmin extends JFrame
 			if (currentSchemaVersion.equals(""))
 			{
 				labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "empty-db.gif"));
+				result="No Commander4j tables found, use the AUTO Update option to install them";
 			}
 			else
 			{
 				labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "fail-cross.png"));
+				result="Commander4j tables found but need to be updated, use the AUTO Update option to update them";
 			}
 		}
+		labelCommand.setText(result);
 	}
 
 	private void initGUI()
@@ -596,7 +603,7 @@ public class JFrameHostAdmin extends JFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					desktopPane.add(jScrollPane1);
-					jScrollPane1.setBounds(14, 37, 258, 415);
+					jScrollPane1.setBounds(14, 37, 272, 415);
 					{
 						ListModel<JHost> jListHostsModel = new DefaultComboBoxModel<JHost>();
 						jListHosts = new JList4j<JHost>();
@@ -616,7 +623,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonAdd = new JButton4j(Common.icon_add);
 					desktopPane.add(jButtonAdd);
 					jButtonAdd.setText("Add DB Connection");
-					jButtonAdd.setBounds(1011, 47, 160, 36);
+					jButtonAdd.setBounds(1011, 49, 160, 39);
 					jButtonAdd.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -674,7 +681,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonApply = new JButton4j(Common.icon_ok);
 					desktopPane.add(jButtonApply);
 					jButtonApply.setText("Confirm Changes");
-					jButtonApply.setBounds(1011, 175, 160, 36);
+					jButtonApply.setBounds(1011, 185, 160, 39);
 					jButtonApply.setEnabled(false);
 					jButtonApply.addActionListener(new ActionListener()
 					{
@@ -699,7 +706,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonDelete = new JButton4j(Common.icon_delete);
 					desktopPane.add(jButtonDelete);
 					jButtonDelete.setText("Delete DB Connection");
-					jButtonDelete.setBounds(1011, 79, 160, 36);
+					jButtonDelete.setBounds(1011, 83, 160, 39);
 					jButtonDelete.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -740,7 +747,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonUp = new JButton4j(Common.icon_arrow_up);
 					desktopPane.add(jButtonUp);
 					jButtonUp.setEnabled(false);
-					jButtonUp.setBounds(284, 221, 28, 28);
+					jButtonUp.setBounds(291, 205, 28, 28);
 					jButtonUp.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -761,7 +768,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonDown = new JButton4j(Common.icon_arrow_down);
 					desktopPane.add(jButtonDown);
 					jButtonDown.setEnabled(false);
-					jButtonDown.setBounds(284, 256, 28, 28);
+					jButtonDown.setBounds(291, 240, 28, 28);
 					jButtonDown.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -782,7 +789,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonClose = new JButton4j(Common.icon_close);
 					desktopPane.add(jButtonClose);
 					jButtonClose.setText("Close");
-					jButtonClose.setBounds(1011, 405, 160, 36);
+					jButtonClose.setBounds(1011, 423, 160, 39);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -796,7 +803,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonUndo = new JButton4j(Common.icon_undo);
 					desktopPane.add(jButtonUndo);
 					jButtonUndo.setText("Undo Changes");
-					jButtonUndo.setBounds(1011, 271, 160, 36);
+					jButtonUndo.setBounds(1011, 287, 160, 39);
 					jButtonUndo.setEnabled(false);
 					jButtonUndo.addActionListener(new ActionListener()
 					{
@@ -818,7 +825,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonSave = new JButton4j(Common.icon_update);
 					desktopPane.add(jButtonSave);
 					jButtonSave.setText("Save Configuration");
-					jButtonSave.setBounds(1011, 207, 160, 36);
+					jButtonSave.setBounds(1011, 219, 160, 39);
 					jButtonSave.setEnabled(false);
 					jButtonSave.addActionListener(new ActionListener()
 					{
@@ -985,7 +992,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelDatabase.setText("Database");
 					jLabelDatabase.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelDatabase.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelDatabase.setBounds(321, 198, 98, 21);
+					jLabelDatabase.setBounds(321, 197, 98, 21);
 
 				}
 				{
@@ -994,7 +1001,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelDBDateTime.setText("DB Date Time");
 					jLabelDBDateTime.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelDBDateTime.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelDBDateTime.setBounds(292, 323, 127, 21);
+					jLabelDBDateTime.setBounds(292, 322, 127, 21);
 
 				}
 				{
@@ -1003,7 +1010,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelPassword.setText("Password");
 					jLabelPassword.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelPassword.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelPassword.setBounds(292, 298, 127, 21);
+					jLabelPassword.setBounds(292, 297, 127, 21);
 
 				}
 				{
@@ -1012,15 +1019,15 @@ public class JFrameHostAdmin extends JFrame
 					jLabelDescription.setText("Description");
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelDescription.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelDescription.setBounds(291, 41, 127, 21);
+					jLabelDescription.setBounds(291, 40, 127, 21);
 				}
 				{
 					jLabelSiteNo = new JLabel4j_std();
 					desktopPane.add(jLabelSiteNo);
-					jLabelSiteNo.setText("Site No");
+					jLabelSiteNo.setText("Connection No");
 					jLabelSiteNo.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelSiteNo.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelSiteNo.setBounds(291, 15, 127, 21);
+					jLabelSiteNo.setBounds(291, 14, 127, 21);
 
 				}
 				{
@@ -1029,7 +1036,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelUsername.setText("Username");
 					jLabelUsername.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelUsername.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelUsername.setBounds(292, 273, 127, 21);
+					jLabelUsername.setBounds(292, 272, 127, 21);
 
 				}
 				{
@@ -1038,7 +1045,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelPort.setText("Port");
 					jLabelPort.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelPort.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelPort.setBounds(321, 223, 98, 21);
+					jLabelPort.setBounds(321, 222, 98, 21);
 
 				}
 				{
@@ -1182,13 +1189,13 @@ public class JFrameHostAdmin extends JFrame
 					jLabelSID.setText("SID");
 					jLabelSID.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelSID.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelSID.setBounds(321, 248, 98, 21);
+					jLabelSID.setBounds(321, 247, 98, 21);
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_cancel);
 					desktopPane.add(jButtonCancel);
 					jButtonCancel.setText("Cancel");
-					jButtonCancel.setBounds(1011, 335, 160, 36);
+					jButtonCancel.setBounds(1011, 355, 160, 39);
 					jButtonCancel.setEnabled(false);
 					jButtonCancel.addActionListener(new ActionListener()
 					{
@@ -1219,7 +1226,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelConnectionString.setText("JDBC Connection URL");
 					jLabelConnectionString.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelConnectionString.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelConnectionString.setBounds(291, 124, 127, 21);
+					jLabelConnectionString.setBounds(291, 120, 127, 21);
 				}
 				{
 					jTextFieldDatabase = new JTextField4j();
@@ -1242,13 +1249,13 @@ public class JFrameHostAdmin extends JFrame
 					jLabelServer.setText("Server");
 					jLabelServer.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelServer.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelServer.setBounds(321, 173, 98, 21);
+					jLabelServer.setBounds(321, 172, 98, 21);
 				}
 				{
 					jButtonTest = new JButton4j(Common.icon_connect);
 					desktopPane.add(jButtonTest);
 					jButtonTest.setText("Connect / Check DB");
-					jButtonTest.setBounds(1011, 111, 160, 36);
+					jButtonTest.setBounds(1011, 117, 160, 39);
 					jButtonTest.setToolTipText("Connect to selected Host Database");
 					jButtonTest.addActionListener(new ActionListener()
 					{
@@ -1284,7 +1291,7 @@ public class JFrameHostAdmin extends JFrame
 					jButtonUpdate = new JButton4j(Common.icon_update);
 					desktopPane.add(jButtonUpdate);
 					jButtonUpdate.setText("AUTO Update DB");
-					jButtonUpdate.setBounds(1011, 143, 160, 36);
+					jButtonUpdate.setBounds(1011, 151, 160, 39);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setToolTipText("Automatically Create or Upgrade Application Database Schema");
 					jButtonUpdate.addActionListener(new ActionListener()
@@ -1424,7 +1431,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelSelectTime.setText("DB Select Limit");
 					jLabelSelectTime.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelSelectTime.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelSelectTime.setBounds(292, 348, 127, 21);
+					jLabelSelectTime.setBounds(292, 347, 127, 21);
 
 				}
 				{
@@ -1456,7 +1463,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelMenuURL.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabelMenuURL.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelMenuURL.setText("URL");
-					jLabelMenuURL.setBounds(291, 66, 127, 21);
+					jLabelMenuURL.setBounds(291, 65, 127, 21);
 					desktopPane.add(jLabelMenuURL);
 				}
 
@@ -1481,7 +1488,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelUniqueID.setText("Unique ID");
 					jLabelUniqueID.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelUniqueID.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelUniqueID.setBounds(292, 398, 127, 21);
+					jLabelUniqueID.setBounds(292, 397, 127, 21);
 					desktopPane.add(jLabelUniqueID);
 				}
 				{
@@ -1515,7 +1522,7 @@ public class JFrameHostAdmin extends JFrame
 					});
 					btnSchema.setText("DB Schema Report");
 					btnSchema.setEnabled(false);
-					btnSchema.setBounds(1011, 303, 160, 36);
+					btnSchema.setBounds(1011, 321, 160, 39);
 					desktopPane.add(btnSchema);
 				}
 			}
@@ -1565,7 +1572,7 @@ public class JFrameHostAdmin extends JFrame
 			});
 			btnService.setToolTipText("Connect to selected Host Database");
 			btnService.setText("Assign to Service");
-			btnService.setBounds(1011, 239, 160, 36);
+			btnService.setBounds(1011, 253, 160, 39);
 			desktopPane.add(btnService);
 
 			JLabel4j_std label4j_std = new JLabel4j_std();
@@ -1713,14 +1720,14 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			jButtonOpen.setText("Open Hosts File");
-			jButtonOpen.setBounds(1011, 15, 160, 36);
+			jButtonOpen.setBounds(1011, 15, 160, 39);
 			desktopPane.add(jButtonOpen);
 
 			JLabel4j_std label4j_std_5 = new JLabel4j_std();
 			label4j_std_5.setText("URL for Hosts File Update");
 			label4j_std_5.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_5.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_5.setBounds(278, 550, 140, 21);
+			label4j_std_5.setBounds(278, 548, 140, 21);
 			desktopPane.add(label4j_std_5);
 
 			jTextField4jHostUpdatePath = new JTextField4j();
@@ -1813,7 +1820,7 @@ public class JFrameHostAdmin extends JFrame
 
 			jButtonHelp = new JButton4j(Common.icon_help);
 			jButtonHelp.setText("Help");
-			jButtonHelp.setBounds(1011, 370, 160, 36);
+			jButtonHelp.setBounds(1011, 389, 160, 39);
 			desktopPane.add(jButtonHelp);
 
 			jTextField4jInstallDir.addKeyListener(new KeyAdapter()
@@ -1828,7 +1835,7 @@ public class JFrameHostAdmin extends JFrame
 			JPanel panel = new JPanel();
 			panel.setBackground(Color.WHITE);
 			panel.setBorder(new TitledBorder(null, "Version Information", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-			panel.setBounds(720, 153, 272, 265);
+			panel.setBounds(720, 162, 272, 256);
 			desktopPane.add(panel);
 			panel.setLayout(null);
 
@@ -1836,28 +1843,28 @@ public class JFrameHostAdmin extends JFrame
 			label4j_stdASV.setText("Actual Schema Version");
 			label4j_stdASV.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_stdASV.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_stdASV.setBounds(12, 60, 145, 21);
+			label4j_stdASV.setBounds(23, 62, 145, 21);
 			panel.add(label4j_stdASV);
 
 			JLabel4j_std label4j_stdRSV = new JLabel4j_std();
 			label4j_stdRSV.setText("Required Schema Version");
 			label4j_stdRSV.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_stdRSV.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_stdRSV.setBounds(12, 30, 145, 21);
+			label4j_stdRSV.setBounds(23, 32, 145, 21);
 			panel.add(label4j_stdRSV);
 
 			JLabel4j_std label4j_std_RPV = new JLabel4j_std();
 			label4j_std_RPV.setText("Required Progam Version");
 			label4j_std_RPV.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_RPV.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_RPV.setBounds(12, 90, 145, 21);
+			label4j_std_RPV.setBounds(23, 92, 145, 21);
 			panel.add(label4j_std_RPV);
 
 			JLabel4j_std label4j_stdAPV = new JLabel4j_std();
 			label4j_stdAPV.setText("Actual Program Version");
 			label4j_stdAPV.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_stdAPV.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_stdAPV.setBounds(12, 120, 145, 21);
+			label4j_stdAPV.setBounds(23, 122, 145, 21);
 			panel.add(label4j_stdAPV);
 			textField4jReqdSchema.setFont(new Font("Arial", Font.BOLD, 12));
 
@@ -1867,7 +1874,7 @@ public class JFrameHostAdmin extends JFrame
 			textField4jReqdSchema.setHorizontalAlignment(SwingConstants.CENTER);
 			textField4jReqdSchema.setFocusCycleRoot(true);
 			textField4jReqdSchema.setBackground(new Color(255, 255, 204));
-			textField4jReqdSchema.setBounds(170, 30, 53, 21);
+			textField4jReqdSchema.setBounds(181, 32, 53, 21);
 			panel.add(textField4jReqdSchema);
 			textField4jReqdProgram.setFont(new Font("Arial", Font.BOLD, 12));
 
@@ -1878,7 +1885,7 @@ public class JFrameHostAdmin extends JFrame
 			textField4jReqdProgram.setFocusCycleRoot(true);
 			textField4jReqdProgram.setEditable(false);
 			textField4jReqdProgram.setBackground(new Color(255, 255, 204));
-			textField4jReqdProgram.setBounds(170, 90, 53, 21);
+			textField4jReqdProgram.setBounds(181, 92, 53, 21);
 			panel.add(textField4jReqdProgram);
 			textField4jActualSchema.setFont(new Font("Arial", Font.BOLD, 12));
 
@@ -1888,7 +1895,7 @@ public class JFrameHostAdmin extends JFrame
 			textField4jActualSchema.setFocusCycleRoot(true);
 			textField4jActualSchema.setEditable(false);
 			textField4jActualSchema.setBackground(new Color(255, 255, 204));
-			textField4jActualSchema.setBounds(170, 60, 53, 21);
+			textField4jActualSchema.setBounds(181, 62, 53, 21);
 			panel.add(textField4jActualSchema);
 			textField4jActualProgram.setFont(new Font("Arial", Font.BOLD, 12));
 
@@ -1898,7 +1905,7 @@ public class JFrameHostAdmin extends JFrame
 			textField4jActualProgram.setFocusCycleRoot(true);
 			textField4jActualProgram.setEditable(false);
 			textField4jActualProgram.setBackground(new Color(255, 255, 204));
-			textField4jActualProgram.setBounds(170, 120, 53, 21);
+			textField4jActualProgram.setBounds(181, 122, 53, 21);
 			panel.add(textField4jActualProgram);
 			labelActualProgramVersion.setToolTipText("Shows the status of the target database. ");
 
@@ -1930,7 +1937,7 @@ public class JFrameHostAdmin extends JFrame
 
 			btn4jAmendSchemaVersion.setEnabled(false);
 			btn4jAmendSchemaVersion.setText("Correct Schema Version !");
-			btn4jAmendSchemaVersion.setBounds(36, 153, 187, 36);
+			btn4jAmendSchemaVersion.setBounds(47, 155, 187, 39);
 			panel.add(btn4jAmendSchemaVersion);
 			btn4jAmendProgramVersion.addActionListener(new ActionListener()
 			{
@@ -1954,7 +1961,7 @@ public class JFrameHostAdmin extends JFrame
 
 			btn4jAmendProgramVersion.setEnabled(false);
 			btn4jAmendProgramVersion.setText("Correct Program Version !");
-			btn4jAmendProgramVersion.setBounds(36, 201, 187, 36);
+			btn4jAmendProgramVersion.setBounds(47, 192, 187, 39);
 			panel.add(btn4jAmendProgramVersion);
 
 			setHostsFilename(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts" + File.separator + "hosts.xml");
