@@ -523,7 +523,7 @@ public class OutgoingPalletExportXML
 
 					try
 					{
-						switch (col_type)
+						switch (col_type.toUpperCase())
 						{
 						case "VARCHAR":
 							value = rs.getString(col_name);
@@ -540,6 +540,12 @@ public class OutgoingPalletExportXML
 						case "INT":
 							value = String.valueOf(rs.getInt(col_name));
 							break;
+						case "FLOAT":
+							value = String.valueOf(rs.getFloat(col_name));
+							break;							
+						case "NUMERIC":
+							value = rs.getBigDecimal(col_name).toString();
+							break;							
 						case "DECIMAL":
 							value = rs.getBigDecimal(col_name).toString();
 							break;

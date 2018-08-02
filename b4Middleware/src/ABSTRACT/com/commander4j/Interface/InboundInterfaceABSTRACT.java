@@ -226,6 +226,10 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 			connector = new InboundConnectorEmail((InboundInterface) this);
 			setInputFileMask(InboundConnectorINTERFACE.Mask_EMAIL);
 			break;
+		case InboundConnectorINTERFACE.Connector_RAW:
+			connector = new InboundConnectorEmail((InboundInterface) this);
+			setInputFileMask(InboundConnectorINTERFACE.Mask_RAW);
+			break;			
 		case InboundConnectorINTERFACE.Connector_Excel:
 			connector = new InboundConnectorExcel((InboundInterface) this);
 			setInputFileMask(InboundConnectorINTERFACE.Mask_Excel);

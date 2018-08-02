@@ -6,7 +6,7 @@
     <logArchiveRetentionDays>3</logArchiveRetentionDays>
     <enableEmailNotifications>false</enableEmailNotifications>
     <statusReportTime>09:00:00</statusReportTime>
-    
+        
     <map id="map01" enabed="Y" description="Rockwell Material Master to C4J Material Master">
         <input id="in1" description="Read Rockwell Material Master">
             <type>XML</type>
@@ -432,6 +432,45 @@
             <type>XML</type>
             <XSLT/>
         </output>
+    </map>
+    
+     <map id="map26" enabed="Y" description="EPCIS to TraceLink">
+        <input id="in1" description="Read EPCIS">
+            <type>XML</type>
+            <path>./interface/input/26 (EPCIS)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>EPCIS_to_TRACELINK.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write TraceLink">
+            <path>./interface/output/26 (TraceLink)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>    
+    
+    <map id="map27" enabed="Y" description="Send to FTP destination">
+        
+        <input id="in1" description="Read RAW File">
+            <type>RAW</type>
+            <path>./interface/input/27 (FTP Source)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Send to FTP Server">
+            <ftpServer>192.168.1.51</ftpServer>
+            <ftpPort>21</ftpPort>
+            <ftpRemotePath>/</ftpRemotePath>
+            <ftpUsername>middleware</ftpUsername>
+            <ftpPassword>JFyWCV8y3uAP</ftpPassword>
+            <path>./interface/output/27 (FTP Send)</path>
+            <type>FTP</type>
+            <XSLT/>
+        </output>
+        
     </map>
     
 </config>

@@ -221,7 +221,7 @@ public class IncommingPalletImportXML
 					for (int x = 0; x < fieldNames.size(); x++)
 					{
 
-						switch (fieldTypes.get(x))
+						switch (fieldTypes.get(x).toUpperCase())
 						{
 						case "VARCHAR":
 							stmtupdate.setString(x + 1, fieldValues.get(x));
@@ -238,10 +238,17 @@ public class IncommingPalletImportXML
 						case "INT":
 							stmtupdate.setInt(x + 1, Integer.valueOf(fieldValues.get(x)));
 							break;
+						case "FLOAT":
+							stmtupdate.setFloat(x + 1,Float.valueOf(fieldValues.get(x)));
+							break;
+						case "NUMERIC":
+							BigDecimal temp0 = new BigDecimal(fieldValues.get(x));
+							stmtupdate.setBigDecimal(x + 1, temp0);
+							break;
 						case "DECIMAL":
 							BigDecimal temp1 = new BigDecimal(fieldValues.get(x));
 							stmtupdate.setBigDecimal(x + 1, temp1);
-							break;
+							break;							
 						case "NUMBER":
 							BigDecimal temp2 = new BigDecimal(fieldValues.get(x));
 							stmtupdate.setBigDecimal(x + 1, temp2);

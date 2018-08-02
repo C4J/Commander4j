@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+    <hostRef>3415ed1b-7d32-4826-b8cd-6fecb37aa470</hostRef>
+    <messageRef>14322961</messageRef>
+    <interfaceType>Equipment Tracking</interfaceType>
+    <messageInformation>Despatch=WK07059</messageInformation>
+    <interfaceDirection>Output</interfaceDirection>
+    <messageDate>2018-08-01T17:10:50</messageDate>
+    <messageData>
+        <equipmentTracking>
+            <numberOfPallets>52</numberOfPallets>
+            <haulier/>
+            <trailer>WMP*P1/2*KT308</trailer>
+            <despatchNo>WK07059</despatchNo>
+            <despatchDate>2018-08-01T17:10:50</despatchDate>
+            <fromLocation>WISBECH</fromLocation>
+            <fromEquipmentTrackingID>22</fromEquipmentTrackingID>
+            <toLocation>WMP</toLocation>
+            <toEquipmentTrackingID>28</toEquipmentTrackingID>
+            <contents>
+                <Equipment>
+                    <equipmentID>BU</equipmentID>
+                    <count>3</count>
+                </Equipment>
+                <Equipment>
+                    <equipmentID>LPR</equipmentID>
+                    <count>45</count>
+                </Equipment>
+                <Equipment>
+                    <equipmentID>BEU</equipmentID>
+                    <count>4</count>
+                </Equipment>
+            </contents>
+        </equipmentTracking>
+    </messageData>
+</message>
