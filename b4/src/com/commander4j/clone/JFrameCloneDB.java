@@ -540,7 +540,8 @@ public class JFrameCloneDB extends JFrame
 
 												} catch (SQLException e)
 												{
-													labelCommand.setText("Error reading " + table);
+													logger.error("Error reading " + table + " ["+e.getMessage()+"]");
+													labelCommand.setText("Error reading " + table+ " ["+e.getMessage()+"]");
 												}
 
 											} else

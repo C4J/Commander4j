@@ -80,7 +80,7 @@
         <pathelement location="lib/app/commons-lang-2.6.jar"/>
         <pathelement location="lib/app/opencsv-4.1.jar"/>
         <pathelement location="lib/app/jackcess-2.1.9.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-8.0.11.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-8.0.12.jar"/>
         <pathelement location="lib/db/mssql-jdbc-6.4.0.jre8.jar"/>
         <pathelement location="lib/app/commons-text-1.2.jar"/>
         <pathelement location="lib/app/commons-io-2.6.jar"/>

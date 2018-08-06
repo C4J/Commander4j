@@ -8,7 +8,8 @@
     <item type="PlantSLOCtoLocation" id="0962-0001"><value>WMP</value></item>    
     <item type="PlantSLOCtoLocation" id="0962-0003"><value>FENLAND</value></item>    
     <item type="PlantSLOCtoLocation" id="0962-0005"><value>NENE PARADE</value></item>        
-    <item type="PlantSLOCtoLocation" id="0931-0001"><value>SUDBURY</value></item>   
+    <item type="PlantSLOCtoLocation" id="0931-0001"><value>SUDBURY</value></item>  
+    <item type="PlantSLOCtoLocation" id="0929-0001"><value>AINTREE</value></item>  	     
     <item type="PlantSLOCtoLocation" id="0931-0002"><value>LAITS</value></item>       
     <item type="PlantSLOCtoLocation" id="0966-0001"><value>HAMS HALL</value></item>  
     <item type="PlantSLOCtoLocation" id="9018-0001"><value>BARDON</value></item>  
