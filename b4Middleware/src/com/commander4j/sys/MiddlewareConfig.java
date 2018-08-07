@@ -1,5 +1,6 @@
 package com.commander4j.sys;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import org.apache.logging.log4j.Logger;
@@ -180,7 +181,7 @@ public class MiddlewareConfig
 				inboundInterface.setIdocSchemaFilename(inputIdocSchemaFilename);
 				inboundInterface.setPollingInterval(Long.valueOf(pollingInterval));
 
-				logger.debug("Loading input connector  : (" + inputId + ") " + inputDescription +" Type " +inboundInterface.getType()+" Mask "+inboundInterface.getInputFileMask());
+				logger.debug("Loading input connector  : (" + inputId + ") " + inputDescription +" Type " +inboundInterface.getType()+" Mask "+Arrays.toString(inboundInterface.getInputFileMask()));
 
 				map.setInboundInterface(inboundInterface);
 
