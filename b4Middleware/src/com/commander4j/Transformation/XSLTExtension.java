@@ -116,6 +116,72 @@ public class XSLTExtension
 
 		return result;
 	}
+	
+	public static synchronized String ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS(String inputString)
+	{
+		String result = inputString.replace("T", " ");
+
+		SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+		try
+		{
+
+			result = myFormat.format(fromUser.parse(result));
+
+		} catch (ParseException e)
+		{
+
+			result = "Input date yyyy-MM-dd HH:mm:ss format error [" + result + "]";
+
+		}
+
+		return result;
+	}
+	
+	public static synchronized String ISO_Date_to_date_MMYYYY(String inputString)
+	{
+		String result = inputString.replace("T", " ");
+
+		SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat myFormat = new SimpleDateFormat("MMyyyy");
+
+		try
+		{
+
+			result = myFormat.format(fromUser.parse(result));
+
+		} catch (ParseException e)
+		{
+
+			result = "Input date yyyy-MM-dd HH:mm:ss format error [" + result + "]";
+
+		}
+
+		return result;
+	}
+	
+	public static synchronized String ISO_Date_to_date_DDMMYYYY(String inputString)
+	{
+		String result = inputString.replace("T", " ");
+
+		SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat myFormat = new SimpleDateFormat("ddMMyyyy");
+
+		try
+		{
+
+			result = myFormat.format(fromUser.parse(result));
+
+		} catch (ParseException e)
+		{
+
+			result = "Input date yyyy-MM-dd HH:mm:ss format error [" + result + "]";
+
+		}
+
+		return result;
+	}	
 
 	public static synchronized String formatDate(String inputString, String formatFrom, String formatTo)
 	{
