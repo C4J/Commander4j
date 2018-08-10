@@ -14,7 +14,7 @@ public interface OutboundConnectorINTERFACE
 	public final static String Connector_RAW = "RAW";
 	public final static String Connector_DB = "DB";
 
-	public boolean connectorSave(String filename);
+	public boolean connectorSave(String path,String filename);
 
 	public Document getData();
 

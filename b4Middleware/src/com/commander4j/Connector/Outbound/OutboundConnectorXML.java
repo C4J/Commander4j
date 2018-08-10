@@ -26,11 +26,12 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT
 	}
 
 	@Override
-	public boolean connectorSave(String filename)
+	public boolean connectorSave(String path,String filename)
 	{
 		boolean result = false;
+		String fullPath = path+File.separator+filename;
 
-		logger.debug("connectorSave [" + filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase() + "]");
+		logger.debug("connectorSave [" + fullPath + "." + getOutboundInterface().getOutputFileExtension().toLowerCase() + "]");
 		try
 		{
 			DOMImplementationLS DOMiLS = null;
@@ -41,13 +42,13 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT
 
 				LSOutput LSO = DOMiLS.createLSOutput();
 
-				if (filename.endsWith("." + getType().toLowerCase()) == false)
+				if (fullPath.endsWith("." + getType().toLowerCase()) == false)
 				{
-					filename = filename + "." + getType().toLowerCase();
+					fullPath = fullPath + "." + getType().toLowerCase();
 				}
 
-				String tempFilename = filename + ".tmp";
-				String finalFilename = filename;
+				String tempFilename = fullPath + ".tmp";
+				String finalFilename = fullPath;
 
 				FOS = new FileOutputStream(tempFilename);
 				LSO.setByteStream((OutputStream) FOS);
@@ -74,7 +75,7 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT
 		{
 			result = false;
 			logger.error(ex.getMessage());
-			Common.emailqueue.addToQueue("Error", "Error Writing File [" + filename + "]", ex.getMessage() + "\n\n", "");
+			Common.emailqueue.addToQueue("Error", "Error Writing File [" + fullPath + "]", ex.getMessage() + "\n\n", "");
 
 		}
 

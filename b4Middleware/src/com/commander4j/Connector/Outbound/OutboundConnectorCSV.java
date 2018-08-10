@@ -71,20 +71,21 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 	}
 
 	@Override
-	public boolean connectorSave(String filename)
+	public boolean connectorSave(String path,String filename)
 	{
 		boolean result = false;
+		String fullPath = path+File.separator+filename;
 
-		if (filename.endsWith("." + getType().toLowerCase()) == false)
+		if (fullPath.endsWith("." + getType().toLowerCase()) == false)
 		{
-			filename = filename + "." + getType().toLowerCase();
+			fullPath = fullPath + "." + getType().toLowerCase();
 		}
-		String tempFilename = filename + ".tmp";
-		String finalFilename = filename;		
+		String tempFilename = fullPath + ".tmp";
+		String finalFilename = fullPath;		
 		
 		getCSVOptions();
 
-		logger.debug("connectorSave [" + filename + "]");
+		logger.debug("connectorSave [" + fullPath + "]");
 
 		JXMLDocument document = new JXMLDocument();
 		document.setDocument(getData());
@@ -150,7 +151,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 				} catch (Exception ex)
 				{
 					logger.error(ex.getMessage());
-					Common.emailqueue.addToQueue("Error", "Error Writing File ["+filename+"]", ex.getMessage()+"\n\n", "");
+					Common.emailqueue.addToQueue("Error", "Error Writing File ["+fullPath+"]", ex.getMessage()+"\n\n", "");
 				}
 
 			}

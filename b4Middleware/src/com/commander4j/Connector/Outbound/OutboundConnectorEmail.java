@@ -27,9 +27,10 @@ public class OutboundConnectorEmail extends OutboundConnectorABSTRACT
 	}
 
 	@Override
-	public boolean connectorSave(String filename)
+	public boolean connectorSave(String path,String filename)
 	{
 		boolean result = false;
+		String fullPath = path+File.separator+filename;
 
 		//parsePattern(getOutboundInterface().getOutputPattern());
 
@@ -42,7 +43,7 @@ public class OutboundConnectorEmail extends OutboundConnectorABSTRACT
 		FileOutputStream output;
 		try
 		{
-			output = new FileOutputStream(new File(filename));
+			output = new FileOutputStream(new File(fullPath));
 			IOUtils.write(returnedBytes, output);
 			result=true;
 			
@@ -50,12 +51,12 @@ public class OutboundConnectorEmail extends OutboundConnectorABSTRACT
 			String subject = getOutboundInterface().getEmailSubject();
 			String message = getOutboundInterface().getEmailMessage()+"\n\n";
 			
-			Common.emailqueue.addToQueue(addresses, subject,message,filename);
+			Common.emailqueue.addToQueue(addresses, subject,message,fullPath);
 
 		} catch (Exception e)
 		{
 			logger.error("connectorLoad " + getType() + " " + e.getMessage());
-			Common.emailqueue.addToQueue("Error", "Error writing " + getType(), "connectorSave " + getType() + " " + e.getMessage() + "\n\n" + filename, "");
+			Common.emailqueue.addToQueue("Error", "Error writing " + getType(), "connectorSave " + getType() + " " + e.getMessage() + "\n\n" + fullPath, "");
 		}
 
 		document = null;

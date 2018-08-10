@@ -27,11 +27,12 @@ public class OutboundConnectorRAW extends OutboundConnectorABSTRACT
 	}
 
 	@Override
-	public boolean connectorSave(String filename)
+	public boolean connectorSave(String path,String filename)
 	{
 		boolean result = false;
+		String fullPath = path+File.separator+filename;
 
-		logger.debug("connectorSave [" + filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase() + "]");
+		logger.debug("connectorSave [" + fullPath + "." + getOutboundInterface().getOutputFileExtension().toLowerCase() + "]");
 		try
 		{
 
@@ -50,13 +51,13 @@ public class OutboundConnectorRAW extends OutboundConnectorABSTRACT
 				}
 				
 
-				if (filename.endsWith("." + getOutboundInterface().getOutputFileExtension().toLowerCase()) == false)
+				if (fullPath.endsWith("." + getOutboundInterface().getOutputFileExtension().toLowerCase()) == false)
 				{
-					filename = filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase();
+					fullPath = fullPath + "." + getOutboundInterface().getOutputFileExtension().toLowerCase();
 				}
 
-				String tempFilename = filename + ".tmp";
-				String finalFilename = filename;
+				String tempFilename = fullPath + ".tmp";
+				String finalFilename = fullPath;
 
 				FileWriter fw = new FileWriter(tempFilename);
 				fw.write(value);
@@ -76,7 +77,7 @@ public class OutboundConnectorRAW extends OutboundConnectorABSTRACT
 		{
 			result = false;
 			logger.error(ex.getMessage());
-			Common.emailqueue.addToQueue("Error", "Error Writing File [" + filename + "]", ex.getMessage() + "\n\n", "");
+			Common.emailqueue.addToQueue("Error", "Error Writing File [" + fullPath + "]", ex.getMessage() + "\n\n", "");
 
 		}
 

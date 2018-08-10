@@ -31,11 +31,12 @@ public class OutboundConnectorFTP extends OutboundConnectorABSTRACT
 	}
 
 	@Override
-	public boolean connectorSave(String filename)
+	public boolean connectorSave(String path,String filename)
 	{
 		boolean result = false;
+		String fullPath = path+File.separator+filename;
 
-		Path p = Paths.get(filename);
+		Path p = Paths.get(fullPath);
 		String shortFilename = p.getFileName().toString();
 		p = null;
 
@@ -48,7 +49,7 @@ public class OutboundConnectorFTP extends OutboundConnectorABSTRACT
 		FileOutputStream output;
 		try
 		{
-			output = new FileOutputStream(new File(filename));
+			output = new FileOutputStream(new File(fullPath));
 			IOUtils.write(returnedBytes, output);
 			result=true;
 			
@@ -60,9 +61,9 @@ public class OutboundConnectorFTP extends OutboundConnectorABSTRACT
 
 			FTP_Send sender = new FTP_Send();
 
-			sender.send(server, port, remotePath, shortFilename, filename,username, password);
+			sender.send(server, port, remotePath, shortFilename, fullPath,username, password);
 			
-			File f = new File(filename);
+			File f = new File(fullPath);
 			FileUtils.deleteQuietly(f);
 			f = null;
 			
@@ -70,7 +71,7 @@ public class OutboundConnectorFTP extends OutboundConnectorABSTRACT
 		} catch (Exception e)
 		{
 			logger.error("connectorLoad " + getType() + " " + e.getMessage());
-			Common.emailqueue.addToQueue("Error", "Error writing " + getType(), "connectorSave " + getType() + " " + e.getMessage() + "\n\n" + filename, "");
+			Common.emailqueue.addToQueue("Error", "Error writing " + getType(), "connectorSave " + getType() + " " + e.getMessage() + "\n\n" + fullPath, "");
 		}
 
 		document = null;

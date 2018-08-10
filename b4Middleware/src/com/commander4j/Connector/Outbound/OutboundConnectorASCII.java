@@ -59,9 +59,10 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 	}
 
 	@Override
-	public boolean connectorSave(String filename)
+	public boolean connectorSave(String path,String filename)
 	{
 		boolean result = false;
+		String fullPath = path+File.separator+filename;
 
 		parsePattern(getOutboundInterface().getOutputPattern());
 
@@ -97,9 +98,9 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 			{
 				try
 				{
-					filename = filename + "." + getOutboundInterface().getOutputFileExtension().toLowerCase();
-					String tempFilename = filename + ".tmp";
-					String finalFilename = filename;					
+					fullPath = fullPath + "." + getOutboundInterface().getOutputFileExtension().toLowerCase();
+					String tempFilename = fullPath + ".tmp";
+					String finalFilename = fullPath;					
 					
 					FileWriter fw = new FileWriter(tempFilename);
 
@@ -164,7 +165,7 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 				} catch (Exception ex)
 				{
 					logger.error(ex.getMessage());
-					Common.emailqueue.addToQueue("Error", "Error Writing File ["+filename+"]", ex.getMessage()+"\n\n", "");
+					Common.emailqueue.addToQueue("Error", "Error Writing File ["+fullPath+"]", ex.getMessage()+"\n\n", "");
 
 				}
 			}

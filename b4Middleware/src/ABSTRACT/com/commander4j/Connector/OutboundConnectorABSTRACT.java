@@ -3,6 +3,9 @@ package ABSTRACT.com.commander4j.Connector;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
+
+import java.io.File;
+
 import org.apache.logging.log4j.Logger;
 
 import INTERFACE.com.commander4j.Connector.OutboundConnectorINTERFACE;
@@ -14,6 +17,7 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 	private boolean enabled = true;
 	private String type = "";
 	private String filename = "";
+	private String path="";
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundConnectorABSTRACT.class));
 
@@ -33,13 +37,14 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 		return outint;
 	}
 
-	public void processOutboundData(String filename, Document data)
+	public void processOutboundData(String path,String filename, Document data)
 	{
 		outboundConnectorCount++;
 
 		setData(data);
+		setPath(path);
 		setFilename(filename);
-		while (connectorSave(filename)==false)
+		while (connectorSave(getPath(),getFilename())==false)
 		{
 			logger.error("processOutboundData - remote path unavailable ["+filename+"] - waiting 20 seconds before retry");
 			com.commander4j.util.JWait.milliSec(20000);
@@ -52,6 +57,11 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 		this.outint = outer;
 	}
 
+	public String getPathFilename()
+	{
+		return getPath() + File.separator + getFilename();
+	}
+	
 	public void setEnabled(boolean enabled)
 	{
 		this.enabled = enabled;
@@ -70,6 +80,16 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 	public String getFilename()
 	{
 		return this.filename;
+	}
+	
+	private void setPath(String path)
+	{
+		this.path = path;
+	}
+
+	public String getPath()
+	{
+		return this.path;
 	}
 
 	public String getType()

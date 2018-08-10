@@ -311,7 +311,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	public String getXSLTPath()
 	{
 		if (xsltPath.equals(""))
-			xsltPath = System.getProperty("user.dir") + File.separator + "xslt";
+			xsltPath = System.getProperty("user.dir") + File.separator + "xslt" + File.separator;
 		return xsltPath;
 	}
 

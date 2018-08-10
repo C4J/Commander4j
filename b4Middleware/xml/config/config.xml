@@ -479,13 +479,20 @@
             <path>./interface/input/28 (C4J - Production Declaration)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT/>
+            <XSLT/>           
+
         </input>
         
         <output id="out1" enabed="Y" description="Write Marcellus Konnect">
             <path>./interface/output/28 (Marcellus - Production Declaration)</path>
             <type>XML</type>
             <XSLT>C4J_PRODDEC_XML_to_Marcellus_XML.xsl</XSLT>
+        </output>
+        
+        <output id="out2" enabed="Y" description="Write S95 Prod Dec">
+            <path>./interface/output/28 (S95 - Production Declaration)</path>
+            <type>XML</type>
+             <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
         </output>
     </map>    
     

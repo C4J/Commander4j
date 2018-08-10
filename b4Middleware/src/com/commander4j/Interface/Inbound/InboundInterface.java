@@ -32,6 +32,9 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 	StreamSource xslt;
 	StreamResult destination;
 	Transformer transformer;
+	Boolean writeSuccess;
+	String filename_imported;
+	String filename_transformed;
 
 	public InboundInterface(Map map, String description)
 	{
@@ -61,19 +64,19 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 						{
 							data = connector.getData();
 
-							String filename_imported = Utility.getCurrentTimeStampString() + " IMPORTED_" + connector.getType() + "_to_XML" + " " + file.getName();
+							filename_imported = Utility.getCurrentTimeStampString() + " INPUT_IMPORTED_" + connector.getType()+ "_"+getId() + "_" + file.getName();
 
 							if (filename_imported.endsWith(".xml") == false)
 							{
 								filename_imported = filename_imported + ".xml";
 							}
 
-							Boolean writeSuccess = jfileio.writeToDisk(Common.logDir, data, filename_imported);
+							writeSuccess = jfileio.writeToDisk(Common.logDir, data, filename_imported);
 
 							if (getXSLTFilename().equals("") == false)
 							{
 
-								String filename_transformed = Utility.getCurrentTimeStampString() + " TRANSFORMED_" + connector.getType() + " " + file.getName();
+								filename_transformed = Utility.getCurrentTimeStampString() + " INPUT_TRANSFORMED_" + connector.getType()+ "_"+getId() + "_" +file.getName();
 
 								if (filename_transformed.endsWith(".xml") == false)
 								{
