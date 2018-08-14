@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lookup>
     
-    <item type="config" id="HostRef"><value>WILIVE</value></item>    
-    <item type="config" id="Plant"><value>0933</value></item>
-    <item type="config" id="Warehouse"><value>734</value></item>
+    <item type="config" id="HostRef"><value>POLIVE</value></item>    
+    <item type="config" id="Plant"><value>4399</value></item>
+    <item type="config" id="Warehouse"><value>C97</value></item>
     <item type="config" id="Language"><value>E</value></item>  
-    <item type="config" id="Location"><value>WISBECH</value></item>  
-    <item type="config" id="SAPUsername"><value>PUWISBECH</value></item>  
+    <item type="config" id="Location"><value>PORTOGRUARO</value></item>  
+    <item type="config" id="SAPUsername"><value>PUITPOR</value></item>  
     
 </lookup>

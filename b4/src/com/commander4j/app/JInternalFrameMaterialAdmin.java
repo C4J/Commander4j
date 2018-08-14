@@ -160,6 +160,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 	private JTextField4j textFieldInspectionID;
 	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
 	private JSpinner jSpinnerLimit = new JSpinner();
+	private JCheckBox4j checkBox4j_Enabled = new JCheckBox4j();
 
 	private void clearFilter()
 	{
@@ -385,6 +386,15 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		query.addParamtoSQL("shelf_life_rule=", ((JShelfLifeRoundingRule) jComboBoxRoundingRule.getSelectedItem()).getRule());
 		query.addParamtoSQL("default_batch_status=", ((String) jComboBoxDefaultBatchStatus.getSelectedItem()).toString());
 
+		if (checkBox4j_Enabled.isSelected())
+		{
+			query.addParamtoSQL("enabled=", "Y");
+		}
+		else
+		{
+			query.addParamtoSQL("enabled=", "N");
+		}
+		
 		Integer i;
 
 		try
@@ -437,7 +447,6 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIALS"));
-		
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -1024,7 +1033,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(358, 110, 98, 21);
+					jLabel10.setBounds(277, 110, 98, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
@@ -1032,26 +1041,26 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(464, 110, 168, 21);
+					jComboBoxSortBy.setBounds(382, 110, 168, 21);
 				}
 				{
 					jLabel12 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel12);
 					jLabel12.setText(lang.get("lbl_Material_Default_Batch_Status"));
 					jLabel12.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel12.setBounds(383, 78, 112, 21);
+					jLabel12.setBounds(372, 77, 126, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxDefaultBatchStatusModel = new DefaultComboBoxModel<String>(Common.batchStatusIncBlank);
 					jComboBoxDefaultBatchStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxDefaultBatchStatus);
 					jComboBoxDefaultBatchStatus.setModel(jComboBoxDefaultBatchStatusModel);
-					jComboBoxDefaultBatchStatus.setBounds(505, 77, 126, 21);
+					jComboBoxDefaultBatchStatus.setBounds(504, 77, 126, 21);
 				}
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(631, 110, 21, 21);
+					jToggleButtonSequence.setBounds(551, 110, 21, 21);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1136,6 +1145,17 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				jSpinnerLimit.setValue(1000);
 				jSpinnerLimit.setBounds(869, 110, 68, 21);
 				jDesktopPane1.add(jSpinnerLimit);
+				
+				JLabel4j_std label4j_Enabled = new JLabel4j_std();
+				label4j_Enabled.setText(lang.get("lbl_Enabled"));
+				label4j_Enabled.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j_Enabled.setBounds(590, 110, 84, 21);
+				jDesktopPane1.add(label4j_Enabled);
+				
+				checkBox4j_Enabled.setSelected(true);
+				checkBox4j_Enabled.setBackground(Color.WHITE);
+				checkBox4j_Enabled.setBounds(679, 110, 21, 21);
+				jDesktopPane1.add(checkBox4j_Enabled);
 
 			}
 		} catch (Exception e)

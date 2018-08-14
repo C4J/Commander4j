@@ -57,10 +57,14 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 				seperator = val.charAt(0);
 				break;
 			case "quote":
-				quote = val.charAt(0);
 				if (val.equals("none"))
 				{
 					disableQuotes = true;
+				}
+				else
+				{
+					quote = val.charAt(0);
+					disableQuotes = false;
 				}
 				break;
 			default:
@@ -70,6 +74,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean connectorSave(String path,String filename)
 	{
@@ -125,7 +130,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 						writer = new CSVWriter(new FileWriter(tempFilename), seperator, CSVWriter.NO_QUOTE_CHARACTER);
 					} else
 					{
-						writer = new CSVWriter(new FileWriter(tempFilename), seperator);
+						writer = new CSVWriter(new FileWriter(tempFilename), seperator,quote);
 					}
 
 					String[] csvrow = new String[columns];

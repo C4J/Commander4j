@@ -54,6 +54,7 @@ import com.commander4j.util.JUtility;
 public class JDBMaterial
 {
 
+	private String dbEnabled = "Y";
 	private String dbBaseUom;
 	private String dbDescription;
 	private String dbErrorMessage;
@@ -90,6 +91,49 @@ public class JDBMaterial
 	private String dbValidateScanPallet = "N";
 	private String dbValidateScanCase = "N";
 	private String dbValidateScanEach = "N";
+	
+	
+	public void setEnabled(boolean yesno)
+	{
+		if (yesno)
+		{
+			setEnabled("Y");
+		}
+		else
+		{
+			setEnabled("N");
+		}
+	}
+	
+	public void setEnabled(String yesno)
+	{
+		dbEnabled = JUtility.replaceNullStringwithBlank(yesno);
+	}
+	
+
+	
+	public boolean isEnabled()
+	{
+		if (getEnabled().equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public String getEnabled()
+	{
+		dbEnabled = JUtility.replaceNullStringwithBlank(dbEnabled);
+		if (dbEnabled.equals(""))
+		{
+			dbEnabled="Y";
+		}
+		return dbEnabled;
+
+	}
 	
 	public void setValidateScanPallet(boolean yesno)
 	{
@@ -330,7 +374,7 @@ public class JDBMaterial
 		uom = new JDBUom(getHostID(), getSessionID());
 	}
 
-	public JDBMaterial(String material, String description, String type, String baseUom, Integer shelflife, String shelflifeuom, String shelfliferule, String equipmentType,String overridePackLabel,String packLabelModule,String overridePalletLabel,String palletLabelModule, String validateScanPallet,String validateScanCase,String validateScanEach)
+	public JDBMaterial(String material, String description, String type, String baseUom, Integer shelflife, String shelflifeuom, String shelfliferule, String equipmentType,String overridePackLabel,String packLabelModule,String overridePalletLabel,String palletLabelModule, String validateScanPallet,String validateScanCase,String validateScanEach,String enabled)
 	{
 		setMaterial(material);
 		setDescription(description);
@@ -347,6 +391,7 @@ public class JDBMaterial
 		setValidateScanPallet(validateScanPallet);
 		setValidateScanCase(validateScanCase);
 		setValidateScanEach(validateScanEach);
+		setEnabled(enabled);
 	}
 
 	public Date calcBBE(Date dateOfManufacture, Integer shelfLife, String shelfLifeUom, String shelfLifeRule)
@@ -411,6 +456,7 @@ public class JDBMaterial
 		setValidateScanPallet("");
 		setValidateScanCase("");
 		setValidateScanEach("");
+		setEnabled("Y");
 	}
 
 	public BigDecimal convertQuantitytoBaseUOM(BigDecimal quantity, String uom)
@@ -687,7 +733,7 @@ public class JDBMaterial
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBMaterial("material", "description", "type", "base_uom", 0, "shelf life uom", "rounding rule", "equipmentType","overridePack","packModule","overridePallet","palletModule","validateScanPallet","validateScanCase","validateScanEach"));
+			result.addElement(new JDBMaterial("material", "description", "type", "base_uom", 0, "shelf life uom", "rounding rule", "equipmentType","overridePack","packModule","overridePallet","palletModule","validateScanPallet","validateScanCase","validateScanEach","Y"));
 		} else
 		{
 			try
@@ -697,7 +743,7 @@ public class JDBMaterial
 				while (rs.next())
 				{
 					result.addElement(new JDBMaterial(rs.getString("material"), rs.getString("description"), rs.getString("material_type"), rs.getString("base_uom"), rs.getInt("shelf_life"), rs.getString("shelf_life_uom"), rs
-							.getString("shelf_life_rule"), rs.getString("equipment_type"),rs.getString("override_pack_label"),rs.getString("pack_label_module_id"),rs.getString("override_pallet_label"),rs.getString("pallet_label_module_id"),rs.getString("validate_scan_pallet"),rs.getString("validate_scan_case"),rs.getString("validate_scan_each")));
+							.getString("shelf_life_rule"), rs.getString("equipment_type"),rs.getString("override_pack_label"),rs.getString("pack_label_module_id"),rs.getString("override_pallet_label"),rs.getString("pallet_label_module_id"),rs.getString("validate_scan_pallet"),rs.getString("validate_scan_case"),rs.getString("validate_scan_each"),rs.getString("enabled")));
 				}
 				rs.close();
 
@@ -883,6 +929,7 @@ public class JDBMaterial
 			setValidateScanPallet(rs.getString("validate_scan_pallet"));
 			setValidateScanCase(rs.getString("validate_scan_case"));
 			setValidateScanEach(rs.getString("validate_scan_each"));
+			setEnabled(rs.getString("enabled"));
 
 		} catch (SQLException e)
 		{
@@ -1198,7 +1245,8 @@ public class JDBMaterial
 				stmtupdate.setString(19,getValidateScanPallet());	
 				stmtupdate.setString(20,getValidateScanCase());
 				stmtupdate.setString(21,getValidateScanEach());
-				stmtupdate.setString(22, getMaterial());
+				stmtupdate.setString(22, getEnabled());
+				stmtupdate.setString(23, getMaterial());
 
 				stmtupdate.execute();
 				stmtupdate.clearParameters();

@@ -1,7 +1,9 @@
 package com.commander4j.Transformation;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -9,6 +11,37 @@ import com.commander4j.util.Utility;
 
 public class XSLTExtension
 {
+	public static Timestamp getSQLDateTime()
+	{
+		Calendar caldate = Calendar.getInstance();
+		Timestamp t = new Timestamp(caldate.getTimeInMillis());
+		t.setTime(caldate.getTimeInMillis());
+		return t;
+	}
+	public static String getISODateTimeString()
+	{
+		String result = "";
+		Timestamp ts = getSQLDateTime();
+		try
+		{
+			String temp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
+			result = temp.substring(0, 4);
+			result = result + "-";
+			result = result + temp.substring(5, 7);
+			result = result + "-";
+			result = result + temp.substring(8, 10);
+			result = result + "T";
+			result = result + temp.substring(11, 13);
+			result = result + ":";
+			result = result + temp.substring(14, 16);
+			result = result + ":";
+			result = result + temp.substring(17, 19);
+		} catch (Exception ex)
+		{
+			result = "Error";
+		}
+		return result;
+	}
 
 	public static String removeLeadingZeros(String param)
 	{
@@ -110,7 +143,53 @@ public class XSLTExtension
 		} catch (ParseException e)
 		{
 
-			result = "Input date DD-MMM-YYY format error [" + inputString + "]";
+			result = "Input date DD-MMM-YY format error [" + inputString + "]";
+
+		}
+
+		return result;
+	}
+	
+	public static synchronized String date_DDMMYYYY_to_ISO_Date(String inputString)
+	{
+		String result = inputString;
+
+		SimpleDateFormat fromUser = new SimpleDateFormat("ddMMyyyy");
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		try
+		{
+
+			result = myFormat.format(fromUser.parse(inputString));
+			result = result + "T00:00:00";
+
+		} catch (ParseException e)
+		{
+
+			result = "Input date DD-MMM-YY format error [" + inputString + "]";
+
+		}
+
+		return result;
+	}
+	
+	
+	public static synchronized String date_DD_MM_YY_HH_MM_SS_to_ISO_Date(String inputString)
+	{
+		String result = inputString;
+
+		SimpleDateFormat fromUser = new SimpleDateFormat("dd-MM-yy HH:mm:ss");
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		try
+		{
+
+			result = myFormat.format(fromUser.parse(inputString));
+
+		} catch (ParseException e)
+		{
+
+			result = "Input date DD-MM-YY HH:mm:ss format error [" + inputString + "]";
 
 		}
 

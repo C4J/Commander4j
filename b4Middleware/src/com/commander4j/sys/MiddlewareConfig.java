@@ -156,6 +156,9 @@ public class MiddlewareConfig
 				String inputIdocSchemaFilename = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/idocSchemaFilename").trim();
 				String pollingInterval = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/pollingInterval").trim();
 				String inputXSLT = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/XSLT").trim();
+				String csvOptionsIn = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/csvOptions").trim();
+				String optionDelimeterIn = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/optionDelimeter").trim();
+
 
 				InboundInterface inboundInterface = new InboundInterface(map, inputDescription);
 				inboundInterface.setId(inputId);
@@ -180,6 +183,9 @@ public class MiddlewareConfig
 				inboundInterface.setInputPattern(inputPattern);
 				inboundInterface.setIdocSchemaFilename(inputIdocSchemaFilename);
 				inboundInterface.setPollingInterval(Long.valueOf(pollingInterval));
+				inboundInterface.setCSVOptions(csvOptionsIn);
+				inboundInterface.setOptionDelimeter(optionDelimeterIn);
+
 
 				logger.debug("Loading input connector  : (" + inputId + ") " + inputDescription +" Type " +inboundInterface.getType()+" Mask "+Arrays.toString(inboundInterface.getInputFileMask()));
 
@@ -196,14 +202,15 @@ public class MiddlewareConfig
 					String outputPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/path").trim();
 					String outputXSLT = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/XSLT").trim();
 					String outputPattern = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/outputPattern").trim();
-					String optionDelimeter = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/optionDelimeter").trim();
-					String csvOptions = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/csvOptions").trim();
+					String optionDelimeterOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/optionDelimeter").trim();
+					String csvOptionsOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/csvOptions").trim();
 					String outputFileExtension = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/outputFileExtension").trim();
 					String emailSubject = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/subject").trim();
 					String emailMessage = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/message").trim();
 					String emailListID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/emailListID").trim();
 					String ftpServer = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/ftpServer").trim();
 					String ftpPorts = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/ftpPort").trim();
+
 					int ftpPort = 0;
 					if (ftpPorts.equals("")==false)
 					{
@@ -221,8 +228,8 @@ public class MiddlewareConfig
 					outboundInterface.setXSLTPath(XSLTPath);
 					outboundInterface.setXSLTFilename(outputXSLT);
 					outboundInterface.setOutputPattern(outputPattern);
-					outboundInterface.setCSVOptions(csvOptions);
-					outboundInterface.setOptionDelimeter(optionDelimeter);
+					outboundInterface.setCSVOptions(csvOptionsOut);
+					outboundInterface.setOptionDelimeter(optionDelimeterOut);
 					outboundInterface.setOutputFileExtension(outputFileExtension);
 					outboundInterface.setEmailSubject(emailSubject);
 					outboundInterface.setEmailMessage(emailMessage);
@@ -232,6 +239,7 @@ public class MiddlewareConfig
 					outboundInterface.setFtpRemotePath(ftpRemotePath);
 					outboundInterface.setFtpUsername(ftpUsername);
 					outboundInterface.setFtpPassword(ftpPassword);
+
 
 					if (fio.isValidDirectory(outputPath) == false)
 					{

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/opencsv-3.8.jar"/>
 	<classpathentry kind="lib" path="lib/saxon9.jar"/>
 	<classpathentry kind="lib" path="lib/saxon9-dom.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
@@ -26,5 +25,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/opencsv-4.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -2,6 +2,7 @@ package com.commander4j.Connector.Inbound;
 
 import java.io.File;
 import java.io.FileReader;
+import java.util.LinkedList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,13 +21,60 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT
 {
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorCSV.class));
-//	JFileIO jfileio = new JFileIO();
+	private LinkedList<String> parseOptions = new LinkedList<String>();
+	boolean disableQuotes = false;
+	char seperator = ',';
+	char quote = '"';
 
 	public InboundConnectorCSV(InboundInterface inter)
 	{
 		super(Connector_CSV, inter);
 	}
 
+	private void getCSVOptions()
+	{
+		String options = getInboundInterface().getCSVOptions();
+		String delimeter = getInboundInterface().getOptionDelimeter();
+		parsePattern(options, delimeter);
+	}
+
+	private void parsePattern(String pattern, String delim)
+	{
+		parseOptions.clear();
+		delim = "\\" + delim;
+		String[] opts = pattern.split(delim);
+		for (int x = 0; x < opts.length; x++)
+		{
+			String two = opts[x];
+			String[] three = two.split("=");
+
+			String opt = three[0];
+			String val = three[1];
+
+			switch (opt)
+			{
+			case "separator":
+				seperator = val.charAt(0);
+				break;
+			case "quote":
+				if (val.equals("none"))
+				{
+					disableQuotes = true;
+				}
+				else
+				{
+					quote = val.charAt(0);
+					disableQuotes = false;
+				}
+				break;
+			default:
+				opt = "";
+				break;
+			}
+		}
+	}
+
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean connectorLoad(String fullFilename)
 	{
@@ -37,7 +85,7 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT
 		logger.debug("connectorLoad [" + fullFilename + "]");
 		boolean result = false;
 
-		//backupInboundFile(fullFilename);
+		getCSVOptions();
 
 		if (backupInboundFile(fullFilename))
 		{
@@ -45,13 +93,21 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT
 			try
 			{
 				result = true;
-				CSVReader reader = new CSVReader(new FileReader(fullFilename));
+				CSVReader reader;
+				if (disableQuotes)
+				{
+					reader = new CSVReader(new FileReader(fullFilename), seperator);
+				}
+				else
+				{
+					reader = new CSVReader(new FileReader(fullFilename), seperator, quote);
+				}
 				String[] nextLine;
 
 				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder builder = factory.newDocumentBuilder();
 
-				data = builder.newDocument(); 
+				data = builder.newDocument();
 
 				Element message = (Element) data.createElement("data");
 				message.setAttribute("type", Connector_CSV);
@@ -69,9 +125,9 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT
 						if (col > maxcol)
 							maxcol = col;
 
-						Element xmlcol = addElement(data, "col", nextLine[x]);
+						Element xmlcol = addElement(data, "col", nextLine[x].trim());
 						xmlcol.setAttribute("id", String.valueOf(col));
-						xmlcol.setNodeValue(nextLine[x]);
+						xmlcol.setNodeValue(nextLine[x].trim());
 						xmlrow.appendChild(xmlcol);
 
 					}
@@ -85,14 +141,15 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT
 				message.setAttribute("filename", (new File(fullFilename)).getName());
 
 				data.appendChild(message);
-				
+
 				result = true;
 
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				result = false;
 				logger.error("connectorLoad " + getType() + " " + ex.getMessage());
-				Common.emailqueue.addToQueue("Error", "Error reading "+getType(), "connectorLoad " + getType() + " " + ex.getMessage()+"\n\n"+fullFilename, "");
+				Common.emailqueue.addToQueue("Error", "Error reading " + getType(), "connectorLoad " + getType() + " " + ex.getMessage() + "\n\n" + fullFilename, "");
 			}
 		}
 		return result;

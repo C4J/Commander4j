@@ -40,6 +40,8 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	private String description;
 	private String id = "";
 	private String idocSchemaFilename="";
+	private String csvOptions = "";
+	private String delimeter = "";
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundInterfaceABSTRACT.class));
 
@@ -205,6 +207,28 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	public void setInputPattern(String pattern)
 	{
 		inputPattern = Utility.replaceNullStringwithBlank(pattern);
+
+	}
+	
+	public String getCSVOptions()
+	{
+		return csvOptions;
+	}
+
+	public void setCSVOptions(String options)
+	{
+		csvOptions = Utility.replaceNullStringwithBlank(options);
+
+	}
+
+	public String getOptionDelimeter()
+	{
+		return delimeter;
+	}
+
+	public void setOptionDelimeter(String value)
+	{
+		delimeter = Utility.replaceNullStringwithBlank(value);
 
 	}
 

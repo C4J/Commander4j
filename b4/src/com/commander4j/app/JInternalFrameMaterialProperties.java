@@ -163,6 +163,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JCheckBox4j checkBoxValidateScanPallet = new JCheckBox4j();
 	private JCheckBox4j checkBoxValidateScanCase = new JCheckBox4j();
 	private JCheckBox4j checkBoxValidateScanEach = new JCheckBox4j();
+	private JCheckBox4j checkBox4j_Enabled = new JCheckBox4j();
 
 	public JInternalFrameMaterialProperties(String mat)
 	{
@@ -174,6 +175,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_EDIT"));
+
 		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -237,6 +239,8 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			checkBoxValidateScanPallet.setSelected(material.isValidateScanPallet());
 			checkBoxValidateScanCase.setSelected(material.isValidateScanCase());
 			checkBoxValidateScanEach.setSelected(material.isValidateScanEach());
+			
+			checkBox4j_Enabled.setSelected(material.isEnabled());
 			
 			comboBoxPackModuleID.setSelectedIndex(-1);
 			comboBoxPalletModuleID.setSelectedIndex(-1);
@@ -788,6 +792,23 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jTextFieldInspectionID.setBounds(172, 391, 125, 21);
 					jDesktopPane1.add(jTextFieldInspectionID);
 				}		
+				
+				
+				JLabel4j_std label4j_Enabled = new JLabel4j_std();
+				label4j_Enabled.setText(lang.get("lbl_Enabled"));
+				label4j_Enabled.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j_Enabled.setBounds(364, 9, 84, 21);
+				jDesktopPane1.add(label4j_Enabled);
+				checkBox4j_Enabled.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						jButtonSave.setEnabled(true);
+					}
+				});
+				
+				checkBox4j_Enabled.setSelected(true);
+				checkBox4j_Enabled.setBackground(Color.WHITE);
+				checkBox4j_Enabled.setBounds(453, 9, 21, 21);
+				jDesktopPane1.add(checkBox4j_Enabled);
 
 				{
 					JButton4j btnLookupInspection = new JButton4j("");
@@ -901,6 +922,15 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			material.setValidateScanEach("N");
 
 		}		
+		
+		if (checkBox4j_Enabled.isSelected())
+		{
+			material.setEnabled("Y");
+		}
+		else
+		{
+			material.setEnabled("N");
+		}
 
 		if (checkBoxOverridePackLabel.isSelected())
 		{

@@ -46,6 +46,8 @@
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>CSV_to_XML_Example.xsl</XSLT>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=none</csvOptions>
         </input>
 
         <output id="out1" enabed="Y" description="Write XML Example">
@@ -226,7 +228,7 @@
             <path>./interface/output/13 (Mixed Output)</path>
             <type>CSV</type>
             <optionDelimeter>^</optionDelimeter>
-            <csvOptions>separator=,^quote=none</csvOptions>
+            <csvOptions>separator=:^quote=""</csvOptions>
             <XSLT/>
         </output>
     </map>
@@ -472,5 +474,46 @@
         </output>
         
     </map>
+    
+    <map id="map28" enabed="Y" description="Commander4j ProdDec to Marcellus Konnect">
+        <input id="in1" description="Commander4j ProdDec">
+            <type>XML</type>
+            <path>./interface/input/28 (C4J - Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>           
+
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write Marcellus Konnect">
+            <path>./interface/output/28 (Marcellus - Production Declaration)</path>
+            <type>XML</type>
+            <XSLT>C4J_PRODDEC_XML_to_Marcellus_XML.xsl</XSLT>
+        </output>
+        
+        <output id="out2" enabed="Y" description="Write S95 Prod Dec">
+            <path>./interface/output/28 (S95 - Production Declaration)</path>
+            <type>XML</type>
+             <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
+        </output>
+    </map>    
+    
+    <map id="map29" enabed="Y" description="NTR CSV">
+        <input id="in1" description="Read NTR CSV">
+            <type>CSV</type>
+            <path>./interface/input/29 (NTR to C4J Prod Dec)</path>
+            <mask>NTR</mask>
+            <pollingInterval>1000</pollingInterval>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=|^quote=none</csvOptions>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write C4J XML Prod Dec">
+            <path>./interface/output/29 (NTR to C4J Prod Dec)</path>
+            <type>XML</type>
+            <XSLT>NTR__CSV_to_C4J_PROD_DEC_XML.xsl</XSLT>
+        </output>
+    </map>
+    
     
 </config>

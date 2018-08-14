@@ -75,6 +75,7 @@ public class IncommingMaterialDefinition
 	private String weight_uom;
 	private String old_material;
 	private String inspection_id;
+	private String enabled;
 	private String default_batch_status;
 	private Boolean repeat = true;
 	private Boolean repeat2 = true;
@@ -162,6 +163,7 @@ public class IncommingMaterialDefinition
 		}
 
 		description = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/description").trim());
+		enabled = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/enabled").trim());
 		base_uom = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/base_uom").trim());
 		base_uom = uomdb.convertUom(inter.getUOMConversion(), base_uom);
 
@@ -413,6 +415,10 @@ public class IncommingMaterialDefinition
 
 		mat.setMaterialType(JUtility.getDefaultValue(materialType, mat.getMaterialType(), ""));
 		mat.setDescription(JUtility.getDefaultValue(description, mat.getDescription(), "No description"));
+		if (enabled.equals("Y") | enabled.equals("N") )
+		{
+			mat.setEnabled(enabled);
+		}
 		mat.setBaseUom(JUtility.getDefaultValue(base_uom, mat.getBaseUom(), ""));
 		mat.setShelfLifeUom(JUtility.getDefaultValue(shelf_life_uom, mat.getShelfLifeUom(), "D"));
 		mat.setEquipmentType(JUtility.getDefaultValue(equipment_type, mat.getEquipmentType(), ""));

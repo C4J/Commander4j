@@ -2,6 +2,7 @@ package com.commander4j.thread;
 
 import org.apache.logging.log4j.Logger;
 
+import com.commander4j.mw.StartMain;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JWait;
 import com.commander4j.util.Utility;
@@ -61,7 +62,7 @@ public class StatusThread extends Thread
 					
 					report = report+"Garbage Collector Finished.\n\n";
 					
-					Common.emailqueue.addToQueue("Monitor", "Statistics ["+Common.configName+"] on "+ Utility.getClientName(), report, "");
+					Common.emailqueue.addToQueue("Monitor", "Statistics ["+Common.configName+"] "+StartMain.version+" on "+ Utility.getClientName(), report, "");
 					
 					logger.debug(report);
 				}
