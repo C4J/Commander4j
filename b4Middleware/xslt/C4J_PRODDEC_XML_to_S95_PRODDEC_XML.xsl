@@ -101,7 +101,7 @@
                             <xsl:value-of select="c4j:getReferenceItem('C4JStockType',$STOCKTYPE)"/>
 						</globe_StockType>
 						<globe_PostingDate>
-							<xsl:value-of select='$MESSAGEDATE' />
+							<xsl:value-of select='/message/messageData/productionDeclaration/productionDate'/>
 						</globe_PostingDate>
 						<globe_ExpirationDate>
 							<xsl:value-of select='/message/messageData/productionDeclaration/expiryDate'/>

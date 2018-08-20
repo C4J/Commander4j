@@ -6,7 +6,23 @@
     <logArchiveRetentionDays>7</logArchiveRetentionDays>
     <enableEmailNotifications>true</enableEmailNotifications>
     <statusReportTime>10:00:00</statusReportTime>
-   
+
+    <map id="map01" enabed="Y" description="Rockwell (Konnect) FFMW XML Material Master to C4J XML">
+        <input id="in1" description="Read IDOC">
+            <type>XML</type>
+            <path>\\ITPORL0013\zdata\ep\cmd4j\4399\Inbound\tpomat01</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML File">
+            <path>F:\Apps\Production\Portogruaro\Commander4j\xml\interface\input\Material Definition</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
     <map id="map02" enabed="Y" description="S95 Process Order to C4J Process Order">
         <input id="in1" description="Read SAP S95 CR XML">
             <type>XML</type>
@@ -23,8 +39,7 @@
         </output>
     </map>
 
-    <map id="map06" enabed="Y"
-        description="S95 Process Order Status Change to C4J Process Order Status Change">
+    <map id="map03" enabed="Y" description="S95 Process Order Status Change to C4J Process Order Status Change">
 
         <input id="in1" description="Read SAP S95 CRST XML">
             <type>XML</type>
@@ -41,7 +56,7 @@
         </output>
     </map>
 
-    <map id="map07" enabed="Y" description="C4J Production Declaration to S95 Production Declaration">
+    <map id="map04" enabed="Y" description="C4J Production Declaration to S95 Production Declaration">
         <input id="in1" description="Read C4J Prod Dec XML">
             <type>XML</type>
             <path>F:\Apps\Production\Portogruaro\Commander4j\xml\interface\output\Production Declaration</path>
@@ -56,25 +71,8 @@
             <XSLT/>
         </output>
     </map>
-    
-    <map id="map18" enabed="Y" description="Rockwell (Konnect) FFMW XML Material Master to C4J XML">
-        <input id="in1" description="Read IDOC">
-            <type>XML</type>
-            <path>\\ITPORL0013\zdata\ep\cmd4j\4399\Inbound\tpomat01</path>
-            <mask/>
-            <pollingInterval>1000</pollingInterval>
-            <XSLT/>
-        </input>
 
-        <output id="out1" enabed="Y" description="Write XML File">
-            <path>F:\Apps\Production\Portogruaro\Commander4j\xml\interface\input\Material Definition</path>
-            <type>XML</type>
-			<XSLT>ROCKWELL_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
-        </output>
-    </map>
-    
-    
-    <map id="map29" enabed="Y" description="NTR to C4J XML Prod Dec">
+    <map id="map05" enabed="Y" description="NTR to C4J XML Prod Dec">
         <input id="in1" description="Read NTR CSV">
             <type>CSV</type>
             <path>\\itporw0000\AppData\cmdrProdPortogruaro\input</path>
@@ -83,12 +81,27 @@
             <optionDelimeter>^</optionDelimeter>
             <csvOptions>separator=|^quote=none</csvOptions>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write C4J XML Prod Dec">
             <path>F:\Apps\Production\Portogruaro\Commander4j\xml\interface\input\Production Declaration</path>
             <type>XML</type>
             <XSLT>NTR__CSV_to_C4J_PROD_DEC_XML.xsl</XSLT>
         </output>
     </map>
-	
+
+    <map id="map06" enabed="Y" description="Move DESADV to FFMW">
+        <input id="in1" description="Read DESADV">
+            <type>RAW</type>
+            <path>F:\Apps\Production\Portogruaro\Commander4j\xml\interface\output\Despatch Confirmation</path>
+            <mask>TXT</mask>
+            <pollingInterval>5000</pollingInterval> A<XSLT/>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write DESADV">
+            <path>\\ITPORL0013\zdata\EP\FFMW\4399\Outbound\tpiasn01</path>
+            <type>RAW</type>
+            <XSLT/>
+        </output>
+    </map>
+
 </config>
