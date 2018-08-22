@@ -145,6 +145,7 @@
             <type>XML</type>
             <path>./interface/input/09 (TROPOS Material XML)</path>
             <mask/>
+            <prefix>Material</prefix>
             <pollingInterval>1000</pollingInterval>
             <XSLT>TROPOS_Material_to_Commander4j_Material.xsl</XSLT>
         </input>

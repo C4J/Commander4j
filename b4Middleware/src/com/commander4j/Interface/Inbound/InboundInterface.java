@@ -51,6 +51,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 		{
 			File dir = new File(getInputPath());
 			String[] extensions = getInputFileMask();
+			String prefix = getPrefix();
 
 			List<File> files = (List<File>) FileUtils.listFiles(dir, extensions, false);
 			if (files.size() > 0)
@@ -59,74 +60,79 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 				{
 					if (file.length() > 0)
 					{
-						logger.debug("Processing [" + file.getName() + "]");
-						if (connector.processInboundFile(file.getName()))
+
+						if (file.getName().toLowerCase().startsWith(prefix.toLowerCase()))
 						{
-							data = connector.getData();
 
-							filename_imported = Utility.getCurrentTimeStampString() + " INPUT_IMPORTED_" + connector.getType()+ "_"+getId() + "_" + file.getName();
-
-							if (filename_imported.endsWith(".xml") == false)
+							logger.debug("Processing [" + file.getName() + "]");
+							if (connector.processInboundFile(file.getName()))
 							{
-								filename_imported = filename_imported + ".xml";
-							}
+								data = connector.getData();
 
-							writeSuccess = jfileio.writeToDisk(Common.logDir, data, filename_imported);
+								filename_imported = Utility.getCurrentTimeStampString() + " INPUT_IMPORTED_" + connector.getType() + "_" + getId() + "_" + file.getName();
 
-							if (getXSLTFilename().equals("") == false)
-							{
-
-								filename_transformed = Utility.getCurrentTimeStampString() + " INPUT_TRANSFORMED_" + connector.getType()+ "_"+getId() + "_" +file.getName();
-
-								if (filename_transformed.endsWith(".xml") == false)
+								if (filename_imported.endsWith(".xml") == false)
 								{
-									filename_transformed = filename_transformed + ".xml";
+									filename_imported = filename_imported + ".xml";
 								}
 
-								source = new StreamSource(new File(Common.logDir + File.separator + filename_imported));
-								destination = new StreamResult(new File(Common.logDir + File.separator + filename_transformed));
-								xslt = new StreamSource(new File(getXSLTPath() + getXSLTFilename()));
+								writeSuccess = jfileio.writeToDisk(Common.logDir, data, filename_imported);
 
-								try
+								if (getXSLTFilename().equals("") == false)
 								{
-									transformer = fact.newTransformer(xslt);
-									transformer.transform(source, destination);
-									JXMLDocument doc = new JXMLDocument(Common.logDir + File.separator + filename_transformed);
-									data = doc.getDocument();
-								}
-								catch (TransformerConfigurationException e)
-								{
-									logger.error(e.getMessage());
-									Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", e.getMessage() + "\n\n", file.getAbsolutePath());
-								}
-								catch (TransformerException e)
-								{
-									logger.error(e.getMessage());
-									Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", e.getMessage() + "\n\n", file.getAbsolutePath());
-								}
-							}
 
-							if (writeSuccess)
-							{
-								processConnectorToInterfaceData(connector.getFilename(), data);
-							}
-							else
-							{
-								logger.error("Error Map [" + map.getId() + "]", "Unable to save inbound xml" + " "+filename_imported);
-								Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", "Unable to save inbound xml" + "\n\n", filename_imported);
+									filename_transformed = Utility.getCurrentTimeStampString() + " INPUT_TRANSFORMED_" + connector.getType() + "_" + getId() + "_" + file.getName();
+
+									if (filename_transformed.endsWith(".xml") == false)
+									{
+										filename_transformed = filename_transformed + ".xml";
+									}
+
+									source = new StreamSource(new File(Common.logDir + File.separator + filename_imported));
+									destination = new StreamResult(new File(Common.logDir + File.separator + filename_transformed));
+									xslt = new StreamSource(new File(getXSLTPath() + getXSLTFilename()));
+
+									try
+									{
+										transformer = fact.newTransformer(xslt);
+										transformer.transform(source, destination);
+										JXMLDocument doc = new JXMLDocument(Common.logDir + File.separator + filename_transformed);
+										data = doc.getDocument();
+									}
+									catch (TransformerConfigurationException e)
+									{
+										logger.error(e.getMessage());
+										Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", e.getMessage() + "\n\n", file.getAbsolutePath());
+									}
+									catch (TransformerException e)
+									{
+										logger.error(e.getMessage());
+										Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", e.getMessage() + "\n\n", file.getAbsolutePath());
+									}
+								}
+
+								if (writeSuccess)
+								{
+									processConnectorToInterfaceData(connector.getFilename(), data);
+								}
+								else
+								{
+									logger.error("Error Map [" + map.getId() + "]", "Unable to save inbound xml" + " " + filename_imported);
+									Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", "Unable to save inbound xml" + "\n\n", filename_imported);
+								}
 							}
 						}
 					}
 				}
 			}
-			files=null;
-			dir=null;
-			
+			files = null;
+			dir = null;
+
 		}
 		catch (Exception ex)
 		{
 			logger.error("InboundInterface Map [" + map.getId() + "]", " error :" + ex.getMessage());
-			Common.emailqueue.addToQueue("Error", "InboundInterface Map [" + map.getId() + "]", " error :" + ex.getMessage(),"");
+			Common.emailqueue.addToQueue("Error", "InboundInterface Map [" + map.getId() + "]", " error :" + ex.getMessage(), "");
 		}
 
 	}

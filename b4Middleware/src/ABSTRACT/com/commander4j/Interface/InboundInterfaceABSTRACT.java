@@ -34,6 +34,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	protected Document data;
 	private String inputPath = "";
 	private String[] inputFileMask = {"*"};
+	private String inputFilePrefix = "";
 	private String inputFilename = "";;
 	private String xsltFilename = "";
 	private String xsltPath = "";
@@ -124,6 +125,16 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 		{
 		return this.inputFileMask;
 		}
+	}
+	
+	public void setPrefix(String prefix)
+	{
+		this.inputFilePrefix = prefix;
+	}
+
+	public String getPrefix()
+	{
+		return Utility.replaceNullStringwithBlank(this.inputFilePrefix);
 	}
 
 	public void setInputFilename(String filename)
