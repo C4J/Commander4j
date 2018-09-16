@@ -207,6 +207,7 @@ public class MiddlewareConfig
 					String optionDelimeterOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/optionDelimeter").trim();
 					String csvOptionsOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/csvOptions").trim();
 					String outputFileExtension = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/outputFileExtension").trim();
+					String outputPrefix = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/prefix").trim();
 					String emailSubject = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/subject").trim();
 					String emailMessage = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/message").trim();
 					String emailListID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/emailListID").trim();
@@ -241,6 +242,7 @@ public class MiddlewareConfig
 					outboundInterface.setFtpRemotePath(ftpRemotePath);
 					outboundInterface.setFtpUsername(ftpUsername);
 					outboundInterface.setFtpPassword(ftpPassword);
+					outboundInterface.setPrefix(outputPrefix);
 
 
 					if (fio.isValidDirectory(outputPath) == false)

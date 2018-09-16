@@ -11,7 +11,7 @@
 	<xsl:variable name="sscc" select="/message/messageData[1]/productionDeclaration[1]/SSCC"/>
 
 	<xsl:template match="message/messageData/productionDeclaration">
-		<data cols="15" rows="1" type="CSV">
+		<data cols="13" rows="1" type="CSV">
 		<row id="1">
 
 			<col id="1"><xsl:value-of select="processOrder"/></col>
@@ -20,18 +20,17 @@
 			<col id="4"><xsl:value-of select="floor(number(productionQuantity))"/></col>
 			<col id="5"><xsl:value-of select='name' /></col>
 			
-			<col id="6"><xsl:value-of select="c4j_XSLT_Ext:formatDate(productionDate, 'yyyy-MM-dd''T''HH:mm', 'dd-MMM-yyyy')"/></col>
+			<col id="6"><xsl:value-of select="c4j_XSLT_Ext:formatDate(productionDate, 'yyyy-MM-dd''T''HH:mm:ss', 'ddMMyy')"/></col>
 			<col id="7"><xsl:value-of select="batch"/></col>
 			<col id="8"><xsl:value-of select="SSCC"/></col>
-			<col id="9"><xsl:value-of select="c4j_XSLT_Ext:formatDate(expiryDate, 'yyyy-MM-dd''T''HH:mm', 'dd-MMM-yyyy')" /></col>
+			<col id="9"><xsl:value-of select="c4j_XSLT_Ext:formatDate(expiryDate, 'yyyy-MM-dd''T''HH:mm:ss', 'ddMMyy')" /></col>
 			
 			<col id="10"><xsl:value-of select="warehouse"/></col>
 			
 			<col id="11"><xsl:value-of select="storageLocation"/></col>
-			<col id="12"><xsl:value-of select="c4j_XSLT_Ext:formatDate(expiryDate, 'yyyy-MM-dd''T''HH:mm', 'dd-MMM-yyyy')" /></col>
-			<col id="13"><xsl:value-of select="c4j_XSLT_Ext:formatDate(productionDate, 'yyyy-MM-dd''T''HH:mm', 'dd-MMM-yyyy')"/></col>
-			<col id="14"><xsl:value-of select="old_code"/></col>
-			<col id="15"><xsl:value-of select="c4j_XSLT_Ext:subString($sscc, 8, 9)"/></col>
+			<col id="12"><xsl:value-of select="c4j_XSLT_Ext:formatDate(productionDate, 'yyyy-MM-dd''T''HH:mm:ss', 'dd-MM-yy HH:mm:ss')"/></col>
+
+			<col id="13"><xsl:value-of select="old_code"/><xsl:value-of select="c4j_XSLT_Ext:subString($sscc, 8, 9)"/></col>
 		</row>
 		</data>			
 	</xsl:template>

@@ -43,6 +43,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	private String outputPattern = "";
 	private String csvOptions = "";
 	private String delimeter = "";
+	private String outputFilePrefix = "";
 	private String outputFileExtension = "";
 	private String emailSubject="";
 	private String emailMessage="";
@@ -52,6 +53,16 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	private String ftpUsername = "";
 	private String ftpPassword = "";
 	private String ftpRemotePath = "";
+	
+	public void setPrefix(String prefix)
+	{
+		this.outputFilePrefix = prefix;
+	}
+
+	public String getPrefix()
+	{
+		return Utility.replaceNullStringwithBlank(this.outputFilePrefix);
+	}
 	
 	public String getFtpServer()
 	{

@@ -80,11 +80,13 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 	{
 		boolean result = false;
 		String fullPath = path+File.separator+filename;
+		
+		fullPath = fullPath + "." + getOutboundInterface().getOutputFileExtension().toLowerCase();
 
-		if (fullPath.endsWith("." + getType().toLowerCase()) == false)
+/*		if (fullPath.endsWith("." + getType().toLowerCase()) == false)
 		{
 			fullPath = fullPath + "." + getType().toLowerCase();
-		}
+		}*/
 		String tempFilename = fullPath + ".tmp";
 		String finalFilename = fullPath;		
 		

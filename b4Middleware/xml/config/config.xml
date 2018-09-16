@@ -141,16 +141,16 @@
     </map>
 
     <map id="map09" enabed="Y" description="Tropos Material XML">
-        <input id="in1" description="Read XML File">
+        <input id="in1" description="Read TROPOS XML File">
             <type>XML</type>
             <path>./interface/input/09 (TROPOS Material XML)</path>
             <mask/>
-            <prefix>Material</prefix>
+            <prefix>IJM Inbound Material Master</prefix>
             <pollingInterval>1000</pollingInterval>
             <XSLT>TROPOS_Material_to_Commander4j_Material.xsl</XSLT>
         </input>
 
-        <output id="out1" enabed="Y" description="Write XML">
+        <output id="out1" enabed="Y" description="Write C4J XML">
             <path>./interface/output/09 (C4J - Material)</path>
             <type>XML</type>
             <XSLT/>
@@ -158,15 +158,16 @@
     </map>
 
     <map id="map10" enabed="Y" description="Tropos Works Order XML">
-        <input id="in1" description="Read XML File">
+        <input id="in1" description="Read TROPOS XML File">
             <type>XML</type>
             <path>./interface/input/10 (TROPOS Works Order)</path>
             <mask/>
+            <prefix>IJM Production Order Print</prefix>
             <pollingInterval>1000</pollingInterval>
             <XSLT>TROPOS_WorksOrder_to_Commander4j_Process_Order.xsl</XSLT>
         </input>
 
-        <output id="out1" enabed="Y" description="Write XML">
+        <output id="out1" enabed="Y" description="Write C4J XML">
             <path>./interface/output/10 (C4J - Process Order)</path>
             <type>XML</type>
             <XSLT/>
@@ -174,7 +175,7 @@
     </map>
 
     <map id="map11" enabed="Y" description="C4J Production Declaration to TROPOS Goods Receipt">
-        <input id="in1" description="Read XML File">
+        <input id="in1" description="Read C4J XML File">
             <type>XML</type>
             <path>./interface/input/11 (C4J - Production Declaration)</path>
             <mask/>
@@ -182,11 +183,13 @@
             <XSLT>C4J_PRODDEC_XML_to_TROPOS_GoodsReceipt_CSV.xsl</XSLT>
         </input>
 
-        <output id="out1" enabed="Y" description="Write CSV">
+        <output id="out1" enabed="Y" description="Write TROPOS CSV">
             <path>./interface/output/11 (TROPOS - Goods Receipt)</path>
             <type>CSV</type>
             <optionDelimeter>^</optionDelimeter>
             <csvOptions>separator=,^quote=none</csvOptions>
+            <outputFileExtension>temp</outputFileExtension>
+            <prefix>G_</prefix>
             <XSLT/>
         </output>
     </map>
