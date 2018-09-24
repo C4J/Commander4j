@@ -96,7 +96,7 @@ public class parseFunction {
 		// Supported Expressions using format
 
 		String[] Functions = new String[]
-		{"<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(", "<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(" , "<PRODDATE("};
+		{"<SUBTR_LPAD(","<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(", "<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(" , "<PRODDATE("};
 
 		// For each expression above
 		for (int x = 0; x < Functions.length; x++)
@@ -165,6 +165,26 @@ public class parseFunction {
 					target = params[0];
 					start = Integer.valueOf(params[1].toString());
 					end = Integer.valueOf(params[2].toString());
+					result = target.substring(start - 1, start + end - 1);
+				} else
+				{
+					result = functionName + incorrectNoParams;
+				}
+			}
+			
+			if (functionName.equals("SUBTR_LPAD"))
+			{
+				if (params.length == 5)
+				{
+					target = params[0];
+					start = Integer.valueOf(params[1].toString());
+					end = Integer.valueOf(params[2].toString());
+					size = Integer.valueOf(params[3].toString());
+					pad = params[4];
+					while (target.length() < size)
+					{
+						target = pad + target;
+					}
 					result = target.substring(start - 1, start + end - 1);
 				} else
 				{
