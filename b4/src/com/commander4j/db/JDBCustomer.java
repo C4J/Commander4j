@@ -72,6 +72,70 @@ public class JDBCustomer
 	private String dbPallet_Label_ModuleID;
 	private String dbCustomerData01;
 	private String dbCustomerData02;
+	private String dbCustomerData03;
+	private String dbCustomerData04;
+	private String dbCustomerOverrideBatchFormat;
+	private String dbCustomerBatchFormat;
+	private String dbCustomerBatchValidation;
+	
+	public void setCustomerBatchFormat(String format)
+	{
+		dbCustomerBatchFormat = format;
+	}
+	
+	public void setCustomerBatchValidation(String validation)
+	{
+		dbCustomerBatchValidation = validation;
+	}
+	
+	public void setOverrideBatchFormat(String override)
+	{
+		dbCustomerOverrideBatchFormat = override;
+	}
+	
+	public void setOverrideBatchFormat(boolean override)
+	{
+		if (override)
+		{
+			dbCustomerOverrideBatchFormat = "Y";
+		}
+		else
+		{
+			dbCustomerOverrideBatchFormat = "N";
+		}
+	}
+	
+	public String getCustomerBatchFormat()
+	{
+		return JUtility.replaceNullStringwithBlank(dbCustomerBatchFormat);
+	}
+	
+	public String getCustomerBatchValidation()
+	{
+		return JUtility.replaceNullStringwithBlank(dbCustomerBatchValidation);
+	}
+	
+	public String getCustomerBatchOverride()
+	{
+		String result = JUtility.replaceNullStringwithBlank(dbCustomerOverrideBatchFormat);
+		
+		if (result.equals(""))
+		{
+			result = "N";
+		}
+		
+		return result;
+	}
+	
+	public boolean isBatchOverride()
+	{
+		boolean result = false;
+		if (getCustomerBatchOverride().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
 
 	public String getCustomerData01()
 	{
@@ -82,6 +146,16 @@ public class JDBCustomer
 	{
 		return JUtility.replaceNullStringwithBlank(dbCustomerData02);
 	}
+	
+	public String getCustomerData03()
+	{
+		return JUtility.replaceNullStringwithBlank(dbCustomerData03);
+	}
+	
+	public String getCustomerData04()
+	{
+		return JUtility.replaceNullStringwithBlank(dbCustomerData04);
+	}
 
 	public void setCustomerData01(String data01)
 	{
@@ -91,6 +165,16 @@ public class JDBCustomer
 	public void setCustomerData02(String data02)
 	{
 		dbCustomerData02 = data02;
+	}
+	
+	public void setCustomerData03(String data03)
+	{
+		dbCustomerData03 = data03;
+	}
+	
+	public void setCustomerData04(String data04)
+	{
+		dbCustomerData04 = data04;
 	}
 
 	public JDBCustomer(String host, String session)
@@ -119,6 +203,12 @@ public class JDBCustomer
 		setErrorMessage("");
 		setCustomerData01("");
 		setCustomerData02("");
+		setCustomerData03("");
+		setCustomerData04("");
+		setOverrideBatchFormat(false);
+		setCustomerBatchFormat("");
+		setCustomerBatchValidation("");
+		
 	}
 
 	public boolean create(String lid, String lname, String printonLabel)
@@ -145,7 +235,12 @@ public class JDBCustomer
 				stmtupdate.setString(7, getPalletLabelModuleID());
 				stmtupdate.setString(8, getCustomerData01());
 				stmtupdate.setString(9, getCustomerData02());
-				stmtupdate.setTimestamp(10, JUtility.getSQLDateTime());
+				stmtupdate.setString(10, getCustomerData03());
+				stmtupdate.setString(11, getCustomerData04());
+				stmtupdate.setTimestamp(12, JUtility.getSQLDateTime());
+				stmtupdate.setString(13, getCustomerBatchOverride());
+				stmtupdate.setString(14, getCustomerBatchFormat());
+				stmtupdate.setString(15, getCustomerBatchValidation());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -243,6 +338,11 @@ public class JDBCustomer
 				setPalletLabelModuleID(rs.getString("pallet_label_module_id"));
 				setCustomerData01(rs.getString("customer_data_01"));
 				setCustomerData02(rs.getString("customer_data_02"));
+				setCustomerData03(rs.getString("customer_data_03"));
+				setCustomerData04(rs.getString("customer_data_04"));				
+				setOverrideBatchFormat(rs.getString("OVERRIDE_BATCH_FORMAT"));
+				setCustomerBatchFormat(rs.getString("BATCH_FORMAT"));
+				setCustomerBatchValidation(rs.getString("BATCH_VALIDATION"));
 				result = true;
 				rs.close();
 				stmt.close();
@@ -286,8 +386,13 @@ public class JDBCustomer
 				mt.setPackLabelModuleID(rs.getString("pack_label_module_id"));
 				mt.setOverridePalletLabel(rs.getString("override_pallet_label"));
 				mt.setPalletLabelModuleID(rs.getString("pallet_label_module_id"));
-				setCustomerData01(rs.getString("customer_data_01"));
-				setCustomerData02(rs.getString("customer_data_02"));
+				mt.setCustomerData01(rs.getString("customer_data_01"));
+				mt.setCustomerData02(rs.getString("customer_data_02"));
+				mt.setCustomerData03(rs.getString("customer_data_03"));
+				mt.setCustomerData04(rs.getString("customer_data_04"));
+				mt.setOverrideBatchFormat(rs.getString("OVERRIDE_BATCH_FORMAT"));
+				mt.setCustomerBatchFormat(rs.getString("BATCH_FORMAT"));
+				mt.setCustomerBatchValidation(rs.getString("BATCH_VALIDATION"));
 				typeList.add(mt);
 			}
 			rs.close();
@@ -575,8 +680,15 @@ public class JDBCustomer
 				stmtupdate.setString(6, getPalletLabelModuleID());
 				stmtupdate.setString(7, getCustomerData01());
 				stmtupdate.setString(8, getCustomerData02());
-				stmtupdate.setTimestamp(9, JUtility.getSQLDateTime());
-				stmtupdate.setString(10, getID());
+				stmtupdate.setString(9, getCustomerData03());
+				stmtupdate.setString(10, getCustomerData04());
+				stmtupdate.setTimestamp(11, JUtility.getSQLDateTime());
+				
+				stmtupdate.setString(12, getCustomerBatchOverride());
+				stmtupdate.setString(13, getCustomerBatchFormat());
+				stmtupdate.setString(14, getCustomerBatchValidation());				
+				
+				stmtupdate.setString(15, getID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

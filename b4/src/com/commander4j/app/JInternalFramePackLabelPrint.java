@@ -190,6 +190,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 	private JLabel4j_std lblPrintQueueFor;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private String batchFormat = "";
+	private String batchValidate = "";
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private String expiryMode = "";
 	private JCheckBox4j checkBoxIncHeaderText;
@@ -200,8 +201,10 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 	private JLabelPrint labelPrint = new JLabelPrint(Common.selectedHostID, Common.sessionID);
 	private PreparedStatement listStatement;
 	private JButton4j jButtonAssign;
-	private boolean DOMEditable = true;;
-	private boolean ExpiryEditable = true;;
+	private boolean DOMEditable = true;
+	private boolean ExpiryEditable = true;
+	private JTextField4j textField4jResource = new JTextField4j();
+	private JTextField4j textField4jCustomer = new JTextField4j();
 
 	public JInternalFramePackLabelPrint(String procOrder)
 	{
@@ -226,9 +229,10 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		clearFields();
 
 		timer.start();
-
-		ctrl.getProperties("BATCH FORMAT");
-		batchFormat = ctrl.getKeyValue();
+		
+		jTextFieldBatchPrefix.setText("");
+		jTextFieldBatchSuffix.setText("");
+				
 		expiryMode = ctrl.getKeyValue("EXPIRY DATE MODE");
 
 		calcBBEBatch();
@@ -242,6 +246,19 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			{
 				jTextFieldProcessOrder.requestFocus();
 				jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
+				
+
+				textField4jResource.setText("");
+				textField4jResource.setEnabled(false);
+				textField4jResource.setEditable(false);
+				textField4jResource.setBounds(588, 49, 148, 21);
+				jPanelProcessOrder.add(textField4jResource);
+				
+				textField4jCustomer.setText("");
+				textField4jCustomer.setEnabled(false);
+				textField4jCustomer.setEditable(false);
+				textField4jCustomer.setBounds(587, 79, 148, 21);
+				jPanelProcessOrder.add(textField4jCustomer);
 
 			}
 		});
@@ -342,10 +359,16 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jTextFieldBaseUom.setText(material.getBaseUom());
 			jTextFieldBaseEAN.setText(materialuom.getEan());
 			jTextFieldBaseVariant.setText(materialuom.getVariant());
+			textField4jResource.setText(processorder.getRequiredResource());
+			textField4jCustomer.setText(processorder.getCustomerID());
 
 			valid = true;
 
 			jTextFieldBatchSuffix.setText(processorderResource.getBatchSuffixForResource(processorder.getRequiredResource()));
+			
+			batchFormat = materialbatch.getBatchFormatString(processorder);
+			batchValidate = materialbatch.getBatchValidationString(processorder);
+			
 			calcBBEBatch();
 
 		} else
@@ -420,6 +443,8 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		jTextFieldRequiredVariant.setText("");
 		jTextFieldBaseEAN.setText("");
 		jTextFieldBaseVariant.setText("");
+		textField4jResource.setText("");
+		textField4jCustomer.setText("");
 
 		jCheckBoxDOMOverride.setSelected(false);
 		enableField(jSpinnerProductionDate, jCheckBoxDOMOverride.isSelected());
@@ -577,7 +602,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			String batchNumber = jTextFieldBatchPrefix.getText() + jTextFieldBatchSuffix.getText();
 			Timestamp expiryDate = JUtility.getTimestampFromDate(jSpinnerExpiryDate.getDate());
 
-			if (materialbatch.autoCreateMaterialBatch(material, batchNumber, expiryDate, ""))
+			if (materialbatch.autoCreateMaterialBatch(material, batchNumber,batchValidate, expiryDate, ""))
 			{
 
 				String key = createLabelData(noOfLabels);

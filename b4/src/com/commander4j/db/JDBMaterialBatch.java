@@ -62,7 +62,7 @@ public class JDBMaterialBatch
 	private String sessionID;
 	private JDBMaterial mat;
 	private JDBControl ctrl;
-	private String batchREGEX;
+	private JDBCustomer customer;
 	private String expiryMode;
 
 	public JDBMaterialBatch(ResultSet rs)
@@ -77,8 +77,8 @@ public class JDBMaterialBatch
 		setSessionID(session);
 		mat = new JDBMaterial(getHostID(), getSessionID());
 		ctrl = new JDBControl(getHostID(), getSessionID());
+		customer = new JDBCustomer(getHostID(), getSessionID());
 
-		batchREGEX = ctrl.getKeyValue("BATCH REGEX");
 		expiryMode = ctrl.getKeyValue("EXPIRY DATE MODE");
 	}
 
@@ -98,7 +98,7 @@ public class JDBMaterialBatch
 		setStatus(status);
 	}
 
-	public Boolean autoCreateMaterialBatch(String material, String batch, Timestamp expiryDate, String status)
+	public Boolean autoCreateMaterialBatch(String material, String batch,String validate, Timestamp expiryDate, String status)
 	{
 
 		Timestamp expiry;
@@ -122,7 +122,7 @@ public class JDBMaterialBatch
 
 		if ((t1 > 0) & (t2 > 0))
 		{
-			if (JUtility.isStringPatternValid(batchREGEX, getBatch()))
+			if (JUtility.isStringPatternValid(validate, getBatch()))
 			{
 				if (getMaterialBatchProperties() == false)
 				{
@@ -192,7 +192,7 @@ public class JDBMaterialBatch
 			}
 			else
 			{
-				setErrorMessage("The format of the batch number [" + getBatch() + "] is not valid.\nFormat of batch number is defined in control key BATCH REGEX.");
+				setErrorMessage("The format of the batch number [" + getBatch() + "] is not valid.\nFormat of batch number is defined in System Key BATCH REGEX or Customer Record.");
 			}
 		}
 		else
@@ -282,12 +282,83 @@ public class JDBMaterialBatch
 	{
 		return JUtility.replaceNullStringwithBlank(dbMaterialBatch);
 	}
+	
+	public String getBatchFormatString(JDBProcessOrder po)
+	{
+		
+		String result = "";
+		
+		if (customer.getCustomerProperties(po.getCustomerID()))
+		{
+			if (customer.isBatchOverride())
+			{
+				result = customer.getCustomerBatchFormat();
+			}
+			else
+			{
+				result = ctrl.getKeyValue("BATCH FORMAT");
+			}
+		}
+		else
+		{
+			result = ctrl.getKeyValue("BATCH FORMAT");
+		}
+		
+		return result;
+	}
+	
+	public String getBatchValidationString(JDBProcessOrder po)
+	{
+		
+		String result = "";
+		
+		if (customer.getCustomerProperties(po.getCustomerID()))
+		{
+			if (customer.isBatchOverride())
+			{
+				result = customer.getCustomerBatchValidation();
+			}
+			else
+			{
+				result = ctrl.getKeyValue("BATCH REGEX");
+			}
+		}
+		else
+		{
+			result = ctrl.getKeyValue("BATCH REGEX");
+		}
+		
+		return result;
+	}
 
 	public String getDefaultBatchNumber(String batchFormat, Calendar caldate, JDBProcessOrder po)
 	{
 		String result = "";
-
+		
 		result = batchFormat;
+		
+		if (result.indexOf("{SHIFT}") >= 0)
+		{
+			String temp="";
+			int hour = caldate.get(Calendar.HOUR_OF_DAY);
+			if (hour < 6)
+			{
+				temp = "1";
+			}
+			if ((hour >= 6) && (hour <  14))
+			{
+				temp = "2";
+			}
+			if ((hour >= 14) && (hour <  22))
+			{
+				temp = "3";
+			}
+			if (hour >= 22)
+			{
+				temp = "1";
+			}
+			result = result.replaceAll("\\{SHIFT\\}", temp);
+		}
 
 		if (result.indexOf("{PLANT}") >= 0)
 		{
@@ -296,6 +367,66 @@ public class JDBMaterialBatch
 			plant = ctrl.getKeyValue();
 			result = result.replaceAll("\\{PLANT\\}", plant);
 		}
+		
+		if (result.indexOf("{CUSTOMER_DATA_01}") >= 0)
+		{
+			String temp = "";
+			if (po.getCustomerID().equals("")==false)
+			{
+				customer.getCustomerProperties(po.getCustomerID());
+				temp = customer.getCustomerData01();
+				
+			}
+			result = result.replaceAll("\\{CUSTOMER_DATA_01\\}",temp);
+		}
+		
+		if (result.indexOf("{CUSTOMER_DATA_02}") >= 0)
+		{
+			String temp = "";
+			if (po.getCustomerID().equals("")==false)
+			{
+				customer.getCustomerProperties(po.getCustomerID());
+				temp = customer.getCustomerData02();
+				
+			}
+			result = result.replaceAll("\\{CUSTOMER_DATA_02\\}",temp);
+		}	
+		
+		if (result.indexOf("{CUSTOMER_DATA_03}") >= 0)
+		{
+			String temp = "";
+			if (po.getCustomerID().equals("")==false)
+			{
+				customer.getCustomerProperties(po.getCustomerID());
+				temp = customer.getCustomerData03();
+				
+			}
+			result = result.replaceAll("\\{CUSTOMER_DATA_03\\}",temp);
+		}	
+		
+		if (result.indexOf("{CUSTOMER_DATA_04}") >= 0)
+		{
+			String temp = "";
+			if (po.getCustomerID().equals("")==false)
+			{
+				customer.getCustomerProperties(po.getCustomerID());
+				temp = customer.getCustomerData04();
+				
+			}
+			result = result.replaceAll("\\{CUSTOMER_DATA_04\\}",temp);
+		}	
+		
+		
+		
+		if (result.indexOf("{WEEK}") >= 0)
+		{
+			result = result.replaceAll("\\{WEEK\\}", JUtility.getWeekOfYear(caldate));
+		}	
+		
+		if (result.indexOf("{DAY}") >= 0)
+		{
+			result = result.replaceAll("\\{DAY\\}", JUtility.getDayOfWeekString1(caldate));
+		}		
 
 		if (result.indexOf("{PROCESS_ORDER}") >= 0)
 		{

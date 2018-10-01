@@ -83,24 +83,24 @@ public class JUtility
 {
 
 	public static int field_timestamp = 20;
-	
+
 	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
-	
+
 	public static String getDateTimeString(String fmt)
 	{
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 		return sdf.format(cal.getTime());
 	}
-	
+
 	public static String removePathSeparators(String path)
 	{
 		String result = path;
 
-		result = StringUtils.replaceChars(result, String.valueOf(":"),"_");
-		result = StringUtils.replaceChars(result, String.valueOf("\\"),"_");
-		result = StringUtils.replaceChars(result, String.valueOf("/"),"_");
-		
+		result = StringUtils.replaceChars(result, String.valueOf(":"), "_");
+		result = StringUtils.replaceChars(result, String.valueOf("\\"), "_");
+		result = StringUtils.replaceChars(result, String.valueOf("/"), "_");
+
 		return result;
 	}
 
@@ -273,7 +273,8 @@ public class JUtility
 			free = dirFileStore.getUsableSpace() / 1048576;
 			result = String.valueOf(free) + " mb on " + root;
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			result = "Error trying to determine free disk space " + e.getLocalizedMessage();
 		}
@@ -332,7 +333,8 @@ public class JUtility
 			Double dbl = myNumber.doubleValue();
 			result = BigDecimal.valueOf(dbl);
 			str = String.valueOf(dbl);
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 			final Logger logger = Logger.getLogger(JUtility.class);
 			logger.error(e.getMessage());
@@ -377,7 +379,8 @@ public class JUtility
 		{
 
 			Runtime.getRuntime().exec(filename);
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			JOptionPane.showMessageDialog(Common.mainForm, e, "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -398,7 +401,8 @@ public class JUtility
 		if (useParam1.equals("Y"))
 		{
 			result = Param1;
-		} else
+		}
+		else
 		{
 			result = Param2;
 		}
@@ -450,7 +454,8 @@ public class JUtility
 				{
 					sql = "where ";
 					first = true;
-				} else
+				}
+				else
 				{
 					first = false;
 				}
@@ -493,7 +498,8 @@ public class JUtility
 				if (Character.isLetter(ch) && !Character.isLetter(prevCh))
 				{
 					result = result + Character.toUpperCase(ch);
-				} else
+				}
+				else
 				{
 					result = result + ch;
 				}
@@ -521,7 +527,8 @@ public class JUtility
 			if (Character.isLetter(ch) && !Character.isLetter(prevCh))
 			{
 				result = result + Character.toUpperCase(ch);
-			} else
+			}
+			else
 			{
 				result = result + ch;
 			}
@@ -554,7 +561,7 @@ public class JUtility
 
 	public static void errorBeep()
 	{
-		JPlaySound s = new JPlaySound(System.getProperty("user.dir")+File.separator+"audio"+File.separator+"beep.wav");
+		JPlaySound s = new JPlaySound(System.getProperty("user.dir") + File.separator + "audio" + File.separator + "beep.wav");
 
 		if (s.equals(s))
 		{
@@ -578,11 +585,13 @@ public class JUtility
 			{
 				final File working = new File(dir);
 				Runtime.getRuntime().exec(command, null, working);
-			} else
+			}
+			else
 			{
 				Runtime.getRuntime().exec(command);
 			}
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 
 			if (Common.applicationMode.equals("SwingClient"))
@@ -627,7 +636,8 @@ public class JUtility
 
 			retry = false;
 			result = No;
-		} while (retry);
+		}
+		while (retry);
 
 		return result;
 	}
@@ -639,7 +649,8 @@ public class JUtility
 		try
 		{
 			basepath = new File("").getCanonicalPath();
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			basepath = "error";
 		}
@@ -665,7 +676,8 @@ public class JUtility
 			{
 				clientname = "unknown";
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			clientname = "unknown";
 		}
@@ -675,7 +687,8 @@ public class JUtility
 			try
 			{
 				clientname = InetAddress.getLocalHost().getHostName().toLowerCase();
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				clientname = "unknown";
 			}
@@ -698,7 +711,8 @@ public class JUtility
 		if (size >= 0)
 		{
 			result = inputstr.substring(0, size);
-		} else
+		}
+		else
 		{
 			result = "";
 		}
@@ -715,7 +729,8 @@ public class JUtility
 			if (replaceNullStringwithBlank(oldValue).length() > 0)
 			{
 				result = replaceNullStringwithBlank(oldValue);
-			} else
+			}
+			else
 			{
 				result = replaceNullStringwithBlank(defaultValue);
 			}
@@ -850,14 +865,16 @@ public class JUtility
 				{
 					result = "http://commander4j.com/mw/index.php?title=No_Help_Found";
 				}
-			} else
+			}
+			else
 			{
 				result = "http://commander4j.com/mw/index.php?title=No_Help_Found";
 			}
 
 			result = result.replace("{base_dir}", Common.base_dir);
 
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			result = "http://commander4j.com/mw/index.php?title=No_Help_Found";
 		}
@@ -884,7 +901,8 @@ public class JUtility
 			result = result + temp.substring(14, 16);
 			result = result + ":";
 			result = result + temp.substring(17, 19);
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			result = "Error";
 		}
@@ -906,7 +924,8 @@ public class JUtility
 			result = result + "-";
 			result = result + temp.substring(8, 10);
 
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			result = "Error";
 		}
@@ -926,6 +945,81 @@ public class JUtility
 		long result = 0;
 
 		result = currentDate.get(Calendar.DAY_OF_YEAR);
+
+		return result;
+	}
+
+	/**
+	 * Method getWeekOfYear.
+	 * 
+	 * @param currentDate
+	 *            Calendar
+	 * @return int
+	 */
+	public static String getWeekOfYear(Calendar currentDate)
+	{
+		int temp = 0;
+		String result = "";
+
+		temp = currentDate.get(Calendar.WEEK_OF_YEAR);
+		result = String.valueOf(temp).trim();
+		result = padString(result,false,2,"0");
+
+		return result;
+	}
+
+	/**
+	 * Method getDayOfWeek.
+	 * 
+	 * @param currentDate
+	 *            Calendar
+	 * @return int
+	 */
+	public static int getDayOfWeek(Calendar currentDate)
+	{
+		int result = 0;
+
+		result = currentDate.get(Calendar.DAY_OF_WEEK);
+
+		return result;
+	}
+
+	/**
+	 * Method getDayOfWeekString1.
+	 * 
+	 * @param currentDate
+	 *            Calendar
+	 * @return int
+	 */
+	public static String getDayOfWeekString1(Calendar currentDate)
+	{
+		int temp = getDayOfWeek(currentDate);
+		String result = "";
+
+		switch (temp)
+		{
+		case Calendar.MONDAY:
+			result = "A";
+			break;
+		case Calendar.TUESDAY:
+			result = "B";
+			break;
+		case Calendar.WEDNESDAY:
+			result = "C";
+			break;
+		case Calendar.THURSDAY:
+			result = "D";
+			break;
+		case Calendar.FRIDAY:
+			result = "E";
+			break;
+		case Calendar.SATURDAY:
+			result = "F";
+			break;
+		case Calendar.SUNDAY:
+			result = "G";
+			break;
+		}
 
 		return result;
 	}
@@ -1054,7 +1148,8 @@ public class JUtility
 			result = new Timestamp(caldate.getTimeInMillis());
 
 			result.setNanos(0); // or other value
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			result = null;
 		}
@@ -1101,7 +1196,8 @@ public class JUtility
 		if (pos >= 0)
 		{
 			result = valList.get(pos);
-		} else
+		}
+		else
 		{
 			result = "";
 		}
@@ -1158,7 +1254,8 @@ public class JUtility
 		if (value == null)
 		{
 			result = true;
-		} else
+		}
+		else
 		{
 			if (value.equals("") == true)
 			{
@@ -1187,7 +1284,8 @@ public class JUtility
 		if (comp < 0)
 		{
 			result = false;
-		} else
+		}
+		else
 		{
 			result = true;
 		}
@@ -1231,7 +1329,8 @@ public class JUtility
 			}
 
 			in.close();
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 		}
 
@@ -1311,14 +1410,16 @@ public class JUtility
 		{
 			// result = result.substring(0,size-1);
 			result = result.substring(0, size);
-		} else
+		}
+		else
 		{
 			if (inputlength < size)
 			{
 				if (right == true)
 				{
 					result = result + padString(size - inputlength, character);
-				} else
+				}
+				else
 				{
 					result = padString(size - inputlength, character) + result;
 				}
@@ -1349,7 +1450,8 @@ public class JUtility
 			{
 				Icon icon = Common.imageIconloader.getImageIcon(Common.image_blank_icon);
 				btn.setIcon(icon);
-			} else
+			}
+			else
 			{
 				File f;
 				f = new File(filename);
@@ -1358,13 +1460,15 @@ public class JUtility
 				{
 					Icon icon = Common.imageIconloader.getImageIcon(filename);
 					btn.setIcon(icon);
-				} else
+				}
+				else
 				{
 					Icon icon = Common.imageIconloader.getImageIcon(Common.image_error);
 					btn.setIcon(icon);
 				}
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 		}
 	}
@@ -1472,7 +1576,8 @@ public class JUtility
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
 			System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Commander4j");
 
-		} else
+		}
+		else
 		{
 			Common.LFAdjustWidth = -13;
 			Common.LFAdjustHeight = -13;
@@ -1487,7 +1592,8 @@ public class JUtility
 		try
 		{
 			SetLookAndFeel("Metal", "Ocean");
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -1508,7 +1614,8 @@ public class JUtility
 
 				// UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -1526,17 +1633,20 @@ public class JUtility
 				{
 					label.setForeground(Color.RED);
 					warning = " Number of records returned constrained by user defined limit.";
-				} else
+				}
+				else
 				{
 					label.setForeground(Color.BLACK);
 				}
-			} else
+			}
+			else
 			{
 				label.setForeground(Color.BLACK);
 			}
 
 			label.setText(String.valueOf(ActualRecords) + " record(s) retrieved." + warning);
-		} else
+		}
+		else
 		{
 			label.setForeground(Color.BLACK);
 			label.setText("0 records shown.");
@@ -1555,7 +1665,8 @@ public class JUtility
 		if (value.equals(""))
 		{
 			return "is null";
-		} else
+		}
+		else
 		{
 			return " = '" + value + "'";
 		}
@@ -1580,10 +1691,12 @@ public class JUtility
 			bw.write(text);
 			bw.newLine();
 			bw.flush();
-		} catch (IOException ioe)
+		}
+		catch (IOException ioe)
 		{
 			ioe.printStackTrace();
-		} finally
+		}
+		finally
 		{ // always close the file
 
 			if (bw != null)
@@ -1591,7 +1704,8 @@ public class JUtility
 				try
 				{
 					bw.close();
-				} catch (IOException ioe2)
+				}
+				catch (IOException ioe2)
 				{
 				}
 			}

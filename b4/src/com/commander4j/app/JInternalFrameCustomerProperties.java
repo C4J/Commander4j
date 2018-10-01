@@ -96,6 +96,11 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 	private Vector<JDBListData> moduleList = new Vector<JDBListData>();
 	private JTextField4j textField4j_Cust_Data_01 = new JTextField4j(40);
 	private JTextField4j textField4j_Cust_Data_02 = new JTextField4j(40);
+	private JCheckBox4j checkBox4jOverideBatchFormat = new JCheckBox4j();
+	private JTextField4j textField4j_BatchFormat = new JTextField4j(80);
+	private JTextField4j textField4j_BatchValidation = new JTextField4j(80);
+	private JTextField4j textField4j_Cust_Data_03 = new JTextField4j(40);
+	private JTextField4j textField4j_Cust_Data_04 = new JTextField4j(40);
 
 	public JInternalFrameCustomerProperties() {
 		super();
@@ -112,8 +117,6 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 				jTextFieldName.requestFocus();
 				jTextFieldName.setCaretPosition(jTextFieldName.getText().length());
 				
-
-
 			}
 		});
 	}
@@ -134,6 +137,8 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 		
 		textField4j_Cust_Data_01.setText(mt.getCustomerData01());
 		textField4j_Cust_Data_02.setText(mt.getCustomerData02());
+		textField4j_Cust_Data_03.setText(mt.getCustomerData03());
+		textField4j_Cust_Data_04.setText(mt.getCustomerData04());
 		
 		if (mt.getPrintOnLabel().equals("Y")) {
 			checkBoxPrintOnLabel.setSelected(true);
@@ -157,6 +162,10 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 			}
 		}
 		
+		checkBox4jOverideBatchFormat.setSelected(mt.isBatchOverride());
+		textField4j_BatchFormat.setText(mt.getCustomerBatchFormat());
+		textField4j_BatchValidation.setText(mt.getCustomerBatchValidation());
+		
 		setButtonStates();
 		
 	}
@@ -164,7 +173,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 	private void initGUI() {
 		try {
 			this.setPreferredSize(new java.awt.Dimension(389, 143));
-			this.setBounds(0, 0, 507, 352);
+			this.setBounds(0, 0, 655, 532);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -215,13 +224,15 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
 					jButtonUpdate.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonUpdate.setBounds(72, 272, 112, 28);
+					jButtonUpdate.setBounds(161, 443, 112, 28);
 					jButtonUpdate.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							mt.setName(jTextFieldName.getText());
 							
 							mt.setCustomerData01(textField4j_Cust_Data_01.getText());
 							mt.setCustomerData02(textField4j_Cust_Data_02.getText());
+							mt.setCustomerData03(textField4j_Cust_Data_03.getText());
+							mt.setCustomerData04(textField4j_Cust_Data_04.getText());
 							
 							if (checkBoxPrintOnLabel.isSelected()) {
 								mt.setPrintOnLabel("Y");
@@ -269,6 +280,10 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 								mt.setPalletLabelModuleID("");
 							}	
 							
+						 	mt.setOverrideBatchFormat(checkBox4jOverideBatchFormat.isSelected());
+						 	mt.setCustomerBatchFormat(textField4j_BatchFormat.getText());
+						 	mt.setCustomerBatchValidation(textField4j_BatchValidation.getText());
+							
 							mt.update();
 							jButtonUpdate.setEnabled(false);
 						}
@@ -279,14 +294,14 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(205, 272, 112, 28);
+					jButtonHelp.setBounds(294, 443, 112, 28);
 				}
 				{
 					label = new JLabel4j_std();
 					label.setText((String) null);
 					label.setHorizontalTextPosition(SwingConstants.RIGHT);
 					label.setHorizontalAlignment(SwingConstants.RIGHT);
-					label.setBounds(22, 88, 175, 21);
+					label.setBounds(22, 92, 175, 21);
 					label.setText(lang.get("lbl_Print_Customer_on_Label"));
 					jDesktopPane1.add(label);
 				}
@@ -308,7 +323,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonClose, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(336, 272, 112, 28);
+					jButtonClose.setBounds(425, 443, 112, 28);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -340,20 +355,20 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 				label4j_std.setText(lang.get("lbl_Override_Pack_Label"));
 				label4j_std.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std.setBounds(22, 124, 175, 21);
+				label4j_std.setBounds(22, 128, 175, 21);
 				jDesktopPane1.add(label4j_std);
 				
 				JLabel4j_std label4j_std_1 = new JLabel4j_std();
 				label4j_std_1.setText(lang.get("lbl_Override_Pallet_Label"));
 				label4j_std_1.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std_1.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std_1.setBounds(22, 160, 175, 21);
+				label4j_std_1.setBounds(22, 164, 175, 21);
 				jDesktopPane1.add(label4j_std_1);
 				
 				ComboBoxModel<JDBListData> jComboBox1Model = new DefaultComboBoxModel<JDBListData>(moduleList);
 				comboBoxPackModuleID.setModel(jComboBox1Model);
 				comboBoxPackModuleID.setEnabled(false);
-				comboBoxPackModuleID.setBounds(241, 121, 208, 27);
+				comboBoxPackModuleID.setBounds(230, 121, 219, 27);
 				comboBoxPackModuleID.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						jButtonUpdate.setEnabled(true);
@@ -365,7 +380,7 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 				ComboBoxModel<JDBListData> jComboBox2Model = new DefaultComboBoxModel<JDBListData>(moduleList);
 				comboBoxPalletModuleID.setModel(jComboBox2Model);
 				comboBoxPalletModuleID.setEnabled(false);
-				comboBoxPalletModuleID.setBounds(241, 157, 208, 27);
+				comboBoxPalletModuleID.setBounds(230, 157, 219, 27);
 				comboBoxPalletModuleID.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						jButtonUpdate.setEnabled(true);
@@ -411,6 +426,100 @@ public class JInternalFrameCustomerProperties extends JInternalFrame
 				label4j_std3.setHorizontalAlignment(SwingConstants.RIGHT);
 				label4j_std3.setBounds(22, 232, 175, 21);
 				jDesktopPane1.add(label4j_std3);
+				
+				JLabel4j_std lbl_OverrideBatchFormat = new JLabel4j_std();
+				lbl_OverrideBatchFormat.setText(lang.get("lbl_Override_Batch_Format"));
+				lbl_OverrideBatchFormat.setHorizontalTextPosition(SwingConstants.RIGHT);
+				lbl_OverrideBatchFormat.setHorizontalAlignment(SwingConstants.RIGHT);
+				lbl_OverrideBatchFormat.setBounds(22, 335, 175, 21);
+				jDesktopPane1.add(lbl_OverrideBatchFormat);
+				checkBox4jOverideBatchFormat.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						jButtonUpdate.setEnabled(true);
+					}
+				});
+				
+
+				checkBox4jOverideBatchFormat.setSelected(true);
+				checkBox4jOverideBatchFormat.setBackground(Color.WHITE);
+				checkBox4jOverideBatchFormat.setBounds(201, 331, 21, 24);
+				jDesktopPane1.add(checkBox4jOverideBatchFormat);
+				
+				JLabel4j_std lbl_BatchFormat = new JLabel4j_std();
+				lbl_BatchFormat.setText(lang.get("lbl_Batch_Format"));
+				lbl_BatchFormat.setHorizontalTextPosition(SwingConstants.RIGHT);
+				lbl_BatchFormat.setHorizontalAlignment(SwingConstants.RIGHT);
+				lbl_BatchFormat.setBounds(22, 364, 175, 21);
+				jDesktopPane1.add(lbl_BatchFormat);
+				
+				JLabel4j_std lbl_BatchValidation = new JLabel4j_std();
+				lbl_BatchValidation.setText(lang.get("lbl_Batch_Validation"));
+				lbl_BatchValidation.setHorizontalTextPosition(SwingConstants.RIGHT);
+				lbl_BatchValidation.setHorizontalAlignment(SwingConstants.RIGHT);
+				lbl_BatchValidation.setBounds(22, 397, 175, 21);
+				jDesktopPane1.add(lbl_BatchValidation);
+				
+
+				textField4j_BatchFormat.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						jButtonUpdate.setEnabled(true);
+					}
+				});
+				textField4j_BatchFormat.setColumns(80);
+				textField4j_BatchFormat.setFocusCycleRoot(true);
+				textField4j_BatchFormat.setCaretPosition(0);
+				textField4j_BatchFormat.setBounds(204, 364, 410, 21);
+				jDesktopPane1.add(textField4j_BatchFormat);
+				
+				textField4j_BatchValidation.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						jButtonUpdate.setEnabled(true);
+					}
+				});
+				textField4j_BatchValidation.setColumns(80);
+				textField4j_BatchValidation.setFocusCycleRoot(true);
+				textField4j_BatchValidation.setCaretPosition(0);
+				textField4j_BatchValidation.setBounds(204, 397, 410, 21);
+				jDesktopPane1.add(textField4j_BatchValidation);
+				
+				JLabel4j_std label4j_std4 = new JLabel4j_std();
+				label4j_std4.setText(lang.get("lbl_Customer_Data_03"));
+				label4j_std4.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_std4.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_std4.setBounds(22, 265, 175, 21);
+				jDesktopPane1.add(label4j_std4);
+				textField4j_Cust_Data_03.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						jButtonUpdate.setEnabled(true);
+					}
+				});
+				
+				textField4j_Cust_Data_03.setFocusCycleRoot(true);
+				textField4j_Cust_Data_03.setCaretPosition(0);
+				textField4j_Cust_Data_03.setBounds(204, 265, 244, 21);
+				jDesktopPane1.add(textField4j_Cust_Data_03);
+				
+				JLabel4j_std label4j_std5 = new JLabel4j_std();
+				label4j_std5.setText(lang.get("lbl_Customer_Data_04"));
+				label4j_std5.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_std5.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_std5.setBounds(22, 298, 175, 21);
+				jDesktopPane1.add(label4j_std5);
+				textField4j_Cust_Data_04.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						jButtonUpdate.setEnabled(true);
+					}
+				});
+				
+				textField4j_Cust_Data_04.setFocusCycleRoot(true);
+				textField4j_Cust_Data_04.setCaretPosition(0);
+				textField4j_Cust_Data_04.setBounds(204, 298, 244, 21);
+				jDesktopPane1.add(textField4j_Cust_Data_04);
+				
 			}
 		}
 		catch (Exception e) {

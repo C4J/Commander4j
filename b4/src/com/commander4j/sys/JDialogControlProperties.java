@@ -114,21 +114,21 @@ public class JDialogControlProperties extends JDialog
 		{
 			// setDefaultLookAndFeelDecorated(true);
 			setPreferredSize(new java.awt.Dimension(460, 163));
-			this.setBounds(25, 25, 488, 176);
+			this.setBounds(25, 25, 736, 176);
 			setModal(true);
 			this.setTitle("Control Properties");
 			getContentPane().setLayout(null);
 
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 488, 154);
+				jDesktopPane1.setBounds(0, 0, 736, 154);
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new Dimension(452, 140));
 				jDesktopPane1.setLayout(null);
 				{
 					jLabelSystemKey = new JLabel4j_std();
-					jLabelSystemKey.setBounds(9, 65, 87, 19);
+					jLabelSystemKey.setBounds(9, 67, 87, 19);
 					jDesktopPane1.add(jLabelSystemKey);
 					jLabelSystemKey.setText(lang.get("lbl_Description"));
 					jLabelSystemKey.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -136,7 +136,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jLabelKeyValue = new JLabel4j_std();
-					jLabelKeyValue.setBounds(5, 15, 93, 19);
+					jLabelKeyValue.setBounds(5, 12, 93, 19);
 					jDesktopPane1.add(jLabelKeyValue);
 					jLabelKeyValue.setText(lang.get("lbl_System_Key"));
 					jLabelKeyValue.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -144,7 +144,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jLabelDescription = new JLabel4j_std();
-					jLabelDescription.setBounds(10, 39, 88, 19);
+					jLabelDescription.setBounds(10, 41, 88, 19);
 					jDesktopPane1.add(jLabelDescription);
 					jLabelDescription.setText(lang.get("lbl_Value"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -153,7 +153,7 @@ public class JDialogControlProperties extends JDialog
 				{
 
 					jButtonUpdate = new JButton4j(Common.icon_update);
-					jButtonUpdate.setBounds(79, 95, 110, 32);
+					jButtonUpdate.setBounds(217, 98, 110, 32);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(java.awt.event.KeyEvent.VK_S);
@@ -173,7 +173,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
-					jButtonClose.setBounds(300, 95, 110, 32);
+					jButtonClose.setBounds(438, 98, 110, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
@@ -187,7 +187,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jTextFieldSystemKey = new JTextField4j(JDBControl.field_system_key);
-					jTextFieldSystemKey.setBounds(106, 13, 252, 21);
+					jTextFieldSystemKey.setBounds(106, 10, 252, 21);
 					jTextFieldSystemKey.setFocusable(false);
 					jDesktopPane1.add(jTextFieldSystemKey);
 					jTextFieldSystemKey.setHorizontalAlignment(SwingConstants.LEFT);
@@ -197,7 +197,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jTextFieldKeyValue = new JTextField4j(JDBControl.field_key_value);
-					jTextFieldKeyValue.setBounds(106, 39, 252, 21);
+					jTextFieldKeyValue.setBounds(106, 39, 604, 21);
 					jDesktopPane1.add(jTextFieldKeyValue);
 					jTextFieldKeyValue.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldKeyValue.setFocusCycleRoot(true);
@@ -212,7 +212,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBControl.field_description);
-					jTextFieldDescription.setBounds(106, 65, 337, 21);
+					jTextFieldDescription.setBounds(106, 65, 604, 21);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);
@@ -226,7 +226,7 @@ public class JDialogControlProperties extends JDialog
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help);
-					jButtonHelp.setBounds(194, 95, 100, 32);
+					jButtonHelp.setBounds(332, 98, 100, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);

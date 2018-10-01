@@ -1250,6 +1250,16 @@ public class JDBUser
 		Boolean lowerOK = false;
 		Boolean upperOK = false;
 		Boolean specialOK = false;
+		
+		if (minsize < (complexUppercase + complexLowercase + complexSpecial))
+		{
+			minsize = (complexUppercase + complexLowercase + complexSpecial);
+		}
+		
+		if (minsize > maxsize)
+		{
+			maxsize = minsize;
+		}
 
 		while (valid == false)
 		{

@@ -203,6 +203,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private JLabel4j_std lblPrintQueueFor;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private String batchFormat = "";
+	private String batchValidate = "";
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private String expiryMode = "";
 	private JLabel4j_std label_1;
@@ -217,8 +218,10 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private BigDecimal caseDefaultQuantity;
 	private String jTextFieldBaseEAN;
 	private String jTextFieldBaseVariant;
-	private boolean DOMEditable = true;;
-	private boolean ExpiryEditable = true;;
+	private boolean DOMEditable = true;
+	private boolean ExpiryEditable = true;
+	private JTextField4j textField4jResource = new JTextField4j();
+	private JTextField4j textField4jCustomer = new JTextField4j();
 
 	public JInternalFrameProductionDeclaration(String procOrder)
 	{
@@ -251,11 +254,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 		jTextFieldBatch.setText("");
 		textFieldBatchExtension.setText("");
 
-		ctrl.getProperties("BATCH FORMAT");
-		batchFormat = ctrl.getKeyValue();
 		expiryMode = ctrl.getKeyValue("EXPIRY DATE MODE");
-
-		calcBBEBatch();
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_PAL_PROD_DEC"));
@@ -410,6 +409,12 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			materialuom.getMaterialUomProperties(material.getMaterial(), material.getBaseUom());
 			jTextFieldBaseEAN = materialuom.getEan();
 			jTextFieldBaseVariant = materialuom.getVariant();
+			textField4jResource.setText(processorder.getRequiredResource());
+			textField4jCustomer.setText(processorder.getCustomerID());
+			
+			
+			batchFormat = materialbatch.getBatchFormatString(processorder);
+			batchValidate = materialbatch.getBatchValidationString(processorder);
 
 			calcBBEBatch();
 		} else
@@ -449,6 +454,8 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 		jTextFieldEAN.setText("");
 		jTextFieldVariant.setText("");
 		jTextFieldSSCC.setText("");
+		textField4jResource.setText("");
+		textField4jCustomer.setText("");
 
 		jCheckBoxProductionDate.setSelected(false);
 		enableField(jSpinnerProductionDate, jCheckBoxProductionDate.isSelected());
@@ -666,7 +673,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			String batchNumber = jTextFieldBatch.getText() + textFieldBatchExtension.getText();
 			Timestamp expiryDate = JUtility.getTimestampFromDate(jSpinnerExpiryDate.getDate());
 
-			if (materialbatch.autoCreateMaterialBatch(material, batchNumber, expiryDate, ""))
+			if (materialbatch.autoCreateMaterialBatch(material, batchNumber,batchValidate, expiryDate, ""))
 			{
 
 				String key = createLabelData(noOfLabels);
@@ -1459,6 +1466,20 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			lblPrintQueueFor.setHorizontalAlignment(SwingConstants.TRAILING);
 			lblPrintQueueFor.setBounds(7, 461, 102, 16);
 			jDesktopPane1.add(lblPrintQueueFor);
+			
+
+			textField4jResource.setText("");
+			textField4jResource.setEnabled(false);
+			textField4jResource.setEditable(false);
+			textField4jResource.setBounds(588, 49, 148, 21);
+			jPanelProcessOrder.add(textField4jResource);
+			
+			
+			textField4jCustomer.setText("");
+			textField4jCustomer.setEnabled(false);
+			textField4jCustomer.setEditable(false);
+			textField4jCustomer.setBounds(587, 79, 148, 21);
+			jPanelProcessOrder.add(textField4jCustomer);
 
 		} catch (Exception e)
 		{

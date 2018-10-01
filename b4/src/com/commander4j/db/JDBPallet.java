@@ -136,7 +136,9 @@ public class JDBPallet
 	private Boolean autoCreateMaterialBatch()
 	{
 
-		boolean result = matBatch.autoCreateMaterialBatch(getMaterial(), getBatchNumber(), getBatchExpiry(), "");
+		String batchValidate = matBatch.getBatchValidationString(getProcessOrderObj(true));
+		
+		boolean result = matBatch.autoCreateMaterialBatch(getMaterial(), getBatchNumber(),batchValidate, getBatchExpiry(), "");
 
 		setErrorMessage("");
 		if (result == false)
@@ -1090,6 +1092,7 @@ public class JDBPallet
 	public void setProcessOrder(String process_order)
 	{
 		dbProcessOrder = JUtility.replaceNullStringwithBlank(process_order);
+
 	}
 
 	public void setQuantity(BigDecimal quantity)
