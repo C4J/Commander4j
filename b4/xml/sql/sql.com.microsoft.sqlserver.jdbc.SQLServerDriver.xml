@@ -898,7 +898,7 @@
 		</statement>
 		<statement>
 			<id>JDBCustomer.create</id>
-			<text>insert into {schema}app_customer (customer_id,customer_name,print_on_label,override_pack_label,pack_label_module_id,override_pallet_label,pallet_label_module_id,customer_data_01,customer_data_02,customer_data_03,customer_data_04,updated) values (?,?,?,?,?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_CUSTOMER (customer_id,customer_name,print_on_label,override_pack_label,pack_label_module_id,override_pallet_label,pallet_label_module_id,customer_data_01,customer_data_02,customer_data_03,customer_data_04,updated,OVERRIDE_BATCH_FORMAT,BATCH_FORMAT,BATCH_VALIDATION) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBCustomer.delete</id>
@@ -910,7 +910,7 @@
 		</statement>
 		<statement>
 			<id>JDBCustomer.update</id>
-			<text>update {schema}app_customer set customer_name=?,print_on_label=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=?,customer_data_01=?,customer_data_02=?,customer_data_03=?,customer_data_04=?,updated=?  where customer_id=?</text>
+			<text>update {schema}APP_CUSTOMER set customer_name=?,print_on_label=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=?,customer_data_01=?,customer_data_02=?,customer_data_03=?,customer_data_04=?,updated=?,OVERRIDE_BATCH_FORMAT=?,BATCH_FORMAT=?,BATCH_VALIDATION=? where customer_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBCustomer.isValidCustomer</id>
