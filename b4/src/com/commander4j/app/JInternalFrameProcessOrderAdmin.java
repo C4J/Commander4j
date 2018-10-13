@@ -79,6 +79,7 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
+import com.commander4j.tablemodel.JDBPalletTableModel;
 import com.commander4j.tablemodel.JDBProcessOrderTableModel;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
@@ -158,6 +159,9 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 	private JCalendarButton calendarButtondueDateFrom;
 	private JCalendarButton calendarButtondueDateTo;
 	private PreparedStatement listStatement;
+	private JMenu4j mnReferenceData;
+	private JMenuItem4j mntmEditMaterial;
+	private JMenuItem4j mntmEditLocation;
 
 	public JInternalFrameProcessOrderAdmin()
 	{
@@ -666,6 +670,50 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_SAMPLE_LABEL"));
 								popupMenu.add(newItemMenuItem);
 							}
+							{
+								mnReferenceData = new JMenu4j(lang.get("lbl_Referenced_Data"));
+								popupMenu.add(mnReferenceData);
+
+								{
+									mntmEditLocation = new JMenuItem4j(lang.get("btn_Edit_Location"));
+									mntmEditLocation.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(ActionEvent arg0)
+										{
+											int row = jTable1.getSelectedRow();
+											if (row >= 0)
+											{
+												String llocation = jTable1.getValueAt(row, 4).toString();
+												JLaunchMenu.runForm("FRM_ADMIN_LOCATION_EDIT", llocation);
+											}
+										}
+									});
+									mnReferenceData.add(mntmEditLocation);
+									mntmEditLocation.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_LOCATION_EDIT"));
+									mntmEditLocation.setIcon(Common.icon_location);
+								}
+								{
+									mntmEditMaterial = new JMenuItem4j(lang.get("btn_Edit_Material"));
+									mntmEditMaterial.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(ActionEvent arg0)
+										{
+											int row = jTable1.getSelectedRow();
+											if (row >= 0)
+											{
+												String lmaterial = jTable1.getValueAt(row, 1).toString();
+												JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_EDIT", lmaterial);
+											}
+										}
+									});
+									mnReferenceData.add(mntmEditMaterial);
+									mntmEditMaterial.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_EDIT"));
+									mntmEditMaterial.setIcon(Common.icon_material);
+								}
+
+
+							}
+
 							{
 								final JMenu4j sortByMenu = new JMenu4j();
 								sortByMenu.setText(lang.get("lbl_Sort_By"));

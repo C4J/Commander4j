@@ -28,6 +28,7 @@ package com.commander4j.sys;
  */
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -65,6 +66,10 @@ public class JDialogHosts extends JDialog
 	public JDialogHosts(JFrame frame)
 	{
 		super(frame);
+		
+		Cursor normalCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+		setCursor(normalCursor);
+		
 		initGUI();
 
 		setTitle("C4J Ver "+JVersion.getProgramVersion()+" ["+Common.hostVersion+"]");
@@ -80,6 +85,8 @@ public class JDialogHosts extends JDialog
 		setModal(true);
 		setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		
+
 
 	}
 

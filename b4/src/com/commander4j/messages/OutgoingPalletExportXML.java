@@ -48,6 +48,7 @@ import org.w3c.dom.Text;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBField;
+import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBStructure;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.sys.Common;
@@ -112,11 +113,11 @@ public class OutgoingPalletExportXML
 		return rs;
 	}
 
-	public Boolean saveAs(String filename, PreparedStatement stmt, Component parent,JLabel4j_std jStatusText)
+	public Boolean saveAs(String filename, PreparedStatement stmt, Component parent, JLabel4j_std jStatusText)
 	{
 
 		jStatusText.setForeground(Color.BLACK);
-		updateStatus(jStatusText,"Choose outout path and filename");
+		updateStatus(jStatusText, "Choose outout path and filename");
 		Boolean result = false;
 		JFileChooser saveXML = new JFileChooser();
 
@@ -136,14 +137,14 @@ public class OutgoingPalletExportXML
 				if (selectedFile != null)
 				{
 					String exportFilename = selectedFile.getAbsolutePath();
-					processMessage(exportFilename, stmt,jStatusText);
+					processMessage(exportFilename, stmt, jStatusText);
 					result = true;
-					updateStatus(jStatusText,"Export completed to "+exportFilename);
+					updateStatus(jStatusText, "Export completed to " + exportFilename);
 				}
 			}
 			else
 			{
-				updateStatus(jStatusText,"");
+				updateStatus(jStatusText, "");
 			}
 		}
 		catch (Exception ex)
@@ -154,8 +155,8 @@ public class OutgoingPalletExportXML
 
 		return result;
 	}
-	
-	private void updateStatus(JLabel4j_std jStatusText,String msg)
+
+	private void updateStatus(JLabel4j_std jStatusText, String msg)
 	{
 		jStatusText.setText(msg);
 		Rectangle progressRect = jStatusText.getBounds();
@@ -165,10 +166,10 @@ public class OutgoingPalletExportXML
 		jStatusText.paintImmediately(progressRect);
 	}
 
-	public Boolean processMessage(String filename, PreparedStatement stmtPallet,JLabel4j_std jStatusText)
+	public Boolean processMessage(String filename, PreparedStatement stmtPallet, JLabel4j_std jStatusText)
 	{
 		Boolean result = false;
-		
+
 		try
 		{
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -176,6 +177,7 @@ public class OutgoingPalletExportXML
 			Document document = builder.newDocument();
 
 			// Message Header Section //
+			JDBProcessOrder orderLookup = new JDBProcessOrder(getHostID(), getSessionID());
 			JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
 			Element message = (Element) document.createElement("message");
 			Element hostUniqueID = addElement(document, "hostRef", ctrl.getKeyValue("DEFAULT_LOCATION"));
@@ -184,7 +186,7 @@ public class OutgoingPalletExportXML
 			message.appendChild(messageRef);
 			Element messageType = addElement(document, "interfaceType", "Pallet Data XML");
 			message.appendChild(messageType);
-			Element messageInformation = addElement(document, "messageInformation",ctrl.getKeyValue("SCHEMA VERSION"));
+			Element messageInformation = addElement(document, "messageInformation", ctrl.getKeyValue("SCHEMA VERSION"));
 			message.appendChild(messageInformation);
 			Element messageDirection = addElement(document, "interfaceDirection", "Output");
 			message.appendChild(messageDirection);
@@ -192,23 +194,26 @@ public class OutgoingPalletExportXML
 			message.appendChild(messageDate);
 			Element messageData = (Element) document.createElement("messageData");
 
-			updateStatus(jStatusText,"Loading Pallet Data...");
+			updateStatus(jStatusText, "Loading Pallet Data...");
 
+			LinkedList<String> customers = new LinkedList<String>();
 			LinkedList<String> processOrders = new LinkedList<String>();
 			LinkedList<String> materialBatches = new LinkedList<String>();
 			LinkedList<String> materialUoms = new LinkedList<String>();
 			LinkedList<String> materials = new LinkedList<String>();
 			LinkedList<String> uoms = new LinkedList<String>();
 			LinkedList<String> SSCCs = new LinkedList<String>();
+
 			try
 			{
 				ResultSet rs = getTableResultSet(stmtPallet);
-				
+
 				String material = "";
 				String batch = "";
 				String uom = "";
 				String order = "";
-				String sscc="";
+				String sscc = "";
+				String cust_id = "";
 				while (rs.next())
 				{
 
@@ -219,7 +224,7 @@ public class OutgoingPalletExportXML
 					{
 						materials.add(material);
 					}
-					
+
 					// Build list of Batches //
 					material = rs.getString("MATERIAL");
 					batch = rs.getString("BATCH_NUMBER");
@@ -228,7 +233,7 @@ public class OutgoingPalletExportXML
 					{
 						materialBatches.add(material + " " + batch);
 					}
-					
+
 					// Build list of Material Uoms //
 					material = rs.getString("MATERIAL");
 					uom = rs.getString("UOM");
@@ -237,11 +242,11 @@ public class OutgoingPalletExportXML
 					{
 						materialUoms.add(material + " " + uom);
 					}
-					
+
 					if (uoms.contains(uom) == false)
 					{
 						uoms.add(uom);
-					}					
+					}
 
 					// Build list of Orders //
 					order = rs.getString("PROCESS_ORDER");
@@ -249,16 +254,28 @@ public class OutgoingPalletExportXML
 					if (processOrders.contains(order) == false)
 					{
 						processOrders.add(order);
+
+						// Lookup order to get customer id
+						if (orderLookup.getProcessOrderProperties(order))
+						{
+							// Get customer id
+							cust_id = orderLookup.getCustomerID();
+							if (customers.contains(cust_id) == false)
+							{
+								customers.add(cust_id);
+							}
+						}
 					}
-					
-					//Build list of SSCCs //
+
+					// Build list of SSCCs //
 					sscc = rs.getString("SSCC");
 
 					if (SSCCs.contains(sscc) == false)
 					{
 						SSCCs.add(sscc);
-					}					
-					updateStatus(jStatusText,"Found "+String.valueOf(materials.size())+" Materials. "+String.valueOf(materialBatches.size())+" Material Batches. "+String.valueOf(processOrders.size())+" Process Orders. "+String.valueOf(SSCCs.size())+" SSCCs. ");
+					}
+					updateStatus(jStatusText, "Found " + String.valueOf(materials.size()) + " Materials. " + String.valueOf(materialBatches.size()) + " Material Batches. " + String.valueOf(processOrders.size()) + " Process Orders. "
+							+ String.valueOf(SSCCs.size()) + " SSCCs. ");
 
 				}
 				rs.close();
@@ -291,15 +308,51 @@ public class OutgoingPalletExportXML
 
 				stmtOrders = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(sqlSelect);
 				stmtOrders.setFetchSize(100);
-				
+
 				for (int x = 0; x < noOfOrders; x++)
 				{
-					stmtOrders.setString(x+1, processOrders.get(x));
+					stmtOrders.setString(x + 1, processOrders.get(x));
 				}
 
 				messageData.appendChild(getTableXML(document, "APP_PROCESS_ORDER", stmtOrders));
+
+				stmtOrders.close();
 			}
-			
+
+			// Generate SQL Select for customers //
+			int noOfCustomers = customers.size();
+			if (noOfCustomers > 0)
+			{
+				String sqlSelect = "SELECT * FROM APP_CUSTOMER WHERE CUSTOMER_ID IN (";
+
+				for (int x = 0; x < noOfCustomers; x++)
+				{
+					if (x == 0)
+					{
+						sqlSelect = sqlSelect + "?";
+					}
+					else
+					{
+						sqlSelect = sqlSelect + ",?";
+					}
+				}
+				sqlSelect = sqlSelect + ")";
+
+				PreparedStatement stmtCustomers;
+
+				stmtCustomers = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(sqlSelect);
+				stmtCustomers.setFetchSize(100);
+
+				for (int x = 0; x < noOfCustomers; x++)
+				{
+					stmtCustomers.setString(x + 1, customers.get(x));
+				}
+
+				messageData.appendChild(getTableXML(document, "APP_CUSTOMER", stmtCustomers));
+
+				stmtCustomers.close();
+			}
+
 			// Generate SQL Select for UOMs //
 			int noUOMs = uoms.size();
 			if (noUOMs > 0)
@@ -323,15 +376,17 @@ public class OutgoingPalletExportXML
 
 				stmtUOMs = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(sqlSelect);
 				stmtUOMs.setFetchSize(100);
-				
+
 				for (int x = 0; x < noUOMs; x++)
 				{
-					stmtUOMs.setString(x+1, uoms.get(x));
+					stmtUOMs.setString(x + 1, uoms.get(x));
 				}
 
 				messageData.appendChild(getTableXML(document, "APP_UOM", stmtUOMs));
-			}			
-			
+
+				stmtUOMs.close();
+			}
+
 			// Generate SQL Select for Materials //
 			int noOfMaterials = materials.size();
 			if (noOfMaterials > 0)
@@ -355,13 +410,15 @@ public class OutgoingPalletExportXML
 
 				stmtMaterials = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(sqlSelect);
 				stmtMaterials.setFetchSize(100);
-				
+
 				for (int x = 0; x < noOfMaterials; x++)
 				{
-					stmtMaterials.setString(x+1, materials.get(x));
+					stmtMaterials.setString(x + 1, materials.get(x));
 				}
 
 				messageData.appendChild(getTableXML(document, "APP_MATERIAL", stmtMaterials));
+
+				stmtMaterials.close();
 			}
 
 			// Generate SQL Select for Material Uoms //
@@ -387,15 +444,17 @@ public class OutgoingPalletExportXML
 
 				stmtMaterialUoms = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(sqlSelect);
 				stmtMaterialUoms.setFetchSize(100);
-				
+
 				for (int x = 0; x < noOfMaterials; x++)
 				{
-					stmtMaterialUoms.setString(x+1, materials.get(x));
+					stmtMaterialUoms.setString(x + 1, materials.get(x));
 				}
 
 				messageData.appendChild(getTableXML(document, "APP_MATERIAL_UOM", stmtMaterialUoms));
-			}				
-			
+
+				stmtMaterialUoms.close();
+			}
+
 			// Generate SQL Select for batches //
 			int noOfBatches = materialBatches.size();
 			if (noOfBatches > 0)
@@ -415,19 +474,68 @@ public class OutgoingPalletExportXML
 
 				stmtBatches = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(sqlSelect);
 				stmtBatches.setFetchSize(100);
-				
+
 				int varPointer = 0;
 				for (int x = 0; x < noOfBatches; x++)
 				{
 					String[] pair = materialBatches.get(x).split(" ");
-					stmtBatches.setString(varPointer+1, pair[0]);
-					stmtBatches.setString(varPointer+2, pair[1]);
+					stmtBatches.setString(varPointer + 1, pair[0]);
+					stmtBatches.setString(varPointer + 2, pair[1]);
 					varPointer = varPointer + 2;
 				}
 
 				messageData.appendChild(getTableXML(document, "APP_MATERIAL_BATCH", stmtBatches));
-			}	
+
+				stmtBatches.close();
+			}
+
+			// Generate SQL Select for Material IDs //
+
+			String sqlSelect2 = "SELECT * FROM APP_MATERIAL_DATA_IDS ";
+			PreparedStatement stmtMaterialIDS;
+			stmtMaterialIDS = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(sqlSelect2);
+			stmtMaterialIDS.setFetchSize(100);
+			messageData.appendChild(getTableXML(document, "APP_MATERIAL_DATA_IDS", stmtMaterialIDS));
+			stmtMaterialIDS.close();
 			
+			
+			//===========
+			// Generate SQL Select for Material Customer Data //
+
+			if (noOfMaterials > 0)
+			{
+				String sqlSelect = "SELECT * FROM APP_MATERIAL_CUSTOMER_DATA WHERE MATERIAL IN (";
+
+				for (int x = 0; x < noOfMaterials; x++)
+				{
+					if (x == 0)
+					{
+						sqlSelect = sqlSelect + "?";
+					}
+					else
+					{
+						sqlSelect = sqlSelect + ",?";
+					}
+				}
+				sqlSelect = sqlSelect + ")";
+
+				PreparedStatement stmtMaterialCustomerData;
+
+				stmtMaterialCustomerData = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(sqlSelect);
+				stmtMaterialCustomerData.setFetchSize(100);
+
+				for (int x = 0; x < noOfMaterials; x++)
+				{
+					stmtMaterialCustomerData.setString(x + 1, materials.get(x));
+				}
+
+				messageData.appendChild(getTableXML(document, "APP_MATERIAL_CUSTOMER_DATA", stmtMaterialCustomerData));
+
+				stmtMaterialCustomerData.close();
+			}
+			//===========
+			
+
 			// Generate SQL Select for orders //
 			int noOfSSCCs = SSCCs.size();
 			if (noOfSSCCs > 0)
@@ -451,15 +559,17 @@ public class OutgoingPalletExportXML
 
 				stmtSSCCs = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(sqlSelect);
 				stmtSSCCs.setFetchSize(100);
-				
+
 				for (int x = 0; x < noOfSSCCs; x++)
 				{
-					stmtSSCCs.setString(x+1, SSCCs.get(x));
+					stmtSSCCs.setString(x + 1, SSCCs.get(x));
 				}
 
 				messageData.appendChild(getTableXML(document, "APP_PALLET", stmtSSCCs));
+
+				stmtSSCCs.close();
 			}
-			
+
 			// Table Section //
 			message.appendChild(messageData);
 
@@ -530,28 +640,28 @@ public class OutgoingPalletExportXML
 							break;
 						case "VARCHAR2":
 							value = rs.getString(col_name);
-							break;							
+							break;
 						case "DATETIME":
 							value = JUtility.getISOTimeStampStringFormat(rs.getTimestamp(col_name));
 							break;
 						case "DATE":
 							value = JUtility.getISOTimeStampStringFormat(rs.getTimestamp(col_name));
-							break;							
+							break;
 						case "INT":
 							value = String.valueOf(rs.getInt(col_name));
 							break;
 						case "FLOAT":
 							value = String.valueOf(rs.getFloat(col_name));
-							break;							
+							break;
 						case "NUMERIC":
 							value = rs.getBigDecimal(col_name).toString();
-							break;							
+							break;
 						case "DECIMAL":
 							value = rs.getBigDecimal(col_name).toString();
 							break;
 						case "NUMBER":
 							value = rs.getBigDecimal(col_name).toString();
-							break;							
+							break;
 						default:
 							value = "Unhandled type " + col_type;
 						}
@@ -569,7 +679,7 @@ public class OutgoingPalletExportXML
 					if (primaryKeys.contains(col_name))
 					{
 						fieldElement.setAttribute("primaryKey", "*");
-						
+
 					}
 					else
 					{
@@ -578,7 +688,7 @@ public class OutgoingPalletExportXML
 							fieldElement.setAttribute("primaryKey", "*");
 						}
 					}
-					
+
 					recordElement.appendChild(fieldElement);
 				}
 				tableElement.appendChild(recordElement);
