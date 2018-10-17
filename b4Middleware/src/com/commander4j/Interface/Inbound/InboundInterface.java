@@ -101,12 +101,12 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 									}
 									catch (TransformerConfigurationException e)
 									{
-										logger.error(e.getMessage());
+										logger.error("Error Map [" + map.getId() + "] "+ e.getMessage() + "\n\n"+ file.getAbsolutePath());
 										Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", e.getMessage() + "\n\n", file.getAbsolutePath());
 									}
 									catch (TransformerException e)
 									{
-										logger.error(e.getMessage());
+										logger.error("Error Map [" + map.getId() + "] "+ e.getMessage() + "\n\n"+ file.getAbsolutePath());
 										Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", e.getMessage() + "\n\n", file.getAbsolutePath());
 									}
 								}
@@ -117,7 +117,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 								}
 								else
 								{
-									logger.error("Error Map [" + map.getId() + "]", "Unable to save inbound xml" + " " + filename_imported);
+									logger.error("Error Map [" + map.getId() + "] Unable to save inbound xml" + " " + filename_imported);
 									Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", "Unable to save inbound xml" + "\n\n", filename_imported);
 								}
 							}
@@ -131,7 +131,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 		}
 		catch (Exception ex)
 		{
-			logger.error("InboundInterface Map [" + map.getId() + "]", " error :" + ex.getMessage());
+			logger.error("InboundInterface Map [" + map.getId() + "] error :" + ex.getMessage());
 			Common.emailqueue.addToQueue("Error", "InboundInterface Map [" + map.getId() + "]", " error :" + ex.getMessage(), "");
 		}
 

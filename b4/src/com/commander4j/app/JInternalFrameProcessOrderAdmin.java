@@ -79,7 +79,6 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
-import com.commander4j.tablemodel.JDBPalletTableModel;
 import com.commander4j.tablemodel.JDBProcessOrderTableModel;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
