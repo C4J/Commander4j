@@ -93,9 +93,11 @@ import com.commander4j.util.JUtility;
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameProcessOrderAdmin.jpg" >
  * 
- * @see com.commander4j.db.JDBProcessOrder JDBProcesOrder 
- * @see com.commander4j.app.JInternalFrameProcessOrderProperties JInternalFrameProcessOrderProperties
- * @see com.commander4j.app.JInternalFrameProcessOrderLabel JInternalFrameProcessOrderLabel
+ * @see com.commander4j.db.JDBProcessOrder JDBProcesOrder
+ * @see com.commander4j.app.JInternalFrameProcessOrderProperties
+ *      JInternalFrameProcessOrderProperties
+ * @see com.commander4j.app.JInternalFrameProcessOrderLabel
+ *      JInternalFrameProcessOrderLabel
  */
 public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 {
@@ -276,7 +278,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				{
 					JUtility.errorBeep();
 					JOptionPane.showMessageDialog(Common.mainForm, p.getErrorMessage(), lang.get("dlg_Delete"), JOptionPane.WARNING_MESSAGE);
-				} else
+				}
+				else
 				{
 					buildSQL();
 					populateList();
@@ -291,6 +294,35 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		JLaunchReport.runReport("RPT_PROCESS_ORDERS", null, "", temp, "");
 	}
 
+	private String newRecord()
+	{
+		String result = "";
+		JDBProcessOrder p = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
+		lprocessorder = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Process_Order_Add"));
+		if (lprocessorder != null)
+		{
+			if (lprocessorder.equals("") == true)
+			{
+				lprocessorder = p.generateNewProcessOrderNo();
+			}
+			else
+			{
+				lprocessorder = p.formatProcessOrderNo(lprocessorder);
+			}
+			lprocessorder = lprocessorder.toUpperCase();
+			p.setProcessOrder(lprocessorder);
+			if (p.isValidProcessOrder() == false)
+			{
+				result = lprocessorder;
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(Common.mainForm, "Process Order [" + lprocessorder + "] already exists", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+			}
+		}
+		return result;
+	}
+
 	private void addRecord()
 	{
 		JDBProcessOrder p = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
@@ -300,7 +332,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			if (lprocessorder.equals("") == true)
 			{
 				lprocessorder = p.generateNewProcessOrderNo();
-			} else
+			}
+			else
 			{
 				lprocessorder = p.formatProcessOrderNo(lprocessorder);
 			}
@@ -309,7 +342,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			if (p.isValidProcessOrder() == false)
 			{
 				JLaunchMenu.runForm("FRM_ADMIN_PROCESS_ORDER_EDIT", lprocessorder);
-			} else
+			}
+			else
 			{
 				JOptionPane.showMessageDialog(Common.mainForm, "Process Order [" + lprocessorder + "] already exists", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 			}
@@ -369,6 +403,17 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		}
 	}
 
+	private String copyRecord()
+	{
+		String result = "";
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			result = jTable1.getValueAt(row, 0).toString();
+		}
+		return result;
+	}
+
 	private void prodDec()
 	{
 		int row = jTable1.getSelectedRow();
@@ -378,7 +423,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			JLaunchMenu.runForm("FRM_PAL_PROD_DEC", lprocessorder);
 		}
 	}
-	
+
 	private void labelPrint()
 	{
 		int row = jTable1.getSelectedRow();
@@ -398,7 +443,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			JLaunchMenu.runForm("FRM_QM_SAMPLE_LABEL", lprocessorder);
 		}
 	}
-	
+
 	private void setSequence(boolean descending)
 	{
 		jToggleButtonSequence.setSelected(descending);
@@ -406,7 +451,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
 			jToggleButtonSequence.setIcon(Common.icon_descending);
-		} else
+		}
+		else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
 			jToggleButtonSequence.setIcon(Common.icon_ascending);
@@ -564,6 +610,32 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							}
 
 							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_copy);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										String oldOrder = copyRecord();
+										if (oldOrder.equals("") == false)
+										{
+											String newOrder = newRecord();
+											if (newOrder.equals("") == false)
+											{
+												JDBProcessOrder processOrder = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
+												processOrder.clone(oldOrder, newOrder);
+												JLaunchMenu.runForm("FRM_ADMIN_PROCESS_ORDER_EDIT", newOrder);
+												buildSQL();
+												populateList();
+											}
+										}
+									}
+								});
+								newItemMenuItem.setText(lang.get("btn_Copy"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PROCESS_ORDER_ADD"));
+								popupMenu.add(newItemMenuItem);
+							}
+
+							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -709,7 +781,6 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 									mntmEditMaterial.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_EDIT"));
 									mntmEditMaterial.setIcon(Common.icon_material);
 								}
-
 
 							}
 
@@ -1134,7 +1205,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							{
 								dueDateFrom.setEnabled(true);
 								calendarButtondueDateFrom.setEnabled(true);
-							} else
+							}
+							else
 							{
 								dueDateFrom.setEnabled(false);
 								calendarButtondueDateFrom.setEnabled(false);
@@ -1156,7 +1228,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							{
 								dueDateTo.setEnabled(true);
 								calendarButtondueDateTo.setEnabled(true);
-							} else
+							}
+							else
 							{
 								dueDateTo.setEnabled(false);
 								calendarButtondueDateTo.setEnabled(false);
@@ -1295,7 +1368,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							if (jCheckBoxLimit.isSelected())
 							{
 								jSpinnerLimit.setEnabled(true);
-							} else
+							}
+							else
 							{
 								jSpinnerLimit.setEnabled(false);
 							}
@@ -1367,7 +1441,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							{
 								jFormattedTextFieldQuantity.setValue(0);
 								jFormattedTextFieldQuantity.setEnabled(true);
-							} else
+							}
+							else
 							{
 								jFormattedTextFieldQuantity.setValue(0);
 								jFormattedTextFieldQuantity.setEnabled(false);
@@ -1478,7 +1553,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jDesktopPane1.add(btnLookupResource);
 				}
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

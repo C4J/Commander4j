@@ -42,9 +42,9 @@ import org.apache.log4j.Logger;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
-
 /**
- * The JDBProcessOrder class is responsible for updates to the table APP_PROCESS_ORDER.
+ * The JDBProcessOrder class is responsible for updates to the table
+ * APP_PROCESS_ORDER.
  *
  */
 public class JDBProcessOrder
@@ -112,7 +112,8 @@ public class JDBProcessOrder
 		setRequiredResource(reqdResource);
 	}
 
-	public LinkedList<String> getResourceList(String line,String group) {
+	public LinkedList<String> getResourceList(String line, String group)
+	{
 		LinkedList<String> resourceList = new LinkedList<String>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -143,7 +144,7 @@ public class JDBProcessOrder
 
 		return resourceList;
 	}
-	
+
 	public void clear()
 	{
 		setProcessOrder("");
@@ -156,7 +157,6 @@ public class JDBProcessOrder
 		setRecipe("");
 		setRequiredQuantity(new BigDecimal(0));
 	}
-
 
 	public boolean create()
 	{
@@ -171,7 +171,8 @@ public class JDBProcessOrder
 			if (isValidProcessOrder(getProcessOrder()) == true)
 			{
 				setErrorMessage("Key violation - material [" + getMaterial() + "] already exists !");
-			} else
+			}
+			else
 			{
 				try
 				{
@@ -183,7 +184,8 @@ public class JDBProcessOrder
 					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 					result = update();
 					stmtupdate.close();
-				} catch (SQLException e)
+				}
+				catch (SQLException e)
 				{
 					setErrorMessage(e.getMessage());
 				}
@@ -192,7 +194,6 @@ public class JDBProcessOrder
 
 		return result;
 	}
-
 
 	public boolean delete()
 	{
@@ -215,9 +216,42 @@ public class JDBProcessOrder
 				stmtupdate.close();
 				result = true;
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
+	public boolean clone(String currentOrderNo, String NewOrderNo)
+	{
+		boolean result = false;
+		setErrorMessage("");
+
+		if (isValidProcessOrder(NewOrderNo) == false)
+		{
+			if (getProcessOrderProperties(currentOrderNo))
+			{
+				setProcessOrder(NewOrderNo);
+				if (create())
+				{
+					if (update())
+					{
+						setErrorMessage("Order " + NewOrderNo + " cloned from " + currentOrderNo);
+						result = true;
+					}
+				}
+			}
+			else
+			{
+				setErrorMessage("Order " + currentOrderNo + " not found.");
+			}
+		}
+		else
+		{
+			setErrorMessage("Order " + NewOrderNo + " already exists.");
 		}
 
 		return result;
@@ -235,7 +269,6 @@ public class JDBProcessOrder
 		result = JUtility.formatNumber(processOrderNo, processOrderNoFormat);
 		return result;
 	}
-
 
 	public String generateNewProcessOrderNo()
 	{
@@ -266,7 +299,8 @@ public class JDBProcessOrder
 				}
 			}
 
-		} while (retry);
+		}
+		while (retry);
 
 		return result;
 	}
@@ -296,18 +330,15 @@ public class JDBProcessOrder
 
 	}
 
-
 	public String getDescription()
 	{
 		return dbDescription;
 	}
 
-
 	public Timestamp getDueDate()
 	{
 		return dbDueDate;
 	}
-
 
 	public String getErrorMessage()
 	{
@@ -324,24 +355,20 @@ public class JDBProcessOrder
 		return JUtility.replaceNullStringwithBlank(dbInspectionID);
 	}
 
-
 	public String getLocation()
 	{
 		return dbLocationId;
 	}
-
 
 	public String getMaterial()
 	{
 		return dbMaterial;
 	}
 
-
 	public String getProcessOrder()
 	{
 		return dbProcessOrder;
 	}
-
 
 	public Vector<JDBProcessOrder> getProcessOrderData(PreparedStatement criteria)
 	{
@@ -351,7 +378,8 @@ public class JDBProcessOrder
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
 			result.addElement(new JDBProcessOrder("process_order", "material", "description", "status", "location_id", null, "recipe_id", "pallet_status", "resource"));
-		} else
+		}
+		else
 		{
 			try
 			{
@@ -359,12 +387,13 @@ public class JDBProcessOrder
 
 				while (rs.next())
 				{
-					result.addElement(new JDBProcessOrder(rs.getString("process_order"), rs.getString("material"), rs.getString("description"), rs.getString("status"), rs.getString("location_id"), rs.getTimestamp("due_date"), rs
-							.getString("recipe_id"), rs.getString("default_pallet_status"), rs.getString("required_resource")));
+					result.addElement(new JDBProcessOrder(rs.getString("process_order"), rs.getString("material"), rs.getString("description"), rs.getString("status"), rs.getString("location_id"), rs.getTimestamp("due_date"), rs.getString("recipe_id"),
+							rs.getString("default_pallet_status"), rs.getString("required_resource")));
 				}
 				rs.close();
 
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -382,7 +411,8 @@ public class JDBProcessOrder
 		{
 			rs = criteria.executeQuery();
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -438,7 +468,8 @@ public class JDBProcessOrder
 						getPropertiesfromResultSet(rs);
 						result = true;
 					}
-				} else
+				}
+				else
 				{
 					setErrorMessage("Invalid Process Order [" + process_order + "]");
 				}
@@ -446,28 +477,29 @@ public class JDBProcessOrder
 				stmt.close();
 			}
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 
 	}
-	
+
 	public String getRequiredUOMQuantity()
 	{
 		String result = "0";
 		Double dbReqdDenom = new Double(0);
 		Double dbReqdNumer = new Double(0);
 		Double dbCaseQuantity = new Double(0);
-		
+
 		if (matuom.getMaterialUomProperties(getMaterial(), getRequiredUom()))
 		{
 			dbReqdNumer = Double.valueOf(matuom.getNumerator());
 			dbReqdDenom = Double.valueOf(matuom.getDenominator());
 			dbCaseQuantity = dbReqdNumer / dbReqdDenom;
 		}
-		
+
 		NumberFormat formatter = new DecimalFormat("#.000");
 		result = formatter.format(dbCaseQuantity.doubleValue()); // -1234.567000
 		return result;
@@ -506,7 +538,8 @@ public class JDBProcessOrder
 					dbProductionQuantity = step1 * step2;
 				}
 			}
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			dbProductionQuantity = new Double(0);
 		}
@@ -533,7 +566,8 @@ public class JDBProcessOrder
 			setRequiredResource(rs.getString("required_resource"));
 			setCustomerID(rs.getString("customer_id"));
 			setInspectionID(rs.getString("inspection_id"));
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -592,19 +626,22 @@ public class JDBProcessOrder
 		{
 			result = false;
 			setErrorMessage(material.getErrorMessage());
-		} else
+		}
+		else
 		{
 			if (location.isValidLocation(getLocation()) == false)
 			{
 				result = false;
 				setErrorMessage(location.getErrorMessage());
-			} else
+			}
+			else
 			{
 				if (matuom.isValidMaterialUom(getMaterial(), getRequiredUom()) == false)
 				{
 					result = false;
 					setErrorMessage(matuom.getErrorMessage());
-				} else
+				}
+				else
 				{
 					if (customer.isValidCustomer(getCustomerID()) == false)
 					{
@@ -640,13 +677,15 @@ public class JDBProcessOrder
 			if (rs.next())
 			{
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Invalid Process Order " + getProcessOrder());
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -850,10 +889,11 @@ public class JDBProcessOrder
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-				
+
 				poRes.create(getRequiredResource());
-				
-			} catch (SQLException e)
+
+			}
+			catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
