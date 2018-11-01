@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		ALTER 
+		VIEW `view_qm_results` AS
+		    SELECT 
+		        `samp`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+		        `samp`.`MATERIAL` AS `MATERIAL`,
+		        `samp`.`SAMPLE_ID` AS `SAMPLE_ID`,
+		        `samp`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
+		        `samp`.`USER_DATA_1` AS `USER_DATA_1`,
+		        `samp`.`USER_DATA_2` AS `USER_DATA_2`,
+		        `samp`.`USER_DATA_3` AS `USER_DATA_3`,
+		        `samp`.`USER_DATA_4` AS `USER_DATA_4`,
+		        `result`.`TEST_ID` AS `TEST_ID`,
+		        `dict`.`DESCRIPTION` AS `TEST_DESCRIPTION`,
+		        `result`.`VALUE` AS `VALUE`,
+		        COALESCE(`valist`.`DESCRIPTION`, `result`.`VALUE`) AS `RESULT`
+		    FROM
+		        (((`app_qm_sample` `samp`
+		        JOIN `app_qm_result` `result` ON ((`result`.`SAMPLE_ID` = `samp`.`SAMPLE_ID`)))
+		        JOIN `app_qm_dictionary` `dict` ON ((`dict`.`TEST_ID` = `result`.`TEST_ID`)))
+		        JOIN `app_qm_selectlist` `valist` ON (((`valist`.`SELECT_LIST_ID` = `dict`.`SELECT_LIST_ID`)
+		        AND (`valist`.`VALUE` = `result`.`VALUE`))))
+	</statement>
+	
+</DDL>
