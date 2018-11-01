@@ -16,12 +16,13 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/db/mssql-jdbc-6.4.0.jre8.jar 
  lib/db/mysql-connector-java-8.0.12.jar 
  lib/db/ojdbc8.jar 
- lib/jasper/jasperreports-6.6.0.jar 
- lib/jasper/jasperreports-chart-customizers-6.6.0.jar 
- lib/jasper/jasperreports-chart-themes-6.6.0.jar 
- lib/jasper/jasperreports-fonts-6.6.0.jar 
- lib/jasper/jasperreports-functions-6.6.0.jar 
- lib/jasper/jasperreports-javaflow-6.6.0.jar 
+ lib/jasper/jasperreports-6.7.0.jar 
+ lib/jasper/jasperreports-chart-customizers-6.7.0.jar 
+ lib/jasper/jasperreports-chart-themes-6.7.0.jar 
+ lib/jasper/jasperreports-custom-visualization-6.7.0.jar 
+ lib/jasper/jasperreports-fonts-6.7.0.jar 
+ lib/jasper/jasperreports-functions-6.7.0.jar 
+ lib/jasper/jasperreports-javaflow-6.7.0.jar 
  lib/jasperlib/ant-1.7.1.jar 
  lib/jasperlib/antlr-2.7.5.jar 
  lib/jasperlib/asm-all-5.2.jar 
@@ -64,7 +65,7 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib/jackson-annotations-2.9.5.jar 
  lib/jasperlib/jackson-core-2.9.5.jar 
  lib/jasperlib/jackson-databind-2.9.5.jar 
- lib/jasperlib/jasperreports-annotation-processors-6.6.0.jar 
+ lib/jasperlib/jasperreports-annotation-processors-6.7.0.jar 
  lib/jasperlib/jasperreports-metadata-6.6.0.jar 
  lib/jasperlib/jaxen-1.1.1.jar 
  lib/jasperlib/jcommon-1.0.23.jar 
