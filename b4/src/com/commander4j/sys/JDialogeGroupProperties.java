@@ -111,7 +111,7 @@ public class JDialogeGroupProperties extends JDialog
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(366, 145));
-			this.setBounds(0, 0, 435, 140);
+			this.setBounds(0, 0, 435, 152);
 			setModal(true);
 			this.setTitle("Group Properties");
 

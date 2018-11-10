@@ -233,7 +233,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 			getContentPane().setLayout(null);
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 829, 531);
+				jDesktopPane1.setBounds(0, 0, 829, 511);
 				jDesktopPane1.setBackground(Common.color_app_window);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new Dimension(792, 429));
@@ -409,7 +409,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(510, 471, 116, 32);
+					jButtonClose.setBounds(510, 468, 116, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -439,7 +439,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					jButtonSave = new JButton4j(Common.icon_update);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setText(lang.get("btn_Save"));
-					jButtonSave.setBounds(156, 471, 116, 32);
+					jButtonSave.setBounds(156, 468, 116, 32);
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setEnabled(false);
 					jButtonSave.addActionListener(new ActionListener() {
@@ -458,14 +458,14 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(392, 471, 116, 32);
+					jButtonHelp.setBounds(392, 468, 116, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonUndo = new JButton4j(Common.icon_undo);
 					jDesktopPane1.add(jButtonUndo);
 					jButtonUndo.setText(lang.get("btn_Undo"));
-					jButtonUndo.setBounds(274, 471, 116, 32);
+					jButtonUndo.setBounds(274, 468, 116, 32);
 					jButtonUndo.setEnabled(false);
 					jButtonUndo.setMnemonic(lang.getMnemonicChar());
 					jButtonUndo.addActionListener(new ActionListener() {

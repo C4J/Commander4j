@@ -200,7 +200,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(455, 518));
-			this.setBounds(0, 0, 465+Common.LFAdjustWidth, 541+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 465, 550);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -213,7 +213,7 @@ public class JInternalFrameUomAdmin extends javax.swing.JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 0, 287, 509);
+					jScrollPane1.setBounds(0, 0, 287, 518);
 					{
 						ListModel<JDBUom> jList1Model = new DefaultComboBoxModel<JDBUom>();
 						jListUoms = new JList4j<JDBUom>();

@@ -201,7 +201,7 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(538, 440));
-			this.setBounds(0, 0, 526 + Common.LFAdjustWidth, 459 + Common.LFAdjustHeight);
+			this.setBounds(0, 0, 526, 546);
 			setVisible(true);
 
 			this.setClosable(true);
@@ -210,11 +210,11 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 				jDesktopPane1 = new JDesktopPane();
 				jDesktopPane1.setBackground(Common.color_app_window);
 				this.getContentPane().add(jDesktopPane1, BorderLayout.NORTH);
-				jDesktopPane1.setPreferredSize(new Dimension(536, 415));
+				jDesktopPane1.setPreferredSize(new Dimension(536, 515));
 				{
 					jScrollPaneAssigned = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneAssigned);
-					jScrollPaneAssigned.setBounds(10, 25, 220, 340);
+					jScrollPaneAssigned.setBounds(10, 25, 220, 431);
 					jScrollPaneAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
 						ListModel<JDBListData> jListAssignedModel = new DefaultComboBoxModel<JDBListData>();
@@ -229,7 +229,7 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 				{
 					jScrollPaneUnAssigned = new JScrollPane();
 					jDesktopPane1.add(jScrollPaneUnAssigned);
-					jScrollPaneUnAssigned.setBounds(272, 25, 220, 340);
+					jScrollPaneUnAssigned.setBounds(272, 25, 220, 431);
 					jScrollPaneUnAssigned.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 					{
 						ListModel<JDBListData> jListUnAssignedModel = new DefaultComboBoxModel<JDBListData>();
@@ -358,7 +358,7 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(369, 373, 110, 32);
+					jButtonClose.setBounds(369, 468, 110, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener()
 					{
@@ -372,14 +372,14 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(258, 373, 110, 32);
+					jButtonHelp.setBounds(258, 468, 110, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonSave = new JButton4j(Common.icon_update);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setText(lang.get("btn_Save"));
-					jButtonSave.setBounds(30, 373, 112, 32);
+					jButtonSave.setBounds(30, 468, 112, 32);
 					jButtonSave.setEnabled(false);
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.addActionListener(new ActionListener()
@@ -397,7 +397,7 @@ public class JInternalFrameRFMenu extends javax.swing.JInternalFrame
 					jButtonUndo = new JButton4j(Common.icon_undo);
 					jDesktopPane1.add(jButtonUndo);
 					jButtonUndo.setText(lang.get("btn_Undo"));
-					jButtonUndo.setBounds(145, 373, 112, 32);
+					jButtonUndo.setBounds(145, 468, 112, 32);
 					jButtonUndo.setEnabled(false);
 					jButtonUndo.setMnemonic(lang.getMnemonicChar());
 					jButtonUndo.addActionListener(new ActionListener()

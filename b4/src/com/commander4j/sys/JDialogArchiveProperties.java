@@ -152,14 +152,14 @@ public class JDialogArchiveProperties extends JDialog
 		{
 			// setDefaultLookAndFeelDecorated(true);
 			setPreferredSize(new java.awt.Dimension(460, 163));
-			this.setBounds(25, 25, 678, 330);
+			this.setBounds(25, 25, 678, 351);
 			setModal(true);
 			this.setTitle("Archive Properties");
 			getContentPane().setLayout(null);
 
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 678, 308);
+				jDesktopPane1.setBounds(0, 0, 678, 329);
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new Dimension(452, 140));
