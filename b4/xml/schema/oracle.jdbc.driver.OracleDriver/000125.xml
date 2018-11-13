@@ -2,7 +2,10 @@
 <!DOCTYPE DDL SYSTEM "schema.dtd">
 <DDL>
 
-<statement>null</statement>
+	<statement>	
+		ALTER TABLE SYS_INTERFACE_LOG MODIFY ( MESSAGE_ERROR VARCHAR2(200) )
+	</statement>	
+	
 
 	
 </DDL>

@@ -26,4 +26,8 @@
 		        AND (`valist`.`VALUE` = `result`.`VALUE`))))
 	</statement>
 	
+	<statement>
+			ALTER TABLE `SYS_INTERFACE_LOG` MODIFY COLUMN `MESSAGE_ERROR` VARCHAR(200) DEFAULT NULL;
+	</statement>
+	
 </DDL>

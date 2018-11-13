@@ -2,7 +2,9 @@
 <!DOCTYPE DDL SYSTEM "schema.dtd">
 <DDL>
 
-<statement>null</statement>
+	<statement>
+		ALTER TABLE [dbo].[SYS_INTERFACE_LOG] ALTER COLUMN [MESSAGE_ERROR] VARCHAR(200)
+	</statement>
 
 	
 </DDL>
