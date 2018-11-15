@@ -739,17 +739,17 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(122, 11, 120, 21);
+					jTextFieldMaterial.setBounds(122, 11, 120, 22);
 				}
 				{
 					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
 					jDesktopPane1.add(jTextFieldLocation);
-					jTextFieldLocation.setBounds(340, 11, 103, 21);
+					jTextFieldLocation.setBounds(340, 11, 103, 22);
 				}
 				{
 					jTextFieldCustomer = new JTextField4j(JDBCustomer.field_customer_id);
 					jDesktopPane1.add(jTextFieldCustomer);
-					jTextFieldCustomer.setBounds(340, 105, 103, 21);
+					jTextFieldCustomer.setBounds(340, 105, 103, 22);
 				}
 				{
 					jLabel1 = new JLabel4j_std();
@@ -948,7 +948,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
 					jDesktopPane1.add(jTextFieldBatch);
-					jTextFieldBatch.setBounds(582, 11, 98, 21);
+					jTextFieldBatch.setBounds(582, 11, 98, 22);
 				}
 				{
 					jLabelProcessOrder = new JLabel4j_std();
@@ -960,7 +960,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
 					jDesktopPane1.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setBounds(582, 44, 98, 21);
+					jTextFieldProcessOrder.setBounds(582, 44, 98, 22);
 				}
 				{
 					jLabelProductionDate = new JLabel4j_std();
@@ -972,7 +972,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					jTextFieldEAN = new JTextField4j(JDBMaterialUom.field_ean);
 					jDesktopPane1.add(jTextFieldEAN);
-					jTextFieldEAN.setBounds(805, 75, 117, 21);
+					jTextFieldEAN.setBounds(805, 75, 117, 22);
 					jTextFieldEAN.setFocusCycleRoot(true);
 				}
 				{
@@ -995,7 +995,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jTextFieldVariant = new JTextField4j(JDBMaterialUom.field_variant);
 					jTextFieldVariant.setHorizontalAlignment(SwingConstants.CENTER);
 					jDesktopPane1.add(jTextFieldVariant);
-					jTextFieldVariant.setBounds(937, 75, 21, 21);
+					jTextFieldVariant.setBounds(937, 75, 21, 22);
 					jTextFieldVariant.setFocusCycleRoot(true);
 				}
 				{
@@ -1205,7 +1205,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
 					jDesktopPane1.add(jTextFieldSSCC);
-					jTextFieldSSCC.setBounds(122, 105, 120, 21);
+					jTextFieldSSCC.setBounds(122, 105, 120, 22);
 				}
 				{
 					jLabelSCC = new JLabel4j_std();
@@ -1302,7 +1302,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					jTextFieldDespatch_No = new JTextField4j(JDBDespatch.field_despatch_no);
 					jTextFieldDespatch_No.setFocusCycleRoot(true);
-					jTextFieldDespatch_No.setBounds(805, 44, 117, 21);
+					jTextFieldDespatch_No.setBounds(805, 44, 117, 22);
 					jDesktopPane1.add(jTextFieldDespatch_No);
 				}
 
@@ -1383,7 +1383,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				jDesktopPane1.add(label);
 
 				textFieldMHN = new JTextField4j(JDBMHN.field_mhn_number);
-				textFieldMHN.setBounds(805, 105, 117, 21);
+				textFieldMHN.setBounds(805, 105, 117, 22);
 				jDesktopPane1.add(textFieldMHN);
 
 				JLabel4j_std label_1 = new JLabel4j_std();
@@ -2077,7 +2077,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			jDesktopPane1.add(jLabelCreatedUser);
 
 			textFieldUserCreated = new JTextField4j(JDBUser.field_user_id);
-			textFieldUserCreated.setBounds(582, 134, 98, 21);
+			textFieldUserCreated.setBounds(582, 134, 98, 22);
 			jDesktopPane1.add(textFieldUserCreated);
 
 			JButton4j jButtonLookupUserCreated = new JButton4j(Common.icon_lookup);
@@ -2104,7 +2104,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			jDesktopPane1.add(jLabelUpdatedUser);
 
 			textFieldUserUpdated = new JTextField4j(JDBUser.field_user_id);
-			textFieldUserUpdated.setBounds(582, 167, 98, 21);
+			textFieldUserUpdated.setBounds(582, 167, 98, 22);
 			jDesktopPane1.add(textFieldUserUpdated);
 
 			JButton4j jButtonLookupUserUpdated = new JButton4j(Common.icon_lookup);

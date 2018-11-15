@@ -142,7 +142,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 	private JTextField4j jTextFieldMaterial;
 	private JTextField4j jTextFieldCustomer;
 	private JTextField4j jTextFieldDescription;
-	private JTextField4j jTextFieldCustomerID;
+	private JTextField4j jTextFieldInspectionID;
 	private JLabel4j_std jLabel3;
 	private JLabel4j_std jLabel1;
 	private JTable jTable1;
@@ -239,7 +239,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		jTextFieldLocation.setText("");
 		jTextFieldRecipe.setText("");
 		jTextFieldCustomer.setText("");
-		jTextFieldCustomerID.setText("");
+		jTextFieldInspectionID.setText("");
 		jTextFieldRequiredResource.setText("");
 		search();
 	}
@@ -494,7 +494,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		query.addParamtoSQL("description like ", "%" + jTextFieldDescription.getText() + "%");
 		query.addParamtoSQL("required_resource = ", jTextFieldRequiredResource.getText());
 		query.addParamtoSQL("customer_id=", jTextFieldCustomer.getText());
-		query.addParamtoSQL("customer_id=", jTextFieldCustomerID.getText());
+		query.addParamtoSQL("inspection_id=", jTextFieldInspectionID.getText());
 
 		query.addParamtoSQL("required_uom=", ((JDBUom) jComboBoxUOM.getSelectedItem()).getInternalUom());
 
@@ -1114,22 +1114,22 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBProcessOrder.field_description);
-					jTextFieldDescription.setBounds(629, 12, 354, 21);
+					jTextFieldDescription.setBounds(629, 12, 354, 22);
 					jDesktopPane1.add(jTextFieldDescription);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
-					jTextFieldMaterial.setBounds(383, 46, 98, 21);
+					jTextFieldMaterial.setBounds(383, 46, 98, 22);
 					jDesktopPane1.add(jTextFieldMaterial);
 				}
 				{
 					jTextFieldCustomer = new JTextField4j(JDBCustomer.field_customer_id);
-					jTextFieldCustomer.setBounds(383, 12, 98, 21);
+					jTextFieldCustomer.setBounds(383, 12, 98, 22);
 					jDesktopPane1.add(jTextFieldCustomer);
 				}
 				{
 					JLabel4j_std label4j_std = new JLabel4j_std();
-					label4j_std.setText(lang.get("lbl_Customer_ID"));
+					label4j_std.setText(lang.get("lbl_Inspection_ID"));
 					label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
 					label4j_std.setBounds(275, 110, 98, 21);
 					jDesktopPane1.add(label4j_std);
@@ -1143,7 +1143,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				}
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
-					jTextFieldProcessOrder.setBounds(148, 12, 105, 21);
+					jTextFieldProcessOrder.setBounds(148, 12, 105, 22);
 					jDesktopPane1.add(jTextFieldProcessOrder);
 				}
 				{
@@ -1162,12 +1162,12 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				}
 				{
 					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
-					jTextFieldLocation.setBounds(857, 46, 105, 21);
+					jTextFieldLocation.setBounds(857, 46, 105, 22);
 					jDesktopPane1.add(jTextFieldLocation);
 				}
 				{
 					jTextFieldRecipe = new JTextField4j(JDBProcessOrder.field_recipe_id);
-					jTextFieldRecipe.setBounds(629, 46, 125, 21);
+					jTextFieldRecipe.setBounds(629, 46, 125, 22);
 					jDesktopPane1.add(jTextFieldRecipe);
 				}
 				{
@@ -1501,13 +1501,13 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 						{
 							JLaunchLookup.dlgAutoExec = true;
 							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.customers())
+							if (JLaunchLookup.qmInspections())
 							{
-								jTextFieldCustomerID.setText(JLaunchLookup.dlgResult);
+								jTextFieldInspectionID.setText(JLaunchLookup.dlgResult);
 							}
 						}
 					});
-					btnLookupCustomer.setBounds(498, 110, 22, 21);
+					btnLookupCustomer.setBounds(481, 110, 22, 21);
 					jDesktopPane1.add(btnLookupCustomer);
 				}
 				{
@@ -1519,7 +1519,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jDesktopPane1.add(label);
 
 					jTextFieldRequiredResource = new JTextField4j(JDBProcessOrder.field_required_resource);
-					jTextFieldRequiredResource.setBounds(148, 110, 105, 21);
+					jTextFieldRequiredResource.setBounds(148, 110, 105, 22);
 					jDesktopPane1.add(jTextFieldRequiredResource);
 
 					calendarButtondueDateFrom = new JCalendarButton(dueDateFrom);
@@ -1532,9 +1532,9 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					calendarButtondueDateTo.setBounds(510, 79, 21, 21);
 					jDesktopPane1.add(calendarButtondueDateTo);
 
-					jTextFieldCustomerID = new JTextField4j(JDBCustomer.field_customer_id);
-					jTextFieldCustomerID.setBounds(383, 110, 117, 21);
-					jDesktopPane1.add(jTextFieldCustomerID);
+					jTextFieldInspectionID = new JTextField4j(JDBCustomer.field_customer_id);
+					jTextFieldInspectionID.setBounds(383, 110, 98, 22);
+					jDesktopPane1.add(jTextFieldInspectionID);
 
 					JButton4j btnLookupResource = new JButton4j(Common.icon_lookup);
 					btnLookupResource.addActionListener(new ActionListener()
