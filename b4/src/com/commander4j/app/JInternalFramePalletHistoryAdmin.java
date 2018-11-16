@@ -541,13 +541,13 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(979, 535));
-			this.setBounds(0, 0, 1010, 599);
+			this.setBounds(0, 0, 1010, 651);
 			setVisible(true);
 			this.setClosable(true);
 			{
 				jDesktopPane1 = new JDesktopPane();
 				jDesktopPane1.setBackground(Common.color_app_window);
-				jDesktopPane1.setBounds(0, 0, 1003, 569);
+				jDesktopPane1.setBounds(0, 0, 1003, 619);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(917, 504));
 				{
@@ -555,7 +555,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 216, 995, 324);
+					jScrollPane1.setBounds(0, 216, 995, 370);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
 						jTable1 = new JTable();
@@ -982,7 +982,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 								}
 								{
 									jStatusText = new JLabel4j_std();
-									jStatusText.setBounds(0, 543, 1000, 21);
+									jStatusText.setBounds(0, 595, 1000, 21);
 									jDesktopPane1.add(jStatusText);
 									jStatusText.setForeground(new Color(255, 0, 0));
 									jStatusText.setBackground(Color.GRAY);

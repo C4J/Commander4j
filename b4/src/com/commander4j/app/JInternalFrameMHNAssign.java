@@ -867,15 +867,15 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
-					jTextFieldMaterial.setBounds(345, 11, 98, 21);
+					jTextFieldMaterial.setBounds(345, 11, 98, 22);
 				}
 				{
 					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
-					jTextFieldLocation.setBounds(571, 11, 98, 21);
+					jTextFieldLocation.setBounds(571, 11, 98, 22);
 				}
 				{
 					jTextFieldCustomer = new JTextField4j(JDBCustomer.field_customer_id);
-					jTextFieldCustomer.setBounds(346, 105, 98, 21);
+					jTextFieldCustomer.setBounds(346, 105, 98, 22);
 				}
 				{
 					jLabel1 = new JLabel4j_std();
@@ -968,7 +968,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				{
 
 					jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
-					jFormattedTextFieldQuantity.setBounds(599, 105, 91, 21);
+					jFormattedTextFieldQuantity.setBounds(599, 105, 91, 22);
 					jFormattedTextFieldQuantity.setFont(Common.font_std);
 					jFormattedTextFieldQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
 					jFormattedTextFieldQuantity.setVerifyInputWhenFocusTarget(false);
@@ -982,7 +982,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
-					jTextFieldBatch.setBounds(803, 11, 134, 21);
+					jTextFieldBatch.setBounds(803, 11, 134, 22);
 				}
 				{
 					jLabelProcessOrder = new JLabel4j_std();
@@ -992,7 +992,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
-					jTextFieldProcessOrder.setBounds(571, 44, 98, 21);
+					jTextFieldProcessOrder.setBounds(571, 44, 98, 22);
 				}
 				{
 					jLabelProductionDate = new JLabel4j_std();
@@ -1002,7 +1002,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jTextFieldEAN = new JTextField4j(JDBMaterialUom.field_ean);
-					jTextFieldEAN.setBounds(803, 105, 119, 21);
+					jTextFieldEAN.setBounds(803, 105, 119, 22);
 					jTextFieldEAN.setFocusCycleRoot(true);
 				}
 				{
@@ -1021,7 +1021,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jTextFieldVariant = new JTextField4j(JDBMaterialUom.field_ean);
-					jTextFieldVariant.setBounds(937, 105, 30, 21);
+					jTextFieldVariant.setBounds(937, 105, 30, 22);
 					jTextFieldVariant.setHorizontalAlignment(SwingConstants.CENTER);
 					jTextFieldVariant.setFocusCycleRoot(true);
 				}
@@ -1093,7 +1093,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
 					ne.getTextField().setFont(Common.font_std); 
 					jSpinnerLimit.setEditor(ne);
-					jSpinnerLimit.setBounds(902, 136, 71, 21);
+					jSpinnerLimit.setBounds(902, 136, 71, 22);
 					jSpinnerLimit.setFont(Common.font_std);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
 					jSpinnerLimit.setValue(1000);
@@ -1222,7 +1222,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 				{
 					jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
-					jTextFieldSSCC.setBounds(135, 105, 133, 21);
+					jTextFieldSSCC.setBounds(135, 105, 133, 22);
 				}
 				{
 					jLabelSCC = new JLabel4j_std();
@@ -1298,7 +1298,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 
 				{
 					jTextFieldDespatch_No = new JTextField4j(JDBDespatch.field_despatch_no);
-					jTextFieldDespatch_No.setBounds(803, 75, 119, 21);
+					jTextFieldDespatch_No.setBounds(803, 75, 119, 22);
 					jTextFieldDespatch_No.setFocusCycleRoot(true);
 				}
 

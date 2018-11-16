@@ -832,7 +832,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(125, 11, 125, 21);
+					jTextFieldMaterial.setBounds(125, 11, 125, 22);
 				}
 				{
 					JLabel4j_std lblInspectionID = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
@@ -842,7 +842,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				}
 				{
 					textFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
-					textFieldInspectionID.setBounds(126, 110, 117, 21);
+					textFieldInspectionID.setBounds(126, 110, 117, 22);
 					jDesktopPane1.add(textFieldInspectionID);
 					textFieldInspectionID.setColumns(10);
 				}
@@ -856,7 +856,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				{
 					jTextFieldDescription = new JTextField4j(JDBMaterial.field_description);
 					jDesktopPane1.add(jTextFieldDescription);
-					jTextFieldDescription.setBounds(126, 44, 506, 21);
+					jTextFieldDescription.setBounds(126, 44, 506, 22);
 				}
 				{
 					jLabel1 = new JLabel4j_std();
@@ -956,7 +956,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				{
 					jTextFieldShelfLife = new JTextField4j();
 					jDesktopPane1.add(jTextFieldShelfLife);
-					jTextFieldShelfLife.setBounds(812, 11, 125, 21);
+					jTextFieldShelfLife.setBounds(812, 11, 125, 22);
 				}
 				{
 

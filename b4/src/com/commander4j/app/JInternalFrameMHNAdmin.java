@@ -448,7 +448,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(770, 478));
-			this.setBounds(0, 0, 990, 554);
+			this.setBounds(0, 0, 990, 630);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -476,32 +476,32 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					});
 					btnExcel.setText(lang.get("btn_Excel"));
 					btnExcel.setMnemonic(lang.getMnemonicChar());
-					btnExcel.setBounds(642, 118, 106, 32);
+					btnExcel.setBounds(650, 140, 108, 32);
 					jDesktopPane1.add(btnExcel);
 				}
 				{
 					jTextFieldRecorder = new JTextField4j(JDBMHN.field_recorder);
 					jDesktopPane1.add(jTextFieldRecorder);
-					jTextFieldRecorder.setBounds(350, 8, 99, 21);
+					jTextFieldRecorder.setBounds(350, 8, 99, 22);
 				}
 				{
 					jLabelComment = new JLabel4j_std();
 					jDesktopPane1.add(jLabelComment);
 					jLabelComment.setText(lang.get("lbl_Comment"));
-					jLabelComment.setBounds(2, 63, 102, 21);
+					jLabelComment.setBounds(2, 74, 102, 21);
 					jLabelComment.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldComment = new JTextField4j(JDBMHN.field_comments);
 					jDesktopPane1.add(jTextFieldComment);
-					jTextFieldComment.setBounds(109, 63, 360, 21);
+					jTextFieldComment.setBounds(109, 73, 360, 22);
 				}
 				{
 					jScrollPane1 = new JScrollPane();
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jScrollPane1.setToolTipText("");
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 152, 969, 343);
+					jScrollPane1.setBounds(0, 180, 969, 386);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
 						jTable1 = new JTable();
@@ -758,12 +758,12 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				{
 					jTextFieldInitiator = new JTextField4j(JDBMHN.field_initiator);
 					jDesktopPane1.add(jTextFieldInitiator);
-					jTextFieldInitiator.setBounds(592, 8, 99, 21);
+					jTextFieldInitiator.setBounds(592, 8, 99, 22);
 				}
 				{
 					jTextFieldMHN = new JTextField4j(JDBMHN.field_mhn_number);
 					jDesktopPane1.add(jTextFieldMHN);
-					jTextFieldMHN.setBounds(109, 8, 126, 21);
+					jTextFieldMHN.setBounds(109, 8, 126, 22);
 				}
 				{
 					jLabelMHN = new JLabel4j_std();
@@ -777,37 +777,37 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabelResource);
 					jLabelResource.setText(lang.get("lbl_Process_Order_Required_Resource"));
 					jLabelResource.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelResource.setBounds(2, 90, 102, 21);
+					jLabelResource.setBounds(2, 105, 102, 21);
 				}
 				{
 					jTextFieldResource = new JTextField4j(JDBProcessOrder.field_process_order);
 					jDesktopPane1.add(jTextFieldResource);
-					jTextFieldResource.setBounds(109, 90, 105, 21);
+					jTextFieldResource.setBounds(109, 104, 105, 22);
 				}
 				{
 					jLabelReason = new JLabel4j_std();
 					jDesktopPane1.add(jLabelReason);
 					jLabelReason.setText(lang.get("lbl_Reason"));
 					jLabelReason.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelReason.setBounds(2, 35, 102, 21);
+					jLabelReason.setBounds(2, 42, 102, 21);
 				}
 				{
 					jTextFieldReason = new JTextField4j(JDBMHN.field_reason1);
 					jDesktopPane1.add(jTextFieldReason);
-					jTextFieldReason.setBounds(109, 35, 105, 21);
+					jTextFieldReason.setBounds(109, 41, 105, 22);
 				}
 				{
 					jLabelStatus = new JLabel4j_std();
 					jDesktopPane1.add(jLabelStatus);
 					jLabelStatus.setText(lang.get("lbl_Status"));
 					jLabelStatus.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelStatus.setBounds(242, 35, 102, 21);
+					jLabelStatus.setBounds(242, 42, 102, 21);
 				}
 				{
 					jTextFieldStatus = new JComboBox4j<String>();
 					jTextFieldStatus.setModel(new DefaultComboBoxModel<String>(new String[] {"", "Active", "Closed"}));
 					jDesktopPane1.add(jTextFieldStatus);
-					jTextFieldStatus.setBounds(349, 35, 120, 23);
+					jTextFieldStatus.setBounds(349, 40, 120, 23);
 					jTextFieldStatus.setSelectedItem("Active");
 				}
 				{
@@ -815,7 +815,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel1SortBy);
 					jLabel1SortBy.setText(lang.get("lbl_Sort_By"));
 					jLabel1SortBy.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel1SortBy.setBounds(242, 90, 80, 21);
+					jLabel1SortBy.setBounds(242, 105, 80, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "MHN_NUMBER", "RECORDER", "INITIATOR", "REASON", "STATUS", "DATE_CREATED", "DATE_EXPECTED",
@@ -823,7 +823,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(328, 90, 141, 23);
+					jComboBoxSortBy.setBounds(328, 103, 141, 23);
 					jComboBoxSortBy.setSelectedItem("MHN_NUMBER");
 					jComboBoxSortBy.setRequestFocusEnabled(false);
 				}
@@ -832,7 +832,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(lang.getMnemonicChar());
-					jButtonSearch.setBounds(0, 118, 106, 32);
+					jButtonSearch.setBounds(2, 140, 108, 32);
 					jButtonSearch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -849,7 +849,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_ADD"));
-					jButtonAdd.setBounds(214, 118, 106, 32);
+					jButtonAdd.setBounds(218, 140, 108, 32);
 					jButtonAdd.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -865,7 +865,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_EDIT"));
-					jButtonEdit.setBounds(321, 118, 106, 32);
+					jButtonEdit.setBounds(326, 140, 108, 32);
 					jButtonEdit.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -881,7 +881,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_DELETE"));
-					jButtonDelete.setBounds(428, 118, 106, 32);
+					jButtonDelete.setBounds(434, 140, 108, 32);
 					jButtonDelete.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -895,7 +895,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(535, 118, 106, 32);
+					jButtonPrint.setBounds(542, 140, 108, 32);
 					jButtonPrint.setEnabled(true);
 					jButtonPrint.addActionListener(new ActionListener()
 					{
@@ -910,7 +910,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(749, 118, 106, 32);
+					jButtonHelp.setBounds(758, 140, 108, 32);
 				}
 				{
 
@@ -918,7 +918,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(856, 118, 106, 32);
+					jButtonClose.setBounds(866, 140, 108, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -931,7 +931,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(470, 90, 21, 21);
+					jToggleButtonSequence.setBounds(470, 104, 21, 22);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -945,7 +945,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 497, 978, 21);
+					jStatusText.setBounds(0, 575, 978, 21);
 					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 					jDesktopPane1.add(jStatusText);
 				}
@@ -960,7 +960,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 						}
 					});
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(107, 118, 106, 32);
+					jButtonClear.setBounds(110, 140, 108, 32);
 					jDesktopPane1.add(jButtonClear);
 				}
 				{
@@ -976,7 +976,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 						}
 					});
 
-					buttonReasonLookup.setBounds(214, 35, 21, 21);
+					buttonReasonLookup.setBounds(214, 42, 21, 21);
 					jDesktopPane1.add(buttonReasonLookup);
 				}
 				{
@@ -988,19 +988,19 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				}
 				{
 					jTextFieldAuthorisor = new JTextField4j(JDBMHN.field_authorisor);
-					jTextFieldAuthorisor.setBounds(833, 8, 99, 21);
+					jTextFieldAuthorisor.setBounds(833, 8, 99, 22);
 					jDesktopPane1.add(jTextFieldAuthorisor);
 				}
 				
 				JLabel4j_std labelCreated = new JLabel4j_std();
 				labelCreated.setText(lang.get("lbl_Created"));
 				labelCreated.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelCreated.setBounds(476, 35, 126, 21);
+				labelCreated.setBounds(476, 42, 126, 21);
 				jDesktopPane1.add(labelCreated);
 				
 				dateControlCreatedFrom = new JDateControl();
 				dateControlCreatedFrom.setEnabled(false);
-				dateControlCreatedFrom.setBounds(634, 31, 125, 25);
+				dateControlCreatedFrom.setBounds(634, 38, 125, 25);
 				jDesktopPane1.add(dateControlCreatedFrom);
 				
 				calendarButtonCreatedFrom = new JCalendarButton(dateControlCreatedFrom);
@@ -1028,7 +1028,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					}
 				});
 				checkBoxCreatedFrom.setBackground(Color.WHITE);
-				checkBoxCreatedFrom.setBounds(604, 31, 21, 25);
+				checkBoxCreatedFrom.setBounds(604, 38, 21, 25);
 				jDesktopPane1.add(checkBoxCreatedFrom);
 				
 				checkBoxCreatedTo = new JCheckBox4j();
@@ -1047,12 +1047,12 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					}
 				});
 				checkBoxCreatedTo.setBackground(Color.WHITE);
-				checkBoxCreatedTo.setBounds(784, 31, 21, 25);
+				checkBoxCreatedTo.setBounds(784, 38, 21, 25);
 				jDesktopPane1.add(checkBoxCreatedTo);
 				
 				dateControlCreatedTo = new JDateControl();
 				dateControlCreatedTo.setEnabled(false);
-				dateControlCreatedTo.setBounds(810, 31, 125, 25);
+				dateControlCreatedTo.setBounds(810, 38, 125, 25);
 				jDesktopPane1.add(dateControlCreatedTo);
 				
 				calendarButtonCreatedTo = new JCalendarButton(dateControlCreatedTo);
@@ -1063,7 +1063,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				JLabel4j_std labelExpected = new JLabel4j_std();
 				labelExpected.setText(lang.get("lbl_Expected"));
 				labelExpected.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelExpected.setBounds(476, 63, 126, 21);
+				labelExpected.setBounds(476, 74, 126, 21);
 				jDesktopPane1.add(labelExpected);
 				
 				checkBoxExpectedFrom = new JCheckBox4j();
@@ -1082,12 +1082,12 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					}
 				});
 				checkBoxExpectedFrom.setBackground(Color.WHITE);
-				checkBoxExpectedFrom.setBounds(604, 59, 21, 25);
+				checkBoxExpectedFrom.setBounds(604, 70, 21, 25);
 				jDesktopPane1.add(checkBoxExpectedFrom);
 				
 				dateControlExpectedFrom = new JDateControl();
 				dateControlExpectedFrom.setEnabled(false);
-				dateControlExpectedFrom.setBounds(634, 59, 125, 25);
+				dateControlExpectedFrom.setBounds(634, 70, 125, 25);
 				jDesktopPane1.add(dateControlExpectedFrom);
 				
 				calendarButtonExpectedFrom = new JCalendarButton(dateControlExpectedFrom);
@@ -1111,12 +1111,12 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					}
 				});
 				checkBoxExpectedTo.setBackground(Color.WHITE);
-				checkBoxExpectedTo.setBounds(784, 59, 21, 25);
+				checkBoxExpectedTo.setBounds(784, 70, 21, 25);
 				jDesktopPane1.add(checkBoxExpectedTo);
 				
 				dateControlExpectedTo = new JDateControl();
 				dateControlExpectedTo.setEnabled(false);
-				dateControlExpectedTo.setBounds(810, 59, 125, 25);
+				dateControlExpectedTo.setBounds(810, 70, 125, 25);
 				jDesktopPane1.add(dateControlExpectedTo);
 				
 				calendarButtonExpectedTo = new JCalendarButton(dateControlExpectedTo);
@@ -1127,7 +1127,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				JLabel4j_std labelResolved = new JLabel4j_std();
 				labelResolved.setText(lang.get("lbl_Resolved"));
 				labelResolved.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelResolved.setBounds(480, 90, 122, 21);
+				labelResolved.setBounds(480, 105, 122, 21);
 				jDesktopPane1.add(labelResolved);
 				
 				checkBoxResolvedFrom = new JCheckBox4j();
@@ -1146,12 +1146,12 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					}
 				});
 				checkBoxResolvedFrom.setBackground(Color.WHITE);
-				checkBoxResolvedFrom.setBounds(604, 86, 21, 25);
+				checkBoxResolvedFrom.setBounds(604, 101, 21, 25);
 				jDesktopPane1.add(checkBoxResolvedFrom);
 				
 				dateControlResolvedFrom = new JDateControl();
 				dateControlResolvedFrom.setEnabled(false);
-				dateControlResolvedFrom.setBounds(634, 86, 125, 25);
+				dateControlResolvedFrom.setBounds(634, 101, 125, 25);
 				jDesktopPane1.add(dateControlResolvedFrom);
 				
 				checkBoxResolvedTo = new JCheckBox4j();
@@ -1170,12 +1170,12 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					}
 				});
 				checkBoxResolvedTo.setBackground(Color.WHITE);
-				checkBoxResolvedTo.setBounds(784, 86, 21, 25);
+				checkBoxResolvedTo.setBounds(784, 101, 21, 25);
 				jDesktopPane1.add(checkBoxResolvedTo);
 				
 				dateControlResolvedTo = new JDateControl();
 				dateControlResolvedTo.setEnabled(false);
-				dateControlResolvedTo.setBounds(810, 86, 125, 25);
+				dateControlResolvedTo.setBounds(810, 101, 125, 25);
 				jDesktopPane1.add(dateControlResolvedTo);
 				
 				calendarButtonResolvedFrom = new JCalendarButton(dateControlResolvedFrom);
@@ -1244,7 +1244,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 						}
 					}
 				});
-				buttonResourceLookup.setBounds(214, 90, 21, 21);
+				buttonResourceLookup.setBounds(214, 105, 21, 21);
 				jDesktopPane1.add(buttonResourceLookup);
 
 				Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
