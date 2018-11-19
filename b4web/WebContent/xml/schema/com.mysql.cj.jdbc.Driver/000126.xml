@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		CREATE INDEX PH_ORDER_NDX ON APP_PALLET_HISTORY(PROCESS_ORDER)
+	</statement>
+	
+</DDL>

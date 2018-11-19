@@ -1156,6 +1156,35 @@ public class JLaunchMenu
 	{
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
+		
+		
+		if (optionName.equals("FRM_ADMIN_PALLET_HISTORY"))
+		{
+			final JInternalFramePalletHistoryAdmin u;
+			
+			if (isLoaded(JInternalFramePalletHistoryAdmin.class))
+				setVisible(JInternalFramePalletHistoryAdmin.class);
+			else
+			{
+				u = new JInternalFramePalletHistoryAdmin(StrParam1,StrParam2);
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_ADMIN_PALLETS"))
+		{
+			final JInternalFramePalletAdmin u;
+			
+			if (isLoaded(JInternalFramePalletAdmin.class))
+				setVisible(JInternalFramePalletAdmin.class);
+			else
+			{
+				u = new JInternalFramePalletAdmin(StrParam1,StrParam2);
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
 
 		if (optionName.equals("FRM_LABELLER_HISTORY"))
 		{

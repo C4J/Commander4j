@@ -443,6 +443,26 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			JLaunchMenu.runForm("FRM_QM_SAMPLE_LABEL", lprocessorder);
 		}
 	}
+	
+	private void palletHistory()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lprocessorder = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","PROCESS_ORDER", lprocessorder);
+		}
+	}
+	
+	private void palletAdmin()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lprocessorder = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PALLETS","PROCESS_ORDER", lprocessorder);
+		}
+	}	
 
 	private void setSequence(boolean descending)
 	{
@@ -741,6 +761,32 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_SAMPLE_LABEL"));
 								popupMenu.add(newItemMenuItem);
 							}
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										palletHistory();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLET_HISTORY"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_HISTORY"));
+								popupMenu.add(newItemMenuItem);
+							}
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										palletAdmin();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLETS"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLETS"));
+								popupMenu.add(newItemMenuItem);
+							}							
 							{
 								mnReferenceData = new JMenu4j(lang.get("lbl_Referenced_Data"));
 								popupMenu.add(mnReferenceData);
@@ -1486,6 +1532,8 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 						public void actionPerformed(final ActionEvent e)
 						{
 							clearFilter();
+							buildSQL();
+							populateList();
 						}
 					});
 					jButtonClear.setBounds(111, 143, 109, 32);

@@ -56,6 +56,7 @@ import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -97,7 +98,6 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
-import com.commander4j.util.JWait;
 
 /**
  * The JInternalFramePalletAdmin allows you to search the APP_PALLET table which
@@ -224,9 +224,9 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private JTextField4j textFieldUserUpdated;
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 
-	public JInternalFramePalletAdmin()
+
+	private void app_Init()
 	{
-		super();
 		getContentPane().setBackground(Color.WHITE);
 
 		uomList.add(new JDBUom(Common.selectedHostID, Common.sessionID));
@@ -257,6 +257,38 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
 
 		setSequence(dlg_sort_descending);
+	}
+	
+	public JInternalFramePalletAdmin()
+	{
+		super();
+		app_Init();
+	}
+	
+	public JInternalFramePalletAdmin(String keyField,String keyValue)
+	{
+		super();
+		app_Init();
+		
+		if (keyField.equals("MATERIAL"))
+		{
+			jTextFieldMaterial.setText(keyValue);
+		}
+		
+		if (keyField.equals("PROCESS_ORDER"))
+		{
+			jTextFieldProcessOrder.setText(keyValue);
+		}
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+        		buildSQL();
+        		populateList();
+				
+			}
+		});
+		
+
 	}
 
 	private PreparedStatement buildSQLr()
@@ -462,6 +494,16 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			JLaunchMenu.runForm("FRM_PAL_SPLIT", lsscc);
 		}
 	}
+	
+	private void palletHistory()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lsscc = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","SSCC", lsscc);
+		}
+	}
 
 	private void editRecord()
 	{
@@ -555,7 +597,6 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private void print_summary()
 	{
 		jComboBoxSortBy.setSelectedItem("MATERIAL,PROCESS_ORDER");
-		JWait.milliSec(100);
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_PAL_SUMMARY", null, "", temp, "");
 	}
@@ -598,8 +639,6 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		textFieldUserCreated.setText("");
 		textFieldUserUpdated.setText("");
 		textFieldMHN.setText("");
-		buildSQL();
-		populateList();
 	}
 
 	private void exportExcel(String mode)
@@ -1560,6 +1599,20 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					popupMenu.add(menuItemSplit);
 				}
 				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history);
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							palletHistory();
+						}
+					});
+					newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLET_HISTORY"));
+					newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_HISTORY"));
+					popupMenu.add(newItemMenuItem);
+				}
+				{
+					
 					mnReferenceData = new JMenu4j(lang.get("lbl_Referenced_Data"));
 					popupMenu.add(mnReferenceData);
 					{

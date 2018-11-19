@@ -282,10 +282,9 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		buildSQL();
 		populateList();
 	}
-
-	public JInternalFramePalletHistoryAdmin()
+	
+	private void app_Init()
 	{
-		super();
 		setIconifiable(true);
 		getContentPane().setLayout(null);
 
@@ -330,6 +329,34 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		
 
 		setSequence(dlg_sort_descending);
+	}
+
+	public JInternalFramePalletHistoryAdmin()
+	{
+		super();
+		app_Init();
+
+	}
+	
+	public JInternalFramePalletHistoryAdmin(String keyField,String keyValue)
+	{
+		super();
+		app_Init();
+		
+		clearFilter();
+		
+		if (keyField.equals("SSCC"))
+		{
+			jTextFieldSSCC.setText(keyValue);
+		}
+		
+		if (keyField.equals("PROCESS_ORDER"))
+		{
+			jTextFieldProcessOrder.setText(keyValue);
+		}
+		
+		buildSQL();
+		populateList();
 
 	}
 
