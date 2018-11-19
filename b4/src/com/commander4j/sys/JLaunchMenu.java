@@ -1157,6 +1157,20 @@ public class JLaunchMenu
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
 		
+		if (optionName.equals("FRM_ADMIN_PROCESS_ORDER"))
+		{
+			final JInternalFrameProcessOrderAdmin u;
+			
+			if (isLoaded(JInternalFrameProcessOrderAdmin.class))
+				setVisible(JInternalFrameProcessOrderAdmin.class);
+			else
+			{
+				u = new JInternalFrameProcessOrderAdmin(StrParam1,StrParam2);
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
 		
 		if (optionName.equals("FRM_ADMIN_PALLET_HISTORY"))
 		{

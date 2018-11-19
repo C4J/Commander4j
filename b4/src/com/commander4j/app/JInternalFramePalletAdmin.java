@@ -270,6 +270,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		super();
 		app_Init();
 		
+		clearFilter();
+		
 		if (keyField.equals("MATERIAL"))
 		{
 			jTextFieldMaterial.setText(keyValue);

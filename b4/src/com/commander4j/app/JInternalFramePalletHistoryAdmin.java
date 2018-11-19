@@ -355,6 +355,11 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 			jTextFieldProcessOrder.setText(keyValue);
 		}
 		
+		if (keyField.equals("MATERIAL"))
+		{
+			jTextFieldMaterial.setText(keyValue);
+		}
+		
 		buildSQL();
 		populateList();
 
@@ -1558,8 +1563,8 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		jFormattedTextFieldQuantity.setValue(0);
 		jCheckBoxTransactionDate.setSelected(false);
 		jTextFieldUser.setText("");
-		buildSQL();
-		populateList();
+		//buildSQL();
+		//populateList();
 	}
 
 	private void populateList() {

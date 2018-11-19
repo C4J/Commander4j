@@ -600,7 +600,45 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 								newItemMenuItem.setText(lang.get("btn_Excel"));
 								popupMenu.add(newItemMenuItem);
 							}
-
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										palletHistory();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLET_HISTORY"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_HISTORY"));
+								popupMenu.add(newItemMenuItem);
+							}
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										palletAdmin();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLETS"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLETS"));
+								popupMenu.add(newItemMenuItem);
+							}
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_process_order);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										orderAdmin();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PROCESS_ORDER"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PROCESS_ORDER"));
+								popupMenu.add(newItemMenuItem);
+							}							
 							{
 								final JMenu4j sortByMenu = new JMenu4j();
 								sortByMenu.setText(lang.get("lbl_Sort_By"));
@@ -1163,7 +1201,37 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 			e.printStackTrace();
 		}
 	}
+	
+	private void palletHistory()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lmaterial = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","MATERIAL", lmaterial);
+		}
+	}
+	
+	private void palletAdmin()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lmaterial = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PALLETS","MATERIAL", lmaterial);
+		}
+	}	
 
+	private void orderAdmin()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lmaterial = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PROCESS_ORDER","MATERIAL", lmaterial);
+		}
+	}	
+	
 	/**
 	 * WindowBuilder generated method.<br>
 	 * Please don't remove this method or its invocations.<br>

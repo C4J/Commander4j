@@ -55,6 +55,7 @@ import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -167,6 +168,30 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 	public JInternalFrameProcessOrderAdmin()
 	{
 		super();
+		app_Init();
+	}
+	
+	public JInternalFrameProcessOrderAdmin(String keyField,String keyValue)
+	{
+		super();
+		app_Init();
+		
+		if (keyField.equals("MATERIAL"))
+		{
+			jTextFieldMaterial.setText(keyValue);
+		}
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+        		buildSQL();
+        		populateList();
+				
+			}
+		});
+	}
+	
+	private void app_Init()
+	{
 		getContentPane().setLayout(null);
 
 		uomList.add(new JDBUom(Common.selectedHostID, Common.sessionID));
@@ -241,7 +266,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		jTextFieldCustomer.setText("");
 		jTextFieldInspectionID.setText("");
 		jTextFieldRequiredResource.setText("");
-		search();
+		//search();
 	}
 
 	private void sortBy(String orderField)
@@ -1532,8 +1557,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 						public void actionPerformed(final ActionEvent e)
 						{
 							clearFilter();
-							buildSQL();
-							populateList();
+
 						}
 					});
 					jButtonClear.setBounds(111, 143, 109, 32);
