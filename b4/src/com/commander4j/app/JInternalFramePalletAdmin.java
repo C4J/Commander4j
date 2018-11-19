@@ -56,7 +56,6 @@ import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -272,26 +271,29 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		
 		clearFilter();
 		
-		if (keyField.equals("MATERIAL"))
-		{
-			jTextFieldMaterial.setText(keyValue);
-		}
+		updateSearch(keyField,keyValue);
+
+	}
+	
+	public void updateSearch(String keyField,String keyValue)
+	{
+		clearFilter();
+		
 		
 		if (keyField.equals("PROCESS_ORDER"))
 		{
 			jTextFieldProcessOrder.setText(keyValue);
 		}
 		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-        		buildSQL();
-        		populateList();
-				
-			}
-		});
+		if (keyField.equals("MATERIAL"))
+		{
+			jTextFieldMaterial.setText(keyValue);
+		}
 		
-
+		buildSQL();
+		populateList();
 	}
+
 
 	private PreparedStatement buildSQLr()
 	{

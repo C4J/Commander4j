@@ -1162,7 +1162,10 @@ public class JLaunchMenu
 			final JInternalFrameProcessOrderAdmin u;
 			
 			if (isLoaded(JInternalFrameProcessOrderAdmin.class))
+			{
+				((JInternalFrameProcessOrderAdmin) isLoadedInstance(JInternalFrameProcessOrderAdmin.class)).updateSearch(StrParam1, StrParam2);
 				setVisible(JInternalFrameProcessOrderAdmin.class);
+			}
 			else
 			{
 				u = new JInternalFrameProcessOrderAdmin(StrParam1,StrParam2);
@@ -1177,7 +1180,10 @@ public class JLaunchMenu
 			final JInternalFramePalletHistoryAdmin u;
 			
 			if (isLoaded(JInternalFramePalletHistoryAdmin.class))
+			{
+				((JInternalFramePalletHistoryAdmin) isLoadedInstance(JInternalFramePalletHistoryAdmin.class)).updateSearch(StrParam1, StrParam2);
 				setVisible(JInternalFramePalletHistoryAdmin.class);
+			}
 			else
 			{
 				u = new JInternalFramePalletHistoryAdmin(StrParam1,StrParam2);
@@ -1191,7 +1197,10 @@ public class JLaunchMenu
 			final JInternalFramePalletAdmin u;
 			
 			if (isLoaded(JInternalFramePalletAdmin.class))
+			{
+				((JInternalFramePalletAdmin) isLoadedInstance(JInternalFramePalletAdmin.class)).updateSearch(StrParam1, StrParam2);
 				setVisible(JInternalFramePalletAdmin.class);
+			}
 			else
 			{
 				u = new JInternalFramePalletAdmin(StrParam1,StrParam2);

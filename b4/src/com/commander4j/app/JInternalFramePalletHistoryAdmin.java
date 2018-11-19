@@ -345,6 +345,14 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		
 		clearFilter();
 		
+		updateSearch(keyField,keyValue);
+
+	}
+	
+	public void updateSearch(String keyField,String keyValue)
+	{
+		clearFilter();
+		
 		if (keyField.equals("SSCC"))
 		{
 			jTextFieldSSCC.setText(keyValue);
@@ -362,7 +370,6 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		
 		buildSQL();
 		populateList();
-
 	}
 
 	private PreparedStatement buildSQLr() {
