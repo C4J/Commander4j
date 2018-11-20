@@ -502,6 +502,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 						jTable1.getTableHeader().setFont(Common.font_table_header);
 						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
+						jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
 						jTable1.addMouseListener(new MouseAdapter()
 						{
 							public void mouseClicked(MouseEvent evt)

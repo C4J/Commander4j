@@ -10,4 +10,38 @@
 		CREATE INDEX "PH_MATERIAL_NDX" ON "APP_PALLET_HISTORY" ("MATERIAL" ASC)
 	</statement>
 	
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Table_Hint', 'FR', 'Faites un clic droit sur la ligne pour des options supplémentaires', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Table_Hint', 'SP', 'Haga clic derecho en la fila para opciones adicionales', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Table_Hint', 'NL', 'Klik met de rechtermuisknop op de rij voor extra opties', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Table_Hint', 'PL', 'Kliknij prawym przyciskiem myszy wiersz, aby uzyskać dodatkowe opcje', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Table_Hint', 'DE', 'Klicken Sie mit der rechten Maustaste auf die Zeile, um weitere Optionen anzuzeigen', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Table_Hint', 'HU', 'Klicken Sie mit der rechten Maustaste auf die Zeile, um weitere Optionen anzuzeigen', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Table_Hint', 'IT', 'Fare clic destro sulla riga per opzioni aggiuntive', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Table_Hint', 'EN', 'Right click on row for additional options', '0')
+	</statement>
+	
+	
 </DDL>

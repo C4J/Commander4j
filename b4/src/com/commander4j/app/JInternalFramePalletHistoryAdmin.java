@@ -598,6 +598,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
 						jTable1 = new JTable();
+						jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
 						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
 						jScrollPane1.setViewportView(jTable1);
 						jTable1.setModel(jTable1Model);

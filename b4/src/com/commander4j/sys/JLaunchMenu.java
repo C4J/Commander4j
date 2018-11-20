@@ -1618,7 +1618,10 @@ public class JLaunchMenu
 		{
 			final JInternalFrameMaterialProperties u;
 			if (isLoaded(JInternalFrameMaterialProperties.class))
-				((JInternalFrameMaterialProperties) isLoadedInstance(JInternalFrameMaterialProperties.class)).setMaterialID(StrParam);
+				{
+					((JInternalFrameMaterialProperties) isLoadedInstance(JInternalFrameMaterialProperties.class)).setMaterialID(StrParam);
+					setVisible(JInternalFrameMaterialProperties.class);
+				}
 			else
 			{
 				u = new JInternalFrameMaterialProperties(StrParam);
@@ -1669,7 +1672,10 @@ public class JLaunchMenu
 		{
 			final JInternalFrameProcessOrderProperties u;
 			if (isLoaded(JInternalFrameProcessOrderProperties.class))
+			{
 				((JInternalFrameProcessOrderProperties) isLoadedInstance(JInternalFrameProcessOrderProperties.class)).setProcessOrderNo(StrParam);
+				setVisible(JInternalFrameProcessOrderProperties.class);
+			}
 			else
 			{
 				u = new JInternalFrameProcessOrderProperties(StrParam);
