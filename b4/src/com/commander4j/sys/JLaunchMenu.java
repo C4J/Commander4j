@@ -1628,6 +1628,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
+		
 
 		if (optionName.equals("FRM_ADMIN_MATERIAL_BATCH"))
 		{
@@ -1658,9 +1659,12 @@ public class JLaunchMenu
 		if (optionName.equals("FRM_ADMIN_LOCATION_EDIT"))
 		{
 			final JInternalFrameLocationProperties u;
-			// if (isLoaded(JInternalFrameLocationProperties.class))
-			// setVisible(JInternalFrameLocationProperties.class);
-			// else
+			if (isLoaded(JInternalFrameLocationProperties.class))
+			{
+				((JInternalFrameLocationProperties) isLoadedInstance(JInternalFrameLocationProperties.class)).setLocationID(StrParam);
+			   setVisible(JInternalFrameLocationProperties.class);
+			}
+			else
 			{
 				u = new JInternalFrameLocationProperties(StrParam);
 				u.setTitle(mod.getDescription() + " [" + StrParam + "]");

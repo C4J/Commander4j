@@ -47,9 +47,13 @@ public class JDBMaterialTableModel extends AbstractTableModel
 	public static final int Material_Shelf_Life_Col = 4;
 	public static final int Material_Shelf_Life_Uom_Col = 5;
 	public static final int Material_Shelf_Life_Rule_Col = 6;
+	public static final int Material_Gross_Weight_Col = 7;
+	public static final int Material_Net_Weight_Col = 8;
+	public static final int Material_Weight_UOM_Col = 9;
+	public static final int Material_Equipment_Col = 10;
 
 	// Names of the columns
-	private String[] mcolNames = { "Material", "Description", "Type", "Base UOM", "Shelf Life", "Life UOM", "Rule" };
+	private String[] mcolNames = { "Material", "Description", "Type", "Base UOM", "Shelf Life", "Life UOM", "Rule","Gross Wt","Net Wt","Wt UOM","Equipment"};
 
 	// store the data
 	private ResultSet mResultSet;
@@ -125,7 +129,14 @@ public class JDBMaterialTableModel extends AbstractTableModel
 				return cache.get(row).getShelfLifeUom();
 			case Material_Shelf_Life_Rule_Col:
 				return cache.get(row).getShelfLifeRule();
-
+			case Material_Gross_Weight_Col:
+				return cache.get(row).getGrossWeight();
+			case Material_Net_Weight_Col:
+				return cache.get(row).getNetWeight();
+			case Material_Weight_UOM_Col:
+				return cache.get(row).getWeightUom();
+			case Material_Equipment_Col:
+				return cache.get(row).getEquipmentType();
 			}
 
 		}

@@ -335,20 +335,29 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 		jTable1.setFont(Common.font_list);
 
-		TableColumn col = jTable1.getColumnModel().getColumn(0);
+		TableColumn col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Col);
 		col.setPreferredWidth(80);
-		col = jTable1.getColumnModel().getColumn(1);
-		col.setPreferredWidth(460);
-		col = jTable1.getColumnModel().getColumn(2);
+		col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Description_Col);
+		col.setPreferredWidth(300);
+		col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Type_Col);
+		col.setPreferredWidth(50);
+		col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Base_Uom_Col);
+		col.setPreferredWidth(60);
+		col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Shelf_Life_Col);
+		col.setPreferredWidth(60);
+		col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Shelf_Life_Uom_Col);
+		col.setPreferredWidth(60);
+		col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Shelf_Life_Rule_Col);
+		col.setPreferredWidth(50);
+	
+		col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Gross_Weight_Col);
 		col.setPreferredWidth(80);
-		col = jTable1.getColumnModel().getColumn(3);
+		col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Net_Weight_Col);
 		col.setPreferredWidth(80);
-		col = jTable1.getColumnModel().getColumn(4);
-		col.setPreferredWidth(80);
-		col = jTable1.getColumnModel().getColumn(5);
-		col.setPreferredWidth(80);
-		col = jTable1.getColumnModel().getColumn(6);
-		col.setPreferredWidth(80);
+		col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Weight_UOM_Col);
+		col.setPreferredWidth(60);	
+		col = jTable1.getColumnModel().getColumn(JDBMaterialTableModel.Material_Equipment_Col);
+		col.setPreferredWidth(70);	
 		jScrollPane1.repaint();
 		
 		JUtility.setResultRecordCountColour(jStatusText, jCheckBoxLimit.isSelected(), Integer.valueOf(jSpinnerLimit.getValue().toString()), materialtable.getRowCount());
@@ -488,7 +497,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 183, 963, 378);
+					jScrollPane1.setBounds(0, 183, 968, 378);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][]
 						{

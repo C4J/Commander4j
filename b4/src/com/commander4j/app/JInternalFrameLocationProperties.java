@@ -140,9 +140,19 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 		});
 	}
 
-	public JInternalFrameLocationProperties(String loc)
+	public void setLocationID(String loc)
 	{
-		this();
+		
+		if (jButtonSave.isEnabled())
+		{
+
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to Location [" + llocation + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			if (question == 0)
+			{
+				save();
+			} 
+		}
+		
 		llocation = loc;
 		jTextFieldLocationID.setText(llocation);
 		setTitle(getTitle() + " - " + llocation);
@@ -217,6 +227,82 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 		{
 			chckbxEnabled.setSelected(true);
 		}
+	}
+	
+	public JInternalFrameLocationProperties(String loc)
+	{
+		this();
+		setLocationID(loc);
+
+	}
+	
+	private boolean save()
+	{
+		boolean result = true;
+
+		location.setLocationID(jTextFieldLocationID.getText());
+		location.setPlant(jTextFieldPlant.getText());
+		location.setWarehouse(jTextFieldWarehouse.getText());
+		location.setGLN(jTextFieldGLN.getText());
+		location.setDescription(jTextFieldDescription.getText());
+		location.setStorageLocation(jTextFieldStorageLocation.getText());
+		location.setStorageType(jTextFieldStorageType.getText());
+		location.setStorageSection(jTextFieldStorageSection.getText());
+		location.setStorageBin(jTextFieldStorageBin.getText());
+		location.setEquipmentTrackingID(jTextFieldEquipmentTrackingID.getText());
+		location.setMsgDespatchConfirm(checkBox_DespatchConfirm.isSelected());
+		location.setMsgDespatchEquipTrack(checkBox_Equipment_Tracking.isSelected());
+		location.setMsgDespatchPreadvice(checkBox_PreAdvice.isSelected());
+		location.setMsgStatusChange(checkBox_StatusChange.isSelected());
+		location.setMsgProdConfirm(checkBox_Production_Confirmation.isSelected());
+		location.setMsgPalletSplit(checkBox_PalletSplit.isSelected());
+		location.setMsgDelete(checkBox_PalletDelete.isSelected());
+		location.setEnabled(chckbxEnabled.isSelected());
+		location.setMsgJourneyRef(checkBox_JourneyRef.isSelected());
+
+		String palletStatusSelected = "^";
+		if (palletStatusList.isSelectionEmpty() == false)
+		{
+			List<String> temp = palletStatusList.getSelectedValuesList();
+
+			for (int x = 0; x < temp.size(); x++)
+			{
+				palletStatusSelected = palletStatusSelected + temp.get(x) + "^";
+			}
+		}
+		location.setPermittedPalletStatus(palletStatusSelected);
+
+		String batchStatusSelected = "^";
+		if (batchStatusList.isSelectionEmpty() == false)
+		{
+			List<String> temp = batchStatusList.getSelectedValuesList();
+
+
+			for (int x = 0; x < temp.size(); x++)
+			{
+				batchStatusSelected = batchStatusSelected + temp.get(x) + "^";
+			}
+		}
+		location.setPermittedBatchStatus(batchStatusSelected);
+
+		if (location.isValidLocation() == false)
+		{
+			result = location.create();
+		}
+		else
+		{
+			result = location.update();
+		}
+		if (result == false)
+		{
+			JOptionPane.showMessageDialog(Common.mainForm, location.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+		}
+		else
+		{
+			jButtonSave.setEnabled(false);
+		}
+		
+		return result;
 	}
 
 	private void initGUI() {
@@ -562,69 +648,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jButtonSave.setBounds(53, 543, 112, 28);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
-							boolean result = true;
-
-							location.setLocationID(jTextFieldLocationID.getText());
-							location.setPlant(jTextFieldPlant.getText());
-							location.setWarehouse(jTextFieldWarehouse.getText());
-							location.setGLN(jTextFieldGLN.getText());
-							location.setDescription(jTextFieldDescription.getText());
-							location.setStorageLocation(jTextFieldStorageLocation.getText());
-							location.setStorageType(jTextFieldStorageType.getText());
-							location.setStorageSection(jTextFieldStorageSection.getText());
-							location.setStorageBin(jTextFieldStorageBin.getText());
-							location.setEquipmentTrackingID(jTextFieldEquipmentTrackingID.getText());
-							location.setMsgDespatchConfirm(checkBox_DespatchConfirm.isSelected());
-							location.setMsgDespatchEquipTrack(checkBox_Equipment_Tracking.isSelected());
-							location.setMsgDespatchPreadvice(checkBox_PreAdvice.isSelected());
-							location.setMsgStatusChange(checkBox_StatusChange.isSelected());
-							location.setMsgProdConfirm(checkBox_Production_Confirmation.isSelected());
-							location.setMsgPalletSplit(checkBox_PalletSplit.isSelected());
-							location.setMsgDelete(checkBox_PalletDelete.isSelected());
-							location.setEnabled(chckbxEnabled.isSelected());
-							location.setMsgJourneyRef(checkBox_JourneyRef.isSelected());
-
-							String palletStatusSelected = "^";
-							if (palletStatusList.isSelectionEmpty() == false)
-							{
-								List<String> temp = palletStatusList.getSelectedValuesList();
-
-								for (int x = 0; x < temp.size(); x++)
-								{
-									palletStatusSelected = palletStatusSelected + temp.get(x) + "^";
-								}
-							}
-							location.setPermittedPalletStatus(palletStatusSelected);
-
-							String batchStatusSelected = "^";
-							if (batchStatusList.isSelectionEmpty() == false)
-							{
-								List<String> temp = batchStatusList.getSelectedValuesList();
-
-
-								for (int x = 0; x < temp.size(); x++)
-								{
-									batchStatusSelected = batchStatusSelected + temp.get(x) + "^";
-								}
-							}
-							location.setPermittedBatchStatus(batchStatusSelected);
-
-							if (location.isValidLocation() == false)
-							{
-								result = location.create();
-							}
-							else
-							{
-								result = location.update();
-							}
-							if (result == false)
-							{
-								JOptionPane.showMessageDialog(Common.mainForm, location.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
-							}
-							else
-							{
-								jButtonSave.setEnabled(false);
-							}
+							save();
 
 						}
 					});
