@@ -936,7 +936,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(340, 196, 355, 23);
+					jComboBoxSortBy.setBounds(340, 196, 355, 22);
 				}
 				{
 					ComboBoxModel<String> jComboBoxDefaultPalletStatusModel = new DefaultComboBoxModel<String>(Common.palletStatusIncBlank);
@@ -978,7 +978,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jDesktopPane1.add(jFormattedTextFieldQuantity);
 					jFormattedTextFieldQuantity.setFont(Common.font_std);
 					jFormattedTextFieldQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					jFormattedTextFieldQuantity.setBounds(604, 105, 108, 21);
+					jFormattedTextFieldQuantity.setBounds(604, 105, 108, 22);
 					jFormattedTextFieldQuantity.setVerifyInputWhenFocusTarget(false);
 					jFormattedTextFieldQuantity.setEnabled(false);
 				}
