@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+	
+	<statement>
+		CREATE OR REPLACE VIEW `view_pallet_history_expiry` AS SELECT
+			p.TRANSACTION_REF AS TRANSACTION_REF,
+			p.TRANSACTION_TYPE AS TRANSACTION_TYPE,
+			p.TRANSACTION_SUBTYPE AS TRANSACTION_SUBTYPE,
+			p.TRANSACTION_DATE AS TRANSACTION_DATE,
+			p.SSCC AS SSCC,
+			p.LOCATION_ID AS LOCATION_ID,
+			p.MATERIAL AS MATERIAL,
+			p.BATCH_NUMBER AS BATCH_NUMBER,
+			p.PROCESS_ORDER AS PROCESS_ORDER,
+			p.QUANTITY AS QUANTITY,
+			p.UOM AS UOM,
+			p.DATE_OF_MANUFACTURE AS DATE_OF_MANUFACTURE,
+			p.`STATUS` AS `STATUS`,
+			p.EAN AS EAN,
+			p.VARIANT AS VARIANT,
+			p.DESPATCH_NO AS DESPATCH_NO,
+			p.USER_ID AS USER_ID,
+			p.CONFIRMED AS CONFIRMED,
+			p.LAYERS AS LAYERS,
+			p.SSCC_EXPIRY_DATE AS SSCC_EXPIRY_DATE,
+			p.CUSTOMER_ID AS CUSTOMER_ID,
+			p.MHN_NUMBER AS MHN_NUMBER,
+			p.DECISION AS DECISION,
+			b.EXPIRY_DATE AS expiry_date,
+			m.DESCRIPTION AS description
+			FROM
+			app_pallet_history AS p
+			LEFT JOIN app_material AS m ON m.MATERIAL = p.MATERIAL 
+			LEFT JOIN app_material_batch AS b ON b.MATERIAL = p.MATERIAL AND b.BATCH_NUMBER = p.BATCH_NUMBER
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_MATERIAL
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_MATERIAL_BATCH
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_PALLET
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_PALLET_HISTORY
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_MATERIAL_BATCH
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_MHN
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_DESPATCH
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_JOURNEY
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_QM_ACTIVITY
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_QM_INSPECTION
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_QM_RESULT
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_QM_SAMPLE
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_QM_TEST
+	</statement>
+	
+	<statement>
+		ANALYZE TABLE APP_LABEL_DATA;
+	</statement>
+	
+	
+	
+</DDL>
