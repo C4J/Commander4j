@@ -187,7 +187,7 @@ public class JDialogLogin extends JDialog {
 				} else
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(null, user.getErrorMessage(), "Login Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(fld_password, user.getErrorMessage(), "Login Error", JOptionPane.ERROR_MESSAGE);
 					fld_password.setText("");
 			           SwingUtilities.invokeLater( new Runnable() 
 		                 { 
