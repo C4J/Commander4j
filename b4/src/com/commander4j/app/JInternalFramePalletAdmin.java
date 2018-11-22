@@ -290,6 +290,11 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			jTextFieldMaterial.setText(keyValue);
 		}
 		
+		if (keyField.equals("LOCATION"))
+		{
+			jTextFieldLocation.setText(keyValue);
+		}
+		
 		buildSQL();
 		populateList();
 	}
@@ -643,7 +648,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		textFieldUserCreated.setText("");
 		textFieldUserUpdated.setText("");
 		textFieldMHN.setText("");
-		jComboBoxUOM.setSelectedIndex(-1);;
+		jComboBoxUOM.setSelectedIndex(0);
 	}
 
 	private void exportExcel(String mode)

@@ -1426,7 +1426,12 @@ public class JLaunchMenu
 
 		if (optionName.equals("FRM_ADMIN_MATERIAL_CUST_DATA"))
 		{
+			
 			final JInternalFrameMaterialCustomerDataAdmin u;
+			if (isLoaded(JInternalFrameMaterialCustomerDataAdmin.class))
+				setVisible(JInternalFrameMaterialCustomerDataAdmin.class);
+				//((JInternalFrameMaterialCustomerDataAdmin) isLoadedInstance(JInternalFrameMaterialCustomerDataAdmin.class)).setJourneyRef(StrParam);
+			else
 			{
 				u = new JInternalFrameMaterialCustomerDataAdmin(StrParam);
 				u.setTitle(mod.getDescription() + " [" + StrParam + "]");

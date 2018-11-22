@@ -1217,8 +1217,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			lmaterial = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","MATERIAL", lmaterial);
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","MATERIAL", jTable1.getValueAt(row, 0).toString());
 		}
 	}
 	
@@ -1227,8 +1226,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			lmaterial = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PALLETS","MATERIAL", lmaterial);
+			JLaunchMenu.runForm("FRM_ADMIN_PALLETS","MATERIAL", jTable1.getValueAt(row, 0).toString());
 		}
 	}	
 
@@ -1237,8 +1235,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			lmaterial = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PROCESS_ORDER","MATERIAL", lmaterial);
+			JLaunchMenu.runForm("FRM_ADMIN_PROCESS_ORDER","MATERIAL", jTable1.getValueAt(row, 0).toString());
 		}
 	}	
 	

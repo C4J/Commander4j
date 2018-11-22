@@ -188,6 +188,11 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			jTextFieldMaterial.setText(keyValue);
 		}
 		
+		if (keyField.equals("LOCATION"))
+		{
+			jTextFieldLocation.setText(keyValue);
+		}
+		
 		buildSQL();
 		populateList();
 	}	
@@ -476,8 +481,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			lprocessorder = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","PROCESS_ORDER", lprocessorder);
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","PROCESS_ORDER", jTable1.getValueAt(row, 0).toString());
 		}
 	}
 	
@@ -486,8 +490,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			lprocessorder = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PALLETS","PROCESS_ORDER", lprocessorder);
+			JLaunchMenu.runForm("FRM_ADMIN_PALLETS","PROCESS_ORDER", jTable1.getValueAt(row, 0).toString());
 		}
 	}	
 

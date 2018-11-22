@@ -369,6 +369,11 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 			jTextFieldMaterial.setText(keyValue);
 		}
 		
+		if (keyField.equals("LOCATION"))
+		{
+			jTextFieldLocation.setText(keyValue);
+		}
+		
 		buildSQL();
 		populateList();
 	}

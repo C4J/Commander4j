@@ -454,6 +454,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 						jScrollPane1.setViewportView(jTable1);
 						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 						jTable1.getTableHeader().setFont(Common.font_table_header);
+						jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
 						jTable1.addMouseListener(new MouseAdapter() {
 							public void mouseClicked(MouseEvent evt) {
 								if (evt.getClickCount() == 2)
@@ -528,6 +529,47 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 								newItemMenuItem.setText(lang.get("btn_Print"));
 								popupMenu.add(newItemMenuItem);
 							}
+							
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										palletHistory();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLET_HISTORY"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_HISTORY"));
+								popupMenu.add(newItemMenuItem);
+							}
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										palletAdmin();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLETS"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLETS"));
+								popupMenu.add(newItemMenuItem);
+							}
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_process_order);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										orderAdmin();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PROCESS_ORDER"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PROCESS_ORDER"));
+								popupMenu.add(newItemMenuItem);
+							}							
+
 
 							{
 								final JMenu4j sortByMenu = new JMenu4j();
@@ -981,6 +1023,33 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 		}
 	}
 
+	private void palletHistory()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","LOCATION", jTable1.getValueAt(row, 0).toString());
+		}
+	}
+	
+	private void palletAdmin()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			JLaunchMenu.runForm("FRM_ADMIN_PALLETS","LOCATION", jTable1.getValueAt(row, 0).toString());
+		}
+	}	
+
+	private void orderAdmin()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			JLaunchMenu.runForm("FRM_ADMIN_PROCESS_ORDER","LOCATION", jTable1.getValueAt(row, 0).toString());
+		}
+	}	
+	
 	private void export() {
 		JDBLocation location = new JDBLocation(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
