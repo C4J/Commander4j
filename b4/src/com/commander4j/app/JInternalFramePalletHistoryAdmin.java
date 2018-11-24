@@ -49,7 +49,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
@@ -81,6 +80,7 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
@@ -167,7 +167,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 	private JLabel4j_std jLabel3;
 	private JLabel4j_std jLabel1;
 	private JTextField4j jTextFieldMaterial;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JScrollPane jScrollPane1;
 	private JDBUom u = new JDBUom(Common.selectedHostID, Common.sessionID);
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
@@ -608,14 +608,11 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jScrollPane1.setBounds(0, 216, 995, 370);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
-						jTable1 = new JTable();
+						jTable1 = new JTable4j();
 						jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
-						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
+
 						jScrollPane1.setViewportView(jTable1);
 						jTable1.setModel(jTable1Model);
-						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-						jTable1.getTableHeader().setFont(Common.font_table_header);
-						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
 
 						{
 							final JPopupMenu popupMenu = new JPopupMenu();
@@ -643,7 +640,19 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 								newItemMenuItem.setText(lang.get("btn_Excel"));
 								popupMenu.add(newItemMenuItem);
 							}
-
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_interface);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										interfaceLog();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_INTERFACE_LOG"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_LOG"));
+								popupMenu.add(newItemMenuItem);
+							}
 							{
 								mnReferenceData = new JMenu4j(lang.get("lbl_Referenced_Data"));
 								popupMenu.add(mnReferenceData);
@@ -1609,10 +1618,8 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 
 		jScrollPane1.setViewportView(jTable1);
 		JUtility.scrolltoHomePosition(jScrollPane1);
-		jTable1.getTableHeader().setReorderingAllowed(false);
-		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		jTable1.setFont(Common.font_list);
+		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		jTable1.getColumnModel().getColumn(0).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
@@ -1641,6 +1648,15 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 
 	}
 
+	private void interfaceLog()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			JLaunchMenu.runForm("FRM_ADMIN_INTERFACE_LOG","MESSAGE REF", jTable1.getValueAt(row, 0).toString());
+		}
+	}
+	
 	private void setSequence(boolean descending) {
 
 		if (jToggleButtonSequence.isSelected() == true)

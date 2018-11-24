@@ -51,7 +51,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
@@ -85,6 +84,7 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.messages.IncommingPalletImportXML;
 import com.commander4j.messages.OutgoingPalletExportXML;
@@ -178,7 +178,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private JLabel4j_std jLabel3;
 	private JLabel4j_std jLabel1;
 	private JTextField4j jTextFieldMaterial;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JScrollPane jScrollPane1;
 	private JDBUom u = new JDBUom(Common.selectedHostID, Common.sessionID);
 	private JDBMHNDecisions d = new JDBMHNDecisions(Common.selectedHostID, Common.sessionID);
@@ -511,6 +511,16 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		{
 			lsscc = jTable1.getValueAt(row, 0).toString();
 			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","SSCC", lsscc);
+		}
+	}
+	
+	private void interfaceLog()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lsscc = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_INTERFACE_LOG","SSCC", lsscc);
 		}
 	}
 
@@ -1460,13 +1470,11 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			jScrollPane1.setBounds(0, 300, 984, 290);
 			jDesktopPane1.add(jScrollPane1);
 			jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
-			jTable1 = new JTable();
-			jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
+			jTable1 = new JTable4j();
+
 			jScrollPane1.setViewportView(jTable1);
 			jTable1.setModel(jTable1Model);
-			jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-			jTable1.getTableHeader().setFont(Common.font_table_header);
-			jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
+
 			jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
 			jTable1.addMouseListener(new MouseAdapter()
 			{
@@ -1620,6 +1628,19 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					});
 					newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLET_HISTORY"));
 					newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_HISTORY"));
+					popupMenu.add(newItemMenuItem);
+				}
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_interface);
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							interfaceLog();
+						}
+					});
+					newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_INTERFACE_LOG"));
+					newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_LOG"));
 					popupMenu.add(newItemMenuItem);
 				}
 				{
@@ -2229,10 +2250,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		jScrollPane1.setViewportView(jTable1);
 		JUtility.scrolltoHomePosition(jScrollPane1);
 
-		jTable1.getTableHeader().setReorderingAllowed(false);
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-		jTable1.setFont(Common.font_list);
 
 		jTable1.getColumnModel().getColumn(JDBPalletTableModel.SSCC_Col).setPreferredWidth(135);
 		jTable1.getColumnModel().getColumn(JDBPalletTableModel.Material_Col).setPreferredWidth(80);

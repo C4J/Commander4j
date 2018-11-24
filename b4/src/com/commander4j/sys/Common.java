@@ -50,6 +50,7 @@ import com.commander4j.db.JDBQMSelectList;
 import com.commander4j.renderer.JDBListRenderer;
 import com.commander4j.renderer.RenderColumnPrefs;
 import com.commander4j.renderer.TableCellRenderer_Default;
+import com.commander4j.renderer.TableHeaderRenderer;
 import com.commander4j.util.JImageIconLoader;
 import com.commander4j.util.JSessionData;
 
@@ -154,8 +155,7 @@ public class Common
 	public static final JDBListRenderer renderer_list = new JDBListRenderer();
 	public static final JDBListRenderer renderer_list_assigned = new JDBListRenderer(Common.color_list_assigned);
 	public static final JDBListRenderer renderer_list_unassigned = new JDBListRenderer(Common.color_list_unassigned);
-	public static final TableCellRenderer_Default renderer_table = new TableCellRenderer_Default();
-
+	
 	public static final String UOM_Convert_Internal_to_ISO = "INTERNAL to ISO";
 	public static final String UOM_Convert_Internal_to_Local = "INTERNAL to Local";
 	public static final String UOM_Convert_None = "None";
@@ -180,13 +180,15 @@ public class Common
 	public final static Font font_menu = new Font("Arial", Font.PLAIN, 12);
 	public final static Font font_list = new Font("Monospaced", 0, 11);
 	public final static Font font_combo = new Font("Arial", Font.PLAIN, 11);
-	public final static Font font_table_header = new Font("Arial", Font.BOLD, 10);
+	public final static Font font_table_header = new java.awt.Font("Arial", Font.PLAIN, 11);
 	public final static Font font_table = new java.awt.Font("Monospaced", 0, 11);
 	public final static Font font_textArea = new java.awt.Font("Monospaced", 0, 14);
 	
+	public static final TableCellRenderer_Default renderer_table = new TableCellRenderer_Default();
+	public static final TableHeaderRenderer renderer_tableheader = new TableHeaderRenderer();
+	
 	public final static Color color_textfield_foreground_focus_color = Color.BLACK;
 	public final static Color color_textfield_forground_nofocus_color = Color.BLACK;
-	//public final static Color color_textfield_background_focus_color = new Color(255, 212, 121);
 	public final static Color color_textfield_background_focus_color = Color.WHITE;
 	public final static Color color_textfield_background_nofocus_color = Color.WHITE;
 	public final static Color color_text_maxsize_color = Color.RED;
@@ -204,6 +206,7 @@ public class Common
 	public final static Color color_text_disabled = Color.BLACK;
 	public final static Color color_edit_properties = new Color(241, 241, 241);
 	public final static Color color_app_window = new Color(241, 241, 241);
+
 
 	public final static int menuTreeWidth = 250;
 	public static JWindowSplash splash;

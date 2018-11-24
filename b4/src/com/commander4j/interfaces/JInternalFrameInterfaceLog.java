@@ -126,166 +126,53 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 		super();
 		setIconifiable(true);
 		initGUI();
-		jTable1.getSelectionModel().addListSelectionListener(listener);
-		jTable1.getColumnModel().getSelectionModel().addListSelectionListener(listener);
-
-		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
-		query.clear();
-		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}SYS_INTERFACE_LOG where 1=2"));
-		query.bindParams();
-		listStatement = query.getPreparedStatement();
-		populateList();
-
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Rectangle window = getBounds();
-		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
-
-		Date start = dateControlfrom.getDate();
-		Calendar calstart = Calendar.getInstance();
-		calstart.setTime(start);
-		calstart.add(Calendar.HOUR, -1);
-		dateControlfrom.setEnabled(false);
-		dateControlfrom.setDate(calstart.getTime());
-		{
-			checkBoxEventDate.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if (checkBoxEventDate.isSelected())
-					{
-						dateControlfrom.setEnabled(true);
-						dateControlTo.setEnabled(true);
-						calendarButtonFrom.setEnabled(true);
-						calendarButtonTo.setEnabled(true);
-					}
-					else
-					{
-						dateControlfrom.setEnabled(false);
-						dateControlTo.setEnabled(false);
-						calendarButtonFrom.setEnabled(false);
-						calendarButtonTo.setEnabled(false);
-					}
-				}
-			});
-
-			checkBoxEventDate.setBackground(Color.WHITE);
-			checkBoxEventDate.setBounds(124, 110, 21, 21);
-			jDesktopPane1.add(checkBoxEventDate);
-		}
-		{
-
-			checkBoxLimit.setSelected(true);
-			checkBoxLimit.setBackground(Color.WHITE);
-			checkBoxLimit.setBounds(863, 109, 21, 21);
-			jDesktopPane1.add(checkBoxLimit);
-		}
-		{
-			JLabel4j_std label = new JLabel4j_std(lang.get("lbl_Message_Error"));
-			label.setHorizontalAlignment(SwingConstants.TRAILING);
-			label.setBounds(356, 72, 127, 25);
-			jDesktopPane1.add(label);
-		}
-		{
-			textFielderrorMessage = new JTextField4j(JDBInterfaceLog.field_message_error);
-			textFielderrorMessage.setColumns(10);
-			textFielderrorMessage.setBounds(492, 75, 484, 22);
-			jDesktopPane1.add(textFielderrorMessage);
-		}
-		{
-			JButton4j button = new JButton4j(Common.icon_XLS);
-
-			button.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					excel();
-				}
-			});
-			button.setText(lang.get("btn_Excel"));
-			button.setMnemonic(lang.getMnemonicChar());
-			button.setBounds(423, 135, 139, 32);
-			jDesktopPane1.add(button);
-		}
-
-		button_1 = new JButton4j(Common.icon_clear);
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				clearFilter();
-			}
-		});
-		button_1.setText(lang.get("btn_Clear_Filter"));
-		button_1.setMnemonic(lang.getMnemonicChar());
-		button_1.setBounds(143, 135, 139, 32);
-		jDesktopPane1.add(button_1);
-		{
-
-			jStatusBar.setForeground(Color.BLACK);
-			jStatusBar.setBackground(Color.GRAY);
-			jStatusBar.setBounds(1, 579, 1004, 24);
-			jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-			jDesktopPane1.add(jStatusBar);
-		}
-		{
-			lblFilename = new JLabel4j_std(lang.get("lbl_Interface_Filename"));
-			lblFilename.setHorizontalAlignment(SwingConstants.TRAILING);
-			lblFilename.setBounds(11, 536, 96, 21);
-			jDesktopPane1.add(lblFilename);
-		}
-
-		textFieldFilename = new JTextField4j();
-		textFieldFilename.setEditable(false);
-		textFieldFilename.setColumns(10);
-		textFieldFilename.setBounds(112, 536, 860, 20);
-		jDesktopPane1.add(textFieldFilename);
-
-		JButton4j btnResubmit = new JButton4j(Common.icon_release);
-
-		btnResubmit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				reSubmit();
-			}
-		});
-		btnResubmit.setText(lang.get("btn_Resubmit"));
-		btnResubmit.setMnemonic(lang.getMnemonicChar());
-		btnResubmit.setBounds(283, 135, 139, 32);
-		jDesktopPane1.add(btnResubmit);
-
-		JButton4j btnDelete = new JButton4j(Common.icon_delete);
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				delete();
-			}
-		});
-		btnDelete.setToolTipText("Export all rows below to spreadsheet.");
-		btnDelete.setText(lang.get("btn_Delete"));
-		btnDelete.setMnemonic(lang.getMnemonicChar());
-		btnDelete.setBounds(563, 135, 139, 32);
-		jDesktopPane1.add(btnDelete);
-
-		JButton4j btnArchiveResolved = new JButton4j(Common.icon_delete);
-		btnArchiveResolved.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				archive();
-			}
-		});
-		btnArchiveResolved.setToolTipText("Export all rows below to spreadsheet.");
-		btnArchiveResolved.setText(lang.get("btn_Archive"));
-		btnArchiveResolved.setMnemonic(lang.getMnemonicChar());
-		btnArchiveResolved.setBounds(703, 135, 139, 32);
-		jDesktopPane1.add(btnArchiveResolved);
+	}
+	
+	public JInternalFrameInterfaceLog(String keyField,String keyValue)
+	{
+		super();
+		setIconifiable(true);
+		initGUI();
+		clearFilter();
 		
-		calendarButtonFrom = new JCalendarButton(dateControlfrom);
-		calendarButtonFrom.setEnabled(false);
-		calendarButtonFrom.setBounds(284, 110, 21, 21);
-		jDesktopPane1.add(calendarButtonFrom);
-		
-		calendarButtonTo = new JCalendarButton(dateControlTo);
-		calendarButtonTo.setEnabled(false);
-		calendarButtonTo.setBounds(439, 110, 21, 21);
-		jDesktopPane1.add(calendarButtonTo);
-		
-		JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Message_Action"));
-		label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-		label4j_std.setBounds(5, 72, 115, 25);
-		jDesktopPane1.add(label4j_std);
+		updateSearch(keyField,keyValue);
+
 	}
 
+	public void updateSearch(String keyField,String keyValue)
+	{
+		clearFilter();
+		
+		
+		if (keyField.equals("PROCESS_ORDER"))
+		{
+			textFieldMessageInfo.setText(keyValue);
+		}
+		
+		if (keyField.equals("MATERIAL"))
+		{
+			textFieldMessageInfo.setText(keyValue);
+		}
+		
+		if (keyField.equals("SSCC"))
+		{
+			textFieldMessageInfo.setText(keyValue);
+		}
+		
+		if (keyField.equals("MATERIAL BATCH"))
+		{
+			textFieldMessageInfo.setText(keyValue);
+		}
+		
+		if (keyField.equals("MESSAGE REF"))
+		{
+			textFieldMessageRef.setText(keyValue);
+		}		
+		
+		buildSQL();
+		populateList();
+	}	
+	
 	private void reSubmit() {
 
 		if (jTable1.getSelectedRowCount() > 0)
@@ -857,6 +744,165 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 					});
 				}
 			}
+			
+			jTable1.getSelectionModel().addListSelectionListener(listener);
+			jTable1.getColumnModel().getSelectionModel().addListSelectionListener(listener);
+
+			JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
+			query.clear();
+			query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}SYS_INTERFACE_LOG where 1=2"));
+			query.bindParams();
+			listStatement = query.getPreparedStatement();
+			populateList();
+
+			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+			Rectangle window = getBounds();
+			setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
+
+			Date start = dateControlfrom.getDate();
+			Calendar calstart = Calendar.getInstance();
+			calstart.setTime(start);
+			calstart.add(Calendar.HOUR, -1);
+			dateControlfrom.setEnabled(false);
+			dateControlfrom.setDate(calstart.getTime());
+			{
+				checkBoxEventDate.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (checkBoxEventDate.isSelected())
+						{
+							dateControlfrom.setEnabled(true);
+							dateControlTo.setEnabled(true);
+							calendarButtonFrom.setEnabled(true);
+							calendarButtonTo.setEnabled(true);
+						}
+						else
+						{
+							dateControlfrom.setEnabled(false);
+							dateControlTo.setEnabled(false);
+							calendarButtonFrom.setEnabled(false);
+							calendarButtonTo.setEnabled(false);
+						}
+					}
+				});
+
+				checkBoxEventDate.setBackground(Color.WHITE);
+				checkBoxEventDate.setBounds(124, 110, 21, 21);
+				jDesktopPane1.add(checkBoxEventDate);
+			}
+			{
+
+				checkBoxLimit.setSelected(true);
+				checkBoxLimit.setBackground(Color.WHITE);
+				checkBoxLimit.setBounds(863, 109, 21, 21);
+				jDesktopPane1.add(checkBoxLimit);
+			}
+			{
+				JLabel4j_std label = new JLabel4j_std(lang.get("lbl_Message_Error"));
+				label.setHorizontalAlignment(SwingConstants.TRAILING);
+				label.setBounds(356, 72, 127, 25);
+				jDesktopPane1.add(label);
+			}
+			{
+				textFielderrorMessage = new JTextField4j(JDBInterfaceLog.field_message_error);
+				textFielderrorMessage.setColumns(10);
+				textFielderrorMessage.setBounds(492, 75, 484, 22);
+				jDesktopPane1.add(textFielderrorMessage);
+			}
+			{
+				JButton4j button = new JButton4j(Common.icon_XLS);
+
+				button.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						excel();
+					}
+				});
+				button.setText(lang.get("btn_Excel"));
+				button.setMnemonic(lang.getMnemonicChar());
+				button.setBounds(423, 135, 139, 32);
+				jDesktopPane1.add(button);
+			}
+
+			button_1 = new JButton4j(Common.icon_clear);
+			button_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					clearFilter();
+				}
+			});
+			button_1.setText(lang.get("btn_Clear_Filter"));
+			button_1.setMnemonic(lang.getMnemonicChar());
+			button_1.setBounds(143, 135, 139, 32);
+			jDesktopPane1.add(button_1);
+			{
+
+				jStatusBar.setForeground(Color.BLACK);
+				jStatusBar.setBackground(Color.GRAY);
+				jStatusBar.setBounds(1, 579, 1004, 24);
+				jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+				jDesktopPane1.add(jStatusBar);
+			}
+			{
+				lblFilename = new JLabel4j_std(lang.get("lbl_Interface_Filename"));
+				lblFilename.setHorizontalAlignment(SwingConstants.TRAILING);
+				lblFilename.setBounds(11, 536, 96, 21);
+				jDesktopPane1.add(lblFilename);
+			}
+
+			textFieldFilename = new JTextField4j();
+			textFieldFilename.setEditable(false);
+			textFieldFilename.setColumns(10);
+			textFieldFilename.setBounds(112, 536, 860, 20);
+			jDesktopPane1.add(textFieldFilename);
+
+			JButton4j btnResubmit = new JButton4j(Common.icon_release);
+
+			btnResubmit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					reSubmit();
+				}
+			});
+			btnResubmit.setText(lang.get("btn_Resubmit"));
+			btnResubmit.setMnemonic(lang.getMnemonicChar());
+			btnResubmit.setBounds(283, 135, 139, 32);
+			jDesktopPane1.add(btnResubmit);
+
+			JButton4j btnDelete = new JButton4j(Common.icon_delete);
+			btnDelete.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					delete();
+				}
+			});
+			btnDelete.setToolTipText("Export all rows below to spreadsheet.");
+			btnDelete.setText(lang.get("btn_Delete"));
+			btnDelete.setMnemonic(lang.getMnemonicChar());
+			btnDelete.setBounds(563, 135, 139, 32);
+			jDesktopPane1.add(btnDelete);
+
+			JButton4j btnArchiveResolved = new JButton4j(Common.icon_delete);
+			btnArchiveResolved.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					archive();
+				}
+			});
+			btnArchiveResolved.setToolTipText("Export all rows below to spreadsheet.");
+			btnArchiveResolved.setText(lang.get("btn_Archive"));
+			btnArchiveResolved.setMnemonic(lang.getMnemonicChar());
+			btnArchiveResolved.setBounds(703, 135, 139, 32);
+			jDesktopPane1.add(btnArchiveResolved);
+			
+			calendarButtonFrom = new JCalendarButton(dateControlfrom);
+			calendarButtonFrom.setEnabled(false);
+			calendarButtonFrom.setBounds(284, 110, 21, 21);
+			jDesktopPane1.add(calendarButtonFrom);
+			
+			calendarButtonTo = new JCalendarButton(dateControlTo);
+			calendarButtonTo.setEnabled(false);
+			calendarButtonTo.setBounds(439, 110, 21, 21);
+			jDesktopPane1.add(calendarButtonTo);
+			
+			JLabel4j_std label4j_std = new JLabel4j_std(lang.get("lbl_Message_Action"));
+			label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
+			label4j_std.setBounds(5, 72, 115, 25);
+			jDesktopPane1.add(label4j_std);
 		}
 		catch (Exception e)
 		{

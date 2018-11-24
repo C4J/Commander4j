@@ -51,7 +51,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
@@ -70,6 +69,7 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
@@ -94,8 +94,10 @@ import com.commander4j.util.JUtility;
  * <img alt="" src="./doc-files/JInternalFrameJourneyAdmin.jpg" >
  * 
  * @see com.commander4j.db.JDBDespatch JDBDespatch
- * @see com.commander4j.app.JInternalFrameJourneyAdmin JInternalFrameJourneyAdmin
- * @see com.commander4j.app.JInternalFrameJourneyProperties JInternalFrameJourneyProperties
+ * @see com.commander4j.app.JInternalFrameJourneyAdmin
+ *      JInternalFrameJourneyAdmin
+ * @see com.commander4j.app.JInternalFrameJourneyProperties
+ *      JInternalFrameJourneyProperties
  */
 public class JInternalFrameJourneyAdmin extends JInternalFrame
 {
@@ -119,7 +121,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 	private JLabel4j_std jLabel3;
 	private JTextField4j jTextFieldJourneyRef;
 	private JLabel4j_std jLabel1;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSearch;
 	private JScrollPane jScrollPane1;
@@ -223,7 +225,8 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				try
 				{
 					parsedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dateString);
-				} catch (ParseException e)
+				}
+				catch (ParseException e)
 				{
 					parsedDate = new java.util.Date();
 					e.printStackTrace();
@@ -287,7 +290,8 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				if (jref.isValidJourneyRef(ljourneyref) == false)
 				{
 					JLaunchMenu.runForm("FRM_ADMIN_JOURNEY_EDIT", ljourneyref);
-				} else
+				}
+				else
 				{
 					JOptionPane.showMessageDialog(Common.mainForm, "Journey Ref [" + ljourneyref + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 				}
@@ -310,7 +314,8 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
 			jToggleButtonSequence.setIcon(Common.icon_descending);
-		} else
+		}
+		else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
 			jToggleButtonSequence.setIcon(Common.icon_ascending);
@@ -373,7 +378,6 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 
 		jScrollPane1.setViewportView(jTable1);
 		JUtility.scrolltoHomePosition(jScrollPane1);
-		jTable1.getTableHeader().setReorderingAllowed(false);
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		jTable1.setFont(Common.font_list);
@@ -449,13 +453,9 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 								{ "One", "Two" },
 								{ "Three", "Four" } }, new String[]
 						{ "Column 1", "Column 2" });
-						jTable1 = new JTable();
-						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
+						jTable1 = new JTable4j();
 						jScrollPane1.setViewportView(jTable1);
 						jTable1.setModel(jTable1Model);
-						jTable1.getTableHeader().setFont(Common.font_table_header);
-						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
-						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 						jTable1.addMouseListener(new MouseAdapter()
 						{
 							public void mouseClicked(MouseEvent evt)
@@ -840,7 +840,8 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 							{
 								timeslotFrom.setEnabled(true);
 								calendarButtonexpiryFrom.setEnabled(true);
-							} else
+							}
+							else
 							{
 								timeslotFrom.setEnabled(false);
 								calendarButtonexpiryFrom.setEnabled(false);
@@ -862,7 +863,8 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 							{
 								timeslotTo.setEnabled(true);
 								calendarButtonexpiryTo.setEnabled(true);
-							} else
+							}
+							else
 							{
 								timeslotTo.setEnabled(false);
 								calendarButtonexpiryTo.setEnabled(false);
@@ -1036,7 +1038,8 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 							if (jCheckBoxLimit.isSelected())
 							{
 								jSpinnerLimit.setEnabled(true);
-							} else
+							}
+							else
 							{
 								jSpinnerLimit.setEnabled(false);
 							}
@@ -1072,7 +1075,8 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				jDesktopPane1.add(label4j_stdHaulier);
 
 			}
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

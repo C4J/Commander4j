@@ -47,7 +47,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -66,6 +65,7 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
@@ -122,7 +122,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 	private JTextField4j jTextFieldLocationID;
 	private JTextField4j jTextFieldStorageBin;
 	private JTextField4j jTextFieldWarehouse;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JScrollPane jScrollPane1;
 	private JTextField4j jTextFieldDescription;
 	private JLabel4j_std jLabel3;
@@ -250,9 +250,8 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 
 		jScrollPane1.setViewportView(jTable1);
 		JUtility.scrolltoHomePosition(jScrollPane1);
-		jTable1.getTableHeader().setReorderingAllowed(false);
+
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		jTable1.setFont(Common.font_list);
 
 		TableColumn col = jTable1.getColumnModel().getColumn(0);
 		col.setPreferredWidth(100);
@@ -449,11 +448,9 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jScrollPane1.setBounds(0, 150, 1010, 355);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
-						jTable1 = new JTable();
-						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
+						jTable1 = new JTable4j();
 						jScrollPane1.setViewportView(jTable1);
-						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-						jTable1.getTableHeader().setFont(Common.font_table_header);
+
 						jTable1.setToolTipText(lang.get("lbl_Table_Hint"));
 						jTable1.addMouseListener(new MouseAdapter() {
 							public void mouseClicked(MouseEvent evt) {

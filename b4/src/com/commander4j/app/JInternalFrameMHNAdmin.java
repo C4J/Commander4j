@@ -47,7 +47,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -67,6 +66,7 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
@@ -114,7 +114,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 	private JLabel4j_std jLabelMHN;
 	private JTextField4j jTextFieldMHN;
 	private JTextField4j jTextFieldInitiator;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JScrollPane jScrollPane1;
 	private JTextField4j jTextFieldComment;
 	private JLabel4j_std jLabelComment;
@@ -261,9 +261,9 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 
 		jScrollPane1.setViewportView(jTable1);
 		JUtility.scrolltoHomePosition(jScrollPane1);
-		jTable1.getTableHeader().setReorderingAllowed(false);
+
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		jTable1.setFont(Common.font_list);
+
 
 		jTable1.getColumnModel().getColumn(JDBMHNTableModel.MHN_Number_Col).setPreferredWidth(75);
 		jTable1.getColumnModel().getColumn(JDBMHNTableModel.recorder_Col).setPreferredWidth(90);
@@ -504,12 +504,10 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jScrollPane1.setBounds(0, 180, 969, 386);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
-						jTable1 = new JTable();
+						jTable1 = new JTable4j();
 						jTable1.setToolTipText("Update selected MHN by using the Edit option.");
-						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
 						jScrollPane1.setViewportView(jTable1);
-						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-						jTable1.getTableHeader().setFont(Common.font_table_header);
+
 						jTable1.addMouseListener(new MouseAdapter()
 						{
 							public void mouseClicked(MouseEvent evt)

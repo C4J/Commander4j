@@ -1157,6 +1157,24 @@ public class JLaunchMenu
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
 		
+		
+		if (optionName.equals("FRM_ADMIN_INTERFACE_LOG"))
+		{
+			final JInternalFrameInterfaceLog u;
+			if (isLoaded(JInternalFrameInterfaceLog.class))
+			{
+				((JInternalFrameInterfaceLog) isLoadedInstance(JInternalFrameInterfaceLog.class)).updateSearch(StrParam1, StrParam2);
+				setVisible(JInternalFrameInterfaceLog.class);
+			}
+			else
+			{
+				u = new JInternalFrameInterfaceLog(StrParam1,StrParam2);
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}		
+		
+		
 		if (optionName.equals("FRM_ADMIN_PROCESS_ORDER"))
 		{
 			final JInternalFrameProcessOrderAdmin u;
