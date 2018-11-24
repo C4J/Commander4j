@@ -929,7 +929,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(470, 104, 21, 22);
+					jToggleButtonSequence.setBounds(470, 103, 21, 22);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -974,7 +974,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 						}
 					});
 
-					buttonReasonLookup.setBounds(214, 42, 21, 21);
+					buttonReasonLookup.setBounds(214, 41, 21, 21);
 					jDesktopPane1.add(buttonReasonLookup);
 				}
 				{
@@ -1242,7 +1242,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 						}
 					}
 				});
-				buttonResourceLookup.setBounds(214, 105, 21, 21);
+				buttonResourceLookup.setBounds(214, 104, 21, 21);
 				jDesktopPane1.add(buttonResourceLookup);
 
 				Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();

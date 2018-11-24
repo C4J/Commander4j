@@ -51,7 +51,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
@@ -76,6 +75,7 @@ import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.renderer.TableCellRenderer_MHNPallet;
 import com.commander4j.sys.Common;
@@ -120,7 +120,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 	private JLabel4j_std jLabelMHN;
 	private JTextField4j jTextFieldMHN;
 	private JTextField4j jTextFieldInitiator;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JScrollPane jScrollPane1;
 	private JTextField4j jTextFieldComment;
 	private JLabel4j_std jLabelComment;
@@ -180,9 +180,9 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		jTable1.setRowSorter(sorter);
 		jTable1.setModel(mhntable);
 		jScrollPane1.setViewportView(jTable1);
-		jTable1.getTableHeader().setReorderingAllowed(false);
+
 		jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		jTable1.setFont(Common.font_list);
+
 		jTable1.getColumnModel().getColumn(JDBMHNPalletTableModelProperties.SSCC_Col).setPreferredWidth(132);
 		jTable1.getColumnModel().getColumn(JDBMHNPalletTableModelProperties.Material_Col).setPreferredWidth(68);
 		jTable1.getColumnModel().getColumn(JDBMHNPalletTableModelProperties.Batch_Col).setPreferredWidth(75);
@@ -561,13 +561,13 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					jScrollPane1.setBounds(0, 190, 1001, 334);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
-						jTable1 = new JTable();
+						jTable1 = new JTable4j();
 						jTable1.setToolTipText("Update decision by selecting one or more rows and then use the mouse right click popup menu options. ");
+						
 						jTable1.setDefaultRenderer(Object.class, new TableCellRenderer_MHNPallet());
+						
 						jScrollPane1.setViewportView(jTable1);
 
-						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-						jTable1.getTableHeader().setFont(Common.font_table_header);
 						jTable1.setModel(jTable1Model);
 
 						{

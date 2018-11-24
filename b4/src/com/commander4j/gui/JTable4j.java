@@ -1,5 +1,7 @@
 package com.commander4j.gui;
 
+import java.awt.Dimension;
+
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
@@ -17,7 +19,7 @@ public class JTable4j extends JTable
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		getTableHeader().setReorderingAllowed(false);
 		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
+		getTableHeader().setPreferredSize(new Dimension(10000, 25));
 	}
 	
 }
