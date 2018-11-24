@@ -32,6 +32,7 @@ import java.util.LinkedList;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -99,10 +100,12 @@ public class JDBQMResultTable extends JTable
 
 		testPropertiesList = test.getTestsPropertiesList(inspectionid, activityid);
 
-		getTableHeader().setFont(Common.font_table_header);
-		getTableHeader().setForeground(Common.color_tableHeaderFont);
+		
+		setDefaultRenderer(Object.class, Common.renderer_table);
+		getTableHeader().setDefaultRenderer(Common.renderer_tableheader);
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		setFont(Common.font_table);
+		getTableHeader().setReorderingAllowed(false);
+		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 	}
 

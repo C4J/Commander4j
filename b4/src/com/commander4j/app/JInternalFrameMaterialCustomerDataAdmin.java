@@ -28,7 +28,6 @@ package com.commander4j.app;
  */
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +40,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
@@ -55,6 +53,7 @@ import com.commander4j.db.JDBMaterialCustomerData;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
@@ -84,7 +83,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 	private JButton4j jButtonPrint;
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonEdit;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JScrollPane jScrollPane1;
 	private String lmaterial;
 	private String lcustomer;
@@ -124,9 +123,8 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 		jTable1.setRowSorter(sorter);
 		jTable1.setModel(materialcustdatatable);
 		jScrollPane1.setViewportView(jTable1);
-		jTable1.getTableHeader().setReorderingAllowed(false);
+
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		jTable1.setFont(Common.font_list);
 
 		jTable1.getColumnModel().getColumn(JDBMaterialCustomerDataTableModel.Material_Col).setPreferredWidth(100);
 		jTable1.getColumnModel().getColumn(JDBMaterialCustomerDataTableModel.Customer_Col).setPreferredWidth(100);
@@ -177,13 +175,11 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 								{ "Three", "Four" } }, new String[]
 						{ "Column 1", "Column 2" });
 						this.setClosable(true);
-						jTable1 = new JTable();
-						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
+						jTable1 = new JTable4j();
+
 						jScrollPane1.setViewportView(jTable1);
 						jTable1.setModel(jTable1Model);
-						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-						jTable1.getTableHeader().setFont(Common.font_table_header);
-						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
+
 						jTable1.addMouseListener(new MouseAdapter()
 						{
 							public void mouseClicked(MouseEvent evt)

@@ -39,11 +39,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
@@ -58,14 +59,12 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.tablemodel.JDBLanguageTableModel;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
 
 /**
  * The JInternalFrameLanguageAdmin class is a form which displays all the text used within the application filtered by language. Add text is stored in a
@@ -98,7 +97,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 	private JTextField4j textFieldMnemonic;
 	private JComboBox4j<String> comboBoxLanguageID;
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private PreparedStatement listStatement;
 
 	public JInternalFrameLanguageAdmin()
@@ -170,7 +169,6 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 		jTable1.setModel(languagetable);
 
 		jScrollPane1.setViewportView(jTable1);
-		jTable1.getTableHeader().setReorderingAllowed(false);
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		jTable1.setFont(Common.font_list);
@@ -206,7 +204,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 					jScrollPane1.setBounds(3, 113, 973, 435);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
-						jTable1 = new JTable();
+						jTable1 = new JTable4j();
 						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
 
 						JPopupMenu popupMenu = new JPopupMenu();
@@ -272,9 +270,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 
 						jScrollPane1.setViewportView(jTable1);
 						jTable1.setModel(jTable1Model);
-						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-						jTable1.getTableHeader().setFont(Common.font_table_header);
-						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
+
 						jTable1.addMouseListener(new MouseAdapter() {
 							public void mouseClicked(MouseEvent evt) {
 								if (evt.getClickCount() == 2)

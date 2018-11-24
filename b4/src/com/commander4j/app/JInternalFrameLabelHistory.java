@@ -36,7 +36,6 @@ import java.sql.PreparedStatement;
 import java.util.HashMap;
 
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableRowSorter;
 
@@ -46,6 +45,7 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.db.JDBQuery2;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBLabelDataTableModel;
@@ -72,7 +72,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 	private JButton4j jButtonClose;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonPrint;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private String selectedLine;
 	private String selectedGroup;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
@@ -130,11 +130,8 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 		jTable1.setModel(labeltable);
 
 		jScrollPane1.setViewportView(jTable1);
-		jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		jTable1.getTableHeader().setReorderingAllowed(false);
-		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		jTable1.setFont(Common.font_list);
+		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		jTable1.getColumnModel().getColumn(JDBLabelDataTableModel.Print_Date_Col).setPreferredWidth(125);
 		jTable1.getColumnModel().getColumn(JDBLabelDataTableModel.UserID_Col).setPreferredWidth(75);
@@ -165,14 +162,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 				jScrollPane1.setBounds(0, 3, 978, 469);
 				jScrollPane1.setFont(Common.font_std);
 				{
-					jTable1 = new JTable();
-					jTable1.getTableHeader().setBounds(0, 0, 629, 16);
-
-					jTable1.getTableHeader().setFont(Common.font_table_header);
-					jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
-					jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
-					jTable1.setFont(Common.font_list);
-					jTable1.setForeground(Common.color_listFontStandard);
+					jTable1 = new JTable4j();
 
 				}
 

@@ -53,7 +53,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
@@ -85,8 +84,8 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
-import com.commander4j.renderer.TableCellRenderer_Default;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.tablemodel.JDBMHNPalletTableModelAssign;
@@ -163,7 +162,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 	private JLabel4j_std jLabel3;
 	private JLabel4j_std jLabel1;
 	private JTextField4j jTextFieldMaterial;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JScrollPane jScrollPane1;
 	private JDBUom u = new JDBUom(Common.selectedHostID, Common.sessionID);
 	private JDBMaterialType t = new JDBMaterialType(Common.selectedHostID, Common.sessionID);
@@ -542,13 +541,10 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					jScrollPane1.setBounds(2, 178, 980, 348);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
-						jTable1 = new JTable();
-						jTable1.setDefaultRenderer(Object.class, new TableCellRenderer_Default());
+						jTable1 = new JTable4j();
+
 						jScrollPane1.setViewportView(jTable1);
 						jTable1.setModel(jTable1Model);
-						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-						jTable1.getTableHeader().setFont(Common.font_table_header);
-						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
 
 						{
 							final JPopupMenu popupMenu = new JPopupMenu();
@@ -1376,7 +1372,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 
 		jScrollPane1.setViewportView(jTable1);
 		JUtility.scrolltoHomePosition(jScrollPane1);
-		jTable1.getTableHeader().setReorderingAllowed(false);
+
 		jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		jTable1.setFont(Common.font_list);

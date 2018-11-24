@@ -47,7 +47,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
@@ -68,6 +67,7 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JMenu4j;
 import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.tablemodel.JDBAuditPermissionsTableModel;
 import com.commander4j.util.JDateControl;
@@ -105,7 +105,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 	private JTextField4j jTextFieldUserID;	
 	private JTextField4j jTextFieldData;
 	private JLabel4j_std lbl_Data;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JButton4j jButtonSearch;
 	private JScrollPane jScrollPane1;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
@@ -239,7 +239,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 
 		jScrollPane1.setViewportView(jTable1);
 		JUtility.scrolltoHomePosition(jScrollPane1);
-		jTable1.getTableHeader().setReorderingAllowed(false);
+
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		jTable1.setFont(Common.font_list);
@@ -347,13 +347,10 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 					jDesktopPane1.add(jScrollPane1);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][] { { "One", "Two" }, { "Three", "Four" } }, new String[] { "Column 1", "Column 2" });
-						jTable1 = new JTable();
-						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
+						jTable1 = new JTable4j();
+
 						jScrollPane1.setViewportView(jTable1);
 						jTable1.setModel(jTable1Model);
-						jTable1.getTableHeader().setFont(Common.font_table_header);
-						jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
-						jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 						{
 							final JPopupMenu popupMenu = new JPopupMenu();

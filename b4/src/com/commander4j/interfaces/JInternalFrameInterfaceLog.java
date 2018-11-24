@@ -52,7 +52,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -66,7 +65,14 @@ import com.commander4j.db.JDBInterfaceLog;
 import com.commander4j.db.JDBInterfaceRequest;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBQuery;
-import com.commander4j.gui.*;
+import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JCheckBox4j;
+import com.commander4j.gui.JComboBox4j;
+import com.commander4j.gui.JLabel4j_std;
+import com.commander4j.gui.JMenu4j;
+import com.commander4j.gui.JMenuItem4j;
+import com.commander4j.gui.JTable4j;
+import com.commander4j.gui.JTextField4j;
 import com.commander4j.messages.OutgoingDespatchConfirmation;
 import com.commander4j.messages.OutgoingDespatchPreAdvice;
 import com.commander4j.messages.OutgoingEquipmentTracking;
@@ -82,7 +88,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonClose;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JButton4j jButtonRefresh;
 	private JScrollPane jScrollPane1;
 	private SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
@@ -421,10 +427,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 
 		jScrollPane1.setViewportView(jTable1);
 
-		jTable1.getTableHeader().setReorderingAllowed(false);
 		jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-
-		jTable1.setFont(Common.font_list);
 
 		jTable1.getColumnModel().getColumn(JDBInterfaceLogTableModel.event_time_Col).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBInterfaceLogTableModel.interface_log_id_Col).setPreferredWidth(60);
@@ -506,13 +509,9 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 				jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 				jDesktopPane1.add(jScrollPane1);
 				jScrollPane1.setBounds(1, 172, 983, 290);
-				jTable1 = new JTable();
-				jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
+				jTable1 = new JTable4j();
 				jScrollPane1.setViewportView(jTable1);
 
-				jTable1.getTableHeader().setFont(Common.font_table_header);
-				jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
-				jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 				jTable1.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
 						if (evt.getClickCount() == 1)

@@ -38,7 +38,6 @@ import java.sql.PreparedStatement;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
@@ -48,6 +47,7 @@ import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.tablemodel.JDBControlTableModel;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
@@ -77,7 +77,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 	private JButton4j jButtonPrint;
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonAdd;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private String systemKey;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private PreparedStatement listStatement;
@@ -144,18 +144,15 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 		jTable1.setModel(controltable);
 
 		jScrollPane1.setViewportView(jTable1);
-		jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		jTable1.getTableHeader().setReorderingAllowed(false);
+
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		jTable1.setFont(Common.font_list);
-
 		TableColumn col = jTable1.getColumnModel().getColumn(0);
-		col.setPreferredWidth(200);
+		col.setPreferredWidth(250);
 		col = jTable1.getColumnModel().getColumn(1);
 		col.setPreferredWidth(250);
 		col = jTable1.getColumnModel().getColumn(2);
-		col.setPreferredWidth(350);
+		col.setPreferredWidth(370);
 		jScrollPane1.repaint();
 	}
 
@@ -177,7 +174,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				jScrollPane1.setBounds(3, 3, 889, 390);
 				jScrollPane1.setFont(Common.font_std);
 				{
-					jTable1 = new JTable();
+					jTable1 = new JTable4j();
 					jTable1.getTableHeader().setBounds(0, 0, 629, 16);
 
 					jTable1.getTableHeader().setFont(Common.font_table_header);

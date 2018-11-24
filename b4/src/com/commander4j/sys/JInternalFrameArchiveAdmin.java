@@ -38,7 +38,6 @@ import java.sql.PreparedStatement;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableRowSorter;
 
@@ -46,6 +45,7 @@ import com.commander4j.db.JDBArchive;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.tablemodel.JDBArchiveDataTableModel;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
@@ -73,7 +73,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 	private JButton4j jButtonPrint;
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonAdd;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private String archID;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private PreparedStatement listStatement;
@@ -119,8 +119,6 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 		jTable1.setModel(controltable);
 
 		jScrollPane1.setViewportView(jTable1);
-		jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		jTable1.getTableHeader().setReorderingAllowed(false);
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		jTable1.setFont(Common.font_list);
@@ -158,7 +156,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				jScrollPane1.setBounds(3, 3, 986, 267);
 				jScrollPane1.setFont(Common.font_std);
 				{
-					jTable1 = new JTable();
+					jTable1 = new JTable4j();
 					jTable1.getTableHeader().setBounds(0, 0, 629, 16);
 
 					jTable1.getTableHeader().setFont(Common.font_table_header);

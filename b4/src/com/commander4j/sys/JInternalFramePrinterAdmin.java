@@ -43,7 +43,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableRowSorter;
 
@@ -55,6 +54,7 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JRadioButton4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.tablemodel.JDBPrintersTableModel;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
@@ -72,7 +72,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 	private JButton4j jButtonPrint;
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonAdd;
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private String printerID;
 	private String groupID;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
@@ -179,8 +179,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 		jTable1.setModel(printertable);
 
 		jScrollPane1.setViewportView(jTable1);
-		jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		jTable1.getTableHeader().setReorderingAllowed(false);
+
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		jTable1.setFont(Common.font_list);
@@ -244,14 +243,9 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				jScrollPane1.setBounds(0, 43, 1010, 349);
 				jScrollPane1.setFont(Common.font_std);
 				{
-					jTable1 = new JTable();
+					jTable1 = new JTable4j();
 					jTable1.getTableHeader().setBounds(0, 0, 629, 16);
 
-					jTable1.getTableHeader().setFont(Common.font_table_header);
-					jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
-					jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
-					jTable1.setFont(Common.font_list);
-					jTable1.setForeground(Common.color_listFontStandard);
 					jTable1.addMouseListener(new MouseAdapter()
 					{
 						public void mouseClicked(MouseEvent evt)

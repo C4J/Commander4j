@@ -35,12 +35,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.TableRowSorter;
 
 import com.commander4j.db.JDBAutoLabeller;
@@ -53,15 +56,11 @@ import com.commander4j.db.JDBQuery;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JRadioButton4j;
+import com.commander4j.gui.JTable4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.tablemodel.JDBAutoLabellerTableModel;
 import com.commander4j.util.JUtility;
-
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
 
 /**
  * The JInternalFrameAutoLabellerLines class allows the user to manage the table
@@ -91,7 +90,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 	private JDBLabelData ldat = new JDBLabelData(Common.selectedHostID, Common.sessionID);
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JTable jTable1;
+	private JTable4j jTable1;
 	private JScrollPane scrollPane = new JScrollPane();
 	private PreparedStatement listStatement;
 	private JDBAutoLabellerTableModel autolabeltable = new JDBAutoLabellerTableModel(Common.selectedHostID, Common.sessionID);
@@ -241,7 +240,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 
 			scrollPane.setBounds(0, 34, 1003, 399);
 
-			jTable1 = new JTable();
+			jTable1 = new JTable4j();
 			jTable1.addMouseListener(new MouseAdapter()
 			{
 				@Override
@@ -254,12 +253,6 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 				}
 			});
 			jTable1.getTableHeader().setBounds(0, 0, 629, 16);
-
-			jTable1.getTableHeader().setFont(Common.font_table_header);
-			jTable1.getTableHeader().setForeground(Common.color_tableHeaderFont);
-			jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
-			jTable1.setFont(Common.font_list);
-			jTable1.setForeground(Common.color_listFontStandard);
 
 			jTable1.getSelectionModel();
 
@@ -393,8 +386,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 		jTable1.setModel(autolabeltable);
 		scrollPane.getViewport().setBackground(Common.color_tablebackground);
 		scrollPane.setViewportView(jTable1);
-		jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		jTable1.getTableHeader().setReorderingAllowed(false);
+
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		jTable1.setFont(Common.font_list);
