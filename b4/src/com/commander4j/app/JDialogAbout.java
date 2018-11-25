@@ -85,7 +85,6 @@ public class JDialogAbout extends javax.swing.JDialog
 	public JDialogAbout(JFrame frame)
 	{
 		super(frame);
-		setUndecorated(true);
 		getContentPane().setLayout(null);
 		initGUI();
 
@@ -124,8 +123,8 @@ public class JDialogAbout extends javax.swing.JDialog
 				this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 				{
 					jDesktopPane1 = new JDesktopPane();
-					jDesktopPane1.setBackground(Color.WHITE);
-					jDesktopPane1.setBounds(0, 0, 406, 322);
+					jDesktopPane1.setBackground(new Color(0,127,195));
+					jDesktopPane1.setBounds(0, 0, 422, 344);
 					this.getContentPane().add(jDesktopPane1);
 					jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 231));
 					jDesktopPane1.setLayout(null);
@@ -145,18 +144,20 @@ public class JDialogAbout extends javax.swing.JDialog
 					}
 					{
 						jLabelBy = new JLabel4j_std();
+						jLabelBy.setForeground(Color.RED);
 						jDesktopPane1.add(jLabelBy);
 						jLabelBy.setText("by");
 						jLabelBy.setBounds(6, 203, 398, 21);
-						jLabelBy.setFont(new java.awt.Font("Dialog", 0, 12));
+						jLabelBy.setFont(new Font("Dialog", Font.PLAIN, 14));
 						jLabelBy.setHorizontalAlignment(SwingConstants.CENTER);
 					}
 					{
 						jLabelAuthor = new JLabel4j_std();
+						jLabelAuthor.setForeground(Color.RED);
 						jDesktopPane1.add(jLabelAuthor);
 						jLabelAuthor.setText(Common.appAuthor);
 						jLabelAuthor.setBounds(6, 224, 398, 14);
-						jLabelAuthor.setFont(new java.awt.Font("Dialog", 0, 12));
+						jLabelAuthor.setFont(new Font("Dialog", Font.PLAIN, 14));
 						jLabelAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 					}
 					{
@@ -165,7 +166,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jDesktopPane1.add(jLabelWebPage);
 						jLabelWebPage.setText(Common.appWebsite);
 						jLabelWebPage.setBounds(6, 266, 398, 14);
-						jLabelWebPage.setForeground(new java.awt.Color(0, 0, 255));
+						jLabelWebPage.setForeground(Color.WHITE);
 						jLabelWebPage.addMouseListener(new MouseAdapter()
 						{
 							public void mouseClicked(MouseEvent evt)
@@ -202,7 +203,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jDesktopPane1.add(jLabelEmail);
 						jLabelEmail.setText("Email : "+Common.appSupportEmail);
 						jLabelEmail.setBounds(6, 245, 398, 14);
-						jLabelEmail.setForeground(new java.awt.Color(0, 0, 255));
+						jLabelEmail.setForeground(Color.WHITE);
 						jLabelEmail.addMouseListener(new MouseAdapter()
 						{
 							public void mouseClicked(MouseEvent evt)
@@ -251,11 +252,11 @@ public class JDialogAbout extends javax.swing.JDialog
 					
 					JLabel labelLogo = new JLabel("New label");
 					labelLogo.setIcon(new ImageIcon(System.getProperty("user.dir")+File.separator+"images"+File.separator+"about.jpg"));
-					labelLogo.setBounds(0, 0, 406, 169);
+					labelLogo.setBounds(4, 0, 404, 169);
 					jDesktopPane1.add(labelLogo);
 				}
 			}
-			this.setSize(402, 324);
+			this.setSize(411, 354);
 		} catch (Exception e)
 		{
 			e.printStackTrace();
