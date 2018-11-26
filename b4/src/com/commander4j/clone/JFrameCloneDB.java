@@ -41,7 +41,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -131,12 +130,12 @@ public class JFrameCloneDB extends JFrame
 	{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 599, 557);
+		setBounds(100, 100, 574, 571);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		desktopPane.setBounds(0, 0, 600, 534);
+		desktopPane.setBounds(0, 0, 574, 549);
 		desktopPane.setBackground(Color.WHITE);
 		contentPane.add(desktopPane);
 
@@ -279,7 +278,7 @@ public class JFrameCloneDB extends JFrame
 
 			jScrollPaneFrom = new JScrollPane();
 			desktopPane.add(jScrollPaneFrom);
-			jScrollPaneFrom.setBounds(14, 37, 258, 395);
+			jScrollPaneFrom.setBounds(20, 37, 258, 395);
 
 			ListModel<JHost> jListHostsModelFrom = new DefaultComboBoxModel<JHost>();
 			jListHostFrom = new JList4j<JHost>();
@@ -314,7 +313,7 @@ public class JFrameCloneDB extends JFrame
 			jButtonClone = new JButton4j(Common.icon_clone);
 			desktopPane.add(jButtonClone);
 			jButtonClone.setText("Clone Database");
-			jButtonClone.setBounds(129, 444, 160, 36);
+			jButtonClone.setBounds(118, 444, 160, 36);
 			jButtonClone.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -582,7 +581,7 @@ public class JFrameCloneDB extends JFrame
 			jButtonClose = new JButton4j(Common.icon_close);
 			desktopPane.add(jButtonClose);
 			jButtonClose.setText("Close");
-			jButtonClose.setBounds(293, 444, 160, 36);
+			jButtonClose.setBounds(310, 444, 160, 36);
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -592,29 +591,31 @@ public class JFrameCloneDB extends JFrame
 				}
 			});
 
-			progressBar.setBounds(14, 480, 577, 28);
+			progressBar.setBounds(0, 490, 573, 28);
 			progressBar.setBackground(Color.WHITE);
 			progressBar.setForeground(Color.BLUE);
 			desktopPane.add(progressBar);
 
-			labelCommand.setBounds(13, 503, 577, 23);
-			labelCommand.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+			labelCommand.setBounds(0, 522, 573, 23);
+			labelCommand.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			desktopPane.add(labelCommand);
 
 			JLabel4j_std label4j_std = new JLabel4j_std();
-			label4j_std.setFont(new Font("Arial", Font.BOLD, 11));
+			label4j_std.setForeground(Color.BLACK);
+			label4j_std.setFont(new Font("Arial", Font.PLAIN, 16));
 			label4j_std.setText("Source");
 			label4j_std.setHorizontalTextPosition(SwingConstants.LEFT);
-			label4j_std.setHorizontalAlignment(SwingConstants.LEFT);
-			label4j_std.setBounds(14, 15, 127, 21);
+			label4j_std.setHorizontalAlignment(SwingConstants.CENTER);
+			label4j_std.setBounds(20, 15, 258, 21);
 			desktopPane.add(label4j_std);
 
 			JLabel4j_std label4j_std_1 = new JLabel4j_std();
+			label4j_std_1.setForeground(Color.BLACK);
 			label4j_std_1.setText("Destination");
 			label4j_std_1.setHorizontalTextPosition(SwingConstants.LEFT);
-			label4j_std_1.setHorizontalAlignment(SwingConstants.LEFT);
-			label4j_std_1.setFont(new Font("Arial", Font.BOLD, 11));
-			label4j_std_1.setBounds(310, 15, 127, 21);
+			label4j_std_1.setHorizontalAlignment(SwingConstants.CENTER);
+			label4j_std_1.setFont(new Font("Arial", Font.PLAIN, 16));
+			label4j_std_1.setBounds(310, 15, 248, 21);
 			desktopPane.add(label4j_std_1);
 
 		} catch (Exception e)
