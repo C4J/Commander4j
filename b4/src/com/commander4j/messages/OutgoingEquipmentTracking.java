@@ -109,8 +109,9 @@ public class OutgoingEquipmentTracking
 		if (desp.getDespatchPropertiesFromTransactionRef() == true)
 		{
 
-			String sourceEquipmentLocation = JUtility.replaceNullStringwithBlank(desp.getLocationDBFrom().getGLN());
-			String destinationEquipmentLocation = JUtility.replaceNullStringwithBlank(desp.getLocationDBTo().getGLN());
+			String sourceEquipmentLocnEquipTrackingID = JUtility.replaceNullStringwithBlank(desp.getLocationDBFrom().getEquipmentTrackingID());
+			String destinationEquipmentLocnEquipTrackingID = JUtility.replaceNullStringwithBlank(desp.getLocationDBTo().getEquipmentTrackingID());
+
 
 			gmh.setMessageRef(desp.getTransactionRef().toString());
 			gmh.setInterfaceType(inter.getInterfaceType());
@@ -124,13 +125,13 @@ public class OutgoingEquipmentTracking
 				suppressMessage = true;			
 			}
 			
-			if (sourceEquipmentLocation.length() == 0)
+			if (sourceEquipmentLocnEquipTrackingID.length() == 0)
 			{
 				setErrorMessage("Message Suppressed - No Equipment Destination (From) for Location [" + desp.getLocationIDFrom() + "] despatch ["+desp.getDespatchNo()+"]");
 				suppressMessage = true;
 			}
 
-			if (destinationEquipmentLocation.length() == 0)
+			if (destinationEquipmentLocnEquipTrackingID.length() == 0)
 			{
 				setErrorMessage("Message Suppressed - No Equipment Destination (To) for Location [" + desp.getLocationIDTo() + "] despatch ["+desp.getDespatchNo()+"]");
 				suppressMessage = true;
@@ -203,12 +204,18 @@ public class OutgoingEquipmentTracking
 
 					Element locationFromETID = addElement(document, "fromEquipmentTrackingID", desp.getLocationDBFrom().getEquipmentTrackingID());
 					equipmentTracking.appendChild(locationFromETID);
+					
+					Element locationFromETIDGLN = addElement(document, "fromEquipmentLocnGLN", desp.getLocationDBFrom().getGLN());
+					equipmentTracking.appendChild(locationFromETIDGLN);
 
 					Element locationTo = addElement(document, "toLocation", desp.getLocationIDTo());
 					equipmentTracking.appendChild(locationTo);
 
 					Element locationToETID = addElement(document, "toEquipmentTrackingID", desp.getLocationDBTo().getEquipmentTrackingID());
 					equipmentTracking.appendChild(locationToETID);
+					
+					Element locationToETIDGLN = addElement(document, "toEquipmentLocnGLN", desp.getLocationDBTo().getGLN());
+					equipmentTracking.appendChild(locationToETIDGLN);
 
 					Element contents = (Element) document.createElement("contents");
 					equipmentTracking.appendChild(contents);

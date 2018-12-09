@@ -222,6 +222,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private JTextField4j textFieldUserCreated;
 	private JTextField4j textFieldUserUpdated;
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
+	private JMenuItem4j menuItemEdit;
 
 
 	private void app_Init()
@@ -1480,6 +1481,17 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void mouseClicked(MouseEvent evt)
 				{
+					if (jTable1.getSelectedRowCount()==1)
+					{
+						jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT"));
+						menuItemEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT"));
+					}
+					else
+					{
+						jButtonEdit.setEnabled(false);	
+						menuItemEdit.setEnabled(false);
+					}
+					
 					if (evt.getClickCount() == 2)
 					{
 						if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_EDIT") == true)
@@ -1510,7 +1522,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				}
 
 				{
-					final JMenuItem4j menuItemEdit = new JMenuItem4j(Common.icon_edit);
+					menuItemEdit = new JMenuItem4j(Common.icon_edit);
 					menuItemEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT"));
 					menuItemEdit.addActionListener(new ActionListener()
 					{
@@ -2250,7 +2262,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		jScrollPane1.setViewportView(jTable1);
 		JUtility.scrolltoHomePosition(jScrollPane1);
 
-		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		jTable1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
 		jTable1.getColumnModel().getColumn(JDBPalletTableModel.SSCC_Col).setPreferredWidth(135);
 		jTable1.getColumnModel().getColumn(JDBPalletTableModel.Material_Col).setPreferredWidth(80);

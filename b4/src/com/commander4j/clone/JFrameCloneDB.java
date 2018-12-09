@@ -295,7 +295,7 @@ public class JFrameCloneDB extends JFrame
 
 			jScrollPaneTo = new JScrollPane();
 			desktopPane.add(jScrollPaneTo);
-			jScrollPaneTo.setBounds(310, 37, 248, 395);
+			jScrollPaneTo.setBounds(295, 37, 258, 395);
 
 			ListModel<JHost> jListHostsModelTo = new DefaultComboBoxModel<JHost>();
 			jListHostTo = new JList4j<JHost>();
@@ -581,7 +581,7 @@ public class JFrameCloneDB extends JFrame
 			jButtonClose = new JButton4j(Common.icon_close);
 			desktopPane.add(jButtonClose);
 			jButtonClose.setText("Close");
-			jButtonClose.setBounds(310, 444, 160, 36);
+			jButtonClose.setBounds(295, 444, 160, 36);
 			jButtonClose.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
@@ -615,7 +615,7 @@ public class JFrameCloneDB extends JFrame
 			label4j_std_1.setHorizontalTextPosition(SwingConstants.LEFT);
 			label4j_std_1.setHorizontalAlignment(SwingConstants.CENTER);
 			label4j_std_1.setFont(new Font("Arial", Font.PLAIN, 16));
-			label4j_std_1.setBounds(310, 15, 248, 21);
+			label4j_std_1.setBounds(295, 15, 248, 21);
 			desktopPane.add(label4j_std_1);
 
 		} catch (Exception e)

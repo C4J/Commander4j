@@ -282,7 +282,7 @@ public class JDBLocation
 
 	public String getGLN()
 	{
-		return dbGLN;
+		return JUtility.replaceNullStringwithBlank(dbGLN);
 	}
 
 	private String getHostID()
@@ -773,7 +773,7 @@ public class JDBLocation
 
 	public void setGLN(String gln)
 	{
-		dbGLN = gln;
+		dbGLN = JUtility.replaceNullStringwithBlank(gln);
 	}
 
 	private void setHostID(String host)

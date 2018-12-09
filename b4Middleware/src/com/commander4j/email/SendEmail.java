@@ -1,7 +1,10 @@
 package com.commander4j.email;
 
 import java.io.File;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -26,72 +29,132 @@ import com.commander4j.util.Utility;
 public class SendEmail
 {
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((SendEmail.class));
-	private String addressList = "";
-	Properties properties;
+
+	private Properties smtpProperties;
+	private HashMap<String, distributionList> distList = new HashMap<String, distributionList>();
+	private HashMap<String, Timestamp> emailLog = new HashMap<String, Timestamp>();
+	private Calendar cal;
 
 	public void init(String distributionID)
 	{
 
-		String filename = System.getProperty("user.dir") + File.separator + "xml" + File.separator + "config" + File.separator + "email.xml";
-
-		JXMLDocument doc = new JXMLDocument(filename);
-
-		properties = System.getProperties();
-		Boolean cont = true;
-		int seq = 1;
-		while (cont)
+		if (distList.containsKey(distributionID) == false)
 		{
-			String prop = doc.findXPath("//configuration/property[" + String.valueOf(seq) + "]/@name").trim();
-			String val = doc.findXPath("//configuration/property[" + String.valueOf(seq) + "]/@value").trim();
-			if (prop.equals(""))
-			{
-				cont = false;
-			} else
-			{
-				properties.setProperty(prop, val);
-				seq++;
-			}
-		}
-		// select="/DataSet/Data/[@Value1='2']/@Value2"
-		addressList = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/toAddressList").trim());
+			String filename = System.getProperty("user.dir") + File.separator + "xml" + File.separator + "config" + File.separator + "email.xml";
 
+			JXMLDocument doc = new JXMLDocument(filename);
+
+			smtpProperties = System.getProperties();
+			Boolean cont = true;
+			int seq = 1;
+			while (cont)
+			{
+				String prop = doc.findXPath("//configuration/property[" + String.valueOf(seq) + "]/@name").trim();
+				String val = doc.findXPath("//configuration/property[" + String.valueOf(seq) + "]/@value").trim();
+				if (prop.equals(""))
+				{
+					cont = false;
+				}
+				else
+				{
+					smtpProperties.setProperty(prop, val);
+					seq++;
+				}
+			}
+			
+		    String addressList = "";
+			addressList = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/toAddressList").trim());
+			String temp = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/@maxFrequencyMins").trim());
+
+			if (temp.equals(""))
+				temp = "0";
+
+			distributionList newItem = new distributionList();
+
+			newItem.listId = distributionID;
+			newItem.addressList = addressList;
+			newItem.maxFrequencyMins = Long.valueOf(temp);
+
+			distList.put(distributionID, newItem);
+		}
 	}
 
 	public synchronized boolean Send(String distributionID, String subject, String messageText, String filename)
 	{
 		boolean result = true;
 
+
 		if (Common.emailEnabled == false)
 		{
 			return result;
 		}
 
-		init(distributionID);
+		if (distList.containsKey(distributionID) == false)
+		{
+			init(distributionID);
+		}
 
-		if (addressList.equals("") == false)
+		if (distList.containsKey(distributionID) == true)
 		{
 
-			Session session;
 
-			if (properties.get("mail.smtp.auth").toString().toLowerCase().equals("true"))
+			String emailKey="["+distributionID+"] - ["+subject+"]";
+			logger.debug(emailKey);
+			Session session;
+			Timestamp lastSent;
+			Boolean okToSend;
+			
+			if (emailLog.containsKey(emailKey))
 			{
-				session = Session.getInstance(properties, new javax.mail.Authenticator()
+				lastSent = new Timestamp(emailLog.get(emailKey).getTime());
+			}
+			else
+			{
+				// Enter dummmy last email sent date so that first email will be sent
+				cal = Calendar.getInstance();
+				cal.add(Calendar.DAY_OF_YEAR, -30);
+				lastSent = new Timestamp(cal.getTime().getTime());
+				emailLog.put(emailKey, lastSent);
+			}
+			
+			long ageInMins = Utility.compareTwoTimeStamps(Utility.getSQLDateTime(), lastSent);
+			logger.debug("Last email to "+emailKey+" was at "+lastSent);
+			logger.debug("Minutes since last email to "+emailKey+" is "+String.valueOf(ageInMins));
+			
+			if (ageInMins >=distList.get(distributionID).maxFrequencyMins)
+			{
+				okToSend = true;
+				logger.debug("Email allowed");
+			}
+			else
+			{
+				okToSend = false;
+				logger.debug("Email suppressed - too fequent");
+			}
+
+			if (okToSend)
+			{	
+				
+			if (smtpProperties.get("mail.smtp.auth").toString().toLowerCase().equals("true"))
+			{
+				session = Session.getInstance(smtpProperties, new javax.mail.Authenticator()
 				{
 					protected PasswordAuthentication getPasswordAuthentication()
 					{
-						return new PasswordAuthentication(properties.get("mail.smtp.user").toString(), properties.get("mail.smtp.password").toString());
+						return new PasswordAuthentication(smtpProperties.get("mail.smtp.user").toString(), smtpProperties.get("mail.smtp.password").toString());
 					}
 				});
-			} else
+			}
+			else
 			{
-				session = Session.getInstance(properties);
+				session = Session.getInstance(smtpProperties);
 			}
 
 			try
 			{
 
 				MimeMessage message = new MimeMessage(session);
-				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addressList));
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(distList.get(distributionID).addressList));
 				message.setSubject(subject);
 				// message.setText(messageText);
 
@@ -115,11 +178,15 @@ public class SendEmail
 				message.setSentDate(new Date());
 
 				Transport.send(message);
+				emailLog.get(emailKey).setTime(Utility.getSQLDateTime().getTime());
+				
 				logger.debug("Email sent successfully..");
-			} catch (MessagingException mex)
+			}
+			catch (MessagingException mex)
 			{
 				logger.error("Error sending email : " + mex.getMessage());
 				result = false;
+			}
 			}
 
 		}
