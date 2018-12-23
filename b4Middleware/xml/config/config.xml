@@ -4,7 +4,7 @@
     <logPath/>
     <XSLTPath/>
     <logArchiveRetentionDays>3</logArchiveRetentionDays>
-    <enableEmailNotifications>true</enableEmailNotifications>
+    <enableEmailNotifications>false</enableEmailNotifications>
     <statusReportTime>09:00:00</statusReportTime>
         
     <map id="map01" enabed="Y" description="Rockwell Material Master to C4J Material Master">
