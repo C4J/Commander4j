@@ -489,6 +489,20 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 								newItemMenuItem.setText(lang.get("btn_Excel"));
 								popupMenu.add(newItemMenuItem);
 							}
+							
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										palletHistory();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLET_HISTORY"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_HISTORY"));
+								popupMenu.add(newItemMenuItem);
+							}
 
 							{
 								final JMenu4j sortByMenu = new JMenu4j();
@@ -931,6 +945,18 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 		}
 	}
 
+	
+	private void palletHistory()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			String material = jTable1.getValueAt(row, 0).toString();
+			String batch = jTable1.getValueAt(row, 1).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","MATERIAL-BATCH", material,batch);
+		}
+	}
+	
 	/**
 	 * WindowBuilder generated method.<br>
 	 * Please don't remove this method or its invocations.<br>

@@ -1149,6 +1149,23 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
+		
+		if (optionName.equals("FRM_ADMIN_PALLET_HISTORY"))
+		{
+			final JInternalFramePalletHistoryAdmin u;
+			
+			if (isLoaded(JInternalFramePalletHistoryAdmin.class))
+			{
+				((JInternalFramePalletHistoryAdmin) isLoadedInstance(JInternalFramePalletHistoryAdmin.class)).updateSearch(StrParam1, StrParam2,StrParam3);
+				setVisible(JInternalFramePalletHistoryAdmin.class);
+			}
+			else
+			{
+				u = new JInternalFramePalletHistoryAdmin(StrParam1,StrParam2,StrParam3);
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
 
 	}
 
