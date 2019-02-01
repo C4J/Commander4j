@@ -128,7 +128,7 @@ public class JLaunchLookup
 	
 	public static boolean journeys() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}VIEW_JOURNEYS"));
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_JOURNEY"));
 		JDialogLookup.dlg_title = "Journeys";
 
 		JDialogLookup.dlg_key_field_name = "journey_ref";

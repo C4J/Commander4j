@@ -957,7 +957,7 @@ public class JDBDespatch
 
 	public String getLocationIDTo()
 	{
-		return JUtility.replaceNullStringwithBlank(dbLocationIdTo);
+		return JUtility.replaceNullStringwithBlank(dbLocationIdTo).trim();
 	}
 
 	public void getPropertiesfromResultSet(ResultSet rs)
@@ -1058,32 +1058,35 @@ public class JDBDespatch
 
 		if (isJourneyRefReqd().equals("Y"))
 		{
-			if ((getJourneyRef().equals("") == false) || confirming)
+			if (getJourneyRef().equals("NO JOURNEY") == false)
 			{
-				if (journey.getJourneyRefProperties(getJourneyRef()))
+				if ((getJourneyRef().equals("") == false) || confirming)
 				{
-					if (journey.getLocationTo().equals(getLocationIDTo()))
+					if (journey.getJourneyRefProperties(getJourneyRef()))
 					{
-						if (journey.getDespatchNo().equals("") == false)
+						if (journey.getLocationTo().equals(getLocationIDTo()))
 						{
-							if (journey.getDespatchNo().equals(getDespatchNo()) == false)
+							if (journey.getDespatchNo().equals("") == false)
 							{
-								setErrorMessage("Journey Ref used by " + journey.getDespatchNo());
-								result = false;
+								if (journey.getDespatchNo().equals(getDespatchNo()) == false)
+								{
+									setErrorMessage("Journey Ref used by " + journey.getDespatchNo());
+									result = false;
+								}
 							}
 						}
+						else
+						{
+							setErrorMessage("Journey is for " + journey.getLocationTo());
+							result = false;
+						}
+
 					}
 					else
 					{
-						setErrorMessage("Journey is for " + journey.getLocationTo());
+						setErrorMessage("Invalid Journey Ref [" + getJourneyRef() + "]");
 						result = false;
 					}
-
-				}
-				else
-				{
-					setErrorMessage("Invalid Journey Ref ["+getJourneyRef()+"]");
-					result = false;
 				}
 			}
 		}

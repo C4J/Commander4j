@@ -163,6 +163,13 @@ public class JDialogLookup extends javax.swing.JDialog
 			}
 		}
 		
+		if ( dlg_table.getTableName().equals("APP_JOURNEY") )
+		{
+			query.addParamtoSQL("JOURNEY_REF <> ", "NO_JOURNEY");
+
+			query.addParamtoSQL("STATUS = ", "Unassigned");
+		}
+		
 		if (hideInactive)
 		{
 			query.addParamtoSQL("ACTIVE = ", "Y");

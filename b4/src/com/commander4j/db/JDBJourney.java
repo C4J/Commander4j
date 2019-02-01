@@ -247,7 +247,7 @@ public class JDBJourney
 
 	public String getLocationTo()
 	{
-		return dbLocationTo;
+		return JUtility.replaceNullStringwithBlank(dbLocationTo).trim();
 	}
 
 	public LinkedList<JDBJourney> getJourneyList(String defaultItem)
