@@ -1082,7 +1082,7 @@ public class JDBDespatch
 				}
 				else
 				{
-					setErrorMessage("Invalid Journey Ref");
+					setErrorMessage("Invalid Journey Ref ["+getJourneyRef()+"]");
 					result = false;
 				}
 			}

@@ -276,6 +276,17 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 	}
 	
+	public JInternalFramePalletAdmin(String keyField,String keyValue1,String keyValue2)
+	{
+		super();
+		app_Init();
+		
+		clearFilter();
+		
+		updateSearch(keyField,keyValue1,keyValue2);
+
+	}
+		
 	public void updateSearch(String keyField,String keyValue)
 	{
 		clearFilter();
@@ -300,6 +311,19 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		populateList();
 	}
 
+	public void updateSearch(String keyField,String keyValue1,String keyValue2)
+	{
+		clearFilter();
+		
+		if (keyField.equals("MATERIAL-BATCH"))
+		{
+			jTextFieldMaterial.setText(keyValue1);
+			jTextFieldBatch.setText(keyValue2);
+		}
+		
+		buildSQL();
+		populateList();
+	}
 
 	private PreparedStatement buildSQLr()
 	{

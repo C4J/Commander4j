@@ -1166,6 +1166,23 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
+		
+		if (optionName.equals("FRM_ADMIN_PALLETS"))
+		{
+			final JInternalFramePalletAdmin u;
+			
+			if (isLoaded(JInternalFramePalletAdmin.class))
+			{
+				((JInternalFramePalletAdmin) isLoadedInstance(JInternalFramePalletAdmin.class)).updateSearch(StrParam1, StrParam2,StrParam3);
+				setVisible(JInternalFramePalletAdmin.class);
+			}
+			else
+			{
+				u = new JInternalFramePalletAdmin(StrParam1,StrParam2,StrParam3);
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
 
 	}
 

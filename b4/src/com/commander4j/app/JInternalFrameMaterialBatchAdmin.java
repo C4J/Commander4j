@@ -491,6 +491,20 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 							}
 							
 							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										palletAdmin();
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLETS"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLETS"));
+								popupMenu.add(newItemMenuItem);
+							}
+							
+							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -945,6 +959,16 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 		}
 	}
 
+	private void palletAdmin()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			String material = jTable1.getValueAt(row, 0).toString();
+			String batch = jTable1.getValueAt(row, 1).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PALLETS","MATERIAL-BATCH", material,batch);
+		}
+	}
 	
 	private void palletHistory()
 	{

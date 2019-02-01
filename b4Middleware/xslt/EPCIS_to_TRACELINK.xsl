@@ -34,7 +34,7 @@
                 <snx:ProductionQuantity>
                     <cmn:PackagingItemCode type="GTIN-14"><xsl:value-of select='/epcis:EPCISDocument/EPCISBody[1]/EventList[1]/ObjectEvent[1]/tl:dispositionAssignedEventExtensions[1]/tl:itemDetail[1]/tl:packagingItemCode[1]'/></cmn:PackagingItemCode>
                     <cmn:PackagingLevel><xsl:value-of select='/epcis:EPCISDocument/EPCISBody[1]/EventList[1]/ObjectEvent[1]/tl:dispositionAssignedEventExtensions[1]/tl:packagingLevel[1]'/></cmn:PackagingLevel>
-                    <cmn:QuantityReported><xsl:value-of select="count(/epcis:EPCISDocument/EPCISBody[1]/EventList[1]/ObjectEvent[1]/epcList[1]/epc)"/></cmn:QuantityReported>
+                    <cmn:QuantityReported><xsl:value-of select='count(/epcis:EPCISDocument/EPCISBody[1]/EventList[1]/ObjectEvent[1]/epcList[1]/*)'/></cmn:QuantityReported>
                 </snx:ProductionQuantity>
             </snx:MessageBody>
         </snx:SNXEndOfBatchMessage>
