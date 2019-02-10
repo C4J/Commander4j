@@ -133,8 +133,8 @@ public class JLaunchLookup
 
 		JDialogLookup.dlg_key_field_name = "journey_ref";
 		JDialogLookup.dlg_criteria_field_name_default = "LOCATION_ID_TO";
-		JDialogLookup.dlg_orderBy_name_default = "DESCRIPTION";
-		JDialogLookup.dlg_sort_descending = true;
+		JDialogLookup.dlg_orderBy_name_default = "TIMESLOT";
+		JDialogLookup.dlg_sort_descending = false;
 
 		//dlgCriteriaDefault = "";
 		dlgAutoExec = true;
