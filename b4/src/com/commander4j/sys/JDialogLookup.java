@@ -417,8 +417,8 @@ public class JDialogLookup extends javax.swing.JDialog
 				jDesktopPane1 = new JDesktopPane();
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				getContentPane().add(jDesktopPane1, BorderLayout.SOUTH);
-				jDesktopPane1.setPreferredSize(new java.awt.Dimension(357, 518));
-				jDesktopPane1.setBorder(BorderFactory.createTitledBorder(""));
+				jDesktopPane1.setPreferredSize(new Dimension(357, 530));
+				jDesktopPane1.setBorder(null);
 				jDesktopPane1.setLayout(null);
 				jDesktopPane1.setLocation(0, 0);
 				{
@@ -590,7 +590,7 @@ public class JDialogLookup extends javax.swing.JDialog
 					jButtonHelp.setBounds(351, 98, 113, 32);
 				}
 			}
-			this.setSize(471, 534);
+			this.setSize(470, 566);
 		}
 		catch (Exception e)
 		{

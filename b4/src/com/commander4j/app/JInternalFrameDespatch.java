@@ -482,6 +482,12 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 						if (question == 0)
 						{
+							if (textFieldJourneyRef.getText().equals("")==false)
+							{
+								textFieldJourneyRef.setText("");
+								d.setJourneyRef("");
+							}
+							d.update();
 							d.delete();
 							populateDespatchList("");
 							setConfirmButtonStatus();
