@@ -786,6 +786,30 @@
 			<id>JDBDespatch.getAssignedSSCCs</id>
 			<text>select sscc from {schema}app_pallet where despatch_no = ? order by sscc</text>
 		</statement>
+		<statement>
+			<id>JDBDespatch.checkPalletBatchStatus</id>
+			<text>
+			SELECT
+				P.SSCC,
+				P.STATUS AS 'PALLET_STATUS',
+				P.LOCATION_ID,
+				P.DESPATCH_NO,
+				MB.MATERIAL,
+				MB.BATCH_NUMBER,
+				MB.STATUS AS 'BATCH_STATUS' 
+			FROM
+				APP_PALLET P,
+				APP_MATERIAL_BATCH MB 
+			WHERE
+				MB.MATERIAL = P.MATERIAL 
+				AND MB.BATCH_NUMBER = P.BATCH_NUMBER 
+				AND P.DESPATCH_NO = %1 
+				AND (
+					P.STATUS NOT IN ( %2 ) 
+					OR MB.STATUS NOT IN ( %3 ) 
+				)
+			</text>
+		</statement>
 		<?JDBInterface ?>
 		<statement>
 			<id>JDBInterface.getInterfaceProperties</id>

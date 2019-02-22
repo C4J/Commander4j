@@ -34,6 +34,7 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.Vector;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.commander4j.bar.JEANBarcode;
@@ -137,6 +138,89 @@ public class JDBDespatch
 		ctrl.getProperties("DEFAULT_LOCATION");
 		home_location = ctrl.getKeyValue();
 		allowDespatchToSelf = Boolean.valueOf(ctrl.getKeyValueWithDefault("DESPATCH_TO_SELF", "false", "Allow despatch to source location"));
+	}
+	
+	public Boolean isPalletBatchStatusOK(String despatchNo)
+	{
+		Boolean result = true;
+		String temp = Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.checkPalletBatchStatus");
+		
+		//Replace Despatch No
+		
+		temp = StringUtils.replace(temp, "%1", "'"+despatchNo+"'");
+		
+		//Replace Valid Pallet Status List
+		
+		String ps = lt.getPermittedPalletStatus();
+		
+		String[] split = StringUtils.split(ps, '^');
+        
+        String l="";
+        
+        for (int cur = 0;cur <split.length;cur++)
+        {
+        	l = l + "'"+split[cur]+"'";
+        	
+        	if (cur < (split.length-1))
+        	{
+        		l = l + ",";
+        	}
+        }
+        
+        temp = StringUtils.replace(temp, "%2", l);
+		
+		//Replace Valid Batch Status List
+		
+		ps = lt.getPermittedBatchStatus();
+		
+		split = StringUtils.split(ps, '^');
+        
+        l="";
+        
+        for (int cur = 0;cur <split.length;cur++)
+        {
+        	l = l + "'"+split[cur]+"'";
+        	
+        	if (cur < (split.length-1))
+        	{
+        		l = l + ",";
+        	}
+        }
+        
+        temp = StringUtils.replace(temp, "%3", l);
+        
+		PreparedStatement stmt = null;
+		ResultSet rs;
+
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(temp);
+			stmt.setFetchSize(50);
+
+			rs = stmt.executeQuery();
+
+			rs.last();
+			int rows = rs.getRow();
+			rs.beforeFirst();
+			
+			if (rows > 0)
+			{
+				result = false;
+			}
+
+			rs.close();
+
+			stmt.close();
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+        
+
+		
+		return result;
 	}
 
 	public Boolean assignSSCC(String sscc)
@@ -1053,6 +1137,17 @@ public class JDBDespatch
 			{
 				setErrorMessage("Invalid TO Location ID");
 				result = false;
+			}
+			else
+			{
+				if (confirming)
+				{
+					if (isPalletBatchStatusOK(getDespatchNo())==false)
+					{
+						setErrorMessage("Check Batch & Pallet Status");
+						result = false;
+					}
+				}
 			}
 		}
 
