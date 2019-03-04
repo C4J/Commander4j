@@ -1446,7 +1446,7 @@ public class JDBPallet
 		return result;
 	}
 
-	public Long updateLocation(Long txn,String fromLocation, String toLocation)
+	public Long updateLocationID(Long txn,String fromLocation, String toLocation)
 	{
 		Long result = (long) 0;
 
@@ -1479,7 +1479,7 @@ public class JDBPallet
 					txn = writePalletHistory(txn, "MOVE", "FROM");
 					setLocationID(toLocation);
 					PreparedStatement stmtupdate;
-					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.updateLocation"));
+					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.updateLocationID"));
 					stmtupdate.setString(1, toLocation);
 					setUpdatedBy(Common.userList.getUser(getSessionID()).getUserId());
 					stmtupdate.setString(2, getUpdatedBy());

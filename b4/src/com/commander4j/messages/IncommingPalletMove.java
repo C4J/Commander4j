@@ -105,7 +105,7 @@ public class IncommingPalletMove
 
 				if (pal.getPalletProperties(sscc) == true)
 				{
-					txn = pal.updateLocation(txn,fromLocation, toLocation);
+					txn = pal.updateLocationID(txn,fromLocation, toLocation);
 					if (txn > 0)
 					{
 						updated++;
