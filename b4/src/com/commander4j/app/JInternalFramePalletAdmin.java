@@ -823,17 +823,17 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(122, 11, 120, 22);
+					jTextFieldMaterial.setBounds(122, 11, 121, 22);
 				}
 				{
 					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
 					jDesktopPane1.add(jTextFieldLocation);
-					jTextFieldLocation.setBounds(340, 11, 103, 22);
+					jTextFieldLocation.setBounds(340, 11, 104, 22);
 				}
 				{
 					jTextFieldCustomer = new JTextField4j(JDBCustomer.field_customer_id);
 					jDesktopPane1.add(jTextFieldCustomer);
-					jTextFieldCustomer.setBounds(340, 105, 103, 22);
+					jTextFieldCustomer.setBounds(340, 105, 104, 22);
 				}
 				{
 					jLabel1 = new JLabel4j_std();
@@ -974,6 +974,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					{ "DATE_OF_MANUFACTURE", "DATE_CREATED", "DATE_UPDATED", "SSCC", "MATERIAL,BATCH_NUMBER", "MATERIAL,PROCESS_ORDER", "BATCH_NUMBER,MATERIAL", "PROCESS_ORDER,DATE_OF_MANUFACTURE", "QUANTITY", "STATUS", "LOCATION_ID", "UOM", "EAN",
 							"VARIANT" });
 					jComboBoxSortBy = new JComboBox4j<String>();
+					jComboBoxSortBy.setMaximumRowCount(15);
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
 					jComboBoxSortBy.setBounds(340, 196, 355, 22);

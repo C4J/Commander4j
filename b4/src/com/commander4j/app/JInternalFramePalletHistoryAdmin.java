@@ -1188,6 +1188,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "TRANSACTION_REF,SSCC", "TRANSACTION_TYPE,TRANSACTION_SUBTYPE", "TRANSACTION_DATE,SSCC", "MATERIAL,BATCH_NUMBER", "MATERIAL,PROCESS_ORDER", "BATCH_NUMBER,MATERIAL", "PROCESS_ORDER", "QUANTITY",
 							"DATE_OF_MANUFACTURE", "STATUS", "LOCATION_ID", "UOM", "EAN", "VARIANT" });
 					jComboBoxSortBy = new JComboBox4j<String>();
+					jComboBoxSortBy.setMaximumRowCount(15);
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
 					//jComboBoxSortBy.setSelectedItem("TRANSACTION_DATE,SSCC");
@@ -1505,6 +1506,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				{
 					comboBoxTransactionType = new JComboBox4j<String>();
 					comboBoxTransactionType.setModel(new DefaultComboBoxModel<String>(Common.transactionTypes));
+					comboBoxTransactionType.setMaximumRowCount(15);
 					comboBoxTransactionType.setBounds(593, 10, 124, 22);
 					jDesktopPane1.add(comboBoxTransactionType);
 				}
@@ -1513,6 +1515,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					comboBoxTransactionSubtype = new JComboBox4j<String>();
 					comboBoxTransactionSubtype.setModel(new DefaultComboBoxModel<String>(Common.transactionSubTypes));
 					comboBoxTransactionSubtype.setBounds(865, 10, 130, 22);
+					comboBoxTransactionSubtype.setMaximumRowCount(15);
 					jDesktopPane1.add(comboBoxTransactionSubtype);
 				}
 

@@ -52,6 +52,7 @@ import com.commander4j.messages.IncommingInspectionResult;
 import com.commander4j.messages.IncommingJourney;
 import com.commander4j.messages.IncommingLocation;
 import com.commander4j.messages.IncommingMaterialDefinition;
+import com.commander4j.messages.IncommingPalletMove;
 import com.commander4j.messages.IncommingPalletStatusChange;
 import com.commander4j.messages.IncommingProcessOrder;
 import com.commander4j.messages.IncommingProcessOrderStatusChange;
@@ -129,6 +130,7 @@ public class InboundMessageThread extends Thread {
 			IncommingProcessOrder ipo = new IncommingProcessOrder(getHostID(), getSessionID());
 			IncommingLocation ilocn = new IncommingLocation(getHostID(), getSessionID());
 			IncommingPalletStatusChange ipsc = new IncommingPalletStatusChange(getHostID(), getSessionID());
+			IncommingPalletMove ipmv = new IncommingPalletMove(getHostID(), getSessionID());
 			IncommingBatchStatusChange bsc = new IncommingBatchStatusChange(getHostID(), getSessionID());
 			IncommingJourney ij = new IncommingJourney(getHostID(), getSessionID());
 			IncommingInspectionResult iirslt = new IncommingInspectionResult(getHostID(), getSessionID());
@@ -276,6 +278,12 @@ public class InboundMessageThread extends Thread {
 												{
 													messageProcessedOK = ipsc.processMessage(gmh);
 													errorMessage = ipsc.getErrorMessage();
+												}
+												
+												if (interfaceType.equals("Pallet Move") == true)
+												{
+													messageProcessedOK = ipmv.processMessage(gmh);
+													errorMessage = ipmv.getErrorMessage();
 												}
 
 												if (interfaceType.equals("Batch Status Change") == true)

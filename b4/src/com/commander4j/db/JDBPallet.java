@@ -137,8 +137,8 @@ public class JDBPallet
 	{
 
 		String batchValidate = matBatch.getBatchValidationString(getProcessOrderObj(true));
-		
-		boolean result = matBatch.autoCreateMaterialBatch(getMaterial(), getBatchNumber(),batchValidate, getBatchExpiry(), "");
+
+		boolean result = matBatch.autoCreateMaterialBatch(getMaterial(), getBatchNumber(), batchValidate, getBatchExpiry(), "");
 
 		setErrorMessage("");
 		if (result == false)
@@ -168,7 +168,8 @@ public class JDBPallet
 			materialuom.getDenominator();
 			result = result.multiply(BigDecimal.valueOf(materialuom.getNumerator()));
 			result = result.divide(BigDecimal.valueOf(materialuom.getDenominator()));
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			result = new BigDecimal(0);
 		}
@@ -262,20 +263,24 @@ public class JDBPallet
 					if (getLocationObj().isProductionConfirmationMessageRequired())
 					{
 						opdc.submit(getTransactionRef());
-					} else
+					}
+					else
 					{
 						logger.error("Location " + getLocationObj().getLocationID() + " does not require this message.");
 					}
 
-				} else
+				}
+				else
 				{
 					logger.error("Error confirming SSCC [" + getSSCC());
 				}
-			} else
+			}
+			else
 			{
 				setErrorMessage("Cannot confirm SSCC " + getSSCC() + " as Process Order " + getProcessOrder() + " status is " + getProcessOrderObj(true).getStatus());
 			}
-		} else
+		}
+		else
 		{
 			setErrorMessage("SSCC " + getSSCC() + " already confirmed.");
 		}
@@ -302,7 +307,8 @@ public class JDBPallet
 			if (isValidPallet(getSSCC()) == true)
 			{
 				setErrorMessage("Key violation - SSCC [" + getSSCC() + "] already exists !");
-			} else
+			}
+			else
 			{
 				if (autoCreateMaterialBatch() == true)
 				{
@@ -325,7 +331,8 @@ public class JDBPallet
 						{
 							setTransactionRef(writePalletHistory(transactionRef, transactionType, transactionSubtye));
 						}
-					} catch (SQLException e)
+					}
+					catch (SQLException e)
 					{
 						setErrorMessage(e.getMessage());
 					}
@@ -359,12 +366,14 @@ public class JDBPallet
 				if (isConfirmed() == false)
 				{
 					okToDelete = true;
-				} else
+				}
+				else
 				{
 					if (getQuantity().compareTo(new BigDecimal(0)) == 0)
 					{
 						okToDelete = true;
-					} else
+					}
+					else
 					{
 						setErrorMessage("Cannot delete CONFIRMED pallet containing a non zero qty");
 					}
@@ -389,7 +398,8 @@ public class JDBPallet
 						{
 							OutgoingPalletDelete opsc = new OutgoingPalletDelete(getHostID(), getSessionID());
 							opsc.submit(txn);
-						} else
+						}
+						else
 						{
 							logger.debug("Pallet Delete Message Suppressed for Location " + getLocationObj().getLocationID());
 						}
@@ -398,7 +408,8 @@ public class JDBPallet
 
 				}
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -428,7 +439,8 @@ public class JDBPallet
 		{
 			NumberFormat formatter = new DecimalFormat("0.000");
 			result = formatter.format(getBaseQuantity());
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			result = "0.000";
 		}
@@ -601,7 +613,8 @@ public class JDBPallet
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
 			result.addElement(new JDBPallet("sscc", "material", "batch", "process_order", new BigDecimal("0"), "uom", new BigDecimal("0"), "base uom", null, "status", "location_id", "ean", "variant"));
-		} else
+		}
+		else
 		{
 			try
 			{
@@ -614,7 +627,8 @@ public class JDBPallet
 				}
 
 				rs.close();
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -630,7 +644,8 @@ public class JDBPallet
 		try
 		{
 			rs = criteria.executeQuery();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -648,7 +663,8 @@ public class JDBPallet
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
 			result.addLast("sscc");
-		} else
+		}
+		else
 		{
 			try
 			{
@@ -660,7 +676,8 @@ public class JDBPallet
 				}
 
 				rs.close();
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -691,14 +708,16 @@ public class JDBPallet
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Invalid SSCC [" + getSSCC() + "]");
 			}
 			rs.close();
 			stmt.close();
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -759,11 +778,13 @@ public class JDBPallet
 				if (expiryMode.equals("SSCC"))
 				{
 					setBatchExpiry(rs.getTimestamp("sscc_expiry_date"));
-				} else
+				}
+				else
 				{
 					setBatchExpiry(getMaterialBatchExpiryDate());
 				}
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 				setBatchExpiry(new Timestamp(0));
 			}
@@ -780,12 +801,14 @@ public class JDBPallet
 				setUpdatedBy(rs.getString("updated_by_user_id"));
 				setDateCreated(rs.getTimestamp("date_created"));
 				setDateUpdated(rs.getTimestamp("date_updated"));
-			} catch (Exception ex)
+			}
+			catch (Exception ex)
 			{
 
 			}
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -883,14 +906,16 @@ public class JDBPallet
 			if (rs.next())
 			{
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Invalid SSCC");
 			}
 
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -913,13 +938,15 @@ public class JDBPallet
 		{
 			setErrorMessage("SSCC cannot be blank");
 			result = false;
-		} else
+		}
+		else
 		{
 			if (getSSCC().length() != 18)
 			{
 				setErrorMessage("SSCC is incorrect size");
 				result = false;
-			} else
+			}
+			else
 			{
 				if (barcode.validateCheckdigit(getSSCC()) == false)
 				{
@@ -954,7 +981,8 @@ public class JDBPallet
 			}
 
 			setCustomerID(processOrder.getCustomerID());
-		} else
+		}
+		else
 		{
 			result = false;
 			setErrorMessage(processOrder.getErrorMessage());
@@ -979,7 +1007,8 @@ public class JDBPallet
 		if (yesNo == true)
 		{
 			setConfirmed("Y");
-		} else
+		}
+		else
 		{
 			setConfirmed("N");
 		}
@@ -994,11 +1023,13 @@ public class JDBPallet
 			if (yesNo.toUpperCase().equals("Y"))
 			{
 				dbConfirmed = true;
-			} else
+			}
+			else
 			{
 				dbConfirmed = false;
 			}
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			dbConfirmed = false;
 		}
@@ -1181,17 +1212,20 @@ public class JDBPallet
 						{
 							OutgoingPalletSplit ops = new OutgoingPalletSplit(getHostID(), getSessionID());
 							ops.submit(txn);
-						} else
+						}
+						else
 						{
 							logger.debug("Pallet Split Message Suppressed for Location " + getLocationObj().getLocationID());
 						}
 					}
 
-				} else
+				}
+				else
 				{
 					setErrorMessage("Quantity must be less than " + p.getQuantity().toString());
 				}
-			} else
+			}
+			else
 			{
 				setErrorMessage("Quantity must be greater than 0");
 			}
@@ -1251,7 +1285,8 @@ public class JDBPallet
 						stmtupdate.close();
 						result = true;
 						logger.debug("SSCC " + getSSCC() + " updated.");
-					} catch (Exception ex)
+					}
+					catch (Exception ex)
 					{
 						updatetries++;
 						errormsg = ex.getMessage();
@@ -1292,7 +1327,8 @@ public class JDBPallet
 			stmtupdate.close();
 
 			result = true;
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1322,7 +1358,8 @@ public class JDBPallet
 			stmtupdate.close();
 
 			result = true;
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1355,11 +1392,13 @@ public class JDBPallet
 				stmtupdate.close();
 				writePalletHistory(txn, "MHN", "DECISION");
 				result = true;
-			} catch (SQLException e)
+			}
+			catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}
-		} else
+		}
+		else
 		{
 			result = true;
 		}
@@ -1392,12 +1431,84 @@ public class JDBPallet
 			if (getMHNNumber().equals(""))
 			{
 				writePalletHistory(txn, "MHN", "REMOVE");
-			} else
+			}
+			else
 			{
 				writePalletHistory(txn, "MHN", "ADD");
 			}
 			result = true;
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
+	public Long updateLocation(Long txn,String fromLocation, String toLocation)
+	{
+		Long result = (long) 0;
+
+		logger.debug("updateLocation [" + getSSCC() + "] [" + toLocation + "]");
+
+		try
+		{
+
+			// Correct null
+			fromLocation = JUtility.replaceNullStringwithBlank(fromLocation);
+
+			// If no source location specified then set to current location.
+			if (fromLocation.equals(""))
+			{
+				fromLocation = getLocationID();
+			}
+
+			// Correct null
+			toLocation = JUtility.replaceNullStringwithBlank(toLocation);
+
+			// Check if already in destination
+			if (toLocation.equals(getLocationID()) == false)
+			{
+				JDBLocation loc = new JDBLocation(getHostID(), getSessionID());
+				
+				//Check if new location is valid
+				if (loc.getLocationProperties(fromLocation))
+				{
+
+					txn = writePalletHistory(txn, "MOVE", "FROM");
+					setLocationID(toLocation);
+					PreparedStatement stmtupdate;
+					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.updateLocation"));
+					stmtupdate.setString(1, toLocation);
+					setUpdatedBy(Common.userList.getUser(getSessionID()).getUserId());
+					stmtupdate.setString(2, getUpdatedBy());
+					setDateUpdated(JUtility.getSQLDateTime());
+					stmtupdate.setTimestamp(3, getDateUpdated());
+					stmtupdate.setString(4, getSSCC());
+					stmtupdate.execute();
+					stmtupdate.clearParameters();
+					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+					stmtupdate.close();
+
+					writePalletHistory(txn, "MOVE", "TO");
+
+					result = txn;
+
+				}
+				else
+				{
+					setErrorMessage("Invalid TO Location ID.");
+				}
+
+			}
+			else
+			{
+				setErrorMessage("No update required.");
+			}
+
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1441,19 +1552,22 @@ public class JDBPallet
 						{
 							OutgoingPalletStatusChange opsc = new OutgoingPalletStatusChange(getHostID(), getSessionID());
 							opsc.submit(txn);
-						} else
+						}
+						else
 						{
 							logger.debug("Pallet Status Message Suppressed for Location " + getLocationObj().getLocationID());
 						}
 					}
 				}
 				result = txn;
-			} else
+			}
+			else
 			{
 				setErrorMessage("No update required.");
 			}
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1481,7 +1595,8 @@ public class JDBPallet
 			ph.setTransactionDate(JUtility.getSQLDateTime());
 			ph.setPallet(this);
 			ph.write();
-		} else
+		}
+		else
 		{
 			logger.error("Invalid TransactionType");
 		}
