@@ -290,6 +290,7 @@ public class Common
 	public final static Icon icon_batch = Common.imageIconloader.getImageIcon(Common.image_batch);
 	public final static Icon icon_pallet = Common.imageIconloader.getImageIcon(Common.image_pallet);
 	public final static Icon icon_split = Common.imageIconloader.getImageIcon(Common.image_split);
+	public final static Icon icon_move = Common.imageIconloader.getImageIcon(Common.image_move);
 	public final static Icon icon_clone = Common.imageIconloader.getImageIcon(Common.image_clone);
 	public final static Icon icon_auto_labeller = Common.imageIconloader.getImageIcon(Common.image_auto_label);
 	public final static Icon icon_confirm = Common.imageIconloader.getImageIcon(Common.image_confirm);
@@ -376,6 +377,7 @@ public class Common
 	public final static String image_ok = "ok.gif";
 	public final static String image_cancel = "cancel.gif";
 	public final static String image_split = "split.gif";
+	public final static String image_move = "move.gif";
 	public final static String image_search = "search.gif";
 	public final static String image_user = "user.gif";
 	public final static String image_update = "update.gif";

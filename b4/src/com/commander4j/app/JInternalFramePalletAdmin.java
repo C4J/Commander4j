@@ -107,7 +107,8 @@ import com.commander4j.util.JUtility;
  * <img alt="" src="./doc-files/JInternalFramePalletAdmin.jpg" >
  * 
  * @see com.commander4j.db.JDBPallet JDBPallet
- * @see com.commander4j.app.JInternalFramePalletHistoryAdmin JInternalFramePalletHistoryAdmin
+ * @see com.commander4j.app.JInternalFramePalletHistoryAdmin
+ *      JInternalFramePalletHistoryAdmin
  * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
  */
 public class JInternalFramePalletAdmin extends JInternalFrame
@@ -224,7 +225,6 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JMenuItem4j menuItemEdit;
 
-
 	private void app_Init()
 	{
 		getContentPane().setBackground(Color.WHITE);
@@ -258,69 +258,68 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 		setSequence(dlg_sort_descending);
 	}
-	
+
 	public JInternalFramePalletAdmin()
 	{
 		super();
 		app_Init();
 	}
-	
-	public JInternalFramePalletAdmin(String keyField,String keyValue)
+
+	public JInternalFramePalletAdmin(String keyField, String keyValue)
 	{
 		super();
 		app_Init();
-		
+
 		clearFilter();
-		
-		updateSearch(keyField,keyValue);
+
+		updateSearch(keyField, keyValue);
 
 	}
-	
-	public JInternalFramePalletAdmin(String keyField,String keyValue1,String keyValue2)
+
+	public JInternalFramePalletAdmin(String keyField, String keyValue1, String keyValue2)
 	{
 		super();
 		app_Init();
-		
+
 		clearFilter();
-		
-		updateSearch(keyField,keyValue1,keyValue2);
+
+		updateSearch(keyField, keyValue1, keyValue2);
 
 	}
-		
-	public void updateSearch(String keyField,String keyValue)
+
+	public void updateSearch(String keyField, String keyValue)
 	{
 		clearFilter();
-		
-		
+
 		if (keyField.equals("PROCESS_ORDER"))
 		{
 			jTextFieldProcessOrder.setText(keyValue);
 		}
-		
+
 		if (keyField.equals("MATERIAL"))
 		{
 			jTextFieldMaterial.setText(keyValue);
 		}
-		
+
 		if (keyField.equals("LOCATION"))
 		{
 			jTextFieldLocation.setText(keyValue);
 		}
-		
+
 		buildSQL();
 		populateList();
 	}
 
-	public void updateSearch(String keyField,String keyValue1,String keyValue2)
+	public void updateSearch(String keyField, String keyValue1, String keyValue2)
 	{
 		clearFilter();
-		
+
 		if (keyField.equals("MATERIAL-BATCH"))
 		{
 			jTextFieldMaterial.setText(keyValue1);
 			jTextFieldBatch.setText(keyValue2);
 		}
-		
+
 		buildSQL();
 		populateList();
 	}
@@ -336,7 +335,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		if (jCheckBoxConfirmed.isSelected())
 		{
 			q2.applyWhere("confirmed=", 'Y');
-		} else
+		}
+		else
 		{
 			q2.applyWhere("confirmed=", 'N');
 		}
@@ -464,7 +464,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		{
 			i = Integer.valueOf(jFormattedTextFieldQuantity.getText());
 			q2.applyWhere("quantity=", i);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 		}
 
@@ -496,7 +497,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		if (row >= 0)
 		{
 			lsscc = jTable1.getValueAt(row, 0).toString();
-		} else
+		}
+		else
 		{
 			lsscc = "";
 		}
@@ -528,24 +530,24 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			JLaunchMenu.runForm("FRM_PAL_SPLIT", lsscc);
 		}
 	}
-	
+
 	private void palletHistory()
 	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
 			lsscc = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","SSCC", lsscc);
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY", "SSCC", lsscc);
 		}
 	}
-	
+
 	private void interfaceLog()
 	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
 			lsscc = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_INTERFACE_LOG","SSCC", lsscc);
+			JLaunchMenu.runForm("FRM_ADMIN_INTERFACE_LOG", "SSCC", lsscc);
 		}
 	}
 
@@ -580,13 +582,15 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				do
 				{
 					addSSCC = bc.generateNewSSCC();
-				} while (addSSCC.equals(""));
+				}
+				while (addSSCC.equals(""));
 			}
 
 			if (bc.isValidSSCCformat(addSSCC))
 			{
 				JLaunchMenu.runForm("FRM_ADMIN_PALLET_EDIT", addSSCC);
-			} else
+			}
+			else
 			{
 				JOptionPane.showMessageDialog(Common.mainForm, bc.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 			}
@@ -611,7 +615,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					JUtility.errorBeep();
 					JOptionPane.showMessageDialog(Common.mainForm, m.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
-				} else
+				}
+				else
 				{
 					buildSQL();
 					populateList();
@@ -627,7 +632,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		{
 			PreparedStatement temp = buildSQLr();
 			JLaunchReport.runReport("RPT_PALLETS", null, "", temp, "");
-		} else
+		}
+		else
 		{
 			int row = jTable1.getSelectedRow();
 			if (row >= 0)
@@ -695,7 +701,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		{
 			PreparedStatement temp = buildSQLr();
 			export.saveAs("pallet.xls", pallet.getPalletDataResultSet(temp), Common.mainForm);
-		} else
+		}
+		else
 		{
 			int row = jTable1.getSelectedRow();
 			if (row >= 0)
@@ -780,12 +787,12 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
-							int maxrows = Integer.valueOf(ctrl.getKeyValueWithDefault("PALLET EXPORT MAX ROWS", "100","Max rows which can be exported to XML"));
+							int maxrows = Integer.valueOf(ctrl.getKeyValueWithDefault("PALLET EXPORT MAX ROWS", "100", "Max rows which can be exported to XML"));
 							jCheckBoxLimit.setSelected(true);
 							jSpinnerLimit.setValue(maxrows);
 							buildSQL();
 							OutgoingPalletExportXML export = new OutgoingPalletExportXML(Common.selectedHostID, Common.sessionID);
-							export.saveAs(ctrl.getKeyValue("DEFAULT_LOCATION")+"_Pallet_Export.xml", listStatement, Common.mainForm,jStatusText);
+							export.saveAs(ctrl.getKeyValue("DEFAULT_LOCATION") + "_Pallet_Export.xml", listStatement, Common.mainForm, jStatusText);
 						}
 					});
 				}
@@ -801,10 +808,10 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 						public void actionPerformed(ActionEvent evt)
 						{
 							IncommingPalletImportXML import1 = new IncommingPalletImportXML(Common.selectedHostID, Common.sessionID);
-							import1.loadFrom("Pallet_Export.xml",  Common.mainForm, jStatusText);
+							import1.loadFrom("Pallet_Export.xml", Common.mainForm, jStatusText);
 						}
 					});
-				}				
+				}
 				{
 					jButtonSearch1 = new JButton4j(Common.icon_search);
 					jDesktopPane1.add(jButtonSearch1);
@@ -1096,7 +1103,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 							{
 								jFormattedTextFieldQuantity.setValue(0);
 								jFormattedTextFieldQuantity.setEnabled(true);
-							} else
+							}
+							else
 							{
 								jFormattedTextFieldQuantity.setValue(0);
 								jFormattedTextFieldQuantity.setEnabled(false);
@@ -1124,7 +1132,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 							{
 								button_CalendardomDateTo.setEnabled(true);
 								domDateTo.setEnabled(true);
-							} else
+							}
+							else
 							{
 								domDateTo.setEnabled(false);
 								button_CalendardomDateTo.setEnabled(false);
@@ -1173,7 +1182,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 							if (jCheckBoxLimit.isSelected())
 							{
 								jSpinnerLimit.setEnabled(true);
-							} else
+							}
+							else
 							{
 								jSpinnerLimit.setEnabled(false);
 							}
@@ -1279,7 +1289,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 							{
 								domDateFrom.setEnabled(true);
 								button_CalendardomDateFrom.setEnabled(true);
-							} else
+							}
+							else
 							{
 								domDateFrom.setEnabled(false);
 								button_CalendardomDateFrom.setEnabled(false);
@@ -1331,7 +1342,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 							{
 								expiryDateFrom.setEnabled(true);
 								calendarButtonexpiryDateFrom.setEnabled(true);
-							} else
+							}
+							else
 							{
 								expiryDateFrom.setEnabled(false);
 								calendarButtonexpiryDateFrom.setEnabled(false);
@@ -1352,7 +1364,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 							{
 								expiryDateTo.setEnabled(true);
 								calendarButtonexpiryDateTo.setEnabled(true);
-							} else
+							}
+							else
 							{
 								expiryDateTo.setEnabled(false);
 								calendarButtonexpiryDateTo.setEnabled(false);
@@ -1506,17 +1519,17 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				public void mouseClicked(MouseEvent evt)
 				{
-					if (jTable1.getSelectedRowCount()==1)
+					if (jTable1.getSelectedRowCount() == 1)
 					{
 						jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT"));
 						menuItemEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT"));
 					}
 					else
 					{
-						jButtonEdit.setEnabled(false);	
+						jButtonEdit.setEnabled(false);
 						menuItemEdit.setEnabled(false);
 					}
-					
+
 					if (evt.getClickCount() == 2)
 					{
 						if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_EDIT") == true)
@@ -1655,6 +1668,19 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					popupMenu.add(menuItemSplit);
 				}
 				{
+					final JMenuItem4j menuItemMove = new JMenuItem4j(Common.icon_move);
+					menuItemMove.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_MOVE"));
+					menuItemMove.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							palletMove();
+						}
+					});
+					menuItemMove.setText(lang.get("lbl_Pallet_Move"));
+					popupMenu.add(menuItemMove);
+				}
+				{
 					final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history);
 					newItemMenuItem.addActionListener(new ActionListener()
 					{
@@ -1681,7 +1707,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					popupMenu.add(newItemMenuItem);
 				}
 				{
-					
+
 					mnReferenceData = new JMenu4j(lang.get("lbl_Referenced_Data"));
 					popupMenu.add(mnReferenceData);
 					{
@@ -2092,7 +2118,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					{
 						createdDateFrom.setEnabled(true);
 						button_CalendarCreatedDateFrom.setEnabled(true);
-					} else
+					}
+					else
 					{
 						createdDateFrom.setEnabled(false);
 						button_CalendarCreatedDateFrom.setEnabled(false);
@@ -2112,7 +2139,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					{
 						updatedDateFrom.setEnabled(true);
 						button_CalendarUpdatedDateFrom.setEnabled(true);
-					} else
+					}
+					else
 					{
 						updatedDateFrom.setEnabled(false);
 						button_CalendarUpdatedDateFrom.setEnabled(false);
@@ -2142,7 +2170,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					{
 						createdDateTo.setEnabled(true);
 						button_CalendarCreatedDateTo.setEnabled(true);
-					} else
+					}
+					else
 					{
 						createdDateTo.setEnabled(false);
 						button_CalendarCreatedDateTo.setEnabled(false);
@@ -2162,7 +2191,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					{
 						updatedDateTo.setEnabled(true);
 						button_CalendarUpdatedDateTo.setEnabled(true);
-					} else
+					}
+					else
 					{
 						createdDateTo.setEnabled(false);
 						button_CalendarUpdatedDateTo.setEnabled(false);
@@ -2265,7 +2295,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			button_CalendarUpdatedDateTo.setEnabled(false);
 			button_CalendarUpdatedDateTo.setBounds(470, 164, 21, 21);
 			jDesktopPane1.add(button_CalendarUpdatedDateTo);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -2309,6 +2340,36 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 	}
 
+	private void palletMove()
+	{
+		int row = jTable1.getSelectedRow();
+
+		if (row >= 0)
+		{
+			String lsscc = jTable1.getValueAt(row, 0).toString();
+			String source = jTable1.getValueAt(row, 8).toString();
+			
+			JDBLocation locn = new JDBLocation(Common.selectedHostID, Common.sessionID);
+			String[] locnList = locn.getLocationListArray();
+
+			String dest = (String) JOptionPane.showInputDialog(Common.mainForm, "Move To", "Destination", JOptionPane.PLAIN_MESSAGE, Common.icon_interface, locnList, "Pallet Move");
+
+			if (dest != null)
+			{
+				if (dest.equals("") == false)
+
+				{
+					Long txn = (long) 0;
+					JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
+					if (pal.getPalletProperties(lsscc))
+					{
+						txn = pal.updateLocationID(txn, source, dest);
+					}
+				}
+			}
+		}
+	}
+
 	private void setSequence(boolean descending)
 	{
 		if (jToggleButtonSequence.isSelected() == true)
@@ -2316,7 +2377,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			rbdescending.setSelected(true);
 			jToggleButtonSequence.setToolTipText("Descending");
 			jToggleButtonSequence.setIcon(Common.icon_descending);
-		} else
+		}
+		else
 		{
 			rbascending.setSelected(true);
 			jToggleButtonSequence.setToolTipText("Ascending");

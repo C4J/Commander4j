@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Pallet_Move', 'EN', 'Move Pallet', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Pallet_Move', 'FR', 'Déplacement de palette', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Pallet_Move', 'DE', 'Palettenbewegung', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Pallet_Move', 'HU', 'Raklapmozgatás', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Pallet_Move', 'PL', 'Ruch paletowy', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Pallet_Move', 'IT', 'Sposta pallet', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Pallet_Move', 'NL', 'Pallet verplaatsen', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Pallet_Move', 'SP', 'Mover palet', '0')
+	</statement>
+	
+	<statement> 
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY) VALUES 
+		                           ('FRM_ADMIN_PALLET_MOVE', 'N', 'Y', 'FORM', 'lbl_Pallet_Move', '0', 'move.gif', '', '', '', '', 'N', 'N', '1', '', 'lbl_Pallet_Move')
+	</statement> 	
+	
+	<statement>
+			INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_PALLET_MOVE')
+	</statement>
+	
+</DDL>
