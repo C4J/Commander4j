@@ -58,13 +58,15 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
 /**
- * JInternalFrameMaterialTypeProperties allows you edit a record held in the APP_MATERIAL_TYPE table. 
+ * JInternalFrameMaterialTypeProperties allows you edit a record held in the
+ * APP_MATERIAL_TYPE table.
  * 
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameMaterialTypeProperties.jpg" >
  * 
  * @see com.commander4j.db.JDBMaterialType JDBMaterialType
- * @see com.commander4j.app.JInternalFrameMaterialTypeProperties JInternalFrameMaterialTypeProperties
+ * @see com.commander4j.app.JInternalFrameMaterialTypeProperties
+ *      JInternalFrameMaterialTypeProperties
  *
  */
 public class JInternalFrameMaterialTypeProperties extends JInternalFrame
@@ -91,22 +93,24 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 	public JInternalFrameMaterialTypeProperties()
 	{
 		super();
-		
+
 		moduleList.add(null);
 		moduleList.addAll(mod.getModuleIdsByType("USER"));
-		
+
 		initGUI();
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_TYPE"));
 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				jTextFieldDescription.requestFocus();
 				jTextFieldDescription.setCaretPosition(jTextFieldDescription.getText().length());
 			}
 		});
 	}
-	
+
 	private void setButtonStates()
 	{
 		jButtonUpdate.setEnabled(true);
@@ -118,7 +122,7 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 		{
 			comboBoxPackModuleID.setEnabled(false);
 		}
-		
+
 		if (checkBoxOverridePalletLabel.isSelected())
 		{
 			comboBoxPalletModuleID.setEnabled(true);
@@ -143,11 +147,11 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 
 		jTextFieldType.setText(mt.getType());
 		jTextFieldDescription.setText(mt.getDescription());
-		
+
 		checkBoxOverridePackLabel.setSelected(mt.isOverridePackLabel());
 		checkBoxOverridePalletLabel.setSelected(mt.isOverridePalletLabel());
-		
-		for (int x=1;x<moduleList.size();x++)
+
+		for (int x = 1; x < moduleList.size(); x++)
 		{
 			if (moduleList.get(x).getmData().equals(mt.getPackLabelModuleID()))
 			{
@@ -158,11 +162,12 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 				comboBoxPalletModuleID.setSelectedIndex(x);
 			}
 		}
-		
+
 		setButtonStates();
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(389, 143));
@@ -202,8 +207,10 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 					jTextFieldDescription = new JTextField4j(JDBMaterialType.field_description);
 					jDesktopPane1.add(jTextFieldDescription, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jTextFieldDescription.setBounds(185, 49, 397, 21);
-					jTextFieldDescription.addKeyListener(new KeyAdapter() {
-						public void keyTyped(KeyEvent evt) {
+					jTextFieldDescription.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
 							jButtonUpdate.setEnabled(true);
 						}
 					});
@@ -216,50 +223,75 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
 					jButtonUpdate.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonUpdate.setBounds(42, 154, 112, 32);
-					jButtonUpdate.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonUpdate.setBounds(147, 154, 112, 32);
+					jButtonUpdate.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							mt.setDescription(jTextFieldDescription.getText());
-							
+
 							if (checkBoxOverridePackLabel.isSelected())
 							{
-								if (comboBoxPackModuleID.getSelectedItem().toString().equals(""))
+								if (comboBoxPackModuleID.getSelectedIndex() >= 0)
 								{
-									mt.setOverridePackLabel("N");
-									mt.setPackLabelModuleID("");
+									if (comboBoxPackModuleID.getSelectedItem().toString().equals(""))
+									{
+										mt.setOverridePackLabel("N");
+										checkBoxOverridePackLabel.setSelected(false);
+										mt.setPackLabelModuleID("");
+									}
+									else
+									{
+										mt.setOverridePackLabel("Y");
+										checkBoxOverridePackLabel.setSelected(true);
+										mt.setPackLabelModuleID(comboBoxPackModuleID.getSelectedItem().toString());
+									}
 								}
 								else
 								{
-									mt.setOverridePackLabel("Y");
-									mt.setPackLabelModuleID(comboBoxPackModuleID.getSelectedItem().toString());
+									mt.setOverridePackLabel("N");
+									checkBoxOverridePackLabel.setSelected(false);
+									mt.setPackLabelModuleID("");
 								}
-								
 							}
 							else
 							{
 								mt.setOverridePackLabel("N");
+								checkBoxOverridePackLabel.setSelected(false);
 								mt.setPackLabelModuleID("");
 							}
-							
+
 							if (checkBoxOverridePalletLabel.isSelected())
 							{
-								if (comboBoxPalletModuleID.getSelectedItem().toString().equals(""))
+								if (comboBoxPalletModuleID.getSelectedIndex() >= 0)
 								{
-									mt.setOverridePalletLabel("N");
-									mt.setPalletLabelModuleID("");
+									if (comboBoxPalletModuleID.getSelectedItem().toString().equals(""))
+									{
+										mt.setOverridePalletLabel("N");
+										mt.setPalletLabelModuleID("");
+										checkBoxOverridePalletLabel.setSelected(false);
+									}
+									else
+									{
+										mt.setOverridePalletLabel("Y");
+										checkBoxOverridePalletLabel.setSelected(true);
+										mt.setPalletLabelModuleID(comboBoxPalletModuleID.getSelectedItem().toString());
+									}
 								}
 								else
 								{
-									mt.setOverridePalletLabel("Y");
-									mt.setPalletLabelModuleID(comboBoxPalletModuleID.getSelectedItem().toString());
+									mt.setOverridePalletLabel("N");
+									checkBoxOverridePalletLabel.setSelected(false);
+									mt.setPalletLabelModuleID("");
 								}
 							}
 							else
 							{
 								mt.setOverridePalletLabel("N");
+								checkBoxOverridePalletLabel.setSelected(false);
 								mt.setPalletLabelModuleID("");
-							}	
-							
+							}
+
 							mt.update();
 							jButtonUpdate.setEnabled(false);
 						}
@@ -270,73 +302,81 @@ public class JInternalFrameMaterialTypeProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(161, 154, 112, 32);
+					jButtonHelp.setBounds(266, 154, 112, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close);
 					jDesktopPane1.add(jButtonClose, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(280, 154, 112, 32);
-					jButtonClose.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonClose.setBounds(385, 154, 112, 32);
+					jButtonClose.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
 				}
-				checkBoxOverridePackLabel.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
+				checkBoxOverridePackLabel.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent arg0)
+					{
 						setButtonStates();
 					}
 				});
-				
 
 				checkBoxOverridePackLabel.setBackground(Color.WHITE);
 				checkBoxOverridePackLabel.setBounds(185, 82, 21, 24);
 				jDesktopPane1.add(checkBoxOverridePackLabel);
-				checkBoxOverridePalletLabel.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				checkBoxOverridePalletLabel.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						setButtonStates();
 					}
 				});
-				
 
 				checkBoxOverridePalletLabel.setBackground(Color.WHITE);
 				checkBoxOverridePalletLabel.setBounds(185, 118, 21, 24);
 				jDesktopPane1.add(checkBoxOverridePalletLabel);
-				
+
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Override_Pack_Label"));
 				label4j_std.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std.setHorizontalAlignment(SwingConstants.RIGHT);
 				label4j_std.setBounds(6, 82, 175, 21);
 				jDesktopPane1.add(label4j_std);
-				
+
 				JLabel4j_std label4j_std_1 = new JLabel4j_std();
 				label4j_std_1.setText(lang.get("lbl_Override_Pallet_Label"));
 				label4j_std_1.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std_1.setHorizontalAlignment(SwingConstants.RIGHT);
 				label4j_std_1.setBounds(6, 118, 175, 21);
 				jDesktopPane1.add(label4j_std_1);
-				
+
 				ComboBoxModel<JDBListData> jComboBox1Model = new DefaultComboBoxModel<JDBListData>(moduleList);
 				comboBoxPackModuleID.setModel(jComboBox1Model);
 				comboBoxPackModuleID.setEnabled(false);
 				comboBoxPackModuleID.setBounds(218, 79, 208, 21);
-				comboBoxPackModuleID.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				comboBoxPackModuleID.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						jButtonUpdate.setEnabled(true);
 					}
 				});
-				
+
 				jDesktopPane1.add(comboBoxPackModuleID);
-				
+
 				ComboBoxModel<JDBListData> jComboBox2Model = new DefaultComboBoxModel<JDBListData>(moduleList);
 				comboBoxPalletModuleID.setModel(jComboBox2Model);
 				comboBoxPalletModuleID.setEnabled(false);
 				comboBoxPalletModuleID.setBounds(218, 115, 208, 21);
-				comboBoxPalletModuleID.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				comboBoxPalletModuleID.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						jButtonUpdate.setEnabled(true);
 					}
 				});

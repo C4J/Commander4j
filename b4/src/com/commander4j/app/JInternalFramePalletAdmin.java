@@ -2348,22 +2348,25 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		{
 			String lsscc = jTable1.getValueAt(row, 0).toString();
 			String source = jTable1.getValueAt(row, 8).toString();
-			
+
 			JDBLocation locn = new JDBLocation(Common.selectedHostID, Common.sessionID);
 			String[] locnList = locn.getLocationListArray();
 
-			String dest = (String) JOptionPane.showInputDialog(Common.mainForm, "Move To", "Destination", JOptionPane.PLAIN_MESSAGE, Common.icon_interface, locnList, "Pallet Move");
-
-			if (dest != null)
+			JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
+			
+			if (pal.getPalletProperties(lsscc))
 			{
-				if (dest.equals("") == false)
+				String dest = (String) JOptionPane.showInputDialog(Common.mainForm, "Move To", lsscc, JOptionPane.PLAIN_MESSAGE, Common.icon_interface, locnList, "Pallet Move");
 
+				if (dest != null)
 				{
-					Long txn = (long) 0;
-					JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
-					if (pal.getPalletProperties(lsscc))
+					if (dest.equals("") == false)
+
 					{
+						Long txn = (long) 0;
+
 						txn = pal.updateLocationID(txn, source, dest);
+
 					}
 				}
 			}

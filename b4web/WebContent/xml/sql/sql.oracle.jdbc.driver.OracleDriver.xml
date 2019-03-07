@@ -512,7 +512,7 @@
 		</statement>
 		<statement>
 			<id>JDBMaterial.update</id>
-			<text>update {schema}app_material set base_uom=?,description=?,gross_weight=?,material_type=?,old_material=?,net_weight=?,weight_uom=?,shelf_life=?,shelf_life_rule=?,shelf_life_uom=?,default_batch_status=?,equipment_type=?,updated=?,inspection_id=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=?,validate_scan_pallet=?,validate_scan_case=?,validate_scan_each=?,enabled=? where material=?</text>
+			<text>update {schema}app_material set base_uom=?,description=?,gross_weight=?,material_type=?,old_material=?,net_weight=?,weight_uom=?,shelf_life=?,shelf_life_rule=?,shelf_life_uom=?,default_batch_status=?,equipment_type=?,updated=?,inspection_id=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=?,validate_scan_pallet=?,validate_scan_case=?,validate_scan_each=?,enabled=?,move_after_make_enabled=?,move_after_make_location_id=? where material=?</text>
 		</statement>
 		<?JDBMaterialUom ?>
 		<statement>

@@ -40,8 +40,10 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
+
 /**
- * JDBMaterial class is used to insert/update/delete records from the APP_MATERIAL table.
+ * JDBMaterial class is used to insert/update/delete records from the
+ * APP_MATERIAL table.
  * <p>
  * <img alt="" src="./doc-files/APP_MATERIAL.jpg" >
  * 
@@ -81,18 +83,20 @@ public class JDBMaterial
 	private JDBUom uom;
 	private JDBControl ctrl;
 	private JDBMaterialUom muom;
+	private JDBLocation moveLocation;
 	private String BatchExpiryTimeRoudingMode = "";
-	
+
 	private String dbOverride_Pack_Label;
 	private String dbOverride_Pallet_Label;
 	private String dbPack_Label_ModuleID;
 	private String dbPallet_Label_ModuleID;
-	
+
 	private String dbValidateScanPallet = "N";
 	private String dbValidateScanCase = "N";
 	private String dbValidateScanEach = "N";
-	
-	
+	private String dbMoveAfterMakeEnabled = "N";
+	private String dbMoveAfterMakeLocationID = "N";
+
 	public void setEnabled(boolean yesno)
 	{
 		if (yesno)
@@ -104,14 +108,12 @@ public class JDBMaterial
 			setEnabled("N");
 		}
 	}
-	
+
 	public void setEnabled(String yesno)
 	{
 		dbEnabled = JUtility.replaceNullStringwithBlank(yesno);
 	}
-	
 
-	
 	public boolean isEnabled()
 	{
 		if (getEnabled().equals("Y"))
@@ -123,18 +125,18 @@ public class JDBMaterial
 			return false;
 		}
 	}
-	
+
 	public String getEnabled()
 	{
 		dbEnabled = JUtility.replaceNullStringwithBlank(dbEnabled);
 		if (dbEnabled.equals(""))
 		{
-			dbEnabled="Y";
+			dbEnabled = "Y";
 		}
 		return dbEnabled;
 
 	}
-	
+
 	public void setValidateScanPallet(boolean yesno)
 	{
 		if (yesno)
@@ -146,14 +148,12 @@ public class JDBMaterial
 			setValidateScanPallet("N");
 		}
 	}
-	
+
 	public void setValidateScanPallet(String yesno)
 	{
 		dbValidateScanPallet = JUtility.replaceNullStringwithBlank(yesno);
 	}
-	
 
-	
 	public boolean isValidateScanPallet()
 	{
 		if (getValidateScanPallet().equals("Y"))
@@ -165,18 +165,18 @@ public class JDBMaterial
 			return false;
 		}
 	}
-	
+
 	public String getValidateScanPallet()
 	{
 		dbValidateScanPallet = JUtility.replaceNullStringwithBlank(dbValidateScanPallet);
 		if (dbValidateScanPallet.equals(""))
 		{
-			dbValidateScanPallet="N";
+			dbValidateScanPallet = "N";
 		}
 		return dbValidateScanPallet;
 
 	}
-	
+
 	public void setValidateScanCase(boolean yesno)
 	{
 		if (yesno)
@@ -188,13 +188,12 @@ public class JDBMaterial
 			setValidateScanCase("N");
 		}
 	}
-	
+
 	public void setValidateScanCase(String yesno)
 	{
 		dbValidateScanCase = JUtility.replaceNullStringwithBlank(yesno);
 	}
-	
-	
+
 	public boolean isValidateScanCase()
 	{
 		if (getValidateScanCase().equals("Y"))
@@ -206,18 +205,18 @@ public class JDBMaterial
 			return false;
 		}
 	}
-	
+
 	public String getValidateScanCase()
 	{
 		dbValidateScanCase = JUtility.replaceNullStringwithBlank(dbValidateScanCase);
 		if (dbValidateScanCase.equals(""))
 		{
-			dbValidateScanCase="N";
+			dbValidateScanCase = "N";
 		}
 		return dbValidateScanCase;
 
 	}
-	
+
 	public void setValidateScanEach(boolean yesno)
 	{
 		if (yesno)
@@ -229,13 +228,12 @@ public class JDBMaterial
 			setValidateScanEach("N");
 		}
 	}
-	
+
 	public void setValidateScanEach(String yesno)
 	{
 		dbValidateScanEach = JUtility.replaceNullStringwithBlank(yesno);
 	}
-	
-	
+
 	public boolean isValidateScanEach()
 	{
 		if (getValidateScanEach().equals("Y"))
@@ -247,18 +245,18 @@ public class JDBMaterial
 			return false;
 		}
 	}
-	
+
 	public String getValidateScanEach()
 	{
 		dbValidateScanEach = JUtility.replaceNullStringwithBlank(dbValidateScanEach);
 		if (dbValidateScanEach.equals(""))
 		{
-			dbValidateScanEach="N";
+			dbValidateScanEach = "N";
 		}
 		return dbValidateScanEach;
 
-	}	
-	
+	}
+
 	public void setOverridePackLabel(boolean yesno)
 	{
 		if (yesno)
@@ -270,12 +268,53 @@ public class JDBMaterial
 			setOverridePackLabel("N");
 		}
 	}
-	
+
 	public void setOverridePackLabel(String yesno)
 	{
 		dbOverride_Pack_Label = JUtility.replaceNullStringwithBlank(yesno);
 	}
-	
+
+	// ===============
+
+	public void setMoveAfterMakeLocationID(String val)
+	{
+		dbMoveAfterMakeLocationID = JUtility.replaceNullStringwithBlank(val);
+	}
+
+	public String getMoveAfterMakeLocationID()
+	{
+		return JUtility.replaceNullStringwithBlank(dbMoveAfterMakeLocationID);
+	}
+
+	public void setMoveAfterMakeEnabled(String yesno)
+	{
+		dbMoveAfterMakeEnabled = JUtility.replaceNullStringwithBlank(yesno);
+	}
+
+	public String getMoveAfterMakeEnabled()
+	{
+		dbMoveAfterMakeEnabled = JUtility.replaceNullStringwithBlank(dbMoveAfterMakeEnabled);
+		if (dbMoveAfterMakeEnabled.equals(""))
+		{
+			dbMoveAfterMakeEnabled = "N";
+		}
+		return dbMoveAfterMakeEnabled;
+	}
+
+	public boolean isMoveAfterMakeEnabled()
+	{
+		if (getMoveAfterMakeEnabled().equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	// ================
+
 	public boolean isOverridePackLabel()
 	{
 		if (getOverridePackLabel().equals("Y"))
@@ -287,29 +326,28 @@ public class JDBMaterial
 			return false;
 		}
 	}
-	
+
 	public String getOverridePackLabel()
 	{
 		dbOverride_Pack_Label = JUtility.replaceNullStringwithBlank(dbOverride_Pack_Label);
 		if (dbOverride_Pack_Label.equals(""))
 		{
-			dbOverride_Pack_Label="N";
+			dbOverride_Pack_Label = "N";
 		}
 		return dbOverride_Pack_Label;
 
 	}
-	
+
 	public void setPackLabelModuleID(String id)
 	{
 		dbPack_Label_ModuleID = id;
 	}
-	
+
 	public String getPackLabelModuleID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbPack_Label_ModuleID);
 	}
-	
-	
+
 	public void setOverridePalletLabel(boolean yesno)
 	{
 		if (yesno)
@@ -321,12 +359,12 @@ public class JDBMaterial
 			setOverridePalletLabel("N");
 		}
 	}
-	
+
 	public void setOverridePalletLabel(String yesno)
 	{
 		dbOverride_Pallet_Label = JUtility.replaceNullStringwithBlank(yesno);
 	}
-	
+
 	public boolean isOverridePalletLabel()
 	{
 		if (getOverridePalletLabel().equals("Y"))
@@ -338,23 +376,23 @@ public class JDBMaterial
 			return false;
 		}
 	}
-	
+
 	public String getOverridePalletLabel()
 	{
 		dbOverride_Pallet_Label = JUtility.replaceNullStringwithBlank(dbOverride_Pallet_Label);
 		if (dbOverride_Pallet_Label.equals(""))
 		{
-			dbOverride_Pallet_Label="N";
+			dbOverride_Pallet_Label = "N";
 		}
 		return dbOverride_Pallet_Label;
 
 	}
-	
+
 	public void setPalletLabelModuleID(String id)
 	{
 		dbPallet_Label_ModuleID = id;
 	}
-	
+
 	public String getPalletLabelModuleID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbPallet_Label_ModuleID);
@@ -372,9 +410,11 @@ public class JDBMaterial
 		ctrl = new JDBControl(getHostID(), getSessionID());
 		muom = new JDBMaterialUom(getHostID(), getSessionID());
 		uom = new JDBUom(getHostID(), getSessionID());
+		moveLocation = new JDBLocation(getHostID(), getSessionID());
 	}
 
-	public JDBMaterial(String material, String description, String type, String baseUom, Integer shelflife, String shelflifeuom, String shelfliferule, String equipmentType,String overridePackLabel,String packLabelModule,String overridePalletLabel,String palletLabelModule, String validateScanPallet,String validateScanCase,String validateScanEach,String enabled)
+	public JDBMaterial(String material, String description, String type, String baseUom, Integer shelflife, String shelflifeuom, String shelfliferule, String equipmentType, String overridePackLabel, String packLabelModule, String overridePalletLabel,
+			String palletLabelModule, String validateScanPallet, String validateScanCase, String validateScanEach, String enabled, String moveEnabled, String moveLocation)
 	{
 		setMaterial(material);
 		setDescription(description);
@@ -392,6 +432,8 @@ public class JDBMaterial
 		setValidateScanCase(validateScanCase);
 		setValidateScanEach(validateScanEach);
 		setEnabled(enabled);
+		setMoveAfterMakeEnabled(moveEnabled);
+		setMoveAfterMakeLocationID(moveLocation);
 	}
 
 	public Date calcBBE(Date dateOfManufacture, Integer shelfLife, String shelfLifeUom, String shelfLifeRule)
@@ -495,7 +537,8 @@ public class JDBMaterial
 			if (isValidMaterial(getMaterial()) == true)
 			{
 				setErrorMessage("Key violation - material [" + getMaterial() + "] already exists !");
-			} else
+			}
+			else
 			{
 				try
 				{
@@ -508,7 +551,8 @@ public class JDBMaterial
 					stmtupdate.close();
 					update();
 					result = true;
-				} catch (SQLException e)
+				}
+				catch (SQLException e)
 				{
 					setErrorMessage(e.getMessage());
 				}
@@ -549,16 +593,19 @@ public class JDBMaterial
 
 						stmtupdate.close();
 						result = true;
-					} else
+					}
+					else
 					{
 						setErrorMessage(noofuoms.toString() + " uom conversions exist for Material " + getMaterial());
 					}
-				} else
+				}
+				else
 				{
 					setErrorMessage(noofbatches.toString() + " batches exist for Material " + getMaterial());
 				}
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -683,14 +730,14 @@ public class JDBMaterial
 
 			stmt.close();
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
-
 
 	public LinkedList<JDBMaterialBatch> getMaterialBatches()
 	{
@@ -715,14 +762,14 @@ public class JDBMaterial
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return batchList;
 	}
-
 
 	public Vector<JDBMaterial> getMaterialData(PreparedStatement criteria)
 	{
@@ -733,8 +780,10 @@ public class JDBMaterial
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBMaterial("material", "description", "type", "base_uom", 0, "shelf life uom", "rounding rule", "equipmentType","overridePack","packModule","overridePallet","palletModule","validateScanPallet","validateScanCase","validateScanEach","Y"));
-		} else
+			result.addElement(new JDBMaterial("material", "description", "type", "base_uom", 0, "shelf life uom", "rounding rule", "equipmentType", "overridePack", "packModule", "overridePallet", "palletModule", "validateScanPallet", "validateScanCase",
+					"validateScanEach", "Y", "N", ""));
+		}
+		else
 		{
 			try
 			{
@@ -742,12 +791,14 @@ public class JDBMaterial
 
 				while (rs.next())
 				{
-					result.addElement(new JDBMaterial(rs.getString("material"), rs.getString("description"), rs.getString("material_type"), rs.getString("base_uom"), rs.getInt("shelf_life"), rs.getString("shelf_life_uom"), rs
-							.getString("shelf_life_rule"), rs.getString("equipment_type"),rs.getString("override_pack_label"),rs.getString("pack_label_module_id"),rs.getString("override_pallet_label"),rs.getString("pallet_label_module_id"),rs.getString("validate_scan_pallet"),rs.getString("validate_scan_case"),rs.getString("validate_scan_each"),rs.getString("enabled")));
+					result.addElement(new JDBMaterial(rs.getString("material"), rs.getString("description"), rs.getString("material_type"), rs.getString("base_uom"), rs.getInt("shelf_life"), rs.getString("shelf_life_uom"), rs.getString("shelf_life_rule"),
+							rs.getString("equipment_type"), rs.getString("override_pack_label"), rs.getString("pack_label_module_id"), rs.getString("override_pallet_label"), rs.getString("pallet_label_module_id"), rs.getString("validate_scan_pallet"),
+							rs.getString("validate_scan_case"), rs.getString("validate_scan_each"), rs.getString("enabled"), rs.getString("move_after_make_enabled"), rs.getString("move_after_make_location_id")));
 				}
 				rs.close();
 
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				setErrorMessage(e.getMessage());
 			}
@@ -765,7 +816,8 @@ public class JDBMaterial
 		{
 			rs = criteria.executeQuery();
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -773,7 +825,6 @@ public class JDBMaterial
 
 		return rs;
 	}
-
 
 	public boolean getMaterialProperties(String lmaterial)
 	{
@@ -802,26 +853,26 @@ public class JDBMaterial
 						getPropertiesfromResultSet(rs);
 						result = true;
 					}
-				} else
+				}
+				else
 				{
 					setErrorMessage("Invalid Material [" + lmaterial + "]");
 				}
 				rs.close();
 				stmt.close();
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 		return result;
 	}
 
-
 	public String getMaterialType()
 	{
 		return dbMaterialType;
 	}
-
 
 	public Integer getMaterialUomCount()
 	{
@@ -848,14 +899,14 @@ public class JDBMaterial
 			rs.close();
 			stmt.close();
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
-
 
 	public LinkedList<JDBMaterialUom> getMaterialUoms()
 	{
@@ -875,12 +926,13 @@ public class JDBMaterial
 
 			while (rs.next())
 			{
-				JDBMaterialUom mu = new JDBMaterialUom(getHostID(), getSessionID(), rs.getString("material"), rs.getString("uom"), rs.getString("ean"), rs.getString("variant"), rs.getInt("numerator"), rs.getInt("denominator"),rs.getString("override"));
+				JDBMaterialUom mu = new JDBMaterialUom(getHostID(), getSessionID(), rs.getString("material"), rs.getString("uom"), rs.getString("ean"), rs.getString("variant"), rs.getInt("numerator"), rs.getInt("denominator"), rs.getString("override"));
 				uomList.addLast(mu);
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -888,18 +940,15 @@ public class JDBMaterial
 		return uomList;
 	}
 
-
 	public BigDecimal getNetWeight()
 	{
 		return dbNetWeight;
 	}
 
-
 	public String getOldMaterial()
 	{
 		return dbOldMaterial;
 	}
-
 
 	public void getPropertiesfromResultSet(ResultSet rs)
 	{
@@ -930,8 +979,11 @@ public class JDBMaterial
 			setValidateScanCase(rs.getString("validate_scan_case"));
 			setValidateScanEach(rs.getString("validate_scan_each"));
 			setEnabled(rs.getString("enabled"));
+			setMoveAfterMakeEnabled(rs.getString("move_after_make_enabled"));
+			setMoveAfterMakeLocationID(rs.getString("move_after_make_location_id"));
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -998,30 +1050,25 @@ public class JDBMaterial
 		return sessionID;
 	}
 
-
 	public int getShelfLife()
 	{
 		return dbShelflife;
 	}
-
 
 	public String getShelfLifeRule()
 	{
 		return dbShelflifeRule;
 	}
 
-
 	public String getShelfLifeUom()
 	{
 		return dbShelflifeUom;
 	}
 
-
 	public String getWeightUom()
 	{
 		return dbWeightUom;
 	}
-
 
 	public boolean isValid()
 	{
@@ -1060,6 +1107,18 @@ public class JDBMaterial
 			}
 		}
 
+		if (result == true)
+		{
+			if (getMoveAfterMakeLocationID().equals("") == false)
+			{
+				if (moveLocation.isValidLocation(getMoveAfterMakeLocationID()) == false)
+				{
+					result = false;
+					setErrorMessage(moveLocation.getErrorMessage());
+				}
+			}
+		}
+
 		if (result == false)
 		{
 			logger.debug("isValid [" + getMaterial() + "] " + getErrorMessage());
@@ -1067,7 +1126,6 @@ public class JDBMaterial
 
 		return result;
 	}
-
 
 	public boolean isValidMaterial()
 	{
@@ -1086,13 +1144,15 @@ public class JDBMaterial
 			if (rs.next())
 			{
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Invalid Material [" + getMaterial() + "]");
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -1101,13 +1161,11 @@ public class JDBMaterial
 
 	}
 
-
 	public boolean isValidMaterial(String mat)
 	{
 		setMaterial(mat);
 		return isValidMaterial();
 	}
-
 
 	public void setBaseUom(String uom)
 	{
@@ -1118,12 +1176,10 @@ public class JDBMaterial
 		dbBaseUom = uom;
 	}
 
-
 	public void setDefaultBatchStatus(String batchStatus)
 	{
 		dbDefaultBatchStatus = batchStatus;
 	}
-
 
 	public void setDescription(String description)
 	{
@@ -1135,12 +1191,10 @@ public class JDBMaterial
 		dbEquipmentType = equipmentType;
 	}
 
-
 	private void setErrorMessage(String ErrorMsg)
 	{
 		dbErrorMessage = ErrorMsg;
 	}
-
 
 	public void setGrossWeight(BigDecimal weight)
 	{
@@ -1157,24 +1211,20 @@ public class JDBMaterial
 		dbInspectionID = insp;
 	}
 
-
 	public void setMaterial(String material)
 	{
 		dbMaterial = material;
 	}
-
 
 	public void setMaterialType(String materialType)
 	{
 		dbMaterialType = materialType;
 	}
 
-
 	public void setNetWeight(BigDecimal weight)
 	{
 		dbNetWeight = weight;
 	}
-
 
 	public void setOldMaterial(String material)
 	{
@@ -1186,30 +1236,25 @@ public class JDBMaterial
 		sessionID = session;
 	}
 
-
 	public void setShelfLife(int shelflife)
 	{
 		dbShelflife = shelflife;
 	}
-
 
 	public void setShelfLifeRule(String rule)
 	{
 		dbShelflifeRule = rule;
 	}
 
-
 	public void setShelfLifeUom(String uom)
 	{
 		dbShelflifeUom = uom;
 	}
 
-
 	public void setWeightUom(String uom)
 	{
 		dbWeightUom = uom;
 	}
-
 
 	public boolean update()
 	{
@@ -1238,22 +1283,25 @@ public class JDBMaterial
 				stmtupdate.setString(12, getEquipmentType());
 				stmtupdate.setTimestamp(13, JUtility.getSQLDateTime());
 				stmtupdate.setString(14, getInspectionID());
-				stmtupdate.setString(15,getOverridePackLabel());
-				stmtupdate.setString(16,getPackLabelModuleID());
-				stmtupdate.setString(17,getOverridePalletLabel());
-				stmtupdate.setString(18,getPalletLabelModuleID());	
-				stmtupdate.setString(19,getValidateScanPallet());	
-				stmtupdate.setString(20,getValidateScanCase());
-				stmtupdate.setString(21,getValidateScanEach());
+				stmtupdate.setString(15, getOverridePackLabel());
+				stmtupdate.setString(16, getPackLabelModuleID());
+				stmtupdate.setString(17, getOverridePalletLabel());
+				stmtupdate.setString(18, getPalletLabelModuleID());
+				stmtupdate.setString(19, getValidateScanPallet());
+				stmtupdate.setString(20, getValidateScanCase());
+				stmtupdate.setString(21, getValidateScanEach());
 				stmtupdate.setString(22, getEnabled());
-				stmtupdate.setString(23, getMaterial());
+				stmtupdate.setString(23, getMoveAfterMakeEnabled());
+				stmtupdate.setString(24, getMoveAfterMakeLocationID());
+				stmtupdate.setString(25, getMaterial());
 
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			} catch (SQLException e)
+			}
+			catch (SQLException e)
 			{
 				setErrorMessage(e.getMessage());
 			}

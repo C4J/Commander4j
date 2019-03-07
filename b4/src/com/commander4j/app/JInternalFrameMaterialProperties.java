@@ -159,30 +159,32 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JComboBox4j<JDBListData> comboBoxPackModuleID = new JComboBox4j<JDBListData>();
 	private JComboBox4j<JDBListData> comboBoxPalletModuleID = new JComboBox4j<JDBListData>();
 	private JButton4j jButtonCustomerData = new JButton4j();
-	
+
 	private JCheckBox4j checkBoxValidateScanPallet = new JCheckBox4j();
 	private JCheckBox4j checkBoxValidateScanCase = new JCheckBox4j();
 	private JCheckBox4j checkBoxValidateScanEach = new JCheckBox4j();
 	private JCheckBox4j checkBox4j_Enabled = new JCheckBox4j();
+	private JCheckBox4j checkBox4jMoveAfterMake = new JCheckBox4j();
+	private JTextField4j textField4jMoveAfterMake = new JTextField4j(20);
+	private JButton4j button4jLocationLookup = new JButton4j("");
 
 	public JInternalFrameMaterialProperties(String mat)
 	{
 
 		super();
-		
+
 		initGUI();
 		setMaterialID(mat);
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_EDIT"));
 
-		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
-	
+
 	}
-	
+
 	public void setMaterialID(String mat)
 	{
 
@@ -193,12 +195,12 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			if (question == 0)
 			{
 				save();
-			} 
+			}
 		}
-		
+
 		lmaterial = mat;
 		jTextFieldMaterial.setText(lmaterial);
-		setTitle("Material [" + lmaterial+"]");
+		setTitle("Material [" + lmaterial + "]");
 
 		material.setMaterial(lmaterial);
 
@@ -221,7 +223,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			jTextFieldDescription.setText(material.getDescription());
 
 			jTextFieldEquipmentType.setText(material.getEquipmentType());
-			
+
 			jTextFieldInspectionID.setText(material.getInspectionID());
 
 			jSpinnerShelfLife.setValue((Number) material.getShelfLife());
@@ -232,19 +234,22 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			jTextFieldLegacyCode.setText(material.getOldMaterial());
 
 			jComboBoxDefaultBatchStatus.setSelectedItem(material.getDefaultBatchStatus());
-			
+
 			checkBoxOverridePackLabel.setSelected(material.isOverridePackLabel());
 			checkBoxOverridePalletLabel.setSelected(material.isOverridePalletLabel());
-			
+
 			checkBoxValidateScanPallet.setSelected(material.isValidateScanPallet());
 			checkBoxValidateScanCase.setSelected(material.isValidateScanCase());
 			checkBoxValidateScanEach.setSelected(material.isValidateScanEach());
-			
+
 			checkBox4j_Enabled.setSelected(material.isEnabled());
-			
+
+			checkBox4jMoveAfterMake.setSelected(material.isMoveAfterMakeEnabled());
+			textField4jMoveAfterMake.setText(material.getMoveAfterMakeLocationID());
+
 			comboBoxPackModuleID.setSelectedIndex(-1);
 			comboBoxPalletModuleID.setSelectedIndex(-1);
-			for (int x=1;x<moduleList.size();x++)
+			for (int x = 1; x < moduleList.size(); x++)
 			{
 				if (moduleList.get(x).getmData().equals(material.getPackLabelModuleID()))
 				{
@@ -255,34 +260,37 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					comboBoxPalletModuleID.setSelectedIndex(x);
 				}
 			}
-			
+
 			setButtonStates();
-	
-		}	
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+
+		}
+
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				jTextFieldDescription.requestFocus();
 				jTextFieldDescription.setCaretPosition(jTextFieldDescription.getText().length());
 				jButtonSave.setEnabled(false);
 			}
 		});
-		
+
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(422, 483));
-			this.setBounds(0, 0, 668, 535);
+			this.setBounds(0, 0, 668, 579);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
 			getContentPane().setLayout(null);
-			
+
 			moduleList.add(null);
 			moduleList.addAll(mod.getModuleIdsByType("USER"));
-			
+
 			uomList.add(new JDBUom("", ""));
 			uomList.addAll(uom.getInternalUoms());
 			typeList.add(new JDBMaterialType(Common.selectedHostID, Common.sessionID));
@@ -297,10 +305,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			slrr1.setDescription("");
 			shelfLifeRule.add(slrr1);
 			shelfLifeRule.addAll(slrr1.getShelfLifeRoundingRules());
-			
+
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 660, 500);
+				jDesktopPane1.setBounds(0, 0, 660, 547);
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(447, 385));
@@ -316,8 +324,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jTextFieldDescription = new JTextField4j(JDBMaterial.field_description);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setBounds(172, 38, 459, 21);
-					jTextFieldDescription.addKeyListener(new KeyAdapter() {
-						public void keyTyped(KeyEvent evt) {
+					jTextFieldDescription.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -329,8 +339,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setBounds(453, 220, 178, 32);
-					jButtonSave.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonSave.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							save();
 						}
 					});
@@ -348,8 +360,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
 					jButtonCancel.setBounds(453, 280, 178, 32);
-					jButtonCancel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonCancel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -361,8 +375,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jComboBoxBaseUOM.setModel(jComboBoxBaseUOMModel);
 					jComboBoxBaseUOM.setMaximumRowCount(12);
 					jComboBoxBaseUOM.setBounds(172, 97, 248, 21);
-					jComboBoxBaseUOM.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jComboBoxBaseUOM.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -376,8 +392,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jComboBoxMaterialType);
 					jComboBoxMaterialType.setModel(jComboBoxMaterialTypeModel);
 					jComboBoxMaterialType.setBounds(172, 68, 248, 21);
-					jComboBoxMaterialType.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jComboBoxMaterialType.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -405,8 +423,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jComboBoxShelfLifeUOM.setModel(jComboBoxShelfLifeUOMModel);
 					jComboBoxShelfLifeUOM.setMaximumRowCount(12);
 					jComboBoxShelfLifeUOM.setBounds(172, 156, 165, 21);
-					jComboBoxShelfLifeUOM.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jComboBoxShelfLifeUOM.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -426,8 +446,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jComboBoxRoundingRule);
 					jComboBoxRoundingRule.setModel(jComboBoxRoundingRuleModel);
 					jComboBoxRoundingRule.setBounds(172, 185, 165, 21);
-					jComboBoxRoundingRule.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jComboBoxRoundingRule.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -495,8 +517,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jTextFieldLegacyCode = new JTextField4j(JDBMaterial.field_old_material);
 					jDesktopPane1.add(jTextFieldLegacyCode);
 					jTextFieldLegacyCode.setBounds(172, 303, 125, 21);
-					jTextFieldLegacyCode.addKeyListener(new KeyAdapter() {
-						public void keyTyped(KeyEvent evt) {
+					jTextFieldLegacyCode.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -507,8 +531,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jComboBoxWeightUOM);
 					jComboBoxWeightUOM.setModel(jComboBox1Model);
 					jComboBoxWeightUOM.setBounds(172, 274, 248, 21);
-					jComboBoxWeightUOM.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jComboBoxWeightUOM.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -520,10 +546,12 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jSpinnerShelfLife.setModel(shelflifenumbermodel);
 					jSpinnerShelfLife.setBounds(172, 126, 95, 21);
 					JSpinner.NumberEditor nec2 = new JSpinner.NumberEditor(jSpinnerShelfLife);
-					nec2.getTextField().setFont(Common.font_std); 
+					nec2.getTextField().setFont(Common.font_std);
 					jSpinnerShelfLife.setEditor(nec2);
-					jSpinnerShelfLife.addChangeListener(new ChangeListener() {
-						public void stateChanged(ChangeEvent evt) {
+					jSpinnerShelfLife.addChangeListener(new ChangeListener()
+					{
+						public void stateChanged(ChangeEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -536,10 +564,12 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 					jSpinnerGrossWeight.setBounds(172, 214, 95, 21);
 					JSpinner.NumberEditor nec2 = new JSpinner.NumberEditor(jSpinnerGrossWeight);
-					nec2.getTextField().setFont(Common.font_std); 
+					nec2.getTextField().setFont(Common.font_std);
 					jSpinnerGrossWeight.setEditor(nec2);
-					jSpinnerGrossWeight.addChangeListener(new ChangeListener() {
-						public void stateChanged(ChangeEvent evt) {
+					jSpinnerGrossWeight.addChangeListener(new ChangeListener()
+					{
+						public void stateChanged(ChangeEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -549,11 +579,13 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jSpinnerNetWeight);
 					jSpinnerNetWeight.setModel(netweightnumbermodel);
 					JSpinner.NumberEditor nec2 = new JSpinner.NumberEditor(jSpinnerNetWeight);
-					nec2.getTextField().setFont(Common.font_std); 
+					nec2.getTextField().setFont(Common.font_std);
 					jSpinnerNetWeight.setEditor(nec2);
 					jSpinnerNetWeight.setBounds(172, 244, 95, 21);
-					jSpinnerNetWeight.addChangeListener(new ChangeListener() {
-						public void stateChanged(ChangeEvent evt) {
+					jSpinnerNetWeight.addChangeListener(new ChangeListener()
+					{
+						public void stateChanged(ChangeEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -565,8 +597,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jButtonUOMs.setIcon(Common.icon_uom);
 					jButtonUOMs.setBounds(453, 100, 178, 32);
 					jButtonUOMs.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_UOM"));
-					jButtonUOMs.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonUOMs.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							String base = ((JDBUom) jComboBoxBaseUOM.getSelectedItem()).getInternalUom();
 							JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_UOM", lmaterial, base);
 						}
@@ -590,13 +624,15 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					{
 						jButtonLocations.setToolTipText("System key SSCC_LOCATION_VALIDATION is set to false");
 					}
-					jButtonLocations.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonLocations.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 
 							JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_LOCATION", lmaterial);
 						}
 					});
-					
+
 				}
 				{
 					jButtonBatches = new JButton4j();
@@ -605,8 +641,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jButtonBatches.setText(lang.get("btn_Material_Batches"));
 					jButtonBatches.setBounds(453, 70, 178, 32);
 					jButtonBatches.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH"));
-					jButtonBatches.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonBatches.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH", lmaterial);
 						}
 					});
@@ -624,112 +662,130 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jComboBoxDefaultBatchStatus);
 					jComboBoxDefaultBatchStatus.setModel(jComboBoxDefaultBatchStatusModel);
 					jComboBoxDefaultBatchStatus.setBounds(173, 332, 164, 21);
-					jComboBoxDefaultBatchStatus.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jComboBoxDefaultBatchStatus.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
 				}
-				
-				checkBoxOverridePackLabel.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
+
+				checkBoxOverridePackLabel.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent arg0)
+					{
 						setButtonStates();
 					}
 				});
-				
 
 				checkBoxOverridePackLabel.setBackground(Color.WHITE);
-				checkBoxOverridePackLabel.setBounds(166, 417, 21, 24);
+				checkBoxOverridePackLabel.setBounds(172, 448, 21, 24);
 				jDesktopPane1.add(checkBoxOverridePackLabel);
-				checkBoxOverridePalletLabel.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				checkBoxOverridePalletLabel.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						setButtonStates();
 					}
 				});
-				
+
 				checkBoxValidateScanPallet.setBackground(Color.WHITE);
 				checkBoxValidateScanPallet.setBounds(449, 328, 21, 24);
 				jDesktopPane1.add(checkBoxValidateScanPallet);
-				checkBoxValidateScanPallet.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				checkBoxValidateScanPallet.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						jButtonSave.setEnabled(true);
 					}
 				});
-				
+
 				checkBoxValidateScanCase.setBackground(Color.WHITE);
 				checkBoxValidateScanCase.setBounds(449, 358, 21, 24);
 				jDesktopPane1.add(checkBoxValidateScanCase);
-				checkBoxValidateScanCase.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				checkBoxValidateScanCase.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						jButtonSave.setEnabled(true);
 					}
-				});	
-				
+				});
+
 				checkBoxValidateScanEach.setBackground(Color.WHITE);
 				checkBoxValidateScanEach.setBounds(449, 387, 21, 24);
 				jDesktopPane1.add(checkBoxValidateScanEach);
-				checkBoxValidateScanEach.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				checkBoxValidateScanEach.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						jButtonSave.setEnabled(true);
 					}
 				});
 
 				checkBoxOverridePalletLabel.setBackground(Color.WHITE);
-				checkBoxOverridePalletLabel.setBounds(166, 450, 21, 24);
+				checkBoxOverridePalletLabel.setBounds(172, 481, 21, 24);
 				jDesktopPane1.add(checkBoxOverridePalletLabel);
-				
+
 				JLabel4j_std label4j_stdPackModule = new JLabel4j_std();
 				label4j_stdPackModule.setText(lang.get("lbl_Override_Pack_Label"));
 				label4j_stdPackModule.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_stdPackModule.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_stdPackModule.setBounds(6, 420, 159, 21);
+				label4j_stdPackModule.setBounds(6, 451, 159, 21);
 				jDesktopPane1.add(label4j_stdPackModule);
-				
+
 				JLabel4j_std label4j_stdPalletModule = new JLabel4j_std();
 				label4j_stdPalletModule.setText(lang.get("lbl_Override_Pallet_Label"));
 				label4j_stdPalletModule.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_stdPalletModule.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_stdPalletModule.setBounds(7, 453, 159, 21);
+				label4j_stdPalletModule.setBounds(7, 484, 159, 21);
 				jDesktopPane1.add(label4j_stdPalletModule);
-				
+
 				ComboBoxModel<JDBListData> jComboBox1Model = new DefaultComboBoxModel<JDBListData>(moduleList);
 				comboBoxPackModuleID.setModel(jComboBox1Model);
 				comboBoxPackModuleID.setEnabled(false);
-				comboBoxPackModuleID.setBounds(199, 420, 208, 21);
-				comboBoxPackModuleID.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				comboBoxPackModuleID.setBounds(199, 451, 208, 21);
+				comboBoxPackModuleID.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						jButtonSave.setEnabled(true);
 					}
 				});
-				
+
 				jDesktopPane1.add(comboBoxPackModuleID);
-				
+
 				ComboBoxModel<JDBListData> jComboBox2Model = new DefaultComboBoxModel<JDBListData>(moduleList);
 				comboBoxPalletModuleID.setModel(jComboBox2Model);
 				comboBoxPalletModuleID.setEnabled(false);
-				comboBoxPalletModuleID.setBounds(199, 453, 208, 21);
-				comboBoxPalletModuleID.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent evt) {
+				comboBoxPalletModuleID.setBounds(199, 484, 208, 21);
+				comboBoxPalletModuleID.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent evt)
+					{
 						jButtonSave.setEnabled(true);
 					}
 				});
 				jDesktopPane1.add(comboBoxPalletModuleID);
-				
+
 				jButtonCustomerData.setText(lang.get("btn_Material_Customer_Data"));
 				jButtonCustomerData.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_CUST_DATA"));
 				jButtonCustomerData.setBounds(453, 160, 178, 32);
 				jButtonCustomerData.setIcon(Common.icon_customer);
-				jDesktopPane1.add(jButtonCustomerData);				
-				jButtonCustomerData.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				jDesktopPane1.add(jButtonCustomerData);
+				jButtonCustomerData.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_CUST_DATA", lmaterial);
 					}
 				});
-				
-				
+
 				JButton4j button4jDataIDs = new JButton4j(Common.icon_material);
-				button4jDataIDs.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				button4jDataIDs.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						JLaunchMenu.runForm("FRM_ADMIN_DATA_IDS");
 					}
 				});
@@ -737,7 +793,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				button4jDataIDs.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DATA_IDS"));
 				button4jDataIDs.setBounds(453, 190, 178, 32);
 				jDesktopPane1.add(button4jDataIDs);
-				
+
 				{
 					lblEquipment = new JLabel4j_std();
 					lblEquipment.setText(lang.get("lbl_Material_Equipment_Type"));
@@ -757,24 +813,26 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					lblValidateScanPallet.setText(lang.get("lbl_Validate_Pallet_GTIN"));
 					lblValidateScanPallet.setBounds(472, 331, 159, 21);
 					jDesktopPane1.add(lblValidateScanPallet);
-				}	
+				}
 				{
 					lblValidateScanCase = new JLabel4j_std();
 					lblValidateScanCase.setText(lang.get("lbl_Validate_Case_GTIN"));
 					lblValidateScanCase.setBounds(472, 361, 159, 21);
 					jDesktopPane1.add(lblValidateScanCase);
-				}	
+				}
 				{
 					lblValidateScanEach = new JLabel4j_std();
 					lblValidateScanEach.setText(lang.get("lbl_Validate_Each_GTIN"));
 					lblValidateScanEach.setBounds(472, 390, 159, 21);
 					jDesktopPane1.add(lblValidateScanEach);
-				}	
+				}
 				{
 					jTextFieldEquipmentType = new JTextField4j(JDBMaterial.field_equipment_type);
-					jTextFieldEquipmentType.addKeyListener(new KeyAdapter() {
+					jTextFieldEquipmentType.addKeyListener(new KeyAdapter()
+					{
 						@Override
-						public void keyTyped(KeyEvent e) {
+						public void keyTyped(KeyEvent e)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
@@ -783,37 +841,89 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				}
 				{
 					jTextFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
-					jTextFieldInspectionID.addKeyListener(new KeyAdapter() {
+					jTextFieldInspectionID.addKeyListener(new KeyAdapter()
+					{
 						@Override
-						public void keyTyped(KeyEvent e) {
+						public void keyTyped(KeyEvent e)
+						{
 							jButtonSave.setEnabled(true);
 						}
 					});
 					jTextFieldInspectionID.setBounds(172, 391, 125, 21);
 					jDesktopPane1.add(jTextFieldInspectionID);
-				}		
-				
-				
+				}
+
 				JLabel4j_std label4j_Enabled = new JLabel4j_std();
 				label4j_Enabled.setText(lang.get("lbl_Enabled"));
 				label4j_Enabled.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_Enabled.setBounds(364, 9, 84, 21);
 				jDesktopPane1.add(label4j_Enabled);
-				checkBox4j_Enabled.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				checkBox4j_Enabled.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						jButtonSave.setEnabled(true);
 					}
 				});
-				
+
 				checkBox4j_Enabled.setSelected(true);
 				checkBox4j_Enabled.setBackground(Color.WHITE);
 				checkBox4j_Enabled.setBounds(453, 9, 21, 21);
 				jDesktopPane1.add(checkBox4j_Enabled);
+				checkBox4jMoveAfterMake.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						jButtonSave.setEnabled(true);
+					}
+				});
+
+				checkBox4jMoveAfterMake.setBackground(Color.WHITE);
+				checkBox4jMoveAfterMake.setBounds(172, 419, 21, 24);
+				jDesktopPane1.add(checkBox4jMoveAfterMake);
+
+				JLabel4j_std label4j_std_MoveAfterMake = new JLabel4j_std();
+				label4j_std_MoveAfterMake.setText(lang.get("lbl_Move_after_Make"));
+				label4j_std_MoveAfterMake.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_std_MoveAfterMake.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_std_MoveAfterMake.setBounds(6, 423, 159, 21);
+				jDesktopPane1.add(label4j_std_MoveAfterMake);
+				textField4jMoveAfterMake.addKeyListener(new KeyAdapter()
+				{
+					@Override
+					public void keyTyped(KeyEvent e)
+					{
+						jButtonSave.setEnabled(true);
+					}
+				});
+
+				textField4jMoveAfterMake.setBounds(199, 422, 125, 21);
+				jDesktopPane1.add(textField4jMoveAfterMake);
+
+				button4jLocationLookup.setIcon(Common.icon_lookup);
+				button4jLocationLookup.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						jButtonSave.setEnabled(true);
+						JLaunchLookup.dlgAutoExec = true;
+						if (JLaunchLookup.locations())
+						{
+							textField4jMoveAfterMake.setText(JLaunchLookup.dlgResult);
+						}
+					}
+				});
+
+				button4jLocationLookup.setBounds(323, 422, 21, 21);
+				jDesktopPane1.add(button4jLocationLookup);
 
 				{
 					JButton4j btnLookupInspection = new JButton4j("");
-					btnLookupInspection.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					btnLookupInspection.setIcon(Common.icon_lookup);
+					btnLookupInspection.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							JLaunchLookup.dlgAutoExec = true;
 							if (JLaunchLookup.qmInspections())
 							{
@@ -832,7 +942,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void setButtonStates()
 	{
 		jButtonSave.setEnabled(true);
@@ -844,7 +954,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		{
 			comboBoxPackModuleID.setEnabled(false);
 		}
-		
+
 		if (checkBoxOverridePalletLabel.isSelected())
 		{
 			comboBoxPalletModuleID.setEnabled(true);
@@ -854,7 +964,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			comboBoxPalletModuleID.setEnabled(false);
 		}
 	}
-	
+
 	private void save()
 	{
 		boolean result = true;
@@ -887,9 +997,9 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		material.setOldMaterial(jTextFieldLegacyCode.getText());
 
 		material.setEquipmentType(jTextFieldEquipmentType.getText());
-		
+
 		material.setInspectionID(jTextFieldInspectionID.getText());
-		
+
 		if (checkBoxValidateScanPallet.isSelected())
 		{
 
@@ -900,7 +1010,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			material.setValidateScanPallet("N");
 
 		}
-		
+
 		if (checkBoxValidateScanCase.isSelected())
 		{
 
@@ -911,7 +1021,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			material.setValidateScanCase("N");
 
 		}
-		
+
 		if (checkBoxValidateScanEach.isSelected())
 		{
 
@@ -921,8 +1031,8 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		{
 			material.setValidateScanEach("N");
 
-		}		
-		
+		}
+
 		if (checkBox4j_Enabled.isSelected())
 		{
 			material.setEnabled("Y");
@@ -934,43 +1044,85 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 		if (checkBoxOverridePackLabel.isSelected())
 		{
-			if (comboBoxPackModuleID.getSelectedItem().toString().equals(""))
+			if (comboBoxPackModuleID.getSelectedIndex() >= 0)
 			{
-				material.setOverridePackLabel("N");
-				material.setPackLabelModuleID("");
+				if (comboBoxPackModuleID.getSelectedItem().toString().equals(""))
+				{
+					material.setOverridePackLabel("N");
+					checkBoxOverridePackLabel.setSelected(false);
+					material.setPackLabelModuleID("");
+				}
+				else
+				{
+					material.setOverridePackLabel("Y");
+					checkBoxOverridePackLabel.setSelected(true);
+					material.setPackLabelModuleID(comboBoxPackModuleID.getSelectedItem().toString());
+				}
 			}
 			else
 			{
-				material.setOverridePackLabel("Y");
-				material.setPackLabelModuleID(comboBoxPackModuleID.getSelectedItem().toString());
+				material.setOverridePackLabel("N");
+				checkBoxOverridePackLabel.setSelected(false);
+				material.setPackLabelModuleID("");
 			}
-			
+
 		}
 		else
 		{
 			material.setOverridePackLabel("N");
 			material.setPackLabelModuleID("");
 		}
-		
-		if (checkBoxOverridePalletLabel.isSelected())
+
+		if (checkBox4jMoveAfterMake.isSelected())
 		{
-			if (comboBoxPalletModuleID.getSelectedItem().toString().equals(""))
+			if (textField4jMoveAfterMake.getText().toUpperCase().equals(""))
 			{
-				material.setOverridePalletLabel("N");
-				material.setPalletLabelModuleID("");
+				material.setMoveAfterMakeEnabled("N");
+				checkBox4jMoveAfterMake.setSelected(false);
 			}
 			else
 			{
-				material.setOverridePalletLabel("Y");
-				material.setPalletLabelModuleID(comboBoxPalletModuleID.getSelectedItem().toString());
+				material.setMoveAfterMakeEnabled("Y");
+				checkBox4jMoveAfterMake.setSelected(true);
+			}
+			material.setMoveAfterMakeLocationID(textField4jMoveAfterMake.getText().toUpperCase());
+		}
+		else
+		{
+			material.setMoveAfterMakeEnabled("Y");
+			material.setMoveAfterMakeLocationID("");
+			textField4jMoveAfterMake.setText("");
+		}
+
+		if (checkBoxOverridePalletLabel.isSelected())
+		{
+			if (comboBoxPalletModuleID.getSelectedIndex() >= 0)
+			{
+				if (comboBoxPalletModuleID.getSelectedItem().toString().equals(""))
+				{
+					material.setOverridePalletLabel("N");
+					checkBoxOverridePalletLabel.setSelected(false);
+					material.setPalletLabelModuleID("");
+				}
+				else
+				{
+					material.setOverridePalletLabel("Y");
+					checkBoxOverridePalletLabel.setSelected(true);
+					material.setPalletLabelModuleID(comboBoxPalletModuleID.getSelectedItem().toString());
+				}
+			}
+			else
+			{
+				material.setOverridePalletLabel("N");
+				checkBoxOverridePalletLabel.setSelected(false);
+				material.setPalletLabelModuleID("");
 			}
 		}
 		else
 		{
 			material.setOverridePalletLabel("N");
 			material.setPalletLabelModuleID("");
-		}	
-
+		}
 
 		if (material.isValidMaterial() == false)
 		{
@@ -986,12 +1138,12 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		}
 		if (result == false)
 		{
-			JOptionPane.showMessageDialog(Common.mainForm, material.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+			JOptionPane.showMessageDialog(Common.mainForm, material.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
 		}
 		else
 		{
 			jButtonSave.setEnabled(false);
 		}
-		
+
 	}
 }

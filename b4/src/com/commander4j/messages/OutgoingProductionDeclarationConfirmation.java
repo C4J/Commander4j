@@ -178,12 +178,20 @@ public class OutgoingProductionDeclarationConfirmation
 						productionDeclaration.appendChild(description);
 						Element old_code = addElement(document, "old_code", mat.getOldMaterial());
 						productionDeclaration.appendChild(old_code);
+						Element autoMoveAfterMake = addElement(document, "moveAfterMake", mat.getMoveAfterMakeEnabled());
+						productionDeclaration.appendChild(autoMoveAfterMake);
+						Element autoMoveAfterMakeLocation = addElement(document, "moveLocationID", mat.getMoveAfterMakeLocationID());
+						productionDeclaration.appendChild(autoMoveAfterMakeLocation);
 					} else
 					{
 						Element description = addElement(document, "description", "");
 						productionDeclaration.appendChild(description);
 						Element old_code = addElement(document, "old_code", "");
 						productionDeclaration.appendChild(old_code);
+						Element autoMoveAfterMake = addElement(document, "moveAfterMake", "N");
+						productionDeclaration.appendChild(autoMoveAfterMake);
+						Element autoMoveAfterMakeLocation = addElement(document, "moveLocationID", "");
+						productionDeclaration.appendChild(autoMoveAfterMakeLocation);
 					}
 
 					Element ean = addElement(document, "ean", palhist.getPallet().getEAN());
