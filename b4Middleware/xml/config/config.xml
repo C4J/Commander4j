@@ -519,5 +519,28 @@
         </output>
     </map>
     
+        
+    <map id="map30" enabed="Y" description="C4J ProdDec to S95 ProdDec + C4J Pallet Move">
+        <input id="in1" description="Read C4J Prod Dec XML">
+            <type>XML</type>
+            <path>./interface/input/30 (C4J Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>   
+        </input>
+        
+         <output id="out1" enabed="Y" description="Write S95 Prod Dec XML">
+            <path>./interface/output/30 (S95 Production Declaration)</path>
+            <type>XML</type>
+            <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
+        </output>
+        
+        <output id="out2" enabed="Y" description="Write Pallet Move XML">
+            <path>./interface/output/30 (C4J Pallet Move)</path>
+            <type>XML</type>
+            <XSLT>C4J_ProdDec_to_PalletMove.xsl</XSLT>
+        </output>
+    </map>
+    
     
 </config>
