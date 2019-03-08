@@ -96,6 +96,8 @@ public class IncommingMaterialDefinition
 	private String customer_name;
 	private String override_pack_label;
 	private String pack_label_module_id;
+	private String moveAfterMake;
+	private String moveLocationID;
 
 	public String getErrorMessage()
 	{
@@ -190,6 +192,9 @@ public class IncommingMaterialDefinition
 		
 		inspection_id = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/inspection_id").trim());
 		default_batch_status = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/default_batch_status").trim());
+		
+		moveAfterMake = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/moveAfterMake").trim());
+		moveLocationID = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/moveLocationID").trim());
 
 		/* Material Customer Data */
 
@@ -430,6 +435,8 @@ public class IncommingMaterialDefinition
 		mat.setOldMaterial(JUtility.getDefaultValue(old_material, mat.getOldMaterial(), ""));
 		mat.setInspectionID(JUtility.getDefaultValue(inspection_id, mat.getInspectionID(), ""));
 		mat.setDefaultBatchStatus(JUtility.getDefaultValue(default_batch_status, mat.getDefaultBatchStatus(), defaultBatchStatus));
+		mat.setMoveAfterMakeEnabled(moveAfterMake);
+		mat.setMoveAfterMakeLocationID(moveLocationID);
 		
 		if (override_pack_label.equals("")==false)
 		{

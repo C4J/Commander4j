@@ -1,37 +1,3 @@
-'----------------------------------------------------------
-' Copyright Khi-Ro Ltd 2004-2007
-'----------------------------------------------------------
-' Project       : FFMW
-' File          : ZMATMAS03
-' Description   : Configuration file for decoding the 
-'                 ZMATMAS03 Material Master IDOC into FFMW.
-'
-'                 An FFMW Field marked with [KEY], will have
-'                 its value placed in every subsequent DATA
-'                 tag.
-'
-'                 An FFMW Field marked with [SUBKEY], will have
-'                 its value placed in every subsequent DATA
-'                 tag that references it with a *<FIELDNAME>
-'                 EG.   Plant[SUBKEY]   <-- declare the subkey
-'                       Location*Plant  <-- reference the subkey
-'
-'----------------------------------------------------------
-' Revision History
-
-' Vers  Date        Who     Description
-' ---   ----------  ---     -----------
-' 1.0   ??/08/2004  DJB     Initial version for BIF
-' 1.1   28/09/2004  SRF     Decode MARD segment
-' 1.2   21/10/2004  SRF     Start new data block for each item in Orders05
-' 1.3   25/11/2004  PT      Added the ScheduleLine sections into PO decoding
-' 1.4   15/07/2005  DJB     Added concept of SubKey
-' 1.5   24/11/2006  SRF     Fixed Basic/EAN11, Added Basic/SLED_BBD,MSTAE, Added UOM/MEABM,VOLUM,VOLEH,BRGEW,GEWEI
-' 1.6   30/11/2006  RGH     Renamed SLED_BBD to ExpiryDate to match the Business Objects
-' 1.7   16/02/2007  SRF     Separated MATMAS and ORDERS files
-' 1.8   16/08/2007  SRF     Adjusted IDOC position from 21/8 to 20/9
-' 1.9   15/03/2009  SRF     Added additional SubKey for LongText
-'----------------------------------------------------------
 '
 '
 ' Segment Definition,  IDOC Field,  Field Offset,  Length,  FFMW Section,  New Section,  FFMW Field

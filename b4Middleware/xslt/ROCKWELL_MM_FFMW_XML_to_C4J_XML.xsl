@@ -11,6 +11,9 @@
     <!-- CONFIG DATA -->
     <xsl:variable name="HOSTREF"><xsl:value-of select="c4j:getConfigItem('config','HostRef')"/></xsl:variable>
     <xsl:variable name="PLANT"><xsl:value-of select="c4j:getConfigItem('config','Plant')"/></xsl:variable>
+    <xsl:variable name="LOCATION_LOC"><xsl:value-of select="c4j:getConfigItem('config','Location')"/></xsl:variable>
+    <xsl:variable name="LOCATION_CTR"><xsl:value-of select="c4j:getConfigItem('config','Location_Central')"/></xsl:variable>
+    <xsl:variable name="PROCUREMENT_IND"><xsl:value-of select="c4j:getConfigItem('config','Procurement_Ind')"/></xsl:variable>
     <xsl:variable name="WAREHOUSE"><xsl:value-of select="c4j:getConfigItem('config','Warehouse')"/></xsl:variable>
     <xsl:variable name="LANGUAGE"><xsl:value-of select="c4j:getConfigItem('config','Language')"/></xsl:variable>
     
@@ -31,6 +34,10 @@
     <xsl:variable name="SAPMATERIAL_LONG" select="string(/MESSAGE/DATA[@type='Basic']/FIELD[@name='Material']/@value)" />
     <xsl:variable name="SAPMATERIAL_SHORT" select="c4j_XSLT_Ext:removeLeadingZeros($SAPMATERIAL_LONG)" />
     <xsl:variable name="USE_PLANT" select="string(/MESSAGE/DATA[@type='Plant']/FIELD[@name='Plant'][@value=$PLANT]/parent::*/FIELD[@name='UsePlantFields']/@value)" />
+    <xsl:variable name="PLANT_FOUND" select="string(/MESSAGE/DATA[@type='Plant']/FIELD[@name='Plant'][@value=$PLANT]/parent::*/FIELD[@name='Plant']/@value)" />
+    
+    <xsl:variable name="PROCUREMENT" select="string(/MESSAGE/DATA[@type='Plant']/FIELD[@name='Plant'][@value=$PLANT]/parent::*/FIELD[@name='SpecialProcessing']/@value)" />
+    
     <xsl:variable name="USE_WAREHOUSE" select="string(/MESSAGE/DATA[@type='Warehouse']/FIELD[@name='Warehouse'][@value=$WAREHOUSE]/parent::*/FIELD[@name='Warehouse']/@value)" />
     <xsl:variable name="DATENOW" select="current-dateTime()"/>
     <xsl:variable name="MESSAGEDATE" select="format-dateTime($DATENOW, '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]')"></xsl:variable>
@@ -66,6 +73,22 @@
                         <xsl:variable name="temp2" select='string(DATA[@type="Basic"]/FIELD[@name="PeriodIndforSLED"]/@value)'/>
                         <shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('ShelfLifeDuration',$temp2)"/></shelf_life_uom>
                         
+                    </xsl:if>
+                    
+                    <xsl:if test="$PLANT=$PLANT_FOUND">
+                    
+                        <xsl:comment>>Procurement Indicator for Plant [<xsl:value-of select="$PLANT"/>]</xsl:comment>
+                        
+                        <xsl:if test="$PROCUREMENT=$PROCUREMENT_IND">
+                            <moveAfterMake>Y</moveAfterMake>
+                            <moveLocationID><xsl:value-of select="$LOCATION_CTR" /></moveLocationID>
+                        </xsl:if>  
+                        
+                        <xsl:if test="$PROCUREMENT!=$PROCUREMENT_IND">
+                            <moveAfterMake>N</moveAfterMake>
+                            <moveLocationID><xsl:value-of select="$LOCATION_LOC" /></moveLocationID>
+                        </xsl:if>      
+                     
                     </xsl:if>
                     
                     <xsl:if test="$USE_WAREHOUSE=$WAREHOUSE">

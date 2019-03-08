@@ -95,7 +95,7 @@ public class JDBMaterial
 	private String dbValidateScanCase = "N";
 	private String dbValidateScanEach = "N";
 	private String dbMoveAfterMakeEnabled = "N";
-	private String dbMoveAfterMakeLocationID = "N";
+	private String dbMoveAfterMakeLocationID = "";
 
 	public void setEnabled(boolean yesno)
 	{
@@ -498,6 +498,8 @@ public class JDBMaterial
 		setValidateScanPallet("");
 		setValidateScanCase("");
 		setValidateScanEach("");
+		setMoveAfterMakeEnabled("N");
+		setMoveAfterMakeLocationID("");
 		setEnabled("Y");
 	}
 
