@@ -56,7 +56,9 @@
       <fileEntry mountPoint="32" file="./xml/config/config.dtd" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="32" file="./xml/config/email.xml" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <dirEntry mountPoint="35" file="./lib" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="lib" excludeSuffixes="" dirMode="755" overrideDirMode="false">
-        <exclude />
+        <exclude>
+          <entry location=".DS_Store" fileType="regular" />
+        </exclude>
       </dirEntry>
       <dirEntry mountPoint="36" file="./logs" overwriteMode="4" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="true" entryMode="direct" subDirectory="logs" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
@@ -73,13 +75,19 @@
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="403" file="./interface/input" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="input" excludeSuffixes="" dirMode="755" overrideDirMode="false">
-        <exclude />
+        <exclude>
+          <entry location=".DS_Store" fileType="regular" />
+        </exclude>
       </dirEntry>
       <dirEntry mountPoint="404" file="./interface/output" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="output" excludeSuffixes="" dirMode="755" overrideDirMode="false">
-        <exclude />
+        <exclude>
+          <entry location=".DS_Store" fileType="regular" />
+        </exclude>
       </dirEntry>
       <dirEntry mountPoint="405" file="./interface/log" overwriteMode="4" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="log" excludeSuffixes="" dirMode="755" overrideDirMode="false">
-        <exclude />
+        <exclude>
+          <entry location=".DS_Store" fileType="regular" />
+        </exclude>
       </dirEntry>
       <dirEntry mountPoint="510" file="./interface/intermediate" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="intermediate" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
@@ -88,7 +96,9 @@
         <exclude />
       </dirEntry>
       <dirEntry mountPoint="619" file="./idoc" overwriteMode="1" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="idoc" excludeSuffixes="" dirMode="755" overrideDirMode="false">
-        <exclude />
+        <exclude>
+          <entry location=".DS_Store" fileType="regular" />
+        </exclude>
       </dirEntry>
       <fileEntry mountPoint="94" file="./c4jMiddleware.jar" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="false" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="94" file="./start.cmd" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" />
