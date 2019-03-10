@@ -76,12 +76,26 @@
                     </xsl:if>
                     
                     <xsl:if test="$PLANT=$PLANT_FOUND">
-                    
-                        <xsl:comment>>Procurement Indicator for Plant [<xsl:value-of select="$PLANT"/>]</xsl:comment>
+                        
+                        <xsl:if test="$PROCUREMENT_IND=''">
+                            <xsl:comment>>*WARNING* 'Procurement_Ind' not defined in configData.xml</xsl:comment>
+                        </xsl:if>
+                        
+                        <xsl:comment>>Searching Plant [<xsl:value-of select="$PLANT"/>] for Procurement Indicator [<xsl:value-of select="$PROCUREMENT_IND"/>]</xsl:comment>
+                        
+                        <xsl:comment>>Procurement Indicator found Plant [<xsl:value-of select="$PLANT"/>] is [<xsl:value-of select="$PROCUREMENT"/>]</xsl:comment>
                         
                         <xsl:if test="$PROCUREMENT=$PROCUREMENT_IND">
                             <moveAfterMake>Y</moveAfterMake>
-                            <moveLocationID><xsl:value-of select="$LOCATION_CTR" /></moveLocationID>
+                            
+                            <xsl:if test="$LOCATION_CTR=''">
+                                <xsl:comment>>*WARNING* 'Location_Central' not defined in configData.xml using 'Location' instead</xsl:comment>
+                                <moveLocationID><xsl:value-of select="$LOCATION_LOC" /></moveLocationID>
+                            </xsl:if>  
+                            
+                            <xsl:if test="$LOCATION_CTR!=''">
+                                <moveLocationID><xsl:value-of select="$LOCATION_CTR" /></moveLocationID>
+                            </xsl:if>  
                         </xsl:if>  
                         
                         <xsl:if test="$PROCUREMENT!=$PROCUREMENT_IND">

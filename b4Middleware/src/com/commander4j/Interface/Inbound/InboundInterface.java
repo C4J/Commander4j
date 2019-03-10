@@ -33,6 +33,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 	StreamResult destination;
 	Transformer transformer;
 	Boolean writeSuccess;
+	Boolean loadFileResult;
 	String filename_imported;
 	String filename_transformed;
 
@@ -65,6 +66,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 						{
 
 							logger.debug("Processing [" + file.getName() + "]");
+							loadFileResult = true;
 							if (connector.processInboundFile(file.getName()))
 							{
 								data = connector.getData();
@@ -96,29 +98,38 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 									{
 										transformer = fact.newTransformer(xslt);
 										transformer.transform(source, destination);
-										JXMLDocument doc = new JXMLDocument(Common.logDir + File.separator + filename_transformed);
+										JXMLDocument doc = new JXMLDocument();
+										loadFileResult = doc.setDocument(Common.logDir + File.separator + filename_transformed);
 										data = doc.getDocument();
 									}
 									catch (TransformerConfigurationException e)
 									{
-										logger.error("Error Map [" + map.getId() + "] "+ e.getMessage() + "\n\n"+ file.getAbsolutePath());
+										logger.error("Error Map [" + map.getId() + "] " + e.getMessage() + "\n\n" + file.getAbsolutePath());
 										Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", e.getMessage() + "\n\n", file.getAbsolutePath());
 									}
 									catch (TransformerException e)
 									{
-										logger.error("Error Map [" + map.getId() + "] "+ e.getMessage() + "\n\n"+ file.getAbsolutePath());
+										logger.error("Error Map [" + map.getId() + "] " + e.getMessage() + "\n\n" + file.getAbsolutePath());
 										Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", e.getMessage() + "\n\n", file.getAbsolutePath());
 									}
 								}
 
-								if (writeSuccess)
+								if (writeSuccess && loadFileResult)
 								{
 									processConnectorToInterfaceData(connector.getFilename(), data);
 								}
 								else
 								{
-									logger.error("Error Map [" + map.getId() + "] Unable to save inbound xml" + " " + filename_imported);
-									Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", "Unable to save inbound xml" + "\n\n", filename_imported);
+									if (writeSuccess == false)
+									{
+										logger.error("Error Map [" + map.getId() + "] Unable to save inbound xml" + " " + filename_imported);
+										Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", "Unable to save inbound xml" + "\n\n", filename_imported);
+									}
+									else
+									{
+										logger.error("Error Map [" + map.getId() + "] Unable to load inbound xml" + " " + filename_imported);
+										Common.emailqueue.addToQueue("Error", "Error Map [" + map.getId() + "]", "Unable to load inbound xml" + "\n\n", filename_imported);
+									}
 								}
 							}
 						}

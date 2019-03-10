@@ -7,7 +7,7 @@
     <item type="config" id="Language"><value>E</value></item>  
     <item type="config" id="Location"><value>SUDBURY</value></item>  
     <item type="config" id="Location_Central"><value>SUDBURY_CTR</value></item> 
-    <item type="config" id="Procurement_Ind"><value>H0</value></item> 
+    <item type="config" id="Procurement_Ind"><value>HO</value></item> 
     <item type="config" id="SAPUsername"><value>PUSUDBURY</value></item>  
     
 </lookup>

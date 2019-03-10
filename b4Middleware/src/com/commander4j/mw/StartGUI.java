@@ -192,7 +192,7 @@ public class StartGUI extends JFrame
 		panelStatus.setLayout(null);
 
 		lblStatus.setFont(new Font("Dialog", Font.PLAIN, 12));
-		lblStatus.setBounds(0, 0, 1150, 25);
+		lblStatus.setBounds(4, 0, 1150, 25);
 		lblStatus.setHorizontalAlignment(SwingConstants.LEFT);
 		panelStatus.add(lblStatus);
 
