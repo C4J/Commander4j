@@ -139,59 +139,58 @@ public class JDBDespatch
 		home_location = ctrl.getKeyValue();
 		allowDespatchToSelf = Boolean.valueOf(ctrl.getKeyValueWithDefault("DESPATCH_TO_SELF", "false", "Allow despatch to source location"));
 	}
-	
+
 	public Boolean isPalletBatchStatusOK(String despatchNo)
 	{
 		Boolean result = true;
 		String temp = Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.checkPalletBatchStatus");
-		
-		//Replace Despatch No
-		
-		temp = StringUtils.replace(temp, "%1", "'"+despatchNo+"'");
-		
-		//Replace Valid Pallet Status List
-		
+
+		// Replace Despatch No
+
+		temp = StringUtils.replace(temp, "%1", "'" + despatchNo + "'");
+
+		// Replace Valid Pallet Status List
+
 		String ps = lt.getPermittedPalletStatus();
-		
+
 		String[] split = StringUtils.split(ps, '^');
-        
-        String l="";
-        
-        for (int cur = 0;cur <split.length;cur++)
-        {
-        	l = l + "'"+split[cur]+"'";
-        	
-        	if (cur < (split.length-1))
-        	{
-        		l = l + ",";
-        	}
-        }
-        
-        temp = StringUtils.replace(temp, "%2", l);
-		
-		//Replace Valid Batch Status List
-		
+
+		String l = "";
+
+		for (int cur = 0; cur < split.length; cur++)
+		{
+			l = l + "'" + split[cur] + "'";
+
+			if (cur < (split.length - 1))
+			{
+				l = l + ",";
+			}
+		}
+
+		temp = StringUtils.replace(temp, "%2", l);
+
+		// Replace Valid Batch Status List
+
 		ps = lt.getPermittedBatchStatus();
-		
+
 		split = StringUtils.split(ps, '^');
-        
-        l="";
-        
-        for (int cur = 0;cur <split.length;cur++)
-        {
-        	l = l + "'"+split[cur]+"'";
-        	
-        	if (cur < (split.length-1))
-        	{
-        		l = l + ",";
-        	}
-        }
-        
-        temp = StringUtils.replace(temp, "%3", l);
-        
+
+		l = "";
+
+		for (int cur = 0; cur < split.length; cur++)
+		{
+			l = l + "'" + split[cur] + "'";
+
+			if (cur < (split.length - 1))
+			{
+				l = l + ",";
+			}
+		}
+
+		temp = StringUtils.replace(temp, "%3", l);
+
 		PreparedStatement stmt = null;
 		ResultSet rs;
-
 
 		try
 		{
@@ -203,7 +202,7 @@ public class JDBDespatch
 			rs.last();
 			int rows = rs.getRow();
 			rs.beforeFirst();
-			
+
 			if (rows > 0)
 			{
 				result = false;
@@ -217,9 +216,7 @@ public class JDBDespatch
 		{
 			setErrorMessage(e.getMessage());
 		}
-        
 
-		
 		return result;
 	}
 
@@ -867,6 +864,49 @@ public class JDBDespatch
 		return result;
 	}
 
+	public int getDespatchPalletWrongLocationCount()
+	{
+		int result = 0;
+
+		setTotalPallets(0);
+
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+		logger.debug("getDespatchPalletWrongLocationCount");
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.getDespatchPalletWrongLocationCount"));
+			stmt.setFetchSize(50);
+			stmt.setString(1, getDespatchNo());
+			stmt.setString(2, getLocationIDFrom());
+			rs = stmt.executeQuery();
+
+			if (rs.next())
+			{
+				result = rs.getInt("pallet_count");
+				if (result > 0)
+				{
+					setErrorMessage(String.valueOf(result) + " SSCC's not in " + getLocationIDFrom());
+				}
+			}
+			else
+			{
+				result = -1;
+				setErrorMessage("Invalid Despatch No");
+			}
+			rs.close();
+			stmt.close();
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
 	public boolean getDespatchProperties()
 	{
 		boolean result = false;
@@ -1120,94 +1160,158 @@ public class JDBDespatch
 			result = false;
 		}
 
-		JDBLocation locn = new JDBLocation(getHostID(), getSessionID());
-
-		if (JUtility.isNullORBlank(getLocationIDFrom()) == false)
+		if (result == true)
 		{
-			if (locn.isValidLocation(getLocationIDFrom()) == false)
-			{
-				setErrorMessage("Invalid FROM Location ID");
-				result = false;
-			}
-		}
+			JDBLocation locn = new JDBLocation(getHostID(), getSessionID());
 
-		if (JUtility.isNullORBlank(getLocationIDTo()) == false)
-		{
-			if (locn.isValidLocation(getLocationIDTo()) == false)
+			if (JUtility.isNullORBlank(getLocationIDFrom()) == false)
 			{
-				setErrorMessage("Invalid TO Location ID");
-				result = false;
-			}
-			else
-			{
-				if (confirming)
+				if (locn.isValidLocation(getLocationIDFrom()) == false)
 				{
-					if (isPalletBatchStatusOK(getDespatchNo())==false)
+					setErrorMessage("Invalid FROM Location ID");
+					result = false;
+				}
+			}
+
+			if (result == true)
+			{
+
+				if (JUtility.isNullORBlank(getLocationIDTo()) == false)
+				{
+					if (locn.isValidLocation(getLocationIDTo()) == false)
+					{
+						setErrorMessage("Invalid TO Location ID");
+						result = false;
+					}
+				}
+			}
+
+			if (confirming)
+			{
+				if (result == true)
+				{
+					if (isPalletBatchStatusOK(getDespatchNo()) == false)
 					{
 						setErrorMessage("Check Batch & Pallet Status");
 						result = false;
 					}
-				}
-			}
-		}
 
-		if (isJourneyRefReqd().equals("Y"))
-		{
-			if (getJourneyRef().equals("NO JOURNEY") == false)
-			{
-				if ((getJourneyRef().equals("") == false) || confirming)
-				{
-					if (journey.getJourneyRefProperties(getJourneyRef()))
+					if (result == true)
 					{
-						if (journey.getLocationTo().equals(getLocationIDTo()))
+						if (getDespatchPalletWrongLocationCount() != 0)
 						{
-							if (journey.getDespatchNo().equals("") == false)
+							result = false;
+						}
+					}
+
+					if (result == true)
+					{
+						if (JUtility.isNullORBlank(getLocationIDFrom()) == true)
+						{
+							setErrorMessage("FROM Location missing");
+							result = false;
+						}
+					}
+
+					if (result == true)
+					{
+						if (JUtility.isNullORBlank(getLocationIDTo()) == true)
+						{
+							setErrorMessage("TO Location missing");
+							result = false;
+						}
+					}
+
+					if (result == true)
+					{
+						if (allowDespatchToSelf == false)
+						{
+							if (JUtility.isNullORBlank(getLocationIDFrom()) == false)
 							{
-								if (journey.getDespatchNo().equals(getDespatchNo()) == false)
+								if (JUtility.isNullORBlank(getLocationIDTo()) == false)
 								{
-									setErrorMessage("Journey Ref used by " + journey.getDespatchNo());
-									result = false;
+									if (getLocationIDFrom().equals(getLocationIDTo()))
+									{
+										setErrorMessage("FROM & TO Locations cannot be same.");
+										result = false;
+									}
 								}
 							}
 						}
-						else
-						{
-							setErrorMessage("Journey is for " + journey.getLocationTo());
-							result = false;
-						}
+					}
+				}
+			}
+		}
 
+		if (result == true)
+		{
+			if (isJourneyRefReqd().equals("Y"))
+			{
+				if (getJourneyRef().equals("NO JOURNEY") == false)
+				{
+
+					if ((getJourneyRef().equals("") == true) && confirming)
+					{
+						setErrorMessage("Journey Ref Missing");
+						result = false;
 					}
 					else
 					{
-						setErrorMessage("Invalid Journey Ref [" + getJourneyRef() + "]");
-						result = false;
+						if ((getJourneyRef().equals("") == false) || confirming)
+						{
+							if (journey.getJourneyRefProperties(getJourneyRef()))
+							{
+								if (journey.getLocationTo().equals(getLocationIDTo()))
+								{
+									if (journey.getDespatchNo().equals("") == false)
+									{
+										if (journey.getDespatchNo().equals(getDespatchNo()) == false)
+										{
+											setErrorMessage("Journey Ref used by " + journey.getDespatchNo());
+											result = false;
+										}
+									}
+								}
+								else
+								{
+									setErrorMessage("Journey is for " + journey.getLocationTo());
+									result = false;
+								}
+
+							}
+							else
+							{
+								setErrorMessage("Invalid Journey Ref [" + getJourneyRef() + "]");
+								result = false;
+							}
+						}
 					}
 				}
 			}
-		}
-		else
-		{
-			if (getJourneyRef().equals("") == false)
+			else
 			{
-				setErrorMessage("Journey Ref not Required");
-				result = false;
+				if (getJourneyRef().equals("") == false)
+				{
+					setErrorMessage("Journey Ref not Required");
+					result = false;
+				}
 			}
 		}
 
-		if (allowDespatchToSelf == false)
-		{
-			if (JUtility.isNullORBlank(getLocationIDFrom()) == false)
-			{
-				if (JUtility.isNullORBlank(getLocationIDTo()) == false)
-				{
-					if (getLocationIDFrom().equals(getLocationIDTo()))
-					{
-						setErrorMessage("FROM & TO Locations cannot be same.");
-						result = false;
-					}
-				}
-			}
-		}
+		// if (allowDespatchToSelf == false)
+		// {
+		// if (JUtility.isNullORBlank(getLocationIDFrom()) == false)
+		// {
+		// if (JUtility.isNullORBlank(getLocationIDTo()) == false)
+		// {
+		// if (getLocationIDFrom().equals(getLocationIDTo()))
+		// {
+		// setErrorMessage("FROM & TO Locations cannot be same.");
+		// result = false;
+		// }
+		// }
+		// }
+		// }
 
 		return result;
 	}

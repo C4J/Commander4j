@@ -810,6 +810,12 @@
 				)
 			</text>
 		</statement>
+		<statement>
+			<id>JDBDespatch.getDespatchPalletWrongLocationCount</id>
+			<text>
+				select count(sscc) as pallet_count from app_pallet where despatch_no = ? and location_id &lt;&gt; ?
+			</text>
+		</statement>
 		<?JDBInterface ?>
 		<statement>
 			<id>JDBInterface.getInterfaceProperties</id>
