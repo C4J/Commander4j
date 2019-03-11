@@ -83,4 +83,14 @@
 		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Move_after_Make', 'SP', 'Mover despues de hacer', '0')
 	</statement>
 	
+	<statement>
+		INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) 
+		VALUES ('Material Auto Move','Input','{base_dir}\\xml\\interface\\input\\Material Auto Move','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','')
+	</statement>
+	
+	<statement>
+		INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) 
+		VALUES ('Pallet Move','Input','{base_dir}\\xml\\interface\\input\\Pallet Move','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','')
+	</statement>
+	
 </DDL>
