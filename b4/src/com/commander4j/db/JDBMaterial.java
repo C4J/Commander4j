@@ -564,6 +564,28 @@ public class JDBMaterial
 		return result;
 	}
 
+	public boolean updateAutoMove(String materialID, String moveAfterMakeEnabled, String moveAfterMakeLocationID)
+	{
+		boolean result = false;
+
+		materialID = JUtility.replaceNullStringwithBlank(materialID);
+
+		if (materialID.equals("") == false)
+		{
+			if (moveAfterMakeEnabled.equals("Y") ||  moveAfterMakeEnabled.equals("N"))
+				
+				
+			if (getMaterialProperties(materialID))
+			{
+				setMaterial(materialID);
+				setMoveAfterMakeEnabled(moveAfterMakeEnabled);
+				setMoveAfterMakeLocationID(moveAfterMakeLocationID);
+				result = update();
+			}
+		}
+		return result;
+	}
+
 	/**
 	 * Method delete.
 	 * 

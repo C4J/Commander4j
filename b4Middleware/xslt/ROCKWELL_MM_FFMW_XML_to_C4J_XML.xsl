@@ -75,7 +75,7 @@
                         
                     </xsl:if>
                     
-                    <xsl:if test="$PLANT=$PLANT_FOUND">
+<!--                    <xsl:if test="$PLANT=$PLANT_FOUND">
                         
                         <xsl:if test="$PROCUREMENT_IND=''">
                             <xsl:comment>>*WARNING* 'Procurement_Ind' not defined in configData.xml</xsl:comment>
@@ -103,7 +103,7 @@
                             <moveLocationID><xsl:value-of select="$LOCATION_LOC" /></moveLocationID>
                         </xsl:if>      
                      
-                    </xsl:if>
+                    </xsl:if>-->
                     
                     <xsl:if test="$USE_WAREHOUSE=$WAREHOUSE">
                         <xsl:comment>>Equipment from Warehouse Segment [<xsl:value-of select="$WAREHOUSE"/>]</xsl:comment>

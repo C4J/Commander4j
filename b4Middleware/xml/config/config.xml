@@ -541,6 +541,21 @@
             <XSLT>C4J_ProdDec_to_PalletMove.xsl</XSLT>
         </output>
     </map>
-    
+ 
+    <map id="map31" enabed="Y" description="Update Material Master Auto Move Only">
+        <input id="in1" description="Read IDOC">
+            <type>IDOC</type>
+            <path>./interface/input/31 (SAP IDOC Material Master)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <idocSchemaFilename>./idoc/schema/ZMATMAS03c.txt</idocSchemaFilename>
+            <XSLT>ROCKWELL_MM_PROCUREMENT_AUTO_MOVE.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write XML File">
+            <path>./interface/output/31 (C4J Auto Move Indicator)</path>
+            <type>XML</type>
+        </output>
+    </map>
     
 </config>

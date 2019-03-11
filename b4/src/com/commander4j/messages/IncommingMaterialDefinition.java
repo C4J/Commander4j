@@ -403,6 +403,9 @@ public class IncommingMaterialDefinition
 		if (mat.getMaterialProperties(material) == false)
 		{
 			mat.setBaseUom(JUtility.getDefaultValue(base_uom, mat.getBaseUom(), ""));
+			mat.setMoveAfterMakeEnabled("N");
+			mat.setMoveAfterMakeLocationID("");
+			
 			if (mat.create() == false)
 			{
 				result = false;
@@ -435,8 +438,17 @@ public class IncommingMaterialDefinition
 		mat.setOldMaterial(JUtility.getDefaultValue(old_material, mat.getOldMaterial(), ""));
 		mat.setInspectionID(JUtility.getDefaultValue(inspection_id, mat.getInspectionID(), ""));
 		mat.setDefaultBatchStatus(JUtility.getDefaultValue(default_batch_status, mat.getDefaultBatchStatus(), defaultBatchStatus));
-		mat.setMoveAfterMakeEnabled(moveAfterMake);
-		mat.setMoveAfterMakeLocationID(moveLocationID);
+		
+		//Only if value specified can it be updated.
+		if (moveAfterMake.equals("Y") || moveAfterMake.equals("N"))
+		{
+			mat.setMoveAfterMakeEnabled(moveAfterMake);
+			mat.setMoveAfterMakeLocationID(moveLocationID);
+		}
+		
+		//If a full material messages does not contain this information then don't update the current values.
+		//ROCKWELL_MM_FFMW_XML_to_C4J_XML.xsl does not even attempt to extract the data and put in inbound material messsage as these fields are now
+		//set using an independent message type.
 		
 		if (override_pack_label.equals("")==false)
 		{

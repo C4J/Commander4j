@@ -51,6 +51,7 @@ import com.commander4j.messages.IncommingDespatchConfirmation;
 import com.commander4j.messages.IncommingInspectionResult;
 import com.commander4j.messages.IncommingJourney;
 import com.commander4j.messages.IncommingLocation;
+import com.commander4j.messages.IncommingMaterialAutoMove;
 import com.commander4j.messages.IncommingMaterialDefinition;
 import com.commander4j.messages.IncommingPalletMove;
 import com.commander4j.messages.IncommingPalletStatusChange;
@@ -136,6 +137,7 @@ public class InboundMessageThread extends Thread {
 			IncommingInspectionResult iirslt = new IncommingInspectionResult(getHostID(), getSessionID());
 			IncommingDespatchConfirmation idc = new IncommingDespatchConfirmation(getHostID(), getSessionID());
 			IncommingQMInspectionRequest iireq = new IncommingQMInspectionRequest(getHostID(), getSessionID());
+			IncommingMaterialAutoMove imam = new IncommingMaterialAutoMove(getHostID(), getSessionID());
 			GenericMessageHeader gmh = new GenericMessageHeader();
 			LinkedList<String> filenames = new LinkedList<String>();
 			BasicFileAttributes attrs;
@@ -321,8 +323,15 @@ public class InboundMessageThread extends Thread {
 													messageProcessedOK = iirslt.processMessage(gmh);
 													errorMessage = iirslt.getErrorMessage();
 												}
+												
+												if (interfaceType.equals("Material Auto Move") == true)
+												{
+													messageProcessedOK = imam.processMessage(gmh);
+													errorMessage = imam.getErrorMessage();
+												}
 
 												GenericMessageHeader.updateStats("Input", interfaceType, messageProcessedOK.toString());
+												
 												logger.debug("Processing " + interfaceType + " finished.");
 											}
 										}
