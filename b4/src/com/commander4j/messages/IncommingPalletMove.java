@@ -31,9 +31,9 @@ import com.commander4j.db.JDBPallet;
 import com.commander4j.util.JUtility;
 
 /**
- * IncommingPalletMove as its name suggests updates the Pallet Location.
- * Only the destination is required. However if the source is also provided then
- * this will be checked before the update is performed.
+ * IncommingPalletMove as its name suggests updates the Pallet Location. Only
+ * the destination is required. However if the source is also provided then this
+ * will be checked before the update is performed.
  */
 public class IncommingPalletMove
 {
@@ -105,15 +105,17 @@ public class IncommingPalletMove
 
 				if (pal.getPalletProperties(sscc) == true)
 				{
-					txn = pal.updateLocationID(txn,fromLocation, toLocation);
+					txn = pal.updateLocationID(txn, fromLocation, toLocation);
 					if (txn > 0)
 					{
 						updated++;
-					} else
+					}
+					else
 					{
 						notupdated++;
 					}
-				} else
+				}
+				else
 				{
 
 					notfound++;
@@ -124,19 +126,11 @@ public class IncommingPalletMove
 		}
 		pal = null;
 
-		if ((notfound > 0) || (notupdated > 0))
-		{
-			result = false;
-			String error = "Some SSCC's were not found in the Commander4j database. \n\n";
-
-			error = error + String.valueOf(updated) + " Updated.\n";
-			error = error + String.valueOf(notupdated) + " Ignored (same).\n";
-			error = error + String.valueOf(notfound) + " Not found.\n\n";
-			setErrorMessage(error);
-		} else
-		{
-			setErrorMessage(String.valueOf(updated) + " Updated.");
-		}
+		String error = "Result ";
+		error = error + String.valueOf(updated) + " Updated. ";
+		error = error + String.valueOf(notupdated) + " Ignored (same). ";
+		error = error + String.valueOf(notfound) + " Not found.";
+		setErrorMessage(error);
 
 		return result;
 
