@@ -558,4 +558,25 @@
         </output>
     </map>
     
+    
+    <map id="map32" enabed="Y" description="C4J Production Declaration to SAGE X3 Goods Receipt">
+        <input id="in1" description="Read C4J XML File">
+            <type>XML</type>
+            <path>./interface/input/32 (C4J - Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_to_SAGEX3_GoodsReceipt_CSV.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write SAGE CSV">
+            <path>./interface/output/32 (SAGE X3 - Goods Receipt)</path>
+            <type>CSV</type>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=none</csvOptions>
+            <outputFileExtension>txt</outputFileExtension>
+            <prefix>G_</prefix>
+            <XSLT/>
+        </output>
+    </map>
+    
 </config>
