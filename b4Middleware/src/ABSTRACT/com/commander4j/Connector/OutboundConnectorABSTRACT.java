@@ -11,13 +11,15 @@ import org.apache.logging.log4j.Logger;
 import INTERFACE.com.commander4j.Connector.OutboundConnectorINTERFACE;
 
 import com.commander4j.Interface.Outbound.OutboundInterface;
+import com.commander4j.util.JXMLDocument;
+import com.commander4j.util.Utility;
 
 public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTERFACE
 {
 	private boolean enabled = true;
 	private String type = "";
 	private String filename = "";
-	private String path="";
+	private String path = "";
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundConnectorABSTRACT.class));
 
@@ -37,18 +39,96 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 		return outint;
 	}
 
-	public void processOutboundData(String path,String filename, Document data)
+	public void processOutboundData(String path, String filename, Document data)
 	{
 		outboundConnectorCount++;
 
 		setData(data);
 		setPath(path);
 		setFilename(filename);
-		while (connectorSave(getPath(),outint.getPrefix()+getFilename())==false)
+
+		// ==================
+
+		boolean saveFile = true;
+
+		String comparitor = getOutboundInterface().getComparator();
+
+		if (comparitor.equals("") == false)
 		{
-			logger.error("processOutboundData - remote path unavailable ["+filename+"] - waiting 20 seconds before retry");
-			com.commander4j.util.JWait.milliSec(20000);
+			// We need to do a comparison
+			System.out.println("Comparitor =" + comparitor);
+
+			JXMLDocument document = new JXMLDocument();
+			document.setDocument(getData());
+
+			// Determine parm1 value
+			String parm1value = "";
+			String parm1type = getOutboundInterface().getCompareParam1_Type();
+			System.out.println("parm1type =" + parm1type);
+
+			if (parm1type.equals("xquery"))
+			{
+				parm1value = Utility.replaceNullStringwithBlank(document.findXPath(getOutboundInterface().getCompareParam1()).trim());
+
+			}
+
+			if (parm1type.equals("literal"))
+			{
+				parm1value = getOutboundInterface().getCompareParam1();
+			}
+			System.out.println("parm1value =" + parm1value);
+
+			// Determine parm2 value
+			String parm2value = "";
+			String parm2type = getOutboundInterface().getCompareParam2_Type();
+			System.out.println("parm2type =" + parm2type);
+
+			if (parm2type.equals("xquery"))
+			{
+				parm2value = Utility.replaceNullStringwithBlank(document.findXPath(getOutboundInterface().getCompareParam2()).trim());
+
+			}
+
+			if (parm2type.equals("literal"))
+			{
+				parm2value = getOutboundInterface().getCompareParam2();
+			}
+			System.out.println("parm2value =" + parm2value);
+
+			if (comparitor.equals("NOT EQUAL"))
+			{
+				logger.debug("Comparing parm1value [" + parm1value + "] with parm2value [" + parm2value + "]");
+				if (parm1value.equals(parm2value))
+				{
+					System.out.println("SAME");
+					saveFile = false;
+				}
+				else
+				{
+					System.out.println("DIFFERENT");
+				}
+			}
+
+			if (comparitor.equals("EQUAL"))
+			{
+				if (parm1value.equals(parm2value) == false)
+				{
+					saveFile = false;
+				}
+			}
 		}
+
+		if (saveFile == true)
+		{
+
+			while (connectorSave(getPath(), outint.getPrefix() + getFilename()) == false)
+			{
+				logger.error("processOutboundData - remote path unavailable [" + filename + "] - waiting 20 seconds before retry");
+				com.commander4j.util.JWait.milliSec(20000);
+			}
+
+		}
+
 	}
 
 	public OutboundConnectorABSTRACT(String type, OutboundInterface outer)
@@ -61,7 +141,7 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 	{
 		return getPath() + File.separator + getFilename();
 	}
-	
+
 	public void setEnabled(boolean enabled)
 	{
 		this.enabled = enabled;
@@ -81,7 +161,7 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 	{
 		return this.filename;
 	}
-	
+
 	private void setPath(String path)
 	{
 		this.path = path;

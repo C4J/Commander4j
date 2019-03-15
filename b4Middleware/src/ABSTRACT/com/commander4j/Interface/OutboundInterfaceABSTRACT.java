@@ -53,6 +53,62 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	private String ftpUsername = "";
 	private String ftpPassword = "";
 	private String ftpRemotePath = "";
+	private String compareParam1 = "";
+	private String compareParam1_Type = "";
+	private String compareParam2 = "";
+	private String compareParam2_Type = "";
+	private String comparitor="";
+	
+	public void setCompareParam1(String p1)
+	{
+		this.compareParam1 = p1;
+	}
+	
+	public void setCompareParam1_Type(String typ1)
+	{
+		this.compareParam1_Type =  typ1;
+	}
+	
+	public void setCompareParam2(String p2)
+	{
+		this.compareParam2 = p2;
+	}
+	
+	public void setCompareParam2_Type(String typ2)
+	{
+		this.compareParam2_Type =  typ2;
+	}
+	
+	public void setComparator(String cmp)
+	{
+		this.comparitor =  cmp;
+	}
+	
+	public String getCompareParam1()
+	{
+		return Utility.replaceNullStringwithBlank(this.compareParam1);
+	}
+	
+	public String getCompareParam1_Type()
+	{
+		return Utility.replaceNullStringwithBlank(this.compareParam1_Type);
+	}
+	
+	public String getCompareParam2()
+	{
+		return Utility.replaceNullStringwithBlank(this.compareParam2);
+	}
+	
+	public String getCompareParam2_Type()
+	{
+		return Utility.replaceNullStringwithBlank(this.compareParam2_Type);
+	}
+	
+	public String getComparator()
+	{
+		return Utility.replaceNullStringwithBlank(this.comparitor);
+	}
+	
 	
 	public void setPrefix(String prefix)
 	{

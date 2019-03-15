@@ -26,12 +26,13 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT
 	}
 
 	@Override
-	public boolean connectorSave(String path,String filename)
+	public boolean connectorSave(String path, String filename)
 	{
 		boolean result = false;
-		String fullPath = path+File.separator+filename;
+		String fullPath = path + File.separator + filename;
 
 		logger.debug("connectorSave [" + fullPath + "." + getOutboundInterface().getOutputFileExtension().toLowerCase() + "]");
+
 		try
 		{
 			DOMImplementationLS DOMiLS = null;
@@ -59,7 +60,7 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT
 
 				FOS.close();
 
-				FileUtils.deleteQuietly( new File(finalFilename));
+				FileUtils.deleteQuietly(new File(finalFilename));
 				FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
 
 				DOMiLS = null;
@@ -68,10 +69,11 @@ public class OutboundConnectorXML extends OutboundConnectorABSTRACT
 				FOS = null;
 				tempFilename = null;
 				finalFilename = null;
-				
+
 				result = true;
 			}
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			result = false;
 			logger.error(ex.getMessage());

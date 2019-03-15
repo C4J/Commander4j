@@ -208,20 +208,28 @@ public class MiddlewareConfig
 					String csvOptionsOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/csvOptions").trim();
 					String outputFileExtension = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/outputFileExtension").trim();
 					String outputPrefix = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/prefix").trim();
-					String emailSubject = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/subject").trim();
-					String emailMessage = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/message").trim();
-					String emailListID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/emailListID").trim();
-					String ftpServer = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/ftpServer").trim();
-					String ftpPorts = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/ftpPort").trim();
+					
+
+					String outputParam1_Type = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param1/@type").trim();
+					String outputParam1 = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param1").trim();
+					String outputParam2_Type = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param2/@type").trim();
+					String outputParam2 = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param2").trim();
+					String outputComparitor = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/comparitor").trim();
+
+					String emailSubject = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/subject").trim();
+					String emailMessage = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/message").trim();
+					String emailListID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/emailListID").trim();
+					String ftpServer = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/ftpServer").trim();
+					String ftpPorts = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/ftpPort").trim();
 
 					int ftpPort = 0;
 					if (ftpPorts.equals("")==false)
 					{
 						ftpPort = Integer.valueOf(ftpPorts);
 					}
-					String ftpRemotePath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/ftpRemotePath").trim();
-					String ftpUsername = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/ftpUsername").trim();
-					String ftpPassword = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/ftpPassword").trim();
+					String ftpRemotePath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/ftpRemotePath").trim();
+					String ftpUsername = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/ftpUsername").trim();
+					String ftpPassword = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/ftpPassword").trim();
 
 					OutboundInterface outboundInterface = new OutboundInterface(map, outputDescription);
 					outboundInterface.setId(outputId);
@@ -243,6 +251,12 @@ public class MiddlewareConfig
 					outboundInterface.setFtpUsername(ftpUsername);
 					outboundInterface.setFtpPassword(ftpPassword);
 					outboundInterface.setPrefix(outputPrefix);
+					
+					outboundInterface.setCompareParam1(outputParam1);
+					outboundInterface.setCompareParam1_Type(outputParam1_Type);
+					outboundInterface.setCompareParam2(outputParam2);
+					outboundInterface.setCompareParam2_Type(outputParam2_Type);
+					outboundInterface.setComparator(outputComparitor);
 
 
 					if (fio.isValidDirectory(outputPath) == false)
