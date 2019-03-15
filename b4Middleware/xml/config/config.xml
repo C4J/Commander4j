@@ -6,7 +6,7 @@
     <logArchiveRetentionDays>3</logArchiveRetentionDays>
     <enableEmailNotifications>false</enableEmailNotifications>
     <statusReportTime>09:00:00</statusReportTime>
-        
+
     <map id="map01" enabed="Y" description="Rockwell Material Master to C4J Material Master">
         <input id="in1" description="Read Rockwell Material Master">
             <type>XML</type>
@@ -107,7 +107,8 @@
         </output>
     </map>
 
-    <map id="map07" enabed="Y" description="C4J Production Declaration to S95 Production Declaration">
+    <map id="map07" enabed="Y"
+        description="C4J Production Declaration to S95 Production Declaration">
         <input id="in1" description="Read C4J Prod Dec XML">
             <type>XML</type>
             <path>./interface/input/07 (C4J Production Declaration)</path>
@@ -122,7 +123,7 @@
             <XSLT/>
         </output>
     </map>
-    
+
     <map id="map08" enabed="Y" description="ASCII Flat File Fixed Column to XML">
         <input id="in1" description="Read ASCII Flat File">
             <type>ASCII</type>
@@ -292,7 +293,7 @@
             <XSLT/>
         </output>
     </map>
-    
+
     <map id="map17" enabed="Y" description="Excel Spreadsheet to CSV">
         <input id="in1" description="Read Excel File">
             <type>XLS</type>
@@ -310,8 +311,8 @@
             <XSLT/>
         </output>
     </map>
-    
-     <map id="map18" enabed="Y" description="SAP Idoc Material Master to C4J XML">
+
+    <map id="map18" enabed="Y" description="SAP Idoc Material Master to C4J XML">
         <input id="in1" description="Read IDOC">
             <type>IDOC</type>
             <path>./interface/input/18 (SAP IDOC Material Master)</path>
@@ -326,7 +327,7 @@
             <type>XML</type>
         </output>
     </map>
-    
+
     <map id="map19" enabed="Y" description="Pre Advice XML to Excel Spreadsheet">
         <input id="in1" description="Read XML File">
             <type>XML</type>
@@ -335,14 +336,14 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>XML to Excel Pre Advice Journey Ref.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write Excel XML File">
             <path>./interface/output/19 (XML to Excel)</path>
             <type>XML</type>
             <XSLT/>
         </output>
     </map>
-  
+
     <map id="map20" enabed="Y" description="Pre Advice XML to ASCII File">
         <input id="in1" description="Read XML File">
             <type>XML</type>
@@ -351,7 +352,7 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>XML to ASCII Pre Advice Journey Ref.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write ASCII File">
             <path>./interface/output/20 (XML to ASCII)</path>
             <type>ASCII</type>
@@ -359,7 +360,7 @@
             <XSLT/>
         </output>
     </map>
-    
+
     <map id="map21" enabed="Y" description="Email Send">
         <input id="in1" description="Read File">
             <type>EMAIL</type>
@@ -384,7 +385,7 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>ATLAS_XML_to_C4J_XML.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write Commander4j XML">
             <path>./interface/output/22 (C4J Journey XML)</path>
             <type>XML</type>
@@ -400,14 +401,14 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>CSV_to_DB_Example.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write DB">
             <path>./interface/output/23 (DB)</path>
             <type>DB</type>
             <XSLT/>
         </output>
     </map>
-    
+
     <map id="map24" enabed="Y" description="Pre Advice XML to CSV">
         <input id="in1" description="Read XML">
             <type>XML</type>
@@ -416,14 +417,14 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>Commander4j_to_PreAdvice_CSV.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write CSV">
             <path>./interface/output/24 (XML Pre Advice to CSV)</path>
             <type>RAW</type>
-            <XSLT></XSLT>
+            <XSLT/>
         </output>
     </map>
-    
+
     <map id="map25" enabed="Y" description="C4J Production Declaration Rounded Expiry Time">
         <input id="in1" description="Read C4J Prod Dec XML">
             <type>XML</type>
@@ -432,15 +433,15 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_EXPIRY_23_59_59.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write S95 Prod Dec XML">
             <path>./interface/output/25 (C4J Production Declaration Expiry 235959)</path>
             <type>XML</type>
             <XSLT/>
         </output>
     </map>
-    
-     <map id="map26" enabed="Y" description="EPCIS to TraceLink">
+
+    <map id="map26" enabed="Y" description="EPCIS to TraceLink">
         <input id="in1" description="Read EPCIS">
             <type>XML</type>
             <path>./interface/input/26 (EPCIS)</path>
@@ -454,10 +455,10 @@
             <type>XML</type>
             <XSLT/>
         </output>
-    </map>    
-    
+    </map>
+
     <map id="map27" enabed="Y" description="Send to FTP destination">
-        
+
         <input id="in1" description="Read RAW File">
             <type>RAW</type>
             <path>./interface/input/27 (FTP Source)</path>
@@ -465,7 +466,7 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT/>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Send to FTP Server">
             <ftpServer>192.168.1.51</ftpServer>
             <ftpPort>21</ftpPort>
@@ -476,32 +477,32 @@
             <type>FTP</type>
             <XSLT/>
         </output>
-        
+
     </map>
-    
+
     <map id="map28" enabed="Y" description="Commander4j ProdDec to Marcellus Konnect">
         <input id="in1" description="Commander4j ProdDec">
             <type>XML</type>
             <path>./interface/input/28 (C4J - Production Declaration)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT/>           
+            <XSLT/>
 
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write Marcellus Konnect">
             <path>./interface/output/28 (Marcellus - Production Declaration)</path>
             <type>XML</type>
             <XSLT>C4J_PRODDEC_XML_to_Marcellus_XML.xsl</XSLT>
         </output>
-        
+
         <output id="out2" enabed="Y" description="Write S95 Prod Dec">
             <path>./interface/output/28 (S95 - Production Declaration)</path>
             <type>XML</type>
-             <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
+            <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
         </output>
-    </map>    
-    
+    </map>
+
     <map id="map29" enabed="Y" description="NTR CSV">
         <input id="in1" description="Read NTR CSV">
             <type>CSV</type>
@@ -511,37 +512,42 @@
             <optionDelimeter>^</optionDelimeter>
             <csvOptions>separator=|^quote=none</csvOptions>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write C4J XML Prod Dec">
             <path>./interface/output/29 (NTR to C4J Prod Dec)</path>
             <type>XML</type>
             <XSLT>NTR__CSV_to_C4J_PROD_DEC_XML.xsl</XSLT>
         </output>
     </map>
-    
-        
+
+
     <map id="map30" enabed="Y" description="C4J ProdDec to S95 ProdDec + C4J Pallet Move">
         <input id="in1" description="Read C4J Prod Dec XML">
             <type>XML</type>
             <path>./interface/input/30 (C4J Production Declaration)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT/>   
+            <XSLT/>
         </input>
-        
-         <output id="out1" enabed="Y" description="Write S95 Prod Dec XML">
+
+        <output id="out1" enabed="Y" description="Write S95 Prod Dec XML">
             <path>./interface/output/30 (S95 Production Declaration)</path>
             <type>XML</type>
             <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
         </output>
-        
+
         <output id="out2" enabed="Y" description="Write Pallet Move XML">
+            <condition>
+                <param1 type="xquery">/message/messageData/palletMove/pallet/fromLocation</param1>
+                <param2 type="xquery">/message/messageData/palletMove/pallet/toLocation</param2>
+                <comparitor>NOT EQUAL</comparitor>
+            </condition>
             <path>./interface/output/30 (C4J Pallet Move)</path>
             <type>XML</type>
             <XSLT>C4J_ProdDec_to_PalletMove.xsl</XSLT>
         </output>
     </map>
- 
+
     <map id="map31" enabed="Y" description="Update Material Master Auto Move Only">
         <input id="in1" description="Read IDOC">
             <type>IDOC</type>
@@ -551,14 +557,14 @@
             <idocSchemaFilename>./idoc/schema/ZMATMAS03c.txt</idocSchemaFilename>
             <XSLT>ROCKWELL_MM_PROCUREMENT_AUTO_MOVE.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write XML File">
             <path>./interface/output/31 (C4J Auto Move Indicator)</path>
             <type>XML</type>
         </output>
     </map>
-    
-    
+
+
     <map id="map32" enabed="Y" description="C4J Production Declaration to SAGE X3 Goods Receipt">
         <input id="in1" description="Read C4J XML File">
             <type>XML</type>
@@ -567,7 +573,7 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_SAGEX3_GoodsReceipt_CSV.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write SAGE CSV">
             <path>./interface/output/32 (SAGE X3 - Goods Receipt)</path>
             <type>CSV</type>
@@ -578,5 +584,5 @@
             <XSLT/>
         </output>
     </map>
-    
+
 </config>

@@ -158,6 +158,7 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 					// Close output file
 					fw.close();
 					
+					FileUtils.deleteQuietly( new File(finalFilename));
 					FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
 					
 					result=true;

@@ -9,20 +9,14 @@
 	<xsl:template match="text() | @*"/>
 
 	<xsl:template match="message/messageData">
-		<data cols="2" rows="2" type="CSV">
-			<row id="1">
+		<data type="CSV">
+			<row id="1" cols="2">
 				<col id="1">Despatch Ref</col>
 				<col id="2">Journey Ref"</col>
 			</row>
-			<row id="2">
-				<col id="1">
-					<xsl:value-of
-						select="/message/messageData[1]/despatchPreAdvice[1]/despatchNo[1]"/>
-				</col>
-				<col id="2">
-					<xsl:value-of
-						select="/message/messageData[1]/despatchPreAdvice[1]/journeyRef[1]"/>
-				</col>
+			<row id="2" cols="2">
+				<col id="1"><xsl:value-of select="/message/messageData[1]/despatchPreAdvice[1]/despatchNo[1]"/></col>
+				<col id="2"><xsl:value-of select="/message/messageData[1]/despatchPreAdvice[1]/journeyRef[1]"/></col>
 			</row>
 		</data>
 	</xsl:template>

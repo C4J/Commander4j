@@ -76,20 +76,20 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean connectorSave(String path,String filename)
+	public boolean connectorSave(String path, String filename)
 	{
 		boolean result = false;
-		String fullPath = path+File.separator+filename;
-		
+		String fullPath = path + File.separator + filename;
+
 		fullPath = fullPath + "." + getOutboundInterface().getOutputFileExtension().toLowerCase();
 
-/*		if (fullPath.endsWith("." + getType().toLowerCase()) == false)
-		{
-			fullPath = fullPath + "." + getType().toLowerCase();
-		}*/
+		/*
+		 * if (fullPath.endsWith("." + getType().toLowerCase()) == false) {
+		 * fullPath = fullPath + "." + getType().toLowerCase(); }
+		 */
 		String tempFilename = fullPath + ".tmp";
-		String finalFilename = fullPath;		
-		
+		String finalFilename = fullPath;
+
 		getCSVOptions();
 
 		logger.debug("connectorSave [" + fullPath + "]");
@@ -97,71 +97,86 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 		JXMLDocument document = new JXMLDocument();
 		document.setDocument(getData());
 
-		String cl = Utility.replaceNullStringwithBlank(document.findXPath("//data/@cols").trim());
-		if (cl.equals(""))
-		{
-			cl = "0";
-		}
-		int columns = Integer.valueOf(cl);
-
-		String rw = Utility.replaceNullStringwithBlank(document.findXPath("//data/@rows").trim());
-		if (rw.equals(""))
-		{
-			rw = "0";
-		}
-		int rows = Integer.valueOf(rw);
-
 		try
 		{
 			System.out.println(document.documentToString(getData()));
-		} catch (TransformerException e)
+		}
+		catch (TransformerException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		if (rows > 0)
+		try
 		{
-			if (columns > 0)
+			//Create Writer
+			CSVWriter writer;
+			if (disableQuotes)
 			{
-				try
-				{
-					CSVWriter writer;
-					if (disableQuotes)
-					{
-						writer = new CSVWriter(new FileWriter(tempFilename), seperator, CSVWriter.NO_QUOTE_CHARACTER);
-					} else
-					{
-						writer = new CSVWriter(new FileWriter(tempFilename), seperator,quote);
-					}
+				writer = new CSVWriter(new FileWriter(tempFilename), seperator, CSVWriter.NO_QUOTE_CHARACTER);
+			}
+			else
+			{
+				writer = new CSVWriter(new FileWriter(tempFilename), seperator, quote);
+			}
 
-					String[] csvrow = new String[columns];
-					for (int r = 1; r <= rows; r++)
+			int currentRow = 1;
+			int rows = 1;
+
+			//Loop through each row
+			while (rows > 0)
+			{
+
+				// Get current row number
+				String rw = Utility.replaceNullStringwithBlank(document.findXPath("/data/row[" + String.valueOf(currentRow) + "]/@id").trim());
+				if (rw.equals(""))
+				{
+					rw = "0";
+				}
+				rows = Integer.valueOf(rw);
+
+				if (rows > 0)
+				{
+					// Get Number of columns on current row
+					String cl = Utility.replaceNullStringwithBlank(document.findXPath("/data/row[" + String.valueOf(currentRow) + "]/@cols").trim());
+					if (cl.equals(""))
 					{
+						cl = "0";
+					}
+					int columns = Integer.valueOf(cl);
+
+					if (columns > 0)
+					{
+
+						String[] csvrow = new String[columns];
 
 						for (int c = 1; c <= columns; c++)
 						{
-							String xpath = "//data/row[@id='" + String.valueOf(r) + "']/col[@id='" + String.valueOf(c) + "']";
+							String xpath = "//data/row[@id='" + String.valueOf(currentRow) + "']/col[@id='" + String.valueOf(c) + "']";
 							String dataString = Utility.replaceNullStringwithBlank(document.findXPath(xpath).trim());
 							csvrow[c - 1] = dataString;
-							//logger.debug("row=[" + String.valueOf(r) + "] col=[" + String.valueOf(c) + "] data=[" + dataString + "]");
+
 						}
 
 						writer.writeNext(csvrow);
-
 					}
-					writer.close();
-					
-					FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
-					
-					result=true;
-				} catch (Exception ex)
-				{
-					logger.error(ex.getMessage());
-					Common.emailqueue.addToQueue("Error", "Error Writing File ["+fullPath+"]", ex.getMessage()+"\n\n", "");
+
 				}
 
+				currentRow++;
+
 			}
+			writer.close();
+
+			FileUtils.deleteQuietly( new File(finalFilename));
+			FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
+
+			result = true;
+		}
+		catch (Exception ex)
+		{
+			logger.error(ex.getMessage());
+			Common.emailqueue.addToQueue("Error", "Error Writing File [" + fullPath + "]", ex.getMessage() + "\n\n", "");
 		}
 
 		document = null;
