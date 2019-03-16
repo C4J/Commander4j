@@ -11,8 +11,8 @@
 	<xsl:variable name="sscc" select="/message/messageData[1]/productionDeclaration[1]/SSCC"/>
 
 	<xsl:template match="message/messageData/productionDeclaration">
-		<data type="CSV">
-		<row id="1"cols="15">
+		<data cols="15" rows="1" type="CSV">
+		<row id="1">
 
 			<col id="1"><xsl:value-of select="processOrder"/></col>
 			<col id="2"><xsl:value-of select="material"/></col>

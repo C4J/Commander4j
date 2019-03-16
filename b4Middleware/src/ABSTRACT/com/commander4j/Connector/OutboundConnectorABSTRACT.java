@@ -123,7 +123,7 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 
 			while (connectorSave(getPath(), outint.getPrefix() + getFilename()) == false)
 			{
-				logger.error("processOutboundData - remote path unavailable [" + filename + "] - waiting 20 seconds before retry");
+				logger.error("processOutboundData - remote path unavailable [" + getPath(), outint.getPrefix() + getFilename() + "] - waiting 20 seconds before retry");
 				com.commander4j.util.JWait.milliSec(20000);
 			}
 

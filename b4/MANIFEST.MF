@@ -14,7 +14,7 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/barcode/serializer-2.7.2.jar 
  lib/cups4j/cups4j.runnable-0.6.4.jar 
  lib/db/mssql-jdbc-7.2.1.jre8.jar 
- lib/db/mysql-connector-java-8.0.13.jar 
+ lib/db/mysql-connector-java-8.0.15.jar 
  lib/db/ojdbc8.jar 
  lib/jasper/jasperreports-6.7.0.jar 
  lib/jasper/jasperreports-chart-customizers-6.7.0.jar 
