@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+    <hostRef>3267a942-62df-4071-9d8b-723edf0dc243</hostRef>
+    <messageRef>14323083</messageRef>
+    <interfaceType>Production Declaration</interfaceType>
+    <messageInformation>SSCC=350001615030752260</messageInformation>
+    <interfaceDirection>Output</interfaceDirection>
+    <messageDate>2019-03-14T16:04:56</messageDate>
+    <messageData>
+        <productionDeclaration>
+            <SSCC>350001615030752239</SSCC>
+            <processOrder>23065876</processOrder>
+            <recipe>100000000035998084</recipe>
+            <requiredResource>CMECTRA</requiredResource>
+            <material>43751630</material>
+            <description>FELIX CiJ Beef&amp;Poultry BSt 400g N3 XE</description>
+            <old_code/>
+            <moveAfterMake>N</moveAfterMake>
+            <moveLocationID/>
+            <ean>08710421210606</ean>
+            <variant>04</variant>
+            <status>Unrestricted</status>
+            <batch>F1907300</batch>
+            <batchStatus>Restricted</batchStatus>
+            <expiry_Mode>BATCH</expiry_Mode>
+            <expiryDate>2021-03-31T00:00:00</expiryDate>
+            <location>WISBECH</location>
+            <name>Purina Wisbech</name>
+            <gln>5000161800292</gln>
+            <plant>0933</plant>
+            <warehouse>734</warehouse>
+            <storageLocation>0001</storageLocation>
+            <storageSection/>
+            <storageBin>DESPATCH</storageBin>
+            <storageType>PRO</storageType>
+            <productionQuantity>2475.000</productionQuantity>
+            <productionUOM>EA</productionUOM>
+            <confirmed>Y</confirmed>
+            <productionDate>2019-03-14T16:04:43</productionDate>
+        </productionDeclaration>
+    </messageData>
+</message>
