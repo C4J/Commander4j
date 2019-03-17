@@ -198,7 +198,7 @@
     <map id="map412" enabed="Y" description="GEN XML to ASCII Flat File">
         <input id="in1" description="Read XML File">
             <type>XML</type>
-            <path>./interface/input/412 (GEN XML to ASCII Flat File)</path>
+            <path>./interface/input/412 (GEN C4J Prod Dec to ASCII Flat File)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
@@ -212,10 +212,10 @@
         </output>
     </map>
 
-    <map id="map413" enabed="Y" description="GEN XML to Dual Output (ASCII and CSV Files)">
+    <map id="map413" enabed="Y" description="GEN C4J Prod Dec XML to Dual Output (ASCII and CSV Files)">
         <input id="in1" description="Read XML File">
             <type>XML</type>
-            <path>./interface/input/413 (GEN XML)</path>
+            <path>./interface/input/413 (GEN XML to Dual Output)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>

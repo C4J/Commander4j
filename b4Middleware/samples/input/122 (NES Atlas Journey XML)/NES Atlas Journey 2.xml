@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<message>
+    <plant>0931</plant>
+    <hostRef>WILIVE</hostRef>
+    <messageRef>Atlas Message Run 2018-02-01T14:21:11</messageRef>
+    <interfaceType>Journey Definition</interfaceType>
+    <messageInformation>Atlas Message Run 2018-02-01T14:21:11</messageInformation>
+    <interfaceDirection>Input</interfaceDirection>
+    <messageDate>2018-02-01T14:21:11</messageDate>
+    <messageData>
+        <journeyDefinition>
+            <ref>JMMM1591</ref>
+            <timeslot>2018-02-03T15:50:00</timeslot>
+            <destination>HAMS HALL</destination>
+            <haulier>TMS</haulier>
+            <loadType>FG</loadType>
+            <loadTypeDesc>Finished Goods</loadTypeDesc>
+            <action>Update</action>
+        </journeyDefinition>
+        <journeyDefinition>
+            <ref>HRLX1610</ref>
+            <timeslot>2018-02-03T17:50:00</timeslot>
+            <destination>HAMS HALL</destination>
+            <haulier>TMS</haulier>
+            <loadType>FG</loadType>
+            <loadTypeDesc>Finished Goods</loadTypeDesc>
+            <action>Update</action>
+        </journeyDefinition>
+    </messageData>
+</message>
