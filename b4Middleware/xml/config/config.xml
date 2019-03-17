@@ -215,7 +215,7 @@
     <map id="map13" enabed="Y" description="GEN XML to Dual Output (ASCII and CSV Files)">
         <input id="in1" description="Read XML File">
             <type>XML</type>
-            <path>./interface/input/13 (C4J - Production Declaration)</path>
+            <path>./interface/input/13 (GEN XML)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
