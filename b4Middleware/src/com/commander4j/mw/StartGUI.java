@@ -21,7 +21,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
@@ -217,7 +216,6 @@ public class StartGUI extends JFrame
 		contentPane.add(label_NoOfMaps);
 
 		JScrollPane scrollPaneMaps = new JScrollPane();
-		scrollPaneMaps.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPaneMaps.setBounds(0, 65, 1313, 510);
 		contentPane.add(scrollPaneMaps);
 

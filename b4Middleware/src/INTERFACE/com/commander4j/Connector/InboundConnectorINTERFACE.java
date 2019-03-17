@@ -12,8 +12,6 @@ public interface InboundConnectorINTERFACE
 	public final static String Connector_EMAIL = "EMAIL";
 	public final static String Connector_RAW = "RAW";
 	public final static String Connector_XML = "XML";
-	public final static String Connector_DB = "DB";
-	public final static String Connector_JDBC = "JDBC";
 	
 	public final static String[] Mask_ASCII = {"txt", "TXT"};
 	public final static String[] Mask_CSV = {"csv", "CSV"};
@@ -22,8 +20,7 @@ public interface InboundConnectorINTERFACE
 	public final static String[] Mask_EMAIL = {};	
 	public final static String[] Mask_RAW = {};
 	public final static String[] Mask_XML = {"xml", "XML"};
-	public final static String[] Mask_DB = {"db", "DB","dbf","DBF","mdb","MDB"};
-	public final static String[] Mask_JDBC = {};
+
 
 	public boolean connectorLoad(String filename);
 

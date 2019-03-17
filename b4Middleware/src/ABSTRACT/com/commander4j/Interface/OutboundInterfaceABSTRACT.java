@@ -12,9 +12,7 @@ import INTERFACE.com.commander4j.Interface.OutboundInterfaceINTERFACE;
 
 import com.commander4j.Connector.Outbound.OutboundConnectorASCII;
 import com.commander4j.Connector.Outbound.OutboundConnectorCSV;
-import com.commander4j.Connector.Outbound.OutboundConnectorDB;
 import com.commander4j.Connector.Outbound.OutboundConnectorEmail;
-import com.commander4j.Connector.Outbound.OutboundConnectorFTP;
 import com.commander4j.Connector.Outbound.OutboundConnectorIDOC;
 import com.commander4j.Connector.Outbound.OutboundConnectorRAW;
 import com.commander4j.Connector.Outbound.OutboundConnectorXML;
@@ -48,11 +46,6 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	private String emailSubject="";
 	private String emailMessage="";
 	private String emailListID = "";
-	private String ftpServer="";
-	private int ftpPort = 21;
-	private String ftpUsername = "";
-	private String ftpPassword = "";
-	private String ftpRemotePath = "";
 	private String compareParam1 = "";
 	private String compareParam1_Type = "";
 	private String compareParam2 = "";
@@ -120,56 +113,6 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 		return Utility.replaceNullStringwithBlank(this.outputFilePrefix);
 	}
 	
-	public String getFtpServer()
-	{
-		return ftpServer;
-	}
-
-	public void setFtpServer(String ftpServer)
-	{
-		this.ftpServer = ftpServer;
-	}
-
-	public int getFtpPort()
-	{
-		return ftpPort;
-	}
-
-	public void setFtpPort(int ftpPort)
-	{
-		this.ftpPort = ftpPort;
-	}
-
-	public String getFtpUsername()
-	{
-		return ftpUsername;
-	}
-
-	public void setFtpUsername(String ftpUsername)
-	{
-		this.ftpUsername = ftpUsername;
-	}
-
-	public String getFtpPassword()
-	{
-		return ftpPassword;
-	}
-
-	public void setFtpPassword(String ftpPassword)
-	{
-		this.ftpPassword = ftpPassword;
-	}
-
-	public String getFtpRemotePath()
-	{
-		return ftpRemotePath;
-	}
-
-	public void setFtpRemotePath(String ftpRemotePath)
-	{
-		this.ftpRemotePath = ftpRemotePath;
-	}
-
 
 	public void setDescription(String description)
 	{
@@ -319,14 +262,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 			connector = new OutboundConnectorEmail((OutboundInterface) this);
 			setOutputFileExtension("");
 			break;
-		case OutboundConnectorINTERFACE.Connector_FTP:
-			connector = new OutboundConnectorFTP((OutboundInterface) this);
-			setOutputFileExtension("");
-			break;
-		case OutboundConnectorINTERFACE.Connector_DB:
-			connector = new OutboundConnectorDB((OutboundInterface) this);
-			setOutputFileExtension("db");
-			break;
+
 		case OutboundConnectorINTERFACE.Connector_IDOC:
 			connector = new OutboundConnectorIDOC((OutboundInterface) this);
 			setOutputFileExtension("idoc");

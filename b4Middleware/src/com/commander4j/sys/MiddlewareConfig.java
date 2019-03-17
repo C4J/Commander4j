@@ -1,6 +1,7 @@
 package com.commander4j.sys;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import org.apache.logging.log4j.Logger;
@@ -81,6 +82,8 @@ public class MiddlewareConfig
 		}
 	}
 
+	
+	
 	public LinkedList<Map> loadMaps(String filename)
 	{
 		String configName = "";
@@ -219,17 +222,6 @@ public class MiddlewareConfig
 					String emailSubject = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/subject").trim();
 					String emailMessage = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/message").trim();
 					String emailListID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/emailListID").trim();
-					String ftpServer = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/ftpServer").trim();
-					String ftpPorts = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/ftpPort").trim();
-
-					int ftpPort = 0;
-					if (ftpPorts.equals("")==false)
-					{
-						ftpPort = Integer.valueOf(ftpPorts);
-					}
-					String ftpRemotePath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/ftpRemotePath").trim();
-					String ftpUsername = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/ftpUsername").trim();
-					String ftpPassword = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/ftpPassword").trim();
 
 					OutboundInterface outboundInterface = new OutboundInterface(map, outputDescription);
 					outboundInterface.setId(outputId);
@@ -245,11 +237,7 @@ public class MiddlewareConfig
 					outboundInterface.setEmailSubject(emailSubject);
 					outboundInterface.setEmailMessage(emailMessage);
 					outboundInterface.setEmailListID(emailListID);
-					outboundInterface.setFtpServer(ftpServer);
-					outboundInterface.setFtpPort(ftpPort);
-					outboundInterface.setFtpRemotePath(ftpRemotePath);
-					outboundInterface.setFtpUsername(ftpUsername);
-					outboundInterface.setFtpPassword(ftpPassword);
+
 					outboundInterface.setPrefix(outputPrefix);
 					
 					outboundInterface.setCompareParam1(outputParam1);
@@ -279,6 +267,8 @@ public class MiddlewareConfig
 
 		}
 
+		Collections.sort(maps);
+		
 		return maps;
 	}
 }

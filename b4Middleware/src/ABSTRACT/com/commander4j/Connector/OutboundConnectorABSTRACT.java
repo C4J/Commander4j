@@ -120,7 +120,7 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 
 		if (saveFile == true)
 		{
-
+			
 			while (connectorSave(getPath(), outint.getPrefix() + getFilename()) == false)
 			{
 				logger.error("processOutboundData - remote path unavailable [" + getPath(), outint.getPrefix() + getFilename() + "] - waiting 20 seconds before retry");

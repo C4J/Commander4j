@@ -9,7 +9,7 @@ import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.util.Utility;
 
-public class Map
+public class Map implements Comparable<Map>
 {
 	boolean enabled = true;
 	InboundInterface inboundInterface;
@@ -156,6 +156,17 @@ public class Map
 
 		}
 
+	}
+
+	@Override
+	public int compareTo(Map o)
+	{
+		String id = o.getId();
+		int result = this.getId().compareTo(id);
+		if (result > 0) result = 1;
+		if (result < 0) result = -1;
+		
+		return result;
 	}
 
 }
