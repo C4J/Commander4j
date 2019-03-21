@@ -86,6 +86,8 @@
     <item type="TroposUOM" id="CASE"><value>CS</value></item>  
     <item type="TroposUOM" id="PALL"><value>PAL</value></item>  
     <item type="TroposUOM" id="EACH"><value>EA</value></item>  
+    
+    <item type="SageUOM" id="EA"><value>EA</value></item>  
    
     <item type="TroposStatus" id="RELEASED"><value>Ready</value></item>  
     <item type="TroposStatus" id="DETAILS CHANGED"><value>Ready</value></item>  

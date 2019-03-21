@@ -11,7 +11,7 @@
     <property name="source" value="1.8"/>
     <path id="b4Middleware.classpath">
         <pathelement location="bin"/>
-    	<pathelement location="lib/opencsv-3.8.jar"/>
+    	<pathelement location="lib/opencsv-4.5.jar"/>
     	<pathelement location="lib/saxon9.jar"/>
     	<pathelement location="lib/saxon9-dom.jar"/>
     	<pathelement location="lib/commons-codec-1.11.jar"/>

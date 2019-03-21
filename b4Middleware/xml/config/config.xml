@@ -6,6 +6,22 @@
     <logArchiveRetentionDays>3</logArchiveRetentionDays>
     <enableEmailNotifications>false</enableEmailNotifications>
     <statusReportTime>09:00:00</statusReportTime>
+    
+    <map id="map000" enabed="Y" description="2. SAGE Bulk Material Master to C4J Bulk Material">
+        <input id="in1" description="Read SAGE XML Material Master">
+            <type>XML</type>
+            <path>./interface/input/333 (FH Material Bulk Message)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>SAGE_Material_to_Commander4j_MATERIAL.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write C4J Material Master">
+            <path>./interface/output/333 (FH Material Bulk Message)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
 
     <map id="map101" enabed="Y" description="NES Konnect XML Material to C4J Material Master">
         <input id="in1" description="Read Konnect XML Material Master">
@@ -539,7 +555,7 @@
             <path>./interface/output/332 (FH SAGE X3 - Goods Receipt CSV)</path>
             <type>CSV</type>
             <optionDelimeter>^</optionDelimeter>
-            <csvOptions>separator=,^quote=none</csvOptions>
+            <csvOptions>separator=,^quote=none^endofline=\r\n</csvOptions>
             <outputFileExtension>txt</outputFileExtension>
             <prefix>G_</prefix>
             <XSLT/>

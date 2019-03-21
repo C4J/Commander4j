@@ -188,6 +188,12 @@ public class StartMain
 			Common.runMode = "Service";
 			StartService.main(args);
 		}
+		
+		if (parameter.equals("Test"))
+		{
+			Common.runMode = "Test";
+			StartTest.main(args);
+		}		
 
 	}
 }

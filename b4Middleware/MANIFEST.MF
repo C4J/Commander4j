@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Main-Class: com.commander4j.mw.StartGUI
-Class-Path: lib/opencsv-3.8.jar 
+Class-Path: lib/opencsv-4.5.jar 
  lib/saxon9.jar 
  lib/saxon9-dom.jar 
  lib/commons-codec-1.11.jar 

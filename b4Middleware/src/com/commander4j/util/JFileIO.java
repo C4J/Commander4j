@@ -26,7 +26,7 @@ public class JFileIO
 	{
 		boolean result = false;
 		File theDir = new File(directoryName);
-		System.out.println(theDir.getAbsolutePath());
+		//System.out.println(theDir.getAbsolutePath());
 
 		// if the directory does not exist, create it
 		if (theDir.exists())

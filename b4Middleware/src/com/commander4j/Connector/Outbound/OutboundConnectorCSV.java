@@ -25,6 +25,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 	boolean disableQuotes = false;
 	char seperator = ',';
 	char quote = '"';
+	String endOfLine="default";
 
 	public OutboundConnectorCSV(OutboundInterface inter)
 	{
@@ -67,6 +68,9 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 					disableQuotes = false;
 				}
 				break;
+			case "endofline":
+				endOfLine = val;
+				break;
 			default:
 				opt = "";
 				break;
@@ -74,7 +78,6 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean connectorSave(String path, String filename)
 	{
@@ -113,11 +116,29 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 			CSVWriter writer;
 			if (disableQuotes)
 			{
-				writer = new CSVWriter(new FileWriter(tempFilename), seperator, CSVWriter.NO_QUOTE_CHARACTER);
+				if (endOfLine.equals("default"))
+				{
+					writer = new CSVWriter(new FileWriter(tempFilename),seperator,CSVWriter.NO_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER,CSVWriter.DEFAULT_LINE_END);				
+				}
+				else
+				{
+					writer = new CSVWriter(new FileWriter(tempFilename),seperator,CSVWriter.NO_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER,"\r\n");				
+				}
+
+				//writer = new CSVWriter(new FileWriter(tempFilename), seperator, CSVWriter.NO_QUOTE_CHARACTER);
 			}
 			else
 			{
-				writer = new CSVWriter(new FileWriter(tempFilename), seperator, quote);
+				if (endOfLine.equals("default"))
+				{
+					writer = new CSVWriter(new FileWriter(tempFilename),seperator,CSVWriter.DEFAULT_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER,CSVWriter.DEFAULT_LINE_END);
+				}
+				else
+				{
+					writer = new CSVWriter(new FileWriter(tempFilename),seperator,CSVWriter.DEFAULT_QUOTE_CHARACTER,CSVWriter.DEFAULT_ESCAPE_CHARACTER,"\r\n");	
+				}
+				
+				//writer = new CSVWriter(new FileWriter(tempFilename), seperator, quote);
 			}
 
 			int currentRow = 1;
@@ -157,7 +178,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 							csvrow[c - 1] = dataString;
 
 						}
-
+						
 						writer.writeNext(csvrow);
 					}
 

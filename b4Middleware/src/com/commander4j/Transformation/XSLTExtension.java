@@ -42,6 +42,17 @@ public class XSLTExtension
 		}
 		return result;
 	}
+	
+	public static String getISODateTimeFilenameString()
+	{
+		String result = getISODateTimeString();
+		result=result.replace(":", "_");
+		result=result.replace("-", "_");
+		result=result.replace(" ", "_");
+		result=result.replace("T", "_");
+		
+		return result;
+	}
 
 	public static String removeLeadingZeros(String param)
 	{

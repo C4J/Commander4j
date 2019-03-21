@@ -29,6 +29,7 @@ import com.commander4j.Interface.Mapping.Map;
 import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.Utility;
+import javax.swing.ListSelectionModel;
 
 public class StartGUI extends JFrame
 {
@@ -218,6 +219,7 @@ public class StartGUI extends JFrame
 		JScrollPane scrollPaneMaps = new JScrollPane();
 		scrollPaneMaps.setBounds(0, 65, 1313, 510);
 		contentPane.add(scrollPaneMaps);
+		listMaps.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		scrollPaneMaps.setViewportView(listMaps);
 
