@@ -85,13 +85,9 @@
         <pathelement location="lib/app/commons-text-1.2.jar"/>
         <pathelement location="lib/app/commons-io-2.6.jar"/>
         <pathelement location="lib/app/commons-lang3-3.7.jar"/>
-        <pathelement location="lib/jasper/jasperreports-6.7.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-chart-customizers-6.7.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-chart-themes-6.7.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-custom-visualization-6.7.0.jar"/>        
-        <pathelement location="lib/jasper/jasperreports-fonts-6.7.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-functions-6.7.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-javaflow-6.7.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-6.7.1.jar"/>     
+        <pathelement location="lib/jasper/jasperreports-fonts-6.7.1.jar"/>
+        <pathelement location="lib/jasper/jasperreports-javaflow-6.7.1.jar"/>
         <pathelement location="lib/jasperlib/net.tascalate.javaflow.api-2.2.1.jar"/>
         <pathelement location="lib/jasperlib/net.tascalate.javaflow.providers.asm5-2.2.1.jar"/>
         <pathelement location="lib/jasperlib/net.tascalate.javaflow.tools.ant-2.2.1.jar"/>

@@ -84,13 +84,14 @@
 	</statement>
 	
 	<statement>
-		INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) 
-		VALUES ('Material Auto Move','Input','{base_dir}\\xml\\interface\\input\\Material Auto Move','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','')
-	</statement>
+		Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) 
+		values ('Material Auto Move','Input','{base_dir}\xml\interface\input\Material Auto Move','Y','Disk',null,null,null,null,null,'XML','None',null,null,null)
+	</statement>		
 	
 	<statement>
-		INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) 
-		VALUES ('Pallet Move','Input','{base_dir}\\xml\\interface\\input\\Pallet Move','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','')
+		Insert into SYS_INTERFACE (INTERFACE_TYPE,INTERFACE_DIRECTION,PATH,ENABLED,DEVICE,SUBJECT,TOPIC,SERVER,USERNAME,PASSWORD,FORMAT,UOM_CONVERSION,ENABLE_EMAIL_NOTIFICATIONS,EMAIL_FLAGS,EMAIL_ADDRESSES) 
+		values ('Pallet Move','Input','{base_dir}\xml\interface\input\Pallet Move','Y','Disk',null,null,null,null,null,'XML','None',null,null,null)
 	</statement>
+
 	
 </DDL>

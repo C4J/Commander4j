@@ -41,7 +41,8 @@
 		<xsl:variable name="layer_per_pallet" select="Layer_Per_Pallet"/>
 		<xsl:variable name="base_per_pallet" select="number($base_per_layer) * number($layer_per_pallet)"/>
 		<xsl:text>&#10;</xsl:text>
-		<xsl:comment>*START* filename MAT_<xsl:value-of select="$material"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
+        <xsl:comment>*START* filename MAT_<xsl:value-of select="$material"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
+		<xsl:text>&#10;</xsl:text>
 		<xsl:text>&#10;</xsl:text>
 		<message>
 			<xsl:comment>Message Header</xsl:comment>
@@ -70,31 +71,35 @@
 					<shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('SageShelfLifeUom', $shelf_life_uom)"/></shelf_life_uom>
 					<equipment_Type><xsl:value-of select="Pallet_Type"/></equipment_Type>
 					
-					<xsl:comment>Base Unit of Measure (EA)</xsl:comment>
-					<materialUOMDefinition>
-						<uom>
-							<xsl:value-of select="c4j:getReferenceItem('SageUOM', $base_uom)"/>
-						</uom>
-						<numerator>1</numerator>
-						<denominator>1</denominator>
-						<ean/>
-						<variant>00</variant>
-					</materialUOMDefinition>
+					<xsl:if test="$base_uom!=''">
+						<xsl:comment>Base Unit of Measure (EA)</xsl:comment>
+						<materialUOMDefinition>
+							<uom>
+								<xsl:value-of select="c4j:getReferenceItem('SageUOM', $base_uom)"/>
+							</uom>
+							<numerator>1</numerator>
+							<denominator>1</denominator>
+							<ean/>
+							<variant>00</variant>
+						</materialUOMDefinition>
+					</xsl:if>
 					
-					<xsl:comment>Production Unit of Measure (CS)</xsl:comment>
-					<materialUOMDefinition>
-						<uom>
-							<xsl:value-of select="c4j:getReferenceItem('SageUOM', $prod_uom)"/>
-						</uom>
-						<numerator>
-							<xsl:value-of select="$base_per_prod"/>
-						</numerator>
-						<denominator>1</denominator>
-						<ean>
-							<xsl:value-of select="$tuc_outbar"/>
-						</ean>
-						<variant>00</variant>
-					</materialUOMDefinition>
+					<xsl:if test="$base_uom!=''">
+						<xsl:comment>Production Unit of Measure (CS)</xsl:comment>
+						<materialUOMDefinition>
+							<uom>
+								<xsl:value-of select="c4j:getReferenceItem('SageUOM', $prod_uom)"/>
+							</uom>
+							<numerator>
+								<xsl:value-of select="$base_per_prod"/>
+							</numerator>
+							<denominator>1</denominator>
+							<ean>
+								<xsl:value-of select="$tuc_outbar"/>
+							</ean>
+							<variant>00</variant>
+						</materialUOMDefinition>
+					</xsl:if>
 					
 					<xsl:comment>Layer Unit of Measure (LAG)</xsl:comment>
 					<materialUOMDefinition>
@@ -121,6 +126,7 @@
 				</materialDefinition>
 			</messageData>
 		</message>
+		<xsl:text>&#10;</xsl:text>
 		<xsl:text>&#10;</xsl:text>
 		<xsl:comment>*END* filename MAT_<xsl:value-of select="$material"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
 		<xsl:text>&#10;</xsl:text>

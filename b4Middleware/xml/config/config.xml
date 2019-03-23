@@ -7,22 +7,6 @@
     <enableEmailNotifications>false</enableEmailNotifications>
     <statusReportTime>09:00:00</statusReportTime>
     
-    <map id="map000" enabed="Y" description="2. SAGE Bulk Material Master to C4J Bulk Material">
-        <input id="in1" description="Read SAGE XML Material Master">
-            <type>XML</type>
-            <path>./interface/input/333 (FH Material Bulk Message)</path>
-            <mask/>
-            <pollingInterval>1000</pollingInterval>
-            <XSLT>SAGE_Material_to_Commander4j_MATERIAL.xsl</XSLT>
-        </input>
-        
-        <output id="out1" enabed="Y" description="Write C4J Material Master">
-            <path>./interface/output/333 (FH Material Bulk Message)</path>
-            <type>XML</type>
-            <XSLT/>
-        </output>
-    </map>
-
     <map id="map101" enabed="Y" description="NES Konnect XML Material to C4J Material Master">
         <input id="in1" description="Read Konnect XML Material Master">
             <type>XML</type>
@@ -541,7 +525,6 @@
         </output>
     </map>
 
-
     <map id="map332" enabed="Y" description="FH C4J Production Declaration XML to SAGE X3 Goods Receipt CSV">
         <input id="in1" description="Read C4J XML File">
             <type>XML</type>
@@ -550,7 +533,7 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_SAGEX3_GoodsReceipt_CSV.xsl</XSLT>
         </input>
-
+        
         <output id="out1" enabed="Y" description="Write SAGE CSV">
             <path>./interface/output/332 (FH SAGE X3 - Goods Receipt CSV)</path>
             <type>CSV</type>
@@ -561,5 +544,41 @@
             <XSLT/>
         </output>
     </map>
+
+    <map id="map333" enabed="Y" description="FH SAGE Bulk Material Master to C4J Bulk Material">
+        <input id="in1" description="Read SAGE XML Material Master">
+            <type>XML</type>
+            <path>./interface/input/333 (FH Sage Material Bulk Message)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>SAGE_Material_to_Commander4j_MATERIAL.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write C4J Material Master">
+            <path>./interface/output/333 (FH C4J Material Bulk Message)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+    
+    
+    <map id="map334" enabed="Y" description="FH SAGE Bulk Order to C4J Bulk Order">
+        <input id="in1" description="Read SAGE XML Orders">
+            <type>XML</type>
+            <path>./interface/input/334 (FH Sage Order Bulk Message)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>SAGE_Order_to_Commander4j_Order.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write C4J Order">
+            <path>./interface/output/334 (FH C4J Order Bulk Message)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+    
+    
+
 
 </config>

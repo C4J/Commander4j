@@ -36,9 +36,9 @@
 		<xsl:variable name="customerID" select="customerID"/>
 		<xsl:variable name="status" select="status"/>
 		<xsl:variable name="customerName" select="customerName"/>
-
 		<xsl:text>&#10;</xsl:text>
-		<xsl:comment>*START* filename ORD<xsl:value-of select="$material"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
+		<xsl:comment>*START* filename ORD_<xsl:value-of select="$material"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
+		<xsl:text>&#10;</xsl:text>
 		<xsl:text>&#10;</xsl:text>
 		<message>
 			<xsl:comment>Message Header</xsl:comment>
@@ -73,8 +73,10 @@
 			</messageData>
 		</message>
 		<xsl:text>&#10;</xsl:text>
+		<xsl:text>&#10;</xsl:text>
 		<xsl:comment>*END* filename ORD_<xsl:value-of select="$material"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
 		<xsl:text>&#10;</xsl:text>
+		
 	</xsl:template>
 
 	<!-- ================
