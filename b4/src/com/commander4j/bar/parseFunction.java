@@ -37,22 +37,28 @@ import java.util.Date;
 
 import com.commander4j.app.JVersion;
 import com.commander4j.db.JDBControl;
+import com.commander4j.db.JDBPallet;
 
-public class parseFunction {
+public class parseFunction
+{
 	private String hostID;
 	private String sessionID;
 	private JDBControl ctrl;
+	private JDBPallet pal;
 	private String expiryDateMode = "";
 	private static String incorrectNoParams = " [Incorrect number of parameters]";
 	private static String incorrectDateTimeFormat = " [Incorrect date/time format]";
+
 	ResultSetMetaData rsMetaData;
 	ResultSet rs;
 
-	public parseFunction(String host, String session) {
+	public parseFunction(String host, String session)
+	{
 		setHostID(host);
 		setSessionID(session);
 
 		ctrl = new JDBControl(getHostID(), getSessionID());
+		pal = new JDBPallet(getHostID(), getSessionID());
 
 		expiryDateMode = ctrl.getKeyValue("EXPIRY DATE MODE");
 	}
@@ -63,7 +69,8 @@ public class parseFunction {
 		{
 			this.rs = rs;
 			rsMetaData = rs.getMetaData();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 
 		}
@@ -96,7 +103,8 @@ public class parseFunction {
 		// Supported Expressions using format
 
 		String[] Functions = new String[]
-		{"<SUBTR_LPAD(","<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(", "<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(" , "<PRODDATE("};
+		{ "<SUBTR_LPAD(", "<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(", "<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(", "<PRODDATE(",
+				"<PALLET_WEIGHT_TEXT(","<PALLET_WEIGHT_BARCODE(" };
 
 		// For each expression above
 		for (int x = 0; x < Functions.length; x++)
@@ -166,12 +174,13 @@ public class parseFunction {
 					start = Integer.valueOf(params[1].toString());
 					end = Integer.valueOf(params[2].toString());
 					result = target.substring(start - 1, start + end - 1);
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
 			}
-			
+
 			if (functionName.equals("SUBTR_LPAD"))
 			{
 				if (params.length == 5)
@@ -186,7 +195,8 @@ public class parseFunction {
 						target = pad + target;
 					}
 					result = target.substring(start - 1, start + end - 1);
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -201,7 +211,8 @@ public class parseFunction {
 					target = params[0];
 					end = Integer.valueOf(params[1].toString());
 					result = target.substring(0, end);
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -215,7 +226,8 @@ public class parseFunction {
 					start = Integer.valueOf(params[1].toString());
 					end = target.length();
 					result = target.substring(target.length() - start, target.length());
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -234,7 +246,8 @@ public class parseFunction {
 						target = pad + target;
 					}
 					result = target;
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -252,7 +265,8 @@ public class parseFunction {
 						target = target + pad;
 					}
 					result = target;
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -264,7 +278,8 @@ public class parseFunction {
 				{
 					target = params[0];
 					result = target.toUpperCase();
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -276,7 +291,8 @@ public class parseFunction {
 				{
 					target = params[0];
 					result = target.toLowerCase();
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -288,7 +304,8 @@ public class parseFunction {
 				{
 					target = params[0];
 					result = target.trim();
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -304,11 +321,13 @@ public class parseFunction {
 					if (target.length() > 1)
 					{
 						result = target.substring(1);
-					} else
+					}
+					else
 					{
 						result = "";
 					}
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -323,11 +342,13 @@ public class parseFunction {
 					if (target.length() > 1)
 					{
 						result = target.substring(0, target.length() - 1);
-					} else
+					}
+					else
 					{
 						result = "";
 					}
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -346,11 +367,13 @@ public class parseFunction {
 						DateFormat dateFormat = new SimpleDateFormat(params[0]);
 						Date date = new Date();
 						result = dateFormat.format(date);
-					} catch (Exception ex)
+					}
+					catch (Exception ex)
 					{
 						result = functionName + incorrectDateTimeFormat;
 					}
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -361,7 +384,8 @@ public class parseFunction {
 				if (params.length == 1)
 				{
 					result = System.getProperty("user.name");
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -372,7 +396,8 @@ public class parseFunction {
 				if (params.length == 1)
 				{
 					result = JVersion.getProgramVersionValue().toString();
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -385,12 +410,66 @@ public class parseFunction {
 					if (params[0].equals(params[1]))
 					{
 						result = params[2];
-					} else
+					}
+					else
 					{
 						result = params[3];
 					}
 
-				} else
+				}
+				else
+				{
+					result = functionName + incorrectNoParams;
+				}
+			}
+
+			if (functionName.equals("PALLET_WEIGHT_TEXT"))
+			{
+				if (params.length == 2)
+				{
+
+					String weightUom = params[0];
+
+					if (weightUom.equals(""))
+					{
+						weightUom = "KG";
+					}
+
+					int decimalPlaces = Integer.valueOf(params[1]);
+
+					String sscc = rs.getString("SSCC");
+
+					result = pal.getPalletWeight(sscc, weightUom, decimalPlaces);
+
+				}
+				else
+				{
+					result = functionName + incorrectNoParams;
+				}
+			}
+			
+			if (functionName.equals("PALLET_WEIGHT_BARCODE"))
+			{
+				if (params.length == 2)
+				{
+
+					String weightUom = params[0];
+
+					if (weightUom.equals(""))
+					{
+						weightUom = "KG";
+					}
+
+					int decimalPlaces = Integer.valueOf(params[1]);
+
+					String sscc = rs.getString("SSCC");
+
+					result = pal.getPalletWeight(sscc, weightUom, decimalPlaces);
+					
+					result = result.replace(".", "");
+
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -412,7 +491,8 @@ public class parseFunction {
 						if (expiryDateMode.endsWith("BATCH"))
 						{
 							expirydate = rs.getTimestamp("expiry_date");
-						} else
+						}
+						else
 						{
 							expirydate = rs.getTimestamp("sscc_expiry_date");
 						}
@@ -422,11 +502,13 @@ public class parseFunction {
 
 						result = dateFormat.format(expirydate);
 
-					} catch (Exception ex)
+					}
+					catch (Exception ex)
 					{
 						result = functionName + incorrectDateTimeFormat;
 					}
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
@@ -447,22 +529,23 @@ public class parseFunction {
 
 						dateOfManufacture = rs.getTimestamp("date_of_manufacture");
 
-
 						dateOfManufacture.setNanos(0);
 						DateFormat dateFormat = new SimpleDateFormat(params[0]);
 
 						result = dateFormat.format(dateOfManufacture);
 
-					} catch (Exception ex)
+					}
+					catch (Exception ex)
 					{
 						result = functionName + incorrectDateTimeFormat;
 					}
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
 			}
-			
+
 			if (functionName.equals("DATETIME"))
 			{
 				String fieldname = "";
@@ -491,22 +574,25 @@ public class parseFunction {
 						DateFormat dateFormat = new SimpleDateFormat(format);
 
 						result = dateFormat.format(fielddatetime);
-						fielddatetime=null;
-						format=null;
-						format=null;
+						fielddatetime = null;
+						format = null;
+						format = null;
 
-					} catch (Exception ex)
+					}
+					catch (Exception ex)
 					{
 						result = functionName + incorrectDateTimeFormat;
 					}
-				} else
+				}
+				else
 				{
 					result = functionName + incorrectNoParams;
 				}
 
 			}
 
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			result = functionName + " [" + ex.getMessage() + "]";
 		}

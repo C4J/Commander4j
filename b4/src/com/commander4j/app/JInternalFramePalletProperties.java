@@ -497,6 +497,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 
 	private void refresh() {
 		pallet.setSSCC(lsscc);
+		
 		jTextFieldSSCC.setText(lsscc);
 		if (pallet.isValidPallet()) {
 			pallet.getPalletProperties(lsscc);

@@ -133,6 +133,77 @@ public class JDBPallet
 		setLocationID(location);
 	}
 
+	public String getPalletWeight(String sscc, String uom, int decimalPlaces)
+	{
+		String result = "";
+		BigDecimal calcResult = new BigDecimal("0");
+
+		if (getPalletProperties(sscc))
+		{
+			String material = getMaterial();
+			String prodUom = getUom();
+
+			BigDecimal prodQty = getQuantity();
+			Long prodDenom = (long) 0;
+			Long prodNumer = (long) 0;
+
+			JDBMaterial mat = new JDBMaterial(getHostID(), getSessionID());
+
+			JDBMaterialUom materialUom = new JDBMaterialUom(getHostID(), getSessionID());
+
+			if (mat.getMaterialProperties(material))
+			{
+				BigDecimal gweight = mat.getGrossWeight();
+				String gweightUom = mat.getWeightUom();
+
+				if (materialUom.getMaterialUomProperties(material, prodUom))
+				{
+					prodDenom = Long.valueOf(materialUom.getDenominator());
+					prodNumer = Long.valueOf(materialUom.getNumerator());
+
+					calcResult = prodQty.divide(BigDecimal.valueOf(prodDenom));
+					calcResult = calcResult.multiply(BigDecimal.valueOf(prodNumer));
+					calcResult = calcResult.multiply(gweight);
+
+					if (uom.equals(gweightUom) == false)
+					{
+						if (uom.equals("KG") && gweightUom.equals("G"))
+						{
+
+							calcResult = calcResult.divide(new BigDecimal("1000"));
+						}
+
+						if (uom.equals("G") && gweightUom.equals("KG"))
+						{
+
+							calcResult = calcResult.multiply(new BigDecimal("1000"));
+						}
+					}
+
+				}
+			}
+
+		}
+
+		calcResult.setScale(decimalPlaces, BigDecimal.ROUND_UP);
+
+		String formatString = "#####";
+		if (decimalPlaces > 0)
+		{
+			formatString = formatString + ".";
+			for (int x = 0; x < decimalPlaces; x++)
+			{
+				formatString = formatString + "0";
+			}
+		}
+
+		DecimalFormat f = new DecimalFormat(formatString);
+
+		result = f.format(calcResult);
+
+		return result;
+	}
+
 	private Boolean autoCreateMaterialBatch()
 	{
 
@@ -1446,7 +1517,7 @@ public class JDBPallet
 		return result;
 	}
 
-	public Long updateLocationID(Long txn,String fromLocation, String toLocation)
+	public Long updateLocationID(Long txn, String fromLocation, String toLocation)
 	{
 		Long result = (long) 0;
 
@@ -1471,8 +1542,8 @@ public class JDBPallet
 			if (toLocation.equals(getLocationID()) == false)
 			{
 				JDBLocation loc = new JDBLocation(getHostID(), getSessionID());
-				
-				//Check if new location is valid
+
+				// Check if new location is valid
 				if (loc.getLocationProperties(fromLocation))
 				{
 

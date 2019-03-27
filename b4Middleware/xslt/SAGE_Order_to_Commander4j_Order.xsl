@@ -30,6 +30,7 @@
 
 		<xsl:variable name="reqdUom" select="requiredUom"/>
 		<xsl:variable name="material" select="material"/>
+                <xsl:variable name="location" select="plant"/>
 		<xsl:variable name="order" select="orderNo"/>
 		<xsl:variable name="reqdQuantity" select="requiredQuantity"/>
 		<xsl:variable name="dueDate" select="dueDate"/>
@@ -59,7 +60,7 @@
 					<materialType>FERT</materialType>
 					<description><xsl:value-of select="description"/></description>
 					<status><xsl:value-of select="c4j:getReferenceItem('SageWorksOrderStatus', $status)"/></status>
-					<location>AINTREE</location>
+					<location><xsl:value-of select="$location"/></location>
 					<requiredResource></requiredResource>
 					<recipeID></recipeID>
 					<requiredQuantity><xsl:value-of select="$reqdQuantity"/></requiredQuantity>

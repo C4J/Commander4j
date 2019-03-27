@@ -180,7 +180,7 @@ public class InboundMessageThread extends Thread {
 
 								if (attrs.size() > 0)
 								{
-									if (fileName.indexOf(".xml") > 0)
+									if (fileName.endsWith(".xml"))
 									{
 										filenames.addFirst(fileName);
 										com.commander4j.util.JWait.milliSec(50);
