@@ -238,17 +238,33 @@
         </output>
     </map>
 
-    <map id="map114" enabed="Y" description="NES SAP XML Material to C4J Material">
-        <input id="in1" description="Read NES SAP XML Material">
+    <map id="map114" enabed="Y" description="NES SAP Wonderware XML Material to C4J Material">
+        <input id="in1" description="Read NES SAP WWare XML Material">
             <type>XML</type>
-            <path>./interface/input/114 (NES SAP XML Material)</path>
+            <path>./interface/input/114 (NES SAP Wonderware Material XML)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
             <XSLT>WONDERWARE_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write Commander4j Material">
-            <path>./interface/output/114 (NES C4J - Material)</path>
+            <path>./interface/output/114 (NES C4J - Material from Wonderware)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+    
+    <map id="map116" enabed="Y" description="NES SAP Mii XML Material to C4J Material">
+        <input id="in1" description="Read NES SAP Mii XML Material">
+            <type>XML</type>
+            <path>./interface/input/116 (NES SAP Mii Material XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>WONDERWARE_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write Commander4j Material">
+            <path>./interface/output/116 (NES C4J - Material from MII)</path>
             <type>XML</type>
             <XSLT/>
         </output>

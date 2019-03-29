@@ -32,7 +32,7 @@
 				<col id="6">A</col>
 				<col id="7"><xsl:value-of select="batch"/><xsl:value-of  select="substring($sscc,12,3)"/></col>
 				<col id="8"><xsl:value-of  select="substring($sscc,15,3)"/></col>
-				<col id="9"><xsl:value-of select="ean"/></col>
+				<col id="9"><xsl:value-of select="$sscc"/></col>
 			</row>
 			
 		</data>			
