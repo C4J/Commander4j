@@ -260,7 +260,7 @@
             <path>./interface/input/116 (NES SAP Mii Material XML)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT>WONDERWARE_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
+            <XSLT>MII_MM_XML_to_C4J_XML.xsl</XSLT>
         </input>
         
         <output id="out1" enabed="Y" description="Write Commander4j Material">

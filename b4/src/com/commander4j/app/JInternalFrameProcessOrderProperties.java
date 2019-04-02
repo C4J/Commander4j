@@ -739,6 +739,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 		}
 		if (processorder.update())
 		{
+			jTextFieldDescription.setText(processorder.getDescription());
 			jButtonSave.setEnabled(false);
 		} else
 		{

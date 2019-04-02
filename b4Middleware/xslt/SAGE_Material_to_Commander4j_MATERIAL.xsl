@@ -29,7 +29,7 @@
 
 		<xsl:variable name="shelf_life_rule" select="shelf_life_rule"/>
 		<xsl:variable name="shelf_life_uom" select="shelf_life_uom"/>
-		<xsl:variable name="base_uom" select="base_uom"/>
+		<xsl:variable name="base_uom" select="string(base_uom)"/>
 		<xsl:variable name="prod_uom" select="prod_uom"/>
 		<xsl:variable name="tuc_outbar" select="tuc_outbar"/>
 		<xsl:variable name="material" select="material"/>
@@ -72,34 +72,35 @@
 					<equipment_Type><xsl:value-of select="Pallet_Type"/></equipment_Type>
 					
 					<xsl:if test="$base_uom!=''">
-						<xsl:comment>Base Unit of Measure (EA)</xsl:comment>
-						<materialUOMDefinition>
-							<uom>
-								<xsl:value-of select="c4j:getReferenceItem('SageUOM', $base_uom)"/>
-							</uom>
-							<numerator>1</numerator>
-							<denominator>1</denominator>
-							<ean/>
-							<variant>00</variant>
-						</materialUOMDefinition>
+							<xsl:comment>Base Unit of Measure (EA)</xsl:comment>
+							<materialUOMDefinition>
+								<uom>
+									<xsl:value-of select="c4j:getReferenceItem('SageUOM', $base_uom)"/>
+								</uom>
+								<numerator>1</numerator>
+								<denominator>1</denominator>
+								<ean/>
+								<variant>00</variant>
+							</materialUOMDefinition>
+						
+							<xsl:if test="$prod_uom!=''">
+								<xsl:comment>Production Unit of Measure (CS)</xsl:comment>
+								<materialUOMDefinition>
+									<uom>
+										<xsl:value-of select="c4j:getReferenceItem('SageUOM', $prod_uom)"/>
+									</uom>
+									<numerator>
+										<xsl:value-of select="$base_per_prod"/>
+									</numerator>
+									<denominator>1</denominator>
+									<ean>
+										<xsl:value-of select="$tuc_outbar"/>
+									</ean>
+									<variant>00</variant>
+								</materialUOMDefinition>
+							</xsl:if>
 					</xsl:if>
 					
-					<xsl:if test="$base_uom!=''">
-						<xsl:comment>Production Unit of Measure (CS)</xsl:comment>
-						<materialUOMDefinition>
-							<uom>
-								<xsl:value-of select="c4j:getReferenceItem('SageUOM', $prod_uom)"/>
-							</uom>
-							<numerator>
-								<xsl:value-of select="$base_per_prod"/>
-							</numerator>
-							<denominator>1</denominator>
-							<ean>
-								<xsl:value-of select="$tuc_outbar"/>
-							</ean>
-							<variant>00</variant>
-						</materialUOMDefinition>
-					</xsl:if>
 					
 					<xsl:comment>Layer Unit of Measure (LAG)</xsl:comment>
 					<materialUOMDefinition>

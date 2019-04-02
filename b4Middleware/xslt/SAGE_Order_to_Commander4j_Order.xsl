@@ -4,15 +4,15 @@
 	xmlns:c4j="http://www.commander4j.com"
 	xmlns:c4j_XSLT_Ext="http://xml.apache.org/xalan/java/com.commander4j.Transformation.XSLTExtension"
 	exclude-result-prefixes="xs c4j c4j_XSLT_Ext p" version="2.0">
-
+	
 	<xsl:output encoding="UTF-8" indent="yes" method="xml"/>
 	<xsl:strip-space elements="*"/>
-
+	
 	<!-- CONFIG DATA -->
 	<xsl:variable name="HOSTREF"><xsl:value-of select="c4j:getConfigItem('config', 'HostRef')"/></xsl:variable>
 	<xsl:variable name="PLANT"><xsl:value-of select="c4j:getConfigItem('config', 'Plant')"/></xsl:variable>
 	<xsl:variable name="WAREHOUSE"><xsl:value-of select="c4j:getConfigItem('config', 'Warehouse')"/></xsl:variable>
-
+	
 	<xsl:template match="p:WWIMPFHMFGCM">
 		<root>
 			<xsl:apply-templates select='I' />
@@ -20,17 +20,17 @@
 	</xsl:template>
 	
 	<xsl:template match="I">
-
+		
 		<xsl:variable name="message_date_time" select="c4j_XSLT_Ext:getISODateTimeString()"
 			xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
 		
 		<xsl:variable name="filename_date_time" select="c4j_XSLT_Ext:getISODateTimeFilenameString()"
 			xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
-
-
+		
+		
 		<xsl:variable name="reqdUom" select="requiredUom"/>
 		<xsl:variable name="material" select="material"/>
-                <xsl:variable name="location" select="plant"/>
+		<xsl:variable name="location" select="plant"/>
 		<xsl:variable name="order" select="orderNo"/>
 		<xsl:variable name="reqdQuantity" select="requiredQuantity"/>
 		<xsl:variable name="dueDate" select="dueDate"/>
@@ -50,7 +50,7 @@
 			<messageInformation>Order=<xsl:value-of select="$order"/></messageInformation>
 			<interfaceDirection>Input</interfaceDirection>
 			<messageDate><xsl:value-of select="$message_date_time"/></messageDate>
-
+			
 			<xsl:comment>Message Data</xsl:comment>
 			<messageData>
 				<processOrder>
@@ -58,7 +58,8 @@
 					<dueDate><xsl:value-of select="$dueDate"/>T00:00:00</dueDate>
 					<material><xsl:value-of select="$material"/></material>
 					<materialType>FERT</materialType>
-					<description><xsl:value-of select="description"/></description>
+					<!--<description><xsl:value-of select="description"/></description>-->
+					<description></description>
 					<status><xsl:value-of select="c4j:getReferenceItem('SageWorksOrderStatus', $status)"/></status>
 					<location><xsl:value-of select="$location"/></location>
 					<requiredResource></requiredResource>
@@ -79,18 +80,18 @@
 		<xsl:text>&#10;</xsl:text>
 		
 	</xsl:template>
-
+	
 	<!-- ================
 		FUNCTION get config data 
         ================ -->
-
+	
 	<xsl:function name="c4j:getConfigItem">
 		<xsl:param name="type"/>
 		<xsl:param name="string1"/>
 		<xsl:variable name="item_info" select="document('configData.xml')/lookup"/>
 		<xsl:value-of select="$item_info/item[@type = $type][@id = $string1]/value"/>
 	</xsl:function>
-
+	
 	<!-- ================
         FUNCTION get reference data 
         ================ -->

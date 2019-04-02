@@ -332,7 +332,7 @@ public class JDBProcessOrder
 
 	public String getDescription()
 	{
-		return dbDescription;
+		return JUtility.replaceNullStringwithBlank(dbDescription);
 	}
 
 	public Timestamp getDueDate()
@@ -864,6 +864,15 @@ public class JDBProcessOrder
 
 		if (isValid() == true)
 		{
+			if (getDescription().equals(""))
+			{
+				// If order description is blank use the material description instead.
+				if (material.getMaterialProperties(getMaterial()))
+				{
+					setDescription(material.getDescription());
+				}
+			}
+			
 			try
 			{
 				PreparedStatement stmtupdate;

@@ -9,13 +9,14 @@
     <xsl:strip-space  elements="*"/>
 
     <!-- CONFIG DATA -->
-    <!--
+
     <xsl:variable name="HOSTREF"><xsl:value-of select="c4j:getConfigItem('config','HostRef')"/></xsl:variable>
     <xsl:variable name="PLANT"><xsl:value-of select="c4j:getConfigItem('config','Plant')"/></xsl:variable>
     <xsl:variable name="WAREHOUSE"><xsl:value-of select="c4j:getConfigItem('config','Warehouse')"/></xsl:variable>
     <xsl:variable name="LANGUAGE"><xsl:value-of select="c4j:getConfigItem('config','Language')"/></xsl:variable>
     <xsl:variable name="LOCATION"><xsl:value-of select="c4j:getConfigItem('config','Location')"/></xsl:variable>
     
+    <!--  
     MARA            - General Material Data     (Material)                                  E1MARAM  E2MARMM002GRP  E2MARAM005GRP
       MAKT          - Material Descriptions.    (Material - Language)
       MARC          - Plant Data                (Material - Plant)                          E1MARCM
@@ -28,27 +29,30 @@
      MARA E1MARAM - Master material general data 
      MARC E1MARCM - Master material C segment
      MLGN E1MLGNM - Master material material data per warehouse number
-     
      -->
     
-    <!-- DEBUG DATA -->
+    <!-- DEBUG DATA
     <xsl:variable name="HOSTREF"   >HULIVE</xsl:variable>
     <xsl:variable name="PLANT"     >0917</xsl:variable>
     <xsl:variable name="WAREHOUSE" >HU3</xsl:variable>
     <xsl:variable name="LANGUAGE"  >E</xsl:variable>
     <xsl:variable name="LOCATION"  >BUK</xsl:variable>
+    -->
   
     <!-- Local Variables -->
     
-    <xsl:variable name="USE_PLANT"          select="/ZMATMAS03/IDOC/E1MARAM/_-NESGLB_-DISTR000/WERKS[.=$PLANT]/../AD_PLANT_DATA"/>
-    <xsl:variable name="FOUND_PLANT"        select="/ZMATMAS03/IDOC/E1MARAM/E1MARCM/WERKS[.=$PLANT]"/>
-    <xsl:variable name="FOUND_WAREHOUSE"    select="/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE]" />
+    <xsl:variable name="BASE_UOM"           select="string(/ZMATMAS03/IDOC/E1MARAM/MEINS)"/>
+    <xsl:variable name="MATERIAL"           select="c4j_XSLT_Ext:removeLeadingZeros(string(/ZMATMAS03/IDOC/E1MARAM/MATNR))"/>
+    <xsl:variable name="MTYPE"           select="string(/ZMATMAS03/IDOC/E1MARAM/MTART)"/>
+    <xsl:variable name="USE_PLANT"          select="string(/ZMATMAS03/IDOC/E1MARAM/_-NESGLB_-DISTR000/WERKS[.=$PLANT]/../AD_PLANT_DATA)"/>
+    <xsl:variable name="FOUND_PLANT"        select="string(/ZMATMAS03/IDOC/E1MARAM/E1MARCM/WERKS[.=$PLANT])"/>
+    <xsl:variable name="FOUND_WAREHOUSE"    select="string(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE])" />
+    <xsl:variable name="LE_QTY"             select="number(concat('0',string(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHMG1)))" />
+    <xsl:variable name="LE_UOM_NOTRIM"      select="string(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHME1)" />
+    <xsl:variable name="LE_UOM"             select="c4j_XSLT_Ext:trim(string($LE_UOM_NOTRIM))" />
 
-    <xsl:variable name="LE_QTY"             select="number(concat('0',string(/ZMATMAS03/IDOC/E2MARAM005GRP/E2MLGNM001GRP/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHMG1)))" />
-    <xsl:variable name="LE_UOM"             select="c4j_XSLT_Ext:trim(string(/ZMATMAS03/IDOC/E2MARAM005GRP/E2MLGNM001GRP/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHME1))" />
-    <xsl:variable name="LE_UOM_NOTRIM"      select="/ZMATMAS03/IDOC/E2MARAM005GRP/E2MLGNM001GRP/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHME1" />
-    <xsl:variable name="LE_NUMERATOR"       select="number(concat('0',string(/ZMATMAS03/IDOC/E2MARAM005GRP/E2MARMM002GRP/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREZ)))" />
-    <xsl:variable name="LE_DENOMINATOR"     select="number(concat('0',string(/ZMATMAS03/IDOC/E2MARAM005GRP/E2MARMM002GRP/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREN)))" />
+    <xsl:variable name="LE_NUMERATOR"       select="number(concat('0',string(/ZMATMAS03/IDOC/E1MARAM/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREZ)))" />                                             
+    <xsl:variable name="LE_DENOMINATOR"     select="number(concat('0',string(/ZMATMAS03/IDOC/E1MARAM/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREN)))" />
    
     <xsl:template match="/ZMATMAS03">
         <message>
@@ -71,9 +75,10 @@
         <hostRef><xsl:value-of select="$HOSTREF"/></hostRef>
         <interfaceType>Material Definition</interfaceType>
         <interfaceDirection>Input</interfaceDirection>
-        <xsl:variable name="SAPDOCNUM_LONG" select="DOCNUM" />
+        <xsl:variable name="SAPDOCNUM_LONG" select="string(DOCNUM)" />
         <xsl:variable name="SAPDOCNUM_SHORT" select="c4j_XSLT_Ext:removeLeadingZeros($SAPDOCNUM_LONG)" />
         <messageRef>DOCNUM <xsl:value-of select="$SAPDOCNUM_SHORT"/></messageRef>
+        <messageInformation>Mateial=<xsl:value-of select="$MATERIAL"/>/<xsl:value-of select="$MTYPE"/></messageInformation>
         <xsl:variable name="CREATE_DATE" select="c4j_XSLT_Ext:trim(string(CREDAT))" />
         <xsl:variable name="CREATE_TIME" select="c4j_XSLT_Ext:trim(string(CRETIM))" />
         <xsl:variable name="CREATE_DATETIME" select="c4j_XSLT_Ext:concat($CREATE_DATE,$CREATE_TIME)"  />
@@ -81,60 +86,47 @@
     </xsl:template>
     
     <xsl:template match="E1MARAM">
-        <xsl:variable name="MATERIAL_LONG" select="MATNR" />
+        <xsl:variable name="MATERIAL_LONG" select="string(MATNR)" />
         <xsl:variable name="MATERIAL_SHORT" select="c4j_XSLT_Ext:removeLeadingZeros($MATERIAL_LONG)" />
         <material><xsl:value-of select="$MATERIAL_SHORT" /></material>
-        <old_material><xsl:value-of select="BISMT" /></old_material>
-        <materialType><xsl:value-of select="MTART" /></materialType>
-        <base_uom><xsl:value-of select="MEINS" /></base_uom>
+        <old_material><xsl:value-of select="string(BISMT)" /></old_material>
+        <materialType><xsl:value-of select="string(MTART)" /></materialType>
+        <base_uom><xsl:value-of select="string(MEINS)" /></base_uom>
         <gross_weight><xsl:value-of select="BRGEW" /></gross_weight>
         <net_weight><xsl:value-of select="NTGEW" /></net_weight>
-        <weight_uom><xsl:value-of select="GEWEI" /></weight_uom>
-        <shelf_life_rule><xsl:value-of select="RDMHD" /></shelf_life_rule>
+        <weight_uom><xsl:value-of select="string(GEWEI)" /></weight_uom>
 
-        <xsl:apply-templates select="E1MARCM/_-GLB_-RGTE1MARCMBBD"/>
         <xsl:comment>Description for language <xsl:value-of select="$LANGUAGE" /></xsl:comment>
         
-        <xsl:variable name="DESCRIPTION" select="E1MAKTM/SPRAS[.=$LANGUAGE]/../MAKTX" />
+        <xsl:variable name="DESCRIPTION" select="string(E1MAKTM/SPRAS[.=$LANGUAGE]/../MAKTX)" />
         <description><xsl:value-of select="$DESCRIPTION"/></description>
         
         <xsl:if test="starts-with($DESCRIPTION,'ZZ')">
             <enabled>N</enabled>
         </xsl:if> 
+        
         <xsl:if test="not(starts-with($DESCRIPTION,'ZZ'))">
             <enabled>Y</enabled>
         </xsl:if> 
         
         <equipment_Type><xsl:value-of select=" /ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LETY1"/></equipment_Type>
+        
+        <xsl:comment>Use PLANT = [<xsl:value-of select="$USE_PLANT"/>]</xsl:comment>
+        
+        <xsl:if test="$USE_PLANT = 'X'">
+            <xsl:apply-templates select="E1MARCM/_-GLB_-RGTE1MARCMBBD"/>
+        </xsl:if>
+        
+        <xsl:if test="$USE_PLANT = ''">
+            <shelf_life> <xsl:value-of select="c4j_XSLT_Ext:trim(MHDHB)" /></shelf_life>
+            <xsl:variable name="shelf_life_uom" select="c4j_XSLT_Ext:trim(string(IPRKZ))" />
+            <shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('ShelfLifeUom',$shelf_life_uom)" /></shelf_life_uom>
+            <!--<shelf_life_rule1><xsl:value-of select="RDMHD" /></shelf_life_rule1>-->
+        </xsl:if>
 
+        <shelf_life_rule><xsl:value-of select="RDMHD" /></shelf_life_rule>
+        
         <xsl:apply-templates select="E1MARMM"/>
-
-        <xsl:if test="$USE_PLANT='X'"> 
-            <xsl:comment>Use Plant Segment <xsl:value-of select="$USE_PLANT" /></xsl:comment>
-
-            <xsl:if test="$FOUND_PLANT=$PLANT">
-                <xsl:comment>Found Plant Segment <xsl:value-of select="$FOUND_PLANT"/></xsl:comment>
-            </xsl:if> 
-
-            <xsl:if test="$FOUND_PLANT!=$PLANT">
-                <xsl:comment>Plant Segment Not Found for <xsl:value-of select="$PLANT"/></xsl:comment>
-            </xsl:if> 
-        </xsl:if>
-        
-        <xsl:if test="$USE_PLANT!='X'"> 
-            <xsl:comment>Don't use Plant Segment <xsl:value-of select="$USE_PLANT" /></xsl:comment>
-            <rounding_rule5><xsl:value-of select="/ZMATMAS03/IDOC[1]/E1MARAM[1]/RDMHD[1]" /></rounding_rule5>
-            <!--    /ZMATMAS03/IDOC[1]/E1MARAM[1]/RDMHD[1]-->
-        </xsl:if>
-        
-        <xsl:if test="$FOUND_WAREHOUSE=$WAREHOUSE">
-            <xsl:comment>Found Warehouse Segment <xsl:value-of select="$FOUND_WAREHOUSE"/></xsl:comment>
-        </xsl:if> 
-        
-        
-        <xsl:if test="$FOUND_WAREHOUSE!=$WAREHOUSE">
-            <xsl:comment>Warehouse Segment Not Found for <xsl:value-of select="$WAREHOUSE"/></xsl:comment>
-        </xsl:if> 
         
         <validLocations>
              <xsl:apply-templates select="E1MARCM"/>
@@ -143,8 +135,9 @@
 
     <xsl:template match="E1MARCM/_-GLB_-RGTE1MARCMBBD">
         <shelf_life> <xsl:value-of select="c4j_XSLT_Ext:trim(PLANT_MHDHB)" /></shelf_life>
-        <xsl:variable name="shelf_life_uom" select="c4j_XSLT_Ext:trim(PLANT_IPRKZ)" />
+        <xsl:variable name="shelf_life_uom" select="c4j_XSLT_Ext:trim(string(PLANT_IPRKZ))" />
         <shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('ShelfLifeUom',$shelf_life_uom)" /></shelf_life_uom>
+        <!--<shelf_life_rule2><xsl:value-of select="PLANT_RDMHD" /></shelf_life_rule2>-->
     </xsl:template>
     
     <!-- Get Locations -->
@@ -158,11 +151,69 @@
     <!-- Get Units -->
     <xsl:template match="E1MARMM">
         <materialUOMDefinition>
-            <uom> <xsl:value-of select="c4j_XSLT_Ext:trim(MEINH)" /></uom>
-            <denominator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREZ)" /></denominator>
-            <numerator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREN)" /></numerator>
-            <ean><xsl:value-of select="c4j_XSLT_Ext:padEAN(c4j_XSLT_Ext:trim(EAN11))" /></ean>
-            <variant><xsl:value-of select="c4j_XSLT_Ext:padVariant(c4j_XSLT_Ext:trim(_-NESGLB_-E1MARMM000[1]/GTIN_VARIANT))" /></variant>
+            <xsl:variable name="current_uom" select="c4j_XSLT_Ext:trim(string(MEINH))"/>
+            <xsl:variable name="current_ean" select='c4j_XSLT_Ext:padEAN(c4j_XSLT_Ext:trim(string(EAN11)))' />
+            <xsl:variable name="current_variant" select='c4j_XSLT_Ext:padVariant(c4j_XSLT_Ext:trim(string(_-NESGLB_-E1MARMM000[1]/GTIN_VARIANT)))' />
+            <xsl:variable name="current_numerator" select="c4j_XSLT_Ext:trim(UMREZ)" />
+            <xsl:variable name="current_denominator" select="c4j_XSLT_Ext:trim(UMREN)" />
+            
+            <uom> <xsl:value-of select="$current_uom" /></uom>
+            <ean><xsl:value-of select="$current_ean" /></ean>
+            <variant><xsl:value-of select="$current_variant" /></variant>
+
+            <xsl:if test="$current_uom='D97'">   
+                
+                <!--<xsl:comment>[<xsl:value-of select="$LE_UOM"/>]</xsl:comment>-->
+                <xsl:if test="$LE_UOM!=''">
+                    <xsl:comment>* LE VALUES *</xsl:comment>
+                    <xsl:comment>LE Quantity    = <xsl:value-of select="$LE_QTY" /></xsl:comment>
+                    <xsl:comment>LE Unit        = <xsl:value-of select="$LE_UOM" /></xsl:comment>
+                    <xsl:comment>LE Numerator   = <xsl:value-of select="$LE_NUMERATOR" /></xsl:comment>
+                    <xsl:comment>LE Denominator = <xsl:value-of select="$LE_DENOMINATOR" /></xsl:comment>
+                    <xsl:comment>* BASE VALUES *</xsl:comment>
+                    <xsl:comment>Base Unit      = <xsl:value-of select="$BASE_UOM" /></xsl:comment>
+                    <xsl:comment>* CALCULATIONS *</xsl:comment>
+                    <xsl:comment>Converting LE Quantity from <xsl:value-of select='$LE_UOM' /> to <xsl:value-of select='$BASE_UOM' /></xsl:comment>  
+                    
+                    <xsl:variable name="temp98" select="number($current_numerator)" />
+                    <xsl:variable name="temp99" select="number($LE_QTY * $LE_NUMERATOR)" />
+                    <xsl:comment>D97 (in <xsl:value-of select='$BASE_UOM' />) = <xsl:value-of select='$LE_QTY' />(<xsl:value-of select='$LE_UOM' />) x <xsl:value-of select='$LE_NUMERATOR' /> = <xsl:value-of select='$temp99' /></xsl:comment> 
+                    
+                    <xsl:comment>Calculated LE quantity is <xsl:value-of select="$temp99" /></xsl:comment>
+                    
+                    <xsl:if test="$temp99=0">
+                        <numerator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREZ)" /></numerator>
+                    </xsl:if>
+                    
+                    <xsl:if test="$temp99>0">
+    
+                        <xsl:if test="$temp98!=$temp99">
+                            <xsl:comment>LE Qty <xsl:value-of select='$temp99'/> is different to Normal Qty <xsl:value-of select='$temp98'/> - setting override flag</xsl:comment>
+                            <numerator><xsl:value-of select='$temp99'/></numerator>
+                            <override>X</override>
+                        </xsl:if>
+
+                        <xsl:if test="$temp98=$temp99">
+                            <xsl:comment>LE Qty <xsl:value-of select='$temp99'/> is the same Normal Qty <xsl:value-of select='$temp98'/></xsl:comment>
+                            <numerator><xsl:value-of select='$temp99'/></numerator>
+                        </xsl:if>
+                    </xsl:if>
+                    
+                </xsl:if>
+                
+                <xsl:if test="$LE_UOM=''">
+                    <xsl:comment>LE Values NOT Found</xsl:comment>
+                    <numerator><xsl:value-of select="$current_numerator" /></numerator>
+                </xsl:if>
+                
+            </xsl:if>
+
+            <xsl:if test="$current_uom!='D97'"> 
+                <numerator><xsl:value-of select="$current_numerator" /></numerator>
+            </xsl:if>
+            
+            <denominator><xsl:value-of select="$current_denominator" /></denominator>
+
         </materialUOMDefinition>
     </xsl:template>
     

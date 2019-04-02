@@ -222,6 +222,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private boolean ExpiryEditable = true;
 	private JTextField4j textField4jResource = new JTextField4j();
 	private JTextField4j textField4jCustomer = new JTextField4j();
+	private boolean confirmStatus = false;
 
 	public JInternalFrameProductionDeclaration(String procOrder)
 	{
@@ -240,6 +241,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 		});
 
 		int copies = Integer.valueOf(ctrl.getKeyValueWithDefault("DEFAULT_LABELS_TO_PRINT", "2", "Default No of Labels to print"));
+		confirmStatus = Boolean.valueOf(ctrl.getKeyValueWithDefault("PRODDEC CONFIRM CHECKBOX STATUS", "false", "Default Auto Confirm Checkbox Status"));
 
 		copiesnumbermodel = new SpinnerNumberModel(copies, 1, 100, 1);
 
@@ -1387,6 +1389,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 				jLabelPrintLabel_2.setBounds(10, 44, 119, 21);
 				panel.add(jLabelPrintLabel_2);
 				jCheckBoxAutoConfirm = new JCheckBox4j();
+				jCheckBoxAutoConfirm.setSelected(confirmStatus);
 				jCheckBoxAutoConfirm.setBackground(Color.WHITE);
 				jCheckBoxAutoConfirm.setBounds(424, 44, 21, 21);
 				panel.add(jCheckBoxAutoConfirm);
