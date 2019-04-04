@@ -39,11 +39,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
 import com.commander4j.db.JDBControl;
+import com.commander4j.db.JDBCustomer;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceLog;
 import com.commander4j.db.JDBInterfaceRequest;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBPalletHistory;
+import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBUom;
 import com.commander4j.email.JeMailOutGoingMessage;
 import com.commander4j.sys.Common;
@@ -112,10 +114,15 @@ public class OutgoingProductionDeclarationConfirmation
 		JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 		JDBUom uom = new JDBUom(getHostID(), getSessionID());
 		JDBMaterial mat = new JDBMaterial(getHostID(), getSessionID());
+		JDBProcessOrder order = new JDBProcessOrder(getHostID(), getSessionID());
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
+		JDBCustomer cust = new JDBCustomer(getHostID(), getSessionID());
 
 		String expiryMode;
 		expiryMode = ctrl.getKeyValue("EXPIRY DATE MODE");
+		
+		String defaultBatchFormat;
+		defaultBatchFormat = ctrl.getKeyValue("BATCH FORMAT");
 
 		inter.getInterfaceProperties("Production Declaration", "Output");
 		String device = inter.getDevice();
@@ -193,6 +200,56 @@ public class OutgoingProductionDeclarationConfirmation
 						Element autoMoveAfterMakeLocation = addElement(document, "moveLocationID", "");
 						productionDeclaration.appendChild(autoMoveAfterMakeLocation);
 					}
+					
+					if (order.getProcessOrderProperties(palhist.getPallet().getProcessOrder()) == true)
+					{
+						Element customer = addElement(document, "customerID", order.getCustomerID());
+						productionDeclaration.appendChild(customer);
+						
+						if (cust.getCustomerProperties(order.getCustomerID())==true)
+						{
+							Element customerName = addElement(document, "customerName",cust.getName());
+							productionDeclaration.appendChild(customerName);
+							
+							Element printOnLabel = addElement(document, "customerNameOnLabel",cust.getPrintOnLabel());
+							productionDeclaration.appendChild(printOnLabel);
+							
+							Element overridePackLabel = addElement(document, "customerOverridePack",cust.getOverridePackLabel());
+							productionDeclaration.appendChild(overridePackLabel);
+							
+							Element packLabelModule = addElement(document, "customerPackModule",cust.getPackLabelModuleID());
+							productionDeclaration.appendChild(packLabelModule);
+							
+							Element overridePalletLabel = addElement(document, "customerOverridePallet",cust.getOverridePalletLabel());
+							productionDeclaration.appendChild(overridePalletLabel);
+							
+							Element palletLabelModule = addElement(document, "customerPalletModule",cust.getPalletLabelModuleID());
+							productionDeclaration.appendChild(palletLabelModule);
+
+							Element batchOverride = addElement(document, "customerBatchOverride",cust.getCustomerBatchOverride());
+							productionDeclaration.appendChild(batchOverride);
+							
+							Element batchFormat = addElement(document, "customerBatchFormat",cust.getCustomerBatchFormat());
+							productionDeclaration.appendChild(batchFormat);
+							
+							Element customerData1 = addElement(document, "customerData01",cust.getCustomerData01());
+							productionDeclaration.appendChild(customerData1);
+							
+							Element customerDate2 = addElement(document, "customerData02",cust.getCustomerData02());
+							productionDeclaration.appendChild(customerDate2);
+							
+							Element customerDate3 = addElement(document, "customerData03",cust.getCustomerData03());
+							productionDeclaration.appendChild(customerDate3);
+							
+							Element customerData4 = addElement(document, "customerData04",cust.getCustomerData04());
+							productionDeclaration.appendChild(customerData4);
+						}
+					}
+					else
+					{
+						Element customer = addElement(document, "customerID", "");
+						productionDeclaration.appendChild(customer);
+					}
 
 					Element ean = addElement(document, "ean", palhist.getPallet().getEAN());
 					productionDeclaration.appendChild(ean);
@@ -203,6 +260,9 @@ public class OutgoingProductionDeclarationConfirmation
 					Element status = addElement(document, "status", palhist.getPallet().getStatus());
 					productionDeclaration.appendChild(status);
 
+					Element batchDefault = addElement(document, "batchDefaultFormat", defaultBatchFormat);
+					productionDeclaration.appendChild(batchDefault);
+					
 					Element batch = addElement(document, "batch", palhist.getPallet().getBatchNumber());
 					productionDeclaration.appendChild(batch);
 

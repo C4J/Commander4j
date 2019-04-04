@@ -38,11 +38,10 @@
 		<xsl:variable name="status" select="status"/>
 		<xsl:variable name="customerName" select="customerName"/>
 		<xsl:text>&#10;</xsl:text>
-		<xsl:comment>*START* filename ORD_<xsl:value-of select="$material"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
+		<xsl:comment>*START* filename ORD_<xsl:value-of select="$order"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
 		<xsl:text>&#10;</xsl:text>
 		<xsl:text>&#10;</xsl:text>
 		<message>
-			<xsl:comment>Message Header</xsl:comment>
 			<plant><xsl:value-of select="$PLANT"/></plant>
 			<hostRef><xsl:value-of select="$HOSTREF"/></hostRef>
 			<messageRef>SAGE Works Order <xsl:value-of select="$message_date_time"/></messageRef>
@@ -51,7 +50,6 @@
 			<interfaceDirection>Input</interfaceDirection>
 			<messageDate><xsl:value-of select="$message_date_time"/></messageDate>
 			
-			<xsl:comment>Message Data</xsl:comment>
 			<messageData>
 				<processOrder>
 					<orderNo><xsl:value-of select="$order"/></orderNo>

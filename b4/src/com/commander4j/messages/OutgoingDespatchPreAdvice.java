@@ -38,6 +38,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
+import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBDespatch;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceLog;
@@ -96,6 +97,9 @@ public class OutgoingDespatchPreAdvice
 		GenericMessageHeader gmh = new GenericMessageHeader();
 		JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 		JDBUom uoml = new JDBUom(getHostID(), getSessionID());
+		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
+		String batchDateMode = ctrl.getKeyValue("EXPIRY DATE MODE");
+		
 		inter.getInterfaceProperties("Despatch Pre Advice", "Output");
 		String device = inter.getDevice();
 
@@ -241,9 +245,21 @@ public class OutgoingDespatchPreAdvice
 
 							Element status = addElement(document, "status", palhist.getPallet().getStatus());
 							pallet.appendChild(status);
+							
+							String expiryDateStr = "";
+							if (batchDateMode.equals("BATCH"))
+							{
+								expiryDateStr=JUtility.getISOTimeStampStringFormat(palhist.getPallet().getMaterialBatchExpiryDate());
+							}
+							
+							if (batchDateMode.equals("SSCC"))
+							{
+								expiryDateStr=JUtility.getISOTimeStampStringFormat(palhist.getPallet().getBatchExpiry());
+							}			
+							
+							Element expiryDate = addElement(document, "bestBefore", expiryDateStr);
+							pallet.appendChild(expiryDate);
 
-							Element bbe = addElement(document, "bestBefore", JUtility.getISOTimeStampStringFormat(palhist.getPallet().getMaterialBatchExpiryDate()));
-							pallet.appendChild(bbe);
 
 							Element dom = addElement(document, "productionDate", JUtility.getISOTimeStampStringFormat(palhist.getPallet().getDateOfManufacture()));
 							pallet.appendChild(dom);

@@ -103,6 +103,8 @@ public class OutgoingDespatchConfirmation
 		GenericMessageHeader gmh = new GenericMessageHeader();
 		JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 		JDBUom uoml = new JDBUom(getHostID(), getSessionID());
+		String batchDateMode = ctrl.getKeyValue("EXPIRY DATE MODE");
+		
 		inter.getInterfaceProperties("Despatch Confirmation", "Output");
 		String device = inter.getDevice();
 		
@@ -251,7 +253,20 @@ public class OutgoingDespatchConfirmation
 						document = document + "QTY+12:" + outqty + ":" + palhist.getPallet().getUom() + "'";
 						document = document + "DLM+++0::9'";
 
-						String batchExpiryLong = new java.text.SimpleDateFormat("yyyyMMdd").format(palhist.getPallet().getMaterialBatchExpiryDate());
+//						String batchExpiryLong = new java.text.SimpleDateFormat("yyyyMMdd").format(palhist.getPallet().getMaterialBatchExpiryDate());
+						
+						String batchExpiryLong  = "";
+						if (batchDateMode.equals("BATCH"))
+						{				
+									batchExpiryLong = new java.text.SimpleDateFormat("yyyyMMdd").format(palhist.getPallet().getMaterialBatchExpiryDate());
+						}
+						
+						if (batchDateMode.equals("SSCC"))
+						{
+									batchExpiryLong = new java.text.SimpleDateFormat("yyyyMMdd").format(palhist.getPallet().getBatchExpiry());
+						}	
+						
+						
 						String dateOfManufactureLong = new java.text.SimpleDateFormat("yyyyMMdd").format(palhist.getPallet().getDateOfManufacture());
 
 						document = document + "DTM+361:" + batchExpiryLong + ":102'";
@@ -467,8 +482,19 @@ public class OutgoingDespatchConfirmation
 							Element status = addElement(document, "status", palhist.getPallet().getStatus());
 							pallet.appendChild(status);
 
-							Element bbe = addElement(document, "bestBefore", JUtility.getISOTimeStampStringFormat(palhist.getPallet().getMaterialBatchExpiryDate()));
-							pallet.appendChild(bbe);
+							String expiryDateStr = "";
+							if (batchDateMode.equals("BATCH"))
+							{
+								expiryDateStr=JUtility.getISOTimeStampStringFormat(palhist.getPallet().getMaterialBatchExpiryDate());
+							}
+							
+							if (batchDateMode.equals("SSCC"))
+							{
+								expiryDateStr=JUtility.getISOTimeStampStringFormat(palhist.getPallet().getBatchExpiry());
+							}			
+							
+							Element expiryDate = addElement(document, "bestBefore", expiryDateStr);
+							pallet.appendChild(expiryDate);
 
 							Element dom = addElement(document, "productionDate", JUtility.getISOTimeStampStringFormat(palhist.getPallet().getDateOfManufacture()));
 							pallet.appendChild(dom);
