@@ -39,6 +39,7 @@ import org.apache.log4j.Logger;
 
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.messages.OutgoingDespatchConfirmation;
+import com.commander4j.messages.OutgoingDespatchEmail;
 import com.commander4j.messages.OutgoingDespatchPreAdvice;
 import com.commander4j.messages.OutgoingEquipmentTracking;
 import com.commander4j.sys.Common;
@@ -79,6 +80,7 @@ public class JDBDespatch
 	private Long dbTransactionRef;
 	private OutgoingDespatchConfirmation odc;
 	private OutgoingDespatchPreAdvice opa;
+	private OutgoingDespatchEmail ode;
 	private OutgoingEquipmentTracking oet;
 	private Logger logger = Logger.getLogger(JDBDespatch.class);
 	private String hostID;
@@ -518,6 +520,13 @@ public class JDBDespatch
 								logger.debug("Requesting outbound pre-advice message");
 								opa = new OutgoingDespatchPreAdvice(getHostID(), getSessionID());
 								opa.submit(txn);
+							}
+							
+							if (getLocationDBTo().isDespatchEmailRequired())
+							{
+								logger.debug("Requesting outbound despatch email message");
+								ode = new OutgoingDespatchEmail(getHostID(), getSessionID());
+								ode.submit(txn);
 							}
 
 							result = true;

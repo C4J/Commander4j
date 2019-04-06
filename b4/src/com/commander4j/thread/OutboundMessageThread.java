@@ -41,6 +41,7 @@ import com.commander4j.db.JDBUser;
 import com.commander4j.email.JeMail;
 import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.messages.OutgoingDespatchConfirmation;
+import com.commander4j.messages.OutgoingDespatchEmail;
 import com.commander4j.messages.OutgoingDespatchPreAdvice;
 import com.commander4j.messages.OutgoingEquipmentTracking;
 import com.commander4j.messages.OutgoingPalletDelete;
@@ -120,6 +121,7 @@ public class OutboundMessageThread extends Thread
 			OutgoingProductionDeclarationConfirmation opdc = new OutgoingProductionDeclarationConfirmation(getHostID(), getSessionID());
 			OutgoingDespatchConfirmation odc = new OutgoingDespatchConfirmation(getHostID(), getSessionID());
 			OutgoingDespatchPreAdvice opa = new OutgoingDespatchPreAdvice(getHostID(), getSessionID());
+			OutgoingDespatchEmail ode = new OutgoingDespatchEmail(getHostID(), getSessionID());
 			OutgoingEquipmentTracking oet = new OutgoingEquipmentTracking(getHostID(), getSessionID());
 			OutgoingPalletStatusChange psc = new OutgoingPalletStatusChange(getHostID(), getSessionID());
 			OutgoingPalletSplit ops = new OutgoingPalletSplit(getHostID(), getSessionID());
@@ -216,6 +218,13 @@ public class OutboundMessageThread extends Thread
 								messageProcessedOK = opa.processMessage(ir.getTransactionRef());
 								errorMessage = opa.getErrorMessage();
 								GenericMessageHeader.updateStats("Output","Despatch Pre Advice", messageProcessedOK.toString());
+							}
+							
+							if (ir.getInterfaceType().equals("Despatch Email"))
+							{
+								messageProcessedOK = ode.processMessage(ir.getTransactionRef());
+								errorMessage = ode.getErrorMessage();
+								GenericMessageHeader.updateStats("Output","Despatch Email", messageProcessedOK.toString());
 							}
 
 							if (ir.getInterfaceType().equals("Equipment Tracking"))

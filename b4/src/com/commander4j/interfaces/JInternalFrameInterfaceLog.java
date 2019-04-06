@@ -74,6 +74,7 @@ import com.commander4j.gui.JMenuItem4j;
 import com.commander4j.gui.JTable4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.messages.OutgoingDespatchConfirmation;
+import com.commander4j.messages.OutgoingDespatchEmail;
 import com.commander4j.messages.OutgoingDespatchPreAdvice;
 import com.commander4j.messages.OutgoingEquipmentTracking;
 import com.commander4j.messages.OutgoingProductionDeclarationConfirmation;
@@ -221,6 +222,14 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 							opa.submit(Long.valueOf(messageRef));
 							errorMessage.setText(opa.getErrorMessage());
 							opa = null;
+						}
+						
+						if (transactionType.equals("Despatch Email"))
+						{
+							OutgoingDespatchEmail ode = new OutgoingDespatchEmail(Common.selectedHostID, Common.sessionID);
+							ode.submit(Long.valueOf(messageRef));
+							errorMessage.setText(ode.getErrorMessage());
+							ode = null;
 						}
 
 						if (transactionType.equals("Equipment Tracking"))

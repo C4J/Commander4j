@@ -55,6 +55,7 @@ public class JDBLocation
 	private String db_msg_status_change = "";
 	private String db_msg_delete = "";
 	private String db_msg_journey_ref = "";
+	private String db_email_despatch = "";
 	private String db_msg_pallet_split = "";
 	private String db_msg_despatch_preadvice = "";
 	private String db_msg_despatch_equip_track = "";
@@ -152,6 +153,7 @@ public class JDBLocation
 		setMsgProdConfirm("N");
 		setMsgDelete("N");
 		setMsgJourneyRef("N");
+		setEmailDespatch("N");
 		setMsgPalletSplit("N");
 		setPermittedPalletStatus("");
 		setPermittedBatchStatus("");
@@ -515,6 +517,11 @@ public class JDBLocation
 	{
 		return JUtility.replaceNullStringwithBlank(db_msg_journey_ref);
 	}
+	
+	public String getEmailDespatch()
+	{
+		return JUtility.replaceNullStringwithBlank(db_email_despatch);
+	}
 
 	public String getMsgPalletSplit()
 	{
@@ -561,6 +568,7 @@ public class JDBLocation
 			setMsgPalletSplit(rs.getString("msg_pallet_split"));
 			setMsgDelete(rs.getString("msg_pallet_delete"));
 			setMsgJourneyRef(rs.getString("msg_journey_ref"));
+			setEmailDespatch(rs.getString("email_despatch"));
 			setMsgDespatchPreadvice(rs.getString("msg_despatch_preadvice"));
 			setMsgDespatchEquipTrack(rs.getString("msg_despatch_equip_track"));
 			setMsgProdConfirm(rs.getString("msg_prod_confirm"));
@@ -644,6 +652,16 @@ public class JDBLocation
 		return result;
 	}
 
+	public Boolean isDespatchEmailRequired()
+	{
+		Boolean result = false;
+		if (getEmailDespatch().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+	
 	public Boolean isStatusChangeMessageRequired()
 	{
 		Boolean result = false;
@@ -806,6 +824,11 @@ public class JDBLocation
 		db_msg_journey_ref = dbMsgDespatchJourneyRef;
 	}
 
+	public void setEmailDespatch(String dbEmailDespatch)
+	{
+		db_email_despatch = dbEmailDespatch;
+	}
+	
 	public void setMsgPalletSplit(String dbMsgPalletSplit)
 	{
 		db_msg_pallet_split = dbMsgPalletSplit;
@@ -852,6 +875,17 @@ public class JDBLocation
 		} else
 		{
 			db_msg_journey_ref = "N";
+		}
+	}
+	
+	public void setEmailDespatch(Boolean dbEmailDespatch)
+	{
+		if (dbEmailDespatch)
+		{
+			db_email_despatch = "Y";
+		} else
+		{
+			db_email_despatch = "N";
 		}
 	}
 
@@ -984,7 +1018,6 @@ public class JDBLocation
 				stmtupdate.setString(7, getStorageSection());
 				stmtupdate.setString(8, getStorageBin());
 				stmtupdate.setString(9, getEquipmentTrackingID());
-
 				stmtupdate.setString(10, getMsgDespatchConfirm());
 				stmtupdate.setString(11, getMsgDespatchPreAdvice());
 				stmtupdate.setString(12, getMsgDespatchEquipTrack());
@@ -996,7 +1029,8 @@ public class JDBLocation
 				stmtupdate.setString(18, getMsgDelete());
 				stmtupdate.setString(19, getEnabled());
 				stmtupdate.setString(20, getMsgJourneyRef());
-				stmtupdate.setString(21, getLocationID());
+				stmtupdate.setString(21, getEmailDespatch());
+				stmtupdate.setString(22, getLocationID());
 				stmtupdate.execute();
 
 				stmtupdate.clearParameters();

@@ -240,7 +240,7 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 		jComboBoxInterfaceDirection.setText(interfacedirection);
 		comboBoxDevice.setModel(new DefaultComboBoxModel<String>(new String[] { "Disk", "Email", "FTP", "ActiveMQ" }));
 
-		comboBoxFormat.setModel(new DefaultComboBoxModel<String>(new String[] { "XML", "EANCOM", "IDOC", "MPS", "CSV" }));
+		comboBoxFormat.setModel(new DefaultComboBoxModel<String>(new String[] { "XML", "EANCOM", "IDOC", "MPS", "CSV","PDF" }));
 
 		comboBoxUOMConversion.setModel(new DefaultComboBoxModel<String>(new String[] { Common.UOM_Convert_Internal_to_ISO, Common.UOM_Convert_Internal_to_Local, Common.UOM_Convert_None, Common.UOM_Convert_ISO_to_INTERNAL, Common.UOM_Convert_ISO_to_Local,
 				Common.UOM_Convert_Local_to_ISO, Common.UOM_Convert_Local_to_Internal }));

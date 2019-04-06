@@ -64,7 +64,7 @@ public class JFileIO
 		return filename;
 	}
 
-	private void setFilename(String filename)
+	public void setFilename(String filename)
 	{
 		this.filename = filename;
 	}

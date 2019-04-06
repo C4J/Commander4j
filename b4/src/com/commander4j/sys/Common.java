@@ -142,10 +142,10 @@ public class Common
 	public static String[] processOrderStatus = new String[] { "Discarded", "Finished", "Held", "Ready", "Running" };
 	public static String[] processOrderStatusincBlank = new String[] { "", "Discarded", "Finished", "Held", "Ready", "Running" };
 	public static String[] messageTypesexclBlank = new String[] { "QM Inspection Result","QM Inspection Request","Despatch Confirmation", "Equipment Tracking", "Material Definition", "Process Order", "Pallet Status Change","Pallet Delete","Pallet Move","Pallet Split", "Batch Status Change", "Process Order Status Change",
-		"Production Declaration", "Despatch Pre Advice", "Equipment Tracking","Journey Defintion","Location","Material Auto Move" };
+		"Production Declaration", "Despatch Pre Advice", "Despatch Email", "Equipment Tracking","Journey Defintion","Location","Material Auto Move" };
 	
 	public static String[] messageTypesincBlank = new String[] { "", "QM Inspection Result","QM Inspection Request","Despatch Confirmation", "Equipment Tracking", "Material Definition", "Process Order", "Pallet Status Change","Pallet Delete","Pallet Move","Pallet Split", "Batch Status Change", "Process Order Status Change",
-			"Production Declaration", "Despatch Pre Advice", "Equipment Tracking","Journey Definition","Location","Material Auto Move" };
+			"Production Declaration", "Despatch Pre Advice", "Despatch Email", "Equipment Tracking","Journey Definition","Location","Material Auto Move" };
 	public static String[] transactionTypes = new String[] { "", "DESPATCH", "EDIT", "PRINT","PROD DEC", "STATUS CHANGE","MHN","SPLIT","MOVE"};
 	public static String[] transactionSubTypes = new String[] { "", "ADD","REMOVE","CREATE","PRINT", "CONFIRM", "FROM", "TO", "MANUAL", "LABEL","DECISION","BEFORE","AFTER" };
 	public static String[] auditEventActions = new String[] { "", "ADD", "REMOVE", "CREATE", "DELETE", "RENAME", "ENABLE", "DISABLE" };

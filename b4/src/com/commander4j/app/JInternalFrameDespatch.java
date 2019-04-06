@@ -524,6 +524,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 						HashMap<String, Object> parameters = new HashMap<String, Object>();
 						parameters.put("p_despatch_no", d.getDespatchNo());
 						JLaunchReport.runReport("RPT_DESPATCH", parameters, "", null, "");
+						//JLaunchReport.runReportToPDF("RPT_DESPATCH", parameters, "", null, "test.pdf");
 					}
 				}
 			}
