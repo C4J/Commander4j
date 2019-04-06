@@ -463,6 +463,9 @@ public class OutgoingDespatchConfirmation
 							
 							Element material = addElement(document, "material", palhist.getPallet().getMaterial());
 							pallet.appendChild(material);
+							
+							Element materialDescription = addElement(document, "materialDescription", palhist.getPallet().getMaterialObj().getDescription());
+							pallet.appendChild(materialDescription);
 
 							Element ean = addElement(document, "ean", palhist.getPallet().getEAN());
 							pallet.appendChild(ean);

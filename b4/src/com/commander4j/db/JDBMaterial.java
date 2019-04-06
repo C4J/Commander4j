@@ -720,7 +720,7 @@ public class JDBMaterial
 	 */
 	public String getMaterial()
 	{
-		return dbMaterial;
+		return JUtility.replaceNullStringwithBlank(dbMaterial);
 	}
 
 	/**
