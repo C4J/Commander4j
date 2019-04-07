@@ -1,5 +1,7 @@
 package com.commander4j.sys;
 
+import java.util.Arrays;
+
 /**
  * @author David Garratt
  * 
@@ -121,6 +123,16 @@ public class Start
 				JSplashScreenUtils.updateProgress(35, "Building jdbc connection string....");
 				JSplashScreenUtils.updateProgress(40, "Loading database SQL statements...");
 				JSplashScreenUtils.updateProgress(45, "Open Virtual Views....");
+				
+				Arrays.sort(Common.messageTypesexclBlank);
+				Arrays.sort(Common.messageTypesincBlank);
+				Arrays.sort(Common.transactionTypes);
+				Arrays.sort(Common.transactionSubTypes);
+				Arrays.sort(Common.auditEventActions);
+				Arrays.sort(Common.auditEventTypes);
+				Arrays.sort(Common.processOrderStatusincBlank);
+				Arrays.sort(Common.languages);
+				
 				JSplashScreenUtils.updateProgress(55, "Building jdbc connection string....");
 				JSplashScreenUtils.updateProgress(60, "Loading database view statements...");
 				JSplashScreenUtils.updateProgress(65, "Loading database view statements...");

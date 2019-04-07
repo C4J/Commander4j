@@ -54,7 +54,7 @@ public class JFileIO
 		return shortfilename;
 	}
 
-	private void setShortFilename(String filename)
+	public void setShortFilename(String filename)
 	{
 		this.shortfilename = filename;
 	}

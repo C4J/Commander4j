@@ -73,12 +73,13 @@ public class OutgoingDespatchEmail
 
 		inter.getInterfaceProperties("Despatch Email", "Output");
 		String device = inter.getDevice();
+		String format = inter.getFormat();
 
 		JDBDespatch desp = new JDBDespatch(getHostID(), getSessionID());
 		desp.setTransactionRef(transactionRef);
 		desp.getDespatchPropertiesFromTransactionRef();
 		setErrorMessage("");
-		
+
 		gmh.setMessageRef(desp.getTransactionRef().toString());
 		gmh.setInterfaceType(inter.getInterfaceType());
 		gmh.setMessageInformation("Despatch=" + desp.getDespatchNo());
@@ -87,64 +88,88 @@ public class OutgoingDespatchEmail
 
 		if (device.equals("Email") || device.equals("Disk"))
 		{
-			path = inter.getRealPath();
-
-			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("p_despatch_no", desp.getDespatchNo());
-
-			String filename = path;
-
-			if (filename.endsWith(File.separator) == false)
+			if (format.equals("PDF"))
 			{
-				filename = filename + File.separator;
-			}
 
-			String tempFilename = filename + desp.getLocationIDFrom().replace(" ", "_") + "_" + desp.getLocationIDTo().replace(" ", "_") + "_" + desp.getDespatchNo() + ".tmp";
+				path = inter.getRealPath();
 
-			String finalFilename = filename + desp.getLocationIDFrom().replace(" ", "_") + "_" + desp.getLocationIDTo().replace(" ", "_") + "_" + desp.getDespatchNo() + ".pdf";
+				HashMap<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("p_despatch_no", desp.getDespatchNo());
 
-			JLaunchReport.runReportToPDF("RPT_DESPATCH", parameters, "", null, tempFilename);
+				String filename = path;
 
-			try
-			{
-				FileUtils.deleteQuietly(new File(finalFilename));
-				
-				FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
-
-				il.write(gmh, GenericMessageHeader.msgStatusSuccess, "Processed OK", "File Write", finalFilename);
-
-				if (device.equals("Email"))
+				if (filename.endsWith(File.separator) == false)
 				{
-					fio.setFilename(finalFilename);
-					
-					ogm = new JeMailOutGoingMessage(inter, transactionRef, fio);
-					
-					if (ogm.sendEmail())
-					{
-						il.write(gmh, GenericMessageHeader.msgStatusSuccess, "Processed OK", "Email", finalFilename);
-					}
-					else
-					{
-						il.write(gmh, GenericMessageHeader.msgStatusError, "Error sending email", "File Write", finalFilename);
-					}
+					filename = filename + File.separator;
+				}
 
+				String tempFilename = filename + desp.getLocationIDFrom().replace(" ", "_") + "_" + desp.getLocationIDTo().replace(" ", "_") + "_" + desp.getDespatchNo() + ".tmp";
+
+				String finalFilename = filename + desp.getLocationIDFrom().replace(" ", "_") + "_" + desp.getLocationIDTo().replace(" ", "_") + "_" + desp.getDespatchNo() + ".pdf";
+
+				JLaunchReport.runReportToPDF("RPT_DESPATCH_EMAIL", parameters, "", null, tempFilename);
+
+				try
+				{
 					FileUtils.deleteQuietly(new File(finalFilename));
-				}
-				
-				if (device.equals("Disk"))
-				{
-					il.write(gmh, GenericMessageHeader.msgStatusSuccess, "Processed OK", "File Write", finalFilename);
-				}
 
+					FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
+
+					il.write(gmh, GenericMessageHeader.msgStatusSuccess, "Processed OK", "File Write", finalFilename);
+
+					if (device.equals("Email"))
+					{
+						fio.setFilename(finalFilename);
+						fio.setShortFilename(desp.getDespatchNo() + ".pdf");
+
+						if (inter.getEmailSuccess())
+						{
+
+							ogm = new JeMailOutGoingMessage(inter, transactionRef, fio);
+
+							if (ogm.sendEmail())
+							{
+								il.write(gmh, GenericMessageHeader.msgStatusSuccess, "Processed OK", "Email", finalFilename);
+								FileUtils.deleteQuietly(new File(finalFilename));
+							}
+							else
+							{
+								result = false;
+								setErrorMessage("Error sending email");
+								il.write(gmh, GenericMessageHeader.msgStatusError, "Error sending email", "File Write", finalFilename);
+							}
+						}
+						else
+						{
+							result = false;
+							setErrorMessage("Email on Success not selected");
+							il.write(gmh, GenericMessageHeader.msgStatusError, "Email on Success not selected", "Config", finalFilename);
+						}
+					}
+
+					if (device.equals("Disk"))
+					{
+						il.write(gmh, GenericMessageHeader.msgStatusSuccess, "Processed OK", "File Write", finalFilename);
+					}
+
+				}
+				catch (IOException e)
+				{
+					il.write(gmh, GenericMessageHeader.msgStatusError, e.getMessage(), "File Rename", tempFilename);
+					setErrorMessage("Error renaming file " + tempFilename);
+					result = false;
+				}
 			}
-			catch (IOException e)
+			else
 			{
-				setErrorMessage("Error renaming file " + tempFilename);
+				il.write(gmh, GenericMessageHeader.msgStatusError, "Output Format needs to be PDF", "Config", "");
+				setErrorMessage("Output Format needs to be PDF");
 				result = false;
 			}
 		}
 		else
 		{
+			il.write(gmh, GenericMessageHeader.msgStatusError, "Device type needs to be DISK or EMAIL", "Config", "");
 			setErrorMessage("Device type needs to be DISK or EMAIL");
 			result = false;
 		}

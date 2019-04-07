@@ -6,4 +6,12 @@
 		ALTER TABLE `APP_LOCATION` ADD COLUMN `EMAIL_DESPATCH` VARCHAR(1) DEFAULT 'N';
 	</statement>
 	
+	<statement>
+		INSERT INTO `SYS_MODULES` (`module_id`, `rf_active`, `dk_active`, `module_type`, `hint`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_DESPATCH_EMAIL','N','Y','REPORT',NULL,NULL,NULL,'Despatch.jrxml',NULL,NULL,'N','N','1');
+	</statement>
+	
+	<statement>
+		INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PUBLIC','RPT_DESPATCH_EMAIL');
+	</statement>	
+	
 </DDL>
