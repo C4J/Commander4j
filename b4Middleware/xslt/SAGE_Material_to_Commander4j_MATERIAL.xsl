@@ -33,6 +33,7 @@
 		<xsl:variable name="prod_uom" select="prod_uom"/>
 		<xsl:variable name="tuc_outbar" select="tuc_outbar"/>
 		<xsl:variable name="material" select="material"/>
+		<xsl:variable name="description" select="description"/>
 
 		<xsl:variable name="customerID" select="customerID"/>
 		<xsl:variable name="base_per_prod" select="Pks_Per_Case"/>
@@ -59,7 +60,7 @@
 				<materialDefinition>
 					<material><xsl:value-of select="$material"/></material>
 					<materialType>FERT</materialType>
-					<description><xsl:value-of select="description"/></description>
+					<description><xsl:value-of select="c4j_XSLT_Ext:trim(replace($description,'~~BRI',''))"/></description>
 					<enabled>Y</enabled>
 					<base_uom><xsl:value-of select="c4j:getReferenceItem('SageUOM', $base_uom)"/></base_uom>
 					<gross_weight><xsl:value-of select="gross_weight"/></gross_weight>
