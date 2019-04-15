@@ -2,12 +2,15 @@
 <lookup>
     
     <item type="config" id="HostRef"><value>WILIVE</value></item>    
-    <item type="config" id="Plant"><value>0933</value></item>
-    <item type="config" id="Warehouse"><value>734</value></item>
+ <!--   <item type="config" id="Plant"><value>0933</value></item>
+    <item type="config" id="Warehouse"><value>734</value></item>-->
+    <item type="config" id="Plant"><value>0931</value></item>
+    <item type="config" id="Warehouse"><value>732</value></item>
     <item type="config" id="Language"><value>E</value></item>  
     <item type="config" id="Location"><value>WISBECH</value></item>  
     <item type="config" id="Location_Central"><value>WISBECH_CTR</value></item> 
-    <item type="config" id="Procurement_Ind"><value>HO</value></item> 
+<!--    <item type="config" id="Procurement_Ind"><value>HO</value></item> -->
+    <item type="config" id="Procurement_Ind"><value>D1</value></item> 
     <item type="config" id="SAPUsername"><value>PUWISBECH</value></item>  
     
 </lookup>
