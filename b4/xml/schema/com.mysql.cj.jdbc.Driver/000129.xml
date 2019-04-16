@@ -19,7 +19,7 @@
 			        `app_label_data`.`BATCH_PREFIX` AS `BATCH_PREFIX`,
 			        `app_label_data`.`BATCH_SUFFIX` AS `BATCH_SUFFIX`,
 			        `app_process_order`.`STATUS` AS `STATUS`,
-					    `app_process_order`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
+					`app_process_order`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
 			        `app_label_data`.`PRINT_DATE` AS `PRINT_DATE`,
 			        `app_label_data`.`PROD_EAN` AS `PROD_EAN`,
 			        `app_label_data`.`PROD_VARIANT` AS `PROD_VARIANT`,
