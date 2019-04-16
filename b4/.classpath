@@ -10,15 +10,11 @@
 	<classpathentry kind="lib" path="lib/jasperlib/mondrian-3.1.1.12687.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/servlet-api-2.4.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/avalon-framework-4.2.0.jar"/>
-	<classpathentry kind="lib" path="lib/cups4j/cups4j.runnable-0.6.4.jar"/>
 	<classpathentry kind="lib" path="lib/mail/javax.mail.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/olap4j-0.9.7.309-JS-3.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/castor-core-1.3.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/castor-xml-1.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/devonly/i4jruntime.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-email-1.5.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/rhino-1.7.6.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/xmpcore-5.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/commons-cli-1.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/jdom-2.0.6.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/hibernate-core-3.3.2.GA.jar"/>
@@ -33,7 +29,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/xalan-2.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/xml-apis-ext-1.3.04.jar"/>
 	<classpathentry kind="lib" path="lib/app/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/commons-javaflow-20160505.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/core-3.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/db/ojdbc8.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-anim-1.9.jar"/>
@@ -42,28 +37,14 @@
 	<classpathentry kind="lib" path="lib/jasperlib/batik-constants-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-css-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-dom-1.9.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-extension-1.9.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-gui-util-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-gvt-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-i18n-1.9.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-parser-1.9.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-script-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-svg-dom-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-svggen-1.9.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-util-1.9.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-xml-1.9.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/bsh-2.0b6.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-beanutils-1.9.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/poi-3.15.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/poi-ooxml-3.15.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/spring-beans-3.2.18.RELEASE.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/spring-core-3.2.18.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/itext-2.1.7.js6.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-pool2-2.4.2.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/httpclient-4.3.6.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/httpcore-4.3.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/xmlgraphics-commons-2.2.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/joda-time-2.9.9.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/ecj-4.4.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-codec-1.5.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-lang-2.6.jar"/>
@@ -72,27 +53,53 @@
 	<classpathentry kind="lib" path="lib/app/commons-text-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-io-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-lang3-3.7.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.api-2.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.providers.asm5-2.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.tools.ant-2.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.tools.jar-2.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/asm-all-5.2.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/jackson-annotations-2.9.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/jackson-core-2.9.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/jackson-databind-2.9.5.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-analyzers-common-7.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-core-7.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-queryparser-7.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/serializer-2.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/db/mssql-jdbc-7.2.1.jre8.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.15.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_202)">
+	<classpathentry kind="lib" path="lib/jasperlib/commons-collections4-4.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/spring-beans-5.1.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/spring-core-5.1.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/poi-4.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/poi-ooxml-4.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/castor-core-1.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/castor-xml-1.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/jackson-annotations-2.9.8.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/jackson-core-2.9.8.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/jackson-databind-2.9.8.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/javax.xml.soap-api-1.4.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.api-2.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.tools.ant-2.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/xmpcore-5.1.3.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/xml-apis.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/xmlgraphics-commons-2.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/asm-all-5.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/bsh-2.0b6.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/batik-extension-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/batik-gui-util-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/batik-parser-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/batik-script-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/batik-xml-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/mail/spring-core-5.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-annotation-processors-6.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-custom-visualization-6.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/cups4j/cups4j-0.7.6.jar"/>
+	<classpathentry kind="lib" path="lib/cups4j/simple-xml-2.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/cups4j/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/httpclient-4.5.8.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/httpcore-4.4.11.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_202]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.7.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.7.1.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.7.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

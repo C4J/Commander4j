@@ -20,18 +20,13 @@
         <pathelement location="lib/jasperlib/mondrian-3.1.1.12687.jar"/>
         <pathelement location="lib/jasperlib/servlet-api-2.4.jar"/>
         <pathelement location="lib/barcode/avalon-framework-4.2.0.jar"/>
-        <pathelement location="lib/cups4j/cups4j.runnable-0.6.4.jar"/>
         <pathelement location="lib/mail/javax.mail.jar"/>
         <pathelement location="lib/jasperlib/olap4j-0.9.7.309-JS-3.jar"/>
-        <pathelement location="lib/jasperlib/castor-core-1.3.3.jar"/>
-        <pathelement location="lib/jasperlib/castor-xml-1.3.3.jar"/>
         <pathelement location="lib/devonly/i4jruntime.jar"/>
         <pathelement location="lib/app/commons-email-1.5.jar"/>
         <pathelement location="lib/jasperlib/rhino-1.7.6.jar"/>
-        <pathelement location="lib/jasperlib/xmpcore-5.1.1.jar"/>
         <pathelement location="lib/barcode/commons-cli-1.3.1.jar"/>
         <pathelement location="lib/barcode/jdom-2.0.6.jar"/>
-        <pathelement location="lib/barcode/serializer-2.7.2.jar"/>        
         <pathelement location="lib/jasperlib/hibernate-core-3.3.2.GA.jar"/>
         <pathelement location="lib/jasperlib/jcommon-1.0.23.jar"/>
         <pathelement location="lib/jasperlib/jfreechart-1.0.19.jar"/>
@@ -44,7 +39,6 @@
         <pathelement location="lib/jasperlib/xalan-2.7.2.jar"/>
         <pathelement location="lib/jasperlib/xml-apis-ext-1.3.04.jar"/>
         <pathelement location="lib/app/log4j-1.2.15.jar"/>
-        <pathelement location="lib/jasperlib/commons-javaflow-20160505.jar"/>
         <pathelement location="lib/jasperlib/core-3.2.1.jar"/>
         <pathelement location="lib/db/ojdbc8.jar"/>
         <pathelement location="lib/jasperlib/batik-anim-1.9.jar"/>
@@ -53,54 +47,65 @@
         <pathelement location="lib/jasperlib/batik-constants-1.9.jar"/>
         <pathelement location="lib/jasperlib/batik-css-1.9.jar"/>
         <pathelement location="lib/jasperlib/batik-dom-1.9.jar"/>
-        <pathelement location="lib/jasperlib/batik-extension-1.9.jar"/>
-        <pathelement location="lib/jasperlib/batik-gui-util-1.9.jar"/>
         <pathelement location="lib/jasperlib/batik-gvt-1.9.jar"/>
         <pathelement location="lib/jasperlib/batik-i18n-1.9.jar"/>
-        <pathelement location="lib/jasperlib/batik-parser-1.9.jar"/>
-        <pathelement location="lib/jasperlib/batik-script-1.9.jar"/>
         <pathelement location="lib/jasperlib/batik-svg-dom-1.9.jar"/>
         <pathelement location="lib/jasperlib/batik-svggen-1.9.jar"/>
         <pathelement location="lib/jasperlib/batik-util-1.9.jar"/>
-        <pathelement location="lib/jasperlib/batik-xml-1.9.jar"/>
-        <pathelement location="lib/jasperlib/bsh-2.0b6.jar"/>
         <pathelement location="lib/jasperlib/commons-beanutils-1.9.3.jar"/>
-        <pathelement location="lib/jasperlib/poi-3.15.jar"/>
-        <pathelement location="lib/jasperlib/poi-ooxml-3.15.jar"/>
-        <pathelement location="lib/jasperlib/spring-beans-3.2.18.RELEASE.jar"/>
-        <pathelement location="lib/jasperlib/spring-core-3.2.18.RELEASE.jar"/>
         <pathelement location="lib/jasperlib/itext-2.1.7.js6.jar"/>
         <pathelement location="lib/jasperlib/commons-pool2-2.4.2.jar"/>
-        <pathelement location="lib/jasperlib/httpclient-4.3.6.jar"/>
-        <pathelement location="lib/jasperlib/httpcore-4.3.3.jar"/>
-        <pathelement location="lib/jasperlib/xmlgraphics-commons-2.2.jar"/>
-        <pathelement location="lib/jasperlib/joda-time-2.9.9.jar"/>
         <pathelement location="lib/jasperlib/ecj-4.4.2.jar"/>
         <pathelement location="lib/jasperlib/commons-codec-1.5.jar"/>
         <pathelement location="lib/app/commons-lang-2.6.jar"/>
         <pathelement location="lib/app/opencsv-4.1.jar"/>
         <pathelement location="lib/app/jackcess-2.1.9.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-8.0.15.jar"/>
-        <pathelement location="lib/db/mssql-jdbc-7.2.1.jre8.jar"/>
         <pathelement location="lib/app/commons-text-1.2.jar"/>
         <pathelement location="lib/app/commons-io-2.6.jar"/>
         <pathelement location="lib/app/commons-lang3-3.7.jar"/>
-        <pathelement location="lib/jasper/jasperreports-6.7.1.jar"/>     
-        <pathelement location="lib/jasper/jasperreports-fonts-6.7.1.jar"/>
-        <pathelement location="lib/jasper/jasperreports-javaflow-6.7.1.jar"/>
-        <pathelement location="lib/jasperlib/net.tascalate.javaflow.api-2.2.1.jar"/>
-        <pathelement location="lib/jasperlib/net.tascalate.javaflow.providers.asm5-2.2.1.jar"/>
-        <pathelement location="lib/jasperlib/net.tascalate.javaflow.tools.ant-2.2.1.jar"/>
-        <pathelement location="lib/jasperlib/net.tascalate.javaflow.tools.jar-2.2.1.jar"/>
-        <pathelement location="lib/jasperlib/asm-all-5.2.jar"/>
-        <pathelement location="lib/jasperlib/jackson-annotations-2.9.5.jar"/>
-        <pathelement location="lib/jasperlib/jackson-core-2.9.5.jar"/>
-        <pathelement location="lib/jasperlib/jackson-databind-2.9.5.jar"/>
-        <pathelement location="lib/jasperlib/jasperreports-annotation-processors-6.7.0.jar"/>
-        <pathelement location="lib/jasperlib/jasperreports-metadata-6.6.0.jar"/>
         <pathelement location="lib/jasperlib/lucene-analyzers-common-7.3.0.jar"/>
         <pathelement location="lib/jasperlib/lucene-core-7.3.0.jar"/>
         <pathelement location="lib/jasperlib/lucene-queryparser-7.3.0.jar"/>
+        <pathelement location="lib/barcode/serializer-2.7.2.jar"/>
+        <pathelement location="lib/db/mssql-jdbc-7.2.1.jre8.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-8.0.15.jar"/>
+        <pathelement location="lib/jasperlib/commons-collections4-4.2.jar"/>
+        <pathelement location="lib/jasperlib/spring-beans-5.1.4.RELEASE.jar"/>
+        <pathelement location="lib/jasperlib/spring-core-5.1.4.RELEASE.jar"/>
+        <pathelement location="lib/jasper/jasperreports-6.8.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-fonts-6.8.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-javaflow-6.8.0.jar"/>
+        <pathelement location="lib/jasperlib/poi-4.0.1.jar"/>
+        <pathelement location="lib/jasperlib/poi-ooxml-4.0.1.jar"/>
+        <pathelement location="lib/jasperlib/castor-core-1.4.1.jar"/>
+        <pathelement location="lib/jasperlib/castor-xml-1.4.1.jar"/>
+        <pathelement location="lib/jasperlib/jackson-annotations-2.9.8.jar"/>
+        <pathelement location="lib/jasperlib/jackson-core-2.9.8.jar"/>
+        <pathelement location="lib/jasperlib/jackson-databind-2.9.8.jar"/>
+        <pathelement location="lib/jasperlib/javax.xml.soap-api-1.4.0.jar"/>
+        <pathelement location="lib/jasperlib/net.tascalate.javaflow.api-2.6.0.jar"/>
+        <pathelement location="lib/jasperlib/net.tascalate.javaflow.tools.ant-2.6.0.jar"/>
+        <pathelement location="lib/jasperlib/xmpcore-5.1.3.jar"/>
+        <pathelement location="lib/jasperlib_aux/xml-apis.jar"/>
+        <pathelement location="lib/jasperlib_aux/xmlgraphics-commons-2.2.jar"/>
+        <pathelement location="lib/jasperlib_aux/asm-all-5.2.jar"/>
+        <pathelement location="lib/jasperlib_aux/bsh-2.0b6.jar"/>
+        <pathelement location="lib/jasperlib_aux/batik-extension-1.9.jar"/>
+        <pathelement location="lib/jasperlib_aux/batik-gui-util-1.9.jar"/>
+        <pathelement location="lib/jasperlib_aux/batik-parser-1.9.jar"/>
+        <pathelement location="lib/jasperlib_aux/batik-script-1.9.jar"/>
+        <pathelement location="lib/jasperlib_aux/batik-xml-1.9.jar"/>
+        <pathelement location="lib/mail/spring-core-5.1.6.RELEASE.jar"/>
+        <pathelement location="lib/jasper/jasperreports-annotation-processors-6.8.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-chart-customizers-6.8.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-chart-themes-6.8.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-custom-visualization-6.8.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-metadata-6.8.0.jar"/>
+        <pathelement location="lib/cups4j/cups4j-0.7.6.jar"/>
+        <pathelement location="lib/cups4j/simple-xml-2.7.1.jar"/>
+        <pathelement location="lib/cups4j/slf4j-api-1.7.25.jar"/>
+        <pathelement location="lib/jasperlib/httpclient-4.5.8.jar"/>
+        <pathelement location="lib/jasperlib/httpcore-4.4.11.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -108,7 +113,6 @@
             <fileset dir="src">
                 <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
-                <exclude name="**/*.jpg"/>
             </fileset>
         </copy>
     </target>
@@ -139,13 +143,8 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Clone">
-        <java classname="com.commander4j.clone.Clone" failonerror="true" fork="yes">
-            <classpath refid="b4.classpath"/>
-        </java>
-    </target>
-    <target name="Setup">
-        <java classname="com.commander4j.cfg.Setup" failonerror="true" fork="yes">
+    <target name="Version">
+        <java classname="org.apache.xmlcommons.Version" failonerror="true" fork="yes">
             <classpath refid="b4.classpath"/>
         </java>
     </target>
