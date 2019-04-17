@@ -39,8 +39,8 @@
     <xsl:variable name="USE_PLANT"              select="string(/ZMATMAS03/IDOC/E1MARAM/_-NESGLB_-DISTR000/WERKS[.=$PLANT]/../AD_PLANT_DATA)"/>
     <xsl:variable name="FOUND_PLANT"            select="string(/ZMATMAS03/IDOC/E1MARAM/E1MARCM/WERKS[.=$PLANT])"/>
     <xsl:variable name="FOUND_WAREHOUSE"        select="string(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE])" />
-    <xsl:variable name="PROCUREMENT_FOUND"      select="string(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE]/../E1MKALM/SOBSL)" />
-    <xsl:variable name="PROCUREMENT_COUNT"      select="count(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE]/../E1MKALM/SOBSL)"/>
+    <xsl:variable name="PROCUREMENT_FOUND"      select="string(/ZMATMAS03/IDOC/E1MARAM/E1MARCM/WERKS[.=$PLANT]/../SOBSL)" />
+    <xsl:variable name="PROCUREMENT_COUNT"      select="count(/ZMATMAS03/IDOC/E1MARAM/E1MARCM/WERKS[.=$PLANT]/../SOBSL)"/>
 
     <xsl:template match="/ZMATMAS03">
         <message>
