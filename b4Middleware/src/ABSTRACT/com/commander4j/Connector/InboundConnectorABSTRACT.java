@@ -84,11 +84,19 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 		setFilename(filename);
 		if (connectorLoad(inint.getInputPath() + File.separator + filename))
 		{
-			if (connectorDelete(filename))
+			if (getType().equals(Connector_EMAIL)==false)
 			{
+				if (connectorDelete(filename))
+				{
+					result = true;
+				}
+			}
+			else
+			{
+				// Don't delete email input file as we don't pass the contents of the file through the map - only a reference to its filename
 				result = true;
 			}
-			
+
 		}
 		
 		if (result==false)

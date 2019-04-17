@@ -1,10 +1,8 @@
 package com.commander4j.Connector.Outbound;
 
 import java.io.File;
-import java.io.FileOutputStream;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.Interface.Outbound.OutboundInterface;
@@ -32,26 +30,37 @@ public class OutboundConnectorEmail extends OutboundConnectorABSTRACT
 		boolean result = false;
 		String fullPath = path+File.separator+filename;
 
-		//parsePattern(getOutboundInterface().getOutputPattern());
-
 		JXMLDocument document = new JXMLDocument();
 		document.setDocument(getData());
 
-		String byteArray64String = Utility.replaceNullStringwithBlank(document.findXPath("//data/content").trim());
-		byte[] returnedBytes = Base64.decodeBase64(byteArray64String);
+		String inputFilename = Utility.replaceNullStringwithBlank(document.findXPath("//email/inputFilename").trim());
+		
+		String outputFilename = path;
+		
+		if (outputFilename.endsWith(File.separator))
+		{
+			outputFilename = outputFilename + filename;
+		}
+		else
+		{
+			outputFilename = outputFilename +File.separator+filename;
+		}
+		
+		logger.error("connectorLoad " + getType() + " inputFilename" + inputFilename);
+		logger.error("connectorLoad " + getType() + " outputFilename" + outputFilename);
 
-		FileOutputStream output;
 		try
 		{
-			output = new FileOutputStream(new File(fullPath));
-			IOUtils.write(returnedBytes, output);
+			FileUtils.deleteQuietly(new File(outputFilename));
+			FileUtils.moveFileToDirectory(new File(inputFilename), new File(path), false);
+			
 			result=true;
 			
 			String addresses = getOutboundInterface().getEmailListID();
 			String subject = getOutboundInterface().getEmailSubject();
 			String message = getOutboundInterface().getEmailMessage()+"\n\n";
 			
-			Common.emailqueue.addToQueue(addresses, subject,message,fullPath);
+			Common.emailqueue.addToQueue(addresses, subject,message,outputFilename);
 
 		} catch (Exception e)
 		{
