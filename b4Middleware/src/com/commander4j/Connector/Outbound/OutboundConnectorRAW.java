@@ -1,18 +1,14 @@
 package com.commander4j.Connector.Outbound;
 
 import java.io.File;
-import java.io.FileWriter;
-
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathFactory;
-
-import org.apache.commons.io.FileUtils;
+import java.io.FileOutputStream;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.logging.log4j.Logger;
-import org.w3c.dom.Node;
-
+import org.apache.commons.io.IOUtils;
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.sys.Common;
+import com.commander4j.util.JXMLDocument;
+import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
@@ -33,53 +29,34 @@ public class OutboundConnectorRAW extends OutboundConnectorABSTRACT
 		String fullPath = path+File.separator+filename;
 
 		logger.debug("connectorSave [" + fullPath + "." + getOutboundInterface().getOutputFileExtension().toLowerCase() + "]");
+	
+
+		//parsePattern(getOutboundInterface().getOutputPattern());
+
+		JXMLDocument document = new JXMLDocument();
+		document.setDocument(getData());
+
+		String byteArray64String = Utility.replaceNullStringwithBlank(document.findXPath("//data/content").trim());
+		byte[] returnedBytes = Base64.decodeBase64(byteArray64String);
+
+		FileOutputStream output;
 		try
 		{
+			output = new FileOutputStream(new File(fullPath));
+			IOUtils.write(returnedBytes, output);
+			result=true;
+			
+			output.close();
+			returnedBytes=null;
+			byteArray64String=null;
+			output=null;
 
-			if ((data.getFeature("Core", "3.0") != null) && (data.getFeature("LS", "3.0") != null))
-			{
-			    XPath xpath = XPathFactory.newInstance().newXPath();
-			    String value;
-				try
-				{
-					Node widgetNode = (Node) xpath.evaluate("/raw", data, XPathConstants.NODE);
-					value = widgetNode.getFirstChild().getNodeValue().toString();
-				}
-				catch (Exception ex)
-				{
-					value = "";
-				}
-				
-
-				if (fullPath.endsWith("." + getOutboundInterface().getOutputFileExtension().toLowerCase()) == false)
-				{
-					fullPath = fullPath + "." + getOutboundInterface().getOutputFileExtension().toLowerCase();
-				}
-
-				String tempFilename = fullPath + ".tmp";
-				String finalFilename = fullPath;
-
-				FileWriter fw = new FileWriter(tempFilename);
-				fw.write(value);
-				fw.flush();
-				fw.close();
-
-				FileUtils.deleteQuietly( new File(finalFilename));
-				FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
-
-				tempFilename = null;
-				finalFilename = null;
-				fw = null;
-				
-				result = true;
-			}
-		} catch (Exception ex)
+		} catch (Exception e)
 		{
-			result = false;
-			logger.error(ex.getMessage());
-			Common.emailqueue.addToQueue("Error", "Error Writing File [" + fullPath + "]", ex.getMessage() + "\n\n", "");
-
+			logger.error("connectorLoad " + getType() + " " + e.getMessage());
+			Common.emailqueue.addToQueue("Error", "Error writing " + getType(), "connectorSave " + getType() + " " + e.getMessage() + "\n\n" + fullPath, "");
 		}
+
 
 		return result;
 	}

@@ -122,7 +122,8 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 	private JLabel4j_std lblPermitBatchStatus;
 	private JDBLanguage lang;
 	private JCheckBox4j chckbxEnabled = new JCheckBox4j("Enabled");
-	JCheckBox4j checkBox_EmailPreAdvice = new JCheckBox4j("");
+	private JCheckBox4j checkBox_EmailPreAdvice = new JCheckBox4j("");
+	private String defaultTitle="";
 
 	public JInternalFrameLocationProperties()
 	{
@@ -131,13 +132,12 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 		initGUI();
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_LOCATION_EDIT"));
-
+		defaultTitle = getTitle();
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				jTextFieldPlant.requestFocus();
 				jTextFieldPlant.setCaretPosition(jTextFieldPlant.getText().length());
-				
 
 			}
 		});
@@ -158,7 +158,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 		
 		llocation = loc;
 		jTextFieldLocationID.setText(llocation);
-		setTitle(getTitle() + " - " + llocation);
+		setTitle(defaultTitle + " - " + llocation);
 
 		location.setLocationID(llocation);
 

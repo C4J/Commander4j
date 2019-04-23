@@ -456,6 +456,28 @@
             <XSLT/>
         </output>
     </map>
+    
+    <map id="map427" enabed="Y" description="GEN RAW Copy File Only">
+        <input id="in1" description="Read RAW Input">
+            <type>RAW</type>
+            <path>./interface/input/427 (GEN Copy)</path>
+            <mask/>
+            <pollingInterval>5000</pollingInterval>
+            <XSLT/>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write Copy 1">
+            <path>./interface/output/427 (GEN Copy 1)</path>
+            <type>RAW</type>
+            <XSLT/>
+        </output>
+        
+        <output id="out2" enabed="Y" description="Write Copy 2">
+            <path>./interface/output/427 (GEN Copy 2)</path>
+            <type>RAW</type>
+            <XSLT/>
+        </output>
+    </map>
 
     <map id="map128" enabed="Y" description="NES C4J ProdDec to Marcellus XML &amp; B2MML S95 XML">
         <input id="in1" description="Commander4j ProdDec">

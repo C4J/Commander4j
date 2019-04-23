@@ -11,6 +11,7 @@ import com.commander4j.Connector.Inbound.InboundConnectorASCII;
 import com.commander4j.Connector.Inbound.InboundConnectorCSV;
 import com.commander4j.Connector.Inbound.InboundConnectorExcel;
 import com.commander4j.Connector.Inbound.InboundConnectorIDOC;
+import com.commander4j.Connector.Inbound.InboundConnectorRAW;
 import com.commander4j.Connector.Inbound.InboundConnectorEmail;
 import com.commander4j.Connector.Inbound.InboundConnectorXML;
 import com.commander4j.Interface.Inbound.InboundInterface;
@@ -261,7 +262,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 			setInputFileMask(InboundConnectorINTERFACE.Mask_EMAIL);
 			break;
 		case InboundConnectorINTERFACE.Connector_RAW:
-			connector = new InboundConnectorEmail((InboundInterface) this);
+			connector = new InboundConnectorRAW((InboundInterface) this);
 			setInputFileMask(InboundConnectorINTERFACE.Mask_RAW);
 			break;			
 		case InboundConnectorINTERFACE.Connector_Excel:
