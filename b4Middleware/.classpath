@@ -15,21 +15,17 @@
 	<classpathentry kind="lib" path="lib/curvesapi-1.04.jar"/>
 	<classpathentry kind="lib" path="lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-codec-1.11.jar"/>
-	<classpathentry kind="lib" path="lib/javax.mail-1.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-io-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-api-2.11.0.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-core-2.11.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-net-3.6.jar"/>
 	<classpathentry kind="lib" path="lib/jsch-0.1.54.jar"/>
-	<classpathentry kind="lib" path="lib/opencsv-4.5.jar" sourcepath="/Users/dave/Commander4j/workspace.development/b4Middleware/lib/opencsv-4.5-sources.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/Users/dave/Commander4j/workspace.development/b4Middleware/lib/opencsv-4.5-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="lib/opencsv-4.5.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_202]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/javax.mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

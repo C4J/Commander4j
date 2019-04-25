@@ -14,7 +14,7 @@ public class JArchive
 {
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((JArchive.class));
-	
+
 	public int archiveBackupFiles(String path, int daysToKeep)
 	{
 		int result = 0;
@@ -53,15 +53,19 @@ public class JArchive
 
 		for (File file : files)
 		{
-			try
+			if (file.getName().equals("dirClean.ok") == false)
 			{
-				Date lastMod = new Date(file.lastModified());
-				logger.debug("Removing log file [" + file.getName() + ", Date: " + lastMod + "] from [" + directory.getName() + "]");
-				file.delete();
-				count++;
-			} catch (Exception ex)
-			{
-
+				try
+				{
+					Date lastMod = new Date(file.lastModified());
+					logger.debug("Removing log file [" + file.getName() + ", Date: " + lastMod + "] from [" + directory.getName() + "]");
+					file.delete();
+					count++;
+				}
+				catch (Exception ex)
+				{
+					logger.error(ex.getMessage());
+				}
 			}
 		}
 

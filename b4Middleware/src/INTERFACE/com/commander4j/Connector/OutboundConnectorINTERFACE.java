@@ -12,7 +12,7 @@ public interface OutboundConnectorINTERFACE
 	public final static String Connector_XML = "XML";
 	public final static String Connector_RAW = "RAW";
 
-	public boolean connectorSave(String path,String filename);
+	public boolean connectorSave(String path,String prefix,String filename);
 
 	public Document getData();
 

@@ -25,7 +25,7 @@ public class OutboundConnectorEmail extends OutboundConnectorABSTRACT
 	}
 
 	@Override
-	public boolean connectorSave(String path,String filename)
+	public boolean connectorSave(String path,String prefix,String filename)
 	{
 		boolean result = false;
 		String fullPath = path+File.separator+filename;

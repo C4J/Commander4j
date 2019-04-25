@@ -13,7 +13,7 @@ public class OutboundConnectorIDOC extends OutboundConnectorABSTRACT
 	}
 
 	@Override
-	public boolean connectorSave(String path,String filename)
+	public boolean connectorSave(String path,String prefix,String filename)
 	{
 		boolean result = false;
 

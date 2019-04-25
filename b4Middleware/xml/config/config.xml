@@ -191,6 +191,7 @@
             <csvOptions>separator=,^quote=none</csvOptions>
             <outputFileExtension>temp</outputFileExtension>
             <prefix>G_</prefix>
+            <use83GUID>Y</use83GUID>
             <XSLT/>
         </output>
     </map>

@@ -84,7 +84,6 @@ Class-Path: lib/jasperlib/commons-digester-2.1.jar
  lib/jasperlib_aux/batik-parser-1.9.jar 
  lib/jasperlib_aux/batik-script-1.9.jar 
  lib/jasperlib_aux/batik-xml-1.9.jar 
- lib/mail/spring-core-5.1.6.RELEASE.jar 
  lib/jasper/jasperreports-annotation-processors-6.8.0.jar 
  lib/jasper/jasperreports-chart-customizers-6.8.0.jar 
  lib/jasper/jasperreports-chart-themes-6.8.0.jar 

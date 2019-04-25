@@ -3,6 +3,7 @@ package ABSTRACT.com.commander4j.Interface;
 import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -43,66 +44,125 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	private String delimeter = "";
 	private String outputFilePrefix = "";
 	private String outputFileExtension = "";
-	private String emailSubject="";
-	private String emailMessage="";
+	private String emailSubject = "";
+	private String emailMessage = "";
 	private String emailListID = "";
 	private String compareParam1 = "";
 	private String compareParam1_Type = "";
 	private String compareParam2 = "";
 	private String compareParam2_Type = "";
-	private String comparitor="";
+	private String comparitor = "";
+	private String Use8_3_GUID_Filename = "N";
 	
+	
+	public String get83GUIDFilename(String prefix,String originalFilename)
+	{
+		String result = originalFilename;
+		
+		if (is83GUIDFilenameReqd())
+		{
+			
+			String uuid = UUID.randomUUID().toString().replace("-", "");
+			result = prefix+uuid;
+			logger.debug("Filename changed from ["+originalFilename+"] to ["+result+"]");
+		}
+		else
+		{
+			result = prefix+originalFilename;
+		}
+		
+		return result;
+	}
+
+	public void set83GUIDFilenameReqd(boolean yesNo)
+	{
+		if (yesNo)
+		{
+			this.Use8_3_GUID_Filename = "Y";
+		}
+		else
+		{
+			this.Use8_3_GUID_Filename = "N";
+		}
+	}
+
+	public void set83GUIDFilenameReqd(String yesNo)
+	{
+		this.Use8_3_GUID_Filename = Utility.replaceNullStringwithBlank(yesNo).toUpperCase();
+
+		if (this.Use8_3_GUID_Filename.equals(""))
+		{
+			this.Use8_3_GUID_Filename = "N";
+		}
+	}
+
+	public String get83GUIDFilenameReqd()
+	{
+		return this.Use8_3_GUID_Filename;
+	}
+
+	public boolean is83GUIDFilenameReqd()
+	{
+		if (Use8_3_GUID_Filename.equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	public void setCompareParam1(String p1)
 	{
 		this.compareParam1 = p1;
 	}
-	
+
 	public void setCompareParam1_Type(String typ1)
 	{
-		this.compareParam1_Type =  typ1;
+		this.compareParam1_Type = typ1;
 	}
-	
+
 	public void setCompareParam2(String p2)
 	{
 		this.compareParam2 = p2;
 	}
-	
+
 	public void setCompareParam2_Type(String typ2)
 	{
-		this.compareParam2_Type =  typ2;
+		this.compareParam2_Type = typ2;
 	}
-	
+
 	public void setComparator(String cmp)
 	{
-		this.comparitor =  cmp;
+		this.comparitor = cmp;
 	}
-	
+
 	public String getCompareParam1()
 	{
 		return Utility.replaceNullStringwithBlank(this.compareParam1);
 	}
-	
+
 	public String getCompareParam1_Type()
 	{
 		return Utility.replaceNullStringwithBlank(this.compareParam1_Type);
 	}
-	
+
 	public String getCompareParam2()
 	{
 		return Utility.replaceNullStringwithBlank(this.compareParam2);
 	}
-	
+
 	public String getCompareParam2_Type()
 	{
 		return Utility.replaceNullStringwithBlank(this.compareParam2_Type);
 	}
-	
+
 	public String getComparator()
 	{
 		return Utility.replaceNullStringwithBlank(this.comparitor);
 	}
-	
-	
+
 	public void setPrefix(String prefix)
 	{
 		this.outputFilePrefix = prefix;
@@ -112,7 +172,6 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	{
 		return Utility.replaceNullStringwithBlank(this.outputFilePrefix);
 	}
-	
 
 	public void setDescription(String description)
 	{
@@ -187,7 +246,8 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 			setRunning(true);
 			logger.debug("Start Requested : [" + getDescription() + "]");
 			timer.schedule(this, 0, timerFrequency);
-		} else
+		}
+		else
 		{
 			// stop
 			timer.cancel();
@@ -274,43 +334,43 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 		case OutboundConnectorINTERFACE.Connector_RAW:
 			connector = new OutboundConnectorRAW((OutboundInterface) this);
 			setOutputFileExtension("dat");
-			break;			
+			break;
 		default:
 			throw new IllegalArgumentException();
 		}
 
 	}
 
-	public void  setEmailSubject(String subject)
+	public void setEmailSubject(String subject)
 	{
 		this.emailSubject = subject;
 	}
 
-	public void  setEmailMessage(String message)
+	public void setEmailMessage(String message)
 	{
 		this.emailMessage = message;
 	}
-	
-	public void  setEmailListID(String address)
+
+	public void setEmailListID(String address)
 	{
 		this.emailListID = address;
 	}
-	
+
 	public String getEmailSubject()
 	{
 		return this.emailSubject;
 	}
-	
+
 	public String getEmailMessage()
 	{
 		return this.emailMessage;
 	}
-	
+
 	public String getEmailListID()
 	{
 		return this.emailListID;
 	}
-	
+
 	public String getXSLTPath()
 	{
 		if (xsltPath.equals(""))

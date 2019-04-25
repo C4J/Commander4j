@@ -163,7 +163,6 @@ public class MiddlewareConfig
 				String csvOptionsIn = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/csvOptions").trim();
 				String optionDelimeterIn = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/input[" + String.valueOf(inputSeq) + "]/optionDelimeter").trim();
 
-
 				InboundInterface inboundInterface = new InboundInterface(map, inputDescription);
 				inboundInterface.setId(inputId);
 				inboundInterface.setDescription(inputDescription);
@@ -222,6 +221,7 @@ public class MiddlewareConfig
 					String emailSubject = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/subject").trim();
 					String emailMessage = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/message").trim();
 					String emailListID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/emailListID").trim();
+					String use83GUID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/use83GUID").trim();
 
 					OutboundInterface outboundInterface = new OutboundInterface(map, outputDescription);
 					outboundInterface.setId(outputId);
@@ -237,6 +237,7 @@ public class MiddlewareConfig
 					outboundInterface.setEmailSubject(emailSubject);
 					outboundInterface.setEmailMessage(emailMessage);
 					outboundInterface.setEmailListID(emailListID);
+					outboundInterface.set83GUIDFilenameReqd(use83GUID);
 
 					outboundInterface.setPrefix(outputPrefix);
 					
