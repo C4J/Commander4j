@@ -320,7 +320,7 @@
             <path>./interface/input/417 (GEN Excel)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT/>
+            <XSLT>EXCEL_TO_CSV.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write CSV File">
@@ -424,7 +424,10 @@
 
         <output id="out1" enabed="Y" description="Write CSV">
             <path>./interface/output/424 (GEN Pre Advice CSV)</path>
-            <type>RAW</type>
+            <type>CSV</type>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=""</csvOptions>
+            <outputFileExtension>csv</outputFileExtension>
             <XSLT/>
         </output>
     </map>
