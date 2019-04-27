@@ -208,8 +208,8 @@ public class MiddlewareConfig
 					String outputPattern = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/outputPattern").trim();
 					String optionDelimeterOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/optionDelimeter").trim();
 					String csvOptionsOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/csvOptions").trim();
-					String outputFileExtension = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/outputFileExtension").trim();
-					String outputPrefix = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(inputSeq) + "]/prefix").trim();
+					String outputFileExtension = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/outputFileExtension").trim();
+					String outputPrefix = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/prefix").trim();
 					
 
 					String outputParam1_Type = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param1/@type").trim();

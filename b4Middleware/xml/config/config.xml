@@ -219,7 +219,7 @@
             <path>./interface/input/413 (GEN XML to Dual Output)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
+            <XSLT></XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write ASCII File">
@@ -227,17 +227,20 @@
             <type>ASCII</type>
             <outputPattern>1-10,12-21,23-32</outputPattern>
             <outputFileExtension>txt</outputFileExtension>
-            <XSLT/>
+            <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
         </output>
 
         <output id="out2" enabed="Y" description="Write CSV">
             <path>./interface/output/413 (GEN Dual Output ASCII and CSV)</path>
             <type>CSV</type>
             <optionDelimeter>^</optionDelimeter>
-            <csvOptions>separator=:^quote=""</csvOptions>
-            <XSLT/>
+            <csvOptions>separator=,^quote=""</csvOptions>
+            <outputFileExtension>csv</outputFileExtension>
+            <XSLT>C4J_PRODDEC_XML_to_SAGEX3_GoodsReceipt_CSV.xsl</XSLT>
         </output>
     </map>
+    
+    
 
     <map id="map114" enabed="Y" description="NES SAP Wonderware XML Material to C4J Material">
         <input id="in1" description="Read NES SAP WWare XML Material">
