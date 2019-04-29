@@ -146,8 +146,8 @@ public class Common
 	
 	public static String[] messageTypesincBlank = new String[] { "", "QM Inspection Result","QM Inspection Request","Despatch Confirmation", "Equipment Tracking", "Material Definition", "Process Order", "Pallet Status Change","Pallet Delete","Pallet Move","Pallet Split", "Batch Status Change", "Process Order Status Change",
 			"Production Declaration", "Despatch Pre Advice", "Despatch Email", "Equipment Tracking","Journey Definition","Location","Material Auto Move" };
-	public static String[] transactionTypes = new String[] { "", "DESPATCH", "EDIT", "PRINT","PROD DEC", "STATUS CHANGE","MHN","SPLIT","MOVE"};
-	public static String[] transactionSubTypes = new String[] { "", "ADD","REMOVE","CREATE","PRINT", "CONFIRM", "FROM", "TO", "MANUAL", "LABEL","DECISION","BEFORE","AFTER" };
+	public static String[] transactionTypes = new String[] { "", "DESPATCH", "EDIT", "PRINT","PROD DEC", "STATUS CHANGE","MHN","SPLIT","MOVE","MANUAL"};
+	public static String[] transactionSubTypes = new String[] { "", "ADD","REMOVE","CREATE","PRINT", "CONFIRM", "FROM", "TO", "MANUAL", "LABEL","DECISION","BEFORE","AFTER","DELETE" };
 	public static String[] auditEventActions = new String[] { "", "ADD", "REMOVE", "CREATE", "DELETE", "RENAME", "ENABLE", "DISABLE" };
 	public static String[] auditEventTypes = new String[] { "", "USER", "GROUP", "USER_GROUP", "GROUP_MODULE" };
 	public static final JImageIconLoader imageIconloader = new JImageIconLoader();
