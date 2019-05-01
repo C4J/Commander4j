@@ -191,7 +191,7 @@
             <csvOptions>separator=,^quote=none</csvOptions>
             <outputFileExtension>temp</outputFileExtension>
             <prefix>G_</prefix>
-            <use83GUID>Y</use83GUID>
+            <use83GUID>N</use83GUID>
             <XSLT/>
         </output>
     </map>
@@ -349,7 +349,7 @@
     </map>
 
     <map id="map119" enabed="Y" description="NES C4J Pre Advice XML to Excel Spreadsheet">
-        <input id="in1" description="C4J Pre Advice XM">
+        <input id="in1" description="C4J Pre Advice XML">
             <type>XML</type>
             <path>./interface/input/119 (NES C4J Pre Advice XML)</path>
             <mask/>

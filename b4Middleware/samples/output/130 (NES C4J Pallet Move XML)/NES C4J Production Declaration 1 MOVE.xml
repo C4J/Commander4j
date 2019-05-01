@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <hostRef>3267a942-62df-4071-9d8b-723edf0dc243</hostRef>
+   <messageRef>14323083</messageRef>
+   <interfaceType>Pallet Move</interfaceType>
+   <messageInformation>SSCC=350001615030752260</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2019-03-14T16:04:56</messageDate>
+   <messageData>
+      <palletMove>
+         <pallet>
+            <sscc>350001615030752239</sscc>
+            <fromLocation>WISBECH</fromLocation>
+            <moveAfterMake>Y</moveAfterMake>
+            <toLocation>HAMS HALL</toLocation>
+         </pallet>
+      </palletMove>
+   </messageData>
+</message>

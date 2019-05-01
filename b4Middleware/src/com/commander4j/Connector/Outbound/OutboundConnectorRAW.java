@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.logging.log4j.Logger;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.sys.Common;
@@ -29,6 +30,9 @@ public class OutboundConnectorRAW extends OutboundConnectorABSTRACT
 		
 		filename = getOutboundInterface().get83GUIDFilename(prefix,filename);
 		String fullPath = path+File.separator+filename;
+		
+		String tempFilename = fullPath + ".tmp";
+		String finalFilename = fullPath;
 
 		logger.debug("connectorSave [" + fullPath + "." + getOutboundInterface().getOutputFileExtension().toLowerCase() + "]");
 	
@@ -44,7 +48,7 @@ public class OutboundConnectorRAW extends OutboundConnectorABSTRACT
 		FileOutputStream output;
 		try
 		{
-			output = new FileOutputStream(new File(fullPath));
+			output = new FileOutputStream(new File(tempFilename));
 			IOUtils.write(returnedBytes, output);
 			result=true;
 			
@@ -52,6 +56,9 @@ public class OutboundConnectorRAW extends OutboundConnectorABSTRACT
 			returnedBytes=null;
 			byteArray64String=null;
 			output=null;
+			
+			FileUtils.deleteQuietly(new File(finalFilename));
+			FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
 
 		} catch (Exception e)
 		{

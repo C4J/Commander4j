@@ -333,7 +333,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 			break;
 		case OutboundConnectorINTERFACE.Connector_RAW:
 			connector = new OutboundConnectorRAW((OutboundInterface) this);
-			setOutputFileExtension("dat");
+			setOutputFileExtension("");
 			break;
 		default:
 			throw new IllegalArgumentException();

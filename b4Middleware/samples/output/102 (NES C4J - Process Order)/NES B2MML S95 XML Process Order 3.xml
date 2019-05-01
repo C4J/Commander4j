@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <plant>0933</plant>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>CRID 20170423052909</messageRef>
+   <interfaceType>Process Order</interfaceType>
+   <messageInformation>Process Order=21735053</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2019-04-30T13:36:56</messageDate>
+   <messageData>
+      <processOrder>
+         <orderNo>21735053</orderNo>
+         <receipeId>100000000031892382</receipeId>
+         <dueDate>2017-04-24T09:27:58</dueDate>
+         <status>Ready</status>
+         <plant>0933</plant>
+         <warehouse>734</warehouse>
+         <storageLocation>0001</storageLocation>
+         <storageBin>FILLEDCAN</storageBin>
+         <storageType>141</storageType>
+         <location>WISBECH</location>
+         <material>40745521</material>
+         <description>FELIX Chicken Liver CiJ Bright</description>
+         <requiredQuantity>92160</requiredQuantity>
+         <requiredUom>EA</requiredUom>
+         <defaultPalletStatus>Unrestricted</defaultPalletStatus>
+         <requiredResource>CPROCESS</requiredResource>
+         <requiredResource>CHYDRO</requiredResource>
+      </processOrder>
+   </messageData>
+</message>

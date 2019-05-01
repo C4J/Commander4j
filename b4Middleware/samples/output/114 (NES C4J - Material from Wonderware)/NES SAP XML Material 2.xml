@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <plant>0917</plant>
+   <warehouse>HU3</warehouse>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>MM 18475511</messageRef>
+   <interfaceType>Material Definition</interfaceType>
+   <messageInformation>Material=12232247</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2016-09-02T10:17:38</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>12232247</material>
+         <materialType>FERT</materialType>
+         <description>WINALOT CLSCS CiJ MVChkn6 4(6x400g) N3XB</description>
+         <enabled>Y</enabled>
+         <!--LE_QTY=0--><!--LE_UOM=--><!--LE_NUMERATOR=0--><!--LE_DENOMINATOR=0--><LE_Quantity>0</LE_Quantity>
+         <base_uom>EA</base_uom>
+         <gross_weight>2.700</gross_weight>
+         <net_weight>2.400</net_weight>
+         <weight_uom>KGM</weight_uom>
+         <old_material>EWM000000012048092</old_material>
+         <equipment_Type>LPR</equipment_Type>
+         <!--Plant Data Flag = [] for Plant 0917--><validLocations>
+            <location id="WISBECH">
+               <id>WISBECH</id>
+               <status>Valid</status>
+            </location>
+            <location id="HAMS HALL">
+               <id>HAMS HALL</id>
+               <status>Valid</status>
+            </location>
+            <location id="REWORK">
+               <id>REWORK</id>
+               <status>Valid</status>
+            </location>
+            <location id="EXPORT">
+               <id>EXPORT</id>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+         <materialUOMDefinition id="CS">
+            <uom>CS</uom>
+            <ean>05000163027611</ean>
+            <variant>03</variant>
+            <numerator>4</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition id="EA">
+            <uom>EA</uom>
+            <ean>05000161022823</ean>
+            <variant>03</variant>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition id="LR">
+            <uom>LR</uom>
+            <ean/>
+            <variant/>
+            <numerator>32</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition id="D97">
+            <uom>D97</uom>
+            <ean/>
+            <variant/>
+            <!--Converting LE Quantity from  into EA before inserting calculated D97--><!--LE QTY is 0--><!--LE UOM is --><!-- numerator is 0--><!--D97 (in EA) = 0() x 0 = 0--><!--Original numerator is 384--><numerator>384</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition id="ZZ2">
+            <uom>ZZ2</uom>
+            <ean/>
+            <variant/>
+            <numerator>4</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition id="AA0">
+            <uom>AA0</uom>
+            <ean/>
+            <variant/>
+            <numerator>1</numerator>
+            <denominator>6</denominator>
+         </materialUOMDefinition>
+      </materialDefinition>
+   </messageData>
+</message>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>380022050039221247_2019-05-01T08:33:38</messageRef>
+   <interfaceType>Production Declaration</interfaceType>
+   <messageInformation>SSCC=380022050039221247</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2019-05-01T08:33:38</messageDate>
+   <messageData>
+      <productionDeclaration>
+         <SSCC>380022050039221247</SSCC>
+         <processOrder>23186505</processOrder>
+         <productionQuantity>32</productionQuantity>
+         <productionUOM>CS</productionUOM>
+         <expiryDate>2020-02-29T00:00:00</expiryDate>
+         <productionDate>2018-08-13T11:29:57</productionDate>
+         <batch>82254399HD</batch>
+         <confirmed>Y</confirmed>
+      </productionDeclaration>
+   </messageData>
+</message>

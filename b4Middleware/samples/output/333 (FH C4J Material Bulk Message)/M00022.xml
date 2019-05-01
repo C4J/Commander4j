@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<!--*START* filename MAT_CB1152_2019_05_01_09_29_56.xml-->
+
+<message><!--Message Header--><plant>0917</plant>
+      <hostRef>WILIVE</hostRef>
+      <messageRef>SAGE Material 2019-05-01T09:29:56</messageRef>
+      <interfaceType>Material Definition</interfaceType>
+      <messageInformation>Material=CB1152</messageInformation>
+      <interfaceDirection>Input</interfaceDirection>
+      <messageDate>2019-05-01T09:29:56</messageDate>
+      <!--Message Data--><messageData>
+         <materialDefinition>
+            <material>CB1152</material>
+            <materialType>FERT</materialType>
+            <description>POINTER CHUNKY BICS 5X2KG</description>
+            <enabled>Y</enabled>
+            <base_uom>NA</base_uom>
+            <gross_weight>2</gross_weight>
+            <net_weight>2</net_weight>
+            <weight_uom>KG</weight_uom>
+            <old_material/>
+            <shelf_life>365</shelf_life>
+            <shelf_life_rule>=</shelf_life_rule>
+            <shelf_life_uom>D</shelf_life_uom>
+            <equipment_Type/>
+            <!--Base Unit of Measure (EA)--><materialUOMDefinition>
+               <uom>NA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant>00</variant>
+            </materialUOMDefinition>
+            <!--Production Unit of Measure (CS)--><materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>5</numerator>
+               <denominator>1</denominator>
+               <ean>05024841003643</ean>
+               <variant>00</variant>
+            </materialUOMDefinition>
+            <!--Layer Unit of Measure (LAG)--><materialUOMDefinition>
+               <uom>LAG</uom>
+               <numerator>50</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <!--Pallet Unit of Measure (PAL)--><materialUOMDefinition>
+               <uom>D97</uom>
+               <numerator>250</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </materialDefinition>
+      </messageData>
+   </message>
+
+   <!--*END* filename MAT_CB1152_2019_05_01_09_29_56.xml-->
+
+<!--*START* filename MAT_FB2080_2019_05_01_09_29_56.xml-->
+
+<message><!--Message Header--><plant>0917</plant>
+      <hostRef>WILIVE</hostRef>
+      <messageRef>SAGE Material 2019-05-01T09:29:56</messageRef>
+      <interfaceType>Material Definition</interfaceType>
+      <messageInformation>Material=FB2080</messageInformation>
+      <interfaceDirection>Input</interfaceDirection>
+      <messageDate>2019-05-01T09:29:56</messageDate>
+      <!--Message Data--><messageData>
+         <materialDefinition>
+            <material>FB2080</material>
+            <materialType>FERT</materialType>
+            <description>FHF BISC LAMINATE 14X800G</description>
+            <enabled>Y</enabled>
+            <base_uom/>
+            <gross_weight>0.8</gross_weight>
+            <net_weight>0.8</net_weight>
+            <weight_uom>KG</weight_uom>
+            <old_material/>
+            <shelf_life>365</shelf_life>
+            <shelf_life_rule>=</shelf_life_rule>
+            <shelf_life_uom>D</shelf_life_uom>
+            <equipment_Type/>
+            <!--Layer Unit of Measure (LAG)--><materialUOMDefinition>
+               <uom>LAG</uom>
+               <numerator>140</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <!--Pallet Unit of Measure (PAL)--><materialUOMDefinition>
+               <uom>D97</uom>
+               <numerator>700</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </materialDefinition>
+      </messageData>
+   </message>
+
+   <!--*END* filename MAT_FB2080_2019_05_01_09_29_56.xml-->
+
+<!--*START* filename MAT_IB2258_2019_05_01_09_29_56.xml-->
+
+<message><!--Message Header--><plant>0917</plant>
+      <hostRef>WILIVE</hostRef>
+      <messageRef>SAGE Material 2019-05-01T09:29:56</messageRef>
+      <interfaceType>Material Definition</interfaceType>
+      <messageInformation>Material=IB2258</messageInformation>
+      <interfaceDirection>Input</interfaceDirection>
+      <messageDate>2019-05-01T09:29:56</messageDate>
+      <!--Message Data--><messageData>
+         <materialDefinition>
+            <material>IB2258</material>
+            <materialType>FERT</materialType>
+            <description>POINTER ASST SMALL BONES 1X2KG</description>
+            <enabled>Y</enabled>
+            <base_uom>NA</base_uom>
+            <gross_weight>2</gross_weight>
+            <net_weight>2</net_weight>
+            <weight_uom>KG</weight_uom>
+            <old_material/>
+            <shelf_life>365</shelf_life>
+            <shelf_life_rule>=</shelf_life_rule>
+            <shelf_life_uom>D</shelf_life_uom>
+            <equipment_Type/>
+            <!--Base Unit of Measure (EA)--><materialUOMDefinition>
+               <uom>NA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant>00</variant>
+            </materialUOMDefinition>
+            <!--Production Unit of Measure (CS)--><materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean>5024841003414</ean>
+               <variant>00</variant>
+            </materialUOMDefinition>
+            <!--Layer Unit of Measure (LAG)--><materialUOMDefinition>
+               <uom>LAG</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <!--Pallet Unit of Measure (PAL)--><materialUOMDefinition>
+               <uom>D97</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </materialDefinition>
+      </messageData>
+   </message>
+
+   <!--*END* filename MAT_IB2258_2019_05_01_09_29_56.xml-->
+
+<!--*START* filename MAT_IM1294_2019_05_01_09_29_56.xml-->
+
+<message><!--Message Header--><plant>0917</plant>
+      <hostRef>WILIVE</hostRef>
+      <messageRef>SAGE Material 2019-05-01T09:29:56</messageRef>
+      <interfaceType>Material Definition</interfaceType>
+      <messageInformation>Material=IM1294</messageInformation>
+      <interfaceDirection>Input</interfaceDirection>
+      <messageDate>2019-05-01T09:29:56</messageDate>
+      <!--Message Data--><messageData>
+         <materialDefinition>
+            <material>IM1294</material>
+            <materialType>FERT</materialType>
+            <description>SPP RAWHIDE CHIPS 1X8PCS</description>
+            <enabled>Y</enabled>
+            <base_uom/>
+            <gross_weight>0.1</gross_weight>
+            <net_weight>0.1</net_weight>
+            <weight_uom>KG</weight_uom>
+            <old_material/>
+            <shelf_life>1461</shelf_life>
+            <shelf_life_rule>=</shelf_life_rule>
+            <shelf_life_uom>D</shelf_life_uom>
+            <equipment_Type>WHT</equipment_Type>
+            <!--Base Unit of Measure (EA)--><materialUOMDefinition>
+               <uom/>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant>00</variant>
+            </materialUOMDefinition>
+            <!--Production Unit of Measure (CS)--><materialUOMDefinition>
+               <uom>EA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean>05014439215596</ean>
+               <variant>00</variant>
+            </materialUOMDefinition>
+            <!--Layer Unit of Measure (LAG)--><materialUOMDefinition>
+               <uom>LAG</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <!--Pallet Unit of Measure (PAL)--><materialUOMDefinition>
+               <uom>D97</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </materialDefinition>
+      </messageData>
+   </message>
+
+   <!--*END* filename MAT_IM1294_2019_05_01_09_29_56.xml-->
+
+<!--*START* filename MAT_IM1769_2019_05_01_09_29_56.xml-->
+
+<message><!--Message Header--><plant>0917</plant>
+      <hostRef>WILIVE</hostRef>
+      <messageRef>SAGE Material 2019-05-01T09:29:56</messageRef>
+      <interfaceType>Material Definition</interfaceType>
+      <messageInformation>Material=IM1769</messageInformation>
+      <interfaceDirection>Input</interfaceDirection>
+      <messageDate>2019-05-01T09:29:56</messageDate>
+      <!--Message Data--><messageData>
+         <materialDefinition>
+            <material>IM1769</material>
+            <materialType>FERT</materialType>
+            <description>CHEW GIANT RETR</description>
+            <enabled>Y</enabled>
+            <base_uom>NA</base_uom>
+            <gross_weight>0.31</gross_weight>
+            <net_weight>0.31</net_weight>
+            <weight_uom>KG</weight_uom>
+            <old_material/>
+            <shelf_life>1461</shelf_life>
+            <shelf_life_rule>=</shelf_life_rule>
+            <shelf_life_uom>D</shelf_life_uom>
+            <equipment_Type>WHT</equipment_Type>
+            <!--Base Unit of Measure (EA)--><materialUOMDefinition>
+               <uom>NA</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant>00</variant>
+            </materialUOMDefinition>
+            <!--Production Unit of Measure (CS)--><materialUOMDefinition>
+               <uom>CS</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean>05014439216784</ean>
+               <variant>00</variant>
+            </materialUOMDefinition>
+            <!--Layer Unit of Measure (LAG)--><materialUOMDefinition>
+               <uom>LAG</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+            <!--Pallet Unit of Measure (PAL)--><materialUOMDefinition>
+               <uom>D97</uom>
+               <numerator>1</numerator>
+               <denominator>1</denominator>
+               <ean/>
+               <variant/>
+            </materialUOMDefinition>
+         </materialDefinition>
+      </messageData>
+   </message>
+
+   <!--*END* filename MAT_IM1769_2019_05_01_09_29_56.xml-->
+</root>

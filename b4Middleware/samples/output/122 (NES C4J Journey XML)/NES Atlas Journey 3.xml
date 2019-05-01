@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>Atlas Message Run 2018-02-01T14:56:25</messageRef>
+   <interfaceType>Journey Definition</interfaceType>
+   <messageInformation>Atlas Message Run 2018-02-01T14:56:25</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2018-02-01T14:56:25</messageDate>
+   <messageData>
+      <journeyDefinition>
+         <ref>JPDF1661</ref>
+         <timeslot>2018-02-03T17:50:00</timeslot>
+         <destination>HAMS HALL</destination>
+         <haulier>TMS</haulier>
+         <loadType>FG</loadType>
+         <loadTypeDesc>Finished Goods</loadTypeDesc>
+         <action>Update</action>
+      </journeyDefinition>
+      <journeyDefinition>
+         <ref>JMMM1591</ref>
+         <timeslot>2018-02-03T15:50:00</timeslot>
+         <destination>HAMS HALL</destination>
+         <haulier>TMS</haulier>
+         <loadType>FG</loadType>
+         <loadTypeDesc>Finished Goods</loadTypeDesc>
+         <action>Update</action>
+      </journeyDefinition>
+      <journeyDefinition>
+         <ref>KJND1573</ref>
+         <timeslot>2018-02-03T13:50:00</timeslot>
+         <destination>HAMS HALL</destination>
+         <haulier>TMS</haulier>
+         <loadType>FG</loadType>
+         <loadTypeDesc>Finished Goods</loadTypeDesc>
+         <action>Update</action>
+      </journeyDefinition>
+      <journeyDefinition>
+         <ref>HRLX1610</ref>
+         <timeslot>2018-02-03T19:00:00</timeslot>
+         <destination>HAMS HALL</destination>
+         <haulier/>
+         <loadType>FG</loadType>
+         <loadTypeDesc>Finished Goods</loadTypeDesc>
+         <action>Update</action>
+      </journeyDefinition>
+   </messageData>
+</message>
