@@ -43,11 +43,15 @@
 		</td>
 	</tr>
 	<tr>
-		<td align="center" style="height: 86px" class="splashTitleVersion">
+		<td align="center" style="height: 70px" class="splashTitleVersion">
 		Version : <%=com.commander4j.app.JVersion.getProgramVersion() %>
 	</tr>
 	<tr>
-		<td align="center" style="height: 70px">
+		<td align="center" style="height: 70px" class="splashTitleVersion">
+		Host : <%=com.commander4j.bean.JServerName.getServername() %>
+	</tr>
+	<tr>
+		<td align="center" style="height: 100px">
 			<input type="submit" name="buttonStart"	id="buttonStart" value="Start" 	onclick="document.index.button.value='Start';">
 		</td>
 	</tr>
