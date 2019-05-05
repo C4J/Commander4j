@@ -29,6 +29,8 @@
     	<pathelement location="lib/poi-scratchpad-3.15.jar"/>
     	<pathelement location="lib/curvesapi-1.04.jar"/>
     	<pathelement location="lib/xmlbeans-2.6.0.jar"/>
+      <pathelement location="lib/pdfbox-app-2.0.15.jar"/>   
+      <pathelement location="lib/org.eclipse.paho.client.mqttv3-1.2.1.jar"/>        
     	<pathelement location="lib/commons-collections4-4.1.jar"/>
     	<pathelement location="lib/commons-net-3.6.jar"/>
     </path>

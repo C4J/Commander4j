@@ -222,7 +222,14 @@ public class MiddlewareConfig
 					String emailMessage = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/message").trim();
 					String emailListID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/emailListID").trim();
 					String use83GUID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/use83GUID").trim();
+					String queueName = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/queueName").trim();
 
+					String mqttBroker = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/broker").trim();
+					String mqttTopic = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/topic").trim();
+					String mqttClient = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/client").trim();
+					String mqttContentXPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/contentXPath").trim();
+					String mqttQos = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/qos").trim();
+					
 					OutboundInterface outboundInterface = new OutboundInterface(map, outputDescription);
 					outboundInterface.setId(outputId);
 					outboundInterface.setDescription(outputDescription);
@@ -238,6 +245,13 @@ public class MiddlewareConfig
 					outboundInterface.setEmailMessage(emailMessage);
 					outboundInterface.setEmailListID(emailListID);
 					outboundInterface.set83GUIDFilenameReqd(use83GUID);
+					outboundInterface.setQueueName(queueName);
+					
+					outboundInterface.setMQTTBroker(mqttBroker);
+					outboundInterface.setMQTTTopic(mqttTopic);
+					outboundInterface.setMQTTClient(mqttClient);
+					outboundInterface.setMQTTContentXML(mqttContentXPath);
+					outboundInterface.setMQTTQos(mqttQos);
 
 					outboundInterface.setPrefix(outputPrefix);
 					

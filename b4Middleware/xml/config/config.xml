@@ -623,7 +623,44 @@
         </output>
     </map>
     
-    
+    <map id="map428" enabed="Y" description="GEN PDF Document to printer queue.">
+        <input id="in1" description="Read PDF Document">
+            <type>PDF_PRINT</type>
+            <path>./interface/input/428 (GEN Print PDF)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT></XSLT>
+        </input>
 
+        <output id="out1" enabed="Y" description="Print PDF Document to HP8600">
+            <path>./interface/output/428 (GEN Print PDF)</path>
+            <type>PDF_PRINT</type>
+            <queueName>HP8600</queueName>
+            <XSLT/>
+        </output>
+    </map>
+    
+    <map id="map429" enabed="Y" description="GEN XML to MQTT Broker">
+        <input id="in1" description="Read XML Document">
+            <type>XML</type>
+            <path>./interface/input/429 (GEN XML MQTT)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT></XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Send to MQTT Broker">
+            <path>./interface/output/429 (GEN XML MQTT)</path>
+            <type>MQTT</type>
+            <mqtt>
+                <topic>MQTT Examples</topic>
+                <contentXPath></contentXPath>  <!-- Will use the following if not specified "/mqtt/content"-->
+                <qos>2</qos>
+                <broker>tcp://iot.eclipse.org:1883</broker>
+                <clientID>tcp://iot.eclipse.org:1883</clientID>        
+            </mqtt>
+            <XSLT/>
+        </output>
+    </map>
 
 </config>

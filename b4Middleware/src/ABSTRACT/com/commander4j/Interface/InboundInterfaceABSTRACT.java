@@ -11,6 +11,7 @@ import com.commander4j.Connector.Inbound.InboundConnectorASCII;
 import com.commander4j.Connector.Inbound.InboundConnectorCSV;
 import com.commander4j.Connector.Inbound.InboundConnectorExcel;
 import com.commander4j.Connector.Inbound.InboundConnectorIDOC;
+import com.commander4j.Connector.Inbound.InboundConnectorPDF_PRINT;
 import com.commander4j.Connector.Inbound.InboundConnectorRAW;
 import com.commander4j.Connector.Inbound.InboundConnectorEmail;
 import com.commander4j.Connector.Inbound.InboundConnectorXML;
@@ -29,7 +30,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	public InboundConnectorABSTRACT connector;
 	private Long timerFrequency = (long) 2000;
 	private boolean running = false;
-	private Timer timer = new Timer();
+	private Timer timer;
 	protected Map map;
 	protected Document data;
 	private String inputPath = "";
@@ -45,6 +46,11 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 	private String delimeter = "";
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundInterfaceABSTRACT.class));
+	
+	public String getMapId()
+	{
+		return this.map.getId();
+	}
 
 	private String inputPattern = "";
 
@@ -166,6 +172,7 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 		if ((enable == true) && (enabled == false) && (running == false))
 		{
 			// start
+			timer = new Timer("Input_"+getMapId()+"_"+getId());
 			connector.setEnabled(enabled);
 			this.enabled = enable;
 			setRunning(true);
@@ -249,6 +256,10 @@ public abstract class InboundInterfaceABSTRACT extends TimerTask implements Inbo
 
 		switch (type)
 		{
+		case InboundConnectorINTERFACE.Connector_PDF_PRINT:
+			connector = new InboundConnectorPDF_PRINT((InboundInterface) this);
+			setInputFileMask(InboundConnectorINTERFACE.Mask_PDF_PRINT);
+			break;
 		case InboundConnectorINTERFACE.Connector_ASCII:
 			connector = new InboundConnectorASCII((InboundInterface) this);
 			setInputFileMask(InboundConnectorINTERFACE.Mask_ASCII);

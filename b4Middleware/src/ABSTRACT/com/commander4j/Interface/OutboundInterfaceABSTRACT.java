@@ -15,6 +15,8 @@ import com.commander4j.Connector.Outbound.OutboundConnectorASCII;
 import com.commander4j.Connector.Outbound.OutboundConnectorCSV;
 import com.commander4j.Connector.Outbound.OutboundConnectorEmail;
 import com.commander4j.Connector.Outbound.OutboundConnectorIDOC;
+import com.commander4j.Connector.Outbound.OutboundConnectorMQTT;
+import com.commander4j.Connector.Outbound.OutboundConnectorPDF_PRINT;
 import com.commander4j.Connector.Outbound.OutboundConnectorRAW;
 import com.commander4j.Connector.Outbound.OutboundConnectorXML;
 import com.commander4j.Interface.Mapping.Map;
@@ -30,7 +32,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	public OutboundConnectorABSTRACT connector;
 	private Long timerFrequency = (long) 2000;
 	private boolean running = false;
-	Timer timer = new Timer();
+	Timer timer;
 	protected Map map;
 	protected Document data;
 	private String outputPath = "";
@@ -53,7 +55,86 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	private String compareParam2_Type = "";
 	private String comparitor = "";
 	private String Use8_3_GUID_Filename = "N";
+	private String queueName = "";
+	private String mqttTopic="";
+	private String mqttContentXPath="";
+	private String mqttClient="";
+	private String mqttBroker="";
+	private int mqttQos=2;
 	
+	public String getMapId()
+	{
+		return this.map.getId();
+	}
+	
+	public void setMQTTTopic(String q)
+	{
+		this.mqttTopic = Utility.replaceNullStringwithBlank(q);
+	}
+	
+	public void setMQTTContentXML(String q)
+	{
+		this.mqttContentXPath = Utility.replaceNullStringwithBlank(q);
+	}
+	
+	public void setMQTTClient(String q)
+	{
+		this.mqttClient = Utility.replaceNullStringwithBlank(q);
+	}
+
+	public void setMQTTBroker(String q)
+	{
+		this.mqttBroker = Utility.replaceNullStringwithBlank(q);
+	}
+	
+	public void setMQTTQos(String q)
+	{
+		try {
+			this.mqttQos = Integer.valueOf(Utility.replaceNullStringwithBlank(q));
+		} catch (Exception ex){
+			this.mqttQos = 0;
+		}
+
+	}
+	
+	public String getMQTTTopic()
+	{
+		return mqttTopic;
+	}
+	
+	public String getMQTTContentXPath()
+	{
+		if (mqttContentXPath.equals(""))
+		{
+			this.mqttContentXPath = "/mqtt/content";
+		}
+		return mqttContentXPath;
+	}
+	
+	public String getMQTBroker()
+	{
+		return mqttBroker;
+	}
+	
+	public int getMQTTQos()
+	{
+		return this.mqttQos;
+	}
+	
+	public String getMQTTClient()
+	{
+		return mqttClient;
+	}
+	
+	public void setQueueName(String q)
+	{
+		this.queueName = Utility.replaceNullStringwithBlank(q);
+	}
+
+	public String getQueueName()
+	{
+		return Utility.replaceNullStringwithBlank(this.queueName);
+	}
 	
 	public String get83GUIDFilename(String prefix,String originalFilename)
 	{
@@ -241,6 +322,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 		if ((enable == true) && (enabled == false) && (running == false))
 		{
 			// start
+			timer = new Timer("Output_"+getMapId()+"_"+getId());
 			connector.setEnabled(enabled);
 			this.enabled = enable;
 			setRunning(true);
@@ -310,6 +392,10 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 		switch (type)
 		{
+		case OutboundConnectorINTERFACE.Connector_PDF_PRINT:
+			connector = new OutboundConnectorPDF_PRINT((OutboundInterface) this);
+			setOutputFileExtension("pdf");
+			break;
 		case OutboundConnectorINTERFACE.Connector_ASCII:
 			connector = new OutboundConnectorASCII((OutboundInterface) this);
 			setOutputFileExtension("txt");
@@ -329,6 +415,10 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 			break;
 		case OutboundConnectorINTERFACE.Connector_XML:
 			connector = new OutboundConnectorXML((OutboundInterface) this);
+			setOutputFileExtension("xml");
+			break;
+		case OutboundConnectorINTERFACE.Connector_MQTT:
+			connector = new OutboundConnectorMQTT((OutboundInterface) this);
 			setOutputFileExtension("xml");
 			break;
 		case OutboundConnectorINTERFACE.Connector_RAW:

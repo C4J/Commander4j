@@ -20,7 +20,7 @@ public class OutboundConnectorRAW extends OutboundConnectorABSTRACT
 
 	public OutboundConnectorRAW(OutboundInterface inter)
 	{
-		super(Connector_XML, inter);
+		super(Connector_RAW, inter);
 	}
 
 	@Override

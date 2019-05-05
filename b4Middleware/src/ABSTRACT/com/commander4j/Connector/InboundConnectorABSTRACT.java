@@ -84,7 +84,7 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 		setFilename(filename);
 		if (connectorLoad(inint.getInputPath() + File.separator + filename))
 		{
-			if (getType().equals(Connector_EMAIL)==false)
+			if ((getType().equals(Connector_EMAIL)==false) && (getType().equals(Connector_PDF_PRINT)==false) )
 			{
 				if (connectorDelete(filename))
 				{

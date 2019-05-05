@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testConfig>
+    <description>b4Middleware Test Configuration</description>
+    <verboseLevel>1</verboseLevel>
+    <iterrations>1</iterrations>
+
+    <tests>
+        <!--This is the base folder were middleware4j is installed.--> 
+        <rootPath>/Users/dave/Commander4j/workspace.development/b4Middleware</rootPath>
+        
+        <!--This is the base folder were middleware4j expects to find input files to process-->
+        <inputPath>interface/input</inputPath>
+        
+        <!--This is the base folder were middleware4j keeps its sample input files-->
+        <samplePath>samples/input</samplePath>
+        
+        <!--This is the base folder were middleware4j creates it's output files-->
+        <outputPath>interface/output</outputPath>
+        
+        <!--This is the base folder were we keep an example of a good outputs in subdirectories for comparison-->
+        <referencePath>samples/output</referencePath>
+        
+        <excludes>
+            <list id="xmlDates">
+                <ignore>messageDate</ignore>
+                <ignore>PublishedDate</ignore>
+            </list>
+            <list id="NTR_messageRef">
+                <ignore>messageRef</ignore>
+                <ignore>messageDate</ignore>
+            </list>
+            <list id="SAGE">
+                <ignore>*START*</ignore>
+                <ignore>*END*</ignore>
+                <ignore>messageRef</ignore>
+                <ignore>messageDate</ignore>
+            </list>
+        </excludes>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map101" enabled="Y" description="NES Konnect XML Material to C4J Material Master">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read Konnect XML Material Master" type="XML">
+                <samplePath>101 (NES Konnect XML Material)</samplePath>
+                <inputPath>101 (NES Konnect XML Material)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES Konnect XML Material 1.xml</file>
+                    <file id="2">NES Konnect XML Material 2.xml</file>
+                    <file id="3">NES Konnect XML Material 3.xml</file>
+                    <file id="4">NES Konnect XML Material 4.xml</file>
+                </inputs>    
+            </input>
+
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write C4J Material Master" type="XML"> 
+                <referencePath>101 (NES C4J - Material)</referencePath>
+                <outputPath>101 (NES C4J - Material)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES Konnect XML Material 1.xml</file>
+                    <file id="2">NES Konnect XML Material 2.xml</file>
+                    <file id="3">NES Konnect XML Material 3.xml</file>
+                    <file id="4">NES Konnect XML Material 4.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map102" enabled="Y" description="NES B2MML S95 XML Process Order to C4J Process Order">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read B2MML S95 CR XML Process Order" type="XML">
+                <samplePath>102 (NES B2MML S95 XML Process Order)</samplePath>
+                <inputPath>102 (NES B2MML S95 XML Process Order)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES B2MML S95 XML Process Order 1.xml</file>
+                    <file id="2">NES B2MML S95 XML Process Order 2.xml</file>
+                    <file id="3">NES B2MML S95 XML Process Order 3.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write Commander4j Process Order XML" type="XML"> 
+                <referencePath>102 (NES C4J - Process Order)</referencePath>
+                <outputPath>102 (NES C4J - Process Order)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES B2MML S95 XML Process Order 1.xml</file>
+                    <file id="2">NES B2MML S95 XML Process Order 2.xml</file>
+                    <file id="3">NES B2MML S95 XML Process Order 3.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map403" enabled="Y" description="GEN Comma Separated Variables">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read GEN Comma Separated Variables" type="CSV">
+                <samplePath>403 (GEN Comma Separated Variables)</samplePath>
+                <inputPath>403 (GEN Comma Separated Variables)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">GEN Comma Separated Variables 1.csv</file>
+                    <file id="2">GEN Comma Separated Variables 2.csv</file>
+                    <file id="3">GEN Comma Separated Variables 3.csv</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write XML Example" type="XML"> 
+                <referencePath>403 (GEN XML)</referencePath>
+                <outputPath>403 (GEN XML)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">GEN Comma Separated Variables 1.csv.xml</file>
+                    <file id="2">GEN Comma Separated Variables 2.csv.xml</file>
+                    <file id="3">GEN Comma Separated Variables 3.csv.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map104" enabled="Y" description="NES B2MML S95 XML Batch Status to C4J Batch Status">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read S95 Batch Status Change" type="XML">
+                <samplePath>104 (NES B2MML S95 XML Batch Status)</samplePath>
+                <inputPath>104 (NES B2MML S95 XML Batch Status)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES B2MML S95 XML Batch Status 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write Commander4j Batch Status Change" type="XML"> 
+                <referencePath>104 (NES C4J - Batch Status)</referencePath>
+                <outputPath>104 (NES C4J - Batch Status)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES B2MML S95 XML Batch Status 1.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map105" enabled="Y" description="NES B2MML S95 XML Pallet Status to C4J Pallet Status">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read SAP S95 TRANSFER ORDER XML" type="XML">
+                <samplePath>105 (NES B2MML S95 XML Pallet Status)</samplePath>
+                <inputPath>105 (NES B2MML S95 XML Pallet Status)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES B2MML S95 XML Pallet Status 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write Commander4j Pallet Status Change XML" type="XML"> 
+                <referencePath>105 (NES C4J - Pallet Status)</referencePath>
+                <outputPath>105 (NES C4J - Pallet Status)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES B2MML S95 XML Pallet Status 1.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map106" enabled="Y" description="NES B2MML S95 XML Process Order Status to C4J Process Order Status">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read SAP S95 CRST XML" type="XML">
+                <samplePath>106 (NES B2MML S95 XML Process Order Status)</samplePath>
+                <inputPath>106 (NES B2MML S95 XML Process Order Status)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES B2MML S95 XML Process Order Status 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write Commander4j Process Order Status Change XML" type="XML"> 
+                <referencePath>106 (NES C4J - Process Order Status)</referencePath>
+                <outputPath>106 (NES C4J - Process Order Status)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES B2MML S95 XML Process Order Status 1.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map107" enabled="Y" description="NES C4J Production Declaration to B2MML S95 XML Production Declaration">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read C4J Prod Dec XML" type="XML">
+                <samplePath>107 (NES C4J Production Declaration)</samplePath>
+                <inputPath>107 (NES C4J Production Declaration)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES C4J Production Declaration 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write B2MML S95 XML Prod Dec" type="XML"> 
+                <referencePath>107 (NES B2MML S95 XML Production Declaration)</referencePath>
+                <outputPath>107 (NES B2MML S95 XML Production Declaration)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES C4J Production Declaration 1.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map408" enabled="Y" description="GEN ASCII File Fixed Column to XML">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read ASCII Flat File" type="ASCII">
+                <samplePath>408 (GEN ASCII File Fixed Column)</samplePath>
+                <inputPath>408 (GEN ASCII File Fixed Column)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">GEN ASCII File Fixed Column 1.txt</file>
+                    <file id="2">GEN ASCII File Fixed Column 2.txt</file>
+                    <file id="3">GEN ASCII File Fixed Column 3.txt</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write XML" type="XML"> 
+                <referencePath>408 (GEN XML)</referencePath>
+                <outputPath>408 (GEN XML)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">GEN ASCII File Fixed Column 1.txt.xml</file>
+                    <file id="2">GEN ASCII File Fixed Column 2.txt.xml</file>
+                    <file id="3">GEN ASCII File Fixed Column 3.txt.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map209" enabled="Y" description="CDF Tropos Material XML">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read TROPOS Material XML File" type="XML">
+                <samplePath>209 (CDF Tropos Material XML)</samplePath>
+                <inputPath>209 (CDF Tropos Material XML)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">IJM Inbound Material Master XML 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write C4J Material Master" type="XML"> 
+                <referencePath>209 (CDF C4J - Material)</referencePath>
+                <outputPath>209 (CDF C4J - Material)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">IJM Inbound Material Master XML 1.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map210" enabled="Y" description="CDF Tropos Works Order XML">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read TROPOS Works Order XML File" type="XML">
+                <samplePath>210 (CDF Tropos Works Order XML)</samplePath>
+                <inputPath>210 (CDF Tropos Works Order XML)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">IJM Production Order Print 1.xml</file>
+                    <file id="2">IJM Production Order Print 2.xml</file>
+                    <file id="3">IJM Production Order Print 3.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write C4J Process Order" type="XML"> 
+                <referencePath>210 (CDF C4J - Process Order)</referencePath>
+                <outputPath>210 (CDF C4J - Process Order)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">IJM Production Order Print 1.xml</file>
+                    <file id="2">IJM Production Order Print 2.xml</file>
+                    <file id="3">IJM Production Order Print 3.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map211" enabled="Y" description="CDF C4J Production Declaration to TROPOS Goods Receipt">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read C4J XML File" type="XML">
+                <samplePath>211 (CDF C4J - Production Declaration)</samplePath>
+                <inputPath>211 (CDF C4J - Production Declaration)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">CDF C4J - Production Declaration 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write TROPOS CSV" type="XML"> 
+                <referencePath>211 (CDF TROPOS - Goods Receipt)</referencePath>
+                <outputPath>211 (CDF TROPOS - Goods Receipt)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">G_CDF C4J - Production Declaration 1.xml.temp</file>
+                </outputs>         
+            </output>
+        </test>  
+ 
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map412" enabled="Y" description="GEN XML to ASCII Flat File">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read C4J XML File" type="XML">
+                <samplePath>412 (GEN C4J Prod Dec to ASCII Flat File)</samplePath>
+                <inputPath>412 (GEN C4J Prod Dec to ASCII Flat File)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">GEN C4J Prod Dec to ASCII Flat File 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write ASCII File" type="ASCII"> 
+                <referencePath>412 (GEN ASCII Fix Column)</referencePath>
+                <outputPath>412 (GEN ASCII Fix Column)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">GEN C4J Prod Dec to ASCII Flat File 1.xml.txt</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map413" enabled="Y" description="GEN C4J Prod Dec XML to Dual Output (ASCII and CSV Files)">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read XML File" type="XML">
+                <samplePath>413 (GEN XML to Dual Output)</samplePath>
+                <inputPath>413 (GEN XML to Dual Output)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">GEN C4J - Production Declaration 7.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write ASCII File" type="ASCII"> 
+                <referencePath>413 (GEN Dual Output ASCII and CSV)</referencePath>
+                <outputPath>413 (GEN Dual Output ASCII and CSV)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">GEN C4J - Production Declaration 7.xml.txt</file>
+                </outputs>         
+            </output>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="2" description="Write CSV" type="CSV"> 
+                <referencePath>413 (GEN Dual Output ASCII and CSV)</referencePath>
+                 <outputPath>413 (GEN Dual Output ASCII and CSV)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">GEN C4J - Production Declaration 7.xml.csv</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map114" enabled="Y" description="NES SAP Wonderware XML Material to C4J Material">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read NES SAP WWare XML Material" type="XML">
+                <samplePath>114 (NES SAP Wonderware Material XML)</samplePath>
+                <inputPath>114 (NES SAP Wonderware Material XML)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES SAP XML Material 1.xml</file>
+                    <file id="2">NES SAP XML Material 2.xml</file>
+                    <file id="3">NES SAP XML Material 3.xml</file>
+                    <file id="4">NES SAP XML Material 4.xml</file>
+                    <file id="5">NES SAP XML Material 5.xml</file>
+                    <file id="6">NES SAP XML Material 6.xml</file>
+                    <file id="7">NES SAP XML Material 7.xml</file>
+                    <file id="8">NES SAP XML Material 8.xml</file>
+                    <file id="9">NES SAP XML Material LE Override 80 cases.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write Commander4j Material" type="XML"> 
+                <referencePath>114 (NES C4J - Material from Wonderware)</referencePath>
+                <outputPath>114 (NES C4J - Material from Wonderware)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES SAP XML Material 1.xml</file>
+                    <file id="2">NES SAP XML Material 2.xml</file>
+                    <file id="3">NES SAP XML Material 3.xml</file>
+                    <file id="4">NES SAP XML Material 4.xml</file>
+                    <file id="5">NES SAP XML Material 5.xml</file>
+                    <file id="6">NES SAP XML Material 6.xml</file>
+                    <file id="7">NES SAP XML Material 7.xml</file>
+                    <file id="8">NES SAP XML Material 8.xml</file>
+                    <file id="9">NES SAP XML Material LE Override 80 cases.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map116" enabled="Y" description="NES SAP Mii XML Material to C4J Material">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read NES SAP Mii XML Material" type="XML">
+                <samplePath>116 (NES SAP Mii Material XML)</samplePath>
+                <inputPath>116 (NES SAP Mii Material XML)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES SAP Mii Material 1.xml</file>
+                    <file id="2">NES SAP Mii Material 2.xml</file>
+                    <file id="3">NES SAP Mii Material 3.xml</file>
+                    <file id="4">NES SAP Mii Material 4.xml</file>
+                    <file id="5">NES SAP Mii Material 5.xml</file>
+                    <file id="6">NES SAP Mii Material 6 Procurement Flag Set.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write Commander4j Material" type="XML"> 
+                <referencePath>116 (NES C4J - Material from MII)</referencePath>
+                <outputPath>116 (NES C4J - Material from MII)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES SAP Mii Material 1.xml</file>
+                    <file id="2">NES SAP Mii Material 2.xml</file>
+                    <file id="3">NES SAP Mii Material 3.xml</file>
+                    <file id="4">NES SAP Mii Material 4.xml</file>
+                    <file id="5">NES SAP Mii Material 5.xml</file>
+                    <file id="6">NES SAP Mii Material 6 Procurement Flag Set.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map115" enabled="Y" description="NES C4J Equipment Tracking to ASCII Flat File">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read XML File" type="XML">
+                <samplePath>115 (NES C4J Equipment Tracking)</samplePath>
+                <inputPath>115 (NES C4J Equipment Tracking)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES C4J Equipment Tracking 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write ASCII Fixed Column File" type="ASCII"> 
+                <referencePath>115 (NES Equipment Tracking)</referencePath>
+                <outputPath>115 (NES Equipment Tracking)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES C4J Equipment Tracking 1.xml.pal</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map416" enabled="Y" description="GEN Split inbound XML into 2 outbounds">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read XML File" type="XML">
+                <samplePath>416 (GEN Single Input XML)</samplePath>
+                <inputPath>416 (GEN Single Input XML)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">GEN Konnect XML Material 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write XML Copy 1" type="XML"> 
+                <referencePath>416a (GEN Single Input to Output XML Copy 1)</referencePath>
+                <outputPath>416a (GEN Single Input to Output XML Copy 1)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">GEN Konnect XML Material 1.xml</file>
+                </outputs>         
+            </output>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="2" description="Write XML Copy 2" type="XML"> 
+                <referencePath>416b (GEN Single Input to Output XML Copy 2)</referencePath>
+                <outputPath>416b (GEN Single Input to Output XML Copy 2)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">GEN Konnect XML Material 1.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map417" enabled="Y" description="GEN Excel Spreadsheet to CSV">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read Excel File" type="XML">
+                <samplePath>417 (GEN Excel)</samplePath>
+                <inputPath>417 (GEN Excel)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">GEN Excel 1.xls</file>
+                    <file id="2">GEN Excel 2.xlsx</file>
+                    <file id="3">GEN Excel 3.xlsx</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write CSV File" type="CSV"> 
+                <referencePath>417 (GEN CSV)</referencePath>
+                <outputPath>417 (GEN CSV)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">GEN Excel 1.xls.csv</file>
+                    <file id="2">GEN Excel 2.xlsx.csv</file>
+                    <file id="3">GEN Excel 3.xlsx.csv</file>
+                </outputs>         
+            </output>
+        </test>  
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map118" enabled="Y" description="NES SAP Idoc Material Master to C4J XML">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read IDOC" type="IDOC">
+                <samplePath>118 (NES SAP IDOC Material Master)</samplePath>
+                <inputPath>118 (NES SAP IDOC Material Master)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES SAP IDOC Material Master 1.txt</file>
+                    <file id="2">NES SAP IDOC Material Master 2.txt</file>
+                    <file id="3">NES SAP IDOC Material Master 3.txt</file>
+                    <file id="4">NES SAP IDOC Material Master 4.txt</file>
+                    <file id="5">NES SAP IDOC Material Master 5.txt</file>
+                    <file id="6">NES SAP IDOC Material Master 6.txt</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write XML File" type="XML"> 
+                <referencePath>118 (NES C4J - Material XML)</referencePath>
+                <outputPath>118 (NES C4J - Material XML)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES SAP IDOC Material Master 1.txt.xml</file>
+                    <file id="2">NES SAP IDOC Material Master 2.txt.xml</file>
+                    <file id="3">NES SAP IDOC Material Master 3.txt.xml</file>
+                    <file id="4">NES SAP IDOC Material Master 4.txt.xml</file>
+                    <file id="5">NES SAP IDOC Material Master 5.txt.xml</file>
+                    <file id="6">NES SAP IDOC Material Master 6.txt.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map119" enabled="Y" description="NES C4J Pre Advice XML to Excel Spreadsheet">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="C4J Pre Advice XML" type="XML">
+                <samplePath>119 (NES C4J Pre Advice XML)</samplePath>
+                <inputPath>119 (NES C4J Pre Advice XML)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES C4J Pre Advice 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write NES Excel XML File" type="XML"> 
+                <referencePath>119 (NES Pre Advice Excel)</referencePath>
+                <outputPath>119 (NES Pre Advice Excel)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES C4J Pre Advice 1.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map420" enabled="Y" description="GEN C4J Pre Advice XML to ASCII File">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read XML File" type="XML">
+                <samplePath>420 (GEN C4J Pre Advice XML)</samplePath>
+                <inputPath>420 (GEN C4J Pre Advice XML)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">GEN C4J Pre Advice 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write ASCII File" type="ASCII"> 
+                <referencePath>420 (GEN Pre Advice ASCII)</referencePath>
+                <outputPath>420 (GEN Pre Advice ASCII)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">GEN C4J Pre Advice 1.xml.txt</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map421" enabled="Y" description="GEN C4J Pre Advice XML to ASCII File">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read File" type="EMAIL">
+                <samplePath>421 (GEN Email Send)</samplePath>
+                <inputPath>421 (GEN Email Send)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">GEN Email Send 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write File" type="EMAIL"> 
+                <referencePath>421 (GEN Email Send)</referencePath>
+                <outputPath>421 (GEN Email Send)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="binary" excludeList="xmlDates">
+                    <file id="1">GEN Email Send 1.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map122" enabled="Y" description="NES Atlas XML Filter Destination to C4J XML">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read Atlas XML" type="XML">
+                <samplePath>122 (NES Atlas Journey XML)</samplePath>
+                <inputPath>122 (NES Atlas Journey XML)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES Atlas Journey 1.xml</file>
+                    <file id="2">NES Atlas Journey 2.xml</file>
+                    <file id="3">NES Atlas Journey 3.xml</file>
+                    <file id="4">NES Atlas Journey 4.xml</file>
+                    <file id="5">NES Atlas Journey 5.xml</file>
+                    <file id="6">NES Atlas Journey 6.xml</file>
+                    <file id="7">NES Atlas Journey 7.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write Commander4j XML" type="XML"> 
+                <referencePath>122 (NES C4J Journey XML)</referencePath>
+                <outputPath>122 (NES C4J Journey XML)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES Atlas Journey 1.xml</file>
+                    <file id="2">NES Atlas Journey 2.xml</file>
+                    <file id="3">NES Atlas Journey 3.xml</file>
+                    <file id="4">NES Atlas Journey 4.xml</file>
+                    <file id="5">NES Atlas Journey 5.xml</file>
+                    <file id="6">NES Atlas Journey 6.xml</file>
+                    <file id="7">NES Atlas Journey 7.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map424" enabled="Y" description="GEN C4J Pre Advice XML to CSV">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read XML" type="XML">
+                <samplePath>424 (GEN C4J Pre Advice XML)</samplePath>
+                <inputPath>424 (GEN C4J Pre Advice XML)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">GEN C4J Pre Advice.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write CSV" type="CSV"> 
+                <referencePath>424 (GEN Pre Advice CSV)</referencePath>
+                <outputPath>424 (GEN Pre Advice CSV)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">GEN C4J Pre Advice.xml.csv</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map125" enabled="Y" description="NES C4J Production Declaration Rounded Expiry Time">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read C4J Prod Dec XML" type="XML">
+                <samplePath>125 (NES C4J Production Declaration)</samplePath>
+                <inputPath>125 (NES C4J Production Declaration)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES C4J Production Declaration 1.xml</file>
+                    <file id="2">NES C4J Production Declaration 2.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write S95 Prod Dec XML" type="XML"> 
+                <referencePath>125 (NES C4J Production Declaration Expiry 235959)</referencePath>
+                <outputPath>125 (NES C4J Production Declaration Expiry 235959)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES C4J Production Declaration 1.xml</file>
+                    <file id="2">NES C4J Production Declaration 2.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map426" enabled="N" description="GEN EPCIS to TraceLink">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read EPCIS" type="XML">
+                <samplePath>426 (GEN EPCIS)</samplePath>
+                <inputPath>426 (GEN EPCIS)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">input 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write TraceLink" type="XML"> 
+                <referencePath>426 (GEN TraceLink)</referencePath>
+                <outputPath>426 (GEN TraceLink)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">input 1.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map427" enabled="Y" description="GEN RAW Copy File Only">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read RAW Input">
+                <samplePath>427 (GEN Copy)</samplePath>
+                <inputPath>427 (GEN Copy)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">sample_barcode_a4.pdf</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write Copy 1" type="XML"> 
+                <referencePath>427 (GEN Copy 1)</referencePath>
+                <outputPath>427 (GEN Copy 1)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="binary" excludeList="xmlDates">
+                    <file id="1">sample_barcode_a4.pdf</file>
+                </outputs>         
+            </output>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="2" description="Write Copy 2" type="XML"> 
+                <referencePath>427 (GEN Copy 2)</referencePath>
+                <outputPath>427 (GEN Copy 2)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="binary" excludeList="xmlDates">
+                    <file id="1">sample_barcode_a4.pdf</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map128" enabled="Y" description="NES C4J ProdDec to Marcellus XML &amp; B2MML S95 XML">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Commander4j ProdDec">
+                <samplePath>128 (NES C4J - Production Declaration XML)</samplePath>
+                <inputPath>128 (NES C4J - Production Declaration XML)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES C4J - Production Declaration 1.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write Marcellus XML" type="XML"> 
+                <referencePath>128 (NES Marcellus XML Production Declaration)</referencePath>
+                <outputPath>128 (NES Marcellus XML Production Declaration)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES C4J - Production Declaration 1.xml</file>
+                </outputs>         
+            </output>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="2" description="Write B2MML S95 Prod Dec" type="XML"> 
+                <referencePath>128 (NES B2MML S95 Production Declaration)</referencePath>
+                <outputPath>128 (NES B2MML S95 Production Declaration)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES C4J - Production Declaration 1.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map129" enabled="Y" description="NES Agedis NTR CSV to C4J Prod Dec XML">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read NTR CSV" type="CSV">
+                <samplePath>129 (NES NTR Agedis CSV)</samplePath>
+                <inputPath>129 (NES NTR Agedis CSV)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES NTR Agedis CSV 1.NTR</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write C4J XML Prod Dec" type="XML"> 
+                <referencePath>129 (NES C4J Prod Dec XML)</referencePath>
+                <outputPath>129 (NES C4J Prod Dec XML)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="NTR_messageRef">
+                    <file id="1">NES NTR Agedis CSV 1.NTR.xml</file>
+                </outputs>         
+            </output>
+        </test> 
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map130" enabled="Y" description="NES C4J ProdDec XML to B2MML S95 ProdDec XML + C4J Pallet Move XML">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read C4J Prod Dec XML" type="XML"> 
+                <samplePath>130 (NES C4J Production Declaration)</samplePath>
+                <inputPath>130 (NES C4J Production Declaration)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES C4J Production Declaration 1 MOVE.xml</file>
+                    <file id="2">NES C4J Production Declaration 2 NO MOVE.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write B2MML S95 Prod Dec XML" type="XML"> 
+                <referencePath>130 (NES B2MML S95 Production Declaration)</referencePath>
+                <outputPath>130 (NES B2MML S95 Production Declaration)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES C4J Production Declaration 1 MOVE.xml</file>
+                    <file id="2">NES C4J Production Declaration 2 NO MOVE.xml</file>
+                </outputs>         
+            </output>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="2" description="Write C4J Pallet Move XML" type="XML"> 
+                <referencePath>130 (NES C4J Pallet Move XML)</referencePath>
+                <outputPath>130 (NES C4J Pallet Move XML)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES C4J Production Declaration 1 MOVE.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map131" enabled="Y" description="NES IDOC Material Master to C4J Material Auto Move XML">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read IDOC" type="IDOC"> 
+                <samplePath>131 (NES SAP IDOC Material Master)</samplePath>
+                <inputPath>131 (NES SAP IDOC Material Master)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">NES SAP IDOC Material Master 1.txt</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write XML File" type="XML"> 
+                <referencePath>131 (NES C4J Material Auto Move XML)</referencePath>
+                <outputPath>131 (NES C4J Material Auto Move XML)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">NES SAP IDOC Material Master 1.txt.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map332" enabled="Y" description="FH C4J Production Declaration XML to SAGE X3 Goods Receipt CSV">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read C4J XML File" type="XML"> 
+                <samplePath>332 (FH C4J - Production Declaration)</samplePath>
+                <inputPath>332 (FH C4J - Production Declaration)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">0000000001.xml</file>
+                    <file id="2">0000000002.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write SAGE CSV" type="CSV"> 
+                <referencePath>332 (FH SAGE X3 - Goods Receipt CSV)</referencePath>
+                <outputPath>332 (FH SAGE X3 - Goods Receipt CSV)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="xmlDates">
+                    <file id="1">G_0000000001.xml.txt</file>
+                    <file id="2">G_0000000002.xml.txt</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map333" enabled="Y" description="FH SAGE Bulk Material Master to C4J Bulk Material">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read SAGE XML Material Master" type="XML"> 
+                <samplePath>333 (FH Sage Material Bulk Message)</samplePath>
+                <inputPath>333 (FH Sage Material Bulk Message)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">M00022.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write C4J Material Master" type="XML"> 
+                <referencePath>333 (FH C4J Material Bulk Message)</referencePath>
+                <outputPath>333 (FH C4J Material Bulk Message)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="SAGE">
+                    <file id="1">M00022.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map334" enabled="Y" description="FH SAGE Bulk Order to C4J Bulk Order">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="Read SAGE XML Orders" type="XML"> 
+                <samplePath>334 (FH Sage Order Bulk Message)</samplePath>
+                <inputPath>334 (FH Sage Order Bulk Message)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">W00022.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Write C4J Order" type="XML"> 
+                <referencePath>334 (FH C4J Order Bulk Message)</referencePath>
+                <outputPath>334 (FH C4J Order Bulk Message)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="SAGE">
+                    <file id="1">W00022.xml</file>
+                </outputs>         
+            </output>
+        </test>
+        
+        <!--This is repeating section which matches the maps defined in the middleware config.xml-->
+        <test id="map429" enabled="Y" description="GEN XML to MQTT Broker">
+            <!--Define the input subdiretory and sample subdiretory paths within inputPath and samplePath defined earlier-->
+            <input id="1" description="GEN XML to MQTT Broker" type="XML"> 
+                <samplePath>429 (GEN XML MQTT)</samplePath>
+                <inputPath>429 (GEN XML MQTT)</inputPath>
+                <!--List of input files to copy from samplePath to inputPath-->
+                <inputs>
+                    <file id="1">sample mqtt message.xml</file>
+                </inputs>    
+            </input>
+            
+            <!--Define the output subdiretory and reference subdiretory paths within outputPath and referencePath defined earlier-->
+            <output id="1" description="Send to MQTT Broker" type="MQTT"> 
+                <referencePath>429 (GEN XML MQTT)</referencePath>
+                <outputPath>429 (GEN XML MQTT)</outputPath>
+                <!--List of output files in outputPath to compare with referencePath-->
+                <outputs compareMethod="line" excludeList="SAGE">
+                    <file id="1">sample mqtt message.xml.mqtt</file>
+                </outputs>         
+            </output>
+        </test>
+
+    </tests>
+
+</testConfig>
