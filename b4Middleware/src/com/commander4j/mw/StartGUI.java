@@ -229,7 +229,7 @@ public class StartGUI extends JFrame
 		buttonHelp.setBounds(749, 657, 150, 38);
 		contentPane.add(buttonHelp);
 
-		JLabel lblIdDescriptionType = new JLabel(" Map Id     Description                                                             Input   Output(s)        In      Out  Input Path");
+		JLabel lblIdDescriptionType = new JLabel(" Map Id  Description                                                             Input       Output(s)         In      Out  Input Path");
 		lblIdDescriptionType.setForeground(Color.BLUE);
 		lblIdDescriptionType.setFont(new Font("Courier New", Font.PLAIN, 12));
 		lblIdDescriptionType.setBounds(0, 46, 1300, 22);

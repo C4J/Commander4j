@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: com.commander4j.messageSplitter.Splitter4j
+Class-Path: lib/commons-io-2.6.jar 
+ lib/commons-logging-1.2.jar 
+ lib/log4j-api-2.11.0.jar 
+ lib/log4j-core-2.11.0.jar 
+

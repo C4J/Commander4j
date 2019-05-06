@@ -65,7 +65,7 @@ public class Map implements Comparable<Map>
 			}
 		}
 
-		return Utility.padString(getId(), true, 10, " ") + "  " + Utility.padString(getDescription(), true, 70, " ") + "  " + Utility.padString(getInboundInterface().getType(), true, 5, " ") + "  " + Utility.padString(outboundTypeList, true, 12, " ")
+		return Utility.padString(getId(), true, 7, " ") + "  " + Utility.padString(getDescription(), true, 70, " ") + "  " + Utility.padString(getInboundInterface().getType(), true, 10, " ") + "  " + Utility.padString(outboundTypeList, true, 12, " ")
 				+ Utility.padString(getInboundMapMessageCount().toString(), false, 8, " ") + " " + Utility.padString(getOutboundMapMessageCount().toString(), false, 8, " ") + "  " + getInboundInterface().getInputPath();
 	}
 
