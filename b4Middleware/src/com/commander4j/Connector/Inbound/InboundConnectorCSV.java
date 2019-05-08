@@ -12,8 +12,11 @@ import org.w3c.dom.Element;
 
 import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.sys.Common;
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 //import com.commander4j.util.JFileIO;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
@@ -74,7 +77,6 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean connectorLoad(String fullFilename)
 	{
@@ -93,14 +95,17 @@ public class InboundConnectorCSV extends InboundConnectorABSTRACT
 			try
 			{
 				result = true;
+				CSVParser csvParser;
 				CSVReader reader;
 				if (disableQuotes)
 				{
-					reader = new CSVReader(new FileReader(fullFilename), seperator);
+					csvParser = new CSVParserBuilder().withSeparator(seperator).withIgnoreQuotations(true).build();
+					reader = new CSVReaderBuilder(new FileReader(fullFilename)).withCSVParser(csvParser).build();
 				}
 				else
 				{
-					reader = new CSVReader(new FileReader(fullFilename), seperator, quote);
+					csvParser = new CSVParserBuilder().withSeparator(seperator).withIgnoreQuotations(false).withQuoteChar(quote).build();
+					reader = new CSVReaderBuilder(new FileReader(fullFilename)).withCSVParser(csvParser).build();
 				}
 				String[] nextLine;
 

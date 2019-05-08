@@ -12,6 +12,7 @@ public interface OutboundConnectorINTERFACE
 	public final static String Connector_IDOC = "IDOC";
 	public final static String Connector_XML = "XML";
 	public final static String Connector_MQTT = "MQTT";
+	public final static String Connector_SOCKET = "SOCKET";
 	public final static String Connector_RAW = "RAW";
 
 	public boolean connectorSave(String path,String prefix,String filename);

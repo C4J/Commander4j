@@ -47,7 +47,7 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>CSV_to_XML_Example.xsl</XSLT>
             <optionDelimeter>^</optionDelimeter>
-            <csvOptions>separator=,^quote=none</csvOptions>
+            <csvOptions>separator=,^quote="</csvOptions>
         </input>
 
         <output id="out1" enabed="Y" description="Write XML Example">
@@ -659,6 +659,49 @@
                 <broker>tcp://iot.eclipse.org:1883</broker>
                 <clientID>tcp://iot.eclipse.org:1883</clientID>        
             </mqtt>
+            <XSLT/>
+        </output>
+    </map>
+    
+    <map id="map430" enabed="Y" description="GEN XML to SOCKET">
+        <input id="in1" description="Read XML Document">
+            <type>XML</type>
+            <path>./interface/input/430 (GEN XML to SOCKET)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT></XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Send to Host">
+            <path>./interface/output/430 (GEN XML to SOCKET)</path>
+            <type>SOCKET</type>
+            <host>
+                <ip>127.0.0.1</ip>
+                <socket>8000</socket>  
+            </host>
+            <copies>2</copies>
+            <XSLT/>
+        </output>
+    </map>
+    
+    <map id="map431" enabed="Y" description="GEN CSV to SOCKET">
+        <input id="in1" description="Read CSV Document">
+            <type>CSV</type>
+            <path>./interface/input/431 (GEN CSV to SOCKET)</path>
+            <pollingInterval>1000</pollingInterval>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=|^quote=none</csvOptions>
+            <XSLT>CSV_to_SOCKET.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Send to Host">
+            <path>./interface/output/431 (GEN CSV to SOCKET)</path>
+            <type>SOCKET</type>
+            <host>
+                <ip>127.0.0.1</ip>
+                <socket>9100</socket>  
+                <repeat>1</repeat>
+            </host>
             <XSLT/>
         </output>
     </map>

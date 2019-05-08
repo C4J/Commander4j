@@ -18,6 +18,7 @@ import com.commander4j.Connector.Outbound.OutboundConnectorIDOC;
 import com.commander4j.Connector.Outbound.OutboundConnectorMQTT;
 import com.commander4j.Connector.Outbound.OutboundConnectorPDF_PRINT;
 import com.commander4j.Connector.Outbound.OutboundConnectorRAW;
+import com.commander4j.Connector.Outbound.OutboundConnectorSOCKET;
 import com.commander4j.Connector.Outbound.OutboundConnectorXML;
 import com.commander4j.Interface.Mapping.Map;
 import com.commander4j.Interface.Outbound.OutboundInterface;
@@ -61,6 +62,44 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	private String mqttClient="";
 	private String mqttBroker="";
 	private int mqttQos=2;
+
+	private String hostIP = "127.0.0.1";
+	private int hostPort = 9100;
+	private int hostRepeat = 1;
+	
+	public String getHostIP()
+	{
+		return hostIP;
+	}
+
+	public void setHostIP(String hostIP)
+	{
+		this.hostIP = hostIP;
+	}
+
+	public int getHostPort()
+	{
+		return hostPort;
+	}
+
+	public void setHostPort(String port)
+	{
+		port = Utility.replaceNullStringwithBlank(port);
+		if (port.equals("")) port = "9100";	
+		this.hostPort = Integer.valueOf(port);
+	}
+
+	public int getHostRepeat()
+	{
+		return hostRepeat;
+	}
+
+	public void setHostRepeat(String repeat)
+	{
+		repeat = Utility.replaceNullStringwithBlank(repeat);
+		if (repeat.equals("")) repeat = "1";	
+		this.hostRepeat = Integer.valueOf(repeat);
+	}
 	
 	public String getMapId()
 	{
@@ -419,6 +458,10 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 			break;
 		case OutboundConnectorINTERFACE.Connector_MQTT:
 			connector = new OutboundConnectorMQTT((OutboundInterface) this);
+			setOutputFileExtension("xml");
+			break;
+		case OutboundConnectorINTERFACE.Connector_SOCKET:
+			connector = new OutboundConnectorSOCKET((OutboundInterface) this);
 			setOutputFileExtension("xml");
 			break;
 		case OutboundConnectorINTERFACE.Connector_RAW:

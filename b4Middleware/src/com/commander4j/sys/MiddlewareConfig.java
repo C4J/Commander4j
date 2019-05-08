@@ -230,7 +230,12 @@ public class MiddlewareConfig
 					String mqttContentXPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/contentXPath").trim();
 					String mqttQos = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/qos").trim();
 					
+					String host_ip= doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/host/ip").trim();
+					String host_port= doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/host/port").trim();
+					String host_repeat= doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/host/repeat").trim();
+					
 					OutboundInterface outboundInterface = new OutboundInterface(map, outputDescription);
+					
 					outboundInterface.setId(outputId);
 					outboundInterface.setDescription(outputDescription);
 					outboundInterface.setType(outputType);
@@ -252,6 +257,10 @@ public class MiddlewareConfig
 					outboundInterface.setMQTTClient(mqttClient);
 					outboundInterface.setMQTTContentXML(mqttContentXPath);
 					outboundInterface.setMQTTQos(mqttQos);
+					
+					outboundInterface.setHostIP(host_ip);
+					outboundInterface.setHostPort(host_port);
+					outboundInterface.setHostRepeat(host_repeat);
 
 					outboundInterface.setPrefix(outputPrefix);
 					
