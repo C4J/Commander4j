@@ -18,8 +18,8 @@ public interface InboundConnectorINTERFACE
 	public final static String[] Mask_CSV = {"csv", "CSV"};
 	public final static String[] Mask_Excel = {"xls", "XLS", "xlsx", "XLSX"};	
 	public final static String[] Mask_IDOC = {"txt", "TXT","idoc","IDOC"};
-	public final static String[] Mask_EMAIL = {};	
-	public final static String[] Mask_RAW = {};
+	public final static String[] Mask_EMAIL = {"txt", "TXT","xml", "XML","csv", "CSV","idoc","IDOC","pdf", "PDF"};	
+	public final static String[] Mask_RAW = {"txt", "TXT","xml", "XML","csv", "CSV","idoc","IDOC","pdf", "PDF"};
 	public final static String[] Mask_XML = {"xml", "XML"};
 	public final static String[] Mask_PDF_PRINT = {"pdf", "PDF"};
 

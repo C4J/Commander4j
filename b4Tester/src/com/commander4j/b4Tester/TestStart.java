@@ -229,7 +229,7 @@ public class TestStart
 
 		if (file1.exists())
 		{
-			int maxWait=10;
+			int maxWait=20;
 			while (file2.exists()==false)
 			{
 				Utility.delay(1000);
