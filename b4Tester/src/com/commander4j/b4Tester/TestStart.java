@@ -27,104 +27,108 @@ public class TestStart
 		// Clean down the test environment by removing any files already in the
 		// input or output folders.
 
-		printConsole(1,"Ensure that middleware4j is running in ["+Common.rootPath+"]");
-		printConsole(1,"");
-		printConsole(1,"Press any key to begin test.");
+		printConsole(0, "Ensure that middleware4j is running in [" + Common.rootPath + "]");
+		printConsole(0, "");
+		printConsole(0, "Press any key to begin test.");
 		Utility.pressAnykey();
-		
+
 		topLevel(new File(Common.inputPath));
 		topLevel(new File(Common.outputPath));
 
 		Iterator<Map.Entry<String, Test>> testSet = Common.testRig.entrySet().iterator();
 		printConsole(1, "Test Started");
 
-		while (testSet.hasNext())
+		for (int itter = 0; itter < Common.iterrations; itter++)
 		{
-			Map.Entry<String, Test> entryTest = testSet.next();
 
-			Test currentTest = Common.testRig.get(entryTest.getKey());
-			printConsole(1, "");
-			printConsole(5, "------------------------------------------------");
-			
-			printConsole(1, "Test Id     : " + currentTest.id);
-			printConsole(1, "Description : " + currentTest.description);
-			printConsole(3, "inputPath   : " + currentTest.input.inputPath);
-			printConsole(3, "samplePath  : " + currentTest.input.samplePath);
-
-			printConsole(5, "    ------------------------------------------------");
-			printConsole(1, "    Input Id           : " + currentTest.input.id);
-			printConsole(1, "    Input Type         : " + currentTest.input.type);
-			printConsole(1, "    Input Description  : " + currentTest.input.description);
-			printConsole(3, "    Sample Path        : " + currentTest.input.samplePath);
-			printConsole(3, "    Input Path         : " + currentTest.input.inputPath);
-			printConsole(5, "    ------------------------------------------------");
-
-			Iterator<Map.Entry<String, TestInputFile>> inputFileSet = currentTest.input.inputFiles.entrySet().iterator();
-
-			int copyCount = 0;
-			while (inputFileSet.hasNext())
+			while (testSet.hasNext())
 			{
-				Map.Entry<String, TestInputFile> inputFile = inputFileSet.next();
+				Map.Entry<String, Test> entryTest = testSet.next();
 
-				TestInputFile currentInputFile = currentTest.input.inputFiles.get(inputFile.getKey());
+				Test currentTest = Common.testRig.get(entryTest.getKey());
+				printConsole(1, "");
+				printConsole(5, "------------------------------------------------");
 
-				printConsole(3, "        Sample File [" + currentInputFile.id + "] - " + currentInputFile.sampleFilename);
-				printConsole(3, "        Input File  [" + currentInputFile.id + "] - " + currentInputFile.inputFilename);
-
-				if (copyFile(currentInputFile.sampleFilename, currentInputFile.inputFilename))
-				{
-					copyCount++;
-				}
-			}
-			printConsole(1, "        " + String.valueOf(copyCount) + " files copied.");
-			printConsole(2, "        Pausing for output files to be created.");
-			//Utility.pause(copyCount);
-
-			Iterator<Map.Entry<String, TestOutput>> outputSet = currentTest.output.entrySet().iterator();
-
-			while (outputSet.hasNext())
-			{
-				Map.Entry<String, TestOutput> entryOutput = outputSet.next();
-
-				TestOutput currentOutput = currentTest.output.get(entryOutput.getKey());
+				printConsole(0, "Test Id     : " + currentTest.id);
+				printConsole(1, "Description : " + currentTest.description);
+				printConsole(3, "inputPath   : " + currentTest.input.inputPath);
+				printConsole(3, "samplePath  : " + currentTest.input.samplePath);
 
 				printConsole(5, "    ------------------------------------------------");
-				printConsole(1, "    Output Id          : " + currentOutput.id);
-				printConsole(1, "    Description        : " + currentOutput.description);
-				printConsole(1, "    Output Type        : " + currentOutput.type);
-				printConsole(3, "    Reference Path     : " + currentOutput.referencePath);
-				printConsole(3, "    Output Path        : " + currentOutput.outputPath);
-				printConsole(4, "    Compare Method     : " + currentOutput.compareMethod);
-				printConsole(4, "    Exclude List       : " + currentOutput.excludeList);
+				printConsole(1, "    Input Id           : " + currentTest.input.id);
+				printConsole(1, "    Input Type         : " + currentTest.input.type);
+				printConsole(1, "    Input Description  : " + currentTest.input.description);
+				printConsole(3, "    Sample Path        : " + currentTest.input.samplePath);
+				printConsole(3, "    Input Path         : " + currentTest.input.inputPath);
 				printConsole(5, "    ------------------------------------------------");
 
-				Iterator<Map.Entry<String, TestOutputFile>> outputFileSet = currentTest.output.get(currentOutput.id).outputFiles.entrySet().iterator();
+				Iterator<Map.Entry<String, TestInputFile>> inputFileSet = currentTest.input.inputFiles.entrySet().iterator();
 
-				int compared = 0;
-
-				while (outputFileSet.hasNext())
+				int copyCount = 0;
+				while (inputFileSet.hasNext())
 				{
-					Map.Entry<String, TestOutputFile> outputFile = outputFileSet.next();
+					Map.Entry<String, TestInputFile> inputFile = inputFileSet.next();
 
-					TestOutputFile currentOutputFile = currentTest.output.get(currentOutput.id).outputFiles.get(outputFile.getKey());
+					TestInputFile currentInputFile = currentTest.input.inputFiles.get(inputFile.getKey());
 
-					printConsole(4, "        Reference File [" + currentOutputFile.id + "] - " + currentOutputFile.referenceFilename);
-					printConsole(4, "        Output File    [" + currentOutputFile.id + "] - " + currentOutputFile.outputFilename);
-					if (compareFiles(currentOutput.compareMethod, currentOutput.excludeList, currentOutputFile.referenceFilename, currentOutputFile.outputFilename))
+					printConsole(3, "        Sample File [" + currentInputFile.id + "] - " + currentInputFile.sampleFilename);
+					printConsole(3, "        Input File  [" + currentInputFile.id + "] - " + currentInputFile.inputFilename);
+
+					if (copyFile(currentInputFile.sampleFilename, currentInputFile.inputFilename))
 					{
-						compared++;
+						copyCount++;
 					}
 				}
-				printConsole(1, "        " + String.valueOf(compared) + " files compared.");
+				printConsole(1, "        " + String.valueOf(copyCount) + " files copied.");
+				printConsole(2, "        Pausing for output files to be created.");
+				// Utility.pause(copyCount);
 
+				Iterator<Map.Entry<String, TestOutput>> outputSet = currentTest.output.entrySet().iterator();
+
+				while (outputSet.hasNext())
+				{
+					Map.Entry<String, TestOutput> entryOutput = outputSet.next();
+
+					TestOutput currentOutput = currentTest.output.get(entryOutput.getKey());
+
+					printConsole(5, "    ------------------------------------------------");
+					printConsole(1, "    Output Id          : " + currentOutput.id);
+					printConsole(1, "    Description        : " + currentOutput.description);
+					printConsole(1, "    Output Type        : " + currentOutput.type);
+					printConsole(3, "    Reference Path     : " + currentOutput.referencePath);
+					printConsole(3, "    Output Path        : " + currentOutput.outputPath);
+					printConsole(4, "    Compare Method     : " + currentOutput.compareMethod);
+					printConsole(4, "    Exclude List       : " + currentOutput.excludeList);
+					printConsole(5, "    ------------------------------------------------");
+
+					Iterator<Map.Entry<String, TestOutputFile>> outputFileSet = currentTest.output.get(currentOutput.id).outputFiles.entrySet().iterator();
+
+					int compared = 0;
+
+					while (outputFileSet.hasNext())
+					{
+						Map.Entry<String, TestOutputFile> outputFile = outputFileSet.next();
+
+						TestOutputFile currentOutputFile = currentTest.output.get(currentOutput.id).outputFiles.get(outputFile.getKey());
+
+						printConsole(4, "        Reference File [" + currentOutputFile.id + "] - " + currentOutputFile.referenceFilename);
+						printConsole(4, "        Output File    [" + currentOutputFile.id + "] - " + currentOutputFile.outputFilename);
+						if (compareFiles(currentOutput.compareMethod, currentOutput.excludeList, currentOutputFile.referenceFilename, currentOutputFile.outputFilename))
+						{
+							compared++;
+						}
+					}
+					printConsole(1, "        " + String.valueOf(compared) + " files compared.");
+
+				}
+				printConsole(5, "    ------------------------------------------------");
+
+				printConsole(5, "------------------------------------------------");
 			}
-			printConsole(5, "    ------------------------------------------------");
-
-			printConsole(5, "------------------------------------------------");
 		}
-		printConsole(1, "");
-		printConsole(1, "Test Completed Successfully");
-		
+		printConsole(0, "");
+		printConsole(0, "Test Completed Successfully");
+
 		System.exit(0);
 	}
 
@@ -229,19 +233,19 @@ public class TestStart
 
 		if (file1.exists())
 		{
-			int maxWait=20;
-			while (file2.exists()==false)
+			int maxWait = 20;
+			while (file2.exists() == false)
 			{
 				Utility.delay(1000);
 
 				maxWait--;
-				
-				if (maxWait==0)
+
+				if (maxWait == 0)
 				{
 					break;
 				}
 			}
-			
+
 			if (file2.exists())
 			{
 				switch (method)
@@ -344,10 +348,10 @@ public class TestStart
 		}
 		return result;
 	}
-	
+
 	public static void abort()
 	{
-		printConsole(0,"***ERROR***");
+		printConsole(0, "***ERROR***");
 		System.out.println("\007");
 		System.exit(1);
 	}

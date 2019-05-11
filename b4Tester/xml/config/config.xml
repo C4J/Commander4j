@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testConfig>
     <description>b4Middleware Test Configuration</description>
-    <verboseLevel>1</verboseLevel>
+    <verboseLevel>0</verboseLevel>
     <iterrations>1</iterrations>
 
     <tests>

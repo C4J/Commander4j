@@ -31,27 +31,28 @@
 <body  onLoad = "focusIt()">
 <form id="index" name="index" action="Process" method="POST">
 
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
+
 	<tr>
 		<td style="height: 20px"></td>
 	</tr>
 	<tr>
-		<td width="230" height="20" align="center" style="height: 97px">
+		<td width="100%" height="20" align="center" style="height: 97px">
 		<p align="center"><span class="splashTitleCommander">Commander</span><span
 			class="splashTitle4J">4j</span></p>
 
 		</td>
 	</tr>
 	<tr>
-		<td align="center" style="height: 70px" class="splashTitleVersion">
+		<td align="center" style="height: 50px" class="splashTitleVersion">
 		Version : <%=com.commander4j.app.JVersion.getProgramVersion() %>
 	</tr>
 	<tr>
-		<td align="center" style="height: 70px" class="splashTitleVersion">
-		Host : <%=com.commander4j.bean.JServerName.getServername() %>
+		<td align="center" style="height: 50px" class="splashTitleVersion">
+		<small>Host : <%=com.commander4j.bean.JServerName.getServername() %></small>
 	</tr>
 	<tr>
-		<td align="center" style="height: 100px">
+		<td align="center" style="height: 80px">
 			<input type="submit" name="buttonStart"	id="buttonStart" value="Start" 	onclick="document.index.button.value='Start';">
 		</td>
 	</tr>

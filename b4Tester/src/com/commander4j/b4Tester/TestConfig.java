@@ -27,13 +27,14 @@ public class TestConfig
 		JXMLDocument doc = new JXMLDocument(filename);
 
 		Common.testName = doc.findXPath("//testConfig/description");
+		Common.iterrations = Integer.valueOf(doc.findXPath("/testConfig/iterrations"));	
 		Common.verboseLevel = Integer.valueOf(doc.findXPath("//testConfig/verboseLevel"));
 		Common.rootPath = fixPath(doc.findXPath("/testConfig/tests/rootPath"));
 		Common.outputPath = fixPath(Common.rootPath + doc.findXPath("/testConfig/tests/outputPath"));
 		Common.inputPath = fixPath(Common.rootPath + doc.findXPath("/testConfig/tests/inputPath"));
 		Common.samplePath = fixPath(Common.rootPath + doc.findXPath("/testConfig/tests/samplePath"));
 		Common.referencePath = fixPath(Common.rootPath + doc.findXPath("/testConfig/tests/referencePath"));
-		
+	
 
 		
 		int ignoreSeq = 1;

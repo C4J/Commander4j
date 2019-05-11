@@ -18,6 +18,7 @@ public class Common
 	public static String samplePath = "";
 	public static String outputPath = "";
 	public static String referencePath = "";
+	public static int iterrations = 1;
 	public static HashMap<String,LinkedList<String>> excludeList = new HashMap<String,LinkedList<String>>(); 
 	public static SortedMap<String, Test> testRig  = new TreeMap<String,Test>();
 }
