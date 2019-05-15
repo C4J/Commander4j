@@ -392,6 +392,8 @@ public class Common
 	public final static String image_confirm = "CMD_Icon.gif";
 	public final static String image_despatch_add = "journey_add.gif";
 	public final static String image_despatch_remove = "journey_remove.gif";
+	public static String locale_language="GB";
+	public static String locale_region="en";
 	
 	public static String statusReportTime = "00:00:00";
 	public static int user_password_expiry_days = 14;

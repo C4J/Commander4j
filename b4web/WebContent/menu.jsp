@@ -2,16 +2,17 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="expires" content="0">
-<META HTTP-Equiv="quitbutton" Content="hide">
-<META HTTP-Equiv="scanner" Content="enabled">
-<META HTTP-Equiv="scanner" Content="autoenter">
-<META HTTP-Equiv="acceleratekey" content="all">
-<title>Menu</title>
-<link href="style/commander.css" rel="stylesheet" type="text/css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<META HTTP-Equiv="quitbutton" Content="hide">
+	<META HTTP-Equiv="scanner" Content="enabled">
+	<META HTTP-Equiv="scanner" Content="autoenter">
+	<META HTTP-Equiv="acceleratekey" content="all">
+	<title>Menu</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage"
@@ -51,10 +52,16 @@
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
+		</table>
+		
+		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
 			<tr>
-				<td>&nbsp;</td>
-				<td><input type="submit" name="buttonSubmit" value="<%=Lang.getText("web_Submit")%>" id="buttonSubmit" 	onclick="document.menus.button.value='Submit';" />&nbsp; 
-					<input type="submit" name="buttonCancel" value="<%=Lang.getText("web_Cancel")%>" id="buttonCancel"	onclick="document.menus.button.value='Cancel';" />
+				<td width="49" height="20" align="right">
+					<input tabindex="1"	name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("web_Submit")%>" onclick="document.menus.button.value='Submit';" type="submit">
+				</td>
+				<td width="2%" height="20"></td>
+				<td width="49%" height="20" align="left">
+					<input tabindex="2" name="buttonCancel" id="buttonCancel" value="<%=Lang.getText("web_Cancel")%>" onclick="document.menus.button.value='Cancel';" type="submit">
 				</td>
 			</tr>
 		</table>

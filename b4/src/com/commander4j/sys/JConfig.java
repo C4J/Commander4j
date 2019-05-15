@@ -1,6 +1,7 @@
 package com.commander4j.sys;
 
 import java.io.File;
+import java.util.Locale;
 
 import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLDocument;
@@ -29,6 +30,12 @@ public class JConfig
 				Common.appAuthor = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appAuthor").trim());
 				Common.appSupportEmail = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appSupportEmail").trim());
 				Common.image_splash = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appSplashScreenImage").trim());
+				Common.locale_language = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appLanguage").trim());
+				Common.locale_region = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appRegion").trim());
+				if ((Common.locale_language.equals("")==false) && (Common.locale_region.equals("")==false))
+				{
+					Locale.setDefault(new Locale(Common.locale_language, Common.locale_region));
+				}
 			}
 		}
 		catch (Exception ex)

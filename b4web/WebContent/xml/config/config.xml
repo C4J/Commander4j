@@ -5,4 +5,6 @@
     <appAuthor>David Garratt</appAuthor>
     <appSupportEmail>support@commander4j.com</appSupportEmail>
     <appSplashScreenImage>splash.gif</appSplashScreenImage>
+    <appLanguage>en</appLanguage>
+    <appRegion>GB</appRegion>
 </config>

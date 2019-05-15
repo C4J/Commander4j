@@ -2,22 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-<META http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<META http-equiv="Pragma" content="no-cache">
-<META http-equiv="expires" content="0">
-<META http-equiv="volume" content="0x1000">
-<META HTTP-Equiv="scanner" Content="enabled">
-<META HTTP-Equiv="ean13" Content="enabled">
-<META HTTP-Equiv="code128-ean128" Content="true">
-<META HTTP-Equiv="code128-maxlength" Content="55">
-<META HTTP-Equiv="scannernavigate" Content="Javascript:doScan('%s', '%s', %s, '%s', %s);">
-<META HTTP-Equiv="scanner" Content="DecodeEvent:url('javascript:doScan('%s', '%s', %s, '%s', %s);')">
-<META http-equiv="Volume" content="SetVolume:0xFFFF">
-
-<title>Validate Barcode</title>
-<link href="style/commander.css" rel="stylesheet" type="text/css" />
-
+	<META http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<META http-equiv="Pragma" content="no-cache">
+	<META http-equiv="expires" content="0">
+	<META http-equiv="volume" content="0x1000">
+	<META HTTP-Equiv="scanner" Content="enabled">
+	<META HTTP-Equiv="ean13" Content="enabled">
+	<META HTTP-Equiv="code128-ean128" Content="true">
+	<META HTTP-Equiv="code128-maxlength" Content="55">
+	<META HTTP-Equiv="scannernavigate" Content="Javascript:doScan('%s', '%s', %s, '%s', %s);">
+	<META HTTP-Equiv="scanner" Content="DecodeEvent:url('javascript:doScan('%s', '%s', %s, '%s', %s);')">
+	<META http-equiv="Volume" content="SetVolume:0xFFFF">
+	<title>Validate Barcode</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -31,20 +28,21 @@
 		<h2>
 			<%=Lang.getText("web_Barcode_Validate")%>
 		</h2>
-		<p>
-			&nbsp; &nbsp;
-			<%=Lang.getText("lbl_Process_Order")%>
-			<%
-				String validateOrder = (String) session.getAttribute("validateOrder");
-				out.println(" " + validateOrder + "");
-			%>
-			<br> <br>
-			<%
-				String materialDescription = (String) session.getAttribute("materialDescription");
-				out.println(" " + materialDescription + "");
-			%>
-		</p>
-		<table style="width: 100%">
+		<br>
+		<table width="238" align="center">
+			<tr>
+				<td><%=Lang.getText("lbl_Process_Order")%></td>
+				<td nowrap><%String validateOrder = (String) session.getAttribute("validateOrder");out.println(" " + validateOrder + "");%></td>
+			</tr>
+		</table>
+		
+		<table width="238" align="center">
+			<tr>
+				<td nowrap><%String materialDescription = (String) session.getAttribute("materialDescription");	out.println(" " + materialDescription + "");%></td>
+			</tr>
+		</table>
+		<br>
+		<table width="238" align="center">
 			<tr>
 				<th></th>
 				<th>EAN</th>
@@ -52,54 +50,26 @@
 			</tr>
 			<tr>
 				<td><font color="black"><b>Order</b></font></td>
-				<td><font color="green"> <%
- 	String materialDU_EAN = (String) session.getAttribute("materialDU_EAN");
- 	out.println(" " + materialDU_EAN + "");
- %>
-				</font></td>
-				<td><font color="green"> <%
- 	String materialDU_VARIANT = (String) session.getAttribute("materialDU_VARIANT");
- 	out.println(" " + materialDU_VARIANT + "");
- %>
-				</font></td>
+				<td><font color="green"> <%String materialDU_EAN = (String) session.getAttribute("materialDU_EAN");out.println(" " + materialDU_EAN + "");%></font></td>
+				<td><font color="green"> <%String materialDU_VARIANT = (String) session.getAttribute("materialDU_VARIANT");out.println(" " + materialDU_VARIANT + ""); %></font></td>
 			</tr>
 			<tr>
 				<td><font color="black"><b>Pallet</b></font></td>
-				<td><font color="<%String palletGTINColor = (String) session.getAttribute("palletGTINColor");
-			out.println(" " + palletGTINColor + "");%>"> <%
- 	String palletGTIN = (String) session.getAttribute("palletGTIN");
- 	out.println(" " + palletGTIN + "");
- %>
-				</font></td>
-				<td><font color="<%String palletVariantColor = (String) session.getAttribute("palletVariantColor");
-			out.println(" " + palletVariantColor + "");%>"> <%
- 	String palletVariant = (String) session.getAttribute("palletVariant");
- 	out.println(" " + palletVariant + "");
- %>
-				</font></td>
+				<td><font color="<%String palletGTINColor = (String) session.getAttribute("palletGTINColor");out.println(" " + palletGTINColor + "");%>"> <%String palletGTIN = (String) session.getAttribute("palletGTIN");out.println(" " + palletGTIN + ""); %></font></td>
+				<td><font color="<%String palletVariantColor = (String) session.getAttribute("palletVariantColor");out.println(" " + palletVariantColor + "");%>"> <%String palletVariant = (String) session.getAttribute("palletVariant");out.println(" " + palletVariant + ""); %></font></td>
 			</tr>
 			<tr>
 				<td><font color="black"><b>Case/Tray</b></font></td>
-				<td><font color="<%String trayGTINColor = (String) session.getAttribute("trayGTINColor");
-			out.println(" " + trayGTINColor + "");%>"> <%
- 	String trayGTIN = (String) session.getAttribute("trayGTIN");
- 	out.println(" " + trayGTIN + "");
- %>
-				</font></td>
-				<td><font color="<%String trayVariantColor = (String) session.getAttribute("trayVariantColor");
-			out.println(" " + trayVariantColor + "");%>"> <%
- 	String trayVariant = (String) session.getAttribute("trayVariant");
- 	out.println(" " + trayVariant + "");
- %>
-				</font></td>
+				<td><font color="<%String trayGTINColor = (String) session.getAttribute("trayGTINColor");out.println(" " + trayGTINColor + "");%>"> <%String trayGTIN = (String) session.getAttribute("trayGTIN");out.println(" " + trayGTIN + ""); %></font></td>
+				<td><font color="<%String trayVariantColor = (String) session.getAttribute("trayVariantColor");out.println(" " + trayVariantColor + "");%>"> <%	String trayVariant = (String) session.getAttribute("trayVariant"); 	out.println(" " + trayVariant + ""); %>	</font></td>
 			</tr>
 		</table>
 
-		<img src="./images/invalid.gif" style="margin-left: 45px">
+		<img src="./images/invalid.gif" width="40" style="display: block; margin-left: auto; margin-right: auto;">
 
-		<table style="width: 100%">
+		<table width="238" align="center">
 			<tr>
-				<td style="width: 100%; text-align: left">
+				<td width="238"><div align="center" style="color: green; background-color: #ffff42">
 					<%
 						String errormessage = (String) session.getAttribute("_ErrorMessage");
 						if (errormessage == null)
@@ -107,15 +77,19 @@
 						errormessage = errormessage.trim();
 						out.println(errormessage);
 					%>
-				</td>
+				</div></td>
 			</tr>
 		</table>
 
-		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" style="height: 90px; ">
+		<table width="238" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
-				<td width="100%" height="20" align="center"><input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("btn_Ok")%>"
-					onclick="document.productionConfirmPlusError.button.value='Submit';document.productionConfirmPlusError .submit();"> <input type="hidden" id="button" name="button" value="Submit" /> <input type="hidden" name="formName"
-					value="productionConfirmPlusError.jsp" /> <input type="hidden" name="barcodeType" value="none" /> <input type="hidden" name="barcodeLength" value="0" /></td>
+				<td width="238" height="20" align="center">
+					<input tabindex="3" type="button" name="buttonSubmit" id="buttonSubmit" value="<%=Lang.getText("btn_Ok")%>"	onclick="document.productionConfirmPlusError.button.value='Submit';document.productionConfirmPlusError .submit();"> 
+					<input type="hidden" id="button" name="button" value="Submit" /> 			
+					<input type="hidden" name="formName" value="productionConfirmPlusError.jsp" /> 
+					<input type="hidden" name="barcodeType" value="none" /> 
+					<input type="hidden" name="barcodeLength" value="0" />
+				</td>
 			</tr>
 		</table>
 	</form>

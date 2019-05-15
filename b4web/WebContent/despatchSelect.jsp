@@ -28,10 +28,8 @@
 		method="post">
 
 
-		<table align="center" border="0" cellpadding="0" cellspacing="0"
-			width="300">
+		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
 			<tr>
-				<th></th>
 				<th bgcolor="#FFFFFF">
 					<font color="#FF0000"> 
 					<%
@@ -49,49 +47,52 @@
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
+			
 			<tr>
-				<td width="2%" height="20"></td>
-				<td width="98%" height="20" align="left">
+				<td width="100%" height="20" align="left">
 					<%
 						String despatchList = (String) session.getAttribute("despatchList");
 						if (despatchList == null)
 							despatchList = "";
 						despatchList = despatchList.trim();
 						out.println(despatchList);
-						out.println(session.getAttribute("_ErrorMessage") + " ");
 					%>
 				</td>
-				<td width="2%" height="20"></td>
+			</tr>
+
 			<tr>
+
+				<td width="238"><div align="center" style="color: green; background-color: #ffff42">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
+				</div></td>
+			</tr>
+		    <tr>
 				<td>&nbsp;</td>
 			</tr>
+			
 		</table>
 
-		<table width="100%" border="0" cellpadding="0" cellspacing="0"
-			align="center">
+		<table width="238" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
-				<td width="100%" height="30" align="center"><input tabindex='1'
-					type="submit" name="buttonAmend"
-					value="<%=Lang.getText("web_Amend")%>" id="buttonAmend"
-					onclick="document.despatchSelect.button.value='Amend';" />&nbsp; <input
-					tabindex='2' type="submit" name="buttonCreate"
-					value="<%=Lang.getText("web_Create")%>" id="buttonCreate"
-					onclick="document.despatchSelect.button.value='Create';" />&nbsp;
-					<input tabindex='3' type="submit" name="buttonExit"
-					value="<%=Lang.getText("web_Exit")%>" id="buttonExit"
-					onclick="document.despatchSelect.button.value='Exit';" /> <input
-					type="hidden" name="formName" value="despatchSelect.jsp" /> <input
-					type="hidden" id="button" name="button" value="Amend" /></td>
+				<td width="238" height="20" align="center">
+					<input tabindex='1'	type="submit" name="buttonAmend" value="<%=Lang.getText("web_Amend")%>" id="buttonAmend" onclick="document.despatchSelect.button.value='Amend';" />&nbsp; 
+					<input tabindex='2' type="submit" name="buttonCreate" value="<%=Lang.getText("web_Create")%>" id="buttonCreate" onclick="document.despatchSelect.button.value='Create';" />&nbsp;
+					<input tabindex='3' type="submit" name="buttonExit"	value="<%=Lang.getText("web_Exit")%>" id="buttonExit" onclick="document.despatchSelect.button.value='Exit';" /> 
+					<input type="hidden" name="formName" value="despatchSelect.jsp" /> 
+					<input type="hidden" id="button" name="button" value="Amend" />
+				</td>
 			</tr>
 			<tr>
-				<td width="100%" height="30" align="center"><input tabindex='4'
-					type="submit" name="buttonPreviousPage"
-					value="<%=Lang.getText("web_Previous_Page")%>"
-					id="buttonPreviousPage"
-					onclick="document.despatchSelect.button.value='PreviousPage';" />&nbsp;
-					<input tabindex='5' type="submit" name="buttonNextPage"
-					value="<%=Lang.getText("web_Next_Page")%>" id="buttonNextPage"
-					onclick="document.despatchSelect.button.value='NextPage';" /></td>
+				<td width="238" height="20" align="center">
+					<input tabindex='4'	type="submit" name="buttonPreviousPage" value="<%=Lang.getText("web_Previous_Page")%>" id="buttonPreviousPage" onclick="document.despatchSelect.button.value='PreviousPage';" />&nbsp;
+					<input tabindex='5' type="submit" name="buttonNextPage"	value="<%=Lang.getText("web_Next_Page")%>" id="buttonNextPage" onclick="document.despatchSelect.button.value='NextPage';" />
+				</td>
 			</tr>
 		</table>
 	</form>

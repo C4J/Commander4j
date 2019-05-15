@@ -2,14 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="expires" content="0">
-<META HTTP-Equiv="scanner" Content="enabled">
-<META HTTP-Equiv="scanner" Content="autoenter">
-<META HTTP-Equiv="acceleratekey" content="all">
-<title>Despatch Header</title>
-<link href="style/commander.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<META HTTP-Equiv="scanner" Content="enabled">
+	<META HTTP-Equiv="scanner" Content="autoenter">
+	<META HTTP-Equiv="acceleratekey" content="all">
+	<title>Despatch Header</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css">
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -21,18 +21,18 @@
 <body onLoad="focusIt()">
 	<form id="despatchHeader" name="despatchHeader" action="Process" method="post">
 		<h2>
-			<%=Lang.getText("lbl_Despatch_No")%>&nbsp;<%
-				out.println(session.getAttribute("despatchNo"));
-			%>
+			<%=Lang.getText("lbl_Despatch_No")%>&nbsp;<%out.println(session.getAttribute("despatchNo"));%>
 		</h2>
-		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<table width="238" align="center">
+		
 			<tr>
-				<td width="35%" height="5"></td>
+				<td width="35%" height="4"></td>
 				<td></td>
 				<td width="65%"></td>
 			</tr>
+			
 			<tr>
-				<td width="35%" height="24">
+				<td width="35%" height="20">
 					<div align="right"><%=Lang.getText("web_From")%></div>
 				</td>
 				<td width="4">&nbsp;</td>
@@ -42,6 +42,7 @@
 					%>
 				</td>
 			</tr>
+			
 			<tr>
 				<td width="35%">
 					<div align="right"><%=Lang.getText("web_To")%></div>
@@ -53,39 +54,31 @@
 					%>
 				</td>
 			</tr>
+			
 			<tr>
-				<td width="35%">
-					<div align="right"><%=Lang.getText("lbl_Trailer")%></div>
-				</td>
+				<td width="35%"><div align="right"><%=Lang.getText("lbl_Trailer")%></div></td>
 				<td>&nbsp;</td>
 				<td width="65%"><input name="despatchTrailer" type="text" id="despatchTrailer" tabindex="3" value="<%out.println(session.getAttribute("despatchTrailer"));%>" size="15" maxlength="15"></td>
 			</tr>
+			
 			<tr>
-				<td width="35%" height="24">
-					<div align="right"><%=Lang.getText("lbl_Haulier")%></div>
-				</td>
+				<td width="35%" height="20"><div align="right"><%=Lang.getText("lbl_Haulier")%></div></td>
 				<td>&nbsp;</td>
 				<td width="65%"><input name="despatchHaulier" type="text" id="despatchHaulier" tabindex="4" value="<%out.println(session.getAttribute("despatchHaulier"));%>" size="15" maxlength="15"></td>
 			</tr>
 			<tr>
-				<td width="35%" height="24">
-					<div align="right"><%=Lang.getText("lbl_Load_No")%></div>
-				</td>
+				<td width="35%" height="20"><div align="right"><%=Lang.getText("lbl_Load_No")%></div></td>
 				<td>&nbsp;</td>
 				<td width="65%"><input name="despatchLoadNo" type="text" id="despatchLoadNo" tabindex="5" value="<%out.println(session.getAttribute("despatchLoadNo"));%>" size="15" maxlength="15"></td>
 			</tr>
 			<tr>
-				<td width="35%" height="24">
-					<div align="right"><%=Lang.getText("lbl_Journey_Ref")%></div>
-				</td>
+				<td width="35%" height="20"><div align="right"><%=Lang.getText("lbl_Journey_Ref")%></div></td>
 				<td>&nbsp;</td>
 				<td width="65%"><input name="despatchJourneyRef" type="text" id="despatchJourneyRef" tabindex="5" value="<%out.println(session.getAttribute("despatchJourneyRef"));%>" size="15" maxlength="15"></td>
 			</tr>
 			<tr>
 			<tr>
-				<td width="35%">
-					<div align="right"><%=Lang.getText("web_Count")%></div>
-				</td>
+				<td width="35%"><div align="right"><%=Lang.getText("web_Count")%></div></td>
 				<td></td>
 				<td width="65%">
 					<%
@@ -97,11 +90,22 @@
 				</td>
 			</tr>
 		</table>
-		<%
-			out.println(session.getAttribute("_ErrorMessage"));
-		%>
+		
+		<table width="238" align="center">
+			<tr>
+				<td width="238"><div align="center" style="color: green; background-color: #ffff42">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
+				</div></td>
+			</tr>
+		</table>
 
-		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+		<table width="238" align="center" border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td width="100%" height="30" align="center"><input type="submit" tabindex='6' name="buttonAdd" value="<%=Lang.getText("web_Add_SSCC")%>" id="buttonAdd" onclick="document.despatchHeader.button.value='Add Pallets';" />&nbsp; <input
 					type="submit" tabindex='7' name="buttonPrint" value="<%=Lang.getText("web_Print_STN")%>" id="buttonPrint" onclick="document.despatchHeader.button.value='Print STN';" /></td>
@@ -111,6 +115,7 @@
 					<input type="submit" tabindex="9" name="buttonExit" value="<%=Lang.getText("web_Exit")%>" id="buttonExit" onclick="document.despatchHeader.button.value='Exit';"></td>
 			</tr>
 		</table>
+		
 		<input type="hidden" name="formName" value="despatchHeader.jsp" /> <input type="hidden" id="button" name="button" value="Add Pallets" />
 	</form>
 

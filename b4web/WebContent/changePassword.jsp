@@ -2,14 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="expires" content="0">
-<META HTTP-Equiv="scanner" Content="enabled">
-<META HTTP-Equiv="scanner" Content="autoenter">
-<META HTTP-Equiv="acceleratekey" content="all">
-<title>Change Password</title>
-<link href="style/commander.css" rel="stylesheet" type="text/css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<META HTTP-Equiv="scanner" Content="enabled">
+	<META HTTP-Equiv="scanner" Content="autoenter">
+	<META HTTP-Equiv="acceleratekey" content="all">
+	<title>Change Password</title>
+	<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage" scope="page">
@@ -26,49 +26,48 @@
 				out.print(siteDescription);
 			%>
 		</h2>
+		
 		<br>
-	    <img src="./images/user-login-icon.gif" width="60" style="display:block; margin-left:auto; margin-right:auto;">
+	   		 <img src="./images/user-login-icon.gif" width="60" style="display:block; margin-left:auto; margin-right:auto;">
 		<br>
-		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+		
+		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
+
 			<tr>
-		     	<td style="width: 40%; text-align: right">User :</td>
-		     	<td style="width: 60%; text-align: left">
+				<td width="35%" height="20"><div align="right">User :&nbsp;</div></td>
 				<%
 					String username = (String) session.getAttribute("username");
-					if (username == null) username = "";
+					if (username == null)
+						username = "";
 					username = username.trim();
-					out.print(username);
 				%>
+				<td width="65%" height="20">
+					<input tabindex="1" name="username"	id="username" size="20" maxlength="20" type="text" readonly	value="<%out.println(username);%>" />
+				</td>
 			</tr>
 			
 			<tr>
-		     	<td style="width: 40%; text-align: right">Current :</td>
-		     	<td style="width: 60%; text-align: left">
-		     	<%
-				out.print("<input tabindex=\"1\" name=\"password\" id=\"password\" type=\"password\" size=\"20\" maxlength=\"20\"  value=\"\"/>");
-				%>
+		     	<td style="width: 30%; text-align: right">Current :&nbsp;</td>
+		     	<td style="width: 70%; text-align: left">
+		     	<input tabindex="1" name="password"	id="password" size="20" maxlength="20" type="password" value="" />
 			</tr>
 			
 			<tr>
-		     	<td style="width: 40%; text-align: right">New :</td>
-		     	<td style="width: 60%; text-align: left">
-		     	<%
-				out.print("<input tabindex=\"2\" name=\"newPassword1\" id=\"newPassword1\" type=\"password\" size=\"20\" maxlength=\"20\"  value=\"\"/>");
-				%>
+		     	<td style="width: 30%; text-align: right">New :&nbsp;</td>
+		     	<td style="width: 70%; text-align: left">
+		     	<input tabindex="2" name="newPassword1"	id="newPassword1" size="20" maxlength="20" type="password" value="" />
 			</tr>
 			
 			<tr>
-		     	<td style="width: 40%; text-align: right">Verify :</td>
-		     	<td style="width: 60%; text-align: left">
-		     	<%
-				out.print("<input tabindex=\"3\" name=\"newPassword2\" id=\"newPassword2\" type=\"password\"  size=\"20\" maxlength=\"20\" value=\"\"/>");
-				%>
+		     	<td style="width: 30%; text-align: right">Verify :&nbsp;</td>
+		     	<td style="width: 70%; text-align: left">
+		     	<input tabindex="3" name="newPassword2"	id="newPassword2" size="20" maxlength="20" type="password" value="" />
 			</tr>			
 		</table>
 		
-		<table style="width: 100%">
+		<table width="238" align="center">
 			<tr>
-				<td style="width: 50%; text-align: left">
+				<td width="238"><div align="center" style="color: green; background-color: #ffff42">
 					<%
 						String errormessage = (String) session.getAttribute("_ErrorMessage");
 						if (errormessage == null)
@@ -76,9 +75,9 @@
 						errormessage = errormessage.trim();
 						out.println(errormessage);
 					%>
-				</td>
+				</div></td>
 			</tr>
-		</table>		
+		</table>	
 		
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
