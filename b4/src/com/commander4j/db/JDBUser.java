@@ -34,6 +34,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.Icon;
@@ -797,6 +798,10 @@ public class JDBUser
 
 	public String getLanguage()
 	{
+		if (JUtility.replaceNullStringwithBlank(dbLanguage).equals(""))
+		{
+			dbLanguage = Locale.getDefault().getLanguage().toUpperCase();
+		}
 		return dbLanguage;
 	}
 

@@ -58,7 +58,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-queryparser-7.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/serializer-2.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/db/mssql-jdbc-7.2.1.jre8.jar"/>
-	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.15.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-collections4-4.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/spring-beans-5.1.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/spring-core-5.1.4.RELEASE.jar"/>
@@ -100,5 +99,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

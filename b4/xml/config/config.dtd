@@ -1,0 +1,8 @@
+<!ELEMENT appWebsite (#PCDATA)>
+<!ELEMENT appAuthor (#PCDATA)>
+<!ELEMENT appSplashScreenImage (#PCDATA)>
+<!ELEMENT appDisplayName (#PCDATA)>
+<!ELEMENT appSupportEmail (#PCDATA)>
+<!ELEMENT config (#PCDATA | appDisplayName | appWebsite | appAuthor | appSupportEmail | appSplashScreenImage | appLanguage | appRegion)*>
+<!ELEMENT appRegion (#PCDATA)>
+<!ELEMENT appLanguage (#PCDATA)>

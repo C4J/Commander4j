@@ -32,6 +32,17 @@ public class JConfig
 				Common.image_splash = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appSplashScreenImage").trim());
 				Common.locale_language = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appLanguage").trim());
 				Common.locale_region = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appRegion").trim());
+				
+				if (Common.locale_language.equals("")==true)
+				{
+					Common.locale_language=Locale.getDefault().getLanguage();
+				}
+				
+				if (Common.locale_region.equals("")==true)
+				{
+					Common.locale_region=Locale.getDefault().getCountry();
+				}
+				
 				if ((Common.locale_language.equals("")==false) && (Common.locale_region.equals("")==false))
 				{
 					Locale.setDefault(new Locale(Common.locale_language, Common.locale_region));

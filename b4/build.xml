@@ -68,7 +68,7 @@
         <pathelement location="lib/jasperlib/lucene-queryparser-7.3.0.jar"/>
         <pathelement location="lib/barcode/serializer-2.7.2.jar"/>
         <pathelement location="lib/db/mssql-jdbc-7.2.1.jre8.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-8.0.15.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-8.0.16.jar"/>
         <pathelement location="lib/jasperlib/commons-collections4-4.2.jar"/>
         <pathelement location="lib/jasperlib/spring-beans-5.1.4.RELEASE.jar"/>
         <pathelement location="lib/jasperlib/spring-core-5.1.4.RELEASE.jar"/>
