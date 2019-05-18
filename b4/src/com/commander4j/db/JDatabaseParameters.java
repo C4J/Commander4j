@@ -145,17 +145,16 @@ public class JDatabaseParameters
 		{
 			if (getjdbcPort().equals(""))
 			{
-				value = "jdbc:mysql://jdbcServer/jdbcDatabase?autoReconnect=true";
+				value = "jdbc:mysql://jdbcServer/jdbcDatabase?connectTimeout=5&socketTimeout=0&autoReconnect=true";
 			}
 			else
 			{
-				value = "jdbc:mysql://jdbcServer:jdbcPort/jdbcDatabase?autoReconnect=true";
+				value = "jdbc:mysql://jdbcServer:jdbcPort/jdbcDatabase?connectTimeout=5&socketTimeout=0&autoReconnect=true";
 			}
 		}
 
 		if (getjdbcDriver().equals("oracle.jdbc.driver.OracleDriver"))
 		{
-//			value = "jdbc:oracle:thin:@jdbcServer:jdbcPort:jdbcSID";
 			value = "jdbc:oracle:thin:@//jdbcServer:jdbcPort/jdbcSID";
 		}
 

@@ -57,7 +57,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-core-7.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-queryparser-7.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/serializer-2.7.2.jar"/>
-	<classpathentry kind="lib" path="lib/db/mssql-jdbc-7.2.1.jre8.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-collections4-4.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/spring-beans-5.1.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/spring-core-5.1.4.RELEASE.jar"/>
@@ -94,6 +93,7 @@
 	<classpathentry kind="lib" path="lib/cups4j/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/httpclient-4.5.8.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/httpcore-4.4.11.jar"/>
+	<classpathentry kind="lib" path="lib/db/mssql-jdbc-7.2.2.jre8.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_202]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>

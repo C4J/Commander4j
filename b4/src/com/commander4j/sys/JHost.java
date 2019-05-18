@@ -121,6 +121,7 @@ public class JHost
 				try
 				{
 					logger.debug(getDatabaseParameters().getjdbcConnectString());
+					DriverManager.setLoginTimeout(5);
 					tempConn = DriverManager.getConnection(getDatabaseParameters().getjdbcConnectString(), getDatabaseParameters().getjdbcUsername(), getDatabaseParameters().getjdbcPassword());
 					tempConn.setAutoCommit(false);
 					tempConn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);

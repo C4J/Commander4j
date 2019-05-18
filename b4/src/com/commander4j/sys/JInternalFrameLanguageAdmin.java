@@ -38,6 +38,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -440,6 +441,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 					comboBoxLanguageID.setEditable(false);
 					comboBoxLanguageID.setBounds(141, 12, 72, 23);
 					comboBoxLanguageID.addItem("");
+					comboBoxLanguageID.setSelectedItem(Locale.getDefault().getLanguage().toUpperCase());
 					jDesktopPane1.add(comboBoxLanguageID);
 				}
 			}

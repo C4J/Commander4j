@@ -56,7 +56,7 @@ Class-Path: lib/jasperlib/commons-digester-2.1.jar
  lib/jasperlib/lucene-core-7.3.0.jar 
  lib/jasperlib/lucene-queryparser-7.3.0.jar 
  lib/barcode/serializer-2.7.2.jar 
- lib/db/mssql-jdbc-7.2.1.jre8.jar 
+ lib/db/mssql-jdbc-7.2.2.jre8.jar 
  lib/db/mysql-connector-java-8.0.16.jar 
  lib/jasperlib/commons-collections4-4.2.jar 
  lib/jasperlib/spring-beans-5.1.4.RELEASE.jar 
