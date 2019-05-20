@@ -18,12 +18,11 @@
 		<h2>Session Timeout</h2>
 		<br>
 		<br>
-		
 		<table width="238" align="center">
 			<tr>
-				<td style="width: 10%; text-align: left"></td>
-				<td style="width: 80%; text-align: left">Your session has disconnected due to inactivity.</td>
-				<td style="width: 10%; text-align: left"></td>
+				<td width="238"><div align="center" style="color: green; background-color: #ffff42">
+					Your session has disconnected due to inactivity.
+				</div></td>
 			</tr>
 		</table>
 		<br>

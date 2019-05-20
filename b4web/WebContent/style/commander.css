@@ -7,6 +7,10 @@ body {
 	font-family: Verdana, Helvetica, sans-serif;
     font-size: .8em;
 	text-align: left;
+/* 	background: url(../images/giphy.gif); */
+/* 	background-size: 190px 190px; */
+/* 	background-repeat: no-repeat; */
+/* 	background-position: center;  */
 }
 
 a:link {
@@ -25,7 +29,7 @@ h1 {
 }
 
 h2 {
-	font-size: 12pt;
+	font-size: 10pt;
 	font-weight: bold;
 	text-align: center;
 	color: #FF0000;

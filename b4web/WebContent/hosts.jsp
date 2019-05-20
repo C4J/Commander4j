@@ -41,6 +41,20 @@
 			</tr>
 		</table>
 		
+		<table width="238" align="center">
+			<tr>
+				<td width="238"><div align="center" style="color: green; background-color: #ffff42">
+					<%
+						String errormessage = (String) session.getAttribute("_ErrorMessage");
+						if (errormessage == null)
+							errormessage = "";
+						errormessage = errormessage.trim();
+						out.println(errormessage);
+					%>
+				</div></td>
+			</tr>
+		</table>
+		
 		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
 			<tr>
 				<td width="49" height="20" align="right">
@@ -52,18 +66,11 @@
 				</td>
 			</tr>
 		</table>
-		
-		<br> 
+
 		<label for="Submit"></label> 
 		<input type="hidden" name="formName" value="hosts.jsp" /> 
 		<input type="hidden" id="button" name="button" value="Submit" />
-		<%
-			String errormessage = (String) session.getAttribute("_ErrorMessage");
-			if (errormessage == null)
-				errormessage = "";
-			errormessage = errormessage.trim();
-			out.println("<p>" + errormessage + "</p>");
-		%>
+
 	</form>
 	<%
 		String hostIndexFocus = (String) session.getAttribute("hostIndexFocus");

@@ -519,7 +519,6 @@ public class JFrameCloneDB extends JFrame
 															currentError = table+ " "+ex.getMessage();
 															if (currentError.equals(lastError)==false)
 															{
-																System.out.println(table+ " "+ex.getMessage());
 																setStatusBarText(currentError);
 																logger.debug(currentError);
 																lastError = currentError;
