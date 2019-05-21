@@ -20,16 +20,18 @@
 
 <body onLoad="focusIt()">
 	<form id="changePassword" name="changePassword" action="Process" method="post">
-		<h2>
-			<%
-				String siteDescription = "Change Password [" + (String) session.getAttribute("siteDescription") + "]";
-				out.print(siteDescription);
-			%>
-		</h2>
 		
-		<br>
-	   		 <img src="./images/user-login-icon.gif" width="60" style="display:block; margin-left:auto; margin-right:auto;">
-		<br>
+		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
+			<tr>
+			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%="Change Password"%></font></div></th>
+			</tr>
+						<tr>
+			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%=(String) session.getAttribute("siteDescription")%></font></div></th>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>		
 		
 		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
 
@@ -62,7 +64,10 @@
 		     	<td style="width: 30%; text-align: right">Verify :&nbsp;</td>
 		     	<td style="width: 70%; text-align: left">
 		     	<input tabindex="3" name="newPassword2"	id="newPassword2" size="20" maxlength="20" type="password" value="" />
-			</tr>			
+			</tr>	
+			<tr>
+				<td>&nbsp;</td>
+			</tr>		
 		</table>
 		
 		<table width="238" align="center">

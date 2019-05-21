@@ -20,9 +20,13 @@
 
 <body onLoad="focusIt()">
 	<form id="despatchHeader" name="despatchHeader" action="Process" method="post">
-		<h2>
-			<%=Lang.getText("lbl_Despatch_No")%>&nbsp;<%out.println(session.getAttribute("despatchNo"));%>
-		</h2>
+
+	<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
+			<tr>
+			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%=Lang.getText("lbl_Despatch_No")%>&nbsp;<%out.println(session.getAttribute("despatchNo"));%></font></div></th>
+			</tr>
+	</table>		
+		
 		<table width="238" align="center">
 		
 			<tr>
@@ -74,7 +78,7 @@
 			<tr>
 				<td width="35%" height="20"><div align="right"><%=Lang.getText("lbl_Journey_Ref")%></div></td>
 				<td>&nbsp;</td>
-				<td width="65%"><input name="despatchJourneyRef" type="text" id="despatchJourneyRef" tabindex="5" value="<%out.println(session.getAttribute("despatchJourneyRef"));%>" size="15" maxlength="15"></td>
+				<td width="65%"><input name="despatchJourneyRef" type="text" id="despatchJourneyRef" tabindex="6" value="<%out.println(session.getAttribute("despatchJourneyRef"));%>" size="15" maxlength="15"></td>
 			</tr>
 			<tr>
 			<tr>
@@ -107,12 +111,12 @@
 
 		<table width="238" align="center" border="0" cellpadding="0" cellspacing="0">
 			<tr>
-				<td width="100%" height="30" align="center"><input type="submit" tabindex='6' name="buttonAdd" value="<%=Lang.getText("web_Add_SSCC")%>" id="buttonAdd" onclick="document.despatchHeader.button.value='Add Pallets';" />&nbsp; <input
-					type="submit" tabindex='7' name="buttonPrint" value="<%=Lang.getText("web_Print_STN")%>" id="buttonPrint" onclick="document.despatchHeader.button.value='Print STN';" /></td>
+				<td width="100%" height="30" align="center"><input type="submit" tabindex='7' name="buttonAdd" value="<%=Lang.getText("web_Add_SSCC")%>" id="buttonAdd" onclick="document.despatchHeader.button.value='Add Pallets';" />&nbsp; <input
+					type="submit" tabindex='8' name="buttonPrint" value="<%=Lang.getText("web_Print_STN")%>" id="buttonPrint" onclick="document.despatchHeader.button.value='Print STN';" /></td>
 			</tr>
 			<tr>
-				<td width="100%" height="30" align="center"><input type="submit" tabindex="8" name="buttonConfirm" value="<%=Lang.getText("web_Confirm_STN")%>" id="buttonConfirm" onclick="document.despatchHeader.button.value='Confirm Despatch';">&nbsp;
-					<input type="submit" tabindex="9" name="buttonExit" value="<%=Lang.getText("web_Exit")%>" id="buttonExit" onclick="document.despatchHeader.button.value='Exit';"></td>
+				<td width="100%" height="30" align="center"><input type="submit" tabindex="9" name="buttonConfirm" value="<%=Lang.getText("web_Confirm_STN")%>" id="buttonConfirm" onclick="document.despatchHeader.button.value='Confirm Despatch';">&nbsp;
+					<input type="submit" tabindex="10" name="buttonExit" value="<%=Lang.getText("web_Exit")%>" id="buttonExit" onclick="document.despatchHeader.button.value='Exit';"></td>
 			</tr>
 		</table>
 		

@@ -20,7 +20,7 @@
 	
 		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
 			<tr>
-				<th bgcolor="#FFFFFF"><font color="#FF0000">Hosts</font></th>
+			 	<th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000">Hosts</font></div></th>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -36,9 +36,7 @@
 					%>
 				</td>
 				<td width="2%" height="20"></td>
-			<tr>
-				<td>&nbsp;</td>
-			</tr>
+
 		</table>
 		
 		<table width="238" align="center">

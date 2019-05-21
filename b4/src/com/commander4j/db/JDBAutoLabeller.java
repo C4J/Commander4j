@@ -58,6 +58,7 @@ public class JDBAutoLabeller
 	private String db_description;
 	private String db_unique_id;
 	private String db_sscc_range = "N";
+	private String db_prefix_code = "";
 	private String db_error_message = "";
 	private Long db_sscc_sequence;
 	private String db_modified = "N";
@@ -239,10 +240,11 @@ public class JDBAutoLabeller
 				stmtupdate.setString(1, getLine());
 				stmtupdate.setString(2, getGroup());
 				stmtupdate.setString(3, getDescription());
-				stmtupdate.setString(4, getUniqueID());
-				stmtupdate.setString(5, getModified());
-				stmtupdate.setString(6, getValidateResource());
-				stmtupdate.setString(7, getValidateWorkstation());
+				stmtupdate.setString(4, getPrefixCode());
+				stmtupdate.setString(5, getUniqueID());
+				stmtupdate.setString(6, getModified());
+				stmtupdate.setString(7, getValidateResource());
+				stmtupdate.setString(8, getValidateWorkstation());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -310,6 +312,12 @@ public class JDBAutoLabeller
 	{
 		return db_description;
 	}
+	
+	public String getPrefixCode()
+	{
+		return db_prefix_code;
+	}
+
 
 	public String getErrorMessage()
 	{
@@ -445,6 +453,7 @@ public class JDBAutoLabeller
 			setGroup(rs.getString("GROUP_ID"));
 			setUniqueID(JUtility.replaceNullStringwithBlank(rs.getString("UNIQUE_ID")));
 			setDescription(rs.getString("DESCRIPTION"));
+			setPrefixCode(rs.getString("prefix_code"));
 			setSSCCSequence(rs.getLong("SSCC_SEQUENCE"));
 			setSSCCRangeEnable(rs.getString("USE_SSCC_RANGE"));
 			setModified(rs.getString("MODIFIED"));
@@ -566,6 +575,12 @@ public class JDBAutoLabeller
 		db_description = JUtility.replaceNullStringwithBlank(desc);
 	}
 
+	public void setPrefixCode(String code)
+	{
+		db_prefix_code = JUtility.replaceNullStringwithBlank(code);
+	}
+
+	
 	private void setErrorMessage(String msg)
 	{
 		db_error_message = msg;
@@ -680,12 +695,13 @@ public class JDBAutoLabeller
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBAutoLabeller.update"));
 				stmtupdate.setString(1, getUniqueID());
 				stmtupdate.setString(2, getDescription());
-				stmtupdate.setString(3, getSSCCRangeEnable());
-				stmtupdate.setString(4, getModified());
-				stmtupdate.setString(5, getValidateResource());
-				stmtupdate.setString(6, getValidateWorkstation());
-				stmtupdate.setString(7, getLine());
-				stmtupdate.setString(8, getGroup());
+				stmtupdate.setString(3, getPrefixCode());
+				stmtupdate.setString(4, getSSCCRangeEnable());
+				stmtupdate.setString(5, getModified());
+				stmtupdate.setString(6, getValidateResource());
+				stmtupdate.setString(7, getValidateWorkstation());
+				stmtupdate.setString(8, getLine());
+				stmtupdate.setString(9, getGroup());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

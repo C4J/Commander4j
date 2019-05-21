@@ -26,13 +26,18 @@
 
 <body onLoad = "focusIt()">
 <form id="palletInfo" name="palletInfo" action="Process" method="post">
-	<h2>
-		<%=Lang.getText("mod_FRM_PAL_INFO") %>
-	</h2>
-	
-	<br>
-		<img src="./images/pallet_sscc.gif" width="150" style="display:block; margin-left:auto; margin-right:auto;">
-	<br>
+
+	<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
+			<tr>
+			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%=Lang.getText("mod_FRM_PAL_INFO")%></font></div></th>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><img src="./images/pallet_sscc.gif" width="150" style="display:block; margin-left:auto; margin-right:auto;"></td>
+			</tr>
+	</table>
 	
 	<table width="238" align="center">
 			<tr>

@@ -26,16 +26,19 @@
 </jsp:useBean>
 
 <body onLoad="focusIt()">
+
 	<form id="menus" name="menus" action="Process" method="post">
-		<table align="center" border="0" cellpadding="0" cellspacing="0"
-			width="238">
+	
+		<table align="center" border="0" cellpadding="0" cellspacing="0"width="238">
 			<tr>
-				<th></th>
-				<th bgcolor="#FFFFFF"><font color="#FF0000"><%=Lang.getText("mod_root")%></font></th>
+			 	<th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%=Lang.getText("mod_root")%></font></div></th>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
+		</table>
+		
+		<table align="center" border="0" cellpadding="0" cellspacing="0"width="238">	
 			<tr>
 				<td width="2%" height="20"></td>
 				<td width="98%" height="20" align="left">

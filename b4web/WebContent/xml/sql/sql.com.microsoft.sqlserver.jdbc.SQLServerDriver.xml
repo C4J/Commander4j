@@ -1261,7 +1261,7 @@
 		<?JDBAutoLabeller?>
 		<statement>
 			<id>JDBAutoLabeller.create</id>
-			<text>insert into {schema}app_auto_labeller (line,group_id,description,unique_id,modified,validate_resource,validate_workstation) values (?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}app_auto_labeller (line,group_id,description,prefix_code,unique_id,modified,validate_resource,validate_workstation) values (?,?,?,?,?,?,?)</text>
 		</statement>	
 		<statement>
 			<id>JDBAutoLabeller.resend</id>
@@ -1285,7 +1285,7 @@
 		</statement>
 		<statement>
 			<id>JDBAutoLabeller.update</id>
-			<text>update {schema}app_auto_labeller set unique_id=?,description=?,use_sscc_range=?,modified=?,validate_resource=?,validate_workstation=? where line = ? and group_id = ?</text>
+			<text>update {schema}app_auto_labeller set unique_id=?,description=?,prefix_code=?,use_sscc_range=?,modified=?,validate_resource=?,validate_workstation=? where line = ? and group_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBAutoLabeller.updateSSCC</id>

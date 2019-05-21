@@ -299,7 +299,7 @@ public class JDBLocation
 		LinkedList<JDBLocation> locationList = new LinkedList<JDBLocation>();
 		locationList.addAll(getLocationList());
 		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
-		result = result + "<OPTION>";
+		result = result + "<OPTION></OPTION>";
 		if (locationList.size() > 0)
 		{
 			for (int x = 0; x < locationList.size(); x++)
@@ -311,7 +311,7 @@ public class JDBLocation
 				{
 					selected = "";
 				}
-				result = result + "<OPTION" + selected + ">" + locationList.get(x).getLocationID();
+				result = result + "<OPTION" + selected + ">" + locationList.get(x).getLocationID()+"</OPTION>";
 			}
 		}
 		result = result + "</SELECT>";
@@ -329,7 +329,7 @@ public class JDBLocation
 
 		journeyList.addAll(jlistdb.getJourneyList(defaultValue));
 
-		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">" + "<OPTION>";
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">" + "<OPTION></OPTION>";
 
 		if (journeyList.size() > 0)
 		{
@@ -342,7 +342,7 @@ public class JDBLocation
 				{
 					selected = "";
 				}
-				result = result + "<OPTION" + selected + ">" + journeyList.get(x).getJourneyRef();
+				result = result + "<OPTION" + selected + ">" + journeyList.get(x).getJourneyRef()+"</OPTION>";
 			}
 		}
 

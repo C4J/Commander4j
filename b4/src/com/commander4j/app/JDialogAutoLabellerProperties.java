@@ -133,6 +133,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 	private LinkedList<JDBListData> assignedList = new LinkedList<JDBListData>();
 	private String selectedLine = "";
 	private String selectedGroup = "";
+	private JTextField4j jTextFieldPrefixCode;
 
 	public JDialogAutoLabellerProperties(JFrame frame, String line, String group)
 	{
@@ -179,6 +180,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 		setTitle(getTitle() + " - " + line + " " + group);
 		jTextFieldType.setText(autolab.getLine());
 		jTextFieldDescription.setText(autolab.getDescription());
+		jTextFieldPrefixCode.setText(autolab.getPrefixCode());
 		JSpinnerSSCCSequence.setValue(autolab.getSSCCSequence());
 		chckbxSSCCRange.setSelected(autolab.isSSCCRangeEnabled());
 		JSpinnerSSCCSequence.setEnabled(autolab.isSSCCRangeEnabled());
@@ -199,6 +201,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 			{
 				jTextFieldDescription.requestFocus();
 				jTextFieldDescription.setCaretPosition(jTextFieldDescription.getText().length());
+				
 
 			}
 		});
@@ -263,12 +266,12 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 					jLabelDescription.setText(lang.get("lbl_Description"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelDescription.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelDescription.setBounds(341, 17, 169, 21);
+					jLabelDescription.setBounds(339, 17, 107, 21);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBAutoLabeller.field_description);
 					jDesktopPane1.add(jTextFieldDescription, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jTextFieldDescription.setBounds(520, 17, 327, 21);
+					jTextFieldDescription.setBounds(456, 17, 327, 21);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -291,6 +294,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 						public void actionPerformed(ActionEvent evt)
 						{
 							autolab.setDescription(jTextFieldDescription.getText());
+							autolab.setPrefixCode(jTextFieldPrefixCode.getText());
 							autolab.setSSCCRangeEnabled(chckbxSSCCRange.isSelected());
 							autolab.setSSCCSequence(Long.valueOf(JSpinnerSSCCSequence.getValue().toString()));
 							if (autolab.isValidLineGroup() == false)
@@ -669,6 +673,28 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				label4jValidateWorkstations.setHorizontalAlignment(SwingConstants.RIGHT);
 				label4jValidateWorkstations.setBounds(240, 86, 270, 21);
 				jDesktopPane1.add(label4jValidateWorkstations);
+				
+				jTextFieldPrefixCode = new JTextField4j(4);
+				jTextFieldPrefixCode.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						jButtonUpdate.setEnabled(true);
+					}
+				});
+
+
+				jTextFieldPrefixCode.setFocusCycleRoot(true);
+				jTextFieldPrefixCode.setCaretPosition(0);
+				jTextFieldPrefixCode.setBounds(928, 17, 72, 21);
+				jDesktopPane1.add(jTextFieldPrefixCode);
+				
+				JLabel4j_std jLabelPrexfixCode = new JLabel4j_std();
+				jLabelPrexfixCode.setText(lang.get("lbl_Prefix_Code"));
+				jLabelPrexfixCode.setHorizontalTextPosition(SwingConstants.RIGHT);
+				jLabelPrexfixCode.setHorizontalAlignment(SwingConstants.RIGHT);
+				jLabelPrexfixCode.setBounds(793, 17, 120, 21);
+				jDesktopPane1.add(jLabelPrexfixCode);
+
 
 			}
 		} catch (Exception e)

@@ -21,18 +21,28 @@
 <body onLoad = "focusIt()">
 
 	<form id="printerSelect" name="printerSelect" action="Process" method="post">
-		<h2><%=Lang.getText("mod_FRM_CM_PRINTERS") %></h2>
-		<br>
 		
-		<table width="238" border="1" cellpadding="0" cellspacing="0"  align="center">
+	<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
 			<tr>
+			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%=Lang.getText("mod_FRM_CM_PRINTERS")%></font></div></th>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+	</table>
+		
+		<table width="238" border="0" cellpadding="0" cellspacing="0"  align="center">
+			<tr>
+
+				<td>&nbsp;</td>
+
 				<td>
 				<%out.println(session.getAttribute("printerList"));%>
 				</td>
+								<td>&nbsp;</td>
 			</tr>
 		</table>
-		
-		<br/><br><br><br><br><br><br><br>
+	
 		
 		<table width="238" border="0" cellpadding="0" cellspacing="0"  align="center" style="height: 90px; ">
 			<tr>

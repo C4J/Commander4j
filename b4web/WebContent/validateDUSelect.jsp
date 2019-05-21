@@ -27,9 +27,14 @@
 
 <body onLoad="focusIt()">
 	<form id="validateDUSelect" name="validateDUSelect" action="Process" method="post">
-		<h2>
-			<%=Lang.getText("web_Barcode_Validate")%>
-		</h2>
+		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
+			<tr>
+			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%=Lang.getText("web_Barcode_Validate")%></font></div></th>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
 		
 		<table width="238" align="center">
 			<tr>

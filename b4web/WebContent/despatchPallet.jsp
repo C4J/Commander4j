@@ -33,12 +33,20 @@
 
 <body onLoad="focusIt()">
 	<form id="despatchPallet" name="despatchPallet" action="Process" method="post">
-		<h2>
-			<%=Lang.getText("lbl_Despatch_No")%>&nbsp;<%out.println(despatchNo);%>
-		</h2>
-		<br>
-		<img src="./images/pallet_sscc.gif" width="150" style="display:block; margin-left:auto; margin-right:auto;">
-		<br>
+
+		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
+			<tr>
+			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%=Lang.getText("lbl_Despatch_No")%>&nbsp;<%out.println(despatchNo);%></font></div></th>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><img src="./images/pallet_sscc.gif" width="150" style="display:block; margin-left:auto; margin-right:auto;"></td>
+			</tr>
+		</table>
+		
+		
 		<table width="238" align="center">
 			<tr>
 				<td style="width: 30%; text-align: right"><%=Lang.getText("web_SSCC")%></td>

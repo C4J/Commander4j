@@ -47,14 +47,15 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 	public static final int Line_Col = 0;
 	public static final int Group_Col = 1;
 	public static final int Description_Col = 2;
-	public static final int ProcessOrder_Col = 3;
-	public static final int Material_Col = 4;
-	public static final int Batch_Col = 5;
-	public static final int Expiry_Col = 6;
-	public static final int Modified_Col = 7;
-	public static final int Use_SSCC_Range_Col = 8;
-	public static final int SSCC_Prefix_Col = 9;
-	public static final int SSCC_Range_Col = 10;
+	public static final int Prefix_Col = 3;
+	public static final int ProcessOrder_Col = 4;
+	public static final int Material_Col = 5;
+	public static final int Batch_Col = 6;
+	public static final int Expiry_Col = 7;
+	public static final int Modified_Col = 8;
+	public static final int Use_SSCC_Range_Col = 9;
+	public static final int SSCC_Prefix_Col = 10;
+	public static final int SSCC_Range_Col = 11;
 
 	private String ssccPrefix = "";
 	private String hostID;
@@ -62,7 +63,7 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 	private JDBControl ctrl;
 	private JDBLabelData labdata;
 	private String[] mcolNames =
-	{ "Line", "Group", "Description", "Process Order", "Material", "Batch", "Expiry Date", "Modified", "Use SSCC", "SSCC Prefix", "Sequence" };
+	{ "Line", "Group", "Description", "Prefix","Process Order", "Material", "Batch", "Expiry Date", "Modified", "Use SSCC", "SSCC Prefix", "Sequence" };
 	private String lastUniqueFound = "";
 	private ResultSet mResultSet;
 
@@ -170,6 +171,8 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 				return cache.get(row).getGroup();
 			case Description_Col:
 				return cache.get(row).getDescription();
+			case Prefix_Col:
+				return cache.get(row).getPrefixCode();
 			case ProcessOrder_Col:
 				if (cache.get(row).getUniqueID().equals(lastUniqueFound) == false)
 				{

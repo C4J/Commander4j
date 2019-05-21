@@ -16,15 +16,21 @@
 
 <body onLoad="focusIt()">
 	<form id="login" name="login" action="Process" method="post">
-		<h2>
-			<%
-				String siteDescription = "Logon [" + (String) session.getAttribute("siteDescription") + "]";
-				out.println(siteDescription);
-			%>
-		</h2>
-		<br> <img src="./images/user-login-icon.gif" width="60"
-			style="display: block; margin-left: auto; margin-right: auto;">
-		<br>
+
+		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
+			<tr>
+			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%="Logon [" + (String) session.getAttribute("siteDescription") + "]"%></font></div></th>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><img src="./images/user-login-icon.gif" width="60" style="display:block; margin-left:auto; margin-right:auto;"></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
 		
 		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
 			<tr>

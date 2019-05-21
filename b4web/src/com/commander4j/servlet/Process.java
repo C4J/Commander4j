@@ -1628,7 +1628,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 						else
 							saveData(session, "trayVariantColor", "red", true);
 
-						saveData(session, "_ErrorMessage", "Barcodes do not match", true);
+						saveData(session, "_ErrorMessage", "Barcodes inconsistent", true);
 						response.sendRedirect("productionConfirmPlusError.jsp");
 					}
 
@@ -1979,7 +1979,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					else
 					{
 						saveData(session, "resultImage", "./images/invalid.gif", true);
-						saveData(session, "_ErrorMessage", "Barcodes do not match", true);
+						saveData(session, "_ErrorMessage", "Barcodes inconsistent", true);
 					}
 
 					response.sendRedirect("validateDUResult.jsp");
