@@ -7,7 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="expires" content="0">
-	<META HTTP-Equiv="scanner" Content="enabled">
+	<META HTTP-Equiv="scanner" Content="disabled">
 	<META HTTP-Equiv="scanner" Content="autoenter">
 	<META HTTP-Equiv="acceleratekey" content="all">
 	<title>Login</title>

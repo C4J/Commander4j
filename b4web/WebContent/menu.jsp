@@ -8,7 +8,7 @@
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="expires" content="0">
 	<META HTTP-Equiv="quitbutton" Content="hide">
-	<META HTTP-Equiv="scanner" Content="enabled">
+	<META HTTP-Equiv="scanner" Content="disabled">
 	<META HTTP-Equiv="scanner" Content="autoenter">
 	<META HTTP-Equiv="acceleratekey" content="all">
 	<title>Menu</title>
@@ -17,12 +17,9 @@
 
 <jsp:useBean id="Lang" class="com.commander4j.bean.JLanguage"
 	scope="page">
-	<jsp:setProperty name="Lang" property="hostID"
-		value="<%=session.getAttribute(\"selectedHost\")%>" />
-	<jsp:setProperty name="Lang" property="sessionID"
-		value="<%=session.getId()%>" />
-	<jsp:setProperty name="Lang" property="languageID"
-		value="<%=session.getAttribute(\"language\")%>" />
+	<jsp:setProperty name="Lang" property="hostID" value="<%=session.getAttribute(\"selectedHost\")%>" />
+	<jsp:setProperty name="Lang" property="sessionID" value="<%=session.getId()%>" />
+	<jsp:setProperty name="Lang" property="languageID" value="<%=session.getAttribute(\"language\")%>" />
 </jsp:useBean>
 
 <body onLoad="focusIt()">
