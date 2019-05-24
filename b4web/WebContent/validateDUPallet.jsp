@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <meta name="viewport" content="width=240"/>
 	<META http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<META http-equiv="Pragma" content="no-cache">
 	<META http-equiv="expires" content="0">
@@ -13,7 +14,7 @@
 	<META HTTP-Equiv="scannernavigate" Content="Javascript:doScan('%s', '%s', %s, '%s', %s);">
 	<META HTTP-Equiv="scanner" Content="DecodeEvent:url('javascript:doScan('%s', '%s', %s, '%s', %s);')">
 	<META http-equiv="Volume" content="SetVolume:0xFFFF">	
-	<title>Validate Barcode</title>
+	<title>Validate DU Barcode</title>
 	<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 

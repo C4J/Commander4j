@@ -3,6 +3,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=240"/>
 	<META http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<META http-equiv="Pragma" content="no-cache">
 	<META http-equiv="expires" content="0">

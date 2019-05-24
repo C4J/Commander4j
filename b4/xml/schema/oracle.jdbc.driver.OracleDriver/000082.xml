@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Change_Password', 'EN', 'Production Unit', 'P')
+	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Change_Password', 'EN', 'Change Password', 'P')
 </statement>
 
 <statement>

@@ -106,4 +106,8 @@
 			AND [APP_LABEL_DATA].LINE > ''
 	</statement>
 	
+	<statement>
+		UPDATE SYS_LANGUAGE SET TEXT = "Change Password" WHERE  RESOURCE_KEY = "web_Change_Password'" AND LANGUAGE_ID = "EN"
+	</statement>
+	
 </DDL>

@@ -3,6 +3,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=240"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="expires" content="0">
@@ -26,7 +27,7 @@
 			<tr>
 			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%="Change Password"%></font></div></th>
 			</tr>
-						<tr>
+			<tr>
 			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%=(String) session.getAttribute("siteDescription")%></font></div></th>
 			</tr>
 			<tr>

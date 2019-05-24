@@ -4,6 +4,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=240"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="expires" content="0">
@@ -19,7 +20,10 @@
 
 		<table align="center" border="0" cellpadding="0" cellspacing="0" width="238">
 			<tr>
-			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%="Logon [" + (String) session.getAttribute("siteDescription") + "]"%></font></div></th>
+			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%="Logon"%></font></div></th>
+			</tr>
+			<tr>
+			    <th bgcolor="#FFFFFF"><div align="center"><font color="#FF0000"><%=(String) session.getAttribute("siteDescription")%></font></div></th>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

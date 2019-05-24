@@ -4,9 +4,11 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=240"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="expires" content="0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
 	<META HTTP-Equiv="scanner" Content="disabled">
 	<META HTTP-Equiv="scanner" Content="autoenter">
 	<META HTTP-Equiv="acceleratekey" content="all">
@@ -43,7 +45,7 @@
 		Version : <%=com.commander4j.app.JVersion.getProgramVersion() %></td>
 	</tr>
 	<tr>
-		<td><img src="./images/Splash.gif" width="150" style="display:block; margin-left:auto; margin-right:auto;"></td>
+		<td><img src="./images/splash.gif" width="150" style="display:block; margin-left:auto; margin-right:auto;"></td>
 	</tr>
 	<tr>
 		<td align="center" style="height: 25px" class="splashTitleVersion">
