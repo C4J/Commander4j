@@ -45,6 +45,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import com.commander4j.app.JVersion;
@@ -86,6 +87,12 @@ public class JDialogHosts extends JDialog
 		setVisible(true);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				jListHosts.requestFocus();
+				jListHosts.setSelectedIndex(0);
+			}
+		});
 
 
 	}
@@ -107,6 +114,10 @@ public class JDialogHosts extends JDialog
 			}
 		}
 		int sel = defComboBoxMod.getIndexOf(defaultitem);
+		if (sel < 0)
+		{
+			sel=0;
+		}
 		ListModel<JHost> jList1Model = defComboBoxMod;
 		jListHosts.setModel(jList1Model);
 		jListHosts.setCellRenderer(Common.renderer_list);
@@ -138,6 +149,7 @@ public class JDialogHosts extends JDialog
 					{
 						ListModel<JHost> jListHostsModel = new DefaultComboBoxModel<JHost>();
 						jListHosts = new JList4j<JHost>();
+						jListHosts.setSelectedIndices(new int[] {0});
 						jListHosts.setBorder(new EmptyBorder(0, 0, 0, 0));
 						jScrollPane1.setViewportView(jListHosts);
 						jListHosts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

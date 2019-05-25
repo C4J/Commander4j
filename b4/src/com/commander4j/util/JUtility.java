@@ -1612,7 +1612,6 @@ public class JUtility
 
 				UIManager.setLookAndFeel(new MetalLookAndFeel());
 
-				// UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			}
 		}
 		catch (Exception e)
