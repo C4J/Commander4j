@@ -193,7 +193,7 @@ public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(375, 402));
-			this.setBounds(0, 0, 392+Common.LFAdjustWidth, 415+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 387, 415);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -207,7 +207,7 @@ public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(231, 7, 126, 32);
+					jButtonAdd.setBounds(247, 5, 126, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_TYPE_ADD"));
 					jButtonAdd.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -221,7 +221,7 @@ public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(231, 36, 126, 32);
+					jButtonDelete.setBounds(247, 36, 126, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_TYPE_DELETE"));
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
 					jButtonDelete.addActionListener(new ActionListener() {
@@ -236,7 +236,7 @@ public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(231, 65, 126, 32);
+					jButtonEdit.setBounds(247, 67, 126, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_TYPE_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -249,7 +249,7 @@ public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonRename);
 					jButtonRename.setText(lang.get("btn_Rename"));
 					jButtonRename.setMnemonic(lang.getMnemonicChar());
-					jButtonRename.setBounds(231, 94, 126, 32);
+					jButtonRename.setBounds(247, 98, 126, 32);
 					jButtonRename.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_TYPE_RENAME"));
 					jButtonRename.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -263,7 +263,7 @@ public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());;
-					jButtonPrint.setBounds(231, 123, 126, 32);
+					jButtonPrint.setBounds(247, 129, 126, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_TYPES"));
 					jButtonPrint.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -276,14 +276,14 @@ public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(231, 152, 126, 32);
+					jButtonHelp.setBounds(247, 160, 126, 32);
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.setBounds(231, 181, 126, 32);
+					jButtonRefresh.setBounds(247, 191, 126, 32);
 					jButtonRefresh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							populateList("");
@@ -295,7 +295,7 @@ public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(231, 210, 126, 32);
+					jButtonClose.setBounds(247, 222, 126, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -305,7 +305,7 @@ public class JInternalFrameMaterialTypeAdmin extends JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 0, 217, 383);
+					jScrollPane1.setBounds(0, 0, 241, 383);
 					{
 						ListModel<JDBMaterialType> jList1Model = new DefaultComboBoxModel<JDBMaterialType>();
 						jListMaterialTypes = new JList4j<JDBMaterialType>();

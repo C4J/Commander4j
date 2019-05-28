@@ -160,7 +160,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 0, 363, 523);
+					jScrollPane1.setBounds(0, 0, 374, 523);
 					{
 						ListModel<JDBQMDictionary> jList1Model = new DefaultComboBoxModel<JDBQMDictionary>();
 						jListDictionary = new JList4j<JDBQMDictionary>();
@@ -243,7 +243,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(375, 10, 125, 32);
+					jButtonAdd.setBounds(379, 5, 125, 32);
 					jButtonAdd.setEnabled(true);
 					jButtonAdd.addActionListener(new ActionListener()
 					{
@@ -259,7 +259,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(375, 41, 125, 32);
+					jButtonDelete.setBounds(379, 36, 125, 32);
 					jButtonDelete.setEnabled(true);
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
 					jButtonDelete.addActionListener(new ActionListener()
@@ -276,7 +276,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(375, 72, 125, 32);
+					jButtonEdit.setBounds(379, 67, 125, 32);
 					jButtonEdit.setEnabled(true);
 					jButtonEdit.addActionListener(new ActionListener()
 					{
@@ -292,7 +292,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.setBounds(375, 102, 125, 32);
+					jButtonRefresh.setBounds(379, 98, 125, 32);
 					jButtonRefresh.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -306,7 +306,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(375, 163, 125, 32);
+					jButtonClose.setBounds(379, 160, 125, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -325,7 +325,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 					});
 					btnExcel.setText(lang.get("btn_Excel"));
 					btnExcel.setMnemonic('0');
-					btnExcel.setBounds(375, 132, 125, 32);
+					btnExcel.setBounds(379, 129, 125, 32);
 					jDesktopPane1.add(btnExcel);
 
 				}
