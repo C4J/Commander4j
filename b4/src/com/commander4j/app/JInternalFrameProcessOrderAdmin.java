@@ -1136,7 +1136,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonLabel = new JButton4j(Common.icon_report);
+					jButtonLabel = new JButton4j(Common.icon_label);
 					jButtonLabel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)

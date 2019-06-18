@@ -263,6 +263,7 @@ public class Common
 	public final static Icon icon_form = Common.imageIconloader.getImageIcon(Common.image_form);
 	public final static Icon icon_scanner = Common.imageIconloader.getImageIcon(Common.image_scanner);
 	public final static Icon icon_report = Common.imageIconloader.getImageIcon(Common.image_report);
+	public final static Icon icon_label = Common.imageIconloader.getImageIcon(Common.image_label);
 	public final static Icon icon_function = Common.imageIconloader.getImageIcon(Common.image_function);
 	public final static Icon icon_error = Common.imageIconloader.getImageIcon(Common.image_error);
 	public final static Icon icon_select = Common.imageIconloader.getImageIcon(Common.image_select);
@@ -363,6 +364,7 @@ public class Common
 	public final static String image_units = "units.gif";
 	public final static String image_customer = "customer.gif";
 	public final static String image_report = "report.gif";
+	public final static String image_label = "label.gif";
 	public final static String image_function = "function.gif";
 	public final static String image_error = "error.gif";
 	public final static String image_select = "ok.gif";
