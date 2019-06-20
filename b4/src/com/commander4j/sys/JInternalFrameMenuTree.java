@@ -168,6 +168,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 
 		tree = new JTree(top);
 		tree.setCellRenderer(new MenuTreeRenderer());
+		tree.setRowHeight(27);
 		ToolTipManager.sharedInstance().registerComponent(tree);
 
 		tree.setFont(Common.font_tree);
