@@ -718,7 +718,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jDesktopPane1.setBackground(Common.color_app_window);
 			jDesktopPane1.setLayout(null);
 			
-			jButtonAssign = new JButton4j(Common.icon_case_label_16x16);
+			jButtonAssign = new JButton4j(Common.icon_production_line_16x16);
 			jButtonAssign.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent arg0)
@@ -734,10 +734,10 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jDesktopPane1.add(jButtonAssign);
 			
 			
-			jButtonSave = new JButton4j(Common.icon_print_16x16);
+			jButtonSave = new JButton4j(Common.icon_label_16x16);
 			jDesktopPane1.add(jButtonSave);
 			jButtonSave.setEnabled(false);
-			jButtonSave.setText(lang.get("btn_Print"));
+			jButtonSave.setText(lang.get("btn_Label"));
 			jButtonSave.setMnemonic(lang.getMnemonicChar());
 			jButtonSave.setBounds(1, 492, 155, 32);
 			jButtonSave.addActionListener(new ActionListener() {

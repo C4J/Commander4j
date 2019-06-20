@@ -234,7 +234,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		try
 		{
 
-			jButtonAssign = new JButton4j(Common.icon_print_16x16);
+			jButtonAssign = new JButton4j(Common.icon_production_line_16x16);
 			jButtonAssign.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)

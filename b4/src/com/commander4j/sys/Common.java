@@ -325,7 +325,9 @@ public class Common
 	public final static Icon icon_despatch_add = Common.imageIconloader.getImageIcon16x16(Common.image_despatch_add);
 	public final static Icon icon_alternative = Common.imageIconloader.getImageIcon16x16(Common.image_alternative);
 	public final static Icon icon_lock = Common.imageIconloader.getImageIcon16x16(Common.image_lock);
+	public final static Icon icon_production_line_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_production_line);
 
+	public final static String image_production_line = "prod_lines.gif";
 	public final static String image_lock = "lock.gif";
 	public final static String image_file_save = "file_save.gif";
 	public final static String image_export = "export.gif";

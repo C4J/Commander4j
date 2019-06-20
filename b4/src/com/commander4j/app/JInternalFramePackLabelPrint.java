@@ -644,10 +644,10 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jDesktopPane1.setPreferredSize(new java.awt.Dimension(665, 490));
 			jDesktopPane1.setBackground(Common.color_app_window);
 			jDesktopPane1.setLayout(null);
-			jButtonPrint = new JButton4j(Common.icon_print_16x16);
+			jButtonPrint = new JButton4j(Common.icon_label_16x16);
 			jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_PRINTER"));
 
-			jButtonAssign = new JButton4j(Common.icon_case_label_16x16);
+			jButtonAssign = new JButton4j(Common.icon_production_line_16x16);
 			jButtonAssign.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent arg0)
@@ -664,7 +664,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 
 			jDesktopPane1.add(jButtonPrint);
 			jButtonPrint.setEnabled(false);
-			jButtonPrint.setText(lang.get("btn_Print"));
+			jButtonPrint.setText(lang.get("btn_Label"));
 			jButtonPrint.setMnemonic(lang.getMnemonicChar());
 			jButtonPrint.setBounds(6, 471, 182, 32);
 			jButtonPrint.addActionListener(new ActionListener()
