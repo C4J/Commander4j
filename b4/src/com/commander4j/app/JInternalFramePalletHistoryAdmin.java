@@ -644,7 +644,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 							addPopup(jTable1, popupMenu);
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_report);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_report_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PALLETS"));
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
@@ -656,7 +656,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
 										export();
@@ -1079,7 +1079,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					}
 				}
 				{
-					jButtonSearch1 = new JButton4j(Common.icon_search);
+					jButtonSearch1 = new JButton4j(Common.icon_search_16x16);
 					jDesktopPane1.add(jButtonSearch1);
 					jButtonSearch1.setText(lang.get("btn_Search"));
 					jButtonSearch1.setBounds(2, 176, 140, 32);
@@ -1132,14 +1132,14 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setBounds(570, 176, 140, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setBounds(854, 176, 140, 32);
@@ -1152,7 +1152,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonPrint = new JButton4j(Common.icon_report);
+					jButtonPrint = new JButton4j(Common.icon_report_16x16);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setBounds(286, 176, 140, 32);
@@ -1165,7 +1165,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonPrint = new JButton4j(Common.icon_report);
+					jButtonPrint = new JButton4j(Common.icon_report_16x16);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print_Summary"));
 					jButtonPrint.setBounds(428, 176, 140, 32);
@@ -1533,7 +1533,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				}
 
 				{
-					final JButton4j exportXlsButton = new JButton4j(Common.icon_XLS);
+					final JButton4j exportXlsButton = new JButton4j(Common.icon_XLS_16x16);
 					exportXlsButton.addActionListener(new ActionListener() {
 						public void actionPerformed(final ActionEvent e) {
 							export();

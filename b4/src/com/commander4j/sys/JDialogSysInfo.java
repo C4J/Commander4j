@@ -259,7 +259,7 @@ public class JDialogSysInfo extends javax.swing.JDialog
 				jDesktopPane1.setPreferredSize(new Dimension(770, 525));
 				jDesktopPane1.setLayout(null);
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText("Close");
 					jButtonClose.setBounds(328, 481, 105, 32);

@@ -141,8 +141,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private LinkedList<String> assignedList = new LinkedList<String>();
 	private JRadioButton confirmedRadioButton = new JRadioButton();
 	private JRadioButton unconfirmedRadioButton = new JRadioButton();
-	private JButton4j findButton = new JButton4j(Common.icon_find);
-	private JButton4j jButtonHelp = new JButton4j(Common.icon_help);
+	private JButton4j findButton = new JButton4j(Common.icon_find_16x16);
+	private JButton4j jButtonHelp = new JButton4j(Common.icon_help_16x16);
 	private JButton4j newButton = new JButton4j(Common.icon_add);
 	private JLabel4j_std jStatusText;
 	private JTextField4j textFieldLoadNo;
@@ -511,7 +511,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		findButton.setBounds(686, 300, 143, 30);
 		desktopPane.add(findButton);
 
-		final JButton4j printButton = new JButton4j(Common.icon_report);
+		final JButton4j printButton = new JButton4j(Common.icon_report_16x16);
 		printButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -554,7 +554,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		spinnerUnassignedLimit.setValue(1000);
 		desktopPane.add(spinnerUnassignedLimit);
 
-		final JButton4j closeButton = new JButton4j(Common.icon_close);
+		final JButton4j closeButton = new JButton4j(Common.icon_close_16x16);
 
 		closeButton.addActionListener(new ActionListener()
 		{
@@ -639,7 +639,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		palletFilterCriteriaLabel.setBounds(686, 10, 125, 16);
 		desktopPane.add(palletFilterCriteriaLabel);
 
-		final JButton4j refreshButton = new JButton4j(Common.icon_refresh);
+		final JButton4j refreshButton = new JButton4j(Common.icon_refresh_16x16);
 		refreshButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)

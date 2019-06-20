@@ -158,7 +158,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 					jLabelLineID.setBounds(29, 393, 139, 21);
 				}
 				{
-					jButtonUpdate = new JButton4j(Common.icon_update);
+					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
 					jButtonUpdate.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -175,14 +175,14 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 					jButtonHelp.setBounds(298, 175, 112, 32);
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -197,7 +197,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 				}
 
 				{
-					jButtonExcel = new JButton4j(Common.icon_XLS);
+					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 					jButtonExcel.setBounds(298, 116, 112, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
@@ -213,7 +213,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 
 				jButtonUpdate.setEnabled(false);
 
-				JButton4j jButtonRefresh = new JButton4j(Common.icon_refresh);
+				JButton4j jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 				jButtonRefresh.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)

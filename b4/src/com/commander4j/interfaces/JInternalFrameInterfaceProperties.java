@@ -280,7 +280,7 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 182));
 				jDesktopPane1.setLayout(null);
 				{
-					jButtonUpdate = new JButton(Common.icon_update);
+					jButtonUpdate = new JButton(Common.icon_update_16x16);
 					jButtonUpdate.setBounds(159, 288, 112, 32);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setEnabled(false);
@@ -314,7 +314,7 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton(Common.icon_help);
+					jButtonHelp = new JButton(Common.icon_help_16x16);
 					jButtonHelp.setBounds(273, 288, 112, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
@@ -322,7 +322,7 @@ public class JInternalFrameInterfaceProperties extends JInternalFrame
 					jButtonHelp.setFont(Common.font_btn);
 				}
 				{
-					jButtonCancel = new JButton(Common.icon_close);
+					jButtonCancel = new JButton(Common.icon_close_16x16);
 					jButtonCancel.setBounds(387, 288, 112, 32);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));

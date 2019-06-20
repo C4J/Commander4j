@@ -393,7 +393,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		});
 		btnSearch1.setBounds(262, 40, 117, 32);
 		desktopPane.add(btnSearch1);
-		btnSearch1.setIcon(Common.icon_search);
+		btnSearch1.setIcon(Common.icon_search_16x16);
 
 		JButton4j btnClose1 = new JButton4j(lang.get("btn_Close"));
 		btnClose1.addActionListener(new ActionListener()
@@ -405,7 +405,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		});
 		btnClose1.setBounds(395, 40, 117, 32);
 		desktopPane.add(btnClose1);
-		btnClose1.setIcon(Common.icon_close);
+		btnClose1.setIcon(Common.icon_close_16x16);
 
 		chckbxLimit = new JCheckBox4j("");
 		chckbxLimit.setBounds(711, 48, 28, 16);

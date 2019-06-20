@@ -644,10 +644,10 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jDesktopPane1.setPreferredSize(new java.awt.Dimension(665, 490));
 			jDesktopPane1.setBackground(Common.color_app_window);
 			jDesktopPane1.setLayout(null);
-			jButtonPrint = new JButton4j(Common.icon_print);
+			jButtonPrint = new JButton4j(Common.icon_print_16x16);
 			jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABEL_DATA_ASSIGN_TO_PRINTER"));
 
-			jButtonAssign = new JButton4j(Common.icon_auto_labeller);
+			jButtonAssign = new JButton4j(Common.icon_case_label_16x16);
 			jButtonAssign.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent arg0)
@@ -675,7 +675,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				}
 			});
 
-			jButtonClose = new JButton4j(Common.icon_close);
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -695,7 +695,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				}
 			});
 
-			jButtonHelp = new JButton4j(Common.icon_help);
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
 			jDesktopPane1.add(jButtonHelp);
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());

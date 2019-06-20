@@ -392,13 +392,13 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				jButtonSplit.setMnemonic(lang.getMnemonicChar());
 				jButtonSplit.setBounds(151, 205, 111, 32);
 
-				jButtonHelp = new JButton4j(Common.icon_help);
+				jButtonHelp = new JButton4j(Common.icon_help_16x16);
 				jDesktopPane1.add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				jButtonHelp.setBounds(265, 205, 111, 32);
 
-				jButtonCancel = new JButton4j(Common.icon_close);
+				jButtonCancel = new JButton4j(Common.icon_close_16x16);
 				jDesktopPane1.add(jButtonCancel);
 				jButtonCancel.setText(lang.get("btn_Close"));
 				jButtonCancel.setMnemonic(lang.getMnemonicChar());

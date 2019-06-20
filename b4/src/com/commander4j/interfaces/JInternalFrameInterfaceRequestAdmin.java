@@ -314,7 +314,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 							addPopup(jTable1, popupMenu);
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_search);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_search_16x16);
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
 										search();
@@ -359,7 +359,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_XLS);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_XLS_16x16);
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
 										excel();
@@ -455,7 +455,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					}
 				}
 				{
-					jButtonSearch = new JButton(Common.icon_search);
+					jButtonSearch = new JButton(Common.icon_search_16x16);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setFont(Common.font_btn);
@@ -467,14 +467,14 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton(Common.icon_help);
+					jButtonHelp = new JButton(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setFont(Common.font_btn);
 					jButtonHelp.setBounds(617, 43, 122, 32);
 				}
 				{
-					jButtonClose = new JButton(Common.icon_close);
+					jButtonClose = new JButton(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setFont(Common.font_btn);
@@ -554,7 +554,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonExcel = new JButton(Common.icon_XLS);
+					jButtonExcel = new JButton(Common.icon_XLS_16x16);
 					jButtonExcel.addActionListener(new ActionListener() {
 						public void actionPerformed(final ActionEvent e) {
 							excel();

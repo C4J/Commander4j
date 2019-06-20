@@ -191,7 +191,7 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 				jTextFieldSSCC.setEnabled(false);
 				jTextFieldSSCC.setBounds(155, 10, 137, 21);
 
-				jButtonPrint = new JButton4j(Common.icon_print);
+				jButtonPrint = new JButton4j(Common.icon_print_16x16);
 				jButtonPrint.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -208,13 +208,13 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 				jButtonPrint.setMnemonic(lang.getMnemonicChar());
 				jButtonPrint.setBounds(181, 136, 111, 28);
 
-				jButtonHelp = new JButton4j(Common.icon_help);
+				jButtonHelp = new JButton4j(Common.icon_help_16x16);
 				jDesktopPane1.add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
 				jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				jButtonHelp.setBounds(294, 136, 111, 28);
 
-				jButtonCancel = new JButton4j(Common.icon_close);
+				jButtonCancel = new JButton4j(Common.icon_close_16x16);
 				jDesktopPane1.add(jButtonCancel);
 				jButtonCancel.setText(lang.get("btn_Close"));
 				jButtonCancel.setMnemonic(lang.getMnemonicChar());

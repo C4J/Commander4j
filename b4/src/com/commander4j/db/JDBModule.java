@@ -100,7 +100,7 @@ public class JDBModule
 
 	private String sessionID;
 
-	public static Icon getModuleIcon(String filename, String moduleType)
+	public static Icon getModuleIcon16x16(String filename, String moduleType)
 	{
 
 		Icon icon = new ImageIcon();
@@ -119,39 +119,167 @@ public class JDBModule
 
 				if (moduleType.equals("MENU"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_menu);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_menu);
 				}
 				if (moduleType.equals("FORM"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_form);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_form);
 				}
 				if (moduleType.equals("SCANNER"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_scanner);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_scanner);
 				}
 				if (moduleType.equals("REPORT"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_report);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_report);
 				}
 				if (moduleType.equals("FUNCTION"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_function);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_function);
 				}
 				if (moduleType.equals("EXEC"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_execute);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_execute);
 				}
 				if (moduleType.equals("USER"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_user_report);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_user_report);
 				}
 			} else
 			{
 				File file;
-				file = new File(Common.image_path + filename);
+				file = new File(Common.image_path_16x16 + filename);
 				if (file.exists())
 				{
-					icon = Common.imageIconloader.getImageIcon(filename);
+					icon = Common.imageIconloader.getImageIcon16x16(filename);
+				} else
+				{
+					icon = new ImageIcon(Common.image_error);
+				}
+			}
+
+		} catch (Exception e)
+		{
+		}
+		return icon;
+	}
+	
+	public static Icon getModuleIcon24x24(String filename, String moduleType)
+	{
+
+		Icon icon = new ImageIcon();
+
+		try
+		{
+			if (filename == null)
+			{
+				filename = "";
+			}
+
+			if (filename.compareTo("") == 0)
+			{
+
+				icon = new ImageIcon(Common.image_blank_icon);
+
+				if (moduleType.equals("MENU"))
+				{
+					icon = Common.imageIconloader.getImageIcon24x24(Common.image_menu);
+				}
+				if (moduleType.equals("FORM"))
+				{
+					icon = Common.imageIconloader.getImageIcon24x24(Common.image_form);
+				}
+				if (moduleType.equals("SCANNER"))
+				{
+					icon = Common.imageIconloader.getImageIcon24x24(Common.image_scanner);
+				}
+				if (moduleType.equals("REPORT"))
+				{
+					icon = Common.imageIconloader.getImageIcon24x24(Common.image_report);
+				}
+				if (moduleType.equals("FUNCTION"))
+				{
+					icon = Common.imageIconloader.getImageIcon24x24(Common.image_function);
+				}
+				if (moduleType.equals("EXEC"))
+				{
+					icon = Common.imageIconloader.getImageIcon24x24(Common.image_execute);
+				}
+				if (moduleType.equals("USER"))
+				{
+					icon = Common.imageIconloader.getImageIcon24x24(Common.image_user_report);
+				}
+			} else
+			{
+				File file;
+				file = new File(Common.image_path_24x24 + filename);
+				if (file.exists())
+				{
+					icon = Common.imageIconloader.getImageIcon24x24(filename);
+				} else
+				{
+					icon = new ImageIcon(Common.image_error);
+				}
+			}
+
+		} catch (Exception e)
+		{
+		}
+		return icon;
+	}
+	
+	public static Icon getModuleIcon32x32(String filename, String moduleType)
+	{
+
+		Icon icon = new ImageIcon();
+
+		try
+		{
+			if (filename == null)
+			{
+				filename = "";
+			}
+
+			if (filename.compareTo("") == 0)
+			{
+
+				icon = new ImageIcon(Common.image_blank_icon);
+
+				if (moduleType.equals("MENU"))
+				{
+					icon = Common.imageIconloader.getImageIcon32x32(Common.image_menu);
+				}
+				if (moduleType.equals("FORM"))
+				{
+					icon = Common.imageIconloader.getImageIcon32x32(Common.image_form);
+				}
+				if (moduleType.equals("SCANNER"))
+				{
+					icon = Common.imageIconloader.getImageIcon32x32(Common.image_scanner);
+				}
+				if (moduleType.equals("REPORT"))
+				{
+					icon = Common.imageIconloader.getImageIcon32x32(Common.image_report);
+				}
+				if (moduleType.equals("FUNCTION"))
+				{
+					icon = Common.imageIconloader.getImageIcon32x32(Common.image_function);
+				}
+				if (moduleType.equals("EXEC"))
+				{
+					icon = Common.imageIconloader.getImageIcon32x32(Common.image_execute);
+				}
+				if (moduleType.equals("USER"))
+				{
+					icon = Common.imageIconloader.getImageIcon32x32(Common.image_user_report);
+				}
+			} else
+			{
+				File file;
+				file = new File(Common.image_path_32x32 + filename);
+				if (file.exists())
+				{
+					icon = Common.imageIconloader.getImageIcon32x32(filename);
 				} else
 				{
 					icon = new ImageIcon(Common.image_error);
@@ -509,7 +637,7 @@ public class JDBModule
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				icon = getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
 				moduleList.addLast(mld);
 			}
@@ -596,7 +724,7 @@ public class JDBModule
 
 			while (rs.next())
 			{
-				icon = getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, index, true, rs.getString("module_id"));
 				modList.addLast(mld);
 			}
@@ -629,7 +757,7 @@ public class JDBModule
 
 			while (rs.next())
 			{
-				icon = getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, index, true, rs.getString("module_id"));
 				groupList.addLast(mld);
 			}
@@ -648,7 +776,7 @@ public class JDBModule
 	{
 
 		Icon icon;
-		icon = getModuleIcon(getIconFilename(), getType());
+		icon = getModuleIcon16x16(getIconFilename(), getType());
 		JDBListData result = new JDBListData(icon, 0, true, getModuleId());
 		return result;
 	}
@@ -729,7 +857,7 @@ public class JDBModule
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				icon = getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
 				moduleList.addLast(mld);
 			}
@@ -757,7 +885,7 @@ public class JDBModule
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				icon = getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
 				moduleList.addLast(mld);
 			}
@@ -785,7 +913,7 @@ public class JDBModule
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				icon = getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
 				moduleList.addLast(mld);
 			}
@@ -819,7 +947,7 @@ public class JDBModule
 			{
 				JMenuOption mo = new JMenuOption(getHostID(), getSessionID());
 				mo.load(rs);
-				icon = getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, 0, true, mo);
 				moduleList.addLast(mld);
 			}
@@ -849,7 +977,7 @@ public class JDBModule
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				icon = getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
 				moduleList.addLast(mld);
 			}
@@ -877,7 +1005,7 @@ public class JDBModule
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				icon = getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
 				moduleList.addLast(mld);
 			}
@@ -905,7 +1033,7 @@ public class JDBModule
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				icon = getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
 				moduleList.addLast(mld);
 			}

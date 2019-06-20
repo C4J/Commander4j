@@ -526,7 +526,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 							addPopup(jTable1, popupMenu);
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -581,7 +581,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -594,7 +594,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -858,7 +858,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					}
 				}
 				{
-					jButtonSearch = new JButton4j(Common.icon_search);
+					jButtonSearch = new JButton4j(Common.icon_search_16x16);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setBounds(-1, 143, 109, 32);
@@ -983,7 +983,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setBounds(755, 143, 109, 32);
@@ -1023,7 +1023,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setBounds(863, 143, 109, 32);
@@ -1038,7 +1038,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonPrint = new JButton4j(Common.icon_report);
+					jButtonPrint = new JButton4j(Common.icon_report_16x16);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setBounds(539, 143, 109, 32);
@@ -1123,7 +1123,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonExcel = new JButton4j(Common.icon_XLS);
+					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)

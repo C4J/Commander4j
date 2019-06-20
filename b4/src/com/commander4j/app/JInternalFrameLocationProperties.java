@@ -661,7 +661,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jDesktopPane1.add(checkBox_Production_Confirmation);
 				}
 				{
-					jButtonSave = new JButton4j(Common.icon_update);
+					jButtonSave = new JButton4j(Common.icon_update_16x16);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setEnabled(false);
 					jButtonSave.setText("Save");
@@ -676,7 +676,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 				}
 			}
 			{
-				jButtonHelp = new JButton4j(Common.icon_help);
+				jButtonHelp = new JButton4j(Common.icon_help_16x16);
 				jButtonHelp.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 					}
@@ -687,7 +687,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 				jButtonHelp.setBounds(181, 576, 112, 28);
 			}
 			{
-				jButtonCancel = new JButton4j(Common.icon_close);
+				jButtonCancel = new JButton4j(Common.icon_close_16x16);
 				jDesktopPane1.add(jButtonCancel);
 				jButtonCancel.setText("Close");
 				jButtonCancel.setMnemonic(67);

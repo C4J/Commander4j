@@ -333,7 +333,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonSave = new JButton4j(Common.icon_update);
+					jButtonSave = new JButton4j(Common.icon_update_16x16);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setEnabled(false);
 					jButtonSave.setText(lang.get("btn_Save"));
@@ -348,14 +348,14 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 					jButtonHelp.setBounds(453, 250, 178, 32);
 				}
 				{
-					jButtonCancel = new JButton4j(Common.icon_close);
+					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());

@@ -200,7 +200,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				});
 			}
 			{
-				jButtonClose = new JButton4j(Common.icon_close);
+				jButtonClose = new JButton4j(Common.icon_close_16x16);
 				this.getContentPane().add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
 				jButtonClose.setBounds(862, 275, 122, 32);
@@ -281,7 +281,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				});
 			}
 			{
-				jButtonPrint = new JButton4j(Common.icon_report);
+				jButtonPrint = new JButton4j(Common.icon_report_16x16);
 				this.getContentPane().add(jButtonPrint);
 				jButtonPrint.setText(lang.get("btn_Print"));
 				jButtonPrint.setBounds(616, 275, 122, 32);
@@ -296,7 +296,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 				});
 			}
 			{
-				jButtonHelp = new JButton4j(Common.icon_help);
+				jButtonHelp = new JButton4j(Common.icon_help_16x16);
 				this.getContentPane().add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
 				jButtonHelp.setBounds(739, 275, 122, 32);
@@ -304,7 +304,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 
 			}
 			{
-				jButtonExcel = new JButton4j(Common.icon_XLS);
+				jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 				jButtonExcel.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(final ActionEvent e)

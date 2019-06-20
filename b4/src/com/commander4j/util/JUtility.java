@@ -1448,7 +1448,7 @@ public class JUtility
 
 			if (filename.compareTo("") == 0)
 			{
-				Icon icon = Common.imageIconloader.getImageIcon(Common.image_blank_icon);
+				Icon icon = Common.imageIconloader.getImageIcon16x16(Common.image_blank_icon);
 				btn.setIcon(icon);
 			}
 			else
@@ -1458,12 +1458,12 @@ public class JUtility
 
 				if (f.exists())
 				{
-					Icon icon = Common.imageIconloader.getImageIcon(filename);
+					Icon icon = Common.imageIconloader.getImageIcon16x16(filename);
 					btn.setIcon(icon);
 				}
 				else
 				{
-					Icon icon = Common.imageIconloader.getImageIcon(Common.image_error);
+					Icon icon = Common.imageIconloader.getImageIcon16x16(Common.image_error);
 					btn.setIcon(icon);
 				}
 			}

@@ -178,7 +178,7 @@ public class JDialogHosts extends JDialog
 					});
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jButtonClose.setBounds(161, 245, 110, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText("Close");

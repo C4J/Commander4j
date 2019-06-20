@@ -152,7 +152,7 @@ public class JInternalFrameMHNReasonProperties extends JInternalFrame
 					jTextFieldDescription.setFocusCycleRoot(true);
 				}
 				{
-					jButtonUpdate = new JButton4j(Common.icon_update);
+					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
 					jDesktopPane1.add(jButtonUpdate, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
@@ -168,14 +168,14 @@ public class JInternalFrameMHNReasonProperties extends JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 					jButtonHelp.setBounds(133, 70, 112, 32);
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());

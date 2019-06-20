@@ -813,7 +813,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonSearch1 = new JButton4j(Common.icon_search);
+					jButtonSearch1 = new JButton4j(Common.icon_search_16x16);
 					jDesktopPane1.add(jButtonSearch1);
 					jButtonSearch1.setText(lang.get("btn_Search"));
 					jButtonSearch1.setBounds(2, 226, 162, 32);
@@ -924,7 +924,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonSummary = new JButton4j(Common.icon_report);
+					jButtonSummary = new JButton4j(Common.icon_report_16x16);
 					jButtonSummary.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -939,7 +939,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jButtonSummary.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PAL_SUMMARY"));
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setBounds(822, 260, 162, 32);
@@ -954,7 +954,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonPrint = new JButton4j(Common.icon_report);
+					jButtonPrint = new JButton4j(Common.icon_report_16x16);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setBounds(658, 260, 162, 32);
@@ -1374,7 +1374,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonLabel = new JButton4j(Common.icon_report);
+					jButtonLabel = new JButton4j(Common.icon_label_16x16);
 					jButtonLabel.setToolTipText("Print labels for all returned rows below");
 					jDesktopPane1.add(jButtonLabel);
 					jButtonLabel.setText(lang.get("btn_Label"));
@@ -1405,7 +1405,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				}
 
 				{
-					final JButton4j exportXlsButton = new JButton4j(Common.icon_XLS);
+					final JButton4j exportXlsButton = new JButton4j(Common.icon_XLS_16x16);
 					exportXlsButton.setToolTipText("Export all rows below to spreadsheet.");
 					exportXlsButton.addActionListener(new ActionListener()
 					{
@@ -1588,7 +1588,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				}
 
 				{
-					final JMenuItem4j menuItemPrint = new JMenuItem4j(Common.icon_print);
+					final JMenuItem4j menuItemPrint = new JMenuItem4j(Common.icon_print_16x16);
 					menuItemPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PALLETS"));
 					menuItemPrint.addActionListener(new ActionListener()
 					{
@@ -1602,7 +1602,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				}
 
 				{
-					final JMenuItem4j menuItemLabel = new JMenuItem4j(Common.icon_report);
+					final JMenuItem4j menuItemLabel = new JMenuItem4j(Common.icon_label_16x16);
 					menuItemLabel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -1615,7 +1615,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				}
 
 				{
-					final JMenuItem4j menuItemExcel = new JMenuItem4j(Common.icon_XLS);
+					final JMenuItem4j menuItemExcel = new JMenuItem4j(Common.icon_XLS_16x16);
 					menuItemExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -1628,7 +1628,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				}
 
 				{
-					final JMenuItem4j menuItemConfirm = new JMenuItem4j(Common.icon_ok);
+					final JMenuItem4j menuItemConfirm = new JMenuItem4j(Common.icon_scanner_16x16);
 					menuItemConfirm.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PAL_PROD_CONFIRM"));
 					menuItemConfirm.addActionListener(new ActionListener()
 					{
@@ -1642,7 +1642,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					popupMenu.add(menuItemConfirm);
 				}
 				{
-					menuItemSummary = new JMenuItem4j(Common.icon_report);
+					menuItemSummary = new JMenuItem4j(Common.icon_report_16x16);
 					menuItemSummary.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)

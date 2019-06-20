@@ -466,7 +466,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jLabelRecorder.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					JButton4j btnExcel = new JButton4j(Common.icon_XLS);
+					JButton4j btnExcel = new JButton4j(Common.icon_XLS_16x16);
 					btnExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent arg0)
@@ -528,7 +528,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 							addPopup(jTable1, popupMenu);
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_find);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_find_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -583,7 +583,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -826,7 +826,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jComboBoxSortBy.setRequestFocusEnabled(false);
 				}
 				{
-					jButtonSearch = new JButton4j(Common.icon_find);
+					jButtonSearch = new JButton4j(Common.icon_find_16x16);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(lang.getMnemonicChar());
@@ -889,7 +889,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonPrint = new JButton4j(Common.icon_report);
+					jButtonPrint = new JButton4j(Common.icon_report_16x16);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
@@ -904,7 +904,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
@@ -912,7 +912,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				}
 				{
 
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());

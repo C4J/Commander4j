@@ -631,7 +631,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							addPopup(jTable1, popupMenu);
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -712,7 +712,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -725,7 +725,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_label_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -738,7 +738,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -751,7 +751,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_scanner);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet_label_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -764,7 +764,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_auto_labeller);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_case_label_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -777,7 +777,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_qm);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_sample_label_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -1059,7 +1059,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					}
 				}
 				{
-					jButtonSearch = new JButton4j(Common.icon_search);
+					jButtonSearch = new JButton4j(Common.icon_search_16x16);
 					jButtonSearch.setBounds(1, 143, 109, 32);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
@@ -1120,7 +1120,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonPrint = new JButton4j(Common.icon_report);
+					jButtonPrint = new JButton4j(Common.icon_report_16x16);
 					jButtonPrint.setBounds(551, 143, 109, 32);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
@@ -1136,7 +1136,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonLabel = new JButton4j(Common.icon_label);
+					jButtonLabel = new JButton4j(Common.icon_label_16x16);
 					jButtonLabel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -1151,7 +1151,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jButtonLabel.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PROCESS_ORDER_LABEL"));
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jButtonClose.setBounds(881, 143, 109, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
@@ -1480,7 +1480,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonExcel = new JButton4j(Common.icon_XLS);
+					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 					jButtonExcel.setBounds(771, 143, 109, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{

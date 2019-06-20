@@ -198,7 +198,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 		mFile.setMnemonic(java.awt.event.KeyEvent.VK_F);
 
 		mExit.setFont(Common.font_menu);
-		mExit.setIcon(Common.imageIconloader.getImageIcon(Common.image_close));
+		mExit.setIcon(Common.imageIconloader.getImageIcon16x16(Common.image_close));
 		mExit.addActionListener(buttonhandler);
 
 		mWindow.setFont(Common.font_menu);
@@ -217,7 +217,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 		mView.setMnemonic(java.awt.event.KeyEvent.VK_V);
 
 		mMenu.setFont(Common.font_menu);
-		mMenu.setIcon(Common.imageIconloader.getImageIcon(Common.image_home));
+		mMenu.setIcon(Common.imageIconloader.getImageIcon16x16(Common.image_home));
 		mMenu.addActionListener(buttonhandler);
 
 		mHelp.setFont(Common.font_menu);
@@ -260,22 +260,22 @@ public class JFrameMain extends JFrame implements ComponentListener
 		contentPane.add(jtb, BorderLayout.NORTH);
 		contentPane.add(jsb, BorderLayout.SOUTH);
 
-		btnHome = new JMenuToolbarMenuItem(lang.get("btn_Menu"),"Display Menu Tree",Common.icon_home);
+		btnHome = new JMenuToolbarMenuItem(lang.get("btn_Menu"),"Display Menu Tree",Common.icon_home_32x32);
 		btnHome.addActionListener(buttonhandler);
 
-		btnMinimize  = new JMenuToolbarMenuItem(lang.get("btn_Minimise"),"Minimize open windows.",Common.icon_minimize);
+		btnMinimize  = new JMenuToolbarMenuItem(lang.get("btn_Minimise"),"Minimize open windows.",Common.icon_minimize_32x32);
 		btnMinimize.addActionListener(buttonhandler);
 
-		btnCascade = new JMenuToolbarMenuItem(lang.get("btn_Tile"),"Cascade open windows.",Common.icon_cascade);
+		btnCascade = new JMenuToolbarMenuItem(lang.get("btn_Tile"),"Cascade open windows.",Common.icon_cascade_32x32);
 		btnCascade.addActionListener(buttonhandler);
 
-		btnRestore = new JMenuToolbarMenuItem(lang.get("btn_Restore"),"Restore iconified windows.",Common.icon_restore);
+		btnRestore = new JMenuToolbarMenuItem(lang.get("btn_Restore"),"Restore iconified windows.",Common.icon_restore_32x32);
 		btnRestore.addActionListener(buttonhandler);
 
-		btnHelp = new JMenuToolbarMenuItem(lang.get("btn_Help"),"Help",Common.icon_help);
+		btnHelp = new JMenuToolbarMenuItem(lang.get("btn_Help"),"Help",Common.icon_help_32x32);
 		btnHelp.addActionListener(buttonhandler);
 
-		btnExit = new JMenuToolbarMenuItem(lang.get("btn_Close"),"Exit application",Common.icon_close);
+		btnExit = new JMenuToolbarMenuItem(lang.get("btn_Close"),"Exit application",Common.icon_close_32x32);
 		btnExit.addActionListener(buttonhandler);
 
 		// **************** SECURITY **********************************

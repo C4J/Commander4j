@@ -166,32 +166,32 @@ public class JDBUserReport {
 
 			if (enabled.equals("N"))
 			{
-				icon = Common.imageIconloader.getImageIcon(Common.image_user_locked);
+				icon = Common.imageIconloader.getImageIcon16x16(Common.image_user_locked);
 			} else
 			{
 				if (destination.equals("JASPER_REPORTS"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_jasperreport);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_jasperreport);
 				}
 				if (destination.equals("PDF"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_pdf);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_pdf);
 				}
 				if (destination.equals("EXCEL"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_XLS);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_XLS);
 				}
 				if (destination.equals("ACCESS"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_msaccess);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_msaccess);
 				}
 				if (destination.equals("CSV"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_csv);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_csv);
 				}
 				if (destination.equals("SYSTEM"))
 				{
-					icon = Common.imageIconloader.getImageIcon(Common.image_execute);
+					icon = Common.imageIconloader.getImageIcon16x16(Common.image_execute);
 				}				
 			}
 		} catch (Exception e)

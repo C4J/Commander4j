@@ -282,7 +282,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 					jTextFieldDescription.setFocusCycleRoot(true);
 				}
 				{
-					jButtonUpdate = new JButton4j(Common.icon_update);
+					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
 					jDesktopPane1.add(jButtonUpdate, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
@@ -310,14 +310,14 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 					jButtonHelp.setBounds(521, 501, 112, 32);
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -615,7 +615,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				jButtonUnAssignPrinter.setBounds(802, 313, 25, 25);
 				jDesktopPane1.add(jButtonUnAssignPrinter);
 
-				JButton4j jButtonRefresh = new JButton4j(Common.icon_refresh);
+				JButton4j jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 				jButtonRefresh.setText(lang.get("btn_Refresh"));
 				jButtonRefresh.setBounds(401, 501, 112, 32);
 				jDesktopPane1.add(jButtonRefresh);

@@ -37,24 +37,34 @@ import com.commander4j.sys.Common;
  */
 public class JImageIconLoader
 {
-	private boolean cacheImages = true;
-	private HashMap<String, ImageIcon> imageIndex = new HashMap<String, ImageIcon>();
+	private boolean cacheImages16x16 = true;
+	private HashMap<String, ImageIcon> imageIndex16x16 = new HashMap<String, ImageIcon>();
+	private boolean cacheImages24x24 = true;
+	private HashMap<String, ImageIcon> imageIndex24x24 = new HashMap<String, ImageIcon>();
+	private boolean cacheImages32x32 = true;
+	private HashMap<String, ImageIcon> imageIndex32x32 = new HashMap<String, ImageIcon>();
 
 	public JImageIconLoader()
 	{
-		enableCache();
+		enableCaches();
 	}
 
-	public void clearCache() {
-		imageIndex.clear();
+	public void clearCaches() {
+		imageIndex16x16.clear();
+		imageIndex24x24.clear();
+		imageIndex32x32.clear();
 	}
 
-	public void disableCache() {
-		cacheImages = false;
+	public void disableCaches() {
+		cacheImages16x16 = false;
+		cacheImages24x24 = false;
+		cacheImages32x32 = false;
 	}
 
-	public void enableCache() {
-		cacheImages = true;
+	public void enableCaches() {
+		cacheImages16x16 = true;
+		cacheImages24x24 = true;
+		cacheImages32x32 = true;
 	}
 
 	/**
@@ -75,17 +85,17 @@ public class JImageIconLoader
 	 *            String
 	 * @return ImageIcon
 	 */
-	public ImageIcon getImageIcon(String filename) {
+	public ImageIcon getImageIcon16x16(String filename) {
 		ImageIcon result = null;
 
 		// $hide>>$
 		boolean readfromfile = false;
 
-		if (isCacheEnabled())
+		if (isCacheEnabled16x16())
 		{
-			if (imageIndex.containsKey(filename))
+			if (imageIndex16x16.containsKey(filename))
 			{
-				result = imageIndex.get(filename);
+				result = imageIndex16x16.get(filename);
 			}
 			else
 			{
@@ -102,15 +112,59 @@ public class JImageIconLoader
 			try
 			{
 
-				result = new ImageIcon(Common.image_path + filename);
-				if (isCacheEnabled())
+				result = new ImageIcon(Common.image_path_16x16 + filename);
+				if (isCacheEnabled16x16())
 				{
-					imageIndex.put(filename, result);
+					imageIndex16x16.put(filename, result);
 				}
 			}
 			catch (Exception e)
 			{
-				result = new ImageIcon(Common.image_path + Common.image_error);
+				result = new ImageIcon(Common.image_path_16x16 + Common.image_error);
+			}
+		}
+		// $hide<<$
+
+		return result;
+
+	}
+	
+	public ImageIcon getImageIcon24x24(String filename) {
+		ImageIcon result = null;
+
+		// $hide>>$
+		boolean readfromfile = false;
+
+		if (isCacheEnabled24x24())
+		{
+			if (imageIndex24x24.containsKey(filename))
+			{
+				result = imageIndex24x24.get(filename);
+			}
+			else
+			{
+				readfromfile = true;
+			}
+		}
+		else
+		{
+			readfromfile = true;
+		}
+
+		if (readfromfile)
+		{
+			try
+			{
+
+				result = new ImageIcon(Common.image_path_24x24 + filename);
+				if (isCacheEnabled24x24())
+				{
+					imageIndex24x24.put(filename, result);
+				}
+			}
+			catch (Exception e)
+			{
+				result = new ImageIcon(Common.image_path_24x24 + Common.image_error);
 			}
 		}
 		// $hide<<$
@@ -119,13 +173,65 @@ public class JImageIconLoader
 
 	}
 
+	public ImageIcon getImageIcon32x32(String filename) {
+		ImageIcon result = null;
+
+		// $hide>>$
+		boolean readfromfile = false;
+
+		if (isCacheEnabled32x32())
+		{
+			if (imageIndex32x32.containsKey(filename))
+			{
+				result = imageIndex32x32.get(filename);
+			}
+			else
+			{
+				readfromfile = true;
+			}
+		}
+		else
+		{
+			readfromfile = true;
+		}
+
+		if (readfromfile)
+		{
+			try
+			{
+
+				result = new ImageIcon(Common.image_path_32x32 + filename);
+				if (isCacheEnabled32x32())
+				{
+					imageIndex32x32.put(filename, result);
+				}
+			}
+			catch (Exception e)
+			{
+				result = new ImageIcon(Common.image_path_32x32 + Common.image_error);
+			}
+		}
+		// $hide<<$
+
+		return result;
+
+	}
+	
 	/**
 	 * Method isCacheEnabled.
 	 * 
 	 * @return boolean
 	 */
-	public boolean isCacheEnabled() {
-		return cacheImages;
+	public boolean isCacheEnabled16x16() {
+		return cacheImages16x16;
+	}
+	
+	public boolean isCacheEnabled24x24() {
+		return cacheImages24x24;
+	}
+	
+	public boolean isCacheEnabled32x32() {
+		return cacheImages32x32;
 	}
 
 }

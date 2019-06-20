@@ -47,7 +47,7 @@ public class Setup
 		logger.info("Application starting");
 		JPrint.init();
 		JFrameHostAdmin hostadmin = new JFrameHostAdmin();
-		hostadmin.setIconImage(Common.imageIconloader.getImageIcon(Common.image_osx_setup4j).getImage());
+		hostadmin.setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_setup4j).getImage());
 		hostadmin.setVisible(true);
 
 	}

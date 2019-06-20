@@ -375,10 +375,10 @@ public class JDBPrinters
 
 		if (isEnabled() == true)
 		{
-			icon = Common.imageIconloader.getImageIcon(Common.image_printer_enabled);
+			icon = Common.imageIconloader.getImageIcon16x16(Common.image_printer_enabled);
 		} else
 		{
-			icon = Common.imageIconloader.getImageIcon(Common.image_user_expired);
+			icon = Common.imageIconloader.getImageIcon16x16(Common.image_user_expired);
 
 		}
 

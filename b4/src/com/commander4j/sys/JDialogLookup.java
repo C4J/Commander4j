@@ -563,7 +563,7 @@ public class JDialogLookup extends javax.swing.JDialog
 				}
 				{
 
-					jButtonSearch = new JButton4j(Common.icon_search);
+					jButtonSearch = new JButton4j(Common.icon_search_16x16);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setBounds(3, 98, 113, 32);
@@ -583,7 +583,7 @@ public class JDialogLookup extends javax.swing.JDialog
 					jTextFieldHeading.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);

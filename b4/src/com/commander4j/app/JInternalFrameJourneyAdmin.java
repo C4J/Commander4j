@@ -475,7 +475,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 							addPopup(jTable1, popupMenu);
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_search_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -516,7 +516,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -691,7 +691,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					}
 				}
 				{
-					jButtonSearch = new JButton4j(Common.icon_search);
+					jButtonSearch = new JButton4j(Common.icon_search_16x16);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
@@ -721,14 +721,14 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
 					jButtonHelp.setBounds(770, 149, 110, 32);
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
@@ -901,7 +901,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonExcel = new JButton4j(Common.icon_XLS);
+					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -917,7 +917,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonPrint = new JButton4j(Common.icon_print);
+					jButtonPrint = new JButton4j(Common.icon_print_16x16);
 					jButtonPrint.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -988,7 +988,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				}
 
 				{
-					JButton4j jButtonClear = new JButton4j(Common.icon_search);
+					JButton4j jButtonClear = new JButton4j(Common.icon_search_16x16);
 					jButtonClear.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)

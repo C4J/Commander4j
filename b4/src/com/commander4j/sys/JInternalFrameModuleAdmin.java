@@ -470,7 +470,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -484,7 +484,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -497,7 +497,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -558,7 +558,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonPrint = new JButton4j(Common.icon_report);
+					jButtonPrint = new JButton4j(Common.icon_report_16x16);
 					jButtonPrint.setBounds(378, 196, 167, 32);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
@@ -573,7 +573,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jButtonClose.setBounds(378, 384, 167, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
@@ -602,14 +602,14 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jButtonHelp.setBounds(378, 322, 167, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
-					jButtonRefresh = new JButton4j(Common.icon_refresh);
+					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jButtonRefresh.setBounds(378, 353, 167, 32);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
@@ -745,7 +745,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 
 				{
-					jButtonExcel = new JButton4j(Common.icon_XLS);
+					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 					jButtonExcel.setBounds(378, 290, 167, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
@@ -794,7 +794,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 				
 				{
-					jButtonTestHelp = new JButton4j(Common.icon_help);
+					jButtonTestHelp = new JButton4j(Common.icon_help_16x16);
 					jButtonTestHelp.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)

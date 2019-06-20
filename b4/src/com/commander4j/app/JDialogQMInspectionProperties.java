@@ -174,7 +174,7 @@ public class JDialogQMInspectionProperties extends javax.swing.JDialog
 				save();
 			}
 		});
-		btnSave.setIcon(Common.icon_update);
+		btnSave.setIcon(Common.icon_update_16x16);
 		btnSave.setBounds(293, 75, 117, 29);
 		desktopPane.add(btnSave);
 		
@@ -184,7 +184,7 @@ public class JDialogQMInspectionProperties extends javax.swing.JDialog
 				dispose();
 			}
 		});
-		btnClose.setIcon(Common.icon_close);
+		btnClose.setIcon(Common.icon_close_16x16);
 		btnClose.setBounds(414, 75, 117, 29);
 		desktopPane.add(btnClose);
 		

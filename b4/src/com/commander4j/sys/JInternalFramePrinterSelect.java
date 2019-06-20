@@ -157,7 +157,7 @@ public class JInternalFramePrinterSelect extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonCancel = new JButton4j(Common.icon_close);
+					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setFont(Common.font_btn);
@@ -169,7 +169,7 @@ public class JInternalFramePrinterSelect extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonRefresh = new JButton4j(Common.icon_refresh);
+					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setBounds(302, 316, 110, 32);

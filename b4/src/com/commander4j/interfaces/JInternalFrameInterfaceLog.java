@@ -502,7 +502,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 				jDesktopPane1.setLayout(null);
 
 				{
-					jButtonRefresh = new JButton4j(Common.icon_search);
+					jButtonRefresh = new JButton4j(Common.icon_search_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Search"));
 					jButtonRefresh.setMnemonic(KeyEvent.VK_S);
@@ -551,7 +551,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 								excel();
 							}
 						});
-						mntmExport.setIcon(Common.icon_XLS);
+						mntmExport.setIcon(Common.icon_XLS_16x16);
 						popupMenu.add(mntmExport);
 					}
 					{
@@ -597,7 +597,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 				}
 
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
@@ -817,7 +817,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 				jDesktopPane1.add(textFielderrorMessage);
 			}
 			{
-				JButton4j button = new JButton4j(Common.icon_XLS);
+				JButton4j button = new JButton4j(Common.icon_XLS_16x16);
 
 				button.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

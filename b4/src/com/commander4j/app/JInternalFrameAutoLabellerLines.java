@@ -154,7 +154,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jDesktopPane1.setBackground(Common.color_app_window);
 			jDesktopPane1.setLayout(null);
 
-			jButtonClose = new JButton4j(Common.icon_close);
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -176,7 +176,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 
 				}
 			});
-			jButtonRefresh.setIcon(Common.icon_refresh);
+			jButtonRefresh.setIcon(Common.icon_refresh_16x16);
 			jButtonRefresh.setText(lang.get("btn_Refresh"));
 			jButtonRefresh.setMnemonic('0');
 			jButtonRefresh.setBounds(631, 440, 125, 32);

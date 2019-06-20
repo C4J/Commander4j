@@ -516,12 +516,12 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			}
 		});
 
-		btnPrint.setIcon(Common.icon_print);
+		btnPrint.setIcon(Common.icon_print_16x16);
 		btnPrint.setBounds(185, 535, 117, 32);
 		desktopPane.add(btnPrint);
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
-		btnClose.setIcon(Common.icon_close);
+		btnClose.setIcon(Common.icon_close_16x16);
 		btnClose.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)

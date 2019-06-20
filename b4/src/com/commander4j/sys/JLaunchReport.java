@@ -248,7 +248,7 @@ public class JLaunchReport {
 				if (mod.isPrintPreview() == true)
 				{
 					reportviewer = new JInternalFrameReportViewer(jasperPrint, false);
-					reportIcon = Common.imageIconloader.getImageIcon(Common.image_report);
+					reportIcon = Common.imageIconloader.getImageIcon16x16(Common.image_report);
 					reportviewer.setFrameIcon(reportIcon);
 					reportviewer.setLocation(JLaunchMenu.getNextWindowPosition().x, JLaunchMenu.getNextWindowPosition().y);
 					Common.mainForm.desktopPane.add(reportviewer);

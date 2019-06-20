@@ -786,7 +786,7 @@ public class JFrameHostAdmin extends JFrame
 					});
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					desktopPane.add(jButtonClose);
 					jButtonClose.setText("Close");
 					jButtonClose.setBounds(1011, 423, 160, 39);
@@ -822,7 +822,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 				{
 
-					jButtonSave = new JButton4j(Common.icon_update);
+					jButtonSave = new JButton4j(Common.icon_update_16x16);
 					desktopPane.add(jButtonSave);
 					jButtonSave.setText("Save Configuration");
 					jButtonSave.setBounds(1011, 219, 160, 39);
@@ -1288,7 +1288,7 @@ public class JFrameHostAdmin extends JFrame
 					});
 				}
 				{
-					jButtonUpdate = new JButton4j(Common.icon_update);
+					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
 					desktopPane.add(jButtonUpdate);
 					jButtonUpdate.setText("AUTO Update DB");
 					jButtonUpdate.setBounds(1011, 151, 160, 39);
@@ -1492,7 +1492,7 @@ public class JFrameHostAdmin extends JFrame
 					desktopPane.add(jLabelUniqueID);
 				}
 				{
-					btnSchema = new JButton4j(Common.icon_report);
+					btnSchema = new JButton4j(Common.icon_report_16x16);
 					btnSchema.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -1770,7 +1770,7 @@ public class JFrameHostAdmin extends JFrame
 			jTextField4jHostVersion.setBounds(425, 522, 53, 21);
 			desktopPane.add(jTextField4jHostVersion);
 
-			JButton4j button4j = new JButton4j(Common.icon_search);
+			JButton4j button4j = new JButton4j(Common.icon_search_16x16);
 			button4j.setToolTipText("Validate");
 			button4j.addActionListener(new ActionListener()
 			{
@@ -1794,7 +1794,7 @@ public class JFrameHostAdmin extends JFrame
 			button4j.setBounds(1150, 470, 21, 21);
 			desktopPane.add(button4j);
 
-			JButton4j button4j_1 = new JButton4j(Common.icon_search);
+			JButton4j button4j_1 = new JButton4j(Common.icon_search_16x16);
 			button4j_1.setToolTipText("Validate");
 			button4j_1.addActionListener(new ActionListener()
 			{
@@ -1818,7 +1818,7 @@ public class JFrameHostAdmin extends JFrame
 			button4j_1.setBounds(1150, 550, 21, 21);
 			desktopPane.add(button4j_1);
 
-			jButtonHelp = new JButton4j(Common.icon_help);
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
 			jButtonHelp.setText("Help");
 			jButtonHelp.setBounds(1011, 389, 160, 39);
 			desktopPane.add(jButtonHelp);
@@ -1965,7 +1965,7 @@ public class JFrameHostAdmin extends JFrame
 			panel.add(btn4jAmendProgramVersion);
 
 			setHostsFilename(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts" + File.separator + "hosts.xml");
-			setIconImage(Common.imageIconloader.getImageIcon(Common.image_osx_setup4j).getImage());
+			setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_setup4j).getImage());
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			setLocation((screenSize.width - getSize().width) / 2, (screenSize.height - getSize().height) / 2);
 

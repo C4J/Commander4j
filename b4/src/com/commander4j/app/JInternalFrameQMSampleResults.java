@@ -236,7 +236,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 		
 		btnClose = new JButton4j(lang.get("btn_Close"));
 		btnClose.setBounds(877, 92, 117, 32);
-		btnClose.setIcon(Common.icon_close);
+		btnClose.setIcon(Common.icon_close_16x16);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -256,7 +256,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 		
 		JButton4j btnRefresh = new JButton4j(lang.get("btn_Refresh"));
 		btnRefresh.setBounds(619, 92, 117, 32);
-		btnRefresh.setIcon(Common.icon_refresh);
+		btnRefresh.setIcon(Common.icon_refresh_16x16);
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				populateTable();

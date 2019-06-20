@@ -127,7 +127,7 @@ public class JInternalFrameUserReportSchema extends JInternalFrame {
 		lblReport.setBounds(12, 12, 126, 15);
 		desktopPane.add(lblReport);
 		
-		JButton4j button4jClose = new JButton4j(Common.icon_close);
+		JButton4j button4jClose = new JButton4j(Common.icon_close_16x16);
 		button4jClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();

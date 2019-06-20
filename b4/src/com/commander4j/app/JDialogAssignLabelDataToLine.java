@@ -234,7 +234,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		try
 		{
 
-			jButtonAssign = new JButton4j(Common.icon_print);
+			jButtonAssign = new JButton4j(Common.icon_print_16x16);
 			jButtonAssign.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -248,13 +248,13 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			jButtonAssign.setMnemonic(lang.getMnemonicChar());
 			jButtonAssign.setBounds(80, 387, 130, 30);
 
-			jButtonHelp = new JButton4j(Common.icon_help);
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
 			jDesktopPane1.add(jButtonHelp);
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());
 			jButtonHelp.setBounds(364, 387, 130, 30);
 
-			jButtonCancel = new JButton4j(Common.icon_close);
+			jButtonCancel = new JButton4j(Common.icon_close_16x16);
 			jDesktopPane1.add(jButtonCancel);
 			jButtonCancel.setText(lang.get("btn_Close"));
 			jButtonCancel.setMnemonic(lang.getMnemonicChar());
@@ -413,7 +413,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			scrollPane.setViewportView(list);
 
-			JButton4j JButtonRefresh = new JButton4j(Common.icon_refresh);
+			JButton4j JButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 			JButtonRefresh.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent arg0)

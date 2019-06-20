@@ -150,7 +150,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
 		btnClose.setBounds(335, 495, 117, 32);
-		btnClose.setIcon(Common.icon_close);
+		btnClose.setIcon(Common.icon_close_16x16);
 		btnClose.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -221,7 +221,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 				}
 			}
 		});
-		btnReport.setIcon(Common.icon_report);
+		btnReport.setIcon(Common.icon_report_16x16);
 		btnReport.setBounds(176, 495, 117, 32);
 		desktopPane.add(btnReport);
 
@@ -341,7 +341,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		button4jEdit.setBounds(29, 0, 28, 28);
 		panel.add(button4jEdit);
 
-		JButton4j button4jRefresh = new JButton4j(Common.icon_refresh);
+		JButton4j button4jRefresh = new JButton4j(Common.icon_refresh_16x16);
 		button4jRefresh.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -588,7 +588,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		button4jShiftEdit.setMnemonic('0');
 		button4jShiftEdit.setFont(Common.font_std);
 
-		JButton4j button4jShiftRefresh = new JButton4j(Common.icon_refresh);
+		JButton4j button4jShiftRefresh = new JButton4j(Common.icon_refresh_16x16);
 		button4jShiftRefresh.setBounds(87, 0, 28, 28);
 		panelShiftButtons.add(button4jShiftRefresh);
 		button4jShiftRefresh.addActionListener(new ActionListener()

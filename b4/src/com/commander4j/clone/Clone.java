@@ -45,7 +45,7 @@ public class Clone
 		logger.info("Application starting");
 		JPrint.init();
 		JFrameCloneDB clonedb = new JFrameCloneDB();
-		clonedb.setIconImage(Common.imageIconloader.getImageIcon(Common.image_osx_clone4j).getImage());
+		clonedb.setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_clone4j).getImage());
 		clonedb.setVisible(true);
 
 	}

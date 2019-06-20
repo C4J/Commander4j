@@ -93,13 +93,13 @@ public class JInternalFrameMenuTree extends JInternalFrame
 
 		public MenuTreeRenderer()
 		{
-			setFrameIcon(Common.icon_home);
+			setFrameIcon(Common.icon_home_16x16);
 		}
 
 		public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 			super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 
-			setIcon(JDBModule.getModuleIcon(getMenuIconFilename(value), getMenuItemType(value)));
+			setIcon(JDBModule.getModuleIcon24x24(getMenuIconFilename(value), getMenuItemType(value)));
 			setToolTipText(getMenuHint(value));
 
 			return this;
@@ -362,7 +362,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 					}
 					else
 					{
-						newmenu.setIcon(Common.icon_menu);
+						newmenu.setIcon(Common.icon_menu_16x16);
 						menu.add(newmenu);
 					}
 					buildMenuTree(menuOption.moduleID, newnode, menubar, level + 1, newmenu);
@@ -376,7 +376,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 
 					String type = m.getType();
 
-					newmenuitem.setIcon(JDBModule.getModuleIcon(m.getIconFilename(), type));
+					newmenuitem.setIcon(JDBModule.getModuleIcon16x16(m.getIconFilename(), type));
 
 					newmenuitem.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {

@@ -258,7 +258,7 @@ public class JInternalFrameMHNDecisionAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonPrint = new JButton4j(Common.icon_report);
+					jButtonPrint = new JButton4j(Common.icon_report_16x16);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
@@ -270,14 +270,14 @@ public class JInternalFrameMHNDecisionAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 					jButtonHelp.setBounds(544, 160, 126, 32);
 				}
 				{
-					jButtonRefresh = new JButton4j(Common.icon_refresh);
+					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
@@ -289,7 +289,7 @@ public class JInternalFrameMHNDecisionAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -376,7 +376,7 @@ public class JInternalFrameMHNDecisionAdmin extends JInternalFrame
 						}
 
 						{
-							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print);
+							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_print_16x16);
 							newItemMenuItem.addActionListener(new ActionListener() {
 								public void actionPerformed(final ActionEvent e) {
 									print();
@@ -388,7 +388,7 @@ public class JInternalFrameMHNDecisionAdmin extends JInternalFrame
 						}
 
 						{
-							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh);
+							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh_16x16);
 							newItemMenuItem.addActionListener(new ActionListener() {
 								public void actionPerformed(final ActionEvent e) {
 									populateList("");

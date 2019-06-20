@@ -257,7 +257,7 @@ public class Start
 					}
 
 					Common.mainForm = new JFrameMain();
-					Common.mainForm.setIconImage(Common.imageIconloader.getImageIcon(Common.image_osx_commander4j).getImage());
+					Common.mainForm.setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_commander4j).getImage());
 					Common.mainForm.setVisible(true);
 
 				}

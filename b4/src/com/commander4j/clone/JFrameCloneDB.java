@@ -146,7 +146,7 @@ public class JFrameCloneDB extends JFrame
 
 		initGUI();
 
-		setIconImage(Common.imageIconloader.getImageIcon(Common.image_osx_clone4j).getImage());
+		setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_clone4j).getImage());
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation((screenSize.width - getSize().width) / 2, (screenSize.height - getSize().height) / 2);
 
@@ -577,7 +577,7 @@ public class JFrameCloneDB extends JFrame
 				}
 			});
 
-			jButtonClose = new JButton4j(Common.icon_close);
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
 			desktopPane.add(jButtonClose);
 			jButtonClose.setText("Close");
 			jButtonClose.setBounds(295, 444, 160, 36);

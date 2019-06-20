@@ -171,7 +171,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 				}
 				{
 
-					jButtonUpdate = new JButton4j(Common.icon_update);
+					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
 					jButtonUpdate.setBounds(153, 142, 132, 32);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setText(lang.get("btn_Save"));
@@ -189,7 +189,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 				}
 				{
 
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jButtonClose.setBounds(424, 142, 132, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
@@ -213,7 +213,7 @@ public class JInternalFrameLanguageProperties extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jButtonHelp.setBounds(288, 142, 132, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));

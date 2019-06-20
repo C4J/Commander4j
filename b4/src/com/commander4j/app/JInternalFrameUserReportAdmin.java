@@ -99,10 +99,10 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 	private JButton4j btn4jEdit = new JButton4j(Common.icon_edit);
 	private JButton4j btn4jDelete = new JButton4j(Common.icon_delete);
 	private JButton4j btn4jCopy = new JButton4j(Common.icon_copy);
-	private JButton4j btn4jRefresh = new JButton4j(Common.icon_refresh);
+	private JButton4j btn4jRefresh = new JButton4j(Common.icon_refresh_16x16);
 	private JButton4j btn4jRun = new JButton4j(Common.icon_execute);
-	private JButton4j btn4jHelp = new JButton4j(Common.icon_help);
-	private JButton4j btn4jClose = new JButton4j(Common.icon_close);
+	private JButton4j btn4jHelp = new JButton4j(Common.icon_help_16x16);
+	private JButton4j btn4jClose = new JButton4j(Common.icon_close_16x16);
 
 	/**
 	 * Create the frame.
@@ -473,7 +473,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		button4jShiftEdit.setMnemonic('0');
 		button4jShiftEdit.setFont(Common.font_std);
 
-		JButton4j button4jShiftRefresh = new JButton4j(Common.icon_refresh);
+		JButton4j button4jShiftRefresh = new JButton4j(Common.icon_refresh_16x16);
 		button4jShiftRefresh.setBounds(87, 0, 28, 28);
 		panelShiftButtons.add(button4jShiftRefresh);
 		button4jShiftRefresh.addActionListener(new ActionListener()

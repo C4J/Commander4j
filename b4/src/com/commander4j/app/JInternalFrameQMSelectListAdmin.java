@@ -231,7 +231,7 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_refresh_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -295,7 +295,7 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 				}
 
 				{
-					jButtonRefresh = new JButton4j(Common.icon_refresh);
+					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
@@ -309,7 +309,7 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -322,7 +322,7 @@ public class JInternalFrameQMSelectListAdmin extends javax.swing.JInternalFrame
 						}
 					});
 
-					JButton4j btnExcel = new JButton4j(Common.icon_XLS);
+					JButton4j btnExcel = new JButton4j(Common.icon_XLS_16x16);
 					btnExcel.setText(lang.get("btn_Excel"));
 					btnExcel.setBounds(656, 127, 125, 32);
 					btnExcel.addActionListener(new ActionListener()

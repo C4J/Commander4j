@@ -58,7 +58,7 @@ public class JWindowSplash extends JWindow
 	public JWindowSplash()
 	{
 
-		Image image = new ImageIcon(Common.image_path + Common.image_splash).getImage();
+		Image image = new ImageIcon(Common.image_path_16x16 + Common.image_splash).getImage();
 
 		imageWidth = image.getWidth(this);
 		imageHeight = image.getHeight(this);

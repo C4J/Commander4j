@@ -151,7 +151,7 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					}
 				}
 				{
-					jButtonClose = new JButton(Common.icon_close);
+					jButtonClose = new JButton(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText("Close");
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);

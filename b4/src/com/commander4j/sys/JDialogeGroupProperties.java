@@ -150,7 +150,7 @@ public class JDialogeGroupProperties extends JDialog
 				}
 				{
 
-					jButtonUpdate = new JButton4j(Common.icon_update);
+					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
 					jButtonUpdate.setBounds(50, 70, 110, 32);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setText(lang.get("btn_Save"));
@@ -176,7 +176,7 @@ public class JDialogeGroupProperties extends JDialog
 				}
 				{
 
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jButtonClose.setBounds(284, 70, 110, 32);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
@@ -200,7 +200,7 @@ public class JDialogeGroupProperties extends JDialog
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jButtonHelp.setBounds(166, 70, 110, 32);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));

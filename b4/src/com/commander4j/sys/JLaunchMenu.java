@@ -235,7 +235,7 @@ public class JLaunchMenu
 
 	private static void displayForm(JInternalFrame u, String optionName)
 	{
-		u.setFrameIcon(JDBModule.getModuleIcon(mod.getIconFilename(), mod.getType()));
+		u.setFrameIcon(JDBModule.getModuleIcon16x16(mod.getIconFilename(), mod.getType()));
 
 		Dimension screensize = Common.mainForm.getSize();
 

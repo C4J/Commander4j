@@ -361,7 +361,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
 		btnClose.setBounds(397, 194, 117, 32);
-		btnClose.setIcon(Common.icon_close);
+		btnClose.setIcon(Common.icon_close_16x16);
 		btnClose.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -373,7 +373,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 
 		JButton4j btnSearch = new JButton4j(lang.get("btn_Search"));
 		btnSearch.setBounds(45, 194, 117, 32);
-		btnSearch.setIcon(Common.icon_search);
+		btnSearch.setIcon(Common.icon_search_16x16);
 		btnSearch.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -456,7 +456,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				populateTable();
 			}
 		});
-		btnExcel.setIcon(Common.icon_XLS);
+		btnExcel.setIcon(Common.icon_XLS_16x16);
 		btnExcel.setBounds(279, 194, 117, 32);
 		desktopPane.add(btnExcel);
 

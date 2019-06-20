@@ -848,7 +848,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					}
 				}
 				{
-					jButtonSearch = new JButton4j(Common.icon_search);
+					jButtonSearch = new JButton4j(Common.icon_search_16x16);
 					jButtonSearch.setBounds(2, 138, 120, 32);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(lang.getMnemonicChar());
@@ -905,7 +905,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jButtonClose.setBounds(366, 138, 120, 32);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());

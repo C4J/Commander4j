@@ -269,7 +269,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jTextFieldSSCC.setBounds(147, 14, 133, 21);
 				}
 				{
-					jButtonSave = new JButton4j(Common.icon_scanner);
+					jButtonSave = new JButton4j(Common.icon_scanner_16x16);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setEnabled(true);
 					jButtonSave.setText(lang.get("btn_Confirm"));
@@ -313,14 +313,14 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					});
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 					jButtonHelp.setBounds(169, 450, 100, 32);
 				}
 				{
-					jButtonCancel = new JButton4j(Common.icon_close);
+					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());

@@ -205,7 +205,7 @@ public class JDialogShiftProperties extends javax.swing.JDialog
 				save();
 			}
 		});
-		btnSave.setIcon(Common.icon_update);
+		btnSave.setIcon(Common.icon_update_16x16);
 		btnSave.setBounds(116, 106, 117, 29);
 		desktopPane.add(btnSave);
 
@@ -217,7 +217,7 @@ public class JDialogShiftProperties extends javax.swing.JDialog
 				dispose();
 			}
 		});
-		btnClose.setIcon(Common.icon_close);
+		btnClose.setIcon(Common.icon_close_16x16);
 		btnClose.setBounds(247, 106, 117, 29);
 		desktopPane.add(btnClose);
 

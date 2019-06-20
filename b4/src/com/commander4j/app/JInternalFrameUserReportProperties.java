@@ -134,7 +134,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		desktopPane.setBackground(Common.color_edit_properties);
 		getContentPane().add(desktopPane);
 
-		JButton4j btn4j_Save = new JButton4j(Common.icon_update);
+		JButton4j btn4j_Save = new JButton4j(Common.icon_update_16x16);
 		btn4j_Save.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -149,13 +149,13 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		btn4j_Save.setBounds(20, 576, 126, 32);
 		desktopPane.add(btn4j_Save);
 
-		JButton4j btn4j_Help = new JButton4j(Common.icon_help);
+		JButton4j btn4j_Help = new JButton4j(Common.icon_help_16x16);
 		btn4j_Help.setText(lang.get("btn_Help"));
 		btn4j_Help.setMnemonic('0');
 		btn4j_Help.setBounds(458, 576, 126, 32);
 		desktopPane.add(btn4j_Help);
 
-		JButton4j btn4j_Close = new JButton4j(Common.icon_close);
+		JButton4j btn4j_Close = new JButton4j(Common.icon_close_16x16);
 		btn4j_Close.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -289,7 +289,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		button4j_Run.setBounds(166, 576, 126, 32);
 		desktopPane.add(button4j_Run);
 
-		JButton4j button4j_ViewSchema = new JButton4j(Common.icon_help);
+		JButton4j button4j_ViewSchema = new JButton4j(Common.icon_help_16x16);
 		button4j_ViewSchema.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)

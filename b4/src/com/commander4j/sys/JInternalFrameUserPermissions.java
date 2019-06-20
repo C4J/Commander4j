@@ -299,7 +299,7 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonSave = new JButton4j(Common.icon_update);
+					jButtonSave = new JButton4j(Common.icon_update_16x16);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setBounds(180, 465, 105, 32);
@@ -323,7 +323,7 @@ public class JInternalFrameUserPermissions extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setBounds(287, 465, 105, 32);

@@ -59,7 +59,7 @@ public class JMenuToolbarMenuItem extends JButton
 		menuoption = mo;
 
 		this.setToolTipText(menuoption.hint);
-		this.setIcon(JDBModule.getModuleIcon(mo.iconFilename, mo.moduleType));
+		this.setIcon(JDBModule.getModuleIcon32x32(mo.iconFilename, mo.moduleType));
 		this.setText(menuoption.wrapped_description);
 	}
 

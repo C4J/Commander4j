@@ -223,7 +223,7 @@ public class JDBGroupPermissions
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				icon = JDBModule.getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = JDBModule.getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
 				moduleList.addLast(mld);
 			}
@@ -254,7 +254,7 @@ public class JDBGroupPermissions
 			rs = stmt.executeQuery();
 			while (rs.next())
 			{
-				icon = JDBModule.getModuleIcon(rs.getString("icon_filename"), rs.getString("module_type"));
+				icon = JDBModule.getModuleIcon16x16(rs.getString("icon_filename"), rs.getString("module_type"));
 				JDBListData mld = new JDBListData(icon, 0, true, rs.getString("module_id"));
 				moduleList.addLast(mld);
 			}

@@ -718,7 +718,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jDesktopPane1.setBackground(Common.color_app_window);
 			jDesktopPane1.setLayout(null);
 			
-			jButtonAssign = new JButton4j(Common.icon_auto_labeller);
+			jButtonAssign = new JButton4j(Common.icon_case_label_16x16);
 			jButtonAssign.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent arg0)
@@ -734,7 +734,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jDesktopPane1.add(jButtonAssign);
 			
 			
-			jButtonSave = new JButton4j(Common.icon_print);
+			jButtonSave = new JButton4j(Common.icon_print_16x16);
 			jDesktopPane1.add(jButtonSave);
 			jButtonSave.setEnabled(false);
 			jButtonSave.setText(lang.get("btn_Print"));
@@ -892,7 +892,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 					}
 				}
 			});
-			jButtonClose = new JButton4j(Common.icon_close);
+			jButtonClose = new JButton4j(Common.icon_close_16x16);
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Close"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -910,7 +910,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 					dispose();
 				}
 			});
-			jButtonHelp = new JButton4j(Common.icon_help);
+			jButtonHelp = new JButton4j(Common.icon_help_16x16);
 			jDesktopPane1.add(jButtonHelp);
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic(lang.getMnemonicChar());
@@ -1332,7 +1332,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 			jStatusText.setBounds(0, 532, 783, 21);
 			jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-			jButtonReprint = new JButton4j(Common.icon_report);
+			jButtonReprint = new JButton4j(Common.icon_report_16x16);
 			jButtonReprint.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e)
 				{

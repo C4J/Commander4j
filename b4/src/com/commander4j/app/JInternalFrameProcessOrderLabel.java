@@ -231,7 +231,7 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 					jTextFieldProcessOrder.setBounds(155, 10, 147, 21);
 				}
 				{
-					jButtonPrint = new JButton4j(Common.icon_print);
+					jButtonPrint = new JButton4j(Common.icon_print_16x16);
 					jButtonPrint.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							String pq = comboBoxPrintQueue.getSelectedItem().toString();
@@ -246,14 +246,14 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 					jButtonHelp.setBounds(294, 111, 111, 32);
 				}
 				{
-					jButtonCancel = new JButton4j(Common.icon_close);
+					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());

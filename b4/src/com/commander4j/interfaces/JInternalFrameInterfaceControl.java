@@ -140,7 +140,7 @@ public class JInternalFrameInterfaceControl extends javax.swing.JInternalFrame
 				this.getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				jDesktopPane1.setLayout(null);
 				{
-					jButtonCancel = new JButton4j(Common.icon_close);
+					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setBounds(307, 220, 195, 32);

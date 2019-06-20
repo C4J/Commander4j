@@ -236,7 +236,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jTextFieldSampleID.setBounds(147, 12, 119, 21);
 				}
 				{
-					jButtonSave = new JButton4j(Common.icon_update);
+					jButtonSave = new JButton4j(Common.icon_update_16x16);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setEnabled(true);
 					jButtonSave.setText(lang.get("btn_Save"));
@@ -252,7 +252,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonCancel = new JButton4j(Common.icon_close);
+					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
@@ -411,7 +411,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					sampleDate.getEditor().setSize(87, 21);
 				}
 				{
-					JButton4j btnPrint = new JButton4j(Common.icon_print);
+					JButton4j btnPrint = new JButton4j(Common.icon_print_16x16);
 					btnPrint.setText(lang.get("btn_Print"));
 					btnPrint.addActionListener(new ActionListener()
 					{

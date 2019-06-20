@@ -212,7 +212,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 						addPopup(jTable1, popupMenu);
 
 						{
-							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_report);
+							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_report_16x16);
 							newItemMenuItem.addActionListener(new ActionListener() {
 								public void actionPerformed(final ActionEvent e) {
 									JLaunchReport.runReport("RPT_LANGUAGE",null,"",null,"");
@@ -223,7 +223,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 						}
 
 						{
-							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS);
+							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
 							newItemMenuItem.addActionListener(new ActionListener() {
 								public void actionPerformed(final ActionEvent e) {
 									export();
@@ -298,7 +298,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 						});
 					}
 					{
-						jButtonClose = new JButton4j(Common.icon_close);
+						jButtonClose = new JButton4j(Common.icon_close_16x16);
 						jDesktopPane1.add(jButtonClose);
 						jButtonClose.setText(lang.get("btn_Close"));
 						jButtonClose.setBounds(856, 75, 120, 32);
@@ -337,7 +337,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 						});
 					}
 					{
-						jButtonPrint = new JButton4j(Common.icon_report);
+						jButtonPrint = new JButton4j(Common.icon_report_16x16);
 						jDesktopPane1.add(jButtonPrint);
 						jButtonPrint.setText(lang.get("btn_Print"));
 						jButtonPrint.setBounds(612, 75, 120, 32);
@@ -349,7 +349,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 						});
 					}
 					{
-						jButtonHelp = new JButton4j(Common.icon_help);
+						jButtonHelp = new JButton4j(Common.icon_help_16x16);
 						jDesktopPane1.add(jButtonHelp);
 						jButtonHelp.setText(lang.get("btn_Help"));
 						jButtonHelp.setBounds(734, 75, 120, 32);
@@ -372,7 +372,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 						textFieldMnemonic.setColumns(10);
 					}
 					{
-						jButtonExcel = new JButton4j(Common.icon_XLS);
+						jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 						jButtonExcel.addActionListener(new ActionListener() {
 							public void actionPerformed(final ActionEvent e) {
 								export();
@@ -385,7 +385,7 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 						jDesktopPane1.add(jButtonExcel);
 					}
 
-					JButton4j button = new JButton4j(Common.icon_search);
+					JButton4j button = new JButton4j(Common.icon_search_16x16);
 					button.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
 							buildSQL();

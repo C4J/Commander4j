@@ -350,9 +350,9 @@ public class JDialogUserProperties extends JDialog
 			});
 			jDesktopPane1.add(jCheckBoxAccountEnabled);
 
-			jButtonSave = new JButton4j(Common.icon_update);
+			jButtonSave = new JButton4j(Common.icon_update_16x16);
 			jButtonSave.setBounds(20, 420, 112, 32);
-			jButtonCancel = new JButton4j(Common.icon_close);
+			jButtonCancel = new JButton4j(Common.icon_close_16x16);
 			jButtonCancel.setBounds(284, 420, 112, 32);
 
 			BorderLayout thisLayout = new BorderLayout();
@@ -538,7 +538,7 @@ public class JDialogUserProperties extends JDialog
 			jButtonCancel.setMnemonic(lang.getMnemonicChar());
 			jDesktopPane1.add(jButtonCancel);
 			{
-				jButtonHelp = new JButton4j(Common.icon_help);
+				jButtonHelp = new JButton4j(Common.icon_help_16x16);
 				jButtonHelp.setBounds(152, 420, 112, 32);
 				jDesktopPane1.add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));

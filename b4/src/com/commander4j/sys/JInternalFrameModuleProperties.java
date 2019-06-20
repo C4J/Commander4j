@@ -189,7 +189,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 
 		jSpinnerPrintCopies.setValue(module.getPrintCopies());
 
-		jButtonIconPreview.setIcon(JDBModule.getModuleIcon(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
+		jButtonIconPreview.setIcon(JDBModule.getModuleIcon16x16(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
 		
 		jTextFieldAutoLabelCommandFilename.setText(module.getLabelCommandFilename());
 		jTextFieldAutoLabelLabelFilename.setText(module.getAutoLabelLabelFilename());
@@ -263,7 +263,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 				}
 				{
 
-					jButtonUpdate = new JButton4j(Common.icon_update);
+					jButtonUpdate = new JButton4j(Common.icon_update_16x16);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
@@ -322,7 +322,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 				}
 				{
 
-					jButtonClose = new JButton4j(Common.icon_close);
+					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
@@ -393,7 +393,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 								{
 									// module_updated = true;
 									jButtonUpdate.setEnabled(true);
-									jButtonIconPreview.setIcon(JDBModule.getModuleIcon(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
+									jButtonIconPreview.setIcon(JDBModule.getModuleIcon16x16(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
 								}
 								
 								if (new_type.equals("REPORT"))
@@ -521,7 +521,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jTextFieldIconFilename.setBounds(164, 177, 218, 22);
 					jTextFieldIconFilename.addKeyListener(new KeyAdapter() {
 						public void keyReleased(KeyEvent evt) {
-							jButtonIconPreview.setIcon(JDBModule.getModuleIcon(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
+							jButtonIconPreview.setIcon(JDBModule.getModuleIcon16x16(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
 						}
 
 						public void keyTyped(KeyEvent evt) {
@@ -561,7 +561,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 									if (jTextFieldIconFilename.getText().compareTo(selectedFile.getName()) != 0)
 									{
 										jTextFieldIconFilename.setText(selectedFile.getName());
-										jButtonIconPreview.setIcon(JDBModule.getModuleIcon(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
+										jButtonIconPreview.setIcon(JDBModule.getModuleIcon16x16(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
 										jButtonUpdate.setEnabled(true);
 									}
 								}
@@ -597,7 +597,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 					jLabel7.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jButtonHelp = new JButton4j(Common.icon_help);
+					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setBounds(335, 424, 112, 32);
@@ -613,7 +613,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 						}
 
 						public void keyReleased(KeyEvent evt) {
-							jButtonIconPreview.setIcon(JDBModule.getModuleIcon(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
+							jButtonIconPreview.setIcon(JDBModule.getModuleIcon16x16(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
 						}
 					});
 				}
@@ -690,7 +690,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 						}
 
 						public void keyReleased(KeyEvent evt) {
-							jButtonIconPreview.setIcon(JDBModule.getModuleIcon(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
+							jButtonIconPreview.setIcon(JDBModule.getModuleIcon16x16(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
 						}
 					});
 				}
@@ -704,7 +704,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 						}
 
 						public void keyReleased(KeyEvent evt) {
-							jButtonIconPreview.setIcon(JDBModule.getModuleIcon(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
+							jButtonIconPreview.setIcon(JDBModule.getModuleIcon16x16(jTextFieldIconFilename.getText(), (String) jComboBoxType.getSelectedItem()));
 						}
 					});
 				}

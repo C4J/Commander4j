@@ -163,7 +163,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				jDesktopPane1.setLayout(null);
 
-				jButtonSave = new JButton4j(Common.icon_update);
+				jButtonSave = new JButton4j(Common.icon_update_16x16);
 				jDesktopPane1.add(jButtonSave);
 				jButtonSave.setText(lang.get("btn_Save"));
 				jButtonSave.setBounds(59, 461, 112, 32);
@@ -294,12 +294,12 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 					}
 				});
 
-				jButtonHelp = new JButton4j(Common.icon_help);
+				jButtonHelp = new JButton4j(Common.icon_help_16x16);
 				jDesktopPane1.add(jButtonHelp);
 				jButtonHelp.setText(lang.get("btn_Help"));
 				jButtonHelp.setBounds(178, 461, 112, 32);
 
-				jButtonClose = new JButton4j(Common.icon_close);
+				jButtonClose = new JButton4j(Common.icon_close_16x16);
 				jDesktopPane1.add(jButtonClose);
 				jButtonClose.setText(lang.get("btn_Close"));
 				jButtonClose.setBounds(297, 461, 112, 32);
