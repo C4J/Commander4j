@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'archive.gif' WHERE MODULE_ID = 'FRM_ADMIN_ARCHIVE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'archive.gif' WHERE MODULE_ID = 'FRM_ADMIN_ARCHIVE_ADD'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'archive.gif' WHERE MODULE_ID = 'FRM_ADMIN_ARCHIVE_DELETE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'archive.gif' WHERE MODULE_ID = 'FRM_ADMIN_ARCHIVE_EDIT'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'archive.gif' WHERE MODULE_ID = 'FRM_ADMIN_ARCHIVE_RUN'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'audit_log.gif' WHERE MODULE_ID = 'FRM_ADMIN_AUDIT_PERM'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'prod_lines.gif' WHERE MODULE_ID = 'FRM_ADMIN_AUTO_LABELLER'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'customer.gif' WHERE MODULE_ID = 'FRM_ADMIN_CUSTOMER'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'materials.gif' WHERE MODULE_ID = 'FRM_ADMIN_DATA_IDS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'materials.gif' WHERE MODULE_ID = 'FRM_ADMIN_DATA_IDS_EDIT'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'despatch.gif' WHERE MODULE_ID = 'FRM_ADMIN_DESPATCH'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'admingroups.gif' WHERE MODULE_ID = 'FRM_ADMIN_GROUPS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'audit.gif' WHERE MODULE_ID = 'FRM_ADMIN_GROUP_USERS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'interface.gif' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'interface_log.gif' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE_LOG'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'interface_process.gif' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE_PROCESS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'interface_request.gif' WHERE MODULE_ID = 'FRM_ADMIN_INTERFACE_REQUEST'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'journeys.gif' WHERE MODULE_ID = 'FRM_ADMIN_JOURNEY'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'translate.gif' WHERE MODULE_ID = 'FRM_ADMIN_LANGUAGE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'locations.gif' WHERE MODULE_ID = 'FRM_ADMIN_LOCATIONS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'materials.gif' WHERE MODULE_ID = 'FRM_ADMIN_MATERIALS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'batches.gif' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_BATCH'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'customer.gif' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_CUST_DATA'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'material_location.gif' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_LOCATION'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'types.gif' WHERE MODULE_ID = 'FRM_ADMIN_MATERIAL_TYPE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'menustruct.gif' WHERE MODULE_ID = 'FRM_ADMIN_MENU'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'mhn.gif' WHERE MODULE_ID = 'FRM_ADMIN_MHN'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'mhn_decisions.gif' WHERE MODULE_ID = 'FRM_ADMIN_MHN_DECISION'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'mhn_reasons.gif' WHERE MODULE_ID = 'FRM_ADMIN_MHN_REASON'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'adminmodules.gif' WHERE MODULE_ID = 'FRM_ADMIN_MODULES'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'alternative.gif' WHERE MODULE_ID = 'FRM_ADMIN_MODULE_ALTERNATE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'audit.gif' WHERE MODULE_ID = 'FRM_ADMIN_MODULE_GROUPS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'pallet.gif' WHERE MODULE_ID = 'FRM_ADMIN_PALLETS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'pallet_history.gif' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_HISTORY'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'move.gif' WHERE MODULE_ID = 'FRM_ADMIN_PALLET_MOVE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'resources.gif' WHERE MODULE_ID = 'FRM_ADMIN_PO_RESOURCE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'pack_labeller.gif' WHERE MODULE_ID = 'FRM_ADMIN_PRINTERS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'process_order.gif' WHERE MODULE_ID = 'FRM_ADMIN_PROCESS_ORDER'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'inspection_dictionary.gif' WHERE MODULE_ID = 'FRM_ADMIN_QM_DICTIONARY'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'inspection_admin.gif' WHERE MODULE_ID = 'FRM_ADMIN_QM_INSPECTION'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'inspection_selectlist.gif' WHERE MODULE_ID = 'FRM_ADMIN_QM_SELECTLIST'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'rf_menu.gif' WHERE MODULE_ID = 'FRM_ADMIN_RF_MENU'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'userreports.gif' WHERE MODULE_ID = 'FRM_ADMIN_SCHEMA_BROWSE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'shift.gif' WHERE MODULE_ID = 'FRM_ADMIN_SHIFT'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'toolbar.gif' WHERE MODULE_ID = 'FRM_ADMIN_TOOLBAR'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'units.gif' WHERE MODULE_ID = 'FRM_ADMIN_UOM'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'adminusers.gif' WHERE MODULE_ID = 'FRM_ADMIN_USERS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'userreports.gif' WHERE MODULE_ID = 'FRM_ADMIN_USER_REPORT'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'userreports.gif' WHERE MODULE_ID = 'FRM_ADMIN_USER_REPORT_PROP'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'print.gif' WHERE MODULE_ID = 'FRM_CM_PRINTERS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'prod_lines.gif' WHERE MODULE_ID = 'FRM_LABELLER_HISTORY'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'print.gif' WHERE MODULE_ID = 'FRM_LABEL_DATA_ASSIGN'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'case_label.gif' WHERE MODULE_ID = 'FRM_LABEL_PRINT'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'split.gif' WHERE MODULE_ID = 'FRM_PAL_DELETE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'pallet_confirm.gif' WHERE MODULE_ID = 'FRM_PAL_PROD_CONFIRM'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'pallet_label.gif' WHERE MODULE_ID = 'FRM_PAL_PROD_DEC'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'split.gif' WHERE MODULE_ID = 'FRM_PAL_SPLIT'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'qm.gif' WHERE MODULE_ID = 'FRM_QM_ACTIVITY'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'qm.gif' WHERE MODULE_ID = 'FRM_QM_DICTIONARY'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'qm.gif' WHERE MODULE_ID = 'FRM_QM_INSPECTION'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'sample_analysis.gif' WHERE MODULE_ID = 'FRM_QM_RESULT_ANALYSIS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'sample_enquiry.gif' WHERE MODULE_ID = 'FRM_QM_RESULT_ENQUIRY'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'sample_edit.gif' WHERE MODULE_ID = 'FRM_QM_SAMPLE_EDIT'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'sample_label.gif' WHERE MODULE_ID = 'FRM_QM_SAMPLE_LABEL'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'sample_results.gif' WHERE MODULE_ID = 'FRM_QM_SAMPLE_RESULTS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'qm.gif' WHERE MODULE_ID = 'FRM_QM_SELECTLIST'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'qm.gif' WHERE MODULE_ID = 'FRM_QM_TEST'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'settings.gif' WHERE MODULE_ID = 'FRM_SYSTEM_KEYS'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'user.gif' WHERE MODULE_ID = 'FRM_USER_PASS_CHANGE'
+    </statement>
+
+	<statement>
+        UPDATE SYS_MODULES SET ICON_FILENAME = 'print.gif' WHERE MODULE_ID = 'RPT_PACK_LABEL'
+    </statement>
+    
+    <statement>
+    	 update sys_language set text = 'Archive Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_ARCHIVE'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Audit Log' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_AUDIT_PERM'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Production Line' where language_id = 'EN' and resource_key = 'mod_FRM_AUTO_LABELLER'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Customer' where language_id = 'EN' and resource_key = 'lbl_Customer_Edit'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Administer Data IDs' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_DATA_IDS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Edit Data ID' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_DATA_IDS_EDIT'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Despatch' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_DESPATCH'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Groups' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_GROUPS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Interface Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Interface Log' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE_LOG'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Process Messages' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE_PROCESS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Request Queue' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE_REQUEST'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Administer Journeys' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_JOURNEY'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Translations' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_LANGUAGE'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Locations' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_LOCATIONS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Materials' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIALS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Batches' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_BATCH'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Customer Data Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_CUST_DATA'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Material Locations' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_LOCATION'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Administer Material Types' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_TYPE'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Menu Maintenance' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MENU'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Isolate' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MHN'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Decision Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MHN_DECISION'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Reason Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MHN_REASON'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Modules' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MODULES'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Pallet Info' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PALLETS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'History' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PALLET_HISTORY'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Administer Resources' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PO_RESOURCE'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Label Printers' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PRINTERS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Orders' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PROCESS_ORDER'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Dictionary' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_QM_DICTIONARY'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Inspections' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_QM_INSPECTION'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Selection Lists' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_QM_SELECTLIST'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'RF Menu Maintenance' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_RF_MENU'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Browse Schema' where language_id = 'EN' and resource_key = 'mod_FRM_SCHEMA_BROWSE'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Shift Patterns' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_SHIFT'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Toolbar Maintenance' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_TOOLBAR'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Units' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_UOM'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Users' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_USERS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'User Reports' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_USER_REPORT'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'User Report Properties' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_USER_REPORT_PROP'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Printer' where language_id = 'EN' and resource_key = 'mod_FRM_CM_PRINTERS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Labeller History' where language_id = 'EN' and resource_key = 'mod_FRM_LABELLER_HISTORY'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Assign to Automatic Labeller' where language_id = 'EN' and resource_key = 'mod_FRM_LABEL_DATA_ASSIGN'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Case Label Printing' where language_id = 'EN' and resource_key = 'mod_FRM_LABEL_PRINT'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Delete a Pallet' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PALLET_DELETE'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Confirm' where language_id = 'EN' and resource_key = 'mod_FRM_PAL_PROD_CONFIRM'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Pallet Label' where language_id = 'EN' and resource_key = 'mod_FRM_PAL_PROD_DEC'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Split Pallet' where language_id = 'EN' and resource_key = 'mod_FRM_PAL_SPLIT'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Activity Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_ACTIVITY'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Dictionary Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_DICTIONARY'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Inspection Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_INSPECTION'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Results Analysis' where language_id = 'EN' and resource_key = 'mod_FRM_QM_RESULT_ANALYSIS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Results Enquiry' where language_id = 'EN' and resource_key = 'mod_FRM_QM_RESULT_ENQUIRY'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Edit Sample' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SAMPLE_EDIT'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Print Sample Labels' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SAMPLE_LABEL'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Update Sample Results' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SAMPLE_RESULTS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Selection List Admin' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SELECTLIST'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Test Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_TEST'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Settings' where language_id = 'EN' and resource_key = 'mod_FRM_SYSTEM_KEYS'
+	</statement>
+	
+	<statement>
+	     update sys_language set text = 'Change Password' where language_id = 'EN' and resource_key = 'web_Change_Password'
+	</statement>
+
+	
+</DDL>
