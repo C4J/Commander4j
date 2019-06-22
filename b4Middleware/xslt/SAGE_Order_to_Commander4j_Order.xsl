@@ -21,61 +21,67 @@
 	
 	<xsl:template match="I">
 		
-		<xsl:variable name="message_date_time" select="c4j_XSLT_Ext:getISODateTimeString()"
-			xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
-		
-		<xsl:variable name="filename_date_time" select="c4j_XSLT_Ext:getISODateTimeFilenameString()"
-			xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
-		
-		
-		<xsl:variable name="reqdUom" select="requiredUom"/>
-		<xsl:variable name="material" select="material"/>
-		<xsl:variable name="location" select="plant"/>
-		<xsl:variable name="order" select="orderNo"/>
-		<xsl:variable name="reqdQuantity" select="requiredQuantity"/>
-		<xsl:variable name="dueDate" select="dueDate"/>
-		<xsl:variable name="customerID" select="customerID"/>
-		<xsl:variable name="status" select="status"/>
-		<xsl:variable name="customerName" select="customerName"/>
-		<xsl:text>&#10;</xsl:text>
-		<xsl:comment>*START* filename ORD_<xsl:value-of select="$order"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
-		<xsl:text>&#10;</xsl:text>
-		<xsl:text>&#10;</xsl:text>
-		<message>
-			<plant><xsl:value-of select="$PLANT"/></plant>
-			<hostRef><xsl:value-of select="$HOSTREF"/></hostRef>
-			<messageRef>SAGE Works Order <xsl:value-of select="$message_date_time"/></messageRef>
-			<interfaceType>Process Order</interfaceType>
-			<messageInformation>Order=<xsl:value-of select="$order"/></messageInformation>
-			<interfaceDirection>Input</interfaceDirection>
-			<messageDate><xsl:value-of select="$message_date_time"/></messageDate>
+		<xsl:variable name="byProductUOM" select="requiredUom"/>
+
+		<xsl:if test="$byProductUOM!='KG'">
 			
-			<messageData>
-				<processOrder>
-					<orderNo><xsl:value-of select="$order"/></orderNo>
-					<dueDate><xsl:value-of select="$dueDate"/>T00:00:00</dueDate>
-					<material><xsl:value-of select="$material"/></material>
-					<materialType>FERT</materialType>
-					<!--<description><xsl:value-of select="description"/></description>-->
-					<description></description>
-					<status><xsl:value-of select="c4j:getReferenceItem('SageWorksOrderStatus', $status)"/></status>
-					<location><xsl:value-of select="$location"/></location>
-					<requiredResource></requiredResource>
-					<recipeID></recipeID>
-					<requiredQuantity><xsl:value-of select="$reqdQuantity"/></requiredQuantity>
-					<requiredUom><xsl:value-of select="c4j:getReferenceItem('SageUOM', $reqdUom)"/></requiredUom>
-					<defaultPalletStatus>Unrestricted</defaultPalletStatus>
-					<xsl:if test="$customerID!=''">
-						<customerID><xsl:value-of select="$customerID"/></customerID>
-						<customerName><xsl:value-of select="$customerName"/></customerName>
-					</xsl:if>
-				</processOrder>
-			</messageData>
-		</message>
-		<xsl:text>&#10;</xsl:text>
-		<xsl:text>&#10;</xsl:text>
-		<xsl:comment>*END* filename ORD_<xsl:value-of select="$material"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
-		<xsl:text>&#10;</xsl:text>
+			<xsl:variable name="message_date_time" select="c4j_XSLT_Ext:getISODateTimeString()"
+				xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
+			
+			<xsl:variable name="filename_date_time" select="c4j_XSLT_Ext:getISODateTimeFilenameString()"
+				xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
+			
+			
+			<xsl:variable name="reqdUom" select="requiredUom"/>
+			<xsl:variable name="material" select="material"/>
+			<xsl:variable name="location" select="plant"/>
+			<xsl:variable name="order" select="orderNo"/>
+			<xsl:variable name="reqdQuantity" select="requiredQuantity"/>
+			<xsl:variable name="dueDate" select="dueDate"/>
+			<xsl:variable name="customerID" select="customerID"/>
+			<xsl:variable name="status" select="status"/>
+			<xsl:variable name="customerName" select="customerName"/>
+			<xsl:text>&#10;</xsl:text>
+			<xsl:comment>*START* filename ORD_<xsl:value-of select="$order"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
+			<xsl:text>&#10;</xsl:text>
+			<xsl:text>&#10;</xsl:text>
+			<message>
+				<plant><xsl:value-of select="$PLANT"/></plant>
+				<hostRef><xsl:value-of select="$HOSTREF"/></hostRef>
+				<messageRef>SAGE Works Order <xsl:value-of select="$message_date_time"/></messageRef>
+				<interfaceType>Process Order</interfaceType>
+				<messageInformation>Order=<xsl:value-of select="$order"/></messageInformation>
+				<interfaceDirection>Input</interfaceDirection>
+				<messageDate><xsl:value-of select="$message_date_time"/></messageDate>
+				
+				<messageData>
+					<processOrder>
+						<orderNo><xsl:value-of select="$order"/></orderNo>
+						<dueDate><xsl:value-of select="$dueDate"/>T00:00:00</dueDate>
+						<material><xsl:value-of select="$material"/></material>
+						<materialType>FERT</materialType>
+						<!--<description><xsl:value-of select="description"/></description>-->
+						<description></description>
+						<status><xsl:value-of select="c4j:getReferenceItem('SageWorksOrderStatus', $status)"/></status>
+						<location><xsl:value-of select="$location"/></location>
+						<requiredResource></requiredResource>
+						<recipeID></recipeID>
+						<requiredQuantity><xsl:value-of select="$reqdQuantity"/></requiredQuantity>
+						<requiredUom><xsl:value-of select="c4j:getReferenceItem('SageUOM', $reqdUom)"/></requiredUom>
+						<defaultPalletStatus>Unrestricted</defaultPalletStatus>
+						<xsl:if test="$customerID!=''">
+							<customerID><xsl:value-of select="$customerID"/></customerID>
+							<customerName><xsl:value-of select="$customerName"/></customerName>
+						</xsl:if>
+					</processOrder>
+				</messageData>
+			</message>
+			<xsl:text>&#10;</xsl:text>
+			<xsl:text>&#10;</xsl:text>
+			<xsl:comment>*END* filename ORD_<xsl:value-of select="$material"/>_<xsl:value-of select="$filename_date_time"/>.xml</xsl:comment>
+			<xsl:text>&#10;</xsl:text>
+			
+		</xsl:if>
 		
 	</xsl:template>
 	
