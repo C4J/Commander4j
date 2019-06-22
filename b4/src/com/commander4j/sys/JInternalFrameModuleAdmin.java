@@ -204,7 +204,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 			lModuleId = ((JDBListData) jListModules.getSelectedValue()).toString();
 			if (lModuleId.equals("root") == false)
 			{
-				int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Module_Delete") + " " + lModuleId + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+				int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Module_Delete") + " " + lModuleId + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 				if (n == 0)
 				{
 					JDBModule m = new JDBModule(Common.selectedHostID, Common.sessionID);
@@ -215,7 +215,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 			} else
 			{
 				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(null, "Cannot delete module " + lModuleId + " !", "Information", JOptionPane.WARNING_MESSAGE, Common.icon_confirm);
+				JOptionPane.showMessageDialog(null, "Cannot delete module " + lModuleId + " !", "Information", JOptionPane.WARNING_MESSAGE, Common.icon_confirm_16x16);
 			}
 		}
 	}
@@ -414,7 +414,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 							addPopup(jListModules, popupMenu);
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -428,7 +428,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -442,7 +442,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -456,7 +456,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_rename);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_rename_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -512,7 +512,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					}
 				}
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jButtonAdd.setBounds(378, 10, 167, 32);
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
@@ -527,7 +527,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jButtonDelete.setBounds(378, 41, 167, 32);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
@@ -543,7 +543,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jButtonEdit.setBounds(378, 72, 167, 32);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
@@ -587,7 +587,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonRename = new JButton4j(Common.icon_rename);
+					jButtonRename = new JButton4j(Common.icon_rename_16x16);
 					jButtonRename.setBounds(378, 103, 167, 32);
 					jDesktopPane1.add(jButtonRename);
 					jButtonRename.setText(lang.get("btn_Rename"));
@@ -759,7 +759,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonExcel);
 				}
 				{
-					JButton4j jButtonGroups = new JButton4j(Common.icon_groups);
+					JButton4j jButtonGroups = new JButton4j(Common.icon_groups_16x16);
 					jButtonGroups.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -775,7 +775,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 
 				{
-					jButtonAlternative = new JButton4j(Common.icon_alternative);
+					jButtonAlternative = new JButton4j(Common.icon_alternative_16x16);
 					jButtonAlternative.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -815,7 +815,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 				}
 
 				{
-					JButton4j jButtonCopy = new JButton4j(Common.icon_copy);
+					JButton4j jButtonCopy = new JButton4j(Common.icon_copy_16x16);
 					jButtonCopy.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)

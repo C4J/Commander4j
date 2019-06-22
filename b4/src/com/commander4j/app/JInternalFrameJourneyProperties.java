@@ -353,7 +353,7 @@ public class JInternalFrameJourneyProperties extends JInternalFrame
 				jTextFieldLocation.setBounds(174, 98, 103, 21);
 				jDesktopPane1.add(jTextFieldLocation);
 
-				JButton4j button4j = new JButton4j(Common.icon_lookup);
+				JButton4j button4j = new JButton4j(Common.icon_lookup_16x16);
 				button4j.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)

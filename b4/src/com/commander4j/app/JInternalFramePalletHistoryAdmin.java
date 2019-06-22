@@ -666,7 +666,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_interface);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_interface_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -696,7 +696,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 									});
 									mnReferenceData.add(mntmEditBatch);
 									mntmEditBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
-									mntmEditBatch.setIcon(Common.icon_batch);
+									mntmEditBatch.setIcon(Common.icon_batch_16x16);
 								}
 								{
 									mntmEditLocation = new JMenuItem4j(lang.get("btn_Edit_Location"));
@@ -712,7 +712,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 									});
 									mnReferenceData.add(mntmEditLocation);
 									mntmEditLocation.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_LOCATION_EDIT"));
-									mntmEditLocation.setIcon(Common.icon_location);
+									mntmEditLocation.setIcon(Common.icon_location_16x16);
 								}
 								{
 									mntmEditMaterial = new JMenuItem4j(lang.get("btn_Edit_Material"));
@@ -728,7 +728,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 									});
 									mnReferenceData.add(mntmEditMaterial);
 									mntmEditMaterial.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_EDIT"));
-									mntmEditMaterial.setIcon(Common.icon_material);
+									mntmEditMaterial.setIcon(Common.icon_material_16x16);
 								}
 								{
 									mntmEditPallet = new JMenuItem4j(lang.get("btn_Edit_Pallet"));
@@ -744,7 +744,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 									});
 									mnReferenceData.add(mntmEditPallet);
 									mntmEditPallet.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT"));
-									mntmEditPallet.setIcon(Common.icon_pallet);
+									mntmEditPallet.setIcon(Common.icon_pallet_16x16);
 								}
 								{
 									mntmEditProcessOrder = new JMenuItem4j(lang.get("btn_Edit_Process_Order"));
@@ -760,7 +760,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 									});
 									mnReferenceData.add(mntmEditProcessOrder);
 									mntmEditProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PROCESS_ORDER_EDIT"));
-									mntmEditProcessOrder.setIcon(Common.icon_process_order);
+									mntmEditProcessOrder.setIcon(Common.icon_process_order_16x16);
 								}
 							}
 
@@ -1352,7 +1352,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup);
+					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupProcessOrder);
 					jButtonLookupProcessOrder.setBounds(974, 110, 21, 21);
 					jButtonLookupProcessOrder.addActionListener(new ActionListener() {
@@ -1367,7 +1367,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonLookupBatch = new JButton4j(Common.icon_lookup);
+					jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupBatch);
 					jButtonLookupBatch.setBounds(454, 44, 21, 21);
 					jButtonLookupBatch.addActionListener(new ActionListener() {
@@ -1382,7 +1382,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonLookupMaterial = new JButton4j(Common.icon_lookup);
+					jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupMaterial);
 					jButtonLookupMaterial.setBounds(261, 44, 21, 21);
 					jButtonLookupMaterial.addActionListener(new ActionListener() {
@@ -1397,7 +1397,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonLookupLocation = new JButton4j(Common.icon_lookup);
+					jButtonLookupLocation = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupLocation);
 					jButtonLookupLocation.setBounds(691, 44, 21, 21);
 					jButtonLookupLocation.addActionListener(new ActionListener() {
@@ -1559,7 +1559,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonClear = new JButton4j(Common.icon_clear);
+					jButtonClear = new JButton4j(Common.icon_clear_16x16);
 					jButtonClear.addActionListener(new ActionListener() {
 						public void actionPerformed(final ActionEvent e) {
 							clearFilter();
@@ -1580,7 +1580,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				jTextFieldCustomer.setBounds(134, 110, 127, 22);
 				jDesktopPane1.add(jTextFieldCustomer);
 				
-				JButton4j button4j = new JButton4j(Common.icon_lookup);
+				JButton4j button4j = new JButton4j(Common.icon_lookup_16x16);
 				button4j.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JLaunchLookup.dlgAutoExec = true;
@@ -1690,11 +1690,11 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected() == true)
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 

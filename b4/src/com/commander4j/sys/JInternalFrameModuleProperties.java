@@ -1040,7 +1040,7 @@ public class JInternalFrameModuleProperties extends javax.swing.JInternalFrame
 				label4j_std_AutoLabeller.setBounds(163, 341, 237, 21);
 				jDesktopPane1.add(label4j_std_AutoLabeller);
 				
-				jButtonAlternative = new JButton4j(Common.icon_alternative);
+				jButtonAlternative = new JButton4j(Common.icon_alternative_16x16);
 				jButtonAlternative.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JLaunchMenu.runDialog("FRM_ADMIN_MODULE_ALTERNATE",lmodule_id);

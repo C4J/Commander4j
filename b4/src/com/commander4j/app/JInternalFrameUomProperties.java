@@ -87,7 +87,7 @@ public class JInternalFrameUomProperties extends JInternalFrame
 		if (jButtonSave.isEnabled())
 		{
 
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to UOM [" + uomid + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to UOM [" + uomid + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (question == 0)
 			{
 				save();

@@ -258,24 +258,24 @@ public class JDBUser
 		{
 			if (isAccountEnabled() == false)
 			{
-				icon = Common.icon_user_disabled;
+				icon = Common.icon_user_disabled_16x16;
 			}
 			else
 			{
 				if (getAccountLocked().equals("Y") == true)
 				// if (isAccountLocked() == true)
 				{
-					icon = Common.icon_user_locked;
+					icon = Common.icon_user_locked_16x16;
 				}
 				else
 				{
 					if (isAccountExpired() == true)
 					{
-						icon = Common.icon_user_expired;
+						icon = Common.icon_user_expired_16x16;
 					}
 					else
 					{
-						icon = Common.icon_user;
+						icon = Common.icon_user_16x16;
 					}
 				}
 			}

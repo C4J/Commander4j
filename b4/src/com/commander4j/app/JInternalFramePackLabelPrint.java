@@ -584,7 +584,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		{
 			if (a.compareTo(caseDefaultQuantity) > 0)
 			{
-				if (JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Quantity_Confirm"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm) == JOptionPane.YES_OPTION)
+				if (JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Quantity_Confirm"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16) == JOptionPane.YES_OPTION)
 				{
 					confirmQuantity = true;
 				} else
@@ -625,7 +625,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			} else
 			{
 				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(Common.mainForm, materialbatch.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+				JOptionPane.showMessageDialog(Common.mainForm, materialbatch.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 			}
 		}
 	}
@@ -775,7 +775,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 			jLabelLocation.setText(lang.get("lbl_Location_ID"));
 			jLabelLocation.setHorizontalAlignment(SwingConstants.TRAILING);
 			jLabelLocation.setBounds(290, 77, 152, 21);
-			jButtonPOLookup = new JButton4j(Common.icon_lookup);
+			jButtonPOLookup = new JButton4j(Common.icon_lookup_16x16);
 			jPanelProcessOrder.add(jButtonPOLookup);
 			jButtonPOLookup.setBounds(280, 21, 20, 20);
 			jButtonPOLookup.addActionListener(new ActionListener()

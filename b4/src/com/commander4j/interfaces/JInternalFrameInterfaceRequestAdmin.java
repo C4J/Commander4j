@@ -111,7 +111,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_INTERFACE_REQUEST"));
 
-		JButton btnReSubmit = new JButton(Common.icon_release);
+		JButton btnReSubmit = new JButton(Common.icon_release_16x16);
 		btnReSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				updateRecord("Ready");
@@ -123,7 +123,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 		btnReSubmit.setBounds(125, 43, 122, 32);
 		jDesktopPane1.add(btnReSubmit);
 
-		JButton buttonHold = new JButton(Common.icon_hold);
+		JButton buttonHold = new JButton(Common.icon_hold_16x16);
 		buttonHold.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				updateRecord("Held");
@@ -191,7 +191,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 		{
 			interfaceRequestID = Long.valueOf(jTable1.getValueAt(row, 1).toString());
 
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, "Delete Interface Request [" + interfaceRequestID.toString() + "] ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, "Delete Interface Request [" + interfaceRequestID.toString() + "] ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 
@@ -212,12 +212,12 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected())
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		}
 		else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -325,7 +325,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_release);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_release_16x16);
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
 										updateRecord("Ready");
@@ -336,7 +336,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_hold);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_hold_16x16);
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
 										updateRecord("Held");
@@ -348,7 +348,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_delete);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_delete_16x16);
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
 										deleteRecord();
@@ -567,7 +567,7 @@ public class JInternalFrameInterfaceRequestAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonDelete = new JButton(Common.icon_delete);
+					jButtonDelete = new JButton(Common.icon_delete_16x16);
 					jButtonDelete.addActionListener(new ActionListener() {
 						public void actionPerformed(final ActionEvent e) {
 							deleteRecord();

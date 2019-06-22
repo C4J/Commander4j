@@ -317,12 +317,12 @@ public class JDialogLookup extends javax.swing.JDialog
 		if (jToggleButtonSequence.isSelected() == true)
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		}
 		else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -422,7 +422,7 @@ public class JDialogLookup extends javax.swing.JDialog
 				jDesktopPane1.setLayout(null);
 				jDesktopPane1.setLocation(0, 0);
 				{
-					jButtonSelect = new JButton4j(Common.icon_ok);
+					jButtonSelect = new JButton4j(Common.icon_ok_16x16);
 					jDesktopPane1.add(jButtonSelect);
 					jButtonSelect.setText(lang.get("btn_Select"));
 					jButtonSelect.setBounds(119, 98, 113, 32);
@@ -447,7 +447,7 @@ public class JDialogLookup extends javax.swing.JDialog
 					});
 				}
 				{
-					jButtonCancel = new JButton4j(Common.icon_cancel);
+					jButtonCancel = new JButton4j(Common.icon_cancel_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("web_Cancel"));
 					jButtonCancel.setBounds(235, 98, 113, 32);
@@ -552,7 +552,7 @@ public class JDialogLookup extends javax.swing.JDialog
 					}
 				}
 				{
-					jToggleButtonSequence = new JToggleButton(Common.icon_ascending);
+					jToggleButtonSequence = new JToggleButton(Common.icon_ascending_16x16);
 					jDesktopPane1.add(jToggleButtonSequence);
 					jToggleButtonSequence.setBounds(259, 63, 21, 21);
 					jToggleButtonSequence.addActionListener(new ActionListener() {

@@ -236,7 +236,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 			JDBPallet temp = new JDBPallet(Common.selectedHostID, Common.sessionID);
 
 			int n = JOptionPane.showConfirmDialog(Common.mainForm, "Delete " + String.valueOf(rowCount) + " SSCC(s) from Master Hold Notice " + jTextFieldMHN.getText() + " ?", "Confirm",
-					JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+					JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 
@@ -256,7 +256,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(Common.mainForm, "Cannot remove SSCC from MHN ["+masterHoldNoticeNumber+"] as status is not Unrestricted.",lang.get("err_Error"),JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+						JOptionPane.showMessageDialog(Common.mainForm, "Cannot remove SSCC from MHN ["+masterHoldNoticeNumber+"] as status is not Unrestricted.",lang.get("err_Error"),JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
 					}
 				}
 				buildSQL();
@@ -271,12 +271,12 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		if (jToggleButtonSequence.isSelected())
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		}
 		else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -404,7 +404,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		textFieldReason3.setBounds(101, 93, 273, 23);
 		jDesktopPane1.add(textFieldReason3);
 		
-		JButton4j button = new JButton4j(Common.icon_lookup);
+		JButton4j button = new JButton4j(Common.icon_lookup_16x16);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JLaunchLookup.dlgAutoExec = true;
@@ -418,7 +418,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		button.setBounds(755, 7, 21, 21);
 		jDesktopPane1.add(button);
 		{
-			button_1 = new JButton4j(Common.icon_lookup);
+			button_1 = new JButton4j(Common.icon_lookup_16x16);
 			button_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					JLaunchLookup.dlgAutoExec = true;
@@ -588,7 +588,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_ADD"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -602,7 +602,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_DELETE"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -636,7 +636,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 													JDBPallet temp = new JDBPallet(Common.selectedHostID, Common.sessionID);
 
 													int n = JOptionPane.showConfirmDialog(Common.mainForm, "Update Decision  of " + String.valueOf(rowCount) + " SSCC(s) from Master Hold Notice "
-															+ jTextFieldMHN.getText() + " to " + decisionList.get(xx).getDescription() + " ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+															+ jTextFieldMHN.getText() + " to " + decisionList.get(xx).getDescription() + " ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 													if (n == 0)
 													{
 														save();
@@ -855,7 +855,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					});
 				}
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
@@ -870,7 +870,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					});
 				}
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
@@ -938,7 +938,7 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 					jDesktopPane1.add(jStatusText);
 				}
 
-				JButton4j button = new JButton4j(Common.icon_batch);
+				JButton4j button = new JButton4j(Common.icon_batch_16x16);
 				button.setText(lang.get("btn_Material_Batches"));
 				button.setMnemonic('0');
 				button.setBounds(312, 153, 101, 32);

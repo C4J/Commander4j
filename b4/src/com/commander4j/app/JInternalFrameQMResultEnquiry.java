@@ -384,7 +384,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		desktopPane.add(btnSearch);
 
 		JButton btnProcessOrderLookup = new JButton();
-		btnProcessOrderLookup.setIcon(Common.icon_lookup);
+		btnProcessOrderLookup.setIcon(Common.icon_lookup_16x16);
 		btnProcessOrderLookup.setBounds(240, 14, 21, 22);
 		btnProcessOrderLookup.addActionListener(new ActionListener()
 		{
@@ -659,7 +659,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				}
 			}
 		});
-		btnInspectionIDLookup.setIcon(Common.icon_lookup);
+		btnInspectionIDLookup.setIcon(Common.icon_lookup_16x16);
 		btnInspectionIDLookup.setBounds(240, 152, 21, 22);
 		desktopPane.add(btnInspectionIDLookup);
 
@@ -677,7 +677,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				}
 			}
 		});
-		button.setIcon(Common.icon_lookup);
+		button.setIcon(Common.icon_lookup_16x16);
 		button.setBounds(503, 14, 21, 22);
 		desktopPane.add(button);
 
@@ -694,7 +694,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				editRecord();
 			}
 		});
-		btnEdit.setIcon(Common.icon_edit);
+		btnEdit.setIcon(Common.icon_edit_16x16);
 		btnEdit.setBounds(162, 194, 117, 32);
 		desktopPane.add(btnEdit);
 

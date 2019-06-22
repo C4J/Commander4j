@@ -357,7 +357,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				labelNewSSCCQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
 				labelNewSSCCQuantity.setBounds(137, 86, 125, 21);
 
-				jButtonSplit = new JButton4j(Common.icon_split);
+				jButtonSplit = new JButton4j(Common.icon_split_16x16);
 				jButtonSplit.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)

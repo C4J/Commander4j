@@ -206,7 +206,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 	{
 		String ltype = "";
 		String ldirection = "";
-		ltype = (String) JOptionPane.showInputDialog(Common.mainForm, "Interface", "Type", JOptionPane.PLAIN_MESSAGE, Common.icon_interface, Common.messageTypesexclBlank, "Interface Definition");
+		ltype = (String) JOptionPane.showInputDialog(Common.mainForm, "Interface", "Type", JOptionPane.PLAIN_MESSAGE, Common.icon_interface_16x16, Common.messageTypesexclBlank, "Interface Definition");
 
 		if (ltype != null)
 		{
@@ -214,7 +214,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 			{
 				Object[] directions =
 				{ "Input", "Output" };
-				ldirection = (String) JOptionPane.showInputDialog(Common.mainForm, "Interface", "Direction", JOptionPane.PLAIN_MESSAGE, Common.icon_interface, directions, "Output");
+				ldirection = (String) JOptionPane.showInputDialog(Common.mainForm, "Interface", "Direction", JOptionPane.PLAIN_MESSAGE, Common.icon_interface_16x16, directions, "Output");
 
 				if (ldirection != null)
 				{
@@ -244,7 +244,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		{
 			ltype = jTable1.getValueAt(row, 0).toString();
 			ldirection = jTable1.getValueAt(row, 1).toString();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, "Delete Interface Config [" + ltype + "] [" + ldirection + "] ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, "Delete Interface Config [" + ltype + "] [" + ldirection + "] ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 				JDBInterface l = new JDBInterface(Common.selectedHostID, Common.sessionID);
@@ -254,7 +254,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				if (result == false)
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, l.getErrorMessage(), "Delete error [" + ltype + "] [" + ldirection + "]", JOptionPane.WARNING_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, l.getErrorMessage(), "Delete error [" + ltype + "] [" + ldirection + "]", JOptionPane.WARNING_MESSAGE, Common.icon_confirm_16x16);
 				} else
 				{
 					buildSQL();
@@ -276,11 +276,11 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected() == true)
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -413,7 +413,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_add);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_add_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_ADD"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -427,7 +427,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_delete);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_delete_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_DELETE"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -441,7 +441,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_edit);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_edit_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_INTERFACE_EDIT"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -592,7 +592,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jButtonEdit.setBounds(406, 143, 134, 32);
 
 					jDesktopPane1.add(jButtonEdit);
@@ -696,7 +696,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jButtonAdd.setBounds(136, 143, 134, 32);
 					jButtonAdd.addActionListener(new ActionListener()
 					{
@@ -736,7 +736,7 @@ public class JInternalFrameInterfaceAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jButtonDelete.setBounds(271, 143, 134, 32);
 					jButtonDelete.addActionListener(new ActionListener()
 					{

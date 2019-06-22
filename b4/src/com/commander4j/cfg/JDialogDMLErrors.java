@@ -158,7 +158,7 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 					jButtonClose.setFont(Common.font_btn);
 					jButtonClose.setBounds(473, 453, 112, 28);
 					
-					JButton jButtonSave = new JButton(Common.icon_file_save);
+					JButton jButtonSave = new JButton(Common.icon_file_save_16x16);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							saveAs("Errors.txt",me);

@@ -58,7 +58,7 @@ public class JCalendarButton extends JButton
 		setMargin(new Insets(0,0,0,0));
 		setContentAreaFilled(false);
 		setFocusable(false);
-		setIcon(Common.icon_calendar);
+		setIcon(Common.icon_calendar_16x16);
 		callingControl = datetimecontrol;
 		
 		addActionListener(new ActionListener() {

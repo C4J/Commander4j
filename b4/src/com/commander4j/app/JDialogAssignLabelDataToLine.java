@@ -168,7 +168,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 				String lineid = ((JDBAutoLabeller) ((JDBListData) list.getSelectedValue()).getmData()).getLine();
 				if (autolab.getProperties(lineid, labdat.getLabelType()))
 				{
-					int n = JOptionPane.showConfirmDialog(this, "Assign Process Order " + labdat.getProcessOrder() + " to " + lineid + " ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+					int n = JOptionPane.showConfirmDialog(this, "Assign Process Order " + labdat.getProcessOrder() + " to " + lineid + " ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 					if (n == 0)
 					{
 						if (autolab.isValidClientWorkstationID(JUtility.getClientName()))

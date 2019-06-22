@@ -70,7 +70,7 @@ public class JUpdate
 					Boolean applyupdate = true;
 					if (Common.updateMODE.equals("MANUAL"))
 					{
-						int n = JOptionPane.showConfirmDialog(null, "Upgrade available - apply now ?", "Update", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+						int n = JOptionPane.showConfirmDialog(null, "Upgrade available - apply now ?", "Update", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 						if (n == 0)
 						{
 							applyupdate = true;

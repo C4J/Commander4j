@@ -243,21 +243,21 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 										JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_LOCATION_EDIT", lmaterial, llocation);
 									} else
 									{
-										JOptionPane.showMessageDialog(Common.mainForm, "Material/Location [" + lmaterial + " / " + llocation + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+										JOptionPane.showMessageDialog(Common.mainForm, "Material/Location [" + lmaterial + " / " + llocation + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 									}
 								} else
 								{
-									JOptionPane.showMessageDialog(Common.mainForm, "Location [" + llocation + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+									JOptionPane.showMessageDialog(Common.mainForm, "Location [" + llocation + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 								}
 							}
 						}
 					} else
 					{
-						JOptionPane.showMessageDialog(Common.mainForm, "No Locations defined or enabled.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+						JOptionPane.showMessageDialog(Common.mainForm, "No Locations defined or enabled.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 					}
 				} else
 				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				}
 			}
 		}
@@ -276,11 +276,11 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected() == true)
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -413,7 +413,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_add);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_add_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_LOCATION_ADD"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -427,7 +427,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_edit);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_edit_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_LOCATION_EDIT"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -579,7 +579,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
@@ -682,7 +682,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonLookupMaterial = new JButton4j(Common.icon_lookup);
+					jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
 					jButtonLookupMaterial.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -700,7 +700,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonLookupLocation = new JButton4j(Common.icon_lookup);
+					jButtonLookupLocation = new JButton4j(Common.icon_lookup_16x16);
 					jButtonLookupLocation.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -719,7 +719,7 @@ public class JInternalFrameMaterialLocationAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_LOCATION_ADD"));
 					jButtonAdd.addActionListener(new ActionListener()
 					{

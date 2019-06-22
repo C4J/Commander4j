@@ -471,7 +471,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 			JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 			JDBMHNDecisions decis = new JDBMHNDecisions(Common.selectedHostID, Common.sessionID);
 
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, "Assign selected SSCC's to Master Hold Notice [" + mhnnumber + "  ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, "Assign selected SSCC's to Master Hold Notice [" + mhnnumber + "  ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 
@@ -1116,7 +1116,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					});
 				}
 				{
-					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup);
+					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
 					jButtonLookupProcessOrder.setBounds(669, 44, 21, 21);
 					jButtonLookupProcessOrder.addActionListener(new ActionListener()
 					{
@@ -1132,7 +1132,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					});
 				}
 				{
-					jButtonLookupBatch = new JButton4j(Common.icon_lookup);
+					jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
 					jButtonLookupBatch.setBounds(937, 11, 21, 21);
 					jButtonLookupBatch.addActionListener(new ActionListener()
 					{
@@ -1148,7 +1148,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					});
 				}
 				{
-					jButtonLookupMaterial = new JButton4j(Common.icon_lookup);
+					jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
 					jButtonLookupMaterial.setBounds(444, 11, 21, 21);
 					jButtonLookupMaterial.addActionListener(new ActionListener()
 					{
@@ -1164,7 +1164,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					});
 				}
 				{
-					jButtonLookupLocation = new JButton4j(Common.icon_lookup);
+					jButtonLookupLocation = new JButton4j(Common.icon_lookup_16x16);
 					jButtonLookupLocation.setBounds(669, 11, 21, 21);
 					jButtonLookupLocation.addActionListener(new ActionListener()
 					{
@@ -1180,7 +1180,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 					});
 				}
 				{
-					jButtonLookupCustomer = new JButton4j(Common.icon_lookup);
+					jButtonLookupCustomer = new JButton4j(Common.icon_lookup_16x16);
 					jButtonLookupCustomer.setBounds(444, 105, 21, 21);
 					jButtonLookupCustomer.addActionListener(new ActionListener()
 					{
@@ -1307,7 +1307,7 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 				}
 
 				{
-					jButtonClear = new JButton4j(Common.icon_clear);
+					jButtonClear = new JButton4j(Common.icon_clear_16x16);
 					jButtonClear.setBounds(124, 138, 120, 32);
 					jButtonClear.addActionListener(new ActionListener()
 					{
@@ -1401,13 +1401,13 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 		{
 			rbdescending.setSelected(true);
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		}
 		else
 		{
 			rbascending.setSelected(true);
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 

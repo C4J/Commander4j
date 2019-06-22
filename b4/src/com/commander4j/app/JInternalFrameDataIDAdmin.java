@@ -89,7 +89,7 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 		if (jListDataIDs.isSelectionEmpty() == false)
 		{
 			lmattype = ((JDBDataIDs) jListDataIDs.getSelectedValue()).getID();
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Data_ID_Delete") + " " + lmattype + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Data_ID_Delete") + " " + lmattype + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (question == 0)
 			{
 				JDBDataIDs u = new JDBDataIDs(Common.selectedHostID, Common.sessionID);
@@ -112,7 +112,7 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 				if (u.create(lmattype) == false)
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, u.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, u.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				} else
 				{
 					JLaunchMenu.runForm("FRM_ADMIN_DATA_IDS_EDIT", lmattype);
@@ -186,7 +186,7 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 				jDesktopPane1.setBackground(Common.color_app_window);
 				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
@@ -202,7 +202,7 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
@@ -219,7 +219,7 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
@@ -314,7 +314,7 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 						addPopup(jListDataIDs, popupMenu);
 
 						{
-							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
+							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
 							newItemMenuItem.addActionListener(new ActionListener()
 							{
 								public void actionPerformed(final ActionEvent e)
@@ -328,7 +328,7 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 						}
 
 						{
-							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
+							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
 							newItemMenuItem.addActionListener(new ActionListener()
 							{
 								public void actionPerformed(final ActionEvent e)
@@ -342,7 +342,7 @@ public class JInternalFrameDataIDAdmin extends JInternalFrame
 						}
 
 						{
-							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
+							final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
 							newItemMenuItem.addActionListener(new ActionListener()
 							{
 								public void actionPerformed(final ActionEvent e)

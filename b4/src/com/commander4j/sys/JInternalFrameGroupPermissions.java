@@ -224,7 +224,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 					jLabelAvailable.setBounds(370, 0, 142, 21);
 				}
 				{
-					jButtonAssign = new JButton4j(Common.icon_arrow_left);
+					jButtonAssign = new JButton4j(Common.icon_arrow_left_16x16);
 					jDesktopPane1.add(jButtonAssign);
 					jButtonAssign.setBounds(327, 205, 26, 24);
 					jButtonAssign.addActionListener(new ActionListener() {
@@ -248,7 +248,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonUnAssign = new JButton4j(Common.icon_arrow_right);
+					jButtonUnAssign = new JButton4j(Common.icon_arrow_right_16x16);
 					jDesktopPane1.add(jButtonUnAssign);
 					jButtonUnAssign.setBounds(327, 233, 26, 24);
 					jButtonUnAssign.addActionListener(new ActionListener() {
@@ -304,7 +304,7 @@ public class JInternalFrameGroupPermissions extends javax.swing.JInternalFrame
 					}
 				}
 				{
-					jButtonUndo = new JButton4j(Common.icon_undo);
+					jButtonUndo = new JButton4j(Common.icon_undo_16x16);
 					jDesktopPane1.add(jButtonUndo);
 					jButtonUndo.setText(lang.get("btn_Undo"));
 					jButtonUndo.setBounds(116, 486, 112, 32);

@@ -101,8 +101,8 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 	private JTextField4j textField4j_UserID = new JTextField4j();
 	private JTextField4j textField4j_GroupID = new JTextField4j();
 	private JLabel4j_std jStatusBar = new JLabel4j_std();
-	private JButton4j button4j_GroupLookup = new JButton4j(Common.icon_lookup);
-	private JButton4j button4j_UserLookup = new JButton4j(Common.icon_lookup);
+	private JButton4j button4j_GroupLookup = new JButton4j(Common.icon_lookup_16x16);
+	private JButton4j button4j_UserLookup = new JButton4j(Common.icon_lookup_16x16);
 	private JLabel4j_std label4j_std_UserID = new JLabel4j_std();
 	private JLabel4j_std label4j_std_GroupID = new JLabel4j_std();
 	private JLabel4j_std label4j_std_Report_Path = new JLabel4j_std();
@@ -276,7 +276,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		jStatusBar.setBounds(0, 618, 762, 21);
 		desktopPane.add(jStatusBar);
 
-		JButton4j button4j_Run = new JButton4j(Common.icon_execute);
+		JButton4j button4j_Run = new JButton4j(Common.icon_execute_16x16);
 		button4j_Run.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -751,7 +751,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 			{
 				JUtility.errorBeep();
 				jStatusBar.setText(ur.getErrorMessage());
-				JOptionPane.showMessageDialog(Common.mainForm, ur.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+				JOptionPane.showMessageDialog(Common.mainForm, ur.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 			} else
 			{
 				jStatusBar.setText("Created : " + ur.getExportFilename());
@@ -760,7 +760,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		{
 			JUtility.errorBeep();
 			jStatusBar.setText("");
-			JOptionPane.showMessageDialog(Common.mainForm, "SYSTEM reports cannot be run interactively.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+			JOptionPane.showMessageDialog(Common.mainForm, "SYSTEM reports cannot be run interactively.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 		}
 
 	}

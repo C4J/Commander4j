@@ -210,7 +210,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 		{
 			String lresource = jTable1.getValueAt(row, 0).toString();
 
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Resource_Delete") + " " + lresource, lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Resource_Delete") + " " + lresource, lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 				JDBProcessOrderResource por = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
@@ -252,7 +252,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					JLaunchMenu.runForm("FRM_ADMIN_PO_RESOURCE_EDIT", lresource);
 				} else
 				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Resource [" + lresource + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, "Resource [" + lresource + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				}
 
 			}
@@ -272,11 +272,11 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected() == true)
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -404,7 +404,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_add);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_add_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PO_RESOURCE_ADD"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -418,7 +418,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_edit);
+								final JMenuItem newItemMenuItem = new JMenuItem(Common.icon_edit_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PO_RESOURCE_EDIT"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -570,7 +570,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
@@ -667,7 +667,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PO_RESOURCE_ADD"));
 					jButtonAdd.addActionListener(new ActionListener()
 					{
@@ -720,7 +720,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 				chckbxEnabled.setBounds(373, 62, 29, 23);
 				jDesktopPane1.add(chckbxEnabled);
 
-				button4jClear = new JButton4j(Common.icon_clear);
+				button4jClear = new JButton4j(Common.icon_clear_16x16);
 				button4jClear.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -737,7 +737,7 @@ public class JInternalFrameProcessOrderResourceAdmin extends JInternalFrame
 				button4jClear.setBounds(128, 123, 126, 32);
 				jDesktopPane1.add(button4jClear);
 
-				button4jDelete = new JButton4j(Common.icon_delete);
+				button4jDelete = new JButton4j(Common.icon_delete_16x16);
 				button4jDelete.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)

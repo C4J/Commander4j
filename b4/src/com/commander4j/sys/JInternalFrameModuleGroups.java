@@ -204,7 +204,7 @@ public class JInternalFrameModuleGroups extends javax.swing.JInternalFrame
 
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_permissions);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_permissions_16x16);
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
 										permissions();
@@ -265,7 +265,7 @@ public class JInternalFrameModuleGroups extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonPermissions = new JButton4j(Common.icon_permissions);
+					jButtonPermissions = new JButton4j(Common.icon_permissions_16x16);
 					jDesktopPane1.add(jButtonPermissions);
 					jButtonPermissions.setText(lang.get("btn_Permissions"));
 					jButtonPermissions.setBounds(212, 10, 125, 32);

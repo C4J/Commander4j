@@ -162,7 +162,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 			//luser_id = ((JDBListData) jListUsers.getSelectedValue()).toString();
 			if ((luser_id.equals(Common.userList.getUser(Common.sessionID).getUserId()) == false) && (luser_id.toLowerCase().equals("interface")==false))
 			{
-				int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_User_Delete") + " " + luser_id, lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+				int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_User_Delete") + " " + luser_id, lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 				if (n == 0)
 				{
 					JDBUser u = new JDBUser(Common.selectedHostID, Common.sessionID);
@@ -172,7 +172,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 			} else
 			{
 				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(null, "Cannot delete user " + luser_id + " !", "Information", JOptionPane.WARNING_MESSAGE, Common.icon_confirm);
+				JOptionPane.showMessageDialog(null, "Cannot delete user " + luser_id + " !", "Information", JOptionPane.WARNING_MESSAGE, Common.icon_confirm_16x16);
 			}
 		}
 	}
@@ -343,7 +343,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 							addPopup(jListUsers, popupMenu);
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -357,7 +357,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -371,7 +371,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -385,7 +385,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_permissions);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_permissions_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -399,7 +399,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_rename);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_rename_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -442,7 +442,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 							{
 								final JMenu4j accountMenu = new JMenu4j();
 								accountMenu.setText(lang.get("lbl_User_Account"));
-								accountMenu.setIcon(Common.icon_user);
+								accountMenu.setIcon(Common.icon_user_16x16);
 								popupMenu.add(accountMenu);
 
 								{
@@ -488,7 +488,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 					}
 				}
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setBounds(431, 5, 125, 32);
@@ -504,7 +504,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 				}
 				{
 
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setBounds(431, 36, 125, 32);
@@ -520,7 +520,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 					});
 				}
 				{
-					jButtonUpdate = new JButton4j(Common.icon_edit);
+					jButtonUpdate = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonUpdate);
 					jButtonUpdate.setText(lang.get("btn_Edit"));
 					jButtonUpdate.setBounds(431, 67, 125, 32);
@@ -549,7 +549,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 					});
 				}
 				{
-					jButtonPermissions = new JButton4j(Common.icon_permissions);
+					jButtonPermissions = new JButton4j(Common.icon_permissions_16x16);
 					jDesktopPane1.add(jButtonPermissions);
 					jButtonPermissions.setText(lang.get("btn_Permissions"));
 					jButtonPermissions.setBounds(431, 98, 125, 32);
@@ -581,7 +581,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 				}
 				{
 
-					jButtonExport = new JButton4j(Common.icon_export);
+					jButtonExport = new JButton4j(Common.icon_export_16x16);
 					jDesktopPane1.add(jButtonExport);
 					jButtonExport.setText(lang.get("btn_Export"));
 					jButtonExport.setBounds(431, 222, 125, 32);
@@ -597,7 +597,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 				}
 				
 				{
-					jButtonRename = new JButton4j(Common.icon_rename);
+					jButtonRename = new JButton4j(Common.icon_rename_16x16);
 					jDesktopPane1.add(jButtonRename);
 					jButtonRename.setText(lang.get("btn_Rename"));
 					jButtonRename.setMnemonic(lang.getMnemonicChar());
@@ -652,7 +652,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 
 				{
 
-					JButton4j jButtonCopy = new JButton4j(Common.icon_copy);
+					JButton4j jButtonCopy = new JButton4j(Common.icon_copy_16x16);
 					jButtonCopy.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -671,7 +671,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 				{
 					JLabel4j_std lblUserDisabled = new JLabel4j_std(lang.get("lbl_Account_Disabled"));
 					lblUserDisabled.setBounds(432, 391, 125, 32);
-					lblUserDisabled.setIcon(Common.icon_user_disabled);
+					lblUserDisabled.setIcon(Common.icon_user_disabled_16x16);
 					jDesktopPane1.add(lblUserDisabled);
 				}
 				
@@ -679,14 +679,14 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 					
 					JLabel4j_std lblUserLocked = new JLabel4j_std(lang.get("lbl_Account_Locked"));
 					lblUserLocked.setBounds(432, 426, 125, 32);
-					lblUserLocked.setIcon(Common.icon_user_locked);
+					lblUserLocked.setIcon(Common.icon_user_locked_16x16);
 					jDesktopPane1.add(lblUserLocked);
 				}
 					
 				{
 					JLabel4j_std lblUserExpired = new JLabel4j_std(lang.get("lbl_Account_Expired"));
 					lblUserExpired.setBounds(432, 461, 125, 32);
-					lblUserExpired.setIcon(Common.icon_user_expired);
+					lblUserExpired.setIcon(Common.icon_user_expired_16x16);
 					jDesktopPane1.add(lblUserExpired);
 				}
 

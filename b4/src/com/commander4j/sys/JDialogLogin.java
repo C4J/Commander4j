@@ -95,12 +95,12 @@ public class JDialogLogin extends JDialog {
 
 		fld_userName.setFont(Common.font_std);
 		fld_userName.setCaretPosition(fld_userName.getText().length());
-		btn_close = new JButton4j("Close", Common.icon_cancel);
+		btn_close = new JButton4j("Close", Common.icon_cancel_16x16);
 		btn_close.setBounds(150, 114, 104, 32);
 		getContentPane().add(btn_close);
 		btn_close.setMnemonic('C');
 		btn_close.setToolTipText("Click to cancel logon.");
-		btn_login = new JButton4j("Login", Common.icon_ok);
+		btn_login = new JButton4j("Login", Common.icon_ok_16x16);
 		btn_login.setBounds(23, 114, 104, 32);
 		getContentPane().add(btn_login);
 		btn_login.setMnemonic('L');

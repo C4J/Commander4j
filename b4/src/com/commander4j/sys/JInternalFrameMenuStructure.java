@@ -298,7 +298,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					}
 				}
 				{
-					jButtonAssign = new JButton4j(Common.icon_arrow_left);
+					jButtonAssign = new JButton4j(Common.icon_arrow_left_16x16);
 					jDesktopPane1.add(jButtonAssign);
 					jButtonAssign.setBounds(524, 160, 25, 25);
 					jButtonAssign.setEnabled(false);
@@ -336,7 +336,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonUnAssign = new JButton4j(Common.icon_arrow_right);
+					jButtonUnAssign = new JButton4j(Common.icon_arrow_right_16x16);
 					jDesktopPane1.add(jButtonUnAssign);
 					jButtonUnAssign.setBounds(524, 189, 25, 25);
 					jButtonUnAssign.setEnabled(false);
@@ -372,7 +372,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonUp = new JButton4j(Common.icon_arrow_up);
+					jButtonUp = new JButton4j(Common.icon_arrow_up_16x16);
 					jDesktopPane1.add(jButtonUp);
 					jButtonUp.setBounds(524, 130, 25, 25);
 					jButtonUp.setEnabled(false);
@@ -389,7 +389,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonDown = new JButton4j(Common.icon_arrow_down);
+					jButtonDown = new JButton4j(Common.icon_arrow_down_16x16);
 					jDesktopPane1.add(jButtonDown);
 					jButtonDown.setBounds(524, 220, 25, 25);
 					jButtonDown.setEnabled(false);
@@ -462,7 +462,7 @@ public class JInternalFrameMenuStructure extends javax.swing.JInternalFrame
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
-					jButtonUndo = new JButton4j(Common.icon_undo);
+					jButtonUndo = new JButton4j(Common.icon_undo_16x16);
 					jDesktopPane1.add(jButtonUndo);
 					jButtonUndo.setText(lang.get("btn_Undo"));
 					jButtonUndo.setBounds(274, 468, 116, 32);

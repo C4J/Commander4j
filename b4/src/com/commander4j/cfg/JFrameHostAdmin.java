@@ -175,8 +175,8 @@ public class JFrameHostAdmin extends JFrame
 	private JTextField4j textField4jReqdProgram = new JTextField4j();
 	private JLabel labelActualProgramVersion = new JLabel("");
 	private JLabel labelActualSchemaVersion = new JLabel("");
-	private JButton4j btn4jAmendSchemaVersion = new JButton4j(Common.icon_edit);
-	private JButton4j btn4jAmendProgramVersion = new JButton4j(Common.icon_edit);
+	private JButton4j btn4jAmendSchemaVersion = new JButton4j(Common.icon_edit_16x16);
+	private JButton4j btn4jAmendProgramVersion = new JButton4j(Common.icon_edit_16x16);
 
 	public static void main(String[] args)
 	{
@@ -620,7 +620,7 @@ public class JFrameHostAdmin extends JFrame
 					}
 				}
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					desktopPane.add(jButtonAdd);
 					jButtonAdd.setText("Add DB Connection");
 					jButtonAdd.setBounds(1011, 49, 160, 39);
@@ -678,7 +678,7 @@ public class JFrameHostAdmin extends JFrame
 					});
 				}
 				{
-					jButtonApply = new JButton4j(Common.icon_ok);
+					jButtonApply = new JButton4j(Common.icon_ok_16x16);
 					desktopPane.add(jButtonApply);
 					jButtonApply.setText("Confirm Changes");
 					jButtonApply.setBounds(1011, 185, 160, 39);
@@ -703,7 +703,7 @@ public class JFrameHostAdmin extends JFrame
 					});
 				}
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					desktopPane.add(jButtonDelete);
 					jButtonDelete.setText("Delete DB Connection");
 					jButtonDelete.setBounds(1011, 83, 160, 39);
@@ -716,7 +716,7 @@ public class JFrameHostAdmin extends JFrame
 								int j = jListHosts.getSelectedIndex();
 								String d = hostList.get(j).getSiteDescription();
 								JUtility.errorBeep();
-								int n = JOptionPane.showConfirmDialog(null, "Delete [" + d + "] ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+								int n = JOptionPane.showConfirmDialog(null, "Delete [" + d + "] ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 								if (n == 0)
 								{
@@ -744,7 +744,7 @@ public class JFrameHostAdmin extends JFrame
 					});
 				}
 				{
-					jButtonUp = new JButton4j(Common.icon_arrow_up);
+					jButtonUp = new JButton4j(Common.icon_arrow_up_16x16);
 					desktopPane.add(jButtonUp);
 					jButtonUp.setEnabled(false);
 					jButtonUp.setBounds(291, 205, 28, 28);
@@ -765,7 +765,7 @@ public class JFrameHostAdmin extends JFrame
 					});
 				}
 				{
-					jButtonDown = new JButton4j(Common.icon_arrow_down);
+					jButtonDown = new JButton4j(Common.icon_arrow_down_16x16);
 					desktopPane.add(jButtonDown);
 					jButtonDown.setEnabled(false);
 					jButtonDown.setBounds(291, 240, 28, 28);
@@ -800,7 +800,7 @@ public class JFrameHostAdmin extends JFrame
 					});
 				}
 				{
-					jButtonUndo = new JButton4j(Common.icon_undo);
+					jButtonUndo = new JButton4j(Common.icon_undo_16x16);
 					desktopPane.add(jButtonUndo);
 					jButtonUndo.setText("Undo Changes");
 					jButtonUndo.setBounds(1011, 287, 160, 39);
@@ -1192,7 +1192,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelSID.setBounds(321, 247, 98, 21);
 				}
 				{
-					jButtonCancel = new JButton4j(Common.icon_cancel);
+					jButtonCancel = new JButton4j(Common.icon_cancel_16x16);
 					desktopPane.add(jButtonCancel);
 					jButtonCancel.setText("Cancel");
 					jButtonCancel.setBounds(1011, 355, 160, 39);
@@ -1252,7 +1252,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelServer.setBounds(321, 172, 98, 21);
 				}
 				{
-					jButtonTest = new JButton4j(Common.icon_connect);
+					jButtonTest = new JButton4j(Common.icon_connect_16x16);
 					desktopPane.add(jButtonTest);
 					jButtonTest.setText("Connect / Check DB");
 					jButtonTest.setBounds(1011, 117, 160, 39);
@@ -1323,7 +1323,7 @@ public class JFrameHostAdmin extends JFrame
 										updateMesage = "Current Schema Version is " + String.valueOf(updrst.schema_CURVersion) + ", required version is " + String.valueOf(updrst.schema_NEWVersion) + ". Upgrade ?";
 									}
 
-									int continueUpdate = JOptionPane.showConfirmDialog(me, updateMesage, "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+									int continueUpdate = JOptionPane.showConfirmDialog(me, updateMesage, "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 									if (continueUpdate == 0)
 									{
@@ -1346,7 +1346,7 @@ public class JFrameHostAdmin extends JFrame
 												JDialogDMLErrors dmlerrs = new JDialogDMLErrors(me, cmds, updrst);
 												dmlerrs.setModal(true);
 												int ignoreDDLErrors = JOptionPane.showConfirmDialog(me, "Ignore Errors and set SCHEMA version to " + String.valueOf(updrst.schema_NEWVersion) + " ?", "Connection to (" + hst.getSiteDescription() + ")",
-														JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+														JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 												if (ignoreDDLErrors == 0)
 												{
@@ -1538,7 +1538,7 @@ public class JFrameHostAdmin extends JFrame
 			labelCommand.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			desktopPane.add(labelCommand);
 
-			JButton4j btnService = new JButton4j(Common.icon_interface);
+			JButton4j btnService = new JButton4j(Common.icon_interface_16x16);
 			btnService.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -1697,7 +1697,7 @@ public class JFrameHostAdmin extends JFrame
 			label4j_std_4.setBounds(14, 522, 98, 21);
 			desktopPane.add(label4j_std_4);
 
-			JButton4j jButtonOpen = new JButton4j(Common.icon_open);
+			JButton4j jButtonOpen = new JButton4j(Common.icon_open_16x16);
 			jButtonOpen.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)

@@ -130,10 +130,10 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private JDBDespatch despatch = new JDBDespatch(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBJourney journey = new JDBJourney(Common.selectedHostID, Common.sessionID);
-	private JButton4j confirmButton = new JButton4j(Common.icon_ok);
-	private JButton4j deleteButton = new JButton4j(Common.icon_delete);
-	private JButton4j buttonUnAssign = new JButton4j(Common.icon_arrow_right);
-	private JButton4j buttonAssign = new JButton4j(Common.icon_arrow_left);
+	private JButton4j confirmButton = new JButton4j(Common.icon_ok_16x16);
+	private JButton4j deleteButton = new JButton4j(Common.icon_delete_16x16);
+	private JButton4j buttonUnAssign = new JButton4j(Common.icon_arrow_right_16x16);
+	private JButton4j buttonAssign = new JButton4j(Common.icon_arrow_left_16x16);
 	private String currentdespatchno = "";
 	private String previousdespatchno = "";
 	private LinkedList<JDBDespatch> despList = new LinkedList<JDBDespatch>();
@@ -143,7 +143,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private JRadioButton unconfirmedRadioButton = new JRadioButton();
 	private JButton4j findButton = new JButton4j(Common.icon_find_16x16);
 	private JButton4j jButtonHelp = new JButton4j(Common.icon_help_16x16);
-	private JButton4j newButton = new JButton4j(Common.icon_add);
+	private JButton4j newButton = new JButton4j(Common.icon_add_16x16);
 	private JLabel4j_std jStatusText;
 	private JTextField4j textFieldLoadNo;
 	private JTextField4j textFieldUserID;
@@ -153,8 +153,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private PreparedStatement listStatement;
 	private JButton4j jButtonLookupJourneyRef;
 	private JTextField4j textFieldJourneyRef;
-	private JButton4j jButtonRemoveJourneyRef= new JButton4j(Common.icon_despatch_remove);
-	private JButton4j jButtonAddJourneyRef= new JButton4j(Common.icon_despatch_add);
+	private JButton4j jButtonRemoveJourneyRef= new JButton4j(Common.icon_despatch_remove_16x16);
+	private JButton4j jButtonAddJourneyRef= new JButton4j(Common.icon_despatch_add_16x16);
 	
 	public JInternalFrameDespatch()
 	{
@@ -434,7 +434,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Despatch_Create"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+				int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Despatch_Create"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 				if (question == 0)
 				{
@@ -453,7 +453,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 						} else
 						{
 							JUtility.errorBeep();
-							JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+							JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 						}
 					} else
 					{
@@ -478,7 +478,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 					{
 						JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
 
-						int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Despatch_Delete") + " " + d.getDespatchNo() + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+						int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Despatch_Delete") + " " + d.getDespatchNo() + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 						if (question == 0)
 						{
@@ -594,7 +594,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 					{
 						JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
 
-						int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Despatch_Confirm") + " " + d.getDespatchNo() + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+						int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Despatch_Confirm") + " " + d.getDespatchNo() + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 						if (n == 0)
 						{
@@ -607,7 +607,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 							{
 								refresh();
 								JUtility.errorBeep();
-								JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+								JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 
 							}
 						}
@@ -733,7 +733,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		jTextFieldDespatchDate.setBounds(172, 335, 141, 20);
 		desktopPane.add(jTextFieldDespatchDate);
 
-		jButtonLookupLocationFrom = new JButton4j(Common.icon_lookup);
+		jButtonLookupLocationFrom = new JButton4j(Common.icon_lookup_16x16);
 		jButtonLookupLocationFrom.setEnabled(false);
 		jButtonLookupLocationFrom.setBounds(293, 29, 21, 21);
 		jButtonLookupLocationFrom.addActionListener(new ActionListener()
@@ -755,7 +755,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		desktopPane.add(jButtonLookupLocationFrom);
 
-		jButtonLookupLocationTo = new JButton4j(Common.icon_lookup);
+		jButtonLookupLocationTo = new JButton4j(Common.icon_lookup_16x16);
 		jButtonLookupLocationTo.setEnabled(false);
 		jButtonLookupLocationTo.setBounds(293, 72, 21, 21);
 		jButtonLookupLocationTo.addActionListener(new ActionListener()
@@ -791,7 +791,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		desktopPane.add(jButtonLookupLocationTo);
 
-		jButtonLookupMaterial = new JButton4j(Common.icon_lookup);
+		jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
 		jButtonLookupMaterial.setBounds(809, 92, 21, 21);
 		jButtonLookupMaterial.addActionListener(new ActionListener()
 		{
@@ -808,7 +808,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		desktopPane.add(jButtonLookupMaterial);
 
-		jButtonLookupBatch = new JButton4j(Common.icon_lookup);
+		jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
 		jButtonLookupBatch.setBounds(809, 177, 21, 21);
 		jButtonLookupBatch.addActionListener(new ActionListener()
 		{
@@ -1014,7 +1014,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		textFieldJourneyRef.setBounds(172, 246, 79, 20);
 		desktopPane.add(textFieldJourneyRef);
 
-		jButtonLookupJourneyRef = new JButton4j(Common.icon_lookup);
+		jButtonLookupJourneyRef = new JButton4j(Common.icon_lookup_16x16);
 		jButtonLookupJourneyRef.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -1363,7 +1363,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		if (d.update() == false)
 		{
 			JUtility.errorBeep();
-			JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+			JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 			result = false;
 		}
 

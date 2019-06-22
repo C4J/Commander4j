@@ -182,7 +182,7 @@ public class JDialogHosts2 extends JDialog
 			}
 			{
 
-				jButtonConnect = new JButton4j(Common.icon_connect);
+				jButtonConnect = new JButton4j(Common.icon_connect_16x16);
 				jButtonConnect.setBounds(48, 281, 110, 32);
 				jDesktopPane1.add(jButtonConnect);
 				jButtonConnect.setText("Connect");

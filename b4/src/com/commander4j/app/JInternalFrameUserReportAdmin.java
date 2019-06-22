@@ -92,15 +92,15 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 	private JCalendarButton button_CalendardomDateFrom;
 	private JCalendarButton button_CalendardomDateTo;
 	private JPanel panelDateParams = new JPanel();
-	private JButton4j button4j_Backwards = new JButton4j(Common.icon_arrow_left);
-	private JButton4j button4j_Forwards = new JButton4j(Common.icon_arrow_right);
+	private JButton4j button4j_Backwards = new JButton4j(Common.icon_arrow_left_16x16);
+	private JButton4j button4j_Forwards = new JButton4j(Common.icon_arrow_right_16x16);
 	private JLabel4j_std label4j_statusBar = new JLabel4j_std();
-	private JButton4j btn4jAdd = new JButton4j(Common.icon_add);
-	private JButton4j btn4jEdit = new JButton4j(Common.icon_edit);
-	private JButton4j btn4jDelete = new JButton4j(Common.icon_delete);
-	private JButton4j btn4jCopy = new JButton4j(Common.icon_copy);
+	private JButton4j btn4jAdd = new JButton4j(Common.icon_add_16x16);
+	private JButton4j btn4jEdit = new JButton4j(Common.icon_edit_16x16);
+	private JButton4j btn4jDelete = new JButton4j(Common.icon_delete_16x16);
+	private JButton4j btn4jCopy = new JButton4j(Common.icon_copy_16x16);
 	private JButton4j btn4jRefresh = new JButton4j(Common.icon_refresh_16x16);
-	private JButton4j btn4jRun = new JButton4j(Common.icon_execute);
+	private JButton4j btn4jRun = new JButton4j(Common.icon_execute_16x16);
 	private JButton4j btn4jHelp = new JButton4j(Common.icon_help_16x16);
 	private JButton4j btn4jClose = new JButton4j(Common.icon_close_16x16);
 
@@ -389,7 +389,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 					{
 						JUtility.errorBeep();
 						label4j_statusBar.setText(reportid.getErrorMessage());
-						JOptionPane.showMessageDialog(Common.mainForm, reportid.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+						JOptionPane.showMessageDialog(Common.mainForm, reportid.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 					} else
 					{
 						label4j_statusBar.setText("Created : " + reportid.getExportFilename());
@@ -399,7 +399,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 					{
 						JUtility.errorBeep();
 						label4j_statusBar.setText("");
-						JOptionPane.showMessageDialog(Common.mainForm, "SYSTEM reports cannot be run interactively.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+						JOptionPane.showMessageDialog(Common.mainForm, "SYSTEM reports cannot be run interactively.", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 
 					}
 				}
@@ -431,7 +431,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		desktopPane.add(panelShiftButtons);
 		panelShiftButtons.setLayout(null);
 
-		JButton4j button4jShiftAdd = new JButton4j(Common.icon_add);
+		JButton4j button4jShiftAdd = new JButton4j(Common.icon_add_16x16);
 		button4jShiftAdd.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -445,7 +445,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		button4jShiftAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_SHIFT_ADD"));
 		button4jShiftAdd.setMnemonic('0');
 
-		JButton4j button4jShiftDelete = new JButton4j(Common.icon_delete);
+		JButton4j button4jShiftDelete = new JButton4j(Common.icon_delete_16x16);
 		button4jShiftDelete.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -459,7 +459,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		button4jShiftDelete.setMnemonic('0');
 		button4jShiftDelete.setFont(Common.font_std);
 
-		JButton4j button4jShiftEdit = new JButton4j(Common.icon_edit);
+		JButton4j button4jShiftEdit = new JButton4j(Common.icon_edit_16x16);
 		button4jShiftEdit.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -558,7 +558,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 		if (jListUserReports.isSelectionEmpty() == false)
 		{
 			JDBUserReport reportid = (JDBUserReport) ((JDBListData) jListUserReports.getSelectedValue()).getObject();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_User_Report_Delete") + " " + reportid.getReportID() + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_User_Report_Delete") + " " + reportid.getReportID() + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 
@@ -577,7 +577,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 				JDBShifts shiftid = (JDBShifts) (jListShifts.getSelectedValue());
 
 				int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Shift_Delete") + " " + shiftid.getShiftID() + " - [" + shiftid.getDescription() + "]" + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0,
-						Common.icon_confirm);
+						Common.icon_confirm_16x16);
 				if (n == 0)
 				{
 
@@ -603,7 +603,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 				if (rpt.create(reportId) == false)
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, rpt.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, rpt.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				} else
 				{
 
@@ -630,7 +630,7 @@ public class JInternalFrameUserReportAdmin extends JInternalFrame
 				if (shift.isValid(shiftId))
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, shift.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, shift.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				} else
 				{
 

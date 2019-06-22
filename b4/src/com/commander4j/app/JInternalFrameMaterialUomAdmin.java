@@ -196,7 +196,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 					}
 				}
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
@@ -206,7 +206,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 						public void actionPerformed(ActionEvent evt) {
 							JDBMaterialUom m = new JDBMaterialUom(Common.selectedHostID, Common.sessionID);
 							JDBUom u = new JDBUom(Common.selectedHostID, Common.sessionID);
-							luom = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_UOM_Input"), null, JOptionPane.QUESTION_MESSAGE,Common.icon_confirm, null, null);
+							luom = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_UOM_Input"), null, JOptionPane.QUESTION_MESSAGE,Common.icon_confirm_16x16, null, null);
 							if (luom != null)
 							{
 								if (luom.equals("") == false)
@@ -223,7 +223,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 										}
 										else
 										{
-											JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] Uom [" + luom + "] already exists", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+											JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] Uom [" + luom + "] already exists", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
 										}
 										populateList(lmaterial);
 									}
@@ -238,7 +238,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
@@ -252,7 +252,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
@@ -264,7 +264,7 @@ public class JInternalFrameMaterialUomAdmin extends javax.swing.JInternalFrame
 							if (row >= 0)
 							{
 								luom = jTable1.getValueAt(row, 1).toString();
-								int question = JOptionPane.showConfirmDialog(Common.mainForm, "Delete Material [" + lmaterial + "] Uom [" + luom + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+								int question = JOptionPane.showConfirmDialog(Common.mainForm, "Delete Material [" + lmaterial + "] Uom [" + luom + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 								if (question == 0)
 								{
 									JDBMaterialUom m = new JDBMaterialUom(Common.selectedHostID, Common.sessionID);

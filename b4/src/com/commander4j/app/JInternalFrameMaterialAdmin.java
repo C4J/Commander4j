@@ -275,7 +275,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		if (row >= 0)
 		{
 			lmaterial = jTable1.getValueAt(row, 0).toString();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Material_Delete") + " " + lmaterial, lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Material_Delete") + " " + lmaterial, lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 				JDBMaterial m = new JDBMaterial(Common.selectedHostID, Common.sessionID);
@@ -297,7 +297,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 	private void addRecord()
 	{
 		JDBMaterial m = new JDBMaterial(Common.selectedHostID, Common.sessionID);
-		lmaterial = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_Create"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm, null, null);
+		lmaterial = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_Create"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null);
 		if (lmaterial != null)
 		{
 			if (lmaterial.equals("") == false)
@@ -309,7 +309,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_EDIT", lmaterial);
 				} else
 				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				}
 				buildSQL();
 				populateList();
@@ -468,11 +468,11 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected())
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -539,7 +539,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_ADD"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -553,7 +553,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_EDIT"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -567,7 +567,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_DELETE"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -606,7 +606,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -619,7 +619,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -632,7 +632,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_process_order);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_process_order_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -938,7 +938,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jLabel4.setBounds(12, 77, 106, 21);
 				}
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setBounds(215, 143, 109, 32);
@@ -953,7 +953,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setBounds(323, 143, 109, 32);
@@ -968,7 +968,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setBounds(431, 143, 109, 32);
@@ -1139,7 +1139,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonClear = new JButton4j(Common.icon_clear);
+					jButtonClear = new JButton4j(Common.icon_clear_16x16);
 					jButtonClear.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -1154,7 +1154,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				}
 				{
 					JButton4j btnLookupInspection = new JButton4j("");
-					btnLookupInspection.setIcon(Common.icon_lookup);
+					btnLookupInspection.setIcon(Common.icon_lookup_16x16);
 					btnLookupInspection.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)

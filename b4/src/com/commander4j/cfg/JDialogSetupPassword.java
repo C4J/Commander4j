@@ -76,11 +76,11 @@ public class JDialogSetupPassword extends JDialog
 		ButtonHandler buttonhandler = new ButtonHandler();
 		getContentPane().setLayout(null);
 
-		btn_close = new JButton4j("Close", Common.icon_cancel);
+		btn_close = new JButton4j("Close", Common.icon_cancel_16x16);
 		btn_close.setText("Cancel");
 		btn_close.setBounds(142, 52, 104, 25);
 		getContentPane().add(btn_close);
-		btn_login = new JButton4j("Login", Common.icon_ok);
+		btn_login = new JButton4j("Login", Common.icon_ok_16x16);
 		btn_login.setText("OK");
 		btn_login.setBounds(19, 52, 104, 25);
 		getContentPane().add(btn_login);

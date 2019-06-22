@@ -146,7 +146,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 		if (jButtonSave.isEnabled())
 		{
 
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to Process Order [" + lprocessorder + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to Process Order [" + lprocessorder + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (question == 0)
 			{
 				save();
@@ -438,7 +438,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 					});
 				}
 				{
-					jButtonCustomerLookup = new JButton4j(Common.icon_lookup);
+					jButtonCustomerLookup = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonCustomerLookup);
 					jButtonCustomerLookup.setBounds(287, 386, 21, 21);
 					jButtonCustomerLookup.addActionListener(new ActionListener()
@@ -509,7 +509,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 					});
 				}
 				{
-					jButtonMaterialLookup = new JButton4j(Common.icon_lookup);
+					jButtonMaterialLookup = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonMaterialLookup);
 					jButtonMaterialLookup.setBounds(287, 75, 21, 21);
 					jButtonMaterialLookup.addActionListener(new ActionListener()
@@ -528,7 +528,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 					});
 				}
 				{
-					jButtonLocationLookup = new JButton4j(Common.icon_lookup);
+					jButtonLocationLookup = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLocationLookup);
 					jButtonLocationLookup.setBounds(287, 258, 21, 21);
 					jButtonLocationLookup.addActionListener(new ActionListener()
@@ -547,7 +547,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 				}
 				
 				{
-					jButtonResourceLookup = new JButton4j(Common.icon_lookup);
+					jButtonResourceLookup = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonResourceLookup);
 					jButtonResourceLookup.setBounds(287, 353, 21, 21);
 					jButtonResourceLookup.addActionListener(new ActionListener()
@@ -744,7 +744,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 		} else
 		{
 			JUtility.errorBeep();
-			JOptionPane.showMessageDialog(Common.mainForm, processorder.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+			JOptionPane.showMessageDialog(Common.mainForm, processorder.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 		}
 
 		jComboBoxPalletStatus.setSelectedItem(processorder.getDefaultPalletStatus());

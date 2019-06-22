@@ -627,7 +627,7 @@ public class JDialogUserProperties extends JDialog
 			lbl_AccountEnabled.setBounds(0, 198, 158, 20);
 			jDesktopPane1.add(lbl_AccountEnabled);
 
-			JButton4j jButtonLock = new JButton4j(Common.icon_lock);
+			JButton4j jButtonLock = new JButton4j(Common.icon_lock_16x16);
 			jButtonLock.setToolTipText("Assign system generated password (also copied to clipboard).");
 			jButtonLock.addActionListener(new ActionListener()
 			{

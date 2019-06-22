@@ -433,7 +433,7 @@ public class JDialogArchiveProperties extends JDialog
 				label4j_Criteria.setBounds(5, 117, 185, 19);
 				jDesktopPane1.add(label4j_Criteria);
 
-				JButton4j jButtonRun = new JButton4j(Common.icon_execute);
+				JButton4j jButtonRun = new JButton4j(Common.icon_execute_16x16);
 				jButtonRun.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)

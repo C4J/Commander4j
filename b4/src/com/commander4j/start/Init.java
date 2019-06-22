@@ -45,7 +45,7 @@ public class Init
 
 			String selectedApp = "";
 			Object[] applications = { "Desktop", "Interface", "Setup","Clone" };
-			selectedApp = (String) JOptionPane.showInputDialog(null, "Application", "Start Commander4j " + com.commander4j.app.JVersion.getProgramVersion(), JOptionPane.PLAIN_MESSAGE, Common.icon_interface, applications, "Desktop");
+			selectedApp = (String) JOptionPane.showInputDialog(null, "Application", "Start Commander4j " + com.commander4j.app.JVersion.getProgramVersion(), JOptionPane.PLAIN_MESSAGE, Common.icon_interface_16x16, applications, "Desktop");
 
 			selectedApp = JUtility.replaceNullStringwithBlank(selectedApp);
 			args = new String[] { selectedApp };

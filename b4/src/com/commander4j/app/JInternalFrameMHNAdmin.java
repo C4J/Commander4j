@@ -236,7 +236,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 	private void create()
 	{
 		JDBMHN lmhn= new JDBMHN(Common.selectedHostID, Common.sessionID);
-		int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_MHN_Create"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+		int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_MHN_Create"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 		if (n == 0)
 		{
 			String newMHN = lmhn.generateNewMHNNumber().toUpperCase();
@@ -288,7 +288,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 		if (row >= 0)
 		{
 			String lMHN = jTable1.getValueAt(row, JDBMHNTableModel.MHN_Number_Col).toString();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_MHN_Delete") + " " + lMHN + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_MHN_Delete") + " " + lMHN + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 				JDBMHN l = new JDBMHN(Common.selectedHostID, Common.sessionID);
@@ -324,12 +324,12 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected())
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		}
 		else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -541,7 +541,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_ADD"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -555,7 +555,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_EDIT"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -569,7 +569,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MHN_DELETE"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -841,7 +841,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jButtonAdd.setToolTipText("Create new MHN");
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
@@ -857,7 +857,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jButtonEdit.setToolTipText("Edit MHN (Update Pallets)");
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
@@ -873,7 +873,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jButtonDelete.setToolTipText("Delete MHN");
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
@@ -949,7 +949,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonClear = new JButton4j(Common.icon_clear);
+					jButtonClear = new JButton4j(Common.icon_clear_16x16);
 					jButtonClear.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -962,7 +962,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonClear);
 				}
 				{
-					buttonReasonLookup = new JButton4j(Common.icon_lookup);
+					buttonReasonLookup = new JButton4j(Common.icon_lookup_16x16);
 					buttonReasonLookup.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							JLaunchLookup.dlgAutoExec = false;
@@ -1186,7 +1186,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 				calendarButtonResolvedTo.setBounds(938, 90, 21, 21);
 				jDesktopPane1.add(calendarButtonResolvedTo);
 				{
-					button = new JButton4j(Common.icon_lookup);
+					button = new JButton4j(Common.icon_lookup_16x16);
 					button.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							JLaunchLookup.dlgAutoExec = true;
@@ -1201,7 +1201,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jDesktopPane1.add(button);
 				}
 				{
-					button_1 = new JButton4j(Common.icon_lookup);
+					button_1 = new JButton4j(Common.icon_lookup_16x16);
 					button_1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							JLaunchLookup.dlgAutoExec = true;
@@ -1216,7 +1216,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jDesktopPane1.add(button_1);
 				}
 				{
-					button_2 = new JButton4j(Common.icon_lookup);
+					button_2 = new JButton4j(Common.icon_lookup_16x16);
 					button_2.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							JLaunchLookup.dlgAutoExec = true;
@@ -1231,7 +1231,7 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 					jDesktopPane1.add(button_2);
 				}
 				
-				JButton4j buttonResourceLookup = new JButton4j(Common.icon_lookup);
+				JButton4j buttonResourceLookup = new JButton4j(Common.icon_lookup_16x16);
 				buttonResourceLookup.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JLaunchLookup.dlgAutoExec = false;

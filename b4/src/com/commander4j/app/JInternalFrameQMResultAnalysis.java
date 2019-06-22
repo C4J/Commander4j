@@ -104,8 +104,8 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 	private JTextField4j textFieldUserData2;
 	private JTextField4j textFieldUserData3;
 	private JTextField4j textFieldUserData4;
-	private JButton4j button4j_Backwards = new JButton4j(Common.icon_arrow_left);
-	private JButton4j button4j_Forwards = new JButton4j(Common.icon_arrow_right);
+	private JButton4j button4j_Backwards = new JButton4j(Common.icon_arrow_left_16x16);
+	private JButton4j button4j_Forwards = new JButton4j(Common.icon_arrow_right_16x16);
 	private JCalendarButton button_CalendardomDateFrom;
 	private JCalendarButton button_CalendardomDateTo;
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
@@ -162,7 +162,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 		JButton btnProcessOrderLookup = new JButton();
 		btnProcessOrderLookup.setEnabled(false);
-		btnProcessOrderLookup.setIcon(Common.icon_lookup);
+		btnProcessOrderLookup.setIcon(Common.icon_lookup_16x16);
 		btnProcessOrderLookup.setBounds(533, 12, 21, 21);
 		btnProcessOrderLookup.addActionListener(new ActionListener()
 		{
@@ -289,7 +289,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 				}
 			}
 		});
-		btnMaterialLookup.setIcon(Common.icon_lookup);
+		btnMaterialLookup.setIcon(Common.icon_lookup_16x16);
 		btnMaterialLookup.setBounds(533, 46, 21, 21);
 		desktopPane.add(btnMaterialLookup);
 
@@ -299,7 +299,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		panel.setBounds(16, 484, 116, 32);
 		desktopPane.add(panel);
 
-		JButton4j button4jAdd = new JButton4j(Common.icon_add);
+		JButton4j button4jAdd = new JButton4j(Common.icon_add_16x16);
 		button4jAdd.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -313,7 +313,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		button4jAdd.setBounds(0, 0, 28, 28);
 		panel.add(button4jAdd);
 
-		JButton4j button4jDelete = new JButton4j(Common.icon_delete);
+		JButton4j button4jDelete = new JButton4j(Common.icon_delete_16x16);
 		button4jDelete.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -327,7 +327,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		button4jDelete.setBounds(58, 0, 28, 28);
 		panel.add(button4jDelete);
 
-		JButton4j button4jEdit = new JButton4j(Common.icon_edit);
+		JButton4j button4jEdit = new JButton4j(Common.icon_edit_16x16);
 		button4jEdit.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -395,7 +395,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 				}
 			}
 		});
-		btnProcessOrderResourceLookup.setIcon(Common.icon_lookup);
+		btnProcessOrderResourceLookup.setIcon(Common.icon_lookup_16x16);
 		btnProcessOrderResourceLookup.setBounds(269, 46, 21, 21);
 		desktopPane.add(btnProcessOrderResourceLookup);
 		
@@ -546,7 +546,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		desktopPane.add(panelShiftButtons);
 		panelShiftButtons.setLayout(null);
 
-		JButton4j button4jShiftAdd = new JButton4j(Common.icon_add);
+		JButton4j button4jShiftAdd = new JButton4j(Common.icon_add_16x16);
 		button4jShiftAdd.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -560,7 +560,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		button4jShiftAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_SHIFT_ADD"));
 		button4jShiftAdd.setMnemonic('0');
 
-		JButton4j button4jShiftDelete = new JButton4j(Common.icon_delete);
+		JButton4j button4jShiftDelete = new JButton4j(Common.icon_delete_16x16);
 		button4jShiftDelete.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -574,7 +574,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 		button4jShiftDelete.setMnemonic('0');
 		button4jShiftDelete.setFont(Common.font_std);
 
-		JButton4j button4jShiftEdit = new JButton4j(Common.icon_edit);
+		JButton4j button4jShiftEdit = new JButton4j(Common.icon_edit_16x16);
 		button4jShiftEdit.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -872,7 +872,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 
 			String analid = selectedReport.getAnalysisID();
 
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Analysis_Delete") + " " + analid + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Analysis_Delete") + " " + analid + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 				JDBQMAnalysis newAnal = new JDBQMAnalysis(Common.selectedHostID, Common.sessionID);
@@ -899,7 +899,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 					JLaunchMenu.runForm("FRM_QM_RESULT_ANALYSIS_EDIT", analid);
 				} else
 				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Analysis [" + analid + "] already exists", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, "Analysis [" + analid + "] already exists", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				}
 			}
 		}
@@ -928,7 +928,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 				JDBShifts shiftid = (JDBShifts) (jListShifts.getSelectedValue());
 
 				int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Shift_Delete") + " " + shiftid.getShiftID() + " - [" + shiftid.getDescription() + "]" + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0,
-						Common.icon_confirm);
+						Common.icon_confirm_16x16);
 				if (n == 0)
 				{
 
@@ -954,7 +954,7 @@ public class JInternalFrameQMResultAnalysis extends JInternalFrame
 				if (shift.isValid(shiftId))
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, shift.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, shift.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				} else
 				{
 

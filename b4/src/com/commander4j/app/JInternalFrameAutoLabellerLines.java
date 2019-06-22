@@ -182,7 +182,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonRefresh.setBounds(631, 440, 125, 32);
 			jDesktopPane1.add(jButtonRefresh);
 
-			JButton4j jButtonAdd = new JButton4j(Common.icon_add);
+			JButton4j jButtonAdd = new JButton4j(Common.icon_add_16x16);
 			jButtonAdd.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -196,7 +196,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonAdd.setBounds(1, 440, 125, 32);
 			jDesktopPane1.add(jButtonAdd);
 
-			JButton4j JButtonEdit = new JButton4j(Common.icon_edit);
+			JButton4j JButtonEdit = new JButton4j(Common.icon_edit_16x16);
 			JButtonEdit.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -210,7 +210,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			JButtonEdit.setBounds(127, 440, 125, 32);
 			jDesktopPane1.add(JButtonEdit);
 
-			JButton4j jButtonDelete = new JButton4j(Common.icon_delete);
+			JButton4j jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 			jButtonDelete.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -224,7 +224,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			jButtonDelete.setBounds(253, 440, 125, 32);
 			jDesktopPane1.add(jButtonDelete);
 
-			JButton4j jButtonRename = new JButton4j(Common.icon_rename);
+			JButton4j jButtonRename = new JButton4j(Common.icon_rename_16x16);
 			jButtonRename.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -258,7 +258,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 
 			jDesktopPane1.add(scrollPane);
 
-			JButton4j button4jResend = new JButton4j(Common.icon_resend);
+			JButton4j button4jResend = new JButton4j(Common.icon_resend_16x16);
 			button4jResend.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -279,7 +279,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 			button4jResend.setBounds(505, 440, 125, 32);
 			jDesktopPane1.add(button4jResend);
 
-			JButton4j button4jHistory = new JButton4j(Common.icon_history);
+			JButton4j button4jHistory = new JButton4j(Common.icon_history_16x16);
 			button4jHistory.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_LABELLER_HISTORY"));
 			button4jHistory.addActionListener(new ActionListener()
 			{
@@ -440,14 +440,14 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 	private void addRecord()
 	{
 		String lineId = "";
-		lineId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Line_Create"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm, null, null);
+		lineId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Line_Create"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null);
 		if (lineId != null)
 		{
 			if (lineId.equals("") == false)
 			{
 
 				Object[] printerGroups = Common.printerGroup;
-				String groupId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Group_ID"), lang.get("lbl_Group_ID"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm, printerGroups, "Pack");
+				String groupId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Group_ID"), lang.get("lbl_Group_ID"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm_16x16, printerGroups, "Pack");
 
 				// If a string was returned, say so.
 				if ((groupId != null) && (groupId.length() > 0))
@@ -460,7 +460,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 						JLaunchMenu.runDialog("FRM_ADMIN_AUTO_LAB_EDIT", lineId, groupId);
 					} else
 					{
-						JOptionPane.showMessageDialog(Common.mainForm, "Line ID [" + lineId + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+						JOptionPane.showMessageDialog(Common.mainForm, "Line ID [" + lineId + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 					}
 					buildSQL();
 					populateList(lineId,groupId);
@@ -532,7 +532,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 		{
 			deleteLine = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Line_Col).toString();
 			deleteGroup = jTable1.getValueAt(row, JDBAutoLabellerTableModel.Group_Col).toString();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Line_Delete") + " " + deleteLine + " - " + deleteGroup + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Line_Delete") + " " + deleteLine + " - " + deleteGroup + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 				autolab.setLine(deleteLine);
@@ -541,7 +541,7 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 				if (result == false)
 				{
 					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(Common.mainForm, autolab.getErrorMessage(), "Delete error (" + deleteLine + " - " + deleteGroup + ")", JOptionPane.WARNING_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, autolab.getErrorMessage(), "Delete error (" + deleteLine + " - " + deleteGroup + ")", JOptionPane.WARNING_MESSAGE, Common.icon_confirm_16x16);
 				} else
 				{
 					JDBPrinterLineMembership plm = new JDBPrinterLineMembership(Common.selectedHostID, Common.sessionID);

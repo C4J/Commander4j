@@ -265,7 +265,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 
 			}
 			{
-				jButtonEdit = new JButton4j(Common.icon_edit);
+				jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 				this.getContentPane().add(jButtonEdit);
 				jButtonEdit.setText(lang.get("btn_Edit"));
 				jButtonEdit.setBounds(144, 400, 146, 32);
@@ -295,7 +295,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 			}
 			{
 
-				jButtonAdd = new JButton4j(Common.icon_add);
+				jButtonAdd = new JButton4j(Common.icon_add_16x16);
 				this.getContentPane().add(jButtonAdd);
 				jButtonAdd.setText(lang.get("btn_Add"));
 				jButtonAdd.setBounds(0, 400, 146, 32);
@@ -313,7 +313,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 							if (printerID.equals("") == false)
 							{
 								Object[] printerGroups = Common.printerGroup;
-								String groupId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Group_ID"), lang.get("lbl_Group_ID"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm, printerGroups, "Pack");
+								String groupId = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Group_ID"), lang.get("lbl_Group_ID"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm_16x16, printerGroups, "Pack");
 
 								// If a string was returned, say so.
 								if ((groupId != null) && (groupId.length() > 0))
@@ -339,7 +339,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 				});
 			}
 			{
-				jButtonDelete = new JButton4j(Common.icon_delete);
+				jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 				this.getContentPane().add(jButtonDelete);
 				jButtonDelete.setText(lang.get("btn_Delete"));
 				jButtonDelete.setBounds(288, 400, 146, 32);
@@ -355,7 +355,7 @@ public class JInternalFramePrinterAdmin extends javax.swing.JInternalFrame {
 							printerID = jTable1.getValueAt(row, JDBPrintersTableModel.PrinterID_Col).toString();
 							groupID = jTable1.getValueAt(row, JDBPrintersTableModel.Group_Col).toString();
 
-							int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Printer_Delete") + " " + printerID + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+							int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Printer_Delete") + " " + printerID + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 							if (n == 0)
 							{
 								JDBPrinters c = new JDBPrinters(Common.selectedHostID, Common.sessionID);

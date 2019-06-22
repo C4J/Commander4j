@@ -201,7 +201,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 
 			}
 			{
-				jButtonEdit = new JButton4j(Common.icon_edit);
+				jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 				this.getContentPane().add(jButtonEdit);
 				jButtonEdit.setText(lang.get("btn_Edit"));
 				jButtonEdit.setBounds(187, 405, 106, 32);
@@ -231,7 +231,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 			}
 			{
 
-				jButtonAdd = new JButton4j(Common.icon_add);
+				jButtonAdd = new JButton4j(Common.icon_add_16x16);
 				this.getContentPane().add(jButtonAdd);
 				jButtonAdd.setText(lang.get("btn_Add"));
 				jButtonAdd.setBounds(79, 405, 106, 32);
@@ -269,7 +269,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 				});
 			}
 			{
-				jButtonDelete = new JButton4j(Common.icon_delete);
+				jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 				this.getContentPane().add(jButtonDelete);
 				jButtonDelete.setText(lang.get("btn_Delete"));
 				jButtonDelete.setBounds(295, 405, 106, 32);
@@ -285,7 +285,7 @@ public class JInternalFrameControlAdmin extends javax.swing.JInternalFrame
 
 							systemKey = jTable1.getValueAt(row, 0).toString();
 
-							int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_System_Key_Delete") + " " + systemKey + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+							int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_System_Key_Delete") + " " + systemKey + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 							if (n == 0)
 							{
 								JDBControl c = new JDBControl(Common.selectedHostID, Common.sessionID);

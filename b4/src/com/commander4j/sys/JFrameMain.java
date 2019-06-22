@@ -156,7 +156,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 	}
 
 	private static void ConfirmExit() {
-		int question = JOptionPane.showConfirmDialog(Common.mainForm, "Exit application ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+		int question = JOptionPane.showConfirmDialog(Common.mainForm, "Exit application ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 		if (question == 0)
 		{
 
@@ -328,7 +328,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 		if (quickMenu)
 		{
 			jtb.add(jcb);
-			btnExecute =  new JMenuToolbarMenuItem("","Execute Quick Menu Option.",Common.icon_execute);
+			btnExecute =  new JMenuToolbarMenuItem("","Execute Quick Menu Option.",Common.icon_execute_16x16);
 			btnExecute.addActionListener(buttonhandler);
 			jtb.add(btnExecute);
 			jtb.add(new JToolBar.Separator());

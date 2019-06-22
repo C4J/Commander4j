@@ -278,13 +278,13 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 								JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
 							} else
 							{
-								JOptionPane.showMessageDialog(Common.mainForm, "Material/Batch [" + lmaterial + " / " + lbatch + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+								JOptionPane.showMessageDialog(Common.mainForm, "Material/Batch [" + lmaterial + " / " + lbatch + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 							}
 						}
 					}
 				} else
 				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				}
 			}
 		}
@@ -303,11 +303,11 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected() == true)
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		} else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -450,7 +450,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_ADD"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -464,7 +464,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -491,7 +491,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 							}
 							
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -505,7 +505,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 							}
 							
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -669,7 +669,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
@@ -772,7 +772,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonLookupMaterial = new JButton4j(Common.icon_lookup);
+					jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
 					jButtonLookupMaterial.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -790,7 +790,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonLookupBatch = new JButton4j(Common.icon_lookup);
+					jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
 					jButtonLookupBatch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -881,7 +881,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_ADD"));
 					jButtonAdd.addActionListener(new ActionListener()
 					{

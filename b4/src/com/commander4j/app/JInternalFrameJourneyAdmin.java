@@ -293,7 +293,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Journey Ref [" + ljourneyref + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, "Journey Ref [" + ljourneyref + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				}
 
 			}
@@ -313,12 +313,12 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected() == true)
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		}
 		else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -414,7 +414,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 		if (row >= 0)
 		{
 			lref = jTable1.getValueAt(row, 0).toString();
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Journey_Ref_Delete") + " " + lref + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Journey_Ref_Delete") + " " + lref + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (question == 0)
 			{
 				JDBJourney journeyref = new JDBJourney(Common.selectedHostID, Common.sessionID);
@@ -488,7 +488,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_ADD"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -502,7 +502,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_EDIT"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
@@ -706,7 +706,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
@@ -877,7 +877,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_ADD"));
 					jButtonAdd.addActionListener(new ActionListener()
 					{
@@ -945,7 +945,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					jDesktopPane1.add(calendarButtonexpiryTo);
 				}
 				{
-					JButton4j jButtonDelete = new JButton4j(Common.icon_delete);
+					JButton4j jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_JOURNEY_DELETE"));
 					jButtonDelete.addActionListener(new ActionListener()
 					{
@@ -970,7 +970,7 @@ public class JInternalFrameJourneyAdmin extends JInternalFrame
 					jTextFieldLocationID.setBounds(719, 11, 139, 23);
 					jDesktopPane1.add(jTextFieldLocationID);
 
-					JButton4j button4j_LocationLookup = new JButton4j(Common.icon_lookup);
+					JButton4j button4j_LocationLookup = new JButton4j(Common.icon_lookup_16x16);
 					button4j_LocationLookup.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)

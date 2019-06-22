@@ -331,7 +331,7 @@ public class JCalendarPanel extends JPanel
 		year.setBounds(199, 5, 34, 23);
 		add(year);
 
-		JButton button = new JButton(Common.icon_arrow_right);
+		JButton button = new JButton(Common.icon_arrow_right_16x16);
 		button.setBorder(empty);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -342,7 +342,7 @@ public class JCalendarPanel extends JPanel
 		button.setBounds(232, 7, 18, 18);
 		add(button);
 
-		JButton button_1 = new JButton(Common.icon_arrow_left);
+		JButton button_1 = new JButton(Common.icon_arrow_left_16x16);
 		button_1.setBorder(empty);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

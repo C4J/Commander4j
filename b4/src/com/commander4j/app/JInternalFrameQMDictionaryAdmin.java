@@ -131,7 +131,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 		if (jListDictionary.isSelectionEmpty() == false)
 		{
 			ltestid = ((JDBQMDictionary) jListDictionary.getSelectedValue()).getTestID();
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Dictionary_Delete") + " " + ltestid + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Dictionary_Delete") + " " + ltestid + " ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (question == 0)
 			{
 				JDBQMDictionary u = new JDBQMDictionary(Common.selectedHostID, Common.sessionID);
@@ -182,7 +182,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 							addPopup(jListDictionary, popupMenu);
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -196,7 +196,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -210,7 +210,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -239,7 +239,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 					}
 				}
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
@@ -255,7 +255,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
@@ -272,7 +272,7 @@ public class JInternalFrameQMDictionaryAdmin extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());

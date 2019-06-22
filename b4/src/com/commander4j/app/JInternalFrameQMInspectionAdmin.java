@@ -174,7 +174,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 				addInspectionRecord();
 			}
 		});
-		btnAdd1.setIcon(Common.icon_add);
+		btnAdd1.setIcon(Common.icon_add_16x16);
 		btnAdd1.setBounds(683, 24, 117, 32);
 		btnAdd1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_INSPECTION"));
 		panelInspection.add(btnAdd1);
@@ -188,7 +188,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 			}
 		});
 		btnDelete1.setBounds(683, 80, 117, 32);
-		btnDelete1.setIcon(Common.icon_delete);
+		btnDelete1.setIcon(Common.icon_delete_16x16);
 		btnDelete1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_INSPECTION"));
 		panelInspection.add(btnDelete1);
 
@@ -200,7 +200,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 				editInspectionRecord();
 			}
 		});
-		btnEdit1.setIcon(Common.icon_edit);
+		btnEdit1.setIcon(Common.icon_edit_16x16);
 		btnEdit1.setBounds(683, 52, 117, 32);
 		btnEdit1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_INSPECTION"));
 		panelInspection.add(btnEdit1);
@@ -254,7 +254,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 			}
 		});
 		btnDelete2.setBounds(683, 80, 117, 32);
-		btnDelete2.setIcon(Common.icon_delete);
+		btnDelete2.setIcon(Common.icon_delete_16x16);
 		btnDelete2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_ACTIVITY"));
 		panelActivity.add(btnDelete2);
 
@@ -266,7 +266,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 				editActivityRecord();
 			}
 		});
-		btnEdit2.setIcon(Common.icon_edit);
+		btnEdit2.setIcon(Common.icon_edit_16x16);
 		btnEdit2.setBounds(683, 52, 117, 32);
 		btnEdit2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_ACTIVITY"));
 		panelActivity.add(btnEdit2);
@@ -281,7 +281,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		});
 		btnAdd2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_ACTIVITY"));
 		btnAdd2.setBounds(683, 24, 117, 32);
-		btnAdd2.setIcon(Common.icon_add);
+		btnAdd2.setIcon(Common.icon_add_16x16);
 		panelActivity.add(btnAdd2);
 
 		JPanel panelTests = new JPanel();
@@ -318,7 +318,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 				deleteTestRecord();
 			}
 		});
-		btnDelete3.setIcon(Common.icon_delete);
+		btnDelete3.setIcon(Common.icon_delete_16x16);
 		btnDelete3.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_TEST"));
 		btnDelete3.setBounds(687, 80, 117, 32);
 		panelTests.add(btnDelete3);
@@ -332,7 +332,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 			}
 		});
 		btnEdit3.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_TEST"));
-		btnEdit3.setIcon(Common.icon_edit);
+		btnEdit3.setIcon(Common.icon_edit_16x16);
 		btnEdit3.setBounds(687, 52, 117, 32);
 		panelTests.add(btnEdit3);
 
@@ -344,7 +344,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 				addTestRecord();
 			}
 		});
-		btnAdd3.setIcon(Common.icon_add);
+		btnAdd3.setIcon(Common.icon_add_16x16);
 		btnAdd3.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_TEST"));
 		btnAdd3.setBounds(687, 24, 117, 32);
 		panelTests.add(btnAdd3);
@@ -357,7 +357,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 				editDictionaryRecord();
 			}
 		});
-		btnDictionary.setIcon(Common.icon_dictionary);
+		btnDictionary.setIcon(Common.icon_dictionary_16x16);
 		btnDictionary.setEnabled(true);
 		btnDictionary.setBounds(687, 108, 117, 32);
 		panelTests.add(btnDictionary);
@@ -426,7 +426,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 		desktopPane.add(lbl_Limit);
 
 		JButton4j btnLookupInspection = new JButton4j("");
-		btnLookupInspection.setIcon(Common.icon_lookup);
+		btnLookupInspection.setIcon(Common.icon_lookup_16x16);
 		btnLookupInspection.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -533,7 +533,7 @@ public class JInternalFrameQMInspectionAdmin extends JInternalFrame
 			String act = ((JDBQMActivity) listActivity.getSelectedValue()).getActivityID();
 			if (activity.isValid(insp, act))
 			{
-				int question = JOptionPane.showConfirmDialog(Common.mainForm, "Delete Activity [" + act + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+				int question = JOptionPane.showConfirmDialog(Common.mainForm, "Delete Activity [" + act + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 				if (question == 0)
 				{
 					activity.delete();

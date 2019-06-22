@@ -260,7 +260,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 				jDesktopPane1.add(panel_1);
 				panel_1.setLayout(null);
 
-				JButton4j jButtonAddWorkstation = new JButton4j(Common.icon_add);
+				JButton4j jButtonAddWorkstation = new JButton4j(Common.icon_add_16x16);
 				jButtonAddWorkstation.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -271,7 +271,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 				jButtonAddWorkstation.setBounds(16, 320, 25, 25);
 				panel_1.add(jButtonAddWorkstation);
 
-				JButton4j jButtonDeleteWorkstation = new JButton4j(Common.icon_delete);
+				JButton4j jButtonDeleteWorkstation = new JButton4j(Common.icon_delete_16x16);
 				jButtonDeleteWorkstation.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -295,7 +295,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 			jDesktopPane1.add(comboBox4jAlternativeModule);
 
 			{
-				jButtonDelete = new JButton4j(Common.icon_delete);
+				jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 				jButtonDelete.setBounds(298, 57, 112, 32);
 				jDesktopPane1.add(jButtonDelete);
 				jButtonDelete.setText(lang.get("btn_Delete"));
@@ -312,7 +312,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 			}
 
 			{
-				jButtonAdd = new JButton4j(Common.icon_add);
+				jButtonAdd = new JButton4j(Common.icon_add_16x16);
 				jButtonAdd.setBounds(298, 28, 112, 32);
 				jDesktopPane1.add(jButtonAdd);
 				jButtonAdd.setText(lang.get("btn_Add"));
@@ -376,7 +376,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 		if (listWorkstations.isSelectionEmpty() == false)
 		{
 			String item = ((String) listWorkstations.getSelectedValue()).toString();
-			int n = JOptionPane.showConfirmDialog(this, lang.get("btn_Delete") + " " + lang.get("lbl_Workstation") + " [" + item + "]", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(this, lang.get("btn_Delete") + " " + lang.get("lbl_Workstation") + " [" + item + "]", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 				JDBModuleAlternative po = new JDBModuleAlternative(Common.selectedHostID, Common.sessionID);
@@ -416,7 +416,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(this, "Workstation [" + lworkstation_id + "] already defined", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+					JOptionPane.showMessageDialog(this, "Workstation [" + lworkstation_id + "] already defined", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 				}
 			}
 		}

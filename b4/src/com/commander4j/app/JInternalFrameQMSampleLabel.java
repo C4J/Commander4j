@@ -553,7 +553,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(spinnerCopies);
 
 		JButton btnProcessOrderLookup = new JButton();
-		btnProcessOrderLookup.setIcon(Common.icon_lookup);
+		btnProcessOrderLookup.setIcon(Common.icon_lookup_16x16);
 		btnProcessOrderLookup.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent evt)

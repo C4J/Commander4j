@@ -616,7 +616,7 @@ public class JDBArchive
 				Long toDelete = runSQLSelect(getArchiveID());
 				if (toDelete > 0)
 				{
-					int n = JOptionPane.showConfirmDialog(comp, lang.get("dlg_Delete") + " " + toDelete.toString() + " " + lang.get("lbl_Rows") + ".", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+					int n = JOptionPane.showConfirmDialog(comp, lang.get("dlg_Delete") + " " + toDelete.toString() + " " + lang.get("lbl_Rows") + ".", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 					if (n == 0)
 					{
 						runSQLDelete(getArchiveID());

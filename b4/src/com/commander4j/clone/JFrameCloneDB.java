@@ -310,7 +310,7 @@ public class JFrameCloneDB extends JFrame
 				}
 			});
 
-			jButtonClone = new JButton4j(Common.icon_clone);
+			jButtonClone = new JButton4j(Common.icon_clone_16x16);
 			desktopPane.add(jButtonClone);
 			jButtonClone.setText("Clone Database");
 			jButtonClone.setBounds(118, 444, 160, 36);

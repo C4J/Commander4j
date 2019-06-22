@@ -191,7 +191,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		if (jButtonSave.isEnabled())
 		{
 
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to Material [" + lmaterial + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to Material [" + lmaterial + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (question == 0)
 			{
 				save();
@@ -594,7 +594,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jButtonUOMs = new JButton4j();
 					jDesktopPane1.add(jButtonUOMs);
 					jButtonUOMs.setText(lang.get("btn_Material_UOM_Conversions"));
-					jButtonUOMs.setIcon(Common.icon_uom);
+					jButtonUOMs.setIcon(Common.icon_uom_16x16);
 					jButtonUOMs.setBounds(453, 100, 178, 32);
 					jButtonUOMs.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_UOM"));
 					jButtonUOMs.addActionListener(new ActionListener()
@@ -610,7 +610,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 					String value = ctrl.getKeyValue("SSCC_LOCATION_VALIDATION");
 					Boolean enabled = Boolean.valueOf(value);
-					jButtonLocations = new JButton4j(Common.icon_location);
+					jButtonLocations = new JButton4j(Common.icon_location_16x16);
 					jDesktopPane1.add(jButtonLocations);
 					jButtonLocations.setText(lang.get("btn_Material_Locations"));
 					jButtonLocations.setEnabled(enabled);
@@ -637,7 +637,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				{
 					jButtonBatches = new JButton4j();
 					jDesktopPane1.add(jButtonBatches);
-					jButtonBatches.setIcon(Common.icon_batch);
+					jButtonBatches.setIcon(Common.icon_batch_16x16);
 					jButtonBatches.setText(lang.get("btn_Material_Batches"));
 					jButtonBatches.setBounds(453, 70, 178, 32);
 					jButtonBatches.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH"));
@@ -771,7 +771,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				jButtonCustomerData.setText(lang.get("btn_Material_Customer_Data"));
 				jButtonCustomerData.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_CUST_DATA"));
 				jButtonCustomerData.setBounds(453, 160, 178, 32);
-				jButtonCustomerData.setIcon(Common.icon_customer);
+				jButtonCustomerData.setIcon(Common.icon_customer_16x16);
 				jDesktopPane1.add(jButtonCustomerData);
 				jButtonCustomerData.addActionListener(new ActionListener()
 				{
@@ -781,7 +781,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					}
 				});
 
-				JButton4j button4jDataIDs = new JButton4j(Common.icon_material);
+				JButton4j button4jDataIDs = new JButton4j(Common.icon_material_16x16);
 				button4jDataIDs.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -900,7 +900,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				textField4jMoveAfterMake.setBounds(199, 422, 125, 21);
 				jDesktopPane1.add(textField4jMoveAfterMake);
 
-				button4jLocationLookup.setIcon(Common.icon_lookup);
+				button4jLocationLookup.setIcon(Common.icon_lookup_16x16);
 				button4jLocationLookup.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -919,7 +919,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 				{
 					JButton4j btnLookupInspection = new JButton4j("");
-					btnLookupInspection.setIcon(Common.icon_lookup);
+					btnLookupInspection.setIcon(Common.icon_lookup_16x16);
 					btnLookupInspection.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -1138,7 +1138,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		}
 		if (result == false)
 		{
-			JOptionPane.showMessageDialog(Common.mainForm, material.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+			JOptionPane.showMessageDialog(Common.mainForm, material.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 		}
 		else
 		{

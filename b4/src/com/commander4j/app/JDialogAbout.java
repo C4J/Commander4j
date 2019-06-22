@@ -129,7 +129,7 @@ public class JDialogAbout extends javax.swing.JDialog
 					jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 231));
 					jDesktopPane1.setLayout(null);
 					{
-						jButtonOk = new JButton4j(Common.icon_ok);
+						jButtonOk = new JButton4j(Common.icon_ok_16x16);
 						jDesktopPane1.add(jButtonOk);
 						jButtonOk.setText(lang.get("btn_Ok"));
 						jButtonOk.setMnemonic(lang.getMnemonicChar());
@@ -179,7 +179,7 @@ public class JDialogAbout extends javax.swing.JDialog
 									} catch (Exception ex)
 									{
 										JUtility.errorBeep();
-										JOptionPane.showMessageDialog(Common.mainForm, ex.getMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+										JOptionPane.showMessageDialog(Common.mainForm, ex.getMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 									}
 								}
 							}
@@ -216,7 +216,7 @@ public class JDialogAbout extends javax.swing.JDialog
 									} catch (Exception ex)
 									{
 										JUtility.errorBeep();
-										JOptionPane.showMessageDialog(Common.mainForm, ex.getMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+										JOptionPane.showMessageDialog(Common.mainForm, ex.getMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 									}
 								}
 							}

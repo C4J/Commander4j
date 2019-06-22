@@ -246,7 +246,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 		
 		btnEdit = new JButton4j(lang.get("btn_Edit"));
 		btnEdit.setBounds(748, 92, 117, 32);
-		btnEdit.setIcon(Common.icon_edit);
+		btnEdit.setIcon(Common.icon_edit_16x16);
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				editRecord();
@@ -265,7 +265,7 @@ public class JInternalFrameQMSampleResults extends JInternalFrame {
 		desktopPane.add(btnRefresh);
 		
 		JButton btnProcessOrderLookup = new JButton();
-		btnProcessOrderLookup.setIcon(Common.icon_lookup);
+		btnProcessOrderLookup.setIcon(Common.icon_lookup_16x16);
 		btnProcessOrderLookup.setBounds(261, 15, 21, 22);
 		btnProcessOrderLookup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {

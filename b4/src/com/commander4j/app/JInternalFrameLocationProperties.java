@@ -149,7 +149,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 		if (jButtonSave.isEnabled())
 		{
 
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to Location [" + llocation + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to Location [" + llocation + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (question == 0)
 			{
 				save();
@@ -300,7 +300,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 		}
 		if (result == false)
 		{
-			JOptionPane.showMessageDialog(Common.mainForm, location.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+			JOptionPane.showMessageDialog(Common.mainForm, location.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
 		}
 		else
 		{

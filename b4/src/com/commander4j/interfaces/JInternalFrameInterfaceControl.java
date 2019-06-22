@@ -55,7 +55,7 @@ public class JInternalFrameInterfaceControl extends javax.swing.JInternalFrame
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonCancel;
 
-	final JToggleButton startToggleButton = new JToggleButton(Common.icon_ok);
+	final JToggleButton startToggleButton = new JToggleButton(Common.icon_ok_16x16);
 	private boolean threadsRunning = false;
 	private DefaultListModel<String> model = new DefaultListModel<String>();
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
@@ -78,7 +78,7 @@ public class JInternalFrameInterfaceControl extends javax.swing.JInternalFrame
 
 	private boolean ConfirmExit() {
 		boolean result = false;
-		int question = JOptionPane.showConfirmDialog(Common.mainForm, "Close Interface ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+		int question = JOptionPane.showConfirmDialog(Common.mainForm, "Close Interface ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 		if (question == 0)
 		{
 			if (threadsRunning)
@@ -158,7 +158,7 @@ public class JInternalFrameInterfaceControl extends javax.swing.JInternalFrame
 
 				{
 
-					startToggleButton.setSelectedIcon(Common.icon_cancel);
+					startToggleButton.setSelectedIcon(Common.icon_cancel_16x16);
 					startToggleButton.setFont(Common.font_btn);
 					startToggleButton.addActionListener(new ActionListener() {
 						public void actionPerformed(final ActionEvent e) {

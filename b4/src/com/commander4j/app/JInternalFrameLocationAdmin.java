@@ -223,7 +223,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 
 	private void addRecord() {
 		JDBLocation l = new JDBLocation(Common.selectedHostID, Common.sessionID);
-		llocation = (String) JOptionPane.showInputDialog(Common.mainForm, "Enter new location", null, JOptionPane.QUESTION_MESSAGE,Common.icon_confirm, null, null);
+		llocation = (String) JOptionPane.showInputDialog(Common.mainForm, "Enter new location", null, JOptionPane.QUESTION_MESSAGE,Common.icon_confirm_16x16, null, null);
 		if (llocation != null)
 		{
 			if (llocation.equals("") == false)
@@ -236,7 +236,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Location [" + llocation + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+					JOptionPane.showMessageDialog(Common.mainForm, "Location [" + llocation + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
 				}
 				buildSQL();
 				populateList();
@@ -289,7 +289,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 		if (row >= 0)
 		{
 			llocation = jTable1.getValueAt(row, 0).toString();
-			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Location_Delete")+" " + llocation , lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Location_Delete")+" " + llocation , lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 				JDBLocation l = new JDBLocation(Common.selectedHostID, Common.sessionID);
@@ -323,12 +323,12 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected())
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		}
 		else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -499,7 +499,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_LOCATION_ADD"));
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
@@ -511,7 +511,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_LOCATION_EDIT"));
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
@@ -523,7 +523,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 							}
 
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_LOCATION_DELETE"));
 								newItemMenuItem.addActionListener(new ActionListener() {
 									public void actionPerformed(final ActionEvent e) {
@@ -546,7 +546,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 							}
 							
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -559,7 +559,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -572,7 +572,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 								popupMenu.add(newItemMenuItem);
 							}
 							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_process_order);
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_process_order_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -927,7 +927,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
@@ -940,7 +940,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
@@ -953,7 +953,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					});
 				}
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
@@ -1020,7 +1020,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonClear = new JButton4j(Common.icon_clear);
+					jButtonClear = new JButton4j(Common.icon_clear_16x16);
 					jButtonClear.addActionListener(new ActionListener() {
 						public void actionPerformed(final ActionEvent e) {
 							clearFilter();

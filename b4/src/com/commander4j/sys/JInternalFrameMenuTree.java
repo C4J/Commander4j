@@ -224,7 +224,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		jtreeToolbar.setOrientation(0);
 		jtreeToolbar.setFloatable(false);
 
-		btnExpandAll = new JButton(Common.icon_expand_all);
+		btnExpandAll = new JButton(Common.icon_expand_all_16x16);
 		btnExpandAll.addActionListener(buttonhandler);
 		btnExpandAll.setToolTipText("Expand all menu items");
 		btnExpandAll.setSize(30,30);
@@ -232,7 +232,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		btnExpandAll.setMinimumSize(new Dimension(30,30));
 		btnExpandAll.setPreferredSize(new Dimension(30,30));
 
-		btnExpandNode = new JButton(Common.icon_expand_node);
+		btnExpandNode = new JButton(Common.icon_expand_node_16x16);
 		btnExpandNode.addActionListener(buttonhandler);
 		btnExpandNode.setToolTipText("Expand selected menu branch");
 		btnExpandNode.setSize(30,30);
@@ -240,7 +240,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		btnExpandNode.setMinimumSize(new Dimension(30,30));
 		btnExpandNode.setPreferredSize(new Dimension(30,30));
 
-		btnCollapseAll = new JButton(Common.icon_collapse_all);
+		btnCollapseAll = new JButton(Common.icon_collapse_all_16x16);
 		btnCollapseAll.addActionListener(buttonhandler);
 		btnCollapseAll.setToolTipText("Collapse menu tree");
 		btnCollapseAll.setSize(30,30);
@@ -248,7 +248,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 		btnCollapseAll.setMinimumSize(new Dimension(30,30));
 		btnCollapseAll.setPreferredSize(new Dimension(30,30));
 
-		btnCollapseNode = new JButton(Common.icon_collapse_node);
+		btnCollapseNode = new JButton(Common.icon_collapse_node_16x16);
 		btnCollapseNode.addActionListener(buttonhandler);
 		btnCollapseNode.setToolTipText("Collapse selected menu branch");
 		btnCollapseNode.setSize(30,30);

@@ -270,12 +270,12 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 		if (jToggleButtonSequence.isSelected() == true)
 		{
 			jToggleButtonSequence.setToolTipText("Descending");
-			jToggleButtonSequence.setIcon(Common.icon_descending);
+			jToggleButtonSequence.setIcon(Common.icon_descending_16x16);
 		}
 		else
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
-			jToggleButtonSequence.setIcon(Common.icon_ascending);
+			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
 		}
 	}
 
@@ -747,7 +747,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 				}
 				
 				{
-					jButtonUserIDLookup = new JButton4j(Common.icon_lookup);
+					jButtonUserIDLookup = new JButton4j(Common.icon_lookup_16x16);
 					jButtonUserIDLookup.setBounds(274, 11, 21, 22);
 					jDesktopPane1.add(jButtonUserIDLookup);
 					jButtonUserIDLookup.addActionListener(new ActionListener() {
@@ -849,7 +849,7 @@ public class JInternalFrameAuditPermissionsAdmin extends JInternalFrame
 				}
 
 				{
-					jButtonClear = new JButton4j(Common.icon_clear);
+					jButtonClear = new JButton4j(Common.icon_clear_16x16);
 					jButtonClear.addActionListener(new ActionListener() {
 						public void actionPerformed(final ActionEvent e) {
 							clearFilter();

@@ -251,11 +251,11 @@ public class JDBPrinterLineMembership
 					prn.getPrinterProperties(rs.getString("printer_id"), rs.getString("group_id"));
 					if (prn.getEnabled().equals("Y"))
 					{
-						mld = new JDBListData(Common.icon_ok, index, true, rs.getString("printer_id"));
+						mld = new JDBListData(Common.icon_ok_16x16, index, true, rs.getString("printer_id"));
 					}
 					else
 					{
-						mld = new JDBListData(Common.icon_cancel, index, true, rs.getString("printer_id"));
+						mld = new JDBListData(Common.icon_cancel_16x16, index, true, rs.getString("printer_id"));
 					}
 	
 					printerList.addLast(mld);
@@ -297,11 +297,11 @@ public class JDBPrinterLineMembership
 					prn.getPrinterProperties(rs.getString("printer_id"), rs.getString("group_id"));
 					if (prn.getEnabled().equals("Y"))
 					{
-						mld = new JDBListData(Common.icon_ok, index, true, rs.getString("printer_id"));
+						mld = new JDBListData(Common.icon_ok_16x16, index, true, rs.getString("printer_id"));
 					}
 					else
 					{
-						mld = new JDBListData(Common.icon_cancel, index, true, rs.getString("printer_id"));
+						mld = new JDBListData(Common.icon_cancel_16x16, index, true, rs.getString("printer_id"));
 					}
 					printerList.addLast(mld);
 				}

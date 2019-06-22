@@ -196,7 +196,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					}
 				}
 				{
-					jButtonAdd = new JButton4j(Common.icon_add);
+					jButtonAdd = new JButton4j(Common.icon_add_16x16);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
@@ -216,7 +216,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 								customerList[x] = custList.get(x).getID();
 							}
 
-							lcustomer = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Customer_Input"), lang.get("btn_Select"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm, customerList, customerList[0]);
+							lcustomer = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Customer_Input"), lang.get("btn_Select"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm_16x16, customerList, customerList[0]);
 
 							if (lcustomer != null)
 							{
@@ -235,7 +235,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 											dataIDList[x] = idList.get(x).getID();
 										}
 
-										ldataid = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Data_ID_Input"), lang.get("btn_Select"), JOptionPane.QUESTION_MESSAGE, Common.icon_confirm, dataIDList, dataIDList[0]);
+										ldataid = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Data_ID_Input"), lang.get("btn_Select"), JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, dataIDList, dataIDList[0]);
 										if (ldataid != null)
 										{
 											if (ldataid.equals("") == false)
@@ -269,7 +269,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					});
 				}
 				{
-					jButtonEdit = new JButton4j(Common.icon_edit);
+					jButtonEdit = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
@@ -285,7 +285,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					});
 				}
 				{
-					jButtonDelete = new JButton4j(Common.icon_delete);
+					jButtonDelete = new JButton4j(Common.icon_delete_16x16);
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
@@ -302,7 +302,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 								lcustomer = jTable1.getValueAt(row, JDBMaterialCustomerDataTableModel.Customer_Col).toString();
 								ldataid = jTable1.getValueAt(row, JDBMaterialCustomerDataTableModel.Data_ID_Col).toString();
 								int question = JOptionPane.showConfirmDialog(Common.mainForm, "Delete Material [" + lmaterial + "] Customer [" + lcustomer + "] Data ID [" + ldataid + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0,
-										Common.icon_confirm);
+										Common.icon_confirm_16x16);
 								if (question == 0)
 								{
 									JDBMaterialCustomerData m = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);

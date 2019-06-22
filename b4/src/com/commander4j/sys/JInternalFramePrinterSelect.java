@@ -145,7 +145,7 @@ public class JInternalFramePrinterSelect extends javax.swing.JInternalFrame
 					}
 				}
 				{
-					jButtonSelect = new JButton4j(Common.icon_select);
+					jButtonSelect = new JButton4j(Common.icon_select_16x16);
 					jDesktopPane1.add(jButtonSelect);
 					jButtonSelect.setText(lang.get("btn_Select"));
 					jButtonSelect.setBounds(185, 316, 110, 32);

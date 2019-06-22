@@ -578,7 +578,7 @@ public class JInternalFrameQMResultAnalysisProperties extends JInternalFrame
 		} else
 		{
 			JUtility.errorBeep();
-			JOptionPane.showMessageDialog(Common.mainForm, analysis.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm);
+			JOptionPane.showMessageDialog(Common.mainForm, analysis.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 		}
 
 	}

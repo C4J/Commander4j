@@ -107,8 +107,8 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 	private JLabel4j_std jLabelLineID;
 	private JDBAutoLabeller autolab = new JDBAutoLabeller(Common.selectedHostID, Common.sessionID);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JButton4j jButtonAssignPrinter = new JButton4j(Common.icon_arrow_left);
-	private JButton4j jButtonUnAssignPrinter = new JButton4j(Common.icon_arrow_right);
+	private JButton4j jButtonAssignPrinter = new JButton4j(Common.icon_arrow_left_16x16);
+	private JButton4j jButtonUnAssignPrinter = new JButton4j(Common.icon_arrow_right_16x16);
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JSpinner JSpinnerSSCCSequence = new JSpinner();
 	private JTextField4j jTextFieldSSCCPrefix = new JTextField4j();
@@ -408,7 +408,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				listAllResources.setCellRenderer(Common.renderer_list_unassigned);
 				listAllResources.setBackground(Common.color_list_unassigned);
 
-				JButton4j jButtonAssignResource = new JButton4j(Common.icon_arrow_left);
+				JButton4j jButtonAssignResource = new JButton4j(Common.icon_arrow_left_16x16);
 				jButtonAssignResource.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -433,7 +433,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				jButtonAssignResource.setBounds(202, 284, 26, 24);
 				jDesktopPane1.add(jButtonAssignResource);
 
-				JButton4j jButtonUnAssignResource = new JButton4j(Common.icon_arrow_right);
+				JButton4j jButtonUnAssignResource = new JButton4j(Common.icon_arrow_right_16x16);
 				jButtonUnAssignResource.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -645,7 +645,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				jDesktopPane1.add(panel_1);
 				panel_1.setLayout(null);
 
-				JButton4j jButtonAddWorkstation = new JButton4j(Common.icon_add);
+				JButton4j jButtonAddWorkstation = new JButton4j(Common.icon_add_16x16);
 				jButtonAddWorkstation.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -656,7 +656,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 				jButtonAddWorkstation.setBounds(13, 326, 25, 25);
 				panel_1.add(jButtonAddWorkstation);
 
-				JButton4j jButtonDeleteWorkstation = new JButton4j(Common.icon_delete);
+				JButton4j jButtonDeleteWorkstation = new JButton4j(Common.icon_delete_16x16);
 				jButtonDeleteWorkstation.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -708,7 +708,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 		if (listWorkstations.isSelectionEmpty() == false)
 		{
 			String item = ((String) listWorkstations.getSelectedValue()).toString();
-			int n = JOptionPane.showConfirmDialog(this, lang.get("btn_Delete") + " " + lang.get("lbl_Workstation") + " [" + item + "]", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int n = JOptionPane.showConfirmDialog(this, lang.get("btn_Delete") + " " + lang.get("lbl_Workstation") + " [" + item + "]", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (n == 0)
 			{
 

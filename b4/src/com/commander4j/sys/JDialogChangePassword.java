@@ -106,12 +106,12 @@ public class JDialogChangePassword extends JDialog
 		}
 
 		/* Create button objects */
-		btn_change = new JButton4j("Change", Common.icon_ok);
+		btn_change = new JButton4j("Change", Common.icon_ok_16x16);
 		btn_change.setSize(111, 32);
 		btn_change.setLocation(27, 148);
 		btn_change.setMnemonic('L');
 		btn_change.setToolTipText("Confirm password change.");
-		btn_cancel = new JButton4j("Cancel", Common.icon_cancel);
+		btn_cancel = new JButton4j("Cancel", Common.icon_cancel_16x16);
 		btn_cancel.setLocation(165, 148);
 		btn_cancel.setSize(111, 32);
 		btn_cancel.setMnemonic('C');

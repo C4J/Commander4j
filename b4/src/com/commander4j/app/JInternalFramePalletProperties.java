@@ -421,7 +421,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 		if (jButtonSave.isEnabled())
 		{
 
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to SSCC [" + lsscc + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to SSCC [" + lsscc + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 			if (question == 0)
 			{
 				save();
@@ -475,7 +475,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 				jButtonUndo.setEnabled(false);
 			} else {
 				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+				JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
 
 			}
 		} else {
@@ -488,7 +488,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 				jButtonUndo.setEnabled(false);
 			} else {
 				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+				JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
 
 			}
 		}
@@ -706,7 +706,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					});
 				}
 				{
-					jButtonLookupMaterial = new JButton4j(Common.icon_lookup);
+					jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupMaterial);
 					jButtonLookupMaterial.setBounds(266, 87, 21, 21);
 					jButtonLookupMaterial.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
@@ -741,7 +741,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					});
 				}
 				{
-					jButtonLookupBatch = new JButton4j(Common.icon_lookup);
+					jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupBatch);
 					jButtonLookupBatch.setBounds(266, 141, 21, 21);
 					jButtonLookupBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_BATCH"));
@@ -775,7 +775,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					});
 				}
 				{
-					jButtonLookupLocation = new JButton4j(Common.icon_lookup);
+					jButtonLookupLocation = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupLocation);
 					jButtonLookupLocation.setBounds(266, 226, 21, 21);
 					jButtonLookupLocation.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_LOCATION"));
@@ -809,7 +809,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					});
 				}
 				{
-					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup);
+					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupProcessOrder);
 					jButtonLookupProcessOrder.setBounds(266, 33, 21, 21);
 					jButtonLookupProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
@@ -1011,7 +1011,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jStatusText.setBounds(0, 540, 466, 21);
 				}
 				{
-					jButton1 = new JButton4j(Common.icon_lookup);
+					jButton1 = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButton1);
 					jButton1.setBounds(266, 168, 21, 21);
 					jButton1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
@@ -1022,7 +1022,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					});
 				}
 				{
-					jButtonEditBatch = new JButton4j(Common.icon_edit);
+					jButtonEditBatch = new JButton4j(Common.icon_edit_16x16);
 					jDesktopPane1.add(jButtonEditBatch);
 					jButtonEditBatch.setBounds(278, 195, 21, 25);
 					jButtonEditBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
@@ -1034,7 +1034,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 				}
 
 				{
-					jButtonUndo = new JButton4j(Common.icon_undo);
+					jButtonUndo = new JButton4j(Common.icon_undo_16x16);
 					jButtonUndo.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							refresh();
@@ -1094,7 +1094,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					textFieldCustomer.setBounds(147, 362, 126, 21);
 					jDesktopPane1.add(textFieldCustomer);
 
-					JButton4j button = new JButton4j(Common.icon_lookup);
+					JButton4j button = new JButton4j(Common.icon_lookup_16x16);
 					button.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER"));
 					button.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {

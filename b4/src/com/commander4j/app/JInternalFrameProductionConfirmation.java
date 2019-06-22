@@ -302,7 +302,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 
 							if (result == false)
 							{
-								JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm);
+								JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
 							}
 							else
 							{

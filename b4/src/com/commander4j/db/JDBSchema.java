@@ -139,7 +139,7 @@ public class JDBSchema {
 					int answer = JOptionPane.showConfirmDialog(
 							null,
 							"Database Schema is out of date.\nPlease use Commander4j Setup program to upgrade.\nDetected version [" + String.valueOf(Common.hostList.getHost(hst.getSiteNumber()).getSchemaVersion()) + "], Expected version ["
-									+ String.valueOf(newVersion) + "]\nContinue with application logon ?", "Database Schema", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+									+ String.valueOf(newVersion) + "]\nContinue with application logon ?", "Database Schema", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 					if (answer == JOptionPane.NO_OPTION)
 					{
@@ -173,7 +173,7 @@ public class JDBSchema {
 								"Your database is configured to expect program version " + String.valueOf(result.program_CURVersion) + 
 								"\nYou appear to be running version " + String.valueOf(result.program_NEWVersion)
 								+ " of the application.\n\nPlease run the Setup4j Configuration to update your database.\nContinue with application logon ?", 
-								"Program Version", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+								"Program Version", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 						if (answer == JOptionPane.NO_OPTION)
 						{
 							System.exit(0);
@@ -196,7 +196,7 @@ public class JDBSchema {
 					if (showWarnings)
 					{
 						int answer = JOptionPane.showConfirmDialog(null, "You appear to be running version "+JVersion.getProgramVersion()+"\nPlease install Commander4j " + String.valueOf(result.program_CURVersion) 
-								 + "\n\nContinue with application logon ?", "Program Version", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+								 + "\n\nContinue with application logon ?", "Program Version", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 						if (answer == JOptionPane.NO_OPTION)
 						{
 							System.exit(0);

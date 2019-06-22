@@ -259,7 +259,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 	}
 
 	private void archive() {
-		int n = JOptionPane.showConfirmDialog(Common.mainForm, "Archive Successful/Resolved Log Records ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+		int n = JOptionPane.showConfirmDialog(Common.mainForm, "Archive Successful/Resolved Log Records ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 		if (n == 0)
 		{
 			JDBInterfaceLog interfaceLog = new JDBInterfaceLog(Common.selectedHostID, Common.sessionID);
@@ -270,7 +270,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 	}
 
 	private void delete() {
-		int n = JOptionPane.showConfirmDialog(Common.mainForm, "Delete selected Log record(s) ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm);
+		int n = JOptionPane.showConfirmDialog(Common.mainForm, "Delete selected Log record(s) ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 		if (n == 0)
 		{
 
@@ -541,7 +541,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 								reSubmit();
 							}
 						});
-						mntmResubmit.setIcon(Common.icon_release);
+						mntmResubmit.setIcon(Common.icon_release_16x16);
 						popupMenu.add(mntmResubmit);
 					}
 					{
@@ -830,7 +830,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 				jDesktopPane1.add(button);
 			}
 
-			button_1 = new JButton4j(Common.icon_clear);
+			button_1 = new JButton4j(Common.icon_clear_16x16);
 			button_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					clearFilter();
@@ -861,7 +861,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			textFieldFilename.setBounds(112, 536, 860, 20);
 			jDesktopPane1.add(textFieldFilename);
 
-			JButton4j btnResubmit = new JButton4j(Common.icon_release);
+			JButton4j btnResubmit = new JButton4j(Common.icon_release_16x16);
 
 			btnResubmit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -873,7 +873,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			btnResubmit.setBounds(283, 135, 139, 32);
 			jDesktopPane1.add(btnResubmit);
 
-			JButton4j btnDelete = new JButton4j(Common.icon_delete);
+			JButton4j btnDelete = new JButton4j(Common.icon_delete_16x16);
 			btnDelete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					delete();
@@ -885,7 +885,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			btnDelete.setBounds(563, 135, 139, 32);
 			jDesktopPane1.add(btnDelete);
 
-			JButton4j btnArchiveResolved = new JButton4j(Common.icon_delete);
+			JButton4j btnArchiveResolved = new JButton4j(Common.icon_delete_16x16);
 			btnArchiveResolved.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					archive();
