@@ -555,36 +555,36 @@ public class JFrameHostAdmin extends JFrame
 
 		if (currentProgramVersion.equals(requiredProgramVersion))
 		{
-			labelActualProgramVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "success-tick.png"));
+			labelActualProgramVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator + "success-tick.png"));
 		}
 		else
 		{
 			if (currentProgramVersion.equals(""))
 			{
-				labelActualProgramVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "empty-db.gif"));
+				labelActualProgramVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator + "empty-db.gif"));
 				result="Commander4j version not found in database, use the AUTO Update option to install them";
 			}
 			else
 			{
-				labelActualProgramVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "fail-cross.png"));
+				labelActualProgramVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator + "fail-cross.png"));
 				result="Commander4j version needs updating, use the AUTO Update option to update it";
 			}
 		}
 
 		if (currentSchemaVersion.equals(requiredSchemaVersion))
 		{
-			labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "success-tick.png"));
+			labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator +  "success-tick.png"));
 		}
 		else
 		{
 			if (currentSchemaVersion.equals(""))
 			{
-				labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "empty-db.gif"));
+				labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator +  "empty-db.gif"));
 				result="No Commander4j tables found, use the AUTO Update option to install them";
 			}
 			else
 			{
-				labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "fail-cross.png"));
+				labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator +  "fail-cross.png"));
 				result="Commander4j tables found but need to be updated, use the AUTO Update option to update them";
 			}
 		}

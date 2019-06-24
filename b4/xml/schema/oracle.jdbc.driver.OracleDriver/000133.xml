@@ -6466,5 +6466,19 @@
 	</statement>
 
 
+	<statement>
+	     UPDATE SYS_LANGUAGE SET TEXT = 'Felhasz- nálók' WHERE LANGUAGE_ID = 'HU' AND RESOURCE_KEY = 'mod_FRM_ADMIN_USERS'
+	</statement>
+	
+	
+	<statement>
+	     UPDATE SYS_LANGUAGE SET TEXT = 'Karton- címke' WHERE LANGUAGE_ID = 'HU' AND RESOURCE_KEY = 'mod_FRM_LABEL_PRINT'
+	</statement>
+	
+	
+	<statement>
+	     UPDATE SYS_LANGUAGE SET TEXT = 'Raklap- címke' WHERE LANGUAGE_ID = 'HU' AND RESOURCE_KEY = 'mod_FRM_PAL_PROD_DEC'
+	</statement>
+	
 	
 </DDL>
