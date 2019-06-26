@@ -3532,7 +3532,7 @@
 	
 	
 	<statement>
-	     UPDATE SYS_LANGUAGE SET TEXT = 'Dichtbij' WHERE LANGUAGE_ID = 'NL' AND RESOURCE_KEY = 'btn_Close'
+	     UPDATE SYS_LANGUAGE SET TEXT = 'Afsluiten' WHERE LANGUAGE_ID = 'NL' AND RESOURCE_KEY = 'btn_Close'
 	</statement>
 	
 	
@@ -3607,7 +3607,7 @@
 	
 	
 	<statement>
-	     UPDATE SYS_LANGUAGE SET TEXT = 'Uitmunten' WHERE LANGUAGE_ID = 'NL' AND RESOURCE_KEY = 'btn_Excel'
+	     UPDATE SYS_LANGUAGE SET TEXT = 'Exporteren' WHERE LANGUAGE_ID = 'NL' AND RESOURCE_KEY = 'btn_Excel'
 	</statement>
 	
 	
@@ -3622,7 +3622,7 @@
 	
 	
 	<statement>
-	     UPDATE SYS_LANGUAGE SET TEXT = 'Helpen' WHERE LANGUAGE_ID = 'NL' AND RESOURCE_KEY = 'btn_Help'
+	     UPDATE SYS_LANGUAGE SET TEXT = 'Help' WHERE LANGUAGE_ID = 'NL' AND RESOURCE_KEY = 'btn_Help'
 	</statement>
 	
 	
@@ -3682,7 +3682,7 @@
 	
 	
 	<statement>
-	     UPDATE SYS_LANGUAGE SET TEXT = 'verkleinen' WHERE LANGUAGE_ID = 'NL' AND RESOURCE_KEY = 'btn_Minimise'
+	     UPDATE SYS_LANGUAGE SET TEXT = 'Verkleinen' WHERE LANGUAGE_ID = 'NL' AND RESOURCE_KEY = 'btn_Minimise'
 	</statement>
 	
 	
@@ -6262,7 +6262,7 @@
 	
 	
 	<statement>
-	     UPDATE SYS_LANGUAGE SET TEXT = 'System Keys Onderhoud' WHERE LANGUAGE_ID = 'NL' AND RESOURCE_KEY = 'mod_FRM_SYSTEM_KEYS'
+	     UPDATE SYS_LANGUAGE SET TEXT = 'Instellingen' WHERE LANGUAGE_ID = 'NL' AND RESOURCE_KEY = 'mod_FRM_SYSTEM_KEYS'
 	</statement>
 	
 	
@@ -6479,6 +6479,6 @@
 	<statement>
 	     UPDATE SYS_LANGUAGE SET TEXT = 'Raklap- címke' WHERE LANGUAGE_ID = 'HU' AND RESOURCE_KEY = 'mod_FRM_PAL_PROD_DEC'
 	</statement>
-	
+
 	
 </DDL>
