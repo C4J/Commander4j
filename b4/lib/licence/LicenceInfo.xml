@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<licences>
+    
+    <licence>
+        <description>Apache Commons IO 2.6</description>
+        <filename>commons_io.txt</filename>
+    </licence>
+    
+    <licence>
+        <description>Apache Commons Lang 2.6</description>
+        <filename>commons_lang.txt</filename>
+    </licence>
+
+    <licence>
+        <description>Apache Commons Email 1.5</description>
+        <filename>commons_email.txt</filename>
+    </licence>
+
+</licences>

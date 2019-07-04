@@ -20,7 +20,7 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/jasperlib/olap4j-0.9.7.309-JS-3.jar 
  lib/jasperlib/spring-core-5.1.4.RELEASE.jar 
  lib/jasperlib/mondrian-3.1.1.12687.jar 
- lib/jasperlib/persistence-api-1.0.jar 
+ lib/jasperlib/hibernate-core-5.4.1.Final.jar 
  lib/jasperlib/servlet-api-2.4.jar 
  lib/jasperlib/batik-i18n-1.11.jar 
  lib/jasperlib/groovy-all-2.4.16.jar 
@@ -28,6 +28,7 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/jasperlib/batik-svg-dom-1.11.jar 
  lib/jasperlib/lucene-core-7.3.0.jar 
  lib/jasperlib/commons-collections4-4.2.jar 
+ lib/jasperlib/javax.persistence-api-2.2.jar 
  lib/jasperlib/icu4j-57.1.jar 
  lib/jasperlib/batik-awt-util-1.11.jar 
  lib/jasperlib/poi-ooxml-4.0.1.jar 
@@ -57,7 +58,6 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/jasperlib/jcommon-1.0.23.jar 
  lib/jasperlib/castor-core-1.4.1.jar 
  lib/jasperlib/lucene-queryparser-7.3.0.jar 
- lib/jasperlib/hibernate-core-3.3.2.GA.jar 
  lib/jasperlib/barbecue-1.5-beta1.jar 
  lib/jasperlib/commons-beanutils-1.9.3.jar 
  lib/jasperlib/xml-apis-ext-1.3.04.jar 
@@ -87,11 +87,12 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/barcode/serializer-2.7.2.jar 
  lib/barcode/avalon-framework-4.2.0.jar 
  lib/barcode/jdom-2.0.6.jar 
- lib/jasper/jasperreports-javaflow-6.8.1.jar 
- lib/jasper/jasperreports-6.8.1.jar 
- lib/jasper/jasperreports-functions-6.8.1.jar 
- lib/jasper/jasperreports-metadata-6.8.1.jar 
- lib/jasper/jasperreports-chart-customizers-6.8.1.jar 
- lib/jasper/jasperreports-annotation-processors-6.8.1.jar 
- lib/jasper/jasperreports-fonts-6.8.1.jar 
- lib/jasper/jasperreports-chart-themes-6.8.1.jar 
+ lib/jasper/jasperreports-javaflow-6.9.0.jar 
+ lib/jasper/jasperreports-6.9.0.jar 
+ lib/jasper/jasperreports-custom-visualization-6.9.0.jar 
+ lib/jasper/jasperreports-annotation-processors-6.9.0.jar 
+ lib/jasper/jasperreports-fonts-6.9.0.jar 
+ lib/jasper/jasperreports-chart-themes-6.9.0.jar 
+ lib/jasper/jasperreports-metadata-6.9.0.jar 
+ lib/jasper/jasperreports-functions-6.9.0.jar 
+ lib/jasper/jasperreports-chart-customizers-6.9.0.jar 
