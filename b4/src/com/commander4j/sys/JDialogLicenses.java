@@ -38,27 +38,6 @@ public class JDialogLicenses extends JDialog
 	JList4j<JLicenseInfo> list = new JList4j<JLicenseInfo>();
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args)
-	{
-		try
-		{
-			JDialogLicenses dialog = new JDialogLicenses(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
-
 	public JDialogLicenses(JFrame frame)
 	{
 

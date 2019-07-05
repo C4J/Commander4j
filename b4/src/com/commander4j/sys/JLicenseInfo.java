@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import com.commander4j.app.JVersion;
 import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLDocument;
 
@@ -83,6 +84,11 @@ public class JLicenseInfo implements Comparable<JLicenseInfo>
 			position++;
 		}
 		
+		if (licenceTypes.containsKey("GNU General Public License V2")==false)
+		{
+			licenceTypes.put("GNU General Public License V2", "GNU General Public License V2.txt");
+		}
+		
 		//Get Library Info
 		position = 1;
 		while (xmlMessage.findXPath("//info/libraries/library["+String.valueOf(position)+"]/description").trim().equals("")==false)
@@ -98,6 +104,9 @@ public class JLicenseInfo implements Comparable<JLicenseInfo>
 			position++;
 		}	
 		
+		JLicenseInfo test = new JLicenseInfo("Commander4j","GNU General Public License V2.txt",JVersion.getProgramVersion(),"GNU General Public License V2");
+
+		typeList.add(test);
 	
 		Collections.sort(typeList);
 		

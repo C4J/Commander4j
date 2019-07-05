@@ -36,30 +36,6 @@ public class JDialogDisplayLicense extends JDialog
 	private JTextPane textPane = new JTextPane();
 	private JScrollPane scrollPane = new JScrollPane();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args)
-	{
-		try
-		{
-			JLicenseInfo license = new JLicenseInfo();
-			license.description = "Test";
-			license.licenceFilename = "GNU General Public License V2.txt";
-			JDialogDisplayLicense dialog = new JDialogDisplayLicense(null, license);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
-
 	public JDialogDisplayLicense(JDialogLicenses lll, JLicenseInfo license)
 	{
 
