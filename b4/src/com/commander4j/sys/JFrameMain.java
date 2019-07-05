@@ -99,6 +99,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 	private JMenuItem mHelpContents = new JMenuItem("Contents");
 	private JMenuItem mHelpAbout = new JMenuItem("About");
 	private JMenuItem mHelpSystemProperties = new JMenuItem("System Info");
+	private JMenuItem mHelpLicences = new JMenuItem("Licences");
 	protected JInternalFrameMenuTree treeMenu;
 	private DefaultComboBoxModel<Object> defComboBoxMod = new DefaultComboBoxModel<Object>();
 	private JDBModule tempModule = new JDBModule(Common.selectedHostID, Common.sessionID);
@@ -234,6 +235,10 @@ public class JFrameMain extends JFrame implements ComponentListener
 		mHelpSystemProperties.setFont(Common.font_menu);
 		mHelpSystemProperties.setMnemonic(java.awt.event.KeyEvent.VK_S);
 		mHelpSystemProperties.addActionListener(buttonhandler);
+		
+		mHelpLicences.setFont(Common.font_menu);
+		mHelpLicences.setMnemonic(java.awt.event.KeyEvent.VK_L);
+		mHelpLicences.addActionListener(buttonhandler);
 
 		mFile.add(mExit);
 		mView.add(mMenu);
@@ -244,6 +249,7 @@ public class JFrameMain extends JFrame implements ComponentListener
 
 		mHelp.add(mHelpContents);
 		mHelp.add(mHelpSystemProperties);
+		mHelp.add(mHelpLicences);
 		mHelp.add(mHelpAbout);
 
 		jtb.setOrientation(0);
@@ -415,6 +421,11 @@ public class JFrameMain extends JFrame implements ComponentListener
 			if (event.getSource() == mHelpSystemProperties)
 			{
 				JLaunchMenu.runDialog("FRM_SYSTEM_PROPERTIES");
+			}
+			
+			if (event.getSource() == mHelpLicences)
+			{
+				JLaunchMenu.runDialog("FRM_LICENCES");
 			}
 
 			if (event.getSource() == mCascade)

@@ -336,6 +336,14 @@ public class JLaunchMenu
 
 			displayDialog(u, optionName);
 		}
+		
+		if (optionName.equals("FRM_LICENCES"))
+		{
+			final JDialogLicenses u;
+			u = new JDialogLicenses(Common.mainForm);
+
+			displayDialog(u, optionName);
+		}
 
 		if (optionName.equals("FRM_SYSTEM_PROPERTIES"))
 		{
