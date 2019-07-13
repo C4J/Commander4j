@@ -1261,7 +1261,7 @@
 		<?JDBAutoLabeller?>
 		<statement>
 			<id>JDBAutoLabeller.create</id>
-			<text>insert into {schema}app_auto_labeller (line,group_id,description,prefix_code,unique_id,modified,validate_resource,validate_workstation) values (?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}app_auto_labeller (line,group_id,description,prefix_code,unique_id,modified,validate_resource,validate_workstation) values (?,?,?,?,?,?,?,?)</text>
 		</statement>	
 		<statement>
 			<id>JDBAutoLabeller.resend</id>

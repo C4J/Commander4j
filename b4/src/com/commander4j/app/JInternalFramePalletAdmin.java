@@ -348,7 +348,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 		if (textFieldMHN.getText().equals("") == false)
 		{
-			q2.applyWhere("mhn_number = ", textFieldMHN.getText());
+			q2.applyWhere("mhn_number like ", textFieldMHN.getText());
 		}
 
 		if (jTextFieldMaterial.getText().equals("") == false)
