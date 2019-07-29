@@ -123,7 +123,7 @@ public class JDialogAbout extends javax.swing.JDialog
 				this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 				{
 					jDesktopPane1 = new JDesktopPane();
-					jDesktopPane1.setBackground(new Color(0,127,195));
+					jDesktopPane1.setBackground(Common.color_edit_properties);
 					jDesktopPane1.setBounds(0, 0, 422, 344);
 					this.getContentPane().add(jDesktopPane1);
 					jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 231));
@@ -166,7 +166,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jDesktopPane1.add(jLabelWebPage);
 						jLabelWebPage.setText(Common.appWebsite);
 						jLabelWebPage.setBounds(6, 266, 398, 14);
-						jLabelWebPage.setForeground(Color.WHITE);
+						jLabelWebPage.setForeground(new Color(0, 0, 255));
 						jLabelWebPage.addMouseListener(new MouseAdapter()
 						{
 							public void mouseClicked(MouseEvent evt)
@@ -203,7 +203,7 @@ public class JDialogAbout extends javax.swing.JDialog
 						jDesktopPane1.add(jLabelEmail);
 						jLabelEmail.setText("Email : "+Common.appSupportEmail);
 						jLabelEmail.setBounds(6, 245, 398, 14);
-						jLabelEmail.setForeground(Color.WHITE);
+						jLabelEmail.setForeground(new Color(0, 0, 255));
 						jLabelEmail.addMouseListener(new MouseAdapter()
 						{
 							public void mouseClicked(MouseEvent evt)

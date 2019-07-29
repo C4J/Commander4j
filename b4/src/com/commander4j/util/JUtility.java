@@ -694,6 +694,12 @@ public class JUtility
 			}
 		}
 
+		if (clientname.contains("."))
+		{
+			String[] bits = clientname.split("\\.");
+			clientname=bits[0];
+		}
+		
 		result = left(clientname, 40);
 
 		return result;

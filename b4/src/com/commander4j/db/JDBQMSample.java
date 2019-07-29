@@ -67,6 +67,8 @@ public class JDBQMSample
 	private String dbActivityID;
 	public static int field_data_1 = 20;
 	public static int field_data_2 = 20;
+	public static int field_data_3 = 20;
+	public static int field_data_4 = 20;
 	private final Logger logger = Logger.getLogger(JDBQMSample.class);
 	private String hostID;
 	private String sessionID;

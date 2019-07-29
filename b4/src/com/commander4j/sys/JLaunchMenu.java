@@ -95,6 +95,14 @@ import com.commander4j.app.JInternalFrameQMSampleRecord;
 import com.commander4j.app.JInternalFrameQMSampleResults;
 import com.commander4j.app.JDialogQMTestProperties;
 import com.commander4j.app.JInternalFrameQMSelectListAdmin;
+import com.commander4j.app.JInternalFrameWTSamplePointAdmin;
+import com.commander4j.app.JInternalFrameWTSamplePointProperties;
+import com.commander4j.app.JInternalFrameWTScaleAdmin;
+import com.commander4j.app.JInternalFrameWTScaleProperties;
+import com.commander4j.app.JInternalFrameWTTNEAdmin;
+import com.commander4j.app.JInternalFrameWTTNEProperties;
+import com.commander4j.app.JInternalFrameWTWorkstationAdmin;
+import com.commander4j.app.JInternalFrameWTWorkstationProperties;
 import com.commander4j.app.JInternalFrameUomAdmin;
 import com.commander4j.app.JInternalFrameUomProperties;
 import com.commander4j.app.JInternalFrameUserReportAdmin;
@@ -1009,6 +1017,58 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
+		
+		if (optionName.equals("FRM_WEIGHT_SAMPLEPOINT"))
+		{
+			final JInternalFrameWTSamplePointAdmin u;
+			if (isLoaded(JInternalFrameWTSamplePointAdmin.class))
+				setVisible(JInternalFrameWTSamplePointAdmin.class);
+			else
+			{
+				u = new JInternalFrameWTSamplePointAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_WORKSTATION"))
+		{
+			final JInternalFrameWTWorkstationAdmin u;
+			if (isLoaded(JInternalFrameWTWorkstationAdmin.class))
+				setVisible(JInternalFrameWTWorkstationAdmin.class);
+			else
+			{
+				u = new JInternalFrameWTWorkstationAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_SCALE"))
+		{
+			final JInternalFrameWTScaleAdmin u;
+			if (isLoaded(JInternalFrameWTScaleAdmin.class))
+				setVisible(JInternalFrameWTScaleAdmin.class);
+			else
+			{
+				u = new JInternalFrameWTScaleAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_TNE"))
+		{
+			final JInternalFrameWTTNEAdmin u;
+			if (isLoaded(JInternalFrameWTTNEAdmin.class))
+				setVisible(JInternalFrameWTTNEAdmin.class);
+			else
+			{
+				u = new JInternalFrameWTTNEAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
 
 		if (optionName.equals("FRM_ADMIN_CUSTOMER"))
 		{
@@ -1200,6 +1260,18 @@ public class JLaunchMenu
 		mod.getModuleProperties();
 		
 		
+		if (optionName.equals("FRM_WEIGHT_TNE_EDIT"))
+		{
+			final JInternalFrameWTTNEProperties u;
+			if (isLoaded(JInternalFrameWTTNEProperties.class))
+				((JInternalFrameWTTNEProperties) isLoadedInstance(JInternalFrameWTTNEProperties.class)).setTNE(StrParam1,StrParam2);
+			else
+			{
+				u = new JInternalFrameWTTNEProperties(StrParam1,StrParam2);
+				displayForm(u, optionName);
+			}
+		}
+		
 		if (optionName.equals("FRM_ADMIN_INTERFACE_LOG"))
 		{
 			final JInternalFrameInterfaceLog u;
@@ -1387,6 +1459,7 @@ public class JLaunchMenu
 			}
 		}
 	}
+	
 
 	public static void runForm(String optionName, String StrParam)
 	{
@@ -1636,6 +1709,42 @@ public class JLaunchMenu
 			else
 			{
 				u = new JInternalFrameUomProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_SAMPLEPOINT_EDIT"))
+		{
+			final JInternalFrameWTSamplePointProperties u;
+			if (isLoaded(JInternalFrameWTSamplePointProperties.class))
+				((JInternalFrameWTSamplePointProperties) isLoadedInstance(JInternalFrameWTSamplePointProperties.class)).setSamplePointID(StrParam);
+			else
+			{
+				u = new JInternalFrameWTSamplePointProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_WORKSTATION_EDIT"))
+		{
+			final JInternalFrameWTWorkstationProperties u;
+			if (isLoaded(JInternalFrameWTWorkstationProperties.class))
+				((JInternalFrameWTWorkstationProperties) isLoadedInstance(JInternalFrameWTWorkstationProperties.class)).setWorkstationID(StrParam);
+			else
+			{
+				u = new JInternalFrameWTWorkstationProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_SCALE_EDIT"))
+		{
+			final JInternalFrameWTScaleProperties u;
+			if (isLoaded(JInternalFrameWTScaleProperties.class))
+				((JInternalFrameWTScaleProperties) isLoadedInstance(JInternalFrameWTScaleProperties.class)).setScaleID(StrParam);
+			else
+			{
+				u = new JInternalFrameWTScaleProperties(StrParam);
 				displayForm(u, optionName);
 			}
 		}

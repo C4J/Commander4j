@@ -126,10 +126,10 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		jTable1.getColumnModel().getColumn(JDBMaterialCustomerDataTableModel.Material_Col).setPreferredWidth(100);
-		jTable1.getColumnModel().getColumn(JDBMaterialCustomerDataTableModel.Customer_Col).setPreferredWidth(100);
-		jTable1.getColumnModel().getColumn(JDBMaterialCustomerDataTableModel.Data_ID_Col).setPreferredWidth(120);
-		jTable1.getColumnModel().getColumn(JDBMaterialCustomerDataTableModel.Data_Col).setPreferredWidth(340);
+		jTable1.getColumnModel().getColumn(JDBMaterialCustomerDataTableModel.Material_Col).setPreferredWidth(120);
+		jTable1.getColumnModel().getColumn(JDBMaterialCustomerDataTableModel.Customer_Col).setPreferredWidth(120);
+		jTable1.getColumnModel().getColumn(JDBMaterialCustomerDataTableModel.Data_ID_Col).setPreferredWidth(155);
+		jTable1.getColumnModel().getColumn(JDBMaterialCustomerDataTableModel.Data_Col).setPreferredWidth(410);
 
 		jScrollPane1.repaint();
 
@@ -155,7 +155,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(625, 245));
-			this.setBounds(0, 0, 835, 279);
+			this.setBounds(0, 0, 831, 425);
 			setVisible(true);
 			this.setIconifiable(true);
 			{
@@ -167,7 +167,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(7, 7, 665, 200);
+					jScrollPane1.setBounds(7, 7, 812, 319);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][]
 						{
@@ -200,7 +200,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(685, 7, 126, 32);
+					jButtonAdd.setBounds(2, 331, 115, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_CUST_DATA_ADD"));
 					jButtonAdd.addActionListener(new ActionListener()
 					{
@@ -273,7 +273,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(685, 35, 126, 32);
+					jButtonEdit.setBounds(119, 331, 115, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_CUST_DATA_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener()
 					{
@@ -289,7 +289,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(685, 63, 126, 32);
+					jButtonDelete.setBounds(236, 331, 115, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_CUST_DATA_DELETE"));
 					jButtonDelete.addActionListener(new ActionListener()
 					{
@@ -329,7 +329,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(685, 91, 126, 32);
+					jButtonPrint.setBounds(353, 331, 115, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_MATERIAL_CUST_DATA"));
 					jButtonPrint.addActionListener(new ActionListener()
 					{
@@ -346,14 +346,14 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(685, 147, 126, 32);
+					jButtonHelp.setBounds(587, 331, 115, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(685, 175, 126, 32);
+					jButtonClose.setBounds(704, 331, 115, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -366,7 +366,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
-					jButtonRefresh.setBounds(685, 119, 126, 32);
+					jButtonRefresh.setBounds(470, 331, 115, 32);
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
 					jButtonRefresh.addActionListener(new ActionListener()
 					{
@@ -381,7 +381,7 @@ public class JInternalFrameMaterialCustomerDataAdmin extends javax.swing.JIntern
 					jStatusBar = new JLabel4j_std();
 					jStatusBar.setForeground(new Color(255, 0, 0));
 					jStatusBar.setBackground(Color.GRAY);
-					jStatusBar.setBounds(0, 224, 822, 21);
+					jStatusBar.setBounds(0, 372, 822, 21);
 					jStatusBar.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 					jDesktopPane1.add(jStatusBar);
 				}
