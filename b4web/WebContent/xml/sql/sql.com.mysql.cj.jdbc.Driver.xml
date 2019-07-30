@@ -1822,6 +1822,35 @@
 		<statement>
 			<id>JDBWTSamplePoint.getSamplePoints</id>
 			<text>select * from {schema}APP_WEIGHT_SAMPLE_POINT order by sample_point</text>
-		</statement>		
+		</statement>	
+		<?JDBMaterialGroup?>		
+		<statement>
+			<id>JDBMaterialGroup.create</id>
+			<text>insert into {schema}APP_WEIGHT_MATERIAL_GROUP (material_group) values (?)</text>
+		</statement>	
+		<statement>
+			<id>JDBMaterialGroup.delete</id>
+			<text>delete from {schema}APP_WEIGHT_MATERIAL_GROUP where material_group = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialGroup.rename</id>
+			<text>update {schema}APP_WEIGHT_MATERIAL_GROUP set material_group = ? where material_group = ?</text>
+		</statement>
+		<statement>
+			<id>JDBMaterialGroup.update</id>
+			<text>update {schema}APP_WEIGHT_MATERIAL_GROUP set description = ?,nominal_weight=?,nominal_weight_uom=?,tare_weight=?,tare_weight_uom=? where material_group = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBMaterialGroup.isValidMaterialGroup</id>
+			<text>select * from {schema}APP_WEIGHT_MATERIAL_GROUP where material_group = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBMaterialGroup.getProperties</id>
+			<text>select * from {schema}APP_WEIGHT_MATERIAL_GROUP where material_group = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBMaterialGroup.getMaterialGroups</id>
+			<text>select * from {schema}APP_WEIGHT_MATERIAL_GROUP order by material_group</text>
+		</statement>	
 	</jdbcDriver>
 </SQL>

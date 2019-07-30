@@ -366,17 +366,39 @@ public class JDBWTTNE
 
 	public void setNegT1(BigDecimal t1)
 	{
-		this.dbNegT1 = t1;
+		if (t1 == null)
+		{
+			this.dbNegT1 = new BigDecimal("0.000");
+		}
+		else
+		{
+			this.dbNegT1 = t1;
+		}
+		
 	}
 
 	public void setNegT2(BigDecimal t2)
 	{
-		this.dbNegT2 = t2;
+		if (t2 == null)
+		{
+			this.dbNegT2 = new BigDecimal("0.000");
+		}
+		else
+		{
+			this.dbNegT2 = t2;
+		}
 	}
 
 	public void setNominalWT(BigDecimal dbNominalWT)
 	{
-		this.dbNominalWT = dbNominalWT;
+		if (dbNominalWT == null)
+		{
+			this.dbNominalWT = new BigDecimal("0.000");
+		}
+		else
+		{
+			this.dbNominalWT = dbNominalWT;
+		}
 	}
 
 	public void setNominalWTUOM(String nominalUOM)

@@ -108,6 +108,9 @@ import com.commander4j.app.JInternalFrameUomProperties;
 import com.commander4j.app.JInternalFrameUserReportAdmin;
 import com.commander4j.app.JInternalFrameUserReportProperties;
 import com.commander4j.app.JInternalFrameUserReportSchema;
+import com.commander4j.app.JInternalFrameWTDataCapture;
+import com.commander4j.app.JInternalFrameWTMaterialGroups;
+import com.commander4j.app.JInternalFrameWTMaterialGroupsProperties;
 import com.commander4j.db.JDBModule;
 import com.commander4j.interfaces.JInternalFrameInterfaceAdmin;
 import com.commander4j.interfaces.JInternalFrameInterfaceControl;
@@ -1031,6 +1034,19 @@ public class JLaunchMenu
 			}
 		}
 		
+		if (optionName.equals("FRM_WEIGHT_CAPTURE"))
+		{
+			final JInternalFrameWTDataCapture u;
+			if (isLoaded(JInternalFrameWTDataCapture.class))
+				setVisible(JInternalFrameWTDataCapture.class);
+			else
+			{
+				u = new JInternalFrameWTDataCapture();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
 		if (optionName.equals("FRM_WEIGHT_WORKSTATION"))
 		{
 			final JInternalFrameWTWorkstationAdmin u;
@@ -1065,6 +1081,19 @@ public class JLaunchMenu
 			else
 			{
 				u = new JInternalFrameWTTNEAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_MATERIAL_GROUP"))
+		{
+			final JInternalFrameWTMaterialGroups u;
+			if (isLoaded(JInternalFrameWTMaterialGroups.class))
+				setVisible(JInternalFrameWTMaterialGroups.class);
+			else
+			{
+				u = new JInternalFrameWTMaterialGroups();
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
@@ -1272,6 +1301,7 @@ public class JLaunchMenu
 			}
 		}
 		
+		
 		if (optionName.equals("FRM_ADMIN_INTERFACE_LOG"))
 		{
 			final JInternalFrameInterfaceLog u;
@@ -1465,6 +1495,18 @@ public class JLaunchMenu
 	{
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
+		
+		if (optionName.equals("FRM_WEIGHT_MATERIAL_GROUP_EDIT"))
+		{
+			final JInternalFrameWTMaterialGroupsProperties u;
+			if (isLoaded(JInternalFrameWTMaterialGroupsProperties.class))
+				((JInternalFrameWTMaterialGroupsProperties) isLoadedInstance(JInternalFrameWTMaterialGroupsProperties.class)).setMaterialGroup(StrParam);
+			else
+			{
+				u = new JInternalFrameWTMaterialGroupsProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
 		
 		if (optionName.equals("FRM_QM_RESULT_ANALYSIS_EDIT"))
 		{

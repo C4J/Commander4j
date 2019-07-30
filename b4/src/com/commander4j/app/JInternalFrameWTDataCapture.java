@@ -34,9 +34,12 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
@@ -49,14 +52,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBMaterialBatch;
+import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBQMSample;
 import com.commander4j.db.JDBQuery;
+import com.commander4j.db.JDBUserReport;
 import com.commander4j.db.JDBWTScale;
 import com.commander4j.db.JDBWTWorkstation;
+import com.commander4j.db.JUserReportParameter;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTable4j;
@@ -98,18 +103,23 @@ public class JInternalFrameWTDataCapture extends JInternalFrame
 
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private JDBLanguage lang;
-	private JCalendarButton calendarButtonexpiryFrom;
-	private JCalendarButton calendarButtonexpiryTo;
+
 	private PreparedStatement listStatement;
 	private JTextField4j textField4j_Description = new JTextField4j(JDBMaterial.field_description);
 	private JTextField4j textField4j_WorkstationID = new JTextField4j(JDBWTWorkstation.field_WorkstationID);
 	private JTextField4j textField4j_ScaleID = new JTextField4j(JDBWTScale.field_ScaleID);
 	private JTextField4j textField4j_ScalePort = new JTextField4j(JDBWTWorkstation.field_ScalePort);
-	private JTextField4j textField4j_User_Data_1 = new JTextField4j(JDBQMSample.field_data_1);
-	private JTextField4j textField4j_User_Data_2 = new JTextField4j(JDBQMSample.field_data_2);
-	private JTextField4j textField4j_User_Data_3 = new JTextField4j(JDBQMSample.field_data_3);
-	private JTextField4j textField4j_User_Data_4 = new JTextField4j(JDBQMSample.field_data_4);
+	private JTextField4j textFieldUserData1 = new JTextField4j(JDBQMSample.field_data_1);
+	private JTextField4j textFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
+	private JTextField4j textFieldUserData3 = new JTextField4j(JDBQMSample.field_data_3);
+	private JTextField4j textFieldUserData4 = new JTextField4j(JDBQMSample.field_data_4);
 	private JButton4j button4j_NewSample = new JButton4j(Common.icon_add_16x16);
+	private JDBWTWorkstation  workdb= new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
+	private JDBProcessOrder  orderdb= new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
+	private JDBMaterial  materialdb= new JDBMaterial(Common.selectedHostID, Common.sessionID);
+	private JTextField4j textField4j_SamplePoint = new JTextField4j(JDBWTWorkstation.field_SamplePoint);
+	private JTextField4j textField4j_OrderStatus = new JTextField4j(JDBProcessOrder.field_status);
+	private JDBUserReport userReport = new JDBUserReport(Common.selectedHostID, Common.sessionID);
 
 	public JInternalFrameWTDataCapture()
 	{
@@ -119,6 +129,18 @@ public class JInternalFrameWTDataCapture extends JInternalFrame
 
 		initGUI();
 
+		String workstation = JUtility.getClientName().toUpperCase();
+		textField4j_WorkstationID.setText(workstation);
+		
+		workdb.getProperties(workstation);
+		textField4j_SamplePoint.setEnabled(false);
+		textField4j_SamplePoint.setText(workdb.getSamplePoint());
+		textField4j_ScaleID.setEnabled(false);
+		textField4j_ScaleID.setText(workdb.getScaleID());
+		textField4j_ScalePort.setEnabled(false);
+		textField4j_ScalePort.setText(workdb.getScalePort());
+		
+		
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 		query.clear();
 		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_MATERIAL where 1=2"));
@@ -162,10 +184,111 @@ public class JInternalFrameWTDataCapture extends JInternalFrame
 		lbatch = batch;
 		jTextFieldProcessOrder.setText(lmaterial);
 		jTextFieldMaterial.setText(lbatch);
-		buildSQL();
-		populateList();
+//		buildSQL();
+//		populateList();
 	}
 
+	private void updateOrderInfo()
+	{
+		String order = jTextFieldProcessOrder.getText();
+		if (orderdb.getProcessOrderProperties(order))
+		{
+			jTextFieldMaterial.setText(orderdb.getMaterial());
+			textField4j_OrderStatus.setText(orderdb.getStatus());
+			
+			if (textField4j_OrderStatus.getText().equals("Ready") || (textField4j_OrderStatus.getText().equals("Running")))
+			{
+				textField4j_OrderStatus.setBackground(Color.WHITE);
+			}
+			else
+			{
+				textField4j_OrderStatus.setBackground(Color.RED);
+			}
+			
+			if (materialdb.getMaterialProperties(orderdb.getMaterial()))
+			{
+				textField4j_Description.setText(materialdb.getDescription());
+			}
+			
+			if (userReport.getUserReportProperties("USER_DATA_1"))
+			{
+				JUserReportParameter param1 = new JUserReportParameter();
+				param1.parameterPosition=1;
+				param1.parameterType="String";
+				param1.parameterStringValue=order;
+				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
+				paramList.add(param1);
+				userReport.setSYSTEMparameters(paramList);
+				if (userReport.runReport())
+				{
+					textFieldUserData1.setText(userReport.getSystemResultData());
+				}
+			}
+			else
+			{
+				textFieldUserData1.setText("");
+			}
+			
+			if (userReport.getUserReportProperties("USER_DATA_2"))
+			{
+				JUserReportParameter param1 = new JUserReportParameter();
+				param1.parameterPosition=1;
+				param1.parameterType="String";
+				param1.parameterStringValue=order;
+				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
+				paramList.add(param1);
+				userReport.setSYSTEMparameters(paramList);
+				if (userReport.runReport())
+				{
+					textFieldUserData2.setText(userReport.getSystemResultData());
+				}
+			}
+			else
+			{
+				textFieldUserData2.setText("");
+			}
+			
+			if (userReport.getUserReportProperties("USER_DATA_3"))
+			{
+				JUserReportParameter param1 = new JUserReportParameter();
+				param1.parameterPosition=1;
+				param1.parameterType="String";
+				param1.parameterStringValue=order;
+				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
+				paramList.add(param1);
+				userReport.setSYSTEMparameters(paramList);
+				if (userReport.runReport())
+				{
+					textFieldUserData3.setText(userReport.getSystemResultData());
+				}
+			}
+			else
+			{
+				textFieldUserData3.setText("");
+			}
+			
+			if (userReport.getUserReportProperties("USER_DATA_4"))
+			{
+				JUserReportParameter param1 = new JUserReportParameter();
+				param1.parameterPosition=1;
+				param1.parameterType="String";
+				param1.parameterStringValue=order;
+				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
+				paramList.add(param1);
+				userReport.setSYSTEMparameters(paramList);
+				if (userReport.runReport())
+				{
+					textFieldUserData4.setText(userReport.getSystemResultData());
+				}
+			}
+			else
+			{
+				textFieldUserData4.setText("");
+			}
+		}
+		
+	}
+	
 	private void buildSQL()
 	{
 
@@ -173,9 +296,9 @@ public class JInternalFrameWTDataCapture extends JInternalFrame
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 		query.clear();
 
-		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_MATERIAL_BATCH"));
-		query.addParamtoSQL("material=", jTextFieldProcessOrder.getText());
-		query.addParamtoSQL("batch_number=", jTextFieldMaterial.getText());
+		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_WEIGHT_SAMPLE_HEADER ORDER BY WEIGHT_DATE"));
+		query.addParamtoSQL("sample_point=", jTextFieldProcessOrder.getText());
+		query.addParamtoSQL("sample_date=", jTextFieldMaterial.getText());
 
 		query.bindParams();
 		listStatement = query.getPreparedStatement();
@@ -265,14 +388,14 @@ public class JInternalFrameWTDataCapture extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(430, 566, 126, 32);
+					jButtonHelp.setBounds(489, 566, 126, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(558, 566, 126, 32);
+					jButtonClose.setBounds(617, 566, 126, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -285,26 +408,33 @@ public class JInternalFrameWTDataCapture extends JInternalFrame
 				{
 					jLabel_ProcessOrder = new JLabel4j_std();
 					jDesktopPane1.add(jLabel_ProcessOrder);
-					jLabel_ProcessOrder.setText(lang.get("lbl_ProcessOrder"));
-					jLabel_ProcessOrder.setBounds(0, 59, 120, 21);
+					jLabel_ProcessOrder.setText(lang.get("lbl_Process_Order"));
+					jLabel_ProcessOrder.setBounds(0, 59, 96, 21);
 					jLabel_ProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jTextFieldProcessOrder = new JTextField4j(JDBMaterial.field_material);
+					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
+					jTextFieldProcessOrder.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyReleased(KeyEvent e) {
+							updateOrderInfo();
+						}
+					});
 					jDesktopPane1.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setBounds(126, 55, 96, 25);
+					jTextFieldProcessOrder.setBounds(104, 55, 118, 25);
 				}
 				{
 					jLabel_Material = new JLabel4j_std();
 					jDesktopPane1.add(jLabel_Material);
 					jLabel_Material.setText(lang.get("lbl_Material"));
-					jLabel_Material.setBounds(245, 59, 73, 21);
+					jLabel_Material.setBounds(438, 59, 94, 21);
 					jLabel_Material.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterialBatch.field_batch_number);
+					jTextFieldMaterial.setEnabled(false);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(324, 55, 126, 25);
+					jTextFieldMaterial.setBounds(538, 55, 118, 25);
 				}
 
 				{
@@ -318,10 +448,11 @@ public class JInternalFrameWTDataCapture extends JInternalFrame
 							if (JLaunchLookup.processOrders())
 							{
 								jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
+								updateOrderInfo();
 							}
 						}
 					});
-					jButtonLookupProcessOrder.setBounds(223, 55, 21, 25);
+					jButtonLookupProcessOrder.setBounds(222, 55, 21, 25);
 					jDesktopPane1.add(jButtonLookupProcessOrder);
 				}
 
@@ -346,108 +477,114 @@ public class JInternalFrameWTDataCapture extends JInternalFrame
 
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(299, 566, 126, 32);
+					jButtonExcel.setBounds(358, 566, 126, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
+				textField4j_Description.setEnabled(false);
 
-				{
-					calendarButtonexpiryFrom.setEnabled(false);
-					calendarButtonexpiryFrom.setBounds(265, 126, 21, 21);
-					jDesktopPane1.add(calendarButtonexpiryFrom);
-				}
-				{
-					calendarButtonexpiryTo.setEnabled(false);
-					calendarButtonexpiryTo.setBounds(265, 166, 21, 21);
-					jDesktopPane1.add(calendarButtonexpiryTo);
-				}
 
-				textField4j_Description.setBounds(543, 57, 431, 25);
+				textField4j_Description.setBounds(752, 55, 222, 25);
 				jDesktopPane1.add(textField4j_Description);
 
 				JLabel4j_std label4j_Description = new JLabel4j_std();
 				label4j_Description.setText(lang.get("lbl_Description"));
 				label4j_Description.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_Description.setBounds(455, 59, 82, 21);
+				label4j_Description.setBounds(659, 59, 84, 21);
 				jDesktopPane1.add(label4j_Description);
 
 				JLabel4j_std label4j_WorkstationID = new JLabel4j_std();
 				label4j_WorkstationID.setText(lang.get("lbl_Workstation"));
 				label4j_WorkstationID.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_WorkstationID.setBounds(0, 22, 120, 21);
+				label4j_WorkstationID.setBounds(0, 22, 96, 21);
 				jDesktopPane1.add(label4j_WorkstationID);
+				textField4j_WorkstationID.setEditable(false);
 
-				textField4j_WorkstationID.setBounds(126, 18, 118, 25);
+				textField4j_WorkstationID.setBounds(104, 18, 118, 25);
 				jDesktopPane1.add(textField4j_WorkstationID);
 
 				JLabel4j_std label4j_SamplePoint = new JLabel4j_std();
 				label4j_SamplePoint.setText(lang.get("lbl_SamplePoint"));
 				label4j_SamplePoint.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_SamplePoint.setBounds(245, 22, 73, 21);
+				label4j_SamplePoint.setBounds(222, 22, 110, 21);
 				jDesktopPane1.add(label4j_SamplePoint);
-
-				JTextField4j textField4j_SamplePoint = new JTextField4j(25);
-				textField4j_SamplePoint.setBounds(324, 18, 118, 25);
+				textField4j_SamplePoint.setBounds(344, 18, 96, 25);
 				jDesktopPane1.add(textField4j_SamplePoint);
 
-				textField4j_ScaleID.setBounds(543, 18, 118, 25);
+				textField4j_ScaleID.setBounds(538, 18, 118, 25);
 				jDesktopPane1.add(textField4j_ScaleID);
 
 				JLabel4j_std label4j_ScaleID = new JLabel4j_std();
-				label4j_ScaleID.setText(lang.get("lbl_ScaleID"));
+				label4j_ScaleID.setText(lang.get("lbl_Scale_ID"));
 				label4j_ScaleID.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_ScaleID.setBounds(464, 22, 73, 21);
+				label4j_ScaleID.setBounds(438, 22, 94, 21);
 				jDesktopPane1.add(label4j_ScaleID);
 
 				textField4j_ScalePort.setBounds(752, 18, 222, 25);
 				jDesktopPane1.add(textField4j_ScalePort);
 
 				JLabel4j_std label4j_ScalePort = new JLabel4j_std();
-				label4j_ScalePort.setText(lang.get("lbl_ScalePort"));
+				label4j_ScalePort.setText(lang.get("lbl_Scale_Port"));
 				label4j_ScalePort.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_ScalePort.setBounds(664, 22, 82, 21);
+				label4j_ScalePort.setBounds(649, 22, 94, 21);
 				jDesktopPane1.add(label4j_ScalePort);
 
 				JLabel4j_std label4j_User_Data_1 = new JLabel4j_std();
-				label4j_User_Data_1.setText(lang.get("lbl_User_Data_1"));
+				label4j_User_Data_1.setText(lang.get("lbl_User_Data1"));
 				label4j_User_Data_1.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_User_Data_1.setBounds(0, 96, 120, 21);
+				label4j_User_Data_1.setBounds(0, 96, 96, 21);
 				jDesktopPane1.add(label4j_User_Data_1);
+				textFieldUserData1.setToolTipText("Custom Field USER_DATA_1");
 
-				textField4j_User_Data_1.setBounds(126, 92, 118, 25);
-				jDesktopPane1.add(textField4j_User_Data_1);
+				textFieldUserData1.setBounds(104, 92, 118, 25);
+				jDesktopPane1.add(textFieldUserData1);
 
 				JLabel4j_std label4j_User_Data_2 = new JLabel4j_std();
-				label4j_User_Data_2.setText(lang.get("lbl_User_Data_2"));
+				label4j_User_Data_2.setText(lang.get("lbl_User_Data2"));
 				label4j_User_Data_2.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_User_Data_2.setBounds(245, 96, 73, 21);
+				label4j_User_Data_2.setBounds(222, 96, 110, 21);
 				jDesktopPane1.add(label4j_User_Data_2);
+				textFieldUserData2.setToolTipText("Custom Field USER_DATA_2");
 
-				textField4j_User_Data_2.setBounds(324, 92, 126, 25);
-				jDesktopPane1.add(textField4j_User_Data_2);
+				textFieldUserData2.setBounds(346, 92, 94, 25);
+				jDesktopPane1.add(textFieldUserData2);
 
 				JLabel4j_std label4j_User_Data_3 = new JLabel4j_std();
-				label4j_User_Data_3.setText(lang.get("lbl_User_Data_3"));
+				label4j_User_Data_3.setText(lang.get("lbl_User_Data3"));
 				label4j_User_Data_3.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_User_Data_3.setBounds(464, 96, 73, 21);
+				label4j_User_Data_3.setBounds(438, 96, 94, 21);
 				jDesktopPane1.add(label4j_User_Data_3);
+				textFieldUserData3.setToolTipText("Custom Field USER_DATA_3");
 
-				textField4j_User_Data_3.setBounds(543, 92, 126, 25);
-				jDesktopPane1.add(textField4j_User_Data_3);
+				textFieldUserData3.setBounds(538, 92, 118, 25);
+				jDesktopPane1.add(textFieldUserData3);
 
 				JLabel4j_std label4j_User_Data_4 = new JLabel4j_std();
-				label4j_User_Data_4.setText(lang.get("lbl_User_Data_4"));
+				label4j_User_Data_4.setText(lang.get("lbl_User_Data4"));
 				label4j_User_Data_4.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_User_Data_4.setBounds(673, 96, 73, 21);
+				label4j_User_Data_4.setBounds(647, 96, 96, 21);
 				jDesktopPane1.add(label4j_User_Data_4);
+				textFieldUserData4.setToolTipText("Custom Field USER_DATA_4");
 
-				textField4j_User_Data_4.setBounds(750, 92, 126, 25);
-				jDesktopPane1.add(textField4j_User_Data_4);
+				textFieldUserData4.setBounds(752, 92, 126, 25);
+				jDesktopPane1.add(textFieldUserData4);
 				
 
 				button4j_NewSample.setText("btn_Add");
 				button4j_NewSample.setMnemonic('0');
-				button4j_NewSample.setBounds(118, 129, 126, 32);
+				button4j_NewSample.setBounds(234, 566, 126, 32);
 				jDesktopPane1.add(button4j_NewSample);
+				
+				JLabel4j_std label4j__OrderStatus = new JLabel4j_std();
+				label4j__OrderStatus.setText(lang.get("lbl_Process_Order_Status"));
+				label4j__OrderStatus.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j__OrderStatus.setBounds(250, 59, 82, 21);
+				jDesktopPane1.add(label4j__OrderStatus);
+				textField4j_OrderStatus.setEnabled(false);
+				
+				textField4j_OrderStatus.setText("");
+				textField4j_OrderStatus.setBounds(344, 55, 96, 25);
+				jDesktopPane1.add(textField4j_OrderStatus);
+				
 
 			}
 		}

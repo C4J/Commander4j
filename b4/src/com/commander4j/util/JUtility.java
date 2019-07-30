@@ -606,7 +606,7 @@ public class JUtility
 	{
 		String result = "error";
 		@SuppressWarnings("unused")
-		int SeqNumber = 0;
+		Long SeqNumber = (long) 0;
 		int SeqStart = 0;
 		int SeqEnd = 0;
 		int SeqLength = 0;
@@ -619,7 +619,7 @@ public class JUtility
 
 		do
 		{
-			SeqNumber = Integer.parseInt(No);
+			SeqNumber = Long.parseLong(No);
 			SeqNumber++;
 
 			No = JUtility.padString(No, false, SeqLength, "0");

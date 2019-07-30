@@ -146,7 +146,7 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 		setTNE(value,uom);
 		
 		final JHelp help = new JHelp();
-		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_WEIGHT_SAMPLEPOINT_ADD"));
+		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_WEIGHT_TNE_ADD"));
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -155,7 +155,7 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				jTextField_TNE.requestFocus();
-				jTextField_TNE.setCaretPosition(jTextField_TNE.getText().length());
+				jTextField_TNE.setCaretPosition(0);
 				jButtonSave.setEnabled(false);
 			}
 		});
@@ -169,7 +169,7 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
 			this.setBounds(25, 25, 424, 279);
 			setVisible(true);
-			this.setTitle("Tollerable Negative Error");
+			this.setTitle("Tolerable Negative Error");
 			{
 				jDesktopPane1 = new JDesktopPane();
 				jDesktopPane1.setBackground(Common.color_edit_properties);
