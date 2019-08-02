@@ -80,6 +80,48 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 	
+	public static boolean wtProductGroups() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_WEIGHT_PRODUCT_GROUP"));
+		JDialogLookup.dlg_title = "Product Groups";
+
+		JDialogLookup.dlg_key_field_name = "product_group";
+		JDialogLookup.dlg_criteria_field_name_default = "description";
+		JDialogLookup.dlg_orderBy_name_default = "product_group";
+		JDialogLookup.dlg_sort_descending = true;
+
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+	
+	public static boolean wtContainerCode() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_WEIGHT_CONTAINER_CODE"));
+		JDialogLookup.dlg_title = "Container Codes";
+
+		JDialogLookup.dlg_key_field_name = "container_code";
+		JDialogLookup.dlg_criteria_field_name_default = "description";
+		JDialogLookup.dlg_orderBy_name_default = "container_code";
+		JDialogLookup.dlg_sort_descending = true;
+
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+	
 
 	public static boolean processOrders() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();

@@ -29,6 +29,7 @@ package com.commander4j.app;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -40,8 +41,6 @@ import java.math.BigDecimal;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -53,13 +52,8 @@ import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
-
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
-
-import java.awt.Font;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 
 /**
  * The JInternalFrameSamplePointProperties class allows the user to edit a record in the APP_WEIGHT_TNE table.
@@ -74,7 +68,6 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 {
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
-	private JLabel4j_std jLabel_SampleSize;
 	private JButton4j jButtonClose;
 	private JTextField4j jTextField_Nominal_Uom = new JTextField4j(JDBUom.field_uom);
 	private JButton4j jButtonHelp;
@@ -91,7 +84,6 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 	private JTextField4j jTextField_TNE_Uom = new JTextField4j(JDBUom.field_uom);
 	private JTextField4j jTextField_NegT1_UOM = new JTextField4j(JDBUom.field_uom);
 	private JTextField4j jTextField_NegT2_UOM = new JTextField4j(JDBUom.field_uom);
-	private JSpinner jSpinnerSampleSize;
 
 
 	public void setTNE(String tneValue,String tneUom)
@@ -133,7 +125,6 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 		jTextField_NegT2.setText(tne.getNegT2().toString());
 		jTextField_NegT2_UOM.setEditable(false);
 		jTextField_NegT2_UOM.setText(tneUom);
-		jSpinnerSampleSize.setValue(tne.getSampleSize());
 		jButtonSave.setEnabled(false);
 		
 	}
@@ -167,7 +158,7 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 424, 279);
+			this.setBounds(25, 25, 424, 239);
 			setVisible(true);
 			this.setTitle("Tolerable Negative Error");
 			{
@@ -184,21 +175,13 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 					jLabel_Nominal.setBounds(29, 12, 137, 21);
 				}
 				{
-					jLabel_SampleSize = new JLabel4j_std();
-					jDesktopPane1.add(jLabel_SampleSize);
-					jLabel_SampleSize.setText(lang.get("lbl_SampleSize"));
-					jLabel_SampleSize.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_SampleSize.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel_SampleSize.setBounds(17, 148, 149, 21);
-				}
-				{
 					jButtonSave = new JButton4j(Common.icon_update_16x16);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setEnabled(false);
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(46, 192, 110, 32);
+					jButtonSave.setBounds(49, 154, 110, 32);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							save();
@@ -210,14 +193,14 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(158, 192, 110, 32);
+					jButtonHelp.setBounds(161, 154, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(270, 192, 110, 32);
+					jButtonClose.setBounds(273, 154, 110, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -310,26 +293,7 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 				jDesktopPane1.add(jTextField_NegT2_UOM);
 				
 
-				{
-					SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
-					jSpinnerIntModel.setMinimum(1);
-					jSpinnerIntModel.setMaximum(500);
-					jSpinnerIntModel.setStepSize(1);
-					jSpinnerSampleSize = new JSpinner();
-					jSpinnerSampleSize.addChangeListener(new ChangeListener() {
-						public void stateChanged(ChangeEvent e) {
-							jButtonSave.setEnabled(true);
-						}
-					});
-					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerSampleSize);
-					ne.getTextField().setFont(Common.font_std);
-					jSpinnerSampleSize.setEditor(ne);
-					jSpinnerSampleSize.setModel(jSpinnerIntModel);
-					jSpinnerSampleSize.setBounds(176, 147, 68, 21);
-					jSpinnerSampleSize.setValue(5);
-					jSpinnerSampleSize.getEditor().setSize(45, 21);
-					jDesktopPane1.add(jSpinnerSampleSize);
-				}
+
 				jButtonSave.setEnabled(false);
 				
 			}
@@ -347,7 +311,6 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 		tne.setNegT1(jTextField_NegT1.getQuantity());
 		tne.setNegT2(jTextField_NegT2.getQuantity());
 		tne.setTNE(jTextField_TNE.getQuantity());
-		tne.setSampleSize(Integer.valueOf(jSpinnerSampleSize.getValue().toString()));
 
 		tne.update();
 		jButtonSave.setEnabled(false);

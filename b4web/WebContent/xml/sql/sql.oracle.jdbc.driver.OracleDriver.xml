@@ -1783,7 +1783,7 @@
 		</statement>
 		<statement>
 			<id>JDBWTTNE.update</id>
-			<text>update {schema}APP_WEIGHT_TNE set tne = ?,sample_size=?,neg_t1=?,neg_t2=? where nominal_weight = ? and nominal_weight_uom=?</text>
+			<text>update {schema}APP_WEIGHT_TNE set tne = ?,neg_t1=?,neg_t2=? where nominal_weight = ? and nominal_weight_uom=?</text>
 		</statement>
 	    <statement>
 			<id>JDBWTTNE.isValidTNE</id>
@@ -1826,34 +1826,63 @@
 			<id>JDBWTSamplePoint.getSamplePoints</id>
 			<text>select * from {schema}APP_WEIGHT_SAMPLE_POINT order by sample_point</text>
 		</statement>
-		<?JDBMaterialGroup?>		
+		<?JDBProductGroup?>		
 		<statement>
-			<id>JDBMaterialGroup.create</id>
-			<text>insert into {schema}APP_WEIGHT_MATERIAL_GROUP (material_group) values (?)</text>
+			<id>JDBProductGroup.create</id>
+			<text>insert into {schema}APP_WEIGHT_PRODUCT_GROUP (product_group) values (?)</text>
 		</statement>	
 		<statement>
-			<id>JDBMaterialGroup.delete</id>
-			<text>delete from {schema}APP_WEIGHT_MATERIAL_GROUP where material_group = ?</text>
+			<id>JDBProductGroup.delete</id>
+			<text>delete from {schema}APP_WEIGHT_PRODUCT_GROUP where product_group = ?</text>
 		</statement>
 		<statement>
-			<id>JDBMaterialGroup.rename</id>
-			<text>update {schema}APP_WEIGHT_MATERIAL_GROUP set material_group = ? where material_group = ?</text>
+			<id>JDBProductGroup.rename</id>
+			<text>update {schema}APP_WEIGHT_PRODUCT_GROUP set product_group = ? where product_group = ?</text>
 		</statement>
 		<statement>
-			<id>JDBMaterialGroup.update</id>
-			<text>update {schema}APP_WEIGHT_MATERIAL_GROUP set description = ?,nominal_weight=?,nominal_weight_uom=?,tare_weight=?,tare_weight_uom=? where material_group = ?</text>
+			<id>JDBProductGroup.update</id>
+			<text>update {schema}APP_WEIGHT_PRODUCT_GROUP set description = ?,nominal_weight=?,nominal_weight_uom=?,tare_weight=?,tare_weight_uom=? where product_group = ?</text>
 		</statement>
 	    <statement>
-			<id>JDBMaterialGroup.isValidMaterialGroup</id>
-			<text>select * from {schema}APP_WEIGHT_MATERIAL_GROUP where material_group = ?</text>
+			<id>JDBProductGroup.isValidProductGroup</id>
+			<text>select * from {schema}APP_WEIGHT_PRODUCT_GROUP where product_group = ?</text>
 		</statement>
 	    <statement>
-			<id>JDBMaterialGroup.getProperties</id>
-			<text>select * from {schema}APP_WEIGHT_MATERIAL_GROUP where material_group = ?</text>
+			<id>JDBProductGroup.getProperties</id>
+			<text>select * from {schema}APP_WEIGHT_PRODUCT_GROUP where product_group = ?</text>
 		</statement>	
 		<statement>
-			<id>JDBMaterialGroup.getMaterialGroups</id>
-			<text>select * from {schema}APP_WEIGHT_MATERIAL_GROUP order by material_group</text>
-		</statement>																					
+			<id>JDBProductGroup.getProductGroups</id>
+			<text>select * from {schema}APP_WEIGHT_PRODUCT_GROUP order by product_group</text>
+		</statement>		
+		<?JDBWTContainerCode?>		
+		<statement>
+			<id>JDBWTContainerCode.create</id>
+			<text>insert into {schema}APP_WEIGHT_CONTAINER_CODE (container_code) values (?)</text>
+		</statement>	
+		<statement>
+			<id>JDBWTContainerCode.delete</id>
+			<text>delete from {schema}APP_WEIGHT_CONTAINER_CODE where container_code = ?</text>
+		</statement>
+		<statement>
+			<id>JDBWTContainerCode.rename</id>
+			<text>update {schema}APP_WEIGHT_CONTAINER_CODE set container_code = ? where container_code = ?</text>
+		</statement>
+		<statement>
+			<id>JDBWTContainerCode.update</id>
+			<text>update {schema}APP_WEIGHT_CONTAINER_CODE set description = ? where container_code = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBWTContainerCode.isValidContainerCode</id>
+			<text>select * from {schema}APP_WEIGHT_CONTAINER_CODE where container_code = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBWTContainerCode.getProperties</id>
+			<text>select * from {schema}APP_WEIGHT_CONTAINER_CODE where container_code = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBWTContainerCode.getContainerCodes</id>
+			<text>select * from {schema}APP_WEIGHT_CONTAINER_CODE order by container_code</text>
+		</statement>																			
 	</jdbcDriver>
 </SQL>

@@ -417,7 +417,7 @@ public class JInternalFrameWTTNEAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonExcel);
 				}
 				
-				JLabel lbl_Legend = new JLabel("   Nominal            TNE       Samples    Neg T1         Neg T2");
+				JLabel lbl_Legend = new JLabel("   Nominal            TNE          Neg T1         Neg T2");
 				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
 				lbl_Legend.setBounds(6, 12, 518, 15);
 				jDesktopPane1.add(lbl_Legend);

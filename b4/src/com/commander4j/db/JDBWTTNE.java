@@ -41,12 +41,10 @@ public class JDBWTTNE
 	public static int field_Nominal = 10;
 	public static int field_Nominal_UOM= 3;
 	public static int field_TNE = 10;
-	public static int field_SampleSize = 5;
 	public static int field_NegT1 = 10;
 	public static int field_NegT2 = 10;
 	private BigDecimal dbNominalWT = new BigDecimal("0");
 	private String dbNominalWTUOM = "";
-	private int dbSampleSize = 0;
 	private BigDecimal dbTNE = new BigDecimal("0");
 	private BigDecimal dbNegT1 = new BigDecimal("0");
 	private BigDecimal dbNegT2 = new BigDecimal("0");
@@ -68,7 +66,6 @@ public class JDBWTTNE
 		setTNE(zero);
 		setNegT1(zero);
 		setNegT2(zero);
-		setSampleSize(0);
 
 	}
 
@@ -230,7 +227,6 @@ public class JDBWTTNE
 			setNominalWT(rs.getBigDecimal("nominal_weight"));
 			setNominalWTUOM(rs.getString("nominal_weight_uom"));
 			setTNE(rs.getBigDecimal("tne"));
-			setSampleSize(rs.getInt("sample_size"));
 			setNegT1(rs.getBigDecimal("neg_t1"));
 			setNegT2(rs.getBigDecimal("neg_t2"));
 
@@ -279,7 +275,6 @@ public class JDBWTTNE
 				tne.setNominalWT(rs.getBigDecimal("nominal_weight"));
 				tne.setNominalWTUOM(rs.getString("nominal_weight_uom"));
 				tne.setTNE(rs.getBigDecimal("tne"));
-				tne.setSampleSize(rs.getInt("sample_size"));
 				tne.setNegT1(rs.getBigDecimal("neg_t1"));
 				tne.setNegT2(rs.getBigDecimal("neg_t2"));
 				tneList.add(tne);
@@ -296,12 +291,6 @@ public class JDBWTTNE
 		return tneList;
 	}
 	
-	
-	public int getSampleSize()
-	{
-		return dbSampleSize;
-	}
-
 	private String getSessionID()
 	{
 		return sessionID;
@@ -406,12 +395,6 @@ public class JDBWTTNE
 		this.dbNominalWTUOM = JUtility.replaceNullStringwithBlank(nominalUOM);
 	}
 
-	public void setSampleSize(int samplesize)
-	{
-		this.dbSampleSize = samplesize;
-	}
-
-
 	private void setSessionID(String session)
 	{
 		sessionID = session;
@@ -430,8 +413,8 @@ public class JDBWTTNE
 		result= JUtility.padString(getNominalWT().toString(), false, field_Nominal, " ")+" "+ 
 		        JUtility.padString(getNominalWTUOM(), true, field_Nominal_UOM, " ")+" "+ 
 				JUtility.padString(getTNE().toString(), false, field_TNE, " ")+" "+
-		        JUtility.padString(getNominalWTUOM(), true, field_Nominal_UOM, " ")+"   ("+ 
-				JUtility.padString(String.valueOf(getSampleSize()), false, field_SampleSize, " ")+")"+
+		        JUtility.padString(getNominalWTUOM(), true, field_Nominal_UOM, " ")+" "+ 
+
 		        JUtility.padString(getNegT1().toString(), false, field_NegT1, " ")+" "+ 
 				JUtility.padString(getNominalWTUOM(), true, field_Nominal_UOM, " ")+" "+
 		        JUtility.padString(getNegT2().toString(), false, field_NegT2, " ")+" "+ 
@@ -452,11 +435,10 @@ public class JDBWTTNE
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTTNE.update"));
 				stmtupdate.setBigDecimal(1, getTNE());
-				stmtupdate.setInt(2, getSampleSize());
-				stmtupdate.setBigDecimal(3, getNegT1());
-				stmtupdate.setBigDecimal(4, getNegT2());
-				stmtupdate.setBigDecimal(5, getNominalWT());
-				stmtupdate.setString(6, getNominalWTUOM());
+				stmtupdate.setBigDecimal(2, getNegT1());
+				stmtupdate.setBigDecimal(3, getNegT2());
+				stmtupdate.setBigDecimal(4, getNominalWT());
+				stmtupdate.setString(5, getNominalWTUOM());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

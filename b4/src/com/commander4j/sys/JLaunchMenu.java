@@ -108,9 +108,11 @@ import com.commander4j.app.JInternalFrameUomProperties;
 import com.commander4j.app.JInternalFrameUserReportAdmin;
 import com.commander4j.app.JInternalFrameUserReportProperties;
 import com.commander4j.app.JInternalFrameUserReportSchema;
-import com.commander4j.app.JInternalFrameWTDataCapture;
-import com.commander4j.app.JInternalFrameWTMaterialGroups;
-import com.commander4j.app.JInternalFrameWTMaterialGroupsProperties;
+import com.commander4j.app.JInternalFrameWTContainerCodeAdmin;
+import com.commander4j.app.JInternalFrameWTContainerCodeProperties;
+import com.commander4j.app.JInternalFrameWTWeightCapture;
+import com.commander4j.app.JInternalFrameWTProductGroupAdmin;
+import com.commander4j.app.JInternalFrameWTProductGroupProperties;
 import com.commander4j.db.JDBModule;
 import com.commander4j.interfaces.JInternalFrameInterfaceAdmin;
 import com.commander4j.interfaces.JInternalFrameInterfaceControl;
@@ -1034,14 +1036,27 @@ public class JLaunchMenu
 			}
 		}
 		
-		if (optionName.equals("FRM_WEIGHT_CAPTURE"))
+		if (optionName.equals("FRM_WEIGHT_CONTAINERCODE"))
 		{
-			final JInternalFrameWTDataCapture u;
-			if (isLoaded(JInternalFrameWTDataCapture.class))
-				setVisible(JInternalFrameWTDataCapture.class);
+			final JInternalFrameWTContainerCodeAdmin u;
+			if (isLoaded(JInternalFrameWTContainerCodeAdmin.class))
+				setVisible(JInternalFrameWTContainerCodeAdmin.class);
 			else
 			{
-				u = new JInternalFrameWTDataCapture();
+				u = new JInternalFrameWTContainerCodeAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_CAPTURE"))
+		{
+			final JInternalFrameWTWeightCapture u;
+			if (isLoaded(JInternalFrameWTWeightCapture.class))
+				setVisible(JInternalFrameWTWeightCapture.class);
+			else
+			{
+				u = new JInternalFrameWTWeightCapture();
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
@@ -1086,14 +1101,14 @@ public class JLaunchMenu
 			}
 		}
 		
-		if (optionName.equals("FRM_WEIGHT_MATERIAL_GROUP"))
+		if (optionName.equals("FRM_WEIGHT_PRODUCT_GROUP"))
 		{
-			final JInternalFrameWTMaterialGroups u;
-			if (isLoaded(JInternalFrameWTMaterialGroups.class))
-				setVisible(JInternalFrameWTMaterialGroups.class);
+			final JInternalFrameWTProductGroupAdmin u;
+			if (isLoaded(JInternalFrameWTProductGroupAdmin.class))
+				setVisible(JInternalFrameWTProductGroupAdmin.class);
 			else
 			{
-				u = new JInternalFrameWTMaterialGroups();
+				u = new JInternalFrameWTProductGroupAdmin();
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
@@ -1496,14 +1511,14 @@ public class JLaunchMenu
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
 		
-		if (optionName.equals("FRM_WEIGHT_MATERIAL_GROUP_EDIT"))
+		if (optionName.equals("FRM_WEIGHT_PRODUCT_GROUP_EDIT"))
 		{
-			final JInternalFrameWTMaterialGroupsProperties u;
-			if (isLoaded(JInternalFrameWTMaterialGroupsProperties.class))
-				((JInternalFrameWTMaterialGroupsProperties) isLoadedInstance(JInternalFrameWTMaterialGroupsProperties.class)).setMaterialGroup(StrParam);
+			final JInternalFrameWTProductGroupProperties u;
+			if (isLoaded(JInternalFrameWTProductGroupProperties.class))
+				((JInternalFrameWTProductGroupProperties) isLoadedInstance(JInternalFrameWTProductGroupProperties.class)).setMaterialGroup(StrParam);
 			else
 			{
-				u = new JInternalFrameWTMaterialGroupsProperties(StrParam);
+				u = new JInternalFrameWTProductGroupProperties(StrParam);
 				displayForm(u, optionName);
 			}
 		}
@@ -1763,6 +1778,18 @@ public class JLaunchMenu
 			else
 			{
 				u = new JInternalFrameWTSamplePointProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_CONTAINERCODE_EDIT"))
+		{
+			final JInternalFrameWTContainerCodeProperties u;
+			if (isLoaded(JInternalFrameWTContainerCodeProperties.class))
+				((JInternalFrameWTContainerCodeProperties) isLoadedInstance(JInternalFrameWTContainerCodeProperties.class)).setContainerCode(StrParam);
+			else
+			{
+				u = new JInternalFrameWTContainerCodeProperties(StrParam);
 				displayForm(u, optionName);
 			}
 		}

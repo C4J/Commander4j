@@ -483,6 +483,9 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 		populateList();
 	}
 
+	/**
+	 * 
+	 */
 	private void addrecord() {
 		JDBLanguage ctl = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
@@ -490,7 +493,10 @@ public class JInternalFrameLanguageAdmin extends javax.swing.JInternalFrame
 
 		if (resourceKey.equals("") == false)
 		{
-			languageID = JUtility.replaceNullStringwithBlank(JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Language_ID_Create")));
+
+			languageID = JUtility.replaceNullStringwithBlank((String) JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Language_ID"), "Select Language",
+			        JOptionPane.QUESTION_MESSAGE, null, Common.languages, "EN"));
+			
 			if (languageID.equals("") == false)
 			{
 				languageID = languageID.toUpperCase();

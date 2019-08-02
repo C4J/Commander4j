@@ -53,10 +53,13 @@ import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBListData;
 import com.commander4j.db.JDBMaterial;
+import com.commander4j.db.JDBMaterialCustomerData;
 import com.commander4j.db.JDBMaterialType;
 import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBQMInspection;
 import com.commander4j.db.JDBUom;
+import com.commander4j.db.JDBWTContainerCode;
+import com.commander4j.db.JDBWTProductGroups;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
@@ -153,6 +156,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private Vector<JDBListData> moduleList = new Vector<JDBListData>();
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
+    private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 
 	private JCheckBox4j checkBoxOverridePackLabel = new JCheckBox4j();
 	private JCheckBox4j checkBoxOverridePalletLabel = new JCheckBox4j();
@@ -167,6 +171,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JCheckBox4j checkBox4jMoveAfterMake = new JCheckBox4j();
 	private JTextField4j textField4jMoveAfterMake = new JTextField4j(20);
 	private JButton4j button4jLocationLookup = new JButton4j("");
+	private JButton4j jButtonRemoveProductGroup= new JButton4j(Common.icon_despatch_remove_16x16);
+	private JButton4j jButtonRemoveContainerCode= new JButton4j(Common.icon_despatch_remove_16x16);
+	private JTextField4j textField4j_Product_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
+	private JTextField4j textField4j_Container_Code = new JTextField4j(JDBWTContainerCode.field_ContainerCode);
 
 	public JInternalFrameMaterialProperties(String mat)
 	{
@@ -260,6 +268,22 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					comboBoxPalletModuleID.setSelectedIndex(x);
 				}
 			}
+			
+			matCustData.setMaterial(lmaterial);
+			matCustData.setCustomerID("SELF");
+			matCustData.setDataID("PRODUCT_GROUP");;
+
+			if (matCustData.getMaterialCustomerDataProperties())
+			{
+				textField4j_Product_Group.setText(matCustData.getData());
+			}
+			
+			matCustData.setDataID("CONTAINER_CODE");;
+
+			if (matCustData.getMaterialCustomerDataProperties())
+			{
+				textField4j_Container_Code.setText(matCustData.getData());
+			}
 
 			setButtonStates();
 
@@ -282,7 +306,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(422, 483));
-			this.setBounds(0, 0, 668, 579);
+			this.setBounds(0, 0, 668, 623);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -308,7 +332,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 660, 547);
+				jDesktopPane1.setBounds(0, 0, 660, 591);
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(447, 385));
@@ -934,6 +958,111 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					btnLookupInspection.setBounds(296, 391, 21, 21);
 					jDesktopPane1.add(btnLookupInspection);
 				}
+				
+
+				textField4j_Product_Group.setEnabled(false);
+				textField4j_Product_Group.setEditable(false);
+				textField4j_Product_Group.setBounds(172, 513, 217, 21);
+				jDesktopPane1.add(textField4j_Product_Group);
+				
+				JLabel4j_std label4j_Product_Group = new JLabel4j_std();
+				label4j_Product_Group.setText(lang.get("lbl_Product_Group"));
+				label4j_Product_Group.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j_Product_Group.setBounds(7, 513, 159, 21);
+				jDesktopPane1.add(label4j_Product_Group);
+				
+				textField4j_Container_Code.setEnabled(false);
+				textField4j_Container_Code.setEditable(false);
+				textField4j_Container_Code.setBounds(172, 542, 109, 21);
+				jDesktopPane1.add(textField4j_Container_Code);
+				
+				JLabel4j_std label4j_Container_Code = new JLabel4j_std();
+				label4j_Container_Code.setText(lang.get("lbl_ContainerCode"));
+				label4j_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j_Container_Code.setBounds(7, 542, 159, 21);
+				jDesktopPane1.add(label4j_Container_Code);
+				
+				JButton4j button4j_LookupProductGroup = new JButton4j(Common.icon_lookup_16x16);
+				button4j_LookupProductGroup.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JLaunchLookup.dlgAutoExec = true;
+						if (JLaunchLookup.wtProductGroups())
+						{
+							if (textField4j_Product_Group.getText().equals(JLaunchLookup.dlgResult)==false)
+							{
+								textField4j_Product_Group.setText(JLaunchLookup.dlgResult);
+								matCustData.setMaterial(lmaterial);
+								matCustData.setCustomerID("SELF");
+								matCustData.setDataID("PRODUCT_GROUP");;
+								matCustData.setData(JLaunchLookup.dlgResult);
+								if (matCustData.isValidMaterialCustomerData()==false)
+								{
+									matCustData.create();
+								}
+								matCustData.update();
+							}
+						}
+					}
+				});
+				button4j_LookupProductGroup.setBounds(389, 513, 21, 21);
+				jDesktopPane1.add(button4j_LookupProductGroup);
+				
+				JButton4j button4j_LookupContainerCode = new JButton4j(Common.icon_lookup_16x16);
+				button4j_LookupContainerCode.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JLaunchLookup.dlgAutoExec = true;
+						if (JLaunchLookup.wtContainerCode())
+						{
+							if (textField4j_Container_Code.getText().equals(JLaunchLookup.dlgResult)==false)
+							{
+								textField4j_Container_Code.setText(JLaunchLookup.dlgResult);
+								matCustData.setMaterial(lmaterial);
+								matCustData.setCustomerID("SELF");
+								matCustData.setDataID("CONTAINER_CODE");;
+								matCustData.setData(JLaunchLookup.dlgResult);
+								if (matCustData.isValidMaterialCustomerData()==false)
+								{
+									matCustData.create();
+								}
+								matCustData.update();
+							}
+						}
+					}
+				});
+				button4j_LookupContainerCode.setBounds(281, 542, 21, 21);
+				jDesktopPane1.add(button4j_LookupContainerCode);
+				jButtonRemoveProductGroup.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (textField4j_Product_Group.getText().equals("")==false)
+						{
+							textField4j_Product_Group.setText("");
+							matCustData.setMaterial(lmaterial);
+							matCustData.setCustomerID("SELF");
+							matCustData.setDataID("PRODUCT_GROUP");;
+							matCustData.delete();;
+						}
+					}
+				});
+				
+				jButtonRemoveProductGroup.setBounds(411, 513, 21, 21);
+				jDesktopPane1.add(jButtonRemoveProductGroup);
+				jButtonRemoveContainerCode.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (textField4j_Container_Code.getText().equals("")==false)
+						{
+							textField4j_Container_Code.setText("");
+							matCustData.setMaterial(lmaterial);
+							matCustData.setCustomerID("SELF");
+							matCustData.setDataID("CONTAINER_CODE");;
+							matCustData.delete();
+						}
+					}
+				});
+				
+				jButtonRemoveContainerCode.setBounds(302, 542, 21, 21);
+				jDesktopPane1.add(jButtonRemoveContainerCode);
+
+				
 				jButtonSave.setEnabled(false);
 			}
 		}
