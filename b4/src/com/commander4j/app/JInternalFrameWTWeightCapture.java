@@ -148,7 +148,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		String workstation = JUtility.getClientName().toUpperCase();
 		textField4j_WorkstationID.setText(workstation);
 		
-		String temp = ctrl.getKeyValueWithDefault("WEIGHT SAMLPLE SIZE", "5", "WEIGHT CHECK SAMPLE SIZE");
+		String temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE SIZE", "5", "WEIGHT CHECK SAMPLE SIZE");
 		lSampleSize = Integer.valueOf(temp);
 		jTextField_SampleSize.setText(String.valueOf(lSampleSize));
 		

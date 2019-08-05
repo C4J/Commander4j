@@ -253,7 +253,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 	private void save()
 	{
 		samppoint.setLocation(jTextFieldLocation.getText().toUpperCase());
-		samppoint.setDescription(jTextFieldDescription.getText().toUpperCase());
+		samppoint.setDescription(jTextFieldDescription.getText());
 		samppoint.setSamplePoint(jTextFieldSamplePoint.getText().toUpperCase());
 		samppoint.update();
 		jButtonSave.setEnabled(false);

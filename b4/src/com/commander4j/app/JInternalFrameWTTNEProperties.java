@@ -169,7 +169,7 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 				{
 					jLabel_Nominal = new JLabel4j_std();
 					jDesktopPane1.add(jLabel_Nominal);
-					jLabel_Nominal.setText(lang.get("lbl_Nominal"));
+					jLabel_Nominal.setText(lang.get("lbl_Nominal_Weight"));
 					jLabel_Nominal.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_Nominal.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Nominal.setBounds(29, 12, 137, 21);

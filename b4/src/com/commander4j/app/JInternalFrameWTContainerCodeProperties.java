@@ -143,7 +143,7 @@ public class JInternalFrameWTContainerCodeProperties extends JInternalFrame
 				{
 					jLabel_ContainerCode = new JLabel4j_std();
 					jDesktopPane1.add(jLabel_ContainerCode);
-					jLabel_ContainerCode.setText(lang.get("lbl_ContainerCode"));
+					jLabel_ContainerCode.setText(lang.get("lbl_Container_Code"));
 					jLabel_ContainerCode.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel_ContainerCode.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_ContainerCode.setBounds(0, 10, 149, 21);
@@ -226,7 +226,7 @@ public class JInternalFrameWTContainerCodeProperties extends JInternalFrame
 	
 	private void save()
 	{
-		containerCode.setDescription(jTextFieldDescription.getText().toUpperCase());
+		containerCode.setDescription(jTextFieldDescription.getText());
 		containerCode.setContainerCode(jTextFieldContainerCode.getText().toUpperCase());
 		containerCode.update();
 		jButtonSave.setEnabled(false);

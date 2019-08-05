@@ -977,7 +977,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				jDesktopPane1.add(textField4j_Container_Code);
 				
 				JLabel4j_std label4j_Container_Code = new JLabel4j_std();
-				label4j_Container_Code.setText(lang.get("lbl_ContainerCode"));
+				label4j_Container_Code.setText(lang.get("lbl_Container_Code"));
 				label4j_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_Container_Code.setBounds(7, 542, 159, 21);
 				jDesktopPane1.add(label4j_Container_Code);
