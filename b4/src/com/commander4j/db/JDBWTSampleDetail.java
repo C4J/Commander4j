@@ -46,6 +46,7 @@ public class JDBWTSampleDetail
 
 	private String dbSamplePoint = "";
 	private Timestamp dbSampleDate;
+	private Integer dbSampleSequence = 0;
 	private Timestamp dbSampleWeightDate;
 	private BigDecimal dbSampleGrossWeight;
 	private BigDecimal dbSampleTareWeight;
@@ -90,7 +91,7 @@ public class JDBWTSampleDetail
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.create"));
 				stmtupdate.setString(1, getSamplePoint());
 				stmtupdate.setTimestamp(2, getSampleDate());
-				stmtupdate.setTimestamp(3, getSampleWeightDate());
+				stmtupdate.setInt(3, getSampleSequence());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -110,14 +111,14 @@ public class JDBWTSampleDetail
 		return result;
 	}
 
-	public boolean create(String samplepoint,Timestamp sampledate,Timestamp weightdate)
+	public boolean create(String samplepoint,Timestamp sampledate,Integer sampleSequence)
 	{
 		setSamplePoint(samplepoint);
 		setSampleDate(sampledate);
-		setSampleWeightDate(weightdate);
+		setSampleSequence(sampleSequence);
 		return create();
 	}
-
+	
 	public boolean delete()
 	{
 		PreparedStatement stmtupdate;
@@ -132,7 +133,7 @@ public class JDBWTSampleDetail
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.delete"));
 				stmtupdate.setString(1, getSamplePoint());
 				stmtupdate.setTimestamp(2, getSampleDate());
-				stmtupdate.setTimestamp(3, getSampleWeightDate());
+				stmtupdate.setInt(3, getSampleSequence());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -148,11 +149,11 @@ public class JDBWTSampleDetail
 		return result;
 	}
 
-	public boolean delete(String samplepoint,Timestamp sampledate,Timestamp weightdate)
+	public boolean delete(String samplepoint,Timestamp sampledate,Integer sampleSequence)
 	{
 		setSamplePoint(samplepoint);
 		setSampleDate(sampledate);
-		setSampleWeightDate(weightdate);
+		setSampleSequence(sampleSequence);
 
 		return delete();
 	}
@@ -167,7 +168,7 @@ public class JDBWTSampleDetail
 		return hostID;
 	}
 
-	public boolean getProperties(String samplepoint,Timestamp sampledate,Timestamp weightdate)
+	public boolean getProperties(String samplepoint,Timestamp sampledate,Integer sampleSequence)
 	{
 
 		boolean result = false;
@@ -180,13 +181,15 @@ public class JDBWTSampleDetail
 
 		setSamplePoint(samplepoint);
 		setSampleDate(sampledate);
-		setSampleWeightDate(weightdate);
+		setSampleSequence(sampleSequence);
 
 		try
 		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, getSamplePoint());
+			stmt.setTimestamp(2, getSampleDate());
+			stmt.setInt(3, getSampleSequence());
 			rs = stmt.executeQuery();
 
 			if (rs.next())
@@ -214,6 +217,7 @@ public class JDBWTSampleDetail
 		{
 			clear();
 
+			setSampleWeightDate(rs.getTimestamp("sample_weight_date"));
 			setSampleGrossWeight(rs.getBigDecimal("sample_gross_weight"));
 			setSampleTareWeight(rs.getBigDecimal("sample_tare_weight"));
 			setSampleNetWeight(rs.getBigDecimal("sample_net_weight"));
@@ -269,26 +273,31 @@ public class JDBWTSampleDetail
 		return rs;
 	}
 
+	public Integer getSampleSequence()
+	{
+		return dbSampleSequence;
+	}
+
 	public Integer getSampleT1Count()
 	{
 		return dbSampleT1Count;
 	}
-	
+
 	public Integer getSampleT2Count()
 	{
 		return dbSampleT2Count;
 	}
-
+	
 	public BigDecimal getSampleTareWeight()
 	{
 		return dbSampleTareWeight;
 	}
-	
+
 	public Timestamp getSampleWeightDate()
 	{
 		return dbSampleWeightDate;
 	}
-
+	
 	public LinkedList<JDBWTSampleDetail> getSampleWeightss(int displayType) {
 		LinkedList<JDBWTSampleDetail> sampList = new LinkedList<JDBWTSampleDetail>();
 		PreparedStatement stmt;
@@ -307,6 +316,7 @@ public class JDBWTSampleDetail
 
 				samp.setSamplePoint(rs.getString("sample_point"));
 				samp.setSampleDate(rs.getTimestamp("sample_date"));
+				samp.setSampleSequence(rs.getInt("sample_sequence"));
 				samp.setSampleWeightDate(rs.getTimestamp("sample_weight_date"));
 				samp.setSampleGrossWeight(rs.getBigDecimal("sample_gross_weight"));
 				samp.setSampleTareWeight(rs.getBigDecimal("sample_tare_weight"));
@@ -338,12 +348,12 @@ public class JDBWTSampleDetail
 		return sessionID;
 	}
 
-
 	public boolean isValidSamplePoint(String samplepoint)
 	{
 		setSamplePoint(samplepoint);
 		return isValidSampleWeight();
 	}
+
 
 	public boolean isValidSampleWeight()
 	{
@@ -356,7 +366,7 @@ public class JDBWTSampleDetail
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.isValidSampleWeight"));
 			stmt.setString(1, getSamplePoint());
 			stmt.setTimestamp(2, getSampleDate());
-			stmt.setTimestamp(3, getSampleWeightDate());
+			stmt.setInt(3, getSampleSequence());
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
@@ -366,7 +376,7 @@ public class JDBWTSampleDetail
 			}
 			else
 			{
-				setErrorMessage("Invalid Sample Point [" + getSamplePoint() + "]");
+				setErrorMessage("Invalid Sample Detail Record [" + getSamplePoint() + "]");
 			}
 			stmt.close();
 			rs.close();
@@ -381,11 +391,11 @@ public class JDBWTSampleDetail
 
 	}
 
-
 	private void setErrorMessage(String ErrorMsg)
 	{
 		dbErrorMessage = ErrorMsg;
 	}
+
 
 	private void setHostID(String host)
 	{
@@ -410,6 +420,11 @@ public class JDBWTSampleDetail
 	public void setSamplePoint(String spoint)
 	{
 		this.dbSamplePoint = JUtility.replaceNullStringwithBlank(spoint);
+	}
+
+	public void setSampleSequence(Integer sampleSequence)
+	{
+		dbSampleSequence = sampleSequence;
 	}
 
 	public void setSampleT1Count(Integer sampleT1Count)
@@ -468,15 +483,16 @@ public class JDBWTSampleDetail
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleWeight.update"));
 
-				stmtupdate.setBigDecimal(1,getSampleGrossWeight());
-				stmtupdate.setBigDecimal(2,getSampleTareWeight());
-				stmtupdate.setBigDecimal(3,getSampleNetWeight());
-				stmtupdate.setInt(4,getSampleT1Count());
-				stmtupdate.setInt(5,getSampleT2Count());
-				stmtupdate.setString(6,getSampleWeightUom());
-				stmtupdate.setString(7,getSamplePoint());
-				stmtupdate.setTimestamp(8,getSampleDate());
-				stmtupdate.setTimestamp(9,getSampleWeightDate());
+				stmtupdate.setTimestamp(1,getSampleWeightDate());
+				stmtupdate.setBigDecimal(2,getSampleGrossWeight());
+				stmtupdate.setBigDecimal(3,getSampleTareWeight());
+				stmtupdate.setBigDecimal(4,getSampleNetWeight());
+				stmtupdate.setInt(5,getSampleT1Count());
+				stmtupdate.setInt(6,getSampleT2Count());
+				stmtupdate.setString(7,getSampleWeightUom());
+				stmtupdate.setString(8,getSamplePoint());
+				stmtupdate.setTimestamp(9,getSampleDate());
+				stmtupdate.setInt(10,getSampleSequence());
 				
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
