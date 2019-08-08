@@ -201,7 +201,7 @@ public class JInternalFrameWTWorkstationAdmin extends javax.swing.JInternalFrame
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_WEIGHT_WORKSTATION"));
 		{
-			label = new JLabel("Workstation ID           Sample Point             Scale ID");
+			label = new JLabel("Workstation ID           Sample Point             Scale ID       Resource");
 			label.setFont(new Font("Monospaced", Font.BOLD, 11));
 			label.setBounds(8, 12, 518, 15);
 			jDesktopPane1.add(label);

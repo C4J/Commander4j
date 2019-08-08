@@ -1650,6 +1650,10 @@
 			<id>JDBProcessOrderResource.getProperties</id>
 			<text>select * from {schema}app_process_order_resource where required_resource = ?</text>
 		</statement>	
+		<statement>
+			<id>JDBProcessOrderResource.getResources</id>
+			<text>select * from {schema}APP_PROCESS_ORDER_RESOURCE where enabled = 'Y' order by required_resource</text>
+		</statement>
 		<?JDBQMAnalysis?>	
 		<statement>
 			<id>JDBQMAnalysis.getAnalysis</id>
@@ -1720,7 +1724,7 @@
 		</statement>
 		<statement>
 			<id>JDBWTWorkstation.update</id>
-			<text>update {schema}APP_WEIGHT_WORKSTATION set description = ?,location=?,sample_point=?,scale_id=?,scale_port_id=? where workstation_id = ?</text>
+			<text>update {schema}APP_WEIGHT_WORKSTATION set description = ?,location=?,sample_point=?,scale_id=?,scale_port_id=?,required_resource=? where workstation_id = ?</text>
 		</statement>	
 		<statement>
 			<id>JDBWTWorkstation.getWorkstations</id>
