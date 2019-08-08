@@ -30,6 +30,7 @@ package com.commander4j.db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import org.apache.log4j.Logger;
 
@@ -77,51 +78,6 @@ public class JDBProcessOrderResource
 		setEnabled(false);
 	}
 	
-	
-	public ResultSet getProcessOrderResourceResultSet(PreparedStatement criteria)
-	{
-		ResultSet rs;
-
-		try
-		{
-			rs = criteria.executeQuery();
-		} catch (Exception e)
-		{
-			rs = null;
-			setErrorMessage(e.getMessage());
-		}
-
-		return rs;
-	}
-
-	public String getBatchSuffixForResource(String res)
-	{
-		String result = "";
-
-		if (getResourceProperties(res))
-		{
-			if (isEnabled())
-			{
-				result = getBatchSuffix();
-			}
-		}
-
-		return result;
-	}
-
-	public Boolean isEnabled()
-	{
-		Boolean result = false;
-		if (getEnabled().equals("Y"))
-		{
-			result = true;
-		} else
-		{
-			result = false;
-		}
-		return result;
-	}
-
 	public boolean create(String res)
 	{
 		boolean result = false;
@@ -158,7 +114,8 @@ public class JDBProcessOrderResource
 
 		return result;
 	}
-
+	
+	
 	public boolean delete()
 	{
 		PreparedStatement stmtupdate;
@@ -191,6 +148,21 @@ public class JDBProcessOrderResource
 		return JUtility.replaceNullStringwithBlank(dbBatchSuffix).trim();
 	}
 
+	public String getBatchSuffixForResource(String res)
+	{
+		String result = "";
+
+		if (getResourceProperties(res))
+		{
+			if (isEnabled())
+			{
+				result = getBatchSuffix();
+			}
+		}
+
+		return result;
+	}
+
 	public String getDescription()
 	{
 		return JUtility.replaceNullStringwithBlank(dbDescription);
@@ -218,6 +190,22 @@ public class JDBProcessOrderResource
 	}
 
 	public ResultSet getProcessOrderResourceDataResultSet(PreparedStatement criteria)
+	{
+		ResultSet rs;
+
+		try
+		{
+			rs = criteria.executeQuery();
+		} catch (Exception e)
+		{
+			rs = null;
+			setErrorMessage(e.getMessage());
+		}
+
+		return rs;
+	}
+
+	public ResultSet getProcessOrderResourceResultSet(PreparedStatement criteria)
 	{
 		ResultSet rs;
 
@@ -295,9 +283,56 @@ public class JDBProcessOrderResource
 		return getResourceProperties();
 	}
 
+	public LinkedList<JDBProcessOrderResource> getResources() {
+		LinkedList<JDBProcessOrderResource> sampList = new LinkedList<JDBProcessOrderResource>();
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+		
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProcessOrderResource.getResources"));
+			stmt.setFetchSize(250);
+			rs = stmt.executeQuery();
+
+			while (rs.next())
+			{
+				JDBProcessOrderResource samp = new JDBProcessOrderResource(getHostID(), getSessionID());
+
+				samp.setResource(rs.getString("required_resource"));
+				samp.setDescription(rs.getString("description"));
+				samp.setBatchSuffix(rs.getString("batch_suffix"));
+				samp.setEnabled(rs.getString("enabled"));
+				sampList.add(samp);
+			}
+			rs.close();
+			stmt.close();
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return sampList;
+	}
+
 	private String getSessionID()
 	{
 		return sessionID;
+	}
+
+	public Boolean isEnabled()
+	{
+		Boolean result = false;
+		if (getEnabled().equals("Y"))
+		{
+			result = true;
+		} else
+		{
+			result = false;
+		}
+		return result;
 	}
 
 	public boolean isValidResource()
@@ -390,6 +425,11 @@ public class JDBProcessOrderResource
 		sessionID = session;
 	}
 
+	public String toString()
+	{
+		return getResource();
+	}
+	
 	public boolean update()
 	{
 		boolean result = false;

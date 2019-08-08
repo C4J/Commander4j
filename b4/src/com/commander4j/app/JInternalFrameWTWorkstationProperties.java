@@ -47,7 +47,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import com.commander4j.db.JDBLanguage;
-
+import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.db.JDBWTSamplePoint;
 import com.commander4j.db.JDBWTScale;
 import com.commander4j.db.JDBWTWorkstation;
@@ -85,12 +85,15 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 	private JDBWTWorkstation workstation = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
 	private JDBWTScale scale = new JDBWTScale(Common.selectedHostID, Common.sessionID);
 	private JDBWTSamplePoint samplePoint = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
+	private JDBProcessOrderResource poResources = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
 	private String lworkstation;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<String> comboBox_Ports = new JComboBox4j<String>();
 	private JComboBox4j<JDBWTScale> comboBox_Scales = new JComboBox4j<JDBWTScale>();
 	private JComboBox4j<JDBWTSamplePoint> comboBox4j_SamplePoint = new JComboBox4j<JDBWTSamplePoint>();
+	private JComboBox4j<JDBProcessOrderResource> comboBox4j_Resources = new JComboBox4j<JDBProcessOrderResource>();
 	private Vector<JDBWTSamplePoint> samplePointList = new Vector<JDBWTSamplePoint>();
+	private Vector<JDBProcessOrderResource> resourceList = new Vector<JDBProcessOrderResource>();
 	private Vector<JDBWTScale> scaleList = new Vector<JDBWTScale>();
 	private Vector<String> portList = new Vector<String>();
 	private String[] standardPorts = new String[]
@@ -144,12 +147,24 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 
 		for (int x = 0; x < portList.size(); x++)
 		{
+
 			if (((String) portList.get(x)).toString().equals(workstation.getScalePort()) == true)
 			{
 				comboBox_Ports.setSelectedIndex(x);
 				break;
 			}
 		}
+		
+		for (int x = 0; x < resourceList.size(); x++)
+		{
+			if (((JDBProcessOrderResource) resourceList.get(x)).toString().equals(workstation.getRequiredResource()) == true)
+			{
+				comboBox4j_Resources.setSelectedIndex(x);
+				break;
+			}
+		}
+		
+		jButtonSave.setEnabled(false);
 
 	}
 
@@ -157,6 +172,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 	{
 
 		super();
+		
 		initGUI();
 		setWorkstationID(workstation);
 
@@ -184,7 +200,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 564, 315);
+			this.setBounds(25, 25, 564, 358);
 			setVisible(true);
 			this.setTitle("Workstation Properties");
 			{
@@ -238,7 +254,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(115, 239, 110, 32);
+					jButtonSave.setBounds(115, 270, 110, 32);
 					jButtonSave.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -252,14 +268,14 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(227, 239, 110, 32);
+					jButtonHelp.setBounds(227, 270, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(339, 239, 110, 32);
+					jButtonClose.setBounds(339, 270, 110, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -305,6 +321,13 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 				label4j_Scale_Port.setHorizontalAlignment(SwingConstants.RIGHT);
 				label4j_Scale_Port.setBounds(0, 190, 149, 21);
 				jDesktopPane1.add(label4j_Scale_Port);
+				
+				JLabel4j_std label4j_Required_Resource = new JLabel4j_std();
+				label4j_Required_Resource.setText(lang.get("lbl_Process_Order_Required_Resource"));
+				label4j_Required_Resource.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_Required_Resource.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_Required_Resource.setBounds(0, 226, 149, 21);
+				jDesktopPane1.add(label4j_Required_Resource);
 
 				ComboBoxModel<String> jComboBoxModelPort = new DefaultComboBoxModel<String>(portList);
 				comboBox_Ports.setModel(jComboBoxModelPort);
@@ -352,6 +375,20 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 				label4j_SamplePoint.setHorizontalAlignment(SwingConstants.RIGHT);
 				label4j_SamplePoint.setBounds(0, 115, 149, 21);
 				jDesktopPane1.add(label4j_SamplePoint);
+				
+				resourceList.add(new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID));
+				resourceList.addAll(poResources.getResources());
+				ComboBoxModel<JDBProcessOrderResource> comboBox4j_ResourceModel = new DefaultComboBoxModel<JDBProcessOrderResource>(resourceList);
+				comboBox4j_Resources.setModel(comboBox4j_ResourceModel);
+				comboBox4j_Resources.setBounds(155, 223, 387, 24);
+				comboBox4j_Resources.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						jButtonSave.setEnabled(true);
+					}
+				});
+				jDesktopPane1.add(comboBox4j_Resources);
 
 			}
 		}
@@ -368,6 +405,8 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 		workstation.setWorkstationID(jTextFieldWorkstation.getText());
 		workstation.setSamplePoint(((JDBWTSamplePoint) comboBox4j_SamplePoint.getSelectedItem()).getSamplePoint());
 		workstation.setScaleID(((JDBWTScale) comboBox_Scales.getSelectedItem()).getScaleID());
+		workstation.setRequiredResource(((JDBProcessOrderResource) comboBox4j_Resources.getSelectedItem()).getResource());
+		
 		if (comboBox_Ports.getSelectedIndex() >= 0)
 		{
 			workstation.setScalePort((String) comboBox_Ports.getSelectedItem().toString());

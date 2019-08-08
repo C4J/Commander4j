@@ -39,7 +39,7 @@ public class JVersion
 	}
 
 	public static int getSchemaVersion() {
-		return 135;
+		return 136;
 	}
 
 }

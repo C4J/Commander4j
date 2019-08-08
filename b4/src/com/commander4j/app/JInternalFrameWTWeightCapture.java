@@ -531,7 +531,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				textField4j_Container_Code.setBounds(346, 92, 93, 25);
 				jDesktopPane1.add(textField4j_Container_Code);
 				
-				button4j_NewSample.setText("btn_Add");
+				button4j_NewSample.setText("btn_New");
 				button4j_NewSample.setMnemonic('0');
 				button4j_NewSample.setBounds(351, 566, 126, 32);
 				jDesktopPane1.add(button4j_NewSample);

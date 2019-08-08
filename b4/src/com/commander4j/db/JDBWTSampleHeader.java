@@ -1,6 +1,5 @@
 package com.commander4j.db;
 
-
 /**
  * @author David Garratt
  * 
@@ -47,13 +46,32 @@ public class JDBWTSampleHeader
 	private String dbSamplePoint = "";
 	private Timestamp dbSampleDate;
 	private Integer dbSampleSequence = 0;
-	private Timestamp dbSampleWeightDate;
-	private BigDecimal dbSampleGrossWeight;
-	private BigDecimal dbSampleTareWeight;
-	private BigDecimal dbSampleNetWeight;
-	private String dbSampleWeightUom;
+
+	private String dbUserID = "";
+	private String dbWorkstationID = "";
+	private String dbScaleID = "";
+	private String dbProcessOrder = "";
+	private String dbRequiredResource = "";
+	private String dbCustomerID = "";
+	private String dbMaterial = "";
+	private String dbProductGroup = "";
+	private String dbContainerCode = "";
+	private BigDecimal dbTareWeight;
+	private String dbTareWeightUom = "";
+	private BigDecimal dbNominalWeight;
+	private String dbNominalWeightUom;
+
+	private BigDecimal dbTNE;
+	private BigDecimal dbNegT1;
+	private BigDecimal dbNegT2;
+	private BigDecimal dbSampleStdDev;
 	private Integer dbSampleT1Count;
 	private Integer dbSampleT2Count;
+
+	private Integer dbSampleSize;
+
+	private Integer dbSampleCount;
+	private BigDecimal dbSampleMean;
 
 	private String dbErrorMessage = "";
 	private String hostID;
@@ -69,10 +87,26 @@ public class JDBWTSampleHeader
 
 	private void clear()
 	{
-		setSampleWeightUom("");
-		setSampleGrossWeight(new BigDecimal("0.000"));
-		setSampleTareWeight(new BigDecimal("0.000"));
-		setSampleNetWeight(new BigDecimal("0.000"));
+		setUserID("");
+		setWorkstationID("");
+		setScaleID("");
+		setProcessOrder("");
+		setRequiredResource("");
+		setCustomerID("");
+		setMaterial("");
+		setProductGroup("");
+		setContainerCode("");
+		setTareWeight(new BigDecimal("0.000"));
+		setTareWeightUom("");
+		setNominalWeight(new BigDecimal("0.000"));
+		setNominalWeightUom("");
+		setTNE(new BigDecimal("0.000"));
+		setNegT1(new BigDecimal("0.000"));
+		setNegT2(new BigDecimal("0.000"));
+		setSampleSize(0);
+		setSampleCount(0);
+		setSampleMean(new BigDecimal("0.000"));
+		setSampleStdDev(new BigDecimal("0.000"));
 		setSampleT1Count(0);
 		setSampleT2Count(0);
 	}
@@ -85,13 +119,12 @@ public class JDBWTSampleHeader
 		try
 		{
 
-			if (isValidSampleWeight() == false)
+			if (isValidSampleHeader() == false)
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.create"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleHeader.create"));
 				stmtupdate.setString(1, getSamplePoint());
 				stmtupdate.setTimestamp(2, getSampleDate());
-				stmtupdate.setInt(3, getSampleSequence());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -100,7 +133,7 @@ public class JDBWTSampleHeader
 			}
 			else
 			{
-				setErrorMessage("Sample Weight already exists");
+				setErrorMessage("Sample Header already exists");
 			}
 		}
 		catch (SQLException e)
@@ -111,14 +144,14 @@ public class JDBWTSampleHeader
 		return result;
 	}
 
-	public boolean create(String samplepoint,Timestamp sampledate,Integer sampleSequence)
+	public boolean create(String samplepoint, Timestamp sampledate)
 	{
 		setSamplePoint(samplepoint);
 		setSampleDate(sampledate);
-		setSampleSequence(sampleSequence);
+
 		return create();
 	}
-	
+
 	public boolean delete()
 	{
 		PreparedStatement stmtupdate;
@@ -128,12 +161,12 @@ public class JDBWTSampleHeader
 
 		try
 		{
-			if (isValidSampleWeight() == true)
+			if (isValidSampleHeader() == true)
 			{
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.delete"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleHeader.delete"));
 				stmtupdate.setString(1, getSamplePoint());
 				stmtupdate.setTimestamp(2, getSampleDate());
-				stmtupdate.setInt(3, getSampleSequence());
+
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -149,13 +182,22 @@ public class JDBWTSampleHeader
 		return result;
 	}
 
-	public boolean delete(String samplepoint,Timestamp sampledate,Integer sampleSequence)
+	public boolean delete(String samplepoint, Timestamp sampledate)
 	{
 		setSamplePoint(samplepoint);
 		setSampleDate(sampledate);
-		setSampleSequence(sampleSequence);
 
 		return delete();
+	}
+
+	public String getContainerCode()
+	{
+		return dbContainerCode;
+	}
+
+	public String getCustomerID()
+	{
+		return dbCustomerID;
 	}
 
 	public String getErrorMessage()
@@ -168,7 +210,42 @@ public class JDBWTSampleHeader
 		return hostID;
 	}
 
-	public boolean getProperties(String samplepoint,Timestamp sampledate,Integer sampleSequence)
+	public String getMaterial()
+	{
+		return dbMaterial;
+	}
+
+	public BigDecimal getNegT1()
+	{
+		return dbNegT1;
+	}
+
+	public BigDecimal getNegT2()
+	{
+		return dbNegT2;
+	}
+
+	public BigDecimal getNominalWeight()
+	{
+		return dbNominalWeight;
+	}
+
+	public String getNominalWeightUom()
+	{
+		return dbNominalWeightUom;
+	}
+
+	public String getProcessOrder()
+	{
+		return dbProcessOrder;
+	}
+
+	public String getProductGroup()
+	{
+		return dbProductGroup;
+	}
+
+	public boolean getProperties(String samplepoint, Timestamp sampledate)
 	{
 
 		boolean result = false;
@@ -181,15 +258,13 @@ public class JDBWTSampleHeader
 
 		setSamplePoint(samplepoint);
 		setSampleDate(sampledate);
-		setSampleSequence(sampleSequence);
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.getProperties"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleHeader.getProperties"));
 			stmt.setFetchSize(1);
 			stmt.setString(1, getSamplePoint());
 			stmt.setTimestamp(2, getSampleDate());
-			stmt.setInt(3, getSampleSequence());
 			rs = stmt.executeQuery();
 
 			if (rs.next())
@@ -199,7 +274,7 @@ public class JDBWTSampleHeader
 			}
 			else
 			{
-				setErrorMessage("Invalid Sample Weight");
+				setErrorMessage("Invalid Sample Header");
 			}
 			rs.close();
 			stmt.close();
@@ -217,20 +292,44 @@ public class JDBWTSampleHeader
 		{
 			clear();
 
-			setSampleWeightDate(rs.getTimestamp("sample_weight_date"));
-			setSampleGrossWeight(rs.getBigDecimal("sample_gross_weight"));
-			setSampleTareWeight(rs.getBigDecimal("sample_tare_weight"));
-			setSampleNetWeight(rs.getBigDecimal("sample_net_weight"));
-			setSampleT1Count(rs.getInt("sample_t1_count"));
-			setSampleT2Count(rs.getInt("sample_t2_count"));
-			setSampleWeightUom(rs.getString("sample_weight_uom"));
-
+			setUserID(rs.getString("user_id"));
+			setWorkstationID(rs.getString("workstation_id"));
+			setScaleID(rs.getString("scale_id"));
+			setProcessOrder(rs.getString("process_order"));
+			setRequiredResource(rs.getString("required_resource"));
+			setCustomerID(rs.getString("customer_id"));
+			setMaterial(rs.getString("material"));
+			setProductGroup(rs.getString("product_group"));
+			setContainerCode(rs.getString("container_code"));
+			setTareWeight(rs.getBigDecimal("tare_weight"));
+			setTareWeightUom(rs.getString("tare_weight_uom"));
+			setNominalWeight(rs.getBigDecimal("nominal_weight"));
+			setNominalWeightUom(rs.getString("nominal_weight_uom"));
+			setTNE(rs.getBigDecimal("tne"));
+			setNegT1(rs.getBigDecimal("neg_t1"));
+			setNegT2(rs.getBigDecimal("neg_t2"));
+			setSampleSize(rs.getInt("sample_size"));
+			setSampleCount(rs.getInt("sample_count"));
+			setSampleMean(rs.getBigDecimal("sample_mean"));
+			setSampleStdDev(rs.getBigDecimal("sample_std_dev"));
+			setSampleT1Count(rs.getInt("sample_T1_count"));
+			setSampleT2Count(rs.getInt("sample_T2_count"));
 
 		}
 		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
+	}
+
+	public String getRequiredResource()
+	{
+		return dbRequiredResource;
+	}
+
+	public Integer getSampleCount()
+	{
+		return dbSampleCount;
 	}
 
 	public Timestamp getSampleDate()
@@ -238,67 +337,8 @@ public class JDBWTSampleHeader
 		return dbSampleDate;
 	}
 
-	public BigDecimal getSampleGrossWeight()
+	public LinkedList<JDBWTSampleHeader> getSampleHeaders()
 	{
-		return dbSampleGrossWeight;
-	}
-
-	public BigDecimal getSampleNetWeight()
-	{
-		return dbSampleNetWeight;
-	}
-
-	public String getSamplePoint()
-	{
-		return dbSamplePoint;
-	}
-
-	public ResultSet getSamplePointDataResultSet() {
-		PreparedStatement stmt;
-		ResultSet rs = null;
-		setErrorMessage("");
-
-		try
-		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.getSampleWeight"));
-			stmt.setFetchSize(250);
-			rs = stmt.executeQuery();
-
-		}
-		catch (SQLException e)
-		{
-			setErrorMessage(e.getMessage());
-		}
-
-		return rs;
-	}
-
-	public Integer getSampleSequence()
-	{
-		return dbSampleSequence;
-	}
-
-	public Integer getSampleT1Count()
-	{
-		return dbSampleT1Count;
-	}
-
-	public Integer getSampleT2Count()
-	{
-		return dbSampleT2Count;
-	}
-	
-	public BigDecimal getSampleTareWeight()
-	{
-		return dbSampleTareWeight;
-	}
-
-	public Timestamp getSampleWeightDate()
-	{
-		return dbSampleWeightDate;
-	}
-	
-	public LinkedList<JDBWTSampleHeader> getSampleWeightss(int displayType) {
 		LinkedList<JDBWTSampleHeader> sampList = new LinkedList<JDBWTSampleHeader>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -306,7 +346,7 @@ public class JDBWTSampleHeader
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.getSampleWeights"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleHeader.getSampleHeaders"));
 			stmt.setFetchSize(250);
 			rs = stmt.executeQuery();
 
@@ -317,13 +357,29 @@ public class JDBWTSampleHeader
 				samp.setSamplePoint(rs.getString("sample_point"));
 				samp.setSampleDate(rs.getTimestamp("sample_date"));
 				samp.setSampleSequence(rs.getInt("sample_sequence"));
-				samp.setSampleWeightDate(rs.getTimestamp("sample_weight_date"));
-				samp.setSampleGrossWeight(rs.getBigDecimal("sample_gross_weight"));
-				samp.setSampleTareWeight(rs.getBigDecimal("sample_tare_weight"));
-				samp.setSampleNetWeight(rs.getBigDecimal("sample_net_weight"));
-				samp.setSampleT1Count(rs.getInt("sample_t1_count"));
-				samp.setSampleT2Count(rs.getInt("sample_t2_count"));
-				samp.setSampleWeightUom(rs.getString("sample_weight_uom"));
+				samp.setUserID(rs.getString("user_id"));
+				samp.setWorkstationID(rs.getString("workstation_id"));
+				samp.setScaleID(rs.getString("scale_id"));
+				samp.setProcessOrder(rs.getString("process_order"));
+				samp.setRequiredResource(rs.getString("required_resource"));
+				samp.setCustomerID(rs.getString("customer_id"));
+				samp.setMaterial(rs.getString("material"));
+				samp.setProductGroup(rs.getString("product_group"));
+				samp.setContainerCode(rs.getString("container_code"));
+				samp.setTareWeight(rs.getBigDecimal("tare_weight"));
+				samp.setTareWeightUom(rs.getString("tare_weight_uom"));
+				samp.setNominalWeight(rs.getBigDecimal("nominal_weight"));
+				samp.setNominalWeightUom(rs.getString("nominal_weight_uom"));
+				samp.setTNE(rs.getBigDecimal("tne"));
+				samp.setNegT1(rs.getBigDecimal("neg_t1"));
+				samp.setNegT2(rs.getBigDecimal("neg_t2"));
+				samp.setSampleSize(rs.getInt("sample_size"));
+				samp.setSampleCount(rs.getInt("sample_count"));
+				samp.setSampleMean(rs.getBigDecimal("sample_mean"));
+				samp.setSampleStdDev(rs.getBigDecimal("sample_std_dev"));
+				samp.setSampleT1Count(rs.getInt("sample_T1_count"));
+				samp.setSampleT2Count(rs.getInt("sample_T2_count"));
+
 				sampList.add(samp);
 			}
 			rs.close();
@@ -338,9 +394,65 @@ public class JDBWTSampleHeader
 		return sampList;
 	}
 
-	public String getSampleWeightUom()
+	public ResultSet getSampleHeadertDataResultSet()
 	{
-		return dbSampleWeightUom;
+		PreparedStatement stmt;
+		ResultSet rs = null;
+		setErrorMessage("");
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleHeader.getSampleHeader"));
+			stmt.setFetchSize(250);
+			rs = stmt.executeQuery();
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return rs;
+	}
+
+	public BigDecimal getSampleMean()
+	{
+		return dbSampleMean;
+	}
+
+	public String getSamplePoint()
+	{
+		return dbSamplePoint;
+	}
+
+	public Integer getSampleSequence()
+	{
+		return dbSampleSequence;
+	}
+
+	public Integer getSampleSize()
+	{
+		return dbSampleSize;
+	}
+
+	public BigDecimal getSampleStdDev()
+	{
+		return dbSampleStdDev;
+	}
+
+	public Integer getSampleT1Count()
+	{
+		return dbSampleT1Count;
+	}
+
+	public Integer getSampleT2Count()
+	{
+		return dbSampleT2Count;
+	}
+
+	public String getScaleID()
+	{
+		return dbScaleID;
 	}
 
 	private String getSessionID()
@@ -348,14 +460,32 @@ public class JDBWTSampleHeader
 		return sessionID;
 	}
 
-	public boolean isValidSamplePoint(String samplepoint)
+	public BigDecimal getTareWeight()
 	{
-		setSamplePoint(samplepoint);
-		return isValidSampleWeight();
+		return dbTareWeight;
 	}
 
+	public String getTareWeightUom()
+	{
+		return dbTareWeightUom;
+	}
 
-	public boolean isValidSampleWeight()
+	public BigDecimal getTNE()
+	{
+		return dbTNE;
+	}
+
+	public String getUserID()
+	{
+		return dbUserID;
+	}
+
+	public String getWorkstationID()
+	{
+		return dbWorkstationID;
+	}
+
+	public boolean isValidSampleHeader()
 	{
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -363,10 +493,9 @@ public class JDBWTSampleHeader
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.isValidSampleWeight"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleHeader.isValidSampleHeader"));
 			stmt.setString(1, getSamplePoint());
-			stmt.setTimestamp(2, getSampleDate());
-			stmt.setInt(3, getSampleSequence());
+
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
 
@@ -376,7 +505,7 @@ public class JDBWTSampleHeader
 			}
 			else
 			{
-				setErrorMessage("Invalid Sample Detail Record [" + getSamplePoint() + "]");
+				setErrorMessage("Invalid Sample Header Record [" + getSamplePoint() + "]");
 			}
 			stmt.close();
 			rs.close();
@@ -391,15 +520,75 @@ public class JDBWTSampleHeader
 
 	}
 
+	public boolean isValidSamplePoint(String samplepoint)
+	{
+		setSamplePoint(samplepoint);
+		return isValidSampleHeader();
+	}
+
+	public void setContainerCode(String containerCode)
+	{
+		dbContainerCode = containerCode;
+	}
+
+	public void setCustomerID(String customerID)
+	{
+		dbCustomerID = customerID;
+	}
+
 	private void setErrorMessage(String ErrorMsg)
 	{
 		dbErrorMessage = ErrorMsg;
 	}
 
-
 	private void setHostID(String host)
 	{
 		hostID = host;
+	}
+
+	public void setMaterial(String material)
+	{
+		dbMaterial = material;
+	}
+
+	public void setNegT1(BigDecimal negT1)
+	{
+		dbNegT1 = negT1;
+	}
+
+	public void setNegT2(BigDecimal negT2)
+	{
+		dbNegT2 = negT2;
+	}
+
+	public void setNominalWeight(BigDecimal sampleNominal)
+	{
+		dbNominalWeight = sampleNominal;
+	}
+
+	public void setNominalWeightUom(String sampleWeightUom)
+	{
+		dbNominalWeightUom = sampleWeightUom;
+	}
+
+	public void setProcessOrder(String processOrder)
+	{
+		dbProcessOrder = processOrder;
+	}
+
+	public void setProductGroup(String productGroup)
+	{
+		dbProductGroup = productGroup;
+	}
+
+	public void setRequiredResource(String requiredResource)
+	{
+		dbRequiredResource = requiredResource;
+	}
+
+	public void setSampleCount(Integer sampleCount)
+	{
+		dbSampleCount = sampleCount;
 	}
 
 	public void setSampleDate(Timestamp sampleDate)
@@ -407,14 +596,9 @@ public class JDBWTSampleHeader
 		dbSampleDate = sampleDate;
 	}
 
-	public void setSampleGrossWeight(BigDecimal sampleGrossWeight)
+	public void setSampleMean(BigDecimal sampleMean)
 	{
-		dbSampleGrossWeight = sampleGrossWeight;
-	}
-
-	public void setSampleNetWeight(BigDecimal sampleNetWeight)
-	{
-		dbSampleNetWeight = sampleNetWeight;
+		dbSampleMean = sampleMean;
 	}
 
 	public void setSamplePoint(String spoint)
@@ -427,6 +611,16 @@ public class JDBWTSampleHeader
 		dbSampleSequence = sampleSequence;
 	}
 
+	public void setSampleSize(Integer sampleSize)
+	{
+		dbSampleSize = sampleSize;
+	}
+
+	public void setSampleStdDev(BigDecimal sampleStdDev)
+	{
+		dbSampleStdDev = sampleStdDev;
+	}
+
 	public void setSampleT1Count(Integer sampleT1Count)
 	{
 		dbSampleT1Count = sampleT1Count;
@@ -437,40 +631,51 @@ public class JDBWTSampleHeader
 		dbSampleT2Count = sampleT2Count;
 	}
 
-
-	public void setSampleTareWeight(BigDecimal sampleTareWeight)
+	public void setScaleID(String scaleID)
 	{
-		dbSampleTareWeight = sampleTareWeight;
+		dbScaleID = scaleID;
 	}
 
-	public void setSampleWeightDate(Timestamp sampleWeightDate)
-	{
-		dbSampleWeightDate = sampleWeightDate;
-	}
-
-	public void setSampleWeightUom(String sampleWeightUom)
-	{
-		dbSampleWeightUom = sampleWeightUom;
-	}
-	
 	private void setSessionID(String session)
 	{
 		sessionID = session;
 	}
-	
-	public String toString() {
-		
-		
+
+	public void setTareWeight(BigDecimal sampleTareWeight)
+	{
+		dbTareWeight = sampleTareWeight;
+	}
+
+	public void setTareWeightUom(String tareWeightUom)
+	{
+		dbTareWeightUom = tareWeightUom;
+	}
+
+	public void setTNE(BigDecimal tne)
+	{
+		dbTNE = tne;
+	}
+
+	public void setUserID(String userID)
+	{
+		dbUserID = userID;
+	}
+
+	public void setWorkstationID(String workstationID)
+	{
+		dbWorkstationID = workstationID;
+	}
+
+	public String toString()
+	{
+
 		String result = "";
-		
 
-		result= getSampleGrossWeight().toString();
-
-
+		result = getTNE().toString();
 
 		return result;
 	}
-	
+
 	public boolean update()
 	{
 		boolean result = false;
@@ -478,22 +683,36 @@ public class JDBWTSampleHeader
 
 		try
 		{
-			if (isValidSampleWeight() == true)
+			if (isValidSampleHeader() == true)
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleWeight.update"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleHeader.update"));
 
-				stmtupdate.setTimestamp(1,getSampleWeightDate());
-				stmtupdate.setBigDecimal(2,getSampleGrossWeight());
-				stmtupdate.setBigDecimal(3,getSampleTareWeight());
-				stmtupdate.setBigDecimal(4,getSampleNetWeight());
-				stmtupdate.setInt(5,getSampleT1Count());
-				stmtupdate.setInt(6,getSampleT2Count());
-				stmtupdate.setString(7,getSampleWeightUom());
-				stmtupdate.setString(8,getSamplePoint());
-				stmtupdate.setTimestamp(9,getSampleDate());
-				stmtupdate.setInt(10,getSampleSequence());
-				
+				stmtupdate.setString(1, getUserID());
+				stmtupdate.setString(2, getWorkstationID());
+				stmtupdate.setString(3, getScaleID());
+				stmtupdate.setString(4, getProcessOrder());
+				stmtupdate.setString(5, getRequiredResource());
+				stmtupdate.setString(6, getCustomerID());
+				stmtupdate.setString(7, getMaterial());
+				stmtupdate.setString(8, getProductGroup());
+				stmtupdate.setString(9, getContainerCode());
+				stmtupdate.setBigDecimal(10, getTareWeight());
+				stmtupdate.setString(11, getTareWeightUom());
+				stmtupdate.setBigDecimal(12, getNominalWeight());
+				stmtupdate.setString(13, getNominalWeightUom());
+				stmtupdate.setBigDecimal(14, getTNE());
+				stmtupdate.setBigDecimal(15, getNegT1());
+				stmtupdate.setBigDecimal(16, getNegT2());
+				stmtupdate.setInt(17, getSampleSize());
+				stmtupdate.setInt(18, getSampleCount());
+				stmtupdate.setBigDecimal(19, getSampleMean());
+				stmtupdate.setBigDecimal(20, getSampleStdDev());
+				stmtupdate.setInt(21, getSampleT1Count());
+				stmtupdate.setInt(22, getSampleT2Count());
+				stmtupdate.setString(23, getSamplePoint());
+				stmtupdate.setTimestamp(24, getSampleDate());
+
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

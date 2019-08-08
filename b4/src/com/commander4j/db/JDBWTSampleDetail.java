@@ -85,7 +85,7 @@ public class JDBWTSampleDetail
 		try
 		{
 
-			if (isValidSampleWeight() == false)
+			if (isValidSampleDetail() == false)
 			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.create"));
@@ -100,7 +100,7 @@ public class JDBWTSampleDetail
 			}
 			else
 			{
-				setErrorMessage("Sample Weight already exists");
+				setErrorMessage("Sample Detail already exists");
 			}
 		}
 		catch (SQLException e)
@@ -128,7 +128,7 @@ public class JDBWTSampleDetail
 
 		try
 		{
-			if (isValidSampleWeight() == true)
+			if (isValidSampleDetail() == true)
 			{
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.delete"));
 				stmtupdate.setString(1, getSamplePoint());
@@ -199,7 +199,7 @@ public class JDBWTSampleDetail
 			}
 			else
 			{
-				setErrorMessage("Invalid Sample Weight");
+				setErrorMessage("Invalid Sample Detail");
 			}
 			rs.close();
 			stmt.close();
@@ -351,11 +351,11 @@ public class JDBWTSampleDetail
 	public boolean isValidSamplePoint(String samplepoint)
 	{
 		setSamplePoint(samplepoint);
-		return isValidSampleWeight();
+		return isValidSampleDetail();
 	}
 
 
-	public boolean isValidSampleWeight()
+	public boolean isValidSampleDetail()
 	{
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -478,7 +478,7 @@ public class JDBWTSampleDetail
 
 		try
 		{
-			if (isValidSampleWeight() == true)
+			if (isValidSampleDetail() == true)
 			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleWeight.update"));
