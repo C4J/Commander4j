@@ -136,6 +136,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JTextField4j jTextField_T2_UOM = new JTextField4j(JDBUom.field_uom);
 	private JQuantityInput jTextField_SampleSize = new JQuantityInput(new BigDecimal("0.000"));
 	private int lSampleSize = 0;
+	private Color pale_YELLOW = new Color(255,255,204);
 	
 	public JInternalFrameWTWeightCapture()
 	{
@@ -146,6 +147,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		initGUI();
 
 		String workstation = JUtility.getClientName().toUpperCase();
+
+
 		textField4j_WorkstationID.setText(workstation);
 		
 		String temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE SIZE", "5", "WEIGHT CHECK SAMPLE SIZE");
@@ -153,24 +156,37 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		jTextField_SampleSize.setText(String.valueOf(lSampleSize));
 		
 		
-		workdb.getProperties(workstation);
-		textField4j_SamplePoint.setEnabled(false);
-		textField4j_SamplePoint.setEditable(false);
-		textField4j_SamplePoint.setText(workdb.getSamplePoint());
-		textField4j_ScaleID.setEnabled(false);
-		textField4j_ScaleID.setEditable(false);
-		textField4j_ScaleID.setText(workdb.getScaleID());
-		textField4j_ScalePort.setEnabled(false);
-		textField4j_ScalePort.setEditable(false);
-		textField4j_ScalePort.setText(workdb.getScalePort());
+		if (workdb.getProperties(workstation))
+		{
+			textField4j_SamplePoint.setText(workdb.getSamplePoint());
+			textField4j_ScaleID.setText(workdb.getScaleID());
+			textField4j_ScalePort.setText(workdb.getScalePort());
+			
+			textField4j_WorkstationID.setBackground(Color.WHITE);
+			textField4j_SamplePoint.setBackground(Color.WHITE);
+			textField4j_ScaleID.setBackground(Color.WHITE);
+			textField4j_ScalePort.setBackground(Color.WHITE);
+		}
+		else
+		{
+			textField4j_SamplePoint.setText("");
+			textField4j_ScaleID.setText("");
+			textField4j_ScalePort.setText("");
+
+			textField4j_WorkstationID.setBackground(Color.YELLOW);
+			textField4j_SamplePoint.setBackground(pale_YELLOW);
+			textField4j_ScaleID.setBackground(pale_YELLOW);
+			textField4j_ScalePort.setBackground(pale_YELLOW);
+		}
 		
 		
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 		query.clear();
-		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_MATERIAL where 1=2"));
+		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_WEIGHT_WORKSTATION where 1=2"));
 		query.applyRestriction(false, "none", 0);
 		query.bindParams();
 		listStatement = query.getPreparedStatement();
+		
 		populateList();
 
 		final JHelp help = new JHelp();
@@ -189,6 +205,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		});
 
 	}
+	
 
 	public JInternalFrameWTWeightCapture(String material)
 	{
@@ -217,6 +234,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		String order = jTextFieldProcessOrder.getText();
 		if (orderdb.getProcessOrderProperties(order))
 		{
+			jTextFieldProcessOrder.setBackground(Color.WHITE);
+			jTextFieldMaterial.setBackground(Color.WHITE);
+			textField4j_OrderStatus.setBackground(Color.WHITE);
+			textField4j_Description.setBackground(Color.WHITE);
+			
 			jTextFieldMaterial.setText(orderdb.getMaterial());
 			textField4j_OrderStatus.setText(orderdb.getStatus());
 			
@@ -233,6 +255,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				textField4j_Description.setText(materialdb.getDescription());
 			}
+			
 			if (matcustdb.getMaterialCustomerDataProperties(orderdb.getMaterial(),orderdb.getCustomerID(),"PRODUCT_GROUP"))
 			{
 				textField4j_Material_Group.setText(matcustdb.getData());
@@ -280,6 +303,18 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				textField4j_Container_Code.setText("");
 			}
 						
+		}
+		else
+		{
+			jTextFieldProcessOrder.setBackground(Color.YELLOW);
+			
+			jTextFieldMaterial.setText("");
+			textField4j_OrderStatus.setText("");
+			textField4j_Description.setText("");
+			
+			jTextFieldMaterial.setBackground(pale_YELLOW);
+			textField4j_OrderStatus.setBackground(pale_YELLOW);
+			textField4j_Description.setBackground(pale_YELLOW);
 		}
 		
 	}
@@ -464,14 +499,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				textField4j_Description.setEditable(false);
 
 
-				textField4j_Description.setBounds(752, 55, 222, 25);
+				textField4j_Description.setBounds(643, 55, 331, 25);
 				jDesktopPane1.add(textField4j_Description);
-
-				JLabel4j_std label4j_Description = new JLabel4j_std();
-				label4j_Description.setText(lang.get("lbl_Description"));
-				label4j_Description.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_Description.setBounds(636, 55, 107, 25);
-				jDesktopPane1.add(label4j_Description);
 
 				JLabel4j_std label4j_WorkstationID = new JLabel4j_std();
 				label4j_WorkstationID.setText(lang.get("lbl_Workstation"));
@@ -479,8 +508,10 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				label4j_WorkstationID.setBounds(0, 18, 96, 25);
 				jDesktopPane1.add(label4j_WorkstationID);
 				textField4j_WorkstationID.setEditable(false);
+				textField4j_WorkstationID.setEnabled(false);
+				textField4j_WorkstationID.setDisabledTextColor(Color.BLACK);
+				textField4j_WorkstationID.setBounds(104, 18, 113, 25);
 
-				textField4j_WorkstationID.setBounds(104, 18, 93, 25);
 				jDesktopPane1.add(textField4j_WorkstationID);
 
 				JLabel4j_std label4j_SamplePoint = new JLabel4j_std();
@@ -488,9 +519,12 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				label4j_SamplePoint.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_SamplePoint.setBounds(206, 18, 126, 25);
 				jDesktopPane1.add(label4j_SamplePoint);
+				textField4j_SamplePoint.setEnabled(false);
+				textField4j_SamplePoint.setEditable(false);
 				textField4j_SamplePoint.setBounds(344, 18, 93, 25);
 				jDesktopPane1.add(textField4j_SamplePoint);
-
+				textField4j_ScaleID.setEnabled(false);
+				textField4j_ScaleID.setEditable(false);
 				textField4j_ScaleID.setBounds(538, 18, 93, 25);
 				jDesktopPane1.add(textField4j_ScaleID);
 
@@ -499,7 +533,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				label4j_ScaleID.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_ScaleID.setBounds(438, 18, 94, 25);
 				jDesktopPane1.add(label4j_ScaleID);
-
+				textField4j_ScalePort.setEnabled(false);
+				textField4j_ScalePort.setEditable(false);
 				textField4j_ScalePort.setBounds(752, 18, 222, 25);
 				jDesktopPane1.add(textField4j_ScalePort);
 
