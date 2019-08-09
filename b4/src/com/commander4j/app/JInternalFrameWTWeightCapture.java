@@ -37,22 +37,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
@@ -64,17 +59,16 @@ import com.commander4j.db.JDBQMSample;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.db.JDBUom;
 import com.commander4j.db.JDBWTProductGroups;
+import com.commander4j.db.JDBWTSamplePoint;
 import com.commander4j.db.JDBWTScale;
 import com.commander4j.db.JDBWTTNE;
 import com.commander4j.db.JDBWTWorkstation;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
-import com.commander4j.gui.JTable4j;
+import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
-import com.commander4j.sys.JLaunchMenu;
-import com.commander4j.tablemodel.JDBMaterialBatchTableModel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
@@ -99,7 +93,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JLabel4j_std jLabel_Material;
 	private JTextField4j jTextFieldProcessOrder;
 	private JLabel4j_std jLabel_ProcessOrder;
-	private JTable4j jTable_Weights;
+
 	private JButton4j jButtonHelp;
 	private JScrollPane jScrollPane_Weights;
 	private String lmaterial;
@@ -122,6 +116,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JDBWTProductGroups matgroupdb = new JDBWTProductGroups(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial materialdb = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 	private JDBWTTNE tnedb = new JDBWTTNE(Common.selectedHostID, Common.sessionID);
+	private JDBWTSamplePoint samplePointdb = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);	
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JTextField4j textField4j_SamplePoint = new JTextField4j(JDBWTWorkstation.field_SamplePoint);
 	private JTextField4j textField4j_OrderStatus = new JTextField4j(JDBProcessOrder.field_status);
@@ -132,11 +127,10 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JQuantityInput jTextField_T1 = new JQuantityInput(new BigDecimal("0.000"));
 	private JQuantityInput jTextField_T2 = new JQuantityInput(new BigDecimal("0.000"));
 	private JQuantityInput jTextField_TNE = new JQuantityInput(new BigDecimal("0.000"));
-	private JTextField4j jTextField_T1_UOM = new JTextField4j(JDBUom.field_uom);
-	private JTextField4j jTextField_T2_UOM = new JTextField4j(JDBUom.field_uom);
 	private JQuantityInput jTextField_SampleSize = new JQuantityInput(new BigDecimal("0.000"));
 	private int lSampleSize = 0;
-	private Color pale_YELLOW = new Color(255, 255, 204);
+
+	private JList4j listResults = new JList4j();
 
 	public JInternalFrameWTWeightCapture()
 	{
@@ -153,29 +147,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		String temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE SIZE", "5", "WEIGHT CHECK SAMPLE SIZE");
 		lSampleSize = Integer.valueOf(temp);
 		jTextField_SampleSize.setText(String.valueOf(lSampleSize));
-
-		if (workdb.getProperties(workstation))
-		{
-			textField4j_SamplePoint.setText(workdb.getSamplePoint());
-			textField4j_ScaleID.setText(workdb.getScaleID());
-			textField4j_ScalePort.setText(workdb.getScalePort());
-
-			textField4j_WorkstationID.setBackground(Color.WHITE);
-			textField4j_SamplePoint.setBackground(Color.WHITE);
-			textField4j_ScaleID.setBackground(Color.WHITE);
-			textField4j_ScalePort.setBackground(Color.WHITE);
-		}
-		else
-		{
-			textField4j_SamplePoint.setText("");
-			textField4j_ScaleID.setText("");
-			textField4j_ScalePort.setText("");
-
-			textField4j_WorkstationID.setBackground(Color.YELLOW);
-			textField4j_SamplePoint.setBackground(pale_YELLOW);
-			textField4j_ScaleID.setBackground(pale_YELLOW);
-			textField4j_ScalePort.setBackground(pale_YELLOW);
-		}
+		
+		updateWorkstationInfo(workstation,true);
 
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 		query.clear();
@@ -225,21 +198,135 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		// buildSQL();
 		// populateList();
 	}
-
-	private void updateOrderInfo()
+	
+	
+	//		updateWorkstation 	-- > 	updateSamplePoint
+	
+	private boolean updateWorkstationInfo(String workstation,boolean lookup)
 	{
-		String order = jTextFieldProcessOrder.getText();
-		if (orderdb.getProcessOrderProperties(order))
+		boolean result = false;
+		String samplePoint = "";
+		
+		if (lookup == true)
+		{
+			if (workdb.getProperties(workstation))
+			{
+				result = true;
+				samplePoint = workdb.getSamplePoint();
+				textField4j_SamplePoint.setText(samplePoint);
+				textField4j_ScaleID.setText(workdb.getScaleID());
+				textField4j_ScalePort.setText(workdb.getScalePort());
+			}
+			else
+			{
+				result = false;
+				textField4j_SamplePoint.setText("");
+				textField4j_ScaleID.setText("");
+				textField4j_ScalePort.setText("");
+			}
+		}
+		else
+		{
+			result = false;
+		}
+		
+		if (result == true)
+		{
+			textField4j_WorkstationID.setBackground(Color.WHITE);
+			textField4j_ScaleID.setBackground(Color.WHITE);
+			textField4j_ScalePort.setBackground(Color.WHITE);
+		}
+		else
+		{
+			textField4j_WorkstationID.setBackground(Color.YELLOW);
+			textField4j_ScaleID.setBackground(Color.YELLOW);
+			textField4j_ScalePort.setBackground(Color.YELLOW);
+		}
+		
+		updateSamplePoint(samplePoint,result);
+
+		return result;
+	}
+	
+	private boolean updateSamplePoint(String samplePoint,boolean lookup)
+	{
+		boolean result = false;
+		
+		if (lookup == true)
+		{
+			if (samplePointdb.getProperties(samplePoint))
+			{
+				result = true;
+
+			}
+			else
+			{
+				result = false;
+
+			}
+		}
+		else
+		{
+			result = false;
+		}
+		
+		if (result == true)
+		{
+			textField4j_SamplePoint.setBackground(Color.WHITE);
+		}
+		else
+		{
+			textField4j_SamplePoint.setBackground(Color.YELLOW);
+		}
+		
+		return result;
+	}
+
+	//	    updateOrderInfo 	-- >  	updateMaterialInfo
+	
+	
+	private boolean updateOrderInfo(String orderNo,boolean lookup)
+	{
+		boolean result = false;
+		
+		String material = "";
+		String customerID = "";
+		String status = "";
+
+		//Lookup is passed to indicate if previous step failed in which case there is no need to lookup date in this step.
+		
+		if (lookup == true)
+		{
+			if (orderdb.getProcessOrderProperties(orderNo))
+			{
+				result = true;
+				material = orderdb.getMaterial();
+				customerID = orderdb.getCustomerID();
+				status = orderdb.getStatus();
+				
+			}
+			else
+			{
+				result = false;
+				material = "";
+				customerID = "";
+				status = "";
+
+			}
+		}
+		else
+		{
+			result = false;
+		}
+		
+		textField4j_OrderStatus.setText(status);
+		jTextFieldMaterial.setText(material);
+		
+		if (result == true)
 		{
 			jTextFieldProcessOrder.setBackground(Color.WHITE);
-			jTextFieldMaterial.setBackground(Color.WHITE);
-			textField4j_OrderStatus.setBackground(Color.WHITE);
-			textField4j_Description.setBackground(Color.WHITE);
-
-			jTextFieldMaterial.setText(orderdb.getMaterial());
-			textField4j_OrderStatus.setText(orderdb.getStatus());
-
-			if (textField4j_OrderStatus.getText().equals("Ready") || (textField4j_OrderStatus.getText().equals("Running")))
+			
+			if (status.equals("Ready") || (status.equals("Running")))
 			{
 				textField4j_OrderStatus.setBackground(Color.WHITE);
 			}
@@ -247,183 +334,274 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				textField4j_OrderStatus.setBackground(Color.RED);
 			}
+			
+		}
+		else
+		{
+			jTextFieldProcessOrder.setBackground(Color.YELLOW);
+			textField4j_OrderStatus.setBackground(Color.YELLOW);
+		}
 
-			if (materialdb.getMaterialProperties(orderdb.getMaterial()))
+		updateMaterialInfo(material,customerID,result);
+
+		return result;
+	}
+	
+	private boolean updateMaterialInfo(String material,String customer,boolean lookup)
+	{
+		boolean result = false;
+		
+		//Lookup is passed to indicate if previous step failed in which case there is no need to lookup date in this step.
+		
+		if (lookup == true)
+		{
+			if (materialdb.getMaterialProperties(material))
 			{
-				jTextFieldMaterial.setBackground(Color.WHITE);
-				textField4j_Description.setBackground(Color.WHITE);
+				result = true;
 				textField4j_Description.setText(materialdb.getDescription());
-				
-				if (matcustdb.getMaterialCustomerDataProperties(orderdb.getMaterial(), orderdb.getCustomerID(), "PRODUCT_GROUP"))
-				{
-					textField4j_Material_Group.setBackground(Color.WHITE);
-					textField4j_Material_Group.setText(matcustdb.getData());
-					
-					if (matgroupdb.getMaterialGroupProperties(matcustdb.getData()))
-					{
-						
-						jTextField_NominalWeight.setBackground(Color.WHITE);
-						jTextField_TareWeight.setBackground(Color.WHITE);
-						jTextField_TareWeight.setBackground(Color.WHITE);
-						jTextField_TareWeight_UOM.setBackground(Color.WHITE);
-						jTextField_NominalWeight_UOM.setBackground(Color.WHITE);
-						
-						jTextField_NominalWeight.setText(matgroupdb.getNominalWeight().toString());
-						jTextField_NominalWeight_UOM.setText(matgroupdb.getNominalUOM());
-						jTextField_TareWeight.setText(matgroupdb.getTareWeight().toString());
-						jTextField_TareWeight_UOM.setText(matgroupdb.getTareWeightUOM());
-						
-						if (tnedb.getProperties(matgroupdb.getNominalWeight(), matgroupdb.getNominalUOM()))
-						{
-							jTextField_T1.setBackground(Color.WHITE);
-							jTextField_T2.setBackground(Color.WHITE);
-							jTextField_T1_UOM.setBackground(Color.WHITE);
-							jTextField_T2_UOM.setBackground(Color.WHITE);
-							jTextField_TNE.setBackground(Color.WHITE);
-							
-							jTextField_T1.setText(tnedb.getNegT1().toString());
-							jTextField_T2.setText(tnedb.getNegT2().toString());
-							jTextField_T1_UOM.setText(tnedb.getNominalWTUOM());
-							jTextField_T2_UOM.setText(tnedb.getNominalWTUOM());
-							jTextField_TNE.setText(tnedb.getTNE().toString());
-						}
-						else
-						{
-							jTextField_T1.setBackground(pale_YELLOW);
-							jTextField_T2.setBackground(pale_YELLOW);
-							jTextField_T1_UOM.setBackground(pale_YELLOW);
-							jTextField_T2_UOM.setBackground(pale_YELLOW);
-							jTextField_TNE.setBackground(pale_YELLOW);
-							
-							jTextField_T1.setText("0.000");
-							jTextField_T2.setText("0.000");
-							jTextField_TNE.setText("0.000");
-							jTextField_T1_UOM.setText("");
-							jTextField_T2_UOM.setText("");
-						}
-					}
-					else
-					{
-						jTextField_NominalWeight.setBackground(pale_YELLOW);
-						jTextField_TareWeight.setBackground(pale_YELLOW);
-						jTextField_TareWeight.setBackground(pale_YELLOW);
-						jTextField_TareWeight_UOM.setBackground(pale_YELLOW);
-						
-						jTextField_NominalWeight.setText("0.000");
-						jTextField_TareWeight.setText("0.000");
-						jTextField_TareWeight.setText("0.000");
-						jTextField_TareWeight_UOM.setText("");
-					}
-				}
-				else
-				{
-					textField4j_Material_Group.setText("");
-					textField4j_Material_Group.setBackground(pale_YELLOW);
-				}
-				
-				if (matcustdb.getMaterialCustomerDataProperties(orderdb.getMaterial(), orderdb.getCustomerID(), "CONTAINER_CODE"))
-				{
-					textField4j_Container_Code.setBackground(Color.WHITE);
-					textField4j_Container_Code.setText(matcustdb.getData());
-				}
-				else
-				{
-					textField4j_Container_Code.setBackground(pale_YELLOW);
-					textField4j_Container_Code.setText("");
-				}
-
 			}
 			else
 			{
-				jTextFieldMaterial.setBackground(pale_YELLOW);
-				
-				textField4j_Material_Group.setText("");
-				textField4j_Material_Group.setBackground(pale_YELLOW);
-				
-				textField4j_Container_Code.setBackground(pale_YELLOW);
-				textField4j_Container_Code.setText("");
-				
-				textField4j_Description.setText("");
-				textField4j_Description.setBackground(pale_YELLOW);
-				
-				textField4j_OrderStatus.setBackground(pale_YELLOW);
-				textField4j_OrderStatus.setText("");
+				result = false;
+			}
+		}
+		else
+		{
+			result = false;
+		}
+		
+		if (result == true)
+		{
+			jTextFieldMaterial.setBackground(Color.WHITE);
+			textField4j_Description.setBackground(Color.WHITE);
+		}
+		else
+		{
+			textField4j_Description.setText("");
+			jTextFieldMaterial.setBackground(Color.YELLOW);
+			textField4j_Description.setBackground(Color.YELLOW);
+		}
 
-				jTextField_T1.setBackground(pale_YELLOW);
-				jTextField_T2.setBackground(pale_YELLOW);
-				jTextField_T1_UOM.setBackground(pale_YELLOW);
-				jTextField_T2_UOM.setBackground(pale_YELLOW);
-				jTextField_TNE.setBackground(pale_YELLOW);
+		updateCustomerDataInfo(material,customer,"PRODUCT_GROUP",result);
+		
+		updateCustomerDataInfo(material,customer,"CONTAINER_CODE",result);
+
+		return result;
+	}
+
+
+	private boolean updateCustomerDataInfo(String material,String customer,String key,boolean lookup)
+	{
+		boolean result = false;
+		
+		String data = "";
+		String group="";
+		
+		if (lookup == true)
+		{
+			if (matcustdb.getMaterialCustomerDataProperties(material, customer, key))
+			{
+				result = true;
+				data = matcustdb.getData();
 				
-				jTextField_T1.setText("0.000");
-				jTextField_T2.setText("0.000");
-				jTextField_TNE.setText("0.000");
-				jTextField_T1_UOM.setText("");
-				jTextField_T2_UOM.setText("");				
+				if (key.equals("PRODUCT_GROUP"))
+				{
+					textField4j_Material_Group.setText(data);
+					group=data;
+				}
 				
+				if (key.equals("CONTAINER_CODE"))
+				{
+					textField4j_Container_Code.setText(data);
+				}
+			}
+			else
+			{
+				result = false;
 				
-				jTextField_NominalWeight.setBackground(pale_YELLOW);
-				jTextField_TareWeight.setBackground(pale_YELLOW);
-				jTextField_TareWeight.setBackground(pale_YELLOW);
-				jTextField_TareWeight_UOM.setBackground(pale_YELLOW);
+				if (key.equals("PRODUCT_GROUP"))
+				{
+					textField4j_Material_Group.setText("");
+				}
 				
-				jTextField_NominalWeight_UOM.setBackground(pale_YELLOW);
-				jTextField_NominalWeight_UOM.setText("");
-				
-				jTextField_NominalWeight.setText("0.000");
-				jTextField_TareWeight.setText("0.000");
-				jTextField_TareWeight.setText("0.000");
-				jTextField_TareWeight_UOM.setText("");
+				if (key.equals("CONTAINER_CODE"))
+				{
+					textField4j_Container_Code.setText("");
+				}
+			}
+		}
+		else
+		{
+			result = false;
+		}
+		
+		if (result == true)
+		{
+			if (key.equals("PRODUCT_GROUP"))
+			{
+				textField4j_Material_Group.setBackground(Color.WHITE);
+			}
+			if (key.equals("CONTAINER_CODE"))
+			{
+				textField4j_Container_Code.setBackground(Color.WHITE);
 			}
 
 		}
 		else
 		{
-			jTextFieldProcessOrder.setBackground(Color.YELLOW);
-
-			jTextFieldMaterial.setText("");
-			jTextFieldMaterial.setBackground(pale_YELLOW);
-			
-			textField4j_Material_Group.setText("");
-			textField4j_Material_Group.setBackground(pale_YELLOW);
-			
-			textField4j_Container_Code.setBackground(pale_YELLOW);
-			textField4j_Container_Code.setText("");
-			
-			textField4j_Description.setText("");
-			textField4j_Description.setBackground(pale_YELLOW);
-			
-			textField4j_OrderStatus.setBackground(pale_YELLOW);
-			textField4j_OrderStatus.setText("");
-
-			jTextField_T1.setBackground(pale_YELLOW);
-			jTextField_T2.setBackground(pale_YELLOW);
-			jTextField_T1_UOM.setBackground(pale_YELLOW);
-			jTextField_T2_UOM.setBackground(pale_YELLOW);
-			jTextField_TNE.setBackground(pale_YELLOW);
-			
-			jTextField_T1.setText("0.000");
-			jTextField_T2.setText("0.000");
-			jTextField_TNE.setText("0.000");
-			jTextField_T1_UOM.setText("");
-			jTextField_T2_UOM.setText("");				
-			
-			
-			jTextField_NominalWeight.setBackground(pale_YELLOW);
-			jTextField_TareWeight.setBackground(pale_YELLOW);
-			jTextField_TareWeight.setBackground(pale_YELLOW);
-			jTextField_TareWeight_UOM.setBackground(pale_YELLOW);
-			
-			jTextField_NominalWeight_UOM.setBackground(pale_YELLOW);
-			jTextField_NominalWeight_UOM.setText("");
-			
-			jTextField_NominalWeight.setText("0.000");
-			jTextField_TareWeight.setText("0.000");
-			jTextField_TareWeight.setText("0.000");
-			jTextField_TareWeight_UOM.setText("");
+			if (key.equals("PRODUCT_GROUP"))
+			{
+				textField4j_Material_Group.setText("");
+				textField4j_Material_Group.setBackground(Color.YELLOW);
+			}
+			if (key.equals("CONTAINER_CODE"))
+			{
+				textField4j_Container_Code.setText("");
+				textField4j_Container_Code.setBackground(Color.YELLOW);
+			}
+		}
+		
+		if (key.equals("PRODUCT_GROUP"))
+		{
+			updateProductGroup(group,result);
 		}
 
+		return result;
 	}
+
+	private boolean updateProductGroup(String group,boolean lookup)
+	{
+		boolean result = false;
+		BigDecimal nominal = new BigDecimal("0.000");
+		String nominalUom = "";
+		BigDecimal tare = new BigDecimal("0.000");
+		String tarelUom = "";
+		
+		//Lookup is passed to indicate if previous step failed in which case there is no need to lookup date in this step.
+		
+		if (lookup == true)
+		{
+			if (matgroupdb.getMaterialGroupProperties(group))
+			{
+				result = true;
+				nominal = matgroupdb.getNominalWeight();
+				nominalUom = matgroupdb.getNominalUOM();
+				tare = matgroupdb.getTareWeight();
+				tarelUom = matgroupdb.getTareWeightUOM();
+				
+				jTextField_NominalWeight.setText(nominal.toString());
+				jTextField_NominalWeight_UOM.setText(nominalUom);
+				jTextField_TareWeight.setText(tare.toString());
+				jTextField_TareWeight_UOM.setText(tarelUom);
+			}
+			else
+			{
+				result = false;
+				nominal = new BigDecimal("0.000");
+				nominalUom = "";
+				tare  = new BigDecimal("0.000");
+				tarelUom = "";
+				
+
+			}
+		}
+		else
+		{
+			result = false;
+		}
+		
+		if (result == true)
+		{
+			jTextField_NominalWeight.setBackground(Color.WHITE);
+			jTextField_NominalWeight_UOM.setBackground(Color.WHITE);
+			jTextField_TareWeight.setBackground(Color.WHITE);
+			jTextField_TareWeight_UOM.setBackground(Color.WHITE);
+
+		}
+		else
+		{
+			jTextField_NominalWeight.setText("0.000");
+			jTextField_NominalWeight_UOM.setText("");
+			jTextField_TareWeight.setText("0.000");
+			jTextField_TareWeight_UOM.setText("");
+			
+			jTextField_NominalWeight.setBackground(Color.YELLOW);
+			jTextField_NominalWeight_UOM.setBackground(Color.YELLOW);
+			jTextField_TareWeight.setBackground(Color.YELLOW);
+			jTextField_TareWeight_UOM.setBackground(Color.YELLOW);
+		}
+
+		updateTNEInfo(nominal,nominalUom,result);
+		
+		return result;
+	}
+
+	private boolean updateTNEInfo(BigDecimal findNominal,String findNominalUOM,boolean lookup)
+	{
+		boolean result = false;
+		
+
+		BigDecimal negt1 = new BigDecimal("0.000");
+		BigDecimal negt2 = new BigDecimal("0.000");
+		BigDecimal tne = new BigDecimal("0.000");
+
+		
+		//Lookup is passed to indicate if previous step failed in which case there is no need to lookup date in this step.
+		
+		if (lookup == true)
+		{
+			if (tnedb.getProperties(findNominal, findNominalUOM))
+			{
+				result = true;
+				
+
+				negt1 = tnedb.getNegT1();
+				negt2 = tnedb.getNegT2();
+				tne = tnedb.getTNE();
+				
+				
+				jTextField_T1.setText(negt1.toString());
+				jTextField_T2.setText(negt2.toString());
+				jTextField_TNE.setText(tne.toString());
+			}
+			else
+			{
+				result = false;
+				
+				negt1  	= new BigDecimal("0.000");
+				negt2  	= new BigDecimal("0.000");
+				tne  	= new BigDecimal("0.000");
+			}
+		}
+		else
+		{
+			result = false;
+		}
+		
+		
+		jTextField_T1.setText(negt1.toString());
+		jTextField_T2.setText(negt2.toString());
+		jTextField_TNE.setText(tne.toString());
+		
+		if (result == true)
+		{
+		
+			jTextField_T1.setBackground(Color.WHITE);
+			jTextField_T2.setBackground(Color.WHITE);
+			jTextField_TNE.setBackground(Color.WHITE);
+
+		}
+		else
+		{
+			jTextField_T1.setBackground(Color.WHITE);
+			jTextField_T2.setBackground(Color.WHITE);
+			jTextField_TNE.setBackground(Color.WHITE);
+		}
+
+		return result;
+	}
+
+
 
 	private void buildSQL()
 	{
@@ -442,34 +620,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 	private void populateList()
 	{
-		JDBMaterialBatch materialBatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
-		JDBMaterialBatchTableModel materialBatchTable = new JDBMaterialBatchTableModel(materialBatch.getMaterialBatchDataResultSet(listStatement));
-		TableRowSorter<JDBMaterialBatchTableModel> sorter = new TableRowSorter<JDBMaterialBatchTableModel>(materialBatchTable);
-
-		jTable_Weights.setRowSorter(sorter);
-		jTable_Weights.setModel(materialBatchTable);
-
-		jScrollPane_Weights.setViewportView(jTable_Weights);
-		JUtility.scrolltoHomePosition(jScrollPane_Weights);
-		jTable_Weights.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-		jTable_Weights.getColumnModel().getColumn(0).setPreferredWidth(95);
-		jTable_Weights.getColumnModel().getColumn(1).setPreferredWidth(105);
-		jTable_Weights.getColumnModel().getColumn(2).setPreferredWidth(105);
-		jTable_Weights.getColumnModel().getColumn(3).setPreferredWidth(120);
-
-		jScrollPane_Weights.repaint();
-	}
-
-	private void editRecord()
-	{
-		int row = jTable_Weights.getSelectedRow();
-		if (row >= 0)
-		{
-			lmaterial = jTable_Weights.getValueAt(row, 0).toString();
-			lbatch = jTable_Weights.getValueAt(row, 1).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
-		}
 
 	}
 
@@ -488,36 +638,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
 				{
-					jScrollPane_Weights = new JScrollPane();
-					jScrollPane_Weights.getViewport().setBackground(Common.color_tablebackground);
-					jDesktopPane1.setLayout(null);
-					jDesktopPane1.add(jScrollPane_Weights);
-					jScrollPane_Weights.setBounds(511, 209, 440, 277);
-					{
-						TableModel jTable1Model = new DefaultTableModel(new String[][]
-						{
-								{ "One", "Two" },
-								{ "Three", "Four" } }, new String[]
-						{ "Column 1", "Column 2" });
-						jTable_Weights = new JTable4j();
 
-						jScrollPane_Weights.setViewportView(jTable_Weights);
-						jTable_Weights.setModel(jTable1Model);
-
-						jTable_Weights.addMouseListener(new MouseAdapter()
-						{
-							public void mouseClicked(MouseEvent evt)
-							{
-								if (evt.getClickCount() == 2)
-								{
-									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"))
-									{
-										editRecord();
-									}
-								}
-							}
-						});
-					}
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
@@ -555,7 +676,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						@Override
 						public void keyReleased(KeyEvent e)
 						{
-							updateOrderInfo();
+							updateOrderInfo(jTextFieldProcessOrder.getText(),true);
 						}
 					});
 					jDesktopPane1.add(jTextFieldProcessOrder);
@@ -587,7 +708,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							if (JLaunchLookup.processOrders())
 							{
 								jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
-								updateOrderInfo();
+								updateOrderInfo(JLaunchLookup.dlgResult,true);
 							}
 						}
 					});
@@ -599,7 +720,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 615, 1000, 21);
+					jStatusText.setBounds(0, 610, 1006, 2122);
 					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 					jDesktopPane1.add(jStatusText);
 				}
@@ -624,7 +745,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				JLabel4j_std label4j_SamplePoint = new JLabel4j_std();
 				label4j_SamplePoint.setText(lang.get("lbl_SamplePoint"));
 				label4j_SamplePoint.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_SamplePoint.setBounds(206, 18, 126, 25);
+				label4j_SamplePoint.setBounds(224, 18, 108, 25);
 				jDesktopPane1.add(label4j_SamplePoint);
 				textField4j_SamplePoint.setEnabled(false);
 				textField4j_SamplePoint.setEditable(false);
@@ -665,7 +786,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				JLabel4j_std label4j_Container_Code = new JLabel4j_std();
 				label4j_Container_Code.setText(lang.get("lbl_Container_Code"));
 				label4j_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_Container_Code.setBounds(206, 92, 126, 25);
+				label4j_Container_Code.setBounds(224, 92, 108, 25);
 				jDesktopPane1.add(label4j_Container_Code);
 				textField4j_Container_Code.setEnabled(false);
 				textField4j_Container_Code.setEditable(false);
@@ -681,7 +802,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				JLabel4j_std label4j__OrderStatus = new JLabel4j_std();
 				label4j__OrderStatus.setText(lang.get("lbl_Process_Order_Status"));
 				label4j__OrderStatus.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j__OrderStatus.setBounds(215, 55, 117, 25);
+				label4j__OrderStatus.setBounds(224, 55, 108, 25);
 				jDesktopPane1.add(label4j__OrderStatus);
 				textField4j_OrderStatus.setEnabled(false);
 				textField4j_OrderStatus.setEditable(false);
@@ -733,7 +854,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jLabel_TareWeight.setText(lang.get("lbl_Tare_Weight"));
 				jLabel_TareWeight.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_TareWeight.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_TareWeight.setBounds(712, 92, 118, 25);
+				jLabel_TareWeight.setBounds(722, 92, 108, 25);
 				jDesktopPane1.add(jLabel_TareWeight);
 
 				JLabel4j_std label4j_T1 = new JLabel4j_std();
@@ -750,20 +871,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jTextField_T1.setBounds(583, 129, 73, 25);
 				jDesktopPane1.add(jTextField_T1);
 
-				jTextField_T1_UOM.setText("");
-				jTextField_T1_UOM.setPreferredSize(new Dimension(40, 20));
-				jTextField_T1_UOM.setFocusCycleRoot(true);
-				jTextField_T1_UOM.setEnabled(false);
-				jTextField_T1_UOM.setEditable(false);
-				jTextField_T1_UOM.setCaretPosition(0);
-				jTextField_T1_UOM.setBounds(668, 129, 50, 25);
-				jDesktopPane1.add(jTextField_T1_UOM);
-
 				JLabel4j_std label4j_T2 = new JLabel4j_std();
 				label4j_T2.setText(lang.get("lbl_T2_Lower_Limit"));
 				label4j_T2.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_T2.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_T2.setBounds(712, 129, 118, 25);
+				label4j_T2.setBounds(722, 129, 108, 25);
 				jDesktopPane1.add(label4j_T2);
 
 				jTextField_T2.setVerifyInputWhenFocusTarget(false);
@@ -773,20 +885,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jTextField_T2.setBounds(839, 129, 73, 25);
 				jDesktopPane1.add(jTextField_T2);
 
-				jTextField_T2_UOM.setText("");
-				jTextField_T2_UOM.setPreferredSize(new Dimension(40, 20));
-				jTextField_T2_UOM.setFocusCycleRoot(true);
-				jTextField_T2_UOM.setEnabled(false);
-				jTextField_T2_UOM.setEditable(false);
-				jTextField_T2_UOM.setCaretPosition(0);
-				jTextField_T2_UOM.setBounds(924, 129, 50, 25);
-				jDesktopPane1.add(jTextField_T2_UOM);
-
 				JLabel4j_std label4j_SampleSize = new JLabel4j_std();
 				label4j_SampleSize.setText(lang.get("lbl_SampleSize"));
 				label4j_SampleSize.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_SampleSize.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_SampleSize.setBounds(23, 129, 73, 25);
+				label4j_SampleSize.setBounds(0, 129, 96, 25);
 				jDesktopPane1.add(label4j_SampleSize);
 
 				jTextField_SampleSize.setVerifyInputWhenFocusTarget(false);
@@ -800,7 +903,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				label4j_TNE.setText(lang.get("lbl_TNE"));
 				label4j_TNE.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_TNE.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_TNE.setBounds(206, 129, 126, 25);
+				label4j_TNE.setBounds(224, 129, 108, 25);
 				jDesktopPane1.add(label4j_TNE);
 
 				jTextField_TNE.setVerifyInputWhenFocusTarget(false);
@@ -809,6 +912,16 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jTextField_TNE.setEditable(false);
 				jTextField_TNE.setBounds(364, 129, 73, 25);
 				jDesktopPane1.add(jTextField_TNE);
+
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(617, 213, 365, 313);
+				jDesktopPane1.add(scrollPane);
+				scrollPane.setViewportView(listResults);
+
+				JLabel lbl_Legend = new JLabel("  Gross Wt   Tare Wt    Net Wt       T1       T2");
+				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
+				lbl_Legend.setBounds(617, 197, 365, 15);
+				jDesktopPane1.add(lbl_Legend);
 
 			}
 		}

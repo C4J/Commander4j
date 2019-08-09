@@ -40,9 +40,12 @@ import com.commander4j.util.JUtility;
 
 public class JDBWTSampleDetail
 {
-	public static int field_SamplePoint = 25;
-	public static int field_Description = 35;
-	public static int field_Location = 35;
+
+	public static Integer field_GrossWeight = 10;
+	public static Integer field_NetWeight = 10;
+	public static Integer field_TareWeight = 10;
+	public static Integer field_T1Count = 5;
+	public static Integer field_T2Count = 5;
 
 	private String dbSamplePoint = "";
 	private Timestamp dbSampleDate;
@@ -464,9 +467,14 @@ public class JDBWTSampleDetail
 		String result = "";
 		
 
-		result= getSampleGrossWeight().toString();
+		//result= getSampleGrossWeight().toString();
 
-
+		
+		result= JUtility.padString(getSampleGrossWeight().toString(), false, field_GrossWeight, " ")+" "+ 
+		        JUtility.padString(getSampleTareWeight().toString(), true, field_TareWeight, " ")+" "+ 
+				JUtility.padString(getSampleNetWeight().toString(), false, field_NetWeight, " ")+" "+
+		        JUtility.padString(getSampleT1Count().toString(), false, field_T1Count, " ")+" "+ 
+		        JUtility.padString(getSampleT2Count().toString(), false, field_T2Count, " "); 
 
 		return result;
 	}
