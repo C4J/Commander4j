@@ -129,6 +129,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JQuantityInput jTextField_TNE = new JQuantityInput(new BigDecimal("0.000"));
 	private JQuantityInput jTextField_SampleSize = new JQuantityInput(new BigDecimal("0.000"));
 	private int lSampleSize = 0;
+	private BigDecimal zero = new BigDecimal("0.000");
 
 	private JList4j listResults = new JList4j();
 
@@ -493,6 +494,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jTextField_NominalWeight_UOM.setText(nominalUom);
 				jTextField_TareWeight.setText(tare.toString());
 				jTextField_TareWeight_UOM.setText(tarelUom);
+				
 			}
 			else
 			{
@@ -512,11 +514,42 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		
 		if (result == true)
 		{
-			jTextField_NominalWeight.setBackground(Color.WHITE);
-			jTextField_NominalWeight_UOM.setBackground(Color.WHITE);
-			jTextField_TareWeight.setBackground(Color.WHITE);
-			jTextField_TareWeight_UOM.setBackground(Color.WHITE);
-
+			if (nominal.compareTo(zero)==0)
+			{
+				jTextField_NominalWeight.setBackground(Color.YELLOW);
+			}
+			else
+			{
+				jTextField_NominalWeight.setBackground(Color.WHITE);
+			}
+			
+			if (nominalUom.equals(""))
+			{
+				jTextField_NominalWeight_UOM.setBackground(Color.YELLOW);
+			}
+			else
+			{
+				jTextField_NominalWeight_UOM.setBackground(Color.WHITE);
+			}
+			
+			if (tare.compareTo(zero)==0)
+			{
+				jTextField_TareWeight.setBackground(Color.YELLOW);
+			}
+			else
+			{
+				jTextField_TareWeight.setBackground(Color.WHITE);
+			}
+			
+			if (tarelUom.equals(""))
+			{
+				jTextField_TareWeight_UOM.setBackground(Color.YELLOW);
+			}
+			else
+			{
+				jTextField_TareWeight_UOM.setBackground(Color.WHITE);
+			}
+			
 		}
 		else
 		{
@@ -586,16 +619,39 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		if (result == true)
 		{
 		
-			jTextField_T1.setBackground(Color.WHITE);
-			jTextField_T2.setBackground(Color.WHITE);
-			jTextField_TNE.setBackground(Color.WHITE);
-
+			if (negt1.compareTo(zero)==0)
+			{
+				jTextField_T1.setBackground(Color.YELLOW);
+			}
+			else
+			{
+				jTextField_T1.setBackground(Color.WHITE);
+			}
+			
+			if (negt2.compareTo(zero)==0)
+			{
+				jTextField_T2.setBackground(Color.YELLOW);
+			}
+			else
+			{
+				jTextField_T2.setBackground(Color.WHITE);
+			}
+			
+			if (tne.compareTo(zero)==0)
+			{
+				jTextField_TNE.setBackground(Color.YELLOW);
+			}
+			else
+			{
+				jTextField_TNE.setBackground(Color.WHITE);
+			}
+			
 		}
 		else
 		{
-			jTextField_T1.setBackground(Color.WHITE);
-			jTextField_T2.setBackground(Color.WHITE);
-			jTextField_TNE.setBackground(Color.WHITE);
+			jTextField_T1.setBackground(Color.YELLOW);
+			jTextField_T2.setBackground(Color.YELLOW);
+			jTextField_TNE.setBackground(Color.YELLOW);
 		}
 
 		return result;

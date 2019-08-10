@@ -94,8 +94,6 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 		{
 			if (lGroupString.equals("") == false)
 			{
-				lGroupString = lGroupString.toUpperCase();
-
 				if (u.create(lGroupString) == false)
 				{
 					JUtility.errorBeep();
