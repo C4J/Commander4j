@@ -146,6 +146,28 @@ public class JLaunchLookup
 	}
 
 	
+	public static boolean processOrdersResources() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_PROCESS_ORDER"));
+		JDialogLookup.dlg_title = "Process Orders";
+
+		JDialogLookup.dlg_key_field_name = "process_order";
+		JDialogLookup.dlg_criteria_field_name_default = "required_resource";
+		JDialogLookup.dlg_orderBy_name_default = "due_date";
+		JDialogLookup.dlg_sort_descending = true;
+
+
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+	
 	public static boolean users() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}SYS_USERS"));

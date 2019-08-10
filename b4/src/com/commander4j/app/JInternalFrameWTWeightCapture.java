@@ -704,8 +704,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						public void actionPerformed(ActionEvent e)
 						{
 							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.processOrders())
+							JLaunchLookup.dlgCriteriaDefault = workdb.getRequiredResource();
+							if (JLaunchLookup.processOrdersResources())
 							{
 								jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
 								updateOrderInfo(JLaunchLookup.dlgResult,true);
@@ -738,7 +738,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				textField4j_WorkstationID.setEditable(false);
 				textField4j_WorkstationID.setEnabled(false);
 				textField4j_WorkstationID.setDisabledTextColor(Color.BLACK);
-				textField4j_WorkstationID.setBounds(104, 18, 113, 25);
+				textField4j_WorkstationID.setBounds(104, 18, 142, 25);
 
 				jDesktopPane1.add(textField4j_WorkstationID);
 

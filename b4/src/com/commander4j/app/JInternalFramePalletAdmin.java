@@ -1004,7 +1004,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jToggleButtonSequence = new JToggleButton();
 					jToggleButtonSequence.setSelected(true);
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(696, 198, 21, 21);
+					jToggleButtonSequence.setBounds(696, 197, 21, 21);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1052,7 +1052,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
 					jDesktopPane1.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setBounds(582, 44, 135, 22);
+					jTextFieldProcessOrder.setBounds(582, 44, 115, 22);
 				}
 				{
 					jLabelProductionDate = new JLabel4j_std();
@@ -1193,7 +1193,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupProcessOrder);
-					jButtonLookupProcessOrder.setBounds(680, 44, 21, 21);
+					jButtonLookupProcessOrder.setBounds(696, 44, 21, 21);
 					jButtonLookupProcessOrder.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)

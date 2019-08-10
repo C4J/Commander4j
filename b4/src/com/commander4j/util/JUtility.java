@@ -489,6 +489,7 @@ public class JUtility
 
 		if (str != null)
 		{
+			str = str.toLowerCase();
 			prevCh = '.'; // Prime the loop with any non-letter character.
 
 			for (i = 0; i < str.length(); i++)
