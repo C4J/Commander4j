@@ -199,7 +199,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
-			this.setTitle("Material Groups");
+			this.setTitle("Product Groups");
 			{
 				jDesktopPane1 = new JDesktopPane();
 				jDesktopPane1.setBackground(Common.color_app_window);
@@ -436,7 +436,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 					jDesktopPane1.add(jButtonExcel);
 				}
 
-				JLabel lbl_Legend = new JLabel("Product Groups");
+				JLabel lbl_Legend = new JLabel("Product Group           Nominal Weight    Tare Weight");
 				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
 				lbl_Legend.setBounds(6, 12, 518, 15);
 				jDesktopPane1.add(lbl_Legend);

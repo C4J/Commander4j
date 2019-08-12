@@ -54,6 +54,8 @@ public class JDBWTProductGroups
 
 	public static int field_product_group = 25;
 	public static int field_description = 50;
+	public static int field_NominalWeight = 10;
+	public static int field_TareWeight = 10;
 	public static int field_nominal_uom = 3;
 	public static int field_tare_uom = 3;
 	private String dbErrorMessage;
@@ -560,7 +562,11 @@ public class JDBWTProductGroups
 
 		String result = "";
 
-		result = JUtility.padString(getMaterialGroup().toString(), true, field_product_group, " ");
+		result = JUtility.padString(getMaterialGroup().toString(), true, field_product_group, " ")+	
+        JUtility.padString(getNominalWeight().toString(), false, field_NominalWeight, " ")+" "+ 
+		JUtility.padString(getNominalUOM(), true, field_nominal_uom, " ")+" "+
+        JUtility.padString(getTareWeight().toString(), false, field_TareWeight, " ")+" "+ 
+		JUtility.padString(getTareWeightUOM(), true, field_tare_uom, " ");
 
 		return result;
 	}

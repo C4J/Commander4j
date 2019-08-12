@@ -986,6 +986,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				button4j_LookupProductGroup.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.dlgCriteriaDefault="";
 						if (JLaunchLookup.wtProductGroups())
 						{
 							if (textField4j_Product_Group.getText().equals(JLaunchLookup.dlgResult)==false)
@@ -1011,6 +1012,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				button4j_LookupContainerCode.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.dlgCriteriaDefault="";
 						if (JLaunchLookup.wtContainerCode())
 						{
 							if (textField4j_Container_Code.getText().equals(JLaunchLookup.dlgResult)==false)

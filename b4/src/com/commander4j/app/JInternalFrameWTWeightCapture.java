@@ -39,6 +39,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
@@ -46,10 +48,17 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
+import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
+import org.apache.log4j.Logger;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -57,6 +66,8 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.XYDataset;
 
+import com.commander4j.app.JInternalFrameProductionDeclaration.ClockListener;
+import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBMaterial;
@@ -79,6 +90,7 @@ import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
+import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
@@ -119,7 +131,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JTextField4j textField4j_ScalePort = new JTextField4j(JDBWTWorkstation.field_ScalePort);
 	private JTextField4j textField4j_Material_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
 	private JTextField4j textField4j_Container_Code = new JTextField4j(JDBQMSample.field_data_2);
-	private JButton4j button4j_NewSample = new JButton4j(Common.icon_add_16x16);
+	private JButton4j button4j_Start = new JButton4j(Common.icon_add_16x16);
 	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrder orderdb = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 	private JDBMaterialCustomerData matcustdb = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
@@ -138,11 +150,17 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JQuantityInput jTextField_T2 = new JQuantityInput(new BigDecimal("0.000"));
 	private JQuantityInput jTextField_TNE = new JQuantityInput(new BigDecimal("0.000"));
 	private JQuantityInput jTextField_SampleSize = new JQuantityInput(new BigDecimal("0.000"));
+	private JQuantityInput jTextField_SampleFrequency = new JQuantityInput(new BigDecimal("0.000"));
+	private JDateControl currentDateTime;
 	private int lSampleSize = 0;
+	private int lSampleFrequency = 15;
 	private BigDecimal zero = new BigDecimal("0.000");
 	private JDBWTSampleHeader sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
 	private LinkedList<JDBWTSampleDetail> sampleDetailList = new LinkedList<JDBWTSampleDetail>();
 	private Integer sampleSequence = 0;
+	final Logger logger = Logger.getLogger(JInternalFrameProductionDeclaration.class);
+	private ClockListener clocklistener = new ClockListener();
+	private Timer timer = new Timer(1000, clocklistener);
 
 	private JList4j listResults = new JList4j();
 
@@ -153,7 +171,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
 		initGUI();
-
+		timer.start();
 		String workstation = JUtility.getClientName().toUpperCase();
 
 		textField4j_WorkstationID.setText(workstation);
@@ -161,7 +179,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		String temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE SIZE", "5", "WEIGHT CHECK SAMPLE SIZE");
 		lSampleSize = Integer.valueOf(temp);
 		jTextField_SampleSize.setText(String.valueOf(lSampleSize));
-
+		
+		temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE FREQUENCY", "15", "WEIGHT CHECK FREQUENCY MINS");
+		lSampleFrequency = Integer.valueOf(temp);
+		jTextField_SampleFrequency.setText(String.valueOf(lSampleFrequency));
+		
 		updateWorkstationInfo(workstation, true);
 
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
@@ -188,6 +210,20 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jTextFieldProcessOrder.requestFocus();
 				jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
 
+			}
+		});
+		
+		addInternalFrameListener(new InternalFrameAdapter() {
+			
+			public void internalFrameClosing(InternalFrameEvent e)
+			{
+				timer.stop();
+
+				while (timer.isRunning())
+				{
+				}
+
+				timer = null;
 			}
 		});
 
@@ -741,7 +777,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		ChartPanel cp = new ChartPanel(chart);
 
-		cp.setBounds(12, 212, 587, 313);
+		cp.setBounds(18, 232, 587, 320);
 
 		jDesktopPane1.add(cp);
 
@@ -789,14 +825,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(489, 566, 126, 32);
+					jButtonHelp.setBounds(476, 566, 126, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(617, 566, 126, 32);
+					jButtonClose.setBounds(604, 566, 126, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -937,15 +973,16 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				textField4j_Container_Code.setBounds(346, 92, 93, 25);
 				jDesktopPane1.add(textField4j_Container_Code);
-				button4j_NewSample.addActionListener(new ActionListener() {
+				button4j_Start.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						currentDateTime.setDate(JUtility.getSQLDateTime());
 					}
 				});
 
-				button4j_NewSample.setText("btn_New");
-				button4j_NewSample.setMnemonic('0');
-				button4j_NewSample.setBounds(458, 168, 126, 32);
-				jDesktopPane1.add(button4j_NewSample);
+				button4j_Start.setText(lang.get("lbl_Begin_Weight_Check"));
+				button4j_Start.setMnemonic('0');
+				button4j_Start.setBounds(255, 566, 220, 32);
+				jDesktopPane1.add(button4j_Start);
 
 				JLabel4j_std label4j__OrderStatus = new JLabel4j_std();
 				label4j__OrderStatus.setText(lang.get("lbl_Process_Order_Status"));
@@ -1039,6 +1076,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				label4j_SampleSize.setHorizontalAlignment(SwingConstants.RIGHT);
 				label4j_SampleSize.setBounds(0, 129, 96, 25);
 				jDesktopPane1.add(label4j_SampleSize);
+				
+				JLabel4j_std label4j_SampleFrequency = new JLabel4j_std();
+				label4j_SampleFrequency.setText(lang.get("lbl_SampleFrequency"));
+				label4j_SampleFrequency.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_SampleFrequency.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_SampleFrequency.setBounds(142, 129, 96, 25);
+				jDesktopPane1.add(label4j_SampleFrequency);
 
 				jTextField_SampleSize.setVerifyInputWhenFocusTarget(false);
 				jTextField_SampleSize.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -1046,6 +1090,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jTextField_SampleSize.setEditable(false);
 				jTextField_SampleSize.setBounds(104, 129, 38, 25);
 				jDesktopPane1.add(jTextField_SampleSize);
+				
+				jTextField_SampleFrequency.setVerifyInputWhenFocusTarget(false);
+				jTextField_SampleFrequency.setHorizontalAlignment(SwingConstants.TRAILING);
+				jTextField_SampleFrequency.setFont(new Font("Arial", Font.PLAIN, 11));
+				jTextField_SampleFrequency.setEditable(false);
+				jTextField_SampleFrequency.setBounds(246, 129, 38, 25);
+				jDesktopPane1.add(jTextField_SampleFrequency);
 
 				JLabel4j_std label4j_TNE = new JLabel4j_std();
 				label4j_TNE.setText(lang.get("lbl_TNE"));
@@ -1062,20 +1113,50 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jDesktopPane1.add(jTextField_TNE);
 
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(617, 213, 365, 313);
+				scrollPane.setBounds(617, 232, 365, 320);
 				jDesktopPane1.add(scrollPane);
 				scrollPane.setViewportView(listResults);
 
 				JLabel lbl_Legend = new JLabel("  Gross Wt   Tare Wt    Net Wt       T1       T2");
 				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
-				lbl_Legend.setBounds(617, 197, 365, 15);
+				lbl_Legend.setBounds(617, 218, 365, 15);
 				jDesktopPane1.add(lbl_Legend);
+				
+				{
+					currentDateTime = new JDateControl();
+					jDesktopPane1.add(currentDateTime);
+					currentDateTime.setEnabled(false);
+					currentDateTime.setBounds(602, 172, 120, 25);
+					JTextField tf = ((JSpinner.DefaultEditor)currentDateTime.getEditor()).getTextField();
+					tf.setEnabled(false);
+					tf.setDisabledTextColor(UIManager.getColor("TextField.foreground"));
+
+				}
+				
+				
 
 			}
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
+		}
+	}
+	
+	public class ClockListener implements ActionListener {
+		public void actionPerformed(ActionEvent event)
+		{
+			Calendar rightNow = Calendar.getInstance();
+			Date d = rightNow.getTime();
+
+			try
+			{
+
+				currentDateTime.setDate(d);
+
+			} catch (Exception e)
+			{
+			}
 		}
 	}
 }
