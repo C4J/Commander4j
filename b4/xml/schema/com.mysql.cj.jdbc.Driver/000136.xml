@@ -94,6 +94,38 @@
     <statement>
        INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'PL', 'Częstotliwość', '0')
     </statement>
+    
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'EN', 'Cancel Weight Check', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'DE', 'Gewichtsprüfung abbrechen', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'ES', 'Cancelar verificación de peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'FR', 'Annuler le contrôle du poids', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'HU', 'Mégsem a súlyellenőrzést', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'IT', 'Annulla controllo peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'NL', 'Annuleer gewichtscontrole', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'PL', 'Anuluj kontrolę wagi', '0')
+    </statement>
 	
 	
 </DDL>
