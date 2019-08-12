@@ -471,7 +471,7 @@ public class JDBWTSampleDetail
 
 		
 		result= JUtility.padString(getSampleGrossWeight().toString(), false, field_GrossWeight, " ")+" "+ 
-		        JUtility.padString(getSampleTareWeight().toString(), true, field_TareWeight, " ")+" "+ 
+		        JUtility.padString(getSampleTareWeight().toString(), false, field_TareWeight, " ")+" "+ 
 				JUtility.padString(getSampleNetWeight().toString(), false, field_NetWeight, " ")+" "+
 		        JUtility.padString(getSampleT1Count().toString(), false, field_T1Count, " ")+" "+ 
 		        JUtility.padString(getSampleT2Count().toString(), false, field_T2Count, " "); 
