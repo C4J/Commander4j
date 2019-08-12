@@ -279,18 +279,23 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 			public void internalFrameClosing(InternalFrameEvent e)
 			{
-				timer.stop();
-
-				while (timer.isRunning())
-				{
-				}
-
-				timer = null;
+				shutdown();
 			}
 		});
 
 	}
 
+	private void shutdown()
+	{
+		timer.stop();
+
+		while (timer.isRunning())
+		{
+		}
+
+		timer = null;
+	}
+	
 	public class ClockListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -415,6 +420,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
+							shutdown();
 							JDBQuery.closeStatement(listStatement);
 							dispose();
 						}

@@ -15,11 +15,115 @@
 	</statement>
 	
 	<statement>
-		INSERT INTO APP_WEIGHT_PRODUCT_GROUP (PRODUCT_GROUP)  SELECT DISTINCT DATA AS PRODUCT_GROUP FROM APP_MATERIAL_CUSTOMER_DATA WHERE CUSTOMER_ID = 'SELF' AND DATA_ID = 'PRODUCT_GROUP'
+		INSERT INTO APP_WEIGHT_PRODUCT_GROUP (PRODUCT_GROUP)  SELECT DISTINCT DATA AS PRODUCT_GROUP FROM APP_MATERIAL_CUSTOMER_DATA WHERE CUSTOMER_ID = 'SELF' AND DATA_ID = 'PRODUCT_GROUP' AND DATA > ''
 	</statement>
 	
 	<statement>
 		UPDATE APP_WEIGHT_PRODUCT_GROUP SET DESCRIPTION = PRODUCT_GROUP
 	</statement>
+	
+	<statement>
+		INSERT INTO APP_WEIGHT_CONTAINER_CODE (CONTAINER_CODE)  SELECT DISTINCT DATA AS CONTAINER_CODE FROM APP_MATERIAL_CUSTOMER_DATA WHERE CUSTOMER_ID = 'SELF' AND DATA_ID = 'CONTAINER_CODE' AND DATA > ''
+	</statement>
+	
+	<statement>
+		UPDATE APP_WEIGHT_CONTAINER_CODE SET DESCRIPTION = CONTAINER_CODE
+	</statement>
+	
+	<statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'EN', 'Begin Weight Check', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'DE', 'Beginnen Sie mit der Gewichtskontrolle', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'ES', 'Comenzar control de peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'FR', 'Commencer le contrôle du poids', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'HU', 'Kezdje el a súlyellenőrzést', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'IT', 'Inizia il controllo del peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'NL', 'Begin met gewichtscontrole', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'PL', 'Rozpocznij kontrolę wagi', '0')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'EN', 'Frequency', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'DE', 'Frequenz', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'ES', 'Frecuencia', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'FR', 'La fréquence', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'HU', 'Frekvencia', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'IT', 'Frequenza', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'NL', 'Frequentie', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'PL', 'Częstotliwość', '0')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'EN', 'Cancel Weight Check', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'DE', 'Gewichtsprüfung abbrechen', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'ES', 'Cancelar verificación de peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'FR', 'Annuler le contrôle du poids', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'HU', 'Mégsem a súlyellenőrzést', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'IT', 'Annulla controllo peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'NL', 'Annuleer gewichtscontrole', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'PL', 'Anuluj kontrolę wagi', '0')
+    </statement>
 	
 </DDL>
