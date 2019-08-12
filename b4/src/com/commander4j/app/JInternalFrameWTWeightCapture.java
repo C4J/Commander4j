@@ -98,6 +98,7 @@ import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.ListSelectionModel;
 
 /**
  * The JInternalFrameWTDataCapture is for capturing/recording weight checks
@@ -169,7 +170,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
 
 	private BigDecimal zero = new BigDecimal("0.000");
-	
+
 	public JInternalFrameWTWeightCapture()
 	{
 		super();
@@ -215,18 +216,39 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				fld_Process_Order.requestFocus();
 				fld_Process_Order.setCaretPosition(fld_Process_Order.getText().length());
-				
+
 				JButton btnDebug = new JButton("Debug");
-				btnDebug.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						logSampleWeight("102.3","G");
+				btnDebug.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						switch (sampleDetailList.size())
+						{
+						case 1:
+							logSampleWeight("102.3", "G");
+							break;
+						case 2:
+							logSampleWeight("101.1", "G");
+							break;
+						case 3:
+							logSampleWeight("96.7", "G");
+							break;
+						case 4:
+							logSampleWeight("90.2", "G");
+							break;
+						case 5:
+							logSampleWeight("102.1", "G");
+							break;
+						default:
+							logSampleWeight("102.1", "G");
+							break;
+						}
+
 						populateList();
 					}
 				});
 				btnDebug.setBounds(617, 173, 106, 25);
 				jDesktopPane1.add(btnDebug);
-				
-
 
 			}
 		});
@@ -247,7 +269,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		});
 
 	}
-	
+
 	public class ClockListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -518,7 +540,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							btn_Begin.setEnabled(false);
 							btnj_Cancel.setEnabled(true);
 							logEnabled = true;
-							sampleSequence=0;
+							sampleSequence = 0;
 							sampleDetailList.clear();
 							populateList();
 						}
@@ -660,6 +682,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				scrollPane_Weights.setBounds(617, 232, 365, 320);
 				jDesktopPane1.add(scrollPane_Weights);
+				list_Weights.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				scrollPane_Weights.setViewportView(list_Weights);
 
 				JLabel lbl_Legend = new JLabel("  Gross Wt   Tare Wt    Net Wt       T1       T2");
@@ -677,9 +700,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					tf.setDisabledTextColor(UIManager.getColor("TextField.foreground"));
 
 				}
-				btnj_Cancel.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						logEnabled=false;
+				btnj_Cancel.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						logEnabled = false;
 						sampleDetailList.clear();
 						btnj_Cancel.setEnabled(false);
 						btn_Begin.setEnabled(true);
@@ -687,7 +712,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					}
 				});
 				btnj_Cancel.setEnabled(false);
-				
+
 				btnj_Cancel.setText(lang.get("lbl_Cancel_Weight_Check"));
 				btnj_Cancel.setMnemonic('0');
 				btnj_Cancel.setBounds(400, 566, 220, 32);
@@ -723,6 +748,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 			if (netWt.compareTo(tnedb.getNegT2()) <= 0)
 			{
+				sampleDetail.setSampleT1Count(0);
 				sampleDetail.setSampleT2Count(1);
 			}
 			else
@@ -738,12 +764,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					sampleDetail.setSampleT1Count(0);
 				}
 			}
+			
 			sampleDetailList.addLast(sampleDetail);
 
 			if (sampleSequence == lSampleSize)
 			{
 				saveAll();
-				logEnabled=false;
+				logEnabled = false;
 				btn_Begin.setEnabled(true);
 				btnj_Cancel.setEnabled(false);
 			}
@@ -754,17 +781,16 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private void populateList()
 	{
 		DefaultComboBoxModel<JDBWTSampleDetail> DefComboBoxMod = new DefaultComboBoxModel<JDBWTSampleDetail>();
-		
+
 		int sel = -1;
 		for (int j = 0; j < sampleDetailList.size(); j++)
 		{
 			JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
 			DefComboBoxMod.addElement(t);
-			
 
 		}
 		ListModel<JDBWTSampleDetail> jList1Model = DefComboBoxMod;
-		
+
 		list_Weights.setModel(jList1Model);
 		list_Weights.setSelectedIndex(sel);
 		list_Weights.setCellRenderer(Common.renderer_list);
