@@ -51,6 +51,7 @@ import com.commander4j.renderer.JDBListRenderer;
 import com.commander4j.renderer.RenderColumnPrefs;
 import com.commander4j.renderer.TableCellRenderer_Default;
 import com.commander4j.renderer.TableHeaderRenderer;
+import com.commander4j.renderer.WeightSampleDetailCellRenderer;
 import com.commander4j.util.JImageIconLoader;
 import com.commander4j.util.JSessionData;
 
@@ -152,6 +153,7 @@ public class Common
 	public static String[] auditEventTypes = new String[] { "", "USER", "GROUP", "USER_GROUP", "GROUP_MODULE" };
 	public static final JImageIconLoader imageIconloader = new JImageIconLoader();
 
+	public static final WeightSampleDetailCellRenderer weight_sample_list = new WeightSampleDetailCellRenderer();
 	public static final JDBListRenderer renderer_list = new JDBListRenderer();
 	public static final JDBListRenderer renderer_list_assigned = new JDBListRenderer(Common.color_list_assigned);
 	public static final JDBListRenderer renderer_list_unassigned = new JDBListRenderer(Common.color_list_unassigned);

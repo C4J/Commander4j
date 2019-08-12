@@ -65,7 +65,6 @@ public class JDBListRenderer extends JLabel implements ListCellRenderer<Object>
 	}
 
 
-
 	public Component getListCellRendererComponent(JList4j<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus)
 	{
 		{

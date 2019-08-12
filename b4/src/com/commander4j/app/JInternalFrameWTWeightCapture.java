@@ -224,11 +224,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					{
 						switch (sampleDetailList.size())
 						{
+						case 0:
+							logSampleWeight("100.3", "G");
+							break;
 						case 1:
-							logSampleWeight("102.3", "G");
+							logSampleWeight("101.1", "G");
 							break;
 						case 2:
-							logSampleWeight("101.1", "G");
+							logSampleWeight("101.4", "G");
 							break;
 						case 3:
 							logSampleWeight("96.7", "G");
@@ -239,8 +242,26 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						case 5:
 							logSampleWeight("102.1", "G");
 							break;
+						case 6:
+							logSampleWeight("95.3", "G");
+							break;
+						case 7:
+							logSampleWeight("98.3", "G");
+							break;
+						case 8:
+							logSampleWeight("100.9", "G");
+							break;
+						case 9:
+							logSampleWeight("96.8", "G");
+							break;
+						case 10:
+							logSampleWeight("91.2", "G");
+							break;
+						case 11:
+							logSampleWeight("102.5", "G");
+							break;
 						default:
-							logSampleWeight("102.1", "G");
+							logSampleWeight("95.9", "G");
 							break;
 						}
 
@@ -782,7 +803,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	{
 		DefaultComboBoxModel<JDBWTSampleDetail> DefComboBoxMod = new DefaultComboBoxModel<JDBWTSampleDetail>();
 
-		int sel = -1;
+
 		for (int j = 0; j < sampleDetailList.size(); j++)
 		{
 			JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
@@ -792,9 +813,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		ListModel<JDBWTSampleDetail> jList1Model = DefComboBoxMod;
 
 		list_Weights.setModel(jList1Model);
-		list_Weights.setSelectedIndex(sel);
-		list_Weights.setCellRenderer(Common.renderer_list);
-		list_Weights.ensureIndexIsVisible(sel);
+
+		list_Weights.setCellRenderer(Common.weight_sample_list);
+
 	}
 
 	private boolean readyToLog()
