@@ -8,6 +8,7 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/app/commons-lang-2.6.jar 
  lib/app/commons-lang3-3.7.jar 
  lib/app/commons-text-1.2.jar 
+ lib/app/commons-math3-3.6.1.jar 
  lib/jasperlib/jackson-databind-2.9.8.jar 
  lib/jasperlib/jackson-core-2.9.8.jar 
  lib/jasperlib/batik-css-1.11.jar 

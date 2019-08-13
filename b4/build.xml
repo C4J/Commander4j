@@ -49,6 +49,7 @@
         <pathelement location="lib/app/commons-text-1.2.jar"/>
         <pathelement location="lib/app/commons-io-2.6.jar"/>
         <pathelement location="lib/app/commons-lang3-3.7.jar"/>
+    	<pathelement location="lib/app/commons-math3-3.6.1.jar"/>
         <pathelement location="lib/jasperlib/lucene-analyzers-common-7.3.0.jar"/>
         <pathelement location="lib/jasperlib/lucene-core-7.3.0.jar"/>
         <pathelement location="lib/jasperlib/lucene-queryparser-7.3.0.jar"/>
