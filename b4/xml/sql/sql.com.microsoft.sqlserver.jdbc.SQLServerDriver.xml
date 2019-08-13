@@ -1882,6 +1882,64 @@
 		<statement>
 			<id>JDBWTContainerCode.getContainerCodes</id>
 			<text>select * from {schema}APP_WEIGHT_CONTAINER_CODE order by container_code</text>
-		</statement>						
+		</statement>	
+		<?JDBWTSampleHeader?>		
+		<statement>
+			<id>JDBWTSampleHeader.create</id>
+			<text>insert into {schema}APP_WEIGHT_SAMPLE_HEADER (sample_point,sample_date) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWTSampleHeader.update</id>
+			<text>update app_weight_sample_header set
+					user_id = ?,
+					workstation_id = ?,
+					scale_id = ?,
+					process_order = ?,
+					required_resource = ?,
+					customer_id = ?,
+					material = ?,
+					product_group = ?,
+					container_code = ?,
+					tare_weight = ?,
+					tare_weight_uom = ?,
+					nominal_weight = ?,
+					nominal_weight_uom = ?,
+					tne = ?,
+					neg_t1 = ?,
+					neg_t2 = ?,
+					sample_size = ?,
+					sample_count = ?,
+					sample_mean = ?,
+					sample_std_dev = ?,
+					sample_t1_count = ?,
+					sample_t2_count = ?
+					where sample_point = ? and sample_date = ?</text>
+		</statement>
+		<statement>
+			<id>JDBWTSampleHeader.isValidSampleHeader</id>
+			<text>select * from {schema}app_weight_sample_header where sample_point = ? and sample_date = ?</text>
+		</statement>
+		<?JDBWTSampleDetail?>		
+		<statement>
+			<id>JDBWTSampleDetail.create</id>
+			<text>insert into {schema}APP_WEIGHT_SAMPLE_DETAIL (sample_point,sample_date,sample_sequence) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWTSampleDetail.isValidSampleDetail</id>
+			<text>select * from {schema}app_weight_sample_detail where sample_point = ? and sample_date = ? and sample_sequence = ?</text>
+		</statement>
+		<statement>
+			<id>JDBWTSampleDetail.update</id>
+			<text>UPDATE APP_WEIGHT_SAMPLE_DETAIL SET 
+					SAMPLE_WEIGHT_DATE = ?,
+					SAMPLE_GROSS_WEIGHT = ?,
+					SAMPLE_NET_WEIGHT = ?,
+					SAMPLE_TARE_WEIGHT = ?,
+					SAMPLE_WEIGHT_UOM = ?,
+					SAMPLE_T1_COUNT = ?,
+					SAMPLE_T2_COUNT = ?
+					WHERE SAMPLE_POINT = ? AND SAMPLE_DATE = ? AND SAMPLE_SEQUENCE = ?
+			</text>
+		</statement>					
 	</jdbcDriver>
 </SQL>

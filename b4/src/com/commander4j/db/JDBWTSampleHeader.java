@@ -495,6 +495,7 @@ public class JDBWTSampleHeader
 		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleHeader.isValidSampleHeader"));
 			stmt.setString(1, getSamplePoint());
+			stmt.setTimestamp(2, getSampleDate());
 
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
@@ -593,6 +594,7 @@ public class JDBWTSampleHeader
 
 	public void setSampleDate(Timestamp sampleDate)
 	{
+		sampleDate.setNanos(0);
 		dbSampleDate = sampleDate;
 	}
 
@@ -685,6 +687,7 @@ public class JDBWTSampleHeader
 		{
 			if (isValidSampleHeader() == true)
 			{
+						
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleHeader.update"));
 
@@ -706,10 +709,12 @@ public class JDBWTSampleHeader
 				stmtupdate.setBigDecimal(16, getNegT2());
 				stmtupdate.setInt(17, getSampleSize());
 				stmtupdate.setInt(18, getSampleCount());
+				
 				stmtupdate.setBigDecimal(19, getSampleMean());
 				stmtupdate.setBigDecimal(20, getSampleStdDev());
 				stmtupdate.setInt(21, getSampleT1Count());
 				stmtupdate.setInt(22, getSampleT2Count());
+				
 				stmtupdate.setString(23, getSamplePoint());
 				stmtupdate.setTimestamp(24, getSampleDate());
 

@@ -96,7 +96,6 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
-
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 
@@ -130,7 +129,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 	private JQuantityInput fld_Nominal_Weight = new JQuantityInput(new BigDecimal("0.000"));
 	private JTextField4j fld_Nominal_Weight_UOM = new JTextField4j(JDBUom.field_uom);
-	private JTextField4j fld_Process_Order;
+	private JTextField fld_Process_Order = new JTextField(JDBProcessOrder.field_process_order);
 	private JTextField4j fld_Process_Order_Status = new JTextField4j(JDBProcessOrder.field_status);
 	private JQuantityInput fld_SampleFrequency = new JQuantityInput(new BigDecimal("0.000"));
 	private JTextField4j fld_SamplePoint = new JTextField4j(JDBWTWorkstation.field_SamplePoint);
@@ -149,15 +148,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JScrollPane scrollPane_Weights = new JScrollPane();
 	private JLabel4j_std jStatusText;
 	private JDBLanguage lang;
-	private String lbatch;
 	private JLabel4j_std lbl_Material;
 	private JLabel4j_std lbl_Process_Order;
 	private JList4j<JDBWTSampleDetail> list_Weights = new JList4j<JDBWTSampleDetail>();
 	private PreparedStatement listStatement;
-	private String lmaterial;
 	private boolean logEnabled = false;
 	private int lSampleFrequency = 15;
-	private int lSampleSize = 0;
+	private int lSampleSize = 5;
 	private JDBMaterialCustomerData matcustdb = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial materialdb = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 	private JDBWTProductGroups matgroupdb = new JDBWTProductGroups(Common.selectedHostID, Common.sessionID);
@@ -172,8 +169,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
 	private BigDecimal mean = new BigDecimal("0.000");
 	private BigDecimal std_dev = new BigDecimal("0.000");
-
 	private BigDecimal zero = new BigDecimal("0.000");
+	private Integer t1_count = 0;
+	private Integer t2_count = 0;
+	private String materialGroup = "";
+	private String containerCode = "";
 
 	public JInternalFrameWTWeightCapture()
 	{
@@ -182,6 +182,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
 		initGUI();
+
+		updateProcessOrderInfo("", true);
+
 		timer.start();
 		String workstation = JUtility.getClientName().toUpperCase();
 
@@ -220,60 +223,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				fld_Process_Order.requestFocus();
 				fld_Process_Order.setCaretPosition(fld_Process_Order.getText().length());
-
-				JButton btnDebug = new JButton("Debug");
-				btnDebug.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						switch (sampleDetailList.size())
-						{
-						case 0:
-							logSampleWeight("100.3", "G");
-							break;
-						case 1:
-							logSampleWeight("101.1", "G");
-							break;
-						case 2:
-							logSampleWeight("101.4", "G");
-							break;
-						case 3:
-							logSampleWeight("96.7", "G");
-							break;
-						case 4:
-							logSampleWeight("90.2", "G");
-							break;
-						case 5:
-							logSampleWeight("102.1", "G");
-							break;
-						case 6:
-							logSampleWeight("95.3", "G");
-							break;
-						case 7:
-							logSampleWeight("98.3", "G");
-							break;
-						case 8:
-							logSampleWeight("100.9", "G");
-							break;
-						case 9:
-							logSampleWeight("96.8", "G");
-							break;
-						case 10:
-							logSampleWeight("91.2", "G");
-							break;
-						case 11:
-							logSampleWeight("102.5", "G");
-							break;
-						default:
-							logSampleWeight("95.9", "G");
-							break;
-						}
-
-					}
-				});
-				btnDebug.setBounds(888, 569, 106, 25);
-				jDesktopPane1.add(btnDebug);
-
 			}
 		});
 
@@ -316,27 +265,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 			}
 		}
-	}
-
-	public JInternalFrameWTWeightCapture(String material)
-	{
-		this();
-		lmaterial = material;
-		fld_Process_Order.setText(lmaterial);
-		fld_Material.setText(lbatch);
-		buildSQL();
-		populateList();
-	}
-
-	public JInternalFrameWTWeightCapture(String material, String batch)
-	{
-		this();
-		lmaterial = material;
-		lbatch = batch;
-		fld_Process_Order.setText(lmaterial);
-		fld_Material.setText(lbatch);
-		// buildSQL();
-		// populateList();
 	}
 
 	private void buildSQL()
@@ -437,13 +365,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					lbl_Process_Order.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					fld_Process_Order = new JTextField4j(JDBProcessOrder.field_process_order);
+					fld_Process_Order.setFont(Common.font_input);
 					fld_Process_Order.addKeyListener(new KeyAdapter()
 					{
 						@Override
 						public void keyReleased(KeyEvent e)
 						{
-							updateOrderInfo(fld_Process_Order.getText(), true);
+							updateProcessOrderInfo(fld_Process_Order.getText(), true);
 						}
 					});
 					jDesktopPane1.add(fld_Process_Order);
@@ -475,7 +403,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							if (JLaunchLookup.processOrdersResources())
 							{
 								fld_Process_Order.setText(JLaunchLookup.dlgResult);
-								updateOrderInfo(JLaunchLookup.dlgResult, true);
+								updateProcessOrderInfo(JLaunchLookup.dlgResult, true);
 							}
 						}
 					});
@@ -569,9 +497,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						{
 							btn_Begin.setEnabled(false);
 							btnj_Cancel.setEnabled(true);
-							sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
-							sampleHeader.setSamplePoint(workdb.getSamplePoint());
-							sampleHeader.setSampleDate(JUtility.getSQLDateTime());
+
 							logEnabled = true;
 							sampleSequence = 0;
 							sampleDetailList.clear();
@@ -779,6 +705,59 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				btnj_Cancel.setBounds(400, 566, 220, 32);
 				jDesktopPane1.add(btnj_Cancel);
 
+				JButton btnDebug = new JButton("Debug");
+				btnDebug.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						switch (sampleDetailList.size())
+						{
+						case 0:
+							logSampleWeight("100.3", "G");
+							break;
+						case 1:
+							logSampleWeight("101.1", "G");
+							break;
+						case 2:
+							logSampleWeight("101.4", "G");
+							break;
+						case 3:
+							logSampleWeight("96.7", "G");
+							break;
+						case 4:
+							logSampleWeight("90.2", "G");
+							break;
+						case 5:
+							logSampleWeight("102.1", "G");
+							break;
+						case 6:
+							logSampleWeight("95.3", "G");
+							break;
+						case 7:
+							logSampleWeight("98.3", "G");
+							break;
+						case 8:
+							logSampleWeight("100.9", "G");
+							break;
+						case 9:
+							logSampleWeight("96.8", "G");
+							break;
+						case 10:
+							logSampleWeight("91.2", "G");
+							break;
+						case 11:
+							logSampleWeight("102.5", "G");
+							break;
+						default:
+							logSampleWeight("95.9", "G");
+							break;
+						}
+
+					}
+				});
+				btnDebug.setBounds(888, 569, 106, 25);
+				jDesktopPane1.add(btnDebug);
+
 			}
 		}
 		catch (Exception e)
@@ -832,11 +811,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 			if (sampleSequence == lSampleSize)
 			{
-				saveAll();
+
 				mean = calculateMean();
 				fld_Mean.setText(mean.toString());
 				std_dev = calculateStandardDeviation();
+				t1_count = getT1Count();
+				t2_count = getT2Count();
 				fld_Standard_Deviation.setText(std_dev.toString());
+				saveAll(mean,std_dev,t1_count,t2_count);
 				logEnabled = false;
 				btn_Begin.setEnabled(true);
 				btnj_Cancel.setEnabled(false);
@@ -845,6 +827,36 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		return result;
 	}
 
+	private Integer getT1Count()
+	{
+
+		int count = 0;
+
+		for (int j = 0; j < sampleDetailList.size(); j++)
+		{
+			JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
+			count=count+t.getSampleT1Count();
+
+		}
+
+		return count;
+	}
+	
+	private Integer getT2Count()
+	{
+
+		int count = 0;
+
+		for (int j = 0; j < sampleDetailList.size(); j++)
+		{
+			JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
+			count=count+t.getSampleT2Count();
+
+		}
+
+		return count;
+	}
+	
 	private BigDecimal calculateMean()
 	{
 		BigDecimal result = new BigDecimal("0.000");
@@ -876,14 +888,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		{
 
 			double[] doubeArray = new double[sampleDetailList.size()];
-			
+
 			for (int j = 0; j < sampleDetailList.size(); j++)
 			{
 				JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
 				Double doubleNet = t.getSampleNetWeight().doubleValue();
 				doubeArray[j] = doubleNet;
 			}
-			
+
 			StandardDeviation stddev = new StandardDeviation();
 			stddevDouble = stddev.evaluate(doubeArray);
 		}
@@ -920,9 +932,46 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	}
 	// updateOrderInfo -- > updateMaterialInfo
 
-	private void saveAll()
+	private void saveAll(BigDecimal mean,BigDecimal StdDev,Integer t1s,Integer t2s)
 	{
+		sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
+		sampleHeader.setSamplePoint(workdb.getSamplePoint());
+		sampleHeader.setSampleDate(JUtility.getSQLDateTime());
+		sampleHeader.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
+		sampleHeader.setWorkstationID(JUtility.getClientName());
+		sampleHeader.setScaleID(workdb.getScaleID());
+		sampleHeader.setProcessOrder(orderdb.getProcessOrder());
+		sampleHeader.setRequiredResource(orderdb.getRequiredResource());
+		sampleHeader.setCustomerID(orderdb.getCustomerID());
+		sampleHeader.setMaterial(orderdb.getMaterial());
+		sampleHeader.setProductGroup(materialGroup);
+		sampleHeader.setContainerCode(containerCode);
+		sampleHeader.setNominalWeight(matgroupdb.getNominalWeight());
+		sampleHeader.setNominalWeightUom(matgroupdb.getNominalUOM());
+		sampleHeader.setTareWeight(matgroupdb.getTareWeight());
+		sampleHeader.setTareWeightUom(matgroupdb.getTareWeightUOM());
+		sampleHeader.setTNE(tnedb.getTNE());
+		sampleHeader.setNegT1(tnedb.getNegT1());
+		sampleHeader.setNegT2(tnedb.getNegT2());
+		sampleHeader.setSampleSize(lSampleSize);
+		sampleHeader.setSampleCount(lSampleSize);
+		sampleHeader.setSampleMean(mean);
+		sampleHeader.setSampleStdDev(StdDev);
+		sampleHeader.setSampleT1Count(t1s);
+		sampleHeader.setSampleT2Count(t2s);
+		sampleHeader.create();
+		sampleHeader.update();
+		
+		for (int j = 0; j < sampleDetailList.size(); j++)
+		{
+			JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
+			t.setSampleDate(sampleHeader.getSampleDate());
+			t.create();
+			t.update();
 
+		}
+		
+		
 	}
 
 	private boolean updateCustomerDataInfo(String material, String customer, String key, boolean lookup)
@@ -930,7 +979,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		boolean result = false;
 
 		String data = "";
-		String group = "";
 
 		if (lookup == true)
 		{
@@ -942,12 +990,15 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				if (key.equals("PRODUCT_GROUP"))
 				{
 					fld_Material_Group.setText(data);
-					group = data;
+					fld_Material_Group.setBackground(Color.WHITE);
+					materialGroup = data;
 				}
 
 				if (key.equals("CONTAINER_CODE"))
 				{
 					fld_Container_Code.setText(data);
+					fld_Container_Code.setBackground(Color.WHITE);
+					containerCode = data;
 				}
 			}
 			else
@@ -957,48 +1008,36 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				if (key.equals("PRODUCT_GROUP"))
 				{
 					fld_Material_Group.setText("");
+					fld_Material_Group.setBackground(Color.YELLOW);
 				}
 
 				if (key.equals("CONTAINER_CODE"))
 				{
 					fld_Container_Code.setText("");
+					fld_Container_Code.setBackground(Color.YELLOW);
 				}
 			}
 		}
 		else
 		{
 			result = false;
-		}
 
-		if (result == true)
-		{
-			if (key.equals("PRODUCT_GROUP"))
-			{
-				fld_Material_Group.setBackground(Color.WHITE);
-			}
-			if (key.equals("CONTAINER_CODE"))
-			{
-				fld_Container_Code.setBackground(Color.WHITE);
-			}
-
-		}
-		else
-		{
 			if (key.equals("PRODUCT_GROUP"))
 			{
 				fld_Material_Group.setText("");
-				fld_Material_Group.setBackground(Color.YELLOW);
+				fld_Material_Group.setBackground(Color.WHITE);
 			}
+
 			if (key.equals("CONTAINER_CODE"))
 			{
 				fld_Container_Code.setText("");
-				fld_Container_Code.setBackground(Color.YELLOW);
+				fld_Container_Code.setBackground(Color.WHITE);
 			}
 		}
 
 		if (key.equals("PRODUCT_GROUP"))
 		{
-			updateProductGroup(group, result);
+			updateProductGroup(materialGroup, result);
 		}
 
 		return result;
@@ -1017,27 +1056,23 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				result = true;
 				fld_Description.setText(materialdb.getDescription());
+				fld_Material.setBackground(Color.WHITE);
+
 			}
 			else
 			{
 				result = false;
+				fld_Description.setText("");
+				fld_Material.setBackground(Color.YELLOW);
 			}
+
 		}
 		else
 		{
 			result = false;
-		}
-
-		if (result == true)
-		{
 			fld_Material.setBackground(Color.WHITE);
-			fld_Description.setBackground(Color.WHITE);
-		}
-		else
-		{
+			fld_Material.setText("");
 			fld_Description.setText("");
-			fld_Material.setBackground(Color.YELLOW);
-			fld_Description.setBackground(Color.YELLOW);
 		}
 
 		updateCustomerDataInfo(material, customer, "PRODUCT_GROUP", result);
@@ -1047,7 +1082,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		return result;
 	}
 
-	private boolean updateOrderInfo(String orderNo, boolean lookup)
+	private boolean updateProcessOrderInfo(String orderNo, boolean lookup)
 	{
 		boolean result = false;
 
@@ -1067,6 +1102,19 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				customerID = orderdb.getCustomerID();
 				status = orderdb.getStatus();
 
+				fld_Process_Order.setBackground(Color.WHITE);
+				fld_Process_Order_Status.setText(status);
+				fld_Material.setText(material);
+
+				if (status.equals("Ready") || (status.equals("Running")))
+				{
+					fld_Process_Order_Status.setBackground(Color.WHITE);
+				}
+				else
+				{
+					fld_Process_Order_Status.setBackground(Color.RED);
+				}
+
 			}
 			else
 			{
@@ -1074,35 +1122,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				material = "";
 				customerID = "";
 				status = "";
-
+				fld_Process_Order.setBackground(Color.YELLOW);
+				fld_Process_Order_Status.setBackground(Color.WHITE);
 			}
 		}
 		else
 		{
 			result = false;
-		}
-
-		fld_Process_Order_Status.setText(status);
-		fld_Material.setText(material);
-
-		if (result == true)
-		{
-			fld_Process_Order.setBackground(Color.WHITE);
-
-			if (status.equals("Ready") || (status.equals("Running")))
-			{
-				fld_Process_Order_Status.setBackground(Color.WHITE);
-			}
-			else
-			{
-				fld_Process_Order_Status.setBackground(Color.RED);
-			}
-
-		}
-		else
-		{
-			fld_Process_Order.setBackground(Color.YELLOW);
-			fld_Process_Order_Status.setBackground(Color.YELLOW);
 		}
 
 		updateMaterialInfo(material, customerID, result);
@@ -1136,6 +1162,42 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_Tare_Weight.setText(tare.toString());
 				fld_Tare_Weight_UOM.setText(tarelUom);
 
+				if (nominal.compareTo(zero) == 0)
+				{
+					fld_Nominal_Weight.setBackground(Color.YELLOW);
+				}
+				else
+				{
+					fld_Nominal_Weight.setBackground(Color.WHITE);
+				}
+
+				if (nominalUom.equals(""))
+				{
+					fld_Nominal_Weight_UOM.setBackground(Color.YELLOW);
+				}
+				else
+				{
+					fld_Nominal_Weight_UOM.setBackground(Color.WHITE);
+				}
+
+				if (tare.compareTo(zero) == 0)
+				{
+					fld_Tare_Weight.setBackground(Color.YELLOW);
+				}
+				else
+				{
+					fld_Tare_Weight.setBackground(Color.WHITE);
+				}
+
+				if (tarelUom.equals(""))
+				{
+					fld_Tare_Weight_UOM.setBackground(Color.YELLOW);
+				}
+				else
+				{
+					fld_Tare_Weight_UOM.setBackground(Color.WHITE);
+				}
+
 			}
 			else
 			{
@@ -1145,63 +1207,25 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				tare = new BigDecimal("0.000");
 				tarelUom = "";
 
+				fld_Nominal_Weight.setBackground(Color.YELLOW);
+				fld_Nominal_Weight_UOM.setBackground(Color.YELLOW);
+				fld_Tare_Weight.setBackground(Color.YELLOW);
+				fld_Tare_Weight_UOM.setBackground(Color.YELLOW);
 			}
 		}
 		else
 		{
 			result = false;
-		}
+			result = false;
+			nominal = new BigDecimal("0.000");
+			nominalUom = "";
+			tare = new BigDecimal("0.000");
+			tarelUom = "";
 
-		if (result == true)
-		{
-			if (nominal.compareTo(zero) == 0)
-			{
-				fld_Nominal_Weight.setBackground(Color.YELLOW);
-			}
-			else
-			{
-				fld_Nominal_Weight.setBackground(Color.WHITE);
-			}
-
-			if (nominalUom.equals(""))
-			{
-				fld_Nominal_Weight_UOM.setBackground(Color.YELLOW);
-			}
-			else
-			{
-				fld_Nominal_Weight_UOM.setBackground(Color.WHITE);
-			}
-
-			if (tare.compareTo(zero) == 0)
-			{
-				fld_Tare_Weight.setBackground(Color.YELLOW);
-			}
-			else
-			{
-				fld_Tare_Weight.setBackground(Color.WHITE);
-			}
-
-			if (tarelUom.equals(""))
-			{
-				fld_Tare_Weight_UOM.setBackground(Color.YELLOW);
-			}
-			else
-			{
-				fld_Tare_Weight_UOM.setBackground(Color.WHITE);
-			}
-
-		}
-		else
-		{
-			fld_Nominal_Weight.setText("0.000");
-			fld_Nominal_Weight_UOM.setText("");
-			fld_Tare_Weight.setText("0.000");
-			fld_Tare_Weight_UOM.setText("");
-
-			fld_Nominal_Weight.setBackground(Color.YELLOW);
-			fld_Nominal_Weight_UOM.setBackground(Color.YELLOW);
-			fld_Tare_Weight.setBackground(Color.YELLOW);
-			fld_Tare_Weight_UOM.setBackground(Color.YELLOW);
+			fld_Nominal_Weight.setBackground(Color.WHITE);
+			fld_Nominal_Weight_UOM.setBackground(Color.WHITE);
+			fld_Tare_Weight.setBackground(Color.WHITE);
+			fld_Tare_Weight_UOM.setBackground(Color.WHITE);
 		}
 
 		updateTNEInfo(nominal, nominalUom, result);
@@ -1218,26 +1242,19 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			if (samplePointdb.getProperties(samplePoint))
 			{
 				result = true;
+				fld_SamplePoint.setBackground(Color.WHITE);
 
 			}
 			else
 			{
 				result = false;
-
+				fld_SamplePoint.setBackground(Color.YELLOW);
 			}
 		}
 		else
 		{
 			result = false;
-		}
-
-		if (result == true)
-		{
 			fld_SamplePoint.setBackground(Color.WHITE);
-		}
-		else
-		{
-			fld_SamplePoint.setBackground(Color.YELLOW);
 		}
 
 		return result;
@@ -1267,6 +1284,33 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_T1_Lower_Limit.setText(negt1.toString());
 				fld_T2_Lower_Limit.setText(negt2.toString());
 				fld_TNE.setText(tne.toString());
+
+				if (negt1.compareTo(zero) == 0)
+				{
+					fld_T1_Lower_Limit.setBackground(Color.YELLOW);
+				}
+				else
+				{
+					fld_T1_Lower_Limit.setBackground(Color.WHITE);
+				}
+
+				if (negt2.compareTo(zero) == 0)
+				{
+					fld_T2_Lower_Limit.setBackground(Color.YELLOW);
+				}
+				else
+				{
+					fld_T2_Lower_Limit.setBackground(Color.WHITE);
+				}
+
+				if (tne.compareTo(zero) == 0)
+				{
+					fld_TNE.setBackground(Color.YELLOW);
+				}
+				else
+				{
+					fld_TNE.setBackground(Color.WHITE);
+				}
 			}
 			else
 			{
@@ -1275,53 +1319,31 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				negt1 = new BigDecimal("0.000");
 				negt2 = new BigDecimal("0.000");
 				tne = new BigDecimal("0.000");
+				
+				fld_T1_Lower_Limit.setText("0.000");
+				fld_T2_Lower_Limit.setText("0.000");
+				fld_TNE.setText("0.000");
+
+				fld_T1_Lower_Limit.setBackground(Color.YELLOW);
+				fld_T2_Lower_Limit.setBackground(Color.YELLOW);
+				fld_TNE.setBackground(Color.YELLOW);
+
 			}
 		}
 		else
 		{
 			result = false;
-		}
+			negt1 = new BigDecimal("0.000");
+			negt2 = new BigDecimal("0.000");
+			tne = new BigDecimal("0.000");
+			
+			fld_T1_Lower_Limit.setText("0.000");
+			fld_T2_Lower_Limit.setText("0.000");
+			fld_TNE.setText("0.000");
 
-		fld_T1_Lower_Limit.setText(negt1.toString());
-		fld_T2_Lower_Limit.setText(negt2.toString());
-		fld_TNE.setText(tne.toString());
-
-		if (result == true)
-		{
-
-			if (negt1.compareTo(zero) == 0)
-			{
-				fld_T1_Lower_Limit.setBackground(Color.YELLOW);
-			}
-			else
-			{
-				fld_T1_Lower_Limit.setBackground(Color.WHITE);
-			}
-
-			if (negt2.compareTo(zero) == 0)
-			{
-				fld_T2_Lower_Limit.setBackground(Color.YELLOW);
-			}
-			else
-			{
-				fld_T2_Lower_Limit.setBackground(Color.WHITE);
-			}
-
-			if (tne.compareTo(zero) == 0)
-			{
-				fld_TNE.setBackground(Color.YELLOW);
-			}
-			else
-			{
-				fld_TNE.setBackground(Color.WHITE);
-			}
-
-		}
-		else
-		{
-			fld_T1_Lower_Limit.setBackground(Color.YELLOW);
-			fld_T2_Lower_Limit.setBackground(Color.YELLOW);
-			fld_TNE.setBackground(Color.YELLOW);
+			fld_T1_Lower_Limit.setBackground(Color.WHITE);
+			fld_T2_Lower_Limit.setBackground(Color.WHITE);
+			fld_TNE.setBackground(Color.WHITE);
 		}
 
 		return result;
@@ -1358,14 +1380,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		if (result == true)
 		{
 			fld_Workstation.setBackground(Color.WHITE);
-			fld_Scale_ID.setBackground(Color.WHITE);
-			fld_ScalePort.setBackground(Color.WHITE);
+			// fld_Scale_ID.setBackground(Color.WHITE);
+			// fld_ScalePort.setBackground(Color.WHITE);
 		}
 		else
 		{
 			fld_Workstation.setBackground(Color.YELLOW);
-			fld_Scale_ID.setBackground(Color.YELLOW);
-			fld_ScalePort.setBackground(Color.YELLOW);
+			// fld_Scale_ID.setBackground(Color.YELLOW);
+			// fld_ScalePort.setBackground(Color.YELLOW);
 		}
 
 		updateSamplePoint(samplePoint, result);

@@ -263,7 +263,7 @@ public class JDBWTSampleDetail
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.getSampleWeight"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.getSampleDetail"));
 			stmt.setFetchSize(250);
 			rs = stmt.executeQuery();
 
@@ -301,7 +301,7 @@ public class JDBWTSampleDetail
 		return dbSampleWeightDate;
 	}
 	
-	public LinkedList<JDBWTSampleDetail> getSampleWeightss(int displayType) {
+	public LinkedList<JDBWTSampleDetail> getSampleWeights(int displayType) {
 		LinkedList<JDBWTSampleDetail> sampList = new LinkedList<JDBWTSampleDetail>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -366,7 +366,7 @@ public class JDBWTSampleDetail
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.isValidSampleWeight"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.isValidSampleDetail"));
 			stmt.setString(1, getSamplePoint());
 			stmt.setTimestamp(2, getSampleDate());
 			stmt.setInt(3, getSampleSequence());
@@ -490,15 +490,15 @@ public class JDBWTSampleDetail
 			if (isValidSampleDetail() == true)
 			{
 				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleWeight.update"));
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.update"));
 
 				stmtupdate.setTimestamp(1,getSampleWeightDate());
 				stmtupdate.setBigDecimal(2,getSampleGrossWeight());
-				stmtupdate.setBigDecimal(3,getSampleTareWeight());
-				stmtupdate.setBigDecimal(4,getSampleNetWeight());
-				stmtupdate.setInt(5,getSampleT1Count());
-				stmtupdate.setInt(6,getSampleT2Count());
-				stmtupdate.setString(7,getSampleWeightUom());
+				stmtupdate.setBigDecimal(3,getSampleNetWeight());
+				stmtupdate.setBigDecimal(4,getSampleTareWeight());
+				stmtupdate.setString(5,getSampleWeightUom());
+				stmtupdate.setInt(6,getSampleT1Count());
+				stmtupdate.setInt(7,getSampleT2Count());
 				stmtupdate.setString(8,getSamplePoint());
 				stmtupdate.setTimestamp(9,getSampleDate());
 				stmtupdate.setInt(10,getSampleSequence());
