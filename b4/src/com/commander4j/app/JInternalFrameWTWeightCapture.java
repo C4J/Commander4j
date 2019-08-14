@@ -50,6 +50,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -57,6 +58,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -73,10 +75,8 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.XYDataset;
 
-import com.commander4j.db.JDBAutoLabeller;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
-import com.commander4j.db.JDBListData;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBMaterialBatch;
 import com.commander4j.db.JDBMaterialCustomerData;
@@ -101,9 +101,6 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
-
-import javax.swing.JButton;
-import javax.swing.ListSelectionModel;
 
 /**
  * The JInternalFrameWTDataCapture is for capturing/recording weight checks
@@ -454,7 +451,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					jStatusText = new JLabel4j_std();
 					jStatusText.setForeground(new Color(255, 0, 0));
 					jStatusText.setBackground(Color.GRAY);
-					jStatusText.setBounds(0, 610, 1006, 2122);
+					jStatusText.setBounds(0, 605, 1006, 30);
 					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 					jDesktopPane1.add(jStatusText);
 				}
@@ -828,7 +825,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 			if (sampleSequence == lSampleSize)
 			{
-
+				jStatusText.setText("Saving results to database...");
 				mean = calculateMean();
 				fld_Mean.setText(mean.toString());
 				std_dev = calculateStandardDeviation();
@@ -841,6 +838,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				logEnabled = false;
 				btn_Begin.setEnabled(true);
 				btnj_Cancel.setEnabled(false);
+				jStatusText.setText("");
 			}
 		}
 		return result;
