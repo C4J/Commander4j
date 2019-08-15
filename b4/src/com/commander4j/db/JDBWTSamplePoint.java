@@ -40,6 +40,7 @@ public class JDBWTSamplePoint
 	public static int field_SamplePoint = 25;
 	public static int field_Description = 35;
 	public static int field_Location = 35;
+	public static int field_Required_Resource = 50;
 
 	public static int displayType_LIST = 1;
 	public static int displayType_COMBO = 2;
@@ -49,7 +50,18 @@ public class JDBWTSamplePoint
 	private String dbErrorMessage = "";
 	private String hostID;
 	private String sessionID;
+	private String dbRequiredResource="";
 	private int displayType=1;
+	
+	public String getRequiredResource()
+	{
+		return dbRequiredResource;
+	}
+
+	public void setRequiredResource(String requiredResource)
+	{
+		dbRequiredResource = requiredResource;
+	}
 
 	public JDBWTSamplePoint(String host, String session)
 	{
@@ -63,6 +75,7 @@ public class JDBWTSamplePoint
 	{
 		setDescription("");
 		setLocation("");
+		setRequiredResource("");
 
 	}
 	
@@ -206,6 +219,7 @@ public class JDBWTSamplePoint
 
 			setDescription(rs.getString("description"));
 			setLocation(rs.getString("location"));
+			setRequiredResource(rs.getString("required_resource"));
 
 		}
 		catch (SQLException e)
@@ -258,6 +272,7 @@ public class JDBWTSamplePoint
 				samp.setSamplePoint(rs.getString("sample_point"));
 				samp.setDescription(rs.getString("description"));
 				samp.setLocation(rs.getString("location"));
+				samp.setRequiredResource(rs.getString("required_resource"));
 				sampList.add(samp);
 			}
 			rs.close();
@@ -387,7 +402,7 @@ public class JDBWTSamplePoint
 		
 		if (displayType==1)
 		{
-			result= JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ")+ JUtility.padString(getDescription(), true, field_Description, " ")+getLocation();
+			result= JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ")+ JUtility.padString(getDescription(), true, field_Description, " ")+getRequiredResource();
 		}
 		else
 		{
@@ -411,7 +426,8 @@ public class JDBWTSamplePoint
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSamplePoint.update"));
 				stmtupdate.setString(1, getDescription());
 				stmtupdate.setString(2, getLocation());
-				stmtupdate.setString(3, getSamplePoint());
+				stmtupdate.setString(3, getRequiredResource());
+				stmtupdate.setString(4, getSamplePoint());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

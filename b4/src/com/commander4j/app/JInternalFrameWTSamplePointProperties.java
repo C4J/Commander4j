@@ -35,7 +35,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Vector;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -43,10 +46,11 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import com.commander4j.db.JDBLanguage;
-
+import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.db.JDBWTSamplePoint;
 import com.commander4j.db.JDBWTScale;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
@@ -78,8 +82,10 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 	private JDBWTSamplePoint samppoint = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
 	private String lsamplepoint;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-
-
+	private JComboBox4j<JDBProcessOrderResource> comboBox4j_Resources = new JComboBox4j<JDBProcessOrderResource>();
+	private Vector<JDBProcessOrderResource> resourceList = new Vector<JDBProcessOrderResource>();
+	private JDBProcessOrderResource poResources = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
+	
 	public void setSamplePointID(String sampid)
 	{
 
@@ -122,6 +128,15 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
 		
+		for (int x = 0; x < resourceList.size(); x++)
+		{
+			if (((JDBProcessOrderResource) resourceList.get(x)).toString().equals(samppoint.getRequiredResource()) == true)
+			{
+				comboBox4j_Resources.setSelectedIndex(x);
+				break;
+			}
+		}
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				jTextFieldDescription.requestFocus();
@@ -136,7 +151,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 424, 204);
+			this.setBounds(25, 25, 571, 244);
 			setVisible(true);
 			this.setTitle("Sample Point Properties");
 			{
@@ -188,7 +203,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(44, 116, 110, 32);
+					jButtonSave.setBounds(128, 155, 110, 32);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							save();
@@ -200,14 +215,14 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(156, 116, 110, 32);
+					jButtonHelp.setBounds(240, 155, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(268, 116, 110, 32);
+					jButtonClose.setBounds(352, 155, 110, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -236,6 +251,27 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					});
 				}
 				
+				resourceList.add(new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID));
+				resourceList.addAll(poResources.getResources());
+				ComboBoxModel<JDBProcessOrderResource> comboBox4j_ResourceModel = new DefaultComboBoxModel<JDBProcessOrderResource>(resourceList);
+				comboBox4j_Resources.setModel(comboBox4j_ResourceModel);
+				comboBox4j_Resources.setBounds(155, 109, 387, 24);
+				comboBox4j_Resources.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						jButtonSave.setEnabled(true);
+					}
+				});
+				jDesktopPane1.add(comboBox4j_Resources);
+				
+				JLabel4j_std label4j_Required_Resource = new JLabel4j_std();
+				label4j_Required_Resource.setText(lang.get("lbl_Process_Order_Required_Resource"));
+				label4j_Required_Resource.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_Required_Resource.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_Required_Resource.setBounds(0, 112, 149, 21);
+				jDesktopPane1.add(label4j_Required_Resource);
+				
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						jTextFieldLocation.requestFocus();
@@ -255,6 +291,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 		samppoint.setLocation(jTextFieldLocation.getText().toUpperCase());
 		samppoint.setDescription(jTextFieldDescription.getText());
 		samppoint.setSamplePoint(jTextFieldSamplePoint.getText().toUpperCase());
+		samppoint.setRequiredResource(((JDBProcessOrderResource) comboBox4j_Resources.getSelectedItem()).getResource());
 		samppoint.update();
 		jButtonSave.setEnabled(false);
 	}

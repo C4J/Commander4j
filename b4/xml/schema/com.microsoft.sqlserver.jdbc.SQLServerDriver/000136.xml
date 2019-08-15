@@ -3,10 +3,6 @@
 <DDL>
 
 	<statement>
-		ALTER TABLE [dbo].APP_WEIGHT_WORKSTATION ADD REQUIRED_RESOURCE varchar(50) DEFAULT ''
-	</statement>
-	
-	<statement>
 		ALTER TABLE [dbo].[APP_WEIGHT_PRODUCT_GROUP] ADD DEFAULT '' FOR [DESCRIPTION]
 	</statement>
 		

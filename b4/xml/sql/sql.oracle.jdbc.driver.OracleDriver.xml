@@ -1729,7 +1729,7 @@
 		</statement>
 		<statement>
 			<id>JDBWTWorkstation.update</id>
-			<text>update {schema}APP_WEIGHT_WORKSTATION set description = ?,location=?,sample_point=?,scale_id=?,scale_port_id=?,required_resource=? where workstation_id = ?</text>
+			<text>update {schema}APP_WEIGHT_WORKSTATION set description = ?,location=?,sample_point=?,scale_id=?,scale_port_id=? where workstation_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBWTWorkstation.getWorkstations</id>
@@ -1816,7 +1816,7 @@
 		</statement>
 		<statement>
 			<id>JDBWTSamplePoint.update</id>
-			<text>update {schema}APP_WEIGHT_SAMPLE_POINT set description = ?,location=? where sample_point = ?</text>
+			<text>update {schema}APP_WEIGHT_SAMPLE_POINT set description = ?,location=?,required_resource=? where sample_point = ?</text>
 		</statement>
 	    <statement>
 			<id>JDBWTSamplePoint.isValidSamplePoint</id>

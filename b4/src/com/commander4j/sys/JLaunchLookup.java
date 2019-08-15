@@ -346,6 +346,27 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}	
 	
+	public static boolean weightSamplePoint() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_WEIGHT_SAMPLE_POINT"));
+		JDialogLookup.dlg_title = "Sample Points";
+
+		JDialogLookup.dlg_key_field_name = "sample_point";
+		JDialogLookup.dlg_criteria_field_name_default = "sample_point";
+		JDialogLookup.dlg_orderBy_name_default = "sample_point";
+		JDialogLookup.dlg_sort_descending = false;
+
+		// dlg_criteria_default = "";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}	
 
 	public static boolean materials() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();

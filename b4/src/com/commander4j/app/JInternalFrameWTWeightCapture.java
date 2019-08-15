@@ -119,6 +119,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JButton4j btn_Close;
 	private JButton4j btn_Help;
 	private JButton4j btn_Process_Order_Lookup;
+	private JButton4j btn_SamplePoint_Lookup;
 	private JButton4j btnj_Cancel = new JButton4j(Common.icon_cancel_16x16);
 	private ClockListener clocklistener = new ClockListener();
 
@@ -435,7 +436,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						public void actionPerformed(ActionEvent e)
 						{
 							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = workdb.getRequiredResource();
+							JLaunchLookup.dlgCriteriaDefault = samplePointdb.getRequiredResource();
 							if (JLaunchLookup.processOrdersResources())
 							{
 								fld_Process_Order.setText(JLaunchLookup.dlgResult);
@@ -445,6 +446,27 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					});
 					btn_Process_Order_Lookup.setBounds(196, 54, 21, 25);
 					jDesktopPane1.add(btn_Process_Order_Lookup);
+				}
+				
+				{
+					btn_SamplePoint_Lookup = new JButton4j(Common.icon_lookup_16x16);
+					btn_SamplePoint_Lookup.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							JLaunchLookup.dlgAutoExec = false;
+							JLaunchLookup.dlgCriteriaDefault = "";
+							if (JLaunchLookup.weightSamplePoint())
+							{
+								fld_SamplePoint.setText(JLaunchLookup.dlgResult);
+								updateSamplePoint(JLaunchLookup.dlgResult,true);
+								fld_Process_Order.setText("");
+								updateProcessOrderInfo(JLaunchLookup.dlgResult, true);
+							}
+						}
+					});
+					btn_SamplePoint_Lookup.setBounds(438, 18, 21, 25);
+					jDesktopPane1.add(btn_SamplePoint_Lookup);
 				}
 
 				{
@@ -469,7 +491,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_Workstation.setEditable(false);
 				fld_Workstation.setEnabled(false);
 				fld_Workstation.setDisabledTextColor(Color.BLACK);
-				fld_Workstation.setBounds(104, 18, 142, 25);
+				fld_Workstation.setBounds(104, 18, 134, 25);
 
 				jDesktopPane1.add(fld_Workstation);
 
@@ -952,7 +974,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private void saveAll(BigDecimal mean,BigDecimal StdDev,Integer t1s,Integer t2s)
 	{
 		sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
-		sampleHeader.setSamplePoint(workdb.getSamplePoint());
+		//sampleHeader.setSamplePoint(workdb.getSamplePoint());
+		sampleHeader.setSamplePoint(samplePointdb.getSamplePoint());
 		sampleHeader.setSampleDate(JUtility.getSQLDateTime());
 		sampleHeader.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
 		sampleHeader.setWorkstationID(JUtility.getClientName());
@@ -1139,12 +1162,15 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				material = "";
 				customerID = "";
 				status = "";
+				fld_Process_Order_Status.setText("");
 				fld_Process_Order.setBackground(Color.YELLOW);
 				fld_Process_Order_Status.setBackground(Color.WHITE);
 			}
 		}
 		else
 		{
+			fld_Process_Order_Status.setText("");
+			fld_Process_Order_Status.setBackground(Color.WHITE);
 			result = false;
 		}
 
@@ -1238,7 +1264,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			nominalUom = "";
 			tare = new BigDecimal("0.000");
 			tarelUom = "";
-
+			
+			fld_Nominal_Weight.setText("0.000");
+			fld_Nominal_Weight_UOM.setText("");
+			fld_Tare_Weight.setText("0.000");
+			fld_Tare_Weight_UOM.setText("");
 			fld_Nominal_Weight.setBackground(Color.WHITE);
 			fld_Nominal_Weight_UOM.setBackground(Color.WHITE);
 			fld_Tare_Weight.setBackground(Color.WHITE);
@@ -1256,6 +1286,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		if (lookup == true)
 		{
+			fld_SamplePoint.setText(samplePoint);
 			if (samplePointdb.getProperties(samplePoint))
 			{
 				result = true;
@@ -1271,6 +1302,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		else
 		{
 			result = false;
+			fld_SamplePoint.setText("");
 			fld_SamplePoint.setBackground(Color.WHITE);
 		}
 
@@ -1397,14 +1429,12 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		if (result == true)
 		{
 			fld_Workstation.setBackground(Color.WHITE);
-			// fld_Scale_ID.setBackground(Color.WHITE);
-			// fld_ScalePort.setBackground(Color.WHITE);
+
 		}
 		else
 		{
 			fld_Workstation.setBackground(Color.YELLOW);
-			// fld_Scale_ID.setBackground(Color.YELLOW);
-			// fld_ScalePort.setBackground(Color.YELLOW);
+
 		}
 
 		updateSamplePoint(samplePoint, result);

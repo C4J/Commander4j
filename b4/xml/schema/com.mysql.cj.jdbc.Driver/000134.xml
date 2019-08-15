@@ -73,6 +73,7 @@
 		  `SAMPLE_POINT` varchar(25) NOT NULL,
 		  `LOCATION` varchar(35) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
 		  `DESCRIPTION` varchar(35) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+		  `REQUIRED_RESOURCE` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
 		  PRIMARY KEY (`SAMPLE_POINT`)
 		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     </statement> 

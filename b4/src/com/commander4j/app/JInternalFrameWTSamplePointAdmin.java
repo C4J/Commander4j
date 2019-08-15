@@ -197,7 +197,7 @@ public class JInternalFrameWTSamplePointAdmin extends javax.swing.JInternalFrame
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_WEIGHT_SAMPLEPOINT"));
 		{
-			label = new JLabel("Sample Point             Description                        Location");
+			label = new JLabel("Sample Point             Description                        Resource");
 			label.setFont(new Font("Monospaced", Font.BOLD, 11));
 			label.setBounds(8, 12, 518, 15);
 			jDesktopPane1.add(label);

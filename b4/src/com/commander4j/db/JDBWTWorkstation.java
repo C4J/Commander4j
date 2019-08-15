@@ -43,28 +43,18 @@ public class JDBWTWorkstation
 	public static int field_SamplePoint = 25;
 	public static int field_ScaleID = 15;
 	public static int field_ScalePort = 45;
-	public static int field_Required_Resource = 50;
+
 	private String dbWorkstationID="";
 	private String dbDescription="";
 	private String dbLocation="";
 	private String dbSamplePoint="";
 	private String dbScaleID="";
 	private String dbScalePort="";
-	private String dbRequiredResource="";
+
 	private String dbErrorMessage="";
 	private String hostID;
 	private String sessionID;
 	
-	
-	public String getRequiredResource()
-	{
-		return dbRequiredResource;
-	}
-
-	public void setRequiredResource(String requiredResource)
-	{
-		dbRequiredResource = requiredResource;
-	}
 	
 	public JDBWTWorkstation(String host, String session)
 	{
@@ -79,7 +69,6 @@ public class JDBWTWorkstation
 		setLocation("");
 		setScaleID("");
 		setScalePort("");
-		setRequiredResource("");
 	}
 
 	public boolean create()
@@ -220,7 +209,6 @@ public class JDBWTWorkstation
 			setSamplePoint(rs.getString("sample_point"));
 			setScaleID(rs.getString("scale_id"));
 			setScalePort(rs.getString("scale_port_id"));
-			setRequiredResource(rs.getString("required_resource"));
 
 		} catch (SQLException e)
 		{
@@ -293,7 +281,7 @@ public class JDBWTWorkstation
 				samp.setDescription(rs.getString("description"));
 				samp.setLocation(rs.getString("location"));
 				samp.setScaleID(rs.getString("scale_id"));
-				samp.setRequiredResource(rs.getString("required_resource"));
+
 				sampList.add(samp);
 			}
 			rs.close();
@@ -420,7 +408,7 @@ public class JDBWTWorkstation
 	}
 
 	public String toString() {
-		String result = JUtility.padString(getWorkstationID(), true, field_WorkstationID, " ")+ JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ")+JUtility.padString(getScaleID(), true, field_ScaleID, " ")+getRequiredResource();
+		String result = JUtility.padString(getWorkstationID(), true, field_WorkstationID, " ")+ JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ")+JUtility.padString(getScaleID(), true, field_ScaleID, " ");
 
 		return result;
 	}
@@ -441,7 +429,6 @@ public class JDBWTWorkstation
 				stmtupdate.setString(3, getSamplePoint());
 				stmtupdate.setString(4, getScaleID());	
 				stmtupdate.setString(5, getScalePort());
-				stmtupdate.setString(6, getRequiredResource());
 				stmtupdate.setString(7, getWorkstationID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
