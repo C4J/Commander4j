@@ -408,7 +408,7 @@ public class JDBWTWorkstation
 	}
 
 	public String toString() {
-		String result = JUtility.padString(getWorkstationID(), true, field_WorkstationID, " ")+ JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ")+JUtility.padString(getScaleID(), true, field_ScaleID, " ");
+		String result = JUtility.padString(getWorkstationID(), true, field_WorkstationID, " ")+ JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ")+JUtility.padString(getScaleID(), true, field_ScaleID, " ")+getLocation();
 
 		return result;
 	}

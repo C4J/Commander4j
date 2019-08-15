@@ -461,7 +461,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 								fld_SamplePoint.setText(JLaunchLookup.dlgResult);
 								updateSamplePoint(JLaunchLookup.dlgResult,true);
 								fld_Process_Order.setText("");
-								updateProcessOrderInfo(JLaunchLookup.dlgResult, true);
+								updateProcessOrderInfo("", true);
 							}
 						}
 					});
