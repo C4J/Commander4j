@@ -40,6 +40,7 @@ import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -58,6 +59,7 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
+import com.fazecast.jSerialComm.SerialPort;
 
 /**
  * The JInternalFrameWTWorkstationProperties class allows the user to edit a
@@ -82,7 +84,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 	private JButton4j jButtonSave;
 	private JTextField4j jTextFieldLocation;
 	private JLabel4j_std jLabel1;
-	private JDBWTWorkstation workstation = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
+	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
 	private JDBWTScale scale = new JDBWTScale(Common.selectedHostID, Common.sessionID);
 	private JDBWTSamplePoint samplePoint = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrderResource poResources = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
@@ -117,16 +119,52 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 		jTextFieldWorkstation.setText(lworkstation);
 		setTitle("Workstation [" + lworkstation + "]");
 
-		workstation.setWorkstationID(lworkstation);
-		workstation.getProperties(lworkstation);
+		workdb.setWorkstationID(lworkstation);
+		workdb.getProperties(lworkstation);
 
-		jTextFieldWorkstation.setText(workstation.getWorkstationID());
-		jTextFieldLocation.setText(workstation.getLocation());
-		jTextFieldDescription.setText(workstation.getDescription());
+		jTextFieldWorkstation.setText(workdb.getWorkstationID());
+		jTextFieldLocation.setText(workdb.getLocation());
+		jTextFieldDescription.setText(workdb.getDescription());
+		
+		//*************************************************
+		//** This section moved out of Init deliberately)**
+		//*************************************************
+		
+		SerialPort[] ports = SerialPort.getCommPorts();
+
+
+		for (int x = 0; x < ports.length; x++)
+		{
+			portList.add(ports[x].toString());
+		}
+
+		if (portList.contains(workdb.getScalePort())==false)
+		{
+			portList.add(workdb.getScalePort());
+		}
+		
+		Collections.addAll(portList, standardPorts);
+		
+		comboBox_Ports = new JComboBox4j<String>();
+		comboBox_Ports.setModel(new DefaultComboBoxModel<String>(portList));
+		
+		ComboBoxModel<String> jComboBoxModelPort = new DefaultComboBoxModel<String>(portList);
+		comboBox_Ports.setModel(jComboBoxModelPort);
+		comboBox_Ports.setBounds(155, 187, 387, 24);
+		comboBox_Ports.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				jButtonSave.setEnabled(true);
+			}
+		});
+		jDesktopPane1.add(comboBox_Ports);
+		
+		//*************************************************
 
 		for (int x = 0; x < samplePointList.size(); x++)
 		{
-			if (((JDBWTSamplePoint) samplePointList.get(x)).getSamplePoint().equals(workstation.getSamplePoint()) == true)
+			if (((JDBWTSamplePoint) samplePointList.get(x)).getSamplePoint().equals(workdb.getSamplePoint()) == true)
 			{
 				comboBox4j_SamplePoint.setSelectedIndex(x);
 				break;
@@ -135,19 +173,17 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 
 		for (int x = 0; x < scaleList.size(); x++)
 		{
-			if (((JDBWTScale) scaleList.get(x)).getScaleID().equals(workstation.getScaleID()) == true)
+			if (((JDBWTScale) scaleList.get(x)).getScaleID().equals(workdb.getScaleID()) == true)
 			{
 				comboBox_Scales.setSelectedIndex(x);
 				break;
 			}
 		}
 
-		Collections.addAll(portList, standardPorts);
-
 		for (int x = 0; x < portList.size(); x++)
 		{
 
-			if (((String) portList.get(x)).toString().equals(workstation.getScalePort()) == true)
+			if (((String) portList.get(x)).toString().equals(workdb.getScalePort()) == true)
 			{
 				comboBox_Ports.setSelectedIndex(x);
 				break;
@@ -173,6 +209,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
+		
 
 		SwingUtilities.invokeLater(new Runnable()
 		{
@@ -313,17 +350,6 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 				label4j_Scale_Port.setBounds(0, 190, 149, 21);
 				jDesktopPane1.add(label4j_Scale_Port);
 
-				ComboBoxModel<String> jComboBoxModelPort = new DefaultComboBoxModel<String>(portList);
-				comboBox_Ports.setModel(jComboBoxModelPort);
-				comboBox_Ports.setBounds(155, 187, 387, 24);
-				comboBox_Ports.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-						jButtonSave.setEnabled(true);
-					}
-				});
-				jDesktopPane1.add(comboBox_Ports);
 
 				scaleList.add(new JDBWTScale(Common.selectedHostID, Common.sessionID));
 				scaleList.addAll(scale.getScales());
@@ -373,21 +399,21 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 
 	private void save()
 	{
-		workstation.setLocation(jTextFieldLocation.getText());
-		workstation.setDescription(jTextFieldDescription.getText());
-		workstation.setWorkstationID(jTextFieldWorkstation.getText());
-		workstation.setSamplePoint(((JDBWTSamplePoint) comboBox4j_SamplePoint.getSelectedItem()).getSamplePoint());
-		workstation.setScaleID(((JDBWTScale) comboBox_Scales.getSelectedItem()).getScaleID());
+		workdb.setLocation(jTextFieldLocation.getText());
+		workdb.setDescription(jTextFieldDescription.getText());
+		workdb.setWorkstationID(jTextFieldWorkstation.getText());
+		workdb.setSamplePoint(((JDBWTSamplePoint) comboBox4j_SamplePoint.getSelectedItem()).getSamplePoint());
+		workdb.setScaleID(((JDBWTScale) comboBox_Scales.getSelectedItem()).getScaleID());
 		
 		if (comboBox_Ports.getSelectedIndex() >= 0)
 		{
-			workstation.setScalePort((String) comboBox_Ports.getSelectedItem().toString());
+			workdb.setScalePort((String) comboBox_Ports.getSelectedItem().toString());
 		}
 		else
 		{
-			workstation.setScalePort("");
+			workdb.setScalePort("");
 		}
-		workstation.update();
+		workdb.update();
 		jButtonSave.setEnabled(false);
 	}
 }

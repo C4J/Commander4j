@@ -429,7 +429,7 @@ public class JDBWTWorkstation
 				stmtupdate.setString(3, getSamplePoint());
 				stmtupdate.setString(4, getScaleID());	
 				stmtupdate.setString(5, getScalePort());
-				stmtupdate.setString(7, getWorkstationID());
+				stmtupdate.setString(6, getWorkstationID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

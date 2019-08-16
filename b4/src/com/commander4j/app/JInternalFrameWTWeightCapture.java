@@ -180,6 +180,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private Integer t2_count = 0;
 	private String materialGroup = "";
 	private String containerCode = "";
+	private boolean validToScan = false;
 
 	public JInternalFrameWTWeightCapture()
 	{
@@ -1400,6 +1401,10 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			fld_TNE.setBackground(Color.WHITE);
 		}
 
+		validToScan = result;
+		btn_Begin.setEnabled(validToScan);
+		
+		
 		return result;
 	}
 
