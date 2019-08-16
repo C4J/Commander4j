@@ -765,10 +765,15 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						logEnabled = false;
-						sampleDetailList.clear();
-						btnj_Cancel.setEnabled(false);
 						btn_Begin.setEnabled(true);
+						btnj_Cancel.setEnabled(false);
+						fld_Mean.setText("0.000");
+						fld_Batch_Mean.setText("0.000");
+						fld_Standard_Deviation.setText("0.000");
+						logEnabled = false;
+						sampleSequence = 0;
+						sampleDetailList.clear();
+						populateList();
 
 					}
 				});
@@ -978,7 +983,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		sampleHeader.setSamplePoint(samplePointdb.getSamplePoint());
 		sampleHeader.setSampleDate(JUtility.getSQLDateTime());
 		sampleHeader.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
-		sampleHeader.setWorkstationID(JUtility.getClientName());
+		sampleHeader.setWorkstationID(workdb.getWorkstationID());
 		sampleHeader.setScaleID(workdb.getScaleID());
 		sampleHeader.setProcessOrder(orderdb.getProcessOrder());
 		sampleHeader.setRequiredResource(orderdb.getRequiredResource());
