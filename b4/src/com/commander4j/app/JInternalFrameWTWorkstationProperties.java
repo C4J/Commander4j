@@ -40,7 +40,6 @@ import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -144,6 +143,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 		}
 		
 		Collections.addAll(portList, standardPorts);
+		Collections.sort(portList);
 		
 		comboBox_Ports = new JComboBox4j<String>();
 		comboBox_Ports.setModel(new DefaultComboBoxModel<String>(portList));

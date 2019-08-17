@@ -137,11 +137,31 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 		{
 			comboBox_DataBits.setSelectedIndex(0);
 		}
-		comboBox_StopBits.setSelectedItem(String.valueOf(scale.getStopBits()).trim());
-		if (comboBox_StopBits.getSelectedIndex()<0)
+		
+	
+		if (scale.getStopBits()==1)
 		{
 			comboBox_StopBits.setSelectedIndex(0);
 		}
+		else
+		{
+			if (scale.getStopBits()==3)
+			{
+				comboBox_StopBits.setSelectedIndex(1);
+			}
+			else
+			{
+				if (scale.getStopBits()==2)
+				{
+					comboBox_StopBits.setSelectedIndex(2);
+				}
+				else
+				{
+					comboBox_StopBits.setSelectedIndex(-1);
+				}
+			}
+		}
+		
 		comboBox_FlowControl.setSelectedItem(scale.getFlowControl());
 		if (comboBox_FlowControl.getSelectedIndex()<0)
 		{
@@ -379,7 +399,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 						}
 					});
 					comboBox_StopBits.setModel(new DefaultComboBoxModel<String>(new String[]
-					{ "0", "1" }));
+					{ "1", "1.5","2" }));
 					comboBox_StopBits.setPreferredSize(new Dimension(40, 20));
 					comboBox_StopBits.setFocusCycleRoot(true);
 					comboBox_StopBits.setBounds(155, 257, 49, 24);
@@ -486,8 +506,22 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 		scale.setBaudRate(baud);
 		int databits = Integer.valueOf(comboBox_DataBits.getSelectedItem().toString());
 		scale.setDataBits(databits);
-		int stopbits = Integer.valueOf(comboBox_StopBits.getSelectedItem().toString());
-		scale.setStopBits(stopbits);
+		
+		switch (comboBox_StopBits.getSelectedItem().toString())
+		{
+
+		case "1":
+			scale.setStopBits(1);
+			break;
+		case "2":
+			scale.setStopBits(2);
+			break;
+		case "1.5":
+			scale.setStopBits(3);
+			break;
+		default:
+		}
+			
 		scale.setFlowControl(comboBox_FlowControl.getSelectedItem().toString());
 		scale.setConnection(comboBox_Connection.getSelectedItem().toString());
 		scale.setParity(comboBox_Parity.getSelectedItem().toString());

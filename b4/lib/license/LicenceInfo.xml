@@ -346,6 +346,12 @@
         </library>
         
         <library>
+            <description>Apache Commons Math3</description>
+            <version>3.6.1</version>
+            <type>Apache License 2.0</type>
+        </library>
+        
+        <library>
 	        <description>Apache POI</description>
 	        <version>4.0.1</version>
 	        <type>Apache License 2.0</type>

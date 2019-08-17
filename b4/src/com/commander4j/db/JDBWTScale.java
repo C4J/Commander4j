@@ -34,6 +34,7 @@ import java.util.LinkedList;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
+import com.fazecast.jSerialComm.SerialPort;
 
 public class JDBWTScale
 {
@@ -42,13 +43,13 @@ public class JDBWTScale
 	private String dbMake = "";
 	private String dbModel = "";
 	private String dbParity = "";
-	private String dbEndOfLine="";
+	private String dbEndOfLine = "";
 	private int dbBaudRate = 0;
 
 	private int dbDataBits = 0;
 	private int dbStopBits = 0;
 	private String dbConnection = "";
-	
+
 	private String dbFlowControl = "";
 	private String dbErrorMessage = "";
 	private String hostID;
@@ -59,6 +60,7 @@ public class JDBWTScale
 	public static int field_Model = 15;
 	public static int field_Parity = 10;
 	public static int field_EndOfLine = 15;
+	private SerialPort comPort;
 
 	public JDBWTScale(String host, String session)
 	{
@@ -112,12 +114,12 @@ public class JDBWTScale
 
 		return result;
 	}
-	
+
 	public void setParity(String parity)
 	{
 		this.dbParity = JUtility.replaceNullStringwithBlank(parity);
 	}
-	
+
 	public void setEndOfLine(String endOfLine)
 	{
 		this.dbEndOfLine = JUtility.replaceNullStringwithBlank(endOfLine);
@@ -127,18 +129,18 @@ public class JDBWTScale
 	{
 		return dbParity;
 	}
-	
+
 	public String getEndOfLine()
 	{
 		return dbEndOfLine;
 	}
-	
+
 	public boolean create(String scaleId)
 	{
 		setScaleID(scaleId);
 		return create();
 	}
-	
+
 	public boolean renameTo(String newname)
 	{
 		boolean result = false;
@@ -227,7 +229,7 @@ public class JDBWTScale
 	{
 		return dbFlowControl;
 	}
-	
+
 	public String getConnection()
 	{
 		return dbConnection;
@@ -394,7 +396,7 @@ public class JDBWTScale
 	{
 		this.dbConnection = dbConnection;
 	}
-	
+
 	private void setHostID(String host)
 	{
 		hostID = host;
@@ -466,8 +468,9 @@ public class JDBWTScale
 
 		return result;
 	}
-	
-	public LinkedList<JDBWTScale> getScales() {
+
+	public LinkedList<JDBWTScale> getScales()
+	{
 		LinkedList<JDBWTScale> sampList = new LinkedList<JDBWTScale>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -506,8 +509,9 @@ public class JDBWTScale
 
 		return sampList;
 	}
-	
-	public ResultSet getScalesDataResultSet() {
+
+	public ResultSet getScalesDataResultSet()
+	{
 		PreparedStatement stmt;
 		ResultSet rs = null;
 		setErrorMessage("");
@@ -526,12 +530,81 @@ public class JDBWTScale
 
 		return rs;
 	}
-	
-	public String toString() {
-		String result = JUtility.padString(getScaleID(), true, field_ScaleID, " ")+ JUtility.padString(getDescription(), true, field_Description, " ")+JUtility.padString(getMake(), true, field_Make, " ")+getModel();
 
+	public String toString()
+	{
+		String result = JUtility.padString(getScaleID(), true, field_ScaleID, " ") + JUtility.padString(getDescription(), true, field_Description, " ") + JUtility.padString(getMake(), true, field_Make, " ") + getModel();
 
 		return result;
-	}	
+	}
+
+	public boolean openPort(String portName)
+	{
+		boolean result = false;
+
+		if (SerialPort.getCommPorts().length > 0)
+		{
+			boolean portFound = false;
+			for (int x = 0; x < SerialPort.getCommPorts().length; x++)
+			{
+				if (SerialPort.getCommPorts()[x].toString().equals(portName))
+				{
+					comPort = SerialPort.getCommPorts()[x];
+					portFound = true;
+					break;
+				}
+
+			}
+
+			if (portFound)
+			{
+				comPort.setBaudRate(getBaudRate());
+
+				switch (getFlowControl())
+				{
+				case "XON/XOFF":
+					comPort.setFlowControl(SerialPort.FLOW_CONTROL_XONXOFF_IN_ENABLED | SerialPort.FLOW_CONTROL_XONXOFF_OUT_ENABLED);
+					break;
+				case "NONE":
+					comPort.setFlowControl(SerialPort.FLOW_CONTROL_DISABLED);
+					break;
+				default:
+
+				}
+
+				comPort.setNumDataBits(getDataBits());
+
+				switch (getStopBits())
+				{
+
+				case 1:
+					comPort.setNumStopBits(SerialPort.ONE_STOP_BIT);
+					break;
+				case 2:
+					comPort.setNumStopBits(SerialPort.TWO_STOP_BITS);
+					break;
+				case 3:
+					comPort.setNumStopBits(SerialPort.ONE_POINT_FIVE_STOP_BITS);
+					break;
+				default:
+				}
+
+				comPort.setNumStopBits(SerialPort.ONE_STOP_BIT);
+
+				comPort.setParity(SerialPort.NO_PARITY);
+			}
+			else
+			{
+				setErrorMessage("Serial port [" + portName + "] not found!");
+			}
+
+		}
+		else
+		{
+			setErrorMessage("No Serial Ports found!");
+		}
+
+		return result;
+	}
 
 }

@@ -160,6 +160,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private boolean logEnabled = false;
 	private int lSampleFrequency = 15;
 	private int lSampleSize = 5;
+	
 	private JDBMaterialCustomerData matcustdb = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial materialdb = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 	private JDBWTProductGroups matgroupdb = new JDBWTProductGroups(Common.selectedHostID, Common.sessionID);
@@ -167,11 +168,12 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private LinkedList<JDBWTSampleDetail> sampleDetailList = new LinkedList<JDBWTSampleDetail>();
 	private JDBWTSampleHeader sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
 	private JDBWTSamplePoint samplePointdb = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
+	private JDBWTTNE tnedb = new JDBWTTNE(Common.selectedHostID, Common.sessionID);
+	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
+	
 	private Integer sampleSequence = 0;
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private Timer timer = new Timer(1000, clocklistener);
-	private JDBWTTNE tnedb = new JDBWTTNE(Common.selectedHostID, Common.sessionID);
-	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
 	private BigDecimal mean = new BigDecimal("0.000");
 	private BigDecimal batch_mean = new BigDecimal("0.000");
 	private BigDecimal std_dev = new BigDecimal("0.000");
@@ -181,6 +183,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private String materialGroup = "";
 	private String containerCode = "";
 	private boolean validToScan = false;
+	
 
 	public JInternalFrameWTWeightCapture()
 	{
@@ -1451,4 +1454,5 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		return result;
 	}
+		
 }
