@@ -101,6 +101,7 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
+import com.fazecast.jSerialComm.SerialPort;
 
 /**
  * The JInternalFrameWTDataCapture is for capturing/recording weight checks
@@ -170,6 +171,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JDBWTSamplePoint samplePointdb = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
 	private JDBWTTNE tnedb = new JDBWTTNE(Common.selectedHostID, Common.sessionID);
 	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
+	private JDBWTScale scaledb = new JDBWTScale(Common.selectedHostID, Common.sessionID);
 	
 	private Integer sampleSequence = 0;
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
@@ -249,6 +251,12 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 	private void shutdown()
 	{
+		if (SerialPort.getCommPorts().length > 0)
+		{
+			scaledb.comPort.removeDataListener();
+			scaledb.comPort.closePort();
+		}
+		
 		timer.stop();
 
 		while (timer.isRunning())
@@ -1448,6 +1456,16 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		{
 			fld_Workstation.setBackground(Color.YELLOW);
 
+		}
+		
+		if (result==true)
+		{
+			if (scaledb.connect(workdb.getScaleID(),workdb.getScalePort()))
+			{
+				scaledb.scaleReset();
+				scaledb.scaleRequestWeightonChange();
+				
+			}
 		}
 
 		updateSamplePoint(samplePoint, result);

@@ -60,7 +60,7 @@ public class JDBWTScale
 	public static int field_Model = 15;
 	public static int field_Parity = 10;
 	public static int field_EndOfLine = 15;
-	private SerialPort comPort;
+	public SerialPort comPort;
 
 	public JDBWTScale(String host, String session)
 	{
@@ -538,73 +538,148 @@ public class JDBWTScale
 		return result;
 	}
 
-	public boolean openPort(String portName)
+	public boolean connect(String scale, String portName)
 	{
 		boolean result = false;
 
-		if (SerialPort.getCommPorts().length > 0)
+		if (getProperties(scale))
 		{
-			boolean portFound = false;
-			for (int x = 0; x < SerialPort.getCommPorts().length; x++)
+
+			if (SerialPort.getCommPorts().length > 0)
 			{
-				if (SerialPort.getCommPorts()[x].toString().equals(portName))
+				boolean portFound = false;
+				for (int x = 0; x < SerialPort.getCommPorts().length; x++)
 				{
-					comPort = SerialPort.getCommPorts()[x];
-					portFound = true;
-					break;
+					if (SerialPort.getCommPorts()[x].toString().equals(portName))
+					{
+						comPort = SerialPort.getCommPorts()[x];
+						portFound = true;
+						break;
+					}
 				}
 
-			}
-
-			if (portFound)
-			{
-				comPort.setBaudRate(getBaudRate());
-
-				switch (getFlowControl())
+				if (portFound)
 				{
-				case "XON/XOFF":
-					comPort.setFlowControl(SerialPort.FLOW_CONTROL_XONXOFF_IN_ENABLED | SerialPort.FLOW_CONTROL_XONXOFF_OUT_ENABLED);
-					break;
-				case "NONE":
-					comPort.setFlowControl(SerialPort.FLOW_CONTROL_DISABLED);
-					break;
-				default:
+					// *** Set Baud Rate *** //
+					comPort.setBaudRate(getBaudRate());
+
+					switch (getFlowControl())
+					{
+					case "XON/XOFF":
+						comPort.setFlowControl(SerialPort.FLOW_CONTROL_XONXOFF_IN_ENABLED | SerialPort.FLOW_CONTROL_XONXOFF_OUT_ENABLED);
+						break;
+					case "NONE":
+						comPort.setFlowControl(SerialPort.FLOW_CONTROL_DISABLED);
+						break;
+					default:
+
+					}
+
+					// *** Set Data Bits *** //
+					comPort.setNumDataBits(getDataBits());
+
+					// *** Set Stop Bits *** //
+					switch (getStopBits())
+					{
+
+					case 1:
+						comPort.setNumStopBits(SerialPort.ONE_STOP_BIT);
+						break;
+					case 2:
+						comPort.setNumStopBits(SerialPort.TWO_STOP_BITS);
+						break;
+					case 3:
+						comPort.setNumStopBits(SerialPort.ONE_POINT_FIVE_STOP_BITS);
+						break;
+					default:
+					}
+
+					// *** Set Parity *** //
+					switch (getParity())
+					{
+
+					case "None":
+						comPort.setParity(SerialPort.NO_PARITY);
+						break;
+					case "Odd":
+						comPort.setParity(SerialPort.ODD_PARITY);
+						break;
+					case "Even":
+						comPort.setParity(SerialPort.EVEN_PARITY);
+						break;
+					case "Mark":
+						comPort.setParity(SerialPort.MARK_PARITY);
+						break;
+					case "Space":
+						comPort.setParity(SerialPort.SPACE_PARITY);
+						break;
+					default:
+					}
+					
+					if (comPort.openPort())
+					{
+
+						result = true;
+						System.out.println("Opened serial port " + comPort.getPortDescription());
+					}
+					else
+					{
+						System.out.println("Unable to open serial port " + comPort.getPortDescription());
+					}
 
 				}
-
-				comPort.setNumDataBits(getDataBits());
-
-				switch (getStopBits())
+				else
 				{
-
-				case 1:
-					comPort.setNumStopBits(SerialPort.ONE_STOP_BIT);
-					break;
-				case 2:
-					comPort.setNumStopBits(SerialPort.TWO_STOP_BITS);
-					break;
-				case 3:
-					comPort.setNumStopBits(SerialPort.ONE_POINT_FIVE_STOP_BITS);
-					break;
-				default:
+					setErrorMessage("Serial port [" + portName + "] not found!");
 				}
 
-				comPort.setNumStopBits(SerialPort.ONE_STOP_BIT);
-
-				comPort.setParity(SerialPort.NO_PARITY);
 			}
 			else
 			{
-				setErrorMessage("Serial port [" + portName + "] not found!");
+				setErrorMessage("No Serial Ports found!");
 			}
-
 		}
 		else
 		{
-			setErrorMessage("No Serial Ports found!");
+			setErrorMessage("Unable to locate settings for Scale [" + scale + "]");
 		}
 
 		return result;
+	}
+	
+	private void scaleTX(String command)
+	{
+		if (comPort.isOpen())
+		{
+			byte[] bufferOUT = (command + "\r\n").getBytes();
+			comPort.writeBytes(bufferOUT, bufferOUT.length);
+
+			System.out.println("Debug TX >" + new String(bufferOUT).replace("\r\n", "<CR><LF>") + "<");
+
+			try
+			{
+				Thread.sleep(550);
+			}
+			catch (InterruptedException ex)
+			{
+				Thread.currentThread().interrupt();
+			}
+		}
+	}
+
+	public void scaleReset()
+	{
+		scaleTX("@");
+	}
+
+	public void scaleRequestWeightonChange()
+	{
+		scaleTX("SR");
+	}
+
+	public void scaleRequestStableWeight()
+	{
+		scaleTX("SI");
 	}
 
 }
