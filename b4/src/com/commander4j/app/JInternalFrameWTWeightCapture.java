@@ -102,6 +102,8 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 import com.fazecast.jSerialComm.SerialPort;
+import com.fazecast.jSerialComm.SerialPortEvent;
+import com.fazecast.jSerialComm.SerialPortMessageListener;
 
 /**
  * The JInternalFrameWTDataCapture is for capturing/recording weight checks
@@ -228,6 +230,15 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
+		
+		addInternalFrameListener(new InternalFrameAdapter()
+		{
+
+			public void internalFrameClosing(InternalFrameEvent e)
+			{
+				shutdown();
+			}
+		});
 
 		SwingUtilities.invokeLater(new Runnable()
 		{
@@ -238,23 +249,21 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			}
 		});
 
-		addInternalFrameListener(new InternalFrameAdapter()
-		{
 
-			public void internalFrameClosing(InternalFrameEvent e)
-			{
-				shutdown();
-			}
-		});
 
 	}
 
 	private void shutdown()
 	{
+		
 		if (SerialPort.getCommPorts().length > 0)
 		{
+			if (scaledb.isConnected())
+			{
 			scaledb.comPort.removeDataListener();
 			scaledb.comPort.closePort();
+			scaledb.setConnected(false);
+			}
 		}
 		
 		timer.stop();
@@ -571,6 +580,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							fld_Batch_Mean.setText("0.000");
 							fld_Standard_Deviation.setText("0.000");
 							logEnabled = true;
+							jStatusText.setText("Start weighing "+lSampleSize +" samples");
 							sampleSequence = 0;
 							sampleDetailList.clear();
 							populateList();
@@ -825,7 +835,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		if (logEnabled)
 		{
-
+			jStatusText.setText("Recording "+weight+" "+weightUOM);
 			JDBWTSampleDetail sampleDetail = new JDBWTSampleDetail(Common.selectedHostID, Common.sessionID);
 			sampleDetail.setSamplePoint(workdb.getSamplePoint());
 			sampleDetail.setSampleDate(sampleHeader.getSampleDate());
@@ -861,7 +871,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			sampleDetailList.addLast(sampleDetail);
 
 			populateList();
-
+			
 			if (sampleSequence == lSampleSize)
 			{
 				jStatusText.setText("Saving results to database...");
@@ -879,6 +889,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				btnj_Cancel.setEnabled(false);
 				jStatusText.setText("");
 			}
+			else
+			{
+				jStatusText.setText("Weigh sample "+String.valueOf(sampleSequence+1) +" of "+String.valueOf(lSampleSize));
+			}
+		}
+		else
+		{
+			jStatusText.setText("Click Begin before starting sampling");
 		}
 		return result;
 	}
@@ -1464,6 +1482,50 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				scaledb.scaleReset();
 				scaledb.scaleRequestWeightonChange();
+				scaledb.comPort.addDataListener(new SerialPortMessageListener()
+				{
+					@Override
+					public int getListeningEvents()
+					{
+						return SerialPort.LISTENING_EVENT_DATA_RECEIVED;
+					}
+
+					@Override
+					public void serialEvent(SerialPortEvent event)
+					{
+						byte[] newData = event.getReceivedData();
+						String data = new String(newData);
+
+						if (data.startsWith("S S "))
+						{
+							String temp = data.replaceAll("\\s{2,}", " ").trim();
+
+							String[] parts = temp.split(" ");
+							if (Double.valueOf(parts[2]) > 0)
+							{
+								logSampleWeight(parts[2],parts[3].toUpperCase());
+							}
+
+						}
+						data = data.replace("\r\n", "<CR><LF>");
+						System.out.println("Debug RX >" + data + "<");
+
+					}
+
+					@Override
+					public boolean delimiterIndicatesEndOfMessage()
+					{
+						// TODO Auto-generated method stub
+						return true;
+					}
+
+					@Override
+					public byte[] getMessageDelimiter()
+					{
+						byte[] eol = "\r\n".getBytes();
+						return eol;
+					}
+				});
 				
 			}
 		}

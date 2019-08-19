@@ -61,7 +61,19 @@ public class JDBWTScale
 	public static int field_Parity = 10;
 	public static int field_EndOfLine = 15;
 	public SerialPort comPort;
+	private boolean connected = false;
 
+	public boolean isConnected()
+	{
+		return connected;
+	}
+
+	public void setConnected(boolean connected)
+	{
+		this.connected = connected;
+	}
+
+	
 	public JDBWTScale(String host, String session)
 	{
 		super();
@@ -541,6 +553,7 @@ public class JDBWTScale
 	public boolean connect(String scale, String portName)
 	{
 		boolean result = false;
+		
 
 		if (getProperties(scale))
 		{
@@ -618,7 +631,7 @@ public class JDBWTScale
 					
 					if (comPort.openPort())
 					{
-
+						setConnected(true);
 						result = true;
 						System.out.println("Opened serial port " + comPort.getPortDescription());
 					}

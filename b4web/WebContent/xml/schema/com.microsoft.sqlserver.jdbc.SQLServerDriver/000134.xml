@@ -104,7 +104,7 @@
 			[CONNECTION] [varchar](30) NULL,
 			[BAUD_RATE] [int] NULL,
 			[DATA_BITS] [int] NULL,
-			[STOP_BITS] [int] NULL,
+			[STOP_BITS] [int] DEFAULT ((1)) NULL,
 			[FLOW_CONTROL] [varchar](20) NULL,
 			[PARITY] [varchar](10) NULL,
 			[END_OF_LINE] [varchar](15) NULL,
