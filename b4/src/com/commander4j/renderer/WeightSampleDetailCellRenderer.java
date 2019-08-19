@@ -18,7 +18,7 @@ public class WeightSampleDetailCellRenderer extends JLabel implements ListCellRe
 
 	public WeightSampleDetailCellRenderer() {
         setOpaque(true);
-		setFont(Common.font_list);
+		setFont(Common.font_list_weights);
     }
 
 
@@ -26,7 +26,7 @@ public class WeightSampleDetailCellRenderer extends JLabel implements ListCellRe
 	public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus)
 	{
         setText(value.toString());
-
+		setFont(Common.font_list_weights);
         
         JDBWTSampleDetail x =  ( (JDBWTSampleDetail) value);
         

@@ -181,6 +181,7 @@ public class Common
 	public final static Font font_tree = new Font("Arial", Font.PLAIN, 12);
 	public final static Font font_menu = new Font("Arial", Font.PLAIN, 12);
 	public final static Font font_list = new Font("Monospaced", 0, 11);
+	public final static Font font_list_weights = new Font("Monospaced", 0, 14);
 	public final static Font font_combo = new Font("Arial", Font.PLAIN, 11);
 	public final static Font font_table_header = new java.awt.Font("Arial", Font.PLAIN, 11);
 	public final static Font font_table = new java.awt.Font("Monospaced", 0, 11);
@@ -328,7 +329,9 @@ public class Common
 	public final static Icon icon_alternative_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_alternative);
 	public final static Icon icon_lock_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_lock);
 	public final static Icon icon_production_line_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_production_line);
+	public final static Icon icon_weight_capture_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_weight_capture);
 
+	public final static String image_weight_capture = "weight-capture.gif";
 	public final static String image_production_line = "prod_lines.gif";
 	public final static String image_lock = "lock.gif";
 	public final static String image_file_save = "file_save.gif";
