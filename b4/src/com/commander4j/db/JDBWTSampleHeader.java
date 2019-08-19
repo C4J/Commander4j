@@ -56,22 +56,22 @@ public class JDBWTSampleHeader
 	private String dbMaterial = "";
 	private String dbProductGroup = "";
 	private String dbContainerCode = "";
-	private BigDecimal dbTareWeight;
+	private BigDecimal dbTareWeight = new BigDecimal("0.000");
 	private String dbTareWeightUom = "";
 	private BigDecimal dbNominalWeight;
 	private String dbNominalWeightUom;
 
-	private BigDecimal dbTNE;
-	private BigDecimal dbNegT1;
-	private BigDecimal dbNegT2;
-	private BigDecimal dbSampleStdDev;
-	private Integer dbSampleT1Count;
-	private Integer dbSampleT2Count;
+	private BigDecimal dbTNE = new BigDecimal("0.000");
+	private BigDecimal dbNegT1 = new BigDecimal("0.000");
+	private BigDecimal dbNegT2 = new BigDecimal("0.000");
+	private BigDecimal dbSampleStdDev = new BigDecimal("0.000");
+	private Integer dbSampleT1Count = 0;
+	private Integer dbSampleT2Count = 0;
 
-	private Integer dbSampleSize;
+	private Integer dbSampleSize = 0;
 
-	private Integer dbSampleCount;
-	private BigDecimal dbSampleMean;
+	private Integer dbSampleCount = 0;
+	private BigDecimal dbSampleMean  = new BigDecimal("0.000");
 
 	private String dbErrorMessage = "";
 	private String hostID;
