@@ -73,6 +73,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.RangeType;
 import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.XYDataset;
 
@@ -413,8 +414,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		
 		chart = ChartFactory.createXYLineChart("Weights Graph", "Sample", "Mean Weight",ds , PlotOrientation.VERTICAL, true, true, false);
 
-		NumberAxis rangeAxis = new NumberAxis(null);
+		NumberAxis rangeAxis = new NumberAxis("Weight");
 		rangeAxis.setRange(90, 110);
+		rangeAxis.setRangeType(RangeType.POSITIVE);
 		
 		chart.getXYPlot().setRangeAxis(rangeAxis);
 
@@ -440,9 +442,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jDesktopPane1.setBackground(Common.color_app_window);
 				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(483, 266));
-				{
-
-				}
 
 				{
 					btn_Help = new JButton4j(Common.icon_help_16x16);
