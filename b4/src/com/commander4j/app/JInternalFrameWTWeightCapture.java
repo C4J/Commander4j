@@ -932,11 +932,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jStatusText.setText("Saving results to database...");
 
 				std_dev = calculateStandardDeviation();
+				mean = calculateMean();
+				
 				t1_count = getT1Count();
 				t2_count = getT2Count();
 				fld_Standard_Deviation.setText(std_dev.toString());
+				
 				saveAll(mean, std_dev, t1_count, t2_count);
-				mean = calculateMean();
+
 				fld_Mean.setText(mean.toString());
 				//fld_Batch_Mean.setText(batch_mean.toString());
 				logEnabled = false;
