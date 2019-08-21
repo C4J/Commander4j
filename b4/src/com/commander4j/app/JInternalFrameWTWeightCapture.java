@@ -1,5 +1,7 @@
 package com.commander4j.app;
 
+import java.awt.BasicStroke;
+
 /**
  * @author David Garratt
  * 
@@ -37,6 +39,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Ellipse2D;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.PreparedStatement;
@@ -70,12 +73,19 @@ import javax.swing.event.InternalFrameEvent;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.RangeType;
-import org.jfree.data.xy.DefaultXYDataset;
-import org.jfree.data.xy.XYDataset;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.HorizontalAlignment;
+import org.jfree.ui.RectangleEdge;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
@@ -184,14 +194,15 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private BigDecimal batch_mean = new BigDecimal("0.000");
 	private BigDecimal std_dev = new BigDecimal("0.000");
 	private BigDecimal zero = new BigDecimal("0.000");
+	private static Double graphMinY = new Double(-1);
+	private static Double graphMaxY =  new Double(-1);
+	
 	private Integer t1_count = 0;
 	private Integer t2_count = 0;
 	private String materialGroup = "";
 	private String containerCode = "";
 	private boolean validToScan = false;
-	private XYDataset ds = createDataset();
-	private JFreeChart chart = ChartFactory.createXYLineChart("Weights Graph", "Sample", "Mean Weight", ds, PlotOrientation.VERTICAL, true, true, false);
-	private ChartPanel cp;
+
 
 	public JInternalFrameWTWeightCapture()
 	{
@@ -295,10 +306,10 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		}
 	}
 
-	private DefaultXYDataset buildSQL()
+	private CategoryDataset buildSQL()
 	{
 
-		DefaultXYDataset result = new DefaultXYDataset();
+		DefaultCategoryDataset result = new DefaultCategoryDataset();
 
 		if (validToScan)
 		{
@@ -346,10 +357,25 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 					Double d = rs.getDouble("sample_mean");
 					BigDecimal t = rs.getBigDecimal("sample_mean");
-						
+					Timestamp when = rs.getTimestamp("sample_date");
+					String whenstr = JUtility.getISOTimeStampStringFormat(when);
+					whenstr = whenstr.substring(11, 16);
+				
 					d.doubleValue();
 					means.addLast(d.doubleValue());
 					batch_mean = batch_mean.add(t);
+					
+			        result.addValue(d, "Weight",whenstr);
+			        
+			        if ((d<graphMinY) || (graphMinY==-1))
+			        {
+			        	graphMinY=d;
+			        }
+			        
+			        if ((d>graphMaxY) || (graphMaxY==-1))
+			        {
+			        	graphMaxY=d;
+			        }
 					
 				}
 				
@@ -361,19 +387,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				rs.close();
 
-				double[] SeqDates = new double[count];
-				double[] graphMeans = new double[count];
 
-				for (int x = 0; x < means.size(); x++)
-				{
-					SeqDates[x] = x + 1;
-					graphMeans[x] = means.get(x);
-				}
 
-				double[][] series1 =
-				{ SeqDates, graphMeans };
-
-				result.addSeries("mean", series1);
 			}
 			catch (SQLException e)
 			{
@@ -385,48 +400,73 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	}
 
 
-
-	private XYDataset createDataset()
-	{
-
-		DefaultXYDataset ds = new DefaultXYDataset();
-
-		double[][] gross =
-		{
-				{ 1, 2, 3 },
-				{ 1, 100, 200 } };
-		double[][] net =
-		{
-				{ 1, 2, 3 },
-				{ 200, 100, 1 } };
-
-		ds.addSeries("gross", gross);
-		ds.addSeries("net", net);
-
-		return ds;
-	}
-
 	private void drawGraph()
 	{
-		chart = null;
-		cp = null;
-		DefaultXYDataset ds = buildSQL();
 		
-		chart = ChartFactory.createXYLineChart("Weights Graph", "Sample", "Mean Weight",ds , PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart chart = createChart(buildSQL());
+        ChartPanel panel = new ChartPanel(chart);
+        panel.setMouseWheelEnabled(false);
 
-		NumberAxis rangeAxis = new NumberAxis("Weight");
-		rangeAxis.setRange(90, 110);
-		rangeAxis.setRangeType(RangeType.POSITIVE);
-		
-		chart.getXYPlot().setRangeAxis(rangeAxis);
 
-		cp = new ChartPanel(chart);
+		panel.setBounds(14, 178, 746, 374);
 
-		cp.setBounds(14, 178, 746, 374);
-
-		jDesktopPane1.add(cp);
+		jDesktopPane1.add(panel);
 
 	}
+	
+    private static JFreeChart createChart(CategoryDataset dataset) {
+
+        // create the chart...
+        JFreeChart chart = ChartFactory.createLineChart(
+            "Weights",   // chart title
+            null,                       // domain axis label
+            "Weight",                   // range axis label
+            dataset,                         // data
+            PlotOrientation.VERTICAL,        // orientation
+            false,                           // include legend
+            true,                            // tooltips
+            false                            // urls
+        );
+
+        chart.addSubtitle(new TextTitle("Mean Weight"));
+        TextTitle source = new TextTitle();
+        source.setFont(new Font("SansSerif", Font.PLAIN, 10));
+        source.setPosition(RectangleEdge.BOTTOM);
+        source.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+        chart.addSubtitle(source);
+
+        CategoryPlot plot = (CategoryPlot) chart.getPlot();
+        plot.setRangePannable(false);
+        plot.setRangeGridlinesVisible(true);
+
+        // customise the range axis...
+        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        if (graphMinY==graphMaxY)
+        {
+        	graphMinY--;
+        	graphMaxY++;
+        }
+        rangeAxis.setRange(graphMinY,graphMaxY);
+        rangeAxis.setLabelAngle(0);
+        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        
+        CategoryAxis domainAxis = plot.getDomainAxis();  
+        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);  
+
+        ChartUtilities.applyCurrentTheme(chart);
+
+        // customise the renderer...
+        LineAndShapeRenderer renderer
+                = (LineAndShapeRenderer) plot.getRenderer();
+        renderer.setBaseShapesVisible(true);
+        renderer.setDrawOutlines(true);
+        renderer.setUseFillPaint(true);
+        renderer.setBaseFillPaint(Color.white);
+        renderer.setSeriesStroke(0, new BasicStroke(3.0f));
+        renderer.setSeriesOutlineStroke(0, new BasicStroke(2.0f));
+        renderer.setSeriesShape(0, new Ellipse2D.Double(-5.0, -5.0, 10.0, 10.0));
+        return chart;
+    }
 
 	private void initGUI()
 	{
