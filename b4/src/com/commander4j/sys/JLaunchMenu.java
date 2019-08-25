@@ -113,6 +113,7 @@ import com.commander4j.app.JInternalFrameWTContainerCodeProperties;
 import com.commander4j.app.JInternalFrameWTWeightCapture;
 import com.commander4j.app.JInternalFrameWTProductGroupAdmin;
 import com.commander4j.app.JInternalFrameWTProductGroupProperties;
+import com.commander4j.app.JInternalFrameWTReports;
 import com.commander4j.db.JDBModule;
 import com.commander4j.interfaces.JInternalFrameInterfaceAdmin;
 import com.commander4j.interfaces.JInternalFrameInterfaceControl;
@@ -1057,6 +1058,19 @@ public class JLaunchMenu
 			else
 			{
 				u = new JInternalFrameWTWeightCapture();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_REPORTS"))
+		{
+			final JInternalFrameWTReports u;
+			if (isLoaded(JInternalFrameWTReports.class))
+				setVisible(JInternalFrameWTReports.class);
+			else
+			{
+				u = new JInternalFrameWTReports();
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}

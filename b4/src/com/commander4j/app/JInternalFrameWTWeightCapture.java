@@ -372,6 +372,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			        	graphMinY=d;
 			        }
 			        
+			        
 			        if ((d>graphMaxY) || (graphMaxY==-1))
 			        {
 			        	graphMaxY=d;
@@ -446,6 +447,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
         	graphMinY--;
         	graphMaxY++;
         }
+        if (graphMinY == -1.0)
+        {
+        	graphMinY = 0.0;
+        }	
+        if (graphMaxY == -1.0)
+        {
+        	graphMaxY = 1.0;
+        }	
         rangeAxis.setRange(graphMinY,graphMaxY);
         rangeAxis.setLabelAngle(0);
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
