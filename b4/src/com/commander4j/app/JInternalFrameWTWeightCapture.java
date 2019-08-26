@@ -415,7 +415,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 	}
 	
-    private static JFreeChart createChart(CategoryDataset dataset) {
+    private JFreeChart createChart(CategoryDataset dataset) {
 
         // create the chart...
         JFreeChart chart = ChartFactory.createLineChart(
@@ -442,19 +442,22 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
         // customise the range axis...
         NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        
+
+        
+        if (graphMinY == -1.0)
+        {
+        	graphMinY = (tnedb.getNominalWT().subtract(tnedb.getTNE()).doubleValue());
+        }	
+        if (graphMaxY == -1.0)
+        {
+        	graphMaxY = (tnedb.getNominalWT().add(tnedb.getTNE()).doubleValue());
+        }	
         if (graphMinY==graphMaxY)
         {
         	graphMinY--;
         	graphMaxY++;
         }
-        if (graphMinY == -1.0)
-        {
-        	graphMinY = 0.0;
-        }	
-        if (graphMaxY == -1.0)
-        {
-        	graphMaxY = 1.0;
-        }	
         rangeAxis.setRange(graphMinY,graphMaxY);
         rangeAxis.setLabelAngle(0);
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
