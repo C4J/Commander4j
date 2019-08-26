@@ -123,5 +123,53 @@
        INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'PL', 'Anuluj kontrolę wagi', '0')
     </statement>
 	
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_WEIGHT_REPORTS')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('WEIGHTS', 'FRM_WEIGHT_REPORTS')
+    </statement>
+    
+     <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'EN', 'Weight Report', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'DE', 'Gewichtsbericht', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'ES', 'Informe de peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'FR', 'Rapport de poids', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'HU', 'Súlyjelentés', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'IT', 'Rapporto sul peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'NL', 'Gewichtsrapport', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'PL', 'Raport masy', '0')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_MENUS(MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_WEIGHT_REPORTS', 'MENU_WEIGHTS', 0)
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_MODULES(MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) 
+       VALUES ('FRM_WEIGHT_REPORTS', 'N', 'Y', 'FORM', '1 mod_FRM_WEIGHT_REPORTS', 0, 'weight-report.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_WEIGHT_REPORTS', '', '')
+    </statement>
 	
 </DDL>

@@ -234,6 +234,7 @@ public class Common
 	public final static Icon icon_copy_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_copy);
 	public final static Icon icon_calendar_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_calendar);
 	public final static Icon icon_clear_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_clear);
+	public final static Icon icon_details_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_details);
 	public final static Icon icon_ascending_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_ascending);
 	public final static Icon icon_descending_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_descending);
 	public final static Icon icon_home_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_home);
@@ -340,6 +341,7 @@ public class Common
 	//public final static String image_qm = "qm.gif";
 	//public final static String image_remove = "remove.gif";
 	public final static String image_resend = "resend.gif";
+	public final static String image_details = "details.gif";
 	public final static String image_history = "pallet_history.gif";
 	public final static String image_pdf = "pdf.gif";
 	public final static String image_csv = "csv.gif";

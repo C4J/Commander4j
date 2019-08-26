@@ -96,6 +96,8 @@ public class JInternalFrameWTReports extends JInternalFrame
 	private JButton4j btn_SamplePoint_Lookup;
 	private JCheckBox4j checkBox4jFromEnabled = new JCheckBox4j();
 	private JButton4j jButtonClear;
+	private JButton4j jButtonDetails;
+	private JButton4j jButtonReports;
 	private JCheckBox4j checkBox4jToEnabled = new JCheckBox4j();
 	private JTextField4j fld_Container_Code = new JTextField4j(JDBQMSample.field_data_2);
 	private JTextField4j fld_Material = new JTextField4j(JDBMaterial.field_material);
@@ -195,6 +197,10 @@ public class JInternalFrameWTReports extends JInternalFrame
 		{
 			q2.applyWhere("product_group = ", fld_Product_Group.getText());
 		}
+		
+		q2.applyWhere("nominal_weight > ", 0.000);
+		
+		q2.applyWhere("sample_mean > ", 0.000);
 
 		q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
 		q2.applyRestriction(jCheckBoxLimit.isSelected(), jSpinnerLimit.getValue());
@@ -224,14 +230,14 @@ public class JInternalFrameWTReports extends JInternalFrame
 					jDesktopPane1.add(btn_Help);
 					btn_Help.setText(lang.get("btn_Help"));
 					btn_Help.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					btn_Help.setBounds(681, 160, 146, 32);
+					btn_Help.setBounds(718, 160, 140, 32);
 				}
 				{
 					btn_Close = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(btn_Close);
 					btn_Close.setText(lang.get("btn_Close"));
 					btn_Close.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					btn_Close.setBounds(839, 160, 146, 32);
+					btn_Close.setBounds(861, 160, 140, 32);
 					btn_Close.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -418,7 +424,7 @@ public class JInternalFrameWTReports extends JInternalFrame
 
 				btn_Search.setText(lang.get("btn_Search"));
 				btn_Search.setMnemonic(KeyEvent.VK_S);
-				btn_Search.setBounds(20, 160, 146, 32);
+				btn_Search.setBounds(3, 160, 140, 32);
 				jDesktopPane1.add(btn_Search);
 
 				JLabel4j_std label4j_std = new JLabel4j_std();
@@ -493,8 +499,36 @@ public class JInternalFrameWTReports extends JInternalFrame
 						}
 					});
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(178, 160, 146, 32);
+					jButtonClear.setBounds(146, 160, 140, 32);
 					jDesktopPane1.add(jButtonClear);
+				}
+				
+				{
+					jButtonDetails = new JButton4j(Common.icon_details_16x16);
+					jButtonDetails.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sampleDetail();
+						}
+					});
+					jButtonDetails.setText(lang.get("btn_Details"));
+					jButtonDetails.setBounds(432, 160, 140, 32);
+					jDesktopPane1.add(jButtonDetails);
+				}
+				
+				{
+					jButtonReports = new JButton4j(Common.icon_report_16x16);
+					jButtonReports.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							sampleDetail();
+						}
+					});
+					jButtonReports.setText(lang.get("btn_Print"));
+					jButtonReports.setBounds(289, 160, 140, 32);
+					jDesktopPane1.add(jButtonReports);
 				}
 
 				JButton4j btn_LookupProductGroup = new JButton4j(Common.icon_lookup_16x16);
@@ -552,7 +586,7 @@ public class JInternalFrameWTReports extends JInternalFrame
 				
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.setBounds(523, 160, 146, 32);
+					jButtonExcel.setBounds(575, 160, 140, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -589,6 +623,11 @@ public class JInternalFrameWTReports extends JInternalFrame
 		populateList();
 	}
 
+	private void sampleDetail()
+	{
+		
+	}
+	
 	private void clearFilter()
 	{
 		fld_Process_Order.setText("");
