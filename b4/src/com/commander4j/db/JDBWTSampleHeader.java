@@ -292,6 +292,8 @@ public class JDBWTSampleHeader
 		{
 			clear();
 
+			setSamplePoint(rs.getString("sample_point"));
+			setSampleDate(rs.getTimestamp("sample_date"));
 			setUserID(rs.getString("user_id"));
 			setWorkstationID(rs.getString("workstation_id"));
 			setScaleID(rs.getString("scale_id"));
@@ -394,6 +396,23 @@ public class JDBWTSampleHeader
 		return sampList;
 	}
 
+	public ResultSet getSampleHeaderDataResultSet(PreparedStatement criteria)
+	{
+		ResultSet rs;
+
+		try
+		{
+			rs = criteria.executeQuery();
+		}
+		catch (Exception e)
+		{
+			rs = null;
+			setErrorMessage(e.getMessage());
+		}
+
+		return rs;
+	}
+	
 	public ResultSet getSampleHeadertDataResultSet()
 	{
 		PreparedStatement stmt;
