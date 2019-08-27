@@ -124,6 +124,8 @@ public class JInternalFrameWTReports extends JInternalFrame
 	private JDateControl sampleDateTo = new JDateControl();
 	private JScrollPane scrollPane = new JScrollPane();
 	private JTable4j tableResults;
+	private JCheckBox4j checkBox4j_T1 = new JCheckBox4j();
+	private JCheckBox4j checkBox4j_T2 = new JCheckBox4j();
 
 	public JInternalFrameWTReports()
 	{
@@ -175,6 +177,16 @@ public class JInternalFrameWTReports extends JInternalFrame
 			q2.applyWhere("sample_date>=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
 		}
 
+		if (jComboBoxReportType.getSelectedItem().toString().equals("Mean above Nominal"))
+		{
+			q2.applyWhereLiteral(" sample_mean > nominal_weight ");
+		}
+		
+		if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
+		{
+			q2.applyWhereLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
+		}
+
 		if (checkBox4jToEnabled.isSelected())
 		{
 			q2.applyWhere("sample_date<=", JUtility.getTimestampFromDate(sampleDateTo.getDate()));
@@ -200,6 +212,16 @@ public class JInternalFrameWTReports extends JInternalFrame
 			q2.applyWhere("product_group = ", fld_Product_Group.getText());
 		}
 
+		if (checkBox4j_T1.isSelected())
+		{
+			q2.applyWhere("sample_t1_count > ", 0);
+		}
+
+		if (checkBox4j_T2.isSelected())
+		{
+			q2.applyWhere("sample_t2_count > ", 0);
+		}
+
 		q2.applyWhere("nominal_weight > ", 0.000);
 
 		q2.applyWhere("sample_mean > ", 0.000);
@@ -214,6 +236,7 @@ public class JInternalFrameWTReports extends JInternalFrame
 
 	private void clearFilter()
 	{
+		fld_SamplePoint.setText("");
 		fld_Process_Order.setText("");
 		fld_Material.setText("");
 		fld_Product_Group.setText("");
@@ -474,14 +497,15 @@ public class JInternalFrameWTReports extends JInternalFrame
 						setSequence(jToggleButtonSequence.isSelected());
 					}
 				});
-				
+
 				JLabel4j_std label4j_std_report_type = new JLabel4j_std();
 				label4j_std_report_type.setText(lang.get("mod_FRM_WEIGHT_REPORTS"));
 				label4j_std_report_type.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_std_report_type.setBounds(12, 113, 213, 21);
 				jDesktopPane1.add(label4j_std_report_type);
-				
-				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[] { "Default","Mean above Nominal", "T1's and T2's" });
+
+				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[]
+				{ "Default", "Mean above Nominal", "T1s or T2s" });
 				jComboBoxReportType = new JComboBox4j<String>();
 				jComboBoxReportType.setMaximumRowCount(15);
 				jComboBoxReportType.setModel(jComboBoxReportTypeModel);
@@ -645,7 +669,24 @@ public class JInternalFrameWTReports extends JInternalFrame
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jDesktopPane1.add(jButtonExcel);
 				}
+				checkBox4j_T1.setBackground(Color.WHITE);
+				checkBox4j_T1.setBounds(610, 63, 21, 25);
+				jDesktopPane1.add(checkBox4j_T1);
+				checkBox4j_T2.setBackground(Color.WHITE);
+				checkBox4j_T2.setBounds(670, 63, 21, 25);
+				jDesktopPane1.add(checkBox4j_T2);
 
+				JLabel4j_std label4j_T1 = new JLabel4j_std();
+				label4j_T1.setText("T2");
+				label4j_T1.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j_T1.setBounds(645, 63, 21, 25);
+				jDesktopPane1.add(label4j_T1);
+
+				JLabel4j_std label4j_T2 = new JLabel4j_std();
+				label4j_T2.setText("T1");
+				label4j_T2.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j_T2.setBounds(553, 63, 52, 25);
+				jDesktopPane1.add(label4j_T2);
 			}
 		}
 		catch (Exception e)
@@ -659,7 +700,7 @@ public class JInternalFrameWTReports extends JInternalFrame
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_WEIGHT_HEADER_STD", null, "", temp, "");
 	}
-	
+
 	private void populateList()
 	{
 		JDBWTSampleHeader sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
@@ -680,7 +721,7 @@ public class JInternalFrameWTReports extends JInternalFrame
 
 		tableResults.getColumnModel().getColumn(JDBWeightTableModel.SamplePoint_Col).setPreferredWidth(80);
 		tableResults.getColumnModel().getColumn(JDBWeightTableModel.SampleDate_Col).setPreferredWidth(125);
-		tableResults.getColumnModel().getColumn(JDBWeightTableModel.ProductGroup_Col).setPreferredWidth(100);
+		tableResults.getColumnModel().getColumn(JDBWeightTableModel.ProductGroup_Col).setPreferredWidth(120);
 		tableResults.getColumnModel().getColumn(JDBWeightTableModel.ContainerCode_Col).setPreferredWidth(70);
 		tableResults.getColumnModel().getColumn(JDBWeightTableModel.ProcessOrder_Col).setPreferredWidth(80);
 		tableResults.getColumnModel().getColumn(JDBWeightTableModel.Material_Col).setPreferredWidth(80);

@@ -396,7 +396,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
+			<textField pattern="yyyy-MM-dd HH:mm:ss" isBlankWhenNull="false">
 				<reportElement key="textField" x="80" y="0" width="100" height="15" forecolor="#000000" uuid="67d85b35-de92-485c-8c6f-d0f553a5908f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>

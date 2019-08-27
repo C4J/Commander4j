@@ -443,21 +443,22 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
         // customise the range axis...
         NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
         
-
-        
         if (graphMinY == -1.0)
         {
         	graphMinY = (tnedb.getNominalWT().subtract(tnedb.getTNE()).doubleValue());
         }	
+        
         if (graphMaxY == -1.0)
         {
         	graphMaxY = (tnedb.getNominalWT().add(tnedb.getTNE()).doubleValue());
         }	
+        
         if (graphMinY==graphMaxY)
         {
         	graphMinY--;
         	graphMaxY++;
         }
+        
         rangeAxis.setRange(graphMinY,graphMaxY);
         rangeAxis.setLabelAngle(0);
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
@@ -918,7 +919,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						double random = ThreadLocalRandom.current().nextDouble(91, 110);
+						double random = ThreadLocalRandom.current().nextDouble(93, 107);
 						BigDecimal rnd = BigDecimal.valueOf(random);
 						rnd = rnd.divide(new BigDecimal(1), 3, BigDecimal.ROUND_HALF_UP);
 						logSampleWeight(rnd.toString(), "G");
