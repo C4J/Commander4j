@@ -247,6 +247,8 @@ public class JInternalFrameWTReports extends JInternalFrame
 		button_CalendarSampleDateFrom.setEnabled(false);
 		sampleDateTo.setEnabled(false);
 		button_CalendarSampleDateTo.setEnabled(false);
+		checkBox4j_T1.setSelected(false);
+		checkBox4j_T2.setSelected(false);
 
 		search();
 	}

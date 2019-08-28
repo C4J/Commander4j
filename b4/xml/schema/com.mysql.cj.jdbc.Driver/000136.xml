@@ -173,7 +173,7 @@
     </statement>
 	
 	<statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES (btn_Details', 'EN', 'Details', '0')
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'EN', 'Details', '0')
     </statement>
 
     <statement>

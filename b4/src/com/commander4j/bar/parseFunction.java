@@ -488,13 +488,20 @@ public class parseFunction
 
 						Timestamp expirydate;
 
-						if (expiryDateMode.endsWith("BATCH"))
+						if (rs.getMetaData().getTableName(1).toUpperCase().equals("VIEW_LABEL_DATA"))
 						{
 							expirydate = rs.getTimestamp("expiry_date");
 						}
 						else
 						{
-							expirydate = rs.getTimestamp("sscc_expiry_date");
+							if (expiryDateMode.endsWith("BATCH"))
+							{
+								expirydate = rs.getTimestamp("expiry_date");
+							}
+							else
+							{
+								expirydate = rs.getTimestamp("sscc_expiry_date");
+							}
 						}
 
 						expirydate.setNanos(0);

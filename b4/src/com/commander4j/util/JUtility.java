@@ -47,6 +47,9 @@ import java.nio.file.FileStore;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -104,6 +107,30 @@ public class JUtility
 		return result;
 	}
 
+	public static boolean hasColumn(ResultSet rs, String columnName) {
+		
+		boolean result = false;
+		
+	    ResultSetMetaData rsmd;
+	    
+		try
+		{
+			rsmd = rs.getMetaData();
+		    int columns = rsmd.getColumnCount();
+		    for (int x = 1; x <= columns; x++) {
+		        if (columnName.toUpperCase().equals(rsmd.getColumnName(x).toUpperCase())) {
+		        	result = true;
+		        }
+		    }
+		}
+		catch (SQLException e)
+		{
+			result = false;
+		}
+
+	    return result;
+	}
+	
 	public static int getActiveHostCount()
 	{
 		int result = 0;
