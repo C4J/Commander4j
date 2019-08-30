@@ -61,6 +61,9 @@ public class JDBWTSampleDetail
 	private String dbErrorMessage = "";
 	private String hostID;
 	private String sessionID;
+	public static Integer shortString = 1;
+	public static Integer longString = 2;
+	private Integer displayType = shortString;
 
 	public JDBWTSampleDetail(String host, String session)
 	{
@@ -70,6 +73,11 @@ public class JDBWTSampleDetail
 
 	}
 
+	public void setDisplayType(Integer ty)
+	{
+		displayType = ty;
+	}
+	
 	private void clear()
 	{
 		setSampleWeightUom("");
@@ -469,16 +477,22 @@ public class JDBWTSampleDetail
 		
 		
 		String result = "";
-
-		result= 
-		JUtility.padString(getSampleSequence().toString(), false, 5, " ")+"     "+
-		JUtility.getISOTimeStampStringFormat(getSampleWeightDate()).replace("T", " ")+
-		JUtility.padString(getSampleGrossWeight().toString(), false, 11, " ")+" "+
-		JUtility.padString(getSampleTareWeight().toString(), false, 11, " ")+
-		JUtility.padString(getSampleNetWeight().toString(), false, 11, " ")+"    "+
-		JUtility.padString(getSampleWeightUom(), true, 3, " ")+
-		JUtility.padString(getSampleT1Count().toString(), false, 9, " ")+
-		JUtility.padString(getSampleT2Count().toString(), false, 9, " ");
+		
+		if (displayType == 1)
+		{
+			result= JUtility.padString(getSampleGrossWeight().toString(), false, field_GrossWeight, " ")+" "+ JUtility.padString(getSampleNetWeight().toString(), false, field_NetWeight, " ");
+		}
+		else
+		{
+			result= JUtility.padString(getSampleSequence().toString(), false, 5, " ")+"     "+
+			JUtility.getISOTimeStampStringFormat(getSampleWeightDate()).replace("T", " ")+
+			JUtility.padString(getSampleGrossWeight().toString(), false, 11, " ")+" "+
+			JUtility.padString(getSampleTareWeight().toString(), false, 11, " ")+
+			JUtility.padString(getSampleNetWeight().toString(), false, 11, " ")+"    "+
+			JUtility.padString(getSampleWeightUom(), true, 3, " ")+
+			JUtility.padString(getSampleT1Count().toString(), false, 9, " ")+
+			JUtility.padString(getSampleT2Count().toString(), false, 9, " ");
+		}
 
 
 		return result;

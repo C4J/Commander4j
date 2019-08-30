@@ -1098,6 +1098,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		for (int j = 0; j < sampleDetailList.size(); j++)
 		{
 			JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
+			t.setDisplayType(JDBWTSampleDetail.shortString);
 			DefComboBoxMod.addElement(t);
 
 		}

@@ -85,6 +85,7 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 		for (int j = 0; j < tempWorkstationList.size(); j++)
 		{
 			JDBWTSampleDetail t = (JDBWTSampleDetail) tempWorkstationList.get(j);
+			t.setDisplayType(JDBWTSampleDetail.longString);
 			DefComboBoxMod.addElement(t);
 
 		}
@@ -92,7 +93,7 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 		ListModel<JDBWTSampleDetail> jList1Model = DefComboBoxMod;
 		jListSampleDetails.setModel(jList1Model);
 		jListSampleDetails.setSelectedIndex(sel);
-		jListSampleDetails.setCellRenderer(Common.renderer_list);
+		jListSampleDetails.setCellRenderer(Common.weight_sample_list);
 		jListSampleDetails.ensureIndexIsVisible(sel);
 	}
 
@@ -107,7 +108,7 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 		this.setResizable(false);
 
 		this.setPreferredSize(new java.awt.Dimension(455, 518));
-		this.setSize(new Dimension(661, 360));
+		this.setSize(new Dimension(731, 360));
 
 		Dimension screensize = Common.mainForm.getSize();
 
@@ -146,7 +147,7 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(6, 27, 647, 257);
+					jScrollPane1.setBounds(6, 27, 718, 257);
 					{
 						ListModel<JDBWTSampleDetail> jList1Model = new DefaultComboBoxModel<JDBWTSampleDetail>();
 						jListSampleDetails = new JList4j<JDBWTSampleDetail>();
@@ -161,7 +162,7 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(339, 296, 125, 32);
+					jButtonClose.setBounds(366, 296, 125, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -174,8 +175,8 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 				{
 					label = new JLabel("Sequence  Date                     Gross        Tare        Net    UOM      T1s      T2s");
 
-					label.setFont(new Font("Monospaced", Font.BOLD, 11));
-					label.setBounds(8, 12, 633, 15);
+					label.setFont(Common.font_list_weights);
+					label.setBounds(8, 12, 724, 15);
 					jDesktopPane1.add(label);
 				}
 			}
@@ -183,7 +184,7 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 
 			jButtonHelp.setText(lang.get("btn_Help"));
 			jButtonHelp.setMnemonic('0');
-			jButtonHelp.setBounds(206, 297, 130, 30);
+			jButtonHelp.setBounds(233, 297, 130, 30);
 			jDesktopPane1.add(jButtonHelp);
 		}
 		catch (Exception e)
