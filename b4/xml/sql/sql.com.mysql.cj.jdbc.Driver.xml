@@ -1943,5 +1943,9 @@
 					WHERE SAMPLE_POINT = ? AND SAMPLE_DATE = ? AND SAMPLE_SEQUENCE = ?
 			</text>
 		</statement>
+		<statement>
+			<id>JDBWTSampleDetail.getSampleDetails</id>
+			<text>select * FROM {schema}APP_WEIGHT_SAMPLE_DETAIL where sample_point = ? and sample_date = ? order by sample_point,sample_date,sample_sequence</text>
+		</statement>
 	</jdbcDriver>
 </SQL>

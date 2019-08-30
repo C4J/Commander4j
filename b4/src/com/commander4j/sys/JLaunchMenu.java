@@ -43,6 +43,7 @@ import com.commander4j.app.JDialogQMDictionaryProperties;
 import com.commander4j.app.JDialogQMInspectionProperties;
 import com.commander4j.app.JDialogQMSelectListProperties;
 import com.commander4j.app.JDialogShiftProperties;
+import com.commander4j.app.JDialogWTReportDetails;
 import com.commander4j.app.JInternalFrameAutoLabellerLines;
 import com.commander4j.app.JDialogAutoLabellerProperties;
 import com.commander4j.app.JInternalFrameCustomerAdmin;
@@ -113,7 +114,7 @@ import com.commander4j.app.JInternalFrameWTContainerCodeProperties;
 import com.commander4j.app.JInternalFrameWTWeightCapture;
 import com.commander4j.app.JInternalFrameWTProductGroupAdmin;
 import com.commander4j.app.JInternalFrameWTProductGroupProperties;
-import com.commander4j.app.JInternalFrameWTReports;
+import com.commander4j.app.JInternalFrameWTReport;
 import com.commander4j.db.JDBModule;
 import com.commander4j.interfaces.JInternalFrameInterfaceAdmin;
 import com.commander4j.interfaces.JInternalFrameInterfaceControl;
@@ -491,6 +492,14 @@ public class JLaunchMenu
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
 
+		
+		if (optionName.equals("FRM_WEIGHT_REPORTS_DETAILS"))
+		{
+			final JDialogWTReportDetails u;
+			u = new JDialogWTReportDetails(Common.mainForm, strParam1, strParam2);
+			displayDialog(u, optionName);
+		}
+		
 		if (optionName.equals("FRM_QM_ACTIVITY"))
 		{
 			final JDialogQMActivityProperties u;
@@ -1065,12 +1074,12 @@ public class JLaunchMenu
 		
 		if (optionName.equals("FRM_WEIGHT_REPORTS"))
 		{
-			final JInternalFrameWTReports u;
-			if (isLoaded(JInternalFrameWTReports.class))
-				setVisible(JInternalFrameWTReports.class);
+			final JInternalFrameWTReport u;
+			if (isLoaded(JInternalFrameWTReport.class))
+				setVisible(JInternalFrameWTReport.class);
 			else
 			{
-				u = new JInternalFrameWTReports();
+				u = new JInternalFrameWTReport();
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}

@@ -68,9 +68,20 @@ public class Start
 		JUtility.setLookandFeel();
 		JUtility.adjustForLookandFeel();
 		JConfig.loadConfig("config.xml");
-		JUtility.initLogging("");
+		
+		JSplashScreenUtils.create();
+		JSplashScreenUtils.updateProgress(0, "Initialising");
+		
+		JSplashScreenUtils.updateProgress(5, "Starting Logger");
 
+		JUtility.initLogging("");
+		
+		JSplashScreenUtils.updateProgress(10, "Checking Printers");
+		
+		JPrint.init();
+		
 		Common.hostList.loadHosts();
+		
 		
 		if (Common.hostList.checkUpdatedHosts()==true)
 		{
@@ -80,12 +91,6 @@ public class Start
 
 		com.commander4j.util.JUpdate.updateCheck();
 
-		JSplashScreenUtils.create();
-		JSplashScreenUtils.updateProgress(0, "Initialising");
-		JSplashScreenUtils.updateProgress(5, "Starting Logger");
-		JSplashScreenUtils.updateProgress(10, "Checking Printers");
-
-		JPrint.init();
 
 		if (JUtility.isValidJavaVersion(Common.requiredJavaVersion) == false)
 		{

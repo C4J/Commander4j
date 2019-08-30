@@ -6,7 +6,7 @@ package com.commander4j.db;
  * 
  * Project Name : Commander4j
  * 
- * Filename     : JDBWTSamplePoint.java
+ * Filename     : JDBWTSampleDetail.java
  * 
  * Package Name : com.commander4j.db
  * 
@@ -301,15 +301,19 @@ public class JDBWTSampleDetail
 		return dbSampleWeightDate;
 	}
 	
-	public LinkedList<JDBWTSampleDetail> getSampleWeights(int displayType) {
+	public LinkedList<JDBWTSampleDetail> getSampleWeights(String samplePoint,Timestamp sampleDate) {
 		LinkedList<JDBWTSampleDetail> sampList = new LinkedList<JDBWTSampleDetail>();
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
+		setSamplePoint(samplePoint);
+		setSampleDate(sampleDate);
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.getSampleWeights"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleDetail.getSampleDetails"));
+			stmt.setString(1, getSamplePoint());
+			stmt.setTimestamp(2, getSampleDate());
 			stmt.setFetchSize(250);
 			rs = stmt.executeQuery();
 
@@ -465,17 +469,17 @@ public class JDBWTSampleDetail
 		
 		
 		String result = "";
-		
 
-		//result= getSampleGrossWeight().toString();
+		result= 
+		JUtility.padString(getSampleSequence().toString(), false, 5, " ")+"     "+
+		JUtility.getISOTimeStampStringFormat(getSampleWeightDate()).replace("T", " ")+
+		JUtility.padString(getSampleGrossWeight().toString(), false, 11, " ")+" "+
+		JUtility.padString(getSampleTareWeight().toString(), false, 11, " ")+
+		JUtility.padString(getSampleNetWeight().toString(), false, 11, " ")+"    "+
+		JUtility.padString(getSampleWeightUom(), true, 3, " ")+
+		JUtility.padString(getSampleT1Count().toString(), false, 9, " ")+
+		JUtility.padString(getSampleT2Count().toString(), false, 9, " ");
 
-		
-		result= JUtility.padString(getSampleGrossWeight().toString(), false, field_GrossWeight, " ")+" "+ 
-		       // JUtility.padString(getSampleTareWeight().toString(), false, field_TareWeight, " ")+" "+ 
-				JUtility.padString(getSampleNetWeight().toString(), false, field_NetWeight, " ");
-		//+" "+
-		      //  JUtility.padString(getSampleT1Count().toString(), false, field_T1Count, " ")+" "+ 
-		     //   JUtility.padString(getSampleT2Count().toString(), false, field_T2Count, " "); 
 
 		return result;
 	}
