@@ -89,14 +89,14 @@ public class JInternalFrameWTTNEAdmin extends javax.swing.JInternalFrame
 
 	private void addrecord() {
 		JDBWTTNE u = new JDBWTTNE(Common.selectedHostID, Common.sessionID);
-		lNominalString = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_TNE_Add"));
+		lNominalString = JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Nominal_Weight"));
 		if (lNominalString != null)
 		{
 			if (lNominalString.equals("") == false)
 			{
 				lNominalString = lNominalString.toUpperCase();
 				
-				lNominalUOMString = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_UOM_Add"));
+				lNominalUOMString = JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Material_UOM"),"G");
 				if (lNominalUOMString != null)
 				{
 					if (lNominalUOMString.equals("") == false)

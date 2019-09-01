@@ -1770,7 +1770,7 @@
 		<?JDBWeightTNE?>		
 		<statement>
 			<id>JDBWTTNE.create</id>
-			<text>insert into {schema}APP_WEIGHT_SCALE (nominal_weight,nominal_weight_uom) values (?,?)</text>
+			<text>insert into {schema}APP_WEIGHT_TNE (nominal_weight,nominal_weight_uom) values (?,?)</text>
 		</statement>	
 		<statement>
 			<id>JDBWTTNE.delete</id>
