@@ -419,9 +419,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
         // create the chart...
         JFreeChart chart = ChartFactory.createLineChart(
-            "Weights",   // chart title
-            null,                       // domain axis label
-            "Weight",                   // range axis label
+            "Mean Weight",   // chart title
+            "Time",                       // domain axis label
+            "Grams",                   // range axis label
             dataset,                         // data
             PlotOrientation.VERTICAL,        // orientation
             false,                           // include legend
@@ -429,7 +429,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
             false                            // urls
         );
 
-        chart.addSubtitle(new TextTitle("Mean Weight"));
+        //chart.addSubtitle(new TextTitle("Mean Weight"));
         TextTitle source = new TextTitle();
         source.setFont(new Font("SansSerif", Font.PLAIN, 10));
         source.setPosition(RectangleEdge.BOTTOM);
