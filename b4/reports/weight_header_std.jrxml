@@ -15,6 +15,9 @@
 	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["Company Name"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="p_title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Report Title"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[select * from APP_WEIGHT_SAMPLE_HEADER order by workstation_id]]>
 	</queryString>
@@ -118,24 +121,11 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="46" splitType="Stretch">
+		<band height="49" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<staticText>
-				<reportElement key="staticText" x="457" y="0" width="319" height="46" uuid="566e9027-5eaf-43aa-ad3c-e0d828e5ef1c"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="30"/>
-				</textElement>
-				<text><![CDATA[Summary Weights]]></text>
-			</staticText>
 			<textField isBlankWhenNull="false">
-				<reportElement key="textField-1" x="0" y="0" width="416" height="46" uuid="3fa1b2ee-6efe-4b0e-9219-924feb5b8eae"/>
+				<reportElement key="textField-1" x="0" y="0" width="360" height="46" uuid="3fa1b2ee-6efe-4b0e-9219-924feb5b8eae"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -146,6 +136,13 @@
 					<font size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{COMPANY_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="420" height="46" uuid="3c8fdc3b-05c1-4bc1-a19c-574aca8062d3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="25"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{p_title}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

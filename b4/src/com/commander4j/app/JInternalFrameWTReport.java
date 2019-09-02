@@ -37,6 +37,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
@@ -158,6 +159,75 @@ public class JInternalFrameWTReport extends JInternalFrame
 		});
 
 	}
+	
+	private PreparedStatement buildSQLview()
+	{
+
+		PreparedStatement result;
+		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+	    q2.applyFrom("{schema}VIEW_WEIGHT_SAMPLES");
+		q2.applyWhat("*");
+
+		if (checkBox4jFromEnabled.isSelected())
+		{
+			q2.applyWhere("sample_date>=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
+		}
+
+		if (jComboBoxReportType.getSelectedItem().toString().equals("Mean above Nominal"))
+		{
+			q2.applyWhereLiteral(" sample_mean > nominal_weight ");
+		}
+		
+		if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
+		{
+			q2.applyWhereLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
+		}
+
+		if (checkBox4jToEnabled.isSelected())
+		{
+			q2.applyWhere("sample_date<=", JUtility.getTimestampFromDate(sampleDateTo.getDate()));
+		}
+
+		if (fld_Material.getText().equals("") == false)
+		{
+			q2.applyWhere("material = ", fld_Material.getText());
+		}
+
+		if (fld_Process_Order.getText().equals("") == false)
+		{
+			q2.applyWhere("process_order = ", fld_Process_Order.getText());
+		}
+
+		if (fld_SamplePoint.getText().equals("") == false)
+		{
+			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
+		}
+
+		if (fld_Product_Group.getText().equals("") == false)
+		{
+			q2.applyWhere("product_group = ", fld_Product_Group.getText());
+		}
+
+		if (checkBox4j_T1.isSelected())
+		{
+			q2.applyWhere("sample_t1_count > ", 0);
+		}
+
+		if (checkBox4j_T2.isSelected())
+		{
+			q2.applyWhere("sample_t2_count > ", 0);
+		}
+
+		q2.applyWhere("nominal_weight > ", 0.000);
+
+		q2.applyWhere("sample_mean > ", 0.000);
+
+		q2.applySQL();
+		result = q2.getPreparedStatement();
+
+		return result;
+	}
+	
 
 	private void buildSQL()
 	{
@@ -173,7 +243,9 @@ public class JInternalFrameWTReport extends JInternalFrame
 		PreparedStatement result;
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
 		q2.applyWhat("*");
+
 		q2.applyFrom("{schema}APP_WEIGHT_SAMPLE_HEADER");
+
 
 		if (checkBox4jFromEnabled.isSelected())
 		{
@@ -526,7 +598,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jDesktopPane1.add(label4j_std_report_type);
 
 				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[]
-				{ "Default", "Mean above Nominal", "T1s or T2s" });
+				{ "Search Results", "Mean above Nominal", "T1s or T2s","Detailed List" });
 				jComboBoxReportType = new JComboBox4j<String>();
 				jComboBoxReportType.setMaximumRowCount(15);
 				jComboBoxReportType.setModel(jComboBoxReportTypeModel);
@@ -719,8 +791,18 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 	private void print()
 	{
-		PreparedStatement temp = buildSQLr();
-		JLaunchReport.runReport("RPT_WEIGHT_HEADER_STD", null, "", temp, "");
+		if (jComboBoxReportType.getSelectedItem().equals("Detailed List"))
+		{
+			PreparedStatement temp = buildSQLview();
+			JLaunchReport.runReport("RPT_WEIGHT_DETAILS", null, "", temp, "");
+		}
+		else
+		{
+			HashMap<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("p_title",jComboBoxReportType.getSelectedItem().toString());
+			PreparedStatement temp = buildSQLr();
+			JLaunchReport.runReport("RPT_WEIGHT_HEADER_STD", parameters, "", temp, "");
+		}
 	}
 
 	private void populateList()
