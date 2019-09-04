@@ -139,7 +139,7 @@
 			</textField>
 			<textField>
 				<reportElement x="360" y="0" width="420" height="46" uuid="3c8fdc3b-05c1-4bc1-a19c-574aca8062d3"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="">
 					<font size="25"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{p_title}]]></textFieldExpression>
