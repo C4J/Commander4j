@@ -57,6 +57,7 @@ import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -195,29 +196,29 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private BigDecimal std_dev = new BigDecimal("0.000");
 	private BigDecimal zero = new BigDecimal("0.000");
 	private static Double graphMinY = new Double(-1);
-	private static Double graphMaxY =  new Double(-1);
-	
+	private static Double graphMaxY = new Double(-1);
+
 	private Integer t1_count = 0;
 	private Integer t2_count = 0;
 	private String materialGroup = "";
 	private String containerCode = "";
 	private boolean validToScan = false;
 	private JButton btnManualInput = new JButton(Common.icon_add_16x16);
+	private JButton btnComment = new JButton();
+	private JButton btnDebug = new JButton();
 	private static CategoryPlot plot = new CategoryPlot();
 	private static DefaultCategoryDataset ds = new DefaultCategoryDataset();
-	private static JFreeChart chart = ChartFactory.createLineChart(
-            "Mean Weight",              // chart title
-            "Time",                     // domain axis label
-            "Grams",                    // range axis label
-            ds,                         // data
-            PlotOrientation.VERTICAL,   // orientation
-            false,                      // include legend
-            true,                       // tooltips
-            false                       // urls
-        );
+	private static JFreeChart chart = ChartFactory.createLineChart("Mean Weight", // chart
+																					// title
+			"Time", // domain axis label
+			"Grams", // range axis label
+			ds, // data
+			PlotOrientation.VERTICAL, // orientation
+			false, // include legend
+			true, // tooltips
+			false // urls
+	);
 	private static ChartPanel panel = new ChartPanel(chart);
-
-
 
 	public JInternalFrameWTWeightCapture()
 	{
@@ -324,7 +325,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private void buildSQL()
 	{
 
-		//DefaultCategoryDataset result = new DefaultCategoryDataset();
+		// DefaultCategoryDataset result = new DefaultCategoryDataset();
 
 		if (validToScan)
 		{
@@ -362,9 +363,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				LinkedList<Double> means = new LinkedList<Double>();
 
 				int count = 0;
-				
+
 				batch_mean = new BigDecimal("0.000");
-				
+
 				while (rs.next())
 				{
 					count++;
@@ -375,34 +376,32 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					Timestamp when = rs.getTimestamp("sample_date");
 					String whenstr = JUtility.getISOTimeStampStringFormat(when);
 					whenstr = whenstr.substring(11, 16);
-				
+
 					d.doubleValue();
 					means.addLast(d.doubleValue());
 					batch_mean = batch_mean.add(t);
-					
+
 					if (ds.getColumnIndex(whenstr) > 0)
 					{
-						ds.setValue(d, "Weight",whenstr);
+						ds.setValue(d, "Weight", whenstr);
 					}
 					else
 					{
-						 ds.addValue(d, "Weight",whenstr);
+						ds.addValue(d, "Weight", whenstr);
 					}
 
-			        
-			        if ((d<graphMinY) || (graphMinY==-1))
-			        {
-			        	graphMinY=d;
-			        }
-			        
-			        
-			        if ((d>graphMaxY) || (graphMaxY==-1))
-			        {
-			        	graphMaxY=d;
-			        }
-					
+					if ((d < graphMinY) || (graphMinY == -1))
+					{
+						graphMinY = d;
+					}
+
+					if ((d > graphMaxY) || (graphMaxY == -1))
+					{
+						graphMaxY = d;
+					}
+
 				}
-				
+
 				if (count > 0)
 				{
 					batch_mean = batch_mean.divide(new BigDecimal(count), 3, BigDecimal.ROUND_HALF_UP);
@@ -411,8 +410,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				rs.close();
 
-
-
 			}
 			catch (SQLException e)
 			{
@@ -420,103 +417,98 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				e.printStackTrace();
 			}
 		}
-		//return result;
+		// return result;
 	}
-
 
 	private void drawGraph()
 	{
-		
-		//ds = buildSQL();
+
+		// ds = buildSQL();
 
 		buildSQL();
 		createChart(ds);
-		
 
+		// .fireChartChanged();
 
-        //.fireChartChanged();
-        
-        //panel = new ChartPanel(chart);
-        
-        //panel.setMouseWheelEnabled(false);
-       // panel.setAutoscrolls(false);
+		// panel = new ChartPanel(chart);
 
+		// panel.setMouseWheelEnabled(false);
+		// panel.setAutoscrolls(false);
 
-		//panel.setBounds(14, 178, 746, 374);
+		// panel.setBounds(14, 178, 746, 374);
 
-		//jDesktopPane1.add(panel);
+		// jDesktopPane1.add(panel);
 
 	}
-	
-    private void createChart(CategoryDataset dataset) {
 
+	private void createChart(CategoryDataset dataset)
+	{
 
-        //chart.addSubtitle(new TextTitle("Mean Weight"));
-        TextTitle source = new TextTitle();
-        source.setFont(new Font("SansSerif", Font.PLAIN, 10));
-        source.setPosition(RectangleEdge.BOTTOM);
-        source.setHorizontalAlignment(HorizontalAlignment.RIGHT);
-        chart.addSubtitle(source);
+		// chart.addSubtitle(new TextTitle("Mean Weight"));
+		TextTitle source = new TextTitle();
+		source.setFont(new Font("SansSerif", Font.PLAIN, 10));
+		source.setPosition(RectangleEdge.BOTTOM);
+		source.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+		chart.addSubtitle(source);
 
-        plot = (CategoryPlot) chart.getPlot();
-        plot.setRangePannable(false);
-        plot.setRangeGridlinesVisible(true);
+		plot = (CategoryPlot) chart.getPlot();
+		plot.setRangePannable(false);
+		plot.setRangeGridlinesVisible(true);
 
-        // customise the range axis...
-        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        
-        if (graphMinY == -1.0)
-        {
-        	graphMinY = (tnedb.getNominalWT().subtract(tnedb.getTNE()).doubleValue());
-        }	
-        
-        if (graphMaxY == -1.0)
-        {
-        	graphMaxY = (tnedb.getNominalWT().add(tnedb.getTNE()).doubleValue());
-        }	
-        
-        if (graphMinY==graphMaxY)
-        {
-        	graphMinY--;
-        	graphMaxY++;
-        }
-        
-        rangeAxis.setRange(graphMinY,graphMaxY);
-        rangeAxis.setLabelAngle(0);
-        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-        
-        CategoryAxis domainAxis = plot.getDomainAxis();  
-        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);  
+		// customise the range axis...
+		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
 
-        ChartUtilities.applyCurrentTheme(chart);
+		if (graphMinY == -1.0)
+		{
+			graphMinY = (tnedb.getNominalWT().subtract(tnedb.getTNE()).doubleValue());
+		}
 
-        // customise the renderer...
-        LineAndShapeRenderer renderer
-                = (LineAndShapeRenderer) plot.getRenderer();
-        renderer.setBaseShapesVisible(true);
-        renderer.setDrawOutlines(true);
-        renderer.setUseFillPaint(true);
-        renderer.setBaseFillPaint(Color.white);
-        renderer.setSeriesStroke(0, new BasicStroke(3.0f));
-        renderer.setSeriesOutlineStroke(0, new BasicStroke(2.0f));
-        renderer.setSeriesShape(0, new Ellipse2D.Double(-5.0, -5.0, 10.0, 10.0));
+		if (graphMaxY == -1.0)
+		{
+			graphMaxY = (tnedb.getNominalWT().add(tnedb.getTNE()).doubleValue());
+		}
 
-    }
+		if (graphMinY == graphMaxY)
+		{
+			graphMinY--;
+			graphMaxY++;
+		}
 
-    private void updateGraph()
-    {
+		rangeAxis.setRange(graphMinY, graphMaxY);
+		rangeAxis.setLabelAngle(0);
+		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
+		CategoryAxis domainAxis = plot.getDomainAxis();
+		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
+
+		ChartUtilities.applyCurrentTheme(chart);
+
+		// customise the renderer...
+		LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+		renderer.setBaseShapesVisible(true);
+		renderer.setDrawOutlines(true);
+		renderer.setUseFillPaint(true);
+		renderer.setBaseFillPaint(Color.white);
+		renderer.setSeriesStroke(0, new BasicStroke(3.0f));
+		renderer.setSeriesOutlineStroke(0, new BasicStroke(2.0f));
+		renderer.setSeriesShape(0, new Ellipse2D.Double(-5.0, -5.0, 10.0, 10.0));
+
+	}
+
+	private void updateGraph()
+	{
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
 			{
-				//updateProcessOrderInfo(JLaunchLookup.dlgResult, true);
-				drawGraph();;
+				// updateProcessOrderInfo(JLaunchLookup.dlgResult, true);
+				drawGraph();
+				;
 
 			}
 		});
-    }
-    
-    
+	}
+
 	private void initGUI()
 	{
 		try
@@ -718,10 +710,10 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						fld_currentDateTime.setDate(JUtility.getSQLDateTime());
 						if (readyToLog())
 						{
+							btnComment.setEnabled(false);
 							btn_Begin.setEnabled(false);
 							btnj_Cancel.setEnabled(true);
 							btnManualInput.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_CAPTURE_MANUAL_ADD"));
-							btnManualInput.setVisible(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_CAPTURE_MANUAL_ADD"));
 							fld_Mean.setText("0.000");
 							fld_Batch_Mean.setText("0.000");
 							fld_Standard_Deviation.setText("0.000");
@@ -808,21 +800,21 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				lbl_Mean.setText(lang.get("lbl_Average_Mean"));
 				lbl_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Mean.setBounds(769, 426, 126, 25);
+				lbl_Mean.setBounds(767, 458, 126, 25);
 				jDesktopPane1.add(lbl_Mean);
 
 				JLabel4j_std lbl_Batch_Mean = new JLabel4j_std();
 				lbl_Batch_Mean.setText(lang.get("lbl_Average_Batch_Mean"));
 				lbl_Batch_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_Batch_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Batch_Mean.setBounds(769, 484, 126, 25);
+				lbl_Batch_Mean.setBounds(767, 516, 126, 25);
 				jDesktopPane1.add(lbl_Batch_Mean);
 
 				JLabel4j_std lbl_Standard_Deviation = new JLabel4j_std();
 				lbl_Standard_Deviation.setText(lang.get("lbl_Standard_Deviation"));
 				lbl_Standard_Deviation.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_Standard_Deviation.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Standard_Deviation.setBounds(769, 455, 126, 25);
+				lbl_Standard_Deviation.setBounds(767, 487, 126, 25);
 				jDesktopPane1.add(lbl_Standard_Deviation);
 
 				fld_T1_Lower_Limit.setVerifyInputWhenFocusTarget(false);
@@ -836,21 +828,21 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_Mean.setHorizontalAlignment(SwingConstants.TRAILING);
 				fld_Mean.setFont(new Font("Arial", Font.PLAIN, 11));
 				fld_Mean.setEditable(false);
-				fld_Mean.setBounds(903, 426, 73, 25);
+				fld_Mean.setBounds(901, 458, 73, 25);
 				jDesktopPane1.add(fld_Mean);
 
 				fld_Batch_Mean.setVerifyInputWhenFocusTarget(false);
 				fld_Batch_Mean.setHorizontalAlignment(SwingConstants.TRAILING);
 				fld_Batch_Mean.setFont(new Font("Arial", Font.PLAIN, 11));
 				fld_Batch_Mean.setEditable(false);
-				fld_Batch_Mean.setBounds(903, 484, 73, 25);
+				fld_Batch_Mean.setBounds(901, 516, 73, 25);
 				jDesktopPane1.add(fld_Batch_Mean);
 
 				fld_Standard_Deviation.setVerifyInputWhenFocusTarget(false);
 				fld_Standard_Deviation.setHorizontalAlignment(SwingConstants.TRAILING);
 				fld_Standard_Deviation.setFont(new Font("Arial", Font.PLAIN, 11));
 				fld_Standard_Deviation.setEditable(false);
-				fld_Standard_Deviation.setBounds(903, 455, 73, 25);
+				fld_Standard_Deviation.setBounds(901, 487, 73, 25);
 				jDesktopPane1.add(fld_Standard_Deviation);
 
 				JLabel4j_std lbl_T2_Lower_Limit = new JLabel4j_std();
@@ -909,21 +901,22 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_TNE.setBounds(364, 129, 73, 25);
 				jDesktopPane1.add(fld_TNE);
 
-				scrollPane_Weights.setBounds(798, 196, 184, 190);
+				scrollPane_Weights.setBounds(798, 178, 184, 190);
 				jDesktopPane1.add(scrollPane_Weights);
 				list_Weights.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				scrollPane_Weights.setViewportView(list_Weights);
 
 				JLabel lbl_Legend = new JLabel("   Gross Wt       Net Wt");
 				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
-				lbl_Legend.setBounds(798, 178, 184, 15);
+				lbl_Legend.setBounds(798, 162, 184, 15);
 				jDesktopPane1.add(lbl_Legend);
 
 				{
 					fld_currentDateTime = new JDateControl();
 					jDesktopPane1.add(fld_currentDateTime);
 					fld_currentDateTime.setEnabled(false);
-					fld_currentDateTime.setBounds(854, 519, 120, 25);
+					fld_currentDateTime.setVisible(false);
+					fld_currentDateTime.setBounds(331, 154, 120, 25);
 					JTextField tf = ((JSpinner.DefaultEditor) fld_currentDateTime.getEditor()).getTextField();
 					tf.setEnabled(false);
 					tf.setDisabledTextColor(UIManager.getColor("TextField.foreground"));
@@ -937,7 +930,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						btn_Begin.setEnabled(true);
 						btnj_Cancel.setEnabled(false);
 						btnManualInput.setEnabled(false);
-						btnManualInput.setVisible(false);
 						fld_Mean.setText("0.000");
 						fld_Batch_Mean.setText("0.000");
 						fld_Standard_Deviation.setText("0.000");
@@ -955,32 +947,52 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				btnj_Cancel.setBounds(275, 566, 220, 40);
 				jDesktopPane1.add(btnj_Cancel);
 
-
 				btnManualInput.setText(lang.get("btn_Add"));
-				
+
 				btnManualInput.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						double random = ThreadLocalRandom.current().nextDouble(93, 107);
-						BigDecimal rnd = BigDecimal.valueOf(random);
-						rnd = rnd.divide(new BigDecimal(1), 3, BigDecimal.ROUND_HALF_UP);
-						logSampleWeight(rnd.toString(), "G");
+						// double random =
+						// ThreadLocalRandom.current().nextDouble(93, 107);
+						// BigDecimal rnd = BigDecimal.valueOf(random);
+						// rnd = rnd.divide(new BigDecimal(1), 3,
+						// BigDecimal.ROUND_HALF_UP);
+						// logSampleWeight(rnd.toString(), "G");
+						addManualWeight();
 
 					}
 				});
-				btnManualInput.setBounds(798, 389, 97, 25);
+				btnComment.setEnabled(false);
+				btnComment.setText("Comment");
+
+				btnComment.setBounds(798, 395, 184, 25);
+				jDesktopPane1.add(btnComment);
+				btnDebug.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						double random = ThreadLocalRandom.current().nextDouble(91, 107);
+						BigDecimal rnd = BigDecimal.valueOf(random);
+						rnd = rnd.divide(new BigDecimal(1), 3, BigDecimal.ROUND_HALF_UP);
+						logSampleWeight(rnd.toString(), "G");
+					}
+				});
+				btnDebug.setText("Debug");
+
+				btnDebug.setBounds(798, 421, 184, 25);
+				jDesktopPane1.add(btnDebug);
+
+				btnManualInput.setBounds(798, 369, 184, 25);
 				jDesktopPane1.add(btnManualInput);
 				btnManualInput.setEnabled(false);
-				btnManualInput.setVisible(false);
-				
-		        panel = new ChartPanel(chart);
-		        
-		        panel.setMouseWheelEnabled(false);
-		        panel.setAutoscrolls(false);
 
+				panel = new ChartPanel(chart);
 
-				panel.setBounds(14, 178, 746, 374);
+				panel.setMouseWheelEnabled(false);
+				panel.setAutoscrolls(false);
+
+				panel.setBounds(14, 178, 772, 374);
 
 				jDesktopPane1.add(panel);
 
@@ -1041,22 +1053,22 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				std_dev = calculateStandardDeviation();
 				mean = calculateMean();
-				
+
 				t1_count = getT1Count();
 				t2_count = getT2Count();
 				fld_Standard_Deviation.setText(std_dev.toString());
-				
+
 				saveAll(mean, std_dev, t1_count, t2_count);
 
 				fld_Mean.setText(mean.toString());
-				//fld_Batch_Mean.setText(batch_mean.toString());
+
 				logEnabled = false;
 				btn_Begin.setEnabled(true);
 				btnj_Cancel.setEnabled(false);
 				btnManualInput.setEnabled(false);
-				btnManualInput.setVisible(false);
+
 				jStatusText.setText("Results have been saved.");
-				
+
 				SwingUtilities.invokeLater(new Runnable()
 				{
 					public void run()
@@ -1187,7 +1199,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private void saveAll(BigDecimal mean, BigDecimal StdDev, Integer t1s, Integer t2s)
 	{
 		sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
-		// sampleHeader.setSamplePoint(workdb.getSamplePoint());
 		sampleHeader.setSamplePoint(samplePointdb.getSamplePoint());
 		sampleHeader.setSampleDate(JUtility.getSQLDateTime());
 		sampleHeader.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
@@ -1223,7 +1234,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			t.update();
 
 		}
-		
+		btnComment.setEnabled(true);
+
 	}
 
 	private boolean updateCustomerDataInfo(String material, String customer, String key, boolean lookup)
@@ -1342,6 +1354,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		String customerID = "";
 		String status = "";
 		ds.clear();
+
+		btnComment.setEnabled(false);
 
 		// Lookup is passed to indicate if previous step failed in which case
 		// there is no need to lookup date in this step.
@@ -1720,6 +1734,50 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		updateSamplePoint(samplePoint, result);
 
 		return result;
+	}
+
+	private boolean addManualWeight()
+	{
+		boolean numberOK = false;
+		String grossWt = "";
+
+		while (numberOK == false)
+		{
+			grossWt = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Gross_Weight_Grams"),grossWt);
+			//grossWt = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Gross_Weight_Grams"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null);
+			if (grossWt != null)
+			{
+				if (grossWt.equals("") == false)
+				{
+					try
+					{
+						BigDecimal gw1 = new BigDecimal("0.000");
+						BigDecimal gw2 = new BigDecimal(grossWt);
+						gw1 = gw1.add(gw2);
+						grossWt = gw1.toString();
+						jStatusText.setText("");
+						logSampleWeight(grossWt, "G");
+						numberOK = true;
+					}
+					catch (Exception ex)
+					{
+						jStatusText.setText("Invalid number format");
+						JUtility.errorBeep();
+						numberOK = false;
+					}
+				}
+				else
+				{
+					numberOK = true;
+				}
+			}
+			else
+			{
+				numberOK = true;
+			}
+		}
+		return numberOK;
+
 	}
 
 }

@@ -40,5 +40,49 @@
 			ON [APP_WEIGHT_SAMPLE_DETAIL].[SAMPLE_POINT] = [APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_POINT]
 			AND [APP_WEIGHT_SAMPLE_DETAIL].[SAMPLE_DATE] = [APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_DATE]
 	</statement>
-     
+	
+	<statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Gross_Weight_Grams', 'EN', 'Input Gross Weight (Grams)', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Gross_Weight_Grams', 'DE', 'Bruttogewicht eingeben (Gramm)', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Gross_Weight_Grams', 'ES', 'Peso bruto de entrada (gramos)', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Gross_Weight_Grams', 'FR', 'Poids brut d''entrée (grammes)', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Gross_Weight_Grams', 'HU', 'Bemeneti bruttó súly (gramm)', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Gross_Weight_Grams', 'IT', 'Peso lordo di input (grammi)', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Gross_Weight_Grams', 'NL', 'Bruto gewicht (gram) invoeren', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Gross_Weight_Grams', 'PL', 'Masa wejściowa brutto (w gramach)', '0')
+    </statement>
+ 
+     <statement>
+       INSERT INTO SYS_MODULES(MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_WEIGHT_CAPTURE_MANUAL_ADD', 'N', 'Y', 'FUNCTION', '1 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_WEIGHT_CAPTURE_MANUAL_ADD')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('WEIGHTS', 'FRM_WEIGHT_CAPTURE_MANUAL_ADD')
+    </statement>
+         
 </DDL>
