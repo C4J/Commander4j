@@ -189,6 +189,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JDBWTScale scaledb = new JDBWTScale(Common.selectedHostID, Common.sessionID);
 
 	private Integer sampleSequence = 0;
+	private static Integer lGraphWindowHours = 6;
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private Timer timer = new Timer(1000, clocklistener);
 	private BigDecimal mean = new BigDecimal("0.000");
@@ -208,7 +209,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JButton btnDebug = new JButton();
 	private static CategoryPlot plot = new CategoryPlot();
 	private static DefaultCategoryDataset ds = new DefaultCategoryDataset();
-	private static JFreeChart chart = ChartFactory.createLineChart("Mean Weight", // chart
+	private static JFreeChart chart = ChartFactory.createLineChart("Mean Weight ("+String.valueOf(lGraphWindowHours)+ " Hours)", // chart
 																					// title
 			"Time", // domain axis label
 			"Grams", // range axis label
@@ -242,6 +243,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE FREQUENCY", "15", "WEIGHT CHECK FREQUENCY MINS");
 		lSampleFrequency = Integer.valueOf(temp);
 		fld_SampleFrequency.setText(String.valueOf(lSampleFrequency));
+		
+		temp = ctrl.getKeyValueWithDefault("WEIGHT GRAPH HOURS", "6", "WEIGHT GRAPH TIME WINDOW");
+		lGraphWindowHours = Integer.valueOf(temp);
 
 		updateWorkstationInfo(workstation, true);
 
@@ -335,23 +339,20 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			query.clear();
 
 			query.addText(JUtility.substSchemaName(schemaName, "select sample_date,sample_mean from {schema}APP_WEIGHT_SAMPLE_HEADER"));
-			query.addParamtoSQL("sample_point=", workdb.getSamplePoint());
-			query.addParamtoSQL("process_order=", orderdb.getProcessOrder());
+			query.addParamtoSQL("sample_point =", workdb.getSamplePoint());
+			query.addParamtoSQL("process_order =", orderdb.getProcessOrder());
 
 			Calendar calendar = Calendar.getInstance();
-			Integer year = calendar.get(Calendar.YEAR);
-			Integer month = calendar.get(Calendar.MONTH);
-			Integer day = calendar.get(Calendar.DAY_OF_MONTH);
-			calendar.set(year, month, day, 0, 0, 0);
+			
+			calendar.add(Calendar.HOUR, (-1 * lGraphWindowHours));
+			calendar.add(Calendar.MINUTE, -1);
+			
 			Timestamp startdate = new Timestamp(calendar.getTimeInMillis());
-
 			startdate.setNanos(0);
-			calendar.add(Calendar.DATE, 1);
-			Timestamp enddate = new Timestamp(calendar.getTimeInMillis());
-			enddate.setNanos(0);
-			query.addParamtoSQL("sample_date>=", startdate);
-			query.addParamtoSQL("sample_date<", enddate);
-			query.addParamtoSQL("sample_mean>", 0);
+			
+			query.addParamtoSQL("sample_date >=", startdate);
+
+			query.addParamtoSQL("sample_mean >", 0);
 
 			query.bindParams();
 			listStatement = query.getPreparedStatement();
@@ -1403,6 +1404,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		sampleDetailList.clear();
 		populateList();
 		updateMaterialInfo(material, customerID, result);
+		
+//		graphMinY = new Double(-1);
+//	    graphMaxY = new Double(-1);
 
 		return result;
 	}

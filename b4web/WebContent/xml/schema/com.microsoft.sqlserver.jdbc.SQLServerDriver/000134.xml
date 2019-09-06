@@ -64,6 +64,8 @@
 		  [CONTAINER_CODE] varchar(12) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT '' NULL,
 		  [TARE_WEIGHT] numeric(22,3) DEFAULT ((0)) NULL,
 		  [TARE_WEIGHT_UOM] varchar(3) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT '' NULL,
+		  [NOMINAL_WEIGHT] numeric(22,3) DEFAULT ((0)) NULL,
+		  [NOMINAL_WEIGHT_UOM] varchar(3) COLLATE SQL_Latin1_General_CP1_CI_AS DEFAULT '' NULL,
 		  [TNE] numeric(22,3) DEFAULT ((0)) NULL,
 		  [NEG_T1] numeric(22,3) DEFAULT ((0)) NULL,
 		  [NEG_T2] numeric(22,3) DEFAULT ((0)) NULL,
@@ -128,6 +130,18 @@
 			[NOMINAL_WEIGHT_UOM] ASC
 		)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 		) ON [PRIMARY]
+    </statement>
+
+    <statement>    
+   		ALTER TABLE [dbo].[APP_WEIGHT_TNE] ADD  CONSTRAINT [DF_APP_WEIGHT_TNE_TNE]  DEFAULT ((0.000)) FOR [TNE]
+    </statement>
+    
+    <statement>
+		ALTER TABLE [dbo].[APP_WEIGHT_TNE] ADD  CONSTRAINT [DF_APP_WEIGHT_TNE_NEG_T1]  DEFAULT ((0.000)) FOR [NEG_T1]
+    </statement>
+    		
+    <statement>
+		ALTER TABLE [dbo].[APP_WEIGHT_TNE] ADD  CONSTRAINT [DF_APP_WEIGHT_TNE_NEG_T2]  DEFAULT ((0.000)) FOR [NEG_T2]
     </statement>
     	
 	<statement>
