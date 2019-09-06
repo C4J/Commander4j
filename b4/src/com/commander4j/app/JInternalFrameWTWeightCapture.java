@@ -72,9 +72,12 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
+
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
@@ -83,10 +86,8 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.HorizontalAlignment;
-import org.jfree.ui.RectangleEdge;
+import org.jfree.chart.ui.HorizontalAlignment;
+import org.jfree.chart.ui.RectangleEdge;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
@@ -205,7 +206,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private String containerCode = "";
 	private boolean validToScan = false;
 	private JButton btnManualInput = new JButton(Common.icon_add_16x16);
-	private JButton btnComment = new JButton();
 	private JButton btnDebug = new JButton();
 	private static CategoryPlot plot = new CategoryPlot();
 	private static DefaultCategoryDataset ds = new DefaultCategoryDataset();
@@ -453,11 +453,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		chart.addSubtitle(source);
 
 		plot = (CategoryPlot) chart.getPlot();
-		plot.setRangePannable(false);
-		plot.setRangeGridlinesVisible(true);
+        plot.setRangePannable(true);
+        plot.setRangeGridlinesVisible(true);
+        plot.setRangeZeroBaselineVisible(true);
 
 		// customise the range axis...
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
 		if (graphMinY == -1.0)
 		{
@@ -477,19 +479,19 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		rangeAxis.setRange(graphMinY, graphMaxY);
 		rangeAxis.setLabelAngle(0);
-		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
 		CategoryAxis domainAxis = plot.getDomainAxis();
 		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
 
-		ChartUtilities.applyCurrentTheme(chart);
+		ChartUtils.applyCurrentTheme(chart);
 
 		// customise the renderer...
-		LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
-		renderer.setBaseShapesVisible(true);
+        LineAndShapeRenderer renderer 
+        = (LineAndShapeRenderer) plot.getRenderer();
+		renderer.setDefaultShapesVisible(true);
 		renderer.setDrawOutlines(true);
 		renderer.setUseFillPaint(true);
-		renderer.setBaseFillPaint(Color.white);
+		renderer.setDefaultFillPaint(Color.white);
 		renderer.setSeriesStroke(0, new BasicStroke(3.0f));
 		renderer.setSeriesOutlineStroke(0, new BasicStroke(2.0f));
 		renderer.setSeriesShape(0, new Ellipse2D.Double(-5.0, -5.0, 10.0, 10.0));
@@ -711,7 +713,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						fld_currentDateTime.setDate(JUtility.getSQLDateTime());
 						if (readyToLog())
 						{
-							btnComment.setEnabled(false);
 							btn_Begin.setEnabled(false);
 							btnj_Cancel.setEnabled(true);
 							btnManualInput.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_CAPTURE_MANUAL_ADD"));
@@ -954,21 +955,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						// double random =
-						// ThreadLocalRandom.current().nextDouble(93, 107);
-						// BigDecimal rnd = BigDecimal.valueOf(random);
-						// rnd = rnd.divide(new BigDecimal(1), 3,
-						// BigDecimal.ROUND_HALF_UP);
-						// logSampleWeight(rnd.toString(), "G");
 						addManualWeight();
 
 					}
 				});
-				btnComment.setEnabled(false);
-				btnComment.setText("Comment");
-
-				btnComment.setBounds(798, 395, 184, 25);
-				jDesktopPane1.add(btnComment);
+				btnDebug.setVisible(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_CAPTURE_DEBUG"));
 				btnDebug.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -981,7 +972,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				});
 				btnDebug.setText("Debug");
 
-				btnDebug.setBounds(798, 421, 184, 25);
+				btnDebug.setBounds(798, 398, 184, 25);
 				jDesktopPane1.add(btnDebug);
 
 				btnManualInput.setBounds(798, 369, 184, 25);
@@ -1235,7 +1226,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			t.update();
 
 		}
-		btnComment.setEnabled(true);
 
 	}
 
@@ -1355,8 +1345,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		String customerID = "";
 		String status = "";
 		ds.clear();
-
-		btnComment.setEnabled(false);
 
 		// Lookup is passed to indicate if previous step failed in which case
 		// there is no need to lookup date in this step.
