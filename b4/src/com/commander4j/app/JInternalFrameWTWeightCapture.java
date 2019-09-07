@@ -460,7 +460,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		// customise the range axis...
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        rangeAxis.setStandardTickUnits(NumberAxis.createStandardTickUnits());
 
 		if (graphMinY == -1.0)
 		{
@@ -480,6 +480,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		rangeAxis.setRange(graphMinY, graphMaxY);
 		rangeAxis.setLabelAngle(0);
+//		rangeAxis.setAutoRange(true);
+//		rangeAxis.setAutoRangeIncludesZero(false);
 
 		CategoryAxis domainAxis = plot.getDomainAxis();
 		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
