@@ -190,7 +190,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JDBWTScale scaledb = new JDBWTScale(Common.selectedHostID, Common.sessionID);
 
 	private Integer sampleSequence = 0;
-	private static Integer lGraphWindowHours = 6;
+	private Integer lGraphWindowHours = 6;
 	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private Timer timer = new Timer(1000, clocklistener);
 	private BigDecimal mean = new BigDecimal("0.000");
@@ -209,7 +209,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JButton btnDebug = new JButton();
 	private static CategoryPlot plot = new CategoryPlot();
 	private static DefaultCategoryDataset ds = new DefaultCategoryDataset();
-	private static JFreeChart chart = ChartFactory.createLineChart("Mean Weight ("+String.valueOf(lGraphWindowHours)+ " Hours)", // chart
+	private static JFreeChart chart = ChartFactory.createLineChart("Mean Weight", // chart
 																					// title
 			"Time", // domain axis label
 			"Grams", // range axis label
@@ -450,6 +450,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		source.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		source.setPosition(RectangleEdge.BOTTOM);
 		source.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+		chart.setTitle("Mean Weight ("+String.valueOf(lGraphWindowHours)+" Hours)");
 		chart.addSubtitle(source);
 
 		plot = (CategoryPlot) chart.getPlot();
