@@ -237,6 +237,82 @@ public class JInternalFrameWTReport extends JInternalFrame
 		listStatement = buildSQLr();
 	}
 
+	
+	private PreparedStatement buildSQLnew()
+	{
+		PreparedStatement result;
+		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+		q2.applyWhat("YYY.*, round(YYY.runningTotal / YYY.counter,3) as runningMean FROM (select *,sum(sample_mean) over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as runningTotal,row_number() over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as counter");
+
+		q2.applyFrom("APP_WEIGHT_SAMPLE_HEADER");
+
+
+
+		if (checkBox4jFromEnabled.isSelected())
+		{
+			q2.applyHaving("sample_date>=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
+		}
+
+		if (jComboBoxReportType.getSelectedItem().toString().equals("Mean above Nominal"))
+		{
+			q2.applyHavingLiteral(" sample_mean > nominal_weight ");
+		}
+		
+		if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
+		{
+			q2.applyHavingLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
+		}
+
+		if (checkBox4jToEnabled.isSelected())
+		{
+			q2.applyHaving("sample_date<=", JUtility.getTimestampFromDate(sampleDateTo.getDate()));
+		}
+
+		if (fld_Material.getText().equals("") == false)
+		{
+			q2.applyHaving("material = ", fld_Material.getText());
+		}
+
+		if (fld_Process_Order.getText().equals("") == false)
+		{
+			q2.applyHaving("process_order = ", fld_Process_Order.getText());
+		}
+
+		if (fld_SamplePoint.getText().equals("") == false)
+		{
+			q2.applyHaving("sample_point = ", fld_SamplePoint.getText());
+		}
+
+		if (fld_Product_Group.getText().equals("") == false)
+		{
+			q2.applyHaving("product_group = ", fld_Product_Group.getText());
+		}
+
+		if (checkBox4j_T1.isSelected())
+		{
+			q2.applyHaving("sample_t1_count > ", 0);
+		}
+
+		if (checkBox4j_T2.isSelected())
+		{
+			q2.applyHaving("sample_t2_count > ", 0);
+		}
+
+		q2.applyHaving("nominal_weight > ", 0.000);
+
+		q2.applyHaving("sample_mean > ", 0.000);
+		
+		q2.applySort(" SAMPLE_POINT,SAMPLE_DATE", false);
+		
+		q2.setSQLFinal(" ) AS YYY ");
+
+
+		q2.applySQL();
+		result = q2.getPreparedStatement();
+
+		return result;
+	}
+	
 	private PreparedStatement buildSQLr()
 	{
 
@@ -594,15 +670,15 @@ public class JInternalFrameWTReport extends JInternalFrame
 				JLabel4j_std label4j_std_report_type = new JLabel4j_std();
 				label4j_std_report_type.setText(lang.get("mod_FRM_WEIGHT_REPORTS"));
 				label4j_std_report_type.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std_report_type.setBounds(12, 113, 213, 21);
+				label4j_std_report_type.setBounds(3, 114, 192, 21);
 				jDesktopPane1.add(label4j_std_report_type);
 
 				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[]
-				{ "Search Results", "Mean above Nominal", "T1s or T2s","Detailed List" });
+				{ "Search Results", "Sample Point Summary","Mean above Nominal", "T1s or T2s","Detailed List" });
 				jComboBoxReportType = new JComboBox4j<String>();
 				jComboBoxReportType.setMaximumRowCount(15);
 				jComboBoxReportType.setModel(jComboBoxReportTypeModel);
-				jComboBoxReportType.setBounds(235, 113, 146, 22);
+				jComboBoxReportType.setBounds(207, 113, 174, 22);
 				jDesktopPane1.add(jComboBoxReportType);
 				jToggleButtonSequence.addActionListener(new ActionListener()
 				{
@@ -794,14 +870,25 @@ public class JInternalFrameWTReport extends JInternalFrame
 		if (jComboBoxReportType.getSelectedItem().equals("Detailed List"))
 		{
 			PreparedStatement temp = buildSQLview();
+
 			JLaunchReport.runReport("RPT_WEIGHT_DETAILS", null, "", temp, "");
 		}
 		else
 		{
-			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("p_title",jComboBoxReportType.getSelectedItem().toString());
-			PreparedStatement temp = buildSQLr();
-			JLaunchReport.runReport("RPT_WEIGHT_HEADER_STD", parameters, "", temp, "");
+			if (jComboBoxReportType.getSelectedItem().equals("Sample Point Summary"))
+			{
+				HashMap<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("p_title",jComboBoxReportType.getSelectedItem().toString());
+				PreparedStatement temp = buildSQLnew();
+				JLaunchReport.runReport("RPT_WEIGHT_SAMPLE_POINTS", parameters, "", temp, "");
+			}
+			else
+			{
+				HashMap<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("p_title",jComboBoxReportType.getSelectedItem().toString());
+				PreparedStatement temp = buildSQLr();
+				JLaunchReport.runReport("RPT_WEIGHT_HEADER_STD", parameters, "", temp, "");
+			}
 		}
 	}
 

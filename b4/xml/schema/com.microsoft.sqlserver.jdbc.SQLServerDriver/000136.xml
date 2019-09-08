@@ -239,5 +239,6 @@
     <statement>
        INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('WEIGHTS', 'FRM_WEIGHT_REPORTS_DETAILS')
     </statement>
+    
         
 </DDL>

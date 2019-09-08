@@ -80,6 +80,7 @@ public class JDBQuery2
 	private String sqlWhere = "";
 	private Object sqlLimit = "";
 	private String sqlSort = "";
+	private String sqlFinal = "";
 
 	public JDBQuery2(String host, String session)
 	{
@@ -89,15 +90,15 @@ public class JDBQuery2
 		selectLimitType = Common.hostList.getHost(host).getDatabaseParameters().getjdbcDatabaseSelectLimit().toUpperCase();
 		if (selectLimitType.equals("TOP"))
 		{
-			sqlTemplate = "SELECT {restriction} {what} FROM {source} {where} {orderby}";
+			sqlTemplate = "SELECT {restriction} {what} FROM {source} {where} {orderby} {final}";
 		}
 		if (selectLimitType.equals("ROWNUM"))
 		{
-			sqlTemplate = "SELECT {what} FROM {source} {where} {restriction} {orderby}";
+			sqlTemplate = "SELECT {what} FROM {source} {where} {restriction} {orderby} {final}";
 		}
 		if (selectLimitType.equals("LIMIT"))
 		{
-			sqlTemplate = "SELECT {what} FROM {source} {where} {orderby} {restriction}";
+			sqlTemplate = "SELECT {what} FROM {source} {where} {orderby} {restriction} {final}";
 		}
 		sqltext = sqlTemplate;
 
@@ -195,6 +196,36 @@ public class JDBQuery2
 			}
 		}
 	}
+	
+	public void applyHaving(String field, Object param)
+	{
+		field = field.toUpperCase();
+		if (field != null)
+		{
+			if (field.equals("") == false)
+			{
+				if (param != null)
+				{
+					if (param.toString().equals("") == false)
+					{
+						criteriaCount++;
+
+						if ((criteriaCount == 1) & (sqlFrom.contains(" HAVING ") == false))
+						{
+							sqlWhere = "HAVING ";
+						}
+						else
+						{
+							sqlWhere = sqlWhere + " AND ";
+						}
+						sqlWhere = sqlWhere + field + "?";
+
+						applyParameter(param);
+					}
+				}
+			}
+		}
+	}
 
 	public void applyWhereLiteral(String literal)
 	{
@@ -212,6 +243,33 @@ public class JDBQuery2
 				if ((criteriaCount == 1) & (sqlFrom.contains(" WHERE ") == false))
 				{
 					sqlWhere = "WHERE ";
+				}
+				else
+				{
+					sqlWhere = sqlWhere + " AND ";
+				}
+				sqlWhere = sqlWhere + literal;
+
+			}
+		}
+	}
+	
+	public void applyHavingLiteral(String literal)
+	{
+
+		if (literal != null)
+		{
+			if (literal.equals("") == false)
+			{
+				
+				literal = literal.trim();
+				literal = " "+literal+" ";
+
+				criteriaCount++;
+
+				if ((criteriaCount == 1) & (sqlFrom.contains(" HAVING ") == false))
+				{
+					sqlWhere = "HAVING ";
 				}
 				else
 				{
@@ -334,6 +392,7 @@ public class JDBQuery2
 		sqltext = sqltext.replace("{where}", sqlWhere);
 		sqltext = sqltext.replace("{orderby}", sqlSort);
 		sqltext = sqltext.replace("{SCHEMA}", Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabaseSchema());
+		sqltext = sqltext.replace("{final}", sqlFinal);
 		bindParams();
 		logger.debug(sqltext);
 	}
@@ -414,6 +473,11 @@ public class JDBQuery2
 	public void setSqlText(String txt)
 	{
 		sqltext = txt;
+	}
+	
+	public void setSQLFinal(String finalSQL)
+	{
+		sqlFinal = finalSQL;
 	}
 
 }
