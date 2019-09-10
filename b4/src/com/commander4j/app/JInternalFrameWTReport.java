@@ -261,10 +261,21 @@ public class JInternalFrameWTReport extends JInternalFrame
 		
 		PreparedStatement result;
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
-		q2.applyWhat("YYY.*, round(YYY.runningTotal / YYY.counter,3) as runningMean FROM (select *,sum(sample_mean) over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as runningTotal,row_number() over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as COUNTER");
-
+		
+		String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
+		
+		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
+		{
+			q2.applyWhat("	SAMPLE_POINT,	SAMPLE_DATE,	USER_ID,	WORKSTATION_ID,	SCALE_ID,	PROCESS_ORDER,	REQUIRED_RESOURCE,	CUSTOMER_ID,	MATERIAL,	PRODUCT_GROUP,	CONTAINER_CODE,	TARE_WEIGHT,	TARE_WEIGHT_UOM,	NOMINAL_WEIGHT,	NOMINAL_WEIGHT_UOM,	TNE,	NEG_T1,	NEG_T2,	SAMPLE_SIZE,	SAMPLE_COUNT,	SAMPLE_MEAN,	SAMPLE_STD_DEV,	SAMPLE_T1_COUNT,	SAMPLE_T2_COUNT,	RUNNINGTOTAL,	COUNTER,	ROUND( RUNNINGTOTAL / COUNTER, 3 ) AS RUNNINGMEAN FROM	(	SELECT		SAMPLE_POINT,		SAMPLE_DATE,		USER_ID,		WORKSTATION_ID,		SCALE_ID,		PROCESS_ORDER,		REQUIRED_RESOURCE,		CUSTOMER_ID,		MATERIAL,  	PRODUCT_GROUP,		CONTAINER_CODE,		TARE_WEIGHT,	  TARE_WEIGHT_UOM,		NOMINAL_WEIGHT,		NOMINAL_WEIGHT_UOM,		TNE,		NEG_T1,		NEG_T2,		SAMPLE_SIZE,		SAMPLE_COUNT,		SAMPLE_MEAN,		SAMPLE_STD_DEV,		SAMPLE_T1_COUNT,  	SAMPLE_T2_COUNT,		SUM( SAMPLE_MEAN ) OVER ( PARTITION BY SAMPLE_POINT ORDER BY SAMPLE_POINT, SAMPLE_DATE ) AS RUNNINGTOTAL,		ROW_NUMBER ( ) OVER ( PARTITION BY SAMPLE_POINT ORDER BY SAMPLE_POINT, SAMPLE_DATE ) AS COUNTER");
+	
+		}
+		else
+		{
+			q2.applyWhat("YYY.*, round(YYY.runningTotal / YYY.counter,3) as runningMean FROM (select *,sum(sample_mean) over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as runningTotal,row_number() over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as COUNTER");
+			
+		}
+		
 		q2.applyFrom("APP_WEIGHT_SAMPLE_HEADER");
-
 
 
 		if (checkBox4jFromEnabled.isSelected())
@@ -323,9 +334,15 @@ public class JInternalFrameWTReport extends JInternalFrame
 		
 		//q2.applySort(" SAMPLE_POINT,SAMPLE_DATE", false);
 		
-		q2.setSQLFinal(" ) AS YYY ");
-
-
+		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
+		{
+			q2.setSQLFinal(" )");	
+		}
+		else
+		{
+			q2.setSQLFinal(" ) AS YYY ");
+		}
+		
 		q2.applySQL();
 		result = q2.getPreparedStatement();
 
