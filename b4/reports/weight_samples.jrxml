@@ -199,12 +199,12 @@
 				<textField>
 					<reportElement x="490" y="20" width="80" height="15" uuid="5984529d-c312-4832-a3b3-8a979be8dcd9"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{SAMPLE_MEAN}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{SAMPLE_MEAN}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="580" y="20" width="70" height="15" uuid="5a42c0ed-0890-453b-81a9-40cb1b068621"/>
 					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA[$F{SAMPLE_STD_DEV}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{SAMPLE_STD_DEV}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="700" y="20" width="40" height="15" uuid="d0edab08-82bc-4aaa-b23d-bdb4548687df"/>
@@ -433,7 +433,7 @@
 			<textField>
 				<reportElement style="Style1" mode="Opaque" x="315" y="0" width="100" height="15" uuid="daadd7b4-1f46-41ba-9515-80c8ead80e8a"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$F{SAMPLE_NET_WEIGHT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{SAMPLE_NET_WEIGHT}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="Style1" mode="Opaque" x="415" y="0" width="50" height="15" uuid="0fc9bf63-a563-495f-a672-88d94a268c46"/>

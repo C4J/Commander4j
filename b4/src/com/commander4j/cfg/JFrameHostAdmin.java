@@ -1909,11 +1909,11 @@ public class JFrameHostAdmin extends JFrame
 			panel.add(textField4jActualProgram);
 			labelActualProgramVersion.setToolTipText("Shows the status of the target database. ");
 
-			labelActualProgramVersion.setBounds(235, 120, 25, 25);
+			labelActualProgramVersion.setBounds(235, 115, 30, 30);
 			panel.add(labelActualProgramVersion);
 			labelActualSchemaVersion.setToolTipText("Shows the status of the target database. ");
 
-			labelActualSchemaVersion.setBounds(235, 60, 25, 25);
+			labelActualSchemaVersion.setBounds(235, 55, 30, 30);
 			panel.add(labelActualSchemaVersion);
 			btn4jAmendSchemaVersion.addActionListener(new ActionListener()
 			{

@@ -240,9 +240,28 @@ public class JInternalFrameWTReport extends JInternalFrame
 	
 	private PreparedStatement buildSQLnew()
 	{
+		
+		
+		//		SELECT
+		//		YYY.*,
+		//		round( YYY.runningTotal / YYY.counter, 3 ) AS runningMean 
+		//	FROM
+		//		(
+		//		SELECT
+		//			*,
+		//			sum( sample_mean ) over ( PARTITION BY SAMPLE_POINT ORDER BY sample_point, sample_date ) AS runningTotal,
+		//			row_number () over ( PARTITION BY SAMPLE_POINT ORDER BY sample_point, sample_date ) AS counter 
+		//		FROM
+		//			APP_WEIGHT_SAMPLE_HEADER 
+		//		WHERE
+		//			SAMPLE_POINT = 'VOLPAK 11' 
+		//		  AND SAMPLE_DATE >= '2019-08-14 09:31:30' 
+		//		) AS YYY
+				
+		
 		PreparedStatement result;
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
-		q2.applyWhat("YYY.*, round(YYY.runningTotal / YYY.counter,3) as runningMean FROM (select *,sum(sample_mean) over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as runningTotal,row_number() over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as counter");
+		q2.applyWhat("YYY.*, round(YYY.runningTotal / YYY.counter,3) as runningMean FROM (select *,sum(sample_mean) over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as runningTotal,row_number() over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as COUNTER");
 
 		q2.applyFrom("APP_WEIGHT_SAMPLE_HEADER");
 
@@ -250,59 +269,59 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		if (checkBox4jFromEnabled.isSelected())
 		{
-			q2.applyHaving("sample_date>=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
+			q2.applyWhere("sample_date>=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
 		}
 
 		if (jComboBoxReportType.getSelectedItem().toString().equals("Mean above Nominal"))
 		{
-			q2.applyHavingLiteral(" sample_mean > nominal_weight ");
+			q2.applyWhereLiteral(" sample_mean > nominal_weight ");
 		}
 		
 		if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
 		{
-			q2.applyHavingLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
+			q2.applyWhereLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
 		}
 
 		if (checkBox4jToEnabled.isSelected())
 		{
-			q2.applyHaving("sample_date<=", JUtility.getTimestampFromDate(sampleDateTo.getDate()));
+			q2.applyWhere("sample_date<=", JUtility.getTimestampFromDate(sampleDateTo.getDate()));
 		}
 
 		if (fld_Material.getText().equals("") == false)
 		{
-			q2.applyHaving("material = ", fld_Material.getText());
+			q2.applyWhere("material = ", fld_Material.getText());
 		}
 
 		if (fld_Process_Order.getText().equals("") == false)
 		{
-			q2.applyHaving("process_order = ", fld_Process_Order.getText());
+			q2.applyWhere("process_order = ", fld_Process_Order.getText());
 		}
 
 		if (fld_SamplePoint.getText().equals("") == false)
 		{
-			q2.applyHaving("sample_point = ", fld_SamplePoint.getText());
+			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
 		}
 
 		if (fld_Product_Group.getText().equals("") == false)
 		{
-			q2.applyHaving("product_group = ", fld_Product_Group.getText());
+			q2.applyWhere("product_group = ", fld_Product_Group.getText());
 		}
 
 		if (checkBox4j_T1.isSelected())
 		{
-			q2.applyHaving("sample_t1_count > ", 0);
+			q2.applyWhere("sample_t1_count > ", 0);
 		}
 
 		if (checkBox4j_T2.isSelected())
 		{
-			q2.applyHaving("sample_t2_count > ", 0);
+			q2.applyWhere("sample_t2_count > ", 0);
 		}
 
-		q2.applyHaving("nominal_weight > ", 0.000);
+		q2.applyWhere("nominal_weight > ", 0.000);
 
-		q2.applyHaving("sample_mean > ", 0.000);
+		q2.applyWhere("sample_mean > ", 0.000);
 		
-		q2.applySort(" SAMPLE_POINT,SAMPLE_DATE", false);
+		//q2.applySort(" SAMPLE_POINT,SAMPLE_DATE", false);
 		
 		q2.setSQLFinal(" ) AS YYY ");
 

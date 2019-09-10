@@ -6,12 +6,24 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MS SQL Server"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.report.description" value="Standard List of APP_WEIGHT_HEADER"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{SAMPLE_T1_COUNT}.doubleValue()>0]]></conditionExpression>
+			<style backcolor="#FDFE02"/>
+		</conditionalStyle>
+	</style>
+	<style name="Style2">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{SAMPLE_T2_COUNT}.doubleValue()>0]]></conditionExpression>
+			<style backcolor="#FF0000"/>
+		</conditionalStyle>
+	</style>
 	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["Company Name"]]></defaultValueExpression>
 	</parameter>
@@ -21,21 +33,18 @@
 	<queryString>
 		<![CDATA[SELECT
 	YYY.*,
-	ROUND( YYY.RUNNINGTOTAL / YYY.COUNTER, 3 ) AS RUNNINGMEAN 
+	round( YYY.RUNNINGTOTAL / YYY.COUNTER, 3 ) AS RUNNINGMEAN 
 FROM
 	(
 	SELECT
 		*,
-		SUM( SAMPLE_MEAN ) OVER ( PARTITION BY SAMPLE_POINT ORDER BY SAMPLE_POINT, SAMPLE_DATE ) AS RUNNINGTOTAL,
-		ROW_NUMBER () OVER ( PARTITION BY SAMPLE_POINT ORDER BY SAMPLE_POINT, SAMPLE_DATE ) AS COUNTER 
+		sum( sample_mean ) over ( PARTITION BY SAMPLE_POINT ORDER BY sample_point, sample_date ) AS RUNNINGTOTAL,
+		row_number () over ( PARTITION BY SAMPLE_POINT ORDER BY sample_point, sample_date ) AS COUNTER 
 	FROM
 		APP_WEIGHT_SAMPLE_HEADER 
-	HAVING
+	WHERE
 		NOMINAL_WEIGHT > 0.0 
 		AND SAMPLE_MEAN > 0.0 
-	ORDER BY
-		SAMPLE_POINT ASC,
-	SAMPLE_DATE ASC 
 	) AS YYY]]>
 	</queryString>
 	<field name="SAMPLE_POINT" class="java.lang.String">
@@ -137,7 +146,7 @@ FROM
 	<field name="RUNNINGTOTAL" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="RUNNINGTOTAL"/>
 	</field>
-	<field name="COUNTER" class="java.math.BigInteger">
+	<field name="COUNTER" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="COUNTER"/>
 	</field>
 	<field name="RUNNINGMEAN" class="java.math.BigDecimal">
@@ -286,7 +295,7 @@ FROM
 				<textElement>
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Contnr]]></text>
+				<text><![CDATA[Cont]]></text>
 			</staticText>
 			<staticText>
 				<reportElement key="staticText" x="441" y="3" width="46" height="15" forecolor="#000000" uuid="0f186d93-1096-474a-bc2a-cc7fd1708b80">
@@ -380,7 +389,7 @@ FROM
 				<text><![CDATA[T1s]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="780" y="3" width="20" height="12" forecolor="#000000" uuid="faa30cd3-0f14-4fca-a98a-759dad170f53">
+				<reportElement key="staticText" x="779" y="3" width="20" height="12" forecolor="#000000" uuid="faa30cd3-0f14-4fca-a98a-759dad170f53">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -422,7 +431,7 @@ FROM
 				<textElement textAlignment="Right">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Batch Mean]]></text>
+				<text><![CDATA[Run Avg]]></text>
 			</staticText>
 			<staticText>
 				<reportElement key="staticText" x="523" y="4" width="32" height="12" forecolor="#000000" uuid="af70f53c-b68c-409b-aad6-636c2e2c2e5c">
@@ -553,7 +562,7 @@ FROM
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PROCESS_ORDER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
+			<textField isBlankWhenNull="false">
 				<reportElement key="textField" x="557" y="0" width="50" height="15" forecolor="#000000" uuid="631927b7-3b2f-4313-a9cd-0f2ecfa07b46">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -567,10 +576,10 @@ FROM
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{SAMPLE_MEAN}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{SAMPLE_MEAN}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="713" y="0" width="38" height="15" forecolor="#000000" uuid="2dad7095-5798-4a17-9fbc-69aec2549865">
+				<reportElement key="textField" x="713" y="0" width="30" height="15" forecolor="#000000" uuid="2dad7095-5798-4a17-9fbc-69aec2549865">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -585,7 +594,7 @@ FROM
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SAMPLE_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
+			<textField isBlankWhenNull="false">
 				<reportElement key="textField" x="679" y="0" width="38" height="15" forecolor="#000000" uuid="949c0e6e-ed2c-48f2-b6c5-3d5044462a8f">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -599,10 +608,10 @@ FROM
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{SAMPLE_STD_DEV}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{SAMPLE_STD_DEV}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="754" y="0" width="20" height="15" forecolor="#000000" uuid="9e4d105c-db91-44e2-9814-e5d639aac883">
+				<reportElement key="textField" style="Style1" mode="Opaque" x="754" y="0" width="20" height="15" forecolor="#000000" uuid="9e4d105c-db91-44e2-9814-e5d639aac883">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -618,7 +627,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{SAMPLE_T1_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="779" y="0" width="20" height="15" forecolor="#000000" uuid="d7b6b94a-2715-4cdf-ba89-ee5c47dbc1e5">
+				<reportElement key="textField" style="Style2" mode="Opaque" x="779" y="0" width="20" height="15" forecolor="#000000" uuid="d7b6b94a-2715-4cdf-ba89-ee5c47dbc1e5">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -649,7 +658,7 @@ FROM
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NOMINAL_WEIGHT_UOM}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
+			<textField isBlankWhenNull="false">
 				<reportElement key="textField" x="621" y="0" width="50" height="15" forecolor="#000000" uuid="9f54229f-f414-4a61-beda-eff6f6da475d">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -663,7 +672,7 @@ FROM
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{RUNNINGMEAN}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{RUNNINGMEAN}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField" x="522" y="0" width="30" height="15" forecolor="#000000" uuid="4bd54c63-5e54-4956-81a0-6a16ad42aa6c">
@@ -689,7 +698,7 @@ FROM
 	<pageFooter>
 		<band height="24" splitType="Stretch">
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="573" y="9" width="170" height="15" forecolor="#000000" uuid="6475daaf-debf-47a4-87bb-5593ef259c05">
+				<reportElement key="textField" x="590" y="9" width="170" height="15" forecolor="#000000" uuid="6475daaf-debf-47a4-87bb-5593ef259c05">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -702,7 +711,7 @@ FROM
 				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" mode="Transparent" x="746" y="9" width="36" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="c5d3b32d-1754-45bc-8d27-8a5a93f03e62">
+				<reportElement key="textField" mode="Transparent" x="763" y="9" width="36" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="c5d3b32d-1754-45bc-8d27-8a5a93f03e62">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>

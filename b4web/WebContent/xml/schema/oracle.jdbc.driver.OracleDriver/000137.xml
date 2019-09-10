@@ -104,5 +104,114 @@
     <statement>
        INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('WEIGHTS', 'RPT_WEIGHT_SAMPLE_POINTS')
     </statement>
-         
+ 
+     
+    
+    <statement>
+       INSERT INTO SYS_MODULES(MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_WEIGHT_DETAILS', 'N', 'Y', 'REPORT', 'Weight Summary', 0, '', '', 'weight_samples.jrxml', '', '', 'Y', 'N', 1, 'Standard', 'mod_FRM_WEIGHT_REPORTS', '', '')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'RPT_WEIGHT_DETAILS')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('WEIGHTS', 'RPT_WEIGHT_DETAILS')
+    </statement>
+    
+	<statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Mean', 'EN', 'Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Mean', 'DE', 'Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Mean', 'ES', 'Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Mean', 'FR', 'Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Mean', 'HU', 'Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Mean', 'IT', 'Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Mean', 'NL', 'Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Mean', 'PL', 'Mean', '0')
+    </statement>
+    
+     <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'EN', 'Standard Deviation', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'DE', 'Standard Deviation', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'ES', 'Standard Deviation', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'FR', 'Standard Deviation', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'HU', 'Standard Deviation', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'IT', 'Standard Deviation', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'NL', 'Standard Deviation', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'PL', 'Standard Deviation', '0')
+    </statement>
+    
+      <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'EN', 'Batch Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'DE', 'Batch Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'ES', 'Batch Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'FR', 'Batch Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'HU', 'Batch Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'IT', 'Batch Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'NL', 'Batch Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'PL', 'Batch Mean', '0')
+    </statement>        
 </DDL>

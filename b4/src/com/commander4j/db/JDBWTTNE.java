@@ -157,22 +157,35 @@ public class JDBWTTNE
 
 	public BigDecimal getNegT1()
 	{
+		if (dbNegT1 == null)
+		{
+			dbNegT1 = new BigDecimal("0.000");	
+		}
 		return dbNegT1;
 	}
 
 	public BigDecimal getNegT2()
 	{
+		if (dbNegT2 == null)
+		{
+			dbNegT2 = new BigDecimal("0.000");	
+		}
 		return dbNegT2;
 	}
 
 	public BigDecimal getNominalWT()
 	{
+		if (dbNominalWT == null)
+		{
+			dbNominalWT = new BigDecimal("0.000");	
+		}
 		return dbNominalWT;
 	}
 
 	public String getNominalWTUOM()
 	{
-		return dbNominalWTUOM;
+		
+		return JUtility.replaceNullStringwithBlank(dbNominalWTUOM);
 	}
 	
 	public boolean getProperties(BigDecimal nominal,String uom)
@@ -298,6 +311,10 @@ public class JDBWTTNE
 
 	public BigDecimal getTNE()
 	{
+		if (dbTNE == null)
+		{
+			dbTNE = new BigDecimal("0.000");	
+		}
 		return dbTNE;
 	}
 
