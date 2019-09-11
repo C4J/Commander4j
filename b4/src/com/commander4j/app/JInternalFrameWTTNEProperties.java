@@ -116,10 +116,22 @@ public class JInternalFrameWTTNEProperties extends JInternalFrame
 		jTextField_Nominal_Uom.setText(tne.getNominalWTUOM());
 		jTextField_TNE_Uom.setEditable(false);
 		jTextField_TNE_Uom.setText(tneUom);
+		jTextField_NegT1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				jButtonSave.setEnabled(true);
+			}
+		});
 		jTextField_NegT1.setText(tne.getNegT1().toString());
 		jTextField_TNE.setText(tne.getTNE().toString());
 		jTextField_NegT1_UOM.setEditable(false);
 		jTextField_NegT1_UOM.setText(tneUom);
+		jTextField_NegT2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				jButtonSave.setEnabled(true);
+			}
+		});
 		jTextField_NegT2.setText(tne.getNegT2().toString());
 		jTextField_NegT2_UOM.setEditable(false);
 		jTextField_NegT2_UOM.setText(tneUom);
