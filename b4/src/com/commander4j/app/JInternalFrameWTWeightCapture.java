@@ -199,6 +199,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private BigDecimal zero = new BigDecimal("0.000");
 	private static Double graphMinY = new Double(-1);
 	private static Double graphMaxY = new Double(-1);
+	private BigDecimal lowerLimit = new BigDecimal("0.000");
 
 	private Integer t1_count = 0;
 	private Integer t2_count = 0;
@@ -1004,76 +1005,82 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		if (logEnabled)
 		{
-			jStatusText.setText("Recording " + weight + " " + weightUOM);
-			JDBWTSampleDetail sampleDetail = new JDBWTSampleDetail(Common.selectedHostID, Common.sessionID);
-			sampleDetail.setSamplePoint(workdb.getSamplePoint());
-			sampleDetail.setSampleDate(sampleHeader.getSampleDate());
-			sampleDetail.setSampleWeightDate(JUtility.getSQLDateTime());
-			sampleSequence++;
-			sampleDetail.setSampleSequence(sampleSequence);
-			sampleDetail.setSampleGrossWeight(new BigDecimal(weight));
-			sampleDetail.setSampleTareWeight(matgroupdb.getTareWeight());
-			sampleDetail.setSampleWeightUom(weightUOM);
-			BigDecimal netWt = sampleDetail.getSampleGrossWeight();
-			netWt = netWt.subtract(matgroupdb.getTareWeight());
-			sampleDetail.setSampleNetWeight(netWt);
+			BigDecimal current = new BigDecimal(weight);
 
-			if (netWt.compareTo(tnedb.getNegT2()) <= 0)
+			if (current.compareTo(lowerLimit) == 1)
 			{
-				sampleDetail.setSampleT1Count(0);
-				sampleDetail.setSampleT2Count(1);
-			}
-			else
-			{
-				sampleDetail.setSampleT2Count(0);
 
-				if (netWt.compareTo(tnedb.getNegT1()) <= 0)
+				jStatusText.setText("Recording " + weight + " " + weightUOM);
+				JDBWTSampleDetail sampleDetail = new JDBWTSampleDetail(Common.selectedHostID, Common.sessionID);
+				sampleDetail.setSamplePoint(workdb.getSamplePoint());
+				sampleDetail.setSampleDate(sampleHeader.getSampleDate());
+				sampleDetail.setSampleWeightDate(JUtility.getSQLDateTime());
+				sampleSequence++;
+				sampleDetail.setSampleSequence(sampleSequence);
+				sampleDetail.setSampleGrossWeight(new BigDecimal(weight));
+				sampleDetail.setSampleTareWeight(matgroupdb.getTareWeight());
+				sampleDetail.setSampleWeightUom(weightUOM);
+				BigDecimal netWt = sampleDetail.getSampleGrossWeight();
+				netWt = netWt.subtract(matgroupdb.getTareWeight());
+				sampleDetail.setSampleNetWeight(netWt);
+
+				if (netWt.compareTo(tnedb.getNegT2()) <= 0)
 				{
-					sampleDetail.setSampleT1Count(1);
+					sampleDetail.setSampleT1Count(0);
+					sampleDetail.setSampleT2Count(1);
 				}
 				else
 				{
-					sampleDetail.setSampleT1Count(0);
+					sampleDetail.setSampleT2Count(0);
+
+					if (netWt.compareTo(tnedb.getNegT1()) <= 0)
+					{
+						sampleDetail.setSampleT1Count(1);
+					}
+					else
+					{
+						sampleDetail.setSampleT1Count(0);
+					}
+				}
+
+				sampleDetailList.addLast(sampleDetail);
+
+				populateList();
+
+				if (sampleSequence == lSampleSize)
+				{
+
+					std_dev = calculateStandardDeviation();
+					mean = calculateMean();
+
+					t1_count = getT1Count();
+					t2_count = getT2Count();
+					fld_Standard_Deviation.setText(std_dev.toString());
+
+					saveAll(mean, std_dev, t1_count, t2_count);
+
+					fld_Mean.setText(mean.toString());
+
+					logEnabled = false;
+					btn_Begin.setEnabled(true);
+					btnj_Cancel.setEnabled(false);
+					btnManualInput.setEnabled(false);
+
+					SwingUtilities.invokeLater(new Runnable()
+					{
+						public void run()
+						{
+							updateGraph();
+						}
+					});
+
+				}
+				else
+				{
+					jStatusText.setText("Weigh sample " + String.valueOf(sampleSequence + 1) + " of " + String.valueOf(lSampleSize));
 				}
 			}
-
-			sampleDetailList.addLast(sampleDetail);
-
-			populateList();
-
-			if (sampleSequence == lSampleSize)
-			{
-
-				std_dev = calculateStandardDeviation();
-				mean = calculateMean();
-
-				t1_count = getT1Count();
-				t2_count = getT2Count();
-				fld_Standard_Deviation.setText(std_dev.toString());
-
-				saveAll(mean, std_dev, t1_count, t2_count);
-
-				fld_Mean.setText(mean.toString());
-
-				logEnabled = false;
-				btn_Begin.setEnabled(true);
-				btnj_Cancel.setEnabled(false);
-				btnManualInput.setEnabled(false);
-
-
-				SwingUtilities.invokeLater(new Runnable()
-				{
-					public void run()
-					{
-						updateGraph();
-					}
-				});
-
-			}
-			else
-			{
-				jStatusText.setText("Weigh sample " + String.valueOf(sampleSequence + 1) + " of " + String.valueOf(lSampleSize));
-			}
+			
 		}
 		else
 		{
@@ -1191,7 +1198,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private void saveAll(BigDecimal mean, BigDecimal StdDev, Integer t1s, Integer t2s)
 	{
 		jStatusText.setText("");
-		
+
 		int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save results ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 		if (question == 0)
 		{
@@ -1233,7 +1240,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				t.update();
 
 			}
-			
+
 			jStatusText.setText("Results have been saved.");
 		}
 		else
@@ -1417,6 +1424,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	{
 		boolean result = false;
 		BigDecimal nominal = new BigDecimal("0.000");
+
 		String nominalUom = "";
 		BigDecimal tare = new BigDecimal("0.000");
 		String tarelUom = "";
@@ -1426,13 +1434,18 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		if (lookup == true)
 		{
-			if (matgroupdb.getMaterialGroupProperties(group))
+			if (matgroupdb.getProductGroupProperties(group))
 			{
 				result = true;
 				nominal = matgroupdb.getNominalWeight();
 				nominalUom = matgroupdb.getNominalUOM();
 				tare = matgroupdb.getTareWeight();
 				tarelUom = matgroupdb.getTareWeightUOM();
+				lowerLimit = matgroupdb.getLowerLimit();
+
+				lSampleSize = matgroupdb.getSamplesRequired();
+
+				fld_SampleSize.setText(String.valueOf(lSampleSize));
 
 				fld_Nominal_Weight.setText(nominal.toString());
 				fld_Nominal_Weight_UOM.setText(nominalUom);

@@ -58,14 +58,18 @@ public class JDBWTProductGroups
 	public static int field_TareWeight = 10;
 	public static int field_nominal_uom = 3;
 	public static int field_tare_uom = 3;
+	public static int field_LowerLimit = 10;
+	public static int field_Samples_Required = 10;
 	private String dbErrorMessage;
 	private String dbMaterialGroup;
 	private String dbDescription;
 
-	private BigDecimal dbNominalWeight;
-	private String dbNominalWeightUOM;
-	private BigDecimal dbTareWeight;
-	private String dbTareWeightUOM;
+	private BigDecimal dbNominalWeight = new BigDecimal("0.000");
+	private String dbNominalWeightUOM = "";
+	private BigDecimal dbTareWeight = new BigDecimal("0.000");
+	private BigDecimal dbLowerLimit = new BigDecimal("0.000");
+	private Integer dbSamplesRequired = 0;
+	private String dbTareWeightUOM = "";
 	private final Logger logger = Logger.getLogger(JDBWTProductGroups.class);
 	private String hostID;
 	private String sessionID;
@@ -83,17 +87,39 @@ public class JDBWTProductGroups
 		uom = new JDBUom(getHostID(), getSessionID());
 	}
 
-	public JDBWTProductGroups(String host, String session, String materialGroup, String description, BigDecimal nominalWeight, String nominalUOM, BigDecimal tareWeight, String tareUOM)
+	public JDBWTProductGroups(String host, String session, String materialGroup, String description, BigDecimal nominalWeight, String nominalUOM, BigDecimal tareWeight, String tareUOM,Integer samples,BigDecimal lowerLimit)
 	{
 		setHostID(host);
 		setSessionID(session);
-		setMaterialGroup(materialGroup);
+		setProductGroup(materialGroup);
 		setDescription(description);
 		setNominalWeight(nominalWeight);
 		setNominalUOM(nominalUOM);
 		setTareWeight(tareWeight);
 		setTareUOM(tareUOM);
+		setSamplesRequired(samples);
+		setLowerLimit(lowerLimit);
 
+	}
+	
+	public void setSamplesRequired(Integer samples)
+	{
+		dbSamplesRequired = samples;
+	}
+	
+	public void setLowerLimit(BigDecimal lowerLimit)
+	{
+		dbLowerLimit = lowerLimit;
+	}
+	
+	public Integer getSamplesRequired()
+	{
+		return dbSamplesRequired;
+	}
+	
+	public BigDecimal getLowerLimit()
+	{
+		return dbLowerLimit;
 	}
 
 	public void clear()
@@ -103,18 +129,21 @@ public class JDBWTProductGroups
 		setTareWeight(new BigDecimal("0"));
 		setTareUOM("");
 		setNominalUOM("");
+		setLowerLimit(new BigDecimal("0"));
+		setSamplesRequired(0);
+		
 	}
 
 	public boolean create()
 	{
 
-		logger.debug("create [" + getMaterialGroup() + "]");
+		logger.debug("create [" + getProductGroup() + "]");
 
 		boolean result = false;
 
-		if (isValidMaterialGroup() == true)
+		if (isValidProductGroup() == true)
 		{
-			setErrorMessage("Material Group [" + getMaterialGroup() + "] already exists !");
+			setErrorMessage("Material Group [" + getProductGroup() + "] already exists !");
 		}
 		else
 		{
@@ -122,7 +151,7 @@ public class JDBWTProductGroups
 			{
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProductGroup.create"));
-				stmtupdate.setString(1, getMaterialGroup());
+				stmtupdate.setString(1, getProductGroup());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -142,7 +171,7 @@ public class JDBWTProductGroups
 	public boolean create(String materialGroup)
 	{
 		boolean result = false;
-		setMaterialGroup(materialGroup);
+		setProductGroup(materialGroup);
 		result = create();
 		return result;
 	}
@@ -157,7 +186,7 @@ public class JDBWTProductGroups
 		try
 		{
 			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProductGroup.delete"));
-			stmtupdate.setString(1, getMaterialGroup());
+			stmtupdate.setString(1, getProductGroup());
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -177,7 +206,7 @@ public class JDBWTProductGroups
 	public boolean delete(String materialGroup)
 	{
 		boolean result = false;
-		setMaterialGroup(materialGroup);
+		setProductGroup(materialGroup);
 
 		result = delete();
 		return result;
@@ -198,7 +227,7 @@ public class JDBWTProductGroups
 		return hostID;
 	}
 
-	public ResultSet getMaterialDataResultSet()
+	public ResultSet getProductGroupDataResultSet()
 	{
 		PreparedStatement stmt;
 		ResultSet rs = null;
@@ -219,7 +248,7 @@ public class JDBWTProductGroups
 		return rs;
 	}
 
-	public ResultSet getMaterialDataResultSet(PreparedStatement criteria)
+	public ResultSet getProductGroupDataResultSet(PreparedStatement criteria)
 	{
 
 		ResultSet rs;
@@ -238,12 +267,12 @@ public class JDBWTProductGroups
 		return rs;
 	}
 
-	public String getMaterialGroup()
+	public String getProductGroup()
 	{
 		return dbMaterialGroup;
 	}
 
-	public boolean getMaterialGroupProperties()
+	public boolean getProductGroupProperties()
 	{
 		boolean result = false;
 
@@ -255,11 +284,11 @@ public class JDBWTProductGroups
 
 		try
 		{
-			if (getMaterialGroup().equals("") == false)
+			if (getProductGroup().equals("") == false)
 			{
 				stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProductGroup.getProperties"));
 				stmt.setFetchSize(1);
-				stmt.setString(1, getMaterialGroup());
+				stmt.setString(1, getProductGroup());
 				rs = stmt.executeQuery();
 
 				if (rs.next())
@@ -282,14 +311,14 @@ public class JDBWTProductGroups
 		return result;
 	}
 
-	public boolean getMaterialGroupProperties(String matgroup)
+	public boolean getProductGroupProperties(String matgroup)
 	{
-		setMaterialGroup(matgroup);
+		setProductGroup(matgroup);
 
-		return getMaterialGroupProperties();
+		return getProductGroupProperties();
 	}
 
-	public LinkedList<JDBWTProductGroups> getMaterialGroups()
+	public LinkedList<JDBWTProductGroups> getProductGroups()
 	{
 		LinkedList<JDBWTProductGroups> tneList = new LinkedList<JDBWTProductGroups>();
 		PreparedStatement stmt;
@@ -305,12 +334,14 @@ public class JDBWTProductGroups
 			while (rs.next())
 			{
 				JDBWTProductGroups tne = new JDBWTProductGroups(getHostID(), getSessionID());
-				tne.setMaterialGroup(rs.getString("product_group"));
+				tne.setProductGroup(rs.getString("product_group"));
 				tne.setDescription(rs.getString("description"));
 				tne.setNominalWeight(rs.getBigDecimal("nominal_weight"));
 				tne.setNominalUOM(rs.getString("nominal_weight_uom"));
 				tne.setTareWeight(rs.getBigDecimal("tare_weight"));
 				tne.setTareUOM(rs.getString("tare_weight_uom"));
+				tne.setLowerLimit(rs.getBigDecimal("lower_limit"));
+				tne.setSamplesRequired(rs.getInt("samples_required"));
 				tneList.add(tne);
 			}
 			rs.close();
@@ -325,14 +356,14 @@ public class JDBWTProductGroups
 		return tneList;
 	}
 
-	public Vector<JDBWTProductGroups> getMaterialGroups(PreparedStatement criteria)
+	public Vector<JDBWTProductGroups> getProductGroups(PreparedStatement criteria)
 	{
 		ResultSet rs;
 		Vector<JDBWTProductGroups> result = new Vector<JDBWTProductGroups>();
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBWTProductGroups(getHostID(), getSessionID(), "product_group", "description", new BigDecimal("0"), "nominal_weight_uom", new BigDecimal("0"), "tare_weight_uom"));
+			result.addElement(new JDBWTProductGroups(getHostID(), getSessionID(), "product_group", "description", new BigDecimal("0"), "nominal_weight_uom", new BigDecimal("0"), "tare_weight_uom",0,new BigDecimal("0")));
 		}
 		else
 		{
@@ -343,7 +374,7 @@ public class JDBWTProductGroups
 				while (rs.next())
 				{
 					result.addElement(new JDBWTProductGroups(getHostID(), getSessionID(), rs.getString("product_group"), rs.getString("description"), rs.getBigDecimal("nominal_weight"), rs.getString("nominal_weight_uom"), rs.getBigDecimal("tare_weight"),
-							rs.getString("tare_weight_uom")));
+							rs.getString("tare_weight_uom"),rs.getInt("samples_required"),rs.getBigDecimal("lower_limit")));
 				}
 				rs.close();
 
@@ -373,12 +404,14 @@ public class JDBWTProductGroups
 		{
 			clear();
 
-			setMaterialGroup(rs.getString("product_group"));
+			setProductGroup(rs.getString("product_group"));
 			setDescription(rs.getString("description"));
 			setNominalWeight(rs.getBigDecimal("nominal_weight"));
 			setNominalUOM(rs.getString("nominal_weight_uom"));
 			setTareWeight(rs.getBigDecimal("tare_weight"));
 			setTareUOM(rs.getString("tare_weight_uom"));
+			setLowerLimit(rs.getBigDecimal("lower_limit"));
+			setSamplesRequired(rs.getInt("samples_required"));
 		}
 		catch (SQLException e)
 		{
@@ -448,7 +481,7 @@ public class JDBWTProductGroups
 		return result;
 	}
 
-	public boolean isValidMaterialGroup()
+	public boolean isValidProductGroup()
 	{
 
 		PreparedStatement stmt;
@@ -458,7 +491,7 @@ public class JDBWTProductGroups
 		try
 		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBProductGroup.isValidProductGroup"));
-			stmt.setString(1, getMaterialGroup());
+			stmt.setString(1, getProductGroup());
 
 			stmt.setFetchSize(1);
 			rs = stmt.executeQuery();
@@ -485,11 +518,11 @@ public class JDBWTProductGroups
 
 	}
 
-	public boolean isValidMaterialGroup(String materialGroup)
+	public boolean isValidProductGroup(String materialGroup)
 	{
-		setMaterialGroup(materialGroup);
+		setProductGroup(materialGroup);
 
-		return isValidMaterialGroup();
+		return isValidProductGroup();
 	}
 
 	public void setDescription(String description)
@@ -511,7 +544,7 @@ public class JDBWTProductGroups
 		hostID = host;
 	}
 
-	public void setMaterialGroup(String materialGroup)
+	public void setProductGroup(String materialGroup)
 	{
 		dbMaterialGroup = materialGroup;
 	}
@@ -562,11 +595,13 @@ public class JDBWTProductGroups
 
 		String result = "";
 
-		result = JUtility.padString(getMaterialGroup().toString(), true, field_product_group, " ")+	
+		result = JUtility.padString(getProductGroup().toString(), true, field_product_group, " ")+	
         JUtility.padString(getNominalWeight().toString(), false, field_NominalWeight, " ")+" "+ 
 		JUtility.padString(getNominalUOM(), true, field_nominal_uom, " ")+" "+
         JUtility.padString(getTareWeight().toString(), false, field_TareWeight, " ")+" "+ 
-		JUtility.padString(getTareWeightUOM(), true, field_tare_uom, " ");
+		JUtility.padString(getTareWeightUOM(), true, field_tare_uom, "   ")+" "+ 
+		JUtility.padString(getLowerLimit().toString(), true, field_LowerLimit, " ")+"   "+ 
+		JUtility.padString(getSamplesRequired().toString(), true, field_tare_uom, " ");
 
 		return result;
 	}
@@ -575,7 +610,7 @@ public class JDBWTProductGroups
 	{
 		boolean result = false;
 
-		logger.debug("update [" + getMaterialGroup() + "]");
+		logger.debug("update [" + getProductGroup() + "]");
 
 		if (isValid() == true)
 		{
@@ -588,7 +623,9 @@ public class JDBWTProductGroups
 				stmtupdate.setString(3, getNominalUOM());
 				stmtupdate.setBigDecimal(4, getTareWeight());
 				stmtupdate.setString(5, getTareWeightUOM());
-				stmtupdate.setString(6, getMaterialGroup());
+				stmtupdate.setInt(6, getSamplesRequired());
+				stmtupdate.setBigDecimal(7, getLowerLimit());
+				stmtupdate.setString(8, getProductGroup());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
