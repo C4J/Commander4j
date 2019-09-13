@@ -156,31 +156,31 @@
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'DE', 'Standard Deviation', '0')
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'DE', 'Standardabweichung', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'ES', 'Standard Deviation', '0')
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'ES', 'Desviación estándar', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'FR', 'Standard Deviation', '0')
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'FR', 'Déviation standard', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'HU', 'Standard Deviation', '0')
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'HU', 'Szabványbeli eltérés', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'IT', 'Standard Deviation', '0')
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'IT', 'Deviazione standard', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'NL', 'Standard Deviation', '0')
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'NL', 'Standaardafwijking', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'PL', 'Standard Deviation', '0')
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Standard_Deviation', 'PL', 'Odchylenie standardowe', '0')
     </statement>
     
       <statement>
@@ -196,7 +196,7 @@
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'FR', 'Batch Mean', '0')
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'FR', 'Lot moyen', '0')
     </statement>
 
     <statement>
@@ -204,7 +204,7 @@
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'IT', 'Batch Mean', '0')
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Batch_Mean', 'IT', 'Media in lotti', '0')
     </statement>
 
     <statement>
