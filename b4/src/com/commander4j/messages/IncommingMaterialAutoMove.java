@@ -107,6 +107,10 @@ public class IncommingMaterialAutoMove
 				}
 			}
 		}
+		else
+		{
+			result = true;
+		}
 
 		return result;
 

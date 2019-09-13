@@ -6,7 +6,7 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MS SQL Server"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.report.description" value="Standard List of APP_WEIGHT_HEADER"/>
 	<import value="net.sf.jasperreports.engine.*"/>
@@ -146,7 +146,7 @@ FROM
 	<field name="RUNNINGTOTAL" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="RUNNINGTOTAL"/>
 	</field>
-	<field name="COUNTER" class="java.math.BigInteger">
+	<field name="COUNTER" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="COUNTER"/>
 	</field>
 	<field name="RUNNINGMEAN" class="java.math.BigDecimal">
@@ -161,15 +161,17 @@ FROM
 	<group name="Group2" keepTogether="true">
 		<groupExpression><![CDATA[$F{PROCESS_ORDER}]]></groupExpression>
 		<groupHeader>
-			<band height="48">
+			<band height="51">
 				<rectangle>
-					<reportElement key="rectangle" mode="Opaque" x="1" y="2" width="799" height="13" forecolor="#000000" backcolor="#FACF0F" uuid="cb0645d3-46e0-4c46-a386-44336062fc3e"/>
+					<reportElement key="rectangle" mode="Opaque" x="1" y="1" width="799" height="15" forecolor="#000000" backcolor="#FACF0F" uuid="cb0645d3-46e0-4c46-a386-44336062fc3e">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
 					<graphicElement>
 						<pen lineWidth="0.0" lineStyle="Solid"/>
 					</graphicElement>
 				</rectangle>
 				<textField pattern="" isBlankWhenNull="false">
-					<reportElement key="textField" x="1" y="15" width="158" height="26" forecolor="#000000" uuid="2f3814a8-1229-43e0-9498-b9d9c964a2d3">
+					<reportElement key="textField" x="1" y="17" width="158" height="26" forecolor="#000000" uuid="2f3814a8-1229-43e0-9498-b9d9c964a2d3">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<box>
@@ -184,7 +186,7 @@ FROM
 					<textFieldExpression><![CDATA[$F{SAMPLE_POINT}]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="false">
-					<reportElement key="textField" x="304" y="16" width="110" height="15" forecolor="#000000" uuid="189ce165-2742-4058-8b30-f335b0822b20">
+					<reportElement key="textField" x="304" y="18" width="110" height="15" forecolor="#000000" uuid="189ce165-2742-4058-8b30-f335b0822b20">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -200,7 +202,7 @@ FROM
 					<textFieldExpression><![CDATA[$F{PRODUCT_GROUP}]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="false">
-					<reportElement key="textField" x="157" y="16" width="63" height="15" forecolor="#000000" uuid="148ba195-a131-4a25-9cce-e91cbd238137">
+					<reportElement key="textField" x="157" y="18" width="63" height="15" forecolor="#000000" uuid="148ba195-a131-4a25-9cce-e91cbd238137">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -216,7 +218,7 @@ FROM
 					<textFieldExpression><![CDATA[$F{PROCESS_ORDER}]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="false">
-					<reportElement key="textField" x="235" y="16" width="64" height="15" forecolor="#000000" uuid="c469855e-8a06-4d2d-ac50-1138890b8ac1">
+					<reportElement key="textField" x="235" y="18" width="64" height="15" forecolor="#000000" uuid="c469855e-8a06-4d2d-ac50-1138890b8ac1">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -232,7 +234,7 @@ FROM
 					<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="false">
-					<reportElement key="textField" x="416" y="16" width="54" height="15" forecolor="#000000" uuid="c450e50b-9954-4cf0-95cd-7c763c564697">
+					<reportElement key="textField" x="416" y="18" width="54" height="15" forecolor="#000000" uuid="c450e50b-9954-4cf0-95cd-7c763c564697">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -248,7 +250,7 @@ FROM
 					<textFieldExpression><![CDATA[$F{CONTAINER_CODE}]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="false">
-					<reportElement key="textField" x="486" y="16" width="46" height="15" forecolor="#000000" uuid="90aedb7d-4b08-4bf2-8c04-559587a3ab4f">
+					<reportElement key="textField" x="486" y="18" width="46" height="15" forecolor="#000000" uuid="90aedb7d-4b08-4bf2-8c04-559587a3ab4f">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -264,7 +266,7 @@ FROM
 					<textFieldExpression><![CDATA[$F{NOMINAL_WEIGHT}]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="false">
-					<reportElement key="textField" x="542" y="16" width="32" height="15" forecolor="#000000" uuid="21e927fd-41cf-4573-bafa-49c1854029ee">
+					<reportElement key="textField" x="542" y="18" width="32" height="15" forecolor="#000000" uuid="21e927fd-41cf-4573-bafa-49c1854029ee">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -403,11 +405,8 @@ FROM
 				<line direction="BottomUp">
 					<reportElement key="line" x="1" y="1" width="799" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="b12fcf57-31e3-42dd-a7ee-1ebb4fe6e54c"/>
 				</line>
-				<line direction="BottomUp">
-					<reportElement key="line" x="0" y="14" width="799" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="eba2071c-0475-4138-be67-f237da1b1284"/>
-				</line>
 				<staticText>
-					<reportElement key="staticText" x="152" y="2" width="69" height="12" forecolor="#000000" uuid="f922f3b6-7155-497f-b796-d9cc2b5dd4b2">
+					<reportElement key="staticText" x="152" y="3" width="69" height="12" forecolor="#000000" uuid="f922f3b6-7155-497f-b796-d9cc2b5dd4b2">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -418,12 +417,12 @@ FROM
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement>
-						<font size="10"/>
+						<font fontName="SansSerif" size="9"/>
 					</textElement>
 					<text><![CDATA[Process Order]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="1" y="2" width="110" height="12" forecolor="#000000" uuid="a1977e26-d662-48ab-8cb3-9174d0d75035">
+					<reportElement key="staticText" x="1" y="3" width="110" height="12" forecolor="#000000" uuid="a1977e26-d662-48ab-8cb3-9174d0d75035">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<box>
@@ -433,12 +432,12 @@ FROM
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement>
-						<font size="10"/>
+						<font fontName="SansSerif" size="9"/>
 					</textElement>
 					<text><![CDATA[Sample Point]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="236" y="2" width="64" height="12" forecolor="#000000" uuid="65528527-f2e9-4629-9ceb-295f9fb6074f">
+					<reportElement key="staticText" x="236" y="3" width="64" height="12" forecolor="#000000" uuid="65528527-f2e9-4629-9ceb-295f9fb6074f">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -448,12 +447,12 @@ FROM
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement>
-						<font size="10"/>
+						<font fontName="SansSerif" size="9"/>
 					</textElement>
 					<text><![CDATA[Material]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="304" y="2" width="76" height="12" forecolor="#000000" uuid="23b3c358-47c3-4e34-87a7-95a6d6a1c9cc">
+					<reportElement key="staticText" x="304" y="3" width="76" height="12" forecolor="#000000" uuid="23b3c358-47c3-4e34-87a7-95a6d6a1c9cc">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -463,12 +462,12 @@ FROM
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement>
-						<font size="10"/>
+						<font fontName="SansSerif" size="9"/>
 					</textElement>
 					<text><![CDATA[Product Group]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="414" y="2" width="54" height="12" forecolor="#000000" uuid="dfd72b2f-50e8-4080-9e9b-22eb3ee6a820">
+					<reportElement key="staticText" x="414" y="3" width="54" height="12" forecolor="#000000" uuid="dfd72b2f-50e8-4080-9e9b-22eb3ee6a820">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -478,12 +477,12 @@ FROM
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement>
-						<font size="10"/>
+						<font fontName="SansSerif" size="9"/>
 					</textElement>
 					<text><![CDATA[Container]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="487" y="2" width="46" height="12" forecolor="#000000" uuid="6f7cac20-d2c1-4945-b932-73b4b052afd7">
+					<reportElement key="staticText" x="487" y="3" width="46" height="12" forecolor="#000000" uuid="6f7cac20-d2c1-4945-b932-73b4b052afd7">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -493,12 +492,12 @@ FROM
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Right">
-						<font size="10"/>
+						<font fontName="SansSerif" size="9"/>
 					</textElement>
 					<text><![CDATA[Nominal Weight]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="542" y="2" width="32" height="12" forecolor="#000000" uuid="0f86fd4b-6753-47a4-b6d1-4bea9215c7e7">
+					<reportElement key="staticText" x="542" y="3" width="32" height="12" forecolor="#000000" uuid="0f86fd4b-6753-47a4-b6d1-4bea9215c7e7">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -508,10 +507,13 @@ FROM
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left">
-						<font size="10"/>
+						<font fontName="SansSerif" size="9"/>
 					</textElement>
 					<text><![CDATA[UOM]]></text>
 				</staticText>
+				<line direction="BottomUp">
+					<reportElement key="line" x="0" y="15" width="799" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="eba2071c-0475-4138-be67-f237da1b1284"/>
+				</line>
 			</band>
 		</groupHeader>
 	</group>
@@ -519,7 +521,7 @@ FROM
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="49" splitType="Stretch">
+		<band height="47" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField isBlankWhenNull="false">
