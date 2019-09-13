@@ -243,7 +243,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE FREQUENCY", "15", "WEIGHT CHECK FREQUENCY MINS");
 		lSampleFrequency = Integer.valueOf(temp);
 		fld_SampleFrequency.setText(String.valueOf(lSampleFrequency));
-		
+
 		temp = ctrl.getKeyValueWithDefault("WEIGHT GRAPH HOURS", "6", "WEIGHT GRAPH TIME WINDOW");
 		lGraphWindowHours = Integer.valueOf(temp);
 
@@ -343,13 +343,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			query.addParamtoSQL("process_order =", orderdb.getProcessOrder());
 
 			Calendar calendar = Calendar.getInstance();
-			
+
 			calendar.add(Calendar.HOUR, (-1 * lGraphWindowHours));
 			calendar.add(Calendar.MINUTE, -1);
-			
+
 			Timestamp startdate = new Timestamp(calendar.getTimeInMillis());
 			startdate.setNanos(0);
-			
+
 			query.addParamtoSQL("sample_date >=", startdate);
 
 			query.addParamtoSQL("sample_mean >", 0);
@@ -450,17 +450,17 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		source.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		source.setPosition(RectangleEdge.BOTTOM);
 		source.setHorizontalAlignment(HorizontalAlignment.RIGHT);
-		chart.setTitle("Mean Weight ("+String.valueOf(lGraphWindowHours)+" Hours)");
+		chart.setTitle("Mean Weight (" + String.valueOf(lGraphWindowHours) + " Hours)");
 		chart.addSubtitle(source);
 
 		plot = (CategoryPlot) chart.getPlot();
-        plot.setRangePannable(true);
-        plot.setRangeGridlinesVisible(true);
-        plot.setRangeZeroBaselineVisible(true);
+		plot.setRangePannable(true);
+		plot.setRangeGridlinesVisible(true);
+		plot.setRangeZeroBaselineVisible(true);
 
 		// customise the range axis...
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        rangeAxis.setStandardTickUnits(NumberAxis.createStandardTickUnits());
+		rangeAxis.setStandardTickUnits(NumberAxis.createStandardTickUnits());
 
 		if (graphMinY == -1.0)
 		{
@@ -480,8 +480,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		rangeAxis.setRange(graphMinY, graphMaxY);
 		rangeAxis.setLabelAngle(0);
-//		rangeAxis.setAutoRange(true);
-//		rangeAxis.setAutoRangeIncludesZero(false);
+		// rangeAxis.setAutoRange(true);
+		// rangeAxis.setAutoRangeIncludesZero(false);
 
 		CategoryAxis domainAxis = plot.getDomainAxis();
 		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
@@ -489,8 +489,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		ChartUtils.applyCurrentTheme(chart);
 
 		// customise the renderer...
-        LineAndShapeRenderer renderer 
-        = (LineAndShapeRenderer) plot.getRenderer();
+		LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
 		renderer.setDefaultShapesVisible(true);
 		renderer.setDrawOutlines(true);
 		renderer.setUseFillPaint(true);
@@ -1044,7 +1043,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 			if (sampleSequence == lSampleSize)
 			{
-				jStatusText.setText("Saving results to database...");
 
 				std_dev = calculateStandardDeviation();
 				mean = calculateMean();
@@ -1062,7 +1060,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				btnj_Cancel.setEnabled(false);
 				btnManualInput.setEnabled(false);
 
-				jStatusText.setText("Results have been saved.");
 
 				SwingUtilities.invokeLater(new Runnable()
 				{
@@ -1193,41 +1190,55 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 	private void saveAll(BigDecimal mean, BigDecimal StdDev, Integer t1s, Integer t2s)
 	{
-		sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
-		sampleHeader.setSamplePoint(samplePointdb.getSamplePoint());
-		sampleHeader.setSampleDate(JUtility.getSQLDateTime());
-		sampleHeader.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
-		sampleHeader.setWorkstationID(workdb.getWorkstationID());
-		sampleHeader.setScaleID(workdb.getScaleID());
-		sampleHeader.setProcessOrder(orderdb.getProcessOrder());
-		sampleHeader.setRequiredResource(orderdb.getRequiredResource());
-		sampleHeader.setCustomerID(orderdb.getCustomerID());
-		sampleHeader.setMaterial(orderdb.getMaterial());
-		sampleHeader.setProductGroup(materialGroup);
-		sampleHeader.setContainerCode(containerCode);
-		sampleHeader.setNominalWeight(matgroupdb.getNominalWeight());
-		sampleHeader.setNominalWeightUom(matgroupdb.getNominalUOM());
-		sampleHeader.setTareWeight(matgroupdb.getTareWeight());
-		sampleHeader.setTareWeightUom(matgroupdb.getTareWeightUOM());
-		sampleHeader.setTNE(tnedb.getTNE());
-		sampleHeader.setNegT1(tnedb.getNegT1());
-		sampleHeader.setNegT2(tnedb.getNegT2());
-		sampleHeader.setSampleSize(lSampleSize);
-		sampleHeader.setSampleCount(lSampleSize);
-		sampleHeader.setSampleMean(mean);
-		sampleHeader.setSampleStdDev(StdDev);
-		sampleHeader.setSampleT1Count(t1s);
-		sampleHeader.setSampleT2Count(t2s);
-		sampleHeader.create();
-		sampleHeader.update();
-
-		for (int j = 0; j < sampleDetailList.size(); j++)
+		jStatusText.setText("");
+		
+		int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save results ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+		if (question == 0)
 		{
-			JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
-			t.setSampleDate(sampleHeader.getSampleDate());
-			t.create();
-			t.update();
+			jStatusText.setText("Saving results to database...");
 
+			sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
+			sampleHeader.setSamplePoint(samplePointdb.getSamplePoint());
+			sampleHeader.setSampleDate(JUtility.getSQLDateTime());
+			sampleHeader.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
+			sampleHeader.setWorkstationID(workdb.getWorkstationID());
+			sampleHeader.setScaleID(workdb.getScaleID());
+			sampleHeader.setProcessOrder(orderdb.getProcessOrder());
+			sampleHeader.setRequiredResource(orderdb.getRequiredResource());
+			sampleHeader.setCustomerID(orderdb.getCustomerID());
+			sampleHeader.setMaterial(orderdb.getMaterial());
+			sampleHeader.setProductGroup(materialGroup);
+			sampleHeader.setContainerCode(containerCode);
+			sampleHeader.setNominalWeight(matgroupdb.getNominalWeight());
+			sampleHeader.setNominalWeightUom(matgroupdb.getNominalUOM());
+			sampleHeader.setTareWeight(matgroupdb.getTareWeight());
+			sampleHeader.setTareWeightUom(matgroupdb.getTareWeightUOM());
+			sampleHeader.setTNE(tnedb.getTNE());
+			sampleHeader.setNegT1(tnedb.getNegT1());
+			sampleHeader.setNegT2(tnedb.getNegT2());
+			sampleHeader.setSampleSize(lSampleSize);
+			sampleHeader.setSampleCount(lSampleSize);
+			sampleHeader.setSampleMean(mean);
+			sampleHeader.setSampleStdDev(StdDev);
+			sampleHeader.setSampleT1Count(t1s);
+			sampleHeader.setSampleT2Count(t2s);
+			sampleHeader.create();
+			sampleHeader.update();
+
+			for (int j = 0; j < sampleDetailList.size(); j++)
+			{
+				JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
+				t.setSampleDate(sampleHeader.getSampleDate());
+				t.create();
+				t.update();
+
+			}
+			
+			jStatusText.setText("Results have been saved.");
+		}
+		else
+		{
+			jStatusText.setText("Cancelled.");
 		}
 
 	}
@@ -1395,9 +1406,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		sampleDetailList.clear();
 		populateList();
 		updateMaterialInfo(material, customerID, result);
-		
-//		graphMinY = new Double(-1);
-//	    graphMaxY = new Double(-1);
+
+		// graphMinY = new Double(-1);
+		// graphMaxY = new Double(-1);
 
 		return result;
 	}
@@ -1738,8 +1749,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		while (numberOK == false)
 		{
-			grossWt = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Gross_Weight_Grams"),grossWt);
-			//grossWt = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Gross_Weight_Grams"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null);
+			grossWt = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Gross_Weight_Grams"), grossWt);
+			// grossWt = (String) JOptionPane.showInputDialog(Common.mainForm,
+			// lang.get("dlg_Gross_Weight_Grams"), null,
+			// JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null,
+			// null);
 			if (grossWt != null)
 			{
 				if (grossWt.equals("") == false)
