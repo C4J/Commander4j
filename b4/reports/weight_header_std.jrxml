@@ -12,6 +12,18 @@
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Style1">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{SAMPLE_T1_COUNT}.doubleValue()>0]]></conditionExpression>
+			<style backcolor="#FDFE02"/>
+		</conditionalStyle>
+	</style>
+	<style name="Style2">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{SAMPLE_T2_COUNT}.doubleValue()>0]]></conditionExpression>
+			<style backcolor="#FF0000"/>
+		</conditionalStyle>
+	</style>
 	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["Company Name"]]></defaultValueExpression>
 	</parameter>
@@ -521,7 +533,7 @@
 				<textFieldExpression><![CDATA[$F{SAMPLE_STD_DEV}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="714" y="0" width="30" height="15" forecolor="#000000" uuid="9e4d105c-db91-44e2-9814-e5d639aac883">
+				<reportElement key="textField" style="Style1" mode="Opaque" x="714" y="0" width="30" height="15" forecolor="#000000" uuid="9e4d105c-db91-44e2-9814-e5d639aac883">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -537,7 +549,7 @@
 				<textFieldExpression><![CDATA[$F{SAMPLE_T1_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="750" y="0" width="30" height="15" forecolor="#000000" uuid="d7b6b94a-2715-4cdf-ba89-ee5c47dbc1e5">
+				<reportElement key="textField" style="Style2" mode="Opaque" x="750" y="0" width="30" height="15" forecolor="#000000" uuid="d7b6b94a-2715-4cdf-ba89-ee5c47dbc1e5">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
