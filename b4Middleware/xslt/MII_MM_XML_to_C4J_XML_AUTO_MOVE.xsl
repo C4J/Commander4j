@@ -26,7 +26,7 @@
     <!-- CONFIG DATA -->
     
     <xsl:variable name="HOSTREF"                select="string(c4j:getConfigItem('config','HostRef'))"/>
-    <xsl:variable name="PLANT"                  select="string(c4j:getConfigItem('config','Plant'))"/>
+    <xsl:variable name="PLANT"                  select="string(c4j:getConfigItem('config','Plant_Central'))"/>
     <xsl:variable name="WAREHOUSE"              select="string(c4j:getConfigItem('config','Warehouse'))"/>
     <xsl:variable name="LOCATION_LOC"           select="string(c4j:getConfigItem('config','Location'))"/>
     <xsl:variable name="LOCATION_CTR"           select="string(c4j:getConfigItem('config','Location_Central'))"/>
