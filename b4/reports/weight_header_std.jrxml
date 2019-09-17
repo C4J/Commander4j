@@ -281,7 +281,7 @@
 				<text><![CDATA[Process Order]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="562" y="3" width="54" height="12" forecolor="#000000" uuid="23e53ca1-f7bf-432f-a1b6-717d3c1d62db">
+				<reportElement key="staticText" x="562" y="3" width="54" height="15" forecolor="#000000" uuid="23e53ca1-f7bf-432f-a1b6-717d3c1d62db">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -296,7 +296,7 @@
 				<text><![CDATA[Mean]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="625" y="3" width="38" height="12" forecolor="#000000" uuid="a62fa3ad-eb65-45ee-b83e-bc461f50c6b0">
+				<reportElement key="staticText" x="625" y="3" width="38" height="15" forecolor="#000000" uuid="a62fa3ad-eb65-45ee-b83e-bc461f50c6b0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -311,7 +311,7 @@
 				<text><![CDATA[Count]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="672" y="3" width="38" height="12" forecolor="#000000" uuid="50955ff6-d2e5-42a2-bb1d-ba3f0ff70929">
+				<reportElement key="staticText" x="672" y="3" width="38" height="15" forecolor="#000000" uuid="50955ff6-d2e5-42a2-bb1d-ba3f0ff70929">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -326,7 +326,7 @@
 				<text><![CDATA[Std Dev]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="706" y="3" width="38" height="12" forecolor="#000000" uuid="7b604538-e8b6-4333-8332-721c6b7c95b8">
+				<reportElement key="staticText" x="706" y="3" width="38" height="15" forecolor="#000000" uuid="7b604538-e8b6-4333-8332-721c6b7c95b8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -341,7 +341,7 @@
 				<text><![CDATA[T1s]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="742" y="3" width="38" height="12" forecolor="#000000" uuid="faa30cd3-0f14-4fca-a98a-759dad170f53">
+				<reportElement key="staticText" x="742" y="3" width="38" height="15" forecolor="#000000" uuid="faa30cd3-0f14-4fca-a98a-759dad170f53">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -356,7 +356,7 @@
 				<text><![CDATA[T2s]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="530" y="3" width="32" height="12" forecolor="#000000" uuid="a337cbc0-bab2-46b6-bb69-39b4498d5230">
+				<reportElement key="staticText" x="530" y="3" width="32" height="15" forecolor="#000000" uuid="a337cbc0-bab2-46b6-bb69-39b4498d5230">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>

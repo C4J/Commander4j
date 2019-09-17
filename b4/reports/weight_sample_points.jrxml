@@ -161,7 +161,7 @@ FROM
 	<group name="Group2" keepTogether="true">
 		<groupExpression><![CDATA[$F{PROCESS_ORDER}]]></groupExpression>
 		<groupHeader>
-			<band height="52">
+			<band height="54">
 				<rectangle>
 					<reportElement key="rectangle" mode="Opaque" x="1" y="1" width="553" height="15" forecolor="#000000" backcolor="#FACF0F" uuid="cb0645d3-46e0-4c46-a386-44336062fc3e">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -282,7 +282,7 @@ FROM
 					<textFieldExpression><![CDATA[$F{NOMINAL_WEIGHT_UOM}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement key="staticText" x="62" y="40" width="95" height="12" forecolor="#000000" uuid="3096848f-8777-4723-b249-eb8ff8837b71">
+					<reportElement key="staticText" x="62" y="39" width="95" height="14" forecolor="#000000" uuid="3096848f-8777-4723-b249-eb8ff8837b71">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -298,7 +298,7 @@ FROM
 					<text><![CDATA[Sample Time]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="163" y="40" width="32" height="12" forecolor="#000000" uuid="af70f53c-b68c-409b-aad6-636c2e2c2e5c">
+					<reportElement key="staticText" x="163" y="39" width="32" height="14" forecolor="#000000" uuid="af70f53c-b68c-409b-aad6-636c2e2c2e5c">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -313,7 +313,7 @@ FROM
 					<text><![CDATA[Seq]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="197" y="40" width="54" height="12" forecolor="#000000" uuid="23e53ca1-f7bf-432f-a1b6-717d3c1d62db">
+					<reportElement key="staticText" x="197" y="39" width="54" height="14" forecolor="#000000" uuid="23e53ca1-f7bf-432f-a1b6-717d3c1d62db">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -328,7 +328,7 @@ FROM
 					<text><![CDATA[Mean]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="253" y="40" width="62" height="12" forecolor="#000000" uuid="b390780f-7dd7-4b39-8cb3-62182d9e9eed">
+					<reportElement key="staticText" x="253" y="39" width="62" height="14" forecolor="#000000" uuid="b390780f-7dd7-4b39-8cb3-62182d9e9eed">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -343,7 +343,7 @@ FROM
 					<text><![CDATA[Run Avg]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="331" y="40" width="38" height="12" forecolor="#000000" uuid="50955ff6-d2e5-42a2-bb1d-ba3f0ff70929">
+					<reportElement key="staticText" x="331" y="39" width="38" height="14" forecolor="#000000" uuid="50955ff6-d2e5-42a2-bb1d-ba3f0ff70929">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -358,7 +358,7 @@ FROM
 					<text><![CDATA[Std Dev]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="382" y="40" width="38" height="12" forecolor="#000000" uuid="a62fa3ad-eb65-45ee-b83e-bc461f50c6b0">
+					<reportElement key="staticText" x="382" y="39" width="38" height="14" forecolor="#000000" uuid="a62fa3ad-eb65-45ee-b83e-bc461f50c6b0">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -373,7 +373,7 @@ FROM
 					<text><![CDATA[Count]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="440" y="40" width="20" height="12" forecolor="#000000" uuid="7b604538-e8b6-4333-8332-721c6b7c95b8">
+					<reportElement key="staticText" x="440" y="39" width="20" height="14" forecolor="#000000" uuid="7b604538-e8b6-4333-8332-721c6b7c95b8">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
@@ -388,7 +388,7 @@ FROM
 					<text><![CDATA[T1s]]></text>
 				</staticText>
 				<staticText>
-					<reportElement key="staticText" x="481" y="40" width="20" height="12" forecolor="#000000" uuid="faa30cd3-0f14-4fca-a98a-759dad170f53">
+					<reportElement key="staticText" x="481" y="39" width="20" height="14" forecolor="#000000" uuid="faa30cd3-0f14-4fca-a98a-759dad170f53">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box>
