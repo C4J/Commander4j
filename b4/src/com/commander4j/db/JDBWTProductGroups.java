@@ -119,6 +119,10 @@ public class JDBWTProductGroups
 	
 	public BigDecimal getLowerLimit()
 	{
+		if (dbLowerLimit == null)
+		{
+			dbLowerLimit = new BigDecimal("0.000");
+		}
 		return dbLowerLimit;
 	}
 
@@ -599,9 +603,9 @@ public class JDBWTProductGroups
         JUtility.padString(getNominalWeight().toString(), false, field_NominalWeight, " ")+" "+ 
 		JUtility.padString(getNominalUOM(), true, field_nominal_uom, " ")+" "+
         JUtility.padString(getTareWeight().toString(), false, field_TareWeight, " ")+" "+ 
-		JUtility.padString(getTareWeightUOM(), true, field_tare_uom, "   ")+" "+ 
-		JUtility.padString(getLowerLimit().toString(), true, field_LowerLimit, " ")+"   "+ 
-		JUtility.padString(getSamplesRequired().toString(), true, field_tare_uom, " ");
+		JUtility.padString(getTareWeightUOM(), true, field_tare_uom, " ")+" "+ 
+		JUtility.padString(getLowerLimit().toString(), false, field_LowerLimit, " ")+"   "+ 
+		JUtility.padString(getSamplesRequired().toString(), true, field_Samples_Required, " ");
 
 		return result;
 	}
