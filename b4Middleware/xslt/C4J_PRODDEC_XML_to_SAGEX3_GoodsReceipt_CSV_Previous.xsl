@@ -9,9 +9,7 @@
 	<xsl:strip-space  elements="*"/>
 	<xsl:template match="text() | @*"/>
 	<xsl:variable name="sscc" select="/message/messageData[1]/productionDeclaration[1]/SSCC"/>
-	<xsl:variable name="batchOverride" select="/message/messageData[1]/productionDeclaration[1]/customerBatchOverride[1]"/>
-	<xsl:variable name="batchFormat" select="/message/messageData[1]/productionDeclaration[1]/customerBatchFormat[1]"/>
-	
+
 	<xsl:template match="message/messageData/productionDeclaration">
 		<data type="CSV">
 				
@@ -32,19 +30,7 @@
 				<col id="4">1</col>
 				<col id="5"><xsl:value-of select="warehouse"/></col>
 				<col id="6">A</col>
-				
-				<xsl:if test="$batchOverride='N'">
-					<!--<Default Format>-->
-					<col id="7"><xsl:value-of select="batch"/><xsl:value-of select="substring($sscc,12,3)"/></col>
-				</xsl:if>
-				
-				<xsl:if test="$batchOverride='Y'">	
-					<xsl:if test="$batchFormat='{YEAR1}{JULIAN_DAY}{PLANT}'">
-						<!--<NPPE Format>-->
-						<col id="7"><xsl:value-of select="batch"/></col>
-					</xsl:if>	
-				</xsl:if>				
-				
+				<col id="7"><xsl:value-of select="batch"/></col>
 				<col id="8"><xsl:value-of  select="substring($sscc,15,3)"/></col>
 				<col id="9"><xsl:value-of select="$sscc"/></col>
 			</row>
