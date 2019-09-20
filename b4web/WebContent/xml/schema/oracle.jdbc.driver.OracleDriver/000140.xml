@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		ALTER TABLE "APP_WEIGHT_PRODUCT_GROUP" 
+		ADD ("UPPER_LIMIT" NUMBER(22,3) VISIBLE DEFAULT 120.000 )
+	</statement>
+
+	<statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'EN', 'Upper Limit', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'DE', 'Obere Grenze', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'ES', 'Limite superior', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'FR', 'Limite supérieure', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'HU', 'Felső határ', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'IT', 'Limite superiore', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'NL', 'Bovenlimiet', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'PL', 'Górna granica', '0')
+    </statement>
+        		     
+</DDL>
+
