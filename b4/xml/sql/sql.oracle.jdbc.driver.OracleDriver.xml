@@ -1845,7 +1845,7 @@
 		</statement>
 		<statement>
 			<id>JDBProductGroup.update</id>
-			<text>update {schema}APP_WEIGHT_PRODUCT_GROUP set description = ?,nominal_weight=?,nominal_weight_uom=?,tare_weight=?,tare_weight_uom=?,samples_required=?,lower_limit=? where product_group = ?</text>
+			<text>update {schema}APP_WEIGHT_PRODUCT_GROUP set description = ?,nominal_weight=?,nominal_weight_uom=?,tare_weight=?,tare_weight_uom=?,samples_required=?,lower_limit=?,upper_limit=? where product_group = ?</text>
 		</statement>
 	    <statement>
 			<id>JDBProductGroup.isValidProductGroup</id>

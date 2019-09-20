@@ -59,6 +59,7 @@ public class JDBWTProductGroups
 	public static int field_nominal_uom = 3;
 	public static int field_tare_uom = 3;
 	public static int field_LowerLimit = 10;
+	public static int field_UpperLimit = 10;
 	public static int field_Samples_Required = 10;
 	private String dbErrorMessage;
 	private String dbMaterialGroup;
@@ -68,6 +69,7 @@ public class JDBWTProductGroups
 	private String dbNominalWeightUOM = "";
 	private BigDecimal dbTareWeight = new BigDecimal("0.000");
 	private BigDecimal dbLowerLimit = new BigDecimal("0.000");
+	private BigDecimal dbUpperLimit = new BigDecimal("0.000");
 	private Integer dbSamplesRequired = 0;
 	private String dbTareWeightUOM = "";
 	private final Logger logger = Logger.getLogger(JDBWTProductGroups.class);
@@ -87,7 +89,7 @@ public class JDBWTProductGroups
 		uom = new JDBUom(getHostID(), getSessionID());
 	}
 
-	public JDBWTProductGroups(String host, String session, String materialGroup, String description, BigDecimal nominalWeight, String nominalUOM, BigDecimal tareWeight, String tareUOM,Integer samples,BigDecimal lowerLimit)
+	public JDBWTProductGroups(String host, String session, String materialGroup, String description, BigDecimal nominalWeight, String nominalUOM, BigDecimal tareWeight, String tareUOM,Integer samples,BigDecimal lowerLimit,BigDecimal upperLimit)
 	{
 		setHostID(host);
 		setSessionID(session);
@@ -99,6 +101,7 @@ public class JDBWTProductGroups
 		setTareUOM(tareUOM);
 		setSamplesRequired(samples);
 		setLowerLimit(lowerLimit);
+		setUpperLimit(upperLimit);
 
 	}
 	
@@ -110,6 +113,11 @@ public class JDBWTProductGroups
 	public void setLowerLimit(BigDecimal lowerLimit)
 	{
 		dbLowerLimit = lowerLimit;
+	}
+	
+	public void setUpperLimit(BigDecimal upperLimit)
+	{
+		dbUpperLimit = upperLimit;
 	}
 	
 	public Integer getSamplesRequired()
@@ -125,6 +133,15 @@ public class JDBWTProductGroups
 		}
 		return dbLowerLimit;
 	}
+	
+	public BigDecimal getUpperLimit()
+	{
+		if (dbUpperLimit == null)
+		{
+			dbUpperLimit = new BigDecimal("0.000");
+		}
+		return dbUpperLimit;
+	}
 
 	public void clear()
 	{
@@ -134,6 +151,7 @@ public class JDBWTProductGroups
 		setTareUOM("");
 		setNominalUOM("");
 		setLowerLimit(new BigDecimal("0"));
+		setUpperLimit(new BigDecimal("0"));
 		setSamplesRequired(0);
 		
 	}
@@ -345,6 +363,7 @@ public class JDBWTProductGroups
 				tne.setTareWeight(rs.getBigDecimal("tare_weight"));
 				tne.setTareUOM(rs.getString("tare_weight_uom"));
 				tne.setLowerLimit(rs.getBigDecimal("lower_limit"));
+				tne.setUpperLimit(rs.getBigDecimal("upper_limit"));
 				tne.setSamplesRequired(rs.getInt("samples_required"));
 				tneList.add(tne);
 			}
@@ -367,7 +386,7 @@ public class JDBWTProductGroups
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBWTProductGroups(getHostID(), getSessionID(), "product_group", "description", new BigDecimal("0"), "nominal_weight_uom", new BigDecimal("0"), "tare_weight_uom",0,new BigDecimal("0")));
+			result.addElement(new JDBWTProductGroups(getHostID(), getSessionID(), "product_group", "description", new BigDecimal("0"), "nominal_weight_uom", new BigDecimal("0"), "tare_weight_uom",0,new BigDecimal("0"),new BigDecimal("0")));
 		}
 		else
 		{
@@ -378,7 +397,7 @@ public class JDBWTProductGroups
 				while (rs.next())
 				{
 					result.addElement(new JDBWTProductGroups(getHostID(), getSessionID(), rs.getString("product_group"), rs.getString("description"), rs.getBigDecimal("nominal_weight"), rs.getString("nominal_weight_uom"), rs.getBigDecimal("tare_weight"),
-							rs.getString("tare_weight_uom"),rs.getInt("samples_required"),rs.getBigDecimal("lower_limit")));
+							rs.getString("tare_weight_uom"),rs.getInt("samples_required"),rs.getBigDecimal("lower_limit"),rs.getBigDecimal("upper_limit")));
 				}
 				rs.close();
 
@@ -415,6 +434,7 @@ public class JDBWTProductGroups
 			setTareWeight(rs.getBigDecimal("tare_weight"));
 			setTareUOM(rs.getString("tare_weight_uom"));
 			setLowerLimit(rs.getBigDecimal("lower_limit"));
+			setUpperLimit(rs.getBigDecimal("upper_limit"));
 			setSamplesRequired(rs.getInt("samples_required"));
 		}
 		catch (SQLException e)
@@ -603,9 +623,10 @@ public class JDBWTProductGroups
         JUtility.padString(getNominalWeight().toString(), false, field_NominalWeight, " ")+" "+ 
 		JUtility.padString(getNominalUOM(), true, field_nominal_uom, " ")+" "+
         JUtility.padString(getTareWeight().toString(), false, field_TareWeight, " ")+" "+ 
-		JUtility.padString(getTareWeightUOM(), true, field_tare_uom, " ")+" "+ 
-		JUtility.padString(getLowerLimit().toString(), false, field_LowerLimit, " ")+"   "+ 
-		JUtility.padString(getSamplesRequired().toString(), true, field_Samples_Required, " ");
+		JUtility.padString(getTareWeightUOM(), true, field_tare_uom, " ")+"  "+ 
+		JUtility.padString(getLowerLimit().toString(), false, field_LowerLimit, " ")+"    "+ 
+		JUtility.padString(getUpperLimit().toString(), false, field_UpperLimit, " ")+ 
+		JUtility.padString(getSamplesRequired().toString(), false, field_Samples_Required, " ");
 
 		return result;
 	}
@@ -629,7 +650,8 @@ public class JDBWTProductGroups
 				stmtupdate.setString(5, getTareWeightUOM());
 				stmtupdate.setInt(6, getSamplesRequired());
 				stmtupdate.setBigDecimal(7, getLowerLimit());
-				stmtupdate.setString(8, getProductGroup());
+				stmtupdate.setBigDecimal(8, getUpperLimit());
+				stmtupdate.setString(9, getProductGroup());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

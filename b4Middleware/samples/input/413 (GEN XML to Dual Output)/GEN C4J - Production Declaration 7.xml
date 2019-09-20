@@ -1,2 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<message><hostRef>service</hostRef><messageRef>12584314</messageRef><interfaceType>Production Declaration</interfaceType><messageInformation>SSCC=350001615021853044</messageInformation><interfaceDirection>Output</interfaceDirection><messageDate>2016-08-01T14:58:16</messageDate><messageData><productionDeclaration><SSCC>350001615021853044</SSCC><processOrder>20725187</processOrder><recipe>100000000028949253</recipe><requiredResource>P2VK1112</requiredResource><material>43170672</material><description>GOURMET PERLE GiJ Turkey BSt 85g XB</description><old_code></old_code><ean>07613032213848</ean><variant>00</variant><status>Unrestricted</status><batch>6214093310</batch><batchStatus>Restricted</batchStatus><expiry_Mode>BATCH</expiry_Mode><expiryDate>2018-08-31T00:00:00</expiryDate><location>WISBECH</location><name>Wisbech</name><gln>5000161800292</gln><plant>0933</plant><warehouse>734</warehouse><storageLocation>0001</storageLocation><storageSection></storageSection><storageBin>DESPATCH</storageBin><storageType>PRO</storageType><productionQuantity>5616.000</productionQuantity><productionUOM>EA</productionUOM><confirmed>Y</confirmed><productionDate>2016-08-01T14:58:03</productionDate></productionDeclaration></messageData></message>
+<message>
+    <hostRef>service</hostRef>
+    <messageRef>12584314</messageRef>
+    <interfaceType>Production Declaration</interfaceType>
+    <messageInformation>SSCC=350001615021853044</messageInformation>
+    <interfaceDirection>Output</interfaceDirection>
+    <messageDate>2016-08-01T14:58:16</messageDate>
+    <messageData>
+        <productionDeclaration>
+            <SSCC>350001615021853044</SSCC>
+            <processOrder>20725187</processOrder>
+            <recipe>100000000028949253</recipe>
+            <requiredResource>P2VK1112</requiredResource>
+            <material>43170672</material>
+            <description>GOURMET PERLE GiJ Turkey BSt 85g XB</description>
+            <old_code/>
+            <ean>07613032213848</ean>
+            <variant>00</variant>
+            <status>Unrestricted</status>
+            <batch>6214093310</batch>
+            <customerBatchOverride>N</customerBatchOverride>
+            <batchStatus>Restricted</batchStatus>
+            <expiry_Mode>BATCH</expiry_Mode>
+            <expiryDate>2018-08-31T00:00:00</expiryDate>
+            <location>WISBECH</location>
+            <name>Wisbech</name>
+            <gln>5000161800292</gln>
+            <plant>0933</plant>
+            <warehouse>734</warehouse>
+            <storageLocation>0001</storageLocation>
+            <storageSection/>
+            <storageBin>DESPATCH</storageBin>
+            <storageType>PRO</storageType>
+            <productionQuantity>5616.000</productionQuantity>
+            <productionUOM>EA</productionUOM>
+            <confirmed>Y</confirmed>
+            <productionDate>2016-08-01T14:58:03</productionDate>
+        </productionDeclaration>
+    </messageData>
+</message>

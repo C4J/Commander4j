@@ -200,6 +200,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private static Double graphMinY = new Double(-1);
 	private static Double graphMaxY = new Double(-1);
 	private BigDecimal lowerLimit = new BigDecimal("0.000");
+	private BigDecimal upperLimit = new BigDecimal("0.000");
 
 	private Integer t1_count = 0;
 	private Integer t2_count = 0;
@@ -451,7 +452,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		source.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		source.setPosition(RectangleEdge.BOTTOM);
 		source.setHorizontalAlignment(HorizontalAlignment.RIGHT);
-		chart.setTitle("Mean Weight (" + String.valueOf(lGraphWindowHours) + " Hours)");
+		chart.setTitle("Mean Weight "+samplePointdb.getDescription()+" (" + String.valueOf(lGraphWindowHours) + " Hours)");
 		chart.addSubtitle(source);
 
 		plot = (CategoryPlot) chart.getPlot();
@@ -1007,7 +1008,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		{
 			BigDecimal current = new BigDecimal(weight);
 
-			if (current.compareTo(lowerLimit) == 1)
+			if ((current.compareTo(lowerLimit) == 1) && (current.compareTo(upperLimit) == -1))
 			{
 
 				jStatusText.setText("Recording " + weight + " " + weightUOM);
@@ -1442,7 +1443,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				tare = matgroupdb.getTareWeight();
 				tarelUom = matgroupdb.getTareWeightUOM();
 				lowerLimit = matgroupdb.getLowerLimit();
-
+				upperLimit = matgroupdb.getUpperLimit();
+				
 				lSampleSize = matgroupdb.getSamplesRequired();
 
 				fld_SampleSize.setText(String.valueOf(lSampleSize));

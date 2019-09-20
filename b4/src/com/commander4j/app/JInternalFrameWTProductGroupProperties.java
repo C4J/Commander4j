@@ -90,8 +90,10 @@ public class JInternalFrameWTProductGroupProperties extends JInternalFrame
 	private JTextField4j jTextField_TareWeight_UOM = new JTextField4j(JDBUom.field_uom);
 	private JLabel jStatusText = new JLabel("");
 	private JLabel4j_std label4j_std_lowerLimit = new JLabel4j_std();
+	private JLabel4j_std label4j_std_upperLimit = new JLabel4j_std();
 	private JLabel4j_std label4j_std_samplesRequired = new JLabel4j_std();
 	private JQuantityInput jTextField_LowerLimit = new JQuantityInput(new BigDecimal("0.00"));
+	private JQuantityInput jTextField_UpperLimit = new JQuantityInput(new BigDecimal("0.00"));
 	private JSpinner jSpinnerSamplesRequired;
 
 	public void setMaterialGroup(String group)
@@ -138,6 +140,8 @@ public class JInternalFrameWTProductGroupProperties extends JInternalFrame
 		
 		jTextField_LowerLimit.setText(matgroupDB.getLowerLimit().toString());
 		
+		jTextField_UpperLimit.setText(matgroupDB.getUpperLimit().toString());
+		
 		jSpinnerSamplesRequired.setValue(matgroupDB.getSamplesRequired());
 
 		jButtonSave.setEnabled(false);
@@ -177,7 +181,7 @@ public class JInternalFrameWTProductGroupProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 424, 332);
+			this.setBounds(25, 25, 424, 357);
 			setVisible(true);
 			this.setTitle("Material Group");
 			{
@@ -200,7 +204,7 @@ public class JInternalFrameWTProductGroupProperties extends JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(46, 229, 110, 32);
+					jButtonSave.setBounds(46, 252, 110, 32);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							save();
@@ -212,14 +216,14 @@ public class JInternalFrameWTProductGroupProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(158, 229, 110, 32);
+					jButtonHelp.setBounds(158, 252, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(270, 229, 110, 32);
+					jButtonClose.setBounds(270, 252, 110, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -319,7 +323,7 @@ public class JInternalFrameWTProductGroupProperties extends JInternalFrame
 				});
 				
 
-				jStatusText.setBounds(0, 273, 414, 27);
+				jStatusText.setBounds(0, 298, 414, 27);
 				jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 				jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 				jDesktopPane1.add(jStatusText);
@@ -333,12 +337,20 @@ public class JInternalFrameWTProductGroupProperties extends JInternalFrame
 				label4j_std_lowerLimit.setBounds(29, 148, 137, 21);
 				jDesktopPane1.add(label4j_std_lowerLimit);
 				
+				
+				label4j_std_upperLimit.setText(lang.get("lbl_Upper_Limit"));
+				label4j_std_upperLimit.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_std_upperLimit.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_std_upperLimit.setBounds(29, 183, 137, 21);
+				jDesktopPane1.add(label4j_std_upperLimit);
+				
 
 				label4j_std_samplesRequired.setText(lang.get("lbl_Samples_Required"));
 				label4j_std_samplesRequired.setHorizontalTextPosition(SwingConstants.RIGHT);
 				label4j_std_samplesRequired.setHorizontalAlignment(SwingConstants.RIGHT);
-				label4j_std_samplesRequired.setBounds(29, 181, 137, 21);
+				label4j_std_samplesRequired.setBounds(29, 219, 137, 21);
 				jDesktopPane1.add(label4j_std_samplesRequired);
+				
 				jTextField_LowerLimit.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyTyped(KeyEvent e) {
@@ -352,6 +364,21 @@ public class JInternalFrameWTProductGroupProperties extends JInternalFrame
 				jTextField_LowerLimit.setFont(new Font("Arial", Font.PLAIN, 11));
 				jTextField_LowerLimit.setBounds(176, 150, 108, 22);
 				jDesktopPane1.add(jTextField_LowerLimit);
+				
+				
+				jTextField_UpperLimit.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						jButtonSave.setEnabled(true);
+					}
+				});
+				
+				jTextField_UpperLimit.setVerifyInputWhenFocusTarget(false);
+				jTextField_UpperLimit.setText("0.000");
+				jTextField_UpperLimit.setHorizontalAlignment(SwingConstants.TRAILING);
+				jTextField_UpperLimit.setFont(new Font("Arial", Font.PLAIN, 11));
+				jTextField_UpperLimit.setBounds(176, 185, 108, 22);
+				jDesktopPane1.add(jTextField_UpperLimit);
 				
 				{
 
@@ -382,7 +409,7 @@ public class JInternalFrameWTProductGroupProperties extends JInternalFrame
 					JSpinner.NumberEditor ne_jSpinnerSamplesRequired = new JSpinner.NumberEditor(jSpinnerSamplesRequired);
 					ne_jSpinnerSamplesRequired.getTextField().setFont(Common.font_std);
 					jSpinnerSamplesRequired.setEditor(ne_jSpinnerSamplesRequired);
-					jSpinnerSamplesRequired.setBounds(176, 180, 63, 21);
+					jSpinnerSamplesRequired.setBounds(176, 218, 63, 21);
 					jSpinnerSamplesRequired.setValue(5);
 					jSpinnerSamplesRequired.getEditor().setSize(45, 21);
 
@@ -413,6 +440,7 @@ public class JInternalFrameWTProductGroupProperties extends JInternalFrame
 		matgroupDB.setNominalUOM(jTextField_NominalWeight_UOM.getText());
 		matgroupDB.setTareUOM(jTextField_TareWeight_UOM.getText());
 		matgroupDB.setLowerLimit(jTextField_LowerLimit.getQuantity());
+		matgroupDB.setUpperLimit(jTextField_UpperLimit.getQuantity());
 		matgroupDB.setSamplesRequired(Integer.valueOf(jSpinnerSamplesRequired.getValue().toString()));
 
 		if (matgroupDB.update())

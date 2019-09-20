@@ -195,7 +195,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(455, 518));
-			this.setBounds(0, 0, 756, 322);
+			this.setBounds(0, 0, 835, 322);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -208,7 +208,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(6, 29, 583, 249);
+					jScrollPane1.setBounds(6, 29, 671, 249);
 					{
 						ListModel<JDBWTProductGroups> jList1Model = new DefaultComboBoxModel<JDBWTProductGroups>();
 						jListGroups = new JList4j<JDBWTProductGroups>();
@@ -321,7 +321,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(609, 12, 125, 32);
+					jButtonAdd.setBounds(688, 12, 125, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_ADD"));
 					jButtonAdd.addActionListener(new ActionListener()
 					{
@@ -337,7 +337,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(609, 43, 125, 32);
+					jButtonDelete.setBounds(688, 43, 125, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_DELETE"));
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
 					jButtonDelete.addActionListener(new ActionListener()
@@ -354,7 +354,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(609, 74, 125, 32);
+					jButtonEdit.setBounds(688, 74, 125, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_PRODUCT_GROUP_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener()
 					{
@@ -369,7 +369,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(609, 105, 125, 32);
+					jButtonPrint.setBounds(688, 105, 125, 32);
 					jButtonPrint.setEnabled(true);
 					jButtonPrint.addActionListener(new ActionListener()
 					{
@@ -390,14 +390,14 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(609, 198, 125, 32);
+					jButtonHelp.setBounds(688, 198, 125, 32);
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.setBounds(609, 167, 125, 32);
+					jButtonRefresh.setBounds(688, 167, 125, 32);
 					jButtonRefresh.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -411,7 +411,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(609, 229, 125, 32);
+					jButtonClose.setBounds(688, 229, 125, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -425,7 +425,7 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(609, 136, 125, 32);
+					jButtonExcel.setBounds(688, 136, 125, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -436,9 +436,9 @@ public class JInternalFrameWTProductGroupAdmin extends javax.swing.JInternalFram
 					jDesktopPane1.add(jButtonExcel);
 				}
 
-				JLabel lbl_Legend = new JLabel("Product Group           Nominal Weight    Tare Weight   Lower Limit   Samples");
+				JLabel lbl_Legend = new JLabel("Product Group           Nominal Weight    Tare Weight   Lower Limit   Upper Limit   Samples");
 				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
-				lbl_Legend.setBounds(6, 12, 583, 15);
+				lbl_Legend.setBounds(6, 12, 671, 15);
 				jDesktopPane1.add(lbl_Legend);
 			}
 		}
