@@ -848,7 +848,7 @@ FROM
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{RUNNINGMEAN}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{RUNNINGMEAN}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField" x="215" y="0" width="30" height="11" forecolor="#000000" uuid="4bd54c63-5e54-4956-81a0-6a16ad42aa6c">

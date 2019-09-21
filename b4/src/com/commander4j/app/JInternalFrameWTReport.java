@@ -273,27 +273,29 @@ public class JInternalFrameWTReport extends JInternalFrame
 					"	(\n" + 
 					"	SELECT	SAMPLE_POINT,	SAMPLE_DATE,	USER_ID,	WORKSTATION_ID,	SCALE_ID,	PROCESS_ORDER,	REQUIRED_RESOURCE,	CUSTOMER_ID,	MATERIAL,	PRODUCT_GROUP,CONTAINER_CODE,\n" + 
 					"		TARE_WEIGHT,	TARE_WEIGHT_UOM,	NOMINAL_WEIGHT,	NOMINAL_WEIGHT_UOM,	TNE, NEG_T1,NEG_T2,SAMPLE_SIZE,	SAMPLE_COUNT,	SAMPLE_MEAN,	SAMPLE_STD_DEV,	SAMPLE_T1_COUNT,SAMPLE_T2_COUNT,\n" + 
-					"		SUM( SAMPLE_MEAN ) OVER (PARTITION BY SAMPLE_POINT,	PROCESS_ORDER ORDER BY	SAMPLE_POINT,	PROCESS_ORDER,	SAMPLE_DATE ) AS RUNNINGTOTAL,\n" + 
+					"		SUM( SAMPLE_MEAN )     OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS RUNNINGTOTAL,\n" + 
 					"		SUM( SAMPLE_COUNT )    OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS COUNT_TOTAL,\n" + 
 					"	    SUM( SAMPLE_T1_COUNT ) OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS T1_TOTAL,\n" + 
 					"	    SUM( SAMPLE_T2_COUNT ) OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS T2_TOTAL,\n" + 
 					"		AVG( SAMPLE_MEAN )     OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS MEAN_TOTAL,\n" + 
-					"		ROW_NUMBER ( ) OVER (	PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE 	) AS COUNTER");
+					"		ROW_NUMBER ( )         OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS COUNTER");
 	
 		}
 		else
 		{
-			q2.applyWhat("	YYY.*, \n" + 
-					"	round(YYY.runningTotal / YYY.counter,3) as runningMean \n" + 
-					"	FROM (\n" + 
-					"	select *,\n" + 
-					"	sum(sample_mean) over (PARTITION BY SAMPLE_POINT order by sample_point,sample_date) as runningTotal,\n" + 
-					"	sum( sample_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS COUNT_TOTAL,\n" + 
-					"	sum( sample_t1_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS T1_TOTAL,\n" + 
-					"	sum( sample_t2_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS T2_TOTAL,\n" + 
-					"	AVG( sample_mean ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS MEAN_TOTAL,\n" + 
-					"	row_number() over (PARTITION BY SAMPLE_POINT order by sample_point,process_order,sample_date) as COUNTER");
 			
+			q2.applyWhat(" YYY.*,\n" + 
+					"	round( YYY.RUNNINGTOTAL / YYY.COUNTER, 3 ) AS RUNNINGMEAN \n" + 
+					"   FROM\n" + 
+					"	(\n" + 
+					"	SELECT\n" + 
+					"		*,\n" + 
+					"		sum( sample_mean ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS RUNNINGTOTAL,\n" + 
+					"		sum( sample_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS COUNT_TOTAL,\n" + 
+					"		sum( sample_t1_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS T1_TOTAL,\n" + 
+					"		sum( sample_t2_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS T2_TOTAL,\n" + 
+					"		AVG( sample_mean ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS MEAN_TOTAL,\n" + 
+					"		row_number () over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS COUNTER ");
 		}
 		
 		q2.applyFrom("APP_WEIGHT_SAMPLE_HEADER");
