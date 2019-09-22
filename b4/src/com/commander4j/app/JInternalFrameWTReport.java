@@ -218,9 +218,11 @@ public class JInternalFrameWTReport extends JInternalFrame
 			q2.applyWhere("sample_t2_count > ", 0);
 		}
 
-		q2.applyWhere("nominal_weight > ", 0.000);
+		//q2.applyWhere("nominal_weight > ", 0.000);
 
-		q2.applyWhere("sample_mean > ", 0.000);
+		//q2.applyWhere("sample_mean > ", 0.000);
+		
+		q2.applySort("SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE,SAMPLE_SEQUENCE,SAMPLE_WEIGHT_DATE", false);
 
 		q2.applySQL();
 		result = q2.getPreparedStatement();
@@ -351,9 +353,9 @@ public class JInternalFrameWTReport extends JInternalFrame
 			q2.applyWhere("sample_t2_count > ", 0);
 		}
 
-		q2.applyWhere("nominal_weight > ", 0.000);
+		//q2.applyWhere("nominal_weight > ", 0.000);
 
-		q2.applyWhere("sample_mean > ", 0.000);
+		//q2.applyWhere("sample_mean > ", 0.000);
 		
 		//q2.applySort(" SAMPLE_POINT,SAMPLE_DATE", false);
 		
@@ -432,9 +434,9 @@ public class JInternalFrameWTReport extends JInternalFrame
 			q2.applyWhere("sample_t2_count > ", 0);
 		}
 
-		q2.applyWhere("nominal_weight > ", 0.000);
+		//q2.applyWhere("nominal_weight > ", 0.000);
 
-		q2.applyWhere("sample_mean > ", 0.000);
+		//q2.applyWhere("sample_mean > ", 0.000);
 
 		q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
 		q2.applyRestriction(jCheckBoxLimit.isSelected(), jSpinnerLimit.getValue());
@@ -708,15 +710,15 @@ public class JInternalFrameWTReport extends JInternalFrame
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Sort_By"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(403, 114, 69, 21);
+				label4j_std.setBounds(391, 115, 69, 21);
 				jDesktopPane1.add(label4j_std);
 
 				ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
-				{ "SAMPLE_POINT,SAMPLE_DATE", "SAMPLE_POINT,PRODUCT_GROUP,SAMPLE_DATE" });
+				{ "SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE", "SAMPLE_POINT,SAMPLE_DATE", "SAMPLE_POINT,PRODUCT_GROUP,SAMPLE_DATE" });
 				jComboBoxSortBy = new JComboBox4j<String>();
 				jComboBoxSortBy.setMaximumRowCount(15);
 				jComboBoxSortBy.setModel(jComboBoxSortByModel);
-				jComboBoxSortBy.setBounds(489, 113, 288, 22);
+				jComboBoxSortBy.setBounds(466, 114, 328, 22);
 				jDesktopPane1.add(jComboBoxSortBy);
 				jToggleButtonSequence.addActionListener(new ActionListener()
 				{
@@ -733,11 +735,40 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jDesktopPane1.add(label4j_std_report_type);
 
 				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[]
-				{ "Search Results", "Sample Point Summary","Mean above Nominal", "T1s or T2s","Detailed List" });
+				{ "Sample Point Summary","Sample Point Detailed List","Search Results", "Mean above Nominal", "T1s or T2s"});
 				jComboBoxReportType = new JComboBox4j<String>();
+				jComboBoxReportType.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (jComboBoxReportType.getSelectedItem().toString().equals( "Sample Point Summary"))
+						{
+							jComboBoxSortBy.setEnabled(false);
+						}
+						if (jComboBoxReportType.getSelectedItem().toString().equals( "Sample Point Detailed List"))
+						{
+							jComboBoxSortBy.setEnabled(false);
+
+						}
+						if (jComboBoxReportType.getSelectedItem().toString().equals( "Mean above Nominal"))
+						{
+							jComboBoxSortBy.setEnabled(true);
+
+						}
+						if (jComboBoxReportType.getSelectedItem().toString().equals( "T1s or T2s"))
+						{
+							jComboBoxSortBy.setEnabled(true);
+
+						}
+						if (jComboBoxReportType.getSelectedItem().toString().equals( "Search Results"))
+						{
+							jComboBoxSortBy.setEnabled(true);
+
+						}
+					}
+				});
 				jComboBoxReportType.setMaximumRowCount(15);
 				jComboBoxReportType.setModel(jComboBoxReportTypeModel);
 				jComboBoxReportType.setBounds(207, 113, 174, 22);
+				jComboBoxReportType.setSelectedItem("Search Results");
 				jDesktopPane1.add(jComboBoxReportType);
 				jToggleButtonSequence.addActionListener(new ActionListener()
 				{
@@ -747,8 +778,8 @@ public class JInternalFrameWTReport extends JInternalFrame
 					}
 				});
 
-				jToggleButtonSequence.setSelected(true);
-				jToggleButtonSequence.setBounds(778, 114, 21, 21);
+				jToggleButtonSequence.setSelected(false);
+				jToggleButtonSequence.setBounds(794, 114, 21, 22);
 				jDesktopPane1.add(jToggleButtonSequence);
 
 				JLabel4j_std label4j_std_1 = new JLabel4j_std();
@@ -926,7 +957,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 	private void print()
 	{
-		if (jComboBoxReportType.getSelectedItem().equals("Detailed List"))
+		if (jComboBoxReportType.getSelectedItem().equals("Sample Point Detailed List"))
 		{
 			PreparedStatement temp = buildSQLview();
 

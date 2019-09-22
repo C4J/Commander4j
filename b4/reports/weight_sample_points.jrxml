@@ -6,7 +6,7 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MS SQL Server"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.report.description" value="Standard List of APP_WEIGHT_HEADER"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -161,19 +161,19 @@ FROM
 	<field name="RUNNINGTOTAL" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="RUNNINGTOTAL"/>
 	</field>
-	<field name="COUNT_TOTAL" class="java.math.BigDecimal">
+	<field name="COUNT_TOTAL" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="COUNT_TOTAL"/>
 	</field>
-	<field name="T1_TOTAL" class="java.math.BigDecimal">
+	<field name="T1_TOTAL" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="T1_TOTAL"/>
 	</field>
-	<field name="T2_TOTAL" class="java.math.BigDecimal">
+	<field name="T2_TOTAL" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="T2_TOTAL"/>
 	</field>
 	<field name="MEAN_TOTAL" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="MEAN_TOTAL"/>
 	</field>
-	<field name="COUNTER" class="java.math.BigInteger">
+	<field name="COUNTER" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="COUNTER"/>
 	</field>
 	<field name="RUNNINGMEAN" class="java.math.BigDecimal">
@@ -748,7 +748,7 @@ FROM
 	</title>
 	<detail>
 		<band height="11" splitType="Stretch">
-			<textField pattern="yyyy-MM-dd HH:mm" isBlankWhenNull="false">
+			<textField pattern="yyyy-MM-dd HH:mm:ss" isBlankWhenNull="false">
 				<reportElement key="textField" x="113" y="0" width="96" height="11" forecolor="#000000" uuid="67d85b35-de92-485c-8c6f-d0f553a5908f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>

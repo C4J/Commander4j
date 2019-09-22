@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="weight_samples" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e388a4c6-1aa2-4e32-858c-04fbc4dd729b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MS SQL Server"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -192,8 +192,8 @@
 						<pen lineWidth="0.25" lineStyle="Solid"/>
 					</graphicElement>
 				</rectangle>
-				<textField pattern="yyyy-MM-dd HH:mm">
-					<reportElement x="66" y="14" width="86" height="11" uuid="6f0fa18d-f3ce-407e-8584-38c98595ecf7">
+				<textField pattern="yyyy-MM-dd HH:mm:ss">
+					<reportElement x="127" y="14" width="98" height="11" uuid="6f0fa18d-f3ce-407e-8584-38c98595ecf7">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement>
@@ -212,7 +212,7 @@
 					<textFieldExpression><![CDATA[$F{SAMPLE_POINT}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="153" y="14" width="60" height="11" uuid="366671b3-d483-4256-a3b9-2743a0633dac">
+					<reportElement x="64" y="14" width="60" height="11" uuid="366671b3-d483-4256-a3b9-2743a0633dac">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement>
@@ -221,7 +221,7 @@
 					<textFieldExpression><![CDATA[$F{PROCESS_ORDER}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="215" y="14" width="65" height="11" uuid="61845481-407d-47e9-a4d1-c6161ca819c5">
+					<reportElement x="225" y="14" width="55" height="11" uuid="61845481-407d-47e9-a4d1-c6161ca819c5">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement>
@@ -257,7 +257,7 @@
 					<text><![CDATA[Sample Point]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="66" y="2" width="86" height="11" uuid="547fcbc3-e11a-4821-aa08-a831a3ccd44b">
+					<reportElement x="127" y="2" width="86" height="11" uuid="547fcbc3-e11a-4821-aa08-a831a3ccd44b">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement>
@@ -266,7 +266,7 @@
 					<text><![CDATA[Sample Date]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="153" y="2" width="60" height="11" uuid="fdfa96b4-5c3b-4ebe-bb3f-16fbb03a89f1">
+					<reportElement x="64" y="2" width="60" height="11" uuid="fdfa96b4-5c3b-4ebe-bb3f-16fbb03a89f1">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement>
@@ -275,7 +275,7 @@
 					<text><![CDATA[Order]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="215" y="2" width="65" height="11" uuid="d286a3e0-dfed-4cae-85e8-34330e883fb5">
+					<reportElement x="225" y="2" width="55" height="11" uuid="d286a3e0-dfed-4cae-85e8-34330e883fb5">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement>
