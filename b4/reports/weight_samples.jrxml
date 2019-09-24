@@ -533,7 +533,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="22" isBold="true"/>
+					<font size="22" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Individual Weight Check Details]]></text>
 			</staticText>

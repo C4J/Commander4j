@@ -41,8 +41,8 @@ import com.commander4j.util.JUtility;
 public class JDBWTSampleDetail
 {
 
-	public static Integer field_GrossWeight = 10;
-	public static Integer field_NetWeight = 10;
+	public static Integer field_GrossWeight = 8;
+	public static Integer field_NetWeight = 8;
 	public static Integer field_TareWeight = 10;
 	public static Integer field_T1Count = 5;
 	public static Integer field_T2Count = 5;
@@ -477,11 +477,26 @@ public class JDBWTSampleDetail
 		
 		
 		String result = "";
+		String tFlag="";
 		
 		if (displayType == 1)
 		{
-			result= JUtility.padString(getSampleGrossWeight().toString(), false, field_GrossWeight, " ")+" "+ JUtility.padString(getSampleNetWeight().toString(), false, field_NetWeight, " ");
-		}
+			
+
+			if (getSampleT1Count() > 0)
+			{
+				tFlag = "-T1";
+			}
+			else
+			{
+				if (getSampleT2Count() > 0)
+				{
+					tFlag = "-T2";
+				}
+			}
+			result= JUtility.padString(getSampleGrossWeight().toString(), false, field_GrossWeight, " ")+" "+ JUtility.padString(getSampleNetWeight().toString(), false, field_NetWeight, " ") + "  "+tFlag;
+		}	
+			
 		else
 		{
 			result= JUtility.padString(getSampleSequence().toString(), false, 5, " ")+"     "+

@@ -217,10 +217,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			q2.applyWhere("sample_t2_count > ", 0);
 		}
-
-		//q2.applyWhere("nominal_weight > ", 0.000);
-
-		//q2.applyWhere("sample_mean > ", 0.000);
 		
 		q2.applySort("SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE,SAMPLE_SEQUENCE,SAMPLE_WEIGHT_DATE", false);
 
@@ -243,23 +239,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 	private PreparedStatement buildSQLnew()
 	{
 		
-		
-		//		SELECT
-		//		YYY.*,
-		//		round( YYY.runningTotal / YYY.counter, 3 ) AS runningMean 
-		//	FROM
-		//		(
-		//		SELECT
-		//			*,
-		//			sum( sample_mean ) over ( PARTITION BY SAMPLE_POINT ORDER BY sample_point, sample_date ) AS runningTotal,
-		//			row_number () over ( PARTITION BY SAMPLE_POINT ORDER BY sample_point, sample_date ) AS counter 
-		//		FROM
-		//			APP_WEIGHT_SAMPLE_HEADER 
-		//		WHERE
-		//			SAMPLE_POINT = 'VOLPAK 11' 
-		//		  AND SAMPLE_DATE >= '2019-08-14 09:31:30' 
-		//		) AS YYY
-				
 		
 		PreparedStatement result;
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
@@ -352,12 +331,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			q2.applyWhere("sample_t2_count > ", 0);
 		}
-
-		//q2.applyWhere("nominal_weight > ", 0.000);
-
-		//q2.applyWhere("sample_mean > ", 0.000);
-		
-		//q2.applySort(" SAMPLE_POINT,SAMPLE_DATE", false);
 		
 		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
 		{
@@ -433,10 +406,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			q2.applyWhere("sample_t2_count > ", 0);
 		}
-
-		//q2.applyWhere("nominal_weight > ", 0.000);
-
-		//q2.applyWhere("sample_mean > ", 0.000);
 
 		q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
 		q2.applyRestriction(jCheckBoxLimit.isSelected(), jSpinnerLimit.getValue());

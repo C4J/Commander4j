@@ -1,5 +1,7 @@
 package com.commander4j.app;
 
+import java.awt.BasicStroke;
+
 /**
  * @author David Garratt
  * 
@@ -37,13 +39,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Ellipse2D;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -70,25 +72,21 @@ import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
+
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.DateAxis;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.block.BlockContainer;
-import org.jfree.chart.block.BorderArrangement;
-import org.jfree.chart.block.EmptyBlock;
-import org.jfree.chart.labels.StandardXYToolTipGenerator;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.title.CompositeTitle;
-import org.jfree.chart.title.LegendTitle;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.chart.ui.HorizontalAlignment;
 import org.jfree.chart.ui.RectangleEdge;
-import org.jfree.data.time.Second;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
@@ -129,7 +127,7 @@ import com.fazecast.jSerialComm.SerialPortMessageListener;
  * @see com.commander4j.db.JDBWTSampleHeader JDBWTSampleHeader
  * @see com.commander4j.db.JDBWTSampleDetail JDBWTSampleDetail
  */
-public class JInternalFrameWTWeightCapture extends JInternalFrame
+public class JInternalFrameWTWeightCapture3 extends JInternalFrame
 {
 
 	private static final long serialVersionUID = 1;
@@ -167,14 +165,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JTextField4j fld_Tare_Weight_UOM = new JTextField4j(JDBUom.field_uom);
 	private JQuantityInput fld_TNE = new JQuantityInput(new BigDecimal("0.000"));
 	private JTextField4j fld_Workstation = new JTextField4j(JDBWTWorkstation.field_WorkstationID);
-
+	private JDesktopPane jDesktopPane1;
 	private JScrollPane scrollPane_Weights = new JScrollPane();
 	private JLabel4j_std jStatusText;
 	private JDBLanguage lang;
 	private JLabel4j_std lbl_Material;
 	private JLabel4j_std lbl_Process_Order;
 	private JList4j<JDBWTSampleDetail> list_Weights = new JList4j<JDBWTSampleDetail>();
-	private static PreparedStatement listStatement;
+	private PreparedStatement listStatement;
 	private boolean logEnabled = false;
 	private int lSampleFrequency = 15;
 	private int lSampleSize = 5;
@@ -192,13 +190,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 	private Integer sampleSequence = 0;
 	private Integer lGraphWindowHours = 6;
-	private static String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+	private String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private Timer timer = new Timer(1000, clocklistener);
 	private BigDecimal mean = new BigDecimal("0.000");
 	private BigDecimal batch_mean = new BigDecimal("0.000");
 	private BigDecimal std_dev = new BigDecimal("0.000");
 	private BigDecimal zero = new BigDecimal("0.000");
-
+	private static Double graphMinY = new Double(-1);
+	private static Double graphMaxY = new Double(-1);
 	private BigDecimal lowerLimit = new BigDecimal("0.000");
 	private BigDecimal upperLimit = new BigDecimal("0.000");
 
@@ -206,43 +205,28 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private Integer t2_count = 0;
 	private String materialGroup = "";
 	private String containerCode = "";
-	private static boolean validToScan = false;
+	private boolean validToScan = false;
 	private JButton btnManualInput = new JButton(Common.icon_add_16x16);
 	private JButton btnDebug = new JButton();
+	private static CategoryPlot plot = new CategoryPlot();
+	private static DefaultCategoryDataset ds = new DefaultCategoryDataset();
+	private static JFreeChart chart = ChartFactory.createLineChart("Mean Weight", // chart
+																					// title
+			"Time", // domain axis label
+			"Grams", // range axis label
+			ds, // data
+			PlotOrientation.VERTICAL, // orientation
+			false, // include legend
+			true, // tooltips
+			false // urls
+	);
+	private static ChartPanel panel = new ChartPanel(chart);
 
-	private static TimeSeries s1 = new TimeSeries("Mean Weight");
-	private static TimeSeries s2 = new TimeSeries("Standard Deviation");
-	private static TimeSeriesCollection dataset1 = new TimeSeriesCollection();
-	private static TimeSeriesCollection dataset2 = new TimeSeriesCollection();
-	private static JFreeChart chart;
-	private static XYPlot plot;
-	private static NumberAxis axis2 = new NumberAxis("Standard Deviation");
-	private static XYItemRenderer renderer;
-	private static XYLineAndShapeRenderer renderer2;
-	private static DateAxis axis;
-	private static LegendTitle legend1;
-	private static LegendTitle legend2;
-	private static BlockContainer container;
-	private static CompositeTitle legends;
-	private static ChartPanel chartPanel;
-	private JDesktopPane jDesktopPane1;
-
-	public JInternalFrameWTWeightCapture()
+	public JInternalFrameWTWeightCapture3()
 	{
 		super();
 		setIconifiable(true);
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-		
-		String temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE SIZE", "5", "WEIGHT CHECK SAMPLE SIZE");
-		lSampleSize = Integer.valueOf(temp);
-		fld_SampleSize.setText(String.valueOf(lSampleSize));
-
-		temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE FREQUENCY", "15", "WEIGHT CHECK FREQUENCY MINS");
-		lSampleFrequency = Integer.valueOf(temp);
-		fld_SampleFrequency.setText(String.valueOf(lSampleFrequency));
-
-		temp = ctrl.getKeyValueWithDefault("WEIGHT GRAPH HOURS", "6", "WEIGHT GRAPH TIME WINDOW");
-		lGraphWindowHours = Integer.valueOf(temp);
 
 		initGUI();
 
@@ -253,7 +237,16 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		fld_Workstation.setText(workstation);
 
+		String temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE SIZE", "5", "WEIGHT CHECK SAMPLE SIZE");
+		lSampleSize = Integer.valueOf(temp);
+		fld_SampleSize.setText(String.valueOf(lSampleSize));
 
+		temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE FREQUENCY", "15", "WEIGHT CHECK FREQUENCY MINS");
+		lSampleFrequency = Integer.valueOf(temp);
+		fld_SampleFrequency.setText(String.valueOf(lSampleFrequency));
+
+		temp = ctrl.getKeyValueWithDefault("WEIGHT GRAPH HOURS", "6", "WEIGHT GRAPH TIME WINDOW");
+		lGraphWindowHours = Integer.valueOf(temp);
 
 		updateWorkstationInfo(workstation, true);
 
@@ -334,27 +327,18 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		}
 	}
 
-
-	private void drawGraph()
+	private void buildSQL()
 	{
 
-		// buildSQL();
-		createDemoPanel();
-
-	}
-
-	private void createDataset()
-	{
 
 		if (validToScan)
 		{
-
 			ResultSet rs;
 			JDBQuery.closeStatement(listStatement);
 			JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 			query.clear();
 
-			query.addText(JUtility.substSchemaName(schemaName, "select sample_date,sample_mean,sample_std_dev from {schema}APP_WEIGHT_SAMPLE_HEADER"));
+			query.addText(JUtility.substSchemaName(schemaName, "select sample_date,sample_mean from {schema}APP_WEIGHT_SAMPLE_HEADER"));
 			query.addParamtoSQL("sample_point =", workdb.getSamplePoint());
 			query.addParamtoSQL("process_order =", orderdb.getProcessOrder());
 
@@ -372,11 +356,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 			query.bindParams();
 			listStatement = query.getPreparedStatement();
-			
-			
-			s1.clear();
-			s2.clear();
-			
 			try
 			{
 				rs = listStatement.executeQuery();
@@ -387,7 +366,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				int count = 0;
 
 				batch_mean = new BigDecimal("0.000");
-				Calendar cal = Calendar.getInstance();
 
 				while (rs.next())
 				{
@@ -395,48 +373,36 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					sequence.addLast(count);
 
 					Double d = rs.getDouble("sample_mean");
-					Double stddev = rs.getDouble("sample_std_dev");
 					BigDecimal t = rs.getBigDecimal("sample_mean");
 					Timestamp when = rs.getTimestamp("sample_date");
-					
-					cal.setTime(when);
-					int year= cal.get(Calendar.YEAR);
-					int month= cal.get(Calendar.MONTH);
-					int day= cal.get(Calendar.DAY_OF_MONTH);
-					int hour= cal.get(Calendar.HOUR_OF_DAY);
-					int mins= cal.get(Calendar.MINUTE);
-					int seconds =  cal.get(Calendar.SECOND);
+					String whenstr = JUtility.getISOTimeStampStringFormat(when);
+					whenstr = whenstr.substring(11, 16);
 
+					d.doubleValue();
 					means.addLast(d.doubleValue());
 					batch_mean = batch_mean.add(t);
 
-					try
+					if (ds.getColumnIndex(whenstr) > 0)
 					{
-					s1.add(new Second(seconds,mins, hour, day, month, year), d.doubleValue());
+						ds.setValue(d, "Weight", whenstr);
 					}
-					catch (Exception ex)
+					else
 					{
-						
+						ds.addValue(d, "Weight", whenstr);
 					}
-					
-					try
+
+					if ((d < graphMinY) || (graphMinY == -1))
 					{
-					s2.add(new Second(seconds,mins, hour, day, month, year), stddev.doubleValue());
-				}
-				catch (Exception ex)
-				{
-					
-				}
-					
+						graphMinY = d;
+					}
+
+					if ((d > graphMaxY) || (graphMaxY == -1))
+					{
+						graphMaxY = d;
+					}
 
 				}
 
-				dataset1.removeAllSeries();
-				dataset1.addSeries(s1);
-				
-				dataset2.removeAllSeries();
-				dataset2.addSeries(s2);
-				
 				if (count > 0)
 				{
 					batch_mean = batch_mean.divide(new BigDecimal(count), 3, BigDecimal.ROUND_HALF_UP);
@@ -451,65 +417,69 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 
 	}
 
-	private JFreeChart createChart()
+	private void drawGraph()
 	{
 
-		createDataset();
+		buildSQL();
+		createChart();
 
-		chart = ChartFactory.createTimeSeriesChart("Filler 11 Mean Weight ("+String.valueOf(lGraphWindowHours)+" hours)", "Time", "Mean Weight (grams)", dataset1, false, true, false);
+	}
 
-		plot = (XYPlot) chart.getPlot();
-		plot.setDomainPannable(true);
+	private void createChart()
+	{
+
+		TextTitle source = new TextTitle();
+		source.setFont(new Font("SansSerif", Font.PLAIN, 10));
+		source.setPosition(RectangleEdge.BOTTOM);
+		source.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+		chart.setTitle(samplePointdb.getDescription()+" Mean Weights (" + String.valueOf(lGraphWindowHours) + " Hours)");
+		chart.addSubtitle(source);
+
+		plot = (CategoryPlot) chart.getPlot();
 		plot.setRangePannable(true);
-		plot.setDomainCrosshairVisible(true);
-		plot.setRangeCrosshairVisible(true);
-		plot.setDomainCrosshairLockedOnData(true);
-		plot.setRangeCrosshairLockedOnData(true);
+		plot.setRangeGridlinesVisible(true);
+		plot.setRangeZeroBaselineVisible(true);
 
-		axis2.setAutoRangeIncludesZero(false);
-		plot.setRangeAxis(1, axis2);
-		plot.setDataset(1, dataset2);
-		plot.mapDatasetToRangeAxis(1, 1);
+		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+		rangeAxis.setStandardTickUnits(NumberAxis.createStandardTickUnits());
 
-		renderer = plot.getRenderer();
-		renderer.setDefaultToolTipGenerator(StandardXYToolTipGenerator.getTimeSeriesInstance());
-
-		if (renderer instanceof XYLineAndShapeRenderer)
+		if (graphMinY == -1.0)
 		{
-			XYLineAndShapeRenderer rr = (XYLineAndShapeRenderer) renderer;
-			rr.setDefaultShapesVisible(true);
-			rr.setDefaultShapesFilled(true);
+			graphMinY = (tnedb.getNominalWT().subtract(tnedb.getTNE()).doubleValue());
 		}
 
-		renderer2 = new XYLineAndShapeRenderer();
-		renderer2.setSeriesPaint(0, Color.black);
-		renderer2.setDefaultShapesVisible(true);
-		renderer2.setDefaultToolTipGenerator(StandardXYToolTipGenerator.getTimeSeriesInstance());
-		plot.setRenderer(1, renderer2);
+		if (graphMaxY == -1.0)
+		{
+			graphMaxY = (tnedb.getNominalWT().add(tnedb.getTNE()).doubleValue());
+		}
 
-		axis = (DateAxis) plot.getDomainAxis();
-		axis.setDateFormatOverride(new SimpleDateFormat("HH:mm"));
-		axis.setVerticalTickLabels(true);
+		if (graphMinY == graphMaxY)
+		{
+			graphMinY--;
+			graphMaxY++;
+		}
 
-		legend1 = new LegendTitle(renderer);
-		legend2 = new LegendTitle(renderer2);
+		rangeAxis.setRange(graphMinY, graphMaxY);
+		rangeAxis.setLabelAngle(0);
 
-		container = new BlockContainer(new BorderArrangement());
-		container.add(legend1, RectangleEdge.LEFT);
-		container.add(legend2, RectangleEdge.RIGHT);
-		container.add(new EmptyBlock(2000, 0));
+		CategoryAxis domainAxis = plot.getDomainAxis();
+		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);
 
-		legends = new CompositeTitle(container);
-		legends.setPosition(RectangleEdge.BOTTOM);
-
-		chart.addSubtitle(legends);
 		ChartUtils.applyCurrentTheme(chart);
-		return chart;
+
+		LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+		renderer.setDefaultShapesVisible(true);
+		renderer.setDrawOutlines(true);
+		renderer.setUseFillPaint(true);
+		renderer.setDefaultFillPaint(Color.white);
+		renderer.setSeriesStroke(0, new BasicStroke(3.0f));
+		renderer.setSeriesOutlineStroke(0, new BasicStroke(2.0f));
+		renderer.setSeriesShape(0, new Ellipse2D.Double(-5.0, -5.0, 10.0, 10.0));
+
 	}
 
 	private void updateGraph()
@@ -991,10 +961,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jDesktopPane1.add(btnManualInput);
 				btnManualInput.setEnabled(false);
 
-				createDemoPanel();
-				chartPanel.setBounds(14, 178, 772, 374);
+				panel = new ChartPanel(chart);
 
-				jDesktopPane1.add(chartPanel);
+				panel.setMouseWheelEnabled(false);
+				panel.setAutoscrolls(false);
+
+				panel.setBounds(14, 178, 772, 374);
+
+				jDesktopPane1.add(panel);
 
 			}
 		}
@@ -1002,15 +976,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		{
 			e.printStackTrace();
 		}
-	}
-
-	public void createDemoPanel()
-	{
-
-		chart = createChart();
-		chartPanel = new ChartPanel(chart, false);
-		chartPanel.setMouseWheelEnabled(false);
-		// return panel;
 	}
 
 	private boolean logSampleWeight(String weight, String weightUOM)
@@ -1094,7 +1059,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					jStatusText.setText("Weigh sample " + String.valueOf(sampleSequence + 1) + " of " + String.valueOf(lSampleSize));
 				}
 			}
-
+			
 		}
 		else
 		{
@@ -1213,46 +1178,46 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	{
 		jStatusText.setText("");
 
-		jStatusText.setText("Saving results to database...");
+			jStatusText.setText("Saving results to database...");
 
-		sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
-		sampleHeader.setSamplePoint(samplePointdb.getSamplePoint());
-		sampleHeader.setSampleDate(JUtility.getSQLDateTime());
-		sampleHeader.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
-		sampleHeader.setWorkstationID(workdb.getWorkstationID());
-		sampleHeader.setScaleID(workdb.getScaleID());
-		sampleHeader.setProcessOrder(orderdb.getProcessOrder());
-		sampleHeader.setRequiredResource(orderdb.getRequiredResource());
-		sampleHeader.setCustomerID(orderdb.getCustomerID());
-		sampleHeader.setMaterial(orderdb.getMaterial());
-		sampleHeader.setProductGroup(materialGroup);
-		sampleHeader.setContainerCode(containerCode);
-		sampleHeader.setNominalWeight(matgroupdb.getNominalWeight());
-		sampleHeader.setNominalWeightUom(matgroupdb.getNominalUOM());
-		sampleHeader.setTareWeight(matgroupdb.getTareWeight());
-		sampleHeader.setTareWeightUom(matgroupdb.getTareWeightUOM());
-		sampleHeader.setTNE(tnedb.getTNE());
-		sampleHeader.setNegT1(tnedb.getNegT1());
-		sampleHeader.setNegT2(tnedb.getNegT2());
-		sampleHeader.setSampleSize(lSampleSize);
-		sampleHeader.setSampleCount(lSampleSize);
-		sampleHeader.setSampleMean(mean);
-		sampleHeader.setSampleStdDev(StdDev);
-		sampleHeader.setSampleT1Count(t1s);
-		sampleHeader.setSampleT2Count(t2s);
-		sampleHeader.create();
-		sampleHeader.update();
+			sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
+			sampleHeader.setSamplePoint(samplePointdb.getSamplePoint());
+			sampleHeader.setSampleDate(JUtility.getSQLDateTime());
+			sampleHeader.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
+			sampleHeader.setWorkstationID(workdb.getWorkstationID());
+			sampleHeader.setScaleID(workdb.getScaleID());
+			sampleHeader.setProcessOrder(orderdb.getProcessOrder());
+			sampleHeader.setRequiredResource(orderdb.getRequiredResource());
+			sampleHeader.setCustomerID(orderdb.getCustomerID());
+			sampleHeader.setMaterial(orderdb.getMaterial());
+			sampleHeader.setProductGroup(materialGroup);
+			sampleHeader.setContainerCode(containerCode);
+			sampleHeader.setNominalWeight(matgroupdb.getNominalWeight());
+			sampleHeader.setNominalWeightUom(matgroupdb.getNominalUOM());
+			sampleHeader.setTareWeight(matgroupdb.getTareWeight());
+			sampleHeader.setTareWeightUom(matgroupdb.getTareWeightUOM());
+			sampleHeader.setTNE(tnedb.getTNE());
+			sampleHeader.setNegT1(tnedb.getNegT1());
+			sampleHeader.setNegT2(tnedb.getNegT2());
+			sampleHeader.setSampleSize(lSampleSize);
+			sampleHeader.setSampleCount(lSampleSize);
+			sampleHeader.setSampleMean(mean);
+			sampleHeader.setSampleStdDev(StdDev);
+			sampleHeader.setSampleT1Count(t1s);
+			sampleHeader.setSampleT2Count(t2s);
+			sampleHeader.create();
+			sampleHeader.update();
 
-		for (int j = 0; j < sampleDetailList.size(); j++)
-		{
-			JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
-			t.setSampleDate(sampleHeader.getSampleDate());
-			t.create();
-			t.update();
+			for (int j = 0; j < sampleDetailList.size(); j++)
+			{
+				JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
+				t.setSampleDate(sampleHeader.getSampleDate());
+				t.create();
+				t.update();
 
-		}
+			}
 
-		jStatusText.setText("Results have been saved.");
+			jStatusText.setText("Results have been saved.");
 
 	}
 
@@ -1371,7 +1336,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		String material = "";
 		String customerID = "";
 		String status = "";
-
+		ds.clear();
 
 		// Lookup is passed to indicate if previous step failed in which case
 		// there is no need to lookup date in this step.
@@ -1420,6 +1385,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		populateList();
 		updateMaterialInfo(material, customerID, result);
 
+
 		return result;
 	}
 
@@ -1446,7 +1412,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				tarelUom = matgroupdb.getTareWeightUOM();
 				lowerLimit = matgroupdb.getLowerLimit();
 				upperLimit = matgroupdb.getUpperLimit();
-
+				
 				lSampleSize = matgroupdb.getSamplesRequired();
 
 				fld_SampleSize.setText(String.valueOf(lSampleSize));
