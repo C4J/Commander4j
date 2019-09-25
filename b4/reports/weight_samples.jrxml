@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="weight_samples" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e388a4c6-1aa2-4e32-858c-04fbc4dd729b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MS SQL Server"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -38,6 +38,9 @@
 	</style>
 	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["Company Name"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="p_title" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[p_title]]></parameterDescription>
 	</parameter>
 	<queryString language="SQL">
 		<![CDATA[select * from view_weight_samples]]>
@@ -518,25 +521,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="32">
-			<staticText>
-				<reportElement key="staticText" x="386" y="0" width="414" height="30" uuid="c6d55251-6ec6-400d-9711-55b6c42160cf">
-					<property name="local_mesure_unity" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitheight" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="22" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Individual Weight Check Details]]></text>
-			</staticText>
+		<band height="34">
 			<textField isBlankWhenNull="false">
 				<reportElement key="textField-1" x="0" y="0" width="327" height="30" uuid="c3360e5c-a07b-4dbd-ad9c-1c1336ff6af3">
 					<property name="local_mesure_unitx" value="pixel"/>
@@ -556,6 +541,13 @@
 					<font size="22"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{COMPANY_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="0" width="470" height="30" uuid="2b2c933f-dadd-48cc-81a5-4c886beaacf0"/>
+				<textElement textAlignment="Right">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{p_title}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

@@ -736,7 +736,7 @@ FROM
 				<textFieldExpression><![CDATA[$P{COMPANY_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="500" y="0" width="298" height="30" uuid="3c8fdc3b-05c1-4bc1-a19c-574aca8062d3">
+				<reportElement x="350" y="0" width="446" height="30" uuid="3c8fdc3b-05c1-4bc1-a19c-574aca8062d3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">

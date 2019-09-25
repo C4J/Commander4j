@@ -700,19 +700,19 @@ public class JInternalFrameWTReport extends JInternalFrame
 				JLabel4j_std label4j_std_report_type = new JLabel4j_std();
 				label4j_std_report_type.setText(lang.get("mod_FRM_WEIGHT_REPORTS"));
 				label4j_std_report_type.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std_report_type.setBounds(3, 114, 192, 21);
+				label4j_std_report_type.setBounds(3, 114, 154, 21);
 				jDesktopPane1.add(label4j_std_report_type);
 
 				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[]
-				{ "Sample Point Summary","Sample Point Detailed List","Search Results", "Mean above Nominal", "T1s or T2s"});
+				{ "Summary Weight Report by Filler","Individual Weight Check Report by Filler","Search Results", "Mean above Nominal", "T1s or T2s"});
 				jComboBoxReportType = new JComboBox4j<String>();
 				jComboBoxReportType.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if (jComboBoxReportType.getSelectedItem().toString().equals( "Sample Point Summary"))
+						if (jComboBoxReportType.getSelectedItem().toString().equals( "Summary Weight Report by Filler"))
 						{
 							jComboBoxSortBy.setEnabled(false);
 						}
-						if (jComboBoxReportType.getSelectedItem().toString().equals( "Sample Point Detailed List"))
+						if (jComboBoxReportType.getSelectedItem().toString().equals( "Individual Weight Check Report by Filler"))
 						{
 							jComboBoxSortBy.setEnabled(false);
 
@@ -736,7 +736,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				});
 				jComboBoxReportType.setMaximumRowCount(15);
 				jComboBoxReportType.setModel(jComboBoxReportTypeModel);
-				jComboBoxReportType.setBounds(207, 113, 174, 22);
+				jComboBoxReportType.setBounds(160, 113, 221, 22);
 				jComboBoxReportType.setSelectedItem("Search Results");
 				jDesktopPane1.add(jComboBoxReportType);
 				jToggleButtonSequence.addActionListener(new ActionListener()
@@ -926,15 +926,16 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 	private void print()
 	{
-		if (jComboBoxReportType.getSelectedItem().equals("Sample Point Detailed List"))
+		if (jComboBoxReportType.getSelectedItem().equals("Individual Weight Check Report by Filler"))
 		{
 			PreparedStatement temp = buildSQLview();
-
-			JLaunchReport.runReport("RPT_WEIGHT_DETAILS", null, "", temp, "");
+			HashMap<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("p_title",jComboBoxReportType.getSelectedItem().toString());
+			JLaunchReport.runReport("RPT_WEIGHT_DETAILS", parameters, "", temp, "");
 		}
 		else
 		{
-			if (jComboBoxReportType.getSelectedItem().equals("Sample Point Summary"))
+			if (jComboBoxReportType.getSelectedItem().equals("Summary Weight Report by Filler"))
 			{
 				HashMap<String, Object> parameters = new HashMap<String, Object>();
 				parameters.put("p_title",jComboBoxReportType.getSelectedItem().toString());
