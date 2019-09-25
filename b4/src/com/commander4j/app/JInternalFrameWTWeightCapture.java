@@ -441,6 +441,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				{
 					batch_mean = batch_mean.divide(new BigDecimal(count), 3, BigDecimal.ROUND_HALF_UP);
 					fld_Batch_Mean.setText(batch_mean.toString());
+					if (batch_mean.compareTo(matgroupdb.getNominalWeight())==-1)
+					{
+						fld_Batch_Mean.setBackground(Color.RED);
+					}
+					else
+					{
+						fld_Batch_Mean.setBackground(Common.color_app_window);
+					}
 				}
 
 				rs.close();
@@ -840,21 +848,21 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				fld_Mean.setVerifyInputWhenFocusTarget(false);
 				fld_Mean.setHorizontalAlignment(SwingConstants.TRAILING);
-				fld_Mean.setFont(new Font("Arial", Font.PLAIN, 11));
+				fld_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Mean.setEditable(false);
 				fld_Mean.setBounds(901, 458, 73, 25);
 				jDesktopPane1.add(fld_Mean);
 
 				fld_Batch_Mean.setVerifyInputWhenFocusTarget(false);
 				fld_Batch_Mean.setHorizontalAlignment(SwingConstants.TRAILING);
-				fld_Batch_Mean.setFont(new Font("Arial", Font.PLAIN, 11));
+				fld_Batch_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Batch_Mean.setEditable(false);
 				fld_Batch_Mean.setBounds(901, 516, 73, 25);
 				jDesktopPane1.add(fld_Batch_Mean);
 
 				fld_Standard_Deviation.setVerifyInputWhenFocusTarget(false);
 				fld_Standard_Deviation.setHorizontalAlignment(SwingConstants.TRAILING);
-				fld_Standard_Deviation.setFont(new Font("Arial", Font.PLAIN, 11));
+				fld_Standard_Deviation.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Standard_Deviation.setEditable(false);
 				fld_Standard_Deviation.setBounds(901, 487, 73, 25);
 				jDesktopPane1.add(fld_Standard_Deviation);
