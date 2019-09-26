@@ -232,7 +232,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		super();
 		setIconifiable(true);
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-		
+
 		String temp = ctrl.getKeyValueWithDefault("WEIGHT SAMPLE SIZE", "5", "WEIGHT CHECK SAMPLE SIZE");
 		lSampleSize = Integer.valueOf(temp);
 		fld_SampleSize.setText(String.valueOf(lSampleSize));
@@ -252,8 +252,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		String workstation = JUtility.getClientName().toUpperCase();
 
 		fld_Workstation.setText(workstation);
-
-
 
 		updateWorkstationInfo(workstation, true);
 
@@ -334,7 +332,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		}
 	}
 
-
 	private void drawGraph()
 	{
 
@@ -372,11 +369,10 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 			query.bindParams();
 			listStatement = query.getPreparedStatement();
-			
-			
+
 			s1.clear();
 			s2.clear();
-			
+
 			try
 			{
 				rs = listStatement.executeQuery();
@@ -398,50 +394,49 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					Double stddev = rs.getDouble("sample_std_dev");
 					BigDecimal t = rs.getBigDecimal("sample_mean");
 					Timestamp when = rs.getTimestamp("sample_date");
-					
+
 					cal.setTime(when);
-					int year= cal.get(Calendar.YEAR);
-					int month= cal.get(Calendar.MONTH);
-					int day= cal.get(Calendar.DAY_OF_MONTH);
-					int hour= cal.get(Calendar.HOUR_OF_DAY);
-					int mins= cal.get(Calendar.MINUTE);
-					int seconds =  cal.get(Calendar.SECOND);
+					int year = cal.get(Calendar.YEAR);
+					int month = cal.get(Calendar.MONTH);
+					int day = cal.get(Calendar.DAY_OF_MONTH);
+					int hour = cal.get(Calendar.HOUR_OF_DAY);
+					int mins = cal.get(Calendar.MINUTE);
+					int seconds = cal.get(Calendar.SECOND);
 
 					means.addLast(d.doubleValue());
 					batch_mean = batch_mean.add(t);
 
 					try
 					{
-					s1.add(new Second(seconds,mins, hour, day, month, year), d.doubleValue());
+						s1.add(new Second(seconds, mins, hour, day, month, year), d.doubleValue());
 					}
 					catch (Exception ex)
 					{
-						
+
 					}
-					
+
 					try
 					{
-					s2.add(new Second(seconds,mins, hour, day, month, year), stddev.doubleValue());
-				}
-				catch (Exception ex)
-				{
-					
-				}
-					
+						s2.add(new Second(seconds, mins, hour, day, month, year), stddev.doubleValue());
+					}
+					catch (Exception ex)
+					{
+
+					}
 
 				}
 
 				dataset1.removeAllSeries();
 				dataset1.addSeries(s1);
-				
+
 				dataset2.removeAllSeries();
 				dataset2.addSeries(s2);
-				
+
 				if (count > 0)
 				{
 					batch_mean = batch_mean.divide(new BigDecimal(count), 3, BigDecimal.ROUND_HALF_UP);
 					fld_Batch_Mean.setText(batch_mean.toString());
-					if (batch_mean.compareTo(matgroupdb.getNominalWeight())==-1)
+					if (batch_mean.compareTo(matgroupdb.getNominalWeight()) == -1)
 					{
 						fld_Batch_Mean.setBackground(Color.RED);
 					}
@@ -459,7 +454,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 
 	}
@@ -469,7 +464,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		createDataset();
 
-		chart = ChartFactory.createTimeSeriesChart("Filler 11 Mean Weight ("+String.valueOf(lGraphWindowHours)+" hours)", "Time", "Mean Weight (grams)", dataset1, false, true, false);
+		chart = ChartFactory.createTimeSeriesChart("Filler 11 Mean Weight (" + String.valueOf(lGraphWindowHours) + " hours)", "Time", "Mean Weight (grams)", dataset1, false, true, false);
 
 		plot = (XYPlot) chart.getPlot();
 		plot.setDomainPannable(true);
@@ -1379,7 +1374,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		String material = "";
 		String customerID = "";
 		String status = "";
-
 
 		// Lookup is passed to indicate if previous step failed in which case
 		// there is no need to lookup date in this step.

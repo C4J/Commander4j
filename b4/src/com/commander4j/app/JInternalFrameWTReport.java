@@ -159,13 +159,13 @@ public class JInternalFrameWTReport extends JInternalFrame
 		});
 
 	}
-	
+
 	private PreparedStatement buildSQLview()
 	{
 
 		PreparedStatement result;
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
-	    q2.applyFrom("{schema}VIEW_WEIGHT_SAMPLES");
+		q2.applyFrom("{schema}VIEW_WEIGHT_SAMPLES");
 		q2.applyWhat("*");
 
 		if (checkBox4jFromEnabled.isSelected())
@@ -177,7 +177,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			q2.applyWhereLiteral(" sample_mean > nominal_weight ");
 		}
-		
+
 		if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
 		{
 			q2.applyWhereLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
@@ -217,7 +217,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			q2.applyWhere("sample_t2_count > ", 0);
 		}
-		
+
 		q2.applySort("SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE,SAMPLE_SEQUENCE,SAMPLE_WEIGHT_DATE", false);
 
 		q2.applySQL();
@@ -225,7 +225,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		return result;
 	}
-	
 
 	private void buildSQL()
 	{
@@ -235,52 +234,42 @@ public class JInternalFrameWTReport extends JInternalFrame
 		listStatement = buildSQLr();
 	}
 
-	
 	private PreparedStatement buildSQLnew()
 	{
-		
-		
+
 		PreparedStatement result;
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
-		
+
 		String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
-		
+
 		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
 		{
-			q2.applyWhat("	SAMPLE_POINT,	SAMPLE_DATE,	USER_ID,	WORKSTATION_ID,	SCALE_ID,	PROCESS_ORDER,	REQUIRED_RESOURCE,	CUSTOMER_ID,	MATERIAL,	PRODUCT_GROUP,	CONTAINER_CODE,\n" + 
-					"	TARE_WEIGHT,	TARE_WEIGHT_UOM,	NOMINAL_WEIGHT,	NOMINAL_WEIGHT_UOM,	TNE,	NEG_T1,	NEG_T2,	SAMPLE_SIZE,	SAMPLE_COUNT,	SAMPLE_MEAN,	SAMPLE_STD_DEV,\n" + 
-					"	SAMPLE_T1_COUNT,	SAMPLE_T2_COUNT,	RUNNINGTOTAL,	COUNT_TOTAL,	T1_TOTAL,	T2_TOTAL,	MEAN_TOTAL,	COUNTER,	ROUND( RUNNINGTOTAL / COUNTER, 3 ) AS RUNNINGMEAN \n" + 
-					" FROM\n" + 
-					"	(\n" + 
-					"	SELECT	SAMPLE_POINT,	SAMPLE_DATE,	USER_ID,	WORKSTATION_ID,	SCALE_ID,	PROCESS_ORDER,	REQUIRED_RESOURCE,	CUSTOMER_ID,	MATERIAL,	PRODUCT_GROUP,CONTAINER_CODE,\n" + 
-					"		TARE_WEIGHT,	TARE_WEIGHT_UOM,	NOMINAL_WEIGHT,	NOMINAL_WEIGHT_UOM,	TNE, NEG_T1,NEG_T2,SAMPLE_SIZE,	SAMPLE_COUNT,	SAMPLE_MEAN,	SAMPLE_STD_DEV,	SAMPLE_T1_COUNT,SAMPLE_T2_COUNT,\n" + 
-					"		SUM( SAMPLE_MEAN )     OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS RUNNINGTOTAL,\n" + 
-					"		SUM( SAMPLE_COUNT )    OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS COUNT_TOTAL,\n" + 
-					"	    SUM( SAMPLE_T1_COUNT ) OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS T1_TOTAL,\n" + 
-					"	    SUM( SAMPLE_T2_COUNT ) OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS T2_TOTAL,\n" + 
-					"		AVG( SAMPLE_MEAN )     OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS MEAN_TOTAL,\n" + 
-					"		ROW_NUMBER ( )         OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS COUNTER");
-	
+			q2.applyWhat("	SAMPLE_POINT,	SAMPLE_DATE,	USER_ID,	WORKSTATION_ID,	SCALE_ID,	PROCESS_ORDER,	REQUIRED_RESOURCE,	CUSTOMER_ID,	MATERIAL,	PRODUCT_GROUP,	CONTAINER_CODE,\n"
+					+ "	TARE_WEIGHT,	TARE_WEIGHT_UOM,	NOMINAL_WEIGHT,	NOMINAL_WEIGHT_UOM,	TNE,	NEG_T1,	NEG_T2,	SAMPLE_SIZE,	SAMPLE_COUNT,	SAMPLE_MEAN,	SAMPLE_STD_DEV,\n"
+					+ "	SAMPLE_T1_COUNT,	SAMPLE_T2_COUNT,	RUNNINGTOTAL,	COUNT_TOTAL,	T1_TOTAL,	T2_TOTAL,	MEAN_TOTAL,	COUNTER,	ROUND( RUNNINGTOTAL / COUNTER, 3 ) AS RUNNINGMEAN \n" + " FROM\n" + "	(\n"
+					+ "	SELECT	SAMPLE_POINT,	SAMPLE_DATE,	USER_ID,	WORKSTATION_ID,	SCALE_ID,	PROCESS_ORDER,	REQUIRED_RESOURCE,	CUSTOMER_ID,	MATERIAL,	PRODUCT_GROUP,CONTAINER_CODE,\n"
+					+ "		TARE_WEIGHT,	TARE_WEIGHT_UOM,	NOMINAL_WEIGHT,	NOMINAL_WEIGHT_UOM,	TNE, NEG_T1,NEG_T2,SAMPLE_SIZE,	SAMPLE_COUNT,	SAMPLE_MEAN,	SAMPLE_STD_DEV,	SAMPLE_T1_COUNT,SAMPLE_T2_COUNT,\n"
+					+ "		SUM( SAMPLE_MEAN )     OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS RUNNINGTOTAL,\n"
+					+ "		SUM( SAMPLE_COUNT )    OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS COUNT_TOTAL,\n"
+					+ "	    SUM( SAMPLE_T1_COUNT ) OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS T1_TOTAL,\n"
+					+ "	    SUM( SAMPLE_T2_COUNT ) OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS T2_TOTAL,\n"
+					+ "		AVG( SAMPLE_MEAN )     OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS MEAN_TOTAL,\n"
+					+ "		ROW_NUMBER ( )         OVER ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY SAMPLE_POINT,PROCESS_ORDER, SAMPLE_DATE ) AS COUNTER");
+
 		}
 		else
 		{
-			
-			q2.applyWhat(" YYY.*,\n" + 
-					"	round( YYY.RUNNINGTOTAL / YYY.COUNTER, 3 ) AS RUNNINGMEAN \n" + 
-					"   FROM\n" + 
-					"	(\n" + 
-					"	SELECT\n" + 
-					"		*,\n" + 
-					"		sum( sample_mean ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS RUNNINGTOTAL,\n" + 
-					"		sum( sample_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS COUNT_TOTAL,\n" + 
-					"		sum( sample_t1_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS T1_TOTAL,\n" + 
-					"		sum( sample_t2_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS T2_TOTAL,\n" + 
-					"		AVG( sample_mean ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS MEAN_TOTAL,\n" + 
-					"		row_number () over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS COUNTER ");
-		}
-		
-		q2.applyFrom("APP_WEIGHT_SAMPLE_HEADER");
 
+			q2.applyWhat(" YYY.*,\n" + "	round( YYY.RUNNINGTOTAL / YYY.COUNTER, 3 ) AS RUNNINGMEAN \n" + "   FROM\n" + "	(\n" + "	SELECT\n" + "		*,\n"
+					+ "		sum( sample_mean ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS RUNNINGTOTAL,\n"
+					+ "		sum( sample_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS COUNT_TOTAL,\n"
+					+ "		sum( sample_t1_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS T1_TOTAL,\n"
+					+ "		sum( sample_t2_count ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS T2_TOTAL,\n"
+					+ "		AVG( sample_mean ) over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS MEAN_TOTAL,\n"
+					+ "		row_number () over ( PARTITION BY SAMPLE_POINT,PROCESS_ORDER ORDER BY sample_point,process_order, sample_date ) AS COUNTER ");
+		}
+
+		q2.applyFrom("APP_WEIGHT_SAMPLE_HEADER");
 
 		if (checkBox4jFromEnabled.isSelected())
 		{
@@ -291,7 +280,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			q2.applyWhereLiteral(" sample_mean > nominal_weight ");
 		}
-		
+
 		if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
 		{
 			q2.applyWhereLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
@@ -331,22 +320,22 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			q2.applyWhere("sample_t2_count > ", 0);
 		}
-		
+
 		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
 		{
-			q2.setSQLFinal(" )");	
+			q2.setSQLFinal(" )");
 		}
 		else
 		{
 			q2.setSQLFinal(" ) AS YYY ");
 		}
-		
+
 		q2.applySQL();
 		result = q2.getPreparedStatement();
 
 		return result;
 	}
-	
+
 	private PreparedStatement buildSQLr()
 	{
 
@@ -355,7 +344,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 		q2.applyWhat("*");
 
 		q2.applyFrom("{schema}APP_WEIGHT_SAMPLE_HEADER");
-
 
 		if (checkBox4jFromEnabled.isSelected())
 		{
@@ -366,7 +354,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			q2.applyWhereLiteral(" sample_mean > nominal_weight ");
 		}
-		
+
 		if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
 		{
 			q2.applyWhereLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
@@ -644,10 +632,12 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jDesktopPane1.add(scrollPane);
 
 				tableResults = new JTable4j();
-				tableResults.addMouseListener(new MouseAdapter() {
+				tableResults.addMouseListener(new MouseAdapter()
+				{
 					@Override
-					public void mouseClicked(MouseEvent e) {
-						
+					public void mouseClicked(MouseEvent e)
+					{
+
 						if (tableResults.getSelectedRowCount() == 1)
 						{
 							if (e.getClickCount() == 2)
@@ -679,7 +669,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Sort_By"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(391, 115, 69, 21);
+				label4j_std.setBounds(405, 115, 69, 21);
 				jDesktopPane1.add(label4j_std);
 
 				ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
@@ -687,7 +677,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jComboBoxSortBy = new JComboBox4j<String>();
 				jComboBoxSortBy.setMaximumRowCount(15);
 				jComboBoxSortBy.setModel(jComboBoxSortByModel);
-				jComboBoxSortBy.setBounds(466, 114, 328, 22);
+				jComboBoxSortBy.setBounds(480, 114, 328, 22);
 				jDesktopPane1.add(jComboBoxSortBy);
 				jToggleButtonSequence.addActionListener(new ActionListener()
 				{
@@ -700,34 +690,41 @@ public class JInternalFrameWTReport extends JInternalFrame
 				JLabel4j_std label4j_std_report_type = new JLabel4j_std();
 				label4j_std_report_type.setText(lang.get("mod_FRM_WEIGHT_REPORTS"));
 				label4j_std_report_type.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std_report_type.setBounds(3, 114, 154, 21);
+				label4j_std_report_type.setBounds(3, 114, 117, 21);
 				jDesktopPane1.add(label4j_std_report_type);
 
 				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[]
-				{ "Summary Weight Report by Filler","Individual Weight Check Report by Filler","Search Results", "Mean above Nominal", "T1s or T2s"});
+				{ "Overview Weight Report by Sample Point", "Summary Weight Report by Sample Point", "Individual Weight Check Report by Sample Point", "Search Results", "Mean above Nominal", "T1s or T2s" });
 				jComboBoxReportType = new JComboBox4j<String>();
-				jComboBoxReportType.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if (jComboBoxReportType.getSelectedItem().toString().equals( "Summary Weight Report by Filler"))
+				jComboBoxReportType.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						if (jComboBoxReportType.getSelectedItem().toString().equals("Overview Weight Report by Sample Point"))
+						{
+							jComboBoxSortBy.setSelectedItem("SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE");
+							jComboBoxSortBy.setEnabled(false);
+						}
+						if (jComboBoxReportType.getSelectedItem().toString().equals("Summary Weight Report by Sample Point"))
 						{
 							jComboBoxSortBy.setEnabled(false);
 						}
-						if (jComboBoxReportType.getSelectedItem().toString().equals( "Individual Weight Check Report by Filler"))
+						if (jComboBoxReportType.getSelectedItem().toString().equals("Individual Weight Check Report by Sample Point"))
 						{
 							jComboBoxSortBy.setEnabled(false);
 
 						}
-						if (jComboBoxReportType.getSelectedItem().toString().equals( "Mean above Nominal"))
+						if (jComboBoxReportType.getSelectedItem().toString().equals("Mean above Nominal"))
 						{
 							jComboBoxSortBy.setEnabled(true);
 
 						}
-						if (jComboBoxReportType.getSelectedItem().toString().equals( "T1s or T2s"))
+						if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
 						{
 							jComboBoxSortBy.setEnabled(true);
 
 						}
-						if (jComboBoxReportType.getSelectedItem().toString().equals( "Search Results"))
+						if (jComboBoxReportType.getSelectedItem().toString().equals("Search Results"))
 						{
 							jComboBoxSortBy.setEnabled(true);
 
@@ -736,7 +733,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				});
 				jComboBoxReportType.setMaximumRowCount(15);
 				jComboBoxReportType.setModel(jComboBoxReportTypeModel);
-				jComboBoxReportType.setBounds(160, 113, 221, 22);
+				jComboBoxReportType.setBounds(128, 113, 273, 22);
 				jComboBoxReportType.setSelectedItem("Search Results");
 				jDesktopPane1.add(jComboBoxReportType);
 				jToggleButtonSequence.addActionListener(new ActionListener()
@@ -748,7 +745,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				});
 
 				jToggleButtonSequence.setSelected(false);
-				jToggleButtonSequence.setBounds(794, 114, 21, 22);
+				jToggleButtonSequence.setBounds(808, 114, 21, 22);
 				jDesktopPane1.add(jToggleButtonSequence);
 
 				JLabel4j_std label4j_std_1 = new JLabel4j_std();
@@ -926,28 +923,38 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 	private void print()
 	{
-		if (jComboBoxReportType.getSelectedItem().equals("Individual Weight Check Report by Filler"))
+		if (jComboBoxReportType.getSelectedItem().equals("Individual Weight Check Report by Sample Point"))
 		{
 			PreparedStatement temp = buildSQLview();
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("p_title",jComboBoxReportType.getSelectedItem().toString());
+			parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
 			JLaunchReport.runReport("RPT_WEIGHT_DETAILS", parameters, "", temp, "");
 		}
 		else
 		{
-			if (jComboBoxReportType.getSelectedItem().equals("Summary Weight Report by Filler"))
+			if (jComboBoxReportType.getSelectedItem().equals("Summary Weight Report by Sample Point"))
 			{
 				HashMap<String, Object> parameters = new HashMap<String, Object>();
-				parameters.put("p_title",jComboBoxReportType.getSelectedItem().toString());
+				parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
 				PreparedStatement temp = buildSQLnew();
 				JLaunchReport.runReport("RPT_WEIGHT_SAMPLE_POINTS", parameters, "", temp, "");
 			}
 			else
 			{
-				HashMap<String, Object> parameters = new HashMap<String, Object>();
-				parameters.put("p_title",jComboBoxReportType.getSelectedItem().toString());
-				PreparedStatement temp = buildSQLr();
-				JLaunchReport.runReport("RPT_WEIGHT_HEADER_STD", parameters, "", temp, "");
+				if (jComboBoxReportType.getSelectedItem().equals("Overview Weight Report by Sample Point"))
+				{
+					HashMap<String, Object> parameters = new HashMap<String, Object>();
+					parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
+					PreparedStatement temp = buildSQLnew();
+					JLaunchReport.runReport("RPT_WEIGHT_HEADER_STD", parameters, "", temp, "");
+				}
+				else
+				{
+					HashMap<String, Object> parameters = new HashMap<String, Object>();
+					parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
+					PreparedStatement temp = buildSQLr();
+					JLaunchReport.runReport("RPT_WEIGHT_HEADER_STD", parameters, "", temp, "");
+				}
 			}
 		}
 	}
@@ -994,11 +1001,11 @@ public class JInternalFrameWTReport extends JInternalFrame
 		int row = tableResults.getSelectedRow();
 		if (row >= 0)
 		{
-			String samplePoint =tableResults.getValueAt(row,JDBWeightHeaderTableModel.SamplePoint_Col).toString();
-			String sampleDate =tableResults.getValueAt(row, JDBWeightHeaderTableModel.SampleDate_Col).toString();
-			JLaunchMenu.runDialog("FRM_WEIGHT_REPORTS_DETAILS", samplePoint,sampleDate);
+			String samplePoint = tableResults.getValueAt(row, JDBWeightHeaderTableModel.SamplePoint_Col).toString();
+			String sampleDate = tableResults.getValueAt(row, JDBWeightHeaderTableModel.SampleDate_Col).toString();
+			JLaunchMenu.runDialog("FRM_WEIGHT_REPORTS_DETAILS", samplePoint, sampleDate);
 		}
-		
+
 	}
 
 	private void search()
