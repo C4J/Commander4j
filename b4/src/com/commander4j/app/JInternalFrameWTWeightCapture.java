@@ -178,6 +178,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private boolean logEnabled = false;
 	private int lSampleFrequency = 15;
 	private int lSampleSize = 5;
+	private JTextField4j fld_BatchCalcStartDate = new JTextField4j();
+	private JTextField4j fld_GraphStartDate = new JTextField4j();
 
 	private JDBMaterialCustomerData matcustdb = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial materialdb = new JDBMaterial(Common.selectedHostID, Common.sessionID);
@@ -286,6 +288,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				fld_Process_Order.requestFocus();
 				fld_Process_Order.setCaretPosition(fld_Process_Order.getText().length());
+				
 			}
 		});
 
@@ -359,11 +362,30 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 			calendar.add(Calendar.HOUR, (-1 * lGraphWindowHours));
 			calendar.add(Calendar.MINUTE, -1);
+			
+			Calendar calendar2 = Calendar.getInstance();
+			calendar2.set(Calendar.HOUR_OF_DAY, 0);
+			calendar2.set(Calendar.MINUTE, 0);
+			calendar2.set(Calendar.SECOND, 0);
+			calendar2.set(Calendar.MILLISECOND, 0);
 
-			Timestamp startdate = new Timestamp(calendar.getTimeInMillis());
-			startdate.setNanos(0);
+			Timestamp batchStartDate = new Timestamp(calendar2.getTimeInMillis());
+		
+			fld_BatchCalcStartDate.setText(JUtility.getISOTimeStampStringFormat(batchStartDate).replace("T", " "));
 
-			query.addParamtoSQL("sample_date >=", startdate);
+			Timestamp graphStartDate = new Timestamp(calendar.getTimeInMillis());
+			graphStartDate.setNanos(0);
+			
+			fld_GraphStartDate.setText(JUtility.getISOTimeStampStringFormat(graphStartDate).replace("T", " "));
+			
+			if (batchStartDate.before(graphStartDate))
+			{
+				query.addParamtoSQL("sample_date >=", batchStartDate);
+			}
+			else
+			{
+				query.addParamtoSQL("sample_date >=", graphStartDate);
+			}
 
 			query.addParamtoSQL("sample_mean >", 0);
 
@@ -387,41 +409,51 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				while (rs.next())
 				{
-					count++;
-					sequence.addLast(count);
+
 
 					Double d = rs.getDouble("sample_mean");
 					Double stddev = rs.getDouble("sample_std_dev");
 					BigDecimal t = rs.getBigDecimal("sample_mean");
 					Timestamp when = rs.getTimestamp("sample_date");
 
-					cal.setTime(when);
-					int year = cal.get(Calendar.YEAR);
-					int month = cal.get(Calendar.MONTH);
-					int day = cal.get(Calendar.DAY_OF_MONTH);
-					int hour = cal.get(Calendar.HOUR_OF_DAY);
-					int mins = cal.get(Calendar.MINUTE);
-					int seconds = cal.get(Calendar.SECOND);
 
-					means.addLast(d.doubleValue());
-					batch_mean = batch_mean.add(t);
-
-					try
+					
+					if (when.after(batchStartDate))
 					{
-						s1.add(new Second(seconds, mins, hour, day, month, year), d.doubleValue());
-					}
-					catch (Exception ex)
-					{
-
+						count++;
+						sequence.addLast(count);
+						means.addLast(d.doubleValue());
+						batch_mean = batch_mean.add(t);
 					}
 
-					try
-					{
-						s2.add(new Second(seconds, mins, hour, day, month, year), stddev.doubleValue());
-					}
-					catch (Exception ex)
+					if (when.after(graphStartDate))
 					{
 
+						cal.setTime(when);
+						int year = cal.get(Calendar.YEAR);
+						int month = cal.get(Calendar.MONTH);
+						int day = cal.get(Calendar.DAY_OF_MONTH);
+						int hour = cal.get(Calendar.HOUR_OF_DAY);
+						int mins = cal.get(Calendar.MINUTE);
+						int seconds = cal.get(Calendar.SECOND);
+
+						try
+						{
+							s1.add(new Second(seconds, mins, hour, day, month, year), d.doubleValue());
+						}
+						catch (Exception ex)
+						{
+
+						}
+
+						try
+						{
+							s2.add(new Second(seconds, mins, hour, day, month, year), stddev.doubleValue());
+						}
+						catch (Exception ex)
+						{
+
+						}
 					}
 
 				}
@@ -444,6 +476,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					{
 						fld_Batch_Mean.setBackground(Common.color_app_window);
 					}
+				}
+				else
+				{
+					fld_Batch_Mean.setText(zero.toString());
+					fld_Batch_Mean.setBackground(Common.color_app_window);
 				}
 
 				rs.close();
@@ -547,14 +584,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					jDesktopPane1.add(btn_Help);
 					btn_Help.setText(lang.get("btn_Help"));
 					btn_Help.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					btn_Help.setBounds(516, 568, 220, 40);
+					btn_Help.setBounds(517, 572, 220, 40);
 				}
 				{
 					btn_Close = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(btn_Close);
 					btn_Close.setText(lang.get("btn_Close"));
 					btn_Close.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					btn_Close.setBounds(737, 568, 220, 40);
+					btn_Close.setBounds(738, 572, 220, 40);
 					btn_Close.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -733,6 +770,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							btnManualInput.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_CAPTURE_MANUAL_ADD"));
 							fld_Mean.setText("0.000");
 							fld_Batch_Mean.setText("0.000");
+							fld_Batch_Mean.setBackground(Common.color_app_window);
 							fld_Standard_Deviation.setText("0.000");
 							logEnabled = true;
 							jStatusText.setText("Start weighing " + lSampleSize + " samples");
@@ -745,7 +783,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				btn_Begin.setText(lang.get("lbl_Begin_Weight_Check"));
 				btn_Begin.setMnemonic('0');
-				btn_Begin.setBounds(71, 568, 220, 40);
+				btn_Begin.setBounds(72, 572, 220, 40);
 				jDesktopPane1.add(btn_Begin);
 
 				JLabel4j_std lbl_Process_Order_Status = new JLabel4j_std();
@@ -817,21 +855,21 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				lbl_Mean.setText(lang.get("lbl_Average_Mean"));
 				lbl_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Mean.setBounds(786, 406, 126, 25);
+				lbl_Mean.setBounds(786, 416, 126, 25);
 				jDesktopPane1.add(lbl_Mean);
 
 				JLabel4j_std lbl_Batch_Mean = new JLabel4j_std();
 				lbl_Batch_Mean.setText(lang.get("lbl_Average_Batch_Mean"));
 				lbl_Batch_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_Batch_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Batch_Mean.setBounds(786, 464, 126, 25);
+				lbl_Batch_Mean.setBounds(786, 474, 126, 25);
 				jDesktopPane1.add(lbl_Batch_Mean);
 
 				JLabel4j_std lbl_Standard_Deviation = new JLabel4j_std();
 				lbl_Standard_Deviation.setText(lang.get("lbl_Standard_Deviation"));
 				lbl_Standard_Deviation.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_Standard_Deviation.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Standard_Deviation.setBounds(786, 435, 126, 25);
+				lbl_Standard_Deviation.setBounds(786, 445, 126, 25);
 				jDesktopPane1.add(lbl_Standard_Deviation);
 
 				fld_T1_Lower_Limit.setVerifyInputWhenFocusTarget(false);
@@ -845,21 +883,21 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_Mean.setHorizontalAlignment(SwingConstants.TRAILING);
 				fld_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Mean.setEditable(false);
-				fld_Mean.setBounds(921, 406, 73, 25);
+				fld_Mean.setBounds(921, 416, 73, 25);
 				jDesktopPane1.add(fld_Mean);
 
 				fld_Batch_Mean.setVerifyInputWhenFocusTarget(false);
 				fld_Batch_Mean.setHorizontalAlignment(SwingConstants.TRAILING);
 				fld_Batch_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Batch_Mean.setEditable(false);
-				fld_Batch_Mean.setBounds(921, 464, 73, 25);
+				fld_Batch_Mean.setBounds(921, 474, 73, 25);
 				jDesktopPane1.add(fld_Batch_Mean);
 
 				fld_Standard_Deviation.setVerifyInputWhenFocusTarget(false);
 				fld_Standard_Deviation.setHorizontalAlignment(SwingConstants.TRAILING);
 				fld_Standard_Deviation.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Standard_Deviation.setEditable(false);
-				fld_Standard_Deviation.setBounds(921, 435, 73, 25);
+				fld_Standard_Deviation.setBounds(921, 445, 73, 25);
 				jDesktopPane1.add(fld_Standard_Deviation);
 
 				JLabel4j_std lbl_T2_Lower_Limit = new JLabel4j_std();
@@ -918,14 +956,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_TNE.setBounds(364, 115, 73, 25);
 				jDesktopPane1.add(fld_TNE);
 
-				scrollPane_Weights.setBounds(798, 178, 196, 190);
+				scrollPane_Weights.setBounds(798, 188, 196, 190);
 				jDesktopPane1.add(scrollPane_Weights);
 				list_Weights.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				scrollPane_Weights.setViewportView(list_Weights);
 
 				JLabel lbl_Legend = new JLabel("   Gross Wt       Net Wt");
 				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
-				lbl_Legend.setBounds(798, 157, 184, 15);
+				lbl_Legend.setBounds(798, 167, 184, 15);
 				jDesktopPane1.add(lbl_Legend);
 
 				{
@@ -933,7 +971,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					jDesktopPane1.add(fld_currentDateTime);
 					fld_currentDateTime.setEnabled(false);
 					fld_currentDateTime.setVisible(false);
-					fld_currentDateTime.setBounds(829, 538, 120, 25);
+					fld_currentDateTime.setBounds(830, 536, 120, 25);
 					JTextField tf = ((JSpinner.DefaultEditor) fld_currentDateTime.getEditor()).getTextField();
 					tf.setEnabled(false);
 					tf.setDisabledTextColor(UIManager.getColor("TextField.foreground"));
@@ -949,6 +987,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						btnManualInput.setEnabled(false);
 						fld_Mean.setText("0.000");
 						fld_Batch_Mean.setText("0.000");
+						fld_Batch_Mean.setBackground(Common.color_app_window);
 						fld_Standard_Deviation.setText("0.000");
 						logEnabled = false;
 						sampleSequence = 0;
@@ -961,7 +1000,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				btnj_Cancel.setText(lang.get("lbl_Cancel_Weight_Check"));
 				btnj_Cancel.setMnemonic('0');
-				btnj_Cancel.setBounds(293, 568, 220, 40);
+				btnj_Cancel.setBounds(294, 572, 220, 40);
 				jDesktopPane1.add(btnj_Cancel);
 
 				btnManualInput.setText(lang.get("btn_Add"));
@@ -987,15 +1026,53 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				});
 				btnDebug.setText("Debug");
 
-				btnDebug.setBounds(798, 501, 196, 25);
+				btnDebug.setBounds(798, 511, 196, 25);
 				jDesktopPane1.add(btnDebug);
 
-				btnManualInput.setBounds(798, 369, 196, 25);
+				btnManualInput.setBounds(798, 379, 196, 25);
 				jDesktopPane1.add(btnManualInput);
 				btnManualInput.setEnabled(false);
 
 				createDemoPanel();
-				chartPanel.setBounds(14, 157, 772, 395);
+				chartPanel.setBounds(14, 187, 772, 376);
+				
+				
+				JLabel4j_std lbl_BatchCalcStart = new JLabel4j_std();
+				lbl_BatchCalcStart.setFont(new Font("Arial", Font.PLAIN, 14));
+				lbl_BatchCalcStart.setText("Batch Start Date/Time");
+				lbl_BatchCalcStart.setHorizontalAlignment(SwingConstants.TRAILING);
+				lbl_BatchCalcStart.setBounds(414, 152, 163, 25);
+				jDesktopPane1.add(lbl_BatchCalcStart);
+				
+				JLabel4j_std label4j_std = new JLabel4j_std();
+				label4j_std.setFont(new Font("Arial", Font.PLAIN, 14));
+				label4j_std.setText("Graph Start Date/Time");
+				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
+				label4j_std.setBounds(53, 152, 185, 25);
+				jDesktopPane1.add(label4j_std);
+				fld_BatchCalcStartDate.setFont(new Font("Arial", Font.PLAIN, 14));
+				fld_BatchCalcStartDate.setHorizontalAlignment(SwingConstants.CENTER);
+				
+				fld_BatchCalcStartDate.setText("");
+				fld_BatchCalcStartDate.setPreferredSize(new Dimension(40, 20));
+				fld_BatchCalcStartDate.setFocusCycleRoot(true);
+				fld_BatchCalcStartDate.setEnabled(false);
+				fld_BatchCalcStartDate.setEditable(false);
+				fld_BatchCalcStartDate.setCaretPosition(0);
+				fld_BatchCalcStartDate.setBounds(583, 152, 144, 25);
+				jDesktopPane1.add(fld_BatchCalcStartDate);
+				fld_GraphStartDate.setFont(new Font("Arial", Font.PLAIN, 14));
+				fld_GraphStartDate.setHorizontalAlignment(SwingConstants.CENTER);
+				
+				
+				fld_GraphStartDate.setText("");
+				fld_GraphStartDate.setPreferredSize(new Dimension(40, 20));
+				fld_GraphStartDate.setFocusCycleRoot(true);
+				fld_GraphStartDate.setEnabled(false);
+				fld_GraphStartDate.setEditable(false);
+				fld_GraphStartDate.setCaretPosition(0);
+				fld_GraphStartDate.setBounds(246, 152, 144, 25);
+				jDesktopPane1.add(fld_GraphStartDate);
 
 				jDesktopPane1.add(chartPanel);
 
@@ -1374,6 +1451,10 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		String material = "";
 		String customerID = "";
 		String status = "";
+		fld_Mean.setText("0.000");
+		fld_Batch_Mean.setText("0.000");
+		fld_Batch_Mean.setBackground(Common.color_app_window);
+		fld_Standard_Deviation.setText("0.000");
 
 		// Lookup is passed to indicate if previous step failed in which case
 		// there is no need to lookup date in this step.
@@ -1804,5 +1885,4 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		return numberOK;
 
 	}
-
 }
