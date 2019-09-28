@@ -511,7 +511,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		plot.setDomainCrosshairLockedOnData(true);
 		plot.setRangeCrosshairLockedOnData(true);
 
-		axis2.setAutoRangeIncludesZero(false);
+		axis2.setAutoRangeIncludesZero(true);
 		plot.setRangeAxis(1, axis2);
 		plot.setDataset(1, dataset2);
 		plot.mapDatasetToRangeAxis(1, 1);
@@ -535,6 +535,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		axis = (DateAxis) plot.getDomainAxis();
 		axis.setDateFormatOverride(new SimpleDateFormat("HH:mm"));
 		axis.setVerticalTickLabels(true);
+		
+        NumberAxis axis1 = (NumberAxis) plot.getRangeAxis();
+        axis1.setAutoRangeMinimumSize(1.0);
 
 		legend1 = new LegendTitle(renderer);
 		legend2 = new LegendTitle(renderer2);
