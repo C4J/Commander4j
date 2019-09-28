@@ -208,25 +208,25 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private Integer t2_count = 0;
 	private String materialGroup = "";
 	private String containerCode = "";
-	private static boolean validToScan = false;
+	private  boolean validToScan = false;
 	private JButton btnManualInput = new JButton(Common.icon_add_16x16);
 	private JButton btnDebug = new JButton();
 
-	private static TimeSeries s1 = new TimeSeries("Mean Weight");
-	private static TimeSeries s2 = new TimeSeries("Standard Deviation");
-	private static TimeSeriesCollection dataset1 = new TimeSeriesCollection();
-	private static TimeSeriesCollection dataset2 = new TimeSeriesCollection();
-	private static JFreeChart chart;
-	private static XYPlot plot;
-	private static NumberAxis axis2 = new NumberAxis("Standard Deviation");
-	private static XYItemRenderer renderer;
-	private static XYLineAndShapeRenderer renderer2;
-	private static DateAxis axis;
-	private static LegendTitle legend1;
-	private static LegendTitle legend2;
-	private static BlockContainer container;
-	private static CompositeTitle legends;
-	private static ChartPanel chartPanel;
+	private  TimeSeries s1 = new TimeSeries("Mean Weight");
+	private  TimeSeries s2 = new TimeSeries("Standard Deviation");
+	private  TimeSeriesCollection dataset1 = new TimeSeriesCollection();
+	private  TimeSeriesCollection dataset2 = new TimeSeriesCollection();
+	private  JFreeChart chart;
+	private  XYPlot plot;
+	private  NumberAxis axis2 = new NumberAxis("Standard Deviation");
+	private  XYItemRenderer renderer;
+	private  XYLineAndShapeRenderer renderer2;
+	private  DateAxis axis;
+	private  LegendTitle legend1;
+	private  LegendTitle legend2;
+	private  BlockContainer container;
+	private  CompositeTitle legends;
+	private  ChartPanel chartPanel;
 	private JDesktopPane jDesktopPane1;
 
 	public JInternalFrameWTWeightCapture()
