@@ -31,7 +31,7 @@ public class JVersion
 {
 
 	public static String getProgramVersion() {
-		return "7.19";
+		return "7.20";
 	}
 
 	public static Double getProgramVersionValue() {
