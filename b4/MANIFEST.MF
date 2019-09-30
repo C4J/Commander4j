@@ -9,8 +9,8 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/app/commons-lang3-3.7.jar 
  lib/app/commons-text-1.2.jar 
  lib/app/commons-math3-3.6.1.jar 
- lib/jasperlib/jackson-databind-2.9.8.jar 
- lib/jasperlib/jackson-core-2.9.8.jar 
+ lib/jasperlib/jackson-databind-2.9.9.jar 
+ lib/jasperlib/jackson-core-2.9.9.jar 
  lib/jasperlib/batik-css-1.11.jar 
  lib/jasperlib/spring-beans-5.1.4.RELEASE.jar 
  lib/jasperlib/barcode4j-2.1.jar 
@@ -43,8 +43,10 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/jasperlib/ecj-4.4.2.jar 
  lib/jasperlib/batik-constants-1.11.jar 
  lib/jasperlib/commons-collections-3.2.2.jar 
- lib/jasperlib/jackson-annotations-2.9.8.jar 
- lib/jasperlib/ant-1.7.1.jar 
+ lib/jasperlib/jackson-annotations-2.9.9.jar 
+ lib/jasperlib/ant-1.10.6.jar 
+ lib/jasperlib/ant-launcher-1.10.6.jar 
+ lib/jasperlib/bcprov-jdk15on-1.62.jar 
  lib/jasperlib/core-3.2.1.jar 
  lib/jasperlib/jaxen-1.1.6.jar 
  lib/jasperlib/batik-util-1.11.jar 
@@ -54,7 +56,7 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/jasperlib/httpclient-4.5.8.jar 
  lib/jasperlib/antlr-2.7.5.jar 
  lib/jasperlib/batik-bridge-1.11.jar 
- lib/jasperlib/itext-2.1.7.js6.jar 
+ lib/jasperlib/itext-2.1.7.js7.jar 
  lib/jasperlib/commons-digester-2.1.jar 
  lib/jasperlib/jcommon-1.0.23.jar 
  lib/jasperlib/castor-core-1.4.1.jar 
@@ -89,12 +91,12 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/barcode/serializer-2.7.2.jar 
  lib/barcode/avalon-framework-4.2.0.jar 
  lib/barcode/jdom-2.0.6.jar 
- lib/jasper/jasperreports-javaflow-6.9.0.jar 
- lib/jasper/jasperreports-6.9.0.jar 
- lib/jasper/jasperreports-custom-visualization-6.9.0.jar 
- lib/jasper/jasperreports-annotation-processors-6.9.0.jar 
- lib/jasper/jasperreports-fonts-6.9.0.jar 
- lib/jasper/jasperreports-chart-themes-6.9.0.jar 
- lib/jasper/jasperreports-metadata-6.9.0.jar 
- lib/jasper/jasperreports-functions-6.9.0.jar 
- lib/jasper/jasperreports-chart-customizers-6.9.0.jar 
+ lib/jasper/jasperreports-javaflow-6.10.0.jar 
+ lib/jasper/jasperreports-6.10.0.jar 
+ lib/jasper/jasperreports-custom-visualization-6.10.0.jar 
+ lib/jasper/jasperreports-annotation-processors-6.10.0.jar 
+ lib/jasper/jasperreports-fonts-6.10.0.jar 
+ lib/jasper/jasperreports-chart-themes-6.10.0.jar 
+ lib/jasper/jasperreports-metadata-6.10.0.jar 
+ lib/jasper/jasperreports-functions-6.10.0.jar 
+ lib/jasper/jasperreports-chart-customizers-6.10.0.jar 
