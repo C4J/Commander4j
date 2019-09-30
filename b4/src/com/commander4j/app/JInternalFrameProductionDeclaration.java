@@ -223,6 +223,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private JTextField4j textField4jResource = new JTextField4j();
 	private JTextField4j textField4jCustomer = new JTextField4j();
 	private boolean confirmStatus = false;
+	private BigDecimal maxOverMakePercentage = new BigDecimal("0");;
 
 	public JInternalFrameProductionDeclaration(String procOrder)
 	{
@@ -240,6 +241,9 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			}
 		});
 
+		
+		maxOverMakePercentage = new BigDecimal((ctrl.getKeyValueWithDefault("MAX_OVERMAKE_PERCENTAGE", "50", "Max Permitted Percentage over Default Full Qty")));
+		
 		int copies = Integer.valueOf(ctrl.getKeyValueWithDefault("DEFAULT_LABELS_TO_PRINT", "2", "Default No of Labels to print"));
 		confirmStatus = Boolean.valueOf(ctrl.getKeyValueWithDefault("PRODDEC CONFIRM CHECKBOX STATUS", "false", "Default Auto Confirm Checkbox Status"));
 
@@ -779,7 +783,20 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 						{
 							if (JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Quantity_Confirm"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16) == JOptionPane.YES_OPTION)
 							{
-								confirmQuantity = true;
+								BigDecimal maxOverMake = fullPalletDefaultQuantity;
+								maxOverMake = maxOverMake.divide(new BigDecimal( 100)).multiply((new BigDecimal( 100).add(maxOverMakePercentage)));
+
+								if (a.compareTo(maxOverMake)<=0)
+								{
+									confirmQuantity = true;
+								}
+								else
+								{
+									confirmQuantity = false;
+									JUtility.errorBeep();
+									JOptionPane.showMessageDialog(Common.mainForm, lang.get("lbl_Max_Permitted_Quantity")+" "+maxOverMake.toString()+ "\n\n( "+fullPalletDefaultQuantity.toString()+" +"+maxOverMakePercentage.toString()+" % )" , lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
+
+								}
 							} else
 							{
 								confirmQuantity = false;
