@@ -49,6 +49,7 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 
 import com.commander4j.gui.JCheckBox4j;
@@ -185,6 +186,13 @@ public class JExcel
 
 			HSSFCellStyle cellStyle_decimal = workbook.createCellStyle();
 			cellStyle_decimal.setAlignment(HorizontalAlignment.RIGHT);
+			DataFormat dataFormat = workbook.createDataFormat();
+			cellStyle_decimal.setDataFormat(dataFormat.getFormat("###,###,###,##0.00"));
+			
+			HSSFCellStyle cellStyle_integer = workbook.createCellStyle();
+			cellStyle_integer.setAlignment(HorizontalAlignment.RIGHT);
+			DataFormat intFormat = workbook.createDataFormat();
+			cellStyle_integer.setDataFormat(intFormat.getFormat("###,###,###,##0"));
 
 			HSSFFont font_title = workbook.createFont();
 			font_title.setColor((short) 0xc);
@@ -290,34 +298,28 @@ public class JExcel
 							}
 							break;
 						case java.sql.Types.DECIMAL:
-							HSSFRichTextString rtf_decimal = new HSSFRichTextString(rs.getBigDecimal(column).toString());
 							cell.setCellStyle(cellStyle_decimal);
-							cell.setCellValue(rtf_decimal);
+							cell.setCellValue((double) rs.getBigDecimal(column).doubleValue());
 							break;
 						case java.sql.Types.NUMERIC:
-							HSSFRichTextString rtf_decimaln = new HSSFRichTextString(rs.getBigDecimal(column).toString());
 							cell.setCellStyle(cellStyle_decimal);
-							cell.setCellValue(rtf_decimaln);
+							cell.setCellValue((double) rs.getBigDecimal(column).doubleValue());
 							break;
 						case java.sql.Types.BIGINT:
-							HSSFRichTextString rtf_bigint = new HSSFRichTextString(rs.getBigDecimal(column).toString());
 							cell.setCellStyle(cellStyle_decimal);
-							cell.setCellValue(rtf_bigint);
+							cell.setCellValue((double) rs.getBigDecimal(column).doubleValue());
 							break;
 						case java.sql.Types.INTEGER:
-							HSSFRichTextString rtf_int = new HSSFRichTextString(String.valueOf(rs.getInt(column)));
-							cell.setCellStyle(cellStyle_decimal);
-							cell.setCellValue(rtf_int);
+							cell.setCellStyle(cellStyle_integer);
+							cell.setCellValue((Integer) rs.getInt(column));
 							break;
 						case java.sql.Types.FLOAT:
-							HSSFRichTextString rtf_float = new HSSFRichTextString(String.valueOf(rs.getFloat(column)));
 							cell.setCellStyle(cellStyle_decimal);
-							cell.setCellValue(rtf_float);
+							cell.setCellValue((float) rs.getFloat(column));
 							break;
 						case java.sql.Types.DOUBLE:
-							HSSFRichTextString rtf_double = new HSSFRichTextString(String.valueOf(rs.getDouble(column)));
 							cell.setCellStyle(cellStyle_decimal);
-							cell.setCellValue(rtf_double);
+							cell.setCellValue((double) rs.getDouble(column));
 							break;
 						default:
 							cell.setCellValue(new HSSFRichTextString(columnTypeName));
