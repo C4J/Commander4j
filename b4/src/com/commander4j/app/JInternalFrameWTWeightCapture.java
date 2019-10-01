@@ -178,8 +178,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private boolean logEnabled = false;
 	private int lSampleFrequency = 15;
 	private int lSampleSize = 5;
-	private JTextField4j fld_BatchCalcStartDate = new JTextField4j();
-	private JTextField4j fld_GraphStartDate = new JTextField4j();
 
 	private JDBMaterialCustomerData matcustdb = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial materialdb = new JDBMaterial(Common.selectedHostID, Common.sessionID);
@@ -193,7 +191,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JDBWTScale scaledb = new JDBWTScale(Common.selectedHostID, Common.sessionID);
 
 	private Integer sampleSequence = 0;
-	private Integer lGraphWindowHours = 6;
+	private Integer lGraphMaxPlots = 40;
 	private static String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private Timer timer = new Timer(1000, clocklistener);
 	private BigDecimal mean = new BigDecimal("0.000");
@@ -208,25 +206,25 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private Integer t2_count = 0;
 	private String materialGroup = "";
 	private String containerCode = "";
-	private  boolean validToScan = false;
+	private boolean validToScan = false;
 	private JButton btnManualInput = new JButton(Common.icon_add_16x16);
 	private JButton btnDebug = new JButton();
 
-	private  TimeSeries s1 = new TimeSeries("Mean Weight");
-	private  TimeSeries s2 = new TimeSeries("Standard Deviation");
-	private  TimeSeriesCollection dataset1 = new TimeSeriesCollection();
-	private  TimeSeriesCollection dataset2 = new TimeSeriesCollection();
-	private  JFreeChart chart;
-	private  XYPlot plot;
-	private  NumberAxis axis2 = new NumberAxis("Standard Deviation");
-	private  XYItemRenderer renderer;
-	private  XYLineAndShapeRenderer renderer2;
-	private  DateAxis axis;
-	private  LegendTitle legend1;
-	private  LegendTitle legend2;
-	private  BlockContainer container;
-	private  CompositeTitle legends;
-	private  ChartPanel chartPanel;
+	private TimeSeries s1 = new TimeSeries("Mean Weight");
+	private TimeSeries s2 = new TimeSeries("Standard Deviation");
+	private TimeSeriesCollection dataset1 = new TimeSeriesCollection();
+	private TimeSeriesCollection dataset2 = new TimeSeriesCollection();
+	private JFreeChart chart;
+	private XYPlot plot;
+	private NumberAxis axis2 = new NumberAxis("Standard Deviation");
+	private XYItemRenderer renderer;
+	private XYLineAndShapeRenderer renderer2;
+	private DateAxis axis;
+	private LegendTitle legend1;
+	private LegendTitle legend2;
+	private BlockContainer container;
+	private CompositeTitle legends;
+	private ChartPanel chartPanel;
 	private JDesktopPane jDesktopPane1;
 
 	public JInternalFrameWTWeightCapture()
@@ -243,8 +241,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		lSampleFrequency = Integer.valueOf(temp);
 		fld_SampleFrequency.setText(String.valueOf(lSampleFrequency));
 
-		temp = ctrl.getKeyValueWithDefault("WEIGHT GRAPH HOURS", "6", "WEIGHT GRAPH TIME WINDOW");
-		lGraphWindowHours = Integer.valueOf(temp);
+		temp = ctrl.getKeyValueWithDefault("WEIGHT GRAPH MAX PLOTS", "40", "WEIGHT GRAPH MAX PLOTS");
+		lGraphMaxPlots = Integer.valueOf(temp);
 
 		initGUI();
 
@@ -288,7 +286,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			{
 				fld_Process_Order.requestFocus();
 				fld_Process_Order.setCaretPosition(fld_Process_Order.getText().length());
-				
+
 			}
 		});
 
@@ -349,6 +347,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		if (validToScan)
 		{
 
+			Calendar maxSampleCal = Calendar.getInstance();
+			Timestamp maxSampleDate = new Timestamp(maxSampleCal.getTimeInMillis());
+
 			ResultSet rs;
 			JDBQuery.closeStatement(listStatement);
 			JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
@@ -358,36 +359,17 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			query.addParamtoSQL("sample_point =", workdb.getSamplePoint());
 			query.addParamtoSQL("process_order =", orderdb.getProcessOrder());
 
-			Calendar calendar = Calendar.getInstance();
-
-			calendar.add(Calendar.HOUR, (-1 * lGraphWindowHours));
-			calendar.add(Calendar.MINUTE, -1);
-			
 			Calendar calendar2 = Calendar.getInstance();
-			calendar2.set(Calendar.HOUR_OF_DAY, 0);
-			calendar2.set(Calendar.MINUTE, 0);
-			calendar2.set(Calendar.SECOND, 0);
-			calendar2.set(Calendar.MILLISECOND, 0);
-
-			Timestamp batchStartDate = new Timestamp(calendar2.getTimeInMillis());
-		
-			fld_BatchCalcStartDate.setText(JUtility.getISOTimeStampStringFormat(batchStartDate).replace("T", " "));
-
-			Timestamp graphStartDate = new Timestamp(calendar.getTimeInMillis());
-			graphStartDate.setNanos(0);
-			
-			fld_GraphStartDate.setText(JUtility.getISOTimeStampStringFormat(graphStartDate).replace("T", " "));
-			
-			if (batchStartDate.before(graphStartDate))
-			{
-				query.addParamtoSQL("sample_date >=", batchStartDate);
-			}
-			else
-			{
-				query.addParamtoSQL("sample_date >=", graphStartDate);
-			}
+			calendar2.add(Calendar.DATE, -1);
 
 			query.addParamtoSQL("sample_mean >", 0);
+
+			// query.applyRestriction(true,
+			// Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(),
+			// lGraphMaxPlots);
+
+			query.appendSort("sample_date", true);
+			query.applyRestriction(false, Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), 9999);
 
 			query.bindParams();
 			listStatement = query.getPreparedStatement();
@@ -406,56 +388,66 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				batch_mean = new BigDecimal("0.000");
 				Calendar cal = Calendar.getInstance();
+				int plotted_count = 0;
 
 				while (rs.next())
 				{
-
 
 					Double d = rs.getDouble("sample_mean");
 					Double stddev = rs.getDouble("sample_std_dev");
 					BigDecimal t = rs.getBigDecimal("sample_mean");
 					Timestamp when = rs.getTimestamp("sample_date");
 
+					count++;
 
-					
-					if (when.after(batchStartDate))
+					sequence.addLast(count);
+					means.addLast(d.doubleValue());
+					batch_mean = batch_mean.add(t);
+
+					plotted_count++;
+
+					if (count == 1)
 					{
-						count++;
-						sequence.addLast(count);
-						means.addLast(d.doubleValue());
-						batch_mean = batch_mean.add(t);
+						maxSampleCal.setTime(when);
+						maxSampleCal.add(Calendar.DATE, -1);
+						maxSampleDate = new Timestamp(maxSampleCal.getTimeInMillis());
 					}
 
-					if (when.after(graphStartDate))
+					if (when.after(maxSampleDate))
 					{
 
-						cal.setTime(when);
-						int year = cal.get(Calendar.YEAR);
-						int month = cal.get(Calendar.MONTH);
-						int day = cal.get(Calendar.DAY_OF_MONTH);
-						int hour = cal.get(Calendar.HOUR_OF_DAY);
-						int mins = cal.get(Calendar.MINUTE);
-						int seconds = cal.get(Calendar.SECOND);
-
-						try
-						{
-							s1.add(new Second(seconds, mins, hour, day, month, year), d.doubleValue());
-						}
-						catch (Exception ex)
+						if (plotted_count <= lGraphMaxPlots)
 						{
 
+							cal.setTime(when);
+							int year = cal.get(Calendar.YEAR);
+							int month = cal.get(Calendar.MONTH);
+							int day = cal.get(Calendar.DAY_OF_MONTH);
+							int hour = cal.get(Calendar.HOUR_OF_DAY);
+							int mins = cal.get(Calendar.MINUTE);
+							int seconds = cal.get(Calendar.SECOND);
+							System.out.println(cal.getTime().toString());
+
+							try
+							{
+								s1.add(new Second(seconds, mins, hour, day, month+1, year), d.doubleValue());
+							}
+							catch (Exception ex)
+							{
+
+							}
+
+							try
+							{
+								s2.add(new Second(seconds, mins, hour, day, month+1, year), stddev.doubleValue());
+							}
+							catch (Exception ex)
+							{
+
+							}
 						}
 
-						try
-						{
-							s2.add(new Second(seconds, mins, hour, day, month, year), stddev.doubleValue());
-						}
-						catch (Exception ex)
-						{
-
-						}
 					}
-
 				}
 
 				dataset1.removeAllSeries();
@@ -501,7 +493,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		createDataset();
 
-		chart = ChartFactory.createTimeSeriesChart("Filler 11 Mean Weight (" + String.valueOf(lGraphWindowHours) + " hours)", "Time", "Mean Weight (grams)", dataset1, false, true, false);
+		chart = ChartFactory.createTimeSeriesChart(null, null, "Mean Weight (grams)", dataset1, false, true, false);
 
 		plot = (XYPlot) chart.getPlot();
 		plot.setDomainPannable(true);
@@ -533,11 +525,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		plot.setRenderer(1, renderer2);
 
 		axis = (DateAxis) plot.getDomainAxis();
-		axis.setDateFormatOverride(new SimpleDateFormat("HH:mm"));
+		axis.setDateFormatOverride(new SimpleDateFormat("MMM-dd HH:mm"));
 		axis.setVerticalTickLabels(true);
-		
-        NumberAxis axis1 = (NumberAxis) plot.getRangeAxis();
-        axis1.setAutoRangeMinimumSize(1.0);
+
+		NumberAxis axis1 = (NumberAxis) plot.getRangeAxis();
+		axis1.setAutoRangeMinimumSize(1.0);
 
 		legend1 = new LegendTitle(renderer);
 		legend2 = new LegendTitle(renderer2);
@@ -551,7 +543,13 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		legends.setPosition(RectangleEdge.BOTTOM);
 
 		chart.addSubtitle(legends);
+		chart.setTitle(samplePointdb.getDescription());
 		ChartUtils.applyCurrentTheme(chart);
+
+		chart.setTitle(samplePointdb.getDescription());
+		plot = (XYPlot) chart.getPlot();
+		plot.getDomainAxis().setTickLabelFont(new Font(Font.DIALOG, Font.BOLD, 10));
+
 		return chart;
 	}
 
@@ -858,21 +856,21 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				lbl_Mean.setText(lang.get("lbl_Average_Mean"));
 				lbl_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Mean.setBounds(786, 416, 126, 25);
+				lbl_Mean.setBounds(786, 401, 126, 25);
 				jDesktopPane1.add(lbl_Mean);
 
 				JLabel4j_std lbl_Batch_Mean = new JLabel4j_std();
 				lbl_Batch_Mean.setText(lang.get("lbl_Average_Batch_Mean"));
 				lbl_Batch_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_Batch_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Batch_Mean.setBounds(786, 474, 126, 25);
+				lbl_Batch_Mean.setBounds(786, 459, 126, 25);
 				jDesktopPane1.add(lbl_Batch_Mean);
 
 				JLabel4j_std lbl_Standard_Deviation = new JLabel4j_std();
 				lbl_Standard_Deviation.setText(lang.get("lbl_Standard_Deviation"));
 				lbl_Standard_Deviation.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_Standard_Deviation.setHorizontalAlignment(SwingConstants.RIGHT);
-				lbl_Standard_Deviation.setBounds(786, 445, 126, 25);
+				lbl_Standard_Deviation.setBounds(786, 430, 126, 25);
 				jDesktopPane1.add(lbl_Standard_Deviation);
 
 				fld_T1_Lower_Limit.setVerifyInputWhenFocusTarget(false);
@@ -886,21 +884,21 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_Mean.setHorizontalAlignment(SwingConstants.TRAILING);
 				fld_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Mean.setEditable(false);
-				fld_Mean.setBounds(921, 416, 73, 25);
+				fld_Mean.setBounds(921, 401, 73, 25);
 				jDesktopPane1.add(fld_Mean);
 
 				fld_Batch_Mean.setVerifyInputWhenFocusTarget(false);
 				fld_Batch_Mean.setHorizontalAlignment(SwingConstants.TRAILING);
 				fld_Batch_Mean.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Batch_Mean.setEditable(false);
-				fld_Batch_Mean.setBounds(921, 474, 73, 25);
+				fld_Batch_Mean.setBounds(921, 459, 73, 25);
 				jDesktopPane1.add(fld_Batch_Mean);
 
 				fld_Standard_Deviation.setVerifyInputWhenFocusTarget(false);
 				fld_Standard_Deviation.setHorizontalAlignment(SwingConstants.TRAILING);
 				fld_Standard_Deviation.setFont(new Font("Arial", Font.PLAIN, 14));
 				fld_Standard_Deviation.setEditable(false);
-				fld_Standard_Deviation.setBounds(921, 445, 73, 25);
+				fld_Standard_Deviation.setBounds(921, 430, 73, 25);
 				jDesktopPane1.add(fld_Standard_Deviation);
 
 				JLabel4j_std lbl_T2_Lower_Limit = new JLabel4j_std();
@@ -959,14 +957,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				fld_TNE.setBounds(364, 115, 73, 25);
 				jDesktopPane1.add(fld_TNE);
 
-				scrollPane_Weights.setBounds(798, 188, 196, 190);
+				scrollPane_Weights.setBounds(798, 173, 196, 190);
 				jDesktopPane1.add(scrollPane_Weights);
 				list_Weights.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				scrollPane_Weights.setViewportView(list_Weights);
 
 				JLabel lbl_Legend = new JLabel("   Gross Wt       Net Wt");
 				lbl_Legend.setFont(new Font("Monospaced", Font.BOLD, 11));
-				lbl_Legend.setBounds(798, 167, 184, 15);
+				lbl_Legend.setBounds(798, 152, 184, 15);
 				jDesktopPane1.add(lbl_Legend);
 
 				{
@@ -1029,53 +1027,15 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				});
 				btnDebug.setText("Debug");
 
-				btnDebug.setBounds(798, 511, 196, 25);
+				btnDebug.setBounds(798, 496, 196, 25);
 				jDesktopPane1.add(btnDebug);
 
-				btnManualInput.setBounds(798, 379, 196, 25);
+				btnManualInput.setBounds(798, 364, 196, 25);
 				jDesktopPane1.add(btnManualInput);
 				btnManualInput.setEnabled(false);
 
 				createDemoPanel();
-				chartPanel.setBounds(14, 187, 772, 376);
-				
-				
-				JLabel4j_std lbl_BatchCalcStart = new JLabel4j_std();
-				lbl_BatchCalcStart.setFont(new Font("Arial", Font.PLAIN, 14));
-				lbl_BatchCalcStart.setText("Batch Start Date/Time");
-				lbl_BatchCalcStart.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_BatchCalcStart.setBounds(414, 152, 163, 25);
-				jDesktopPane1.add(lbl_BatchCalcStart);
-				
-				JLabel4j_std label4j_std = new JLabel4j_std();
-				label4j_std.setFont(new Font("Arial", Font.PLAIN, 14));
-				label4j_std.setText("Graph Start Date/Time");
-				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(53, 152, 185, 25);
-				jDesktopPane1.add(label4j_std);
-				fld_BatchCalcStartDate.setFont(new Font("Arial", Font.PLAIN, 14));
-				fld_BatchCalcStartDate.setHorizontalAlignment(SwingConstants.CENTER);
-				
-				fld_BatchCalcStartDate.setText("");
-				fld_BatchCalcStartDate.setPreferredSize(new Dimension(40, 20));
-				fld_BatchCalcStartDate.setFocusCycleRoot(true);
-				fld_BatchCalcStartDate.setEnabled(false);
-				fld_BatchCalcStartDate.setEditable(false);
-				fld_BatchCalcStartDate.setCaretPosition(0);
-				fld_BatchCalcStartDate.setBounds(583, 152, 144, 25);
-				jDesktopPane1.add(fld_BatchCalcStartDate);
-				fld_GraphStartDate.setFont(new Font("Arial", Font.PLAIN, 14));
-				fld_GraphStartDate.setHorizontalAlignment(SwingConstants.CENTER);
-				
-				
-				fld_GraphStartDate.setText("");
-				fld_GraphStartDate.setPreferredSize(new Dimension(40, 20));
-				fld_GraphStartDate.setFocusCycleRoot(true);
-				fld_GraphStartDate.setEnabled(false);
-				fld_GraphStartDate.setEditable(false);
-				fld_GraphStartDate.setCaretPosition(0);
-				fld_GraphStartDate.setBounds(246, 152, 144, 25);
-				jDesktopPane1.add(fld_GraphStartDate);
+				chartPanel.setBounds(14, 152, 772, 411);
 
 				jDesktopPane1.add(chartPanel);
 
