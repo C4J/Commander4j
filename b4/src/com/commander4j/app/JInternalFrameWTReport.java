@@ -928,7 +928,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 			PreparedStatement temp = buildSQLview();
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
-			JLaunchReport.runReport("RPT_WEIGHT_DETAILS", parameters, "", temp, "");
+			JLaunchReport.runReport("RPT_WT_INDIVIDUAL", parameters, "", temp, "");
 		}
 		else
 		{
@@ -937,7 +937,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				HashMap<String, Object> parameters = new HashMap<String, Object>();
 				parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
 				PreparedStatement temp = buildSQLnew();
-				JLaunchReport.runReport("RPT_WEIGHT_SAMPLE_POINTS", parameters, "", temp, "");
+				JLaunchReport.runReport("RPT_WT_SUMMARY", parameters, "", temp, "");
 			}
 			else
 			{
@@ -946,14 +946,14 @@ public class JInternalFrameWTReport extends JInternalFrame
 					HashMap<String, Object> parameters = new HashMap<String, Object>();
 					parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
 					PreparedStatement temp = buildSQLnew();
-					JLaunchReport.runReport("RPT_WEIGHT_HEADER_STD", parameters, "", temp, "");
+					JLaunchReport.runReport("RPT_WT_OVERVIEW", parameters, "", temp, "");
 				}
 				else
 				{
 					HashMap<String, Object> parameters = new HashMap<String, Object>();
 					parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
 					PreparedStatement temp = buildSQLr();
-					JLaunchReport.runReport("RPT_WEIGHT_HEADER_STD", parameters, "", temp, "");
+					JLaunchReport.runReport("RPT_WT_OVERVIEW", parameters, "", temp, "");
 				}
 			}
 		}
