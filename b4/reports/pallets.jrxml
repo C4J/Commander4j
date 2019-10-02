@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pallets" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="782" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="d3013a16-1c49-46ae-9bc7-da31f8f60400">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -290,11 +290,11 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="18" splitType="Stretch">
+		<band height="12" splitType="Stretch">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="0" y="0" width="103" height="18" forecolor="#000000" uuid="4e51c804-a2c7-4895-a87a-1b6220575cd1">
+				<reportElement key="textField" x="0" y="0" width="103" height="12" forecolor="#000000" uuid="4e51c804-a2c7-4895-a87a-1b6220575cd1">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -309,8 +309,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SSCC}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="103" y="0" width="58" height="18" forecolor="#000000" uuid="97aac98e-efb8-490d-9994-6e7fa38c1aa5">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="103" y="0" width="58" height="12" forecolor="#000000" uuid="97aac98e-efb8-490d-9994-6e7fa38c1aa5">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -325,8 +325,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="161" y="0" width="49" height="18" forecolor="#000000" uuid="39b0f463-436c-42a5-be86-cc4b63ab1e26">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="161" y="0" width="49" height="12" forecolor="#000000" uuid="39b0f463-436c-42a5-be86-cc4b63ab1e26">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -341,8 +341,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{BATCH_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="282" y="0" width="42" height="18" forecolor="#000000" uuid="7a968b61-6ee6-4397-a088-068749e464c2">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="282" y="0" width="42" height="12" forecolor="#000000" uuid="7a968b61-6ee6-4397-a088-068749e464c2">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -358,7 +358,7 @@
 				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
 			</textField>
 			<textField pattern="yyyy-MM-dd HH:mm:ss" isBlankWhenNull="true">
-				<reportElement key="textField" x="404" y="0" width="101" height="18" forecolor="#000000" uuid="be36eb12-4206-4652-93df-c02a7d2fa604">
+				<reportElement key="textField" x="404" y="0" width="101" height="12" forecolor="#000000" uuid="be36eb12-4206-4652-93df-c02a7d2fa604">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -373,8 +373,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DATE_OF_MANUFACTURE}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="585" y="0" width="76" height="18" forecolor="#000000" uuid="71745470-dcb7-413a-8bcf-9aa9eeb6e926">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="585" y="0" width="76" height="12" forecolor="#000000" uuid="71745470-dcb7-413a-8bcf-9aa9eeb6e926">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -389,8 +389,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{LOCATION_ID}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="376" y="0" width="22" height="18" uuid="66ad531f-1b11-4dde-89be-8a7504ad7225">
+			<textField isBlankWhenNull="true">
+				<reportElement x="376" y="0" width="22" height="12" uuid="66ad531f-1b11-4dde-89be-8a7504ad7225">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -399,8 +399,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CONFIRMED}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="215" y="0" width="67" height="18" forecolor="#000000" uuid="a115fe9d-4f57-4cc2-9b5d-984cfc2360b7">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="215" y="0" width="67" height="12" forecolor="#000000" uuid="a115fe9d-4f57-4cc2-9b5d-984cfc2360b7">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -415,8 +415,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PROCESS_ORDER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="335" y="0" width="27" height="18" forecolor="#000000" uuid="a14295d2-a593-415e-904b-4a4d49c5ef63">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="335" y="0" width="27" height="12" forecolor="#000000" uuid="a14295d2-a593-415e-904b-4a4d49c5ef63">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -431,8 +431,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{UOM}]]></textFieldExpression>
 			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="513" y="0" width="71" height="18" forecolor="#000000" uuid="e3144bbd-46ac-4ea0-8b5a-3c68c7410e25">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement key="textField" x="513" y="0" width="71" height="12" forecolor="#000000" uuid="e3144bbd-46ac-4ea0-8b5a-3c68c7410e25">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -448,7 +448,7 @@
 				<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
 			</textField>
 			<textField pattern="yyyy-MM-dd HH:mm:ss" isBlankWhenNull="true">
-				<reportElement key="textField" x="668" y="0" width="101" height="18" forecolor="#000000" uuid="be36eb12-4206-4652-93df-c02a7d2fa604">
+				<reportElement key="textField" x="668" y="0" width="101" height="12" forecolor="#000000" uuid="be36eb12-4206-4652-93df-c02a7d2fa604">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>

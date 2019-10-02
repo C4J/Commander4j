@@ -34,6 +34,37 @@
     <statement>
        INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Max_Permitted_Quantity', 'PL', 'Maksymalna dozwolona ilość to', '0')
     </statement>
+ 
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Order_Mean', 'EN', 'Order Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Order_Mean', 'DE', 'Order Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Order_Mean', 'ES', 'Order Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Order_Mean', 'FR', 'Order moyen', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Order_Mean', 'HU', 'Order Mean', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Order_Mean', 'IT', 'Media in Order', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Order_Mean', 'NL', 'Order Mean', '0')
+    </statement>
     
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Average_Order_Mean', 'PL', 'Order Mean', '0')
+    </statement> 
     		     
 </DDL>

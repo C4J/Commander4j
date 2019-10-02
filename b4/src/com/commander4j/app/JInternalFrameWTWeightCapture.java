@@ -347,8 +347,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		if (validToScan)
 		{
 
-			Calendar maxSampleCal = Calendar.getInstance();
-			Timestamp maxSampleDate = new Timestamp(maxSampleCal.getTimeInMillis());
+			//Calendar maxSampleCal = Calendar.getInstance();
+			//Timestamp maxSampleDate = new Timestamp(maxSampleCal.getTimeInMillis());
 
 			ResultSet rs;
 			JDBQuery.closeStatement(listStatement);
@@ -363,10 +363,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			calendar2.add(Calendar.DATE, -1);
 
 			query.addParamtoSQL("sample_mean >", 0);
-
-			// query.applyRestriction(true,
-			// Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(),
-			// lGraphMaxPlots);
 
 			query.appendSort("sample_date", true);
 			query.applyRestriction(false, Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), 9999);
@@ -406,15 +402,14 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 					plotted_count++;
 
-					if (count == 1)
-					{
-						maxSampleCal.setTime(when);
-						maxSampleCal.add(Calendar.DATE, -1);
-						maxSampleDate = new Timestamp(maxSampleCal.getTimeInMillis());
-					}
+					/*
+					 * if (count == 1) { maxSampleCal.setTime(when);
+					 * maxSampleCal.add(Calendar.DATE, -2); maxSampleDate = new
+					 * Timestamp(maxSampleCal.getTimeInMillis()); }
+					 */
 
-					if (when.after(maxSampleDate))
-					{
+//					if (when.after(maxSampleDate))
+//					{
 
 						if (plotted_count <= lGraphMaxPlots)
 						{
@@ -447,7 +442,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							}
 						}
 
-					}
+//					}
 				}
 
 				dataset1.removeAllSeries();
@@ -860,7 +855,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				jDesktopPane1.add(lbl_Mean);
 
 				JLabel4j_std lbl_Batch_Mean = new JLabel4j_std();
-				lbl_Batch_Mean.setText(lang.get("lbl_Average_Batch_Mean"));
+				lbl_Batch_Mean.setText(lang.get("lbl_Average_Order_Mean"));
 				lbl_Batch_Mean.setHorizontalTextPosition(SwingConstants.RIGHT);
 				lbl_Batch_Mean.setHorizontalAlignment(SwingConstants.RIGHT);
 				lbl_Batch_Mean.setBounds(786, 459, 126, 25);
