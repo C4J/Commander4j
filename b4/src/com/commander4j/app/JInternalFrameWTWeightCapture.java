@@ -356,7 +356,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			query.clear();
 
 			query.addText(JUtility.substSchemaName(schemaName, "select sample_date,sample_mean,sample_std_dev from {schema}APP_WEIGHT_SAMPLE_HEADER"));
-			query.addParamtoSQL("sample_point =", workdb.getSamplePoint());
+			query.addParamtoSQL("sample_point =", samplePointdb.getSamplePoint());
 			query.addParamtoSQL("process_order =", orderdb.getProcessOrder());
 
 			Calendar calendar2 = Calendar.getInstance();
@@ -421,7 +421,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							int hour = cal.get(Calendar.HOUR_OF_DAY);
 							int mins = cal.get(Calendar.MINUTE);
 							int seconds = cal.get(Calendar.SECOND);
-							System.out.println(cal.getTime().toString());
 
 							try
 							{
@@ -1064,7 +1063,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				jStatusText.setText("Recording " + weight + " " + weightUOM);
 				JDBWTSampleDetail sampleDetail = new JDBWTSampleDetail(Common.selectedHostID, Common.sessionID);
-				sampleDetail.setSamplePoint(workdb.getSamplePoint());
+				sampleDetail.setSamplePoint(samplePointdb.getSamplePoint());
 				sampleDetail.setSampleDate(sampleHeader.getSampleDate());
 				sampleDetail.setSampleWeightDate(JUtility.getSQLDateTime());
 				sampleSequence++;
