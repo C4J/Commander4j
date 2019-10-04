@@ -392,7 +392,7 @@ FROM
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SAMPLE_SIZE}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.###">
+			<textField pattern="#,##0.00">
 				<reportElement x="346" y="0" width="44" height="12" uuid="b9fea281-1d54-4ab2-998e-7ea74eb94c73">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e68b36bd-766b-4094-93af-a8abfcf096d4"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -402,7 +402,7 @@ FROM
 				</textElement>
 				<textFieldExpression><![CDATA[$F{MEAN_WEIGHT}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.###">
+			<textField pattern="#,##0.00">
 				<reportElement x="393" y="0" width="44" height="12" uuid="4e79cbab-d636-4dfa-a0a8-c8887d91cdd9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="49e03a93-9249-488b-8a65-61602bc7f83b"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
