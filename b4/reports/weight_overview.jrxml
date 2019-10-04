@@ -6,7 +6,7 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MS SQL Server"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.report.description" value="Standard List of APP_WEIGHT_HEADER"/>
 	<import value="net.sf.jasperreports.engine.*"/>
@@ -369,7 +369,7 @@
 		<band height="12" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="0" y="0" width="70" height="11" forecolor="#000000" uuid="09339ab0-c655-44b5-b729-d00563e09ebf">
+				<reportElement key="textField" x="0" y="0" width="70" height="12" forecolor="#000000" uuid="09339ab0-c655-44b5-b729-d00563e09ebf">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>

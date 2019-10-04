@@ -197,9 +197,9 @@ FROM
 					</graphicElement>
 				</rectangle>
 				<textField pattern="" isBlankWhenNull="false">
-					<reportElement key="textField" x="1" y="14" width="110" height="17" forecolor="#0066FF" uuid="2f3814a8-1229-43e0-9498-b9d9c964a2d3">
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<reportElement key="textField" x="1" y="15" width="110" height="17" forecolor="#0066FF" uuid="2f3814a8-1229-43e0-9498-b9d9c964a2d3">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
