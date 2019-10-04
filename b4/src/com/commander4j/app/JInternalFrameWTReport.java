@@ -160,7 +160,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 	}
 
-	private PreparedStatement buildSQLview()
+	private PreparedStatement buildSQLindividual()
 	{
 
 		PreparedStatement result;
@@ -233,8 +233,291 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		listStatement = buildSQLr();
 	}
+	
+	private PreparedStatement buildSQLquickref1()
+	{
 
-	private PreparedStatement buildSQLnew()
+		PreparedStatement result;
+		
+		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+
+		String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
+
+		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
+		{
+			q2.applyWhat("SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT, CONTAINER_CODE, PRODUCT_GROUP, MIN(SAMPLE_SIZE) AS SAMPLE_SIZE,  AVG(SAMPLE_NET_WEIGHT) AS MEAN_WEIGHT,\n" + 
+					" STDDEV(SAMPLE_NET_WEIGHT) AS STANDARD_DEVIATION, SUM(SAMPLE_T1_COUNT_0) AS TOTAL_T1S, SUM(SAMPLE_T2_COUNT_0) AS TOTAL_T2S, MIN(SAMPLE_WEIGHT_DATE) AS FIRST_WEIGHT_DATE,\n" + 
+					" MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, CAST(ROUND((((SUM(SAMPLE_T1_COUNT_0)*1.000)  / (COUNT(*)*1.000)) * 100.000),2) AS DECIMAL(10, 2)) AS PERCENTAGE_T1S\n");
+
+		}
+		
+		if (driver.equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
+		{
+			q2.applyWhat("SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT, CONTAINER_CODE, PRODUCT_GROUP, MIN(SAMPLE_SIZE) AS SAMPLE_SIZE, AVG(SAMPLE_NET_WEIGHT) AS MEAN_WEIGHT,\n" + 
+					"	STDEV(SAMPLE_NET_WEIGHT) AS STANDARD_DEVIATION, SUM(SAMPLE_T1_COUNT_0) AS TOTAL_T1S, SUM(SAMPLE_T2_COUNT_0) AS TOTAL_T2S, MIN(SAMPLE_WEIGHT_DATE) AS FIRST_WEIGHT_DATE,\n" + 
+					"	MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, (SUM(SAMPLE_T1_COUNT_0)*1.000)  / ((COUNT(*)*1.000)) AS PERCENTAGE_T1S\n");
+		}
+		
+		if (driver.equals("com.mysql.cj.jdbc.Driver"))
+		{
+			q2.applyWhat("SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT, CONTAINER_CODE, PRODUCT_GROUP, MIN(SAMPLE_SIZE) AS SAMPLE_SIZE, AVG(SAMPLE_NET_WEIGHT) AS MEAN_WEIGHT,\n" + 
+					"	STDDEV(SAMPLE_NET_WEIGHT) AS STANDARD_DEVIATION, SUM(SAMPLE_T1_COUNT_0) AS TOTAL_T1S, SUM(SAMPLE_T2_COUNT_0) AS TOTAL_T2S, MIN(SAMPLE_WEIGHT_DATE) AS FIRST_WEIGHT_DATE,\n" + 
+					"	MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, CAST(ROUND((((SUM(SAMPLE_T1_COUNT_0)*1.000)  / (COUNT(*)*1.000)) * 100.000),2) AS DECIMAL(10, 2)) AS PERCENTAGE_T1S\n");
+		}
+		
+		q2.applyFrom("VIEW_WEIGHT_SAMPLES\n");
+
+		q2.applyWhere("NOMINAL_WEIGHT > ", 0);
+		
+		if (checkBox4jFromEnabled.isSelected())
+		{
+			q2.applyWhere("sample_date>=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
+		}
+
+		if (jComboBoxReportType.getSelectedItem().toString().equals("Mean above Nominal"))
+		{
+			q2.applyWhereLiteral(" sample_mean > nominal_weight ");
+		}
+
+		if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
+		{
+			q2.applyWhereLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
+		}
+
+		if (checkBox4jToEnabled.isSelected())
+		{
+			q2.applyWhere("sample_date<=", JUtility.getTimestampFromDate(sampleDateTo.getDate()));
+		}
+
+		if (fld_Material.getText().equals("") == false)
+		{
+			q2.applyWhere("material = ", fld_Material.getText());
+		}
+
+		if (fld_Process_Order.getText().equals("") == false)
+		{
+			q2.applyWhere("process_order = ", fld_Process_Order.getText());
+		}
+
+		if (fld_SamplePoint.getText().equals("") == false)
+		{
+			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
+		}
+
+		if (fld_Product_Group.getText().equals("") == false)
+		{
+			q2.applyWhere("product_group = ", fld_Product_Group.getText());
+		}
+
+		if (checkBox4j_T1.isSelected())
+		{
+			q2.applyWhere("sample_t1_count > ", 0);
+		}
+
+		if (checkBox4j_T2.isSelected())
+		{
+			q2.applyWhere("sample_t2_count > ", 0);
+		}
+		
+		q2.setSQLFinal(" GROUP BY SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT, CONTAINER_CODE, 	PRODUCT_GROUP\n" + 
+				"	ORDER BY SAMPLE_DATE_SHORT,	NOMINAL_WEIGHT,SAMPLE_POINT,CONTAINER_CODE, PRODUCT_GROUP");
+		
+		q2.applySQL();
+		result = q2.getPreparedStatement();
+
+		return result;
+	}
+
+	private PreparedStatement buildSQLquickref2()
+	{
+
+		PreparedStatement result;
+		
+		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+
+		String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
+
+		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
+		{
+			q2.applyWhat("SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT, PROCESS_ORDER, MATERIAL, MIN(SAMPLE_SIZE) AS SAMPLE_SIZE, AVG(SAMPLE_NET_WEIGHT) AS MEAN_WEIGHT,\n" + 
+					" STDDEV(SAMPLE_NET_WEIGHT) AS STANDARD_DEVIATION, SUM(SAMPLE_T1_COUNT_0) AS TOTAL_T1S, SUM(SAMPLE_T2_COUNT_0) AS TOTAL_T2S, MIN(SAMPLE_WEIGHT_DATE) AS FIRST_WEIGHT_DATE,\n" + 
+					" MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, CAST(ROUND((((SUM(SAMPLE_T1_COUNT_0)*1.000)  / (COUNT(*)*1.000)) * 100.000),2) AS DECIMAL(10, 2)) AS PERCENTAGE_T1S\n");
+
+		}
+		
+		if (driver.equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
+		{
+			q2.applyWhat("SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT, PROCESS_ORDER, MATERIAL, MIN(SAMPLE_SIZE) AS SAMPLE_SIZE, AVG(SAMPLE_NET_WEIGHT) AS MEAN_WEIGHT,\n" + 
+					" STDEV(SAMPLE_NET_WEIGHT) AS STANDARD_DEVIATION, SUM(SAMPLE_T1_COUNT_0) AS TOTAL_T1S, SUM(SAMPLE_T2_COUNT_0) AS TOTAL_T2S, MIN(SAMPLE_WEIGHT_DATE) AS FIRST_WEIGHT_DATE,\n" + 
+					" MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, (SUM(SAMPLE_T1_COUNT_0)*1.000)  / ((COUNT(*)*1.000)) AS PERCENTAGE_T1S\n");
+		}
+		
+		if (driver.equals("com.mysql.cj.jdbc.Driver"))
+		{
+			q2.applyWhat("SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT, PROCESS_ORDER, MATERIAL, MIN(SAMPLE_SIZE) AS SAMPLE_SIZE, AVG(SAMPLE_NET_WEIGHT) AS MEAN_WEIGHT,\n" + 
+					" STDDEV(SAMPLE_NET_WEIGHT) AS STANDARD_DEVIATION, SUM(SAMPLE_T1_COUNT_0) AS TOTAL_T1S, SUM(SAMPLE_T2_COUNT_0) AS TOTAL_T2S, MIN(SAMPLE_WEIGHT_DATE) AS FIRST_WEIGHT_DATE,\n" + 
+					" MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, CAST(ROUND((((SUM(SAMPLE_T1_COUNT_0)*1.000)  / (COUNT(*)*1.000)) * 100.000),2) AS DECIMAL(10, 2)) AS PERCENTAGE_T1S\n");
+		}
+		
+		q2.applyFrom("VIEW_WEIGHT_SAMPLES\n");
+
+		q2.applyWhere("NOMINAL_WEIGHT > ", 0);
+		
+		if (checkBox4jFromEnabled.isSelected())
+		{
+			q2.applyWhere("sample_date>=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
+		}
+
+		if (jComboBoxReportType.getSelectedItem().toString().equals("Mean above Nominal"))
+		{
+			q2.applyWhereLiteral(" sample_mean > nominal_weight ");
+		}
+
+		if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
+		{
+			q2.applyWhereLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
+		}
+
+		if (checkBox4jToEnabled.isSelected())
+		{
+			q2.applyWhere("sample_date<=", JUtility.getTimestampFromDate(sampleDateTo.getDate()));
+		}
+
+		if (fld_Material.getText().equals("") == false)
+		{
+			q2.applyWhere("material = ", fld_Material.getText());
+		}
+
+		if (fld_Process_Order.getText().equals("") == false)
+		{
+			q2.applyWhere("process_order = ", fld_Process_Order.getText());
+		}
+
+		if (fld_SamplePoint.getText().equals("") == false)
+		{
+			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
+		}
+
+		if (fld_Product_Group.getText().equals("") == false)
+		{
+			q2.applyWhere("product_group = ", fld_Product_Group.getText());
+		}
+
+		if (checkBox4j_T1.isSelected())
+		{
+			q2.applyWhere("sample_t1_count > ", 0);
+		}
+
+		if (checkBox4j_T2.isSelected())
+		{
+			q2.applyWhere("sample_t2_count > ", 0);
+		}
+		
+		q2.setSQLFinal(" GROUP BY SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT, PROCESS_ORDER, MATERIAL\n" + 
+				"	ORDER BY SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT, PROCESS_ORDER, MATERIAL");
+		
+		q2.applySQL();
+		result = q2.getPreparedStatement();
+
+		return result;
+	}
+	
+	private PreparedStatement buildSQLquickref3()
+	{
+
+		PreparedStatement result;
+		
+		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+
+		String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
+
+		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
+		{
+			q2.applyWhat("SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT,CONTAINER_CODE,PRODUCT_GROUP, PROCESS_ORDER, MATERIAL, MIN(SAMPLE_SIZE) AS SAMPLE_SIZE, AVG(SAMPLE_NET_WEIGHT) AS MEAN_WEIGHT,\n" + 
+					" STDDEV(SAMPLE_NET_WEIGHT) AS STANDARD_DEVIATION, SUM(SAMPLE_T1_COUNT_0) AS TOTAL_T1S, SUM(SAMPLE_T2_COUNT_0) AS TOTAL_T2S, MIN(SAMPLE_WEIGHT_DATE) AS FIRST_WEIGHT_DATE,\n" + 
+					" MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, CAST(ROUND((((SUM(SAMPLE_T1_COUNT_0)*1.000)  / (COUNT(*)*1.000)) * 100.000),2) AS DECIMAL(10, 2)) AS PERCENTAGE_T1S\n");
+
+		}
+		
+		if (driver.equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
+		{
+			q2.applyWhat("SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT,CONTAINER_CODE,PRODUCT_GROUP, PROCESS_ORDER, MATERIAL, MIN(SAMPLE_SIZE) AS SAMPLE_SIZE, AVG(SAMPLE_NET_WEIGHT) AS MEAN_WEIGHT,\n" + 
+					" STDEV(SAMPLE_NET_WEIGHT) AS STANDARD_DEVIATION, SUM(SAMPLE_T1_COUNT_0) AS TOTAL_T1S, SUM(SAMPLE_T2_COUNT_0) AS TOTAL_T2S, MIN(SAMPLE_WEIGHT_DATE) AS FIRST_WEIGHT_DATE,\n" + 
+					" MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, (SUM(SAMPLE_T1_COUNT_0)*1.000)  / ((COUNT(*)*1.000)) AS PERCENTAGE_T1S\n");
+		}
+		
+		if (driver.equals("com.mysql.cj.jdbc.Driver"))
+		{
+			q2.applyWhat("SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT,CONTAINER_CODE,PRODUCT_GROUP, PROCESS_ORDER, MATERIAL, MIN(SAMPLE_SIZE) AS SAMPLE_SIZE, AVG(SAMPLE_NET_WEIGHT) AS MEAN_WEIGHT,\n" + 
+					" STDDEV(SAMPLE_NET_WEIGHT) AS STANDARD_DEVIATION, SUM(SAMPLE_T1_COUNT_0) AS TOTAL_T1S, SUM(SAMPLE_T2_COUNT_0) AS TOTAL_T2S, MIN(SAMPLE_WEIGHT_DATE) AS FIRST_WEIGHT_DATE,\n" + 
+					" MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, CAST(ROUND((((SUM(SAMPLE_T1_COUNT_0)*1.000)  / (COUNT(*)*1.000)) * 100.000),2) AS DECIMAL(10, 2)) AS PERCENTAGE_T1S\n");
+		}
+		
+		q2.applyFrom("VIEW_WEIGHT_SAMPLES\n");
+
+		q2.applyWhere("NOMINAL_WEIGHT > ", 0);
+		
+		if (checkBox4jFromEnabled.isSelected())
+		{
+			q2.applyWhere("sample_date>=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
+		}
+
+		if (jComboBoxReportType.getSelectedItem().toString().equals("Mean above Nominal"))
+		{
+			q2.applyWhereLiteral(" sample_mean > nominal_weight ");
+		}
+
+		if (jComboBoxReportType.getSelectedItem().toString().equals("T1s or T2s"))
+		{
+			q2.applyWhereLiteral(" ((sample_t1_count > 0) or (sample_t2_count > 0)) ");
+		}
+
+		if (checkBox4jToEnabled.isSelected())
+		{
+			q2.applyWhere("sample_date<=", JUtility.getTimestampFromDate(sampleDateTo.getDate()));
+		}
+
+		if (fld_Material.getText().equals("") == false)
+		{
+			q2.applyWhere("material = ", fld_Material.getText());
+		}
+
+		if (fld_Process_Order.getText().equals("") == false)
+		{
+			q2.applyWhere("process_order = ", fld_Process_Order.getText());
+		}
+
+		if (fld_SamplePoint.getText().equals("") == false)
+		{
+			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
+		}
+
+		if (fld_Product_Group.getText().equals("") == false)
+		{
+			q2.applyWhere("product_group = ", fld_Product_Group.getText());
+		}
+
+		if (checkBox4j_T1.isSelected())
+		{
+			q2.applyWhere("sample_t1_count > ", 0);
+		}
+
+		if (checkBox4j_T2.isSelected())
+		{
+			q2.applyWhere("sample_t2_count > ", 0);
+		}
+		
+		q2.setSQLFinal(" GROUP BY SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT,CONTAINER_CODE,PRODUCT_GROUP, PROCESS_ORDER, MATERIAL\n" + 
+				"	ORDER BY SAMPLE_DATE_SHORT, NOMINAL_WEIGHT, SAMPLE_POINT,CONTAINER_CODE,PRODUCT_GROUP, PROCESS_ORDER, MATERIAL");
+		
+		q2.applySQL();
+		result = q2.getPreparedStatement();
+
+		return result;
+	}	
+
+
+	private PreparedStatement buildSQLsummary_overview()
 	{
 
 		PreparedStatement result;
@@ -694,7 +977,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jDesktopPane1.add(label4j_std_report_type);
 
 				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[]
-				{ "Overview Weight Report by Sample Point", "Summary Weight Report by Sample Point", "Individual Weight Check Report by Sample Point", "Search Results", "Mean above Nominal", "T1s or T2s" });
+				{ "Quick Reference 1","Quick Reference 2","Quick Reference 3", "Overview Weight Report by Sample Point", "Summary Weight Report by Sample Point", "Individual Weight Check Report by Sample Point", "Search Results", "Mean above Nominal", "T1s or T2s" });
 				jComboBoxReportType = new JComboBox4j<String>();
 				jComboBoxReportType.addActionListener(new ActionListener()
 				{
@@ -714,6 +997,21 @@ public class JInternalFrameWTReport extends JInternalFrame
 							jComboBoxSortBy.setEnabled(false);
 
 						}
+						if (jComboBoxReportType.getSelectedItem().toString().equals("Quick Reference 1"))
+						{
+							jComboBoxSortBy.setEnabled(false);
+
+						}
+						if (jComboBoxReportType.getSelectedItem().toString().equals("Quick Reference 2"))
+						{
+							jComboBoxSortBy.setEnabled(false);
+
+						}
+						if (jComboBoxReportType.getSelectedItem().toString().equals("Quick Reference 3"))
+						{
+							jComboBoxSortBy.setEnabled(false);
+
+						}						
 						if (jComboBoxReportType.getSelectedItem().toString().equals("Mean above Nominal"))
 						{
 							jComboBoxSortBy.setEnabled(true);
@@ -923,37 +1221,67 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 	private void print()
 	{
-		if (jComboBoxReportType.getSelectedItem().equals("Individual Weight Check Report by Sample Point"))
+		if (jComboBoxReportType.getSelectedItem().equals("Quick Reference 1"))
 		{
-			PreparedStatement temp = buildSQLview();
+			PreparedStatement temp = buildSQLquickref1();
 			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
-			JLaunchReport.runReport("RPT_WT_INDIVIDUAL", parameters, "", temp, "");
+			JLaunchReport.runReport("RPT_WT_QUICKREF1", parameters, "", temp, "");
 		}
 		else
-		{
-			if (jComboBoxReportType.getSelectedItem().equals("Summary Weight Report by Sample Point"))
 			{
+			if (jComboBoxReportType.getSelectedItem().equals("Quick Reference 2"))
+			{
+				PreparedStatement temp = buildSQLquickref2();
 				HashMap<String, Object> parameters = new HashMap<String, Object>();
 				parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
-				PreparedStatement temp = buildSQLnew();
-				JLaunchReport.runReport("RPT_WT_SUMMARY", parameters, "", temp, "");
+				JLaunchReport.runReport("RPT_WT_QUICKREF2", parameters, "", temp, "");
 			}
 			else
 			{
-				if (jComboBoxReportType.getSelectedItem().equals("Overview Weight Report by Sample Point"))
+				if (jComboBoxReportType.getSelectedItem().equals("Quick Reference 3"))
 				{
+					PreparedStatement temp = buildSQLquickref3();
 					HashMap<String, Object> parameters = new HashMap<String, Object>();
 					parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
-					PreparedStatement temp = buildSQLnew();
-					JLaunchReport.runReport("RPT_WT_OVERVIEW", parameters, "", temp, "");
+					JLaunchReport.runReport("RPT_WT_QUICKREF3", parameters, "", temp, "");
 				}
 				else
 				{
-					HashMap<String, Object> parameters = new HashMap<String, Object>();
-					parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
-					PreparedStatement temp = buildSQLr();
-					JLaunchReport.runReport("RPT_WT_OVERVIEW", parameters, "", temp, "");
+					if (jComboBoxReportType.getSelectedItem().equals("Individual Weight Check Report by Sample Point"))
+					{
+						PreparedStatement temp = buildSQLindividual();
+						HashMap<String, Object> parameters = new HashMap<String, Object>();
+						parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
+						JLaunchReport.runReport("RPT_WT_INDIVIDUAL", parameters, "", temp, "");
+					}
+					else
+					{
+						if (jComboBoxReportType.getSelectedItem().equals("Summary Weight Report by Sample Point"))
+						{
+							HashMap<String, Object> parameters = new HashMap<String, Object>();
+							parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
+							PreparedStatement temp = buildSQLsummary_overview();
+							JLaunchReport.runReport("RPT_WT_SUMMARY", parameters, "", temp, "");
+						}
+						else
+						{
+							if (jComboBoxReportType.getSelectedItem().equals("Overview Weight Report by Sample Point"))
+							{
+								HashMap<String, Object> parameters = new HashMap<String, Object>();
+								parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
+								PreparedStatement temp = buildSQLsummary_overview();
+								JLaunchReport.runReport("RPT_WT_OVERVIEW", parameters, "", temp, "");
+							}
+							else
+							{
+								HashMap<String, Object> parameters = new HashMap<String, Object>();
+								parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
+								PreparedStatement temp = buildSQLr();
+								JLaunchReport.runReport("RPT_WT_OVERVIEW", parameters, "", temp, "");
+							}
+						}
+					}
 				}
 			}
 		}
