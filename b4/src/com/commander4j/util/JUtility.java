@@ -633,7 +633,7 @@ public class JUtility
 	public static String formatNumber(String No, String fmt)
 	{
 		String result = "error";
-		@SuppressWarnings("unused")
+
 		Long SeqNumber = (long) 0;
 		int SeqStart = 0;
 		int SeqEnd = 0;
