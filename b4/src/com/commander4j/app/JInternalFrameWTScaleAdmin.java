@@ -196,9 +196,9 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_WEIGHT_SCALE"));
 		
-		JLabel label = new JLabel("Scale ID       Description              Make           Model");
+		JLabel label = new JLabel("Scale ID       Description              Make           Model          Serial Number");
 		label.setFont(new Font("Monospaced", Font.BOLD, 11));
-		label.setBounds(8, 12, 518, 15);
+		label.setBounds(8, 12, 647, 15);
 		jDesktopPane1.add(label);
 		populateList("");
 	}
@@ -207,7 +207,7 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(455, 518));
-			this.setBounds(0, 0, 673, 322);
+			this.setBounds(0, 0, 825, 322);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -220,7 +220,7 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 				{
 					jScrollPane1 = new JScrollPane();
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(6, 27, 518, 258);
+					jScrollPane1.setBounds(6, 27, 670, 258);
 					{
 						ListModel<JDBWTScale> jList1Model = new DefaultComboBoxModel<JDBWTScale>();
 						jListScales = new JList4j<JDBWTScale>();
@@ -331,7 +331,7 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(535, 5, 125, 32);
+					jButtonAdd.setBounds(688, 0, 125, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_SCALE_ADD"));
 					jButtonAdd.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -345,7 +345,7 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(535, 36, 125, 32);
+					jButtonDelete.setBounds(688, 31, 125, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_SCALE_DELETE"));
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
 					jButtonDelete.addActionListener(new ActionListener() {
@@ -360,7 +360,7 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(535, 67, 125, 32);
+					jButtonEdit.setBounds(688, 62, 125, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_SCALE_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -373,7 +373,7 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonRename);
 					jButtonRename.setText(lang.get("btn_Rename"));
 					jButtonRename.setMnemonic(lang.getMnemonicChar());
-					jButtonRename.setBounds(535, 98, 125, 32);
+					jButtonRename.setBounds(688, 93, 125, 32);
 					jButtonRename.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_SCALE_RENAME"));
 					jButtonRename.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -387,7 +387,7 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(535, 129, 125, 32);
+					jButtonPrint.setBounds(688, 124, 125, 32);
 					jButtonPrint.setEnabled(true);
 					jButtonPrint.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -400,14 +400,14 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(535, 222, 125, 32);
+					jButtonHelp.setBounds(688, 217, 125, 32);
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.setBounds(535, 191, 125, 32);
+					jButtonRefresh.setBounds(688, 186, 125, 32);
 					jButtonRefresh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							populateList("");
@@ -419,7 +419,7 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(535, 253, 125, 32);
+					jButtonClose.setBounds(688, 248, 125, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -431,7 +431,7 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(535, 160, 125, 32);
+					jButtonExcel.setBounds(688, 155, 125, 32);
 					jButtonExcel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							excel();
