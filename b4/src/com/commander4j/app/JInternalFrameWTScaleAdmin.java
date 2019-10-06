@@ -196,7 +196,7 @@ public class JInternalFrameWTScaleAdmin extends javax.swing.JInternalFrame
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_WEIGHT_SCALE"));
 		
-		JLabel label = new JLabel("Scale ID       Description              Make           Model          Serial Number");
+		JLabel label = new JLabel("Scale ID        Description               Make            Model           Serial Number");
 		label.setFont(new Font("Monospaced", Font.BOLD, 11));
 		label.setBounds(8, 12, 647, 15);
 		jDesktopPane1.add(label);

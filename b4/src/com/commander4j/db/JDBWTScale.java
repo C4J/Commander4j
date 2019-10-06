@@ -561,7 +561,7 @@ public class JDBWTScale
 
 	public String toString()
 	{
-		String result = JUtility.padString(getScaleID(), true, field_ScaleID, " ") + JUtility.padString(getDescription(), true, field_Description, " ") + JUtility.padString(getMake(), true, field_Make, " ") + JUtility.padString(getModel(), true,field_Model," ")+ JUtility.padString(getSerialNo(), true,field_Serial," ");
+		String result = JUtility.padString(getScaleID(), true, field_ScaleID+1, " ") + JUtility.padString(getDescription(), true, field_Description+1, " ") + JUtility.padString(getMake(), true, field_Make+1, " ") + JUtility.padString(getModel(), true,field_Model+1," ")+ getSerialNo();
 
 		return result;
 	}
