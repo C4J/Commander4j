@@ -1753,7 +1753,7 @@
 		</statement>
 		<statement>
 			<id>JDBWTScale.update</id>
-			<text>update {schema}APP_WEIGHT_SCALE set description = ?,make=?,model=?,baud_rate=?,data_bits=?,stop_bits=?,flow_control=?,connection=?,parity=?,end_of_line=? where scale_id = ?</text>
+			<text>update {schema}APP_WEIGHT_SCALE set description = ?,make=?,model=?,baud_rate=?,data_bits=?,stop_bits=?,flow_control=?,connection=?,parity=?,end_of_line=?,serial_no=? where scale_id = ?</text>
 		</statement>	
 	    <statement>
 			<id>JDBWTScale.isValidScale</id>

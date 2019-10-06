@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		ALTER TABLE "APP_WEIGHT_SCALE" ADD ("SERIAL_NO" VARCHAR2(25) DEFAULT '' )
+	</statement>
+	
+	<statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Serial_No', 'EN', 'Serial Number', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Serial_No', 'DE', 'Ordnungsnummer', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Serial_No', 'ES', 'Número de serie', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Serial_No', 'FR', 'Numéro de série', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Serial_No', 'HU', 'Sorozatszám', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Serial_No', 'IT', 'Numero di serie', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Serial_No', 'NL', 'Serienummer', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Serial_No', 'PL', 'Numer seryjny', '0')
+    </statement>  
+    		     
+</DDL>

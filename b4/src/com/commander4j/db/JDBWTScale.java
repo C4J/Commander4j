@@ -40,6 +40,7 @@ public class JDBWTScale
 {
 	private String dbScaleID = "";
 	private String dbDescription = "";
+	private String dbSerialNo = "";
 	private String dbMake = "";
 	private String dbModel = "";
 	private String dbParity = "";
@@ -56,6 +57,7 @@ public class JDBWTScale
 	private String sessionID;
 	public static int field_ScaleID = 15;
 	public static int field_Description = 25;
+	public static int field_Serial = 25;
 	public static int field_Make = 15;
 	public static int field_Model = 15;
 	public static int field_Parity = 10;
@@ -84,6 +86,7 @@ public class JDBWTScale
 	private void clear()
 	{
 		setDescription("");
+		setSerialNo("");
 		setMake("");
 		setModel("");
 		setBaudRate(0);
@@ -231,6 +234,11 @@ public class JDBWTScale
 	{
 		return dbDescription;
 	}
+	
+	public String getSerialNo()
+	{
+		return dbSerialNo;
+	}
 
 	public String getErrorMessage()
 	{
@@ -307,6 +315,7 @@ public class JDBWTScale
 			clear();
 
 			setDescription(rs.getString("description"));
+			setSerialNo(rs.getString("serial_no"));
 			setMake(rs.getString("make"));
 			setModel(rs.getString("model"));
 			setBaudRate(rs.getInt("baud_rate"));
@@ -389,9 +398,14 @@ public class JDBWTScale
 		this.dbDataBits = dbDataBits;
 	}
 
-	public void setDescription(String dbDescription)
+	public void setDescription(String Description)
 	{
-		this.dbDescription = JUtility.replaceNullStringwithBlank(dbDescription);
+		this.dbDescription = JUtility.replaceNullStringwithBlank(Description);
+	}
+	
+	public void setSerialNo(String Serial)
+	{
+		this.dbSerialNo = JUtility.replaceNullStringwithBlank(Serial);
 	}
 
 	private void setErrorMessage(String ErrorMsg)
@@ -465,7 +479,8 @@ public class JDBWTScale
 				stmtupdate.setString(8, getConnection());
 				stmtupdate.setString(9, getParity());
 				stmtupdate.setString(10, getEndOfLine());
-				stmtupdate.setString(11, getScaleID());
+				stmtupdate.setString(11, getSerialNo());
+				stmtupdate.setString(12, getScaleID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -499,6 +514,7 @@ public class JDBWTScale
 				JDBWTScale scale = new JDBWTScale(getHostID(), getSessionID());
 				scale.setScaleID(rs.getString("scale_id"));
 				scale.setDescription(rs.getString("description"));
+				scale.setSerialNo(rs.getString("serial_no"));
 				scale.setMake(rs.getString("make"));
 				scale.setModel(rs.getString("model"));
 				scale.setBaudRate(rs.getInt("baud_rate"));
