@@ -208,6 +208,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private String containerCode = "";
 	private boolean validToScan = false;
 	private JButton btnManualInput = new JButton(Common.icon_add_16x16);
+	private JButton btnComment = new JButton(Common.icon_edit_16x16);
 	private JButton btnDebug = new JButton();
 
 	private TimeSeries s1 = new TimeSeries("Mean Weight");
@@ -763,6 +764,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							btn_Begin.setEnabled(false);
 							btnj_Cancel.setEnabled(true);
 							btnManualInput.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_WEIGHT_CAPTURE_MANUAL_ADD"));
+							btnComment.setEnabled(false);
 							fld_Mean.setText("0.000");
 							fld_Batch_Mean.setText("0.000");
 							fld_Batch_Mean.setBackground(Common.color_app_window);
@@ -980,6 +982,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						btn_Begin.setEnabled(true);
 						btnj_Cancel.setEnabled(false);
 						btnManualInput.setEnabled(false);
+						btnComment.setEnabled(false);
 						fld_Mean.setText("0.000");
 						fld_Batch_Mean.setText("0.000");
 						fld_Batch_Mean.setBackground(Common.color_app_window);
@@ -1021,17 +1024,36 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				});
 				btnDebug.setText("Debug");
 
-				btnDebug.setBounds(798, 496, 196, 25);
+				btnDebug.setBounds(798, 535, 196, 25);
 				jDesktopPane1.add(btnDebug);
 
 				btnManualInput.setBounds(798, 364, 196, 25);
 				jDesktopPane1.add(btnManualInput);
 				btnManualInput.setEnabled(false);
+				btnComment.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String comments = sampleHeader.getComments();
+						comments = JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Add_Comment"),comments);
+						if (comments != null)
+						{
+						   sampleHeader.setComments(comments);
+						   sampleHeader.updateComments();
+						}
+					}
+				});
+				
+				btnComment.setText(lang.get("lbl_Add_Comment"));
+				btnComment.setEnabled(false);
+				btnComment.setBounds(798, 496, 196, 25);
+				jDesktopPane1.add(btnComment);
+				btnComment.setEnabled(false);
 
 				createDemoPanel();
 				chartPanel.setBounds(14, 152, 772, 411);
 
 				jDesktopPane1.add(chartPanel);
+				
+
 
 			}
 		}
@@ -1046,8 +1068,10 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		chart = createChart();
 		chartPanel = new ChartPanel(chart, false);
+		chartPanel.setMouseZoomable(false);
 		chartPanel.setMouseWheelEnabled(false);
-		// return panel;
+		chartPanel.setPopupMenu(null);
+
 	}
 
 	private boolean logSampleWeight(String weight, String weightUOM)
@@ -1277,6 +1301,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		sampleHeader.setSampleStdDev(StdDev);
 		sampleHeader.setSampleT1Count(t1s);
 		sampleHeader.setSampleT2Count(t2s);
+		sampleHeader.setComments("");
 		sampleHeader.create();
 		sampleHeader.update();
 
@@ -1290,6 +1315,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		}
 
 		jStatusText.setText("Results have been saved.");
+		btnComment.setEnabled(true);
 
 	}
 
@@ -1412,6 +1438,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		fld_Batch_Mean.setText("0.000");
 		fld_Batch_Mean.setBackground(Common.color_app_window);
 		fld_Standard_Deviation.setText("0.000");
+		btnComment.setEnabled(false);
 
 		// Lookup is passed to indicate if previous step failed in which case
 		// there is no need to lookup date in this step.

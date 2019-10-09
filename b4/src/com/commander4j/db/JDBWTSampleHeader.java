@@ -72,7 +72,8 @@ public class JDBWTSampleHeader
 
 	private Integer dbSampleCount = 0;
 	private BigDecimal dbSampleMean  = new BigDecimal("0.000");
-
+	private String dbComments = "";
+	
 	private String dbErrorMessage = "";
 	private String hostID;
 	private String sessionID;
@@ -109,6 +110,7 @@ public class JDBWTSampleHeader
 		setSampleStdDev(new BigDecimal("0.000"));
 		setSampleT1Count(0);
 		setSampleT2Count(0);
+		setComments("");
 	}
 
 	public boolean create()
@@ -190,6 +192,16 @@ public class JDBWTSampleHeader
 		return delete();
 	}
 
+	public void setComments(String c)
+	{
+		dbComments = JUtility.replaceNullStringwithBlank(c);
+	}
+	
+	public String getComments()
+	{
+		return JUtility.replaceNullStringwithBlank(dbComments);
+	}
+	
 	public String getContainerCode()
 	{
 		return dbContainerCode;
@@ -316,6 +328,7 @@ public class JDBWTSampleHeader
 			setSampleStdDev(rs.getBigDecimal("sample_std_dev"));
 			setSampleT1Count(rs.getInt("sample_T1_count"));
 			setSampleT2Count(rs.getInt("sample_T2_count"));
+			setComments(rs.getString("comments"));
 
 		}
 		catch (SQLException e)
@@ -381,6 +394,7 @@ public class JDBWTSampleHeader
 				samp.setSampleStdDev(rs.getBigDecimal("sample_std_dev"));
 				samp.setSampleT1Count(rs.getInt("sample_T1_count"));
 				samp.setSampleT2Count(rs.getInt("sample_T2_count"));
+				samp.setComments(rs.getString("comments"));
 
 				sampList.add(samp);
 			}
@@ -733,9 +747,44 @@ public class JDBWTSampleHeader
 				stmtupdate.setBigDecimal(20, getSampleStdDev());
 				stmtupdate.setInt(21, getSampleT1Count());
 				stmtupdate.setInt(22, getSampleT2Count());
+				stmtupdate.setString(23, getComments());
 				
-				stmtupdate.setString(23, getSamplePoint());
-				stmtupdate.setTimestamp(24, getSampleDate());
+				stmtupdate.setString(24, getSamplePoint());
+				stmtupdate.setTimestamp(25, getSampleDate());
+
+				stmtupdate.execute();
+				stmtupdate.clearParameters();
+				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+				stmtupdate.close();
+				result = true;
+			}
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+	
+	public boolean updateComments()
+	{
+		boolean result = false;
+		setErrorMessage("");
+
+		try
+		{
+			if (isValidSampleHeader() == true)
+			{
+						
+				PreparedStatement stmtupdate;
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSampleHeader.updateComments"));
+
+				stmtupdate.setString(1, getComments());
+
+				
+				stmtupdate.setString(2, getSamplePoint());
+				stmtupdate.setTimestamp(3, getSampleDate());
 
 				stmtupdate.execute();
 				stmtupdate.clearParameters();

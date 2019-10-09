@@ -128,7 +128,7 @@ public class JDialogWTReportDetails extends javax.swing.JDialog
 
 		mod.getModuleProperties("FRM_WEIGHT_REPORTS_DETAILS");
 
-		setTitle(mod.getDescription() + " " + samplePoint + " @ " +sampleDate);
+		setTitle(lang.get("lbl_Individual_Samples") + " " + samplePoint + " @ " +sampleDate);
 		
 
 		initGUI();

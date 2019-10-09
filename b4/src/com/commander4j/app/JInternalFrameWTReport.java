@@ -915,6 +915,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jDesktopPane1.add(scrollPane);
 
 				tableResults = new JTable4j();
+				tableResults.setToolTipText("Double click on row to see individual samples");
 				tableResults.addMouseListener(new MouseAdapter()
 				{
 					@Override

@@ -1914,11 +1914,22 @@
 					sample_mean = ?,
 					sample_std_dev = ?,
 					sample_t1_count = ?,
-					sample_t2_count = ?
+					sample_t2_count = ?,
+					comments = ?
+					where sample_point = ? and sample_date = ?</text>
+		</statement>
+		<statement>
+			<id>JDBWTSampleHeader.updateComments</id>
+			<text>update app_weight_sample_header set
+					comments = ? 
 					where sample_point = ? and sample_date = ?</text>
 		</statement>
 		<statement>
 			<id>JDBWTSampleHeader.isValidSampleHeader</id>
+			<text>select * from {schema}app_weight_sample_header where sample_point = ? and sample_date = ?</text>
+		</statement>
+		<statement>
+			<id>JDBWTSampleHeader.getProperties</id>
 			<text>select * from {schema}app_weight_sample_header where sample_point = ? and sample_date = ?</text>
 		</statement>
 		<?JDBWTSampleDetail?>		
