@@ -153,6 +153,8 @@ public class JTextInputDialog extends JDialog
 			cancelButton.setActionCommand("Cancel");
 			buttonPane.add(cancelButton);
 		}
+		
+		textArea.setCaretPosition(textArea.getDocument().getLength());
 		displayCharCount();
 
 	}
