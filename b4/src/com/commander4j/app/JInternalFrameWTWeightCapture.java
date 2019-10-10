@@ -112,6 +112,7 @@ import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
+import com.commander4j.sys.JTextInputDialog;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
@@ -1033,12 +1034,15 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				btnComment.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String comments = sampleHeader.getComments();
-						comments = JOptionPane.showInputDialog(Common.mainForm, lang.get("lbl_Add_Comment"),comments);
-						if (comments != null)
+						JTextInputDialog textInp = new JTextInputDialog(Common.mainForm,comments,JDBWTSampleHeader.field_Comments);
+						textInp.setVisible(true);
+						if (textInp.isTextEntered())
 						{
-						   sampleHeader.setComments(comments);
-						   sampleHeader.updateComments();
+
+							sampleHeader.setComments(textInp.getTextEntered());
+							sampleHeader.updateComments();
 						}
+						textInp = null;
 					}
 				});
 				

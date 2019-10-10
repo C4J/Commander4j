@@ -42,6 +42,7 @@ public class JDBWTSampleHeader
 	public static int field_SamplePoint = 25;
 	public static int field_Description = 35;
 	public static int field_Location = 35;
+	public static int field_Comments = 250;
 
 	private String dbSamplePoint = "";
 	private Timestamp dbSampleDate;
