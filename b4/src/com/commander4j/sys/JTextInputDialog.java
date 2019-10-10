@@ -3,6 +3,7 @@ package com.commander4j.sys;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -66,6 +67,7 @@ public class JTextInputDialog extends JDialog
 			displayCharacterCount.setForeground(Color.BLACK);
 			okButton.setEnabled(true);
 		}
+		displayCharacterCount.setFont(new Font("Arial", Font.BOLD, 11));
 		displayCharacterCount.setText(msg);
 	}
 
@@ -76,12 +78,13 @@ public class JTextInputDialog extends JDialog
 		this.maxCharacters = maxCharacters;
 		setModal(true);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setTitle("Text Input");
+
 		setResizable(false);
 		
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
+		setTitle("Text Input");
 
-		setSize(725, 244);
+		setSize(569, 213);
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -92,18 +95,14 @@ public class JTextInputDialog extends JDialog
 		contentPanel.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(6, 6, 713, 171);
+		scrollPane.setBounds(6, 6, 557, 136);
 		contentPanel.add(scrollPane);
 
 		textArea = new JTextArea(textValue);
+		textArea.setFont(new Font("Arial", Font.PLAIN, 13));
+		textArea.setLineWrap(true);
 		textArea.addKeyListener(new KeyAdapter()
 		{
-			@Override
-			public void keyTyped(KeyEvent e)
-			{
-				displayCharCount();
-			}
-
 			@Override
 			public void keyReleased(KeyEvent e)
 			{
@@ -115,12 +114,12 @@ public class JTextInputDialog extends JDialog
 
 
 		JPanel buttonPane = new JPanel();
-		buttonPane.setBounds(-6, 176, 725, 46);
+		buttonPane.setBounds(0, 144, 725, 46);
 		contentPanel.add(buttonPane);
 		{
 			okButton = new JButton4j(Common.icon_ok_16x16);
 			okButton.setText(lang.get("btn_Ok"));
-			okButton.setBounds(485, 5, 116, 29);
+			okButton.setBounds(321, 5, 116, 29);
 			okButton.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -131,7 +130,7 @@ public class JTextInputDialog extends JDialog
 			});
 			buttonPane.setLayout(null);
 			{
-				displayCharacterCount.setBounds(21, 10, 126, 16);
+				displayCharacterCount.setBounds(16, 5, 126, 29);
 				buttonPane.add(displayCharacterCount);
 			}
 			okButton.setActionCommand("OK");
@@ -141,7 +140,7 @@ public class JTextInputDialog extends JDialog
 		{
 			cancelButton = new JButton4j(Common.icon_cancel_16x16);
 			cancelButton.setText(lang.get("btn_Close"));
-			cancelButton.setBounds(601, 5, 116, 29);
+			cancelButton.setBounds(437, 5, 116, 29);
 			cancelButton.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
