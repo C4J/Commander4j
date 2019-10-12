@@ -606,11 +606,11 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
 		{
-			q2.setSQLFinal(" )");
+			q2.setSQLFinal(" ) ORDER BY SAMPLE_POINT,SAMPLE_DATE");
 		}
 		else
 		{
-			q2.setSQLFinal(" ) AS YYY ");
+			q2.setSQLFinal(" ) AS YYY  ORDER BY SAMPLE_POINT,SAMPLE_DATE");
 		}
 
 		q2.applySQL();
