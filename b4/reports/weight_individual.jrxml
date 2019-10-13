@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="weight_individual" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e388a4c6-1aa2-4e32-858c-04fbc4dd729b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MS SQL Server"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -12,6 +12,8 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="374"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="616"/>
 	<style name="Style1">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$F{SAMPLE_T1_COUNT_0}.doubleValue()>0]]></conditionExpression>
@@ -52,6 +54,9 @@
 	<field name="SAMPLE_DATE" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_DATE"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_header"/>
+	</field>
+	<field name="SAMPLE_DATE_SHORT" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_DATE_SHORT"/>
 	</field>
 	<field name="USER_ID" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="USER_ID"/>
@@ -141,6 +146,9 @@
 		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_T2_COUNT"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_header"/>
 	</field>
+	<field name="COMMENTS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="COMMENTS"/>
+	</field>
 	<field name="SAMPLE_SEQUENCE" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_SEQUENCE"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_detail"/>
@@ -153,16 +161,16 @@
 		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_GROSS_WEIGHT"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_detail"/>
 	</field>
-	<field name="SAMPLE_NET_WEIGHT" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_NET_WEIGHT"/>
+	<field name="SAMPLE_WEIGHT_UOM" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_WEIGHT_UOM"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_detail"/>
 	</field>
 	<field name="SAMPLE_TARE_WEIGHT" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_TARE_WEIGHT"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_detail"/>
 	</field>
-	<field name="SAMPLE_WEIGHT_UOM" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_WEIGHT_UOM"/>
+	<field name="SAMPLE_NET_WEIGHT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_NET_WEIGHT"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_detail"/>
 	</field>
 	<field name="SAMPLE_T1_COUNT_0" class="java.lang.Integer">
@@ -532,7 +540,18 @@
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="4"/>
+			<band height="4">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="2" y="0" width="784" height="2" uuid="0f17e49e-5ab3-4211-b696-60bd993de292">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{COMMENTS}]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupFooter>
 	</group>
 	<background>
