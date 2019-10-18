@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pack_Label_02" language="groovy" pageWidth="447" pageHeight="226" columnWidth="437" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="6a374093-6218-4553-891f-5e2d4f4ddd33">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT *
+  FROM VIEW_LABEL_DATA]]>
+	</queryString>
+	<field name="UNIQUE_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRINT_DATE" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="USER_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="WORKSTATION_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MATERIAL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MATERIAL_TYPE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BATCH_NUMBER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROCESS_ORDER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REQUIRED_RESOURCE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LOCATION_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROD_QUANTITY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROD_UOM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DATE_OF_MANUFACTURE" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EXPIRY_DATE" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EXPIRY_MODE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROD_EAN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROD_VARIANT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUSTOMER_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRINT_COPIES" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRINT_QUEUE_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BASE_EAN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BASE_VARIANT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BASE_QUANTITY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BASE_UOM" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MODULE_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OVERRIDE_MANUFACTURE_DATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OVERRIDE_EXPIRY_DATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="OVERRIDE_BATCH_PREFIX" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BATCH_PREFIX" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BATCH_SUFFIX" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LINE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MATERIAL_DESCRIPTION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUSTOMER_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="215" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="30" width="80" height="16" uuid="cae7b6a2-c660-4f04-ad8a-60df1184debe"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="280" height="30" uuid="2a645727-20a7-4f79-8e0b-3fc10fd24a71">
+					<property name="local_mesure_unitheight" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="23"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_NAME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM yyyy" isBlankWhenNull="true">
+				<reportElement x="85" y="46" width="97" height="16" uuid="cc977a09-fd89-4c41-ae14-a411989efe6d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EXPIRY_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="46" width="80" height="16" uuid="6d21fac6-dc2c-4903-90fc-b1ccf68c662b"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Best Before :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="3" y="193" width="430" height="22" uuid="a8b43aae-3f37-4365-8083-b694a882e8db"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(01)"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0") +
+"(20)"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_VARIANT},2,"0") +
+"(15)"+new java.text.SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
+new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
+"(10)"+$F{BATCH_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="306" y="78" width="107" height="16" uuid="fd02a501-bdec-444b-a5a8-8fc352bed2a3"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BATCH_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="62" width="61" height="16" uuid="56d98ab9-2633-4a58-a862-766f351a7df8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[GTIN CU :]]></text>
+			</staticText>
+			<textField pattern="#,##0.###;(#,##0.###-)" isBlankWhenNull="true">
+				<reportElement x="61" y="62" width="20" height="16" uuid="f838f8cd-5697-4729-b5ed-2c383a670b0a"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BASE_QUANTITY}.intValueExact()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="30" width="50" height="16" uuid="1886cede-8635-429e-b8e4-2e2d7a32ef40"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIAL_TYPE}+" :"]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="10" y="124" width="420" height="85" uuid="3c48205d-5b30-49d7-bc8b-b52a7564a095">
+					<property name="local_mesure_unitmoduleWidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.moduleWidth" value="px"/>
+					<property name="local_mesure_unity" value="mm"/>
+					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
+				</reportElement>
+				<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="2.0" textPosition="none">
+					<jr:codeExpression><![CDATA["01"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0") +
+"20"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_VARIANT},2,"0") +
+"15"+new java.text.SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
+new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
+"10"+$F{BATCH_NUMBER}]]></jr:codeExpression>
+				</jr:EAN128>
+			</componentElement>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="65" y="78" width="153" height="16" uuid="e73ce261-baa3-4501-ab1b-e1c6e5e50bfd"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.commander4j.util.JUtility.padString($F{PROD_EAN},false,14,"0")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="78" width="61" height="16" uuid="b7220c3c-6787-493d-8448-df69b6e79ee8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[GTIN DU :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="62" width="20" height="16" uuid="e60e4327-1a37-408c-ad98-ed48ab779df2"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="101" y="62" width="113" height="16" uuid="f05439b0-234e-4c60-9da7-00dea3c59830"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[com.commander4j.util.JUtility.padString($F{BASE_EAN},false,14,"0")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="214" y="78" width="80" height="16" uuid="28a27b45-3c4e-4a2a-8d6a-a159521e2af1"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Batch :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="3" y="97" width="427" height="20" uuid="b6a04fbe-6a44-4e83-81fe-5f7c83f2f750"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIAL_DESCRIPTION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
