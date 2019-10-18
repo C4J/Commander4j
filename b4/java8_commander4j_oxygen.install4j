@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="7.0.12" transformSequenceNumber="7">
-  <directoryPresets config="./start_setup.sh" />
-  <application name="Commander4j" distributionSourceDir="" applicationId="6923-0356-2321-8111" mediaDir="../../Distribution/java8/Commander4j" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="7.24" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
+  <directoryPresets config="." />
+  <application name="Commander4j" distributionSourceDir="" applicationId="6923-0356-2321-8111" mediaDir="../../Distribution/java8/Commander4j" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="7.25" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
     <languages skipLanguageSelection="true" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
       <additionalLanguages>
@@ -43,7 +43,7 @@
       <mountPoint id="111" root="" location="xml/view" mode="755" />
       <mountPoint id="1004" root="" location="xml/config" mode="755" />
       <mountPoint id="34" root="" location="lib" mode="755" />
-      <mountPoint id="35" root="" location="logs" mode="755" />
+      <mountPoint id="35" root="" location="logs" mode="666" />
       <mountPoint id="36" root="" location="help" mode="755" />
       <mountPoint id="167" root="" location="help/html" mode="755" />
       <mountPoint id="221" root="" location="labels" mode="755" />
@@ -60,7 +60,7 @@
         <exclude />
       </dirEntry>
       <fileEntry mountPoint="30" file="./xml/hosts/hosts.dtd" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" />
-      <fileEntry mountPoint="30" file="./xml/hosts/hosts.xml" overwriteMode="0" shared="false" fileMode="644" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" />
+      <fileEntry mountPoint="30" file="./xml/hosts/hosts.xml" overwriteMode="0" shared="false" fileMode="666" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <dirEntry mountPoint="106" file="./xml/barcode" overwriteMode="1" shared="false" fileMode="644" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" entryMode="direct" subDirectory="barcode" excludeSuffixes="" dirMode="755" overrideDirMode="true">
         <exclude />
       </dirEntry>
@@ -534,6 +534,66 @@ return console.askOkCancel(message, true);
                 <initScript />
                 <visibilityScript />
                 <externalParametrizationPropertyNames />
+              </formComponent>
+            </formComponents>
+          </screen>
+          <screen name="" id="1163" customizedId="" beanClass="com.install4j.runtime.beans.screens.LicenseScreen" enabled="true" commentSet="false" comment="" actionElevationType="inherit" styleId="" rollbackBarrier="false" rollbackBarrierExitCode="0" backButton="2" finishScreen="false" wizardIndexChangeType="unchanged" wizardIndexKey="">
+            <serializedBean>
+              <java class="java.beans.XMLDecoder">
+                <object class="com.install4j.runtime.beans.screens.LicenseScreen" />
+              </java>
+            </serializedBean>
+            <styleOverrides />
+            <condition />
+            <validation />
+            <preActivation />
+            <postActivation />
+            <actions />
+            <formComponents>
+              <formComponent name="" id="1164" customizedId="" beanClass="com.install4j.runtime.beans.formcomponents.MultilineLabelComponent" enabled="true" commentSet="false" comment="" insetTop="" insetLeft="" insetBottom="" insetRight="" resetInitOnPrevious="false" useExternalParametrization="false" externalParametrizationName="" externalParametrizationMode="all">
+                <serializedBean>
+                  <java class="java.beans.XMLDecoder">
+                    <object class="com.install4j.runtime.beans.formcomponents.MultilineLabelComponent">
+                      <void property="labelText">
+                        <string>${i18n:LicenseLabel3}</string>
+                      </void>
+                    </object>
+                  </java>
+                </serializedBean>
+                <initScript />
+                <visibilityScript />
+                <externalParametrizationPropertyNames />
+              </formComponent>
+              <formComponent name="" id="1165" customizedId="" beanClass="com.install4j.runtime.beans.formcomponents.LicenseComponent" enabled="true" commentSet="false" comment="" insetTop="" insetLeft="" insetBottom="" insetRight="" resetInitOnPrevious="false" useExternalParametrization="true" externalParametrizationName="License Agreement" externalParametrizationMode="include">
+                <serializedBean>
+                  <java class="java.beans.XMLDecoder">
+                    <object class="com.install4j.runtime.beans.formcomponents.LicenseComponent" id="LicenseComponent0">
+                      <void id="LocalizedExternalFile0" property="displayedTextFile">
+                        <void property="languageIdToExternalFile">
+                          <void method="put">
+                            <string>en</string>
+                            <object class="com.install4j.api.beans.ExternalFile">
+                              <string>./Commander4j GNU GENERAL PUBLIC LICENSE.txt</string>
+                            </object>
+                          </void>
+                        </void>
+                      </void>
+                      <void property="fillVertical">
+                        <boolean>true</boolean>
+                      </void>
+                    </object>
+                  </java>
+                </serializedBean>
+                <initScript />
+                <visibilityScript />
+                <externalParametrizationPropertyNames>
+                  <propertyName>textSource</propertyName>
+                  <propertyName>displayedText</propertyName>
+                  <propertyName>displayedTextFile</propertyName>
+                  <propertyName>variableName</propertyName>
+                  <propertyName>acceptInitiallySelected</propertyName>
+                  <propertyName>readAllRequired</propertyName>
+                </externalParametrizationPropertyNames>
               </formComponent>
             </formComponents>
           </screen>

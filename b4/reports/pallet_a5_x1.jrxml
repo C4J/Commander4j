@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pallet_a5_x1" language="groovy" pageWidth="421" pageHeight="595" columnWidth="421" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="becf3d40-6d58-4af9-9427-c634540be3f8">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -154,23 +154,23 @@ new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 				<textFieldExpression><![CDATA["(00)"+org.apache.commons.lang.StringUtils.leftPad($F{SSCC},18,"0")]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="">
-				<reportElement x="88" y="126" width="98" height="39" uuid="dc66afd9-532b-4b49-ac57-7d6527737a05"/>
+				<reportElement x="85" y="126" width="102" height="39" uuid="dc66afd9-532b-4b49-ac57-7d6527737a05"/>
 				<textElement>
-					<font size="28" isBold="true"/>
+					<font size="28" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SSCC}.subSequence( 3, 8 )]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="">
-				<reportElement x="199" y="126" width="97" height="39" uuid="fbecda49-79d3-4ec6-b10b-0b929bf18560"/>
+				<reportElement x="189" y="126" width="105" height="39" uuid="fbecda49-79d3-4ec6-b10b-0b929bf18560"/>
 				<textElement>
-					<font size="28" isBold="true"/>
+					<font size="28" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SSCC}.subSequence( 8, 13 )]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="">
-				<reportElement x="310" y="127" width="94" height="39" uuid="517e0d2f-8c2f-4f70-b9b0-cfd68e6fadf0"/>
+				<reportElement x="296" y="126" width="101" height="39" uuid="517e0d2f-8c2f-4f70-b9b0-cfd68e6fadf0"/>
 				<textElement>
-					<font size="28" isBold="true"/>
+					<font size="28" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SSCC}.subSequence( 13, 18 )]]></textFieldExpression>
 			</textField>

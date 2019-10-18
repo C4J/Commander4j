@@ -89,8 +89,8 @@ public class JDialogLogin extends JDialog {
 		KeyboardHandler keyboardhandler = new KeyboardHandler();
 		getContentPane().setLayout(null);
 		fld_userName = new JTextField4j(JDBUser.field_user_id);
-		fld_userName.setText(System.getProperty("user.name"));
 		fld_userName.setBounds(103, 12, 146, 22);
+		fld_userName.setText(System.getProperty("user.name"));
 		getContentPane().add(fld_userName);
 
 		fld_userName.setFont(Common.font_std);
@@ -122,13 +122,13 @@ public class JDialogLogin extends JDialog {
 		fld_password.setFont(Common.font_std);
 
 		JLabel4j_std lblUsername = new JLabel4j_std("Username :");
-		lblUsername.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblUsername.setBounds(12, 14, 83, 16);
+		lblUsername.setHorizontalAlignment(SwingConstants.TRAILING);
 		getContentPane().add(lblUsername);
 
 		JLabel4j_std lblPassword = new JLabel4j_std("Password :");
-		lblPassword.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblPassword.setBounds(12, 54, 83, 16);
+		lblPassword.setHorizontalAlignment(SwingConstants.TRAILING);
 		getContentPane().add(lblPassword);
 		fld_password.addKeyListener(keyboardhandler);
 		jCheckbox_chgPassword.addKeyListener(keyboardhandler);
@@ -145,7 +145,7 @@ public class JDialogLogin extends JDialog {
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		this.setSize(277, 183);
+		this.setSize(277, 192);
 		setLocation((screenSize.width - screenWidth) / 2, (screenSize.height - screenHeight) / 2);
 		setResizable(false);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

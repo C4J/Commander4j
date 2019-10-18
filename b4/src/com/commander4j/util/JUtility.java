@@ -1119,7 +1119,7 @@ public class JUtility
 		Calendar caldate = Calendar.getInstance();
 		Timestamp t = new Timestamp(caldate.getTimeInMillis());
 		t.setTime(caldate.getTimeInMillis());
-
+		t.setNanos(0);
 		return t;
 	}
 
@@ -1136,9 +1136,10 @@ public class JUtility
 		caldate.setTime(d);
 
 		Timestamp t = new Timestamp(caldate.getTimeInMillis());
-		t.setNanos(0);
-		t.setTime(caldate.getTimeInMillis());
 
+		t.setTime(caldate.getTimeInMillis());
+		t.setNanos(0);
+		
 		return t;
 	}
 
