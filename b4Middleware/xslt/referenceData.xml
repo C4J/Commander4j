@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lookup>
     
-    <item type="PlantSLOCtoLocation" id="0933-0001"><value>WISBECH</value></item>
-    <item type="PlantSLOCtoLocation" id="7786-0001"><value>WROCLAW</value></item>
     <item type="PlantSLOCtoLocation" id="0917-0001"><value>BUK</value></item>
-    <item type="PlantSLOCtoLocation" id="4399-0001"><value>PORTOGRUARO</value></item>
-    <item type="PlantSLOCtoLocation" id="0962-0001"><value>WMP</value></item>    
-    <item type="PlantSLOCtoLocation" id="0962-0003"><value>FENLAND</value></item>    
-    <item type="PlantSLOCtoLocation" id="0962-0005"><value>NENE PARADE</value></item>        
-    <item type="PlantSLOCtoLocation" id="0931-0001"><value>SUDBURY</value></item>  
-    <item type="PlantSLOCtoLocation" id="0929-0001"><value>AINTREE</value></item>  	     
-    <item type="PlantSLOCtoLocation" id="0931-0002"><value>LAITS</value></item>       
+    <item type="PlantSLOCtoLocation" id="9750-0001"><value>BUK_PA</value></item>
     <item type="PlantSLOCtoLocation" id="0966-0001"><value>HAMS HALL</value></item>  
+    <item type="PlantSLOCtoLocation" id="9760-0001"><value>HAMS HALL_PA</value></item>  
+    <item type="PlantSLOCtoLocation" id="4399-0001"><value>PORTOGRUARO</value></item>
+    <item type="PlantSLOCtoLocation" id="9737-0001"><value>PORTOGRUARO_PA</value></item>
+    <item type="PlantSLOCtoLocation" id="0931-0001"><value>SUDBURY</value></item>  
+    <item type="PlantSLOCtoLocation" id="9767-0001"><value>SUDBURY_PA</value></item>  
+    <item type="PlantSLOCtoLocation" id="0933-0001"><value>WISBECH</value></item>
+    <item type="PlantSLOCtoLocation" id="9768-0001"><value>WISBECH_PA</value></item>
+    <item type="PlantSLOCtoLocation" id="0962-0001"><value>WMP</value></item> 
+    <item type="PlantSLOCtoLocation" id="9762-0001"><value>WMP_PA</value></item>  
+    <item type="PlantSLOCtoLocation" id="9690-0001"><value>WROCLAW</value></item>
+    <item type="PlantSLOCtoLocation" id="9733-0001"><value>WROCLAW_PA</value></item>
+
+    <item type="PlantSLOCtoLocation" id="0929-0001"><value>AINTREE</value></item>  
     <item type="PlantSLOCtoLocation" id="9018-0001"><value>BARDON</value></item>  
+    <item type="PlantSLOCtoLocation" id="0962-0003"><value>FENLAND</value></item> 
+    <item type="PlantSLOCtoLocation" id="0931-0002"><value>LAITS</value></item>    
+    <item type="PlantSLOCtoLocation" id="0962-0005"><value>NENE PARADE</value></item>        
     <item type="PlantSLOCtoLocation" id="7393-0001"><value>DC_BERTANI</value></item>     
     <item type="PlantSLOCtoLocation" id="7452-0001"><value>LANDRIANO</value></item>        
     <item type="PlantSLOCtoLocation" id="0919-0001"><value>MARCONELLE</value></item> 
@@ -21,24 +29,32 @@
     <item type="PlantSLOCtoLocation" id="7454-0001"><value>SALGAREDA</value></item>  
     <item type="PlantSLOCtoLocation" id="3448-0001"><value>SAN_STINO</value></item>  
     <item type="PlantSLOCtoLocation" id="7456-0001"><value>VALLESE</value></item>  
-    
-    <item type="GLNtoLocation" id="5000161800292"><value>WISBECH</value></item>
-    <item type="GLNtoLocation" id="5900001270387"><value>WROCLAW</value></item>
-    <item type="GLNtoLocation" id="8000550002075"><value>PORTOGRUARO</value></item>
-    <item type="GLNtoLocation" id="5000161800063"><value>WMP</value></item>    
-    <item type="GLNtoLocation" id="5000161800193"><value>AINTREE</value></item>    
-    <item type="GLNtoLocation" id="5000161800438"><value>NENE PARADE</value></item>        
-    <item type="GLNtoLocation" id="5000161809035"><value>SUDBURY</value></item>   
-    <item type="GLNtoLocation" id="5000161809035"><value>LAITS</value></item>       
+   
+    <item type="GLNtoLocation" id="7610100720215"><value>BUK</value></item> 
     <item type="GLNtoLocation" id="5028591002093"><value>HAMS HALL</value></item>  
-    <item type="GLNtoLocation" id="0500024300590"><value>BARDON</value></item>  
-    <item type="GLNtoLocation" id="8000550900494"><value>DC_BERTANI</value></item>     
-    <item type="GLNtoLocation" id="8000550900616"><value>LANDRIANO</value></item>    
-    <item type="GLNtoLocation" id="8000550900623"><value>NOALE</value></item>  
-    <item type="GLNtoLocation" id="8002205000368"><value>S_M_DI_SALA</value></item>   
-    <item type="GLNtoLocation" id="8000550900708"><value>SALGAREDA</value></item>  
-    <item type="GLNtoLocation" id="8000550900678"><value>VALLESE</value></item>  
+    <item type="GLNtoLocation" id="7610100720420"><value>HAMS HALL_PA</value></item> 
+    <item type="GLNtoLocation" id="5000161809035"><value>LAITS</value></item>  
+    <item type="GLNtoLocation" id="8000550002075"><value>PORTOGRUARO</value></item>
+    <item type="GLNtoLocation" id="7610100720130"><value>PORTOGRUARO_PA</value></item>
+    <item type="GLNtoLocation" id="5000161809035"><value>SUDBURY</value></item> 
+    <item type="GLNtoLocation" id="7610100720369"><value>SUDBURY_PA</value></item> 
+    <item type="GLNtoLocation" id="5000161800292"><value>WISBECH</value></item>
+    <item type="GLNtoLocation" id="7610100720376"><value>WISBECH_PA</value></item>
+    <item type="GLNtoLocation" id="5000161800063"><value>WMP</value></item>
+    <item type="GLNtoLocation" id="7610100720406"><value>WMP_PA</value></item> 
+    <item type="GLNtoLocation" id="5900001270387"><value>WROCLAW</value></item>
+    <item type="GLNtoLocation" id="7610100720116"><value>WROCLAW_PA</value></item>
     
+    <item type="GLNtoLocation" id="8000550900494"><value>DC_BERTANI</value></item>
+    <item type="GLNtoLocation" id="5000161800193"><value>AINTREE</value></item>  
+    <item type="GLNtoLocation" id="0500024300590"><value>BARDON</value></item>  
+    <item type="GLNtoLocation" id="8000550900616"><value>LANDRIANO</value></item>   
+    <item type="GLNtoLocation" id="5000161800438"><value>NENE PARADE</value></item> 
+    <item type="GLNtoLocation" id="8000550900623"><value>NOALE</value></item>  
+    <item type="GLNtoLocation" id="8000550900708"><value>SALGAREDA</value></item> 
+    <item type="GLNtoLocation" id="8002205000368"><value>S_M_DI_SALA</value></item>   
+    <item type="GLNtoLocation" id="8000550900678"><value>VALLESE</value></item>     
+
     <item type="SAPMaterialStatus" id="Z1"><value>Invalid</value></item>
     <item type="SAPMaterialStatus" id="Z2"><value>Invalid</value></item>
     <item type="SAPMaterialStatus" id="Z3"><value>Valid</value></item>    

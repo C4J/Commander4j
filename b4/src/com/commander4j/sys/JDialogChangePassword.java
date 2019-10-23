@@ -140,7 +140,7 @@ public class JDialogChangePassword extends JDialog
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		this.setSize(304, 213);
+		this.setSize(304, 224);
 		setLocation((screenSize.width - screenWidth) / 2, (screenSize.height - screenHeight) / 2);
 		setResizable(false);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

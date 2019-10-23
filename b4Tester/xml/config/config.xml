@@ -376,15 +376,15 @@
                 <inputPath>114 (NES SAP Wonderware Material XML)</inputPath>
                 <!--List of input files to copy from samplePath to inputPath-->
                 <inputs>
-                    <file id="1">NES SAP XML Material 1.xml</file>
-                    <file id="2">NES SAP XML Material 2.xml</file>
-                    <file id="3">NES SAP XML Material 3.xml</file>
-                    <file id="4">NES SAP XML Material 4.xml</file>
-                    <file id="5">NES SAP XML Material 5.xml</file>
-                    <file id="6">NES SAP XML Material 6.xml</file>
-                    <file id="7">NES SAP XML Material 7.xml</file>
-                    <file id="8">NES SAP XML Material 8.xml</file>
-                    <file id="9">NES SAP XML Material LE Override 80 cases.xml</file>
+                    <file id="1">NES SAP Wonderware Material 1.xml</file>
+                    <file id="2">NES SAP Wonderware Material 2.xml</file>
+                    <file id="3">NES SAP Wonderware Material 3.xml</file>
+                    <file id="4">NES SAP Wonderware Material 4.xml</file>
+                    <file id="5">NES SAP Wonderware Material 5.xml</file>
+                    <file id="6">NES SAP Wonderware Material 6.xml</file>
+                    <file id="7">NES SAP Wonderware Material 7.xml</file>
+                    <file id="8">NES SAP Wonderware Material 8.xml</file>
+                    <file id="9">NES SAP Wonderware Material LE Override 80 cases.xml</file>
                 </inputs>    
             </input>
             
@@ -394,15 +394,15 @@
                 <outputPath>114 (NES C4J - Material from Wonderware)</outputPath>
                 <!--List of output files in outputPath to compare with referencePath-->
                 <outputs compareMethod="line" excludeList="xmlDates">
-                    <file id="1">NES SAP XML Material 1.xml</file>
-                    <file id="2">NES SAP XML Material 2.xml</file>
-                    <file id="3">NES SAP XML Material 3.xml</file>
-                    <file id="4">NES SAP XML Material 4.xml</file>
-                    <file id="5">NES SAP XML Material 5.xml</file>
-                    <file id="6">NES SAP XML Material 6.xml</file>
-                    <file id="7">NES SAP XML Material 7.xml</file>
-                    <file id="8">NES SAP XML Material 8.xml</file>
-                    <file id="9">NES SAP XML Material LE Override 80 cases.xml</file>
+                    <file id="1">NES SAP Wonderware Material 1.xml</file>
+                    <file id="2">NES SAP Wonderware Material 2.xml</file>
+                    <file id="3">NES SAP Wonderware Material 3.xml</file>
+                    <file id="4">NES SAP Wonderware Material 4.xml</file>
+                    <file id="5">NES SAP Wonderware Material 5.xml</file>
+                    <file id="6">NES SAP Wonderware Material 6.xml</file>
+                    <file id="7">NES SAP Wonderware Material 7.xml</file>
+                    <file id="8">NES SAP Wonderware Material 8.xml</file>
+                    <file id="9">NES SAP Wonderware Material LE Override 80 cases.xml</file>
                 </outputs>         
             </output>
         </test> 
