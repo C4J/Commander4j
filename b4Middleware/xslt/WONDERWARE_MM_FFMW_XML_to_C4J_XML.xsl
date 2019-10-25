@@ -63,7 +63,7 @@
                     <old_material><xsl:value-of select="/ZMATMAS03/E2MARAM005GRP/E1MARAM/BISMT" /></old_material>
  
                     <!-- Get First Equipment Type -->
-                    <equipment_Type><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP/E2MLGNM001GRP/E1MLGNM[1]/LETY1[1])" /></equipment_Type>
+                    <equipment_Type><xsl:value-of select="c4j_XSLT_Ext:trim(/ZMATMAS03/E2MARAM005GRP[1]/E2MLGNM001GRP[2]/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LETY1[1])" /></equipment_Type>
                      
                     <xsl:variable name="PLANT_PRESENT" select="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$PLANT]" />
                     <xsl:variable name="USE_PLANT" select="/ZMATMAS03/E2MARAM005GRP/E2MARCM004GRP/E1MARCM/WERKS[.=$PLANT]/../../GLB_002F_RGTE1MARCMBBD/ADOPT_CLNT_FLD" />
