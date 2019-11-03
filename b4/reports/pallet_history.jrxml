@@ -163,7 +163,7 @@
 				<text><![CDATA[Date]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="205" y="0" width="48" height="18" forecolor="#000000" uuid="0ee4a9a1-1565-4e2d-b1e3-f4b6db3048e4">
+				<reportElement key="staticText" x="221" y="0" width="48" height="18" forecolor="#000000" uuid="0ee4a9a1-1565-4e2d-b1e3-f4b6db3048e4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -178,7 +178,7 @@
 				<text><![CDATA[SSCC]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="288" y="0" width="48" height="18" forecolor="#000000" uuid="5530db91-5b13-49fe-a568-7844e611b1ba">
+				<reportElement key="staticText" x="305" y="0" width="48" height="18" forecolor="#000000" uuid="5530db91-5b13-49fe-a568-7844e611b1ba">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -193,7 +193,7 @@
 				<text><![CDATA[P.Order]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="340" y="0" width="48" height="18" forecolor="#000000" uuid="d2adbabb-4909-4862-81cf-442560c43f4c">
+				<reportElement key="staticText" x="357" y="0" width="48" height="18" forecolor="#000000" uuid="d2adbabb-4909-4862-81cf-442560c43f4c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -208,7 +208,7 @@
 				<text><![CDATA[Material]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="390" y="0" width="48" height="18" forecolor="#000000" uuid="be4f5b1d-04cd-492b-adf7-6c3df63c514c">
+				<reportElement key="staticText" x="407" y="0" width="48" height="18" forecolor="#000000" uuid="be4f5b1d-04cd-492b-adf7-6c3df63c514c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -223,7 +223,7 @@
 				<text><![CDATA[Batch]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="441" y="0" width="48" height="18" forecolor="#000000" uuid="dcaa3cba-db28-437a-8eb4-fa07ec8f53c9">
+				<reportElement key="staticText" x="459" y="0" width="48" height="18" forecolor="#000000" uuid="dcaa3cba-db28-437a-8eb4-fa07ec8f53c9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -238,7 +238,7 @@
 				<text><![CDATA[Location]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="506" y="0" width="36" height="18" forecolor="#000000" uuid="eaf0a9f5-ff82-4155-a6fe-619bdfdadb1f">
+				<reportElement key="staticText" x="522" y="0" width="36" height="18" forecolor="#000000" uuid="eaf0a9f5-ff82-4155-a6fe-619bdfdadb1f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -253,7 +253,7 @@
 				<text><![CDATA[Quantity]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="550" y="0" width="28" height="18" forecolor="#000000" uuid="dcb71bc3-8800-470a-aa3e-271b47c1615f">
+				<reportElement key="staticText" x="566" y="0" width="28" height="18" forecolor="#000000" uuid="dcb71bc3-8800-470a-aa3e-271b47c1615f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -268,7 +268,7 @@
 				<text><![CDATA[UOM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="581" y="0" width="39" height="18" forecolor="#000000" uuid="6679c487-c02c-413a-97dd-7fdd9eb8f3c1">
+				<reportElement key="staticText" x="598" y="0" width="39" height="18" forecolor="#000000" uuid="6679c487-c02c-413a-97dd-7fdd9eb8f3c1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -315,11 +315,11 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="12">
+		<band height="11">
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="0" y="0" width="40" height="12" forecolor="#000000" uuid="f6515648-d586-4d4a-9f87-7486c4b25648">
+				<reportElement key="textField" x="0" y="0" width="40" height="11" forecolor="#000000" uuid="f6515648-d586-4d4a-9f87-7486c4b25648">
 					<property name="local_mesure_unitheight" value="pixel"/>
 				</reportElement>
 				<box>
@@ -329,38 +329,12 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TRANSACTION_REF}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="39" y="0" width="48" height="12" forecolor="#000000" uuid="64013e66-c3ad-40be-a303-e6b2255e7c18"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{TRANSACTION_TYPE}]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="86" y="0" width="48" height="12" forecolor="#000000" uuid="ada7ff8f-bae0-4450-9739-cb2581357702"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{TRANSACTION_SUBTYPE}]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="134" y="0" width="66" height="12" forecolor="#000000" uuid="214006b7-5a3a-4948-9f0c-80d4fdd8e0c5">
+				<reportElement key="textField" x="39" y="0" width="48" height="11" forecolor="#000000" uuid="64013e66-c3ad-40be-a303-e6b2255e7c18">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
@@ -370,12 +344,42 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRANSACTION_TYPE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="86" y="0" width="48" height="11" forecolor="#000000" uuid="ada7ff8f-bae0-4450-9739-cb2581357702">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRANSACTION_SUBTYPE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd HH:mm:ss" isBlankWhenNull="false">
+				<reportElement key="textField" x="134" y="0" width="84" height="11" forecolor="#000000" uuid="214006b7-5a3a-4948-9f0c-80d4fdd8e0c5"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TRANSACTION_DATE}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="205" y="0" width="83" height="12" forecolor="#000000" uuid="858d76e2-2a74-4049-a558-1100f1f9b101"/>
+				<reportElement key="textField" x="221" y="0" width="83" height="11" forecolor="#000000" uuid="858d76e2-2a74-4049-a558-1100f1f9b101">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -383,12 +387,14 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SSCC}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" x="289" y="0" width="48" height="12" forecolor="#000000" uuid="257c1e78-47b4-4419-b3a7-b57b79bb974e"/>
+				<reportElement key="textField" x="306" y="0" width="48" height="11" forecolor="#000000" uuid="257c1e78-47b4-4419-b3a7-b57b79bb974e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -396,12 +402,14 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PROCESS_ORDER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" x="341" y="0" width="48" height="12" forecolor="#000000" uuid="d69a83c2-161d-4ebb-9262-7a0af63d4aaf"/>
+				<reportElement key="textField" x="358" y="0" width="48" height="11" forecolor="#000000" uuid="d69a83c2-161d-4ebb-9262-7a0af63d4aaf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -409,12 +417,14 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" x="391" y="0" width="48" height="12" forecolor="#000000" uuid="b515bbcb-cce5-4017-bf48-066d0fc492c3"/>
+				<reportElement key="textField" x="408" y="0" width="48" height="11" forecolor="#000000" uuid="b515bbcb-cce5-4017-bf48-066d0fc492c3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -422,12 +432,14 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{BATCH_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" x="441" y="0" width="55" height="12" forecolor="#000000" uuid="4fc8991f-50ce-497d-baa1-c17f0cba1798"/>
+				<reportElement key="textField" x="459" y="0" width="55" height="11" forecolor="#000000" uuid="4fc8991f-50ce-497d-baa1-c17f0cba1798">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -435,12 +447,14 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{LOCATION_ID}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="498" y="0" width="42" height="12" forecolor="#000000" uuid="7f8f734c-7143-4d2f-9667-860361c59c09"/>
+				<reportElement key="textField" x="514" y="0" width="42" height="11" forecolor="#000000" uuid="7f8f734c-7143-4d2f-9667-860361c59c09">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -448,12 +462,14 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="549" y="0" width="28" height="12" forecolor="#000000" uuid="a8b2fcb8-f201-4632-b6dc-934030794ad8"/>
+				<reportElement key="textField" x="565" y="0" width="28" height="11" forecolor="#000000" uuid="a8b2fcb8-f201-4632-b6dc-934030794ad8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -461,12 +477,14 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{UOM}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="581" y="0" width="88" height="12" forecolor="#000000" uuid="806c52fa-e9ee-433d-a905-327011a84e73"/>
+				<reportElement key="textField" x="598" y="0" width="88" height="11" forecolor="#000000" uuid="806c52fa-e9ee-433d-a905-327011a84e73">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -474,12 +492,14 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DESPATCH_NO}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement key="textField" x="691" y="0" width="48" height="12" forecolor="#000000" uuid="d0de0a49-ec1d-49ea-b534-15a710ac111d"/>
+				<reportElement key="textField" x="691" y="0" width="48" height="11" forecolor="#000000" uuid="d0de0a49-ec1d-49ea-b534-15a710ac111d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -487,12 +507,14 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" x="743" y="0" width="37" height="12" forecolor="#000000" uuid="8ed787c2-a185-460a-8164-212a1d7e446c"/>
+				<reportElement key="textField" x="743" y="0" width="37" height="11" forecolor="#000000" uuid="8ed787c2-a185-460a-8164-212a1d7e446c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -500,7 +522,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Middle">
-					<font size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<font size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{USER_ID}]]></textFieldExpression>
 			</textField>

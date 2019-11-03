@@ -77,12 +77,13 @@
         <pathelement location="lib/cups4j/cups4j-0.7.6.jar"/>
         <pathelement location="lib/cups4j/simple-xml-2.7.1.jar"/>
         <pathelement location="lib/cups4j/slf4j-api-1.7.25.jar"/>
+    	<pathelement location="lib/cups4j/slf4j-simple-1.7.25.jar"/>
         <pathelement location="lib/jasperlib/httpclient-4.5.8.jar"/>
         <pathelement location="lib/jasperlib/httpcore-4.4.11.jar"/>
         <pathelement location="lib/db/mssql-jdbc-7.2.2.jre8.jar"/>
         <pathelement location="lib/jasperlib/batik-anim-1.11.jar"/>
         <pathelement location="lib/jasperlib_aux/batik-ext-1.11.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-8.0.16.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-8.0.18.jar"/>
         <pathelement location="lib/serial/jSerialComm-2.5.2.jar"/>
         <pathelement location="lib/jasperlib/batik-awt-util-1.11.jar"/>
         <pathelement location="lib/jasperlib/batik-bridge-1.11.jar"/>

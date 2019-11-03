@@ -292,7 +292,7 @@ public class JPrint {
 				{
 					if (printService.getName().equals(p.getName()))
 					{
-						result = p.getDescription();
+						result = JUtility.replaceNullStringwithBlank(p.getDescription());
 						break;
 					}
 				}

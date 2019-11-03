@@ -351,7 +351,7 @@ public class JExcel
 			{
 				try
 				{
-					FileOutputStream fileOut = new FileOutputStream(filename.toLowerCase());
+					FileOutputStream fileOut = new FileOutputStream(filename);
 					workbook.write(fileOut);
 					fileOut.close();
 				}
