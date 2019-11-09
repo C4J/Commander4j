@@ -13,6 +13,7 @@
         <language id="es" />
       </additionalLanguages>
     </languages>
+    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u232-b09" />
   </application>
   <files keepModificationTimes="true" missingFilesStrategy="error">
     <mountPoints>
@@ -1169,14 +1170,14 @@ else
   </installerGui>
   <mediaSets>
     <windows name="Windows 32bit (with JRE)" id="659" mediaFileName="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="Commander4j" jreBitType="32" useLegacyMediaFileIds="true" legacyMediaFileIds="32" customInstallBaseDir="C:\">
-      <jreBundle jreBundleSource="preCreated" includedJre="windows-x86-1.8.0_202" />
+      <jreBundle jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u232-b09" overrideJdkRelease="true" jreBundleSource="generated" manualJreEntry="true" />
     </windows>
     <windows name="Windows 64bit (with JRE)" id="662" mediaFileName="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="Commander4j" useLegacyMediaFileIds="true" legacyMediaFileIds="578" customInstallBaseDir="C:\">
-      <jreBundle jreBundleSource="preCreated" includedJre="windows-amd64-1.8.0_202" />
+      <jreBundle jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u232-b09" overrideJdkRelease="true" jreBundleSource="generated" includedJre="windows-amd64-1.8.0_202" />
     </windows>
     <unixInstaller name="Linux Installer" id="403" installDir="Commander4j" />
     <macosFolder name="Mac OS X Folder (with JRE)" id="678" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="Commander4j" useLegacyMediaFileIds="true" legacyMediaFileIds="584">
-      <jreBundle jreBundleSource="preCreated" includedJre="macosx-amd64-1.8.0_202" />
+      <jreBundle jreBundleSource="preCreated" includedJre="macos-amd64-1.8.0_232" />
     </macosFolder>
   </mediaSets>
 </install4j>

@@ -8,7 +8,7 @@
     <item type="config" id="Location"><value>BUK</value></item>  
     <item type="config" id="Location_Central"><value>BUK_PA</value></item> 
     <item type="config" id="Plant_Central"><value>9750</value></item> 
-    <item type="config" id="Procurement_Ind"><value>HO</value></item>
+    <item type="config" id="Procurement_Ind"><value>H0</value></item>
     <item type="config" id="SAPUsername"><value>PLWROGULGP</value></item>  
     
 </lookup> 

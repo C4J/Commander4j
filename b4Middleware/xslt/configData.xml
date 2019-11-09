@@ -10,7 +10,7 @@
     <item type="config" id="Location"><value>WISBECH</value></item>  
     <item type="config" id="Location_Central"><value>WISBECH_CTR</value></item> 
     <item type="config" id="Plant_Central"><value>9768</value></item> 
-    <item type="config" id="Procurement_Ind"><value>HO</value></item>
+    <item type="config" id="Procurement_Ind"><value>H0</value></item>
     <item type="config" id="SAPUsername"><value>PUWISBECH</value></item>  
     
 </lookup>
