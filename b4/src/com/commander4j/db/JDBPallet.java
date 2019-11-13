@@ -185,7 +185,7 @@ public class JDBPallet
 
 		}
 
-		calcResult.setScale(decimalPlaces, BigDecimal.ROUND_UP);
+		calcResult.setScale(decimalPlaces, RoundingMode.UP);
 
 		String formatString = "#####";
 		if (decimalPlaces > 0)

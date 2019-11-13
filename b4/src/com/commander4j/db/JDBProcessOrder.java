@@ -489,9 +489,9 @@ public class JDBProcessOrder
 	public String getRequiredUOMQuantity()
 	{
 		String result = "0";
-		Double dbReqdDenom = new Double(0);
-		Double dbReqdNumer = new Double(0);
-		Double dbCaseQuantity = new Double(0);
+		Double dbReqdDenom = Double.valueOf(0);
+		Double dbReqdNumer = Double.valueOf(0);
+		Double dbCaseQuantity = Double.valueOf(0);
 
 		if (matuom.getMaterialUomProperties(getMaterial(), getRequiredUom()))
 		{
@@ -511,13 +511,13 @@ public class JDBProcessOrder
 
 		String result = "";
 
-		Double dbProductionQuantity = new Double(0);
-		Double dbReqdDenom = new Double(0);
-		Double dbReqdNumer = new Double(0);
-		Double dbFullDenom = new Double(0);
-		Double dbFullNumer = new Double(0);
-		Double step1 = new Double(0);
-		Double step2 = new Double(0);
+		Double dbProductionQuantity = Double.valueOf(0);
+		Double dbReqdDenom = Double.valueOf(0);
+		Double dbReqdNumer = Double.valueOf(0);
+		Double dbFullDenom = Double.valueOf(0);
+		Double dbFullNumer = Double.valueOf(0);
+		Double step1 = Double.valueOf(0);
+		Double step2 = Double.valueOf(0);
 		String dbFullUOM = "PAL";
 
 		try
@@ -541,7 +541,7 @@ public class JDBProcessOrder
 		}
 		catch (Exception ex)
 		{
-			dbProductionQuantity = new Double(0);
+			dbProductionQuantity = Double.valueOf(0);
 		}
 		NumberFormat formatter = new DecimalFormat("#.000");
 		result = formatter.format(dbProductionQuantity.doubleValue()); // -1234.567000

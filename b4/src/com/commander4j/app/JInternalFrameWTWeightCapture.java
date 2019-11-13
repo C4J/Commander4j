@@ -454,7 +454,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 				if (count > 0)
 				{
-					batch_mean = batch_mean.divide(new BigDecimal(count), 3, BigDecimal.ROUND_HALF_UP);
+					batch_mean = batch_mean.divide(new BigDecimal(count), 3, RoundingMode.HALF_UP);
 					fld_Batch_Mean.setText(batch_mean.toString());
 					if (batch_mean.compareTo(matgroupdb.getNominalWeight()) == -1)
 					{
@@ -1019,7 +1019,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					{
 						double random = ThreadLocalRandom.current().nextDouble(91, 107);
 						BigDecimal rnd = BigDecimal.valueOf(random);
-						rnd = rnd.divide(new BigDecimal(1), 3, BigDecimal.ROUND_HALF_UP);
+						rnd = rnd.divide(new BigDecimal(1), 3, RoundingMode.HALF_UP);
 						logSampleWeight(rnd.toString(), "G");
 					}
 				});
@@ -1213,7 +1213,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		if (count > 0)
 		{
-			result = result.divide(new BigDecimal(count), 3, BigDecimal.ROUND_HALF_UP);
+			result = result.divide(new BigDecimal(count), 3, RoundingMode.HALF_UP);
 		}
 
 		return result;

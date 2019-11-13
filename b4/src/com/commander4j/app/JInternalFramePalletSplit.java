@@ -446,7 +446,7 @@ public class JInternalFramePalletSplit extends javax.swing.JInternalFrame
 				jDesktopPane1.add(labelCopies);
 
 				jSpinnerQuantity.setEnabled(false);
-				jSpinnerQuantity.setModel(new SpinnerNumberModel(new Integer(1), null, null, new Integer(1)));
+				jSpinnerQuantity.setModel(new SpinnerNumberModel(Integer.valueOf(1), null, null,Integer.valueOf(1)));
 				jSpinnerQuantity.setFont(Common.font_std);
 				jSpinnerQuantity.setBounds(437, 112, 39, 21);
 				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerQuantity);

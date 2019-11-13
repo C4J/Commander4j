@@ -115,52 +115,80 @@ public class JHost
 
 		if (connections.containsKey(sessionID) == false)
 		{
-			try
+			
+			 try
 			{
-				Class.forName(getDatabaseParameters().getjdbcDriver()).newInstance();
+				if (getDatabaseParameters().getjdbcDriver().equals("com.mysql.cj.jdbc.Driver"))
+				{
+					DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+				}
+				
+				if (getDatabaseParameters().getjdbcDriver().equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
+				{
+					DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
+				}
+				
+				if (getDatabaseParameters().getjdbcDriver().equals("oracle.jdbc.driver.OracleDriver"))
+				{
+					DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+				}
+				
+				
 				try
 				{
-					logger.debug(getDatabaseParameters().getjdbcConnectString());
-					DriverManager.setLoginTimeout(5);
-					tempConn = DriverManager.getConnection(getDatabaseParameters().getjdbcConnectString(), getDatabaseParameters().getjdbcUsername(), getDatabaseParameters().getjdbcPassword());
-					tempConn.setAutoCommit(false);
-					tempConn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-					++instanceCount;
-					addConnection(sessionID, tempConn);
-					result = true;
-					setConnected(sessionID, true);
-					logger.debug("Opened connection for session ID : " + sessionID);
+
+					try
+					{
+						logger.debug(getDatabaseParameters().getjdbcConnectString());
+						DriverManager.setLoginTimeout(5);
+						tempConn = DriverManager.getConnection(getDatabaseParameters().getjdbcConnectString(), getDatabaseParameters().getjdbcUsername(), getDatabaseParameters().getjdbcPassword());
+						tempConn.setAutoCommit(false);
+						tempConn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+						++instanceCount;
+						addConnection(sessionID, tempConn);
+						result = true;
+						setConnected(sessionID, true);
+						logger.debug("Opened connection for session ID : " + sessionID);
+					}
+					catch (Exception ex)
+					{
+						String err = "";
+						try
+						{
+							err = ex.getMessage().substring(0, ex.getMessage().indexOf("\n"));
+						}
+						catch (Exception ex2)
+						{
+							err = ex.getMessage();
+						}
+
+						logger.fatal(ex);
+						if (Common.sd.getData(sessionID, "silentExceptions").equals("Yes") == false)
+						{
+							JUtility.errorBeep();
+							JSplashScreenUtils.hide();
+							JOptionPane.showMessageDialog(null, WordUtils.wrap(err, 100), "Database Connection Error (" + getSiteDescription() + ")", JOptionPane.ERROR_MESSAGE);
+						}
+						result = false;
+					}
 				}
 				catch (Exception ex)
 				{
-					String err = "";
-					try
-					{
-						err = ex.getMessage().substring(0, ex.getMessage().indexOf("\n"));
-					}
-					catch (Exception ex2)
-					{
-						err = ex.getMessage();
-					}
-
 					logger.fatal(ex);
 					if (Common.sd.getData(sessionID, "silentExceptions").equals("Yes") == false)
 					{
 						JUtility.errorBeep();
-						JSplashScreenUtils.hide();
-						JOptionPane.showMessageDialog(null, WordUtils.wrap(err, 100), "Database Connection Error (" + getSiteDescription() + ")", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Invalid jdbc driver [" + ex.getMessage() + "]", "Login Error (" + getSiteDescription() + ")", JOptionPane.ERROR_MESSAGE);
 					}
 					result = false;
-				}
+				}				
+				
+				
+				
 			}
-			catch (Exception ex)
+			catch (SQLException e)
 			{
-				logger.fatal(ex);
-				if (Common.sd.getData(sessionID, "silentExceptions").equals("Yes") == false)
-				{
-					JUtility.errorBeep();
-					JOptionPane.showMessageDialog(null, "Invalid jdbc driver [" + ex.getMessage() + "]", "Login Error (" + getSiteDescription() + ")", JOptionPane.ERROR_MESSAGE);
-				}
+				logger.fatal(e);
 				result = false;
 			}
 		}

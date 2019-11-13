@@ -70,7 +70,7 @@ public class JEncryption
 				{
 					String hexstr = s.substring(p, p + 2);
 					int i = Integer.valueOf(hexstr, 16).intValue();
-					String chr = new Character((char) i).toString();
+					String chr = Character.valueOf((char) i).toString();
 					result = result + chr;
 				}
 			}

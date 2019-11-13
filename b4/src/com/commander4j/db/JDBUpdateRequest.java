@@ -35,7 +35,7 @@ public class JDBUpdateRequest
 	public int schema_NEWVersion = -1;
 
 	public boolean program_updateRequired = false;
-	public Double program_NEWVersion = new Double("-1");
-	public Double program_CURVersion = new Double("-1");
+	public Double program_NEWVersion = Double.valueOf("-1");
+	public Double program_CURVersion = Double.valueOf("-1");
 
 }

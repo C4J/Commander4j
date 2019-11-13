@@ -257,12 +257,12 @@ public class JDialogPalletRePrintLabel extends javax.swing.JDialog
 				jDesktopPane1.add(label_2);
 				jSpinnerQuantity.setEnabled(false);
 
-				jSpinnerQuantity.setModel(new SpinnerNumberModel(new Integer(1), null, null, new Integer(1)));
+				jSpinnerQuantity.setModel(new SpinnerNumberModel(Integer.valueOf(1), null, null, Integer.valueOf(1)));
 				jSpinnerQuantity.setFont(Common.font_std);
 				jSpinnerQuantity.setBounds(415, 41, 39, 21);
 				jDesktopPane1.add(jSpinnerQuantity);
 
-				jSpinnerCopies.setModel(new SpinnerNumberModel(new Integer(2), null, null, new Integer(1)));
+				jSpinnerCopies.setModel(new SpinnerNumberModel(Integer.valueOf(2), null, null, Integer.valueOf(1)));
 				jSpinnerCopies.setFont(Common.font_std);
 				jSpinnerCopies.setBounds(415, 70, 39, 21);
 				jDesktopPane1.add(jSpinnerCopies);

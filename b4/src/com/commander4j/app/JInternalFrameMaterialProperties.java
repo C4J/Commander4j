@@ -36,6 +36,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
@@ -1110,10 +1111,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 		material.setDefaultBatchStatus((String) jComboBoxDefaultBatchStatus.getSelectedItem());
 
-		BigDecimal bd = new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP);
-		bd = BigDecimal.valueOf(grossweightnumbermodel.getNumber().doubleValue()).setScale(3, BigDecimal.ROUND_HALF_UP);
+		BigDecimal bd = new BigDecimal(0).setScale(3, RoundingMode.HALF_UP);
+		bd = BigDecimal.valueOf(grossweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
 		material.setGrossWeight(bd);
-		bd = BigDecimal.valueOf(netweightnumbermodel.getNumber().doubleValue()).setScale(3, BigDecimal.ROUND_HALF_UP);
+		bd = BigDecimal.valueOf(netweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
 		material.setNetWeight(bd);
 
 		try
