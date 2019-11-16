@@ -100,4 +100,4 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/jasper/jasperreports-javaflow-6.10.0.jar 
  lib/jasper/jasperreports-chart-themes-6.10.0.jar 
  lib/jasper/jasperreports-6.10.0.jar 
- lib/serial/jSerialComm-2.5.2.jar 
+ lib/serial/jSerialComm-2.5.3.jar 
