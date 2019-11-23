@@ -279,6 +279,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 						public void actionPerformed(ActionEvent evt) {
 							boolean result = true;
 
+							refresh();
 							if (pallet.isConfirmed() == false)
 							{
 								pallet.setDateOfManufacture(JUtility.getSQLDateTime());
