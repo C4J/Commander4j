@@ -43,7 +43,7 @@
     
     <xsl:variable name="BASE_UOM"           select="string(/ZMATMAS03/IDOC/E1MARAM/MEINS)"/>
     <xsl:variable name="MATERIAL"           select="c4j_XSLT_Ext:removeLeadingZeros(string(/ZMATMAS03/IDOC/E1MARAM/MATNR))"/>
-    <xsl:variable name="MTYPE"           select="string(/ZMATMAS03/IDOC/E1MARAM/MTART)"/>
+    <xsl:variable name="MTYPE"              select="string(/ZMATMAS03/IDOC/E1MARAM/MTART)"/>
     <xsl:variable name="USE_PLANT"          select="string(/ZMATMAS03/IDOC/E1MARAM/_-NESGLB_-DISTR000/WERKS[.=$PLANT]/../AD_PLANT_DATA)"/>
     <xsl:variable name="FOUND_PLANT"        select="string(/ZMATMAS03/IDOC/E1MARAM/E1MARCM/WERKS[.=$PLANT])"/>
     <xsl:variable name="FOUND_WAREHOUSE"    select="string(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE])" />
@@ -51,8 +51,8 @@
     <xsl:variable name="LE_UOM_NOTRIM"      select="string(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHME1)" />
     <xsl:variable name="LE_UOM"             select="c4j_XSLT_Ext:trim(string($LE_UOM_NOTRIM))" />
 
-    <xsl:variable name="LE_NUMERATOR"       select="number(concat('0',string(/ZMATMAS03/IDOC/E1MARAM/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREZ)))" />                                             
-    <xsl:variable name="LE_DENOMINATOR"     select="number(concat('0',string(/ZMATMAS03/IDOC/E1MARAM/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREN)))" />
+    <xsl:variable name="LE_NUMERATOR"       select="number(concat('0',c4j_XSLT_Ext:trim(string(/ZMATMAS03/IDOC/E1MARAM/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREZ))))" />                                             
+    <xsl:variable name="LE_DENOMINATOR"     select="number(concat('0',c4j_XSLT_Ext:trim(string(/ZMATMAS03/IDOC/E1MARAM/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREN))))" />
    
     <xsl:template match="/ZMATMAS03">
         <message>

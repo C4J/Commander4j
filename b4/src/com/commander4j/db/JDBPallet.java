@@ -301,6 +301,50 @@ public class JDBPallet
 		setConfirmed(false);
 	}
 
+	public Boolean rapidConfirm()
+	{
+		Boolean result = false;
+
+		try
+		{
+			//update app_pallet set confirmed = 'Y', date_of_manufacture = ?, date_updated = ?, updated_by_user_id = ? where sscc = ? and confirmed = 'N'
+			
+			PreparedStatement stmtupdate;
+			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.rapidConfirm"));
+
+
+			stmtupdate.setTimestamp(1, getDateOfManufacture());
+
+			setDateUpdated(JUtility.getSQLDateTime());
+			stmtupdate.setTimestamp(2, getDateUpdated());
+
+			setUpdatedBy(Common.userList.getUser(getSessionID()).getUserId());
+			stmtupdate.setString(3, getUpdatedBy());
+
+			stmtupdate.setString(4, getSSCC());
+			
+
+			int rows = stmtupdate.executeUpdate();
+			
+			if (rows==1)
+			{
+				result = true;
+			}
+
+			stmtupdate.clearParameters();
+			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+			stmtupdate.close();
+
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+
 	/**
 	 * This method will confirm an unconfirmed pallet. When a pallet label is
 	 * printed it's default status is unconfirmed. An unconfirmed pallet won't
@@ -313,6 +357,7 @@ public class JDBPallet
 	 * 
 	 * @see com.commander4j.db.JDBPallet#getErrorMessage() getErrorMessage()
 	 */
+
 	public Boolean confirm()
 	{
 		Boolean result = false;
@@ -323,8 +368,9 @@ public class JDBPallet
 			{
 				setConfirmed(true);
 
-				if (update() == true)
+				if (rapidConfirm() == true)
 				{
+
 					result = true;
 					setErrorMessage("");
 					writePalletHistory(getTransactionRef(), "PROD DEC", "CONFIRM");

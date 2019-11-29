@@ -678,6 +678,10 @@
 		</statement>
 		<?JDBPallet ?>
 		<statement>
+			<id>JDBPallet.rapidConfirm</id>
+			<text>update app_pallet set confirmed = 'Y', date_of_manufacture = ?, date_updated = ?, updated_by_user_id = ? where sscc = ? and confirmed = 'N'</text>
+		</statement>
+		<statement>
 			<id>JDBPallet.getPalletProperties</id>
 			<text>select * from {schema}app_pallet where sscc = ?</text>
 		</statement>

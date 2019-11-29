@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="21.0">
+<project version="21.1">
     <meta>
-        <filters directoryPatterns="" filePatterns="\QnewProject.xpr\E" positiveFilePatterns="" showHiddenFiles="false"/>
+        <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options/>
     </meta>
     <projectTree name="newProject.xpr">
