@@ -107,7 +107,7 @@ public class JDBQuery
 
 			if (restrictionType.toLowerCase().equals("rownum"))
 			{
-				sqltext = "select * from (" + sqltext + ") where rownum <= " + String.valueOf(limit);
+				sqltext = "select * from (" + sqltext + ") FETCH FIRST "+ String.valueOf(limit)+" ROWS ONLY";
 			}
 		}
 

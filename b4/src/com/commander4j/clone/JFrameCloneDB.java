@@ -432,77 +432,37 @@ public class JFrameCloneDB extends JFrame
 															if (field.getfieldType().toLowerCase().equals("varchar"))
 															{
 																String value;
-																value = sourceResultset.getString(field.getfieldName());
+																value = JUtility.replaceNullStringwithBlank(sourceResultset.getString(field.getfieldName()));
 																destinationData.setString(fldfrom + 1, value);
-																// System.out.println("Table
-																// = \"" + table
-																// + "\" Field =
-																// \"" +
-																// field.getfieldName()
-																// + "\" Value =
-																// \"" + value +
-																// "\"");
+
 															}
 															if (field.getfieldType().toLowerCase().equals("nvarchar"))
 															{
 																String value;
-																value = sourceResultset.getString(field.getfieldName());
+																value = JUtility.replaceNullStringwithBlank(sourceResultset.getString(field.getfieldName()));
 																destinationData.setString(fldfrom + 1, value);
-																// System.out.println("Table
-																// = \"" + table
-																// + "\" Field =
-																// \"" +
-																// field.getfieldName()
-																// + "\" Value =
-																// \"" + value +
-																// "\"");
+
 															}
 															if ((field.getfieldType().toLowerCase().equals("decimal")) | (field.getfieldType().toLowerCase().equals("numeric")) | (field.getfieldType().toLowerCase().equals("float")))
 															{
 																BigDecimal value;
 																value = sourceResultset.getBigDecimal(field.getfieldName());
 																destinationData.setBigDecimal(fldfrom + 1, value);
-																// System.out.println("Table
-																// = \"" + table
-																// + "\" Field =
-																// \"" +
-																// field.getfieldName()
-																// + "\" Value =
-																// \"" +
-																// JUtility.replaceNullObjectwithBlank(value).toString()
-																// + "\"");
+
 															}
 															if (field.getfieldType().toLowerCase().equals("datetime"))
 															{
 																Timestamp value;
 																value = sourceResultset.getTimestamp(field.getfieldName());
 																destinationData.setTimestamp(fldfrom + 1, value);
-																// System.out.println("Table
-																// = \"" + table
-																// + "\" Field =
-																// \"" +
-																// field.getfieldName()
-																// + "\" Value =
-																// \""
-																// +
-																// JUtility.replaceNullObjectwithBlank(value).toString()
-																// + "\"");
+
 															}
 															if ((field.getfieldType().toLowerCase().equals("int")) | (field.getfieldType().toLowerCase().equals("bigint")))
 															{
 																Integer value;
 																value = sourceResultset.getInt(field.getfieldName());
 																destinationData.setInt(fldfrom + 1, value);
-																// System.out.println("Table
-																// = \"" + table
-																// + "\" Field =
-																// \"" +
-																// field.getfieldName()
-																// + "\" Value =
-																// \""
-																// +
-																// JUtility.replaceNullObjectwithBlank(value).toString()
-																// + "\"");
+	
 															}
 															field = null;
 														}

@@ -784,7 +784,7 @@
 		</statement>
 		<statement>
 			<id>JDBDespatch.browse</id>
-			<text>select * from (select * from {schema}app_despatch where status = ? order by despatch_no desc) where rownum&lt;= ? order by despatch_no asc</text>
+			<text>select * from (select * from {schema}app_despatch where status = ? order by despatch_no desc) order by despatch_no asc fetch first ? rows only</text>
 		</statement>
 		<statement>
 			<id>JDBDespatch.getAssignedSSCCs</id>

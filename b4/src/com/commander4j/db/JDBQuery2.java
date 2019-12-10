@@ -78,7 +78,7 @@ public class JDBQuery2
 	private String sqlWhat = "";
 	private String sqlRestriction = "";
 	private String sqlWhere = "";
-	private Object sqlLimit = "";
+
 	private String sqlSort = "";
 	private String sqlFinal = "";
 
@@ -94,7 +94,7 @@ public class JDBQuery2
 		}
 		if (selectLimitType.equals("ROWNUM"))
 		{
-			sqlTemplate = "SELECT {what} FROM {source} {where} {restriction} {orderby} {final}";
+			sqlTemplate = "SELECT {what} FROM {source} {where} {orderby} {restriction} {final}";
 		}
 		if (selectLimitType.equals("LIMIT"))
 		{
@@ -116,7 +116,7 @@ public class JDBQuery2
 
 	public void applyRestriction(boolean active, Object limit)
 	{
-		sqlLimit = limit.toString();
+
 		if (active)
 		{
 			if (selectLimitType.equals("TOP"))
@@ -131,7 +131,7 @@ public class JDBQuery2
 
 			if (selectLimitType.equals("ROWNUM"))
 			{
-				sqlRestriction = selectLimitType;
+				sqlRestriction = "FETCH FIRST " + String.valueOf(limit) + " ROWS ONLY";
 			}
 		}
 		else
@@ -362,7 +362,7 @@ public class JDBQuery2
 		sqlWhat = "";
 		sqlRestriction = "";
 		sqlWhere = "";
-		sqlLimit = "";
+
 		sqlSort = "";
 		sqltext = "";
 		criteriaCount = 0;
@@ -375,15 +375,9 @@ public class JDBQuery2
 		sqltext = sqltext.replace("{source}", sqlFrom);
 		if (sqlRestriction.equals("") == false)
 		{
-			if (selectLimitType.equals("ROWNUM"))
-			{
-				applyWhere("ROWNUM<=", sqlLimit);
-				sqltext = sqltext.replace("{restriction}", "");
-			}
-			else
-			{
-				sqltext = sqltext.replace("{restriction}", sqlRestriction);
-			}
+
+			sqltext = sqltext.replace("{restriction}", sqlRestriction);
+
 		}
 		else
 		{

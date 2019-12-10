@@ -27,13 +27,13 @@ public class MiddlewareConfig
 
 		for (int x = 0; x < getMaps().size(); x++)
 		{
-			result = result + "Map : [" + getMaps().get(x).getId() + "] Description [" + Utility.padString(getMaps().get(x).getDescription(), true, 60, " ") + "] Inbound Map Count [" + Utility.padString(getMaps().get(x).getInboundMapMessageCount().toString(), false, 5, " ")
-					+ "] Outbound Map Count [" + Utility.padString(getMaps().get(x).getOutboundMapMessageCount().toString(), false, 5, " ") + "]" + "\n";
+			result = result + "Map : [" + getMaps().get(x).getId() + "] Description [" + Utility.padString(getMaps().get(x).getDescription(), true, 60, " ") + "] Inbound Map Count ["
+					+ Utility.padString(getMaps().get(x).getInboundMapMessageCount().toString(), false, 5, " ") + "] Outbound Map Count [" + Utility.padString(getMaps().get(x).getOutboundMapMessageCount().toString(), false, 5, " ") + "]" + "\n";
 		}
 
 		return result;
 	}
-	
+
 	public void resetInterfaceStatistics()
 	{
 		for (int x = 0; x < getMaps().size(); x++)
@@ -82,8 +82,6 @@ public class MiddlewareConfig
 		}
 	}
 
-	
-	
 	public LinkedList<Map> loadMaps(String filename)
 	{
 		String configName = "";
@@ -102,26 +100,26 @@ public class MiddlewareConfig
 		XSLTPath = doc.findXPath("//config/XSLTPath");
 		LogPath = doc.findXPath("//config/logPath");
 		Common.emailEnabled = Boolean.valueOf(doc.findXPath("//config/enableEmailNotifications").toLowerCase());
-		
+
 		ArchiveRetentionDays = doc.findXPath("//config/logArchiveRetentionDays");
 		statusReportTime = doc.findXPath("//config/statusReportTime");
 
 		logger.debug("Config Name :" + configName);
-		
+
 		if (ArchiveRetentionDays.equals(""))
 		{
-			ArchiveRetentionDays="7";
+			ArchiveRetentionDays = "7";
 		}
-		
+
 		Common.ArchiveRetentionDays = Integer.valueOf(ArchiveRetentionDays);
 		Common.logDir = LogPath;
 		Common.configName = configName;
-		
+
 		if (statusReportTime.equals(""))
 		{
-			statusReportTime="09:00:00";
+			statusReportTime = "09:00:00";
 		}
-		
+
 		Common.statusReportTime = statusReportTime;
 
 		if (Common.logDir.equals(""))
@@ -177,21 +175,20 @@ public class MiddlewareConfig
 				inboundInterface.setXSLTFilename(inputXSLT);
 				inboundInterface.setType(inputType);
 				inboundInterface.setPrefix(inputPrefix);
-				
-				if (inputMask.equals("")==false)
+
+				if (inputMask.equals("") == false)
 				{
 					String[] maskArray = inputMask.split(",");
 					inboundInterface.setInputFileMask(maskArray);
 				}
-				
+
 				inboundInterface.setInputPattern(inputPattern);
 				inboundInterface.setIdocSchemaFilename(inputIdocSchemaFilename);
 				inboundInterface.setPollingInterval(Long.valueOf(pollingInterval));
 				inboundInterface.setCSVOptions(csvOptionsIn);
 				inboundInterface.setOptionDelimeter(optionDelimeterIn);
 
-
-				logger.debug("Loading input connector  : (" + inputId + ") " + inputDescription +" Type " +inboundInterface.getType()+" Mask "+Arrays.toString(inboundInterface.getInputFileMask()));
+				logger.debug("Loading input connector  : (" + inputId + ") " + inputDescription + " Type " + inboundInterface.getType() + " Mask " + Arrays.toString(inboundInterface.getInputFileMask()));
 
 				map.setInboundInterface(inboundInterface);
 
@@ -199,87 +196,92 @@ public class MiddlewareConfig
 
 				while (doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/@enabed").trim() != "")
 				{
-					String outputId = doc.findXPath("//config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/@id").trim();
-					String outputDescription = doc.findXPath("//config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/@description").trim();
 
-					String outputType = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/type").trim();
-					String outputPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/path").trim();
-					String outputXSLT = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/XSLT").trim();
-					String outputPattern = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/outputPattern").trim();
-					String optionDelimeterOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/optionDelimeter").trim();
-					String csvOptionsOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/csvOptions").trim();
-					String outputFileExtension = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/outputFileExtension").trim();
-					String outputPrefix = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/prefix").trim();
-					
+					String outputEnabled = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/@enabed").trim();
 
-					String outputParam1_Type = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param1/@type").trim();
-					String outputParam1 = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param1").trim();
-					String outputParam2_Type = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param2/@type").trim();
-					String outputParam2 = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param2").trim();
-					String outputComparitor = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/comparitor").trim();
-
-					String emailSubject = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/subject").trim();
-					String emailMessage = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/message").trim();
-					String emailListID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/emailListID").trim();
-					String use83GUID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/use83GUID").trim();
-					String queueName = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/queueName").trim();
-
-					String mqttBroker = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/broker").trim();
-					String mqttTopic = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/topic").trim();
-					String mqttClient = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/client").trim();
-					String mqttContentXPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/contentXPath").trim();
-					String mqttQos = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/qos").trim();
-					
-					String host_ip= doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/host/ip").trim();
-					String host_port= doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/host/port").trim();
-					String host_repeat= doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/host/repeat").trim();
-					
-					OutboundInterface outboundInterface = new OutboundInterface(map, outputDescription);
-					
-					outboundInterface.setId(outputId);
-					outboundInterface.setDescription(outputDescription);
-					outboundInterface.setType(outputType);
-					outboundInterface.setOutputPath(outputPath);
-					outboundInterface.setXSLTPath(XSLTPath);
-					outboundInterface.setXSLTFilename(outputXSLT);
-					outboundInterface.setOutputPattern(outputPattern);
-					outboundInterface.setCSVOptions(csvOptionsOut);
-					outboundInterface.setOptionDelimeter(optionDelimeterOut);
-					outboundInterface.setOutputFileExtension(outputFileExtension);
-					outboundInterface.setEmailSubject(emailSubject);
-					outboundInterface.setEmailMessage(emailMessage);
-					outboundInterface.setEmailListID(emailListID);
-					outboundInterface.set83GUIDFilenameReqd(use83GUID);
-					outboundInterface.setQueueName(queueName);
-					
-					outboundInterface.setMQTTBroker(mqttBroker);
-					outboundInterface.setMQTTTopic(mqttTopic);
-					outboundInterface.setMQTTClient(mqttClient);
-					outboundInterface.setMQTTContentXML(mqttContentXPath);
-					outboundInterface.setMQTTQos(mqttQos);
-					
-					outboundInterface.setHostIP(host_ip);
-					outboundInterface.setHostPort(host_port);
-					outboundInterface.setHostRepeat(host_repeat);
-
-					outboundInterface.setPrefix(outputPrefix);
-					
-					outboundInterface.setCompareParam1(outputParam1);
-					outboundInterface.setCompareParam1_Type(outputParam1_Type);
-					outboundInterface.setCompareParam2(outputParam2);
-					outboundInterface.setCompareParam2_Type(outputParam2_Type);
-					outboundInterface.setComparator(outputComparitor);
-
-
-					if (fio.isValidDirectory(outputPath) == false)
+					if (outputEnabled.toUpperCase().equals("Y"))
 					{
-						directoryErrors.addLast("Map : [" + mapId + "] outputId : [" + outputId + "] Invalid Directory : " + outputPath);
+
+						String outputId = doc.findXPath("//config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/@id").trim();
+						String outputDescription = doc.findXPath("//config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/@description").trim();
+
+						String outputType = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/type").trim();
+						String outputPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/path").trim();
+						String outputXSLT = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/XSLT").trim();
+						String outputPattern = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/outputPattern").trim();
+						String optionDelimeterOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/optionDelimeter").trim();
+						String csvOptionsOut = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/csvOptions").trim();
+						String outputFileExtension = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/outputFileExtension").trim();
+						String outputPrefix = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/prefix").trim();
+
+						String outputParam1_Type = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param1/@type").trim();
+						String outputParam1 = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param1").trim();
+						String outputParam2_Type = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param2/@type").trim();
+						String outputParam2 = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/param2").trim();
+						String outputComparitor = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/condition/comparitor").trim();
+
+						String emailSubject = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/subject").trim();
+						String emailMessage = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/message").trim();
+						String emailListID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/emailListID").trim();
+						String use83GUID = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/use83GUID").trim();
+						String queueName = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/queueName").trim();
+
+						String mqttBroker = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/broker").trim();
+						String mqttTopic = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/topic").trim();
+						String mqttClient = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/client").trim();
+						String mqttContentXPath = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/contentXPath").trim();
+						String mqttQos = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/mqtt/qos").trim();
+
+						String host_ip = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/host/ip").trim();
+						String host_port = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/host/port").trim();
+						String host_repeat = doc.findXPath("/config/map[" + String.valueOf(mapSeq) + "]/output[" + String.valueOf(outputSeq) + "]/host/repeat").trim();
+
+						OutboundInterface outboundInterface = new OutboundInterface(map, outputDescription);
+
+						outboundInterface.setId(outputId);
+						outboundInterface.setDescription(outputDescription);
+						outboundInterface.setType(outputType);
+						outboundInterface.setOutputPath(outputPath);
+						outboundInterface.setXSLTPath(XSLTPath);
+						outboundInterface.setXSLTFilename(outputXSLT);
+						outboundInterface.setOutputPattern(outputPattern);
+						outboundInterface.setCSVOptions(csvOptionsOut);
+						outboundInterface.setOptionDelimeter(optionDelimeterOut);
+						outboundInterface.setOutputFileExtension(outputFileExtension);
+						outboundInterface.setEmailSubject(emailSubject);
+						outboundInterface.setEmailMessage(emailMessage);
+						outboundInterface.setEmailListID(emailListID);
+						outboundInterface.set83GUIDFilenameReqd(use83GUID);
+						outboundInterface.setQueueName(queueName);
+
+						outboundInterface.setMQTTBroker(mqttBroker);
+						outboundInterface.setMQTTTopic(mqttTopic);
+						outboundInterface.setMQTTClient(mqttClient);
+						outboundInterface.setMQTTContentXML(mqttContentXPath);
+						outboundInterface.setMQTTQos(mqttQos);
+
+						outboundInterface.setHostIP(host_ip);
+						outboundInterface.setHostPort(host_port);
+						outboundInterface.setHostRepeat(host_repeat);
+
+						outboundInterface.setPrefix(outputPrefix);
+
+						outboundInterface.setCompareParam1(outputParam1);
+						outboundInterface.setCompareParam1_Type(outputParam1_Type);
+						outboundInterface.setCompareParam2(outputParam2);
+						outboundInterface.setCompareParam2_Type(outputParam2_Type);
+						outboundInterface.setComparator(outputComparitor);
+
+						if (fio.isValidDirectory(outputPath) == false)
+						{
+							directoryErrors.addLast("Map : [" + mapId + "] outputId : [" + outputId + "] Invalid Directory : " + outputPath);
+						}
+
+						logger.debug("Loading output connector : (" + outputId + ") " + outputDescription);
+
+						map.addOutboundInterface(outboundInterface);
+
 					}
-
-					logger.debug("Loading output connector : (" + outputId + ") " + outputDescription);
-
-					
-					map.addOutboundInterface(outboundInterface);
 
 					outputSeq++;
 				}
@@ -292,7 +294,7 @@ public class MiddlewareConfig
 		}
 
 		Collections.sort(maps);
-		
+
 		return maps;
 	}
 }
