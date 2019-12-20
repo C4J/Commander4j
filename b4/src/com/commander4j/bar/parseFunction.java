@@ -38,6 +38,7 @@ import java.util.Date;
 import com.commander4j.app.JVersion;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBPallet;
+import com.commander4j.util.JUtility;
 
 public class parseFunction
 {
@@ -104,7 +105,7 @@ public class parseFunction
 
 		String[] Functions = new String[]
 		{ "<SUBTR_LPAD(", "<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(", "<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(", "<PRODDATE(",
-				"<PALLET_WEIGHT_TEXT(","<PALLET_WEIGHT_BARCODE(" };
+				"<PALLET_WEIGHT_TEXT(", "<PALLET_WEIGHT_BARCODE(" };
 
 		// For each expression above
 		for (int x = 0; x < Functions.length; x++)
@@ -447,7 +448,7 @@ public class parseFunction
 					result = functionName + incorrectNoParams;
 				}
 			}
-			
+
 			if (functionName.equals("PALLET_WEIGHT_BARCODE"))
 			{
 				if (params.length == 2)
@@ -465,7 +466,7 @@ public class parseFunction
 					String sscc = rs.getString("SSCC");
 
 					result = pal.getPalletWeight(sscc, weightUom, decimalPlaces);
-					
+
 					result = result.replace(".", "");
 
 				}
@@ -536,10 +537,18 @@ public class parseFunction
 
 						dateOfManufacture = rs.getTimestamp("date_of_manufacture");
 
-						dateOfManufacture.setNanos(0);
-						DateFormat dateFormat = new SimpleDateFormat(params[0]);
+						if (dateOfManufacture == null)
+						{
+							// If the date is null then return a string of spaces the same size as the format spec.
+							result = JUtility.padSpace(params[0].length());
+						}
+						else
+						{
+							dateOfManufacture.setNanos(0);
+							DateFormat dateFormat = new SimpleDateFormat(params[0]);
 
-						result = dateFormat.format(dateOfManufacture);
+							result = dateFormat.format(dateOfManufacture);
+						}
 
 					}
 					catch (Exception ex)
