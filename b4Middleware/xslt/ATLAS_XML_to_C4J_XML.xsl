@@ -23,6 +23,17 @@
                             <journeyDefinition>
                                 <ref><xsl:value-of select='ref' /></ref>
                                 <timeslot><xsl:value-of select='timeslot' /></timeslot>
+                                <destination>HAMS HALL_PA</destination>
+                                <haulier><xsl:value-of select='haulier' /></haulier>
+                                <loadType><xsl:value-of select='loadType' /></loadType>
+                                <loadTypeDesc><xsl:value-of select='loadTypeDesc' /></loadTypeDesc>
+                                <action><xsl:value-of select='action' /></action>
+                            </journeyDefinition>
+                        </xsl:if>  
+                        <xsl:if test="destination[text()='HAMS HALL_PA']">
+                            <journeyDefinition>
+                                <ref><xsl:value-of select='ref' /></ref>
+                                <timeslot><xsl:value-of select='timeslot' /></timeslot>
                                 <destination><xsl:value-of select='destination' /></destination>
                                 <haulier><xsl:value-of select='haulier' /></haulier>
                                 <loadType><xsl:value-of select='loadType' /></loadType>
@@ -30,7 +41,7 @@
                                 <action><xsl:value-of select='action' /></action>
                             </journeyDefinition>
                         </xsl:if>  
-                        <xsl:if test="destination[text()='NESTLE BARDON CFG STORE']">
+<!--                        <xsl:if test="destination[text()='NESTLE BARDON CFG STORE']">
                             <journeyDefinition>
                                 <ref><xsl:value-of select='ref' /></ref>
                                 <timeslot><xsl:value-of select='timeslot' /></timeslot>
@@ -40,7 +51,7 @@
                                 <loadTypeDesc><xsl:value-of select='loadTypeDesc' /></loadTypeDesc>
                                 <action><xsl:value-of select='action' /></action>
                             </journeyDefinition>
-                        </xsl:if> 
+                        </xsl:if> -->
                     </xsl:for-each>
             </messageData>
         </message>

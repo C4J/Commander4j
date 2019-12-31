@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lookup>
     
-    <item type="PlantSLOCtoLocation" id="0917-0001"><value>BUK</value></item>
+    <item type="PlantSLOCtoLocation" id="9718-0001"><value>BUK</value></item>
     <item type="PlantSLOCtoLocation" id="9750-0001"><value>BUK_PA</value></item>
     <item type="PlantSLOCtoLocation" id="0966-0001"><value>HAMS HALL</value></item>  
     <item type="PlantSLOCtoLocation" id="9760-0001"><value>HAMS HALL_PA</value></item>  
@@ -15,8 +15,8 @@
     <item type="PlantSLOCtoLocation" id="9762-0001"><value>WMP_PA</value></item>  
     <item type="PlantSLOCtoLocation" id="9690-0001"><value>WROCLAW</value></item>
     <item type="PlantSLOCtoLocation" id="9733-0001"><value>WROCLAW_PA</value></item>
-
-    <item type="PlantSLOCtoLocation" id="0929-0001"><value>AINTREE</value></item>  
+<!--
+    <item type="PlantSLOCtoLocation" id="0929-0001"><value>AINTREE</value></item>  -->
     <item type="PlantSLOCtoLocation" id="9018-0001"><value>BARDON</value></item>  
     <item type="PlantSLOCtoLocation" id="0962-0003"><value>FENLAND</value></item> 
     <item type="PlantSLOCtoLocation" id="0931-0002"><value>LAITS</value></item>    
