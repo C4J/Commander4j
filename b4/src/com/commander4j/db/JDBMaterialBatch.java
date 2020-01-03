@@ -61,6 +61,7 @@ public class JDBMaterialBatch
 	private String hostID;
 	private String sessionID;
 	private JDBMaterial mat;
+	private JDBLocation loc;
 	private JDBControl ctrl;
 	private JDBCustomer customer;
 	private String expiryMode;
@@ -76,6 +77,7 @@ public class JDBMaterialBatch
 		setHostID(host);
 		setSessionID(session);
 		mat = new JDBMaterial(getHostID(), getSessionID());
+		loc = new JDBLocation(getHostID(), getSessionID());
 		ctrl = new JDBControl(getHostID(), getSessionID());
 		customer = new JDBCustomer(getHostID(), getSessionID());
 
@@ -366,6 +368,20 @@ public class JDBMaterialBatch
 			ctrl.getProperties("PLANT");
 			plant = ctrl.getKeyValue();
 			result = result.replaceAll("\\{PLANT\\}", plant);
+		}
+		
+		if (result.indexOf("{PO_PLANT}") >= 0)
+		{
+			String poplant = "";
+			if (po.getLocation().equals("")==false)
+			{
+				if (loc.getLocationProperties(po.getLocation()))
+				{
+					poplant = loc.getPlant();
+				}
+			}
+
+			result = result.replaceAll("\\{PO_PLANT\\}", poplant);
 		}
 		
 		if (result.indexOf("{CUSTOMER_DATA_01}") >= 0)
