@@ -89,7 +89,7 @@
         <xsl:variable name="CREATE_DATETIME" select="c4j_XSLT_Ext:concat($CREATE_DATE,$CREATE_TIME)"  />
         <messageDate><xsl:value-of select="c4j_XSLT_Ext:formatDate($CREATE_DATETIME, 'yyyyMMddHHmmss', 'yyyy-MM-dd''T''HH:mm:ss')"/></messageDate>
     </xsl:template>
-    
+     
     <xsl:template match="E1MARAM">
 
         <xsl:if test="$PLANT = $FOUND_PLANT">

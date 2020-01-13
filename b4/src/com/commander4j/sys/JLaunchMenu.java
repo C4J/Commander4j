@@ -43,6 +43,7 @@ import com.commander4j.app.JDialogQMDictionaryProperties;
 import com.commander4j.app.JDialogQMInspectionProperties;
 import com.commander4j.app.JDialogQMSelectListProperties;
 import com.commander4j.app.JDialogShiftProperties;
+import com.commander4j.app.JDialogWTError;
 import com.commander4j.app.JDialogWTReportDetails;
 import com.commander4j.app.JInternalFrameAutoLabellerLines;
 import com.commander4j.app.JDialogAutoLabellerProperties;
@@ -387,6 +388,14 @@ public class JLaunchMenu
 		{
 			final JDialogDataIDProperties u;
 			u = new JDialogDataIDProperties(Common.mainForm, strParam);
+			displayDialog(u, optionName);
+
+		}
+		
+		if (optionName.equals("FRM_WEIGHT_ERROR"))
+		{
+			final JDialogWTError u;
+			u = new JDialogWTError(Common.mainForm, strParam);
 			displayDialog(u, optionName);
 
 		}

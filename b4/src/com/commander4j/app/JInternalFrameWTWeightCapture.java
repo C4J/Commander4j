@@ -112,6 +112,7 @@ import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
+import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JTextInputDialog;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
@@ -338,7 +339,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private void drawGraph()
 	{
 
-		// buildSQL();
 		createDemoPanel();
 
 	}
@@ -348,9 +348,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		if (validToScan)
 		{
-
-			//Calendar maxSampleCal = Calendar.getInstance();
-			//Timestamp maxSampleDate = new Timestamp(maxSampleCal.getTimeInMillis());
 
 			ResultSet rs;
 			JDBQuery.closeStatement(listStatement);
@@ -404,46 +401,36 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 					plotted_count++;
 
-					/*
-					 * if (count == 1) { maxSampleCal.setTime(when);
-					 * maxSampleCal.add(Calendar.DATE, -2); maxSampleDate = new
-					 * Timestamp(maxSampleCal.getTimeInMillis()); }
-					 */
+					if (plotted_count <= lGraphMaxPlots)
+					{
 
-//					if (when.after(maxSampleDate))
-//					{
+						cal.setTime(when);
+						int year = cal.get(Calendar.YEAR);
+						int month = cal.get(Calendar.MONTH);
+						int day = cal.get(Calendar.DAY_OF_MONTH);
+						int hour = cal.get(Calendar.HOUR_OF_DAY);
+						int mins = cal.get(Calendar.MINUTE);
+						int seconds = cal.get(Calendar.SECOND);
 
-						if (plotted_count <= lGraphMaxPlots)
+						try
+						{
+							s1.add(new Second(seconds, mins, hour, day, month + 1, year), d.doubleValue());
+						}
+						catch (Exception ex)
 						{
 
-							cal.setTime(when);
-							int year = cal.get(Calendar.YEAR);
-							int month = cal.get(Calendar.MONTH);
-							int day = cal.get(Calendar.DAY_OF_MONTH);
-							int hour = cal.get(Calendar.HOUR_OF_DAY);
-							int mins = cal.get(Calendar.MINUTE);
-							int seconds = cal.get(Calendar.SECOND);
-
-							try
-							{
-								s1.add(new Second(seconds, mins, hour, day, month+1, year), d.doubleValue());
-							}
-							catch (Exception ex)
-							{
-
-							}
-
-							try
-							{
-								s2.add(new Second(seconds, mins, hour, day, month+1, year), stddev.doubleValue());
-							}
-							catch (Exception ex)
-							{
-
-							}
 						}
 
-//					}
+						try
+						{
+							s2.add(new Second(seconds, mins, hour, day, month + 1, year), stddev.doubleValue());
+						}
+						catch (Exception ex)
+						{
+
+						}
+					}
+
 				}
 
 				dataset1.removeAllSeries();
@@ -1031,10 +1018,12 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				btnManualInput.setBounds(798, 364, 196, 25);
 				jDesktopPane1.add(btnManualInput);
 				btnManualInput.setEnabled(false);
-				btnComment.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				btnComment.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						String comments = sampleHeader.getComments();
-						JTextInputDialog textInp = new JTextInputDialog(Common.mainForm,comments,JDBWTSampleHeader.field_Comments);
+						JTextInputDialog textInp = new JTextInputDialog(Common.mainForm, comments, JDBWTSampleHeader.field_Comments);
 						textInp.setVisible(true);
 						if (textInp.isTextEntered())
 						{
@@ -1045,7 +1034,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						textInp = null;
 					}
 				});
-				
+
 				btnComment.setText(lang.get("lbl_Add_Comment"));
 				btnComment.setEnabled(false);
 				btnComment.setBounds(798, 496, 196, 25);
@@ -1056,8 +1045,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				chartPanel.setBounds(14, 152, 772, 411);
 
 				jDesktopPane1.add(chartPanel);
-				
-
 
 			}
 		}
@@ -1152,6 +1139,19 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							updateGraph();
 						}
 					});
+
+					if (t1_count > 0)
+					{
+						JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T1_p1")+lang.get("err_T1_p2"));
+
+					}
+					else
+					{
+						if (t2_count > 0)
+						{
+							JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T2_p1")+lang.get("err_T2_p2"));
+						}
+					}
 
 				}
 				else
