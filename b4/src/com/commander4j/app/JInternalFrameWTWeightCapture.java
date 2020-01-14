@@ -1155,7 +1155,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						{
 							if (mean.compareTo(matgroupdb.getNominalWeight())==-1)
 							{
-								JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", "Mean is less thn nominal");
+								JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_MeanVNominal_p1"));
 							}
 						}
 					}

@@ -91,7 +91,7 @@ public class JDialogWTError extends javax.swing.JDialog
 		try
 		{
 
-			jButtonClose = new JButton4j(Common.icon_close_16x16);
+			jButtonClose = new JButton4j(Common.icon_ok_16x16);
 			jDesktopPane1.add(jButtonClose);
 			jButtonClose.setText(lang.get("btn_Ok"));
 			jButtonClose.setMnemonic(lang.getMnemonicChar());
