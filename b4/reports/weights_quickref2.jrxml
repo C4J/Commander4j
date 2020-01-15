@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="weights_quickref2" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="06f0cf4f-c839-4cd1-9e94-d7ca33e822aa">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
@@ -17,6 +17,7 @@
 	SAMPLE_POINT,
 	PROCESS_ORDER,
 	MATERIAL,
+	CONTAINER_CODE,
 	MIN(SAMPLE_SIZE) AS SAMPLE_SIZE,
     AVG(SAMPLE_NET_WEIGHT) AS MEAN_WEIGHT,
 	STDDEV(SAMPLE_NET_WEIGHT) AS STANDARD_DEVIATION,
@@ -35,13 +36,13 @@ FROM
 	NOMINAL_WEIGHT,
 	SAMPLE_POINT,
 	PROCESS_ORDER,
-	MATERIAL
-	order by  
+	MATERIAL,
+	CONTAINER_CODE order by  
 	SAMPLE_DATE_SHORT,
 	NOMINAL_WEIGHT,
 	SAMPLE_POINT,
 	PROCESS_ORDER,
-	MATERIAL]]>
+	MATERIAL, CONTAINER_CODE]]>
 	</queryString>
 	<field name="SAMPLE_DATE_SHORT" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_DATE_SHORT"/>
@@ -60,6 +61,10 @@ FROM
 	</field>
 	<field name="MATERIAL" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="MATERIAL"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_header"/>
+	</field>
+	<field name="CONTAINER_CODE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CONTAINER_CODE"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_header"/>
 	</field>
 	<field name="SAMPLE_SIZE" class="java.lang.Long">
@@ -186,7 +191,7 @@ FROM
 				<text><![CDATA[Sample Date]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="109" y="4" width="39" height="12" uuid="b9eef303-5096-4c21-bece-af319dc88fca">
+				<reportElement x="106" y="4" width="39" height="12" uuid="b9eef303-5096-4c21-bece-af319dc88fca">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="047c7644-bbcc-4abd-8ccd-f9e4b9885fd8"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -196,7 +201,7 @@ FROM
 				<text><![CDATA[Nominal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="158" y="4" width="57" height="12" uuid="da1894c2-2d09-4ff1-95cb-ca9041db731e">
+				<reportElement x="146" y="4" width="57" height="12" uuid="da1894c2-2d09-4ff1-95cb-ca9041db731e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c0ec72bb-a48b-4a62-b660-de0b3d601ba0"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -206,7 +211,7 @@ FROM
 				<text><![CDATA[Sample Point]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="228" y="4" width="68" height="12" uuid="592666fc-5ba0-4ad2-b472-eddbfc6a266e">
+				<reportElement x="207" y="4" width="61" height="12" uuid="592666fc-5ba0-4ad2-b472-eddbfc6a266e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a9052513-1dc0-45a4-a40d-88b0ba007fb2"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -216,7 +221,7 @@ FROM
 				<text><![CDATA[Process Order]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="303" y="4" width="56" height="12" uuid="28351463-a996-489d-9061-1cacafb0d412">
+				<reportElement x="271" y="4" width="48" height="12" uuid="28351463-a996-489d-9061-1cacafb0d412">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="66453917-9247-4a96-ac7a-9b9ccea89ff8"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -338,6 +343,16 @@ FROM
 				</textElement>
 				<text><![CDATA[Julian]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="319" y="3" width="44" height="12" uuid="5d890ff8-29e2-4b58-99da-9df1cf5ac0fc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="66453917-9247-4a96-ac7a-9b9ccea89ff8"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Container]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -354,7 +369,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{SAMPLE_DATE_SHORT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="107" y="0" width="39" height="12" uuid="0faad3c0-16d3-410f-ab76-fce80894caab">
+				<reportElement x="104" y="0" width="39" height="12" uuid="0faad3c0-16d3-410f-ab76-fce80894caab">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="047c7644-bbcc-4abd-8ccd-f9e4b9885fd8"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -364,7 +379,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{NOMINAL_WEIGHT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="162" y="0" width="57" height="12" uuid="e1232358-3e05-4606-a7b2-926f705194f6">
+				<reportElement x="150" y="0" width="57" height="12" uuid="e1232358-3e05-4606-a7b2-926f705194f6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c0ec72bb-a48b-4a62-b660-de0b3d601ba0"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -374,7 +389,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{SAMPLE_POINT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="232" y="0" width="57" height="12" uuid="b0560397-aca5-49a1-91d2-38c353c63be2">
+				<reportElement x="211" y="0" width="57" height="12" uuid="b0560397-aca5-49a1-91d2-38c353c63be2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a9052513-1dc0-45a4-a40d-88b0ba007fb2"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -384,7 +399,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{PROCESS_ORDER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="303" y="0" width="57" height="12" uuid="113423eb-7b1a-4df0-a948-2c414e850d95">
+				<reportElement x="271" y="0" width="57" height="12" uuid="113423eb-7b1a-4df0-a948-2c414e850d95">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="66453917-9247-4a96-ac7a-9b9ccea89ff8"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -492,6 +507,16 @@ FROM
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SAMPLE_DATE_SHORT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="-1" width="27" height="12" uuid="3b835370-4490-4498-a79f-c256c53c1f83">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="66453917-9247-4a96-ac7a-9b9ccea89ff8"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONTAINER_CODE}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
