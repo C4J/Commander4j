@@ -131,7 +131,7 @@
    </statement>
       
    <statement>
-      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','EN','&lt;h1&gt;Mean less than Nominal&lt;/h1&gt;&lt;h2&gt;Please adjust product weight to correct.&lt;/h2&gt;','')
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','EN','&lt;h1&gt;Order Mean below Nominal weight&lt;/h1&gt;&lt;h2&gt;Please increase weight and carry out recheck&lt;/h2&gt;','')
    </statement>
 
    <statement>

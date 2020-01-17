@@ -130,8 +130,8 @@
          INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p2','FR','&lt;h3&gt;Si le résultat est dû à une erreur d''échelle ou au placement de l''échantillon, veuillez utiliser le commentaire&lt;br&gt;bouton pour décrire la cause.&lt;/h3&gt;','')
    </statement>
       
-   <statement>
-      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','EN','&lt;h1&gt;Mean less than Nominal&lt;/h1&gt;&lt;h2&gt;Please adjust product weight to correct.&lt;/h2&gt;','')
+    <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','EN','&lt;h1&gt;Order Mean below Nominal weight&lt;/h1&gt;&lt;h2&gt;Please increase weight and carry out recheck&lt;/h2&gt;','')
    </statement>
 
    <statement>

@@ -1149,7 +1149,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					{
 						if (t1_count > 0)
 						{
-							JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T2_p1")+lang.get("err_T2_p2"));
+							JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T1_p1")+lang.get("err_T1_p2"));
 						}
 						else
 						{
