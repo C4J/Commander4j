@@ -1139,7 +1139,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							updateGraph();
 						}
 					});
-
+					
 					if (t2_count > 0)
 					{
 						JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T2_p1")+lang.get("err_T1_p2"));

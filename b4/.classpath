@@ -66,7 +66,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/itext-2.1.7.js7.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/javax.persistence-api-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/cups4j/slf4j-simple-1.7.25.jar"/>
-	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.18.jar"/>
 	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.5.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/cdt-java-client-2.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-4.1.1.jar"/>
@@ -86,6 +85,7 @@
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.11.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.11.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.19.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_202]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>

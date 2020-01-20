@@ -101,7 +101,7 @@
         
         <library>
             <description>mySQL JDBC</description>
-            <version>8.0.16</version>
+            <version>8.0.19</version>
             <type>mySQL JDBC License</type>
         </library>    
         
