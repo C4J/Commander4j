@@ -42,7 +42,6 @@ import javax.swing.WindowConstants;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.sys.Common;
-import com.commander4j.util.JUtility;
 
 
 public class JDialogWTError extends javax.swing.JDialog
@@ -118,7 +117,7 @@ public class JDialogWTError extends javax.swing.JDialog
 			});
 
 			
-			JUtility.errorBeep();
+			//JUtility.errorBeep();
 		}
 		catch (Exception e)
 		{

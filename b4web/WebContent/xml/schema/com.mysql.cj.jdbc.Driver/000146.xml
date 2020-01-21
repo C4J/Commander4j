@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+   <statement>
+			CREATE VIEW `VIEW_WEIGHT_SAMPLES2` AS SELECT
+			`app_weight_sample_point`.`LOCATION` AS `LOCATION`,
+			`app_weight_sample_header`.`PRODUCT_GROUP` AS `PRODUCT_GROUP`,
+			`app_weight_sample_header`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
+			cast( `app_weight_sample_header`.`SAMPLE_DATE` AS date ) AS `SAMPLE_DATE_SHORT`,
+			`app_weight_sample_header`.`NOMINAL_WEIGHT` AS `NOMINAL_WEIGHT`,
+			`app_weight_sample_header`.`SAMPLE_COUNT` AS `SAMPLE_COUNT`,
+			`app_weight_sample_header`.`SAMPLE_MEAN` AS `SAMPLE_MEAN`,
+			`app_weight_sample_header`.`SAMPLE_STD_DEV` AS `SAMPLE_STD_DEV`,
+			`app_weight_sample_header`.`SAMPLE_T1_COUNT` AS `SAMPLE_T1_COUNT`,
+			`app_weight_sample_header`.`SAMPLE_T2_COUNT` AS `SAMPLE_T2_COUNT` 
+		FROM
+			((
+					`app_weight_sample_detail`
+					JOIN `app_weight_sample_header` ON (((
+								`app_weight_sample_detail`.`SAMPLE_POINT` = `app_weight_sample_header`.`SAMPLE_POINT` 
+								) 
+						AND ( `app_weight_sample_detail`.`SAMPLE_DATE` = `app_weight_sample_header`.`SAMPLE_DATE` ))))
+				JOIN `app_weight_sample_point` ON ((
+					`app_weight_sample_point`.`SAMPLE_POINT` = `app_weight_sample_header`.`SAMPLE_POINT` 
+			)))
+   </statement>
+      
+</DDL>

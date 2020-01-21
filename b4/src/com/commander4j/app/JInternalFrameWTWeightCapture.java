@@ -446,6 +446,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					if (batch_mean.compareTo(matgroupdb.getNominalWeight()) == -1)
 					{
 						fld_Batch_Mean.setBackground(Color.RED);
+						JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_MeanVNominal_p1"));
 					}
 					else
 					{
@@ -1150,13 +1151,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						if (t1_count > 0)
 						{
 							JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T1_p1")+lang.get("err_T1_p2"));
-						}
-						else
-						{
-							if (mean.compareTo(matgroupdb.getNominalWeight())==-1)
-							{
-								JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_MeanVNominal_p1"));
-							}
 						}
 					}
 
