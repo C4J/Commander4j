@@ -1,16 +1,18 @@
-#!/bin/sh
-
 echo off
-clear
-BASEDIR=$(dirname $0)
-cd "$BASEDIR"
+cls
 
-file="./.install4j/jre.bundle/Contents/Home/bin/java"
-if [ -f "$file" ]
-then
-	./.install4j/jre.bundle/Contents/Home/bin/java -classpath commander4j.jar:./lib/devonly/* com.commander4j.cfg.Setup
-else
-	java -classpath commander4j.jar:./lib/devonly/* com.commander4j.cfg.Setup
-fi
+if exist jre\bin\java.exe goto jre_found
+
+goto end
+
+:jre_found
+
+rem Use Bundled JRE
+SET JAVA_HOME=.\jre\bin
+SET PATH=%PATH%;.\jre\bin
+
+:end
+
+java -classpath commander4j.jar;.\lib\devonly\i4jruntime.jar com.commander4j.cfg.Setup
 
 exit
