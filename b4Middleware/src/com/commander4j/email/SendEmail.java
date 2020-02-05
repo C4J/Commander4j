@@ -61,8 +61,8 @@ public class SendEmail
 					seq++;
 				}
 			}
-			
-		    String addressList = "";
+
+			String addressList = "";
 			addressList = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/toAddressList").trim());
 			String temp = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/@maxFrequencyMins").trim());
 
@@ -83,7 +83,6 @@ public class SendEmail
 	{
 		boolean result = true;
 
-
 		if (Common.emailEnabled == false)
 		{
 			return result;
@@ -97,31 +96,31 @@ public class SendEmail
 		if (distList.containsKey(distributionID) == true)
 		{
 
-
-			String emailKey="["+distributionID+"] - ["+subject+"]";
+			String emailKey = "[" + distributionID + "] - [" + subject + "]";
 			logger.debug(emailKey);
 			Session session;
 			Timestamp lastSent;
 			Boolean okToSend;
-			
+
 			if (emailLog.containsKey(emailKey))
 			{
 				lastSent = new Timestamp(emailLog.get(emailKey).getTime());
 			}
 			else
 			{
-				// Enter dummmy last email sent date so that first email will be sent
+				// Enter dummmy last email sent date so that first email will be
+				// sent
 				cal = Calendar.getInstance();
 				cal.add(Calendar.DAY_OF_YEAR, -30);
 				lastSent = new Timestamp(cal.getTime().getTime());
 				emailLog.put(emailKey, lastSent);
 			}
-			
+
 			long ageInMins = Utility.compareTwoTimeStamps(Utility.getSQLDateTime(), lastSent);
-			logger.debug("Last email to "+emailKey+" was at "+lastSent);
-			logger.debug("Minutes since last email to "+emailKey+" is "+String.valueOf(ageInMins));
-			
-			if (ageInMins >=distList.get(distributionID).maxFrequencyMins)
+			logger.debug("Last email to " + emailKey + " was at " + lastSent);
+			logger.debug("Minutes since last email to " + emailKey + " is " + String.valueOf(ageInMins));
+
+			if (ageInMins >= distList.get(distributionID).maxFrequencyMins)
 			{
 				okToSend = true;
 				logger.debug("Email allowed");
@@ -133,61 +132,68 @@ public class SendEmail
 			}
 
 			if (okToSend)
-			{	
-				
-			if (smtpProperties.get("mail.smtp.auth").toString().toLowerCase().equals("true"))
 			{
-				session = Session.getInstance(smtpProperties, new javax.mail.Authenticator()
+
+				if (smtpProperties.get("mail.smtp.auth").toString().toLowerCase().equals("true"))
 				{
-					protected PasswordAuthentication getPasswordAuthentication()
+					session = Session.getInstance(smtpProperties, new javax.mail.Authenticator()
 					{
-						return new PasswordAuthentication(smtpProperties.get("mail.smtp.user").toString(), smtpProperties.get("mail.smtp.password").toString());
-					}
-				});
-			}
-			else
-			{
-				session = Session.getInstance(smtpProperties);
-			}
-
-			try
-			{
-
-				MimeMessage message = new MimeMessage(session);
-				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(distList.get(distributionID).addressList));
-				message.setSubject(subject);
-				// message.setText(messageText);
-
-				MimeBodyPart mbp1 = new MimeBodyPart();
-				MimeBodyPart mbp2 = new MimeBodyPart();
-
-				mbp1.setText(messageText);
-
-				Multipart mp = new MimeMultipart();
-				mp.addBodyPart(mbp1);
-
-				if (filename.equals("") == false)
-				{
-					FileDataSource fds = new FileDataSource(filename);
-					mbp2.setDataHandler(new DataHandler(fds));
-
-					mbp2.setFileName(fds.getName());
-					mp.addBodyPart(mbp2);
+						protected PasswordAuthentication getPasswordAuthentication()
+						{
+							return new PasswordAuthentication(smtpProperties.get("mail.smtp.user").toString(), smtpProperties.get("mail.smtp.password").toString());
+						}
+					});
 				}
-				message.setContent(mp);
-				message.setSentDate(new Date());
+				else
+				{
+					session = Session.getInstance(smtpProperties);
+				}
 
-				Transport.send(message);
-				emailLog.get(emailKey).setTime(Utility.getSQLDateTime().getTime());
-				
-				logger.debug("Email sent successfully..");
+				try
+				{
+
+					MimeMessage message = new MimeMessage(session);
+					message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(distList.get(distributionID).addressList));
+					message.setSubject(subject);
+					// message.setText(messageText);
+
+					MimeBodyPart mbp1 = new MimeBodyPart();
+					MimeBodyPart mbp2 = new MimeBodyPart();
+
+					mbp1.setText(messageText);
+
+					Multipart mp = new MimeMultipart();
+					mp.addBodyPart(mbp1);
+
+					if (filename.equals("") == false)
+					{
+						FileDataSource fds = new FileDataSource(filename);
+						mbp2.setDataHandler(new DataHandler(fds));
+
+						mbp2.setFileName(fds.getName());
+						mp.addBodyPart(mbp2);
+					}
+					message.setContent(mp);
+					message.setSentDate(new Date());
+
+					Transport.send(message);
+					emailLog.get(emailKey).setTime(Utility.getSQLDateTime().getTime());
+					
+					message = null;
+					mbp1 = null;
+					mbp2 = null;
+					mp = null;
+
+					logger.debug("Email sent successfully..");
+				}
+				catch (MessagingException mex)
+				{
+					logger.error("Error sending email : " + mex.getMessage());
+					result = false;
+				}
 			}
-			catch (MessagingException mex)
-			{
-				logger.error("Error sending email : " + mex.getMessage());
-				result = false;
-			}
-			}
+			
+			session=null;
 
 		}
 		else

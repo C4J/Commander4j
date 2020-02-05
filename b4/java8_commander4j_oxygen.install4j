@@ -547,7 +547,7 @@ return console.askOkCancel(message, true);
               </java>
             </serializedBean>
             <styleOverrides />
-            <condition />
+            <condition>!context.isUpdateInstallation()</condition>
             <validation />
             <preActivation />
             <postActivation />

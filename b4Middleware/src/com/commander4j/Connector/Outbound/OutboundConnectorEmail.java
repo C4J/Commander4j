@@ -46,8 +46,8 @@ public class OutboundConnectorEmail extends OutboundConnectorABSTRACT
 			outputFilename = outputFilename +File.separator+filename;
 		}
 		
-		logger.error("connectorLoad " + getType() + " inputFilename" + inputFilename);
-		logger.error("connectorLoad " + getType() + " outputFilename" + outputFilename);
+		logger.debug("connectorLoad " + getType() + " inputFilename" + inputFilename);
+		logger.debug("connectorLoad " + getType() + " outputFilename" + outputFilename);
 
 		try
 		{
