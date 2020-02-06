@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="7.0.12" transformSequenceNumber="7">
-  <directoryPresets config="./start_setup.command" />
+  <directoryPresets config="./images/Launcher/CMD_Icon (PNG)" />
   <application name="Commander4j" distributionSourceDir="" applicationId="6923-0356-2321-8111" mediaDir="../../Distribution/java8/Commander4j" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="7.30" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
     <languages skipLanguageSelection="true" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
@@ -370,6 +370,43 @@
         <file path="./images/Launcher/iFace_Icon (PNG)/48x48.png" />
         <file path="./images/Launcher/iFace_Icon (PNG)/128x128.png" />
         <file path="./images/Launcher/iFace_Icon (PNG)/256x256.png" />
+      </iconImageFiles>
+    </launcher>
+    <launcher name="terminal_Commander4j" id="1302" customizedId="" external="false" excludeFromMenu="false" unixMode="755" unixAutoStart="true" menuName="" icnsFile="" customMacBundleIdentifier="false" macBundleIdentifier="" swtApp="false" fileset="" macBundleBinary="JavaApplicationStub" addMacEntitlements="false" macEntitlementsFile="" useCustomMacosExecutableName="false" customMacosExecutableName="" useJavaMinVersionOverride="false" javaMinVersionOverride="" useJavaMaxVersionOverride="false" javaMaxVersionOverride="" checkUpdater="false" updateExecutionMode="unattendedProgress" unattendedUpdateTitle="${i18n:updater.WindowTitle(&quot;${compiler:sys.fullName}&quot;)}">
+      <executable name="terminal_Commander4j" type="1" iconSet="true" iconFile="" executableDir="." redirectStderr="false" stderrFile="error.log" stderrMode="overwrite" redirectStdout="false" stdoutFile="output.log" stdoutMode="overwrite" failOnStderrOutput="true" executableMode="2" changeWorkingDirectory="true" workingDirectory="." singleInstance="false" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" globalSingleInstance="false" singleInstanceActivate="true" dpiAware="java9+">
+        <versionInfo include="false" fileVersion="" fileDescription="" legalCopyright="" internalName="" productName="" />
+      </executable>
+      <splashScreen show="false" width="0" height="0" bitmapFile="" textOverlay="false">
+        <text>
+          <statusLine x="20" y="20" text="" fontSize="8" fontColor="0,0,0" bold="false" />
+          <versionLine x="20" y="40" text="version ${compiler:sys.version}" fontSize="8" fontColor="0,0,0" bold="false" />
+        </text>
+      </splashScreen>
+      <java mainClass="com.commander4j.sys.Start" mainMode="1" vmParameters="" arguments="Desktop" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true">
+        <classPath>
+          <archive location="commander4j.jar" failOnError="false" />
+        </classPath>
+        <modulePath />
+        <nativeLibraryDirectories />
+        <vmOptions />
+      </java>
+      <includedFiles />
+      <unextractableFiles />
+      <vmOptionsFile mode="none" overwriteMode="0" fileMode="644">
+        <content />
+      </vmOptionsFile>
+      <customScript mode="1" file="">
+        <content />
+      </customScript>
+      <infoPlist mode="1" file="">
+        <content />
+      </infoPlist>
+      <iconImageFiles>
+        <file path="./images/Launcher/CMD_Icon (PNG)/16x16.png" />
+        <file path="./images/Launcher/CMD_Icon (PNG)/32x32.png" />
+        <file path="./images/Launcher/CMD_Icon (PNG)/48x48.png" />
+        <file path="./images/Launcher/CMD_Icon (PNG)/128x128.png" />
+        <file path="./images/Launcher/CMD_Icon (PNG)/256x256.png" />
       </iconImageFiles>
     </launcher>
   </launchers>

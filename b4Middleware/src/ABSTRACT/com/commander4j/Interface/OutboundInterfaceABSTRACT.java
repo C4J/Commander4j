@@ -179,11 +179,19 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	{
 		String result = originalFilename;
 		
+		prefix = Utility.replaceNullStringwithBlank(prefix);
+		
+		int prefixLength = prefix.length();
+		
 		if (is83GUIDFilenameReqd())
 		{
 			
 			String uuid = UUID.randomUUID().toString().replace("-", "");
+			
+			uuid = uuid.substring(0, 8-prefixLength);
+			
 			result = prefix+uuid;
+			
 			logger.debug("Filename changed from ["+originalFilename+"] to ["+result+"]");
 		}
 		else
