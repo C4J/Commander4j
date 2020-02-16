@@ -304,6 +304,15 @@ public class XSLTExtension
 		return result;
 	}
 
+	public static synchronized String removeSpaces(String inputString)
+	{
+		String result = inputString;
+
+		result = result.replace(" ", "");
+
+		return result;
+	}
+	
 	public static synchronized String subString(String inputString, int startpos, int length)
 	{
 		String result = inputString;
