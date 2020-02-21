@@ -53,7 +53,6 @@
          
         <message>
             <plant><xsl:value-of select="$PLANT" /></plant>
-            <storageBin><xsl:value-of select="$STORAGE_BIN" /></storageBin>
             <hostRef><xsl:value-of select="$HOSTREF" /></hostRef>
             <messageRef>MM <xsl:value-of select='$SAPMATERIAL_LONG' /></messageRef>
             <interfaceType>Material Definition</interfaceType>

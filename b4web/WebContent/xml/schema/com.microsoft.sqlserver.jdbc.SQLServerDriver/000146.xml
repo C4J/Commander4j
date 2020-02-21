@@ -2,6 +2,86 @@
 <!DOCTYPE DDL SYSTEM "schema.dtd">
 <DDL>
    
+	<statement>
+   	ALTER TABLE [dbo].[APP_WEIGHT_SAMPLE_HEADER] DROP CONSTRAINT [PK_APP_WEIGHT_SAMPLE_HEADER]
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[SAMPLE_POINT] [varchar](25)  collate database_default not null
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[USER_ID] [varchar](20) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[WORKSTATION_ID] [varchar](25) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[SCALE_ID] [varchar](15) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[PROCESS_ORDER] [varchar](10) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[REQUIRED_RESOURCE] [varchar](50) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[CUSTOMER_ID] [varchar](20) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[MATERIAL] [varchar](20) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[PRODUCT_GROUP] [varchar](25) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[CONTAINER_CODE] [varchar](12)  collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[TARE_WEIGHT_UOM] [varchar](3) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[NOMINAL_WEIGHT_UOM] [varchar](3) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table app_weight_sample_header alter column 	[COMMENTS] [varchar](250) collate database_default
+	</statement>
+	
+	<statement>
+	   ALTER TABLE [dbo].[APP_WEIGHT_SAMPLE_HEADER] ADD CONSTRAINT [PK_APP_WEIGHT_SAMPLE_HEADER] PRIMARY KEY CLUSTERED ([SAMPLE_POINT], [SAMPLE_DATE])
+	   WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+	   ON [PRIMARY];
+	</statement>
+	
+	<statement>
+   	ALTER TABLE [dbo].[APP_WEIGHT_SAMPLE_DETAIL] DROP CONSTRAINT [PK_APP_WEIGHT_SAMPLE_DETAIL]
+	</statement>
+	
+	<statement>
+  	 alter table [dbo].[APP_WEIGHT_SAMPLE_DETAIL] alter column	[SAMPLE_POINT] [varchar](20) collate database_default not null
+	</statement>
+	
+	<statement>
+ 		alter table [dbo].[APP_WEIGHT_SAMPLE_DETAIL] alter column	[SAMPLE_WEIGHT_UOM] [varchar](3)  collate database_default
+	</statement>
+	
+	<statement>
+	   ALTER TABLE [dbo].[APP_WEIGHT_SAMPLE_DETAIL] ADD CONSTRAINT [PK_APP_WEIGHT_SAMPLE_DETAIL] PRIMARY KEY CLUSTERED ([SAMPLE_POINT], [SAMPLE_DATE], [SAMPLE_SEQUENCE])
+	   WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+	   ON [PRIMARY]
+	</statement>  
+   
    <statement>
 		CREATE VIEW [dbo].[VIEW_WEIGHT_SAMPLES2] AS SELECT
 			[APP_WEIGHT_SAMPLE_POINT].LOCATION,

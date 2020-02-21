@@ -2,10 +2,10 @@
 <lookup>
     
     <item type="config" id="HostRef"><value>WILIVE</value></item>    
- <!--   <item type="config" id="Plant"><value>0933</value></item>
-    <item type="config" id="Warehouse"><value>734</value></item>-->
     <item type="config" id="Plant"><value>0917</value></item>
     <item type="config" id="Warehouse"><value>HU3</value></item>
+    <item type="config" id="StorageLocation"><value>0001</value></item>
+    <item type="config" id="TailsCompanyID"><value>TAILS</value></item>
     <item type="config" id="Language"><value>E</value></item>  
     <item type="config" id="Location"><value>WISBECH</value></item>  
     <item type="config" id="Location_Central"><value>WISBECH_CTR</value></item> 
