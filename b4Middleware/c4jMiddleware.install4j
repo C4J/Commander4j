@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.4" transformSequenceNumber="8">
   <directoryPresets config="./xml/config/config_new.xml" />
-  <application name="Commander4j Middleware" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.87" allPathsRelative="true" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
+  <application name="Commander4j Middleware" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.90" allPathsRelative="true" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="da" />
@@ -12,6 +12,7 @@
         <language id="pl" />
       </additionalLanguages>
     </languages>
+    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u242-b08" />
   </application>
   <files keepModificationTimes="true" missingFilesStrategy="error">
     <mountPoints>
@@ -576,13 +577,25 @@ return console.askYesNo(message, true);
   </installerGui>
   <mediaSets>
     <macosFolder name="Mac OS X Folder (with JRE)" id="86" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}">
-      <jreBundle jreBundleSource="preCreated" includedJre="macosx-amd64-1.8.0_202" />
+      <jreBundle jreBundleSource="generated" includedJre="macosx-amd64-1.8.0_202">
+        <modules>
+          <defaultModules set="all" />
+        </modules>
+      </jreBundle>
     </macosFolder>
     <windows name="Windows 64bit (with JRE)" id="88" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" customInstallBaseDir="C:\">
-      <jreBundle jreBundleSource="preCreated" includedJre="windows-amd64-1.8.0_202" />
+      <jreBundle jreBundleSource="generated" includedJre="windows-amd64-1.8.0_202">
+        <modules>
+          <defaultModules set="all" />
+        </modules>
+      </jreBundle>
     </windows>
     <windows name="Windows 32bit (with JRE)" id="89" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" jreBitType="32" customInstallBaseDir="C:\">
-      <jreBundle jreBundleSource="preCreated" includedJre="windows-x86-1.8.0_202" />
+      <jreBundle jreBundleSource="generated" includedJre="windows-x86-1.8.0_202">
+        <modules>
+          <defaultModules set="all" />
+        </modules>
+      </jreBundle>
     </windows>
     <unixInstaller name="Unix Installer" id="90" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" />
   </mediaSets>
