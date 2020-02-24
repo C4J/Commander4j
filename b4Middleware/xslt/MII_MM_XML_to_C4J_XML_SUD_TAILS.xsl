@@ -59,6 +59,7 @@
     <xsl:variable name="STORAGE_BIN_SPACES" select="string(/ZMATMAS03/IDOC/E1MARAM/E1MARCM/WERKS[.=$PLANT]/../E1MARDM/LGORT[.=$STORAGE_LOCATION]/../LGPBE)"/>
        
     <xsl:variable name="STORAGE_BIN" select="c4j_XSLT_Ext:removeSpaces($STORAGE_BIN_SPACES)"/>
+    <xsl:variable name="MATERIAL_TYPE" select="string(/ZMATMAS03/IDOC/E1MARAM/MTART)"/>
    
     <xsl:template match="/ZMATMAS03">
         <message>
@@ -70,22 +71,25 @@
         <xsl:apply-templates select="EDI_DC40"/>
         <messageData>
             <materialDefinition>
-                  <xsl:apply-templates select="E1MARAM"/>
-                
-                <xsl:if test="$STORAGE_BIN!=''">
-                    <materialCustomerData>
-                        <customer>
-                            <xsl:attribute name="ID">
-                                <xsl:value-of select="$TAILS_COMPANY_ID"/>
-                            </xsl:attribute>
-                            <data>
-                                <xsl:attribute name="dataType">PART_NO</xsl:attribute>
-                                <xsl:attribute name="value">
-                                    <xsl:value-of select="$STORAGE_BIN"/>
-                                </xsl:attribute>
-                            </data>
-                        </customer>
-                    </materialCustomerData>
+                <xsl:apply-templates select="E1MARAM"/>
+                <xsl:if test="($MATERIAL_TYPE='HALB') or ($MATERIAL_TYPE='FERT')">
+                    <xsl:if test="$STORAGE_BIN!=''">
+                        <xsl:if test="string-length($STORAGE_BIN) = 9">
+                            <materialCustomerData>
+                                <customer>
+                                    <xsl:attribute name="ID">
+                                        <xsl:value-of select="$TAILS_COMPANY_ID"/>
+                                    </xsl:attribute>
+                                    <data>
+                                        <xsl:attribute name="dataType">PART_NO</xsl:attribute>
+                                        <xsl:attribute name="value">
+                                            <xsl:value-of select="$STORAGE_BIN"/>
+                                        </xsl:attribute>
+                                    </data>
+                                </customer>
+                            </materialCustomerData>
+                        </xsl:if>
+                    </xsl:if>
                 </xsl:if>
             </materialDefinition>
         </messageData>
@@ -113,7 +117,7 @@
         <xsl:variable name="MATERIAL_SHORT" select="c4j_XSLT_Ext:removeLeadingZeros($MATERIAL_LONG)" />
         <material><xsl:value-of select="$MATERIAL_SHORT" /></material>
         <old_material><xsl:value-of select="string(BISMT)" /></old_material>
-        <materialType><xsl:value-of select="string(MTART)" /></materialType>
+        <materialType><xsl:value-of select="$MATERIAL_TYPE" /></materialType>
         <base_uom><xsl:value-of select="string(MEINS)" /></base_uom>
         <gross_weight><xsl:value-of select="BRGEW" /></gross_weight>
         <net_weight><xsl:value-of select="NTGEW" /></net_weight>
