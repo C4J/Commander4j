@@ -323,7 +323,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CUSTOMER_ID}]]></textFieldExpression>
 			</textField>
-			<textField pattern="yyyy-mm-dd" isBlankWhenNull="true">
+			<textField pattern="yyyy-MM-dd" isBlankWhenNull="true">
 				<reportElement key="textField" x="495" y="0" width="78" height="18" forecolor="#000000" uuid="a2678538-2313-46ec-a04c-16b505b41e48">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
