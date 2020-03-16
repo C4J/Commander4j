@@ -32,6 +32,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.LinkedList;
 
 import javax.swing.ComboBoxModel;
@@ -44,7 +45,7 @@ import javax.swing.SwingUtilities;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBProcessOrder;
-import com.commander4j.db.JDBQuery;
+import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
@@ -74,15 +75,18 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonPrint;
 	private JTextField4j jTextFieldProcessOrder;
-	private JLabel4j_std jLabel1;
+	private JLabel4j_std lbl_Process_Order;
 	private String lprocessOrder;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
+	private JDBProcessOrder order = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
+	private JDBProcessOrderResource resource = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
 	private JSpinner jSpinnerQuantity = new JSpinner();
 	private JCheckBox4j jCheckBoxAutoPreview;
-	private JLabel4j_std label_4;
+	private JLabel4j_std lbl_Preview;
 	private PreparedStatement listStatement;
+	private JTextField4j jTextFieldBatchSuffix = new JTextField4j();
 
 	public JInternalFrameProcessOrderLabel()
 	{
@@ -92,11 +96,11 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_PROCESS_ORDER_LABEL"));
 		
-		JLabel4j_std label_1 = new JLabel4j_std();
-		label_1.setBounds(228, 41, 182, 21);
-		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_1.setText(lang.get("lbl_Number_Of_Labels"));
-     	jDesktopPane1.add(label_1);
+		JLabel4j_std lbl_Number_Of_Labels = new JLabel4j_std();
+		lbl_Number_Of_Labels.setBounds(228, 41, 182, 21);
+		lbl_Number_Of_Labels.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbl_Number_Of_Labels.setText(lang.get("lbl_Number_Of_Labels"));
+     	jDesktopPane1.add(lbl_Number_Of_Labels);
 	
      	jSpinnerQuantity.setEnabled(true);
 		jSpinnerQuantity.setValue(1);
@@ -109,10 +113,10 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 		jSpinnerQuantity.setValue(1);
 		jDesktopPane1.add(jSpinnerQuantity);
 		
-		JLabel4j_std label_3 = new JLabel4j_std(lang.get("lbl_Print_Queue"));
-		label_3.setHorizontalAlignment(SwingConstants.TRAILING);
-		label_3.setBounds(12, 78, 125, 21);
-		jDesktopPane1.add(label_3);
+		JLabel4j_std lbl_Print_Queue = new JLabel4j_std(lang.get("lbl_Print_Queue"));
+		lbl_Print_Queue.setHorizontalAlignment(SwingConstants.TRAILING);
+		lbl_Print_Queue.setBounds(12, 78, 125, 21);
+		jDesktopPane1.add(lbl_Print_Queue);
 		
 
 		comboBoxPrintQueue.setSelectedIndex(-1);
@@ -126,12 +130,12 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 		jCheckBoxAutoPreview.setBounds(155, 41, 21, 21);
 		jDesktopPane1.add(jCheckBoxAutoPreview);
 		
-		label_4 = new JLabel4j_std();
-		label_4.setBounds(12, 41, 125, 21);
-		label_4.setHorizontalTextPosition(SwingConstants.CENTER);
-		label_4.setHorizontalAlignment(SwingConstants.TRAILING);
-		label_4.setText(lang.get("lbl_Preview"));
-		jDesktopPane1.add(label_4);		
+		lbl_Preview = new JLabel4j_std();
+		lbl_Preview.setBounds(12, 41, 125, 21);
+		lbl_Preview.setHorizontalTextPosition(SwingConstants.CENTER);
+		lbl_Preview.setHorizontalAlignment(SwingConstants.TRAILING);
+		lbl_Preview.setText(lang.get("lbl_Preview"));
+		jDesktopPane1.add(lbl_Preview);		
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -148,6 +152,9 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 				{
 				}
 				populatePrinterList(JPrint.getDefaultPrinterQueueName());
+				
+				jTextFieldBatchSuffix.requestFocus();
+				jTextFieldBatchSuffix.setCaretPosition(jTextFieldBatchSuffix.getText().length());
 			}
 		});		
 
@@ -159,6 +166,21 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 		lprocessOrder = processOrder;
 		jTextFieldProcessOrder.setText(lprocessOrder);
 		this.setTitle("Process Order Label");
+		if (order.getProcessOrderProperties(processOrder))
+		{
+			if (resource.getResourceProperties(order.getRequiredResource()))
+			{
+				jTextFieldBatchSuffix.setText(resource.getBatchSuffix());
+			}
+			else
+			{
+				jTextFieldBatchSuffix.setText("");
+			}
+		}
+		else
+		{
+			jTextFieldBatchSuffix.setText("");
+		}
 		
 	}
 
@@ -187,27 +209,44 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 		}
 	}	
 	
-	private void buildSQL1Record(String lprocessOrder) {
+	public void buildSQL1Record(String lprocessOrder,String suffix)
+	{
 
-		JDBQuery.closeStatement(listStatement);
-		
-		String temp = "";
-
-		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
-		query.clear();
-
-		temp = Common.hostList.getHost(Common.selectedHostID).getSqlstatements().getSQL("JDBProcessOrder.ViewResource");
-
-		query.addText(temp);
-
-		if (lprocessOrder.equals("") == false)
+		try
 		{
-			query.addParamtoSQL("process_order = ", lprocessOrder);
+			listStatement = Common.hostList.getHost(Common.selectedHostID).getConnection(Common.sessionID).prepareStatement(Common.hostList.getHost(Common.selectedHostID).getSqlstatements().getSQL("JDBProcessOrder.ViewResourceAlternate"));
+			listStatement.setString(1, JUtility.replaceNullStringwithBlank(suffix));
+			listStatement.setString(2, lprocessOrder);
+			listStatement.setFetchSize(1);
+	
+		} catch (SQLException e)
+		{
+			
 		}
-		query.applyRestriction(false, "none", 0);
-		query.bindParams();
-		listStatement =  query.getPreparedStatement();
-	}	
+
+	}
+	
+//	private void buildSQL1Recordold(String lprocessOrder) {
+//
+//		JDBQuery.closeStatement(listStatement);
+//		
+//		String temp = "";
+//
+//		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
+//		query.clear();
+//
+//		temp = Common.hostList.getHost(Common.selectedHostID).getSqlstatements().getSQL("JDBProcessOrder.ViewResource");
+//
+//		query.addText(temp);
+//
+//		if (lprocessOrder.equals("") == false)
+//		{
+//			query.addParamtoSQL("process_order = ", lprocessOrder);
+//		}
+//		query.applyRestriction(false, "none", 0);
+//		query.bindParams();
+//		listStatement =  query.getPreparedStatement();
+//	}	
 
 	private void initGUI() {
 		try
@@ -235,7 +274,7 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 					jButtonPrint.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							String pq = comboBoxPrintQueue.getSelectedItem().toString();
-							buildSQL1Record(jTextFieldProcessOrder.getText());
+							buildSQL1Record(jTextFieldProcessOrder.getText(),jTextFieldBatchSuffix.getText());
 							JLaunchReport.runReport("RPT_PROCESS_ORDER_LABEL",listStatement, jCheckBoxAutoPreview.isSelected(), pq, Integer.valueOf(jSpinnerQuantity.getValue().toString()),false);
 						}
 					});
@@ -267,11 +306,22 @@ public class JInternalFrameProcessOrderLabel extends javax.swing.JInternalFrame
 				}
 
 				{
-					jLabel1 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel1);
-					jLabel1.setText(lang.get("lbl_Process_Order"));
-					jLabel1.setBounds(12, 10, 125, 21);
-					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_Process_Order = new JLabel4j_std();
+					jDesktopPane1.add(lbl_Process_Order);
+					lbl_Process_Order.setText(lang.get("lbl_Process_Order"));
+					lbl_Process_Order.setBounds(12, 10, 125, 21);
+					lbl_Process_Order.setHorizontalAlignment(SwingConstants.TRAILING);
+				}
+				{
+					jTextFieldBatchSuffix.setText("");
+					jTextFieldBatchSuffix.setBounds(454, 10, 39, 21);
+					jDesktopPane1.add(jTextFieldBatchSuffix);
+					
+					JLabel4j_std lbl_Batch_Suffix = new JLabel4j_std();
+					lbl_Batch_Suffix.setText(lang.get("lbl_Batch_Suffix"));
+					lbl_Batch_Suffix.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_Batch_Suffix.setBounds(314, 10, 125, 21);
+					jDesktopPane1.add(lbl_Batch_Suffix);
 				}
 
 			}

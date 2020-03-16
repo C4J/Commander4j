@@ -646,7 +646,11 @@
 		<statement>
 			<id>JDBProcessOrder.ViewResource</id>
 			<text>select * from view_process_order_resource</text>
-		</statement>		
+		</statement>	
+		<statement>
+			<id>JDBProcessOrder.ViewResourceAlternate</id>
+			<text>select *,? AS BATCH_SUFFIX_OVERRIDE from view_process_order_resource where process_order=?</text>
+		</statement>	
 		<?JDBLocation ?>
 		<statement>
 			<id>JDBLocation.create</id>
