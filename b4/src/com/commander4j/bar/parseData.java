@@ -28,6 +28,7 @@ package com.commander4j.bar;
  */
 
 import java.math.BigDecimal;
+import java.sql.JDBCType;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -153,6 +154,9 @@ public class parseData {
 						case java.sql.Types.VARCHAR:
 							fieldData = JUtility.replaceNullStringwithBlank(rs.getString(fieldColumn));
 							break;
+						case java.sql.Types.NVARCHAR:
+							fieldData = JUtility.replaceNullStringwithBlank(rs.getString(fieldColumn));
+							break;
 						case java.sql.Types.CHAR:
 							fieldData = JUtility.replaceNullStringwithBlank(rs.getString(fieldColumn));
 							break;
@@ -227,7 +231,8 @@ public class parseData {
 							fieldData = df.format(dbl);
 							break;
 						default:
-							fieldData = "Unhandled data type " + String.valueOf(fieldType);
+							String typeName = JDBCType.valueOf(fieldType).getName();
+							fieldData = "Unhandled data type ["+typeName+"]" + String.valueOf(fieldType);
 							break;
 						}
 						parseResult = parseResult.replace(fullDataDeclaration, fieldData);
