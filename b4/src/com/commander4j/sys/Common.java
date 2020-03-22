@@ -182,7 +182,7 @@ public class Common
 	public final static Font font_menu = new Font("Arial", Font.PLAIN, 12);
 	public final static Font font_list = new Font("Monospaced", 0, 11);
 	public final static Font font_list_weights = new Font("Monospaced", 0, 14);
-	public final static Font font_combo = new Font("Arial", Font.PLAIN, 11);
+	public final static Font font_combo = new Font("Monospaced", Font.PLAIN, 11);
 	public final static Font font_table_header = new java.awt.Font("Arial", Font.PLAIN, 11);
 	public final static Font font_table = new java.awt.Font("Monospaced", 0, 11);
 	public final static Font font_textArea = new java.awt.Font("Monospaced", 0, 14);

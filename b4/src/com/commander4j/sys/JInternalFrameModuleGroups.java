@@ -256,7 +256,7 @@ public class JInternalFrameModuleGroups extends javax.swing.JInternalFrame
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(212, 166, 125, 32);
+					jButtonClose.setBounds(212, 170, 125, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -295,14 +295,14 @@ public class JInternalFrameModuleGroups extends javax.swing.JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(212, 135, 125, 32);
+					jButtonHelp.setBounds(212, 138, 125, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
-					jButtonRefresh.setBounds(212, 73, 125, 32);
+					jButtonRefresh.setBounds(212, 74, 125, 32);
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
 					jButtonRefresh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
@@ -322,7 +322,7 @@ public class JInternalFrameModuleGroups extends javax.swing.JInternalFrame
 
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(212, 104, 125, 32);
+					jButtonExcel.setBounds(212, 106, 125, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
 			}

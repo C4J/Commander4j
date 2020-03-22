@@ -258,7 +258,7 @@ public class JInternalFrameGroupAdmin extends javax.swing.JInternalFrame
 							public void mouseClicked(MouseEvent evt) {
 								if (evt.getClickCount() == 2)
 								{
-									jButtonEdit.doClick();
+									jButtonPermissions.doClick();
 								}
 							}
 						});
