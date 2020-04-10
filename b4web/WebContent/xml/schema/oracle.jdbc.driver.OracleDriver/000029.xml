@@ -7,11 +7,11 @@
 </statement>
 
 <statement>
-insert into sys_language (resource_key,text,language_id,mnemonic) values ('btn_Re_Print','Re-Print','EN','')
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Re_Print','Re-Print','EN','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,text,language_id,mnemonic) values ('btn_Re_Print','Re-Print','NL','')
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Re_Print','Re-Print','NL','')
 </statement>
 
 </DDL>

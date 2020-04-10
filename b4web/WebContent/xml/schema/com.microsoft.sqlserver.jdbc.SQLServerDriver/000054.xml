@@ -152,67 +152,67 @@ CREATE TABLE [dbo].[APP_QM_TEST](
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Inspection_ID','EN','Inspection ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Inspection_ID','EN','Inspection ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Activity_ID','EN','Activity ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Activity_ID','EN','Activity ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Test_ID','EN','Test ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Test_ID','EN','Test ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Sample_ID','EN','Sample ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Sample_ID','EN','Sample ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Sample_Date','EN','Sample Date','')
-</statement>
-
-<statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Inspection_ID','NL','Inspectie ID','')
-</statement>
-<statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Activity_ID','NL','Activiteit ID','')
-</statement>
-<statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Test_ID','NL','Test ID','')
-</statement>
-<statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Sample_ID','NL','Voorbeeld ID','')
-</statement>
-<statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Sample_Date','NL','Voorbeeld datum','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Sample_Date','EN','Sample Date','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Inspection_ID','HU','Ellenőrzés ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Inspection_ID','NL','Inspectie ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Activity_ID','HU','Tevékenység ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Activity_ID','NL','Activiteit ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Test_ID','HU','Teszt ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Test_ID','NL','Test ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Sample_ID','HU','Minta ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Sample_ID','NL','Voorbeeld ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Sample_Date','HU','Minta dátum','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Sample_Date','NL','Voorbeeld datum','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Inspection_ID','IT','Ispezione ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Inspection_ID','HU','Ellenőrzés ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Activity_ID','IT','Attività ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Activity_ID','HU','Tevékenység ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Test_ID','IT','Prova ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Test_ID','HU','Teszt ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Sample_ID','IT','Campione ID','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Sample_ID','HU','Minta ID','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Sample_Date','IT','Campione data','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Sample_Date','HU','Minta dátum','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Inspection_ID','IT','Ispezione ID','')
+</statement>
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Activity_ID','IT','Attività ID','')
+</statement>
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Test_ID','IT','Prova ID','')
+</statement>
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Sample_ID','IT','Campione ID','')
+</statement>
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Sample_Date','IT','Campione data','')
 </statement>
 
 

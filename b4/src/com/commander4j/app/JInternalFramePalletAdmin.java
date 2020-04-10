@@ -243,7 +243,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		////////
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
 		q2.applyWhat("*");
-		q2.applyFrom("{schema}VIEW_PALLET_EXPIRY WHERE 1=2");
+		q2.applyFrom("{schema}view_pallet_expiry WHERE 1=2");
 		q2.applyRestriction(false, 0);
 		q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
 		q2.applySQL();
@@ -330,7 +330,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		PreparedStatement result;
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
 		q2.applyWhat("*");
-		q2.applyFrom("{schema}VIEW_PALLET_EXPIRY");
+		q2.applyFrom("{schema}view_pallet_expiry");
 
 		if (jCheckBoxConfirmed.isSelected())
 		{
@@ -491,7 +491,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
 		q2.applyWhat("*");
-		q2.applyFrom("VIEW_PALLET_EXPIRY");
+		q2.applyFrom("view_pallet_expiry");
 
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)

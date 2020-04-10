@@ -283,247 +283,247 @@
     </statement>
     
     <statement>
-    	 update sys_language set text = 'Archive Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_ARCHIVE'
+    	 update SYS_LANGUAGE set text = 'Archive Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_ARCHIVE'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Audit Log' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_AUDIT_PERM'
+	     update SYS_LANGUAGE set text = 'Audit Log' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_AUDIT_PERM'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Production Line' where language_id = 'EN' and resource_key = 'mod_FRM_AUTO_LABELLER'
+	     update SYS_LANGUAGE set text = 'Production Line' where language_id = 'EN' and resource_key = 'mod_FRM_AUTO_LABELLER'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Customer' where language_id = 'EN' and resource_key = 'lbl_Customer_Edit'
+	     update SYS_LANGUAGE set text = 'Customer' where language_id = 'EN' and resource_key = 'lbl_Customer_Edit'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Administer Data IDs' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_DATA_IDS'
+	     update SYS_LANGUAGE set text = 'Administer Data IDs' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_DATA_IDS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Edit Data ID' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_DATA_IDS_EDIT'
+	     update SYS_LANGUAGE set text = 'Edit Data ID' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_DATA_IDS_EDIT'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Despatch' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_DESPATCH'
+	     update SYS_LANGUAGE set text = 'Despatch' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_DESPATCH'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Groups' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_GROUPS'
+	     update SYS_LANGUAGE set text = 'Groups' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_GROUPS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Interface Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE'
+	     update SYS_LANGUAGE set text = 'Interface Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Interface Log' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE_LOG'
+	     update SYS_LANGUAGE set text = 'Interface Log' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE_LOG'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Process Messages' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE_PROCESS'
+	     update SYS_LANGUAGE set text = 'Process Messages' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE_PROCESS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Request Queue' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE_REQUEST'
+	     update SYS_LANGUAGE set text = 'Request Queue' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_INTERFACE_REQUEST'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Administer Journeys' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_JOURNEY'
+	     update SYS_LANGUAGE set text = 'Administer Journeys' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_JOURNEY'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Translations' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_LANGUAGE'
+	     update SYS_LANGUAGE set text = 'Translations' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_LANGUAGE'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Locations' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_LOCATIONS'
+	     update SYS_LANGUAGE set text = 'Locations' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_LOCATIONS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Materials' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIALS'
+	     update SYS_LANGUAGE set text = 'Materials' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIALS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Batches' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_BATCH'
+	     update SYS_LANGUAGE set text = 'Batches' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_BATCH'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Customer Data Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_CUST_DATA'
+	     update SYS_LANGUAGE set text = 'Customer Data Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_CUST_DATA'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Material Locations' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_LOCATION'
+	     update SYS_LANGUAGE set text = 'Material Locations' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_LOCATION'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Administer Material Types' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_TYPE'
+	     update SYS_LANGUAGE set text = 'Administer Material Types' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MATERIAL_TYPE'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Menu Maintenance' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MENU'
+	     update SYS_LANGUAGE set text = 'Menu Maintenance' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MENU'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Isolate' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MHN'
+	     update SYS_LANGUAGE set text = 'Isolate' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MHN'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Decision Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MHN_DECISION'
+	     update SYS_LANGUAGE set text = 'Decision Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MHN_DECISION'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Reason Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MHN_REASON'
+	     update SYS_LANGUAGE set text = 'Reason Admin' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MHN_REASON'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Modules' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MODULES'
+	     update SYS_LANGUAGE set text = 'Modules' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_MODULES'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Pallet Info' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PALLETS'
+	     update SYS_LANGUAGE set text = 'Pallet Info' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PALLETS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'History' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PALLET_HISTORY'
+	     update SYS_LANGUAGE set text = 'History' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PALLET_HISTORY'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Administer Resources' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PO_RESOURCE'
+	     update SYS_LANGUAGE set text = 'Administer Resources' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PO_RESOURCE'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Label Printers' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PRINTERS'
+	     update SYS_LANGUAGE set text = 'Label Printers' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PRINTERS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Orders' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PROCESS_ORDER'
+	     update SYS_LANGUAGE set text = 'Orders' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PROCESS_ORDER'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Dictionary' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_QM_DICTIONARY'
+	     update SYS_LANGUAGE set text = 'Dictionary' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_QM_DICTIONARY'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Inspections' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_QM_INSPECTION'
+	     update SYS_LANGUAGE set text = 'Inspections' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_QM_INSPECTION'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Selection Lists' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_QM_SELECTLIST'
+	     update SYS_LANGUAGE set text = 'Selection Lists' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_QM_SELECTLIST'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'RF Menu Maintenance' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_RF_MENU'
+	     update SYS_LANGUAGE set text = 'RF Menu Maintenance' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_RF_MENU'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Browse Schema' where language_id = 'EN' and resource_key = 'mod_FRM_SCHEMA_BROWSE'
+	     update SYS_LANGUAGE set text = 'Browse Schema' where language_id = 'EN' and resource_key = 'mod_FRM_SCHEMA_BROWSE'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Shift Patterns' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_SHIFT'
+	     update SYS_LANGUAGE set text = 'Shift Patterns' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_SHIFT'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Toolbar Maintenance' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_TOOLBAR'
+	     update SYS_LANGUAGE set text = 'Toolbar Maintenance' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_TOOLBAR'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Units' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_UOM'
+	     update SYS_LANGUAGE set text = 'Units' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_UOM'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Users' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_USERS'
+	     update SYS_LANGUAGE set text = 'Users' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_USERS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'User Reports' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_USER_REPORT'
+	     update SYS_LANGUAGE set text = 'User Reports' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_USER_REPORT'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'User Report Properties' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_USER_REPORT_PROP'
+	     update SYS_LANGUAGE set text = 'User Report Properties' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_USER_REPORT_PROP'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Printer' where language_id = 'EN' and resource_key = 'mod_FRM_CM_PRINTERS'
+	     update SYS_LANGUAGE set text = 'Printer' where language_id = 'EN' and resource_key = 'mod_FRM_CM_PRINTERS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Labeller History' where language_id = 'EN' and resource_key = 'mod_FRM_LABELLER_HISTORY'
+	     update SYS_LANGUAGE set text = 'Labeller History' where language_id = 'EN' and resource_key = 'mod_FRM_LABELLER_HISTORY'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Assign to Automatic Labeller' where language_id = 'EN' and resource_key = 'mod_FRM_LABEL_DATA_ASSIGN'
+	     update SYS_LANGUAGE set text = 'Assign to Automatic Labeller' where language_id = 'EN' and resource_key = 'mod_FRM_LABEL_DATA_ASSIGN'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Case Label Printing' where language_id = 'EN' and resource_key = 'mod_FRM_LABEL_PRINT'
+	     update SYS_LANGUAGE set text = 'Case Label Printing' where language_id = 'EN' and resource_key = 'mod_FRM_LABEL_PRINT'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Delete a Pallet' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PALLET_DELETE'
+	     update SYS_LANGUAGE set text = 'Delete a Pallet' where language_id = 'EN' and resource_key = 'mod_FRM_ADMIN_PALLET_DELETE'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Confirm' where language_id = 'EN' and resource_key = 'mod_FRM_PAL_PROD_CONFIRM'
+	     update SYS_LANGUAGE set text = 'Confirm' where language_id = 'EN' and resource_key = 'mod_FRM_PAL_PROD_CONFIRM'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Pallet Label' where language_id = 'EN' and resource_key = 'mod_FRM_PAL_PROD_DEC'
+	     update SYS_LANGUAGE set text = 'Pallet Label' where language_id = 'EN' and resource_key = 'mod_FRM_PAL_PROD_DEC'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Split Pallet' where language_id = 'EN' and resource_key = 'mod_FRM_PAL_SPLIT'
+	     update SYS_LANGUAGE set text = 'Split Pallet' where language_id = 'EN' and resource_key = 'mod_FRM_PAL_SPLIT'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Activity Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_ACTIVITY'
+	     update SYS_LANGUAGE set text = 'Activity Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_ACTIVITY'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Dictionary Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_DICTIONARY'
+	     update SYS_LANGUAGE set text = 'Dictionary Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_DICTIONARY'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Inspection Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_INSPECTION'
+	     update SYS_LANGUAGE set text = 'Inspection Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_INSPECTION'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Results Analysis' where language_id = 'EN' and resource_key = 'mod_FRM_QM_RESULT_ANALYSIS'
+	     update SYS_LANGUAGE set text = 'Results Analysis' where language_id = 'EN' and resource_key = 'mod_FRM_QM_RESULT_ANALYSIS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Results Enquiry' where language_id = 'EN' and resource_key = 'mod_FRM_QM_RESULT_ENQUIRY'
+	     update SYS_LANGUAGE set text = 'Results Enquiry' where language_id = 'EN' and resource_key = 'mod_FRM_QM_RESULT_ENQUIRY'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Edit Sample' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SAMPLE_EDIT'
+	     update SYS_LANGUAGE set text = 'Edit Sample' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SAMPLE_EDIT'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Print Sample Labels' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SAMPLE_LABEL'
+	     update SYS_LANGUAGE set text = 'Print Sample Labels' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SAMPLE_LABEL'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Update Sample Results' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SAMPLE_RESULTS'
+	     update SYS_LANGUAGE set text = 'Update Sample Results' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SAMPLE_RESULTS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Selection List Admin' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SELECTLIST'
+	     update SYS_LANGUAGE set text = 'Selection List Admin' where language_id = 'EN' and resource_key = 'mod_FRM_QM_SELECTLIST'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Test Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_TEST'
+	     update SYS_LANGUAGE set text = 'Test Properties' where language_id = 'EN' and resource_key = 'mod_FRM_QM_TEST'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Settings' where language_id = 'EN' and resource_key = 'mod_FRM_SYSTEM_KEYS'
+	     update SYS_LANGUAGE set text = 'Settings' where language_id = 'EN' and resource_key = 'mod_FRM_SYSTEM_KEYS'
 	</statement>
 	
 	<statement>
-	     update sys_language set text = 'Change Password' where language_id = 'EN' and resource_key = 'web_Change_Password'
+	     update SYS_LANGUAGE set text = 'Change Password' where language_id = 'EN' and resource_key = 'web_Change_Password'
 	</statement>
 
 	<statement>

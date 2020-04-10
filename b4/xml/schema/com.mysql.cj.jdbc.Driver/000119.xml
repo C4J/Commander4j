@@ -3,27 +3,27 @@
 <DDL>
 
 <statement>
-	CREATE VIEW `VIEW_PROCESS_ORDER_RESOURCE` AS (
+	CREATE VIEW `view_process_order_resource` AS (
 		SELECT
-			`app_process_order`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
-			`app_process_order`.`MATERIAL` AS `MATERIAL`,
-			`app_process_order`.`STATUS` AS `STATUS`,
-			`app_process_order`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE`,
-			`app_process_order_resource`.`DESCRIPTION` AS `RESOURCE_NAME`,
-			`app_process_order_resource`.`BATCH_SUFFIX` AS `BATCH_SUFFIX`,
-			`app_material`.`DESCRIPTION` AS `DESCRIPTION`,
-			`app_material`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
-			`app_location`.`PLANT` AS `PLANT` 
+			`APP_PROCESS_ORDER`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+			`APP_PROCESS_ORDER`.`MATERIAL` AS `MATERIAL`,
+			`APP_PROCESS_ORDER`.`STATUS` AS `STATUS`,
+			`APP_PROCESS_ORDER`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE`,
+			`APP_PROCESS_ORDER_RESOURCE`.`DESCRIPTION` AS `RESOURCE_NAME`,
+			`APP_PROCESS_ORDER_RESOURCE`.`BATCH_SUFFIX` AS `BATCH_SUFFIX`,
+			`APP_MATERIAL`.`DESCRIPTION` AS `DESCRIPTION`,
+			`APP_MATERIAL`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+			`APP_LOCATION`.`PLANT` AS `PLANT` 
 		FROM
 			(
 				(
 					(
-						`app_process_order`
-						LEFT JOIN `app_process_order_resource` ON ( ( `app_process_order_resource`.`REQUIRED_RESOURCE` = `app_process_order`.`REQUIRED_RESOURCE` ) ) 
+						`APP_PROCESS_ORDER`
+						LEFT JOIN `APP_PROCESS_ORDER_RESOURCE` ON ( ( `APP_PROCESS_ORDER_RESOURCE`.`REQUIRED_RESOURCE` = `APP_PROCESS_ORDER`.`REQUIRED_RESOURCE` ) ) 
 					)
-					LEFT JOIN `app_material` ON ( ( `app_material`.`MATERIAL` = `app_process_order`.`MATERIAL` ) ) 
+					LEFT JOIN `APP_MATERIAL` ON ( ( `APP_MATERIAL`.`MATERIAL` = `APP_PROCESS_ORDER`.`MATERIAL` ) ) 
 				)
-			LEFT JOIN `app_location` ON ( ( `app_location`.`LOCATION_ID` = `app_process_order`.`LOCATION_ID` ) ) 
+			LEFT JOIN `APP_LOCATION` ON ( ( `APP_LOCATION`.`LOCATION_ID` = `APP_PROCESS_ORDER`.`LOCATION_ID` ) ) 
 			))
 </statement>
 		

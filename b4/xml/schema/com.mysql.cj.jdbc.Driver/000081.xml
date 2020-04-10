@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-	DROP VIEW VIEW_AUTO_LABELLER
+	DROP VIEW view_auto_labeller
 </statement>
 
 </DDL>

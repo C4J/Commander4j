@@ -1079,12 +1079,12 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jLabel10.setBounds(277, 110, 98, 21);
 				}
 				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
-					{ "MATERIAL", "MATERIAL_TYPE", "DESCRIPTION", "BASE_UOM", "PRODUCTION_UOM", "ISSUE_UOM", "SHELF_LIFE", "SHELF_LIFE_RULE", "DEFAULT_PALLET_STATUS", "DEFAULT_BATCH_STATUS" });
+					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(Common.materialSortBy);
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
 					jComboBoxSortBy.setBounds(382, 110, 168, 21);
+					jComboBoxSortBy.setMaximumRowCount(Common.materialSortBy.length);
 				}
 				{
 					jLabel12 = new JLabel4j_std();

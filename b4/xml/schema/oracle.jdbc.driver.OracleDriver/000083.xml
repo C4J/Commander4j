@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-CREATE OR REPLACE VIEW VIEW_AUTO_LABELLER_PRINTER 
+CREATE OR REPLACE VIEW view_auto_labeller_printer 
 AS 
 SELECT 
 	  APP_AUTO_LABELLER.LINE,
@@ -188,7 +188,7 @@ WHERE SYS_PRINTERS.ENABLED = 'Y'
 </statement>
 
 <statement>
-	ALTER VIEW VIEW_AUTO_LABELLER_PRINTER COMPILE
+	ALTER VIEW view_auto_labeller_printer COMPILE
 </statement>
 
 </DDL>

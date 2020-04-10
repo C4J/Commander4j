@@ -489,7 +489,7 @@ public class parseFunction
 
 						Timestamp expirydate;
 
-						if (rs.getMetaData().getTableName(1).toUpperCase().equals("VIEW_LABEL_DATA"))
+						if (rs.getMetaData().getTableName(1).toLowerCase().equals("view_label_data"))
 						{
 							expirydate = rs.getTimestamp("expiry_date");
 						}

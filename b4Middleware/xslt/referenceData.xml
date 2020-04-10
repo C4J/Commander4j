@@ -120,8 +120,10 @@
     
     <item type="SageShelfLifeUom" id="01:Calendar days"><value>D</value></item>  
     <item type="SageShelfLifeUom" id="01:BRI:Calendar days"><value>D</value></item> 
-	<item type="SageShelfLifeUom" id="03:BRI:Month"><value>M</value></item>  
+    <item type="SageShelfLifeUom" id="03:BRI:Month"><value>M</value></item>  
     <item type="SageShelfLifeUom" id="03:Month"><value>M</value></item> 
+    
+    <item type="SageMaterialType" id="D25">HALB</item>
     
     <item type="SageWorksOrderStatus" id="01:BRI:Firm"><value>Ready</value></item>
     <item type="SageWorksOrderStatus" id="04:BRI:Closed"><value>Discarded</value></item>    

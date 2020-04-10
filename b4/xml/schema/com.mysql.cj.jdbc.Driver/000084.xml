@@ -7,7 +7,7 @@
 </statement>
 
 <statement>
-ALTER VIEW VIEW_AUTO_LABELLER_PRINTER 
+ALTER VIEW view_auto_labeller_printer 
 AS 
 SELECT 
 		APP_AUTO_LABELLER.LINE, 

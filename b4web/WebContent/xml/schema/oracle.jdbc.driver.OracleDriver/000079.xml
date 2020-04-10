@@ -35,7 +35,7 @@
 </statement>
 
 <statement>
-CREATE VIEW VIEW_LABEL_DATA_PROCESS_ORDER AS select 
+CREATE VIEW view_label_data_process_order AS select 
               PO.PROCESS_ORDER, 
               PO.STATUS, 
               PO.MATERIAL, 

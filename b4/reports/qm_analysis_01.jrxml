@@ -25,7 +25,7 @@
 	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT *
-FROM VIEW_QM_ANALYSIS_01
+FROM view_qm_analysis_01
 WHERE 
 	 VIEW_QM_ANALYSIS_01.sample_date >= $P{P_SAMPLE_DATE_START} 
 	 AND VIEW_QM_ANALYSIS_01.sample_date <= $P{P_SAMPLE_DATE_END} 

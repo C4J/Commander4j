@@ -41,87 +41,87 @@ ALTER TABLE APP_PROCESS_ORDER ADD CUSTOMER_ID varchar(20)
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Admin','HU','Customer Admin','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Admin','HU','Customer Admin','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Admin','EN','Customer Admin','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Admin','EN','Customer Admin','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Admin','NL','Customer Admin','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Admin','NL','Customer Admin','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_ID','HU','Customer ID','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_ID','HU','Customer ID','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Name','HU','Customer Name','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Name','HU','Customer Name','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Print_Customer_on_Label','HU','Print Name on Label','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Print_Customer_on_Label','HU','Print Name on Label','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_ID','NL','Customer ID','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_ID','NL','Customer ID','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Name','NL','Customer Name','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Name','NL','Customer Name','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Print_Customer_on_Label','NL','Print Name on Label','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Print_Customer_on_Label','NL','Print Name on Label','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_ID','EN','Customer ID','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_ID','EN','Customer ID','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Name','EN','Customer Name','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Name','EN','Customer Name','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Print_Customer_on_Label','EN','Print Name on Label','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Print_Customer_on_Label','EN','Print Name on Label','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Add','EN','Add Customer','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Add','EN','Add Customer','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Add','NL','Add Customer','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Add','NL','Add Customer','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Add','HU','Add Customer','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Add','HU','Add Customer','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Delete','EN','Delete Customer','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Delete','EN','Delete Customer','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Delete','NL','Delete Customer','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Delete','NL','Delete Customer','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Delete','HU','Delete Customer','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Delete','HU','Delete Customer','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Rename','EN','Rename Customer To','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Rename','EN','Rename Customer To','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Rename','NL','Rename Customer To','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Rename','NL','Rename Customer To','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Rename','HU','Rename Customer To','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Rename','HU','Rename Customer To','')
 </statement>
 
 <statement>
@@ -202,15 +202,15 @@ Insert into SYS_TOOLBAR (MODULE_ID,SEQUENCE_ID) values ('FRM_ADMIN_CUSTOMER',6)
 </statement>
 
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('err_Customer_Blank','EN','Customer is Blank','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('err_Customer_Blank','EN','Customer is Blank','')
 </statement>
 
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('err_Customer_Blank','NL','Customer is Blank','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('err_Customer_Blank','NL','Customer is Blank','')
 </statement>
 
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('err_Customer_Blank','HU','Customer is Blank','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('err_Customer_Blank','HU','Customer is Blank','')
 </statement>
 
 </DDL>

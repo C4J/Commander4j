@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-	DROP VIEW APP_VIEW_QM_RESULTS
+	DROP VIEW view_qm_results
 </statement>
 
 <statement>
-CREATE VIEW VIEW_QM_RESULTS AS SELECT samp.PROCESS_ORDER as 'PROCESS_ORDER',
+CREATE VIEW view_qm_results AS SELECT samp.PROCESS_ORDER as 'PROCESS_ORDER',
        samp.MATERIAL as 'MATERIAL',
        samp.SAMPLE_ID as 'SAMPLE_ID',
        samp.INSPECTION_ID as 'INSPECTION_ID',
@@ -368,7 +368,7 @@ END
 </statement>
 
 <statement>
-CREATE VIEW [dbo].[VIEW_AUTO_LABELLER] AS 
+CREATE VIEW [dbo].[view_auto_labeller] AS 
 SELECT AL.LINE,
        AL.PROCESS_ORDER,
 	   PO.STATUS,
@@ -403,7 +403,7 @@ SELECT AL.LINE,
 </statement>
 
 <statement>
-CREATE VIEW [dbo].[VIEW_AUTO_LABELLER_FULL] AS 
+CREATE VIEW [dbo].[view_auto_labeller_full] AS 
 SELECT PO.PROCESS_ORDER,
 	   PO.STATUS,
 	   PO.MATERIAL,
@@ -494,19 +494,19 @@ INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_S
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','EN','Add or Update a Production Line','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','EN','Add or Update a Production Line','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','NL','Add or Update a Production Line','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','NL','Add or Update a Production Line','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','HU','Add or Update a Production Line','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','HU','Add or Update a Production Line','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','IT','Add or Update a Production Line','')
+insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','IT','Add or Update a Production Line','')
 </statement>
 
 

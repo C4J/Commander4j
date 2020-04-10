@@ -107,7 +107,7 @@
 </statement>
 
 <statement>
-CREATE OR REPLACE VIEW `VIEW_QM_RESULTS` AS
+CREATE OR REPLACE VIEW `view_qm_results` AS
     SELECT 
         `samp`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
         `samp`.`MATERIAL` AS `MATERIAL`,

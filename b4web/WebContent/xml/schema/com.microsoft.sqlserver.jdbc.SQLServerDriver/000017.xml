@@ -3,43 +3,43 @@
 <DDL>
 	
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Language_ID','Language ID','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Language_ID','Language ID','NL','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Language_ID','Language ID','EN','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Language_ID','Language ID','EN','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Resource_Key','Resource Key','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Resource_Key','Resource Key','NL','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Resource_Key','Resource Key','EN','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Resource_Key','Resource Key','EN','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Mnemonic','Mnemonic','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Mnemonic','Mnemonic','NL','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Mnemonic','Mnemonic','EN','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Mnemonic','Mnemonic','EN','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Text','Text','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Text','Text','NL','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Text','Text','EN','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Text','Text','EN','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LANGUAGE','Translations','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LANGUAGE','Translations','NL','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LANGUAGE','Translations','EN','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LANGUAGE','Translations','EN','')
 </statement>
 
 <statement>

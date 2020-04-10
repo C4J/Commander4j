@@ -165,7 +165,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		PreparedStatement result;
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
-		q2.applyFrom("{schema}VIEW_WEIGHT_SAMPLES");
+		q2.applyFrom("{schema}view_weight_samples");
 		q2.applyWhat("*");
 
 		if (checkBox4jFromEnabled.isSelected())
@@ -265,7 +265,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 					"	MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, CAST(ROUND((((SUM(SAMPLE_T1_COUNT_0)*1.000)  / (COUNT(*)*1.000)) * 100.000),2) AS DECIMAL(10, 2)) AS PERCENTAGE_T1S\n");
 		}
 		
-		q2.applyFrom("VIEW_WEIGHT_SAMPLES\n");
+		q2.applyFrom("view_weight_samples\n");
 
 		q2.applyWhere("NOMINAL_WEIGHT > ", 0);
 		
@@ -359,7 +359,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 					" MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, CAST(ROUND((((SUM(SAMPLE_T1_COUNT_0)*1.000)  / (COUNT(*)*1.000)) * 100.000),2) AS DECIMAL(10, 2)) AS PERCENTAGE_T1S\n");
 		}
 		
-		q2.applyFrom("VIEW_WEIGHT_SAMPLES\n");
+		q2.applyFrom("view_weight_samples\n");
 
 		q2.applyWhere("NOMINAL_WEIGHT > ", 0);
 		
@@ -453,7 +453,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 					" MAX(SAMPLE_WEIGHT_DATE) AS LAST_WEIGHT_DATE, COUNT(*) AS NO_OF_SAMPLES, CAST(ROUND((((SUM(SAMPLE_T1_COUNT_0)*1.000)  / (COUNT(*)*1.000)) * 100.000),2) AS DECIMAL(10, 2)) AS PERCENTAGE_T1S\n");
 		}
 		
-		q2.applyFrom("VIEW_WEIGHT_SAMPLES\n");
+		q2.applyFrom("view_weight_samples\n");
 
 		q2.applyWhere("NOMINAL_WEIGHT > ", 0);
 		

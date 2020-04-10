@@ -146,7 +146,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 			}
 		}
 
-		String joinSQL = "FROM VIEW_QM_RESULTS WHERE 1 = 1";
+		String joinSQL = "FROM view_qm_results WHERE 1 = 1";
 
 		String whereSQL = "";
 

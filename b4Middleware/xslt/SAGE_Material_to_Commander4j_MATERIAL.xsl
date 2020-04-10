@@ -36,6 +36,7 @@
 		<xsl:variable name="description" select="description"/>
 
 		<xsl:variable name="customerID" select="customerID"/>
+
 		<xsl:variable name="base_per_prod" select="Pks_Per_Case"/>
 		<xsl:variable name="prod_per_layer" select="Case_Per_Layer"/>
 		<xsl:variable name="base_per_layer" select="number($base_per_prod) * number($prod_per_layer)"/>
@@ -59,7 +60,16 @@
 			<messageData>
 				<materialDefinition>
 					<material><xsl:value-of select="$material"/></material>
-					<materialType>FERT</materialType>
+					<xsl:variable name="mtypeAAA" select="materialType"/>					
+					<xsl:variable name="mtypeBBB" select="c4j:getReferenceItem('SageMaterialType', $mtypeAAA)"/>
+					
+					<xsl:if test="$mtypeBBB!=''">
+						<materialType>HALB</materialType>
+					</xsl:if>
+					
+					<xsl:if test="$mtypeBBB=''">
+						<materialType>FERT</materialType>
+					</xsl:if>
 					<description><xsl:value-of select="c4j_XSLT_Ext:trim(replace($description,'~~BRI',''))"/></description>
 					<enabled>Y</enabled>
 					<base_uom><xsl:value-of select="c4j:getReferenceItem('SageUOM', $base_uom)"/></base_uom>
@@ -69,7 +79,7 @@
 					<old_material/>
 					<shelf_life><xsl:value-of select="shelf_life"/></shelf_life>
 					<shelf_life_rule><xsl:value-of select="c4j:getReferenceItem('SageShelfLifeRounding', $shelf_life_rule)"/></shelf_life_rule>
-					<shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('SageShelfLifeUom', $shelf_life_uom)"/></shelf_life_uom>
+					<shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('SageShelfLifeUom', $shelf_life_uom)"/></shelf_life_uom>					
 					<equipment_Type><xsl:value-of select="Pallet_Type"/></equipment_Type>
 					
 					<xsl:if test="$base_uom!=''">

@@ -55,67 +55,67 @@ INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) VALUES ('XREAD_BATCH', 'F
 </statement>
 
 <statement>
-INSERT INTO sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION',    	'EN','Administer Material Locations','B')
+INSERT INTO SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION',    	'EN','Administer Material Locations','B')
 </statement>
 
 <statement>
-INSERT INTO sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT',	'EN','Edit a Material Material Location Record','')
+INSERT INTO SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT',	'EN','Edit a Material Material Location Record','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION',			'Beheer Materiaal Locaties','NL','')
+INSERT INTO SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION',			'Beheer Materiaal Locaties','NL','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT',	'Bewerk Materiaal Locaties record','NL','')
+INSERT INTO SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT',	'Bewerk Materiaal Locaties record','NL','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (resource_key,language_id,text,mnemonic)  values ('mod_FRM_ADMIN_MATERIAL_LOCATION',			'HU','Anyag Helyszínek','B')
+INSERT INTO SYS_LANGUAGE (resource_key,language_id,text,mnemonic)  values ('mod_FRM_ADMIN_MATERIAL_LOCATION',			'HU','Anyag Helyszínek','B')
 </statement>
 
 <statement>
-INSERT INTO sys_language (resource_key,language_id,text,mnemonic)  values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT',	'HU','Edit anyag helye','')
+INSERT INTO SYS_LANGUAGE (resource_key,language_id,text,mnemonic)  values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT',	'HU','Edit anyag helye','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (Resource_Key,Language_Id,Text,Mnemonic)  values ('mod_FRM_ADMIN_MATERIAL_LOCATION',			'IT','Gestione Posizione','B')
+INSERT INTO SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic)  values ('mod_FRM_ADMIN_MATERIAL_LOCATION',			'IT','Gestione Posizione','B')
 </statement>
 
 <statement>
-INSERT INTO sys_language (Resource_Key,Language_Id,Text,Mnemonic)  values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT',	'IT','Modifica Posizione Materiale','')
+INSERT INTO SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic)  values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT',	'IT','Modifica Posizione Materiale','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','EN','Locatio','')
+INSERT INTO SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','EN','Locatio','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','IT','Posizione','')
+INSERT INTO SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','IT','Posizione','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','NL','Locatie','')
+INSERT INTO SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','NL','Locatie','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','HU','Helyszí','')
+INSERT INTO SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','HU','Helyszí','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','EN','Status','')
+INSERT INTO SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','EN','Status','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','IT','Status','')
+INSERT INTO SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','IT','Status','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','NL','Status','')
+INSERT INTO SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','NL','Status','')
 </statement>
 
 <statement>
-INSERT INTO sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','HU','Állapot','')
+INSERT INTO SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','HU','Állapot','')
 </statement>
 
 </DDL>

@@ -281,7 +281,7 @@ public class JDialogUserProperties extends JDialog
 	{
 
 		this.setPreferredSize(new java.awt.Dimension(417, 432));
-		this.setBounds(0, 0, 418, 516);
+		this.setBounds(0, 0, 418, 511);
 		setModal(true);
 		this.setTitle("User Properties");
 		getContentPane().setLayout(null);

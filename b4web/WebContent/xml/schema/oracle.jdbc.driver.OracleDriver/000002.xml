@@ -35,7 +35,7 @@ Insert into SYS_GROUP_PERMISSIONS (GROUP_ID,MODULE_ID) values ('PALLET','FRM_PRO
 </statement>
 
 <statement>
-CREATE TABLE sys_report_request (
+CREATE TABLE SYS_REPORT_REQUEST (
   report_request_id NUMBER NOT NULL,
   module_id VARCHAR2(35),
   invocation_mode VARCHAR2(35),

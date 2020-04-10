@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-ALTER TABLE sys_interface_log ADD FILENAME varchar(150)
+ALTER TABLE SYS_INTERFACE_LOG ADD FILENAME varchar(150)
 </statement>
 
 <statement>
-CREATE INDEX sys_int_log_filename_idx ON sys_interface_log (FILENAME)
+CREATE INDEX SYS_INT_LOG_FILENAME_IDX ON SYS_INTERFACE_LOG (FILENAME)
 </statement>
 
 </DDL>

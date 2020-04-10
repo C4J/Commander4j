@@ -7,11 +7,11 @@
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Required_Resource','Required Resource','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Required_Resource','Required Resource','NL','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Required_Resource','Required Resource','EN','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Required_Resource','Required Resource','EN','')
 </statement>
 
 

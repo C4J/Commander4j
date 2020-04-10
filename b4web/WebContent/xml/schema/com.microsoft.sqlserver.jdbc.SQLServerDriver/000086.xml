@@ -142,7 +142,7 @@
 	
 
 	<statement>
-	ALTER VIEW [dbo].[VIEW_AUTO_LABELLER_PRINTER]
+	ALTER VIEW [dbo].[view_auto_labeller_printer]
 	AS
 	SELECT      dbo.APP_AUTO_LABELLER.LINE, 
 				dbo.APP_AUTO_LABELLER.MODIFIED, 

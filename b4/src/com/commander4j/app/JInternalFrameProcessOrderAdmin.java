@@ -1326,13 +1326,13 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					jComboBoxStatus.setModel(jComboBoxStatusModel);
 				}
 				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
-					{ "PROCESS_ORDER", "MATERIAL", "DESCRIPTION", "STATUS", "LOCATION_ID", "DUE_DATE", "RECIPE_ID" });
+					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(Common.processSortBy);
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jComboBoxSortBy.setBounds(629, 110, 168, 21);
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
 					jComboBoxSortBy.getModel().setSelectedItem("DUE_DATE");
+					jComboBoxSortBy.setMaximumRowCount(Common.processSortBy.length);
 				}
 				{
 					jLabel8 = new JLabel4j_std();

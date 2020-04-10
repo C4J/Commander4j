@@ -65,7 +65,7 @@ END
 </statement>
 
 <statement>
-ALTER VIEW [dbo].[VIEW_AUTO_LABELLER] AS 
+ALTER VIEW [dbo].[view_auto_labeller] AS 
 SELECT AL.LINE,
        AL.PROCESS_ORDER,
 	   PO.STATUS,
@@ -99,7 +99,7 @@ SELECT AL.LINE,
 </statement>
 
 <statement>
-ALTER VIEW [dbo].[VIEW_AUTO_LABELLER_FULL] AS 
+ALTER VIEW [dbo].[view_auto_labeller_full] AS 
 SELECT PO.PROCESS_ORDER,
 	   PO.STATUS,
 	   PO.MATERIAL,

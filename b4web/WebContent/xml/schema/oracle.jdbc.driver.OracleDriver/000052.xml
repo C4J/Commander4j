@@ -3,51 +3,51 @@
 <DDL>
 
 <statement>
-delete from sys_language where resource_key = 'mod_FRM_ADMIN_MHN_REASON_EDIT'
+delete from SYS_LANGUAGE where resource_key = 'mod_FRM_ADMIN_MHN_REASON_EDIT'
 </statement>
 	
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_REASON_EDIT','EN','Edit Reason','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_REASON_EDIT','EN','Edit Reason','')
 </statement>
 
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_REASON_EDIT','HU','Szerkesztés oka','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_REASON_EDIT','HU','Szerkesztés oka','')
 </statement>
 
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_REASON_EDIT','NL','Reden bewerken','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_REASON_EDIT','NL','Reden bewerken','')
 </statement>
 
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_REASON_EDIT','IT','Modifica ragione','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_REASON_EDIT','IT','Modifica ragione','')
 </statement>
 
 <statement>
-update sys_modules SET resource_key = 'mod_FRM_ADMIN_MHN_REASON_EDIT' where module_id = 'FRM_ADMIN_MHN_REASON_EDIT'
+update SYS_MODULES SET resource_key = 'mod_FRM_ADMIN_MHN_REASON_EDIT' where module_id = 'FRM_ADMIN_MHN_REASON_EDIT'
 </statement>
 
 <statement>
-delete from sys_language where resource_key = 'mod_FRM_ADMIN_MHN_DECISION_EDIT'
+delete from SYS_LANGUAGE where resource_key = 'mod_FRM_ADMIN_MHN_DECISION_EDIT'
 </statement>
 
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION_EDIT','EN','Edit Decision','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION_EDIT','EN','Edit Decision','')
 </statement>
 
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION_EDIT','HU','edit Decision','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION_EDIT','HU','edit Decision','')
 </statement>
 
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION_EDIT','NL','edit Decision','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION_EDIT','NL','edit Decision','')
 </statement>
 
 <statement>
-insert into  sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION_EDIT','IT','Modifica la decisione','')
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION_EDIT','IT','Modifica la decisione','')
 </statement>
 
 <statement>
-update sys_modules SET resource_key = 'mod_FRM_ADMIN_MHN_DECISION_EDIT' where module_id = 'FRM_ADMIN_MHN_DECISION_EDIT'
+update SYS_MODULES SET resource_key = 'mod_FRM_ADMIN_MHN_DECISION_EDIT' where module_id = 'FRM_ADMIN_MHN_DECISION_EDIT'
 </statement>
 
 

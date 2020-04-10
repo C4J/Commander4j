@@ -905,12 +905,13 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 					jLabel10.setBounds(416, 77, 103, 21);
 				}
 				{
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[] { "LOCATION_ID", "PLANT", "WAREHOUSE", "DESCRIPTION", "GLN", "STORAGE_LOCATION", "STORAGE_TYPE", "STORAGE_SECTION", "STORAGE_BIN" });
+					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(Common.locationSortBy);
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
 					jComboBoxSortBy.setBounds(526, 77, 231, 23);
 					jComboBoxSortBy.setSelectedItem("LOCATION_ID,PLANT,WAREHOUSE");
+					jComboBoxSortBy.setMaximumRowCount(Common.locationSortBy.length);
 					jComboBoxSortBy.setRequestFocusEnabled(false);
 				}
 				{

@@ -55,67 +55,67 @@ INSERT INTO [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'XR
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION',     'EN','Administer Material Locations','B')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION',     'EN','Administer Material Locations','B')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT','EN','Edit a Material Material Location Record','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT','EN','Edit a Material Material Location Record','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION','Beheer Materiaal Locaties','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION','Beheer Materiaal Locaties','NL','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT','Bewerk Materiaal Locaties record','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT','Bewerk Materiaal Locaties record','NL','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION','HU','Anyag Helyszínek','B')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION','HU','Anyag Helyszínek','B')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT','HU','Edit anyag helye','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT','HU','Edit anyag helye','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION','IT','Gestione Posizione','B')
+insert into dbo.SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION','IT','Gestione Posizione','B')
 </statement>
 
 <statement>
-insert into dbo.sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT','IT','Modifica Posizione Materiale','')
+insert into dbo.SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_LOCATION_EDIT','IT','Modifica Posizione Materiale','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','EN','Location','')
+insert into dbo.SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','EN','Location','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','IT','Posizione','')
+insert into dbo.SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','IT','Posizione','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','NL','Locatie','')
+insert into dbo.SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','NL','Locatie','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','HU','Helyszín','')
+insert into dbo.SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Location_Input','HU','Helyszín','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','EN','Status','')
+insert into dbo.SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','EN','Status','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','IT','Status','')
+insert into dbo.SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','IT','Status','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','NL','Status','')
+insert into dbo.SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','NL','Status','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','HU','Állapot','')
+insert into dbo.SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Location_Status','HU','Állapot','')
 </statement>
 
 </DDL>

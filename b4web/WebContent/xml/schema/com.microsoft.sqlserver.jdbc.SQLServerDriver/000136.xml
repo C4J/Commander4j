@@ -39,99 +39,99 @@
 	</statement>
 	
 	<statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'EN', 'Begin Weight Check', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'EN', 'Begin Weight Check', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'DE', 'Beginnen Sie mit der Gewichtskontrolle', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'DE', 'Beginnen Sie mit der Gewichtskontrolle', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'ES', 'Comenzar control de peso', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'ES', 'Comenzar control de peso', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'FR', 'Commencer le contrôle du poids', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'FR', 'Commencer le contrôle du poids', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'HU', 'Kezdje el a súlyellenőrzést', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'HU', 'Kezdje el a súlyellenőrzést', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'IT', 'Inizia il controllo del peso', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'IT', 'Inizia il controllo del peso', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'NL', 'Begin met gewichtscontrole', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'NL', 'Begin met gewichtscontrole', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'PL', 'Rozpocznij kontrolę wagi', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'PL', 'Rozpocznij kontrolę wagi', '0')
     </statement>
     
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'EN', 'Frequency', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'EN', 'Frequency', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'DE', 'Frequenz', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'DE', 'Frequenz', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'ES', 'Frecuencia', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'ES', 'Frecuencia', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'FR', 'La fréquence', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'FR', 'La fréquence', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'HU', 'Frekvencia', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'HU', 'Frekvencia', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'IT', 'Frequenza', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'IT', 'Frequenza', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'NL', 'Frequentie', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'NL', 'Frequentie', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'PL', 'Częstotliwość', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'PL', 'Częstotliwość', '0')
     </statement>
     
      <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'EN', 'Cancel Weight Check', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'EN', 'Cancel Weight Check', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'DE', 'Gewichtsprüfung abbrechen', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'DE', 'Gewichtsprüfung abbrechen', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'ES', 'Cancelar verificación de peso', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'ES', 'Cancelar verificación de peso', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'FR', 'Annuler le contrôle du poids', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'FR', 'Annuler le contrôle du poids', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'HU', 'Mégsem a súlyellenőrzést', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'HU', 'Mégsem a súlyellenőrzést', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'IT', 'Annulla controllo peso', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'IT', 'Annulla controllo peso', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'NL', 'Annuleer gewichtscontrole', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'NL', 'Annuleer gewichtscontrole', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'PL', 'Anuluj kontrolę wagi', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'PL', 'Anuluj kontrolę wagi', '0')
     </statement>
     
     <statement>
@@ -143,35 +143,35 @@
     </statement>
     
      <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'EN', 'Weight Report', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'EN', 'Weight Report', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'DE', 'Gewichtsbericht', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'DE', 'Gewichtsbericht', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'ES', 'Informe de peso', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'ES', 'Informe de peso', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'FR', 'Rapport de poids', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'FR', 'Rapport de poids', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'HU', 'Súlyjelentés', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'HU', 'Súlyjelentés', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'IT', 'Rapporto sul peso', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'IT', 'Rapporto sul peso', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'NL', 'Gewichtsrapport', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'NL', 'Gewichtsrapport', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'PL', 'Raport masy', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'PL', 'Raport masy', '0')
     </statement>
     
     <statement>
@@ -184,35 +184,35 @@
     </statement>
 	
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'EN', 'Details', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'EN', 'Details', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'DE', 'Einzelheiten', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'DE', 'Einzelheiten', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'ES', 'Detalles', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'ES', 'Detalles', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'FR', 'Détails', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'FR', 'Détails', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'HU', 'Részletek', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'HU', 'Részletek', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'IT', 'Dettagli', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'IT', 'Dettagli', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'NL', 'Details', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'NL', 'Details', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'PL', 'Detale', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'PL', 'Detale', '0')
     </statement>
     
      <statement>

@@ -49,7 +49,7 @@
 </statement>
 
 <statement>
-	CREATE VIEW VIEW_PERMISSIONS AS
+	CREATE VIEW view_permissions AS
 	SELECT
 	"SYS_USERS"."USER_ID",
 	"SYS_USERS"."USER_COMMENT",
@@ -143,47 +143,47 @@ ALTER FUNCTION C4J_GETYEAR COMPILE
 
 	
 <statement>
-ALTER VIEW VIEW_AUTO_LABELLER_FULL COMPILE
+ALTER VIEW view_auto_labeller_full COMPILE
 </statement>
 	
 <statement>
-ALTER VIEW VIEW_AUTO_LABELLER_PRINTER COMPILE
+ALTER VIEW view_auto_labeller_printer COMPILE
 </statement>
 	
 <statement>
-ALTER VIEW VIEW_JOURNEYS COMPILE
+ALTER VIEW view_journeys COMPILE
 </statement>
 	
 <statement>
-ALTER VIEW VIEW_LABEL_DATA COMPILE
+ALTER VIEW view_label_data COMPILE
 </statement>
 	
 <statement>
-ALTER VIEW VIEW_LABEL_DATA_PROCESS_ORDER COMPILE
+ALTER VIEW view_label_data_process_order COMPILE
 </statement>
 	
 <statement>
-ALTER VIEW VIEW_PALLET_EXPIRY COMPILE
+ALTER VIEW view_pallet_expiry COMPILE
 </statement>
 	
 <statement>
-ALTER VIEW VIEW_PALLET_HISTORY COMPILE
+ALTER VIEW view_pallet_history COMPILE
 </statement>
 	
 <statement>
-ALTER VIEW VIEW_PALLET_HISTORY_EXPIRY COMPILE
+ALTER VIEW view_pallet_history_expiry COMPILE
 </statement>
 	
 <statement>
-ALTER VIEW VIEW_PERMISSIONS COMPILE
+ALTER VIEW view_permissions COMPILE
 </statement>
 	
 <statement>
-ALTER VIEW VIEW_QM_ANALYSIS_01 COMPILE
+ALTER VIEW view_qm_analysis_01 COMPILE
 </statement>
 	
 <statement>
-ALTER VIEW VIEW_QM_RESULTS COMPILE
+ALTER VIEW view_qm_results COMPILE
 </statement>
 
 

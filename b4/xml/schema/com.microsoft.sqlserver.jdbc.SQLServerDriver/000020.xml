@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Print_Summary','Summary','EN','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Print_Summary','Summary','EN','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Print_Summary','Summary','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Print_Summary','Summary','NL','')
 </statement>
 
 

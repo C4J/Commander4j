@@ -476,6 +476,10 @@ public class JDBProcessOrder
 				rs.close();
 				stmt.close();
 			}
+			else
+			{
+				setErrorMessage("Invalid Process Order.");
+			}
 
 		}
 		catch (SQLException e)

@@ -128,11 +128,11 @@ ALTER DATABASE {database} CHARACTER SET utf8 COLLATE 'utf8_general_ci';
 </statement>
 
 <statement>
-	DROP VIEW APP_VIEW_QM_RESULTS
+	DROP VIEW view_qm_results
 </statement>
 
 <statement>
-CREATE VIEW VIEW_QM_RESULTS AS SELECT samp.PROCESS_ORDER as 'PROCESS_ORDER',
+CREATE VIEW view_qm_results AS SELECT samp.PROCESS_ORDER as 'PROCESS_ORDER',
        samp.MATERIAL as 'MATERIAL',
        samp.SAMPLE_ID as 'SAMPLE_ID',
        samp.INSPECTION_ID as 'INSPECTION_ID',
@@ -382,7 +382,7 @@ END
 </statement>
 
 <statement>
-CREATE VIEW `VIEW_AUTO_LABELLER` AS
+CREATE VIEW `view_auto_labeller` AS
     select 
         `AL`.`LINE` AS `LINE`,
         `AL`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
@@ -430,7 +430,7 @@ CREATE VIEW `VIEW_AUTO_LABELLER` AS
 </statement>
 
 <statement>
-CREATE VIEW `VIEW_AUTO_LABELLER_FULL` AS
+CREATE VIEW `view_auto_labeller_full` AS
     select 
         `PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
         `PO`.`STATUS` AS `STATUS`,

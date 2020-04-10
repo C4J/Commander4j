@@ -235,7 +235,7 @@ public class JFrameHostAdmin extends JFrame
 	{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1187, 659);
+		setBounds(100, 100, 1187, 666);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

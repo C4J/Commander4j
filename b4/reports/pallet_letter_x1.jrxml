@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pallet_letter_x1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8a6b8bfe-70bc-4648-be9b-005cdbd2af30">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -14,7 +14,7 @@
 		<defaultValueExpression><![CDATA["L1"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT * FROM VIEW_PALLET_EXPIRY WHERE SSCC = $P{SSCC}]]>
+		<![CDATA[SELECT * FROM view_pallet_expiry WHERE SSCC = $P{SSCC}]]>
 	</queryString>
 	<field name="SSCC" class="java.lang.String"/>
 	<field name="LOCATION_ID" class="java.lang.String"/>
@@ -52,7 +52,7 @@
 				</textElement>
 				<text><![CDATA[SSCC]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true" pattern="">
+			<textField textAdjust="StretchHeight" pattern="">
 				<reportElement x="16" y="158" width="87" height="63" uuid="40cbe38d-7b22-4e07-9904-c9de97f94665"/>
 				<textElement>
 					<font size="44"/>
@@ -153,21 +153,21 @@ new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 				</textElement>
 				<textFieldExpression><![CDATA["(00)"+org.apache.commons.lang.StringUtils.leftPad($F{SSCC},18,"0")]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="">
+			<textField textAdjust="StretchHeight" pattern="">
 				<reportElement x="110" y="158" width="158" height="63" uuid="a719fc03-b309-409a-95dc-7c4d9329e58d"/>
 				<textElement>
 					<font size="44"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SSCC}.subSequence( 3, 8 )]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="">
+			<textField textAdjust="StretchHeight" pattern="">
 				<reportElement x="268" y="158" width="167" height="63" uuid="433828aa-ed07-475c-847c-792597454b75"/>
 				<textElement>
 					<font size="44"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SSCC}.subSequence( 8, 13 )]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="">
+			<textField textAdjust="StretchHeight" pattern="">
 				<reportElement x="435" y="158" width="143" height="65" uuid="eb0b2c55-b52a-460b-8a89-da52a4cfe186"/>
 				<textElement>
 					<font size="44"/>
@@ -231,14 +231,14 @@ new SimpleDateFormat("dd").format($F{EXPIRY_DATE})+
 			<line>
 				<reportElement x="18" y="443" width="560" height="1" uuid="9c401391-9578-496c-b338-0000b4001cd6"/>
 			</line>
-			<textField isStretchWithOverflow="true" pattern="">
+			<textField textAdjust="StretchHeight" pattern="">
 				<reportElement x="334" y="394" width="88" height="46" uuid="d954bd9e-2204-4e5a-a6b6-5bc00155778e"/>
 				<textElement textAlignment="Right">
 					<font size="32"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("MM").format($F{EXPIRY_DATE})]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="">
+			<textField textAdjust="StretchHeight" pattern="">
 				<reportElement x="435" y="394" width="87" height="46" uuid="ecd9c6c6-f638-4bab-a00e-5469bb4a90fa"/>
 				<textElement>
 					<font size="32"/>

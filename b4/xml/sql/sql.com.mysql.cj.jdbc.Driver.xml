@@ -8,11 +8,11 @@
 		</statement>
 		<statement>
 			<id>JDBPalletHistory.selectWithExpiry</id>
-			<text>select * from [VIEW_PALLET_HISTORY_EXPIRY]</text>
+			<text>select * from [view_pallet_history_expiry]</text>
 		</statement>
 		<statement>
 			<id>JDBPalletHistory.select</id>
-			<text>select * from [VIEW_PALLET_HISTORY]</text>
+			<text>select * from [view_pallet_history]</text>
 		</statement>
 		<statement>
 			<id>JDBPalletHistory.insertFromPallet</id>
@@ -98,7 +98,7 @@
 		</statement>
 		<statement>
 			<id>JDBGroupPermissions.getModulesAssigned</id>
-			<text>select * from [VIEW_GROUP_PERMISSIONS] as a where a.group_id = ? order by module_id</text>
+			<text>select * from [view_group_permissions] as a where a.group_id = ? order by module_id</text>
 		</statement>
 		<statement>
 			<id>JDBGroupPermissions.getModulesUnAssigned</id>
@@ -160,7 +160,7 @@
 		</statement>
 		<statement>
 			<id>JDBModule.getModulesAssignedtoToolbar</id>
-			<text>select * from [VIEW_TOOLBAR] as t order by t.sequence_id</text>
+			<text>select * from [view_toolbar] as t order by t.sequence_id</text>
 		</statement>
 		<statement>
 			<id>JDBModule.getModulesUnAssignedtoRFMenu</id>
@@ -168,7 +168,7 @@
 		</statement>
 		<statement>
 			<id>JDBModule.getModulesAssignedtoRFMenu</id>
-			<text>select * from [VIEW_RF_MENU] as t order by t.sequence_id</text>
+			<text>select * from [view_rf_menu] as t order by t.sequence_id</text>
 		</statement>
 		<statement>
 			<id>JDBModule.addGroup</id>
@@ -212,7 +212,7 @@
 		</statement>
 		<statement>
 			<id>JDBModule.getModulesAssignedtoMenu</id>
-			<text>select * from [VIEW_MENU_STRUCTURE] as m where m.menu_id = ? order by sequence_id</text>
+			<text>select * from [view_menu_structure] as m where m.menu_id = ? order by sequence_id</text>
 		</statement>
 		<statement>
 			<id>JDBModule.getModulesUnAssignedtoMenu</id>
@@ -283,7 +283,7 @@
 		<?JDBUser ?>
 		<statement>
 			<id>JDBUser.loadModules</id>
-			<text>select distinct(S.module_id) from [VIEW_SECURITY] as S where S.user_id = ? order by module_id</text>
+			<text>select distinct(S.module_id) from [view_security] as S where S.user_id = ? order by module_id</text>
 		</statement>
 		<statement>
 			<id>JDBUser.changePassword</id>
@@ -392,7 +392,7 @@
 		</statement>
 		<statement>
 			<id>JDBUserGroupMembership.getUsersAssignedtoGroup</id>
-			<text>select ugm.GROUP_ID,U.* 
+			<text>select ugm.GROUP_ID,u.* 
 				from SYS_USER_GROUP_MEMBERSHIP ugm, SYS_USERS u 
 				where ugm.group_id=? 
 				and u.USER_ID = ugm.USER_ID</text>
@@ -465,17 +465,17 @@
 		<?JInternalFrameMenuTree ?>
 		<statement>
 			<id>JInternalFrameMenuTree.buildMenuTree</id>
-			<text>SELECT * FROM [VIEW_MENU_STRUCTURE] AS M WHERE M.MENU_ID = ? AND M.MODULE_ID IN (select module_id from {schema}SYS_MODULES where dk_active = 'Y' and module_id in (select module_id from {schema}SYS_GROUP_PERMISSIONS where group_id in (select group_id from {schema}SYS_USER_GROUP_MEMBERSHIP where user_id = ?))) order by sequence_id</text>
+			<text>SELECT * FROM [view_menu_structure] AS M WHERE M.MENU_ID = ? AND M.MODULE_ID IN (select module_id from {schema}SYS_MODULES where dk_active = 'Y' and module_id in (select module_id from {schema}SYS_GROUP_PERMISSIONS where group_id in (select group_id from {schema}SYS_USER_GROUP_MEMBERSHIP where user_id = ?))) order by sequence_id</text>
 		</statement>
 		<?JMenuRFMenu ?>
 		<statement>
 			<id>JMenuRFMenu.buildMenu</id>
-			<text>SELECT * FROM [VIEW_RF_MENU] AS T WHERE T.MODULE_ID IN (select module_id from {schema}SYS_MODULES where rf_active = 'Y' and module_id in (select module_id from {schema}SYS_GROUP_PERMISSIONS where group_id in (select group_id from {schema}SYS_USER_GROUP_MEMBERSHIP where user_id = ?))) order by sequence_id</text>
+			<text>SELECT * FROM [view_rf_menu] AS T WHERE T.MODULE_ID IN (select module_id from {schema}SYS_MODULES where rf_active = 'Y' and module_id in (select module_id from {schema}SYS_GROUP_PERMISSIONS where group_id in (select group_id from {schema}SYS_USER_GROUP_MEMBERSHIP where user_id = ?))) order by sequence_id</text>
 		</statement>
 		<?JMenuToolbarMenu ?>
 		<statement>
 			<id>JMenuToolbarMenu.buildMenu</id>
-			<text>SELECT * FROM [VIEW_TOOLBAR] AS T WHERE T.MODULE_ID IN (select module_id from {schema}SYS_MODULES where dk_active = 'Y' and module_id in (select module_id from {schema}SYS_GROUP_PERMISSIONS where group_id in (select group_id from {schema}SYS_USER_GROUP_MEMBERSHIP where user_id = ?))) order by sequence_id</text>
+			<text>SELECT * FROM [view_toolbar] AS T WHERE T.MODULE_ID IN (select module_id from {schema}SYS_MODULES where dk_active = 'Y' and module_id in (select module_id from {schema}SYS_GROUP_PERMISSIONS where group_id in (select group_id from {schema}SYS_USER_GROUP_MEMBERSHIP where user_id = ?))) order by sequence_id</text>
 		</statement>
 		<?JDBMaterial ?>
 		<statement>
@@ -683,7 +683,7 @@
 		<?JDBPallet ?>
 		<statement>
 			<id>JDBPallet.rapidConfirm</id>
-			<text>update app_pallet set confirmed = 'Y', date_of_manufacture = ?, date_updated = ?, updated_by_user_id = ? where sscc = ? and confirmed = 'N'</text>
+			<text>update APP_PALLET set confirmed = 'Y', date_of_manufacture = ?, date_updated = ?, updated_by_user_id = ? where sscc = ? and confirmed = 'N'</text>
 		</statement>
 		<statement>
 			<id>JDBPallet.getPalletProperties</id>
@@ -731,7 +731,7 @@
 		</statement>
 		<statement>
 			<id>JDBPallet.selectWithExpiry</id>
-			<text>select * from [VIEW_PALLET_EXPIRY]</text>
+			<text>select * from [view_pallet_expiry]</text>
 		</statement>
 		<statement>
 			<id>JDBPallet.select</id>
@@ -821,7 +821,7 @@
 		<statement>
 			<id>JDBDespatch.getDespatchPalletWrongLocationCount</id>
 			<text>
-				select count(sscc) as pallet_count from app_pallet where despatch_no = ? and location_id &lt;&gt; ?
+				select count(sscc) as pallet_count from APP_PALLET where despatch_no = ? and location_id &lt;&gt; ?
 			</text>
 		</statement>
 		<?JDBInterface ?>
@@ -1414,7 +1414,7 @@
 		</statement>		
 		<statement>
 			<id>JDBLabelData.select</id>
-			<text>SELECT * FROM {schema}VIEW_LABEL_DATA WHERE UNIQUE_ID = ?</text>
+			<text>SELECT * FROM {schema}view_label_data WHERE UNIQUE_ID = ?</text>
 		</statement>
 		<?JDBPrinterLineMembership?>
 		<statement>
@@ -1449,45 +1449,45 @@
 			<id>JDBLinePrinterMembership.renameLine</id>
 			<text>UPDATE {schema}SYS_PRINTER_LINE_MEMBERSHIP SET LINE = ? WHERE LINE = ? AND GROUP_ID = ? </text>
 		</statement>		
-		<?DBVIEW_AUTO_LABELLER_PRINTER?>	
+		<?DBview_auto_labeller_printer?>	
 		<statement>		
-			<id>DBVIEW_AUTO_LABELLER_PRINTER.getModified</id>
-			<text>SELECT * FROM {schema}VIEW_AUTO_LABELLER_PRINTER where modified = 'Y'</text>
+			<id>DBview_auto_labeller_printer.getModified</id>
+			<text>SELECT * FROM {schema}view_auto_labeller_printer where modified = 'Y'</text>
 		</statement>	
 		<statement>		
-			<id>DBVIEW_AUTO_LABELLER_PRINTER.getEnabled</id>
-			<text>SELECT * FROM {schema}VIEW_AUTO_LABELLER_PRINTER</text>
+			<id>DBview_auto_labeller_printer.getEnabled</id>
+			<text>SELECT * FROM {schema}view_auto_labeller_printer</text>
 		</statement>
 		<!-- N.B Sequence of fields important below      -->	
 		<statement>		
-			<id>DBVIEW_AUTO_LABELLER_PRINTER.getProperties</id>
+			<id>DBview_auto_labeller_printer.getProperties</id>
 			<text>SELECT LINE,MODIFIED,UNIQUE_ID,LABEL_TYPE,PRINTER_ID,ENABLED,PRINTER_TYPE,IP_ADDRESS,PORT,GROUP_ID,LANGUAGE,
 			      PRINTER_DPI,PROCESS_ORDER,MATERIAL,MATERIAL_TYPE,MATERIAL_DESCRIPTION,SHELF_LIFE_UOM,SHELF_LIFE,SHELF_LIFE_RULE,
 			      BATCH_NUMBER,REQUIRED_RESOURCE,PLANT,LOCATION_ID,DATE_OF_MANUFACTURE,EXPIRY_DATE,PROD_EAN,PROD_VARIANT,
 			      BASE_QUANTITY,PROD_UOM,BASE_EAN,BASE_VARIANT,PROD_QUANTITY,BASE_UOM,CUSTOMER_ID,CUSTOMER_NAME,PRINT_COPIES,
 			      MODULE_ID,OVERRIDE_MANUFACTURE_DATE,OVERRIDE_EXPIRY_DATE,OVERRIDE_BATCH_PREFIX,BATCH_PREFIX,BATCH_SUFFIX,
 			      REPORT_TYPE,MODULE_TYPE,REPORT_FILENAME,PART_NO
- 				  FROM {schema}VIEW_AUTO_LABELLER_PRINTER where line = ? and printer_id = ?</text>
+ 				  FROM {schema}view_auto_labeller_printer where line = ? and printer_id = ?</text>
 		</statement>	
 		<statement>		
-			<id>DBVIEW_AUTO_LABELLER_PRINTER.getProperties_Pack</id>
+			<id>DBview_auto_labeller_printer.getProperties_Pack</id>
 			<text>SELECT LINE,MODIFIED,UNIQUE_ID,LABEL_TYPE,PRINTER_ID,ENABLED,PRINTER_TYPE,IP_ADDRESS,PORT,GROUP_ID,LANGUAGE,
 			      PRINTER_DPI,PROCESS_ORDER,MATERIAL,MATERIAL_TYPE,MATERIAL_DESCRIPTION,SHELF_LIFE_UOM,SHELF_LIFE,SHELF_LIFE_RULE,
 			      BATCH_NUMBER,REQUIRED_RESOURCE,PLANT,LOCATION_ID,DATE_OF_MANUFACTURE,EXPIRY_DATE,PROD_EAN,PROD_VARIANT,
 			      BASE_QUANTITY,PROD_UOM,BASE_EAN,BASE_VARIANT,PROD_QUANTITY,BASE_UOM,CUSTOMER_ID,CUSTOMER_NAME,PRINT_COPIES,
 			      MODULE_ID,OVERRIDE_MANUFACTURE_DATE,OVERRIDE_EXPIRY_DATE,OVERRIDE_BATCH_PREFIX,BATCH_PREFIX,BATCH_SUFFIX,
 			      REPORT_TYPE,MODULE_TYPE,REPORT_FILENAME,PART_NO
- 				  FROM {schema}VIEW_AUTO_LABELLER_PRINTER where line = ? and printer_id = ?</text>
+ 				  FROM {schema}view_auto_labeller_printer where line = ? and printer_id = ?</text>
 		</statement>	
 		<statement>		
-			<id>DBVIEW_AUTO_LABELLER_PRINTER.getProperties_Pallet</id>
+			<id>DBview_auto_labeller_printer.getProperties_Pallet</id>
 			<text>SELECT LINE,MODIFIED,UNIQUE_ID,LABEL_TYPE,PRINTER_ID,ENABLED,PRINTER_TYPE,IP_ADDRESS,PORT,GROUP_ID,LANGUAGE,
 			      PRINTER_DPI,PROCESS_ORDER,MATERIAL,MATERIAL_TYPE,MATERIAL_DESCRIPTION,SHELF_LIFE_UOM,SHELF_LIFE,SHELF_LIFE_RULE,
 			      BATCH_NUMBER,REQUIRED_RESOURCE,PLANT,LOCATION_ID,DATE_OF_MANUFACTURE,EXPIRY_DATE,PROD_EAN,PROD_VARIANT,
 			      BASE_QUANTITY,PROD_UOM,BASE_EAN,BASE_VARIANT,PROD_QUANTITY,BASE_UOM,CUSTOMER_ID,CUSTOMER_NAME,PRINT_COPIES,
 			      MODULE_ID,OVERRIDE_MANUFACTURE_DATE,OVERRIDE_EXPIRY_DATE,OVERRIDE_BATCH_PREFIX,BATCH_PREFIX,BATCH_SUFFIX,
 			      REPORT_TYPE,MODULE_TYPE,REPORT_FILENAME,PART_NO,LAYERS
- 				  FROM {schema}VIEW_AUTO_LABELLER_PRINTER where line = ? and printer_id = ?</text>
+ 				  FROM {schema}view_auto_labeller_printer where line = ? and printer_id = ?</text>
 		</statement>					
 		<?JDBAutoLabellerResources?>
 		<statement>
@@ -1717,7 +1717,7 @@
 		<?JDBViewBarcodeValidate?>
 		<statement>
 			<id>JDBViewBarcodeValidate.getProperties</id>
-			<text>select * from {schema}VIEW_BARCODE_VALIDATE where process_order = ?</text>
+			<text>select * from {schema}view_barcode_validate where process_order = ?</text>
 		</statement>
 		<?JDBWeightWorkstation?>		
 		<statement>
@@ -1900,7 +1900,7 @@
 		</statement>
 		<statement>
 			<id>JDBWTSampleHeader.update</id>
-			<text>update app_weight_sample_header set
+			<text>update APP_WEIGHT_SAMPLE_HEADER set
 					user_id = ?,
 					workstation_id = ?,
 					scale_id = ?,
@@ -1928,17 +1928,17 @@
 		</statement>
 		<statement>
 			<id>JDBWTSampleHeader.updateComments</id>
-			<text>update app_weight_sample_header set
+			<text>update APP_WEIGHT_SAMPLE_HEADER set
 					comments = ? 
 					where sample_point = ? and sample_date = ?</text>
 		</statement>
 		<statement>
 			<id>JDBWTSampleHeader.isValidSampleHeader</id>
-			<text>select * from {schema}app_weight_sample_header where sample_point = ? and sample_date = ?</text>
+			<text>select * from {schema}APP_WEIGHT_SAMPLE_HEADER where sample_point = ? and sample_date = ?</text>
 		</statement>
 		<statement>
 			<id>JDBWTSampleHeader.getProperties</id>
-			<text>select * from {schema}app_weight_sample_header where sample_point = ? and sample_date = ?</text>
+			<text>select * from {schema}APP_WEIGHT_SAMPLE_HEADER where sample_point = ? and sample_date = ?</text>
 		</statement>
 		<?JDBWTSampleDetail?>		
 		<statement>
@@ -1947,7 +1947,7 @@
 		</statement>
 		<statement>
 			<id>JDBWTSampleDetail.isValidSampleDetail</id>
-			<text>select * from {schema}app_weight_sample_detail where sample_point = ? and sample_date = ? and sample_sequence = ?</text>
+			<text>select * from {schema}APP_WEIGHT_SAMPLE_DETAIL where sample_point = ? and sample_date = ? and sample_sequence = ?</text>
 		</statement>
 		<statement>
 			<id>JDBWTSampleDetail.update</id>

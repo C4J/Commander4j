@@ -8,11 +8,11 @@ ALTER TABLE app_pallet_history MODIFY (user_id VARCHAR2(20))
 </statement>
 
 <statement>
-ALTER TABLE sys_user_group_membership MODIFY (user_id VARCHAR2(20))
+ALTER TABLE SYS_USER_GROUP_MEMBERSHIP MODIFY (user_id VARCHAR2(20))
 </statement>
 
 <statement>
-ALTER TABLE sys_users MODIFY (user_id VARCHAR2(20))
+ALTER TABLE SYS_USERS MODIFY (user_id VARCHAR2(20))
 </statement>
 
 </DDL>

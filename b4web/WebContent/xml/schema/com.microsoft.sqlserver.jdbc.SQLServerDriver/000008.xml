@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-ALTER TABLE sys_interface_request ADD STATUS varchar(20)
+ALTER TABLE SYS_INTERFACE_REQUEST ADD STATUS varchar(20)
 </statement>
 
 <statement>
-CREATE INDEX sys_interface_request_idx ON sys_interface_request (STATUS)
+CREATE INDEX SYS_INTERFACE_REQUEST_IDX ON SYS_INTERFACE_REQUEST (STATUS)
 </statement>
 
 </DDL>

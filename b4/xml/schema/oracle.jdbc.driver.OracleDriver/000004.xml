@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-	insert into sys_control (system_key,key_value,description) values ('DEFAULT_LOCATION','FACTORY1','Home')
+	insert into SYS_CONTROL (system_key,key_value,description) values ('DEFAULT_LOCATION','FACTORY1','Home')
 </statement>
 
 <statement>
@@ -35,7 +35,7 @@
 </statement>
 
 <statement>
-	update sys_control set key_value = '{YEAR1}{JULIAN_DAY}{PLANT}' where system_key = 'BATCH FORMAT'
+	update SYS_CONTROL set key_value = '{YEAR1}{JULIAN_DAY}{PLANT}' where system_key = 'BATCH FORMAT'
 </statement>
 
 </DDL>

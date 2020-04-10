@@ -126,7 +126,7 @@ public class JDBViewAutoLabellerPrinter {
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("DBVIEW_AUTO_LABELLER_PRINTER.getProperties"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("DBview_auto_labeller_printer.getProperties"));
 
 			stmt.setString(1, line);
 			stmt.setString(2, printer);
@@ -163,7 +163,7 @@ public class JDBViewAutoLabellerPrinter {
 
 		try
 		{
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("DBVIEW_AUTO_LABELLER_PRINTER.getModified"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("DBview_auto_labeller_printer.getModified"));
 			stmt.setFetchSize(50);
 
 			rs = stmt.executeQuery();

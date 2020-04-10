@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-insert into sys_language (resource_key,text,language_id,mnemonic) values ('btn_Print_Summary','Summary','EN','')
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Print_Summary','Summary','EN','')
 </statement>
 
 <statement>
-insert into sys_language (resource_key,text,language_id,mnemonic) values ('btn_Print_Summary','Summary','NL','')
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Print_Summary','Summary','NL','')
 </statement>
 
 

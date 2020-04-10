@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-	CREATE VIEW [dbo].[VIEW_JOURNEYS]
+	CREATE VIEW [dbo].[view_journeys]
 	AS
 	SELECT JOURNEY_REF, STATUS, DESPATCH_NO, TIMESLOT, LOCATION_ID_TO, DATE_UPDATED, LOAD_TYPE, LOAD_TYPE_DESC, HAULIER,
 	convert(varchar(25), timeslot, 120) +

@@ -50,6 +50,8 @@ public class JDBSchema {
 	private String dbErrorMessage;
 	private String sessionID;
 
+//	private final Logger logger = Logger.getLogger(JDBSchema.class);
+
 	private void setSessionID(String session)
 	{
 		sessionID = session;
@@ -257,7 +259,11 @@ public class JDBSchema {
 
 						if (command.equalsIgnoreCase("null") == false)
 						{
-							stmtupdate.executeUpdate(ddl.get(l).getText());
+//							if (command.toLowerCase().contains("view_"))
+//							{
+//								logger.debug(command);
+//							}
+						    stmtupdate.executeUpdate(ddl.get(l).getText());
 							hst.getConnection(getSessionID()).commit();
 						}
 						ddl.get(l).setError("Success");

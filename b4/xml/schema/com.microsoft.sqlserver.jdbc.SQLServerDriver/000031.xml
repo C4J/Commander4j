@@ -11,19 +11,19 @@
 </statement>
 
 <statement>
-	insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PROCESS_ORDER_LABEL','Process Order Label Print','EN','')
+	insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PROCESS_ORDER_LABEL','Process Order Label Print','EN','')
 </statement>
 
 <statement>
-	insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PROCESS_ORDER_LABEL','Process Order Label Print','NL','')
+	insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PROCESS_ORDER_LABEL','Process Order Label Print','NL','')
 </statement>
 
 <statement>
-	insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_No_Of_Labels','Number of Labels','NL','')
+	insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_No_Of_Labels','Number of Labels','NL','')
 </statement>
 
 <statement>
-	insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_No_Of_Labels','Number of Labels','EN','')
+	insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_No_Of_Labels','Number of Labels','EN','')
 </statement>
 
 

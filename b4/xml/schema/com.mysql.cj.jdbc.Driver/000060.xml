@@ -11,11 +11,11 @@ ALTER TABLE `APP_MATERIAL` CHANGE COLUMN `NET_WEIGHT` `NET_WEIGHT` DECIMAL(22,3)
 </statement>
 
 <statement>
-DROP VIEW `VIEW_PALLET_EXPIRY`;
+DROP VIEW `view_pallet_expiry`;
 </statement>
 
 <statement>
-CREATE VIEW `VIEW_PALLET_EXPIRY` AS
+CREATE VIEW `view_pallet_expiry` AS
     select 
         `p`.`SSCC` AS `SSCC`,
         `p`.`LOCATION_ID` AS `LOCATION_ID`,

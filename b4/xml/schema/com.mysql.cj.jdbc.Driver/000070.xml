@@ -53,7 +53,7 @@ END
 <statement>
 CREATE 
      OR REPLACE 
-VIEW `VIEW_AUTO_LABELLER` AS
+VIEW `view_auto_labeller` AS
     select 
         `AL`.`LINE` AS `LINE`,
         `AL`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
@@ -104,7 +104,7 @@ VIEW `VIEW_AUTO_LABELLER` AS
 <statement>
 CREATE 
      OR REPLACE
-VIEW `VIEW_AUTO_LABELLER_FULL` AS
+VIEW `view_auto_labeller_full` AS
     select 
         `PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
         `PO`.`STATUS` AS `STATUS`,

@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-	alter table sys_modules add REPORT_TYPE varchar(15) default ''
+	alter table SYS_MODULES add REPORT_TYPE varchar(15) default ''
 </statement>
 
 <statement>
-	update sys_modules set REPORT_TYPE = 'Standard' where module_type = 'REPORT'
+	update SYS_MODULES set REPORT_TYPE = 'Standard' where module_type = 'REPORT'
 </statement>
 
 </DDL>

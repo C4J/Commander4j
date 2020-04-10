@@ -10,7 +10,6 @@ import javax.swing.JList;
 import javax.swing.JSeparator;
 import javax.swing.ListCellRenderer;
 
-import com.commander4j.gui.JList4j;
 import com.commander4j.sys.Common;
 
 /**

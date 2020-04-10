@@ -106,7 +106,7 @@ public class JDBQuery2
 
 	public void applyFrom(String from)
 	{
-		sqlFrom = from.toUpperCase();
+		sqlFrom = from;
 	}
 
 	private void applyParameter(Object param)
@@ -385,7 +385,7 @@ public class JDBQuery2
 		}
 		sqltext = sqltext.replace("{where}", sqlWhere);
 		sqltext = sqltext.replace("{orderby}", sqlSort);
-		sqltext = sqltext.replace("{SCHEMA}", Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabaseSchema());
+		sqltext = sqltext.replace("{schema}", Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabaseSchema());
 		sqltext = sqltext.replace("{final}", sqlFinal);
 		bindParams();
 		logger.debug(sqltext);

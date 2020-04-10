@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-	DROP VIEW [dbo].[View_Labeller_Process_Order_Info]
+	DROP VIEW [dbo].[view_labeller_process_order_info]
 </statement>
 
 <statement>
-	CREATE VIEW [dbo].[VIEW_LABELLER_PROCESS_ORDER_INFO]
+	CREATE VIEW [dbo].[view_labeller_process_order_info]
 	AS
 	   SELECT PO.PROCESS_ORDER, PO.MATERIAL, PO.STATUS, PO.DUE_DATE, MAT.DESCRIPTION, MAT.SHELF_LIFE, MAT.SHELF_LIFE_UOM, MAT.SHELF_LIFE_RULE,
 	       PO.REQUIRED_UOM, MATUOM.EAN, MATUOM.VARIANT, MAT.OLD_MATERIAL, dbo.GetFullPalletLayers(PO.MATERIAL, PO.REQUIRED_UOM) AS DEFAULT_LAYERS,

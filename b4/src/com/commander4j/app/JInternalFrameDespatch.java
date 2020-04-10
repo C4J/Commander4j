@@ -44,7 +44,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
@@ -972,7 +971,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		textFieldUserID.setBounds(686, 358, 122, 20);
 		desktopPane.add(textFieldUserID);
 
-		buttonSetUserID = new JButton4j((Icon) null);
+		buttonSetUserID = new JButton4j(Common.icon_lookup_16x16);
 		buttonSetUserID.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)

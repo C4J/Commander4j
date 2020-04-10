@@ -595,7 +595,7 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 			if (textArea_SQL.getText().toUpperCase().contains("SYS_USERS"))
 			{
 				result = false;
-				reasonInvalid = "reference to SYS_USER found in query";
+				reasonInvalid = "reference to SYS_USERS found in query";
 			}
 		}
 
@@ -610,10 +610,10 @@ public class JInternalFrameUserReportProperties extends JInternalFrame
 		
 		if (result)
 		{
-			if (textArea_SQL.getText().toUpperCase().contains("VIEW_PERMISSIONS"))
+			if (textArea_SQL.getText().toLowerCase().contains("view_permissions"))
 			{
 				result = false;
-				reasonInvalid = "reference to VIEW_PERMISSIONS found in query";
+				reasonInvalid = "reference to view_permissions found in query";
 			}
 		}
 

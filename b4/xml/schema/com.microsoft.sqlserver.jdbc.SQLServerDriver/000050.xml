@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-		drop view VIEW_PALLET_EXPIRY;
+		drop view view_pallet_expiry;
 </statement>
 
 <statement>
-	CREATE VIEW VIEW_PALLET_EXPIRY AS (SELECT p.SSCC, p.LOCATION_ID, p.MATERIAL, p.BATCH_NUMBER, p.PROCESS_ORDER,
+	CREATE VIEW view_pallet_expiry AS (SELECT p.SSCC, p.LOCATION_ID, p.MATERIAL, p.BATCH_NUMBER, p.PROCESS_ORDER,
 																		 p.QUANTITY, p.UOM, p.DATE_OF_MANUFACTURE, p.STATUS, p.EAN, 
                       							 p.VARIANT, p.DESPATCH_NO, p.CONFIRMED, p.LAYERS, p.SSCC_EXPIRY_DATE, 
                       							 p.CUSTOMER_ID, p.MHN_NUMBER, p.DECISION, b.EXPIRY_DATE, m.DESCRIPTION,m.OLD_MATERIAL,c.CUSTOMER_NAME,c.PRINT_ON_LABEL

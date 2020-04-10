@@ -8,15 +8,15 @@
 </statement>
 
 <statement>
-	ALTER TABLE sys_user_group_membership DROP CONSTRAINT [USERS_GROUPS_PK]
+	ALTER TABLE SYS_USER_GROUP_MEMBERSHIP DROP CONSTRAINT [USERS_GROUPS_PK]
 </statement>
 
 <statement>
-	ALTER TABLE sys_user_group_membership ALTER COLUMN user_id varchar(20) NOT NULL
+	ALTER TABLE SYS_USER_GROUP_MEMBERSHIP ALTER COLUMN user_id varchar(20) NOT NULL
 </statement>
 
 <statement>
-ALTER TABLE sys_user_group_membership ADD
+ALTER TABLE SYS_USER_GROUP_MEMBERSHIP ADD
 CONSTRAINT [USERS_GROUPS_PK] PRIMARY KEY NONCLUSTERED 
 (
 	[USER_ID] ASC,
@@ -29,7 +29,7 @@ ALTER TABLE SYS_USERS DROP CONSTRAINT [USERS_PK]
 </statement>
 
 <statement>
-ALTER TABLE sys_users ALTER COLUMN user_id varchar(20)  NOT NULL
+ALTER TABLE SYS_USERS ALTER COLUMN user_id varchar(20)  NOT NULL
 </statement>
 
 <statement>

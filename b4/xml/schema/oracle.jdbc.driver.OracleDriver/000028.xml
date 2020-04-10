@@ -7,19 +7,19 @@
 </statement>
 
 <statement>
-	insert into sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','Label Print','EN','')
+	insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','Label Print','EN','')
 </statement>
 
 <statement>
-	insert into sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','Label Print','NL','')
+	insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','Label Print','NL','')
 </statement>
 
 <statement>
-	insert into sys_group_permissions (group_id, module_id) values ('PALLET', 'FRM_PAL_LABEL_COPIES')
+	insert into SYS_GROUP_PERMISSIONS (group_id, module_id) values ('PALLET', 'FRM_PAL_LABEL_COPIES')
 </statement>
 
 <statement>
-	insert into sys_group_permissions (group_id, module_id) values ('PUBLIC', 'FRM_PAL_LABEL_COPIES')
+	insert into SYS_GROUP_PERMISSIONS (group_id, module_id) values ('PUBLIC', 'FRM_PAL_LABEL_COPIES')
 </statement>
 
 

@@ -3,27 +3,27 @@
 <DDL>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Edit','EN','Edit Customer','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Edit','EN','Edit Customer','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Edit','HU','Ügyfél szerkesztése','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Edit','HU','Ügyfél szerkesztése','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Edit','NL','Klant bewerken','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Edit','NL','Klant bewerken','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Edit','IT','Modifica del cliente','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Edit','IT','Modifica del cliente','')
 </statement>
 
 <statement>
-update dbo.sys_modules SET resource_key = 'lbl_Customer_Edit' where module_id = 'FRM_ADMIN_CUSTOMER'
+update dbo.SYS_MODULES SET resource_key = 'lbl_Customer_Edit' where module_id = 'FRM_ADMIN_CUSTOMER'
 </statement>
 
 <statement>
-update dbo.sys_modules SET resource_key = 'lbl_Customer_Edit' where module_id = 'FRM_ADMIN_CUSTOMER_EDIT'
+update dbo.SYS_MODULES SET resource_key = 'lbl_Customer_Edit' where module_id = 'FRM_ADMIN_CUSTOMER_EDIT'
 </statement>
 
 </DDL>

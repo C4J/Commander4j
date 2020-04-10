@@ -156,7 +156,8 @@ public class JLaunchMenu
 						{
 							result = frames[k].getBounds();
 							framecount++;
-						} else
+						}
+						else
 						{
 							maxcount++;
 							if (frames[k].getBounds().x > max.x)
@@ -175,7 +176,8 @@ public class JLaunchMenu
 				{
 					result.x = result.x + 30;
 					result.y = result.y + 30;
-				} else
+				}
+				else
 				{
 					result.x = max.x;
 					result.y = max.y;
@@ -186,7 +188,8 @@ public class JLaunchMenu
 					}
 				}
 			}
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			ex.printStackTrace();
 		}
@@ -229,7 +232,8 @@ public class JLaunchMenu
 				}
 			}
 
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 
 		}
@@ -266,7 +270,8 @@ public class JLaunchMenu
 		try
 		{
 			u.setSelected(true);
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			JUtility.errorBeep();
 		}
@@ -314,7 +319,8 @@ public class JLaunchMenu
 					frames[k].setIcon(true);
 				}
 			}
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			ex.printStackTrace();
 		}
@@ -333,7 +339,8 @@ public class JLaunchMenu
 					frames[k].setIcon(false);
 				}
 			}
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			ex.printStackTrace();
 		}
@@ -352,7 +359,7 @@ public class JLaunchMenu
 
 			displayDialog(u, optionName);
 		}
-		
+
 		if (optionName.equals("FRM_LICENCES"))
 		{
 			final JDialogLicenses u;
@@ -383,7 +390,7 @@ public class JLaunchMenu
 			displayDialog(u, optionName);
 
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_DATA_IDS_EDIT"))
 		{
 			final JDialogDataIDProperties u;
@@ -391,7 +398,7 @@ public class JLaunchMenu
 			displayDialog(u, optionName);
 
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_ERROR"))
 		{
 			final JDialogWTError u;
@@ -501,14 +508,13 @@ public class JLaunchMenu
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
 
-		
 		if (optionName.equals("FRM_WEIGHT_REPORTS_DETAILS"))
 		{
 			final JDialogWTReportDetails u;
 			u = new JDialogWTReportDetails(Common.mainForm, strParam1, strParam2);
 			displayDialog(u, optionName);
 		}
-		
+
 		if (optionName.equals("FRM_QM_ACTIVITY"))
 		{
 			final JDialogQMActivityProperties u;
@@ -677,7 +683,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_QM_RESULT_ANALYSIS"))
 		{
 			final JInternalFrameQMResultAnalysis u;
@@ -1041,7 +1047,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_SAMPLEPOINT"))
 		{
 			final JInternalFrameWTSamplePointAdmin u;
@@ -1054,7 +1060,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_CONTAINERCODE"))
 		{
 			final JInternalFrameWTContainerCodeAdmin u;
@@ -1067,7 +1073,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_CAPTURE"))
 		{
 			final JInternalFrameWTWeightCapture u;
@@ -1080,7 +1086,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_REPORTS"))
 		{
 			final JInternalFrameWTReport u;
@@ -1093,7 +1099,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_WORKSTATION"))
 		{
 			final JInternalFrameWTWorkstationAdmin u;
@@ -1106,7 +1112,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_SCALE"))
 		{
 			final JInternalFrameWTScaleAdmin u;
@@ -1119,7 +1125,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_TNE"))
 		{
 			final JInternalFrameWTTNEAdmin u;
@@ -1132,7 +1138,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_PRODUCT_GROUP"))
 		{
 			final JInternalFrameWTProductGroupAdmin u;
@@ -1293,36 +1299,36 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_PALLET_HISTORY"))
 		{
 			final JInternalFramePalletHistoryAdmin u;
-			
+
 			if (isLoaded(JInternalFramePalletHistoryAdmin.class))
 			{
-				((JInternalFramePalletHistoryAdmin) isLoadedInstance(JInternalFramePalletHistoryAdmin.class)).updateSearch(StrParam1, StrParam2,StrParam3);
+				((JInternalFramePalletHistoryAdmin) isLoadedInstance(JInternalFramePalletHistoryAdmin.class)).updateSearch(StrParam1, StrParam2, StrParam3);
 				setVisible(JInternalFramePalletHistoryAdmin.class);
 			}
 			else
 			{
-				u = new JInternalFramePalletHistoryAdmin(StrParam1,StrParam2,StrParam3);
+				u = new JInternalFramePalletHistoryAdmin(StrParam1, StrParam2, StrParam3);
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_PALLETS"))
 		{
 			final JInternalFramePalletAdmin u;
-			
+
 			if (isLoaded(JInternalFramePalletAdmin.class))
 			{
-				((JInternalFramePalletAdmin) isLoadedInstance(JInternalFramePalletAdmin.class)).updateSearch(StrParam1, StrParam2,StrParam3);
+				((JInternalFramePalletAdmin) isLoadedInstance(JInternalFramePalletAdmin.class)).updateSearch(StrParam1, StrParam2, StrParam3);
 				setVisible(JInternalFramePalletAdmin.class);
 			}
 			else
 			{
-				u = new JInternalFramePalletAdmin(StrParam1,StrParam2,StrParam3);
+				u = new JInternalFramePalletAdmin(StrParam1, StrParam2, StrParam3);
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
@@ -1334,21 +1340,19 @@ public class JLaunchMenu
 	{
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
-		
-		
+
 		if (optionName.equals("FRM_WEIGHT_TNE_EDIT"))
 		{
 			final JInternalFrameWTTNEProperties u;
 			if (isLoaded(JInternalFrameWTTNEProperties.class))
-				((JInternalFrameWTTNEProperties) isLoadedInstance(JInternalFrameWTTNEProperties.class)).setTNE(StrParam1,StrParam2);
+				((JInternalFrameWTTNEProperties) isLoadedInstance(JInternalFrameWTTNEProperties.class)).setTNE(StrParam1, StrParam2);
 			else
 			{
-				u = new JInternalFrameWTTNEProperties(StrParam1,StrParam2);
+				u = new JInternalFrameWTTNEProperties(StrParam1, StrParam2);
 				displayForm(u, optionName);
 			}
 		}
-		
-		
+
 		if (optionName.equals("FRM_ADMIN_INTERFACE_LOG"))
 		{
 			final JInternalFrameInterfaceLog u;
@@ -1359,17 +1363,16 @@ public class JLaunchMenu
 			}
 			else
 			{
-				u = new JInternalFrameInterfaceLog(StrParam1,StrParam2);
+				u = new JInternalFrameInterfaceLog(StrParam1, StrParam2);
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
-		}		
-		
-		
+		}
+
 		if (optionName.equals("FRM_ADMIN_PROCESS_ORDER"))
 		{
 			final JInternalFrameProcessOrderAdmin u;
-			
+
 			if (isLoaded(JInternalFrameProcessOrderAdmin.class))
 			{
 				((JInternalFrameProcessOrderAdmin) isLoadedInstance(JInternalFrameProcessOrderAdmin.class)).updateSearch(StrParam1, StrParam2);
@@ -1377,17 +1380,16 @@ public class JLaunchMenu
 			}
 			else
 			{
-				u = new JInternalFrameProcessOrderAdmin(StrParam1,StrParam2);
+				u = new JInternalFrameProcessOrderAdmin(StrParam1, StrParam2);
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
 		}
-		
-		
+
 		if (optionName.equals("FRM_ADMIN_PALLET_HISTORY"))
 		{
 			final JInternalFramePalletHistoryAdmin u;
-			
+
 			if (isLoaded(JInternalFramePalletHistoryAdmin.class))
 			{
 				((JInternalFramePalletHistoryAdmin) isLoadedInstance(JInternalFramePalletHistoryAdmin.class)).updateSearch(StrParam1, StrParam2);
@@ -1395,16 +1397,16 @@ public class JLaunchMenu
 			}
 			else
 			{
-				u = new JInternalFramePalletHistoryAdmin(StrParam1,StrParam2);
+				u = new JInternalFramePalletHistoryAdmin(StrParam1, StrParam2);
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_PALLETS"))
 		{
 			final JInternalFramePalletAdmin u;
-			
+
 			if (isLoaded(JInternalFramePalletAdmin.class))
 			{
 				((JInternalFramePalletAdmin) isLoadedInstance(JInternalFramePalletAdmin.class)).updateSearch(StrParam1, StrParam2);
@@ -1412,7 +1414,7 @@ public class JLaunchMenu
 			}
 			else
 			{
-				u = new JInternalFramePalletAdmin(StrParam1,StrParam2);
+				u = new JInternalFramePalletAdmin(StrParam1, StrParam2);
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
@@ -1536,13 +1538,12 @@ public class JLaunchMenu
 			}
 		}
 	}
-	
 
 	public static void runForm(String optionName, String StrParam)
 	{
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
-		
+
 		if (optionName.equals("FRM_WEIGHT_PRODUCT_GROUP_EDIT"))
 		{
 			final JInternalFrameWTProductGroupProperties u;
@@ -1554,7 +1555,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_QM_RESULT_ANALYSIS_EDIT"))
 		{
 			final JInternalFrameQMResultAnalysisProperties u;
@@ -1580,7 +1581,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_LABEL_PRINT"))
 		{
 			final JInternalFramePackLabelPrint u;
@@ -1648,11 +1649,12 @@ public class JLaunchMenu
 
 		if (optionName.equals("FRM_ADMIN_MATERIAL_CUST_DATA"))
 		{
-			
+
 			final JInternalFrameMaterialCustomerDataAdmin u;
 			if (isLoaded(JInternalFrameMaterialCustomerDataAdmin.class))
 				setVisible(JInternalFrameMaterialCustomerDataAdmin.class);
-				//((JInternalFrameMaterialCustomerDataAdmin) isLoadedInstance(JInternalFrameMaterialCustomerDataAdmin.class)).setJourneyRef(StrParam);
+			// ((JInternalFrameMaterialCustomerDataAdmin)
+			// isLoadedInstance(JInternalFrameMaterialCustomerDataAdmin.class)).setJourneyRef(StrParam);
 			else
 			{
 				u = new JInternalFrameMaterialCustomerDataAdmin(StrParam);
@@ -1801,7 +1803,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_SAMPLEPOINT_EDIT"))
 		{
 			final JInternalFrameWTSamplePointProperties u;
@@ -1813,7 +1815,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_CONTAINERCODE_EDIT"))
 		{
 			final JInternalFrameWTContainerCodeProperties u;
@@ -1825,7 +1827,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_WORKSTATION_EDIT"))
 		{
 			final JInternalFrameWTWorkstationProperties u;
@@ -1837,7 +1839,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WEIGHT_SCALE_EDIT"))
 		{
 			final JInternalFrameWTScaleProperties u;
@@ -1893,17 +1895,16 @@ public class JLaunchMenu
 		{
 			final JInternalFrameMaterialProperties u;
 			if (isLoaded(JInternalFrameMaterialProperties.class))
-				{
-					((JInternalFrameMaterialProperties) isLoadedInstance(JInternalFrameMaterialProperties.class)).setMaterialID(StrParam);
-					setVisible(JInternalFrameMaterialProperties.class);
-				}
+			{
+				((JInternalFrameMaterialProperties) isLoadedInstance(JInternalFrameMaterialProperties.class)).setMaterialID(StrParam);
+				setVisible(JInternalFrameMaterialProperties.class);
+			}
 			else
 			{
 				u = new JInternalFrameMaterialProperties(StrParam);
 				displayForm(u, optionName);
 			}
 		}
-		
 
 		if (optionName.equals("FRM_ADMIN_MATERIAL_BATCH"))
 		{
@@ -1937,7 +1938,7 @@ public class JLaunchMenu
 			if (isLoaded(JInternalFrameLocationProperties.class))
 			{
 				((JInternalFrameLocationProperties) isLoadedInstance(JInternalFrameLocationProperties.class)).setLocationID(StrParam);
-			   setVisible(JInternalFrameLocationProperties.class);
+				setVisible(JInternalFrameLocationProperties.class);
 			}
 			else
 			{
@@ -2003,7 +2004,8 @@ public class JLaunchMenu
 				{
 					frames[k].setIcon(false);
 					frames[k].setSelected(true);
-				} catch (Exception e)
+				}
+				catch (Exception e)
 				{
 				}
 			}

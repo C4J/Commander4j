@@ -3,1072 +3,1072 @@
 <DDL>
 
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Add','IT','Aggiungi','A');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Add','IT','Aggiungi','A');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Archive','IT','Archivio','A');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Archive','IT','Archivio','A');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Assign_SSCC','IT','Assegna SSCC','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Assign_SSCC','IT','Assegna SSCC','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Assign_to_MHN','IT','Assegna a MHN','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Assign_to_MHN','IT','Assegna a MHN','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Clear_Filter','IT','Pulisci Filtro','F');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Clear_Filter','IT','Pulisci Filtro','F');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Close','IT','Chiudi','C');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Close','IT','Chiudi','C');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Confirm','IT','Conferma','f');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Confirm','IT','Conferma','f');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Decision_Assign','IT','Assegna Decisione','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Decision_Assign','IT','Assegna Decisione','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Delete','IT','Elimina','D');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Delete','IT','Elimina','D');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit','IT','Modifica','E');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit','IT','Modifica','E');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_Batch','IT','Modifica Batch','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_Batch','IT','Modifica Batch','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_Location','IT','Modifica Location','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_Location','IT','Modifica Location','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_Material','IT','Modifica Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_Material','IT','Modifica Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_MHN','IT','Modifica MHN','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_MHN','IT','Modifica MHN','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_Pallet','IT','Modifica Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_Pallet','IT','Modifica Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_Process_Order','IT','Modifica Process Order','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Edit_Process_Order','IT','Modifica Process Order','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Excel','IT','Excel','x');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Excel','IT','Excel','x');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Find','IT','Trova','F');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Find','IT','Trova','F');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Help','IT','Aiuto','H');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Help','IT','Aiuto','H');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Interface_Start','IT','Avvia Interfaccia','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Interface_Start','IT','Avvia Interfaccia','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Interface_Stop','IT','Ferma Interfaccia','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Interface_Stop','IT','Ferma Interfaccia','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Label','IT','Etichetta','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Label','IT','Etichetta','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Material_Batches','IT','Batches','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Material_Batches','IT','Batches','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Material_UOM_Conversions','IT','Conversioni UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Material_UOM_Conversions','IT','Conversioni UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_New','IT','Nuovo','N');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_New','IT','Nuovo','N');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Ok','IT','OK','O');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Ok','IT','OK','O');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Permissions','IT','Autorizzazioni','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Permissions','IT','Autorizzazioni','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Print','IT','Stampa','P');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Print','IT','Stampa','P');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Print_Summary','IT','Sommario','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Print_Summary','IT','Sommario','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Re_Print','IT','Ristampa','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Re_Print','IT','Ristampa','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Refresh','IT','Aggiorna','R');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Refresh','IT','Aggiorna','R');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Rename','IT','Rinomina','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Rename','IT','Rinomina','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Resubmit','IT','Reinvia','R');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Resubmit','IT','Reinvia','R');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Save','IT','Salva','S');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Save','IT','Salva','S');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Search','IT','Cerca','S');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Search','IT','Cerca','S');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Select','IT','Seleziona','S');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Select','IT','Seleziona','S');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Status_Assign','IT','Assegna Stato','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Status_Assign','IT','Assegna Stato','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Undo','IT','Annulla','U');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Undo','IT','Annulla','U');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Confirm','IT','Conferma','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Confirm','IT','Conferma','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Customer_Add','IT','Aggiungi Cliente','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Customer_Add','IT','Aggiungi Cliente','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Customer_Delete','IT','Elimina Cliente','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Customer_Delete','IT','Elimina Cliente','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Customer_Rename','IT','Rinomina Cliente a','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Customer_Rename','IT','Rinomina Cliente a','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Decision_Add','IT','Aggiungi Decisione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Decision_Add','IT','Aggiungi Decisione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Decision_Delete','IT','Eliminare Decisione?','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Decision_Delete','IT','Eliminare Decisione?','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Decision_Rename','IT','Rinomina Decisione a','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Decision_Rename','IT','Rinomina Decisione a','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Despatch_Confirm','IT','Conferma Spedizione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Despatch_Confirm','IT','Conferma Spedizione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Despatch_Create','IT','Creare Spedizione?','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Despatch_Create','IT','Creare Spedizione?','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Despatch_Delete','IT','Elimina Spedizione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Despatch_Delete','IT','Elimina Spedizione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Error','IT','Errore','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Error','IT','Errore','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Information','IT','Informazione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Information','IT','Informazione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Batch_Input','IT','Inserire Batch','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Batch_Input','IT','Inserire Batch','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Input','IT','Inserire Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Input','IT','Inserire Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Type_Add','IT','Aggiungi Tipo Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Type_Add','IT','Aggiungi Tipo Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Type_Delete','IT','Elimina Tipo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Type_Delete','IT','Elimina Tipo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Type_Rename','IT','Rinomina Tipo a ','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_Type_Rename','IT','Rinomina Tipo a ','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_UOM_Input','IT','Inserire UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Material_UOM_Input','IT','Inserire UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Process_Order_Add','IT','Inserire PO (Blank = Auto)','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Process_Order_Add','IT','Inserire PO (Blank = Auto)','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Quantity_Confirm','IT','La quantità inserita è maggiore della quantità di default - sei sicuro?','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Quantity_Confirm','IT','La quantità inserita è maggiore della quantità di default - sei sicuro?','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Reason_Add','IT','Aggiungi Reason','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Reason_Add','IT','Aggiungi Reason','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Reason_Delete','IT','Elimina Reason Code','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Reason_Delete','IT','Elimina Reason Code','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Reason_Rename','IT','Rinomina Reason Code a','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_Reason_Rename','IT','Rinomina Reason Code a','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_SSCC_Add','IT','Inserire SSCC o AUTO','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_SSCC_Add','IT','Inserire SSCC o AUTO','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_SSCC_Delete','IT','Elimina SSCC','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_SSCC_Delete','IT','Elimina SSCC','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_SSCC_Print_Maximum','IT','Il numero massimo di etichette è 100. Cambia i criteri o il limite di record','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_SSCC_Print_Maximum','IT','Il numero massimo di etichette è 100. Cambia i criteri o il limite di record','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_UOM_Add','IT','Aggiungi UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_UOM_Add','IT','Aggiungi UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_UOM_Delete','IT','Elimina UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_UOM_Delete','IT','Elimina UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_UOM_Rename','IT','Rinomina UdM a','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('dlg_UOM_Rename','IT','Rinomina UdM a','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('err_Batch_Blank','IT','Il Batch è Blank','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('err_Batch_Blank','IT','Il Batch è Blank','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('err_Customer_Blank','IT','Il Cliente è Blank','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('err_Customer_Blank','IT','Il Cliente è Blank','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('err_Location_Blank','IT','La Location è Blank','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('err_Location_Blank','IT','La Location è Blank','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('err_Material_Blank','IT','Il Materiale è Blank','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('err_Material_Blank','IT','Il Materiale è Blank','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('err_Process_Order_Blank','IT','Il PO è Blank','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('err_Process_Order_Blank','IT','Il PO è Blank','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Assign_to_MHN','IT','Assegna a MHN','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Assign_to_MHN','IT','Assegna a MHN','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Assigned','IT','Assegnato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Assigned','IT','Assegnato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Authorisor','IT','Autorizzato da','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Authorisor','IT','Autorizzato da','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Base_UOM','IT','UdM Base','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Base_UOM','IT','UdM Base','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Batch','IT','Batch','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Batch','IT','Batch','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Comment','IT','Commento','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Comment','IT','Commento','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Confirmed','IT','Confermato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Confirmed','IT','Confermato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Created','IT','Creato','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Created','IT','Creato','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Customer_Admin','IT','Gestione Cliente','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Customer_Admin','IT','Gestione Cliente','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Customer_ID','IT','ID Cliente','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Customer_ID','IT','ID Cliente','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Customer_Name','IT','Nome Cliente','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Customer_Name','IT','Nome Cliente','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Decision','IT','Decisione','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Decision','IT','Decisione','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Description','IT','Descrizione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Description','IT','Descrizione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Despatch_Date','IT','Data Spedizione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Despatch_Date','IT','Data Spedizione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Despatch_No','IT','Numero Spedizione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Despatch_No','IT','Numero Spedizione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Despatch_Status','IT','Stato Spedizione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Despatch_Status','IT','Stato Spedizione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Despatches','IT','Spedizioni','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Despatches','IT','Spedizioni','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Email_Addresses','IT','Indirizzi Email','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Email_Addresses','IT','Indirizzi Email','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Email_Error','IT','Errore','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Email_Error','IT','Errore','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Email_Notifications','IT','Notifiche Email','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Email_Notifications','IT','Notifiche Email','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Email_Success','IT','Successo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Email_Success','IT','Successo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Email_Warning','IT','Avviso','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Email_Warning','IT','Avviso','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Expected','IT','Risoluzione Attesa','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Expected','IT','Risoluzione Attesa','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Filter_By','IT','Filtra Per','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Filter_By','IT','Filtra Per','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Find','IT','Trova','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Find','IT','Trova','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_From_Location','IT','Da Location','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_From_Location','IT','Da Location','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Group_ID','IT','ID Gruppo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Group_ID','IT','ID Gruppo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Haulier','IT','Trasportatore','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Haulier','IT','Trasportatore','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Initiator','IT','Initiator','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Initiator','IT','Initiator','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Device','IT','Dispositivo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Device','IT','Dispositivo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Direction','IT','Direzione Interfaccia','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Direction','IT','Direzione Interfaccia','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Enabled','IT','Abilitato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Enabled','IT','Abilitato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Filename','IT','Nome File','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Filename','IT','Nome File','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Format','IT','Formato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Format','IT','Formato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Path','IT','Percorso','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Path','IT','Percorso','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Type','IT','Tipo Interfaccia','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Interface_Type','IT','Tipo Interfaccia','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Label_Header_Text','IT','Intestazione Etichetta','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Label_Header_Text','IT','Intestazione Etichetta','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Labels_Per_SSCC','IT','Etichette per SSCC','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Labels_Per_SSCC','IT','Etichette per SSCC','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Language','IT','Lingua','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Language','IT','Lingua','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Language_ID','IT','ID Lingua','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Language_ID','IT','ID Lingua','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Language_Key','IT','Chiave Risorsa','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Language_Key','IT','Chiave Risorsa','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Language_Mnemonic','IT','Mnemonico','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Language_Mnemonic','IT','Mnemonico','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Limit','IT','Limite','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Limit','IT','Limite','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Load_No','IT','Numero Carico','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Load_No','IT','Numero Carico','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Location_ID','IT','ID Location','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Location_ID','IT','ID Location','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material','IT','Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material','IT','Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Base_UOM','IT','UdM Base','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Base_UOM','IT','UdM Base','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Batch','IT','Batch','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Batch','IT','Batch','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Batch_Expiry_Date','IT','Data Scadenza','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Batch_Expiry_Date','IT','Data Scadenza','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Batch_Expiry_From','IT','Da Scadenza','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Batch_Expiry_From','IT','Da Scadenza','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Batch_Expiry_To','IT','A Scadenza','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Batch_Expiry_To','IT','A Scadenza','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Batch_Status','IT','Stato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Batch_Status','IT','Stato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Default_Batch_Status','IT','Stato Batch Default','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Default_Batch_Status','IT','Stato Batch Default','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Equipment_Type','IT','Tipo Richiesta','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Equipment_Type','IT','Tipo Richiesta','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Gross_Weight','IT','Peso Lordo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Gross_Weight','IT','Peso Lordo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Legacy_Code','IT','Codice Legacy','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Legacy_Code','IT','Codice Legacy','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Net_Weight','IT','Peso Netto','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Net_Weight','IT','Peso Netto','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Shelf_Life','IT','Durata','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Shelf_Life','IT','Durata','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Shelf_Life_Rounding_Rule','IT','Regola Arrotondamento','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Shelf_Life_Rounding_Rule','IT','Regola Arrotondamento','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Shelf_Life_UOM','IT','UdM Durata','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Shelf_Life_UOM','IT','UdM Durata','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Type','IT','Tipo Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Type','IT','Tipo Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_UOM','IT','UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_UOM','IT','UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_UOM_Denominator','IT','Denominatore','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_UOM_Denominator','IT','Denominatore','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_UOM_EAN','IT','EAN','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_UOM_EAN','IT','EAN','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_UOM_Numerator','IT','Numeratore','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_UOM_Numerator','IT','Numeratore','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_UOM_Variant','IT','Variante','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_UOM_Variant','IT','Variante','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Weight_UOM','IT','UdM Peso','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Material_Weight_UOM','IT','UdM Peso','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Date','IT','Data Messaggio','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Date','IT','Data Messaggio','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Despatch_Confirm','IT','Msg Despatch Confirm','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Despatch_Confirm','IT','Msg Despatch Confirm','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Despatch_Pre_Advice','IT','Msg Despatch Pre Advice','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Despatch_Pre_Advice','IT','Msg Despatch Pre Advice','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Equipment_Tracking','IT','Msg Equipment Tracking','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Equipment_Tracking','IT','Msg Equipment Tracking','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Error','IT','Risultato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Error','IT','Risultato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Event_Date','IT','Data Evento','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Event_Date','IT','Data Evento','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Information','IT','Informazioni Messaggio','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Information','IT','Informazioni Messaggio','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Production_Confirmation','IT','Msg Production Confirm','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Production_Confirmation','IT','Msg Production Confirm','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Reference','IT','Riferimento Messaggio','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Reference','IT','Riferimento Messaggio','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Status','IT','Stato Messaggio','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Status','IT','Stato Messaggio','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Type','IT','Tipo Messaggio','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Message_Type','IT','Tipo Messaggio','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_MHN_Number','IT','Numero MHN','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_MHN_Number','IT','Numero MHN','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Mnemonic','IT','Mnemonico','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Mnemonic','IT','Mnemonico','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_ALL','IT','Tutto','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_ALL','IT','Tutto','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Desktop','IT','Desktop','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Desktop','IT','Desktop','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Executable','IT','Eseguibili','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Executable','IT','Eseguibili','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Executable_Directory','IT','Directory Eseguibili','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Executable_Directory','IT','Directory Eseguibili','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Executable_Filename','IT','Nome Eseguibile','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Executable_Filename','IT','Nome Eseguibile','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Form','IT','Moduli','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Form','IT','Moduli','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Function','IT','Funzioni','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Function','IT','Funzioni','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Help','IT','Aiuto','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Help','IT','Aiuto','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Icon_Filename','IT','Nome File Icona','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Icon_Filename','IT','Nome File Icona','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_ID','IT','ID Modulo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_ID','IT','ID Modulo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Menu','IT','Menu','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Menu','IT','Menu','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Print_Copies','IT','Stampa Copie','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Print_Copies','IT','Stampa Copie','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Print_Dialog','IT','Dialog di Stampa','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Print_Dialog','IT','Dialog di Stampa','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Print_Preview','IT','Anteprima di Stampa','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Print_Preview','IT','Anteprima di Stampa','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Report','IT','Reports','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Report','IT','Reports','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Report_Filename','IT','Nome File Report','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Report_Filename','IT','Nome File Report','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Report_Type','IT','Tipo Report','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Report_Type','IT','Tipo Report','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Scanner','IT','Scanner','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Scanner','IT','Scanner','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Type','IT','Tipo Modulo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Module_Type','IT','Tipo Modulo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_No_Of_Labels','IT','Numero Etichette','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_No_Of_Labels','IT','Numero Etichette','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_No_Of_Pallets','IT','Numero Pallets','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_No_Of_Pallets','IT','Numero Pallets','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Number_Of_Labels','IT','Numero Etichette','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Number_Of_Labels','IT','Numero Etichette','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Number_of_SSCCs','IT','Numero di SSCC','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Number_of_SSCCs','IT','Numero di SSCC','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Options','IT','Opzioni','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Options','IT','Opzioni','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet','IT','Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet','IT','Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_Base_Quantity','IT','Quantità Base','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_Base_Quantity','IT','Quantità Base','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_Base_UOM','IT','UdM Base','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_Base_UOM','IT','UdM Base','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_DOM','IT','Data di Produzione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_DOM','IT','Data di Produzione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_Layers','IT','Strati','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_Layers','IT','Strati','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_Quantity','IT','Quantità','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_Quantity','IT','Quantità','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_SSCC','IT','SSCC','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_SSCC','IT','SSCC','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_Status','IT','Stato Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_Status','IT','Stato Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_UOM','IT','UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Pallet_UOM','IT','UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Preview','IT','Anteprima','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Preview','IT','Anteprima','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Print','IT','Stampa','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Print','IT','Stampa','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Print_Customer_on_Label','IT','Stampa Nome su Etichetta','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Print_Customer_on_Label','IT','Stampa Nome su Etichetta','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Print_Queue','IT','Coda di Stampa','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Print_Queue','IT','Coda di Stampa','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order','IT','Process Order','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order','IT','Process Order','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Default_Pallet_Status','IT','Stato Pallet di Default','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Default_Pallet_Status','IT','Stato Pallet di Default','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Due_Date','IT','Data Prevista','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Due_Date','IT','Data Prevista','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Recipe','IT','Recipe','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Recipe','IT','Recipe','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Required_Quantity','IT','Quantità','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Required_Quantity','IT','Quantità','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Required_Resource','IT','Risorsa Richiesta','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Required_Resource','IT','Risorsa Richiesta','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Required_UOM','IT','UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Required_UOM','IT','UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Status','IT','Stato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Process_Order_Status','IT','Stato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Reason','IT','Reason Code','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Reason','IT','Reason Code','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Recorder','IT','Recorder','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Recorder','IT','Recorder','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Referenced_Data','IT','Dati di Riferimento','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Referenced_Data','IT','Dati di Riferimento','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Resolved','IT','Risolto','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Resolved','IT','Risolto','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Resource_Key','IT','Chiave Risorsa','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Resource_Key','IT','Chiave Risorsa','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Sort_By','IT','Ordina Per','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Sort_By','IT','Ordina Per','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Status','IT','Stato MHN','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Status','IT','Stato MHN','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Bin','IT','Bin','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Bin','IT','Bin','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Equipment_Tracking_ID','IT','Equipment Tracking ID','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Equipment_Tracking_ID','IT','Equipment Tracking ID','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_GLN','IT','GLN','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_GLN','IT','GLN','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Location','IT','Location','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Location','IT','Location','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Location_Permit_Batch_Status','IT','Permetti Stato Batch','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Location_Permit_Batch_Status','IT','Permetti Stato Batch','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Location_Permit_Pallet_Status','IT','Permetti Stato Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Location_Permit_Pallet_Status','IT','Permetti Stato Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Plant','IT','Plant','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Plant','IT','Plant','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Section','IT','Sezione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Section','IT','Sezione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Type','IT','Tipo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Type','IT','Tipo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Warehouse','IT','Magazzino','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Storage_Warehouse','IT','Magazzino','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Text','IT','Testo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Text','IT','Testo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_To_Location','IT','A Locazione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_To_Location','IT','A Locazione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Trailer','IT','Rimorchio','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Trailer','IT','Rimorchio','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Transaction_Date','IT','Data Transazione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Transaction_Date','IT','Data Transazione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Transaction_Ref','IT','Rif. Transazione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Transaction_Ref','IT','Rif. Transazione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Transaction_Subtype','IT','SottoTipo Transazione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Transaction_Subtype','IT','SottoTipo Transazione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Transaction_Type','IT','Tipo Transazione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Transaction_Type','IT','Tipo Transazione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Unassigned','IT','Non Assegnato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Unassigned','IT','Non Assegnato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Unassigned_Filter','IT','Filtro Non Assegnato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Unassigned_Filter','IT','Filtro Non Assegnato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Unconfirmed','IT','Non Confermato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Unconfirmed','IT','Non Confermato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_UOM_Conversion','IT','Conversioni UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_UOM_Conversion','IT','Conversioni UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_UOM_Internal','IT','UdM Interna','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_UOM_Internal','IT','UdM Interna','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_UOM_ISO','IT','UdM ISO','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_UOM_ISO','IT','UdM ISO','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_UOM_Local','IT','UdM Locale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_UOM_Local','IT','UdM Locale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account','IT','Account','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account','IT','Account','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Bad_Passwords','IT','Password Sbagliate','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Bad_Passwords','IT','Password Sbagliate','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Email','IT','Email','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Email','IT','Email','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Expires','IT','Account Scade','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Expires','IT','Account Scade','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Expiry_Date','IT','Data Scadenza','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Expiry_Date','IT','Data Scadenza','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Last_Logon','IT','Ultimo Logon','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Last_Logon','IT','Ultimo Logon','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Last_Password_Change','IT','Ultimo Cambio Password','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Last_Password_Change','IT','Ultimo Cambio Password','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Lock','IT','Blocco','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Lock','IT','Blocco','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Locked','IT','Bloccato','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Locked','IT','Bloccato','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Password','IT','Password','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Password','IT','Password','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Password_Change_Allowed','IT','Modifica Password Consentita','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Password_Change_Allowed','IT','Modifica Password Consentita','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Password_Expires','IT','Password Scade','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Password_Expires','IT','Password Scade','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Password_Verify','IT','Verifica','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Password_Verify','IT','Verifica','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Unlock','IT','Sblocca','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_Account_Unlock','IT','Sblocca','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_ID','IT','User ID','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_User_ID','IT','User ID','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Workstation','IT','Workstation','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('lbl_Workstation','IT','Workstation','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_EXEC_CONFIG','IT','Configurazione Host','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_EXEC_CONFIG','IT','Configurazione Host','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_EXEC_IREPORT','IT','iReports','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_EXEC_IREPORT','IT','iReports','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_CONTROL_EDIT','IT','Controlli Sistema','C');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_CONTROL_EDIT','IT','Controlli Sistema','C');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_DESPATCH','IT','Spedizione','D');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_DESPATCH','IT','Spedizione','D');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUP_ADD','IT','Aggiungi un Gruppo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUP_ADD','IT','Aggiungi un Gruppo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUP_DELETE','IT','Elimina un Gruppo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUP_DELETE','IT','Elimina un Gruppo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUP_EDIT','IT','Proprietà Gruppo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUP_EDIT','IT','Proprietà Gruppo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUP_PERM','IT','Autorizzazioni Gruppo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUP_PERM','IT','Autorizzazioni Gruppo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUP_RENAME','IT','Rinomina Gruppo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUP_RENAME','IT','Rinomina Gruppo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUPS','IT','Gruppi','G');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_GROUPS','IT','Gruppi','G');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_INTERFACE','IT','Amministrazione Interfaccia','I');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_INTERFACE','IT','Amministrazione Interfaccia','I');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_INTERFACE_EDIT','IT','Modifica Interfaccia','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_INTERFACE_EDIT','IT','Modifica Interfaccia','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_INTERFACE_LOG','IT','Log Interfaccia','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_INTERFACE_LOG','IT','Log Interfaccia','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_INTERFACE_PROCESS','IT','Process Interface Messages','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_INTERFACE_PROCESS','IT','Process Interface Messages','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_INTERFACE_REQUEST','IT','Interface Request Administration','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_INTERFACE_REQUEST','IT','Interface Request Administration','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_LANGUAGE','IT','Traduzioni','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_LANGUAGE','IT','Traduzioni','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_LOCATION_ADD','IT','Aggiungi Location','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_LOCATION_ADD','IT','Aggiungi Location','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_LOCATION_DELETE','IT','Elimina Location','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_LOCATION_DELETE','IT','Elimina Location','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_LOCATION_EDIT','IT','Modifica Location','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_LOCATION_EDIT','IT','Modifica Location','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_LOCATIONS','IT','Gestione Location','L');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_LOCATIONS','IT','Gestione Location','L');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_ADD','IT','Aggiungi un Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_ADD','IT','Aggiungi un Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_BATCH','IT','Gestione Batch','B');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_BATCH','IT','Gestione Batch','B');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_BATCH_EDIT','IT','Modifica Batch Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_BATCH_EDIT','IT','Modifica Batch Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_DELETE','IT','Elimina Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_DELETE','IT','Elimina Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_EDIT','IT','Modifica Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_EDIT','IT','Modifica Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE','IT','Gestione Tipi Materiale','T');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE','IT','Gestione Tipi Materiale','T');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_ADD','IT','Aggiungi Tipo Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_ADD','IT','Aggiungi Tipo Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_DELETE','IT','Elimina Tipo Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_DELETE','IT','Elimina Tipo Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_EDIT','IT','Aggiungi o Modifica Tipo Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_EDIT','IT','Aggiungi o Modifica Tipo Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_PRINT','IT','Stampa Tipi Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_PRINT','IT','Stampa Tipi Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_RENAME','IT','Rinomina Tipo Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_RENAME','IT','Rinomina Tipo Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM','IT','Gestione UdM Materiale','U');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM','IT','Gestione UdM Materiale','U');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_ADD','IT','Aggiungi UdM Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_ADD','IT','Aggiungi UdM Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_DELETE','IT','Elimina UdM Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_DELETE','IT','Elimina UdM Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_EDIT','IT','Modifica Proprietà UdM Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_EDIT','IT','Modifica Proprietà UdM Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIALS','IT','Gestione Materiali','M');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MATERIALS','IT','Gestione Materiali','M');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MENU','IT','Menu Gestione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MENU','IT','Menu Gestione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN','IT','Gestione Master Holds','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN','IT','Gestione Master Holds','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_ASSIGN','IT','Assegna SSCC a MHN','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_ASSIGN','IT','Assegna SSCC a MHN','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION','IT','Gestione Decisioni','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION','IT','Gestione Decisioni','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION_EDIT','IT','Modifica Decisione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_DECISION_EDIT','IT','Modifica Decisione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_EDIT','IT','Modifica MHN','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_EDIT','IT','Modifica MHN','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_REASON','IT','Gestione Reason','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_REASON','IT','Gestione Reason','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_REASON_EDIT','IT','Modifica Reason','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MHN_REASON_EDIT','IT','Modifica Reason','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MODULE_ADD','IT','Aggiungi Modulo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MODULE_ADD','IT','Aggiungi Modulo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MODULE_DELETE','IT','Elimina Modulo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MODULE_DELETE','IT','Elimina Modulo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MODULE_EDIT','IT','Modifica Proprietà Modulo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MODULE_EDIT','IT','Modifica Proprietà Modulo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MODULE_RENAME','IT','Rinomina Modulo','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MODULE_RENAME','IT','Rinomina Modulo','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MODULES','IT','Moduli','M');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_MODULES','IT','Moduli','M');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_ADD','IT','Aggiungi Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_ADD','IT','Aggiungi Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_DELETE','IT','Elimina Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_DELETE','IT','Elimina Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT','IT','Modifica Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT','IT','Modifica Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_BATCH','IT','Modifica Batch Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_BATCH','IT','Modifica Batch Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_LOCATION','IT','Modifica Locazione Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_LOCATION','IT','Modifica Locazione Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_MATERIAL','IT','Modifica Materiale Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_MATERIAL','IT','Modifica Materiale Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER','IT','Modifica Process Order','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER','IT','Modifica Process Order','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_PROD_DATE','IT','Modifica Data Produzione','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_PROD_DATE','IT','Modifica Data Produzione','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_QUANTITY','IT','Modifica Quantità Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_QUANTITY','IT','Modifica Quantità Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_STATUS','IT','Modifica Stato Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_STATUS','IT','Modifica Stato Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_UOM','IT','Modifica UdM Materiale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_UOM','IT','Modifica UdM Materiale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_HISTORY','IT','Storia Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_HISTORY','IT','Storia Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_PRINT','IT','Stampa Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLET_PRINT','IT','Stampa Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLETS','IT','Info Pallet','P');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PALLETS','IT','Info Pallet','P');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER','IT','Gestione Process Order','O');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER','IT','Gestione Process Order','O');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_ADD','IT','Aggiungi Process Order','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_ADD','IT','Aggiungi Process Order','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_DELETE','IT','Elimina Process Order','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_DELETE','IT','Elimina Process Order','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_EDIT','IT','Modifica Process Order','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_EDIT','IT','Modifica Process Order','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_RF_MENU','IT','Menu Gestione RF','F');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_RF_MENU','IT','Menu Gestione RF','F');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_TOOLBAR','IT','Gestione Toolbar','T');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_TOOLBAR','IT','Gestione Toolbar','T');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM','IT','Gestione UdM','U');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM','IT','Gestione UdM','U');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM_ADD','IT','Aggiungi UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM_ADD','IT','Aggiungi UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM_DELETE','IT','Elimina UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM_DELETE','IT','Elimina UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM_EDIT','IT','Modifica UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM_EDIT','IT','Modifica UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM_PRINT','IT','Stampa UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM_PRINT','IT','Stampa UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM_RENAME','IT','Rinomina UdM','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_UOM_RENAME','IT','Rinomina UdM','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USER_ADD','IT','Aggiungi Utente','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USER_ADD','IT','Aggiungi Utente','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USER_DELETE','IT','Elimina Utente','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USER_DELETE','IT','Elimina Utente','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USER_EDIT','IT','Proprietà Utente','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USER_EDIT','IT','Proprietà Utente','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USER_PERM','IT','Autorizzazioni Utente','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USER_PERM','IT','Autorizzazioni Utente','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USER_RENAME','IT','Rinomina Utente','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USER_RENAME','IT','Rinomina Utente','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USERS','IT','Utenti','S');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_ADMIN_USERS','IT','Utenti','S');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_CM_PRINTERS','IT','Stampante di Default','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_CM_PRINTERS','IT','Stampante di Default','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PAL_INFO','IT','Info Pallet','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PAL_INFO','IT','Info Pallet','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','IT','Stampa Etichetta','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','IT','Stampa Etichetta','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PAL_PROD_CONFIRM','IT','Completamento Pallet','C');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PAL_PROD_CONFIRM','IT','Completamento Pallet','C');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PAL_PROD_DEC','IT','Etichetta Prodotti Finiti','D');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PAL_PROD_DEC','IT','Etichetta Prodotti Finiti','D');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PROCESS_ORDER_LABEL','IT','Process Order Label Print','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PROCESS_ORDER_LABEL','IT','Process Order Label Print','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PRODDEC_CONFIRM','IT','Permits user to check the Confirmed Box','C');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PRODDEC_CONFIRM','IT','Permits user to check the Confirmed Box','C');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PRODDEC_PREVIEW','IT','Permits user to click preview box','P');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PRODDEC_PREVIEW','IT','Permits user to click preview box','P');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PRODDEC_PRINT','IT','Permits user to enable/disable print box','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_PRODDEC_PRINT','IT','Permits user to enable/disable print box','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_SYSTEM_KEYS','IT','Gestione Chiavi di Sistema','S');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_SYSTEM_KEYS','IT','Gestione Chiavi di Sistema','S');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_SYSTEM_KEYS_ADD','IT','Aggiungi Chiave di Sistema','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_SYSTEM_KEYS_ADD','IT','Aggiungi Chiave di Sistema','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_SYSTEM_KEYS_DELETE','IT','Elimina Chiave di Sistema','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_SYSTEM_KEYS_DELETE','IT','Elimina Chiave di Sistema','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_SYSTEM_KEYS_EDIT','IT','Modifica Chiave di Sistema','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_FRM_SYSTEM_KEYS_EDIT','IT','Modifica Chiave di Sistema','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_ADMIN','IT','Amministrazione','A');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_ADMIN','IT','Amministrazione','A');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_CUSTOMISE','IT','Personalizza Applicazione','C');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_CUSTOMISE','IT','Personalizza Applicazione','C');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_DATA_MAINT','IT','Gestione Dati','D');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_DATA_MAINT','IT','Gestione Dati','D');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_INTERFACE','IT','Interfacce','I');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_INTERFACE','IT','Interfacce','I');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_MHN','IT','Master Holds','0');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_MHN','IT','Master Holds','0');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_PAL','IT','Transazioni Pallet','P');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_PAL','IT','Transazioni Pallet','P');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_PAL_REPORTS','IT','Menu Report','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_PAL_REPORTS','IT','Menu Report','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_PERMISSIONS','IT','Autorizzazioni','R');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_PERMISSIONS','IT','Autorizzazioni','R');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_SETUP','IT','Setup','S');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_SETUP','IT','Setup','S');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_TOOLS','IT','Strumenti','T');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_MENU_TOOLS','IT','Strumenti','T');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_root','IT','Principale','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('mod_root','IT','Principale','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('web_Cancel','IT','Annulla','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('web_Cancel','IT','Annulla','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('web_SSCC','IT','SSCC','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('web_SSCC','IT','SSCC','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('web_Submit','IT','Invia','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('web_Submit','IT','Invia','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Hold','EN','Hold','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Hold','EN','Hold','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Hold','HU','Tart','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Hold','HU','Tart','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Hold','NL','Houd','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Hold','NL','Houd','');
 </statement>
 <statement>
-insert into sys_language (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Hold','IT','Tenere','');
+insert into SYS_LANGUAGE (Resource_Key,Language_Id,Text,Mnemonic) values ('btn_Hold','IT','Tenere','');
 </statement>
 
 </DDL>

@@ -54,7 +54,7 @@
 </statement>
 
 <statement>
-	create view VIEW_PERMISSIONS as 
+	create view view_permissions as 
 	SELECT
 	dbo.[SYS_USERS].[USER_ID],
 	dbo.[SYS_USERS].[USER_COMMENT],

@@ -7,11 +7,11 @@ INSERT [dbo].[SYS_MODULES] ([MODULE_ID], [RF_ACTIVE], [DK_ACTIVE], [MODULE_TYPE]
 </statement>
 
 <statement>
-	insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','Label Print','EN','')
+	insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','Label Print','EN','')
 </statement>
 
 <statement>
-	insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','Label Print','NL','')
+	insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_LABEL_COPIES','Label Print','NL','')
 </statement>
 
 <statement>

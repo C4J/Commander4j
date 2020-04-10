@@ -7,43 +7,43 @@
 	</statement>
 	
 	<statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'EN', 'Upper Limit', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'EN', 'Upper Limit', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'DE', 'Obere Grenze', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'DE', 'Obere Grenze', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'ES', 'Limite superior', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'ES', 'Limite superior', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'FR', 'Limite supérieure', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'FR', 'Limite supérieure', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'HU', 'Felső határ', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'HU', 'Felső határ', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'IT', 'Limite superiore', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'IT', 'Limite superiore', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'NL', 'Bovenlimiet', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'NL', 'Bovenlimiet', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'PL', 'Górna granica', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Upper_Limit', 'PL', 'Górna granica', '0')
     </statement>
     
     <statement>
-		DROP VIEW [dbo].[VIEW_WEIGHT_SAMPLES]
+		DROP VIEW [dbo].[view_weight_samples]
 	</statement>
 
 	<statement>
-		CREATE VIEW [dbo].[VIEW_WEIGHT_SAMPLES] AS SELECT
+		CREATE VIEW [dbo].[view_weight_samples] AS SELECT
 		[APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_POINT],
 		[APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_DATE],
 		[APP_WEIGHT_SAMPLE_HEADER].[USER_ID],

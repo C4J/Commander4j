@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Labels_Per_SSCC','Labels per SSCC','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Labels_Per_SSCC','Labels per SSCC','NL','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Labels_Per_SSCC','EN','Labels per SSCC','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Labels_Per_SSCC','EN','Labels per SSCC','')
 </statement>
 
 <statement>
@@ -23,11 +23,11 @@ INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN',
 </statement> 
 
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Label_Header_Text','Label Header Text','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Label_Header_Text','Label Header Text','NL','')
 </statement>
 
 <statement>
-insert into dbo.sys_language (resource_key,language_id,text,mnemonic) values ('lbl_Label_Header_Text','EN','Label Header Text','')
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Label_Header_Text','EN','Label Header Text','')
 </statement>
 
 

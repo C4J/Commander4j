@@ -6,24 +6,24 @@
 		ALTER 
 		VIEW `view_qm_results` AS
 		    SELECT 
-		        `samp`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
-		        `samp`.`MATERIAL` AS `MATERIAL`,
-		        `samp`.`SAMPLE_ID` AS `SAMPLE_ID`,
-		        `samp`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
-		        `samp`.`USER_DATA_1` AS `USER_DATA_1`,
-		        `samp`.`USER_DATA_2` AS `USER_DATA_2`,
-		        `samp`.`USER_DATA_3` AS `USER_DATA_3`,
-		        `samp`.`USER_DATA_4` AS `USER_DATA_4`,
-		        `result`.`TEST_ID` AS `TEST_ID`,
-		        `dict`.`DESCRIPTION` AS `TEST_DESCRIPTION`,
-		        `result`.`VALUE` AS `VALUE`,
-		        COALESCE(`valist`.`DESCRIPTION`, `result`.`VALUE`) AS `RESULT`
+		        `SAMP`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+		        `SAMP`.`MATERIAL` AS `MATERIAL`,
+		        `SAMP`.`SAMPLE_ID` AS `SAMPLE_ID`,
+		        `SAMP`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
+		        `SAMP`.`USER_DATA_1` AS `USER_DATA_1`,
+		        `SAMP`.`USER_DATA_2` AS `USER_DATA_2`,
+		        `SAMP`.`USER_DATA_3` AS `USER_DATA_3`,
+		        `SAMP`.`USER_DATA_4` AS `USER_DATA_4`,
+		        `RESULT`.`TEST_ID` AS `TEST_ID`,
+		        `DICT`.`DESCRIPTION` AS `TEST_DESCRIPTION`,
+		        `RESULT`.`VALUE` AS `VALUE`,
+		        COALESCE(`VALIST`.`DESCRIPTION`, `RESULT`.`VALUE`) AS `RESULT`
 		    FROM
-		        (((`app_qm_sample` `samp`
-		        JOIN `app_qm_result` `result` ON ((`result`.`SAMPLE_ID` = `samp`.`SAMPLE_ID`)))
-		        JOIN `app_qm_dictionary` `dict` ON ((`dict`.`TEST_ID` = `result`.`TEST_ID`)))
-		        JOIN `app_qm_selectlist` `valist` ON (((`valist`.`SELECT_LIST_ID` = `dict`.`SELECT_LIST_ID`)
-		        AND (`valist`.`VALUE` = `result`.`VALUE`))))
+		        (((`APP_QM_SAMPLE` `SAMP`
+		        JOIN `APP_QM_RESULT` `RESULT` ON ((`RESULT`.`SAMPLE_ID` = `SAMP`.`SAMPLE_ID`)))
+		        JOIN `APP_QM_DICTIONARY` `DICT` ON ((`DICT`.`TEST_ID` = `RESULT`.`TEST_ID`)))
+		        JOIN `APP_QM_SELECTLIST` `VALIST` ON (((`VALIST`.`SELECT_LIST_ID` = `DICT`.`SELECT_LIST_ID`)
+		        AND (`VALIST`.`VALUE` = `RESULT`.`VALUE`))))
 	</statement>
 	
 	<statement>

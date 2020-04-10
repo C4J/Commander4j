@@ -9,67 +9,67 @@
 	</statement>
 
 	<statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'EN', 'Lower Limit', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'EN', 'Lower Limit', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'DE', 'Untere Grenze', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'DE', 'Untere Grenze', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'ES', 'Límite inferior', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'ES', 'Límite inferior', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'FR', 'Limite inférieure', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'FR', 'Limite inférieure', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'HU', 'Alsó határ', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'HU', 'Alsó határ', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'IT', 'Limite inferiore', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'IT', 'Limite inferiore', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'NL', 'Ondergrens', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'NL', 'Ondergrens', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'PL', 'Dolna granica', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Lower_Limit', 'PL', 'Dolna granica', '0')
     </statement>
     
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'EN', 'Samples Required', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'EN', 'Samples Required', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'DE', 'Proben erforderlich', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'DE', 'Proben erforderlich', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'ES', 'Muestras requeridas', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'ES', 'Muestras requeridas', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'FR', 'Echantillons Requis', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'FR', 'Echantillons Requis', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'HU', 'Minta szükséges', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'HU', 'Minta szükséges', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'IT', 'Campioni richiesti', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'IT', 'Campioni richiesti', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'NL', 'Monsters vereist', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'NL', 'Monsters vereist', '0')
     </statement>
 
     <statement>
-       INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'PL', 'Wymagane próbki', '0')
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Samples_Required', 'PL', 'Wymagane próbki', '0')
     </statement>
     
 	<statement>

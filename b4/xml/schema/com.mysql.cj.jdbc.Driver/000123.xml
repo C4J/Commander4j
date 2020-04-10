@@ -3,7 +3,7 @@
 <DDL>
 
 	<statement>
-	ALTER VIEW `VIEW_PALLET_EXPIRY` AS
+	ALTER VIEW `view_pallet_expiry` AS
 	SELECT 
 	        `p`.`SSCC` AS `SSCC`,
 	        `p`.`LOCATION_ID` AS `LOCATION_ID`,

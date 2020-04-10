@@ -3,7 +3,7 @@
 <DDL>
 
 	<statement>
-		CREATE VIEW VIEW_BARCODE_VALIDATE AS (SELECT
+		CREATE VIEW view_barcode_validate AS (SELECT
 		  APP_PROCESS_ORDER.PROCESS_ORDER,
 		  APP_PROCESS_ORDER.MATERIAL,
 		  APP_PROCESS_ORDER.STATUS,
@@ -26,68 +26,68 @@
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'EN', 'Barcode Validation', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'EN', 'Barcode Validation', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'FR', 'Validation de codes à barres', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'FR', 'Validation de codes à barres', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'DE', 'Barcode-Validierung', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'DE', 'Barcode-Validierung', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'IT', 'Convalida del codice a barre', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'IT', 'Convalida del codice a barre', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'NL', 'Barcodevalidatie', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'NL', 'Barcodevalidatie', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'ES', 'Validación de código de barras', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'ES', 'Validación de código de barras', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'HU', 'Vonalkód-érvényesítés', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'HU', 'Vonalkód-érvényesítés', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'PL', 'Sprawdzanie kodów kreskowych', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Barcode_Validate', 'PL', 'Sprawdzanie kodów kreskowych', '0')
 	</statement>
 	
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'EN', 'Scan Barcode', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'EN', 'Scan Barcode', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'FR', 'Scanner le code à barres', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'FR', 'Scanner le code à barres', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'DE', 'Barcode scannen', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'DE', 'Barcode scannen', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'NL', 'Scan streepjescode', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'NL', 'Scan streepjescode', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'IT', 'Scansione codice a barre', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'IT', 'Scansione codice a barre', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'ES', 'Escanear código de barras', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'ES', 'Escanear código de barras', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'PL', 'Zeskanuj kod kreskowy', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'PL', 'Zeskanuj kod kreskowy', '0')
 	</statement>
 	
 	<statement>	
-		INSERT INTO SYS_LANGUAGE(RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'HU', 'Szkennelési vonalkód', '0')
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('web_Scan_Barcode', 'HU', 'Szkennelési vonalkód', '0')
 	</statement>
 			 
 	<statement>	 

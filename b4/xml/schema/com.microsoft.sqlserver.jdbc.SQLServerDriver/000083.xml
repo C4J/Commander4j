@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-CREATE VIEW [dbo].[VIEW_AUTO_LABELLER_PRINTER]
+CREATE VIEW [dbo].[view_auto_labeller_printer]
 AS
 SELECT      dbo.APP_AUTO_LABELLER.LINE, 
             dbo.APP_LABEL_DATA.LABEL_TYPE, 

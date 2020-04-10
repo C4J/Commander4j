@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-create view [dbo].[VIEW_PALLET_EXPIRY] as				
+create view [dbo].[view_pallet_expiry] as				
   select p.*,b.expiry_date,m.description,c.customer_name,c.print_on_label from
 				app_pallet p, app_material_batch b,
 				app_material m,app_customer c 

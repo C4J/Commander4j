@@ -4,11 +4,11 @@
 
 
     <statement>
-		DROP VIEW [dbo].[VIEW_WEIGHT_SAMPLES]
+		DROP VIEW [dbo].[view_weight_samples]
 	</statement>
 
 	<statement>
-		CREATE VIEW [dbo].[VIEW_WEIGHT_SAMPLES] AS SELECT
+		CREATE VIEW [dbo].[view_weight_samples] AS SELECT
 		[APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_POINT],
 		[APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_DATE],
 		CAST([APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_DATE] AS date) AS SAMPLE_DATE_SHORT,

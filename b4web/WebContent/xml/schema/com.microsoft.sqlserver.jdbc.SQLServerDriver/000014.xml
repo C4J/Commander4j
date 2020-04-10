@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-ALTER TABLE sys_interface_request ADD FILENAME varchar(150)
+ALTER TABLE SYS_INTERFACE_REQUEST ADD FILENAME varchar(150)
 </statement>
 
 <statement>
-ALTER TABLE sys_interface_request ADD MODE varchar(25)
+ALTER TABLE SYS_INTERFACE_REQUEST ADD MODE varchar(25)
 </statement>
 
 

@@ -3,26 +3,26 @@
 <DDL>
    
    <statement>
-			CREATE VIEW `VIEW_WEIGHT_SAMPLES2` AS SELECT
-			`app_weight_sample_point`.`LOCATION` AS `LOCATION`,
-			`app_weight_sample_header`.`PRODUCT_GROUP` AS `PRODUCT_GROUP`,
-			`app_weight_sample_header`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
-			cast( `app_weight_sample_header`.`SAMPLE_DATE` AS date ) AS `SAMPLE_DATE_SHORT`,
-			`app_weight_sample_header`.`NOMINAL_WEIGHT` AS `NOMINAL_WEIGHT`,
-			`app_weight_sample_header`.`SAMPLE_COUNT` AS `SAMPLE_COUNT`,
-			`app_weight_sample_header`.`SAMPLE_MEAN` AS `SAMPLE_MEAN`,
-			`app_weight_sample_header`.`SAMPLE_STD_DEV` AS `SAMPLE_STD_DEV`,
-			`app_weight_sample_header`.`SAMPLE_T1_COUNT` AS `SAMPLE_T1_COUNT`,
-			`app_weight_sample_header`.`SAMPLE_T2_COUNT` AS `SAMPLE_T2_COUNT` 
+			CREATE VIEW `view_weight_samples2` AS SELECT
+			`APP_WEIGHT_SAMPLE_POINT`.`LOCATION` AS `LOCATION`,
+			`APP_WEIGHT_SAMPLE_HEADER`.`PRODUCT_GROUP` AS `PRODUCT_GROUP`,
+			`APP_WEIGHT_SAMPLE_HEADER`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
+			cast( `APP_WEIGHT_SAMPLE_HEADER`.`SAMPLE_DATE` AS date ) AS `SAMPLE_DATE_SHORT`,
+			`APP_WEIGHT_SAMPLE_HEADER`.`NOMINAL_WEIGHT` AS `NOMINAL_WEIGHT`,
+			`APP_WEIGHT_SAMPLE_HEADER`.`SAMPLE_COUNT` AS `SAMPLE_COUNT`,
+			`APP_WEIGHT_SAMPLE_HEADER`.`SAMPLE_MEAN` AS `SAMPLE_MEAN`,
+			`APP_WEIGHT_SAMPLE_HEADER`.`SAMPLE_STD_DEV` AS `SAMPLE_STD_DEV`,
+			`APP_WEIGHT_SAMPLE_HEADER`.`SAMPLE_T1_COUNT` AS `SAMPLE_T1_COUNT`,
+			`APP_WEIGHT_SAMPLE_HEADER`.`SAMPLE_T2_COUNT` AS `SAMPLE_T2_COUNT` 
 		FROM
 			((
-					`app_weight_sample_detail`
-					JOIN `app_weight_sample_header` ON (((
-								`app_weight_sample_detail`.`SAMPLE_POINT` = `app_weight_sample_header`.`SAMPLE_POINT` 
+					`APP_WEIGHT_SAMPLE_DETAIL`
+					JOIN `APP_WEIGHT_SAMPLE_HEADER` ON (((
+								`APP_WEIGHT_SAMPLE_DETAIL`.`SAMPLE_POINT` = `APP_WEIGHT_SAMPLE_HEADER`.`SAMPLE_POINT` 
 								) 
-						AND ( `app_weight_sample_detail`.`SAMPLE_DATE` = `app_weight_sample_header`.`SAMPLE_DATE` ))))
-				JOIN `app_weight_sample_point` ON ((
-					`app_weight_sample_point`.`SAMPLE_POINT` = `app_weight_sample_header`.`SAMPLE_POINT` 
+						AND ( `APP_WEIGHT_SAMPLE_DETAIL`.`SAMPLE_DATE` = `APP_WEIGHT_SAMPLE_HEADER`.`SAMPLE_DATE` ))))
+				JOIN `APP_WEIGHT_SAMPLE_POINT` ON ((
+					`APP_WEIGHT_SAMPLE_POINT`.`SAMPLE_POINT` = `APP_WEIGHT_SAMPLE_HEADER`.`SAMPLE_POINT` 
 			)))
    </statement>
       

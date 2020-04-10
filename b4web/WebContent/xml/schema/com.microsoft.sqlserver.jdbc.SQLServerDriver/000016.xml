@@ -3,898 +3,898 @@
 <DDL>
 	
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Add','Toevoegen','NL','T')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Add','Toevoegen','NL','T')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Archive','Archief','NL','A')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Archive','Archief','NL','A')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Clear_Filter','Clear Filter','NL','F')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Clear_Filter','Clear Filter','NL','F')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Close','Sluiten','NL','S')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Close','Sluiten','NL','S')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Confirm','Bevestig','NL','B')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Confirm','Bevestig','NL','B')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Delete','Verwijder','NL','V')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Delete','Verwijder','NL','V')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Edit','Bewerk','NL','w')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Edit','Bewerk','NL','w')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Edit_Batch','Bewerk Batch','NL','b')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Edit_Batch','Bewerk Batch','NL','b')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Edit_Location','Bewerk Locatie','NL','l')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Edit_Location','Bewerk Locatie','NL','l')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Edit_Material','Bewerk Produkt','NL','P')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Edit_Material','Bewerk Produkt','NL','P')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Edit_Pallet','Bewerk Pallet','NL','a')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Edit_Pallet','Bewerk Pallet','NL','a')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Edit_Process_Order','Bewerk Process Order','NL','O')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Edit_Process_Order','Bewerk Process Order','NL','O')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Excel','Excel','NL','x')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Excel','Excel','NL','x')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Find','Zoek','NL','Z')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Find','Zoek','NL','Z')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Help','Help','NL','H')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Help','Help','NL','H')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Interface_Start','Start Interface','NL','S')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Interface_Start','Start Interface','NL','S')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Interface_Stop','Stop Interface','NL','t')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Interface_Stop','Stop Interface','NL','t')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Label','Label','NL','L')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Label','Label','NL','L')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Material_Batches','Batches','NL','B')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Material_Batches','Batches','NL','B')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Material_UOM_Conversions','UOM Conversies','NL','U')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Material_UOM_Conversions','UOM Conversies','NL','U')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_New','Nieuw','NL','N')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_New','Nieuw','NL','N')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Ok','Oke','NL','O')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Ok','Oke','NL','O')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Permissions','Machtigingen','NL','M')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Permissions','Machtigingen','NL','M')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Print','Afdrukken','NL','A')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Print','Afdrukken','NL','A')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Refresh','Vernieuwen','NL','w')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Refresh','Vernieuwen','NL','w')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Rename','Hernoem','NL','H')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Rename','Hernoem','NL','H')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Resubmit','Verzend Opnieuw','NL','V')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Resubmit','Verzend Opnieuw','NL','V')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Save','Opslaan','NL','O')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Save','Opslaan','NL','O')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Search','Zoeken','NL','Z')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Search','Zoeken','NL','Z')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Select','Selecteer','NL','S')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Select','Selecteer','NL','S')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('btn_Undo','Ongedaan maken','NL','U')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('btn_Undo','Ongedaan maken','NL','U')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Confirm','Bevestig','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Confirm','Bevestig','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Despatch_Confirm','Bevestig Despatch','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Despatch_Confirm','Bevestig Despatch','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Despatch_Create','Maak despatch?','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Despatch_Create','Maak despatch?','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Despatch_Delete','Verwijderen Despatch','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Despatch_Delete','Verwijderen Despatch','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Error','Fout','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Error','Fout','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Information','Informatie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Information','Informatie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Material_Batch_Input','Vul batch in','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Material_Batch_Input','Vul batch in','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Material_Input','Vul Produkt in','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Material_Input','Vul Produkt in','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Material_Type_Add','Voeg Produkt type toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Material_Type_Add','Voeg Produkt type toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Material_Type_Delete','Verwijder type','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Material_Type_Delete','Verwijder type','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Material_Type_Rename','Hernoem type naar','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Material_Type_Rename','Hernoem type naar','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Material_UOM_Input','Voer UOM in','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Material_UOM_Input','Voer UOM in','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_Process_Order_Add','Voer Processorder nummer in (blank = Auto)','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_Process_Order_Add','Voer Processorder nummer in (blank = Auto)','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_SSCC_Add','Voer SSCC in of AUTO','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_SSCC_Add','Voer SSCC in of AUTO','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_SSCC_Delete','Verwijderen SSCC','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_SSCC_Delete','Verwijderen SSCC','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_SSCC_Print_Maximum','Maxiumum aantal labels dat kan worden afgedrukt is 100. Wijzig criterial of pas het aantal aan.','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_SSCC_Print_Maximum','Maxiumum aantal labels dat kan worden afgedrukt is 100. Wijzig criterial of pas het aantal aan.','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_UOM_Add','Voeg UOM toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_UOM_Add','Voeg UOM toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_UOM_Delete','Verwijder UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_UOM_Delete','Verwijder UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('dlg_UOM_Rename','Hernoem UOM naar','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('dlg_UOM_Rename','Hernoem UOM naar','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('err_Batch_Blank','Batch is leeg','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('err_Batch_Blank','Batch is leeg','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('err_Location_Blank','Locatie is leeg','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('err_Location_Blank','Locatie is leeg','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('err_Material_Blank','Produkt is leeg','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('err_Material_Blank','Produkt is leeg','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('err_Process_Order_Blank','Process Order is leeg','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('err_Process_Order_Blank','Process Order is leeg','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Assigned','Toegekend','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Assigned','Toegekend','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Base_UOM','Base UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Base_UOM','Base UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Batch','Batch','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Batch','Batch','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Confirmed','Bevestigd','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Confirmed','Bevestigd','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Description','Beschrijving','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Description','Beschrijving','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Despatch_Date','Despatch Date','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Despatch_Date','Despatch Date','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Despatch_No','Despatch nr.','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Despatch_No','Despatch nr.','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Despatch_Status','Despatch Status','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Despatch_Status','Despatch Status','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Despatches','Depatches','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Despatches','Depatches','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Email_Addresses','E-mailadressen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Email_Addresses','E-mailadressen','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Email_Error','Fout','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Email_Error','Fout','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Email_Notifications','E-mail notificaties','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Email_Notifications','E-mail notificaties','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Email_Success','Succes','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Email_Success','Succes','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Email_Warning','Waarschuwing','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Email_Warning','Waarschuwing','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Filter_By','Filter op','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Filter_By','Filter op','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Find','Zoeken','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Find','Zoeken','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_From_Location','Van locatie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_From_Location','Van locatie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Group_ID','Groeps-ID','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Group_ID','Groeps-ID','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Haulier','Verhuizer','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Haulier','Verhuizer','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Device','Apparaat','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Device','Apparaat','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Direction','Interface Richting','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Direction','Interface Richting','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Enabled','Ingeschakeld','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Enabled','Ingeschakeld','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Filename','Bestandsnaam','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Filename','Bestandsnaam','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Format','Formaat','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Format','Formaat','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Path','Pad','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Path','Pad','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Type','Interfacetype','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Interface_Type','Interfacetype','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Language','Taal','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Language','Taal','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Language_Key','Resource Key','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Language_Key','Resource Key','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Language_Mnemonic','Mnemonic','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Language_Mnemonic','Mnemonic','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Limit','Limiet','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Limit','Limiet','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Load_No','Load nr.','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Load_No','Load nr.','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Location_ID','Locatie ID','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Location_ID','Locatie ID','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material','Materiaal','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material','Materiaal','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Base_UOM','Base UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Base_UOM','Base UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Batch','Batch','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Batch','Batch','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Batch_Expiry_Date','Houdbaar tot','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Batch_Expiry_Date','Houdbaar tot','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Batch_Expiry_From','Houdbaar van','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Batch_Expiry_From','Houdbaar van','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Batch_Expiry_To','Houdbaar tot','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Batch_Expiry_To','Houdbaar tot','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Batch_Status','Status','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Batch_Status','Status','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Default_Batch_Status','Standaard Batch status','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Default_Batch_Status','Standaard Batch status','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Equipment_Type','Equipment Type','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Equipment_Type','Equipment Type','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Gross_Weight','Brutogewicht','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Gross_Weight','Brutogewicht','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Legacy_Code','Legacy Code','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Legacy_Code','Legacy Code','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Net_Weight','Nettogewicht','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Net_Weight','Nettogewicht','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Shelf_Life','Houdbaarheid','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Shelf_Life','Houdbaarheid','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Shelf_Life_Rounding_Rule','Afronding artikel','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Shelf_Life_Rounding_Rule','Afronding artikel','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Shelf_Life_UOM','Houdbaarheid UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Shelf_Life_UOM','Houdbaarheid UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Type','Produkt type','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Type','Produkt type','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_UOM','UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_UOM','UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_UOM_Denominator','Noemer','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_UOM_Denominator','Noemer','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_UOM_EAN','EAN','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_UOM_EAN','EAN','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_UOM_Numerator','Teller','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_UOM_Numerator','Teller','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_UOM_Variant','Variant','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_UOM_Variant','Variant','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Material_Weight_UOM','Gewicht UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Material_Weight_UOM','Gewicht UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Date','Message date','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Date','Message date','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Despatch_Confirm','Msg Despatch Confirm','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Despatch_Confirm','Msg Despatch Confirm','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Despatch_Pre_Advice','Pre Msg Despatch Advice','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Despatch_Pre_Advice','Pre Msg Despatch Advice','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Equipment_Tracking','Msg Equipment Tracking','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Equipment_Tracking','Msg Equipment Tracking','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Error','Resultaat','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Error','Resultaat','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Event_Date','Event Date','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Event_Date','Event Date','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Information','Bericht Informatie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Information','Bericht Informatie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Production_Confirmation','Msg Productie Bevestig','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Production_Confirmation','Msg Productie Bevestig','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Reference','Berichtreferentie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Reference','Berichtreferentie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Status','Bericht Status','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Status','Bericht Status','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Message_Type','Berichttype','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Message_Type','Berichttype','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_ALL','Alle','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_ALL','Alle','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Desktop','Desktop','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Desktop','Desktop','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Executable','Executable','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Executable','Executable','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Executable_Directory','Executable Directory','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Executable_Directory','Executable Directory','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Executable_Filename','Executable Bestandsnaam','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Executable_Filename','Executable Bestandsnaam','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Form','Formulieren','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Form','Formulieren','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Function','Functies','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Function','Functies','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Help','Help','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Help','Help','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Icon_Filename','Icon Bestandsnaam','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Icon_Filename','Icon Bestandsnaam','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_ID','Module ID','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_ID','Module ID','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Menu','Menu','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Menu','Menu','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Print_Copies','Print Exemplaren','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Print_Copies','Print Exemplaren','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Print_Dialog','Print Dialog','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Print_Dialog','Print Dialog','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Print_Preview','Afdrukvoorbeeld','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Print_Preview','Afdrukvoorbeeld','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Report','Rapporten','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Report','Rapporten','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Report_Filename','Rapport bestandsnaam','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Report_Filename','Rapport bestandsnaam','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Report_Type','Rapport type','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Report_Type','Rapport type','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Scanner','Scanner','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Scanner','Scanner','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Module_Type','Module Type','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Module_Type','Module Type','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_No_Of_Pallets','Aantal pallets','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_No_Of_Pallets','Aantal pallets','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Number_of_SSCCs','Aantal SSCCs','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Number_of_SSCCs','Aantal SSCCs','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Options','Opties','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Options','Opties','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Pallet','Pallet','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Pallet','Pallet','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_Base_Quantity','Basishoeveelheid','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_Base_Quantity','Basishoeveelheid','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_Base_UOM','Base UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_Base_UOM','Base UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_DOM','Produktiedatum','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_DOM','Produktiedatum','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_Layers','Lagen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_Layers','Lagen','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_Quantity','Aantal','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_Quantity','Aantal','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_SSCC','SSCC','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_SSCC','SSCC','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_Status','Pallet Status','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_Status','Pallet Status','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_UOM','UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Pallet_UOM','UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Preview','Voorbeeld','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Preview','Voorbeeld','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Print','Afdrukken','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Print','Afdrukken','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Print_Queue','Afdrukwachtrij','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Print_Queue','Afdrukwachtrij','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order','Process Order','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order','Process Order','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Default_Pallet_Status','Standaard Pallet Status','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Default_Pallet_Status','Standaard Pallet Status','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Due_Date','Einddatum','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Due_Date','Einddatum','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Recipe','Recept','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Recipe','Recept','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Required_Quantity','Aantal','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Required_Quantity','Aantal','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Required_UOM','UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Required_UOM','UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Status','Status','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Process_Order_Status','Status','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Referenced_Data','Referenced Data','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Referenced_Data','Referenced Data','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Sort_By','Sorteren op','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Sort_By','Sorteren op','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Bin','Bin','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Bin','Bin','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Equipment_Tracking_ID','Equipment Tracking ID','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Equipment_Tracking_ID','Equipment Tracking ID','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Storage_GLN','GLN','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Storage_GLN','GLN','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Location','Locatie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Location','Locatie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Location_Permit_Batch_Status','Permit Batch status','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Location_Permit_Batch_Status','Permit Batch status','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Location_Permit_Pallet_Status','Permit Pallet Status','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Location_Permit_Pallet_Status','Permit Pallet Status','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Plant','Plant','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Plant','Plant','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Section','Afdeling','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Section','Afdeling','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Type','Type','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Type','Type','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Warehouse','Warehouse','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Storage_Warehouse','Warehouse','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_To_Location','Naar locatie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_To_Location','Naar locatie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Trailer','Trailer','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Trailer','Trailer','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Transaction_Date','Transactie Datum','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Transaction_Date','Transactie Datum','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Transaction_Ref','Transactie Ref','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Transaction_Ref','Transactie Ref','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Transaction_Subtype','Transactie subtype','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Transaction_Subtype','Transactie subtype','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Transaction_Type','Transactie type','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Transaction_Type','Transactie type','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Unassigned','Niet toegewezen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Unassigned','Niet toegewezen','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Unassigned_Filter','Niet toegewezen filter','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Unassigned_Filter','Niet toegewezen filter','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Unconfirmed','Niet bevestigd','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Unconfirmed','Niet bevestigd','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_UOM_Conversion','UOM Conversie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_UOM_Conversion','UOM Conversie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_UOM_Internal','Interne UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_UOM_Internal','Interne UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_UOM_ISO','ISO UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_UOM_ISO','ISO UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_UOM_Local','Lokale UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_UOM_Local','Lokale UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account','Account','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account','Account','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Bad_Passwords','Slechte wachtwoorden','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Bad_Passwords','Slechte wachtwoorden','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Email','E-mail','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Email','E-mail','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Expires','Account verloopt','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Expires','Account verloopt','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Expiry_Date','Houdbaar','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Expiry_Date','Houdbaar','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Last_Logon','Laatste Logon','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Last_Logon','Laatste Logon','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Last_Password_Change','Laatste wachtwoord wijziging','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Last_Password_Change','Laatste wachtwoord wijziging','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Lock','Lock','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Lock','Lock','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Locked','Gesloten','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Locked','Gesloten','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Password','Wachtwoord','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Password','Wachtwoord','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Password_Change_Allowed','Wachtwoord wijzigen toegestaan','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Password_Change_Allowed','Wachtwoord wijzigen toegestaan','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Password_Expires','Wachtwoord verloopt','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Password_Expires','Wachtwoord verloopt','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Password_Verify','Controleer','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Password_Verify','Controleer','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Unlock','Unlock','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_Account_Unlock','Unlock','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_User_ID','User ID','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_User_ID','User ID','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('lbl_Workstation','Workstation','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Workstation','Workstation','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_EXEC_CONFIG','Host Configuration','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_EXEC_CONFIG','Host Configuration','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_EXEC_IREPORT','ireports','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_EXEC_IREPORT','ireports','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_CONTROL_EDIT','System Controls','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_CONTROL_EDIT','System Controls','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_DESPATCH','Despatch Pallets','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_DESPATCH','Despatch Pallets','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUP_ADD','Een groep toevoegen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUP_ADD','Een groep toevoegen','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUP_DELETE','Verwijderen van een groep','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUP_DELETE','Verwijderen van een groep','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUP_EDIT','Groep eigenschappen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUP_EDIT','Groep eigenschappen','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUP_PERM','Groepsrechten','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUP_PERM','Groepsrechten','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUP_RENAME','Groep hernoemen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUP_RENAME','Groep hernoemen','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUPS','Groepen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_GROUPS','Groepen','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_INTERFACE','Interface Admin','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_INTERFACE','Interface Admin','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_EDIT','Edit Interface','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_EDIT','Edit Interface','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_LOG','Interface log','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_LOG','Interface log','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_PROCESS','Verwerk inteface berichten','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_PROCESS','Verwerk inteface berichten','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_REQUEST','Aanvraag Administratie Interface','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_REQUEST','Aanvraag Administratie Interface','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LOCATION_ADD','Voeg nieuwe locatie toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LOCATION_ADD','Voeg nieuwe locatie toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LOCATION_DELETE','Verwijder locatie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LOCATION_DELETE','Verwijder locatie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LOCATION_EDIT','Bewerk een locatie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LOCATION_EDIT','Bewerk een locatie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LOCATIONS','Beheer locaties','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LOCATIONS','Beheer locaties','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_ADD','Voeg Produkt toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_ADD','Voeg Produkt toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_BATCH','Beheer batches','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_BATCH','Beheer batches','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_BATCH_EDIT','Bewerk produkt batch record','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_BATCH_EDIT','Bewerk produkt batch record','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_DELETE','Verwijder Produkt','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_DELETE','Verwijder Produkt','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_EDIT','Bewerk Produkt','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_EDIT','Bewerk Produkt','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE','Beheer Produkt soorten','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE','Beheer Produkt soorten','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_ADD','Voeg Produkt type toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_ADD','Voeg Produkt type toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_DELETE','Verwijder Produkt type','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_DELETE','Verwijder Produkt type','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_EDIT','Toevoegen of bijwerken een produkt type','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_EDIT','Toevoegen of bijwerken een produkt type','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_PRINT','Print produkt soorten','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_PRINT','Print produkt soorten','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_RENAME','Wijzig naam van een Produkt type','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_RENAME','Wijzig naam van een Produkt type','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM','Beheer UOM voor een Produkt','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM','Beheer UOM voor een Produkt','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_ADD','Voeg Produkt UOM toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_ADD','Voeg Produkt UOM toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_DELETE','Verwijder een Produkt UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_DELETE','Verwijder een Produkt UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_EDIT','Edit Materiaal UOM Eigenschappen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_EDIT','Edit Materiaal UOM Eigenschappen','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIALS','Beheer produkten','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MATERIALS','Beheer produkten','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MENU','Menu Onderhoud','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MENU','Menu Onderhoud','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MODULE_ADD','Voeg een module toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MODULE_ADD','Voeg een module toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MODULE_DELETE','Verwijder een module','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MODULE_DELETE','Verwijder een module','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MODULE_EDIT','Bewerk module eigenschappen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MODULE_EDIT','Bewerk module eigenschappen','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MODULE_RENAME','Naam van een module','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MODULE_RENAME','Naam van een module','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MODULES','Modules','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_MODULES','Modules','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_ADD','Voeg pallet toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_ADD','Voeg pallet toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_DELETE','Verwijderen van een pallet','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_DELETE','Verwijderen van een pallet','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT','Edit Pallet','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT','Edit Pallet','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_BATCH','Edit Pallet Batch','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_BATCH','Edit Pallet Batch','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_LOCATION','Edit Pallet Locatie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_LOCATION','Edit Pallet Locatie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_MATERIAL','Edit Materiaal van Pallet','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_MATERIAL','Edit Materiaal van Pallet','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER','Edit Process Order','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER','Edit Process Order','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_PROD_DATE','Edit Productie Datum','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_PROD_DATE','Edit Productie Datum','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_QUANTITY','Edit pallets','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_QUANTITY','Edit pallets','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_STATUS','Edit Pallet Status','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_STATUS','Edit Pallet Status','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_UOM','Bewerk een Material UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_UOM','Bewerk een Material UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_HISTORY','Pallet Geschiedenis','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_HISTORY','Pallet Geschiedenis','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_PRINT','Pallet Print','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLET_PRINT','Pallet Print','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLETS','Beheer pallets','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PALLETS','Beheer pallets','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER','Beheer Process Orders','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER','Beheer Process Orders','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_ADD','Voeg Process Order toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_ADD','Voeg Process Order toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_DELETE','Verwijder Process Order','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_DELETE','Verwijder Process Order','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_EDIT','Bewerk een Process Order','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_EDIT','Bewerk een Process Order','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_RF_MENU','RF Menu Onderhoud','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_RF_MENU','RF Menu Onderhoud','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_TOOLBAR','Toolbar Onderhoud','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_TOOLBAR','Toolbar Onderhoud','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM','Beheer maateenheden','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM','Beheer maateenheden','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM_ADD','Voeg een nieuwe UOM toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM_ADD','Voeg een nieuwe UOM toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM_DELETE','Verwijder een UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM_DELETE','Verwijder een UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM_EDIT','Bewerk UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM_EDIT','Bewerk UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM_PRINT','Print UOMs','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM_PRINT','Print UOMs','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM_RENAME','De naam van een UOM','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_UOM_RENAME','De naam van een UOM','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USER_ADD','Voeg een nieuwe gebruiker','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USER_ADD','Voeg een nieuwe gebruiker','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USER_DELETE','Verwijderen van een gebruiker','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USER_DELETE','Verwijderen van een gebruiker','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USER_EDIT','Gebruikerseigenschappen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USER_EDIT','Gebruikerseigenschappen','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USER_PERM','Gebruikersrechten','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USER_PERM','Gebruikersrechten','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USER_RENAME','Hernoem gebruiker','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USER_RENAME','Hernoem gebruiker','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USERS','Gebruikers','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_USERS','Gebruikers','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_CM_PRINTERS','Standaardprinter','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_CM_PRINTERS','Standaardprinter','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_INFO','Pallet Info','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_INFO','Pallet Info','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_PROD_CONFIRM','Bevestig produktie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_PROD_CONFIRM','Bevestig produktie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_PROD_DEC','Productie Verklaring','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PAL_PROD_DEC','Productie Verklaring','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PRODDEC_CONFIRM','User mag confirmed box aanvinken','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PRODDEC_CONFIRM','User mag confirmed box aanvinken','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PRODDEC_PREVIEW','User mag preview box gebruiken','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PRODDEC_PREVIEW','User mag preview box gebruiken','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_PRODDEC_PRINT','User mag print box aan/uit zetten','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_PRODDEC_PRINT','User mag print box aan/uit zetten','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_SYSTEM_KEYS','System Keys Onderhoud','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_SYSTEM_KEYS','System Keys Onderhoud','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_SYSTEM_KEYS_ADD','Voeg system key toe','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_SYSTEM_KEYS_ADD','Voeg system key toe','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_SYSTEM_KEYS_DELETE','Verwijderen van een System Key','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_SYSTEM_KEYS_DELETE','Verwijderen van een System Key','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_FRM_SYSTEM_KEYS_EDIT','Bewerk een System Key','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_SYSTEM_KEYS_EDIT','Bewerk een System Key','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_MENU_ADMIN','Administratie','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_MENU_ADMIN','Administratie','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_MENU_CUSTOMISE','Aanpassen Toepassing','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_MENU_CUSTOMISE','Aanpassen Toepassing','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_MENU_DATA_MAINT','Data Onderhoud','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_MENU_DATA_MAINT','Data Onderhoud','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_MENU_INTERFACE','Interfaces','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_MENU_INTERFACE','Interfaces','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_MENU_PAL','Pallet Transacties','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_MENU_PAL','Pallet Transacties','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_MENU_PAL_REPORTS','Rapporten Menu','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_MENU_PAL_REPORTS','Rapporten Menu','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_MENU_PERMISSIONS','Bevoegdheden','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_MENU_PERMISSIONS','Bevoegdheden','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_MENU_SETUP','Setup','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_MENU_SETUP','Setup','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_MENU_TOOLS','Gereedschap','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_MENU_TOOLS','Gereedschap','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('mod_root','Hoofdmenu','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_root','Hoofdmenu','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('web_Cancel','Annuleren','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('web_Cancel','Annuleren','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('web_SSCC','SSCC','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('web_SSCC','SSCC','NL','')
 </statement>
 <statement>
-insert into dbo.sys_language (resource_key,text,language_id,mnemonic) values ('web_Submit','Indienen','NL','')
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('web_Submit','Indienen','NL','')
 </statement>
 
 </DDL>

@@ -3,36 +3,36 @@
 	<jdbcDriver Type="com.mysql.cj.jdbc.Driver">
 		<?VIEWS ?>
 		<statement>
-			<id>VIEW_GROUP_PERMISSIONS</id>
+			<id>view_group_permissions</id>
 			<text>(select p.group_id,m.* from {schema}SYS_GROUP_PERMISSIONS p, {schema}SYS_MODULES m where m.module_id = p.module_id)</text>
 		</statement>
 		<statement>
-			<id>VIEW_MENU_STRUCTURE</id>
+			<id>view_menu_structure</id>
 			<text>(select SYS_MENUS.*, SYS_MODULES.resource_key, SYS_MODULES.rf_active, SYS_MODULES.dk_active, SYS_MODULES.module_type, SYS_MODULES.hint, SYS_MODULES.icon_filename from {schema}SYS_MENUS, {schema}SYS_MODULES where SYS_MODULES.module_id = SYS_MENUS.module_id)</text>
 		</statement>
 		<statement>
-			<id>VIEW_TOOLBAR</id>
+			<id>view_toolbar</id>
 			<text>(select SYS_TOOLBAR.*, SYS_MODULES.resource_key, SYS_MODULES.rf_active, SYS_MODULES.dk_active, SYS_MODULES.module_type, SYS_MODULES.hint, SYS_MODULES.icon_filename from {schema}SYS_TOOLBAR, {schema}SYS_MODULES where SYS_MODULES.module_id = SYS_TOOLBAR.module_id)</text>
 		</statement>
 		<statement>
-			<id>VIEW_RF_MENU</id>
+			<id>view_rf_menu</id>
 			<text>(select SYS_RF_MENU.*, SYS_MODULES.resource_key, SYS_MODULES.rf_active, SYS_MODULES.dk_active, SYS_MODULES.module_type, SYS_MODULES.hint, SYS_MODULES.icon_filename from {schema}SYS_RF_MENU, {schema}SYS_MODULES where SYS_MODULES.module_id = SYS_RF_MENU.module_id)</text>
 		</statement>
 		<statement>
-			<id>VIEW_SECURITY</id>
+			<id>view_security</id>
 			<text>(select sugm.user_id,sgp.module_id from {schema}SYS_USER_GROUP_MEMBERSHIP sugm, {schema}SYS_GROUP_PERMISSIONS sgp where sgp.group_id = sugm.group_id)</text>
 		</statement>
 		<statement>
-			<id>VIEW_PALLET_EXPIRY</id>
-			<text>VIEW_PALLET_EXPIRY</text>
+			<id>view_pallet_expiry</id>
+			<text>view_pallet_expiry</text>
 		</statement>
 		<statement>
-			<id>VIEW_PALLET_HISTORY_EXPIRY</id>
-			<text>VIEW_PALLET_HISTORY_EXPIRY</text>
+			<id>view_pallet_history_expiry</id>
+			<text>view_pallet_history_expiry</text>
 		</statement>
 		<statement>
-			<id>VIEW_PALLET_HISTORY</id>
-			<text>VIEW_PALLET_HISTORY</text>
+			<id>view_pallet_history</id>
+			<text>view_pallet_history</text>
 		</statement>
 	</jdbcDriver>
 </SQL>

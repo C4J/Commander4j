@@ -4,71 +4,71 @@
 	
 	<statement>
 		CREATE OR REPLACE VIEW `view_sync3b` AS SELECT
-			`app_label_data`.`UNIQUE_ID` AS `UNIQUE_ID`,
-			`app_label_data`.`LINE` AS `LINE`,
+			`APP_LABEL_DATA`.`UNIQUE_ID` AS `UNIQUE_ID`,
+			`APP_LABEL_DATA`.`LINE` AS `LINE`,
 			`view_sync3a`.`LABEL_TYPE` AS `LABEL_TYPE`,
-			`app_label_data`.`USER_ID` AS `USER_ID`,
-			`app_label_data`.`WORKSTATION_ID` AS `WORKSTATION_ID`,
+			`APP_LABEL_DATA`.`USER_ID` AS `USER_ID`,
+			`APP_LABEL_DATA`.`WORKSTATION_ID` AS `WORKSTATION_ID`,
 			`view_sync3a`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
-			`app_label_data`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE`,
+			`APP_LABEL_DATA`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE`,
 			`view_sync3a`.`MATERIAL` AS `MATERIAL`,
-			`app_label_data`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
-			`app_process_order`.`DESCRIPTION` AS `DESCRIPTION`,
+			`APP_LABEL_DATA`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+			`APP_PROCESS_ORDER`.`DESCRIPTION` AS `DESCRIPTION`,
 			`view_sync3a`.`BATCH_NUMBER` AS `BATCH_NUMBER`,
-			`app_label_data`.`BATCH_PREFIX` AS `BATCH_PREFIX`,
-			`app_label_data`.`BATCH_SUFFIX` AS `BATCH_SUFFIX`,
-			`app_process_order`.`STATUS` AS `STATUS`,
-			`app_process_order`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
-			`app_label_data`.`PRINT_DATE` AS `PRINT_DATE`,
-			`app_label_data`.`PROD_EAN` AS `PROD_EAN`,
-			`app_label_data`.`PROD_VARIANT` AS `PROD_VARIANT`,
-			`app_label_data`.`PROD_QUANTITY` AS `PROD_QUANTITY`,
-			`app_label_data`.`PROD_UOM` AS `PROD_UOM`,
-			`app_label_data`.`BASE_EAN` AS `BASE_EAN`,
-			`app_label_data`.`BASE_VARIANT` AS `BASE_VARIANT`,
-			`app_label_data`.`BASE_QUANTITY` AS `BASE_QUANTITY`,
-			`app_label_data`.`BASE_UOM` AS `BASE_UOM`,
-			`app_label_data`.`DATE_OF_MANUFACTURE` AS `DATE_OF_MANUFACTURE`,
-			`app_label_data`.`EXPIRY_DATE` AS `EXPIRY_DATE`,
-			`app_material`.`UPDATED` AS `MATERIAL_UPDATED`,
-			`app_process_order`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
-			`app_process_order`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
-			`app_customer`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
-			`app_label_data`.`OVERRIDE_MANUFACTURE_DATE` AS `OVERRIDE_MANUFACTURE_DATE`,
-			`app_label_data`.`OVERRIDE_EXPIRY_DATE` AS `OVERRIDE_EXPIRY_DATE`,
-			`app_label_data`.`OVERRIDE_BATCH_PREFIX` AS `OVERRIDE_BATCH_PREFIX`,
-			`app_material`.`OVERRIDE_PACK_LABEL` AS `OVERRIDE_PACK_LABEL`,
-			`app_material`.`PACK_LABEL_MODULE_ID` AS `PACK_LABEL_MODULE_ID`,
-			`app_material`.`OVERRIDE_PALLET_LABEL` AS `OVERRIDE_PALLET_LABEL`,
-			`app_material`.`PALLET_LABEL_MODULE_ID` AS `PALLET_LABEL_MODULE_ID`,
-			`app_label_data`.`LAYERS` AS `LAYERS` 
+			`APP_LABEL_DATA`.`BATCH_PREFIX` AS `BATCH_PREFIX`,
+			`APP_LABEL_DATA`.`BATCH_SUFFIX` AS `BATCH_SUFFIX`,
+			`APP_PROCESS_ORDER`.`STATUS` AS `STATUS`,
+			`APP_PROCESS_ORDER`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
+			`APP_LABEL_DATA`.`PRINT_DATE` AS `PRINT_DATE`,
+			`APP_LABEL_DATA`.`PROD_EAN` AS `PROD_EAN`,
+			`APP_LABEL_DATA`.`PROD_VARIANT` AS `PROD_VARIANT`,
+			`APP_LABEL_DATA`.`PROD_QUANTITY` AS `PROD_QUANTITY`,
+			`APP_LABEL_DATA`.`PROD_UOM` AS `PROD_UOM`,
+			`APP_LABEL_DATA`.`BASE_EAN` AS `BASE_EAN`,
+			`APP_LABEL_DATA`.`BASE_VARIANT` AS `BASE_VARIANT`,
+			`APP_LABEL_DATA`.`BASE_QUANTITY` AS `BASE_QUANTITY`,
+			`APP_LABEL_DATA`.`BASE_UOM` AS `BASE_UOM`,
+			`APP_LABEL_DATA`.`DATE_OF_MANUFACTURE` AS `DATE_OF_MANUFACTURE`,
+			`APP_LABEL_DATA`.`EXPIRY_DATE` AS `EXPIRY_DATE`,
+			`APP_MATERIAL`.`UPDATED` AS `MATERIAL_UPDATED`,
+			`APP_PROCESS_ORDER`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+			`APP_PROCESS_ORDER`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+			`APP_CUSTOMER`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+			`APP_LABEL_DATA`.`OVERRIDE_MANUFACTURE_DATE` AS `OVERRIDE_MANUFACTURE_DATE`,
+			`APP_LABEL_DATA`.`OVERRIDE_EXPIRY_DATE` AS `OVERRIDE_EXPIRY_DATE`,
+			`APP_LABEL_DATA`.`OVERRIDE_BATCH_PREFIX` AS `OVERRIDE_BATCH_PREFIX`,
+			`APP_MATERIAL`.`OVERRIDE_PACK_LABEL` AS `OVERRIDE_PACK_LABEL`,
+			`APP_MATERIAL`.`PACK_LABEL_MODULE_ID` AS `PACK_LABEL_MODULE_ID`,
+			`APP_MATERIAL`.`OVERRIDE_PALLET_LABEL` AS `OVERRIDE_PALLET_LABEL`,
+			`APP_MATERIAL`.`PALLET_LABEL_MODULE_ID` AS `PALLET_LABEL_MODULE_ID`,
+			`APP_LABEL_DATA`.`LAYERS` AS `LAYERS` 
 		FROM
 			(
 				(
 					(
 						(
-							`app_process_order`
-							JOIN `view_sync3a` ON ( ( `app_process_order`.`PROCESS_ORDER` = `view_sync3a`.`PROCESS_ORDER` ) ) 
+							`APP_PROCESS_ORDER`
+							JOIN `view_sync3a` ON ( ( `APP_PROCESS_ORDER`.`PROCESS_ORDER` = `view_sync3a`.`PROCESS_ORDER` ) ) 
 						)
-						JOIN `app_label_data` ON (
+						JOIN `APP_LABEL_DATA` ON (
 							(
-								( `app_label_data`.`PRINT_DATE` = `view_sync3a`.`PRINT_DATE` ) 
-								AND ( `app_label_data`.`MATERIAL` = `view_sync3a`.`MATERIAL` ) 
-								AND ( `app_label_data`.`BATCH_NUMBER` = `view_sync3a`.`BATCH_NUMBER` ) 
-								AND ( `app_label_data`.`PROCESS_ORDER` = `view_sync3a`.`PROCESS_ORDER` ) 
-								AND ( `app_label_data`.`LABEL_TYPE` = `view_sync3a`.`LABEL_TYPE` ) 
-								AND ( `app_label_data`.`LINE` = `view_sync3a`.`LINE` ) 
+								( `APP_LABEL_DATA`.`PRINT_DATE` = `view_sync3a`.`PRINT_DATE` ) 
+								AND ( `APP_LABEL_DATA`.`MATERIAL` = `view_sync3a`.`MATERIAL` ) 
+								AND ( `APP_LABEL_DATA`.`BATCH_NUMBER` = `view_sync3a`.`BATCH_NUMBER` ) 
+								AND ( `APP_LABEL_DATA`.`PROCESS_ORDER` = `view_sync3a`.`PROCESS_ORDER` ) 
+								AND ( `APP_LABEL_DATA`.`LABEL_TYPE` = `view_sync3a`.`LABEL_TYPE` ) 
+								AND ( `APP_LABEL_DATA`.`LINE` = `view_sync3a`.`LINE` ) 
 							) 
 						) 
 					)
-					JOIN `app_material` ON ( ( `app_material`.`MATERIAL` = `app_label_data`.`MATERIAL` ) ) 
+					JOIN `APP_MATERIAL` ON ( ( `APP_MATERIAL`.`MATERIAL` = `APP_LABEL_DATA`.`MATERIAL` ) ) 
 				)
-				JOIN `app_customer` ON ( ( `app_customer`.`CUSTOMER_ID` = `app_process_order`.`CUSTOMER_ID` ) ) 
+				JOIN `APP_CUSTOMER` ON ( ( `APP_CUSTOMER`.`CUSTOMER_ID` = `APP_PROCESS_ORDER`.`CUSTOMER_ID` ) ) 
 			) 
 		WHERE
 			(
-				( `app_process_order`.`STATUS` = 'Ready' ) 
-			AND ( `app_label_data`.`LINE` > '' ) 
+				( `APP_PROCESS_ORDER`.`STATUS` = 'Ready' ) 
+			AND ( `APP_LABEL_DATA`.`LINE` > '' ) 
 			)	
 	</statement>	
 	
