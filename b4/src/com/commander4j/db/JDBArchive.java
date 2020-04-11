@@ -643,7 +643,7 @@ public class JDBArchive
 		setErrorMessage("");
 		if (isRunable())
 		{
-			String limit = Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabaseSelectLimit();
+			String limit = Common.hostList.getHost(getHostID()).getDatabaseParameters().getjdbcDatabaseSelectLimit().toLowerCase();
 			
 			String sql = "";
 			

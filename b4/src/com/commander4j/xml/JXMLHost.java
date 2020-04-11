@@ -168,7 +168,7 @@ public class JXMLHost {
 				jdbcDatabaseDateTimeToken.appendChild(text);
 
 				Element jdbcDatabaseSelectLimit = (Element) document.createElement("jdbcDatabaseSelectLimit");
-				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseSelectLimit().trim());
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseSelectLimit().toLowerCase().trim());
 				jdbcDatabaseSelectLimit.appendChild(text);
 
 				Element jdbcDatabaseSchema = (Element) document.createElement("jdbcDatabaseSchema");

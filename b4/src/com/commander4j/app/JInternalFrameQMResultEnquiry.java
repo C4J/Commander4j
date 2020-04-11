@@ -224,7 +224,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		if (x > 0)
 		{
 			int count = 0;
-			String limit = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit();
+			String limit = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit().toLowerCase();
 			String fieldDelim1 = "";
 			String fieldDelim2 = "";
 			if (limit.equals("top"))

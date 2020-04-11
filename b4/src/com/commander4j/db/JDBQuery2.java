@@ -87,16 +87,16 @@ public class JDBQuery2
 		clear();
 		setHostID(host);
 		setSessionID(session);
-		selectLimitType = Common.hostList.getHost(host).getDatabaseParameters().getjdbcDatabaseSelectLimit().toUpperCase();
-		if (selectLimitType.equals("TOP"))
+		selectLimitType = Common.hostList.getHost(host).getDatabaseParameters().getjdbcDatabaseSelectLimit().toLowerCase();
+		if (selectLimitType.equals("top"))
 		{
 			sqlTemplate = "SELECT {restriction} {what} FROM {source} {where} {orderby} {final}";
 		}
-		if (selectLimitType.equals("ROWNUM"))
+		if (selectLimitType.equals("rownum"))
 		{
 			sqlTemplate = "SELECT {what} FROM {source} {where} {orderby} {restriction} {final}";
 		}
-		if (selectLimitType.equals("LIMIT"))
+		if (selectLimitType.equals("limit"))
 		{
 			sqlTemplate = "SELECT {what} FROM {source} {where} {orderby} {restriction} {final}";
 		}
@@ -119,17 +119,17 @@ public class JDBQuery2
 
 		if (active)
 		{
-			if (selectLimitType.equals("TOP"))
+			if (selectLimitType.equals("top"))
 			{
 				sqlRestriction = "TOP " + String.valueOf(limit);
 			}
 
-			if (selectLimitType.equals("LIMIT"))
+			if (selectLimitType.equals("limit"))
 			{
 				sqlRestriction = "LIMIT " + String.valueOf(limit);
 			}
 
-			if (selectLimitType.equals("ROWNUM"))
+			if (selectLimitType.equals("rownum"))
 			{
 				sqlRestriction = "FETCH FIRST " + String.valueOf(limit) + " ROWS ONLY";
 			}
