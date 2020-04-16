@@ -2,6 +2,8 @@ package com.commander4j.db;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.commander4j.util.JUtility;
+
 /**
  * @author David Garratt
  * 
@@ -35,6 +37,10 @@ public class JDatabaseParameters
 	private String jdbcDatabaseDateTimeToken;
 
 	private String jdbcDatabaseSelectLimit;
+	
+	private String jdbcDatabaseTimeZone;
+	
+	private String jdbcDatabaseTimeZoneEnable;
 
 	private String jdbcDatabaseSchema;
 
@@ -54,6 +60,8 @@ public class JDatabaseParameters
 		jdbcPasswordEncryption = "";
 		jdbcDatabaseDateTimeToken = "";
 		jdbcDatabaseSelectLimit = "";
+		jdbcDatabaseTimeZone = "";
+		jdbcDatabaseTimeZoneEnable = "";
 		jdbcDatabaseSchema = "";
 		jdbcServer = "";
 		jdbcPort = "";
@@ -89,6 +97,16 @@ public class JDatabaseParameters
 	public void setjdbcDatabaseSelectLimit(String value)
 	{
 		jdbcDatabaseSelectLimit = value;
+	}
+	
+	public void setjdbcDatabaseTimeZone(String value)
+	{
+		jdbcDatabaseTimeZone = value;
+	}
+	
+	public void setjdbcDatabaseTimeZoneEnable(String value)
+	{
+		jdbcDatabaseTimeZoneEnable = value;
 	}
 
 	public void setjdbcDatabaseSchema(String value)
@@ -140,16 +158,37 @@ public class JDatabaseParameters
 	{
 
 		String value = "";
+		String timezone = "";
 
 		if (getjdbcDriver().equals("com.mysql.cj.jdbc.Driver"))
-		{
+		{	
+			if	(isjdbcDatabaseTimeZoneEnable())
+			{
+				timezone = "serverTimezone="+getjdbcDatabaseTimeZone()+"#";
+			}
+						
 			if (getjdbcPort().equals(""))
 			{
-				value = "jdbc:mysql://jdbcServer/jdbcDatabase?connectTimeout=5&socketTimeout=0&autoReconnect=true";
+				if	(isjdbcDatabaseTimeZoneEnable())
+				{
+					value = "jdbc:mysql://jdbcServer/jdbcDatabase?timezone?connectTimeout=5&socketTimeout=0&autoReconnect=true";
+				}
+				else
+				{
+					value = "jdbc:mysql://jdbcServer/jdbcDatabase?connectTimeout=5&socketTimeout=0&autoReconnect=true";
+				}
+
 			}
 			else
 			{
-				value = "jdbc:mysql://jdbcServer:jdbcPort/jdbcDatabase?connectTimeout=5&socketTimeout=0&autoReconnect=true";
+				if	(isjdbcDatabaseTimeZoneEnable())
+				{
+				value = "jdbc:mysql://jdbcServer:jdbcPort/jdbcDatabase?timezone?connectTimeout=5&socketTimeout=0&autoReconnect=true";
+				}
+				else
+				{
+					value = "jdbc:mysql://jdbcServer:jdbcPort/jdbcDatabase?connectTimeout=5&socketTimeout=0&autoReconnect=true";
+				}
 			}
 		}
 
@@ -166,6 +205,11 @@ public class JDatabaseParameters
 		}
 
 		value = value.replaceAll("jdbcServer", getjdbcServer());
+		
+		if	(isjdbcDatabaseTimeZoneEnable())
+		{
+			value = value.replaceAll("timezone", timezone);
+		}
 
 		if (getjdbcPort().equals(""))
 		{
@@ -200,6 +244,40 @@ public class JDatabaseParameters
 		return jdbcDatabaseSelectLimit;
 	}
 
+	public String getjdbcDatabaseTimeZone()
+	{
+		return jdbcDatabaseTimeZone;
+	}
+	
+	public String getjdbcDatabaseTimeZoneEnable()
+	{
+		return jdbcDatabaseTimeZoneEnable;
+	}
+	
+	public boolean isjdbcDatabaseTimeZoneEnable()
+	{
+		if (JUtility.replaceNullStringwithBlank(jdbcDatabaseTimeZoneEnable).equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public void setjdbcDatabaseTimeZoneEnable(boolean value)
+	{
+		if (value)
+		{
+			jdbcDatabaseTimeZoneEnable ="Y";
+		}
+		else
+		{
+			jdbcDatabaseTimeZoneEnable ="";
+		}
+	}
+	
 	public String getjdbcDatabaseSchema()
 	{
 		return jdbcDatabaseSchema;

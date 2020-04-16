@@ -330,7 +330,7 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 								{
 									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_USER_EDIT") == true)
 									{
-										editRecord();
+										permissions();
 									}
 								}
 							}

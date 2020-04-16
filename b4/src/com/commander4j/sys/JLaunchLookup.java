@@ -289,6 +289,28 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 	
+	public static boolean waste_report_ids() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_WASTE_REPORTING_IDS"));
+		JDialogLookup.dlg_title = "Waste Locations";
+
+		JDialogLookup.hideDisabled=true;
+		JDialogLookup.dlg_key_field_name = "waste_reporting_id";
+		JDialogLookup.dlg_criteria_field_name_default = "description";
+		JDialogLookup.dlg_orderBy_name_default = "reporting_group";
+		JDialogLookup.dlg_sort_descending = false;
+
+		// dlg_criteria_default = "";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
 
 	public static boolean resources() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();

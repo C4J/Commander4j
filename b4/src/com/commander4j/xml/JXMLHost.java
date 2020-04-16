@@ -50,11 +50,11 @@ import com.commander4j.util.JUtility;
 
 /**
  */
-public class JXMLHost {
-
+public class JXMLHost
+{
 
 	private static int iNumberOfHosts;
-	
+
 	public static boolean validateServiceHostPresent(LinkedList<JHost> hostList)
 	{
 		boolean result = false;
@@ -62,15 +62,15 @@ public class JXMLHost {
 		{
 			if (hostList.get(j).getUniqueID().trim().equals("service"))
 			{
-				result=true;
+				result = true;
 			}
 		}
-		
+
 		return result;
-		
+
 	}
 
-	public static void writeHosts(String filename,LinkedList<JHost> hostList, String splash, String updatePath, String updateMode, String installDir, String setupPassword,String hostVersion,String hostUpdatePath)
+	public static void writeHosts(String filename, LinkedList<JHost> hostList, String splash, String updatePath, String updateMode, String installDir, String setupPassword, String hostVersion, String hostUpdatePath)
 	{
 		final Logger logger = Logger.getLogger(JXMLHost.class);
 		final JFileIO fio = new JFileIO();
@@ -120,12 +120,12 @@ public class JXMLHost {
 			text = document.createTextNode(hostVersion);
 			hostVer.appendChild(text);
 			hosts.appendChild(hostVer);
-			
+
 			Element hostUpdate = (Element) document.createElement("hostUpdatePath");
 			text = document.createTextNode(hostUpdatePath);
 			hostUpdate.appendChild(text);
-			hosts.appendChild(hostUpdate);		
-			
+			hosts.appendChild(hostUpdate);
+
 			Element configPassword = (Element) document.createElement("SetupPassword");
 			text = document.createTextNode(JEncryption.encrypt(setupPassword));
 			configPassword.appendChild(text);
@@ -171,6 +171,20 @@ public class JXMLHost {
 				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseSelectLimit().toLowerCase().trim());
 				jdbcDatabaseSelectLimit.appendChild(text);
 
+				//if timezone is defined but disabled - remove the timezone.
+				if ((hostList.get(j).getDatabaseParameters().getjdbcDatabaseTimeZone().trim().equals("")==false) && (hostList.get(j).getDatabaseParameters().isjdbcDatabaseTimeZoneEnable()==false))
+				{
+					hostList.get(j).getDatabaseParameters().setjdbcDatabaseTimeZone("");
+				}
+
+				Element jdbcDatabaseTimeZone = (Element) document.createElement("jdbcDatabaseTimeZone");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseTimeZone().trim());
+				jdbcDatabaseTimeZone.appendChild(text);
+
+				Element jdbcDatabaseTimeZoneEnable = (Element) document.createElement("jdbcDatabaseTimeZoneEnable");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseTimeZoneEnable().trim());
+				jdbcDatabaseTimeZoneEnable.appendChild(text);
+
 				Element jdbcDatabaseSchema = (Element) document.createElement("jdbcDatabaseSchema");
 				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseSchema().trim());
 				jdbcDatabaseSchema.appendChild(text);
@@ -179,6 +193,8 @@ public class JXMLHost {
 				databasedriver.appendChild(jdbcConnectString);
 				databasedriver.appendChild(jdbcDatabaseDateTimeToken);
 				databasedriver.appendChild(jdbcDatabaseSelectLimit);
+				databasedriver.appendChild(jdbcDatabaseTimeZone);
+				databasedriver.appendChild(jdbcDatabaseTimeZoneEnable);
 				databasedriver.appendChild(jdbcDatabaseSchema);
 
 				Element DatabaseParameters = (Element) document.createElement("DatabaseParameters");
@@ -238,7 +254,8 @@ public class JXMLHost {
 
 			fio.writeToDisk(filename, document);
 
-		} catch (ParserConfigurationException pce)
+		}
+		catch (ParserConfigurationException pce)
 		{
 			// Parser with specified options can't be built
 			pce.printStackTrace();
@@ -259,18 +276,18 @@ public class JXMLHost {
 	public static Double checkHostVersion(String filename)
 	{
 		Double result = (double) 0;
-		
+
 		JXMLDocument xmltest = new JXMLDocument(filename);
-		
+
 		String hostVersion = xmltest.findXPath("//Hosts/hostVersion");
-		
+
 		if (hostVersion.equals(""))
 		{
 			hostVersion = "1";
 		}
-		
+
 		result = Double.valueOf(hostVersion);
-		
+
 		return result;
 	}
 
@@ -282,7 +299,7 @@ public class JXMLHost {
 		String updateURL = "";
 		String updateMODE = "";
 		String hostVersion = "";
-		String hostUpdatePath ="";
+		String hostUpdatePath = "";
 		String updateDIR = "";
 		String setupPassword = "";
 		String jdbcDriver = "";
@@ -290,6 +307,8 @@ public class JXMLHost {
 		String sitejdbcConnectString = "";
 		String jdbcDatabaseDateTimeToken = "";
 		String jdbcDatabaseSelectLimit = "";
+		String jdbcDatabaseTimeZone = "";
+		String jdbcDatabaseTimeZoneEnable = "";
 		String jdbcDatabaseSchema = "";
 		String SiteNumber = "";
 		String SiteDescription = "";
@@ -318,14 +337,14 @@ public class JXMLHost {
 		iNumberOfHosts = Integer.valueOf(sNumberOfSites).intValue();
 		splash = xmltest.findXPath("//Hosts/SplashScreen");
 		updateURL = xmltest.findXPath("//Hosts/UpdateURL");
-		
+
 		hostVersion = xmltest.findXPath("//Hosts/hostVersion");
 		if (hostVersion.equals(""))
 		{
 			hostVersion = "1";
 		}
 		hostUpdatePath = xmltest.findXPath("//Hosts/hostUpdatePath");
-		
+
 		updateMODE = xmltest.findXPath("//Hosts/UpdateMODE");
 		updateDIR = xmltest.findXPath("//Hosts/UpdateDIR");
 		setupPassword = JEncryption.decrypt(xmltest.findXPath("//Hosts/SetupPassword"));
@@ -345,7 +364,8 @@ public class JXMLHost {
 		if (splash.equals("N"))
 		{
 			Common.displaySplashScreen = false;
-		} else
+		}
+		else
 		{
 			Common.displaySplashScreen = true;
 		}
@@ -374,6 +394,9 @@ public class JXMLHost {
 				jdbcConnectString = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcConnectString").trim();
 				jdbcDatabaseDateTimeToken = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseDateTimeToken").trim();
 				jdbcDatabaseSelectLimit = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseSelectLimit").trim();
+				jdbcDatabaseTimeZone = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseTimeZone").trim();
+				jdbcDatabaseTimeZoneEnable = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseTimeZoneEnable").trim();
+
 				jdbcDatabaseSchema = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseSchema").trim();
 
 				jdbcUsername = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcUsername").trim();
@@ -385,7 +408,8 @@ public class JXMLHost {
 					JCipher advancedEncryptionStandard = new JCipher(Common.encryptionKey);
 					jdbcPassword = advancedEncryptionStandard.decode(jdbcPassword);
 
-				} else
+				}
+				else
 				{
 					jdbcPassword = JEncryption.decrypt(jdbcPassword);
 				}
@@ -413,6 +437,8 @@ public class JXMLHost {
 				host.getDatabaseParameters().setjdbcDriver(jdbcDriver);
 				host.getDatabaseParameters().setjdbcDatabaseDateTimeToken(jdbcDatabaseDateTimeToken);
 				host.getDatabaseParameters().setjdbcDatabaseSelectLimit(jdbcDatabaseSelectLimit);
+				host.getDatabaseParameters().setjdbcDatabaseTimeZone(jdbcDatabaseTimeZone);
+				host.getDatabaseParameters().setjdbcDatabaseTimeZoneEnable(jdbcDatabaseTimeZoneEnable);
 				host.getDatabaseParameters().setjdbcDatabaseSchema(jdbcDatabaseSchema);
 				host.getDatabaseParameters().setjdbcUsername(jdbcUsername);
 				host.getDatabaseParameters().setjdbcPassword(jdbcPassword);

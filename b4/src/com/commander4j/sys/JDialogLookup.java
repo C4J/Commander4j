@@ -247,6 +247,10 @@ public class JDialogLookup extends javax.swing.JDialog
 			{
 				result = JUtility.bigDecimaltoString(rs.getBigDecimal(fieldname));
 			}
+			if (fieldtype.equals("java.lang.Integer"))
+			{
+				result= ((Integer) rs.getInt(fieldname)).toString();
+			}
 		}
 		catch (Exception ex)
 		{
