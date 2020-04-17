@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+			ALTER TABLE SYS_AUDIT_PERMISSIONS  CHARACTER SET utf8 collate utf8_general_ci
+	</statement>
+	
+	<statement>
+			ALTER TABLE `SYS_AUDIT_PERMISSIONS` 
+			CHANGE COLUMN `USER_ID` `USER_ID` VARCHAR(20) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NOT NULL ,
+			CHANGE COLUMN `EVENT_TYPE` `EVENT_TYPE` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NOT NULL ,
+			CHANGE COLUMN `EVENT_ACTION` `EVENT_ACTION` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NOT NULL ,
+			CHANGE COLUMN `TARGET` `TARGET` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL DEFAULT NULL ,
+			CHANGE COLUMN `DATA` `DATA` VARCHAR(40) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL DEFAULT NULL ,
+			CHANGE COLUMN `WORKSTATION_ID` `WORKSTATION_ID` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL DEFAULT NULL
+	</statement>
+
+	<statement>	
+			DROP VIEW `view_permissions`
+	</statement>
+
+	<statement>
+		CREATE 
+		     OR REPLACE 
+		VIEW `view_permissions` AS
+		    SELECT 
+		        `SYS_USERS`.`USER_ID` AS `USER_ID`,
+		        `SYS_USERS`.`USER_COMMENT` AS `USER_COMMENT`,
+		        `SYS_GROUPS`.`GROUP_ID` AS `GROUP_ID`,
+		        `SYS_GROUPS`.`DESCRIPTION` AS `DESCRIPTION`,
+		        `SYS_MODULES`.`MODULE_ID` AS `MODULE_ID`,
+		        `SYS_MODULES`.`MODULE_TYPE` AS `MODULE_TYPE`,
+		        `SYS_LANGUAGE`.`TEXT` AS `TEXT`,
+		        `SYS_MODULES`.`DK_ACTIVE` AS `DK_ACTIVE`,
+		        `SYS_MODULES`.`RF_ACTIVE` AS `RF_ACTIVE`
+		    FROM
+		        ((`SYS_MODULES`
+		        LEFT JOIN (`SYS_GROUP_PERMISSIONS`
+		        LEFT JOIN (`SYS_GROUPS`
+		        LEFT JOIN (`SYS_USERS`
+		        LEFT JOIN `SYS_USER_GROUP_MEMBERSHIP` ON ((`SYS_USER_GROUP_MEMBERSHIP`.`USER_ID` = `SYS_USERS`.`USER_ID`))) ON ((`SYS_GROUPS`.`GROUP_ID` = `SYS_USER_GROUP_MEMBERSHIP`.`GROUP_ID`))) ON ((`SYS_GROUP_PERMISSIONS`.`GROUP_ID` = `SYS_GROUPS`.`GROUP_ID`))) ON ((`SYS_MODULES`.`MODULE_ID` = `SYS_GROUP_PERMISSIONS`.`MODULE_ID`)))
+		        LEFT JOIN `SYS_LANGUAGE` ON (((`SYS_LANGUAGE`.`RESOURCE_KEY` = `SYS_MODULES`.`RESOURCE_KEY`)
+		            AND (`SYS_LANGUAGE`.`LANGUAGE_ID` = `SYS_USERS`.`LANGUAGE_ID`))))
+		    WHERE
+		        ((`SYS_USERS`.`ACCOUNT_ENABLED` = 'Y')
+		            AND ((`SYS_USERS`.`ACCOUNT_EXPIRES` = 'N')
+		            OR ((`SYS_USERS`.`ACCOUNT_EXPIRES` = 'Y')
+		            AND (`SYS_USERS`.`ACCOUNT_EXPIRY_DATE` > CURDATE()))))
+	</statement>
+	
+	<statement>	
+				DROP VIEW `view_qm_analysis_01`
+	</statement>
+	
+	<statement>	
+			CREATE 
+			     OR REPLACE 
+			VIEW `view_qm_analysis_01` AS
+			    SELECT 
+			        `APP_PROCESS_ORDER_RESOURCE`.`BATCH_SUFFIX` AS `BATCH_SUFFIX`,
+			        `APP_PROCESS_ORDER_RESOURCE`.`DESCRIPTION` AS `RESOURCE_DESCRIPTION`,
+			        `APP_QM_SAMPLE`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
+			        `APP_QM_SAMPLE`.`SAMPLE_ID` AS `SAMPLE_ID`,
+			        `APP_QM_SAMPLE`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+			        `APP_PROCESS_ORDER`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE`,
+			        `APP_QM_SAMPLE`.`MATERIAL` AS `MATERIAL`,
+			        `APP_QM_SAMPLE`.`USER_DATA_1` AS `USER_DATA_1`,
+			        `APP_QM_SAMPLE`.`USER_DATA_2` AS `USER_DATA_2`,
+			        `APP_QM_SAMPLE`.`USER_DATA_3` AS `USER_DATA_3`,
+			        `APP_QM_SAMPLE`.`USER_DATA_4` AS `USER_DATA_4`,
+			        `APP_QM_SELECTLIST_PROD_PANEL`.`DESCRIPTION` AS `PRODUCT_PANEL`,
+			        `APP_QM_SELECTLIST_PACK_PANEL`.`DESCRIPTION` AS `PACK_PANEL`,
+			        `APP_QM_RESULT_PH`.`VALUE` AS `PH`
+			    FROM
+			        (((((((((`APP_QM_SAMPLE`
+			        JOIN `APP_QM_RESULT` `APP_QM_RESULT_PROD_PANEL` ON ((`APP_QM_SAMPLE`.`SAMPLE_ID` = `APP_QM_RESULT_PROD_PANEL`.`SAMPLE_ID`)))
+			        JOIN `APP_QM_DICTIONARY` `APP_QM_DICTIONARY_PROD_PANEL` ON ((`APP_QM_RESULT_PROD_PANEL`.`TEST_ID` = `APP_QM_DICTIONARY_PROD_PANEL`.`TEST_ID`)))
+			        JOIN `APP_QM_SELECTLIST` `APP_QM_SELECTLIST_PROD_PANEL` ON (((`APP_QM_RESULT_PROD_PANEL`.`VALUE` = `APP_QM_SELECTLIST_PROD_PANEL`.`VALUE`)
+			            AND (`APP_QM_DICTIONARY_PROD_PANEL`.`SELECT_LIST_ID` = `APP_QM_SELECTLIST_PROD_PANEL`.`SELECT_LIST_ID`))))
+			        JOIN `APP_QM_RESULT` `APP_QM_RESULT_PACK_PANEL` ON ((`APP_QM_SAMPLE`.`SAMPLE_ID` = `APP_QM_RESULT_PACK_PANEL`.`SAMPLE_ID`)))
+			        JOIN `APP_QM_RESULT` `APP_QM_RESULT_PH` ON ((`APP_QM_SAMPLE`.`SAMPLE_ID` = `APP_QM_RESULT_PH`.`SAMPLE_ID`)))
+			        JOIN `APP_PROCESS_ORDER` ON ((`APP_QM_SAMPLE`.`PROCESS_ORDER` = `APP_PROCESS_ORDER`.`PROCESS_ORDER`)))
+			        JOIN `APP_PROCESS_ORDER_RESOURCE` ON ((`APP_PROCESS_ORDER`.`REQUIRED_RESOURCE` = `APP_PROCESS_ORDER_RESOURCE`.`REQUIRED_RESOURCE`)))
+			        JOIN `APP_QM_DICTIONARY` `APP_QM_DICTIONARY_PACK_PANEL` ON ((`APP_QM_RESULT_PACK_PANEL`.`TEST_ID` = `APP_QM_DICTIONARY_PACK_PANEL`.`TEST_ID`)))
+			        JOIN `APP_QM_SELECTLIST` `APP_QM_SELECTLIST_PACK_PANEL` ON (((`APP_QM_RESULT_PACK_PANEL`.`VALUE` = `APP_QM_SELECTLIST_PACK_PANEL`.`VALUE`)
+			            AND (`APP_QM_DICTIONARY_PACK_PANEL`.`SELECT_LIST_ID` = `APP_QM_SELECTLIST_PACK_PANEL`.`SELECT_LIST_ID`))))
+			    WHERE
+			        ((`APP_QM_RESULT_PROD_PANEL`.`TEST_ID` = 'PANEL')
+			            AND (`APP_QM_RESULT_PACK_PANEL`.`TEST_ID` = 'PACKAGING VERIFICATION')
+			            AND (`APP_QM_RESULT_PH`.`TEST_ID` = 'PANEL PH'))
+			    ORDER BY `APP_PROCESS_ORDER_RESOURCE`.`BATCH_SUFFIX` ASC , `APP_QM_RESULT_PROD_PANEL`.`SAMPLE_ID` ASC
+	</statement>
+
+	<statement>	
+				DROP  FUNCTION `c4j_GetBaseQuantity`
+	</statement>		
+	
+	
+	<statement>	
+				CREATE FUNCTION `c4j_GetBaseQuantity`(XMATERIAL varchar(20),XPRODUCTION_QUANTITY decimal(22,3),XPRODUCTION_UOM varchar(3)) RETURNS decimal(22,3)
+				    READS SQL DATA
+				BEGIN 
+				
+				DECLARE XBASE_UOM 	     varchar(3);
+				DECLARE XBASE_QUANTITY	  decimal(22,3);
+						
+						SET XBASE_UOM = (SELECT BASE_UOM FROM APP_MATERIAL WHERE MATERIAL = XMATERIAL);
+					 	SET XBASE_QUANTITY = (SELECT (XPRODUCTION_QUANTITY * NUMERATOR / DENOMINATOR) FROM APP_MATERIAL_UOM WHERE MATERIAL = XMATERIAL AND UOM = XPRODUCTION_UOM);
+				
+				RETURN XBASE_QUANTITY;
+				
+				END	
+	</statement>
+		
+		
+	<statement>	
+			DROP FUNCTION `c4j_GetControlValue`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetControlValue`(XNAME varchar(50)) RETURNS varchar(50) CHARSET utf8
+			    READS SQL DATA
+			BEGIN
+				DECLARE result varchar(50) CHARACTER SET utf8;
+				SET result = (SELECT key_value FROM SYS_CONTROL where system_key = XNAME); 
+			
+			RETURN result;
+			END	
+	</statement>
+		
+		
+	<statement>	
+			DROP FUNCTION `c4j_GetDay`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetDay`(XDATE datetime) RETURNS varchar(2) CHARSET utf8
+			    READS SQL DATA
+			BEGIN
+			
+				DECLARE result varchar(2) CHARACTER SET utf8;
+				DECLARE dom int;
+			
+				SET dom = DAYOFMONTH(XDATE);
+				SET result = RIGHT(CONCAT('0',convert(dom,CHAR)),2);
+			
+			RETURN result;
+			END	
+	</statement>
+		
+		
+	<statement>	
+			DROP FUNCTION `c4j_GetExpiryDate`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetExpiryDate`(XPRODUCTION_DATE datetime,XSHELF_LIFE int,XSHELF_LIFE_UOM varchar(1),XSHELF_LIFE_ROUNDING varchar(1)) RETURNS datetime
+			    READS SQL DATA
+			BEGIN
+				DECLARE result datetime;
+			
+				SET result = XPRODUCTION_DATE;
+			
+			
+					IF XSHELF_LIFE_UOM = 'D' THEN
+						SET result =  DATE_ADD(result,INTERVAL XSHELF_LIFE DAY);
+					END IF;
+			
+					IF XSHELF_LIFE_UOM = 'M' THEN
+						SET result =  DATE_ADD(result,INTERVAL XSHELF_LIFE MONTH);
+					END IF;
+			
+					IF XSHELF_LIFE_UOM = 'Y' THEN
+						SET result =  DATE_ADD(result,INTERVAL XSHELF_LIFE YEAR);
+					END IF;
+						
+					IF XSHELF_LIFE_ROUNDING = '+' THEN
+						SET result = LAST_DAY(result);
+					END IF;
+			
+					IF XSHELF_LIFE_ROUNDING = '-' THEN
+						SET result = ADDDATE(LAST_DAY(SUBDATE(result, INTERVAL 1 MONTH)), 1);
+					END IF;
+			
+					SET result = DATE(result);
+			
+			RETURN result;
+			END	
+	</statement>
+		
+		
+	<statement>	
+			DROP FUNCTION `c4j_GetFinalBatchNumber`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetFinalBatchNumber`(XPRODUCTION_DATE datetime,XOVERRIDE_BATCH varchar(1),XOVERRIDE_BATCH_NUMBER varchar(40),XBATCH_OPTIONAL varchar(40),XPROCESS_ORDER varchar(40)) RETURNS varchar(100) CHARSET utf8
+			    READS SQL DATA
+			BEGIN
+				DECLARE result varchar(100) CHARACTER SET utf8;
+				DECLARE batchformat varchar(100) CHARACTER SET utf8;
+			
+				IF XOVERRIDE_BATCH = 'Y' THEN
+					SET result = XOVERRIDE_BATCH_NUMBER;
+				END IF;
+			
+				IF XOVERRIDE_BATCH = 'N' THEN
+						SET batchformat = c4j_GetControlValue('BATCH FORMAT');
+						SET result = batchformat;
+						SET result = REPLACE(result,'{PLANT}',c4j_GetPlant());
+						SET result = REPLACE(result,'{PROCESS_ORDER}',XPROCESS_ORDER);
+						SET result = REPLACE(result,'{YEAR4}',c4j_GetYear(XPRODUCTION_DATE,4));
+						SET result = REPLACE(result,'{YEAR2}',c4j_GetYear(XPRODUCTION_DATE,2));
+						SET result = REPLACE(result,'{YEAR1}',c4j_GetYear(XPRODUCTION_DATE,1));
+						SET result = REPLACE(result,'{MONTH}',c4j_GetMonth(XPRODUCTION_DATE));
+						SET result = REPLACE(result,'{DAY}',c4j_GetDay(XPRODUCTION_DATE));
+						SET result = REPLACE(result,'{JULIAN_DAY}',c4j_GetJulian(XPRODUCTION_DATE,1));
+						SET result = REPLACE(result,'{JULIAN0_DAY}',c4j_GetJulian(XPRODUCTION_DATE,0));
+						SET result = REPLACE(result,'{JULIAN1_DAY}',c4j_GetJulian(XPRODUCTION_DATE,1));
+				END IF;
+			
+				SET result = CONCAT(result,XBATCH_OPTIONAL);
+			
+			RETURN result;
+			END	
+	</statement>
+		
+		
+	<statement>	
+			DROP FUNCTION `c4j_GetFinalExpiryDate`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetFinalExpiryDate`(XPRODUCTION_DATE datetime,XSHELF_LIFE int,XSHELF_LIFE_UOM varchar(1),XSHELF_LIFE_ROUNDING varchar(1),XOVERRIDE_EXPIRY varchar(1),XOVERRIDE_EXPIRY_DATE datetime) RETURNS datetime
+			    READS SQL DATA
+			BEGIN
+				DECLARE result datetime;
+			
+			
+				IF XOVERRIDE_EXPIRY = 'Y' THEN
+					SET result = XOVERRIDE_EXPIRY_DATE;
+				END IF;
+			
+			
+				IF XOVERRIDE_EXPIRY = 'N' THEN
+					SET result = c4j_GetExpiryDate(XPRODUCTION_DATE,XSHELF_LIFE,XSHELF_LIFE_UOM,XSHELF_LIFE_ROUNDING);
+				END IF;
+			
+			RETURN result;
+			END	
+	</statement>
+		
+		
+	<statement>	
+			DROP FUNCTION `c4j_GetFullPalletQuantity`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetFullPalletQuantity`(XPROCESS_ORDER varchar(40)) RETURNS decimal(22,3)
+			    READS SQL DATA
+			BEGIN
+				DECLARE result decimal(22,3);
+			
+				DECLARE xmaterial varchar(40) CHARACTER SET utf8;
+				DECLARE xpal_uom varchar(3) CHARACTER SET utf8;
+				DECLARE xpal_numerator decimal(22,3);
+				DECLARE xpal_denominator decimal(22,3);
+				DECLARE xrequired_uom varchar(3) CHARACTER SET utf8;
+				DECLARE xrequired_denominator decimal(22,3);
+				DECLARE xrequired_numerator decimal(22,3);
+			
+				SET xpal_uom = c4j_GetControlValue('UOM FULL PALLET QTY');
+				
+			
+				SET xrequired_uom = (SELECT REQUIRED_UOM FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER);
+				SET xmaterial = (SELECT MATERIAL FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER);
+				SET xrequired_denominator = (SELECT DENOMINATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial and UOM = xrequired_uom);
+				SET xrequired_numerator = (SELECT NUMERATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial and UOM = xrequired_uom);	
+			
+				SET xpal_denominator = (SELECT DENOMINATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial and UOM = xpal_uom);
+				SET xpal_numerator = (SELECT NUMERATOR FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial and UOM = xpal_uom);
+			
+				SET result = (xpal_numerator/xpal_denominator) * (xrequired_denominator/xrequired_numerator);
+			
+			    RETURN result;
+			END	
+	</statement>	
+		
+	<statement>	
+			DROP  FUNCTION `c4j_GetJulian`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetJulian`(XDATE datetime,XOFFSET int) RETURNS varchar(6) CHARSET utf8
+			    READS SQL DATA
+			BEGIN
+				DECLARE result VARCHAR(6) CHARACTER SET utf8;
+				DECLARE dayofyear int;
+			
+				SET dayofyear = DAYOFYEAR(XDATE)-1+XOFFSET;
+			
+				SET result = RIGHT(CONCAT('000',convert(dayofyear,CHAR)),3);
+			
+			RETURN result;
+			END	
+	</statement>	
+	
+			
+	<statement>	
+			DROP FUNCTION `c4j_GetLayers`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetLayers`(XPROCESS_ORDER varchar(20)) RETURNS int(11)
+			    READS SQL DATA
+			BEGIN
+						DECLARE result 					int;
+						DECLARE xlayers_uom 				varchar(3) CHARACTER SET utf8;
+						DECLARE xpallet_uom 				varchar(3) CHARACTER SET utf8;
+						DECLARE xbase_quantity 			decimal(22,3);
+						DECLARE xmaterial					varchar(20) CHARACTER SET utf8;
+						DECLARE xproduction_uom  		varchar(3) CHARACTER SET utf8;
+						DECLARE xproduction_quantity 	decimal(22,3);
+					
+						SET xproduction_quantity = c4j_GetFullPalletQuantity(XPROCESS_ORDER);
+						SET xmaterial = (SELECT MATERIAL FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER);
+						SET xproduction_uom = (SELECT REQUIRED_UOM FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER);
+						SET xbase_quantity = c4j_GetBaseQuantity(XMATERIAL,XPRODUCTION_QUANTITY,XPRODUCTION_UOM);
+					
+						SET xlayers_uom = c4j_GetControlValue('UOM BASE QTY PER LAYER');
+					
+						SET result = (SELECT CEILING(xbase_quantity / NUMERATOR * DENOMINATOR) FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial AND UOM = xlayers_uom);
+						
+						SET result = COALESCE(result,1);
+					
+						IF result = 0 THEN 
+							SET result = 1;
+						END IF;
+					
+					    RETURN result;
+			END	
+	</statement>	
+	
+			
+	<statement>	
+			DROP FUNCTION `c4j_GetMonth`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetMonth`(XDATE datetime) RETURNS varchar(2) CHARSET utf8
+			    READS SQL DATA
+			BEGIN
+				DECLARE result varchar(6) CHARACTER SET utf8;
+				DECLARE moy int;
+			
+				SET moy = MONTH(XDATE);
+				SET result = RIGHT(CONCAT('0',convert(moy,CHAR)),2);
+			RETURN result;
+			END	
+	</statement>	
+	
+			
+	<statement>	
+			DROP FUNCTION `c4j_GetPlant`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetPlant`() RETURNS varchar(10) CHARSET utf8
+			    READS SQL DATA
+			BEGIN
+				DECLARE result varchar(10) CHARACTER SET utf8;
+			
+				SET result = c4j_GetControlValue('PLANT');
+			
+			
+			RETURN result;
+			END	
+	</statement>	
+
+			
+	<statement>	
+			DROP FUNCTION `c4j_GetYear`
+	</statement>
+		
+		
+	<statement>	
+			CREATE FUNCTION `c4j_GetYear`(XDATE datetime,XSIZE int) RETURNS int(11)
+			    READS SQL DATA
+			BEGIN
+				DECLARE result varchar(4) CHARACTER SET utf8;
+			
+				SET result = RIGHT(CAST(YEAR(XDATE) AS CHAR(4)) ,XSIZE);
+			RETURN result;
+			END	
+	</statement>
+	
+	<statement>
+		ALTER TABLE `APP_MATERIAL` 
+		ADD COLUMN `VALIDATE_SCAN_PALLET` VARCHAR(1) NULL DEFAULT 'N' AFTER `PALLET_LABEL_MODULE_ID`,
+		ADD COLUMN `VALIDATE_SCAN_CASE` VARCHAR(1) NULL DEFAULT 'N' AFTER `VALIDATE_SCAN_PALLET`,
+		ADD COLUMN `VALIDATE_SCAN_EACH` VARCHAR(1) NULL DEFAULT 'N' AFTER `VALIDATE_SCAN_CASE`
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'EN', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'FR', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'DE', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'IT', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'NL', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'ES', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'HU', 'Validate Pallet/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Pallet_GTIN', 'PL', 'Validate Pallet/DU GTIN', '0')
+	</statement>		
+	
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'EN', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'FR', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'DE', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'IT', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'NL', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'ES', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'HU', 'Validate Case/DU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Case_GTIN', 'PL', 'Validate Case/DU GTIN', '0')
+	</statement>	
+	
+	
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'EN', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'FR', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'DE', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'IT', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'NL', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'ES', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'HU', 'Validate Each/CU GTIN', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Validate_Each_GTIN', 'PL', 'Validate Each/CU GTIN', '0')
+	</statement>						
+</DDL>

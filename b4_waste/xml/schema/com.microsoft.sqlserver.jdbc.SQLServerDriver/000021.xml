@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+INSERT [dbo].[SYS_MODULES] ([MODULE_ID], [RF_ACTIVE], [DK_ACTIVE], [MODULE_TYPE], [HINT], [ICON_FILENAME], [HELPSET_ID], [REPORT_FILENAME], [EXEC_FILENAME], [EXEC_DIR], [PRINT_PREVIEW], [PRINT_DIALOG], [PRINT_COPIES]) VALUES (N'RPT_HIST_SUMMARY', N'N', N'Y', N'REPORT', NULL,NULL, NULL, N'ProductionSummary.jrxml', NULL, NULL, NULL, NULL, NULL)</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'PALLET', N'RPT_HIST_SUMMARY')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_CONTROL] ([SYSTEM_KEY], [KEY_VALUE], [DESCRIPTION]) VALUES (N'BATCH REGEX', N'', N'Regular Expression to Validate Batch Format')
+</statement>
+
+</DDL>

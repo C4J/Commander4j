@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+    <plant>0933</plant>
+    <hostRef>TEST</hostRef>
+    <messageRef>Location PB 2017-10-97</messageRef>
+    <interfaceType>Location</interfaceType>
+    <messageInformation>Location=PETERBOROUGH</messageInformation>
+    <interfaceDirection>Input</interfaceDirection>
+    <messageDate>2017-10-07T09:15:48</messageDate>
+    <messageData>
+        <location>
+            <enabled>Y</enabled>
+            <locationID>PETERBOROUGH</locationID>
+            <plant>0933</plant>
+            <warehouse>734</warehouse>
+            <GLN>5000161800063</GLN>
+            <description>Peterborough Warehouse</description>
+            <storageLocation>0001</storageLocation>
+            <storageType>PRO</storageType>
+            <storageSection></storageSection>
+            <storageBin>DESPATCH</storageBin>    
+            <equipmentTrackingID>10</equipmentTrackingID>
+            <messageOptions>
+                <despatchConfirm>true</despatchConfirm>
+                <despatchPreAdvice>true</despatchPreAdvice>
+                <equipmentTracking>true</equipmentTracking>
+                <productionConfirmation>true</productionConfirmation>
+                <palletStatus>false</palletStatus>
+                <palletSplit>true</palletSplit>
+                <palletDelete>true</palletDelete>
+                <despatchJourneyRef>false</despatchJourneyRef>
+            </messageOptions>
+            <allowedStatus>
+                <pallet>^Blocked^Quality Inspection^Unrestricted^</pallet>
+                <batch>^Restricted^Unrestricted^</batch>
+            </allowedStatus>
+        </location>
+    </messageData>
+</message>

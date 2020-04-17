@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	CREATE TABLE SYS_PRINTERS 
+	(
+		  PRINTER_ID VARCHAR2(20) NOT NULL 
+		, PRINTER_TYPE VARCHAR2(20) 
+		, IP_ADDRESS VARCHAR2(25) 
+		, PORT DATE 
+		, DESCRIPTION VARCHAR2(50) 
+		, LINE VARCHAR2(20) 
+		, ENABLED VARCHAR2(1) 
+	, CONSTRAINT SYS_PRINTERS_PK PRIMARY KEY 
+	  (
+	    PRINTER_ID 
+	  )
+	  ENABLE 
+	)
+</statement>
+
+<statement>
+CREATE OR REPLACE
+FUNCTION C4J_GETFINALBATCHNUMBER 
+(
+  XPRODUCTION_DATE IN DATE  
+, XOVERRIDE_BATCH IN VARCHAR2  
+, XOVERRIDE_BATCH_NUMBER IN VARCHAR2  
+, XBATCH_OPTIONAL IN VARCHAR2  
+, XPROCESS_ORDER IN VARCHAR2 
+) RETURN VARCHAR2 AS 
+  result        varchar2(40);
+  batchformat   varchar2(50);
+BEGIN
+
+	IF (XOVERRIDE_BATCH = 'Y') THEN
+      result := XOVERRIDE_BATCH_NUMBER;
+	END IF;
+
+	IF XOVERRIDE_BATCH = 'N' THEN
+			batchformat := c4j_GetControlValue('BATCH FORMAT');
+			result := batchformat;
+			result := REPLACE(result,'{PLANT}',c4j_GetPlant());
+			result := REPLACE(result,'{PROCESS_ORDER}',XPROCESS_ORDER);
+			result := REPLACE(result,'{YEAR4}',c4j_GetYear(XPRODUCTION_DATE,4));
+			result := REPLACE(result,'{YEAR2}',c4j_GetYear(XPRODUCTION_DATE,2));
+			result := REPLACE(result,'{YEAR1}',c4j_GetYear(XPRODUCTION_DATE,1));
+			result := REPLACE(result,'{MONTH}',c4j_GetMonth(XPRODUCTION_DATE));
+			result := REPLACE(result,'{DAY}',c4j_GetDay(XPRODUCTION_DATE));
+			result := REPLACE(result,'{JULIAN_DAY}',c4j_GetJulian(XPRODUCTION_DATE,1));
+			result := REPLACE(result,'{JULIAN0_DAY}',c4j_GetJulian(XPRODUCTION_DATE,0));
+			result := REPLACE(result,'{JULIAN1_DAY}',c4j_GetJulian(XPRODUCTION_DATE,1));
+	END IF;
+
+	result := CONCAT(result,XBATCH_OPTIONAL);
+
+  RETURN result;
+END C4J_GETFINALBATCHNUMBER
+
+</statement>
+
+<statement>
+ALTER FUNCTION "C4J_GETFINALBATCHNUMBER" COMPILE
+</statement>
+
+<statement>
+CREATE OR REPLACE FORCE VIEW view_auto_labeller AS select 
+        AL.LINE AS LINE,
+        AL.PROCESS_ORDER AS PROCESS_ORDER,
+        PO.STATUS AS STATUS,
+        PO.MATERIAL AS MATERIAL,
+        PO.REQUIRED_UOM AS REQUIRED_UOM,
+        MAT.MATERIAL_TYPE AS MATERIAL_TYPE,
+        MAT.DESCRIPTION AS DESCRIPTION,
+        LPAD( MATUOM.EAN,14,'0') AS EAN,
+        LPAD(MATUOM.VARIANT,2,'0') AS VARIANT,
+        MAT.OLD_MATERIAL AS OLD_MATERIAL,
+        MAT.SHELF_LIFE AS SHELF_LIFE,
+        MAT.SHELF_LIFE_UOM AS SHELF_LIFE_UOM,
+        MAT.SHELF_LIFE_RULE AS SHELF_LIFE_RULE,
+        PO.CUSTOMER_ID AS CUSTOMER_ID,
+        CUST.CUSTOMER_NAME AS CUSTOMER_NAME,
+        SUBSTR(C4J_GETFINALBATCHNUMBER(sysdate,AL.OVERRIDE_BATCH,AL.OVERRIDE_BATCH_NUMBER,AL.BATCH_OPTIONAL,AL.PROCESS_ORDER),1,12) AS BATCH_NUMBER,
+        c4j_GetFinalExpiryDate(sysdate,MAT.SHELF_LIFE,MAT.SHELF_LIFE_UOM,MAT.SHELF_LIFE_RULE,AL.OVERRIDE_EXPIRY,AL.OVERRIDE_EXPIRY_DATE) AS EXPIRY_DATE,
+        c4j_GetLayers(PO.PROCESS_ORDER) AS DEFAULT_LAYERS,
+        c4j_GetFullPalletQuantity(PO.PROCESS_ORDER) AS DEFAULT_QUANTITY 
+    from
+        app_auto_labeller AL,
+        app_process_order PO,
+        app_material MAT,
+        app_customer CUST,
+        app_material_uom MATUOM
+    where
+        PO.PROCESS_ORDER = AL.PROCESS_ORDER
+        and (MAT.MATERIAL = PO.MATERIAL)
+        and (CUST.CUSTOMER_ID = PO.CUSTOMER_ID)
+        and (MATUOM.MATERIAL = PO.MATERIAL)
+       and (MATUOM.UOM = PO.REQUIRED_UOM)
+</statement>
+
+<statement>
+ALTER VIEW view_auto_labeller COMPILE
+</statement>
+
+<statement>
+CREATE OR REPLACE FORCE VIEW view_auto_labeller_full AS select 
+        po.PROCESS_ORDER AS PROCESS_ORDER,
+        PO.STATUS AS STATUS,
+        PO.MATERIAL AS MATERIAL,
+        PO.REQUIRED_UOM AS REQUIRED_UOM,
+        MAT.MATERIAL_TYPE AS MATERIAL_TYPE,
+        MAT.DESCRIPTION AS DESCRIPTION,
+        LPAD( MATUOM.EAN,14,'0') AS EAN,
+        LPAD(MATUOM.VARIANT,2,'0') AS VARIANT,
+        MAT.OLD_MATERIAL AS OLD_MATERIAL,
+        MAT.SHELF_LIFE AS SHELF_LIFE,
+        MAT.SHELF_LIFE_UOM AS SHELF_LIFE_UOM,
+        MAT.SHELF_LIFE_RULE AS SHELF_LIFE_RULE,
+        PO.CUSTOMER_ID AS CUSTOMER_ID,
+        CUST.CUSTOMER_NAME AS CUSTOMER_NAME,
+        SUBSTR(C4J_GETFINALBATCHNUMBER(sysdate,'N','','',po.PROCESS_ORDER),1,12) AS BATCH_NUMBER,
+        c4j_GetFinalExpiryDate(sysdate,MAT.SHELF_LIFE,MAT.SHELF_LIFE_UOM,MAT.SHELF_LIFE_RULE,'',SYSDATE) AS EXPIRY_DATE,
+        c4j_GetLayers(PO.PROCESS_ORDER) AS DEFAULT_LAYERS,
+        c4j_GetFullPalletQuantity(PO.PROCESS_ORDER) AS DEFAULT_QUANTITY 
+    from
+        app_process_order PO,
+        app_material MAT,
+        app_customer CUST,
+        app_material_uom MATUOM
+    where
+        MAT.MATERIAL = PO.MATERIAL
+        and (CUST.CUSTOMER_ID = PO.CUSTOMER_ID)
+        and (MATUOM.MATERIAL = PO.MATERIAL)
+       and (MATUOM.UOM = PO.REQUIRED_UOM)
+</statement>
+
+<statement>
+ALTER VIEW view_auto_labeller_full COMPILE
+</statement>
+
+</DDL>

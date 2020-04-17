@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<message>
+	<hostRef>1e8d719e-4de6-42d6-a7a9-f4731af2f7b0</hostRef>
+	<messageRef>6964</messageRef>
+	<interfaceType>Despatch Confirmation</interfaceType>
+	<messageInformation>Despatch=WI15041</messageInformation>
+	<interfaceDirection>Input</interfaceDirection>
+	<messageDate>2009-05-17T19:01:36</messageDate>
+	<messageData>
+		<despatchConfirmation>
+			<haulier>SPEEDY</haulier>
+			<trailer>FG764JJF</trailer>
+			<despatchNo>WI15041</despatchNo>
+			<fromLocation>AINTREE</fromLocation>
+			<fromGLN/>
+			<toLocation>WINCANTON</toLocation>
+			<toGLN>01234567891234</toGLN>
+			<contents>
+				<pallet>
+					<SSCC>350001612200328652</SSCC>
+				</pallet>
+				<pallet>
+					<SSCC>350001612200328829</SSCC>
+				</pallet>
+				<pallet>
+					<SSCC>350001612200328836</SSCC>
+				</pallet>
+				<pallet>
+					<SSCC>350001612200328874</SSCC>
+				</pallet>
+				<pallet>
+					<SSCC>350001612200328898</SSCC>
+				</pallet>
+				<pallet>
+					<SSCC>350001612200328911</SSCC>
+				</pallet>
+				<pallet>
+					<SSCC>350001612200328935</SSCC>
+				</pallet>
+			</contents>
+		</despatchConfirmation>
+	</messageData>
+</message>

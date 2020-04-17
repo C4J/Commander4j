@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+CREATE TABLE [dbo].[APP_CUSTOMER](
+	[CUSTOMER_ID] [varchar](20) NOT NULL,
+	[CUSTOMER_NAME] [varchar](50) NULL,
+	[PRINT_ON_LABEL] [varchar](1) NULL,
+ CONSTRAINT [PK_APP_CUSTOMER] PRIMARY KEY CLUSTERED 
+(
+	[CUSTOMER_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+</statement>
+
+<statement>
+ALTER TABLE [dbo].[APP_CUSTOMER] ADD  CONSTRAINT [DF_APP_CUSTOMER_PRINT_ON_LABEL]  DEFAULT ('Y') FOR [PRINT_ON_LABEL]
+</statement>
+
+<statement>
+INSERT INTO APP_CUSTOMER SELECT 'SELF' AS 'CUSTOMER_ID',KEY_VALUE AS 'CUSTOMER_NAME','Y' AS PRINT_ON_LABEL FROM SYS_CONTROL WHERE SYSTEM_KEY = 'COMPANY NAME'
+</statement>
+
+<statement>
+	ALTER TABLE APP_PALLET ADD CUSTOMER_ID varchar(20)
+</statement>
+
+<statement>
+	ALTER TABLE APP_PROCESS_ORDER ADD CUSTOMER_ID varchar(20)
+</statement>
+
+<statement>
+	ALTER TABLE APP_PALLET_HISTORY ADD CUSTOMER_ID varchar(20)
+</statement>
+
+<statement>
+ UPDATE APP_PALLET SET CUSTOMER_ID = 'SELF'
+</statement>
+
+<statement>
+ UPDATE APP_PALLET_HISTORY SET CUSTOMER_ID = 'SELF'
+</statement>
+
+<statement>
+ UPDATE APP_PROCESS_ORDER SET CUSTOMER_ID = 'SELF'
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_ID','HU','Customer ID','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Name','HU','Customer Name','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Print_Customer_on_Label','HU','Print Name on Label','')
+</statement>
+
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_ID','NL','Customer ID','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Name','NL','Customer Name','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Print_Customer_on_Label','NL','Print Name on Label','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_ID','EN','Customer ID','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Admin','EN','Customer Admin','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Admin','NL','Customer Admin','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Admin','HU','Customer Admin','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Customer_Name','EN','Customer Name','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Print_Customer_on_Label','EN','Print Name on Label','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Add','EN','Add Customer','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Add','NL','Add Customer','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Add','HU','Add Customer','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Delete','EN','Delete Customer','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Delete','NL','Delete Customer','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Delete','HU','Delete Customer','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Rename','EN','Rename Customer To','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Rename','NL','Rename Customer To','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Customer_Rename','HU','Rename Customer To','')
+</statement>
+
+<statement>
+	INSERT [dbo].[SYS_GROUPS] ([GROUP_ID], [DESCRIPTION]) VALUES (N'CUSTOMER', N'Customer Admin')
+</statement>
+
+<statement>
+INSERT INTO [dbo].[SYS_MODULES] ([MODULE_ID],[RF_ACTIVE],[DK_ACTIVE],[MODULE_TYPE],[HINT],[ICON_FILENAME],[HELPSET_ID],[REPORT_FILENAME],[EXEC_FILENAME],[EXEC_DIR],[PRINT_PREVIEW],[PRINT_DIALOG],[PRINT_COPIES],[REPORT_TYPE],[RESOURCE_KEY]) VALUES ('FRM_ADMIN_CUSTOMER','N','Y','FORM',NULL,'customer.gif',null,null,null,null,'N','N',1,NULL ,'lbl_Customer_Admin')
+</statement>
+
+<statement>
+INSERT INTO [dbo].[SYS_MODULES] ([MODULE_ID],[RF_ACTIVE],[DK_ACTIVE],[MODULE_TYPE],[HINT],[ICON_FILENAME],[HELPSET_ID],[REPORT_FILENAME],[EXEC_FILENAME],[EXEC_DIR],[PRINT_PREVIEW],[PRINT_DIALOG],[PRINT_COPIES],[REPORT_TYPE],[RESOURCE_KEY]) VALUES ('FRM_ADMIN_CUSTOMER_ADD','N','Y','FUNCTION',NULL,null,null,null,null,null,'N','N',1,NULL ,NULL)
+</statement>
+
+<statement>
+INSERT INTO [dbo].[SYS_MODULES] ([MODULE_ID],[RF_ACTIVE],[DK_ACTIVE],[MODULE_TYPE],[HINT],[ICON_FILENAME],[HELPSET_ID],[REPORT_FILENAME],[EXEC_FILENAME],[EXEC_DIR],[PRINT_PREVIEW],[PRINT_DIALOG],[PRINT_COPIES],[REPORT_TYPE],[RESOURCE_KEY]) VALUES ('FRM_ADMIN_CUSTOMER_EDIT','N','Y','FUNCTION',NULL,null,null,null,null,null,'N','N',1,NULL ,NULL)
+</statement>
+
+<statement>
+INSERT INTO [dbo].[SYS_MODULES] ([MODULE_ID],[RF_ACTIVE],[DK_ACTIVE],[MODULE_TYPE],[HINT],[ICON_FILENAME],[HELPSET_ID],[REPORT_FILENAME],[EXEC_FILENAME],[EXEC_DIR],[PRINT_PREVIEW],[PRINT_DIALOG],[PRINT_COPIES],[REPORT_TYPE],[RESOURCE_KEY]) VALUES ('FRM_ADMIN_CUSTOMER_DELETE','N','Y','FUNCTION',NULL,null,null,null,null,null,'N','N',1,NULL ,NULL)
+</statement>
+
+<statement>
+INSERT INTO [dbo].[SYS_MODULES] ([MODULE_ID],[RF_ACTIVE],[DK_ACTIVE],[MODULE_TYPE],[HINT],[ICON_FILENAME],[HELPSET_ID],[REPORT_FILENAME],[EXEC_FILENAME],[EXEC_DIR],[PRINT_PREVIEW],[PRINT_DIALOG],[PRINT_COPIES],[REPORT_TYPE],[RESOURCE_KEY]) VALUES ('FRM_ADMIN_CUSTOMER_RENAME','N','Y','FUNCTION',NULL,null,null,null,null,null,'N','N',1,NULL ,NULL)
+</statement>
+
+<statement>
+INSERT INTO [dbo].[SYS_MODULES] ([MODULE_ID],[RF_ACTIVE],[DK_ACTIVE],[MODULE_TYPE],[HINT],[ICON_FILENAME],[HELPSET_ID],[REPORT_FILENAME],[EXEC_FILENAME],[EXEC_DIR],[PRINT_PREVIEW],[PRINT_DIALOG],[PRINT_COPIES],[REPORT_TYPE],[RESOURCE_KEY]) VALUES ('RPT_CUSTOMER','N','Y','REPORT',NULL,null ,null,'customers.jrxml',null,null,'Y','N',1,NULL,'lbl_Customer_Admin')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'CUSTOMER', N'FRM_ADMIN_CUSTOMER')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'CUSTOMER', N'FRM_ADMIN_CUSTOMER_ADD')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'CUSTOMER', N'FRM_ADMIN_CUSTOMER_EDIT')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'CUSTOMER', N'FRM_ADMIN_CUSTOMER_DELETE')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'CUSTOMER', N'FRM_ADMIN_CUSTOMER_RENAME')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_MENUS] ([MODULE_ID], [MENU_ID], [SEQUENCE_ID]) VALUES (N'FRM_ADMIN_CUSTOMER', N'MENU_DATA_MAINT', CAST(6 AS Numeric(38, 0)))
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_TOOLBAR] ([MODULE_ID], [SEQUENCE_ID]) VALUES (N'FRM_ADMIN_CUSTOMER', CAST(6 AS Numeric(38, 0)))
+</statement>
+
+
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN', N'FRM_ADMIN_CUSTOMER')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN', N'FRM_ADMIN_CUSTOMER_ADD')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN', N'FRM_ADMIN_CUSTOMER_EDIT')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN', N'FRM_ADMIN_CUSTOMER_DELETE')
+</statement>
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN', N'FRM_ADMIN_CUSTOMER_RENAME')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('err_Customer_Blank','EN','Customer is Blank','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('err_Customer_Blank','NL','Customer is Blank','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('err_Customer_Blank','HU','Customer is Blank','')
+</statement>
+
+</DDL>

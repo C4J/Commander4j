@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+	
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Language_ID','Language ID','NL','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Language_ID','Language ID','EN','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Resource_Key','Resource Key','NL','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Resource_Key','Resource Key','EN','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Mnemonic','Mnemonic','NL','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Mnemonic','Mnemonic','EN','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Text','Text','NL','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Text','Text','EN','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LANGUAGE','Translations','NL','')
+</statement>
+
+<statement>
+insert into dbo.SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LANGUAGE','Translations','EN','')
+</statement>
+
+<statement>
+INSERT INTO [dbo].[SYS_MODULES] ([MODULE_ID],[RF_ACTIVE],[DK_ACTIVE],[MODULE_TYPE],[HINT],[ICON_FILENAME],[HELPSET_ID],[REPORT_FILENAME],[EXEC_FILENAME],[EXEC_DIR],[PRINT_PREVIEW],[PRINT_DIALOG],[PRINT_COPIES],[REPORT_TYPE],[RESOURCE_KEY]) VALUES ('FRM_ADMIN_LANGUAGE','N','Y','FORM','','translate.gif','','','','','N','N',1,'','mod_FRM_ADMIN_LANGUAGE')
+</statement>         
+
+<statement>
+INSERT [dbo].[SYS_GROUP_PERMISSIONS] ([GROUP_ID], [MODULE_ID]) VALUES (N'ADMIN', N'FRM_ADMIN_LANGUAGE')
+</statement>  
+
+<statement>
+INSERT [dbo].[SYS_MENUS] ([MODULE_ID], [MENU_ID], [SEQUENCE_ID]) VALUES (N'FRM_ADMIN_LANGUAGE', N'MENU_SETUP', CAST(4 AS Numeric(38, 0)))
+</statement>
+
+</DDL>

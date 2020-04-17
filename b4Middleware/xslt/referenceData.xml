@@ -15,12 +15,13 @@
     <item type="PlantSLOCtoLocation" id="9762-0001"><value>WMP_PA</value></item>  
     <item type="PlantSLOCtoLocation" id="9690-0001"><value>WROCLAW</value></item>
     <item type="PlantSLOCtoLocation" id="9733-0001"><value>WROCLAW_PA</value></item>
-<!--
-    <item type="PlantSLOCtoLocation" id="0929-0001"><value>AINTREE</value></item>  -->
+
+    <item type="PlantSLOCtoLocation" id="0929-0001"><value>AINTREE</value></item>  
     <item type="PlantSLOCtoLocation" id="9018-0001"><value>BARDON</value></item>  
     <item type="PlantSLOCtoLocation" id="0962-0003"><value>FENLAND</value></item> 
     <item type="PlantSLOCtoLocation" id="0931-0002"><value>LAITS</value></item>    
     <item type="PlantSLOCtoLocation" id="9767-0002"><value>LAITS_PA</value></item>  
+    <item type="PlantSLOCtoLocation" id="9767-0002"><value>CFR_PA</value></item>  	
     <item type="PlantSLOCtoLocation" id="0962-0005"><value>NENE PARADE</value></item>        
     <item type="PlantSLOCtoLocation" id="7393-0001"><value>DC_BERTANI</value></item>     
     <item type="PlantSLOCtoLocation" id="7452-0001"><value>LANDRIANO</value></item>        
@@ -36,6 +37,7 @@
     <item type="GLNtoLocation" id="7610100720420"><value>HAMS HALL_PA</value></item> 
     <item type="GLNtoLocation" id="5000161809035"><value>LAITS</value></item>  
     <item type="GLNtoLocation" id="7610100720369"><value>LAITS_PA</value></item> 
+    <item type="GLNtoLocation" id="7610100720369"><value>CFR_PA</value></item> 
     <item type="GLNtoLocation" id="8000550002075"><value>PORTOGRUARO</value></item>
     <item type="GLNtoLocation" id="7610100720130"><value>PORTOGRUARO_PA</value></item>
     <item type="GLNtoLocation" id="5000161809035"><value>SUDBURY</value></item> 

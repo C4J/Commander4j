@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_PRODDEC_PRINT','Enable Print CheckBox','N','Y','FUNCTION','','0','','','','','','Y','N','1');
+</statement>
+
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_PRODDEC_PREVIEW','Enable Print CheckBox','N','Y','FUNCTION','','0','','','','','','Y','N','1');
+</statement>
+
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_PRODDEC_CONFIRM','Enable Print CheckBox','N','Y','FUNCTION','','0','','','','','','Y','N','1');
+</statement>
+
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_PRODDEC_PRINT');
+</statement>
+
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_PRODDEC_PREVIEW');
+</statement>
+
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_PRODDEC_CONFIRM');
+</statement>
+
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_PRODDEC_PRINT');
+</statement>
+
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_PRODDEC_PREVIEW');
+</statement>
+
+<statement>
+CREATE TABLE `SYS_REPORT_REQUEST` (
+  `REPORT_REQUEST_ID` decimal(22,0) NOT NULL,
+  `MODULE_ID` varchar(35) DEFAULT NULL,
+  `INVOCATION_MODE` varchar(35) DEFAULT NULL,
+  `PARAMETER_COUNT` int(10) unsigned zerofill DEFAULT NULL,
+  `PARAMETER_DELIMITER` varchar(1) DEFAULT NULL,
+  `PARAMETER_NAMES` varchar(250) DEFAULT NULL,
+  `PARAMETER_TYPES` varchar(250) DEFAULT NULL,
+  `PARAMETER_VALUES` varchar(250) DEFAULT NULL,
+  `SQL` varchar(2000) DEFAULT NULL,
+  `PRINT_QUEUE_NAME` varchar(250) DEFAULT NULL,
+  `PRINT_COPIES` int(10) unsigned zerofill DEFAULT NULL,
+  PRIMARY KEY (`REPORT_REQUEST_ID`)
+) 
+ ENGINE=InnoDB
+ DEFAULT CHARACTER SET utf8
+ DEFAULT COLLATE utf8_general_ci;
+</statement>
+
+
+
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('INTERFACE REQUEST ID','1','');
+</statement>
+
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('REPORT REQUEST ID','1','');
+</statement>
+
+
+</DDL>

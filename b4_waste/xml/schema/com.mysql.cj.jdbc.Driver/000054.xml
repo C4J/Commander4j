@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+CREATE TABLE `APP_QM_ACTIVITY` (
+  `INSPECTION_ID` varchar(20) NOT NULL,
+  `ACTIVITY_ID` varchar(10) NOT NULL,
+  `DESCRIPTION` varchar(50) DEFAULT NULL,
+  `EXTENSION_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`INSPECTION_ID`,`ACTIVITY_ID`)
+) ENGINE=InnoDB;
+</statement>
+
+<statement>
+CREATE TABLE `APP_QM_DICTIONARY` (
+  `TEST_ID` varchar(50) NOT NULL,
+  `FIELD_ALIGNMENT` int(11) DEFAULT NULL,
+  `DESCRIPTION` varchar(50) DEFAULT NULL,
+  `DATATYPE` varchar(15) DEFAULT NULL,
+  `UOM` varchar(10) DEFAULT NULL,
+  `REQUIRED` varchar(1) DEFAULT NULL,
+  `SELECT_LIST_ID` varchar(20) DEFAULT NULL,
+  `VISIBLE` varchar(1) DEFAULT NULL,
+  `EXTENSION_ID` int(11) DEFAULT NULL,
+  `FIELD_WIDTH` int(11) DEFAULT NULL,
+  `FIELD_MAX_CHARS` int(11) DEFAULT NULL,  
+  PRIMARY KEY (`TEST_ID`)
+) ENGINE=InnoDB;
+</statement>
+
+<statement>
+CREATE TABLE `APP_QM_DICTIONARY_GROUP` (
+  `GROUP_ID` varchar(20) NOT NULL,
+  `TEST_ID` varchar(50) DEFAULT NULL,
+  `ACCESS` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`GROUP_ID`)
+) ENGINE=InnoDB;
+</statement>
+
+<statement>
+CREATE TABLE `APP_QM_EXTENSION` (
+  `EXTENSION_ID` int(11) NOT NULL,
+  `LINKED_TABLE` varchar(50) NOT NULL,
+  `FIELDNAME` varchar(50) NOT NULL,
+  `VALUE` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`EXTENSION_ID`,`LINKED_TABLE`,`FIELDNAME`)
+) ENGINE=InnoDB;
+</statement>
+
+<statement>
+CREATE TABLE `APP_QM_INSPECTION` (
+  `INSPECTION_ID` varchar(20) NOT NULL,
+  `DESCRIPTION` varchar(50) DEFAULT NULL,
+  `EXTENSION_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`INSPECTION_ID`)
+) ENGINE=InnoDB;
+</statement>
+
+<statement>
+CREATE TABLE `APP_QM_RESULT` (
+  `SAMPLE_ID` int(11) NOT NULL,
+  `TEST_ID` varchar(50) NOT NULL,
+  `VALUE` varchar(50) DEFAULT NULL,
+  `UPDATED` datetime DEFAULT NULL,
+  `USER_ID` varchar(20) DEFAULT NULL,
+  `STATUS` varchar(20) DEFAULT NULL,
+  `PROCESSED` datetime DEFAULT NULL,
+  PRIMARY KEY (`SAMPLE_ID`,`TEST_ID`)
+) ENGINE=InnoDB;
+</statement>
+
+<statement>
+CREATE TABLE `APP_QM_SAMPLE` (
+  `SAMPLE_ID` int(11) NOT NULL,
+  `PROCESS_ORDER` varchar(10) DEFAULT NULL,
+  `MATERIAL` varchar(20) DEFAULT NULL,
+  `INSPECTION_ID` varchar(20) DEFAULT NULL,
+  `ACTIVITY_ID` varchar(10) DEFAULT NULL,
+  `SAMPLE_DATE` datetime DEFAULT NULL,
+  `USER_ID` varchar(20) DEFAULT NULL,
+  `USER_DATA_1` varchar(20) DEFAULT NULL,
+  `USER_DATA_2` varchar(20) DEFAULT NULL,  
+  PRIMARY KEY (`SAMPLE_ID`)
+) ENGINE=InnoDB;
+</statement>
+
+<statement>
+CREATE TABLE `APP_QM_SELECTLIST` (
+  `SELECT_LIST_ID` varchar(20) NOT NULL,
+  `VALUE` varchar(20) NOT NULL,
+  `DESCRIPTION` varchar(50) DEFAULT NULL,
+  `SEQUENCE` int(11) DEFAULT NULL,
+  PRIMARY KEY (`SELECT_LIST_ID`,`VALUE`)
+) ENGINE=InnoDB;
+</statement>
+
+<statement>
+CREATE TABLE `APP_QM_TEST` (
+  `INSPECTION_ID` varchar(20) NOT NULL,
+  `ACTIVITY_ID` varchar(10) NOT NULL,
+  `TEST_ID` varchar(50) NOT NULL,
+  `SEQUENCE_ID` int(11) NOT NULL,
+  `EXTENSION_ID` int(11) NOT NULL,  
+  PRIMARY KEY (`INSPECTION_ID`,`ACTIVITY_ID`,`TEST_ID`)
+) ENGINE=InnoDB;
+</statement>
+
+<statement>
+ALTER TABLE `APP_PROCESS_ORDER` ADD COLUMN `INSPECTION_ID` VARCHAR(20) NULL  AFTER `CUSTOMER_ID` ;
+</statement>
+
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Inspection_ID','EN','Inspection ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Activity_ID','EN','Activity ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Test_ID','EN','Test ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Sample_ID','EN','Sample ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Sample_Date','EN','Sample Date','')
+</statement>
+
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Inspection_ID','NL','Inspectie ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Activity_ID','NL','Activiteit ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Test_ID','NL','Test ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Sample_ID','NL','Voorbeeld ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Sample_Date','NL','Voorbeeld datum','')
+</statement>
+
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Inspection_ID','HU','Ellenőrzés ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Activity_ID','HU','Tevékenység ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Test_ID','HU','Teszt ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Sample_ID','HU','Minta ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Sample_Date','HU','Minta dátum','')
+</statement>
+
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Inspection_ID','IT','Ispezione ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Activity_ID','IT','Attività ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Test_ID','IT','Prova ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Sample_ID','IT','Campione ID','')
+</statement>
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`)  values ('lbl_Sample_Date','IT','Campione Date','')
+</statement>
+
+
+</DDL>

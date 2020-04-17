@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QM_Analysis_01" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a60b5bfd-a02c-4f20-acac-744e6b3a1044">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="232"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="761"/>
+	<parameter name="P_BATCH_SUFFIX" class="java.lang.String">
+		<parameterDescription><![CDATA[Batch Suffix]]></parameterDescription>
+		<defaultValueExpression><![CDATA[00]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_SAMPLE_DATE_START" class="java.sql.Timestamp">
+		<parameterDescription><![CDATA[Samples From Date]]></parameterDescription>
+		<defaultValueExpression><![CDATA[DATE(2017,1,1)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_SAMPLE_DATE_END" class="java.sql.Timestamp">
+		<parameterDescription><![CDATA[Samples To Date]]></parameterDescription>
+		<defaultValueExpression><![CDATA[NOW( )]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["My Company Name"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT *
+FROM view_qm_analysis_01
+WHERE 
+	 VIEW_QM_ANALYSIS_01.sample_date >= $P{P_SAMPLE_DATE_START} 
+	 AND VIEW_QM_ANALYSIS_01.sample_date <= $P{P_SAMPLE_DATE_END} 
+	 AND VIEW_QM_ANALYSIS_01.BATCH_SUFFIX =  $P{P_BATCH_SUFFIX} 
+ORDER BY VIEW_QM_ANALYSIS_01.BATCH_SUFFIX DESC,
+	VIEW_QM_ANALYSIS_01.RESOURCE_DESCRIPTION DESC,
+	VIEW_QM_ANALYSIS_01.SAMPLE_ID DESC]]>
+	</queryString>
+	<field name="BATCH_SUFFIX" class="java.lang.String"/>
+	<field name="RESOURCE_DESCRIPTION" class="java.lang.String"/>
+	<field name="SAMPLE_DATE" class="java.sql.Timestamp"/>
+	<field name="SAMPLE_ID" class="java.lang.Integer"/>
+	<field name="PROCESS_ORDER" class="java.lang.String"/>
+	<field name="REQUIRED_RESOURCE" class="java.lang.String"/>
+	<field name="MATERIAL" class="java.lang.String"/>
+	<field name="USER_DATA_1" class="java.lang.String"/>
+	<field name="USER_DATA_2" class="java.lang.String"/>
+	<field name="USER_DATA_3" class="java.lang.String"/>
+	<field name="USER_DATA_4" class="java.lang.String"/>
+	<field name="PRODUCT_PANEL" class="java.lang.String"/>
+	<field name="PACK_PANEL" class="java.lang.String"/>
+	<field name="PH" class="java.lang.String"/>
+	<group name="BATCH_SUFFIX">
+		<groupExpression><![CDATA[$F{BATCH_SUFFIX}]]></groupExpression>
+	</group>
+	<group name="Group_BATCH_SUFFIX">
+		<groupExpression><![CDATA[$F{BATCH_SUFFIX}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+			<band height="224">
+				<subreport>
+					<reportElement x="0" y="0" width="319" height="50" uuid="4eda650a-2cb8-4a16-a0db-d835971919b0"/>
+					<subreportParameter name="P_BATCH_SUFFIX">
+						<subreportParameterExpression><![CDATA[$P{P_BATCH_SUFFIX}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_SAMPLE_DATE_START">
+						<subreportParameterExpression><![CDATA[$P{P_SAMPLE_DATE_START}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_SAMPLE_DATE_END">
+						<subreportParameterExpression><![CDATA[$P{P_SAMPLE_DATE_END}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "QM_Analysis_01a.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement x="340" y="0" width="340" height="50" uuid="dfe2d76c-bd5b-44c0-9730-e13741bd0060"/>
+					<subreportParameter name="P_BATCH_SUFFIX">
+						<subreportParameterExpression><![CDATA[$P{P_BATCH_SUFFIX}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_SAMPLE_DATE_START">
+						<subreportParameterExpression><![CDATA[$P{P_SAMPLE_DATE_START}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_SAMPLE_DATE_END">
+						<subreportParameterExpression><![CDATA[$P{P_SAMPLE_DATE_END}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "QM_Analysis_01b.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement x="1" y="62" width="318" height="153" uuid="e2daeaca-7034-4e05-8a2d-b5708ce7d0c0"/>
+					<subreportParameter name="P_BATCH_SUFFIX">
+						<subreportParameterExpression><![CDATA[$P{P_BATCH_SUFFIX}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_SAMPLE_DATE_START">
+						<subreportParameterExpression><![CDATA[$P{P_SAMPLE_DATE_START}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_SAMPLE_DATE_END">
+						<subreportParameterExpression><![CDATA[$P{P_SAMPLE_DATE_END}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "QM_Analysis_01c.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport>
+					<reportElement x="340" y="62" width="340" height="153" uuid="5241084a-d2d2-46e1-9f4b-f340a58a54c1"/>
+					<subreportParameter name="P_BATCH_SUFFIX">
+						<subreportParameterExpression><![CDATA[$P{P_BATCH_SUFFIX}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_SAMPLE_DATE_START">
+						<subreportParameterExpression><![CDATA[$P{P_SAMPLE_DATE_START}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_SAMPLE_DATE_END">
+						<subreportParameterExpression><![CDATA[$P{P_SAMPLE_DATE_END}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "QM_Analysis_01d.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52">
+			<textField>
+				<reportElement x="1" y="0" width="399" height="30" uuid="2999c56a-9a47-4044-9382-61373a6d9a2e"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{COMPANY_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="606" y="0" width="193" height="49" uuid="665e991c-c82a-4051-9736-720ed9319b79"/>
+				<textElement textAlignment="Right">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Analysis 01"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="34" width="60" height="15" forecolor="#3300FF" uuid="043fd28b-7d57-4e8b-a7ff-5e11397f9bf5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_BATCH_SUFFIX}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy HH:mm:ss">
+				<reportElement x="249" y="34" width="118" height="15" forecolor="#3300FF" uuid="1879fe58-4809-4739-9767-4a1ffaa9dd2b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_SAMPLE_DATE_START}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy HH:mm:ss">
+				<reportElement x="479" y="34" width="120" height="15" forecolor="#3300FF" uuid="f899ccd6-1fae-4a6e-ae51-46ac2ae18d7c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_SAMPLE_DATE_END}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-2" y="34" width="82" height="15" forecolor="#3300FF" uuid="5c723cbd-538d-4046-a2d4-bda7d5c5265d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Batch Suffix :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="176" y="34" width="69" height="15" forecolor="#3300FF" uuid="e9aaf613-2916-4814-9f19-0e2391580342">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Start Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="34" width="82" height="15" forecolor="#3300FF" uuid="ba7c6e32-778f-4eaf-be96-ffb291cd3812">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[End Date :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<rectangle>
+				<reportElement key="rectangle" mode="Opaque" x="0" y="0" width="798" height="17" forecolor="#000000" backcolor="#FACF0F" uuid="c30335a8-ae50-4402-b5d8-26b774aca372"/>
+				<graphicElement>
+					<pen lineWidth="0.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="46" y="3" width="100" height="14" uuid="ef7ad594-99bb-4f65-86d9-ed65b9cf7924">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Sample Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="3" width="69" height="14" uuid="d473732b-d5be-47bc-803e-c1c22a627f00">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Sample No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-2" y="3" width="42" height="14" uuid="78cb26be-94d0-4b8e-aeb8-38b292db7f13">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Batch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="3" width="69" height="14" uuid="a27fbeae-e471-4ec1-a144-75652ae24e64">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Container]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="481" y="3" width="69" height="14" uuid="833f5fd4-1af6-431d-af69-25f39f138ff4">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Product Panel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="613" y="3" width="69" height="14" uuid="ad5d70b1-4371-49e5-a347-32ad00dfa051">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Pack Panel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="744" y="3" width="49" height="14" uuid="2a05f2bf-dd9a-4eb3-9f8c-71a37beba589">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[pH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="3" width="50" height="14" uuid="896aabfb-a96c-4cb5-b8dd-8edea1d67889">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Line]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="3" width="50" height="14" uuid="1f81428d-9fbb-4629-961d-1abdbe6a7bd8">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Shift]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="3" width="60" height="14" uuid="c09c82b6-07ed-4804-b0db-dfa4bdcf931b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Group]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement key="line" x="0" y="0" width="800" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="1d0bdbf9-c9fd-4658-8dc3-f165764beb78">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="line" x="0" y="17" width="800" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="46e4d142-f25b-4f4c-a29b-f0921e1f4c95">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField pattern="yyyy-MM-dd hh:mm:ss a z">
+				<reportElement x="46" y="0" width="100" height="12" uuid="eb391718-cc0c-4d7f-91ec-950869e09b1d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SAMPLE_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="0" width="70" height="12" uuid="0dd0bca7-3a24-4d1f-a7fd-20d2fdad79f7">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SAMPLE_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="224" y="0" width="66" height="12" uuid="2465228d-dd3b-4050-8ee7-c10f06175540">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USER_DATA_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="0" width="124" height="12" uuid="a6ea2569-8558-44bc-86e5-32826306d5dd">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRODUCT_PANEL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="613" y="0" width="124" height="12" uuid="9c27ac06-01ba-4ae6-a350-47386844d9ec">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PACK_PANEL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="750" y="0" width="48" height="12" uuid="5ed1f1f1-289f-4c81-8016-dd5abfe2a8bd">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="0" width="52" height="12" uuid="f557bb57-bec6-44ca-bfef-563ed07d271b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USER_DATA_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd hh:mm:ss a z">
+				<reportElement x="0" y="0" width="40" height="12" uuid="f1ec66ee-9982-4343-bdc7-8880480b0474">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BATCH_SUFFIX}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="357" y="0" width="52" height="12" uuid="dd7819e3-5bcb-4cb6-a89a-223504272cb1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USER_DATA_3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="0" width="52" height="12" uuid="dd5b6240-a97e-4ec8-a9df-bbee05047634">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USER_DATA_4}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="24">
+			<textField>
+				<reportElement x="640" y="11" width="158" height="12" uuid="7465face-493b-4828-b33f-281138cf9098">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="11" width="158" height="12" uuid="9a5ad51f-9407-458a-881d-792ad6d4955e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

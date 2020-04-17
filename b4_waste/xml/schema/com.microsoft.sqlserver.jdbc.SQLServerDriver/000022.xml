@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+INSERT [dbo].[SYS_RF_MENU] ([MODULE_ID], [SEQUENCE_ID]) VALUES (N'FRM_CM_PRINTERS', CAST(4 AS Numeric(38, 0)))
+</statement>
+
+<statement>
+UPDATE [dbo].[SYS_MODULES] SET RF_ACTIVE = 'Y' WHERE MODULE_ID = 'FRM_CM_PRINTERS'
+</statement>
+
+
+</DDL>

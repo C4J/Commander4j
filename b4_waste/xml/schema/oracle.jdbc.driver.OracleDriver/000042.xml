@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+CREATE TABLE "APP_MATERIAL_LOCATION" 
+   (	"MATERIAL" VARCHAR2(20), 
+      "LOCATION_ID" VARCHAR2(15),
+      "STATUS" VARCHAR2(20)   
+   )
+</statement>
+
+<statement>
+	CREATE INDEX "APP_MAT_LOCN_IDX" ON "APP_MATERIAL_LOCATION" ("MATERIAL","LOCATION_ID")
+</statement>
+
+
+</DDL>
