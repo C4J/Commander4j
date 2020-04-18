@@ -39,22 +39,22 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 {
 	private static final long serialVersionUID = 1;
 
-	public static final int Transaction_Date = 0;
-	public static final int Location_Col = 1;
-	public static final int Transaction_Type = 2;
+	public static final int Location_Col = 0;
+	public static final int Transaction_Date_Col = 1;
+	public static final int Transaction_Type_Col = 2;
 	public static final int Material_Col = 3;
 	public static final int Material_Type_Col = 4;
 	public static final int Reason_Col = 5;
-	public static final int Process_Order_Col = 6;
-	public static final int Transaction_Ref =7;
-	public static final int Quantity_Col = 8;
-	public static final int UOM_Col = 9;
-	public static final int WeightKG_Col = 10;
-	public static final int CostTotal_Col = 11;
-    public static final int User_id = 12;
+	public static final int Quantity_Col = 6;
+	public static final int UOM_Col = 7;
+	public static final int WeightKG_Col = 8;
+	public static final int CostTotal_Col = 9;
+	public static final int Process_Order_Col = 10;
+    public static final int User_id_Col = 11;
+	public static final int Transaction_Ref_Col =12;
 
 
-	private String[] mcolNames = { "Date", "Location", "Transaction",  "Material","Mat Type","Reason",  "Process Order","Txn Ref",  "Quantity","UOM","Weight KG","Cost","User ID"};
+	private String[] mcolNames = {  "Location", "Date","Transaction",  "Material","Mat Type","Reason", "Quantity","UOM","Weight KG","Cost",  "Process Order","User ID","Txn Ref"};
 	private ResultSet mResultSet;
 
 	private int prowCount = -1;
@@ -127,11 +127,11 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 
 			switch (col)
 			{
-			case Transaction_Ref:
+			case Transaction_Ref_Col:
 				return cache.get(row).getTransactionRef();
-			case Transaction_Type:
+			case Transaction_Type_Col:
 				return cache.get(row).getTransactionType();
-			case Transaction_Date:
+			case Transaction_Date_Col:
 				return cache.get(row).getWasteReportTime().toString().substring(0, 16);
 			case Material_Col:
 				return cache.get(row).getMaterialID();
@@ -147,7 +147,7 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 				return cache.get(row).getUOM();
 			case Location_Col:
 				return cache.get(row).getLocationID();
-			case User_id:
+			case User_id_Col:
 				return cache.get(row).getUserID();
 			case WeightKG_Col:
 				return cache.get(row).getWeightKG();

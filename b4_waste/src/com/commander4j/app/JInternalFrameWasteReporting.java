@@ -236,8 +236,18 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 				jTextFieldWasteLocation.setText(jTable1.getValueAt(row, JDBViewWasteReportingTableModel.Location_Col).toString());
 			}
 
-			if (fieldname.equals("lbl_Transaction_Type") == true)
+			if (fieldname.equals(lang.get("lbl_Transaction_Type")) == true)
 			{
+				String temp = jTable1.getValueAt(row, JDBViewWasteReportingTableModel.Transaction_Type_Col).toString();
+				for (int x = 0;x<transTypeList.size();x++)
+				{
+					JDBWasteTransactionType xx = transTypeList.get(x);
+					if (xx.getWasteTransactionType().equals(temp))
+					{
+						jComboBoxTransactionType.setSelectedIndex(x);
+					}
+				}
+				
 				jComboBoxTransactionType.setSelectedItem(jTable1.getValueAt(row, JDBViewWasteReportingTableModel.Transaction_Type_Col).toString());
 			}
 
@@ -261,15 +271,15 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 				jCheckBoxTo.setSelected(true);
 				calendarButtonDateFrom.setEnabled(true);
 				calendarButtonDateTo.setEnabled(true);
-				cal.set(Calendar.MILLISECOND, 0);
+				//cal.set(Calendar.MILLISECOND, 0);
 				cal.set(Calendar.SECOND, 0);
-				cal.set(Calendar.MINUTE, 0);
-				cal.set(Calendar.HOUR_OF_DAY, 0);
+				//cal.set(Calendar.MINUTE, 0);
+				//cal.set(Calendar.HOUR_OF_DAY, 0);
 				expiryFrom.setDate(cal.getTime());
-				cal.set(Calendar.MILLISECOND, 0);
+				//cal.set(Calendar.MILLISECOND, 0);
 				cal.set(Calendar.SECOND, 59);
-				cal.set(Calendar.MINUTE, 59);
-				cal.set(Calendar.HOUR_OF_DAY, 23);
+				//cal.set(Calendar.MINUTE, 59);
+				//cal.set(Calendar.HOUR_OF_DAY, 23);
 				expiryTo.setDate(cal.getTime());
 			}
 
@@ -380,21 +390,21 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 		JUtility.scrolltoHomePosition(jScrollPane1);
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Reporting_ID_Col).setPreferredWidth(120);
+		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Reporting_ID_Col).setPreferredWidth(100);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Reporting_Group_Col).setPreferredWidth(50);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Transaction_Ref_Col).setPreferredWidth(85);
-		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Report_Date_Col).setPreferredWidth(120);
-		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Location_Col).setPreferredWidth(120);
+		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Report_Date_Col).setPreferredWidth(122);
+		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Location_Col).setPreferredWidth(100);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Transaction_Type_Col).setPreferredWidth(80);
-		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Material_Col).setPreferredWidth(150);
-		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Material_Type_Col).setPreferredWidth(150);
+		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Material_Col).setPreferredWidth(120);
+		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Material_Type_Col).setPreferredWidth(100);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Process_Order_Col).setPreferredWidth(90);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Transaction_Ref_Col).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Quantity_Col).setPreferredWidth(90);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.UOM_Col).setPreferredWidth(50);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Cost_Per_Uom_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Conversion_To_Kg_Col).setPreferredWidth(80);
-		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Reason_Col).setPreferredWidth(150);
+		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Reason_Col).setPreferredWidth(140);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Process_Order_Col).setPreferredWidth(85);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.WeightKG_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Cost_Col).setPreferredWidth(80);
@@ -727,10 +737,10 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					jLabelTransaction_Type.setBounds(647, 17, 146, 21);
 				}
 				{
-					ComboBoxModel<JDBWasteTransactionType> jComboBoxStatusModel =  new DefaultComboBoxModel<JDBWasteTransactionType>(transTypeList);
+					ComboBoxModel<JDBWasteTransactionType> jComboBoxTransTypeModel =  new DefaultComboBoxModel<JDBWasteTransactionType>(transTypeList);
 					jComboBoxTransactionType = new JComboBox4j<JDBWasteTransactionType>();
 					jDesktopPane1.add(jComboBoxTransactionType);
-					jComboBoxTransactionType.setModel(jComboBoxStatusModel);
+					jComboBoxTransactionType.setModel(jComboBoxTransTypeModel);
 					jComboBoxTransactionType.setBounds(799, 16, 146, 22);
 					jComboBoxTransactionType.setMaximumRowCount(transTypeList.size());
 				}
@@ -1057,7 +1067,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 				}
 				
 				JLabel4j_std jLabel_WasteType = new JLabel4j_std();
-				jLabel_WasteType.setText(lang.get("lbl_Type_ID"));
+				jLabel_WasteType.setText(lang.get("lbl_Material_Type"));
 				jLabel_WasteType.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_WasteType.setHorizontalAlignment(SwingConstants.RIGHT);
 				jLabel_WasteType.setBounds(-8, 118, 126, 21);

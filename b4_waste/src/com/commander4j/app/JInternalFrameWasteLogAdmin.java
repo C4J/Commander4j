@@ -212,6 +212,8 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		jCheckBoxTo.setSelected(false);
 		calendarButtonDateFrom.setEnabled(false);
 		calendarButtonDateTo.setEnabled(false);
+		
+		jComboBoxMaterialType.setSelectedIndex(0);
 
 		search();
 
@@ -233,14 +235,24 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 				jTextFieldWasteLocation.setText(jTable1.getValueAt(row, JDBViewWasteLogTableModel.Location_Col).toString());
 			}
 
-			if (fieldname.equals("lbl_Transaction_Type") == true)
+			if (fieldname.equals(lang.get("lbl_Transaction_Type")) == true)
 			{
-				jComboBoxTransactionType.setSelectedItem(jTable1.getValueAt(row, JDBViewWasteLogTableModel.Transaction_Type).toString());
+				String temp = jTable1.getValueAt(row, JDBViewWasteLogTableModel.Transaction_Type_Col).toString();
+				for (int x = 0;x<transTypeList.size();x++)
+				{
+					JDBWasteTransactionType xx = transTypeList.get(x);
+					if (xx.getWasteTransactionType().equals(temp))
+					{
+						jComboBoxTransactionType.setSelectedIndex(x);
+					}
+				}
+				
+				jComboBoxTransactionType.setSelectedItem(jTable1.getValueAt(row, JDBViewWasteLogTableModel.Transaction_Type_Col).toString());
 			}
 
 			if (fieldname.equals(lang.get("lbl_Transaction_Date")) == true)
 			{
-				String dateString = jTable1.getValueAt(row, JDBViewWasteLogTableModel.Transaction_Date).toString();
+				String dateString = jTable1.getValueAt(row, JDBViewWasteLogTableModel.Transaction_Date_Col).toString();
 				Date parsedDate;
 				Calendar cal =  Calendar.getInstance();
 				try
@@ -258,15 +270,15 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 				jCheckBoxTo.setSelected(true);
 				calendarButtonDateFrom.setEnabled(true);
 				calendarButtonDateTo.setEnabled(true);
-				cal.set(Calendar.MILLISECOND, 0);
+				//cal.set(Calendar.MILLISECOND, 0);
 				cal.set(Calendar.SECOND, 0);
-				cal.set(Calendar.MINUTE, 0);
-				cal.set(Calendar.HOUR_OF_DAY, 0);
+				//cal.set(Calendar.MINUTE, 0);
+				//cal.set(Calendar.HOUR_OF_DAY, 0);
 				expiryFrom.setDate(cal.getTime());
-				cal.set(Calendar.MILLISECOND, 0);
+				//cal.set(Calendar.MILLISECOND, 0);
 				cal.set(Calendar.SECOND, 59);
-				cal.set(Calendar.MINUTE, 59);
-				cal.set(Calendar.HOUR_OF_DAY, 23);
+				//cal.set(Calendar.MINUTE, 59);
+				//cal.set(Calendar.HOUR_OF_DAY, 23);
 				expiryTo.setDate(cal.getTime());
 			}
 
@@ -426,17 +438,17 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 
-		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Transaction_Date).setPreferredWidth(120);
-		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Transaction_Type).setPreferredWidth(80);
-		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Material_Col).setPreferredWidth(150);
-		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Material_Type_Col).setPreferredWidth(150);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Transaction_Date_Col).setPreferredWidth(120);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Transaction_Type_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Material_Col).setPreferredWidth(120);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Material_Type_Col).setPreferredWidth(100);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Process_Order_Col).setPreferredWidth(90);
-		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Transaction_Ref).setPreferredWidth(70);
-		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Location_Col).setPreferredWidth(120);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Transaction_Ref_Col).setPreferredWidth(70);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Location_Col).setPreferredWidth(100);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Quantity_Col).setPreferredWidth(90);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.UOM_Col).setPreferredWidth(50);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Reason_Col).setPreferredWidth(150);
-		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.User_id).setPreferredWidth(110);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.User_id_Col).setPreferredWidth(110);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.WeightKG_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.CostTotal_Col).setPreferredWidth(80);
 
@@ -1160,7 +1172,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 				}
 				
 				JLabel4j_std jLabel_WasteType = new JLabel4j_std();
-				jLabel_WasteType.setText(lang.get("lbl_Type_ID"));
+				jLabel_WasteType.setText(lang.get("lbl_Material_Type"));
 				jLabel_WasteType.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_WasteType.setHorizontalAlignment(SwingConstants.RIGHT);
 				jLabel_WasteType.setBounds(561, 91, 114, 21);

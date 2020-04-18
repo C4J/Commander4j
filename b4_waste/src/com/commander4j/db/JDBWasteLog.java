@@ -387,6 +387,7 @@ public class JDBWasteLog
 			stmt.setFetchSize(1);
 			stmt.setLong(1, getTransactionRef());
 			stmt.setString(2, getTransactionType());
+			
 			rs = stmt.executeQuery();
 
 			if (rs.next())
