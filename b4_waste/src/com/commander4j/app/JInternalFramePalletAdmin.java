@@ -875,7 +875,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel4);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel4.setText(lang.get("lbl_Material_UOM"));
-					jLabel4.setBounds(490, 75, 88, 21);
+					jLabel4.setBounds(470, 75, 108, 21);
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -1018,7 +1018,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabelQuantity);
 					jLabelQuantity.setText(lang.get("lbl_Pallet_Quantity"));
 					jLabelQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelQuantity.setBounds(490, 105, 88, 21);
+					jLabelQuantity.setBounds(470, 105, 108, 21);
 				}
 				{
 
@@ -1035,7 +1035,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Material_Batch"));
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2.setBounds(490, 11, 88, 21);
+					jLabel2.setBounds(470, 11, 108, 21);
 				}
 				{
 					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
@@ -1047,7 +1047,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabelProcessOrder);
 					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
 					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProcessOrder.setBounds(490, 44, 88, 21);
+					jLabelProcessOrder.setBounds(470, 44, 108, 21);
 				}
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
@@ -2225,7 +2225,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			JLabel4j_std jLabelCreatedUser = new JLabel4j_std();
 			jLabelCreatedUser.setText(lang.get("lbl_Created_By"));
 			jLabelCreatedUser.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelCreatedUser.setBounds(501, 134, 77, 21);
+			jLabelCreatedUser.setBounds(470, 134, 108, 21);
 			jDesktopPane1.add(jLabelCreatedUser);
 
 			textFieldUserCreated = new JTextField4j(JDBUser.field_user_id);
@@ -2252,7 +2252,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			JLabel4j_std jLabelUpdatedUser = new JLabel4j_std();
 			jLabelUpdatedUser.setText(lang.get("lbl_Updated_By"));
 			jLabelUpdatedUser.setHorizontalAlignment(SwingConstants.TRAILING);
-			jLabelUpdatedUser.setBounds(501, 167, 77, 21);
+			jLabelUpdatedUser.setBounds(470, 167, 108, 21);
 			jDesktopPane1.add(jLabelUpdatedUser);
 
 			textFieldUserUpdated = new JTextField4j(JDBUser.field_user_id);

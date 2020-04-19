@@ -1113,7 +1113,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Location_ID"));
-					jLabel3.setBounds(485, 44, 103, 21);
+					jLabel3.setBounds(476, 44, 112, 21);
 				}
 				{
 					ComboBoxModel<JDBUom> jComboBox2Model = new DefaultComboBoxModel<JDBUom>(uomList);
@@ -1128,7 +1128,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel4);
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel4.setText(lang.get("lbl_Pallet_UOM"));
-					jLabel4.setBounds(764, 77, 96, 21);
+					jLabel4.setBounds(752, 77, 108, 21);
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -1206,7 +1206,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel15);
 					jLabel15.setText(lang.get("lbl_Pallet_Status"));
 					jLabel15.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel15.setBounds(731, 44, 108, 21);
+					jLabel15.setBounds(709, 44, 130, 21);
 				}
 				{
 					jToggleButtonSequence = new JToggleButton();
@@ -1253,7 +1253,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabelProcessOrder);
 					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
 					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProcessOrder.setBounds(691, 110, 144, 21);
+					jLabelProcessOrder.setBounds(701, 110, 144, 21);
 				}
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
@@ -1272,7 +1272,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel5.setText(lang.get("lbl_Material_UOM_EAN"));
 					jLabel5.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel5.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel5.setBounds(485, 77, 103, 21);
+					jLabel5.setBounds(476, 77, 112, 21);
 				}
 				{
 					jLabel6 = new JLabel4j_std();
@@ -1443,7 +1443,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel1_1 = new JLabel4j_std();
 					jLabel1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel1_1.setText(lang.get("lbl_Transaction_Ref"));
-					jLabel1_1.setBounds(485, 110, 103, 21);
+					jLabel1_1.setBounds(476, 110, 112, 21);
 					jDesktopPane1.add(jLabel1_1);
 				}
 
@@ -1491,7 +1491,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jLabel1_3 = new JLabel4j_std();
 					jLabel1_3.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabel1_3.setText(lang.get("lbl_Transaction_Type"));
-					jLabel1_3.setBounds(495, 11, 93, 21);
+					jLabel1_3.setBounds(476, 11, 112, 21);
 					jDesktopPane1.add(jLabel1_3);
 				}
 

@@ -566,7 +566,7 @@ public class JDBWasteReportingIDS
 		if (displayMode==displayModeFull)
 		{
 			result = JUtility.padString(getWasteReportingID().toString(), true, field_WasteReportingID, " ")+	
-			        JUtility.padString(getDescription().toString(), true, field_Description-35, " ")+"       "+ grp;
+			        JUtility.padString(getDescription().toString(), true, field_Description-55, " ")+"       "+ grp;
 		}
 		
 		if (displayMode==displayModeShort)

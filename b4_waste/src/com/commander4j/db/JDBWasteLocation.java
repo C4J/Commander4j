@@ -631,7 +631,7 @@ public class JDBWasteLocation
 
 		if (displayMode==displayModeFull)
 		{
-			result = JUtility.padString(getWasteLocationID().toString(), true, field_WasteLocationID, " ")+	getDescription(); 
+			result = JUtility.padString(getWasteLocationID().toString(), true, field_WasteLocationID, " ")+	getDescription().trim(); 
 		}
 		if (displayMode==displayModeShort)
 		{
