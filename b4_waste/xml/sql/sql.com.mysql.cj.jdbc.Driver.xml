@@ -2227,7 +2227,7 @@
 		<?JDBWasteLog?>		
 		<statement>
 			<id>JDBWasteLog.write</id>
-			<text>insert into {schema}APP_WASTE_LOG (transaction_ref,waste_transaction_type,report_time,waste_location_id,process_order,waste_reason_id,user_id,quantity) values (?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_WASTE_LOG (transaction_ref,waste_transaction_type,report_time,waste_location_id,waste_material_id,process_order,waste_reason_id,user_id,quantity) values (?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBWasteLog.delete</id>

@@ -66,7 +66,6 @@ import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 import javax.swing.JPanel;
 
-
 /**
  * The JInternalFrameWasteLogProperties class allows you to update a record in
  * the APP_WASTE_LOG table and is called from the parent form
@@ -134,6 +133,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 	private JCheckBox4j chckbx_Hazard = new JCheckBox4j("");
 	private JCheckBox4j chckbx_PPEReqd = new JCheckBox4j("");
 	private JPanel panel = new JPanel();
+	private String mode = "";
 
 	public JInternalFrameWasteLogProperties()
 	{
@@ -167,26 +167,54 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 
 	private void save()
 	{
-		wasteLog.setMaterialID(jTextFieldWasteMaterial.getText());
-		wasteLog.setLocationID(jTextFieldWasteLocation.getText());
-		wasteLog.setReasonID(jTextFieldWasteReason.getText());
-		wasteLog.setProcessOrder(jTextFieldProcessOrder.getText());
-		wasteLog.setWasteReportTime(JUtility.getTimestampFromDate(transactionDate.getDate()));
-		wasteLog.setQuantity((jFormattedTextFieldQuantity.getQuantity()));
-		if (wasteLog.update())
-		{
-			jStatusText.setText("");
-			jButtonSave.setEnabled(false);
-			jButtonUndo.setEnabled(false);
-		}
-		else
-		{
-			jStatusText.setText(wasteLog.getErrorMessage());
-			jButtonSave.setEnabled(false);
-			jButtonUndo.setEnabled(true);
+
+		    boolean result = false;
+		    
+		    wasteLog.setTransactionType(ltype);
+			wasteLog.setMaterialID(jTextFieldWasteMaterial.getText());
+			wasteLog.setLocationID(jTextFieldWasteLocation.getText());
+			wasteLog.setReasonID(jTextFieldWasteReason.getText());
+			wasteLog.setProcessOrder(jTextFieldProcessOrder.getText());
+			wasteLog.setWasteReportTime(JUtility.getTimestampFromDate(transactionDate.getDate()));
+			wasteLog.setQuantity((jFormattedTextFieldQuantity.getQuantity()));
+			
+			if (mode.equals("EDIT"))
+			{
+			  result = wasteLog.update();
+			  
+			  if (result == true)
+			  {
+				  jStatusText.setText("Updated log "+String.valueOf(wasteLog.getTransactionRef()));
+			  }
+			}
+			
+			if (mode.equals("NEW"))
+			{
+			  result = wasteLog.write();
+			  
+			  if (result == true)
+			  {
+				  lref = wasteLog.generateNewTransactionRef();
+				  mode = "EDIT";
+				  jTextFieldTransactionType.setText(String.valueOf(wasteLog.getTransactionRef()));
+				  jStatusText.setText("New log "+String.valueOf(wasteLog.getTransactionRef())+ " created.");
+			  }
+			}
+			
+			if (result == true)
+			{
+
+				jButtonSave.setEnabled(false);
+				jButtonUndo.setEnabled(false);
+			}
+			else
+			{
+				jStatusText.setText(wasteLog.getErrorMessage());
+				jButtonSave.setEnabled(false);
+				jButtonUndo.setEnabled(true);
+			}
 		}
 
-	}
 
 	private boolean processOrderChanged()
 	{
@@ -253,26 +281,26 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			jTextFieldMaterialDescription.setDisabledTextColor(Color.BLACK);
 			jTextFieldMaterialDescription.setText(wasteMaterial.getDescription());
 			jTextFieldUOM.setText(wasteMaterial.getUOM());
-			
+
 			if (wasteType.getWasteTypeProperties(matType))
 			{
 				jTextFieldMaterialTypeDescription.setText(wasteType.getDescription());
-				
+
 				chckbx_Recycle.setSelected(wasteType.isRecyclable());
 				chckbx_Hazard.setSelected(wasteType.isHazardous());
 				chckbx_PPEReqd.setSelected(wasteType.isPPEReqd());
-				
+
 				jButtonSave.setEnabled(true);
 				jButtonUndo.setEnabled(true);
 			}
 			else
 			{
 				jTextFieldMaterialTypeDescription.setText(wasteType.getErrorMessage());
-				
+
 				chckbx_Recycle.setSelected(false);
 				chckbx_Hazard.setSelected(false);
 				chckbx_PPEReqd.setSelected(false);
-				
+
 				jButtonSave.setEnabled(false);
 				jButtonUndo.setEnabled(true);
 			}
@@ -281,14 +309,14 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		{
 			jTextFieldMaterialDescription.setDisabledTextColor(Color.RED);
 			jTextFieldMaterialDescription.setText(wasteMaterial.getErrorMessage());
-			
+
 			jTextFieldMaterialTypeDescription.setText("");
 			jTextFieldUOM.setText("");
-			
+
 			chckbx_Recycle.setSelected(false);
 			chckbx_Hazard.setSelected(false);
 			chckbx_PPEReqd.setSelected(false);
-			
+
 			jButtonSave.setEnabled(false);
 			jButtonUndo.setEnabled(true);
 		}
@@ -324,7 +352,18 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		this();
 		lref = Long.valueOf(ref);
 		ltype = txn;
-		loadWasteLog();
+		
+		if (lref == -1)
+		{
+			mode = "NEW";
+			jTextFieldTransactionRef.setText("NEW");
+			jTextFieldTransactionType.setText(ltype);
+		}
+		else
+		{
+			mode = "EDIT";
+			loadWasteLog();
+		}
 	}
 
 	private boolean loadWasteLog()
@@ -360,17 +399,17 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 
 			jStatusText.setText("");
 			result = true;
-			
+
 		}
 		else
 		{
 			jStatusText.setText(wasteLog.getErrorMessage());
 			result = false;
 		}
-		
+
 		jButtonSave.setEnabled(false);
 		jButtonUndo.setEnabled(false);
-		
+
 		return result;
 	}
 
@@ -388,12 +427,12 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(350, 182));
 				jDesktopPane1.setLayout(null);
-				
+
 				panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 				panel.setBounds(637, 51, 216, 187);
 				jDesktopPane1.add(panel);
 				panel.setLayout(null);
-				
+
 				{
 					jButtonSave = new JButton4j(Common.icon_update_16x16);
 					jButtonSave.addActionListener(new ActionListener()
@@ -455,7 +494,6 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 				{
 					jTextFieldTransactionRef = new JTextField4j();
 					jDesktopPane1.add(jTextFieldTransactionRef);
-					jTextFieldTransactionRef.setText(String.valueOf(lref));
 					jTextFieldTransactionRef.setBounds(142, 14, 101, 21);
 					jTextFieldTransactionRef.setEnabled(false);
 					jTextFieldTransactionRef.setEditable(false);
@@ -475,7 +513,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jTextFieldTransactionType.setEnabled(false);
 					jTextFieldTransactionType.setEditable(false);
 				}
-				
+
 				{
 					jTextFieldUOM = new JTextField4j();
 					jDesktopPane1.add(jTextFieldUOM);
@@ -836,7 +874,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jTextFieldMaterialTypeDescription.setBounds(340, 115, 285, 21);
 					jTextFieldMaterialTypeDescription.setEnabled(false);
 				}
-				
+
 			}
 		}
 		catch (Exception e)

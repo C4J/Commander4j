@@ -120,9 +120,10 @@ public class JDBWasteLog
 
 		if (isValidData() == true)
 		{
-
 			try
 			{
+				//Generate new number and save it 
+				setTransactionRef(generateNewTransactionRef());
 
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteLog.write"));
@@ -133,7 +134,7 @@ public class JDBWasteLog
 				stmtupdate.setString(5, getMaterialID());
 				stmtupdate.setString(6, getProcessOrder());
 				stmtupdate.setString(7, getReasonID());
-				stmtupdate.setString(8, getUserID());
+				stmtupdate.setString(8, Common.userList.getUser(getSessionID()).getUserId());
 				stmtupdate.setBigDecimal(9, getQuantity());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
@@ -576,7 +577,7 @@ public class JDBWasteLog
 					stmtupdate.setString(3, getMaterialID());
 					stmtupdate.setString(4, getProcessOrder());
 					stmtupdate.setString(5, getReasonID());
-					stmtupdate.setString(6, getUserID());
+					stmtupdate.setString(6, Common.userList.getUser(getSessionID()).getUserId());
 					stmtupdate.setBigDecimal(7, getQuantity());
 					stmtupdate.setLong(8, getTransactionRef());
 					stmtupdate.setString(9, getTransactionType());

@@ -42,6 +42,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -64,8 +65,6 @@ import javax.swing.table.TableRowSorter;
 
 import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBLanguage;
-import com.commander4j.db.JDBMaterial;
-import com.commander4j.db.JDBMaterialBatch;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.db.JDBUser;
 import com.commander4j.db.JDBWasteLog;
@@ -314,37 +313,18 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 
 	private void addRecord()
 	{
-		String lmaterial = "";
-		String lbatch = "";
-		lmaterial = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_Input"));
-		if (lmaterial != null)
+		JDBWasteTransactionType u = new JDBWasteTransactionType(Common.selectedHostID, Common.sessionID);
+		LinkedList<JDBWasteTransactionType> transList = u.getWasteTransactionTypesList();
+		String[] transactionList = new String[transList.size()];
+
+		for (int x = 0; x < transList.size(); x++)
 		{
-			if (lmaterial.equals("") == false)
-			{
-				JDBMaterial mat = new JDBMaterial(Common.selectedHostID, Common.sessionID);
-				if (mat.isValidMaterial(lmaterial))
-				{
-					lbatch = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Material_Batch_Input"));
-					if (lbatch != null)
-					{
-						if (lbatch.equals("") == false)
-						{
-							JDBMaterialBatch matbat = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
-							if (matbat.isValidMaterialBatch(lmaterial, lbatch) == false)
-							{
-								JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
-							} else
-							{
-								JOptionPane.showMessageDialog(Common.mainForm, "Material/Batch [" + lmaterial + " / " + lbatch + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-							}
-						}
-					}
-				} else
-				{
-					JOptionPane.showMessageDialog(Common.mainForm, "Material [" + lmaterial + "] does not exist", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-				}
-			}
+			transactionList[x] = transList.get(x).getWasteTransactionType();
 		}
+
+		String transType = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_TransactionType_Select"), lang.get("btn_Select"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm_16x16, transactionList, transactionList[0]);
+		
+		JLaunchMenu.runForm("FRM_ADMIN_WASTE_LOG_EDIT", "-1", transType);
 
 	}
 
