@@ -1,7 +1,5 @@
 package com.commander4j.db;
 
-import java.math.BigDecimal;
-
 /**
  * @author David Garratt
  * 
@@ -60,13 +58,11 @@ public class JDBWasteLocationReporting
 {
 	public static int field_LocationID = 25;
 	public static int field_ReportingID = 25;
-	public static int field_Factory = 10;
 	public static int field_Enabled = 1;
 	
 	private String dbErrorMessage;
 	private String dbWasteLocationID;  /* PK */
 	private String dbReportingID;      /* PK */
-	private BigDecimal dbFactor;
 	
 	private final Logger logger = Logger.getLogger(JDBWasteLocationReporting.class);
 	private String hostID;
@@ -80,7 +76,7 @@ public class JDBWasteLocationReporting
 
 	public void clear()
 	{
-		setFactor(new BigDecimal("0"));
+
 	}
 	
 	public boolean rewriteReportIDSAssignedToLocation(String locationID, LinkedList<JDBListData> reportingIDs)
@@ -163,8 +159,7 @@ public class JDBWasteLocationReporting
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteLocationReporting.create"));
 				stmtupdate.setString(1, getWasteLocationID());
-				stmtupdate.setString(2, getWasteReportingID());
-				stmtupdate.setBigDecimal(3, getFactor());
+				stmtupdate.setString(2, getWasteReportingID());;
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -217,12 +212,6 @@ public class JDBWasteLocationReporting
 		return JUtility.replaceNullStringwithBlank(dbReportingID);
 	}
 
-	public BigDecimal getFactor()
-	{
-		return dbFactor;
-
-	}
-
 	public String getErrorMessage()
 	{
 		return dbErrorMessage;
@@ -256,7 +245,7 @@ public class JDBWasteLocationReporting
 			clear();
 			setWasteLocationID(rs.getString("waste_location_id"));
 			setWasteReportingID(rs.getString("waste_reporting_id"));
-			setFactor(rs.getBigDecimal("factor"));
+
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -391,11 +380,6 @@ public class JDBWasteLocationReporting
 		dbReportingID = desc;
 	}
 
-	public void setFactor(BigDecimal enabled)
-	{
-		dbFactor = enabled;
-	}
-
 	private void setErrorMessage(String errorMsg)
 	{
 		if (errorMsg.isEmpty() == false)
@@ -425,32 +409,5 @@ public class JDBWasteLocationReporting
 		return getWasteLocationID()+"-"+getWasteReportingID();
 	}
 	
-	public boolean update()
-	{
-		boolean result = false;
-		setErrorMessage("");
-
-		try
-		{
-			if (isValidWasteLocationReportingID() == true)
-			{
-				PreparedStatement stmtupdate;
-				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteLocationReporting.update"));
-				stmtupdate.setBigDecimal(1, getFactor());
-				stmtupdate.setString(2, getWasteLocationID());
-				stmtupdate.setString(3, getWasteReportingID());
-				stmtupdate.execute();
-				stmtupdate.clearParameters();
-				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
-				stmtupdate.close();
-				result = true;
-			}
-		} catch (SQLException e)
-		{
-			setErrorMessage(e.getMessage());
-		}
-
-		return result;
-	}
 
 }

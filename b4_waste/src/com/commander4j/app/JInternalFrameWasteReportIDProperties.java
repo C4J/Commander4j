@@ -305,7 +305,14 @@ public class JInternalFrameWasteReportIDProperties extends JInternalFrame
 		wasteReporting.setWasteReportingID(jTextFieldReportID.getText().toUpperCase());
 		wasteReporting.setDescription(jTextFieldDescription.getText());
 				
-		wasteReporting.setReportingGroup(((JDBWasteReportingGroup) jComboBoxReportingGroup.getSelectedItem()).getWasteReportGroup());
+		if (jComboBoxReportingGroup.getSelectedIndex()==-1)
+		{
+			wasteReporting.setReportingGroup(-1);
+		}
+		else
+		{
+			wasteReporting.setReportingGroup(((JDBWasteReportingGroup) jComboBoxReportingGroup.getSelectedItem()).getWasteReportGroup());
+		}
 		wasteReporting.setEnabled(chckbx_Enabled.isSelected());
 		wasteReporting.update();
 		

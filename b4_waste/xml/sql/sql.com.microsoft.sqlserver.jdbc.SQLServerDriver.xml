@@ -2124,7 +2124,7 @@
 		<?JDBWasteLocationReporting?>		
 		<statement>
 			<id>JDBWasteLocationReporting.create</id>
-			<text>insert into {schema}APP_WASTE_LOCATION_REPORTING (waste_location_id,waste_reporting_id,factor) values (?,?,?)</text>
+			<text>insert into {schema}APP_WASTE_LOCATION_REPORTING (waste_location_id,waste_reporting_id) values (?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBWasteLocationReporting.delete</id>
@@ -2141,10 +2141,6 @@
 		<statement>
 			<id>JDBWasteLocationReporting.isValidWasteLocationReportingID</id>
 			<text>select * from {schema}APP_WASTE_LOCATION_REPORTING where waste_location_id= ?and waste_reporting_id=?</text>
-		</statement>
-		<statement>
-			<id>JDBWasteLocationReporting.update</id>
-			<text>update {schema}APP_WASTE_LOCATION_REPORTING set factor=? where waste_location_id=? and waste_reporting_id=?</text>
 		</statement>	
 		<statement>
 			<id>JDBWasteLocationReporting.deleteByLocation</id>
@@ -2288,10 +2284,6 @@
 		<statement>
 			<id>JDBWasteLocationTypes.isValidWasteLocationType</id>
 			<text>select * from {schema}APP_WASTE_LOCATION_TYPES where waste_location_id= ? and waste_type_id=?</text>
-		</statement>
-		<statement>
-			<id>JDBWasteLocationTypes.update</id>
-			<text>update {schema}APP_WASTE_LOCATION_TYPES set factor=? where waste_location_id=? and waste_type_id=?</text>
 		</statement>	
 		<statement>
 			<id>JDBWasteLocationTypes.deleteByLocation</id>
