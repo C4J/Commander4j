@@ -93,6 +93,7 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 	private JCheckBox4j chckbx_Reason_Reqd = new JCheckBox4j("");
 	private JCheckBox4j chckbx_Enabled = new JCheckBox4j("");
 	private JList4j<JCheckListItem> listTypes;
+	ComboBoxModel<JCheckListItem> model;
 
 	public void setLocationID(String location)
 	{
@@ -124,6 +125,11 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 		chckbx_Reason_Reqd.setSelected(wasteLocation.isReasonIDRequired());
 
 		chckbx_Enabled.setSelected(wasteLocation.isEnabled());
+		
+		model = new DefaultComboBoxModel<JCheckListItem>(wasteTypes.getTypesCheckListForLocation(llocationid));
+		
+		listTypes.setModel(model);
+		listTypes.setCellRenderer(new MultiItemCheckListRenderer());
 
 	}
 
@@ -133,7 +139,9 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 		super();
 
 		llocationid = location;
+		
 		initGUI();
+		
 		setLocationID(location);
 
 		final JHelp help = new JHelp();
@@ -212,8 +220,7 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.setBounds(362, 332, 110, 32);
 					jButtonClose.addActionListener(new ActionListener() {
-
-	public void actionPerformed(ActionEvent evt) {
+					public void actionPerformed(ActionEvent evt) {
 							dispose();
 						}
 					});
@@ -299,9 +306,6 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					
 					listTypes = new JList4j<JCheckListItem>();
 
-					ComboBoxModel<JCheckListItem> model = new DefaultComboBoxModel<JCheckListItem>(wasteTypes.getTypesCheckListForLocation(llocationid));
-					listTypes.setModel(model);
-					listTypes.setCellRenderer(new MultiItemCheckListRenderer());
 					listTypes.addMouseListener(new MouseAdapter()
 					{
 						public void mouseClicked(MouseEvent event)
