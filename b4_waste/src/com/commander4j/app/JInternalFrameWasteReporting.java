@@ -42,7 +42,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -50,7 +49,6 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -162,46 +160,6 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 	
 	private ComboBoxModel<JDBWasteTypes> jComboBoxTypeModel;
 	private String driver;
-	private DefaultComboBoxModel<String> sortFieldsFriendly;
-	private LinkedList<String> sortFieldsSQL;
-	
-	private void buildSortList()
-	{
-		sortFieldsFriendly = new DefaultComboBoxModel<String>();
-		sortFieldsFriendly.addElement("Reporting Group");
-		sortFieldsFriendly.addElement("Reporting ID");
-		sortFieldsFriendly.addElement("Location ID");
-		sortFieldsFriendly.addElement("Material ID");
-		sortFieldsFriendly.addElement("Waste Type");
-		sortFieldsFriendly.addElement("Process Order");
-		sortFieldsFriendly.addElement("Reason");
-		sortFieldsFriendly.addElement("Transaction Ref");
-		sortFieldsFriendly.addElement("Date & Time");
-		sortFieldsFriendly.addElement("Transaction Type");	
-		sortFieldsFriendly.addElement("Quantity");
-		sortFieldsFriendly.addElement("Weight KG");
-		sortFieldsFriendly.addElement("Cost");
-		
-		
-		sortFieldsSQL = new LinkedList<String>();
-		sortFieldsSQL.add("REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
-		sortFieldsSQL.add("WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
-		sortFieldsSQL.add("WASTE_LOCATION_ID,TRANSACTION_REF");
-		sortFieldsSQL.add("WASTE_MATERIAL_ID,REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
-		sortFieldsSQL.add("WASTE_TYPE_ID,REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
-		sortFieldsSQL.add("PROCESS_ORDER,REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
-		sortFieldsSQL.add("WASTE_REASON_ID,REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
-		sortFieldsSQL.add("TRANSACTION_REF,WASTE_TRANSACTION_TYPE");	
-		sortFieldsSQL.add("REPORT_TIME,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
-		sortFieldsSQL.add("WASTE_TRANSACTION_TYPE,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
-		sortFieldsSQL.add("QUANTITY,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
-		sortFieldsSQL.add("WEIGHT_KG,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
-		sortFieldsSQL.add("COST,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
-		
-		jComboBoxSortBy.setModel(sortFieldsFriendly);
-		jComboBoxSortBy.setMaximumRowCount(sortFieldsSQL.size());
-
-	}
 
 	public JInternalFrameWasteReporting()
 	{
@@ -210,8 +168,6 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
 		initGUI();
-		
-		buildSortList();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -434,7 +390,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			query.addParamtoSQL("report_time<=", JUtility.getTimestampFromDate(expiryTo.getDate()));
 		}
 
-		query.appendSort(sortFieldsSQL.get(jComboBoxSortBy.getSelectedIndex()), jToggleButtonSequence.isSelected());
+		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
 		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
 
 		query.bindParams();
@@ -782,14 +738,16 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(271, 153, 113, 23);
+					jLabel10.setBounds(5, 153, 113, 23);
 				}
 				{
 					
+					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(Common.wasteReportingSortBy);
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
-					jComboBoxSortBy.setBounds(391, 153, 240, 23);
-					
+					jComboBoxSortBy.setModel(jComboBoxSortByModel);
+					jComboBoxSortBy.setBounds(125, 153, 529, 23);
+					jComboBoxSortBy.setMaximumRowCount(Common.wasteReportingSortBy.length);
 				}
 				{
 					jLabelTransaction_Type = new JLabel4j_std();
@@ -818,7 +776,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(632, 153, 21, 23);
+					jToggleButtonSequence.setBounds(655, 153, 21, 23);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1049,6 +1007,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setBounds(476, 188, 140, 32);
+					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING1"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.addActionListener(new ActionListener()
 					{
@@ -1149,41 +1108,9 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 	
 	private void print()
 	{
-
-
-	    JPopupMenu popup = new JPopupMenu("Reports");
-	    
-	    JMenuItem item1 = new JMenuItem("Summary Report 1 (By Reporting Group)");
-	    item1.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(final ActionEvent e)
-			{
-				jComboBoxSortBy.setSelectedIndex(0);
-				
-				buildSQL();
-				JLaunchReport.runReport("RPT_WASTE_REPORTING1", null, "", listStatement, "");
-			}
-		});
-	    item1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING1"));
-	    
-	    JMenuItem item2 = new JMenuItem("Summary Report 2 (By Material)");
-	    item2.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(final ActionEvent e)
-			{
-				jComboBoxSortBy.setSelectedIndex(3);
-				
-				buildSQL();
-				JLaunchReport.runReport("RPT_WASTE_REPORTING2", null, "", listStatement, "");
-			}
-		});
-	    item2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING2"));
-	    
-	    popup.add(item1);
-	    popup.add(item2);
-
-	    // show on the button?
-	    popup.show((Component)jScrollPane1, 490, 0);
+		jComboBoxSortBy.setSelectedIndex(0);
+		buildSQL();
+		JLaunchReport.runReport("RPT_WASTE_REPORTING1", null, "", listStatement, "");
 	}
 
 

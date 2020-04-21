@@ -124,10 +124,10 @@
 					<reportElement x="1" y="1" width="800" height="18" uuid="342a1a06-aebc-4e15-8acb-8c9b08693161">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
-					<textElement textAlignment="Left">
-						<font size="14" isBold="true" isUnderline="true"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["["+$F{REPORTING_GROUP}+"]     "+$F{GROUP_DESCRIPTION}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{GROUP_DESCRIPTION}+"  (Group "+$F{REPORTING_GROUP}+")"]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>

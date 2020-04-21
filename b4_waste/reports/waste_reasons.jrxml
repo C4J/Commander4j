@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="waste_reasons" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="7c9bc1b1-64ff-432e-a241-a51d1b59167a">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="commander4j_waste"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.report.description" value=""/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -25,10 +25,10 @@
 		<defaultValueExpression><![CDATA["Company Name"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select * from APP_WASTE_REASONS order by waste_reason_id]]>
+		<![CDATA[select * from APP_WASTE_REASONS order by reason_id]]>
 	</queryString>
-	<field name="WASTE_REASON_ID" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="WASTE_REASON_ID"/>
+	<field name="REASON_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="REASON_ID"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_reasons"/>
 	</field>
 	<field name="DESCRIPTION" class="java.lang.String">
@@ -174,7 +174,7 @@
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{WASTE_REASON_ID}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{REASON_ID}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
 				<reportElement key="textField" x="160" y="0" width="374" height="18" forecolor="#000000" uuid="9158c61b-8f19-4e64-bf0f-958fe29f5ffc">

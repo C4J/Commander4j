@@ -151,6 +151,8 @@ public class Common
 	public static String[] transactionSubTypes = new String[] { "", "ADD","REMOVE","CREATE","PRINT", "CONFIRM", "FROM", "TO", "MANUAL", "LABEL","DECISION","BEFORE","AFTER","DELETE" };
 	public static String[] auditEventActions = new String[] { "", "ADD", "REMOVE", "CREATE", "DELETE", "RENAME", "ENABLE", "DISABLE" };
 	public static String[] auditEventTypes = new String[] { "", "USER", "GROUP", "USER_GROUP", "GROUP_MODULE" };
+	public static String[] wasteLogSortBy = new String[] {"TRANSACTION_REF","REPORT_TIME", "WASTE_MATERIAL_ID", "WASTE_LOCATION_ID", "PROCESS_ORDER","WASTE_REASON_ID", "WASTE_TRANSACTION_TYPE","QUANTITY","WEIGHT_KG","COST"};
+	public static String[] wasteReportingSortBy = new String[] {"REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF","TRANSACTION_REF","REPORT_TIME", "WASTE_MATERIAL_ID","WASTE_TYPE_ID", "WASTE_REPORTING_ID","WASTE_LOCATION_ID", "PROCESS_ORDER","WASTE_REASON_ID", "WASTE_TRANSACTION_TYPE","QUANTITY","WEIGHT_KG","COST"};
 	public static String[] locationSortBy = new String[] { "LOCATION_ID", "PLANT", "WAREHOUSE", "DESCRIPTION", "GLN", "STORAGE_LOCATION", "STORAGE_TYPE", "STORAGE_SECTION", "STORAGE_BIN"};
 	public static String[] materialSortBy =new String[] {"MATERIAL", "MATERIAL_TYPE", "DESCRIPTION", "BASE_UOM", "PRODUCTION_UOM", "ISSUE_UOM", "SHELF_LIFE", "SHELF_LIFE_RULE", "DEFAULT_PALLET_STATUS", "DEFAULT_BATCH_STATUS"};
 	public static String[] processSortBy = new String[] { "PROCESS_ORDER", "MATERIAL", "DESCRIPTION", "STATUS", "LOCATION_ID", "DUE_DATE", "RECIPE_ID" };

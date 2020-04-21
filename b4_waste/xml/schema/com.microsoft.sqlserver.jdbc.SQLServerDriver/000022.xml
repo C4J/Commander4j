@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-INSERT INTO [dbo].[SYS_RF_MENU] ([MODULE_ID], [SEQUENCE_ID]) VALUES (N'FRM_CM_PRINTERS', CAST(4 AS Numeric(38, 0)))
+INSERT [dbo].[SYS_RF_MENU] ([MODULE_ID], [SEQUENCE_ID]) VALUES (N'FRM_CM_PRINTERS', CAST(4 AS Numeric(38, 0)))
 </statement>
 
 <statement>
