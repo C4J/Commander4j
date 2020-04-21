@@ -7,31 +7,31 @@
 </statement>
 
 <statement>
-	drop table app_uom_conversion
+	drop table APP_UOM_CONVERSION
 </statement>
 
 <statement>
-	drop table app_status
+	drop table APP_STATUS
 </statement>
 
 <statement>
-	alter table app_material drop column default_pallet_status
+	alter table APP_MATERIAL drop column default_pallet_status
 </statement>
 
 <statement>
-	alter table app_material drop column production_quantity
+	alter table APP_MATERIAL drop column production_quantity
 </statement>
 
 <statement>
-	alter table app_material drop column production_uom
+	alter table APP_MATERIAL drop column production_uom
 </statement>
 
 <statement>
-	alter table app_material drop column issue_uom
+	alter table APP_MATERIAL drop column issue_uom
 </statement>
 
 <statement>
-	alter table app_material drop column storage_unit_type
+	alter table APP_MATERIAL drop column storage_unit_type
 </statement>
 
 <statement>

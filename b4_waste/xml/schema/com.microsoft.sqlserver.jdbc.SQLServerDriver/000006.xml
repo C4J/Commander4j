@@ -7,31 +7,31 @@ ALTER TABLE SYS_MODULES ALTER COLUMN HELPSET_ID varchar(250)
 </statement>
 
 <statement>
-ALTER TABLE app_despatch ALTER COLUMN status varchar(20)
+ALTER TABLE APP_DESPATCH ALTER COLUMN status varchar(20)
 </statement>
 
 <statement>
-ALTER TABLE app_material ALTER COLUMN default_batch_status varchar(20)
+ALTER TABLE APP_MATERIAL ALTER COLUMN default_batch_status varchar(20)
 </statement>
 
 <statement>
-ALTER TABLE app_material_batch ALTER COLUMN status varchar(20)
+ALTER TABLE APP_MATERIAL_BATCH ALTER COLUMN status varchar(20)
 </statement>
 
 <statement>
-ALTER TABLE app_pallet ALTER COLUMN status varchar(20)
+ALTER TABLE APP_PALLET ALTER COLUMN status varchar(20)
 </statement>
 
 <statement>
-ALTER TABLE app_pallet_history ALTER COLUMN status varchar(20)
+ALTER TABLE APP_PALLET_HISTORY ALTER COLUMN status varchar(20)
 </statement>
 
 <statement>
-ALTER TABLE app_process_order ALTER COLUMN status varchar(20)
+ALTER TABLE APP_PROCESS_ORDER ALTER COLUMN status varchar(20)
 </statement>
 
 <statement>
-ALTER TABLE app_process_order ALTER COLUMN default_pallet_status varchar(20)
+ALTER TABLE APP_PROCESS_ORDER ALTER COLUMN default_pallet_status varchar(20)
 </statement>
 
 <statement>

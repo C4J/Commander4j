@@ -3,19 +3,19 @@
 <DDL>
 
 <statement>
-ALTER TABLE app_location ADD PERMITTED_PALLET_STATUS varchar(200)
+ALTER TABLE APP_LOCATION ADD PERMITTED_PALLET_STATUS varchar(200)
 </statement>
 
 <statement>
-ALTER TABLE app_location ADD PERMITTED_BATCH_STATUS varchar(200)
+ALTER TABLE APP_LOCATION ADD PERMITTED_BATCH_STATUS varchar(200)
 </statement>
 
 <statement>
-UPDATE app_location set PERMITTED_PALLET_STATUS = '^Blocked^Quality Inspection^Unrestricted^'
+UPDATE APP_LOCATION set PERMITTED_PALLET_STATUS = '^Blocked^Quality Inspection^Unrestricted^'
 </statement>
 
 <statement>
-UPDATE app_location set PERMITTED_BATCH_STATUS = '^Restricted^Unrestricted^'
+UPDATE APP_LOCATION set PERMITTED_BATCH_STATUS = '^Restricted^Unrestricted^'
 </statement>
 
 </DDL>

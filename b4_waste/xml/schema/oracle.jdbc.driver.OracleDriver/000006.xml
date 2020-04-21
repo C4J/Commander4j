@@ -7,31 +7,31 @@ ALTER TABLE SYS_MODULES MODIFY (HELPSET_ID VARCHAR2(250))
 </statement>
 
 <statement>
-ALTER TABLE app_despatch MODIFY (status VARCHAR2(20))
+ALTER TABLE APP_DESPATCH MODIFY (status VARCHAR2(20))
 </statement>
 
 <statement>
-ALTER TABLE app_material MODIFY (default_batch_status VARCHAR2(20))
+ALTER TABLE APP_MATERIAL MODIFY (default_batch_status VARCHAR2(20))
 </statement>
 
 <statement>
-ALTER TABLE app_material_batch MODIFY (status VARCHAR2(20))
+ALTER TABLE APP_MATERIAL_BATCH MODIFY (status VARCHAR2(20))
 </statement>
 
 <statement>
-ALTER TABLE app_pallet MODIFY (status VARCHAR2(20))
+ALTER TABLE APP_PALLET MODIFY (status VARCHAR2(20))
 </statement>
 
 <statement>
-ALTER TABLE app_pallet_history MODIFY (status VARCHAR2(20))
+ALTER TABLE APP_PALLET_HISTORY MODIFY (status VARCHAR2(20))
 </statement>
 
 <statement>
-ALTER TABLE app_process_order MODIFY (status VARCHAR2(20))
+ALTER TABLE APP_PROCESS_ORDER MODIFY (status VARCHAR2(20))
 </statement>
 
 <statement>
-ALTER TABLE app_process_order MODIFY (default_pallet_status VARCHAR2(20))
+ALTER TABLE APP_PROCESS_ORDER MODIFY (default_pallet_status VARCHAR2(20))
 </statement>
 
 <statement>

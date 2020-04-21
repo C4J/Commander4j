@@ -3,23 +3,23 @@
 <DDL>
 
 <statement>
-	alter table app_location add MSG_DESPATCH_CONFIRM varchar(1) default 'Y'
+	alter table APP_LOCATION add MSG_DESPATCH_CONFIRM varchar(1) default 'Y'
 </statement>
 
 <statement>
-	alter table app_location add MSG_DESPATCH_PREADVICE varchar(1) default 'Y'
+	alter table APP_LOCATION add MSG_DESPATCH_PREADVICE varchar(1) default 'Y'
 </statement>
 
 <statement>
-	alter table app_location add MSG_DESPATCH_EQUIP_TRACK varchar(1) default 'Y'
+	alter table APP_LOCATION add MSG_DESPATCH_EQUIP_TRACK varchar(1) default 'Y'
 </statement>
 
 <statement>
-	alter table app_location add MSG_PROD_CONFIRM varchar(1) default 'Y'
+	alter table APP_LOCATION add MSG_PROD_CONFIRM varchar(1) default 'Y'
 </statement>
 
 <statement>
-	update app_location set MSG_DESPATCH_CONFIRM='Y',MSG_DESPATCH_PREADVICE='Y',MSG_DESPATCH_EQUIP_TRACK='Y',MSG_PROD_CONFIRM='Y'
+	update APP_LOCATION set MSG_DESPATCH_CONFIRM='Y',MSG_DESPATCH_PREADVICE='Y',MSG_DESPATCH_EQUIP_TRACK='Y',MSG_PROD_CONFIRM='Y'
 </statement>
 
 <statement>

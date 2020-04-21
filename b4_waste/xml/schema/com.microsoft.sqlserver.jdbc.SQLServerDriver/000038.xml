@@ -5,8 +5,8 @@
 <statement>
 create view [dbo].[view_pallet_expiry] as				
   select p.*,b.expiry_date,m.description,c.customer_name,c.print_on_label from
-				app_pallet p, app_material_batch b,
-				app_material m,app_customer c 
+				APP_PALLET p, APP_MATERIAL_BATCH b,
+				APP_MATERIAL m,APP_CUSTOMER c 
 				where b.material = p.material and
 				b.batch_number = p.batch_number and 
 				m.material = p.material and

@@ -75,11 +75,11 @@ CREATE OR REPLACE  VIEW view_label_data_process_order AS select
               c4j_GetFinalExpiryDate(sysdate,MAT.SHELF_LIFE,MAT.SHELF_LIFE_UOM,MAT.SHELF_LIFE_RULE,'',SYSDATE) AS EXPIRY_DATE,
               MAT.UPDATED AS MATERIAL_UPDATED, 
               PO.UPDATED AS PROCESS_ORDER_UPDATED
-              from app_process_order PO,
-        app_material MAT,
-        app_customer CUST,
-        app_material_uom MATUOM_PROD,
-        app_material_uom MATUOM_BASE
+              from APP_PROCESS_ORDER PO,
+        APP_MATERIAL MAT,
+        APP_CUSTOMER CUST,
+        APP_MATERIAL_UOM MATUOM_PROD,
+        APP_MATERIAL_UOM MATUOM_BASE
     where
         MAT.MATERIAL = PO.MATERIAL
         and (CUST.CUSTOMER_ID = PO.CUSTOMER_ID)
