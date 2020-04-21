@@ -86,11 +86,11 @@ CREATE OR REPLACE FORCE VIEW view_auto_labeller AS select
         c4j_GetLayers(PO.PROCESS_ORDER) AS DEFAULT_LAYERS,
         c4j_GetFullPalletQuantity(PO.PROCESS_ORDER) AS DEFAULT_QUANTITY 
     from
-        app_auto_labeller AL,
-        app_process_order PO,
-        app_material MAT,
-        app_customer CUST,
-        app_material_uom MATUOM
+        APP_AUTO_LABELLER AL,
+        APP_PROCESS_ORDER PO,
+        APP_MATERIAL MAT,
+        APP_CUSTOMER CUST,
+        APP_MATERIAL_UOM MATUOM
     where
         PO.PROCESS_ORDER = AL.PROCESS_ORDER
         and (MAT.MATERIAL = PO.MATERIAL)
@@ -124,10 +124,10 @@ CREATE OR REPLACE FORCE VIEW view_auto_labeller_full AS select
         c4j_GetLayers(PO.PROCESS_ORDER) AS DEFAULT_LAYERS,
         c4j_GetFullPalletQuantity(PO.PROCESS_ORDER) AS DEFAULT_QUANTITY 
     from
-        app_process_order PO,
-        app_material MAT,
-        app_customer CUST,
-        app_material_uom MATUOM
+        APP_PROCESS_ORDER PO,
+        APP_MATERIAL MAT,
+        APP_CUSTOMER CUST,
+        APP_MATERIAL_UOM MATUOM
     where
         MAT.MATERIAL = PO.MATERIAL
         and (CUST.CUSTOMER_ID = PO.CUSTOMER_ID)

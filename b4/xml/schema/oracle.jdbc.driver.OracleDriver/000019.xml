@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-ALTER TABLE app_process_order ADD required_resource VARCHAR2(50)
+ALTER TABLE APP_PROCESS_ORDER ADD required_resource VARCHAR2(50)
 </statement>
 
 <statement>

@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-	ALTER TABLE dbo.app_process_order ADD REQUIRED_RESOURCE VARCHAR(50)
+	ALTER TABLE dbo.APP_PROCESS_ORDER ADD REQUIRED_RESOURCE VARCHAR(50)
 </statement>
 
 <statement>

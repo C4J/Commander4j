@@ -3,39 +3,39 @@
 <DDL>
 
 <statement>
-	insert [dbo].[SYS_CONTROL] ([system_key], [key_value], [description]) values ('DEFAULT_LOCATION', 'FACTORY1', 'Home')
+	INSERT INTO [dbo].[SYS_CONTROL] ([system_key], [key_value], [description]) values ('DEFAULT_LOCATION', 'FACTORY1', 'Home')
 </statement>
 
 <statement>
-	drop table [dbo].[app_uom_conversion]
+	drop table [dbo].[APP_UOM_CONVERSION]
 </statement>
 
 <statement>
-	drop table [dbo].[app_status]
+	drop table [dbo].[APP_STATUS]
 </statement>
 
 <statement>
-	alter table [dbo].[app_material] drop column [default_pallet_status];
+	alter table [dbo].[APP_MATERIAL] drop column [default_pallet_status];
 </statement>
 
 <statement>
-		ALTER TABLE [dbo].[app_material] DROP CONSTRAINT DF_APP_MATERIAL_PRODUCTION_QUANTITY;
+		ALTER TABLE [dbo].[APP_MATERIAL] DROP CONSTRAINT DF_APP_MATERIAL_PRODUCTION_QUANTITY;
 </statement>
 
 <statement>
-	alter table [dbo].[app_material] drop column [production_quantity];
+	alter table [dbo].[APP_MATERIAL] drop column [production_quantity];
 </statement>
 
 <statement>
-	alter table [dbo].[app_material] drop column [production_uom];
+	alter table [dbo].[APP_MATERIAL] drop column [production_uom];
 </statement>
 
 <statement>
-	alter table [dbo].[app_material] drop column [issue_uom];
+	alter table [dbo].[APP_MATERIAL] drop column [issue_uom];
 </statement>
 
 <statement>
-	alter table [dbo].[app_material] drop column [storage_unit_type];
+	alter table [dbo].[APP_MATERIAL] drop column [storage_unit_type];
 </statement>
 
 <statement>

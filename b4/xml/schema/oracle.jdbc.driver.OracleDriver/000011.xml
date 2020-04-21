@@ -4,7 +4,7 @@
 
 
 <statement>
-ALTER TABLE app_pallet_history MODIFY (user_id VARCHAR2(20))
+ALTER TABLE APP_PALLET_HISTORY MODIFY (user_id VARCHAR2(20))
 </statement>
 
 <statement>
