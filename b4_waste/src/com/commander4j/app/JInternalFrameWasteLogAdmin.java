@@ -154,6 +154,47 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 	private JDBWasteTypes wasteTypes = new JDBWasteTypes(Common.selectedHostID, Common.sessionID);
 	private Vector<JDBWasteTypes> typeList = new Vector<JDBWasteTypes>();
 	private ComboBoxModel<JDBWasteTypes> jComboBoxTypeModel;
+	private DefaultComboBoxModel<String> sortFieldsFriendly;
+	private LinkedList<String> sortFieldsSQL;
+	
+	private void buildSortList()
+	{
+		sortFieldsFriendly = new DefaultComboBoxModel<String>();
+		
+		sortFieldsFriendly.addElement("Transaction Ref");
+
+		sortFieldsFriendly.addElement("Location ID");
+		sortFieldsFriendly.addElement("Material ID");
+		sortFieldsFriendly.addElement("Waste Type");
+		sortFieldsFriendly.addElement("Process Order");
+		sortFieldsFriendly.addElement("Reason");
+
+		sortFieldsFriendly.addElement("Date & Time");
+		sortFieldsFriendly.addElement("Transaction Type");	
+		sortFieldsFriendly.addElement("Quantity");
+		sortFieldsFriendly.addElement("Weight KG");
+		sortFieldsFriendly.addElement("Cost");
+		
+		
+		sortFieldsSQL = new LinkedList<String>();
+
+		sortFieldsSQL.add("TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
+		sortFieldsSQL.add("WASTE_LOCATION_ID,TRANSACTION_REF");
+		sortFieldsSQL.add("WASTE_MATERIAL_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
+		sortFieldsSQL.add("WASTE_TYPE_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
+		sortFieldsSQL.add("PROCESS_ORDER,WASTE_LOCATION_ID,TRANSACTION_REF");
+		sortFieldsSQL.add("WASTE_REASON_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
+	
+		sortFieldsSQL.add("REPORT_TIME,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
+		sortFieldsSQL.add("WASTE_TRANSACTION_TYPE,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
+		sortFieldsSQL.add("QUANTITY,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
+		sortFieldsSQL.add("WEIGHT_KG,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
+		sortFieldsSQL.add("COST,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
+		
+		jComboBoxSortBy.setModel(sortFieldsFriendly);
+		jComboBoxSortBy.setMaximumRowCount(sortFieldsSQL.size());
+		
+	}
 
 	public JInternalFrameWasteLogAdmin()
 	{
@@ -162,6 +203,8 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
 		initGUI();
+		
+		buildSortList();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -324,7 +367,12 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 
 		String transType = (String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_TransactionType_Select"), lang.get("btn_Select"), JOptionPane.PLAIN_MESSAGE, Common.icon_confirm_16x16, transactionList, transactionList[0]);
 		
-		JLaunchMenu.runForm("FRM_ADMIN_WASTE_LOG_EDIT", "-1", transType);
+		if (transType!=null)
+		{
+		
+			JLaunchMenu.runForm("FRM_ADMIN_WASTE_LOG_EDIT", "-1", transType);
+		
+		}
 
 	}
 
@@ -397,7 +445,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 			query.addParamtoSQL("report_time<=", JUtility.getTimestampFromDate(expiryTo.getDate()));
 		}
 
-		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
+		query.appendSort(sortFieldsSQL.get(jComboBoxSortBy.getSelectedIndex()), jToggleButtonSequence.isSelected());
 		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
 
 		query.bindParams();
@@ -819,13 +867,9 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					jLabel10.setBounds(285, 118, 108, 23);
 				}
 				{
-					
-					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(Common.wasteLogSortBy);
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
-					jComboBoxSortBy.setModel(jComboBoxSortByModel);
 					jComboBoxSortBy.setBounds(401, 118, 255, 23);
-					jComboBoxSortBy.setMaximumRowCount(Common.wasteLogSortBy.length);
 				}
 				{
 					jLabelTransaction_Type = new JLabel4j_std();

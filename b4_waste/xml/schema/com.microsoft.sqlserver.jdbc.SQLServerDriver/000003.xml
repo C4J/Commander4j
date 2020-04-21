@@ -23,7 +23,7 @@
 </statement>
 
 <statement>
-	insert [dbo].[SYS_CONTROL] ([system_key], [key_value], [description]) values ('LABEL_HEADER_COMMENT', 'Free format text', 'Comment on barcode label header.')
+	INSERT INTO [dbo].[SYS_CONTROL] ([system_key], [key_value], [description]) values ('LABEL_HEADER_COMMENT', 'Free format text', 'Comment on barcode label header.')
 </statement>
 
 </DDL>

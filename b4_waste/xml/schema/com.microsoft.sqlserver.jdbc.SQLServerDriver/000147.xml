@@ -325,4 +325,8 @@
               dbo.APP_WASTE_REPORTING_GROUP AS GRP ON GRP.REPORTING_GROUP = REPIDS.REPORTING_GROUP
               AND ( TRANS.INCLUDE_IN_TOTALS = 'Y' ) 
     </statement>
+    
+    <statement>	
+    		INSERT INTO [dbo].SYS_CONTROL (SYSTEM_KEY, KEY_VALUE, DESCRIPTION) VALUES ('WASTE TXN REF', '0', 'Waste Transaction Log Number')
+    </statement>
 </DDL>

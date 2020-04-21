@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-	insert [dbo].[SYS_CONTROL] ([system_key], [key_value], [description]) values ('DEFAULT_LOCATION', 'FACTORY1', 'Home')
+	INSERT INTO [dbo].[SYS_CONTROL] ([system_key], [key_value], [description]) values ('DEFAULT_LOCATION', 'FACTORY1', 'Home')
 </statement>
 
 <statement>
