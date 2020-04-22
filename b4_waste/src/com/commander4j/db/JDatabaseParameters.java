@@ -267,11 +267,27 @@ public class JDatabaseParameters
 	
 	public String getjdbcCollation()
 	{
+		if (JUtility.replaceNullStringwithBlank(getjdbcDriver()).equals("com.mysql.cj.jdbc.Driver"))
+		{
+			if (JUtility.replaceNullStringwithBlank(jdbcDatabaseCollation).equals(""))
+			{
+				setjdbcCollation("utf8mb4_0900_ai_ci");
+			}
+		}
+		
 		return jdbcDatabaseCollation;
 	}
 	
 	public String getjdbcCharacterSet()
 	{
+		if (JUtility.replaceNullStringwithBlank(getjdbcDriver()).equals("com.mysql.cj.jdbc.Driver"))
+		{
+			if (JUtility.replaceNullStringwithBlank(jdbcDatabaseCharacterSet).equals(""))
+			{
+				setjdbcCharacterSet("utf8mb4");
+			}
+		}
+		
 		return jdbcDatabaseCharacterSet;
 	}
 	

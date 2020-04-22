@@ -1281,7 +1281,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelDBDateTime.setText("DB Date Time");
 					jLabelDBDateTime.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelDBDateTime.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelDBDateTime.setBounds(298, 445, 127, 21);
+					jLabelDBDateTime.setBounds(291, 445, 127, 21);
 
 				}
 				{
@@ -1342,7 +1342,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldDateTime.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldDateTime);
 					jTextFieldDateTime.setFocusCycleRoot(true);
-					jTextFieldDateTime.setBounds(432, 445, 282, 21);
+					jTextFieldDateTime.setBounds(426, 445, 282, 21);
 					jTextFieldDateTime.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1703,7 +1703,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldSelectLimit = new JTextField4j();
 					jTextFieldSelectLimit.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldSelectLimit);
-					jTextFieldSelectLimit.setBounds(432, 470, 282, 21);
+					jTextFieldSelectLimit.setBounds(426, 470, 282, 21);
 					jTextFieldSelectLimit.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1720,7 +1720,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelSelectTime.setText("DB Select Limit");
 					jLabelSelectTime.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelSelectTime.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelSelectTime.setBounds(298, 470, 127, 21);
+					jLabelSelectTime.setBounds(291, 470, 127, 21);
 
 				}
 				{
@@ -1729,14 +1729,14 @@ public class JFrameHostAdmin extends JFrame
 					jLabelSchema.setText("DB Schema");
 					jLabelSchema.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelSchema.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelSchema.setBounds(298, 495, 127, 21);
+					jLabelSchema.setBounds(291, 495, 127, 21);
 				}
 				{
 					jTextFieldSchema = new JTextField4j();
 					jTextFieldSchema.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldSchema);
 					jTextFieldSchema.setEnabled(false);
-					jTextFieldSchema.setBounds(432, 495, 282, 21);
+					jTextFieldSchema.setBounds(426, 495, 282, 21);
 					jTextFieldSchema.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1768,7 +1768,7 @@ public class JFrameHostAdmin extends JFrame
 						}
 					});
 					jTextFieldUniqueID.setEditable(false);
-					jTextFieldUniqueID.setBounds(432, 520, 282, 21);
+					jTextFieldUniqueID.setBounds(426, 520, 282, 21);
 					desktopPane.add(jTextFieldUniqueID);
 				}
 
@@ -1777,7 +1777,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelUniqueID.setText("Unique ID");
 					jLabelUniqueID.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelUniqueID.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelUniqueID.setBounds(298, 520, 127, 21);
+					jLabelUniqueID.setBounds(291, 520, 127, 21);
 					desktopPane.add(jLabelUniqueID);
 				}
 				{
@@ -1898,7 +1898,7 @@ public class JFrameHostAdmin extends JFrame
 			JLabelUpdateHostURL.setText("URL for Application Update");
 			JLabelUpdateHostURL.setHorizontalTextPosition(SwingConstants.RIGHT);
 			JLabelUpdateHostURL.setHorizontalAlignment(SwingConstants.RIGHT);
-			JLabelUpdateHostURL.setBounds(285, 549, 140, 21);
+			JLabelUpdateHostURL.setBounds(258, 549, 160, 21);
 			desktopPane.add(JLabelUpdateHostURL);
 
 			JTextFieldUpdateURL = new JTextField4j();
@@ -1914,7 +1914,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			JTextFieldUpdateURL.setFocusCycleRoot(true);
-			JTextFieldUpdateURL.setBounds(432, 549, 723, 21);
+			JTextFieldUpdateURL.setBounds(426, 549, 723, 21);
 			desktopPane.add(JTextFieldUpdateURL);
 			rdbtnManual.setToolTipText(
 					"<html>\nYou can determine if a install can be updated automatically via the checkbox’s<br>\nMANUAL v AUTOMATIC. Normally end user workstations would have a hosts<br>\nfile which would be set to Automatic. A server install which includes the interface<br>\nservice would be more appropriatly set to manual updates.<br>\n</html>");
@@ -1957,12 +1957,12 @@ public class JFrameHostAdmin extends JFrame
 			label4j_std_2.setText("Install To");
 			label4j_std_2.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_2.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_2.setBounds(298, 575, 127, 21);
+			label4j_std_2.setBounds(258, 575, 160, 21);
 			desktopPane.add(label4j_std_2);
 
 			jTextField4jInstallDir.setText("");
 			jTextField4jInstallDir.setFocusCycleRoot(true);
-			jTextField4jInstallDir.setBounds(432, 575, 723, 21);
+			jTextField4jInstallDir.setBounds(426, 575, 723, 21);
 			desktopPane.add(jTextField4jInstallDir);
 
 			setupPasswordField = new JPasswordField(20);
@@ -2038,7 +2038,7 @@ public class JFrameHostAdmin extends JFrame
 			label4j_std_5.setText("URL for Hosts File Update");
 			label4j_std_5.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_5.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_5.setBounds(285, 627, 140, 21);
+			label4j_std_5.setBounds(258, 627, 160, 21);
 			desktopPane.add(label4j_std_5);
 
 			jTextField4jHostUpdatePath = new JTextField4j();
@@ -2055,14 +2055,14 @@ public class JFrameHostAdmin extends JFrame
 			jTextField4jHostUpdatePath.setBackground(Common.color_list_assigned);
 			jTextField4jHostUpdatePath.setText("");
 			jTextField4jHostUpdatePath.setFocusCycleRoot(true);
-			jTextField4jHostUpdatePath.setBounds(432, 627, 723, 21);
+			jTextField4jHostUpdatePath.setBounds(426, 627, 723, 21);
 			desktopPane.add(jTextField4jHostUpdatePath);
 
 			JLabel4j_std label4j_std_6 = new JLabel4j_std();
 			label4j_std_6.setText("Hosts FIle Version");
 			label4j_std_6.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_6.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_6.setBounds(298, 601, 127, 21);
+			label4j_std_6.setBounds(258, 601, 160, 21);
 			desktopPane.add(label4j_std_6);
 
 			jTextField4jHostVersion = new JTextField4j();
@@ -2078,7 +2078,7 @@ public class JFrameHostAdmin extends JFrame
 			jTextField4jHostVersion.setBackground(Common.color_list_assigned);
 			jTextField4jHostVersion.setHorizontalAlignment(SwingConstants.CENTER);
 			jTextField4jHostVersion.setFocusCycleRoot(true);
-			jTextField4jHostVersion.setBounds(432, 601, 53, 21);
+			jTextField4jHostVersion.setBounds(426, 601, 53, 21);
 			desktopPane.add(jTextField4jHostVersion);
 
 			JButton4j button4j = new JButton4j(Common.icon_search_16x16);
