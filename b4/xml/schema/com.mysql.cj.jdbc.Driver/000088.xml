@@ -216,7 +216,7 @@
 			  `DATA_ID` varchar(20) NOT NULL,
 			  `DESCRIPTION` varchar(80) DEFAULT NULL,
 			  PRIMARY KEY (`DATA_ID`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+			) ENGINE=InnoDB;
 	</statement>
 	
 	<statement>

@@ -3,27 +3,27 @@
 <DDL>
 
 <statement>
-	alter table dbo.app_location add MSG_DESPATCH_CONFIRM varchar(1) default 'Y'
+	alter table dbo.APP_LOCATION add MSG_DESPATCH_CONFIRM varchar(1) default 'Y'
 </statement>
 
 <statement>
-	alter table dbo.app_location add MSG_DESPATCH_PREADVICE varchar(1) default 'Y' 
+	alter table dbo.APP_LOCATION add MSG_DESPATCH_PREADVICE varchar(1) default 'Y' 
 </statement>
 
 <statement>
-	alter table dbo.app_location add MSG_DESPATCH_EQUIP_TRACK varchar(1) default 'Y'
+	alter table dbo.APP_LOCATION add MSG_DESPATCH_EQUIP_TRACK varchar(1) default 'Y'
 </statement>
 
 <statement>
-	alter table dbo.app_location add MSG_PROD_CONFIRM varchar(1) default 'Y'
+	alter table dbo.APP_LOCATION add MSG_PROD_CONFIRM varchar(1) default 'Y'
 </statement>
 
 <statement>
-	update dbo.app_location set MSG_DESPATCH_CONFIRM='Y',MSG_DESPATCH_PREADVICE='Y',MSG_DESPATCH_EQUIP_TRACK='Y',MSG_PROD_CONFIRM='Y'
+	update dbo.APP_LOCATION set MSG_DESPATCH_CONFIRM='Y',MSG_DESPATCH_PREADVICE='Y',MSG_DESPATCH_EQUIP_TRACK='Y',MSG_PROD_CONFIRM='Y'
 </statement>
 
 <statement>
-	insert [dbo].[SYS_CONTROL] ([system_key], [key_value], [description]) values ('LABEL_HEADER_COMMENT', 'Free format text', 'Comment on barcode label header.')
+	INSERT INTO [dbo].[SYS_CONTROL] ([system_key], [key_value], [description]) values ('LABEL_HEADER_COMMENT', 'Free format text', 'Comment on barcode label header.')
 </statement>
 
 </DDL>

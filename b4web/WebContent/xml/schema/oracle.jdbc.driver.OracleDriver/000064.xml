@@ -11,11 +11,11 @@
 </statement>
 
 <statement>
-  CREATE VIEW view_pallet_history_expiry AS (select p.*,b.expiry_date,m.description from app_pallet_history p, app_material_batch b, app_material m where b.material = p.material and b.batch_number = p.batch_number and m.material = p.material)
+  CREATE VIEW view_pallet_history_expiry AS (select p.*,b.expiry_date,m.description from APP_PALLET_HISTORY p, APP_MATERIAL_BATCH b, APP_MATERIAL m where b.material = p.material and b.batch_number = p.batch_number and m.material = p.material)
 </statement>
 
 <statement>
-  CREATE VIEW view_pallet_history AS (select * from app_pallet_history)
+  CREATE VIEW view_pallet_history AS (select * from APP_PALLET_HISTORY)
 </statement>
 
 </DDL>

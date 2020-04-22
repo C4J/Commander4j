@@ -171,7 +171,6 @@ public class JXMLHost
 				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseSelectLimit().toLowerCase().trim());
 				jdbcDatabaseSelectLimit.appendChild(text);
 
-				//if timezone is defined but disabled - remove the timezone.
 				if ((hostList.get(j).getDatabaseParameters().getjdbcDatabaseTimeZone().trim().equals("")==false) && (hostList.get(j).getDatabaseParameters().isjdbcDatabaseTimeZoneEnable()==false))
 				{
 					hostList.get(j).getDatabaseParameters().setjdbcDatabaseTimeZone("");
@@ -184,6 +183,14 @@ public class JXMLHost
 				Element jdbcDatabaseTimeZoneEnable = (Element) document.createElement("jdbcDatabaseTimeZoneEnable");
 				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseTimeZoneEnable().trim());
 				jdbcDatabaseTimeZoneEnable.appendChild(text);
+				
+				Element jdbcDatabaseCollation = (Element) document.createElement("jdbcDatabaseCollation");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcCollation().trim());
+				jdbcDatabaseCollation.appendChild(text);
+				
+				Element jdbcDatabaseCharacterSet = (Element) document.createElement("jdbcDatabaseCharacterSet");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcCharacterSet().trim());
+				jdbcDatabaseCharacterSet.appendChild(text);
 
 				Element jdbcDatabaseSchema = (Element) document.createElement("jdbcDatabaseSchema");
 				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseSchema().trim());
@@ -195,6 +202,8 @@ public class JXMLHost
 				databasedriver.appendChild(jdbcDatabaseSelectLimit);
 				databasedriver.appendChild(jdbcDatabaseTimeZone);
 				databasedriver.appendChild(jdbcDatabaseTimeZoneEnable);
+				databasedriver.appendChild(jdbcDatabaseCollation);
+				databasedriver.appendChild(jdbcDatabaseCharacterSet);
 				databasedriver.appendChild(jdbcDatabaseSchema);
 
 				Element DatabaseParameters = (Element) document.createElement("DatabaseParameters");
@@ -308,6 +317,8 @@ public class JXMLHost
 		String jdbcDatabaseDateTimeToken = "";
 		String jdbcDatabaseSelectLimit = "";
 		String jdbcDatabaseTimeZone = "";
+		String jdbcDatabaseCollation= "";
+		String jdbcDatabaseCharacterSet= "";
 		String jdbcDatabaseTimeZoneEnable = "";
 		String jdbcDatabaseSchema = "";
 		String SiteNumber = "";
@@ -396,6 +407,8 @@ public class JXMLHost
 				jdbcDatabaseSelectLimit = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseSelectLimit").trim();
 				jdbcDatabaseTimeZone = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseTimeZone").trim();
 				jdbcDatabaseTimeZoneEnable = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseTimeZoneEnable").trim();
+				jdbcDatabaseCollation = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseCollation").trim();
+				jdbcDatabaseCharacterSet = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseCharacterSet").trim();
 
 				jdbcDatabaseSchema = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseDriver/jdbcDatabaseSchema").trim();
 
@@ -438,6 +451,8 @@ public class JXMLHost
 				host.getDatabaseParameters().setjdbcDatabaseDateTimeToken(jdbcDatabaseDateTimeToken);
 				host.getDatabaseParameters().setjdbcDatabaseSelectLimit(jdbcDatabaseSelectLimit);
 				host.getDatabaseParameters().setjdbcDatabaseTimeZone(jdbcDatabaseTimeZone);
+				host.getDatabaseParameters().setjdbcCollation(jdbcDatabaseCollation);
+				host.getDatabaseParameters().setjdbcCharacterSet(jdbcDatabaseCharacterSet);
 				host.getDatabaseParameters().setjdbcDatabaseTimeZoneEnable(jdbcDatabaseTimeZoneEnable);
 				host.getDatabaseParameters().setjdbcDatabaseSchema(jdbcDatabaseSchema);
 				host.getDatabaseParameters().setjdbcUsername(jdbcUsername);

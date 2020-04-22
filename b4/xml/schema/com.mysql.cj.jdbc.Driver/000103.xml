@@ -301,7 +301,7 @@ CREATE OR REPLACE VIEW `view_qm_results` AS
 	  `RESOURCE_REQD` varchar(1) DEFAULT 'N',
 	  `RESOURCE_PARAM` varchar(45) DEFAULT 'P_RESOURCE',
 	  PRIMARY KEY (`ANALYSIS_ID`)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	) ENGINE=InnoDB;
 </statement>
 
 <statement>

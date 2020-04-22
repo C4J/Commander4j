@@ -66,7 +66,7 @@
 		  `GROUP_ID` varchar(15) NOT NULL DEFAULT 'Pack',
 		  `REQUIRED_RESOURCE` varchar(50) NOT NULL,
 		  PRIMARY KEY (`LINE`,`GROUP_ID`,`REQUIRED_RESOURCE`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8;	
+		) ENGINE=InnoDB;	
 	</statement>
 	
 	<statement>
@@ -79,7 +79,7 @@
 	  	`GROUP_ID` varchar(15) NOT NULL DEFAULT 'Pack',
 	  	`PRINTER_ID` varchar(20) NOT NULL,
 	  	PRIMARY KEY (`LINE`,`PRINTER_ID`,`GROUP_ID`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		) ENGINE=InnoDB;
 	</statement>
 	
 	<statement>

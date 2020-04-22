@@ -44,9 +44,7 @@
 			  `BATCH_SUFFIX` varchar(15) DEFAULT NULL,
 			  `ENABLED` varchar(1) DEFAULT NULL,
 		  PRIMARY KEY (`REQUIRED_RESOURCE`)
-			)  ENGINE=InnoDB
-			   DEFAULT CHARACTER SET utf8
-			   DEFAULT COLLATE utf8_general_ci;
+			)  ENGINE=InnoDB;
 </statement>
 			
 <statement>INSERT INTO SYS_MODULES (`MODULE_ID`, `RF_ACTIVE`, `DK_ACTIVE`, `MODULE_TYPE`, `HINT`, `ICON_FILENAME`, `HELPSET_ID`, `REPORT_FILENAME`, `EXEC_FILENAME`, `EXEC_DIR`, `PRINT_PREVIEW`, `PRINT_DIALOG`, `PRINT_COPIES`,`RESOURCE_KEY`) VALUES ('FRM_ADMIN_PO_RESOURCE', N'N', 'Y', 'FORM', 'Maintain Resources', 'process_order.gif', 'http://commander4j.com/mw/index.php/Resource', NULL, NULL, NULL, NULL, NULL, NULL,'mod_FRM_ADMIN_PO_RESOURCE')</statement>

@@ -91,6 +91,9 @@ public class JXMLSchema
 				{
 					Text = Text.replace("{schema}", Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema());
 					Text = Text.replace("{database}", Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabase());
+					Text = Text.replace("{charset}", Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcCharacterSet());
+					Text = Text.replace("{collation}", Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcCollation());
+					
 					JDBDDL ddl = new JDBDDL();
 					ddl.setVersion(ver);
 					ddl.setSequence(seq);

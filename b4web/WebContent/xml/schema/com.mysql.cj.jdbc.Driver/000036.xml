@@ -31,9 +31,7 @@ CREATE TABLE `APP_MHN` (
   `COMMENT` VARCHAR(250),
   PRIMARY KEY (`MHN_NUMBER`)
 )
-ENGINE = InnoDB  
-DEFAULT CHARACTER SET utf8
-DEFAULT COLLATE utf8_general_ci;;
+ENGINE = InnoDB;
 </statement>
 
 <statement>
@@ -44,9 +42,7 @@ CREATE TABLE `APP_MHN_DECISIONS` (
   `COLOR_BACKGROUND` INTEGER,
    PRIMARY KEY (`DECISION`)
 )
- ENGINE=InnoDB   
- DEFAULT CHARACTER SET utf8
- DEFAULT COLLATE utf8_general_ci;
+ ENGINE=InnoDB;
 </statement>
 
 <statement>
@@ -55,10 +51,7 @@ CREATE TABLE `APP_MHN_REASONS` (
   `DESCRIPTION` VARCHAR(50),
    PRIMARY KEY (`REASON`)
 )
- ENGINE=InnoDB 
- DEFAULT CHARACTER SET utf8
- DEFAULT COLLATE utf8_general_ci;
-
+ ENGINE=InnoDB;
 </statement>
 
 <statement>

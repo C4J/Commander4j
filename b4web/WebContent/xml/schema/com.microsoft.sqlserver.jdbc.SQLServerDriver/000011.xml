@@ -4,7 +4,7 @@
 <DDL>
 
 <statement>
-	ALTER TABLE app_pallet_history ALTER COLUMN user_id varchar(20)
+	ALTER TABLE APP_PALLET_HISTORY ALTER COLUMN user_id varchar(20)
 </statement>
 
 <statement>

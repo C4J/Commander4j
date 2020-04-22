@@ -9,7 +9,7 @@
 		  `DATA_ID` varchar(20) NOT NULL,
 		  `DATA` varchar(80) DEFAULT NULL,
 		  PRIMARY KEY (`MATERIAL`,`CUSTOMER_ID`,`DATA_ID`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		) ENGINE=InnoDB;
 	</statement>
 	
 	<statement>
@@ -318,7 +318,7 @@
 		  `RECORDS_DELETED` int(11) DEFAULT '0',
 		  `SEQUENCE` int(11) DEFAULT '0',
 		  PRIMARY KEY (`ARCHIVE_ID`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		) ENGINE=InnoDB;
 	</statement>
 	
 	<statement> 

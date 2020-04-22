@@ -41,6 +41,10 @@ public class JDatabaseParameters
 	private String jdbcDatabaseTimeZone;
 	
 	private String jdbcDatabaseTimeZoneEnable;
+	
+	private String jdbcDatabaseCollation;
+	
+	private String jdbcDatabaseCharacterSet;
 
 	private String jdbcDatabaseSchema;
 
@@ -67,6 +71,8 @@ public class JDatabaseParameters
 		jdbcPort = "";
 		jdbcSID = "";
 		jdbcDatabase = "";
+		jdbcDatabaseCollation = "";
+		jdbcDatabaseCharacterSet = "";
 	}
 
 	public void setjdbcDriver(String value)
@@ -102,6 +108,16 @@ public class JDatabaseParameters
 	public void setjdbcDatabaseTimeZone(String value)
 	{
 		jdbcDatabaseTimeZone = value;
+	}
+	
+	public void setjdbcCollation(String value)
+	{
+		jdbcDatabaseCollation = value;
+	}
+	
+	public void setjdbcCharacterSet(String value)
+	{
+		jdbcDatabaseCharacterSet = value;
 	}
 	
 	public void setjdbcDatabaseTimeZoneEnable(String value)
@@ -247,6 +263,16 @@ public class JDatabaseParameters
 	public String getjdbcDatabaseTimeZone()
 	{
 		return jdbcDatabaseTimeZone;
+	}
+	
+	public String getjdbcCollation()
+	{
+		return jdbcDatabaseCollation;
+	}
+	
+	public String getjdbcCharacterSet()
+	{
+		return jdbcDatabaseCharacterSet;
 	}
 	
 	public String getjdbcDatabaseTimeZoneEnable()

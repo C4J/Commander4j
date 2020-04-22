@@ -12,7 +12,7 @@
 	  `LINE` varchar(20) DEFAULT NULL,
 	  `ENABLED` varchar(1) DEFAULT NULL,
 	  PRIMARY KEY (`PRINTER_ID`)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	) ENGINE=InnoDB;
 </statement>
 
 <statement>

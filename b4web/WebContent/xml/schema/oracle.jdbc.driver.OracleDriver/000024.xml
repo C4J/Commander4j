@@ -7,11 +7,11 @@
 </statement>
 
 <statement>
-	ALTER TABLE app_pallet ADD SSCC_EXPIRY_DATE DATE
+	ALTER TABLE APP_PALLET ADD SSCC_EXPIRY_DATE DATE
 </statement>
 
 <statement>
-	ALTER TABLE app_pallet_history ADD SSCC_EXPIRY_DATE DATE
+	ALTER TABLE APP_PALLET_HISTORY ADD SSCC_EXPIRY_DATE DATE
 </statement>
 
 

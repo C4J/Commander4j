@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-	alter table dbo.app_location add MSG_PALLET_STATUS varchar(1) default 'Y'
+	alter table dbo.APP_LOCATION add MSG_PALLET_STATUS varchar(1) default 'Y'
 </statement>
 
 <statement>
-	update dbo.app_location set MSG_PALLET_STATUS='N'
+	update dbo.APP_LOCATION set MSG_PALLET_STATUS='N'
 </statement>
 
 </DDL>

@@ -16,7 +16,7 @@
 		  KEY `TARGET_IDX` (`TARGET`,`EVENT_TIME`),
 		  KEY `DATA_IDX` (`DATA`,`EVENT_TIME`),
 		  KEY `WORKSTATION_ID_IDX` (`WORKSTATION_ID`,`EVENT_TIME`)
-		) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+		) ENGINE=InnoDB;
 	</statement>	
 	
 	<statement>
@@ -306,7 +306,7 @@
 	  	`GROUP_ID` varchar(15) NOT NULL DEFAULT 'Pack',
 	  	`WORKSTATION_ID` varchar(40) NOT NULL,
 	  	PRIMARY KEY (`LINE`,`WORKSTATION_ID`,`GROUP_ID`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		) ENGINE=InnoDB;
 	</statement>	
 	
 	<statement>
@@ -327,7 +327,7 @@
 		  `PASSWORD_VERSION` int(11) DEFAULT '0',
 		  `PASSWORD` varchar(20) DEFAULT NULL,
 		  PRIMARY KEY (`USER_ID`,`PASSWORD_VERSION`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		) ENGINE=InnoDB;
 	</statement>
 				
 	<statement>

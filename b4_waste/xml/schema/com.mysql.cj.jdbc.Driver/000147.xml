@@ -4,41 +4,41 @@
    
    <statement>        
         CREATE TABLE `APP_WASTE_LOCATION_REPORTING` (
-          `WASTE_LOCATION_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-          `WASTE_REPORTING_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+          `WASTE_LOCATION_ID` varchar(25) NOT NULL,
+          `WASTE_REPORTING_ID` varchar(25) NOT NULL,
           PRIMARY KEY (`WASTE_LOCATION_ID`,`WASTE_REPORTING_ID`) USING BTREE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+        ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
     </statement>
         
    <statement>      
         CREATE TABLE `APP_WASTE_LOCATIONS` (
-          `WASTE_LOCATION_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-          `DESCRIPTION` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-          `PROCESS_ORDER_REQUIRED` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'N',
-          `REASON_ID_REQUIRED` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'N',
-          `ENABLED` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Y',
+          `WASTE_LOCATION_ID` varchar(25) NOT NULL DEFAULT '',
+          `DESCRIPTION` varchar(80) DEFAULT '',
+          `PROCESS_ORDER_REQUIRED` varchar(1) DEFAULT 'N',
+          `REASON_ID_REQUIRED` varchar(1) DEFAULT 'N',
+          `ENABLED` varchar(1) DEFAULT 'Y',
           PRIMARY KEY (`WASTE_LOCATION_ID`) USING BTREE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+        ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
     </statement>
     
    <statement>       
         CREATE TABLE `APP_WASTE_LOCATION_TYPES` (
-          `WASTE_LOCATION_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-          `WASTE_TYPE_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
+          `WASTE_LOCATION_ID` varchar(25) NOT NULL DEFAULT '',
+          `WASTE_TYPE_ID` varchar(25) NOT NULL DEFAULT '',
           PRIMARY KEY (`WASTE_LOCATION_ID`,`WASTE_TYPE_ID`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        ) ENGINE=InnoDB;
     </statement>
     
    <statement>
         CREATE TABLE `APP_WASTE_LOG` (
           `TRANSACTION_REF` decimal(38,0) NOT NULL,
-          `WASTE_TRANSACTION_TYPE` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-          `WASTE_LOCATION_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+          `WASTE_TRANSACTION_TYPE` varchar(25) NOT NULL DEFAULT '',
+          `WASTE_LOCATION_ID` varchar(25) DEFAULT '',
           `REPORT_TIME` datetime DEFAULT NULL,
-          `WASTE_MATERIAL_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-          `PROCESS_ORDER` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-          `WASTE_REASON_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-          `USER_ID` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+          `WASTE_MATERIAL_ID` varchar(25) DEFAULT '',
+          `PROCESS_ORDER` varchar(10) DEFAULT '',
+          `WASTE_REASON_ID` varchar(25) DEFAULT '',
+          `USER_ID` varchar(20) DEFAULT '',
           `QUANTITY` decimal(22,3) DEFAULT NULL,
           PRIMARY KEY (`TRANSACTION_REF`,`WASTE_TRANSACTION_TYPE`) USING BTREE,
           KEY `LOG_TRANSACTION_TYPE_IDX` (`WASTE_TRANSACTION_TYPE`) USING BTREE,
@@ -47,71 +47,71 @@
           KEY `LOG_PROCESS_ORDER_IDX` (`PROCESS_ORDER`) USING BTREE,
           KEY `LOG_REASON_ID_IDX` (`WASTE_REASON_ID`) USING BTREE,
           KEY `LOG_REPORT_TIME_IDX` (`REPORT_TIME`) USING BTREE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+        ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
     </statement>
     
    <statement>
         CREATE TABLE `APP_WASTE_MATERIAL` (
-          `WASTE_MATERIAL_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-          `WASTE_TYPE_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-          `UOM` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+          `WASTE_MATERIAL_ID` varchar(25) NOT NULL,
+          `WASTE_TYPE_ID` varchar(25) DEFAULT '',
+          `UOM` varchar(3) DEFAULT '',
           `COST_PER_UOM` decimal(22,3) DEFAULT '0.000',
           `CONVERSION_TO_KG` decimal(22,3) DEFAULT '1.000',
-          `DESCRIPTION` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-          `ENABLED` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Y',
+          `DESCRIPTION` varchar(80) DEFAULT '',
+          `ENABLED` varchar(1) DEFAULT 'Y',
           PRIMARY KEY (`WASTE_MATERIAL_ID`) USING BTREE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+        ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
     </statement>
         
    <statement>
         CREATE TABLE `APP_WASTE_REASONS` (
-          `WASTE_REASON_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-          `DESCRIPTION` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-          `ENABLED` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Y',
+          `WASTE_REASON_ID` varchar(25) NOT NULL DEFAULT '',
+          `DESCRIPTION` varchar(80) DEFAULT '',
+          `ENABLED` varchar(1) DEFAULT 'Y',
           PRIMARY KEY (`WASTE_REASON_ID`) USING BTREE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+        ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
     </statement>
     
    <statement>
         CREATE TABLE `APP_WASTE_REPORTING_GROUP` (
           `REPORTING_GROUP` int NOT NULL DEFAULT '-1',
-          `DESCRIPTION` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+          `DESCRIPTION` varchar(80) DEFAULT '',
           `ENABLED` varchar(1) DEFAULT 'Y',
           PRIMARY KEY (`REPORTING_GROUP`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        ) ENGINE=InnoDB;
     </statement>
     
    <statement>
         CREATE TABLE `APP_WASTE_REPORTING_IDS` (
-          `WASTE_REPORTING_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-          `DESCRIPTION` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
+          `WASTE_REPORTING_ID` varchar(25) NOT NULL DEFAULT '',
+          `DESCRIPTION` varchar(80) DEFAULT '',
           `REPORTING_GROUP` int DEFAULT '-1',
-          `ENABLED` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Y',
+          `ENABLED` varchar(1) DEFAULT 'Y',
           PRIMARY KEY (`WASTE_REPORTING_ID`) USING BTREE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+        ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
     </statement>
     
    <statement>
         CREATE TABLE `APP_WASTE_TRANSACTIONS` (
-          `WASTE_TRANSACTION_TYPE` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-          `DESCRIPTION` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-          `INCLUDE_IN_TOTALS` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Y',
-          `STORE_AS_NEGATIVE` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'N',
-          `ENABLED` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Y',
+          `WASTE_TRANSACTION_TYPE` varchar(25) NOT NULL DEFAULT '',
+          `DESCRIPTION` varchar(80) DEFAULT '',
+          `INCLUDE_IN_TOTALS` varchar(1) DEFAULT 'Y',
+          `STORE_AS_NEGATIVE` varchar(1) DEFAULT 'N',
+          `ENABLED` varchar(1) DEFAULT 'Y',
           PRIMARY KEY (`WASTE_TRANSACTION_TYPE`) USING BTREE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+        ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
     </statement>
         
    <statement>
         CREATE TABLE `APP_WASTE_TYPES` (
-          `WASTE_TYPE_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
-          `RECYCLABLE` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Y',
-          `HAZARDOUS` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'N',
-          `PPE_REQUIRED` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'N',
-          `DESCRIPTION` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-          `ENABLED` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Y',
+          `WASTE_TYPE_ID` varchar(25) NOT NULL DEFAULT '',
+          `RECYCLABLE` varchar(1) DEFAULT 'Y',
+          `HAZARDOUS` varchar(1) DEFAULT 'N',
+          `PPE_REQUIRED` varchar(1) DEFAULT 'N',
+          `DESCRIPTION` varchar(80) DEFAULT '',
+          `ENABLED` varchar(1) DEFAULT 'Y',
           PRIMARY KEY (`WASTE_TYPE_ID`) USING BTREE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+        ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
     </statement>
     
    <statement>

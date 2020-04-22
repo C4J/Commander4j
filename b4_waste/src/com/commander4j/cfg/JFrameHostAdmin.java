@@ -90,10 +90,17 @@ import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLHost;
 import com.commander4j.xml.JXMLSchema;
 import javax.swing.JButton;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 /**
- * JFrameHostAdmin is a Frame which allows the user to configure any number of database connections which are stored in a file called hosts.xml file. Changes to the host file can be password protected. If the file is password protected you will be prompted
- * to enter the current configuration password using a dialog box called JDialogSetupPassword. When installing or upgrading a database any errors which occur as displayed using the dialog box JDialogDMLErrors
+ * JFrameHostAdmin is a Frame which allows the user to configure any number of
+ * database connections which are stored in a file called hosts.xml file.
+ * Changes to the host file can be password protected. If the file is password
+ * protected you will be prompted to enter the current configuration password
+ * using a dialog box called JDialogSetupPassword. When installing or upgrading
+ * a database any errors which occur as displayed using the dialog box
+ * JDialogDMLErrors
  * 
  * <p>
  * <img alt="" src="./doc-files/JFrameHostAdmin.jpg" >
@@ -183,6 +190,12 @@ public class JFrameHostAdmin extends JFrame
 	private JComboBox4j<String> jComboBoxjdbcTimeZone = new JComboBox4j<String>();
 	private JCheckBox chckbxUseTimeZoneInConnect = new JCheckBox("Use Timezone in Connection");
 	private JButton btnDefaultTimeZone = new JButton("");
+	private JButton btnDefaultCollation = new JButton("");
+	private JButton btnDefaultCharSet = new JButton("");
+	private JComboBox4j<String> jComboBoxCollation = new JComboBox4j<String>();
+	private JComboBox4j<String> jComboBoxCharSet = new JComboBox4j<String>();
+	private DefaultComboBoxModel<String> collationModel;
+	private DefaultComboBoxModel<String> CharSetModel;
 
 	public static void main(String[] args)
 	{
@@ -201,6 +214,107 @@ public class JFrameHostAdmin extends JFrame
 				}
 			}
 		});
+	}
+
+	private void buildCollationList()
+	{
+		collationModel = new DefaultComboBoxModel<String>();
+		collationModel.addElement("");
+		collationModel.addElement("armscii8_general_ci");
+		collationModel.addElement("ascii_general_ci");
+		collationModel.addElement("big5_chinese_ci");
+		collationModel.addElement("binary");
+		collationModel.addElement("cp1250_general_ci");
+		collationModel.addElement("cp1251_general_ci");
+		collationModel.addElement("cp1256_general_ci");
+		collationModel.addElement("cp1257_general_ci");
+		collationModel.addElement("cp850_general_ci");
+		collationModel.addElement("cp852_general_ci");
+		collationModel.addElement("cp866_general_ci");
+		collationModel.addElement("cp932_japanese_ci");
+		collationModel.addElement("dec8_swedish_ci");
+		collationModel.addElement("eucjpms_japanese_ci");
+		collationModel.addElement("euckr_korean_ci");
+		collationModel.addElement("gb2312_chinese_ci");
+		collationModel.addElement("gbk_chinese_ci");
+		collationModel.addElement("geostd8_general_ci");
+		collationModel.addElement("greek_general_ci");
+		collationModel.addElement("hebrew_general_ci");
+		collationModel.addElement("hp8_english_ci");
+		collationModel.addElement("keybcs2_general_ci");
+		collationModel.addElement("koi8r_general_ci");
+		collationModel.addElement("koi8u_general_ci");
+		collationModel.addElement("latin1_swedish_ci");
+		collationModel.addElement("latin2_general_ci");
+		collationModel.addElement("latin5_turkish_ci");
+		collationModel.addElement("latin7_general_ci");
+		collationModel.addElement("macce_general_ci");
+		collationModel.addElement("macroman_general_ci");
+		collationModel.addElement("sjis_japanese_ci");
+		collationModel.addElement("swe7_swedish_ci");
+		collationModel.addElement("tis620_thai_ci");
+		collationModel.addElement("ucs2_general_ci");
+		collationModel.addElement("ujis_japanese_ci");
+		collationModel.addElement("utf16_general_ci");
+		collationModel.addElement("utf16le_general_ci");
+		collationModel.addElement("utf32_general_ci");
+		collationModel.addElement("utf8_general_ci");
+		collationModel.addElement("utf8mb4_0900_ai_ci");
+
+		jComboBoxCollation.setModel(collationModel);
+		jComboBoxCollation.setMaximumRowCount(collationModel.getSize());
+
+	}
+
+	private void buildCharSetList()
+	{
+		CharSetModel = new DefaultComboBoxModel<String>();
+		CharSetModel.addElement("");
+		CharSetModel.addElement("armscii8");
+		CharSetModel.addElement("ascii");
+		CharSetModel.addElement("big5");
+		CharSetModel.addElement("binary");
+		CharSetModel.addElement("cp1250");
+		CharSetModel.addElement("cp1251");
+		CharSetModel.addElement("cp1256");
+		CharSetModel.addElement("cp1257");
+		CharSetModel.addElement("cp850");
+		CharSetModel.addElement("cp852");
+		CharSetModel.addElement("cp866");
+		CharSetModel.addElement("cp932");
+		CharSetModel.addElement("dec8");
+		CharSetModel.addElement("eucjpms");
+		CharSetModel.addElement("euckr");
+		CharSetModel.addElement("gb18030");
+		CharSetModel.addElement("gb2312");
+		CharSetModel.addElement("gbk");
+		CharSetModel.addElement("geostd8");
+		CharSetModel.addElement("greek");
+		CharSetModel.addElement("hebrew");
+		CharSetModel.addElement("hp8");
+		CharSetModel.addElement("keybcs2");
+		CharSetModel.addElement("koi8r");
+		CharSetModel.addElement("koi8u");
+		CharSetModel.addElement("latin1");
+		CharSetModel.addElement("latin2");
+		CharSetModel.addElement("latin5");
+		CharSetModel.addElement("latin7");
+		CharSetModel.addElement("macce");
+		CharSetModel.addElement("macroman");
+		CharSetModel.addElement("sjis");
+		CharSetModel.addElement("swe7");
+		CharSetModel.addElement("tis620");
+		CharSetModel.addElement("ucs2");
+		CharSetModel.addElement("ujis");
+		CharSetModel.addElement("utf16");
+		CharSetModel.addElement("utf16le");
+		CharSetModel.addElement("utf32");
+		CharSetModel.addElement("utf8");
+		CharSetModel.addElement("utf8mb4");
+
+		jComboBoxCharSet.setModel(CharSetModel);
+		jComboBoxCharSet.setMaximumRowCount(CharSetModel.getSize());
+
 	}
 
 	private void setHostsFilename(String name)
@@ -241,12 +355,12 @@ public class JFrameHostAdmin extends JFrame
 	{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1187, 681);
+		setBounds(100, 100, 1187, 752);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		desktopPane.setBounds(0, 0, 1190, 659);
+		desktopPane.setBounds(0, 0, 1190, 762);
 		desktopPane.setBackground(Color.WHITE);
 		contentPane.add(desktopPane);
 
@@ -257,9 +371,12 @@ public class JFrameHostAdmin extends JFrame
 
 		initGUI();
 
+		buildCollationList();
+		buildCharSetList();
+
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, "http://commander4j.com/mw/index.php?title=Setup4j");
-	
+
 		getHosts();
 
 		if (Common.setupPassword.equals("") == false)
@@ -403,6 +520,8 @@ public class JFrameHostAdmin extends JFrame
 
 			jComboBoxjdbcTimeZone.setSelectedItem(hst.getDatabaseParameters().getjdbcDatabaseTimeZone());
 			chckbxUseTimeZoneInConnect.setSelected(hst.getDatabaseParameters().isjdbcDatabaseTimeZoneEnable());
+			jComboBoxCollation.setSelectedItem(hst.getDatabaseParameters().getjdbcCollation());
+			jComboBoxCharSet.setSelectedItem(hst.getDatabaseParameters().getjdbcCharacterSet());
 
 			jTextFieldSchema.setText(hst.getDatabaseParameters().getjdbcDatabaseSchema());
 			jTextFieldUsername.setText(hst.getDatabaseParameters().getjdbcUsername());
@@ -435,6 +554,8 @@ public class JFrameHostAdmin extends JFrame
 			jTextFieldSelectLimit.setText("");
 			jComboBoxjdbcTimeZone.setSelectedItem("");
 			chckbxUseTimeZoneInConnect.setSelected(false);
+			jComboBoxCollation.setSelectedItem("");
+			jComboBoxCharSet.setSelectedItem("");
 			jTextFieldUsername.setText("");
 			jTextFieldPassword.setText("");
 			jTextFieldPort.setText("");
@@ -460,7 +581,34 @@ public class JFrameHostAdmin extends JFrame
 			hst.getDatabaseParameters().setjdbcDriver(jTextFieldDriver.getText());
 			hst.getDatabaseParameters().setjdbcDatabaseDateTimeToken(jTextFieldDateTime.getText());
 			hst.getDatabaseParameters().setjdbcDatabaseSelectLimit(jTextFieldSelectLimit.getText());
-			hst.getDatabaseParameters().setjdbcDatabaseTimeZone(jComboBoxjdbcTimeZone.getSelectedItem().toString());
+
+			if (jComboBoxjdbcTimeZone.getSelectedIndex() > 0)
+			{
+				hst.getDatabaseParameters().setjdbcDatabaseTimeZone(jComboBoxjdbcTimeZone.getSelectedItem().toString());
+			}
+			else
+			{
+				hst.getDatabaseParameters().setjdbcDatabaseTimeZone("");
+			}
+
+			if (jComboBoxCollation.getSelectedIndex() > 0)
+			{
+				hst.getDatabaseParameters().setjdbcCollation(jComboBoxCollation.getSelectedItem().toString());
+			}
+			else
+			{
+				hst.getDatabaseParameters().setjdbcCollation("");
+			}
+
+			if (jComboBoxCharSet.getSelectedIndex() > 0)
+			{
+				hst.getDatabaseParameters().setjdbcCharacterSet(jComboBoxCharSet.getSelectedItem().toString());
+			}
+			else
+			{
+				hst.getDatabaseParameters().setjdbcCharacterSet("");
+			}
+
 			hst.getDatabaseParameters().setjdbcDatabaseTimeZoneEnable(chckbxUseTimeZoneInConnect.isSelected());
 			hst.getDatabaseParameters().setjdbcDatabaseSchema(jTextFieldSchema.getText());
 			hst.getDatabaseParameters().setjdbcUsername(jTextFieldUsername.getText());
@@ -550,7 +698,7 @@ public class JFrameHostAdmin extends JFrame
 	private void checkVersions()
 	{
 		String result = "";
-		
+
 		JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 		String currentProgramVersion = ctrl.getKeyValue("PROGRAM VERSION");
 		String requiredProgramVersion = JVersion.getProgramVersion();
@@ -568,30 +716,30 @@ public class JFrameHostAdmin extends JFrame
 			if (currentProgramVersion.equals(""))
 			{
 				labelActualProgramVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator + "empty-db.gif"));
-				result="Commander4j version not found in database, use the AUTO Update option to install them";
+				result = "Commander4j version not found in database, use the AUTO Update option to install them";
 			}
 			else
 			{
 				labelActualProgramVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator + "fail-cross.png"));
-				result="Commander4j version needs updating, use the AUTO Update option to update it";
+				result = "Commander4j version needs updating, use the AUTO Update option to update it";
 			}
 		}
 
 		if (currentSchemaVersion.equals(requiredSchemaVersion))
 		{
-			labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator +  "success-tick.png"));
+			labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator + "success-tick.png"));
 		}
 		else
 		{
 			if (currentSchemaVersion.equals(""))
 			{
-				labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator +  "empty-db.gif"));
-				result="No Commander4j tables found, use the AUTO Update option to install them";
+				labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator + "empty-db.gif"));
+				result = "No Commander4j tables found, use the AUTO Update option to install them";
 			}
 			else
 			{
-				labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator +  "fail-cross.png"));
-				result="Commander4j tables found but need to be updated, use the AUTO Update option to update them";
+				labelActualSchemaVersion.setIcon(new ImageIcon(System.getProperty("user.dir") + File.separator + "images" + File.separator + "16x16" + File.separator + "fail-cross.png"));
+				result = "Commander4j tables found but need to be updated, use the AUTO Update option to update them";
 			}
 		}
 		labelCommand.setText(result);
@@ -693,16 +841,21 @@ public class JFrameHostAdmin extends JFrame
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
-							if (chckbxUseTimeZoneInConnect.isSelected() && jComboBoxjdbcTimeZone.getSelectedItem().toString().equals(""))
+							if (jComboBoxjdbcTimeZone.getSelectedIndex() > 0)
+							{
+								chckbxUseTimeZoneInConnect.setSelected(true);
+							}
+
+							if (chckbxUseTimeZoneInConnect.isSelected() == true && jComboBoxjdbcTimeZone.getSelectedIndex() == -1)
 							{
 								chckbxUseTimeZoneInConnect.setSelected(false);
 							}
-							
-							if (chckbxUseTimeZoneInConnect.isSelected()==false && jComboBoxjdbcTimeZone.getSelectedItem().toString().equals("")==false)
+
+							if (chckbxUseTimeZoneInConnect.isSelected() == false && jComboBoxjdbcTimeZone.getSelectedIndex() > 0)
 							{
-								jComboBoxjdbcTimeZone.setSelectedItem("");
+								jComboBoxjdbcTimeZone.setSelectedIndex(0);
 							}
-							
+
 							int j = jListHosts.getSelectedIndex();
 							JHost hst = setHostData();
 
@@ -921,42 +1074,73 @@ public class JFrameHostAdmin extends JFrame
 				}
 
 				String[] allZones = TimeZone.getAvailableIDs();
-				
+
 				int sizeOfArray = allZones.length;
-				
-				String[] list = new String[sizeOfArray+1];
-				
-				list[0]="";
-				
-				for (int x=0;x<allZones.length;x++)
+
+				String[] list = new String[sizeOfArray + 1];
+
+				list[0] = "";
+
+				for (int x = 0; x < allZones.length; x++)
 				{
-					list[x+1]=allZones[x];
+					list[x + 1] = allZones[x];
 				}
-				
+
 				ComboBoxModel<String> jComboBoxjdbcTimeZoneModel = new DefaultComboBoxModel<String>(list);
-				jComboBoxjdbcTimeZone.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				jComboBoxjdbcTimeZone.addItemListener(new ItemListener()
+				{
+					public void itemStateChanged(ItemEvent e)
+					{
+						if (jComboBoxjdbcTimeZone.getSelectedIndex() >= 0)
+						{
+							chckbxUseTimeZoneInConnect.setSelected(true);
+						}
+						else
+						{
+							chckbxUseTimeZoneInConnect.setSelected(false);
+						}
+					}
+				});
+				jComboBoxjdbcTimeZone.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						jTextFieldKeyTyped();
 					}
 				});
 
-				jComboBoxjdbcTimeZone.setBounds(425, 323, 258, 21);
+				jComboBoxjdbcTimeZone.setBounds(425, 353, 258, 21);
 				jComboBoxjdbcTimeZone.setModel(jComboBoxjdbcTimeZoneModel);
 				jComboBoxjdbcTimeZone.setMaximumRowCount(25);
 				desktopPane.add(jComboBoxjdbcTimeZone);
-				
-				chckbxUseTimeZoneInConnect.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+
+				chckbxUseTimeZoneInConnect.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+
+						if (chckbxUseTimeZoneInConnect.isSelected() == false)
+						{
+							jComboBoxjdbcTimeZone.setSelectedIndex(-1);
+						}
+						else
+						{
+							if (jComboBoxjdbcTimeZone.getSelectedIndex() <= 0)
+							{
+								jComboBoxjdbcTimeZone.setSelectedItem(TimeZone.getDefault().getID());
+							}
+						}
 						jTextFieldKeyTyped();
 					}
 				});
 				chckbxUseTimeZoneInConnect.setFont(Common.font_std);
 				chckbxUseTimeZoneInConnect.setBackground(Color.WHITE);
-				chckbxUseTimeZoneInConnect.setBounds(654, 90, 217, 23);
+				chckbxUseTimeZoneInConnect.setBounds(425, 325, 217, 23);
 				desktopPane.add(chckbxUseTimeZoneInConnect);
 				{
 
-					ComboBoxModel<String> jComboBoxjdbcDriverModel = new DefaultComboBoxModel<String>(new String[] 	{ "", "mySQL", "Oracle", "SQL Server", "Web URL" });
+					ComboBoxModel<String> jComboBoxjdbcDriverModel = new DefaultComboBoxModel<String>(new String[]
+					{ "", "mySQL", "Oracle", "SQL Server", "Web URL" });
 					jComboBoxjdbcDriver = new JComboBox4j<String>();
 					jComboBoxjdbcDriver.setToolTipText("Select the required database type.");
 					jComboBoxjdbcDriver.setBackground(Color.WHITE);
@@ -983,9 +1167,14 @@ public class JFrameHostAdmin extends JFrame
 								jComboBoxjdbcTimeZone.setEnabled(false);
 								chckbxUseTimeZoneInConnect.setEnabled(false);
 								btnDefaultTimeZone.setEnabled(false);
-								
-								
+								jComboBoxCollation.setEnabled(false);
+								jComboBoxCollation.setSelectedItem("");
+								jComboBoxCharSet.setEnabled(false);
+								jComboBoxCharSet.setSelectedItem("");
+								btnDefaultCollation.setEnabled(false);
+								btnDefaultCharSet.setEnabled(false);
 							}
+
 							if (jComboBoxjdbcDriver.getSelectedItem().toString().equals("mySQL"))
 							{
 								jTextFieldDriver.setText("com.mysql.cj.jdbc.Driver");
@@ -1001,7 +1190,14 @@ public class JFrameHostAdmin extends JFrame
 								jComboBoxjdbcTimeZone.setEnabled(true);
 								chckbxUseTimeZoneInConnect.setEnabled(true);
 								btnDefaultTimeZone.setEnabled(true);
+								jComboBoxCollation.setEnabled(true);
+								jComboBoxCollation.setSelectedItem("utf8mb4_0900_ai_ci");
+								jComboBoxCharSet.setEnabled(true);
+								jComboBoxCharSet.setSelectedItem("utf8mb4");
+								btnDefaultCollation.setEnabled(true);
+								btnDefaultCharSet.setEnabled(true);
 							}
+
 							if (jComboBoxjdbcDriver.getSelectedItem().toString().equals("SQL Server"))
 							{
 								jTextFieldDriver.setText("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -1017,7 +1213,14 @@ public class JFrameHostAdmin extends JFrame
 								jComboBoxjdbcTimeZone.setEnabled(false);
 								chckbxUseTimeZoneInConnect.setEnabled(false);
 								btnDefaultTimeZone.setEnabled(false);
+								jComboBoxCollation.setEnabled(false);
+								jComboBoxCollation.setSelectedItem("");
+								jComboBoxCharSet.setEnabled(false);
+								jComboBoxCharSet.setSelectedItem("");
+								btnDefaultCollation.setEnabled(false);
+								btnDefaultCharSet.setEnabled(false);
 							}
+
 							if (jComboBoxjdbcDriver.getSelectedItem().toString().equals("Web URL"))
 							{
 								jTextFieldDriver.setText("http");
@@ -1030,6 +1233,14 @@ public class JFrameHostAdmin extends JFrame
 								jComboBoxjdbcTimeZone.setEnabled(false);
 								chckbxUseTimeZoneInConnect.setEnabled(false);
 								btnDefaultTimeZone.setEnabled(false);
+								chckbxUseTimeZoneInConnect.setEnabled(false);
+								btnDefaultTimeZone.setEnabled(false);
+								jComboBoxCollation.setEnabled(false);
+								jComboBoxCollation.setSelectedItem("");
+								jComboBoxCharSet.setEnabled(false);
+								jComboBoxCharSet.setSelectedItem("");
+								btnDefaultCollation.setEnabled(false);
+								btnDefaultCharSet.setEnabled(false);
 							}
 							jTextFieldKeyTyped();
 						}
@@ -1070,7 +1281,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelDBDateTime.setText("DB Date Time");
 					jLabelDBDateTime.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelDBDateTime.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelDBDateTime.setBounds(292, 348, 127, 21);
+					jLabelDBDateTime.setBounds(298, 445, 127, 21);
 
 				}
 				{
@@ -1088,7 +1299,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelTimeZone.setText("DB Timezone");
 					jLabelTimeZone.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelTimeZone.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelTimeZone.setBounds(292, 322, 127, 21);
+					jLabelTimeZone.setBounds(294, 352, 127, 21);
 
 				}
 				{
@@ -1131,7 +1342,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldDateTime.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldDateTime);
 					jTextFieldDateTime.setFocusCycleRoot(true);
-					jTextFieldDateTime.setBounds(426, 348, 282, 21);
+					jTextFieldDateTime.setBounds(432, 445, 282, 21);
 					jTextFieldDateTime.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1251,7 +1462,7 @@ public class JFrameHostAdmin extends JFrame
 					jCheckBoxSplash.setFont(Common.font_std);
 					desktopPane.add(jCheckBoxSplash);
 					jCheckBoxSplash.setText("Enable Splash Screen");
-					jCheckBoxSplash.setBounds(687, 456, 150, 21);
+					jCheckBoxSplash.setBounds(769, 445, 150, 21);
 					jCheckBoxSplash.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxSplash.addActionListener(new ActionListener()
 					{
@@ -1492,7 +1703,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldSelectLimit = new JTextField4j();
 					jTextFieldSelectLimit.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldSelectLimit);
-					jTextFieldSelectLimit.setBounds(426, 373, 282, 21);
+					jTextFieldSelectLimit.setBounds(432, 470, 282, 21);
 					jTextFieldSelectLimit.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1509,7 +1720,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelSelectTime.setText("DB Select Limit");
 					jLabelSelectTime.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelSelectTime.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelSelectTime.setBounds(292, 373, 127, 21);
+					jLabelSelectTime.setBounds(298, 470, 127, 21);
 
 				}
 				{
@@ -1518,14 +1729,14 @@ public class JFrameHostAdmin extends JFrame
 					jLabelSchema.setText("DB Schema");
 					jLabelSchema.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelSchema.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelSchema.setBounds(292, 398, 127, 21);
+					jLabelSchema.setBounds(298, 495, 127, 21);
 				}
 				{
 					jTextFieldSchema = new JTextField4j();
 					jTextFieldSchema.setBackground(Common.color_listBackground);
 					desktopPane.add(jTextFieldSchema);
 					jTextFieldSchema.setEnabled(false);
-					jTextFieldSchema.setBounds(426, 398, 282, 21);
+					jTextFieldSchema.setBounds(432, 495, 282, 21);
 					jTextFieldSchema.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -1557,7 +1768,7 @@ public class JFrameHostAdmin extends JFrame
 						}
 					});
 					jTextFieldUniqueID.setEditable(false);
-					jTextFieldUniqueID.setBounds(426, 423, 282, 21);
+					jTextFieldUniqueID.setBounds(432, 520, 282, 21);
 					desktopPane.add(jTextFieldUniqueID);
 				}
 
@@ -1566,7 +1777,7 @@ public class JFrameHostAdmin extends JFrame
 					jLabelUniqueID.setText("Unique ID");
 					jLabelUniqueID.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelUniqueID.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelUniqueID.setBounds(292, 423, 127, 21);
+					jLabelUniqueID.setBounds(298, 520, 127, 21);
 					desktopPane.add(jLabelUniqueID);
 				}
 				{
@@ -1605,14 +1816,36 @@ public class JFrameHostAdmin extends JFrame
 				}
 			}
 
-			progressBar.setBounds(0, 600, 1185, 28);
+			jComboBoxCollation.setMaximumRowCount(25);
+			jComboBoxCollation.setBounds(425, 382, 258, 21);
+			jComboBoxCollation.addItemListener(new ItemListener()
+			{
+				public void itemStateChanged(ItemEvent e)
+				{
+					jTextFieldKeyTyped();
+				}
+			});
+			desktopPane.add(jComboBoxCollation);
+
+			jComboBoxCharSet.setMaximumRowCount(25);
+			jComboBoxCharSet.setBounds(425, 412, 258, 21);
+			jComboBoxCharSet.addItemListener(new ItemListener()
+			{
+				public void itemStateChanged(ItemEvent e)
+				{
+					jTextFieldKeyTyped();
+				}
+			});
+			desktopPane.add(jComboBoxCharSet);
+
+			progressBar.setBounds(0, 661, 1185, 28);
 			progressBar.setBackground(Color.WHITE);
 			progressBar.setForeground(Color.BLUE);
 			desktopPane.add(progressBar);
 			labelCommand.setForeground(Color.RED);
 			labelCommand.setFont(Common.font_std);
 
-			labelCommand.setBounds(2, 630, 1183, 23);
+			labelCommand.setBounds(0, 691, 1183, 23);
 			labelCommand.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			desktopPane.add(labelCommand);
 
@@ -1665,7 +1898,7 @@ public class JFrameHostAdmin extends JFrame
 			JLabelUpdateHostURL.setText("URL for Application Update");
 			JLabelUpdateHostURL.setHorizontalTextPosition(SwingConstants.RIGHT);
 			JLabelUpdateHostURL.setHorizontalAlignment(SwingConstants.RIGHT);
-			JLabelUpdateHostURL.setBounds(278, 489, 140, 21);
+			JLabelUpdateHostURL.setBounds(285, 549, 140, 21);
 			desktopPane.add(JLabelUpdateHostURL);
 
 			JTextFieldUpdateURL = new JTextField4j();
@@ -1681,7 +1914,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			JTextFieldUpdateURL.setFocusCycleRoot(true);
-			JTextFieldUpdateURL.setBounds(425, 489, 723, 21);
+			JTextFieldUpdateURL.setBounds(432, 549, 723, 21);
 			desktopPane.add(JTextFieldUpdateURL);
 			rdbtnManual.setToolTipText(
 					"<html>\nYou can determine if a install can be updated automatically via the checkbox’s<br>\nMANUAL v AUTOMATIC. Normally end user workstations would have a hosts<br>\nfile which would be set to Automatic. A server install which includes the interface<br>\nservice would be more appropriatly set to manual updates.<br>\n</html>");
@@ -1695,7 +1928,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			buttonGroup.add(rdbtnManual);
-			rdbtnManual.setBounds(425, 454, 106, 23);
+			rdbtnManual.setBounds(766, 517, 106, 23);
 			rdbtnManual.setBackground(Color.WHITE);
 			desktopPane.add(rdbtnManual);
 			rdbtnAutomatic.setToolTipText(
@@ -1709,27 +1942,27 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			buttonGroup.add(rdbtnAutomatic);
-			rdbtnAutomatic.setBounds(543, 454, 109, 23);
+			rdbtnAutomatic.setBounds(883, 518, 109, 23);
 			rdbtnAutomatic.setBackground(Color.WHITE);
 			desktopPane.add(rdbtnAutomatic);
 
 			JLabel4j_std label4j_std_1 = new JLabel4j_std();
 			label4j_std_1.setText("Application Update Mode");
 			label4j_std_1.setHorizontalTextPosition(SwingConstants.RIGHT);
-			label4j_std_1.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_1.setBounds(278, 456, 140, 21);
+			label4j_std_1.setHorizontalAlignment(SwingConstants.LEFT);
+			label4j_std_1.setBounds(766, 494, 140, 21);
 			desktopPane.add(label4j_std_1);
 
 			JLabel4j_std label4j_std_2 = new JLabel4j_std();
 			label4j_std_2.setText("Install To");
 			label4j_std_2.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_2.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_2.setBounds(291, 515, 127, 21);
+			label4j_std_2.setBounds(298, 575, 127, 21);
 			desktopPane.add(label4j_std_2);
 
 			jTextField4jInstallDir.setText("");
 			jTextField4jInstallDir.setFocusCycleRoot(true);
-			jTextField4jInstallDir.setBounds(425, 515, 723, 21);
+			jTextField4jInstallDir.setBounds(432, 575, 723, 21);
 			desktopPane.add(jTextField4jInstallDir);
 
 			setupPasswordField = new JPasswordField(20);
@@ -1744,20 +1977,20 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			setupPasswordField.setFocusCycleRoot(true);
-			setupPasswordField.setBounds(124, 515, 148, 21);
+			setupPasswordField.setBounds(124, 493, 148, 21);
 			desktopPane.add(setupPasswordField);
 
 			JLabel4j_std label4j_std_3 = new JLabel4j_std();
 			label4j_std_3.setText("Setup Password");
 			label4j_std_3.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_3.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_3.setBounds(14, 515, 98, 21);
+			label4j_std_3.setBounds(14, 493, 98, 21);
 			desktopPane.add(label4j_std_3);
 
 			verifyPasswordField = new JPasswordField(20);
 			verifyPasswordField.setBackground(Common.color_list_unassigned);
 			verifyPasswordField.setFocusCycleRoot(true);
-			verifyPasswordField.setBounds(124, 541, 148, 21);
+			verifyPasswordField.setBounds(124, 519, 148, 21);
 			verifyPasswordField.addKeyListener(new KeyAdapter()
 			{
 				@Override
@@ -1772,7 +2005,7 @@ public class JFrameHostAdmin extends JFrame
 			label4j_std_4.setText("Verify Password");
 			label4j_std_4.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_4.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_4.setBounds(14, 541, 98, 21);
+			label4j_std_4.setBounds(14, 519, 98, 21);
 			desktopPane.add(label4j_std_4);
 
 			JButton4j jButtonOpen = new JButton4j(Common.icon_open_16x16);
@@ -1805,7 +2038,7 @@ public class JFrameHostAdmin extends JFrame
 			label4j_std_5.setText("URL for Hosts File Update");
 			label4j_std_5.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_5.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_5.setBounds(278, 567, 140, 21);
+			label4j_std_5.setBounds(285, 627, 140, 21);
 			desktopPane.add(label4j_std_5);
 
 			jTextField4jHostUpdatePath = new JTextField4j();
@@ -1822,14 +2055,14 @@ public class JFrameHostAdmin extends JFrame
 			jTextField4jHostUpdatePath.setBackground(Common.color_list_assigned);
 			jTextField4jHostUpdatePath.setText("");
 			jTextField4jHostUpdatePath.setFocusCycleRoot(true);
-			jTextField4jHostUpdatePath.setBounds(425, 567, 723, 21);
+			jTextField4jHostUpdatePath.setBounds(432, 627, 723, 21);
 			desktopPane.add(jTextField4jHostUpdatePath);
 
 			JLabel4j_std label4j_std_6 = new JLabel4j_std();
 			label4j_std_6.setText("Hosts FIle Version");
 			label4j_std_6.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_6.setHorizontalAlignment(SwingConstants.RIGHT);
-			label4j_std_6.setBounds(291, 541, 127, 21);
+			label4j_std_6.setBounds(298, 601, 127, 21);
 			desktopPane.add(label4j_std_6);
 
 			jTextField4jHostVersion = new JTextField4j();
@@ -1845,7 +2078,7 @@ public class JFrameHostAdmin extends JFrame
 			jTextField4jHostVersion.setBackground(Common.color_list_assigned);
 			jTextField4jHostVersion.setHorizontalAlignment(SwingConstants.CENTER);
 			jTextField4jHostVersion.setFocusCycleRoot(true);
-			jTextField4jHostVersion.setBounds(425, 541, 53, 21);
+			jTextField4jHostVersion.setBounds(432, 601, 53, 21);
 			desktopPane.add(jTextField4jHostVersion);
 
 			JButton4j button4j = new JButton4j(Common.icon_search_16x16);
@@ -1869,7 +2102,7 @@ public class JFrameHostAdmin extends JFrame
 					}
 				}
 			});
-			button4j.setBounds(1148, 489, 21, 21);
+			button4j.setBounds(1157, 549, 21, 21);
 			desktopPane.add(button4j);
 
 			JButton4j button4j_1 = new JButton4j(Common.icon_search_16x16);
@@ -1893,7 +2126,7 @@ public class JFrameHostAdmin extends JFrame
 					}
 				}
 			});
-			button4j_1.setBounds(1148, 567, 21, 21);
+			button4j_1.setBounds(1157, 627, 21, 21);
 			desktopPane.add(button4j_1);
 
 			jButtonHelp = new JButton4j(Common.icon_help_16x16);
@@ -1946,6 +2179,20 @@ public class JFrameHostAdmin extends JFrame
 			panel.add(label4j_stdAPV);
 			textField4jReqdSchema.setFont(Common.font_std);
 
+			JLabel4j_std lbl4j_stdCollation = new JLabel4j_std();
+			lbl4j_stdCollation.setText("Collation");
+			lbl4j_stdCollation.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl4j_stdCollation.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl4j_stdCollation.setBounds(291, 382, 127, 21);
+			desktopPane.add(lbl4j_stdCollation);
+
+			JLabel4j_std lbl4j_stdCharset = new JLabel4j_std();
+			lbl4j_stdCharset.setText("CharSet");
+			lbl4j_stdCharset.setHorizontalTextPosition(SwingConstants.RIGHT);
+			lbl4j_stdCharset.setHorizontalAlignment(SwingConstants.RIGHT);
+			lbl4j_stdCharset.setBounds(291, 412, 127, 21);
+			desktopPane.add(lbl4j_stdCharset);
+
 			textField4jReqdSchema.setEditable(false);
 			textField4jReqdSchema.setToolTipText("<html>The database schema version needed to run this<br>release of the application.</html>");
 			textField4jReqdSchema.setText(String.valueOf(JVersion.getSchemaVersion()));
@@ -1976,7 +2223,7 @@ public class JFrameHostAdmin extends JFrame
 			textField4jActualSchema.setBounds(181, 62, 53, 21);
 			panel.add(textField4jActualSchema);
 			textField4jActualProgram.setFont(Common.font_std);
-			
+
 			textField4jActualProgram.setToolTipText("<html>The program version of the target database. If this is less than the required <br>program version you need to use the AUTO Update option</html>");
 			textField4jActualProgram.setText("");
 			textField4jActualProgram.setHorizontalAlignment(SwingConstants.CENTER);
@@ -2041,27 +2288,59 @@ public class JFrameHostAdmin extends JFrame
 			btn4jAmendProgramVersion.setText("Correct Program Version !");
 			btn4jAmendProgramVersion.setBounds(47, 192, 187, 39);
 			panel.add(btn4jAmendProgramVersion);
-			
+
 			JLabel4j_std label4j_std21 = new JLabel4j_std();
 			label4j_std21.setFont(Common.font_std);
 			label4j_std21.setText("Protect Configuration with Password");
 			label4j_std21.setHorizontalTextPosition(SwingConstants.CENTER);
 			label4j_std21.setHorizontalAlignment(SwingConstants.CENTER);
-			label4j_std21.setBounds(24, 489, 248, 21);
+			label4j_std21.setBounds(24, 467, 248, 21);
 			desktopPane.add(label4j_std21);
 			btnDefaultTimeZone.setToolTipText("Set default Timezone value");
-		
-			btnDefaultTimeZone.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if (jComboBoxjdbcTimeZone.getSelectedItem().toString().equals(TimeZone.getDefault().getID())==false)
+			btnDefaultCollation.setToolTipText("Set default Collation");
+			btnDefaultCharSet.setToolTipText("Set default CharSet");
+
+			btnDefaultTimeZone.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jComboBoxjdbcTimeZone.getSelectedItem().toString().equals(TimeZone.getDefault().getID()) == false)
 					{
 						jComboBoxjdbcTimeZone.setSelectedItem(TimeZone.getDefault().getID());
 						jTextFieldKeyTyped();
 					}
 				}
 			});
-			btnDefaultTimeZone.setBounds(687, 323, 21, 21);
+			btnDefaultTimeZone.setBounds(689, 353, 21, 21);
 			desktopPane.add(btnDefaultTimeZone);
+
+			btnDefaultCollation.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jComboBoxCollation.getSelectedItem().toString().equals("utf8mb4_0900_ai_ci") == false)
+					{
+						jComboBoxCollation.setSelectedItem("utf8mb4_0900_ai_ci");
+						jTextFieldKeyTyped();
+					}
+				}
+			});
+			btnDefaultCollation.setBounds(689, 382, 21, 21);
+			desktopPane.add(btnDefaultCollation);
+
+			btnDefaultCharSet.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					if (jComboBoxCharSet.getSelectedItem().toString().equals("utf8mb4") == false)
+					{
+						jComboBoxCharSet.setSelectedItem("utf8mb4");
+						jTextFieldKeyTyped();
+					}
+				}
+			});
+			btnDefaultCharSet.setBounds(689, 412, 21, 21);
+			desktopPane.add(btnDefaultCharSet);
 
 			setHostsFilename(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts" + File.separator + "hosts.xml");
 			setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_setup4j).getImage());

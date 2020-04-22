@@ -7,55 +7,55 @@
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[SAMPLE_POINT] [varchar](25)  collate database_default not null
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[SAMPLE_POINT] [varchar](25)  collate database_default not null
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[USER_ID] [varchar](20) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[USER_ID] [varchar](20) collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[WORKSTATION_ID] [varchar](25) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[WORKSTATION_ID] [varchar](25) collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[SCALE_ID] [varchar](15) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[SCALE_ID] [varchar](15) collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[PROCESS_ORDER] [varchar](10) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[PROCESS_ORDER] [varchar](10) collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[REQUIRED_RESOURCE] [varchar](50) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[REQUIRED_RESOURCE] [varchar](50) collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[CUSTOMER_ID] [varchar](20) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[CUSTOMER_ID] [varchar](20) collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[MATERIAL] [varchar](20) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[MATERIAL] [varchar](20) collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[PRODUCT_GROUP] [varchar](25) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[PRODUCT_GROUP] [varchar](25) collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[CONTAINER_CODE] [varchar](12)  collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[CONTAINER_CODE] [varchar](12)  collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[TARE_WEIGHT_UOM] [varchar](3) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[TARE_WEIGHT_UOM] [varchar](3) collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[NOMINAL_WEIGHT_UOM] [varchar](3) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[NOMINAL_WEIGHT_UOM] [varchar](3) collate database_default
 	</statement>
 	
 	<statement>
-   	alter table app_weight_sample_header alter column 	[COMMENTS] [varchar](250) collate database_default
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[COMMENTS] [varchar](250) collate database_default
 	</statement>
 	
 	<statement>

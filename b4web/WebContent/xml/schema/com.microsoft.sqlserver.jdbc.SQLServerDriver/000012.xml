@@ -4,7 +4,7 @@
 <DDL>
 
 <statement>
-	ALTER TABLE app_despatch ADD LOAD_NO varchar(20)
+	ALTER TABLE APP_DESPATCH ADD LOAD_NO varchar(20)
 </statement>
 
 </DDL>
