@@ -1963,6 +1963,370 @@
 		<statement>
 			<id>JDBWTSampleDetail.getSampleDetails</id>
 			<text>select * FROM {schema}APP_WEIGHT_SAMPLE_DETAIL where sample_point = ? and sample_date = ? order by sample_point,sample_date,sample_sequence</text>
-		</statement>					
+		</statement>	
+		
+		<?JDBWasteLocation?>		
+		<statement>
+			<id>JDBWasteLocation.create</id>
+			<text>insert into {schema}APP_WASTE_LOCATIONS (waste_location_id,description,process_order_required,reason_id_required,enabled) values (?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocation.delete</id>
+			<text>delete from {schema}APP_WASTE_LOCATIONS where waste_location_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocation.getProperties</id>
+			<text>select * from {schema}APP_WASTE_LOCATIONS where waste_location_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocation.getWasteLocations</id>
+			<text>select * from {schema}APP_WASTE_LOCATIONS order by waste_location_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocation.getWasteLocationList</id>
+			<text>select * from {schema}APP_WASTE_LOCATIONS where enabled = 'Y' order by waste_location_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocation.isValidWasteLocation</id>
+			<text>select * from {schema}APP_WASTE_LOCATIONS where waste_location_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocation.update</id>
+			<text>update {schema}APP_WASTE_LOCATIONS set description=?,process_order_required=?,reason_id_required=?, enabled=? where waste_location_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocation.getLocationsAssignedtoReportingID</id>
+			<text>select * from {schema}APP_WASTE_LOCATIONS 
+						where enabled = 'Y' 
+						and  waste_location_id in (SELECT waste_location_id from {schema}APP_WASTE_LOCATION_REPORTING where waste_reporting_id = ?) 
+						order by waste_location_id</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteLocation.getLocationsUnAssignedtoReportingID</id>
+			<text>select * from {schema}APP_WASTE_LOCATIONS 
+						where enabled = 'Y' 
+						and  waste_location_id not in (SELECT waste_location_id from {schema}APP_WASTE_LOCATION_REPORTING where waste_reporting_id = ?) 
+						order by waste_location_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocation.renameLocationID</id>
+			<text>update {schema}APP_WASTE_LOCATIONS set waste_location_id=? where waste_location_id=?</text>
+		</statement>
+		
+		<?JDBWasteTransactionType?>		
+		<statement>
+			<id>JDBWasteTransactionType.create</id>
+			<text>insert into {schema}APP_WASTE_TRANSACTIONS (waste_transaction_type,description,include_in_totals,store_as_negative,enabled) values (?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTransactionType.delete</id>
+			<text>delete from {schema}APP_WASTE_TRANSACTIONS where waste_transaction_type= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTransactionType.getProperties</id>
+			<text>select * from {schema}APP_WASTE_TRANSACTIONS where waste_transaction_type= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTransactionType.getWasteTransactions</id>
+			<text>select * from {schema}APP_WASTE_TRANSACTIONS order by waste_transaction_type</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTransactionType.isValidWasteTransaction</id>
+			<text>select * from {schema}APP_WASTE_TRANSACTIONS where waste_transaction_type= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTransactionType.update</id>
+			<text>update {schema}APP_WASTE_TRANSACTIONS set description=?,include_in_totals=?,store_as_negative=?,enabled=? where waste_transaction_type=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTransactionType.renameTransactionType</id>
+			<text>update {schema}APP_WASTE_TRANSACTIONS set waste_transaction_type=? where waste_transaction_type=?</text>
+		</statement>
+		
+		<?JDBWasteReportingIDS?>		
+		<statement>
+			<id>JDBWasteReportingIDS.create</id>
+			<text>insert into {schema}APP_WASTE_REPORTING_IDS (waste_reporting_id,description,reporting_group,enabled) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingIDS.delete</id>
+			<text>delete from {schema}APP_WASTE_REPORTING_IDS where waste_reporting_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingIDS.getProperties</id>
+			<text>select * from {schema}APP_WASTE_REPORTING_IDS where waste_reporting_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingIDS.getWasteReportingIDs</id>
+			<text>select * from {schema}APP_WASTE_REPORTING_IDS order by reporting_group,waste_reporting_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingIDS.isValidWasteReportingID</id>
+			<text>select * from {schema}APP_WASTE_REPORTING_IDS where waste_reporting_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingIDS.update</id>
+			<text>update {schema}APP_WASTE_REPORTING_IDS set description=?,reporting_group=?,enabled=? where waste_reporting_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingIDS.getReportingIDsAssignedtoLocation</id>
+			<text>select * from {schema}APP_WASTE_REPORTING_IDS 
+						where enabled = 'Y' 
+						and  waste_reporting_id in (SELECT waste_reporting_id from {schema}APP_WASTE_LOCATION_REPORTING where waste_location_id = ?) 
+						order by waste_reporting_id</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteReportingIDS.getReportingIDsUnassignedtoLocation</id>
+			<text>select * from {schema}APP_WASTE_REPORTING_IDS 
+						where enabled = 'Y' 
+						and  waste_reporting_id not in (SELECT waste_reporting_id from {schema}APP_WASTE_LOCATION_REPORTING where waste_location_id = ?) 
+						order by waste_reporting_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingIDS.renameReportingID</id>
+			<text>update {schema}APP_WASTE_REPORTING_IDS set waste_reporting_id=? where waste_reporting_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingIDS.renameReportingGroup</id>
+			<text>update {schema}APP_WASTE_REPORTING_IDS set reporting_group=? where reporting_group=?</text>
+		</statement>		
+		
+		<?JDBWasteReasons?>		
+		<statement>
+			<id>JDBWasteReasons.create</id>
+			<text>insert into {schema}APP_WASTE_REASONS (waste_reason_id,description,enabled) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReasons.delete</id>
+			<text>delete from {schema}APP_WASTE_REASONS where waste_reason_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReasons.getProperties</id>
+			<text>select * from {schema}APP_WASTE_REASONS where waste_reason_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReasons.getWasteReasons</id>
+			<text>select * from {schema}APP_WASTE_REASONS order by waste_reason_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReasons.isValidWasteReasonID</id>
+			<text>select * from {schema}APP_WASTE_REASONS where waste_reason_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReasons.update</id>
+			<text>update {schema}APP_WASTE_REASONS set description=?,enabled=? where waste_reason_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteReasons.renameReasonID</id>
+			<text>update {schema}APP_WASTE_REASONS set waste_reason_id=? where waste_reason_id=?</text>
+		</statement>
+		
+		<?JDBWasteLocationReporting?>		
+		<statement>
+			<id>JDBWasteLocationReporting.create</id>
+			<text>insert into {schema}APP_WASTE_LOCATION_REPORTING (waste_location_id,waste_reporting_id) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationReporting.delete</id>
+			<text>delete from {schema}APP_WASTE_LOCATION_REPORTING where waste_location_id= ? and waste_reporting_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationReporting.getProperties</id>
+			<text>select * from {schema}APP_WASTE_LOCATION_REPORTING where waste_location_id= ? and waste_reporting_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationReporting.getWasteReportingIDs</id>
+			<text>select * from {schema}APP_WASTE_LOCATION_REPORTING order by waste_location_id,waste_reporting_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationReporting.isValidWasteLocationReportingID</id>
+			<text>select * from {schema}APP_WASTE_LOCATION_REPORTING where waste_location_id= ?and waste_reporting_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteLocationReporting.deleteByLocation</id>
+			<text>delete from {schema}APP_WASTE_LOCATION_REPORTING where waste_location_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationReporting.deleteByReportID</id>
+			<text>delete from {schema}APP_WASTE_LOCATION_REPORTING where waste_reporting_id = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteLocationReporting.renameLocationID</id>
+			<text>update {schema}APP_WASTE_LOCATION_REPORTING set waste_location_id=? where waste_location_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteLocationReporting.renameReportingID</id>
+			<text>update {schema}APP_WASTE_LOCATION_REPORTING set waste_reporting_id=? where waste_reporting_id=?</text>
+		</statement>
+		<?JDBWasteTypes?>		
+		<statement>
+			<id>JDBWasteTypes.create</id>
+			<text>insert into {schema}APP_WASTE_TYPES (waste_type_id,description,recyclable,hazardous,ppe_required,enabled) values (?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTypes.delete</id>
+			<text>delete from {schema}APP_WASTE_TYPES where waste_type_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTypes.getProperties</id>
+			<text>select * from {schema}APP_WASTE_TYPES where waste_type_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTypes.getWasteTypes</id>
+			<text>select * from {schema}APP_WASTE_TYPES order by waste_type_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTypes.isValidWasteType</id>
+			<text>select * from {schema}APP_WASTE_TYPES where waste_type_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteTypes.update</id>
+			<text>update {schema}APP_WASTE_TYPES set description=?,recyclable=?,hazardous=?,ppe_required=?,enabled=? where waste_type_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteTypes.renameTypeID</id>
+			<text>update {schema}APP_WASTE_TYPES set waste_type_id=? where waste_type_id=?</text>
+		</statement>
+		
+		<?JDBWasteMaterial?>		
+		<statement>
+			<id>JDBWasteMaterial.create</id>
+			<text>insert into {schema}APP_WASTE_MATERIAL (waste_material_id,waste_type_id,uom,cost_per_uom,conversion_to_kg,description,enabled) values (?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteMaterial.delete</id>
+			<text>delete from {schema}APP_WASTE_MATERIAL where waste_material_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteMaterial.getProperties</id>
+			<text>select * from {schema}APP_WASTE_MATERIAL where waste_material_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteMaterial.getWasteMaterials</id>
+			<text>select * from {schema}APP_WASTE_MATERIAL order by waste_material_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteMaterial.isValidWasteMaterial</id>
+			<text>select * from {schema}APP_WASTE_MATERIAL where waste_material_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteMaterial.update</id>
+			<text>update {schema}APP_WASTE_MATERIAL set waste_type_id=?,uom=?,cost_per_uom=?,conversion_to_kg=?,description=?,enabled=? where waste_material_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteMaterial.renameMaterialID</id>
+			<text>update {schema}APP_WASTE_MATERIAL set waste_material_id=? where waste_material_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteMaterial.renameTypeID</id>
+			<text>update {schema}APP_WASTE_MATERIAL set waste_type_id=? where waste_type_id=?</text>
+		</statement>
+		
+		<?JDBWasteLog?>		
+		<statement>
+			<id>JDBWasteLog.write</id>
+			<text>insert into {schema}APP_WASTE_LOG (transaction_ref,waste_transaction_type,report_time,waste_location_id,waste_material_id,process_order,waste_reason_id,user_id,quantity) values (?,?,?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLog.delete</id>
+			<text>delete from {schema}APP_WASTE_LOG where transaction_ref= ? and waste_transaction_type=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLog.getProperties</id>
+			<text>select * from {schema}APP_WASTE_LOG where transaction_ref= ? and waste_transaction_type=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLog.getWasteLogs</id>
+			<text>select * from {schema}APP_WASTE_LOG order by transaction_ref</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLog.isValidWasteLog</id>
+			<text>select * from {schema}APP_WASTE_LOG where transaction_ref= ? and waste_transaction_type=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLog.update</id>
+			<text>update {schema}APP_WASTE_LOG set report_time=?,waste_location_id=?,waste_material_id=?,process_order=?,waste_reason_id=?,user_id=?,quantity=? where transaction_ref=? and waste_transaction_type=?</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteLog.renameLocationID</id>
+			<text>update {schema}APP_WASTE_LOG set waste_location_id=? where waste_location_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLog.renameMaterialID</id>
+			<text>update {schema}APP_WASTE_LOG set waste_material_id=? where waste_material_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLog.renameReasonID</id>
+			<text>update {schema}APP_WASTE_LOG set waste_reason_id=? where waste_reason_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLog.renameTransactionType</id>
+			<text>update {schema}APP_WASTE_LOG set waste_transaction_type=? where waste_transaction_type=?</text>
+		</statement>
+		
+		<?JDBWasteLocationTypes?>		
+		<statement>
+			<id>JDBWasteLocationTypes.create</id>
+			<text>insert into {schema}APP_WASTE_LOCATION_TYPES (waste_location_id,waste_type_id) values (?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationTypes.delete</id>
+			<text>delete from {schema}APP_WASTE_LOCATION_TYPES where waste_location_id= ? and waste_type_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationTypes.getProperties</id>
+			<text>select * from {schema}APP_WASTE_LOCATION_TYPES where waste_location_id= ? and waste_type_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationTypes.getWasteLocationTypes</id>
+			<text>select * from {schema}APP_WASTE_LOCATION_TYPES order by waste_location_id,waste_type_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationTypes.isValidWasteLocationType</id>
+			<text>select * from {schema}APP_WASTE_LOCATION_TYPES where waste_location_id= ? and waste_type_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteLocationTypes.deleteByLocation</id>
+			<text>delete from {schema}APP_WASTE_LOCATION_TYPES where waste_location_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationTypes.deleteByType</id>
+			<text>delete from {schema}APP_WASTE_LOCATION_TYPES where waste_type_id = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteLocationTypes.renameLocationID</id>
+			<text>update {schema}APP_WASTE_LOCATION_TYPES set waste_location_id=? where waste_location_id=?</text>
+		</statement>	
+		
+		<?JDBWasteReportingGroup?>		
+		<statement>
+			<id>JDBWasteReportingGroup.create</id>
+			<text>insert into {schema}APP_WASTE_REPORTING_GROUP (reporting_group,description,enabled) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingGroup.delete</id>
+			<text>delete from {schema}APP_WASTE_REPORTING_GROUP where reporting_group= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingGroup.getProperties</id>
+			<text>select * from {schema}APP_WASTE_REPORTING_GROUP where reporting_group= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingGroup.getWasteReportingGroups</id>
+			<text>select * from {schema}APP_WASTE_REPORTING_GROUP order by reporting_group</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingGroup.isValidWasteReportingGroup</id>
+			<text>select * from {schema}APP_WASTE_REPORTING_GROUP where reporting_group= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteReportingGroup.update</id>
+			<text>update {schema}APP_WASTE_REPORTING_GROUP set description=?,enabled=? where reporting_group=?</text>
+		</statement>	
+		<statement>
+			<id>JDBWasteReportingGroup.renameReportingGroup</id>
+			<text>update {schema}APP_WASTE_REPORTING_GROUP set reporting_group=? where reporting_group=?</text>
+		</statement>			
+						
 	</jdbcDriver>
 </SQL>

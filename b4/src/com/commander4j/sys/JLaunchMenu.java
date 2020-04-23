@@ -33,89 +33,7 @@ import java.awt.Rectangle;
 import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
 
-import com.commander4j.app.JDialogAbout;
-import com.commander4j.app.JDialogAssignLabelDataToLine;
-import com.commander4j.app.JDialogMaterialCustomerDataProperties;
-import com.commander4j.app.JDialogModuleAlternative;
-import com.commander4j.app.JDialogPalletRePrintLabel;
-import com.commander4j.app.JDialogQMActivityProperties;
-import com.commander4j.app.JDialogQMDictionaryProperties;
-import com.commander4j.app.JDialogQMInspectionProperties;
-import com.commander4j.app.JDialogQMSelectListProperties;
-import com.commander4j.app.JDialogShiftProperties;
-import com.commander4j.app.JDialogWTError;
-import com.commander4j.app.JDialogWTReportDetails;
-import com.commander4j.app.JInternalFrameAutoLabellerLines;
-import com.commander4j.app.JDialogAutoLabellerProperties;
-import com.commander4j.app.JInternalFrameCustomerAdmin;
-import com.commander4j.app.JInternalFrameCustomerProperties;
-import com.commander4j.app.JInternalFrameDataIDAdmin;
-import com.commander4j.app.JDialogDataIDProperties;
-import com.commander4j.app.JInternalFrameDespatch;
-import com.commander4j.app.JInternalFrameJourneyAdmin;
-import com.commander4j.app.JInternalFrameJourneyProperties;
-import com.commander4j.app.JInternalFrameLabelHistory;
-import com.commander4j.app.JInternalFrameLocationAdmin;
-import com.commander4j.app.JInternalFrameLocationProperties;
-import com.commander4j.app.JInternalFrameMHNAdmin;
-import com.commander4j.app.JInternalFrameMHNAssign;
-import com.commander4j.app.JInternalFrameMHNDecisionAdmin;
-import com.commander4j.app.JInternalFrameMHNDecisionProperties;
-import com.commander4j.app.JInternalFrameMHNProperties;
-import com.commander4j.app.JInternalFrameMHNReasonAdmin;
-import com.commander4j.app.JInternalFrameMHNReasonProperties;
-import com.commander4j.app.JInternalFrameMaterialAdmin;
-import com.commander4j.app.JInternalFrameMaterialBatchAdmin;
-import com.commander4j.app.JInternalFrameMaterialBatchProperties;
-import com.commander4j.app.JInternalFrameMaterialCustomerDataAdmin;
-import com.commander4j.app.JInternalFrameMaterialLocationAdmin;
-import com.commander4j.app.JInternalFrameMaterialLocationProperties;
-import com.commander4j.app.JInternalFrameMaterialProperties;
-import com.commander4j.app.JInternalFrameMaterialTypeAdmin;
-import com.commander4j.app.JInternalFrameMaterialTypeProperties;
-import com.commander4j.app.JInternalFrameMaterialUomAdmin;
-import com.commander4j.app.JInternalFrameMaterialUomProperties;
-import com.commander4j.app.JInternalFramePackLabelPrint;
-import com.commander4j.app.JInternalFramePalletAdmin;
-import com.commander4j.app.JInternalFramePalletHistoryAdmin;
-import com.commander4j.app.JInternalFramePalletProperties;
-import com.commander4j.app.JInternalFramePalletSplit;
-import com.commander4j.app.JInternalFrameProcessOrderAdmin;
-import com.commander4j.app.JInternalFrameProcessOrderLabel;
-import com.commander4j.app.JInternalFrameProcessOrderProperties;
-import com.commander4j.app.JInternalFrameProcessOrderResourceAdmin;
-import com.commander4j.app.JInternalFrameProcessOrderResourceProperties;
-import com.commander4j.app.JInternalFrameProductionConfirmation;
-import com.commander4j.app.JInternalFrameProductionDeclaration;
-import com.commander4j.app.JInternalFrameQMDictionaryAdmin;
-import com.commander4j.app.JInternalFrameQMInspectionAdmin;
-import com.commander4j.app.JInternalFrameQMResultAnalysis;
-import com.commander4j.app.JInternalFrameQMResultAnalysisProperties;
-import com.commander4j.app.JInternalFrameQMResultEnquiry;
-import com.commander4j.app.JInternalFrameQMSampleLabel;
-import com.commander4j.app.JInternalFrameQMSampleRecord;
-import com.commander4j.app.JInternalFrameQMSampleResults;
-import com.commander4j.app.JDialogQMTestProperties;
-import com.commander4j.app.JInternalFrameQMSelectListAdmin;
-import com.commander4j.app.JInternalFrameWTSamplePointAdmin;
-import com.commander4j.app.JInternalFrameWTSamplePointProperties;
-import com.commander4j.app.JInternalFrameWTScaleAdmin;
-import com.commander4j.app.JInternalFrameWTScaleProperties;
-import com.commander4j.app.JInternalFrameWTTNEAdmin;
-import com.commander4j.app.JInternalFrameWTTNEProperties;
-import com.commander4j.app.JInternalFrameWTWorkstationAdmin;
-import com.commander4j.app.JInternalFrameWTWorkstationProperties;
-import com.commander4j.app.JInternalFrameUomAdmin;
-import com.commander4j.app.JInternalFrameUomProperties;
-import com.commander4j.app.JInternalFrameUserReportAdmin;
-import com.commander4j.app.JInternalFrameUserReportProperties;
-import com.commander4j.app.JInternalFrameUserReportSchema;
-import com.commander4j.app.JInternalFrameWTContainerCodeAdmin;
-import com.commander4j.app.JInternalFrameWTContainerCodeProperties;
-import com.commander4j.app.JInternalFrameWTWeightCapture;
-import com.commander4j.app.JInternalFrameWTProductGroupAdmin;
-import com.commander4j.app.JInternalFrameWTProductGroupProperties;
-import com.commander4j.app.JInternalFrameWTReport;
+import com.commander4j.app.*;
 import com.commander4j.db.JDBModule;
 import com.commander4j.interfaces.JInternalFrameInterfaceAdmin;
 import com.commander4j.interfaces.JInternalFrameInterfaceControl;
@@ -905,6 +823,32 @@ public class JLaunchMenu
 			}
 		}
 
+		if (optionName.equals("FRM_ADMIN_WASTE_LOG"))
+		{
+			final JInternalFrameWasteLogAdmin u;
+			if (isLoaded(JInternalFrameWasteLogAdmin.class))
+				setVisible(JInternalFrameWasteLogAdmin.class);
+			else
+			{
+				u = new JInternalFrameWasteLogAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_ADMIN_WASTE_REPORTING"))
+		{
+			final JInternalFrameWasteReporting u;
+			if (isLoaded(JInternalFrameWasteReporting.class))
+				setVisible(JInternalFrameWasteReporting.class);
+			else
+			{
+				u = new JInternalFrameWasteReporting();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
 		if (optionName.equals("FRM_ADMIN_MATERIAL_LOCATION"))
 		{
 			final JInternalFrameMaterialLocationAdmin u;
@@ -1147,6 +1091,123 @@ public class JLaunchMenu
 			else
 			{
 				u = new JInternalFrameWTProductGroupAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_LOCATION"))
+		{
+			final JInternalFrameWasteLocationAdmin u;
+			if (isLoaded(JInternalFrameWasteLocationAdmin.class))
+				setVisible(JInternalFrameWasteLocationAdmin.class);
+			else
+			{
+				u = new JInternalFrameWasteLocationAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_LOCATION_REPORTING"))
+		{
+			final JInternalFrameWasteLocationReporting u;
+			if (isLoaded(JInternalFrameWasteLocationReporting.class))
+				setVisible(JInternalFrameWasteLocationReporting.class);
+			else
+			{
+				u = new JInternalFrameWasteLocationReporting();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_REPORTING_LOCATION"))
+		{
+			final JInternalFrameWasteReportingLocation u;
+			if (isLoaded(JInternalFrameWasteReportingLocation.class))
+				setVisible(JInternalFrameWasteReportingLocation.class);
+			else
+			{
+				u = new JInternalFrameWasteReportingLocation();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_REPORT_ID"))
+		{
+			final JInternalFrameWasteReportIDAdmin u;
+			if (isLoaded(JInternalFrameWasteReportIDAdmin.class))
+				setVisible(JInternalFrameWasteReportIDAdmin.class);
+			else
+			{
+				u = new JInternalFrameWasteReportIDAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_TYPE"))
+		{
+			final JInternalFrameWasteTypeAdmin u;
+			if (isLoaded(JInternalFrameWasteTypeAdmin.class))
+				setVisible(JInternalFrameWasteTypeAdmin.class);
+			else
+			{
+				u = new JInternalFrameWasteTypeAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_TRANSACTION"))
+		{
+			final JInternalFrameWasteTransactionAdmin u;
+			if (isLoaded(JInternalFrameWasteTransactionAdmin.class))
+				setVisible(JInternalFrameWasteTransactionAdmin.class);
+			else
+			{
+				u = new JInternalFrameWasteTransactionAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_MATERIAL"))
+		{
+			final JInternalFrameWasteMaterialAdmin u;
+			if (isLoaded(JInternalFrameWasteMaterialAdmin.class))
+				setVisible(JInternalFrameWasteMaterialAdmin.class);
+			else
+			{
+				u = new JInternalFrameWasteMaterialAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_REASON"))
+		{
+			final JInternalFrameWasteReasonAdmin u;
+			if (isLoaded(JInternalFrameWasteReasonAdmin.class))
+				setVisible(JInternalFrameWasteReasonAdmin.class);
+			else
+			{
+				u = new JInternalFrameWasteReasonAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WASTE_REPORTING_GROUP"))
+		{
+			final JInternalFrameWasteReportingGroupAdmin u;
+			if (isLoaded(JInternalFrameWasteReportingGroupAdmin.class))
+				setVisible(JInternalFrameWasteReportingGroupAdmin.class);
+			else
+			{
+				u = new JInternalFrameWasteReportingGroupAdmin();
 				u.setTitle(mod.getDescription());
 				displayForm(u, optionName);
 			}
@@ -1492,6 +1553,17 @@ public class JLaunchMenu
 			}
 		}
 
+		if (optionName.equals("FRM_ADMIN_WASTE_LOG_EDIT"))
+		{
+			final JInternalFrameWasteLogProperties u;
+
+			{
+				u = new JInternalFrameWasteLogProperties(StrParam1, StrParam2);
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+
 		if (optionName.equals("FRM_ADMIN_MATERIAL_LOCATION_EDIT"))
 		{
 			final JInternalFrameMaterialLocationProperties u;
@@ -1543,6 +1615,111 @@ public class JLaunchMenu
 	{
 		mod.setModuleId(optionName);
 		mod.getModuleProperties();
+
+		if (optionName.equals("FRM_WASTE_LOCATION_EDIT"))
+		{
+			final JInternalFrameWasteLocationProperties u;
+			if (isLoaded(JInternalFrameWasteLocationProperties.class))
+			{
+				((JInternalFrameWasteLocationProperties) isLoadedInstance(JInternalFrameWasteLocationProperties.class)).setLocationID(StrParam);
+				setVisible(JInternalFrameWasteLocationProperties.class);
+			}
+			else
+			{
+				u = new JInternalFrameWasteLocationProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_TYPE_EDIT"))
+		{
+			final JInternalFrameWasteTypeProperties u;
+			if (isLoaded(JInternalFrameWasteTypeProperties.class))
+			{
+				((JInternalFrameWasteTypeProperties) isLoadedInstance(JInternalFrameWasteTypeProperties.class)).setType(StrParam);
+				setVisible(JInternalFrameWasteTypeProperties.class);
+			}
+			else
+			{
+				u = new JInternalFrameWasteTypeProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_REPORT_ID_EDIT"))
+		{
+			final JInternalFrameWasteReportIDProperties u;
+			if (isLoaded(JInternalFrameWasteReportIDProperties.class))
+			{
+				((JInternalFrameWasteReportIDProperties) isLoadedInstance(JInternalFrameWasteReportIDProperties.class)).setReportID(StrParam);
+				setVisible(JInternalFrameWasteReportIDProperties.class);
+			}
+			else
+			{
+				u = new JInternalFrameWasteReportIDProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_WASTE_REPORTING_GROUP_EDIT"))
+		{
+			final JInternalFrameWasteReportingGroupProperties u;
+			if (isLoaded(JInternalFrameWasteReportingGroupProperties.class))
+			{
+				((JInternalFrameWasteReportingGroupProperties) isLoadedInstance(JInternalFrameWasteReportingGroupProperties.class)).setGroup(StrParam);
+				setVisible(JInternalFrameWasteReportingGroupProperties.class);
+			}
+			else
+			{
+				u = new JInternalFrameWasteReportingGroupProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_TRANSACTION_EDIT"))
+		{
+			final JInternalFrameWasteTransactionProperties u;
+			if (isLoaded(JInternalFrameWasteTransactionProperties.class))
+			{
+				((JInternalFrameWasteTransactionProperties) isLoadedInstance(JInternalFrameWasteTransactionProperties.class)).setTransactionType(StrParam);
+				setVisible(JInternalFrameWasteTransactionProperties.class);
+			}
+			else
+			{
+				u = new JInternalFrameWasteTransactionProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_REASON_EDIT"))
+		{
+			final JInternalFrameWasteReasonProperties u;
+			if (isLoaded(JInternalFrameWasteReasonProperties.class))
+			{
+				((JInternalFrameWasteReasonProperties) isLoadedInstance(JInternalFrameWasteReasonProperties.class)).setReasonID(StrParam);
+				setVisible(JInternalFrameWasteReasonProperties.class);
+			}
+			else
+			{
+				u = new JInternalFrameWasteReasonProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+
+		if (optionName.equals("FRM_WASTE_MATERIAL_EDIT"))
+		{
+			final JInternalFrameWasteMaterialProperties u;
+			if (isLoaded(JInternalFrameWasteMaterialProperties.class))
+			{
+				((JInternalFrameWasteMaterialProperties) isLoadedInstance(JInternalFrameWasteMaterialProperties.class)).setMaterialID(StrParam);
+				setVisible(JInternalFrameWasteMaterialProperties.class);
+			}
+			else
+			{
+				u = new JInternalFrameWasteMaterialProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
 
 		if (optionName.equals("FRM_WEIGHT_PRODUCT_GROUP_EDIT"))
 		{
