@@ -65,6 +65,8 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 import javax.swing.JPanel;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 /**
  * The JInternalFrameWasteLogProperties class allows you to update a record in
@@ -353,6 +355,11 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		lref = Long.valueOf(ref);
 		ltype = txn;
 		
+		wasteTransactionTypes.getWasteTransactionProperties(ltype);
+
+		chckbx_IncludeInTotals.setSelected(wasteTransactionTypes.isIncludedInTotals());
+		chckbx_StoreAsNegative.setSelected(wasteTransactionTypes.isStoreAsNegative());
+		
 		if (lref == -1)
 		{
 			mode = "NEW";
@@ -376,10 +383,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		wasteLog.setTransactionRef(lref);
 		wasteLog.setTransactionType(ltype);
 
-		wasteTransactionTypes.getWasteTransactionProperties(ltype);
 
-		chckbx_IncludeInTotals.setSelected(wasteTransactionTypes.isIncludedInTotals());
-		chckbx_StoreAsNegative.setSelected(wasteTransactionTypes.isStoreAsNegative());
 
 		if (wasteLog.getWasteLogProperties())
 		{
@@ -726,7 +730,12 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 				}
 				{
 					transactionDate = new JDateControl();
-					transactionDate.setEnabled(false);
+					transactionDate.addChangeListener(new ChangeListener() {
+						public void stateChanged(ChangeEvent e) {
+							jButtonSave.setEnabled(true);
+							jButtonUndo.setEnabled(true);
+						}
+					});
 					transactionDate.setBounds(725, 10, 128, 25);
 					jDesktopPane1.add(transactionDate);
 				}
