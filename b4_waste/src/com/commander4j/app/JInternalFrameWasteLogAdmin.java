@@ -122,7 +122,9 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 	private JButton4j jButtonLookupProcessOrder;
 	private JTextField4j jTextFieldWasteLocation;
 	private JComboBox4j<JDBWasteTransactionType> jComboBoxTransactionType;
+	private JComboBox4j<String> jComboBoxRecycle;
 	private JLabel4j_std jLabelTransaction_Type;
+	private JLabel4j_std jLabelRecycle;
 	private JComboBox4j<String> jComboBoxSortBy;
 	private JLabel4j_std jLabel10;
 	private JLabel4j_std jLabel3;
@@ -256,6 +258,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		calendarButtonDateTo.setEnabled(false);
 		
 		jComboBoxMaterialType.setSelectedIndex(0);
+		jComboBoxRecycle.setSelectedIndex(0);
 
 		search();
 
@@ -433,6 +436,18 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		{
 			query.addParamtoSQL("waste_transaction_type=", x.getWasteTransactionType());
 		}
+		
+		if (jComboBoxRecycle.getSelectedIndex()>0)
+		{
+			if (jComboBoxRecycle.getSelectedIndex()==1)
+			{
+				query.addParamtoSQL("recyclable=", "Y");
+			}
+			else
+			{
+				query.addParamtoSQL("recyclable=", "N");
+			}
+		}
 
 		if (jCheckBoxFrom.isSelected())
 		{
@@ -524,7 +539,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 					jDesktopPane1.setLayout(null);
 					jDesktopPane1.add(jScrollPane1);
-					jScrollPane1.setBounds(0, 195, 988, 420);
+					jScrollPane1.setBounds(0, 229, 988, 386);
 					{
 						TableModel jTable1Model = new DefaultTableModel(new String[][]
 						{
@@ -776,7 +791,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
 					jButtonSearch.setMnemonic(java.awt.event.KeyEvent.VK_S);
-					jButtonSearch.setBounds(0, 153, 123, 32);
+					jButtonSearch.setBounds(0, 188, 123, 32);
 					jButtonSearch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -791,7 +806,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(java.awt.event.KeyEvent.VK_E);
-					jButtonEdit.setBounds(372, 153, 123, 32);
+					jButtonEdit.setBounds(372, 188, 123, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_WASTE_LOG_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener()
 					{
@@ -806,14 +821,14 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					jButtonHelp.setBounds(738, 153, 123, 32);
+					jButtonHelp.setBounds(738, 188, 123, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(861, 153, 123, 32);
+					jButtonClose.setBounds(861, 188, 123, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -834,7 +849,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					jLabelWasteReason = new JLabel4j_std();
 					jDesktopPane1.add(jLabelWasteReason);
 					jLabelWasteReason.setText(lang.get("lbl_Reason"));
-					jLabelWasteReason.setBounds(545, 49, 130, 21);
+					jLabelWasteReason.setBounds(-4, 119, 130, 21);
 					jLabelWasteReason.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -845,7 +860,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 				{
 					jTextFieldWasteReason = new JTextField4j(JDBWasteLog.field_ReasonID);
 					jDesktopPane1.add(jTextFieldWasteReason);
-					jTextFieldWasteReason.setBounds(684, 48, 126, 22);
+					jTextFieldWasteReason.setBounds(134, 118, 126, 22);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
@@ -864,33 +879,49 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(285, 118, 108, 23);
+					jLabel10.setBounds(285, 153, 108, 23);
 				}
 				{
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
-					jComboBoxSortBy.setBounds(401, 118, 255, 23);
+					jComboBoxSortBy.setBounds(401, 153, 255, 23);
 				}
 				{
 					jLabelTransaction_Type = new JLabel4j_std();
 					jDesktopPane1.add(jLabelTransaction_Type);
 					jLabelTransaction_Type.setText(lang.get("lbl_Transaction_Type"));
 					jLabelTransaction_Type.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelTransaction_Type.setBounds(545, 14, 130, 21);
+					jLabelTransaction_Type.setBounds(674, 17, 146, 21);
+				}
+				{
+					jLabelRecycle = new JLabel4j_std();
+					jDesktopPane1.add(jLabelRecycle);
+					jLabelRecycle.setText(lang.get("lbl_Recycle"));
+					jLabelRecycle.setHorizontalAlignment(SwingConstants.TRAILING);
+					jLabelRecycle.setBounds(434, 17, 130, 21);
 				}
 				{
 					ComboBoxModel<JDBWasteTransactionType> jComboBoxStatusModel =  new DefaultComboBoxModel<JDBWasteTransactionType>(transTypeList);
 					jComboBoxTransactionType = new JComboBox4j<JDBWasteTransactionType>();
 					jDesktopPane1.add(jComboBoxTransactionType);
 					jComboBoxTransactionType.setModel(jComboBoxStatusModel);
-					jComboBoxTransactionType.setBounds(684, 13, 285, 23);
+					jComboBoxTransactionType.setBounds(826, 15, 146, 23);
 					jComboBoxTransactionType.setMaximumRowCount(transTypeList.size());
+				}
+				{
+					String[] test = {"", lang.get("web_Yes"), lang.get("web_No")};
+					ComboBoxModel<String> jComboBoxRecycleModel =  new DefaultComboBoxModel<String>(test);
+					jComboBoxRecycle = new JComboBox4j<String>();
+					jDesktopPane1.add(jComboBoxRecycle);
+					jComboBoxRecycle.setModel(jComboBoxRecycleModel);
+					jComboBoxRecycle.setBounds(572, 15, 108, 23);
+					jComboBoxRecycle.setMaximumRowCount(transTypeList.size());
 				}
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jToggleButtonSequence.setSelected(true);
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(654, 118, 21, 23);
+					jToggleButtonSequence.setBounds(654, 153, 21, 23);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -932,7 +963,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 							}
 						}
 					});
-					jButtonLookupWasteReason.setBounds(809, 48, 21, 22);
+					jButtonLookupWasteReason.setBounds(259, 118, 21, 22);
 					jDesktopPane1.add(jButtonLookupWasteReason);
 				}
 
@@ -962,7 +993,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 				}
 
 				{
-					expiryTo.setBounds(345, 13, 125, 25);
+					expiryTo.setBounds(328, 13, 125, 25);
 					expiryTo.setEnabled(false);
 					jDesktopPane1.add(expiryTo);
 				}
@@ -1015,7 +1046,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 						}
 					});
 					jCheckBoxTo.setBackground(new Color(255, 255, 255));
-					jCheckBoxTo.setBounds(324, 13, 21, 25);
+					jCheckBoxTo.setBounds(308, 13, 21, 25);
 					jDesktopPane1.add(jCheckBoxTo);
 				}
 
@@ -1031,7 +1062,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					});
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(246, 153, 126, 32);
+					jButtonAdd.setBounds(246, 188, 126, 32);
 					jDesktopPane1.add(jButtonAdd);
 				}
 
@@ -1056,7 +1087,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(492, 153, 123, 32);
+					jButtonExcel.setBounds(492, 188, 123, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
 
@@ -1080,19 +1111,19 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Limit"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(721, 120, 147, 21);
+				label4j_std.setBounds(721, 155, 147, 21);
 				jDesktopPane1.add(label4j_std);
 				
 				jCheckBoxLimit = new JCheckBox4j();
 				jCheckBoxLimit.setSelected(true);
 				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(872, 120, 21, 21);
+				jCheckBoxLimit.setBounds(872, 155, 21, 21);
 				jDesktopPane1.add(jCheckBoxLimit);
 				
 				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
 				ne.getTextField().setFont(Common.font_std);
 				jSpinnerLimit.setEditor(ne);
-				jSpinnerLimit.setBounds(901, 120, 68, 21);
+				jSpinnerLimit.setBounds(901, 155, 68, 21);
 				jSpinnerLimit.setValue(1000);
 				jDesktopPane1.add(jSpinnerLimit);
 				
@@ -1107,7 +1138,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 						}
 					});
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(123, 153, 123, 32);
+					jButtonClear.setBounds(123, 188, 123, 32);
 					jDesktopPane1.add(jButtonClear);
 				}
 				
@@ -1115,7 +1146,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					jButtonPrint = new JButton4j(Common.icon_report_16x16);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setBounds(615, 153, 123, 32);
+					jButtonPrint.setBounds(615, 188, 123, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_LOG"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.addActionListener(new ActionListener()
@@ -1191,7 +1222,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 
 					jComboBoxTypeModel = new DefaultComboBoxModel<JDBWasteTypes>(typeList);
 					jComboBoxMaterialType.setModel(jComboBoxTypeModel);
-					jComboBoxMaterialType.setBounds(684, 83, 285, 22);
+					jComboBoxMaterialType.setBounds(687, 48, 285, 22);
 					jDesktopPane1.add(jComboBoxMaterialType);
 				}
 				
@@ -1199,7 +1230,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 				jLabel_WasteType.setText(lang.get("lbl_Material_Type"));
 				jLabel_WasteType.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_WasteType.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_WasteType.setBounds(545, 84, 130, 21);
+				jLabel_WasteType.setBounds(545, 49, 130, 21);
 				jDesktopPane1.add(jLabel_WasteType);
 			}
 		} catch (Exception e)

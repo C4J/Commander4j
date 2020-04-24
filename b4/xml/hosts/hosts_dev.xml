@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Hosts>
-    <NumberOfSites>15</NumberOfSites>
+    <NumberOfSites>12</NumberOfSites>
     <SplashScreen>N</SplashScreen>
     <UpdateURL/>
     <UpdateMODE>MANUAL</UpdateMODE>
@@ -18,6 +18,10 @@
             <jdbcConnectString>jdbc:mysql://localhost:3306/commander4j_dev?connectTimeout=5&amp;socketTimeout=0&amp;autoReconnect=true</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>limit</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation>utf8mb4_0900_ai_ci</jdbcDatabaseCollation>
+            <jdbcDatabaseCharacterSet>utf8mb4</jdbcDatabaseCharacterSet>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -40,6 +44,10 @@
             <jdbcConnectString>jdbc:mysql://localhost:3306/commander4j_dev1?connectTimeout=5&amp;socketTimeout=0&amp;autoReconnect=true</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>limit</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation>utf8mb4_0900_ai_ci</jdbcDatabaseCollation>
+            <jdbcDatabaseCharacterSet>utf8mb4</jdbcDatabaseCharacterSet>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -62,6 +70,10 @@
             <jdbcConnectString>jdbc:mysql://localhost:3306/commander4j_dev2?connectTimeout=5&amp;socketTimeout=0&amp;autoReconnect=true</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>limit</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation>utf8mb4_0900_ai_ci</jdbcDatabaseCollation>
+            <jdbcDatabaseCharacterSet>utf8mb4</jdbcDatabaseCharacterSet>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -84,6 +96,10 @@
             <jdbcConnectString>jdbc:mysql://localhost:3306/commander4j_dev3?connectTimeout=5&amp;socketTimeout=0&amp;autoReconnect=true</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>limit</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation>utf8mb4_0900_ai_ci</jdbcDatabaseCollation>
+            <jdbcDatabaseCharacterSet>utf8mb4</jdbcDatabaseCharacterSet>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -98,28 +114,6 @@
     </Site>
     <Site Number="5">
         <Enabled>Y</Enabled>
-        <UniqueID>ba16468c-dd40-4cd8-b76b-2935f9b009c4</UniqueID>
-        <Description>commander4j mysql</Description>
-        <URL>http://</URL>
-        <DatabaseDriver>
-            <jdbcDriver>com.mysql.cj.jdbc.Driver</jdbcDriver>
-            <jdbcConnectString>jdbc:mysql://10.211.55.47:3306/commander4j?connectTimeout=5&amp;socketTimeout=0&amp;autoReconnect=true</jdbcConnectString>
-            <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
-            <jdbcDatabaseSelectLimit>limit</jdbcDatabaseSelectLimit>
-            <jdbcDatabaseSchema/>
-        </DatabaseDriver>
-        <DatabaseParameters>
-            <jdbcUsername>Commander4j_User</jdbcUsername>
-            <jdbcPassword>qx44p1OgYBMDUbXxoTrU4w7RZxAI3+KQ/W5qB1le0Yo=</jdbcPassword>
-            <jdbcPasswordEncryption>AES</jdbcPasswordEncryption>
-            <jdbcServer>10.211.55.47</jdbcServer>
-            <jdbcPort>3306</jdbcPort>
-            <jdbcSID/>
-            <jdbcDatabase>commander4j</jdbcDatabase>
-        </DatabaseParameters>
-    </Site>
-    <Site Number="6">
-        <Enabled>Y</Enabled>
         <UniqueID>service</UniqueID>
         <Description>SQL Server DEV1</Description>
         <URL>http://</URL>
@@ -128,6 +122,10 @@
             <jdbcConnectString>jdbc:sqlserver://10.37.129.4:40010;databaseName=Commander4j_DEV1;selectMethod=direct</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>top</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation/>
+            <jdbcDatabaseCharacterSet/>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -140,7 +138,7 @@
             <jdbcDatabase>Commander4j_DEV1</jdbcDatabase>
         </DatabaseParameters>
     </Site>
-    <Site Number="7">
+    <Site Number="6">
         <Enabled>Y</Enabled>
         <UniqueID>e6e19798-0fd6-48ad-8dbc-4ac2551a524d</UniqueID>
         <Description>SQL Server DEV2</Description>
@@ -150,6 +148,10 @@
             <jdbcConnectString>jdbc:sqlserver://10.211.55.5:40010;databaseName=Commander4j_DEV2;selectMethod=direct</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>top</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation/>
+            <jdbcDatabaseCharacterSet/>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -162,7 +164,7 @@
             <jdbcDatabase>Commander4j_DEV2</jdbcDatabase>
         </DatabaseParameters>
     </Site>
-    <Site Number="8">
+    <Site Number="7">
         <Enabled>Y</Enabled>
         <UniqueID>573d84ce-f389-47a7-a362-2bd074db83dd</UniqueID>
         <Description>SQL Server DEV3</Description>
@@ -172,6 +174,10 @@
             <jdbcConnectString>jdbc:sqlserver://10.211.55.5:40010;databaseName=Commander4j_DEV3;selectMethod=direct</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>top</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation/>
+            <jdbcDatabaseCharacterSet/>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -184,7 +190,7 @@
             <jdbcDatabase>Commander4j_DEV3</jdbcDatabase>
         </DatabaseParameters>
     </Site>
-    <Site Number="9">
+    <Site Number="8">
         <Enabled>Y</Enabled>
         <UniqueID>2275b85f-256a-4e21-9627-f670f0670768</UniqueID>
         <Description>SQL Server DEV4</Description>
@@ -194,6 +200,10 @@
             <jdbcConnectString>jdbc:sqlserver://10.211.55.5:40010;databaseName=Commander4j_DEV4;selectMethod=direct</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>top</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation/>
+            <jdbcDatabaseCharacterSet/>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -206,7 +216,7 @@
             <jdbcDatabase>Commander4j_DEV4</jdbcDatabase>
         </DatabaseParameters>
     </Site>
-    <Site Number="10">
+    <Site Number="9">
         <Enabled>Y</Enabled>
         <UniqueID>fb9d6aa6-33a5-498f-a1ae-764c04307289</UniqueID>
         <Description>SQL Server DEV5</Description>
@@ -216,6 +226,10 @@
             <jdbcConnectString>jdbc:sqlserver://10.211.55.5:40010;databaseName=Commander4j_DEV5;selectMethod=direct</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>top</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation/>
+            <jdbcDatabaseCharacterSet/>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -228,29 +242,7 @@
             <jdbcDatabase>Commander4j_DEV5</jdbcDatabase>
         </DatabaseParameters>
     </Site>
-    <Site Number="11">
-        <Enabled>Y</Enabled>
-        <UniqueID>8d9483a6-2e24-4618-b754-b8eee1bd4058</UniqueID>
-        <Description>commander4j ms sql</Description>
-        <URL>http://</URL>
-        <DatabaseDriver>
-            <jdbcDriver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbcDriver>
-            <jdbcConnectString>jdbc:sqlserver://10.37.129.4:40010;databaseName=commander4j;selectMethod=direct</jdbcConnectString>
-            <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
-            <jdbcDatabaseSelectLimit>top</jdbcDatabaseSelectLimit>
-            <jdbcDatabaseSchema/>
-        </DatabaseDriver>
-        <DatabaseParameters>
-            <jdbcUsername>Commander4j_User</jdbcUsername>
-            <jdbcPassword>qx44p1OgYBMDUbXxoTrU4w7RZxAI3+KQ/W5qB1le0Yo=</jdbcPassword>
-            <jdbcPasswordEncryption>AES</jdbcPasswordEncryption>
-            <jdbcServer>10.37.129.4</jdbcServer>
-            <jdbcPort>40010</jdbcPort>
-            <jdbcSID/>
-            <jdbcDatabase>commander4j</jdbcDatabase>
-        </DatabaseParameters>
-    </Site>
-    <Site Number="12">
+    <Site Number="10">
         <Enabled>Y</Enabled>
         <UniqueID>2f6199f2-fc19-4ea6-ad47-5ba487ec0925</UniqueID>
         <Description>Oracle DEV1</Description>
@@ -260,6 +252,10 @@
             <jdbcConnectString>jdbc:oracle:thin:@//10.211.55.34:1521/ORCL</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>rownum</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation/>
+            <jdbcDatabaseCharacterSet/>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -272,7 +268,7 @@
             <jdbcDatabase/>
         </DatabaseParameters>
     </Site>
-    <Site Number="13">
+    <Site Number="11">
         <Enabled>Y</Enabled>
         <UniqueID>2f6199f2-fc19-4ea6-ad47-5ba487ec0925</UniqueID>
         <Description>Oracle DEV2</Description>
@@ -282,6 +278,10 @@
             <jdbcConnectString>jdbc:oracle:thin:@//10.211.55.34:1521/orcl</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>rownum</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation/>
+            <jdbcDatabaseCharacterSet/>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -294,7 +294,7 @@
             <jdbcDatabase/>
         </DatabaseParameters>
     </Site>
-    <Site Number="14">
+    <Site Number="12">
         <Enabled>N</Enabled>
         <UniqueID>2f6199f2-fc19-4ea6-ad47-5ba487ec0925</UniqueID>
         <Description>Oracle DEV3</Description>
@@ -304,6 +304,10 @@
             <jdbcConnectString>jdbc:oracle:thin:@//10.211.55.34:1521/orcl</jdbcConnectString>
             <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
             <jdbcDatabaseSelectLimit>rownum</jdbcDatabaseSelectLimit>
+            <jdbcDatabaseTimeZone/>
+            <jdbcDatabaseTimeZoneEnable/>
+            <jdbcDatabaseCollation/>
+            <jdbcDatabaseCharacterSet/>
             <jdbcDatabaseSchema/>
         </DatabaseDriver>
         <DatabaseParameters>
@@ -314,28 +318,6 @@
             <jdbcPort>1521</jdbcPort>
             <jdbcSID>orcl</jdbcSID>
             <jdbcDatabase/>
-        </DatabaseParameters>
-    </Site>
-    <Site Number="15">
-        <Enabled>Y</Enabled>
-        <UniqueID>9f87c38b-01e3-44c1-ba9c-89011e70f365</UniqueID>
-        <Description>commander4j oracle</Description>
-        <URL>http://</URL>
-        <DatabaseDriver>
-            <jdbcDriver>oracle.jdbc.driver.OracleDriver</jdbcDriver>
-            <jdbcConnectString>jdbc:oracle:thin:@//10.211.55.34:1521/orcl</jdbcConnectString>
-            <jdbcDatabaseDateTimeToken>sysdate</jdbcDatabaseDateTimeToken>
-            <jdbcDatabaseSelectLimit>rownum</jdbcDatabaseSelectLimit>
-            <jdbcDatabaseSchema/>
-        </DatabaseDriver>
-        <DatabaseParameters>
-            <jdbcUsername>commander4j</jdbcUsername>
-            <jdbcPassword>FAR+Tc1pLoPu1fnvA0CDOw==</jdbcPassword>
-            <jdbcPasswordEncryption>AES</jdbcPasswordEncryption>
-            <jdbcServer>10.211.55.34</jdbcServer>
-            <jdbcPort>1521</jdbcPort>
-            <jdbcSID>orcl</jdbcSID>
-            <jdbcDatabase>commander4j</jdbcDatabase>
         </DatabaseParameters>
     </Site>
 </Hosts>
