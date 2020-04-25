@@ -500,8 +500,15 @@ public class JDBWasteLog
 
 										if (storeAsNegative == isNegativeValue)
 										{
-											result = true;
-											setErrorMessage("");
+											if (getQuantity().compareTo(new BigDecimal("0")) == 0)
+											{
+												setErrorMessage("Quantity cannot be zero");
+											}
+											else
+											{
+												result = true;
+												setErrorMessage("");
+											}
 										}
 										else
 										{

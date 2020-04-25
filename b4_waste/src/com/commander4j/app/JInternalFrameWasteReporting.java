@@ -125,6 +125,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 	private JTextField4j jTextFieldWasteReportingID;
 	private JComboBox4j<JDBWasteTransactionType> jComboBoxTransactionType;
 	private JComboBox4j<String> jComboBoxRecycle;
+	private JComboBox4j<String> jComboBoxHazard;
 	private JComboBox4j<JDBWasteReportingGroup> jComboBoxReportingGroup;
 	private JLabel4j_std jLabelTransaction_Type;
 	private JComboBox4j<String> jComboBoxSortBy;
@@ -136,6 +137,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 	private JLabel4j_std jLabelWasteMaterial;
 	private JLabel4j_std jLabelWasteReason;
 	private JLabel4j_std jLabelUser;
+	private JLabel4j_std jLabelHazard;
 	private JTable4j jTable1;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSearch;
@@ -274,6 +276,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 		jComboBoxMaterialType.setSelectedIndex(0);
 		jComboBoxReportingGroup.setSelectedIndex(0);
 		jComboBoxRecycle.setSelectedIndex(0);
+		jComboBoxHazard.setSelectedIndex(0);
 
 		search();
 
@@ -811,14 +814,14 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					jDesktopPane1.add(jLabelTransaction_Type);
 					jLabelTransaction_Type.setText(lang.get("lbl_Transaction_Type"));
 					jLabelTransaction_Type.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelTransaction_Type.setBounds(674, 17, 146, 21);
+					jLabelTransaction_Type.setBounds(674, 84, 146, 21);
 				}
 				{
 					ComboBoxModel<JDBWasteTransactionType> jComboBoxTransTypeModel =  new DefaultComboBoxModel<JDBWasteTransactionType>(transTypeList);
 					jComboBoxTransactionType = new JComboBox4j<JDBWasteTransactionType>();
 					jDesktopPane1.add(jComboBoxTransactionType);
 					jComboBoxTransactionType.setModel(jComboBoxTransTypeModel);
-					jComboBoxTransactionType.setBounds(826, 16, 146, 22);
+					jComboBoxTransactionType.setBounds(826, 83, 146, 22);
 					jComboBoxTransactionType.setMaximumRowCount(transTypeList.size());
 				}
 				{
@@ -826,7 +829,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					jComboBoxReportingGroup = new JComboBox4j<JDBWasteReportingGroup>();
 					jDesktopPane1.add(jComboBoxReportingGroup);
 					jComboBoxReportingGroup.setModel(jComboBoxReportingGroupModel);
-					jComboBoxReportingGroup.setBounds(687, 83, 285, 22);
+					jComboBoxReportingGroup.setBounds(687, 118, 285, 22);
 					jComboBoxReportingGroup.setMaximumRowCount(groupList.size());
 				}
 				
@@ -851,7 +854,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 						{
 							JLaunchLookup.dlgAutoExec = false;
 							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.waste_materials())
+							if (JLaunchLookup.waste_materials_for_location())
 							{
 								jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
 							}
@@ -1011,7 +1014,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 				{
 					calendarButtonDateFrom = new JCalendarButton(expiryFrom);
 					calendarButtonDateFrom.setEnabled(false);
-					calendarButtonDateFrom.setBounds(275, 13, 21, 25);
+					calendarButtonDateFrom.setBounds(286, 13, 21, 25);
 					jDesktopPane1.add(calendarButtonDateFrom);
 				}
 				{
@@ -1146,7 +1149,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					jDesktopPane1.add(jLabelRecycle);
 					jLabelRecycle.setText(lang.get("lbl_Recycle"));
 					jLabelRecycle.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelRecycle.setBounds(434, 17, 130, 21);
+					jLabelRecycle.setBounds(474, 17, 126, 21);
 				}
 				{
 					String[] test = {"", lang.get("web_Yes"), lang.get("web_No")};
@@ -1154,8 +1157,27 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					jComboBoxRecycle = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxRecycle);
 					jComboBoxRecycle.setModel(jComboBoxRecycleModel);
-					jComboBoxRecycle.setBounds(572, 15, 108, 23);
-					jComboBoxRecycle.setMaximumRowCount(transTypeList.size());
+					jComboBoxRecycle.setBounds(609, 15, 108, 23);
+					jComboBoxRecycle.setMaximumRowCount(test.length);
+				}
+				
+				{
+					String[] test =
+					{ "", lang.get("web_Yes"), lang.get("web_No") };
+					ComboBoxModel<String> jComboBoxRecycleModel = new DefaultComboBoxModel<String>(test);
+					jComboBoxHazard = new JComboBox4j<String>();
+					jDesktopPane1.add(jComboBoxHazard);
+					jComboBoxHazard.setModel(jComboBoxRecycleModel);
+					jComboBoxHazard.setBounds(864, 15, 108, 23);
+					jComboBoxHazard.setMaximumRowCount(test.length);
+				}
+				
+				{
+					jLabelHazard = new JLabel4j_std();
+					jDesktopPane1.add(jLabelHazard);
+					jLabelHazard.setText(lang.get("lbl_Hazard"));
+					jLabelHazard.setHorizontalAlignment(SwingConstants.TRAILING);
+					jLabelHazard.setBounds(735, 17, 122, 21);
 				}
 				
 				JLabel4j_std jLabel_WasteType = new JLabel4j_std();
@@ -1169,7 +1191,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 				jLabel_WastereportingGroup.setText(lang.get("lbl_Reporting_Group"));
 				jLabel_WastereportingGroup.setHorizontalTextPosition(SwingConstants.RIGHT);
 				jLabel_WastereportingGroup.setHorizontalAlignment(SwingConstants.RIGHT);
-				jLabel_WastereportingGroup.setBounds(548, 84, 130, 21);
+				jLabel_WastereportingGroup.setBounds(548, 119, 130, 21);
 				jDesktopPane1.add(jLabel_WastereportingGroup);
 			}
 		} catch (Exception e)

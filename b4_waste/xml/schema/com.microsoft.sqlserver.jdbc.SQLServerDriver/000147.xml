@@ -332,4 +332,24 @@
     <statement>	
     		INSERT INTO [dbo].SYS_CONTROL (SYSTEM_KEY, KEY_VALUE, DESCRIPTION) VALUES ('WASTE TXN REF', '100', 'Waste Transaction Log Number')
     </statement>
+    
+    <statement>
+		    CREATE VIEW [dbo].[view_waste_location_materials] as SELECT
+		        LOCNS.[WASTE_LOCATION_ID],
+		        LOCNS.DESCRIPTION AS [DESCRIPTION_LOCATION],
+		        TYPS.[WASTE_TYPE_ID],
+		        TYPS.DESCRIPTION AS [DESCRIPTION_TYPE],
+		        MAT.[WASTE_MATERIAL_ID],
+		        MAT.DESCRIPTION AS [DESCRIPTION_MATERIAL] 
+		    FROM
+		        [APP_WASTE_LOCATION_TYPES] AS [LOCN_TYP]
+		        JOIN [APP_WASTE_LOCATIONS] AS LOCNS ON [LOCN_TYP].[WASTE_LOCATION_ID] = LOCNS.[WASTE_LOCATION_ID]
+		        JOIN [APP_WASTE_TYPES] AS TYPS ON TYPS.[WASTE_TYPE_ID] = [LOCN_TYP].[WASTE_TYPE_ID]
+		        JOIN [APP_WASTE_MATERIAL] AS MAT ON MAT.[WASTE_TYPE_ID] = TYPS.[WASTE_TYPE_ID] 
+		    WHERE
+		        LOCNS.ENABLED = 'Y' 
+		        AND TYPS.ENABLED = 'Y' 
+		        AND MAT.ENABLED = 'Y'
+    </statement>
+    
 </DDL>

@@ -123,8 +123,10 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 	private JTextField4j jTextFieldWasteLocation;
 	private JComboBox4j<JDBWasteTransactionType> jComboBoxTransactionType;
 	private JComboBox4j<String> jComboBoxRecycle;
+	private JComboBox4j<String> jComboBoxHazard;
 	private JLabel4j_std jLabelTransaction_Type;
 	private JLabel4j_std jLabelRecycle;
+	private JLabel4j_std jLabelHazard;
 	private JComboBox4j<String> jComboBoxSortBy;
 	private JLabel4j_std jLabel10;
 	private JLabel4j_std jLabel3;
@@ -382,7 +384,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		else
 		{
 			JUtility.errorBeep();
-			JOptionPane.showMessageDialog(Common.mainForm,"No Waste Transactions defined", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);	
+			JOptionPane.showMessageDialog(Common.mainForm, "No Waste Transactions defined", lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 		}
 
 	}
@@ -458,6 +460,18 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 			}
 		}
 
+		if (jComboBoxHazard.getSelectedIndex() > 0)
+		{
+			if (jComboBoxHazard.getSelectedIndex() == 1)
+			{
+				query.addParamtoSQL("hazardous=", "Y");
+			}
+			else
+			{
+				query.addParamtoSQL("hazardous=", "N");
+			}
+		}
+
 		if (jCheckBoxFrom.isSelected())
 		{
 			query.addParamtoSQL("report_time>=", JUtility.getTimestampFromDate(expiryFrom.getDate()));
@@ -516,6 +530,27 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 			lref = jTable1.getValueAt(row, JDBViewWasteLogTableModel.Transaction_Ref_Col).toString();
 			ltransaction = jTable1.getValueAt(row, JDBViewWasteLogTableModel.Transaction_Type_Col).toString();
 			JLaunchMenu.runForm("FRM_ADMIN_WASTE_LOG_EDIT", lref, ltransaction);
+		}
+
+	}
+
+	private void deleteRecord()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			lref = jTable1.getValueAt(row, JDBViewWasteLogTableModel.Transaction_Ref_Col).toString();
+			ltransaction = jTable1.getValueAt(row, JDBViewWasteLogTableModel.Transaction_Type_Col).toString();
+
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("dlg_Waste_Log_Delete"), lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+			if (question == 0)
+			{
+				JDBWasteLog materialBatch = new JDBWasteLog(Common.selectedHostID, Common.sessionID);
+				materialBatch.setTransactionRef(Long.valueOf(lref));
+				materialBatch.setTransactionType(ltransaction);
+				materialBatch.delete();
+				search();
+			}
 		}
 
 	}
@@ -592,7 +627,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_add_16x16);
-								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_ADD"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_WASTE_LOG_ADD"));
 								newItemMenuItem.addActionListener(new ActionListener()
 								{
 									public void actionPerformed(final ActionEvent e)
@@ -601,6 +636,20 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 									}
 								});
 								newItemMenuItem.setText(lang.get("btn_Add"));
+								popupMenu.add(newItemMenuItem);
+							}
+
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_delete_16x16);
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_WASTE_LOG_DELETE"));
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										deleteRecord();
+									}
+								});
+								newItemMenuItem.setText(lang.get("btn_Delete"));
 								popupMenu.add(newItemMenuItem);
 							}
 
@@ -628,34 +677,6 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 									}
 								});
 								newItemMenuItem.setText(lang.get("btn_Excel"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										palletAdmin();
-									}
-								});
-								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLETS"));
-								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLETS"));
-								popupMenu.add(newItemMenuItem);
-							}
-
-							{
-								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history_16x16);
-								newItemMenuItem.addActionListener(new ActionListener()
-								{
-									public void actionPerformed(final ActionEvent e)
-									{
-										palletHistory();
-									}
-								});
-								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLET_HISTORY"));
-								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_HISTORY"));
 								popupMenu.add(newItemMenuItem);
 							}
 
@@ -899,21 +920,28 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabelTransaction_Type);
 					jLabelTransaction_Type.setText(lang.get("lbl_Transaction_Type"));
 					jLabelTransaction_Type.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelTransaction_Type.setBounds(674, 17, 146, 21);
+					jLabelTransaction_Type.setBounds(674, 84, 146, 21);
 				}
 				{
 					jLabelRecycle = new JLabel4j_std();
 					jDesktopPane1.add(jLabelRecycle);
 					jLabelRecycle.setText(lang.get("lbl_Recycle"));
 					jLabelRecycle.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelRecycle.setBounds(434, 17, 130, 21);
+					jLabelRecycle.setBounds(474, 17, 126, 21);
+				}
+				{
+					jLabelHazard = new JLabel4j_std();
+					jDesktopPane1.add(jLabelHazard);
+					jLabelHazard.setText(lang.get("lbl_Hazard"));
+					jLabelHazard.setHorizontalAlignment(SwingConstants.TRAILING);
+					jLabelHazard.setBounds(735, 17, 122, 21);
 				}
 				{
 					ComboBoxModel<JDBWasteTransactionType> jComboBoxStatusModel = new DefaultComboBoxModel<JDBWasteTransactionType>(transTypeList);
 					jComboBoxTransactionType = new JComboBox4j<JDBWasteTransactionType>();
 					jDesktopPane1.add(jComboBoxTransactionType);
 					jComboBoxTransactionType.setModel(jComboBoxStatusModel);
-					jComboBoxTransactionType.setBounds(826, 15, 146, 23);
+					jComboBoxTransactionType.setBounds(826, 83, 146, 23);
 					jComboBoxTransactionType.setMaximumRowCount(transTypeList.size());
 				}
 				{
@@ -923,8 +951,18 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					jComboBoxRecycle = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxRecycle);
 					jComboBoxRecycle.setModel(jComboBoxRecycleModel);
-					jComboBoxRecycle.setBounds(572, 15, 108, 23);
-					jComboBoxRecycle.setMaximumRowCount(transTypeList.size());
+					jComboBoxRecycle.setBounds(609, 15, 108, 23);
+					jComboBoxRecycle.setMaximumRowCount(test.length);
+				}
+				{
+					String[] test =
+					{ "", lang.get("web_Yes"), lang.get("web_No") };
+					ComboBoxModel<String> jComboBoxRecycleModel = new DefaultComboBoxModel<String>(test);
+					jComboBoxHazard = new JComboBox4j<String>();
+					jDesktopPane1.add(jComboBoxHazard);
+					jComboBoxHazard.setModel(jComboBoxRecycleModel);
+					jComboBoxHazard.setBounds(864, 15, 108, 23);
+					jComboBoxHazard.setMaximumRowCount(test.length);
 				}
 				{
 					jToggleButtonSequence = new JToggleButton();
@@ -948,7 +986,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 						{
 							JLaunchLookup.dlgAutoExec = false;
 							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.waste_materials())
+							if (JLaunchLookup.waste_materials_for_location())
 							{
 								jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
 							}
@@ -1257,28 +1295,6 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 	{
 		buildSQL();
 		JLaunchReport.runReport("RPT_WASTE_LOG", null, "", listStatement, "");
-	}
-
-	private void palletAdmin()
-	{
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
-		{
-			String material = jTable1.getValueAt(row, 0).toString();
-			String batch = jTable1.getValueAt(row, 1).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PALLETS", "MATERIAL-BATCH", material, batch);
-		}
-	}
-
-	private void palletHistory()
-	{
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
-		{
-			String material = jTable1.getValueAt(row, 0).toString();
-			String batch = jTable1.getValueAt(row, 1).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY", "MATERIAL-BATCH", material, batch);
-		}
 	}
 
 	/**

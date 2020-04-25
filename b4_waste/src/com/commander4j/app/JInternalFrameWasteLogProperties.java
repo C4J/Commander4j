@@ -41,9 +41,12 @@ import java.math.BigDecimal;
 import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBLanguage;
@@ -65,9 +68,6 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
-import javax.swing.JPanel;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 
 /**
  * The JInternalFrameWasteLogProperties class allows you to update a record in
@@ -86,6 +86,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 	private JButton4j jButtonCancel;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSave;
+	private JButton4j jButtonNew;
 	private JButton4j jButtonUndo;
 	private Long lref;
 	private String ltype;
@@ -167,58 +168,93 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		loadWasteLog();
 		jButtonSave.setEnabled(false);
 		jButtonUndo.setEnabled(false);
+		jButtonNew.setEnabled(true);
+	}
+	
+	private void add()
+	{
+		mode = "NEW";
+		ltype="ADD";
+		lref = new Long(-1);
+		clear();
+		jTextFieldTransactionRef.setText(mode);
+		jButtonSave.setEnabled(false);
+		jButtonUndo.setEnabled(false);
+		jButtonNew.setEnabled(false);
+	}
+	
+	private void clear()
+	{
+		jTextFieldWasteMaterial.setText("");
+		jTextFieldMaterialDescription.setText("");
+		jTextFieldTypeID.setText("");
+		jTextFieldMaterialTypeDescription.setText("");
+		jTextFieldWasteLocation.setText("");
+		jTextFieldLocationDescription.setText("");
+		jTextFieldWasteReason.setText("");
+		jTextFieldReasonDescription.setText("");
+		jTextFieldProcessOrder.setText("");
+		jTextFieldProcessOrderDescription.setText("");
+		jFormattedTextFieldQuantity.setValue(0);
+		transactionDate.setDate(JUtility.getSQLDateTime());
+		jTextFieldUOM.setText("");
+		jTextFieldUserID.setText(Common.userList.getUser(Common.sessionID).getUserId());
+		jTextFieldWasteLocation.requestFocus();
+		
 	}
 
 	private void save()
 	{
 
-		    boolean result = false;
-		    
-		    wasteLog.setTransactionType(ltype);
-			wasteLog.setMaterialID(jTextFieldWasteMaterial.getText());
-			wasteLog.setLocationID(jTextFieldWasteLocation.getText());
-			wasteLog.setReasonID(jTextFieldWasteReason.getText());
-			wasteLog.setProcessOrder(jTextFieldProcessOrder.getText());
-			wasteLog.setWasteReportTime(JUtility.getTimestampFromDate(transactionDate.getDate()));
-			wasteLog.setQuantity((jFormattedTextFieldQuantity.getQuantity()));
-			
-			if (mode.equals("EDIT"))
-			{
-			  result = wasteLog.update();
-			  
-			  if (result == true)
-			  {
-				  jStatusText.setText("Updated log "+String.valueOf(wasteLog.getTransactionRef()));
-			  }
-			}
-			
-			if (mode.equals("NEW"))
-			{
-			  result = wasteLog.write();
-			  
-			  if (result == true)
-			  {
-				  lref = wasteLog.generateNewTransactionRef();
-				  mode = "EDIT";
-				  jTextFieldTransactionType.setText(String.valueOf(wasteLog.getTransactionRef()));
-				  jStatusText.setText("New log "+String.valueOf(wasteLog.getTransactionRef())+ " created.");
-			  }
-			}
-			
+		boolean result = false;
+
+		wasteLog.setTransactionType(ltype);
+		wasteLog.setMaterialID(jTextFieldWasteMaterial.getText());
+		wasteLog.setLocationID(jTextFieldWasteLocation.getText());
+		wasteLog.setReasonID(jTextFieldWasteReason.getText());
+		wasteLog.setProcessOrder(jTextFieldProcessOrder.getText());
+		wasteLog.setWasteReportTime(JUtility.getTimestampFromDate(transactionDate.getDate()));
+		wasteLog.setQuantity((jFormattedTextFieldQuantity.getQuantity()));
+
+		if (mode.equals("EDIT"))
+		{
+			result = wasteLog.update();
+
 			if (result == true)
 			{
-
-				jButtonSave.setEnabled(false);
-				jButtonUndo.setEnabled(false);
-			}
-			else
-			{
-				jStatusText.setText(wasteLog.getErrorMessage());
-				jButtonSave.setEnabled(false);
-				jButtonUndo.setEnabled(true);
+				jStatusText.setText("Updated log " + String.valueOf(wasteLog.getTransactionRef()));
 			}
 		}
 
+		if (mode.equals("NEW"))
+		{
+			result = wasteLog.write();
+
+			if (result == true)
+			{
+				lref = wasteLog.generateNewTransactionRef();
+				mode = "EDIT";
+				//jTextFieldTransactionType.setText(String.valueOf(wasteLog.getTransactionRef()));
+				jStatusText.setText("New log " + String.valueOf(wasteLog.getTransactionRef()) + " created.");
+				jTextFieldTransactionRef.setText(String.valueOf(wasteLog.getTransactionRef()));
+			}
+		}
+
+		if (result == true)
+		{
+
+			jButtonSave.setEnabled(false);
+			jButtonUndo.setEnabled(false);
+			jButtonNew.setEnabled(true);
+		}
+		else
+		{
+			jStatusText.setText(wasteLog.getErrorMessage());
+			jButtonSave.setEnabled(false);
+			jButtonUndo.setEnabled(true);
+			jButtonNew.setEnabled(false);
+		}
+	}
 
 	private boolean processOrderChanged()
 	{
@@ -239,6 +275,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			jButtonSave.setEnabled(false);
 			jButtonUndo.setEnabled(true);
 		}
+		jButtonNew.setEnabled(false);
 
 		return result;
 	}
@@ -266,6 +303,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			jButtonSave.setEnabled(false);
 			jButtonUndo.setEnabled(true);
 		}
+		jButtonNew.setEnabled(false);
 
 		return result;
 	}
@@ -324,6 +362,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			jButtonSave.setEnabled(false);
 			jButtonUndo.setEnabled(true);
 		}
+		jButtonNew.setEnabled(false);
 
 		return result;
 	}
@@ -347,6 +386,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			jButtonSave.setEnabled(false);
 			jButtonUndo.setEnabled(true);
 		}
+		jButtonNew.setEnabled(false);
 
 		return result;
 	}
@@ -356,17 +396,18 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		this();
 		lref = Long.valueOf(ref);
 		ltype = txn;
-		
+
 		wasteTransactionTypes.getWasteTransactionProperties(ltype);
 
 		chckbx_IncludeInTotals.setSelected(wasteTransactionTypes.isIncludedInTotals());
 		chckbx_StoreAsNegative.setSelected(wasteTransactionTypes.isStoreAsNegative());
-		
+
 		if (lref == -1)
 		{
 			mode = "NEW";
 			jTextFieldTransactionRef.setText("NEW");
 			jTextFieldTransactionType.setText(ltype);
+			jTextFieldUserID.setText(Common.userList.getUser(Common.sessionID).getUserId());
 		}
 		else
 		{
@@ -384,8 +425,6 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 
 		wasteLog.setTransactionRef(lref);
 		wasteLog.setTransactionType(ltype);
-
-
 
 		if (wasteLog.getWasteLogProperties())
 		{
@@ -415,6 +454,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 
 		jButtonSave.setEnabled(false);
 		jButtonUndo.setEnabled(false);
+		jButtonNew.setEnabled(true);
 
 		return result;
 	}
@@ -452,7 +492,22 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jButtonSave.setEnabled(false);
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
-					jButtonSave.setBounds(198, 269, 112, 32);
+					jButtonSave.setBounds(245, 272, 112, 32);
+				}
+				{
+					jButtonNew = new JButton4j(Common.icon_add_16x16);
+					jButtonNew.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							add();
+						}
+					});
+					jDesktopPane1.add(jButtonNew);
+					jButtonNew.setEnabled(false);
+					jButtonNew.setText(lang.get("btn_Add"));
+					jButtonNew.setMnemonic(lang.getMnemonicChar());
+					jButtonNew.setBounds(132, 272, 112, 32);
 				}
 				{
 					jButtonUndo = new JButton4j(Common.icon_undo_16x16);
@@ -467,21 +522,21 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jButtonUndo.setEnabled(false);
 					jButtonUndo.setText(lang.get("btn_Undo"));
 					jButtonUndo.setMnemonic(lang.getMnemonicChar());
-					jButtonUndo.setBounds(311, 269, 112, 32);
+					jButtonUndo.setBounds(358, 272, 112, 32);
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(424, 269, 112, 32);
+					jButtonHelp.setBounds(471, 272, 112, 32);
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setBounds(537, 269, 112, 32);
+					jButtonCancel.setBounds(584, 272, 112, 32);
 					jButtonCancel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -518,6 +573,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jTextFieldTransactionType.setBounds(410, 14, 126, 21);
 					jTextFieldTransactionType.setEnabled(false);
 					jTextFieldTransactionType.setEditable(false);
+					jTextFieldTransactionType.setFont(Common.font_bold);
 				}
 
 				{
@@ -528,7 +584,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jTextFieldUOM.setEnabled(false);
 					jTextFieldUOM.setEditable(false);
 				}
-				
+
 				{
 					jTextFieldWasteMaterial = new JTextField4j(JDBWasteLog.field_MaterialID);
 					jTextFieldWasteMaterial.addKeyListener(new KeyAdapter()
@@ -596,12 +652,25 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					{
 						public void actionPerformed(ActionEvent e)
 						{
-							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.waste_materials())
+							if (jTextFieldWasteLocation.getText().trim().equals("") == false)
 							{
-								jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
-								materialChanged();
+								JLaunchLookup.dlgAutoExec = true;
+								JLaunchLookup.dlgCriteriaDefault = jTextFieldWasteLocation.getText().trim();
+								if (JLaunchLookup.waste_materials_for_location())
+								{
+									jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
+									materialChanged();
+								}
+							}
+							else
+							{
+								JLaunchLookup.dlgAutoExec = true;
+								JLaunchLookup.dlgCriteriaDefault = jTextFieldWasteLocation.getText().trim();
+								if (JLaunchLookup.waste_materials_all())
+								{
+									jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
+									materialChanged();
+								}
 							}
 						}
 					});
@@ -712,6 +781,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 						{
 							jButtonSave.setEnabled(true);
 							jButtonUndo.setEnabled(true);
+							jButtonNew.setEnabled(false);
 						}
 					});
 
@@ -732,10 +802,13 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 				}
 				{
 					transactionDate = new JDateControl();
-					transactionDate.addChangeListener(new ChangeListener() {
-						public void stateChanged(ChangeEvent e) {
+					transactionDate.addChangeListener(new ChangeListener()
+					{
+						public void stateChanged(ChangeEvent e)
+						{
 							jButtonSave.setEnabled(true);
 							jButtonUndo.setEnabled(true);
+							jButtonNew.setEnabled(false);
 						}
 					});
 					transactionDate.setBounds(680, 10, 128, 25);
@@ -885,7 +958,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jTextFieldMaterialTypeDescription.setBounds(340, 115, 285, 21);
 					jTextFieldMaterialTypeDescription.setEnabled(false);
 				}
-				
+
 				button_CalendarTransaction = new JCalendarButton(transactionDate);
 				button_CalendarTransaction.setSize(21, 21);
 				button_CalendarTransaction.setLocation(809, 14);

@@ -450,7 +450,30 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 
-	public static boolean waste_materials() {
+	public static boolean waste_materials_for_location() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}view_waste_location_materials"));
+		JDialogLookup.dlg_title = "Waste Materials";
+
+		JDialogLookup.hideDisabled=false;
+		JDialogLookup.dlg_key_field_name = "waste_material_id";
+		JDialogLookup.dlg_criteria_field_name_default = "wste_location_id";
+		JDialogLookup.dlg_orderBy_name_default = "waste_material_id";
+		JDialogLookup.dlg_sort_descending = false;
+
+		// dlg_criteria_default = "";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+	
+	public static boolean waste_materials_all() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_WASTE_MATERIAL"));
 		JDialogLookup.dlg_title = "Waste Materials";
