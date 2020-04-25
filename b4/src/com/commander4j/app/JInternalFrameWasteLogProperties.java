@@ -45,6 +45,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 
+import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBUser;
@@ -136,6 +137,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 	private JCheckBox4j chckbx_PPEReqd = new JCheckBox4j("");
 	private JPanel panel = new JPanel();
 	private String mode = "";
+	private JCalendarButton button_CalendarTransaction;
 
 	public JInternalFrameWasteLogProperties()
 	{
@@ -507,13 +509,13 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelWasteTransactionType);
 					jLabelWasteTransactionType.setText(lang.get("lbl_Transaction_Type"));
 					jLabelWasteTransactionType.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelWasteTransactionType.setBounds(258, 14, 156, 21);
+					jLabelWasteTransactionType.setBounds(242, 14, 156, 21);
 				}
 				{
 					jTextFieldTransactionType = new JTextField4j();
 					jDesktopPane1.add(jTextFieldTransactionType);
 					jTextFieldTransactionType.setText(ltype);
-					jTextFieldTransactionType.setBounds(426, 14, 126, 21);
+					jTextFieldTransactionType.setBounds(410, 14, 126, 21);
 					jTextFieldTransactionType.setEnabled(false);
 					jTextFieldTransactionType.setEditable(false);
 				}
@@ -526,7 +528,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jTextFieldUOM.setEnabled(false);
 					jTextFieldUOM.setEditable(false);
 				}
-
+				
 				{
 					jTextFieldWasteMaterial = new JTextField4j(JDBWasteLog.field_MaterialID);
 					jTextFieldWasteMaterial.addKeyListener(new KeyAdapter()
@@ -725,7 +727,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jLabelTransactionDate = new JLabel4j_std();
 					jLabelTransactionDate.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabelTransactionDate.setText(lang.get("lbl_Transaction_Date"));
-					jLabelTransactionDate.setBounds(558, 14, 149, 21);
+					jLabelTransactionDate.setBounds(540, 14, 130, 21);
 					jDesktopPane1.add(jLabelTransactionDate);
 				}
 				{
@@ -736,7 +738,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 							jButtonUndo.setEnabled(true);
 						}
 					});
-					transactionDate.setBounds(725, 10, 128, 25);
+					transactionDate.setBounds(680, 10, 128, 25);
 					jDesktopPane1.add(transactionDate);
 				}
 
@@ -883,6 +885,11 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jTextFieldMaterialTypeDescription.setBounds(340, 115, 285, 21);
 					jTextFieldMaterialTypeDescription.setEnabled(false);
 				}
+				
+				button_CalendarTransaction = new JCalendarButton(transactionDate);
+				button_CalendarTransaction.setSize(21, 21);
+				button_CalendarTransaction.setLocation(809, 14);
+				jDesktopPane1.add(button_CalendarTransaction);
 
 			}
 		}
