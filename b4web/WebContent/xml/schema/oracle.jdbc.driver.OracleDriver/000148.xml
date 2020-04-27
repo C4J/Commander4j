@@ -1642,4 +1642,35 @@
         INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_MENU_WASTE','EN','Waste','0')
     </statement>
 
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','EN','Delete Waste Log Entry ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','DE','Löschen des Abfallprotokolleintrags ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','FR','Supprimer l''entrée du journal des déchets ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','HU','Törölje a hulladéknapló-bejegyzést ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','PL','Usuń wpis dziennika odpadów ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','ES','Eliminar entrada de registro de residuos ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','NL','Afvallogboekvermelding verwijderen ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','IT','Elimina voce registro rifiuti ?','0')
+    </statement>  
 </DDL>

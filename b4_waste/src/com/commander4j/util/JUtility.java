@@ -95,6 +95,35 @@ public class JUtility
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 		return sdf.format(cal.getTime());
 	}
+	
+	public static String removeNonGS1BarcodeFriendlyChars(String input)
+	{
+		input = replaceNullStringwithBlank(input);
+		input = StringUtils.replaceChars(input, String.valueOf(":"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("/"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("\\"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf(" "), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("."), "_");
+		input = StringUtils.replaceChars(input, String.valueOf(","), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("("), "_");
+		input = StringUtils.replaceChars(input, String.valueOf(")"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("{"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("}"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("["), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("]"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("&"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("$"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("£"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("@"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("^"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("%"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("*"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("-"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("+"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("="), "_");
+		
+		return input;
+	}
 
 	public static String removePathSeparators(String path)
 	{

@@ -7,10 +7,10 @@
 		<defaultValueExpression><![CDATA["My Company"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="p_waste_location_id" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["A1"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["B001"]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM APP_WASTE_LOCATIONS WHERE ENABLED = 'Y' AND  WASTE_LOCATION_ID = $P{p_waste_location_id} ]]>
+		<![CDATA[SELECT * FROM APP_WASTE_LOCATIONS WHERE ENABLED = 'Y' AND  WASTE_LOCATION_ID = $P{p_waste_location_id}]]>
 	</queryString>
 	<field name="WASTE_LOCATION_ID" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="WASTE_LOCATION_ID"/>
@@ -44,28 +44,21 @@
 	<detail>
 		<band height="220" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<componentElement>
-				<reportElement x="180" y="51" width="350" height="119" uuid="3a6a0966-f904-403b-bd0a-5bbaf8d3c4be"/>
-				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="2.0" textPosition="none">
-					<jr:codeExpression><![CDATA[$F{WASTE_LOCATION_ID}]]></jr:codeExpression>
-				</jr:Code128>
-			</componentElement>
 			<textField>
-				<reportElement x="0" y="181" width="500" height="30" uuid="d15e0045-9a8d-4f92-9e61-7ab5aa70c2a1">
+				<reportElement x="17" y="189" width="539" height="30" uuid="d15e0045-9a8d-4f92-9e61-7ab5aa70c2a1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce123d0e-2d3e-40c6-b349-f4198edb276b"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{WASTE_LOCATION_ID}+"  -  "+$F{DESCRIPTION}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="0" y="20" width="500" height="24" uuid="d9f7ac60-2dec-49ff-9d89-45b8e008e553"/>
-				<textElement textAlignment="Center">
-					<font size="19"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{WASTE_LOCATION_ID}]]></textFieldExpression>
-			</textField>
+			<componentElement>
+				<reportElement x="1" y="30" width="555" height="155" uuid="eef5140a-b5ba-45c2-9aab-4e5312b7ae71"/>
+				<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.5" textPosition="bottom" quietZone="16.0">
+					<jr:codeExpression><![CDATA["91"+$F{WASTE_LOCATION_ID}]]></jr:codeExpression>
+				</jr:EAN128>
+			</componentElement>
 		</band>
 	</detail>
 	<pageFooter>

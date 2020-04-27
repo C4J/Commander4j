@@ -33,6 +33,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import javax.swing.ButtonGroup;
@@ -86,6 +87,7 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 	private JButton4j jButtonDelete;
 	private JButton4j jButtonAdd;
 	private JScrollPane jScrollPane1;
+	private JButton4j jButtonLabel;
 	private String lReasonString;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JRadioButton rdbtnEnabled;
@@ -101,6 +103,7 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 			if (lReasonString.equals("") == false)
 			{
 				lReasonString = lReasonString.toUpperCase();
+				lReasonString = JUtility.removeNonGS1BarcodeFriendlyChars(lReasonString);
 				
 				u.clear();
 				if (u.create(lReasonString) == false)
@@ -188,6 +191,7 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 				if (lMaterialStringgNEW.equals("") == false)
 				{
 					lMaterialStringgNEW = lMaterialStringgNEW.toUpperCase();
+					lReasonString = JUtility.removeNonGS1BarcodeFriendlyChars(lReasonString);
 					
 					if (u.rename(lReasonString,lMaterialStringgNEW) == false)
 					{
@@ -211,6 +215,18 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 	private void print()
 	{
 		JLaunchReport.runReport("RPT_WASTE_REASONS", null, "", null, "");
+	}
+	
+	private void print_labels()
+	{
+		if (jListReasons.isSelectionEmpty() == false)
+		{
+			lReasonString = ((JDBWasteReasons) jListReasons.getSelectedValue().getObject()).getWasteReasonID();
+
+			HashMap<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("p_waste_reason_id", lReasonString);
+			JLaunchReport.runReport("RPT_WASTE_REASON_LAB", parameters, "", null, "");
+		}
 	}
 
 	private void excel()
@@ -459,14 +475,14 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(501, 217, 125, 32);
+					jButtonHelp.setBounds(501, 248, 125, 32);
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.setBounds(501, 186, 125, 32);
+					jButtonRefresh.setBounds(501, 217, 125, 32);
 					jButtonRefresh.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -490,7 +506,7 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(501, 248, 125, 32);
+					jButtonClose.setBounds(501, 279, 125, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -504,7 +520,7 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(501, 155, 125, 32);
+					jButtonExcel.setBounds(501, 186, 125, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -514,11 +530,27 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 					});
 					jDesktopPane1.add(jButtonExcel);
 				}
-
+				
+				{
+					jButtonLabel = new JButton4j(Common.icon_label_16x16);
+					jButtonLabel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							print_labels();
+						}
+					});
+					jButtonLabel.setBounds(501, 155, 125, 32);
+					jDesktopPane1.add(jButtonLabel);
+					jButtonLabel.setText(lang.get("btn_Label"));
+					jButtonLabel.setMnemonic(java.awt.event.KeyEvent.VK_H);
+					jButtonLabel.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REASON_LAB"));
+				}
+				
 				ButtonGroup bgroup = new ButtonGroup();
 				JPanel panel = new JPanel();
 				panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-				panel.setBounds(501, 291, 125, 68);
+				panel.setBounds(501, 322, 125, 68);
 				jDesktopPane1.add(panel);
 				panel.setLayout(null);
 

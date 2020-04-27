@@ -105,6 +105,7 @@ public class JInternalFrameWasteLocationAdmin extends javax.swing.JInternalFrame
 			if (lLocationString.equals("") == false)
 			{
 				lLocationString = lLocationString.toUpperCase();
+				lLocationString = JUtility.removeNonGS1BarcodeFriendlyChars(lLocationString);
 
 				if (u.create(lLocationString) == false)
 				{
@@ -162,6 +163,7 @@ public class JInternalFrameWasteLocationAdmin extends javax.swing.JInternalFrame
 				if (lLocationStringNEW.equals("") == false)
 				{
 					lLocationStringNEW = lLocationStringNEW.toUpperCase();
+					lLocationString = JUtility.removeNonGS1BarcodeFriendlyChars(lLocationString);
 
 					if (u.rename(lLocationString, lLocationStringNEW) == false)
 					{
