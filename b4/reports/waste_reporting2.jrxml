@@ -118,6 +118,12 @@ order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCA
 	<variable name="COST2" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{COST}]]></variableExpression>
 	</variable>
+	<variable name="WEIGHT_KG3" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{WEIGHT_KG}]]></variableExpression>
+	</variable>
+	<variable name="COST3" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{COST}]]></variableExpression>
+	</variable>
 	<group name="WASTE_MATERIAL_ID">
 		<groupExpression><![CDATA[$F{WASTE_MATERIAL_ID}]]></groupExpression>
 		<groupHeader>
@@ -187,6 +193,16 @@ order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCA
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 				</line>
+				<textField>
+					<reportElement x="285" y="2" width="377" height="12" uuid="6760c4ed-27c6-401b-b359-7493ba7810c3">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="9" isBold="true" isItalic="true" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["["+$F{WASTE_MATERIAL_ID}+"] "+$F{DESCRIPTION_MATERIAL}+"   Subtotal "]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupFooter>
 	</group>
@@ -499,4 +515,70 @@ order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCA
 			</textField>
 		</band>
 	</pageFooter>
+	<summary>
+		<band height="27">
+			<textField pattern="#,##0.000">
+				<reportElement x="667" y="10" width="60" height="12" uuid="19efd2d7-d2fb-482c-9c41-65a6ee845c24">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{WEIGHT_KG3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.000##;¤-#,##0.000##">
+				<reportElement x="730" y="10" width="69" height="12" uuid="cda3fc49-61bd-424a-aa62-dce072c20c80">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COST3}]]></textFieldExpression>
+			</textField>
+			<line direction="BottomUp">
+				<reportElement key="line" x="743" y="9" width="55" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="21b5b775-8a4e-4111-9591-dca9cd3f71f3">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="line" x="743" y="22" width="55" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="e9b34ec0-0842-4576-aba1-ad4551460f3f">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="line" x="671" y="22" width="55" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="1d282ea2-495e-47ad-a3b5-fccc9adf0739">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement key="line" x="671" y="9" width="55" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="260ea00d-b7f6-4f32-b475-a043a3ab1169">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="600" y="10" width="62" height="12" uuid="7c992c48-420c-4ba4-bde0-6312166088a4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="460dae14-3f50-442a-9977-e3a82a4863d9"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Totals]]></text>
+			</staticText>
+		</band>
+	</summary>
 </jasperReport>

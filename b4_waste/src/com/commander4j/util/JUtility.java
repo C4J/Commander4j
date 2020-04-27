@@ -121,6 +121,9 @@ public class JUtility
 		input = StringUtils.replaceChars(input, String.valueOf("-"), "_");
 		input = StringUtils.replaceChars(input, String.valueOf("+"), "_");
 		input = StringUtils.replaceChars(input, String.valueOf("="), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("!"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("___"), "_");
+		input = StringUtils.replaceChars(input, String.valueOf("__"), "_");
 		
 		return input;
 	}

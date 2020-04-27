@@ -191,7 +191,7 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 				if (lMaterialStringgNEW.equals("") == false)
 				{
 					lMaterialStringgNEW = lMaterialStringgNEW.toUpperCase();
-					lReasonString = JUtility.removeNonGS1BarcodeFriendlyChars(lReasonString);
+					lMaterialStringgNEW = JUtility.removeNonGS1BarcodeFriendlyChars(lMaterialStringgNEW);
 					
 					if (u.rename(lReasonString,lMaterialStringgNEW) == false)
 					{

@@ -174,7 +174,7 @@ public class JInternalFrameWasteMaterialAdmin extends javax.swing.JInternalFrame
 				if (lMaterialStringgNEW.equals("") == false)
 				{
 					lMaterialStringgNEW = lMaterialStringgNEW.toUpperCase();
-					lMaterialString = JUtility.removeNonGS1BarcodeFriendlyChars(lMaterialString);
+					lMaterialStringgNEW = JUtility.removeNonGS1BarcodeFriendlyChars(lMaterialStringgNEW);
 					
 					if (u.rename(lMaterialString,lMaterialStringgNEW) == false)
 					{

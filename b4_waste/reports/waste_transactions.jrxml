@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.0.final using JasperReports Library version 6.12.1-ac0eebdb29e4c0985457bab279a6db744d661530  -->
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="waste_transactions" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="782" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="7c9bc1b1-64ff-432e-a241-a51d1b59167a">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="commander4j_waste"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.report.description" value=""/>
 	<import value="net.sf.jasperreports.engine.*"/>
@@ -81,11 +81,9 @@
 			</textField>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="9" splitType="Stretch"/>
-	</pageHeader>
 	<columnHeader>
-		<band height="21" splitType="Stretch">
+		<band height="18" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
 				<reportElement key="rectangle" mode="Opaque" x="0" y="0" width="782" height="18" forecolor="#000000" backcolor="#FACF0F" uuid="60620261-e54a-4c1e-bdbe-8e5473215c6b">
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -118,7 +116,7 @@
 				<text><![CDATA[Transaction Type]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="188" y="0" width="86" height="17" forecolor="#000000" uuid="05f6e5e7-f794-404c-94cf-c1a99c88f94d"/>
+				<reportElement key="staticText" x="171" y="0" width="86" height="17" forecolor="#000000" uuid="05f6e5e7-f794-404c-94cf-c1a99c88f94d"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -144,7 +142,7 @@
 				<text><![CDATA[Include in Totals]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" x="115" y="0" width="44" height="18" forecolor="#000000" uuid="af93607c-3da1-4996-b260-c4d5ab6c6b4e">
+				<reportElement key="staticText" x="717" y="0" width="44" height="18" forecolor="#000000" uuid="af93607c-3da1-4996-b260-c4d5ab6c6b4e">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -169,7 +167,7 @@
 				<reportElement key="line" x="0" y="16" width="782" height="1" forecolor="#808080" backcolor="#FFFFFF" uuid="5f819b1b-32cf-40e5-a599-d85979c200d0"/>
 			</line>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" x="0" y="0" width="86" height="18" forecolor="#000000" uuid="c2ea30ee-ec75-4a86-bc47-53d1122fd71d">
+				<reportElement key="textField" x="0" y="-1" width="158" height="18" forecolor="#000000" uuid="c2ea30ee-ec75-4a86-bc47-53d1122fd71d">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -185,7 +183,7 @@
 				<textFieldExpression><![CDATA[$F{WASTE_TRANSACTION_TYPE}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" x="182" y="0" width="365" height="18" forecolor="#000000" uuid="9158c61b-8f19-4e64-bf0f-958fe29f5ffc">
+				<reportElement key="textField" x="173" y="-1" width="387" height="18" forecolor="#000000" uuid="9158c61b-8f19-4e64-bf0f-958fe29f5ffc">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -201,7 +199,7 @@
 				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" x="600" y="0" width="62" height="18" forecolor="#000000" uuid="d73e7f09-9db7-4442-9de0-2f67e6b7c55e">
+				<reportElement key="textField" x="600" y="-1" width="62" height="18" forecolor="#000000" uuid="d73e7f09-9db7-4442-9de0-2f67e6b7c55e">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -217,7 +215,7 @@
 				<textFieldExpression><![CDATA[$F{INCLUDE_IN_TOTALS}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement key="textField" x="128" y="0" width="31" height="18" forecolor="#000000" uuid="ce555d4b-ff1f-4fc3-8117-b3e1c5ed0cdb">
+				<reportElement key="textField" x="717" y="-1" width="44" height="18" forecolor="#000000" uuid="ce555d4b-ff1f-4fc3-8117-b3e1c5ed0cdb">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -227,7 +225,7 @@
 					<bottomPen lineWidth="0.0" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ENABLED}]]></textFieldExpression>
