@@ -527,7 +527,7 @@ order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCA
 				</textElement>
 				<textFieldExpression><![CDATA[$V{WEIGHT_KG3}]]></textFieldExpression>
 			</textField>
-			<textField pattern="¤#,##0.000##;¤-#,##0.000##">
+			<textField pattern="#,##0.000">
 				<reportElement x="730" y="10" width="69" height="12" uuid="cda3fc49-61bd-424a-aa62-dce072c20c80">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
