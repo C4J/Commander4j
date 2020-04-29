@@ -184,13 +184,15 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 	private String expiryMode = "";
 	private JCalendarButton calendarButtontransactionDateFrom;
 	private JCalendarButton calendarButtontransactionDateTo;
-	private PreparedStatement listStatement;
 	private JTextField4j jTextFieldCustomer = new JTextField4j(20);
-	private JTextField4j textField4j_MHN;
+	private JTextField4j textField4j_MHN;	
+	private boolean emptyresult = true;
+	private JDBQuery2 qSearch = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+	private JDBQuery2 qPrint = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+	private JDBQuery2 qExcel = new JDBQuery2(Common.selectedHostID, Common.sessionID);
 
 	private void print() {
-		buildSQL();
-		JLaunchReport.runReport("RPT_PALLET_HISTORY",null,"", listStatement,"");
+		JLaunchReport.runReport("RPT_PALLET_HISTORY",null,"", buildSQL(qPrint),"");
 	}
 
 	private void print_summary() {
@@ -198,8 +200,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		comboBoxTransactionType.setSelectedItem("PROD DEC");
 		comboBoxTransactionSubtype.setSelectedItem("CONFIRM");
 		JWait.milliSec(100);
-		PreparedStatement temp = buildSQLr();
-		JLaunchReport.runReport("RPT_HIST_SUMMARY",null,"", temp,"");
+		JLaunchReport.runReport("RPT_HIST_SUMMARY",null,"",  buildSQL(qPrint),"");
 	}
 
 	private void export() {
@@ -207,9 +208,8 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 
 		JExcel export = new JExcel();
 		export.setExcelRowLimit(jCheckBoxLimit, jSpinnerLimit);
-		buildSQL();
-		export.saveAs("pallet_history.xls", palletHistory.getPalletHistoryDataResultSet(listStatement), Common.mainForm);
-		populateList();
+		export.saveAs("pallet_history.xls", palletHistory.getPalletHistoryDataResultSet(buildSQL(qExcel)), Common.mainForm);
+		//populateList();
 	}
 
 	private void filterBy(String fieldname) {
@@ -273,7 +273,6 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 				jTextFieldUser.setText(jTable1.getValueAt(row, 13).toString());
 			}
 
-			buildSQL();
 			populateList();
 
 		}
@@ -281,7 +280,6 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 
 	private void sortBy(String orderField) {
 		jComboBoxSortBy.setSelectedItem(orderField);
-		buildSQL();
 		populateList();
 	}
 	
@@ -299,16 +297,6 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		expiryMode = ctrl.getKeyValue("EXPIRY DATE MODE");
 
 		initGUI();
-
-		////////
-		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID,Common.sessionID);
-		q2.applyWhat("*");
-		q2.applyFrom("{schema}view_pallet_history_expiry WHERE 1=2");
-		q2.applyRestriction(false, 0);
-		q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
-		q2.applySQL();
-		listStatement = q2.getPreparedStatement();
-		////////
 		
 		populateList();
 
@@ -385,7 +373,6 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 			jTextFieldLocation.setText(keyValue);
 		}
 		
-		buildSQL();
 		populateList();
 	}
 	
@@ -399,199 +386,104 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 			jTextFieldBatch.setText(keyValue2);
 		}
 		
-		buildSQL();
 		populateList();
 	}
-
-	private PreparedStatement buildSQLr() {
+	
+	private PreparedStatement buildSQL(JDBQuery2 query) {
+		
+		query  = new JDBQuery2(Common.selectedHostID, Common.sessionID);
 		
 		PreparedStatement result;
-		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID,Common.sessionID);
-		q2.applyWhat("*");
-		q2.applyFrom("{schema}view_pallet_history_expiry");
+
+		query.applyWhat("*");
+		query.applyFrom("{schema}view_pallet_history_expiry");
 		
+		if (emptyresult)
+		{
+			query.applyWhere("1 = ", 2);
+			emptyresult = false;
+		}
 
 		if (jCheckBoxTransactionDate.isSelected())
 		{
-			q2.applyWhere("transaction_date>=", JUtility.getTimestampFromDate(transactionDateFrom.getDate()));
-			q2.applyWhere("transaction_date<=", JUtility.getTimestampFromDate(transactionDateTo.getDate()));
+			query.applyWhere("transaction_date>=", JUtility.getTimestampFromDate(transactionDateFrom.getDate()));
+			query.applyWhere("transaction_date<=", JUtility.getTimestampFromDate(transactionDateTo.getDate()));
 		}
 
 
 		if (jTextFieldTransaction_Ref.getText().equals("") == false)
 		{
-			q2.applyWhere("transaction_ref = ", jTextFieldTransaction_Ref.getText());
+			query.applyWhere("transaction_ref = ", jTextFieldTransaction_Ref.getText());
 		}
 
 		if (jTextFieldSSCC.getText().equals("") == false)
 		{
-			q2.applyWhere("sscc = ", jTextFieldSSCC.getText());
+			query.applyWhere("sscc = ", jTextFieldSSCC.getText());
 		}
 
 		if (jTextFieldMaterial.getText().equals("") == false)
 		{
-			q2.applyWhere("material = ", jTextFieldMaterial.getText());
-		}
-
-		if (jTextFieldBatch.getText().equals("") == false)
-		{
-			q2.applyWhere("batch_number like ", jTextFieldBatch.getText());
-		}
-
-		if (jTextFieldProcessOrder.getText().equals("") == false)
-		{
-			q2.applyWhere("process_order = ", jTextFieldProcessOrder.getText());
-		}
-
-		if (jTextFieldLocation.getText().equals("") == false)
-		{
-			q2.applyWhere("location_id = ", jTextFieldLocation.getText());
-		}
-
-		if (jTextFieldUser.getText().equals("") == false)
-		{
-			q2.applyWhere("user_id = ", jTextFieldUser.getText());
-		}
-
-		if (jTextFieldEAN.getText().equals("") == false)
-		{
-			q2.applyWhere("EAN = ", jTextFieldEAN.getText());
-		}
-
-		if (jTextFieldDespatch_No.getText().equals("") == false)
-		{
-			q2.applyWhere("DESPATCH_NO = ", jTextFieldDespatch_No.getText());
-		}
-
-		if (jTextFieldVariant.getText().equals("") == false)
-		{
-			q2.applyWhere("variant = ", jTextFieldVariant.getText());
-		}
-
-		q2.applyWhere("transaction_type=", (String) comboBoxTransactionType.getSelectedItem());
-
-		q2.applyWhere("transaction_subtype=", (String) comboBoxTransactionSubtype.getSelectedItem());
-
-		q2.applyWhere("uom=", ((JDBUom) jComboBoxUOM.getSelectedItem()).getInternalUom());
-
-		q2.applyWhere("status=", ((String) jComboBoxPalletStatus.getSelectedItem()).toString());
-
-		if (jCheckBoxQuantity.isSelected())
-		{
-			if (jFormattedTextFieldQuantity.getText().equals("") == false)
-			{
-				q2.applyWhere("quantity=",JUtility.stringToBigDecimal(jFormattedTextFieldQuantity.getText().toString()));
-			}
-		}
-
-		Integer i;
-
-		try
-		{
-			i = Integer.valueOf(jFormattedTextFieldQuantity.getText());
-			q2.applyWhere("quantity=", i);
-		}
-		catch (Exception e)
-		{
-		}
-
-		q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
-		q2.applyRestriction(jCheckBoxLimit.isSelected(), jSpinnerLimit.getValue());
-		q2.applySQL();
-		
-		result = q2.getPreparedStatement();
-		
-		return result;
-	}
-	
-	private void buildSQL() {
-		
-		JDBQuery2.closeStatement(listStatement);
-
-		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
-		q2.applyWhat("*");
-		q2.applyFrom("{schema}view_pallet_history_expiry");
-
-		if (jCheckBoxTransactionDate.isSelected())
-		{
-			q2.applyWhere("transaction_date>=", JUtility.getTimestampFromDate(transactionDateFrom.getDate()));
-			q2.applyWhere("transaction_date<=", JUtility.getTimestampFromDate(transactionDateTo.getDate()));
-		}
-
-
-		if (jTextFieldTransaction_Ref.getText().equals("") == false)
-		{
-			q2.applyWhere("transaction_ref = ", jTextFieldTransaction_Ref.getText());
-		}
-
-		if (jTextFieldSSCC.getText().equals("") == false)
-		{
-			q2.applyWhere("sscc = ", jTextFieldSSCC.getText());
-		}
-
-		if (jTextFieldMaterial.getText().equals("") == false)
-		{
-			q2.applyWhere("material = ", jTextFieldMaterial.getText());
+			query.applyWhere("material = ", jTextFieldMaterial.getText());
 		}
 
 		if (textField4j_MHN.getText().equals("") == false)
 		{
-			q2.applyWhere("mhn_number = ", textField4j_MHN.getText());
+			query.applyWhere("mhn_number = ", textField4j_MHN.getText());
 		}
 		
 		if (jTextFieldBatch.getText().equals("") == false)
 		{
-			q2.applyWhere("batch_number like ", jTextFieldBatch.getText());
+			query.applyWhere("batch_number like ", jTextFieldBatch.getText());
 		}
 
 		if (jTextFieldProcessOrder.getText().equals("") == false)
 		{
-			q2.applyWhere("process_order = ", jTextFieldProcessOrder.getText());
+			query.applyWhere("process_order = ", jTextFieldProcessOrder.getText());
 		}
 
 		if (jTextFieldLocation.getText().equals("") == false)
 		{
-			q2.applyWhere("location_id = ", jTextFieldLocation.getText());
+			query.applyWhere("location_id = ", jTextFieldLocation.getText());
 		}
 
 		if (jTextFieldUser.getText().equals("") == false)
 		{
-			q2.applyWhere("user_id = ", jTextFieldUser.getText());
+			query.applyWhere("user_id = ", jTextFieldUser.getText());
 		}
 
 		if (jTextFieldEAN.getText().equals("") == false)
 		{
-			q2.applyWhere("EAN = ", jTextFieldEAN.getText());
+			query.applyWhere("EAN = ", jTextFieldEAN.getText());
 		}
 
 		if (jTextFieldDespatch_No.getText().equals("") == false)
 		{
-			q2.applyWhere("DESPATCH_NO = ", jTextFieldDespatch_No.getText());
+			query.applyWhere("DESPATCH_NO = ", jTextFieldDespatch_No.getText());
 		}
 
 		if (jTextFieldVariant.getText().equals("") == false)
 		{
-			q2.applyWhere("variant = ", jTextFieldVariant.getText());
+			query.applyWhere("variant = ", jTextFieldVariant.getText());
 		}
 		
 		if (jTextFieldCustomer.getText().equals("") == false)
 		{
-			q2.applyWhere("customer_id = ", jTextFieldCustomer.getText());
+			query.applyWhere("customer_id = ", jTextFieldCustomer.getText());
 		}
 
-		q2.applyWhere("transaction_type=", (String) comboBoxTransactionType.getSelectedItem());
+		query.applyWhere("transaction_type=", (String) comboBoxTransactionType.getSelectedItem());
 
-		q2.applyWhere("transaction_subtype=", (String) comboBoxTransactionSubtype.getSelectedItem());
+		query.applyWhere("transaction_subtype=", (String) comboBoxTransactionSubtype.getSelectedItem());
 
-		q2.applyWhere("uom=", ((JDBUom) jComboBoxUOM.getSelectedItem()).getInternalUom());
+		query.applyWhere("uom=", ((JDBUom) jComboBoxUOM.getSelectedItem()).getInternalUom());
 
-		q2.applyWhere("status=", ((String) jComboBoxPalletStatus.getSelectedItem()).toString());
+		query.applyWhere("status=", ((String) jComboBoxPalletStatus.getSelectedItem()).toString());
 
 		if (jCheckBoxQuantity.isSelected())
 		{
 			if (jFormattedTextFieldQuantity.getText().equals("") == false)
 			{
-				q2.applyWhere("quantity=",JUtility.stringToBigDecimal(jFormattedTextFieldQuantity.getText().toString()));
+				query.applyWhere("quantity=",JUtility.stringToBigDecimal(jFormattedTextFieldQuantity.getText().toString()));
 			}
 		}
 
@@ -600,16 +492,19 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		try
 		{
 			i = Integer.valueOf(jFormattedTextFieldQuantity.getText());
-			q2.applyWhere("quantity=", i);
+			query.applyWhere("quantity=", i);
 		}
 		catch (Exception e)
 		{
 		}
 
-		q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
-		q2.applyRestriction(jCheckBoxLimit.isSelected(), jSpinnerLimit.getValue());
-		q2.applySQL();
-		listStatement = q2.getPreparedStatement();
+		query.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
+		query.applyRestriction(jCheckBoxLimit.isSelected(), jSpinnerLimit.getValue());
+		query.applySQL();
+		
+		result = query.getPreparedStatement();
+		
+		return result;
 	}
 
 	private void initGUI() {
@@ -1086,7 +981,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jButtonSearch1.setMnemonic(java.awt.event.KeyEvent.VK_S);
 					jButtonSearch1.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
-							buildSQL();
+
 							populateList();
 
 						}
@@ -1146,7 +1041,9 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
-							JDBQuery2.closeStatement(listStatement);
+							qExcel=null;
+							qPrint=null;
+							qSearch=null;
 							dispose();
 						}
 					});
@@ -1638,7 +1535,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 	private void populateList() {
 		JDBPalletHistory pallethistory = new JDBPalletHistory(Common.selectedHostID, Common.sessionID);
 
-		JDBPalletHistoryTableModel palletHistoryTable = new JDBPalletHistoryTableModel(pallethistory.getPalletHistoryDataResultSet(listStatement));
+		JDBPalletHistoryTableModel palletHistoryTable = new JDBPalletHistoryTableModel(pallethistory.getPalletHistoryDataResultSet(buildSQL(qSearch)));
 		TableRowSorter<JDBPalletHistoryTableModel> sorter = new TableRowSorter<JDBPalletHistoryTableModel>(palletHistoryTable);
 
 		jTable1.setRowSorter(sorter);

@@ -65,7 +65,7 @@ import javax.swing.table.TableRowSorter;
 
 import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBLanguage;
-import com.commander4j.db.JDBQuery;
+import com.commander4j.db.JDBQuery2;
 import com.commander4j.db.JDBUser;
 import com.commander4j.db.JDBWasteLog;
 import com.commander4j.db.JDBWasteReportingGroup;
@@ -149,7 +149,6 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 	private JDBLanguage lang;
 	private JCalendarButton calendarButtonDateFrom;
 	private JCalendarButton calendarButtonDateTo;
-	private PreparedStatement listStatement;
 	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
 	private JSpinner jSpinnerLimit = new JSpinner();
 	private JDBWasteTransactionType blank = new JDBWasteTransactionType(Common.selectedHostID, Common.sessionID);
@@ -168,6 +167,10 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 	private String driver;
 	private DefaultComboBoxModel<String> sortFieldsFriendly;
 	private LinkedList<String> sortFieldsSQL;
+	private boolean emptyresult = true;
+	private JDBQuery2 qSearch = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+	private JDBQuery2 qPrint = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+	private JDBQuery2 qExcel = new JDBQuery2(Common.selectedHostID, Common.sessionID);
 	
 	private void buildSortList()
 	{
@@ -226,22 +229,6 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 
 		driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
 		
-		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
-		query.clear();
-		
-
-		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
-		{
-			query.addText(JUtility.substSchemaName(schemaName, "select vwr.*, (QUANTITY * CONVERSION_TO_KG) AS WEIGHT_KG,(QUANTITY * COST_PER_UOM) AS COST from {schema}view_waste_reporting vwr where 1=2"));
-		}
-		else
-		{
-			query.addText(JUtility.substSchemaName(schemaName, "select *, (QUANTITY * CONVERSION_TO_KG) AS WEIGHT_KG,(QUANTITY * COST_PER_UOM) AS COST from {schema}view_waste_reporting where 1=2"));
-		}
-		
-		query.applyRestriction(false, "none", 0);
-		query.bindParams();
-		listStatement = query.getPreparedStatement();
 		populateList();
 
 		final JHelp help = new JHelp();
@@ -254,6 +241,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
 
 		setSequence(dlg_sort_ascending);
+		
 	}
 
 	private void clearFilter()
@@ -333,15 +321,9 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 				jCheckBoxTo.setSelected(true);
 				calendarButtonDateFrom.setEnabled(true);
 				calendarButtonDateTo.setEnabled(true);
-				//cal.set(Calendar.MILLISECOND, 0);
 				cal.set(Calendar.SECOND, 0);
-				//cal.set(Calendar.MINUTE, 0);
-				//cal.set(Calendar.HOUR_OF_DAY, 0);
 				expiryFrom.setDate(cal.getTime());
-				//cal.set(Calendar.MILLISECOND, 0);
 				cal.set(Calendar.SECOND, 59);
-				//cal.set(Calendar.MINUTE, 59);
-				//cal.set(Calendar.HOUR_OF_DAY, 23);
 				expiryTo.setDate(cal.getTime());
 			}
 
@@ -352,7 +334,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 
 	private void search()
 	{
-		buildSQL();
+
 		populateList();
 	}
 
@@ -360,9 +342,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 	{
 		JDBWasteLog materialBatch = new JDBWasteLog(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
-		buildSQL();
-		export.saveAs("waste_reporting.xls", materialBatch.getWasteLogResultSet(listStatement), Common.mainForm);
-		populateList();
+		export.saveAs("waste_reporting.xls", materialBatch.getWasteLogResultSet(buildSQL(qExcel)), Common.mainForm);
 	}
 
 	private void sortBy(String fieldname)
@@ -385,84 +365,99 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 	}
 
 
-	private void buildSQL()
+	private PreparedStatement buildSQL(JDBQuery2 query)
 	{
+				
 		
-		JDBQuery.closeStatement(listStatement);
-		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
-		query.clear();
+		query  = new JDBQuery2(Common.selectedHostID, Common.sessionID);
+		
+		PreparedStatement result;
+
 
 		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
 		{
-			query.addText(JUtility.substSchemaName(schemaName, "select vwr.*, (QUANTITY * CONVERSION_TO_KG) AS WEIGHT_KG,(QUANTITY * COST_PER_UOM) AS COST from {schema}view_waste_reporting vwr"));
+			query.applyFrom("{schema}view_waste_reporting");
+			query.applyWhat(JUtility.substSchemaName(schemaName, "*, (QUANTITY * CONVERSION_TO_KG) AS WEIGHT_KG,(QUANTITY * COST_PER_UOM) AS COST"));
+
 		}
 		else
 		{
-			query.addText(JUtility.substSchemaName(schemaName, "select *, (QUANTITY * CONVERSION_TO_KG) AS WEIGHT_KG,(QUANTITY * COST_PER_UOM) AS COST from {schema}view_waste_reporting"));
+			query.applyFrom("{schema}view_waste_reporting vwr");
+			query.applyWhat(JUtility.substSchemaName(schemaName, "vwr.*, (QUANTITY * CONVERSION_TO_KG) AS WEIGHT_KG,(QUANTITY * COST_PER_UOM) AS COST"));
+
+		}
+		
+		if (emptyresult)
+		{
+			query.applyWhere("1 = ", 2);
+			emptyresult = false;
 		}
 
-		query.addParamtoSQL("waste_material_id=", jTextFieldWasteMaterial.getText());
-		query.addParamtoSQL("waste_reason_id=", jTextFieldWasteReason.getText());
-		query.addParamtoSQL("waste_location_id=", jTextFieldWasteLocation.getText());
-		query.addParamtoSQL("process_order=",jTextFieldProcessOrder.getText());
-		query.addParamtoSQL("user_id=",jTextFieldUserID.getText());
-		query.addParamtoSQL("waste_reporting_id=", jTextFieldWasteReportingID.getText());
+		query.applyWhere("waste_material_id=", jTextFieldWasteMaterial.getText());
+		
+		query.applyWhere("waste_reason_id=", jTextFieldWasteReason.getText());
+		query.applyWhere("waste_location_id=", jTextFieldWasteLocation.getText());
+		query.applyWhere("process_order=",jTextFieldProcessOrder.getText());
+		query.applyWhere("user_id=",jTextFieldUserID.getText());
+		query.applyWhere("waste_reporting_id=", jTextFieldWasteReportingID.getText());
 		
 		JDBWasteTypes y = ((JDBWasteTypes) jComboBoxMaterialType.getSelectedItem());
 		
 		if (JUtility.replaceNullStringwithBlank(y.getWasteTypeID()).equals("")==false)
 		{
-			query.addParamtoSQL("waste_type_id=", y.getWasteTypeID());
+			query.applyWhere("waste_type_id=", y.getWasteTypeID());
 		}
 		
 		JDBWasteReportingGroup y2 = ((JDBWasteReportingGroup) jComboBoxReportingGroup.getSelectedItem());
 		
 		if ((y2.getWasteReportGroup()!=-1))
 		{
-			query.addParamtoSQL("reporting_group=", y2.getWasteReportGroup());
+			query.applyWhere("reporting_group=", y2.getWasteReportGroup());
 		}	
 		
 		JDBWasteTransactionType x = ((JDBWasteTransactionType) jComboBoxTransactionType.getSelectedItem());
 		
 		if (JUtility.replaceNullStringwithBlank(x.getWasteTransactionType()).equals("")==false)
 		{
-			query.addParamtoSQL("waste_transaction_type=", x.getWasteTransactionType());
+			query.applyWhere("waste_transaction_type=", x.getWasteTransactionType());
 		}
 		
 		if (jComboBoxRecycle.getSelectedIndex()>0)
 		{
 			if (jComboBoxRecycle.getSelectedIndex()==1)
 			{
-				query.addParamtoSQL("recyclable=", "Y");
+				query.applyWhere("recyclable=", "Y");
 			}
 			else
 			{
-				query.addParamtoSQL("recyclable=", "N");
+				query.applyWhere("recyclable=", "N");
 			}
 		}			
 
 		if (jCheckBoxFrom.isSelected())
 		{
-			query.addParamtoSQL("report_time>=", JUtility.getTimestampFromDate(expiryFrom.getDate()));
+			query.applyWhere("report_time>=", JUtility.getTimestampFromDate(expiryFrom.getDate()));
 
 		}
 
 		if (jCheckBoxTo.isSelected())
 		{
-			query.addParamtoSQL("report_time<=", JUtility.getTimestampFromDate(expiryTo.getDate()));
+			query.applyWhere("report_time<=", JUtility.getTimestampFromDate(expiryTo.getDate()));
 		}
 
-		query.appendSort(sortFieldsSQL.get(jComboBoxSortBy.getSelectedIndex()), jToggleButtonSequence.isSelected());
-		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
+		query.applySort(sortFieldsSQL.get(jComboBoxSortBy.getSelectedIndex()), jToggleButtonSequence.isSelected());
+		query.applyRestriction(jCheckBoxLimit.isSelected(),  jSpinnerLimit.getValue());
 
-		query.bindParams();
-		listStatement = query.getPreparedStatement();
+		query.applySQL();
+		result = query.getPreparedStatement();
+		
+		return result;
 	}
 
 	private void populateList()
 	{
 		JDBWasteLog wasteLog = new JDBWasteLog(Common.selectedHostID, Common.sessionID);		
-		JDBViewWasteReportingTableModel wasteLogTable = new JDBViewWasteReportingTableModel(wasteLog.getWasteLogResultSet(listStatement));
+		JDBViewWasteReportingTableModel wasteLogTable = new JDBViewWasteReportingTableModel(wasteLog.getWasteLogResultSet(buildSQL(qSearch)));
 		TableRowSorter<JDBViewWasteReportingTableModel> sorter = new TableRowSorter<JDBViewWasteReportingTableModel>(wasteLogTable);
 
 		jTable1.setRowSorter(sorter);
@@ -741,7 +736,9 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
-							JDBQuery.closeStatement(listStatement);
+							qSearch = null;
+							qPrint = null;
+							qExcel = null;
 							dispose();
 						}
 					});
@@ -1213,8 +1210,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				jComboBoxSortBy.setSelectedIndex(0);
 				
-				buildSQL();
-				JLaunchReport.runReport("RPT_WASTE_REPORTING1", null, "", listStatement, "");
+				JLaunchReport.runReport("RPT_WASTE_REPORTING1", null, "", buildSQL(qPrint), "");
 			}
 		});
 	    item1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING1"));
@@ -1226,8 +1222,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			{
 				jComboBoxSortBy.setSelectedIndex(3);
 				
-				buildSQL();
-				JLaunchReport.runReport("RPT_WASTE_REPORTING2", null, "", listStatement, "");
+				JLaunchReport.runReport("RPT_WASTE_REPORTING2", null, "", buildSQL(qPrint), "");
 			}
 		});
 	    item2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING2"));

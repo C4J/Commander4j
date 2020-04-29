@@ -148,7 +148,6 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 	private JDBLanguage lang;
 	private JCalendarButton calendarButtonDateFrom;
 	private JCalendarButton calendarButtonDateTo;
-	private PreparedStatement listStatement;
 	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
 	private JSpinner jSpinnerLimit = new JSpinner();
 	private JDBWasteTransactionType blank = new JDBWasteTransactionType(Common.selectedHostID, Common.sessionID);
@@ -160,6 +159,10 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 	private ComboBoxModel<JDBWasteTypes> jComboBoxTypeModel;
 	private DefaultComboBoxModel<String> sortFieldsFriendly;
 	private LinkedList<String> sortFieldsSQL;
+	private boolean emptyresult = true;
+	private JDBQuery qSearch = new JDBQuery(Common.selectedHostID, Common.sessionID);
+	private JDBQuery qPrint = new JDBQuery(Common.selectedHostID, Common.sessionID);
+	private JDBQuery qExcel = new JDBQuery(Common.selectedHostID, Common.sessionID);
 
 	private void buildSortList()
 	{
@@ -218,12 +221,6 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 			}
 		});
 
-		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
-		query.clear();
-		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}APP_WASTE_LOG where 1=2"));
-		query.applyRestriction(false, "none", 0);
-		query.bindParams();
-		listStatement = query.getPreparedStatement();
 		populateList();
 
 		final JHelp help = new JHelp();
@@ -340,13 +337,12 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		lref = material;
 		jTextFieldWasteMaterial.setText(lref);
 		jTextFieldWasteLocation.setText(ltransaction);
-		buildSQL();
+
 		populateList();
 	}
 
 	private void search()
 	{
-		buildSQL();
 		populateList();
 	}
 
@@ -354,8 +350,8 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 	{
 		JDBWasteLog materialBatch = new JDBWasteLog(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
-		buildSQL();
-		export.saveAs("waste_log.xls", materialBatch.getWasteLogResultSet(listStatement), Common.mainForm);
+
+		export.saveAs("waste_log.xls", materialBatch.getWasteLogResultSet(buildSQL(qExcel)), Common.mainForm);
 		populateList();
 	}
 
@@ -416,18 +412,26 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		ltransaction = batch;
 		jTextFieldWasteMaterial.setText(lref);
 		jTextFieldWasteLocation.setText(ltransaction);
-		buildSQL();
+
 		populateList();
 	}
 
-	private void buildSQL()
+	private PreparedStatement buildSQL(JDBQuery query)
 	{
 
-		JDBQuery.closeStatement(listStatement);
-		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
+		PreparedStatement result;
+		
 		query.clear();
 
 		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}VIEW_WASTE_LOG"));
+		
+		
+		if (emptyresult)
+		{
+			query.addParamtoSQL("1 = ", 2);
+			emptyresult = false;
+		}
+		
 		query.addParamtoSQL("waste_material_id=", jTextFieldWasteMaterial.getText());
 		query.addParamtoSQL("waste_reason_id=", jTextFieldWasteReason.getText());
 		query.addParamtoSQL("waste_location_id=", jTextFieldWasteLocation.getText());
@@ -487,13 +491,14 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		query.applyRestriction(jCheckBoxLimit.isSelected(), Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSelectLimit(), jSpinnerLimit.getValue());
 
 		query.bindParams();
-		listStatement = query.getPreparedStatement();
+		result = query.getPreparedStatement();
+		return result;
 	}
 
 	private void populateList()
 	{
 		JDBWasteLog wasteLog = new JDBWasteLog(Common.selectedHostID, Common.sessionID);
-		JDBViewWasteLogTableModel wasteLogTable = new JDBViewWasteLogTableModel(wasteLog.getWasteLogResultSet(listStatement));
+		JDBViewWasteLogTableModel wasteLogTable = new JDBViewWasteLogTableModel(wasteLog.getWasteLogResultSet(buildSQL(qSearch)));
 		TableRowSorter<JDBViewWasteLogTableModel> sorter = new TableRowSorter<JDBViewWasteLogTableModel>(wasteLogTable);
 
 		jTable1.setRowSorter(sorter);
@@ -862,7 +867,9 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
-							JDBQuery.closeStatement(listStatement);
+							qSearch = null;
+						    qPrint = null;
+							qExcel = null;
 							dispose();
 						}
 					});
@@ -1293,8 +1300,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 
 	private void print()
 	{
-		buildSQL();
-		JLaunchReport.runReport("RPT_WASTE_LOG", null, "", listStatement, "");
+		JLaunchReport.runReport("RPT_WASTE_LOG", null, "", buildSQL(qPrint), "");
 	}
 
 	/**

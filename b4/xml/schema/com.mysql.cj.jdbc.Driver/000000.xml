@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE DDL SYSTEM "schema.dtd">
 <DDL>
-	
-	 
+		 
 <statement>
-ALTER DATABASE {database} CHARACTER SET {charset} COLLATE '{collation}';
+	ALTER SCHEMA `{database}` CHARACTER SET {charset} COLLATE '{collation}';
 </statement>
 
 

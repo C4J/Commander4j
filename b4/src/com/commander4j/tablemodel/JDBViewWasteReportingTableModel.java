@@ -126,23 +126,6 @@ public class JDBViewWasteReportingTableModel extends AbstractTableModel
 				prow.getPropertiesfromResultSet(mResultSet);
 				cache.put(row, prow);
 			}
-			
-//			public static final int Reporting_ID_Col 			= 0;
-//			public static final long Reporting_Group_Col 		= 1;
-//			public static final int Transaction_Ref_Col 		= 2;
-//			public static final int Report_Date_Col 			= 3;
-//			public static final int Transaction_Type_Col 		= 4;
-//			public static final int Location_Col 				= 5;
-//			public static final int Material_Col 				= 6;
-//			public static final int Material_Tye_Col 			= 7;
-//			public static final int Reason_Col 					= 8;	
-//			public static final int Process_Order_Col 			= 9;	
-//			public static final int Quantity_Col 				= 10;
-//			public static final int UOM_Col 					= 11;
-//			public static final int Cost_Per_Uom_Col 			= 12;
-//			public static final int Conversion_To_Kg_Col 		= 13;
-//			public static final int WeightKG_Col 				= 14;
-//			public static final int Cost_Col 					= 15;
 
 			switch (col)
 			{

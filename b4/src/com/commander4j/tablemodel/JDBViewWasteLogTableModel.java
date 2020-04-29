@@ -58,7 +58,7 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 	private ResultSet mResultSet;
 
 	private int prowCount = -1;
-	private String expiryMode = "";
+
 	private HashMap<Integer,JDBViewWasteLog> cache = new HashMap<Integer,JDBViewWasteLog>();
 
 	public JDBViewWasteLogTableModel(ResultSet rs)
@@ -79,10 +79,7 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 
 	public int getColumnCount() {
 		int count = mcolNames.length;
-		if (expiryMode.equals("BATCH"))
-		{
-			count--;
-		}
+
 		return count;
 	}
 
