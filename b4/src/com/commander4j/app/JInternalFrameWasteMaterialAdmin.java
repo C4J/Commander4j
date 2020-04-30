@@ -220,14 +220,20 @@ public class JInternalFrameWasteMaterialAdmin extends javax.swing.JInternalFrame
 	
 	private void print_labels()
 	{
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		
 		if (jListReportID.isSelectionEmpty() == false)
 		{
 			lMaterialString = ((JDBWasteMaterial) jListReportID.getSelectedValue().getObject()).getWasteMaterialID();
-
-			HashMap<String, Object> parameters = new HashMap<String, Object>();
+			
 			parameters.put("p_waste_material_id", lMaterialString);
-			JLaunchReport.runReport("RPT_WASTE_MATERIAL_LAB", parameters, "", null, "");
 		}
+		else
+		{
+			parameters.put("p_waste_material_id", "%");
+		}
+		
+		JLaunchReport.runReport("RPT_WASTE_MATERIAL_LAB", parameters, "", null, "");
 	}
 
 	private void excel()
@@ -488,16 +494,16 @@ public class JInternalFrameWasteMaterialAdmin extends javax.swing.JInternalFrame
 						public void actionPerformed(ActionEvent evt)
 						{
 
-							if (jListReportID.isSelectionEmpty() == false)
-							{
-								lMaterialString = ((JDBWasteMaterial) jListReportID.getSelectedValue().getObject()).getWasteMaterialID();
-
-							}
-							else
-							{
-								lMaterialString = "";
-							}
-							populateList(lMaterialString);
+//							if (jListReportID.isSelectionEmpty() == false)
+//							{
+//								lMaterialString = ((JDBWasteMaterial) jListReportID.getSelectedValue().getObject()).getWasteMaterialID();
+//
+//							}
+//							else
+//							{
+//								lMaterialString = "";
+//							}
+							populateList("");
 						}
 					});
 				}

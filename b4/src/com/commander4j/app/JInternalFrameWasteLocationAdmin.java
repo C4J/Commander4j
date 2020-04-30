@@ -233,14 +233,20 @@ public class JInternalFrameWasteLocationAdmin extends javax.swing.JInternalFrame
 
 	private void print_labels()
 	{
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		
 		if (jListLocations.isSelectionEmpty() == false)
 		{
 			lLocationString = ((JDBWasteLocation) jListLocations.getSelectedValue().getObject()).getWasteLocationID();
 
-			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("p_waste_location_id", lLocationString);
-			JLaunchReport.runReport("RPT_WASTE_LOCATION_LAB", parameters, "", null, "");
 		}
+		else
+		{
+			parameters.put("p_waste_location_id", "%");
+		}
+		
+		JLaunchReport.runReport("RPT_WASTE_LOCATION_LAB", parameters, "", null, "");
 	}
 
 	private void excel()
@@ -517,16 +523,16 @@ public class JInternalFrameWasteLocationAdmin extends javax.swing.JInternalFrame
 						public void actionPerformed(ActionEvent evt)
 						{
 
-							if (jListLocations.isSelectionEmpty() == false)
-							{
-								lLocationString = ((JDBWasteLocation) jListLocations.getSelectedValue().getObject()).getWasteLocationID();
-
-							}
-							else
-							{
-								lLocationString = "";
-							}
-							populateList(lLocationString);
+//							if (jListLocations.isSelectionEmpty() == false)
+//							{
+//								lLocationString = ((JDBWasteLocation) jListLocations.getSelectedValue().getObject()).getWasteLocationID();
+//
+//							}
+//							else
+//							{
+//								lLocationString = "";
+//							}
+							populateList("");
 						}
 					});
 				}

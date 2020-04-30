@@ -219,14 +219,20 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 	
 	private void print_labels()
 	{
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
+		
 		if (jListReasons.isSelectionEmpty() == false)
 		{
 			lReasonString = ((JDBWasteReasons) jListReasons.getSelectedValue().getObject()).getWasteReasonID();
 
-			HashMap<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("p_waste_reason_id", lReasonString);
-			JLaunchReport.runReport("RPT_WASTE_REASON_LAB", parameters, "", null, "");
 		}
+		else
+		{
+			parameters.put("p_waste_reason_id", "%");
+		}
+		
+		JLaunchReport.runReport("RPT_WASTE_REASON_LAB", parameters, "", null, "");
 	}
 
 	private void excel()
@@ -488,16 +494,16 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 						public void actionPerformed(ActionEvent evt)
 						{
 
-							if (jListReasons.isSelectionEmpty() == false)
-							{
-								lReasonString = ((JDBWasteReasons) jListReasons.getSelectedValue().getObject()).getWasteReasonID();
-
-							}
-							else
-							{
-								lReasonString = "";
-							}
-							populateList(lReasonString);
+//							if (jListReasons.isSelectionEmpty() == false)
+//							{
+//								lReasonString = ((JDBWasteReasons) jListReasons.getSelectedValue().getObject()).getWasteReasonID();
+//
+//							}
+//							else
+//							{
+//								lReasonString = "";
+//							}
+							populateList("");
 						}
 					});
 				}
