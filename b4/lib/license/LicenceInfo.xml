@@ -95,13 +95,13 @@
         
         <library>
             <description>Microsoft JDBC</description>
-            <version>7.2.2</version>
+            <version>8.2.0</version>
             <type>Microsoft JDBC License</type>
         </library>  
         
         <library>
             <description>mySQL JDBC</description>
-            <version>8.0.19</version>
+            <version>8.0.20</version>
             <type>mySQL JDBC License</type>
         </library>    
         
@@ -113,7 +113,7 @@
             
         <library>
             <description>Jasper Reports Library</description>
-            <version>6.12.1</version>
+            <version>6.12.2</version>
             <type>Jasper Reports License</type>
         </library>       
 
@@ -432,7 +432,7 @@
         <library>
             <description>JSerialComm</description>
             <type>Apache License 2.0</type> 
-            <version>2.5.2</version>
+            <version>2.6.3</version>
         </library>
                                 
     </libraries>

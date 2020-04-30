@@ -85,7 +85,7 @@
         <pathelement location="lib/jasperlib/batik-anim-1.11.jar"/>
         <pathelement location="lib/jasperlib/batik-ext-1.11.jar"/>
         <pathelement location="lib/db/mysql-connector-java-8.0.20.jar"/>
-        <pathelement location="lib/serial/jSerialComm-2.5.3.jar"/>
+        <pathelement location="lib/serial/jSerialComm-2.6.2.jar"/>
         <pathelement location="lib/jasperlib/batik-awt-util-1.11.jar"/>
         <pathelement location="lib/jasperlib/batik-bridge-1.11.jar"/>
         <pathelement location="lib/jasperlib/batik-constants-1.11.jar"/>

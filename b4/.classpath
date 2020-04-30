@@ -63,7 +63,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/itext-2.1.7.js7.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/javax.persistence-api-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/cups4j/slf4j-simple-1.7.25.jar"/>
-	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.5.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/cdt-java-client-2.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-4.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-ooxml-4.1.1.jar"/>
@@ -104,7 +103,8 @@
 	<classpathentry kind="lib" path="lib/jasperlib/core-3.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/rhino-1.7.11.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.20.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/AdoptOpenJDK 1.8">
+	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.6.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/AdoptOpenJDK 8 [1.8.0_252]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
