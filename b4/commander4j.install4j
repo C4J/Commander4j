@@ -13,7 +13,7 @@
         <language id="es" />
       </additionalLanguages>
     </languages>
-    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u242-b08" />
+    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u252-b09.1" />
   </application>
   <files keepModificationTimes="true" missingFilesStrategy="error">
     <mountPoints>
