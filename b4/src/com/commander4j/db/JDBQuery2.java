@@ -155,8 +155,8 @@ public class JDBQuery2
 	public void applySort(String fields, String direction)
 	{
 
-		setSortFields(fields.toUpperCase());
-		setSortDirection(direction.toUpperCase());
+		setSortFields(fields);
+		setSortDirection(direction);
 
 		sqlSort = "ORDER BY " + getSortFields().replace(",", " " + getSortDirection() + ",") + " " + getSortDirection();
 
@@ -164,12 +164,12 @@ public class JDBQuery2
 
 	public void applyWhat(String what)
 	{
-		sqlWhat = what.toUpperCase();
+		sqlWhat = what;
 	}
 
 	public void applyWhere(String field, Object param)
 	{
-		field = field.toUpperCase();
+
 		if (field != null)
 		{
 			if (field.equals("") == false)
@@ -199,7 +199,7 @@ public class JDBQuery2
 	
 	public void applyHaving(String field, Object param)
 	{
-		field = field.toUpperCase();
+
 		if (field != null)
 		{
 			if (field.equals("") == false)

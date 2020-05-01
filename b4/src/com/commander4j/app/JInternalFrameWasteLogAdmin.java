@@ -423,7 +423,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		
 		query.clear();
 
-		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}VIEW_WASTE_LOG"));
+		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}view_waste_log"));
 		
 		
 		if (emptyresult)
