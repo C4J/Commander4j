@@ -170,11 +170,11 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		jButtonUndo.setEnabled(false);
 		jButtonNew.setEnabled(true);
 	}
-	
+
 	private void add()
 	{
 		mode = "NEW";
-		ltype="ADD";
+		ltype = "ADD";
 		lref = new Long(-1);
 		clear();
 		jTextFieldTransactionRef.setText(mode);
@@ -182,7 +182,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		jButtonUndo.setEnabled(false);
 		jButtonNew.setEnabled(false);
 	}
-	
+
 	private void clear()
 	{
 		jTextFieldWasteMaterial.setText("");
@@ -200,7 +200,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		jTextFieldUOM.setText("");
 		jTextFieldUserID.setText(Common.userList.getUser(Common.sessionID).getUserId());
 		jTextFieldWasteLocation.requestFocus();
-		
+
 	}
 
 	private void save()
@@ -234,7 +234,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			{
 				lref = wasteLog.generateNewTransactionRef();
 				mode = "EDIT";
-				//jTextFieldTransactionType.setText(String.valueOf(wasteLog.getTransactionRef()));
+				// jTextFieldTransactionType.setText(String.valueOf(wasteLog.getTransactionRef()));
 				jStatusText.setText("New log " + String.valueOf(wasteLog.getTransactionRef()) + " created.");
 				jTextFieldTransactionRef.setText(String.valueOf(wasteLog.getTransactionRef()));
 			}
@@ -260,22 +260,44 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 	{
 		boolean result = false;
 		String ord = jTextFieldProcessOrder.getText();
-		result = processOrder.getProcessOrderProperties(ord);
-		if (result)
+
+		if (chckbx_PO_Reqd.isSelected())
 		{
-			jTextFieldProcessOrderDescription.setDisabledTextColor(Color.BLACK);
-			jTextFieldProcessOrderDescription.setText(processOrder.getDescription());
-			jButtonSave.setEnabled(true);
-			jButtonUndo.setEnabled(true);
+
+			result = processOrder.getProcessOrderProperties(ord);
+			if (result)
+			{
+				jTextFieldProcessOrderDescription.setDisabledTextColor(Color.BLACK);
+				jTextFieldProcessOrderDescription.setText(processOrder.getDescription());
+				jButtonSave.setEnabled(true);
+				jButtonUndo.setEnabled(true);
+			}
+			else
+			{
+				jTextFieldProcessOrderDescription.setDisabledTextColor(Color.RED);
+				jTextFieldProcessOrderDescription.setText(processOrder.getErrorMessage());
+				jButtonSave.setEnabled(false);
+				jButtonUndo.setEnabled(true);
+			}
+			jButtonNew.setEnabled(false);
 		}
 		else
 		{
-			jTextFieldProcessOrderDescription.setDisabledTextColor(Color.RED);
-			jTextFieldProcessOrderDescription.setText(processOrder.getErrorMessage());
-			jButtonSave.setEnabled(false);
-			jButtonUndo.setEnabled(true);
+			if (ord.equals("") == false)
+			{
+				jTextFieldProcessOrderDescription.setDisabledTextColor(Color.RED);
+				jTextFieldProcessOrderDescription.setText("Process Order not required");
+				jButtonSave.setEnabled(false);
+				jButtonUndo.setEnabled(true);
+			}
+			else
+			{
+				jTextFieldProcessOrderDescription.setDisabledTextColor(Color.BLACK);
+				jTextFieldProcessOrderDescription.setText("");
+				jButtonSave.setEnabled(true);
+				jButtonUndo.setEnabled(true);
+			}
 		}
-		jButtonNew.setEnabled(false);
 
 		return result;
 	}
@@ -371,22 +393,45 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 	{
 		boolean result = false;
 		String reas = jTextFieldWasteReason.getText();
-		result = wasteReason.getWasteReasonProperties(reas);
-		if (result)
+
+		if (chckbx_Reason_Reqd.isSelected())
 		{
-			jTextFieldReasonDescription.setDisabledTextColor(Color.BLACK);
-			jTextFieldReasonDescription.setText(wasteReason.getDescription());
-			jButtonSave.setEnabled(true);
-			jButtonUndo.setEnabled(true);
+
+			result = wasteReason.getWasteReasonProperties(reas);
+			
+			if (result)
+			{
+				jTextFieldReasonDescription.setDisabledTextColor(Color.BLACK);
+				jTextFieldReasonDescription.setText(wasteReason.getDescription());
+				jButtonSave.setEnabled(true);
+				jButtonUndo.setEnabled(true);
+			}
+			else
+			{
+				jTextFieldReasonDescription.setDisabledTextColor(Color.RED);
+				jTextFieldReasonDescription.setText(wasteReason.getErrorMessage());
+				jButtonSave.setEnabled(false);
+				jButtonUndo.setEnabled(true);
+			}
+			jButtonNew.setEnabled(false);
 		}
 		else
 		{
-			jTextFieldReasonDescription.setDisabledTextColor(Color.RED);
-			jTextFieldReasonDescription.setText(wasteReason.getErrorMessage());
-			jButtonSave.setEnabled(false);
-			jButtonUndo.setEnabled(true);
+			if (reas.equals("") == false)
+			{
+				jTextFieldReasonDescription.setDisabledTextColor(Color.RED);
+				jTextFieldReasonDescription.setText("Reason not required");
+				jButtonSave.setEnabled(false);
+				jButtonUndo.setEnabled(true);
+			}
+			else
+			{
+				jTextFieldReasonDescription.setDisabledTextColor(Color.BLACK);
+				jTextFieldReasonDescription.setText("");
+				jButtonSave.setEnabled(true);
+				jButtonUndo.setEnabled(true);	
+			}
 		}
-		jButtonNew.setEnabled(false);
 
 		return result;
 	}
@@ -430,14 +475,19 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		{
 			jTextFieldTransactionRef.setText(String.valueOf(wasteLog.getTransactionRef()));
 			jTextFieldTransactionType.setText(wasteLog.getTransactionType());
-			jTextFieldWasteMaterial.setText(wasteLog.getMaterialID());
-			materialChanged();
-			jTextFieldWasteReason.setText(wasteLog.getReasonID());
-			reasonChanged();
+			
 			jTextFieldWasteLocation.setText(wasteLog.getLocationID());
 			locationChanged();
+			
+			jTextFieldWasteMaterial.setText(wasteLog.getMaterialID());
+			materialChanged();
+			
+			jTextFieldWasteReason.setText(wasteLog.getReasonID());
+			reasonChanged();
+			
 			jTextFieldProcessOrder.setText(wasteLog.getProcessOrder());
 			processOrderChanged();
+			
 			jTextFieldUserID.setText(wasteLog.getUserID());
 			jFormattedTextFieldQuantity.setValue(wasteLog.getQuantity());
 			transactionDate.setDate(wasteLog.getWasteReportTime());
