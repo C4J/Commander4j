@@ -127,7 +127,7 @@ public class JInternalFrameWasteReasonAdmin extends javax.swing.JInternalFrame
 
 		JDBWasteReasons tempLocation = new JDBWasteReasons(Common.selectedHostID, Common.sessionID);
 
-		LinkedList<JDBListData> tempLocationList = tempLocation.getWasteReasonIDs(rdbtnEnabled.isSelected());
+		LinkedList<JDBListData> tempLocationList = tempLocation.getWasteReasonIDs(rdbtnEnabled.isSelected(),JDBWasteReasons.displayModeFull);
 
 		int sel = -1;
 		for (int j = 0; j < tempLocationList.size(); j++)

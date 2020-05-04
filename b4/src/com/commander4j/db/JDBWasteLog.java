@@ -148,6 +148,10 @@ public class JDBWasteLog
 				setErrorMessage(e.getMessage());
 			}
 		}
+		else
+		{
+			result = false;
+		}
 
 		return result;
 	}

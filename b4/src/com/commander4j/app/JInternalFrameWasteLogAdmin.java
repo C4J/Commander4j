@@ -358,7 +358,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 	private void addRecord()
 	{
 		JDBWasteTransactionType u = new JDBWasteTransactionType(Common.selectedHostID, Common.sessionID);
-		LinkedList<JDBWasteTransactionType> transList = u.getWasteTransactionTypesList();
+		LinkedList<JDBWasteTransactionType> transList = u.getWasteTransactionTypesList(true,JDBWasteTransactionType.displayModeShort);
 		String[] transactionList = new String[transList.size()];
 
 		if (transactionList.length > 0)
@@ -575,7 +575,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 
 			blank.setDisplayMode(JDBWasteTransactionType.displayModeShort);
 			transTypeList.add(blank);
-			transTypeList.addAll(transactionTypes.getWasteTransactionTypesList());
+			transTypeList.addAll(transactionTypes.getWasteTransactionTypesList(true,JDBWasteTransactionType.displayModeShort));
 
 			{
 				jDesktopPane1 = new JDesktopPane();

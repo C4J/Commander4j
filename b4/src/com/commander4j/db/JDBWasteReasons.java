@@ -67,10 +67,14 @@ public class JDBWasteReasons
 	private String dbWasteReasonID; /* PK */
 	private String dbDescription;
 	private String dbEnabled;
+	
+	public static int displayModeFull = 0;
+	public static int displayModeShort = 1;
 
 	private final Logger logger = Logger.getLogger(JDBWasteReasons.class);
 	private String hostID;
 	private String sessionID;
+	private Integer displayMode=displayModeFull;
 
 	public JDBWasteReasons(String host, String session)
 	{
@@ -82,6 +86,11 @@ public class JDBWasteReasons
 	{
 		setDescription("");
 		setEnabled(true);
+	}
+	
+	public void setDisplayMode(int mode)
+	{
+		displayMode = mode;
 	}
 
 	public boolean create(String res)
@@ -297,8 +306,73 @@ public class JDBWasteReasons
 		setWasteReasonID(res);
 		return getWasteReasonProperties();
 	}
+	
+	public String getHTMLPullDownCombo(String itemName, String defaultValue)
+	{
+		String result = "";
+		String selected = "";
+		LinkedList<JDBWasteReasons> reasonList = new LinkedList<JDBWasteReasons>();
+				
+		reasonList.addAll(getWasteReasonssList(true,displayModeShort));
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
+		result = result + "<OPTION></OPTION>";
+		
+		if (reasonList.size() > 0)
+		{
+			for (int x = 0; x < reasonList.size(); x++)
+			{
+				if (reasonList.get(x).getWasteReasonID().equals(defaultValue))
+				{
+					selected = " SELECTED";
+				} else
+				{
+					selected = "";
+				}
+				result = result + "<OPTION" + selected + ">" + reasonList.get(x).getWasteReasonID()+"</OPTION>";
+			}
+		}
+		result = result + "</SELECT>";
 
-	public LinkedList<JDBListData> getWasteReasonIDs(boolean enabled)
+		return result;
+	}
+
+	public LinkedList<JDBWasteReasons> getWasteReasonssList(Boolean enabled,int mode) {
+
+		LinkedList<JDBWasteReasons> wasteReasonList = new LinkedList<JDBWasteReasons>();
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+		
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteReasons.getWasteReasons"));
+			stmt.setFetchSize(250);
+			rs = stmt.executeQuery();
+
+			while (rs.next())
+			{
+				JDBWasteReasons samp = new JDBWasteReasons(getHostID(), getSessionID());
+				samp.setDisplayMode(mode);
+				samp.getPropertiesfromResultSet(rs);
+				
+				if (samp.isEnabled().equals(enabled))
+				{	
+					wasteReasonList.addLast(samp);
+				}
+			}
+			rs.close();
+			stmt.close();
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return wasteReasonList;
+	}
+	
+	public LinkedList<JDBListData> getWasteReasonIDs(Boolean enabled,int mode)
 	{
 		LinkedList<JDBListData> sampList = new LinkedList<JDBListData>();
 		PreparedStatement stmt;
@@ -316,6 +390,7 @@ public class JDBWasteReasons
 			while (rs.next())
 			{
 				JDBWasteReasons samp = new JDBWasteReasons(getHostID(), getSessionID());
+				samp.setDisplayMode(mode);
 				samp.getPropertiesfromResultSet(rs);
 				icon = samp.getTypeIcon();
 
@@ -449,7 +524,16 @@ public class JDBWasteReasons
 	{
 		String result = "";
 
-		result = JUtility.padString(getWasteReasonID().toString(), true, field_WasteReason, " ") + getDescription();
+		if (displayMode==displayModeFull)
+		{
+			result = JUtility.padString(getWasteReasonID().toString(), true, field_WasteReason, " ") + getDescription();
+		}
+		
+		if (displayMode==displayModeShort)
+		{
+			result = getWasteReasonID();
+		}
+		
 		return result;
 	}
 

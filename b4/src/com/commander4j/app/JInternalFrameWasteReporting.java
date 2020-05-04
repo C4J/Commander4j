@@ -493,7 +493,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			blank.setDisplayMode(JDBWasteTransactionType.displayModeShort);
 
 			transTypeList.add(blank);
-			transTypeList.addAll(transactionTypes.getWasteTransactionTypesList());
+			transTypeList.addAll(transactionTypes.getWasteTransactionTypesList(true,JDBWasteTransactionType.displayModeShort));
 
 			blankGroup.setWasteReportingGroup(-1);
 			blankGroup.setDescription("None");

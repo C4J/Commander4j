@@ -67,6 +67,9 @@ public class JDBWasteMaterial
 	public static int field_UOM = 3;
 	public static int field_Enabled = 1;
 	
+	public static int displayModeFull = 0;
+	public static int displayModeShort = 1;
+	
 	private String dbErrorMessage;
 	private String dbWasteMaterialID;  /* PK */
 	private String dbWasteTypeID;
@@ -79,6 +82,7 @@ public class JDBWasteMaterial
 	private final Logger logger = Logger.getLogger(JDBWasteMaterial.class);
 	private String hostID;
 	private String sessionID;
+	private Integer displayMode=displayModeFull;
 
 	public JDBWasteMaterial(String host, String session)
 	{
@@ -95,6 +99,11 @@ public class JDBWasteMaterial
 		setConversionToKg(new BigDecimal("1"));
 		setDescription("");
 		setEnabled(true);
+	}
+	
+	public void setDisplayMode(int mode)
+	{
+		displayMode = mode;
 	}
 	
 	public boolean create(String res)
@@ -365,8 +374,74 @@ public class JDBWasteMaterial
 
 		return icon;
 	}
+	
+	public String getHTMLPullDownCombo(String itemName, String defaultValue)
+	{
+		String result = "";
+		String selected = "";
+		LinkedList<JDBWasteMaterial> materialList = new LinkedList<JDBWasteMaterial>();
+		
+		materialList.addAll(getWasteMaterialsList(true,displayModeShort));
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
+		result = result + "<OPTION></OPTION>";
+		
+		if (materialList.size() > 0)
+		{
+			for (int x = 0; x < materialList.size(); x++)
+			{
+				if (materialList.get(x).getWasteMaterialID().equals(defaultValue))
+				{
+					selected = " SELECTED";
+				} else
+				{
+					selected = "";
+				}
+				result = result + "<OPTION" + selected + ">" + materialList.get(x).getWasteMaterialID()+"</OPTION>";
+			}
+		}
+		result = result + "</SELECT>";
 
-	public LinkedList<JDBListData> getWasteMaterials(Boolean enabled) {
+		return result;
+	}	
+	
+	public LinkedList<JDBWasteMaterial> getWasteMaterialsList(Boolean enabled,int mode) {
+
+		LinkedList<JDBWasteMaterial> wasteMaterialList = new LinkedList<JDBWasteMaterial>();
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+		
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteMaterial.getWasteMaterials"));
+			stmt.setFetchSize(250);
+			rs = stmt.executeQuery();
+
+			while (rs.next())
+			{
+				JDBWasteMaterial samp = new JDBWasteMaterial(getHostID(), getSessionID());
+				samp.setDisplayMode(mode);
+				samp.getPropertiesfromResultSet(rs);
+				
+				if (samp.isEnabled().equals(enabled))
+				{	
+					wasteMaterialList.addLast(samp);
+				}
+			}
+			rs.close();
+			stmt.close();
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return wasteMaterialList;
+	}
+
+	public LinkedList<JDBListData> getWasteMaterials(Boolean enabled,int mode) {
+		
 		LinkedList<JDBListData> wasteMaterialList = new LinkedList<JDBListData>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -383,6 +458,7 @@ public class JDBWasteMaterial
 			while (rs.next())
 			{
 				JDBWasteMaterial samp = new JDBWasteMaterial(getHostID(), getSessionID());
+				samp.setDisplayMode(mode);
 				samp.getPropertiesfromResultSet(rs);
 				icon = samp.getMaterialIcon();
 				
@@ -521,7 +597,15 @@ public class JDBWasteMaterial
 	{
 		String result = "";
 
-		result = JUtility.padString(getWasteMaterialID().toString(), true, field_WasteMaterialID, " ")+	getDescription();
+		if (displayMode==displayModeFull)
+		{
+			result = JUtility.padString(getWasteMaterialID().toString(), true, field_WasteMaterialID, " ")+	getDescription();
+		}
+		
+		if (displayMode==displayModeShort)
+		{
+			result = getWasteMaterialID();
+		}
 		return result;
 	}
 	

@@ -416,8 +416,37 @@ public class JDBWasteTransactionType
 
 		return sampList;
 	}
+	
+	public String getHTMLPullDownCombo(String itemName, String defaultValue)
+	{
+		String result = "";
+		String selected = "";
+		LinkedList<JDBWasteTransactionType> transactionList = new LinkedList<JDBWasteTransactionType>();
+				
+		transactionList.addAll(getWasteTransactionTypesList(true,displayModeShort));
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
+		//result = result + "<OPTION></OPTION>";
+		
+		if (transactionList.size() > 0)
+		{
+			for (int x = 0; x < transactionList.size(); x++)
+			{
+				if (transactionList.get(x).getWasteTransactionType().equals(defaultValue))
+				{
+					selected = " SELECTED";
+				} else
+				{
+					selected = "";
+				}
+				result = result + "<OPTION" + selected + ">" + transactionList.get(x).getWasteTransactionType()+"</OPTION>";
+			}
+		}
+		result = result + "</SELECT>";
 
-	public LinkedList<JDBWasteTransactionType> getWasteTransactionTypesList() {
+		return result;
+	}
+
+	public LinkedList<JDBWasteTransactionType> getWasteTransactionTypesList(Boolean enabled,int mode) {
 		
 		LinkedList<JDBWasteTransactionType> sampList = new LinkedList<JDBWasteTransactionType>();
 		PreparedStatement stmt;
@@ -433,11 +462,13 @@ public class JDBWasteTransactionType
 			while (rs.next())
 			{
 				JDBWasteTransactionType samp = new JDBWasteTransactionType(getHostID(), getSessionID());
-				samp.setDisplayMode(displayModeShort);
+				samp.setDisplayMode(mode);
 				samp.getPropertiesfromResultSet(rs);
 				
-				
-				sampList.addLast(samp);
+				if (samp.isEnabled().equals(enabled))
+				{				
+					sampList.addLast(samp);
+				}
 			}
 			rs.close();
 			stmt.close();

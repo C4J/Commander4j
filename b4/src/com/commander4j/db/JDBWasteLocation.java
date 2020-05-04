@@ -420,7 +420,70 @@ public class JDBWasteLocation
 		return rs;
 	}
 	
+	public String getHTMLPullDownCombo(String itemName, String defaultValue)
+	{
+		String result = "";
+		String selected = "";
+		LinkedList<JDBWasteLocation> locationList = new LinkedList<JDBWasteLocation>();
+				
+		locationList.addAll(getWasteLocationsList(true,displayModeShort));
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
+		result = result + "<OPTION></OPTION>";
+		
+		if (locationList.size() > 0)
+		{
+			for (int x = 0; x < locationList.size(); x++)
+			{
+				if (locationList.get(x).getWasteLocationID().equals(defaultValue))
+				{
+					selected = " SELECTED";
+				} else
+				{
+					selected = "";
+				}
+				result = result + "<OPTION" + selected + ">" + locationList.get(x).getWasteLocationID()+"</OPTION>";
+			}
+		}
+		result = result + "</SELECT>";
+
+		return result;
+	}
 	
+	public LinkedList<JDBWasteLocation> getWasteLocationsList(Boolean enabled,int mode) {
+		
+		LinkedList<JDBWasteLocation> wasteLocationList = new LinkedList<JDBWasteLocation>();
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteLocation.getWasteLocations"));
+			stmt.setFetchSize(250);
+			rs = stmt.executeQuery();
+
+			while (rs.next())
+			{
+				JDBWasteLocation samp = new JDBWasteLocation(getHostID(), getSessionID());
+				samp.setDisplayMode(mode);
+				samp.getPropertiesfromResultSet(rs);
+				
+				if (samp.isEnabled().equals(enabled))
+				{	
+					wasteLocationList.addLast(samp);
+				}
+			}
+			rs.close();
+			stmt.close();
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return wasteLocationList;
+	}
 	
 	public LinkedList<JDBListData> getWasteLocations(Boolean enabled,int mode) {
 		

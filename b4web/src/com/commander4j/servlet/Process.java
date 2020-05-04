@@ -1,6 +1,7 @@
 package com.commander4j.servlet;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -23,6 +24,11 @@ import com.commander4j.db.JDBPallet;
 import com.commander4j.db.JDBReportRequest;
 import com.commander4j.db.JDBUser;
 import com.commander4j.db.JDBViewBarcodeValidate;
+import com.commander4j.db.JDBWasteLocation;
+import com.commander4j.db.JDBWasteLog;
+import com.commander4j.db.JDBWasteMaterial;
+import com.commander4j.db.JDBWasteReasons;
+import com.commander4j.db.JDBWasteTransactionType;
 import com.commander4j.html.JMenuRFDespatchList;
 import com.commander4j.html.JMenuRFMenu;
 import com.commander4j.html.JMenuRFPrinterList;
@@ -963,7 +969,15 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			{
 				palletConfirm(request, response, button);
 			}
-
+			
+			// ******************************************
+			// **************** WASTE LOG ***************
+			// ******************************************
+			if (formName.equals("wasteLog.jsp"))
+			{
+				wasteLog(request, response, button);
+			}
+			
 			// ******************************************
 			// ********* PRODUCTION CONFIRMATION +*******
 			// ******************************************
@@ -1297,6 +1311,37 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				saveData(session, "confirmCount", "0", false);
 				response.sendRedirect("productionConfirm.jsp");
 			}
+			
+			if (selectedMenuOption.equals("FRM_ADMIN_WASTE_LOG"))
+			{
+				//consider old new default values for combo box's
+				
+				saveData(session, "wasteProcessOrder", Common.sd.getData(sessionID, "wasteProcessOrder"), true);
+				
+				if (Common.sd.getData(sessionID, "wasteQuantity").equals(""))
+				{
+					saveData(session, "wasteQuantity", ".000", true);
+				}
+				
+
+				JDBWasteTransactionType wt = new JDBWasteTransactionType(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+				saveData(session, "wasteTransactionCombo", wt.getHTMLPullDownCombo("wasteTransactionCombo", ""), true);
+				
+				String wasteLocationID = Common.sd.getData(sessionID, "wasteLocationID");
+				JDBWasteLocation wl = new JDBWasteLocation(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+				saveData(session, "wasteLocationCombo", wl.getHTMLPullDownCombo("wasteLocationCombo", wasteLocationID), true);
+				
+				String wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
+				JDBWasteMaterial wm = new JDBWasteMaterial(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+				saveData(session, "wasteMaterialCombo", wm.getHTMLPullDownCombo("wasteMaterialCombo", wasteMaterialID), true);
+				
+				
+				String wasteReasonID = Common.sd.getData(sessionID, "wasteReasonID");
+				JDBWasteReasons wr = new JDBWasteReasons(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+				saveData(session, "wasteReasonCombo", wr.getHTMLPullDownCombo("wasteReasonCombo",wasteReasonID), true);
+				
+				response.sendRedirect("wasteLog.jsp");
+			}
 
 			if (selectedMenuOption.equals("FRM_PAL_PROD_CONFIRM+"))
 			{
@@ -1352,6 +1397,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		}
 	}
 
+	
 	private synchronized void palletConfirm(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
 	{
 
@@ -2134,6 +2180,164 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			saveData(session, "_ErrorMessage", "", true);
 			response.sendRedirect("productionConfirmPlusSSCC.jsp");
 		}
+	}
+	
+
+	private synchronized void wasteLog(HttpServletRequest request, HttpServletResponse response, String button) throws ServletException, IOException
+	{
+	
+		HttpSession session = request.getSession();
+		String sessionID = session.getId();
+	
+		if (button.equals(""))
+		{
+			button = "Submit";
+		}
+		
+		if (button.equals("Cancel"))
+		{
+			wasteLogSaveLastUsed( request, session);
+			session.setAttribute("wasteBarcode", "");
+			session.setAttribute("_ErrorMessage", "");
+			displayMenu(request, response);
+		}
+	
+		if (button.equals("Submit"))
+		{
+			wasteComboRefesh( request, session);
+			wasteLogSaveLastUsed( request, session);
+			session.setAttribute("wasteBarcode", "");
+			session.setAttribute("_ErrorMessage", "");
+			
+			String wasteBarcode = JUtility.replaceNullStringwithBlank(request.getParameter("wasteBarcode").toUpperCase());
+			String wasteLocationID = "";
+			String wasteMaterialID = "";
+			String wasteReasonID = "";
+	
+			if (wasteBarcode.equals("") == false)
+			{
+				if (bcode.parseBarcodeData(wasteBarcode) == true)
+				{
+					wasteLocationID = bcode.getStringforAppID("91");
+					wasteMaterialID = bcode.getStringforAppID("92");
+					wasteReasonID = bcode.getStringforAppID("93");
+	
+					if (wasteLocationID.equals("")==false)
+					{
+						session.setAttribute("wasteLocationID", wasteLocationID);
+						saveData(session, "wasteLocationID", wasteLocationID, true);	
+					}
+					
+					if (wasteMaterialID.equals("")==false)
+					{
+						session.setAttribute("wasteMaterialID", wasteMaterialID);
+						saveData(session, "wasteMaterialID", wasteMaterialID, true);
+					}
+					
+					if (wasteReasonID.equals("")==false)
+					{
+						session.setAttribute("wasteReasonID", wasteReasonID);
+						saveData(session, "wasteReasonID", wasteReasonID, true);
+					}
+	
+				}
+				else
+				{
+					session.setAttribute("_ErrorMessage", bcode.getErrorMessage());
+				}
+	
+			}
+			else
+			{
+				//Write Log
+				logger.debug("Write Waste_Log");
+				
+				String post_wasteTransactionID = Common.sd.getData(sessionID, "wasteTransactionID");
+				String post_wasteLocationID = Common.sd.getData(sessionID, "wasteLocationID");
+				String post_wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
+				String post_wasteReasonID = Common.sd.getData(sessionID, "wasteReasonID");
+				String post_wasteProcessOrder = Common.sd.getData(sessionID, "wasteProcessOrder");
+				String post_wasteQuantity = request.getParameter("wasteQuantity");
+				
+				JDBWasteLog wlog = new JDBWasteLog(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+				
+				wlog.setTransactionType(post_wasteTransactionID);
+				wlog.setLocationID(post_wasteLocationID);
+				wlog.setMaterialID(post_wasteMaterialID);
+				wlog.setReasonID(post_wasteReasonID);
+				wlog.setProcessOrder(post_wasteProcessOrder);
+				wlog.setWasteReportTime(JUtility.getSQLDateTime());
+				wlog.setQuantity(new BigDecimal(post_wasteQuantity));
+				
+				if (wlog.write())
+				{
+					    Long txn = wlog.getTransactionRef();
+						session.setAttribute("_ErrorMessage", "Log " +String.valueOf(txn)+" created.");
+						saveData(session, "_ErrorMessage", "Log " +String.valueOf(txn)+" created.", true);
+						saveData(session, "wasteQuantity", ".000", true);
+				}
+				else
+				{
+					session.setAttribute("_ErrorMessage",wlog.getErrorMessage());
+					saveData(session, "_ErrorMessage", wlog.getErrorMessage(), true);
+					saveData(session, "wasteQuantity", request.getParameter("wasteQuantity"), true);
+				}
+
+			}
+	
+			
+			wasteComboRefesh( request, session);
+			wasteLogSaveLastUsed( request, session);
+			
+			session.setAttribute("wasteBarcode", "");
+			response.sendRedirect("wasteLog.jsp");
+		}
+	
+	}
+	
+	private synchronized boolean wasteLogSaveLastUsed( HttpServletRequest request, HttpSession session)
+	{
+
+		boolean result = true;
+
+		logger.debug("wasteLogSaveLastUsed - wasteTransactionID="+request.getParameter("wasteLocationCombo").toUpperCase());	
+		saveData(session, "wasteTransactionID", request.getParameter("wasteTransactionCombo").toUpperCase(), true);
+		
+		logger.debug("wasteLogSaveLastUsed - wasteLocationID="+request.getParameter("wasteLocationCombo").toUpperCase());	
+		saveData(session, "wasteLocationID", request.getParameter("wasteLocationCombo").toUpperCase(), true);
+		
+		logger.debug("wasteLogSaveLastUsed - wasteMaterialID="+request.getParameter("wasteMaterialCombo").toUpperCase());
+		saveData(session, "wasteMaterialID", request.getParameter("wasteMaterialCombo").toUpperCase(), true);
+		
+		logger.debug("wasteLogSaveLastUsed - wasteReasonID="+request.getParameter("wasteReasonCombo").toUpperCase());
+		saveData(session, "wasteReasonID", request.getParameter("wasteReasonCombo").toUpperCase(), true);
+		
+		logger.debug("wasteLogSaveLastUsed - wasteProcessOrder="+request.getParameter("wasteProcessOrder").toUpperCase());
+		saveData(session, "wasteProcessOrder", request.getParameter("wasteProcessOrder").toUpperCase(), true);
+		
+		return result;
+	}
+	
+	private synchronized void wasteComboRefesh( HttpServletRequest request, HttpSession session)
+	{
+		
+		String sessionID = session.getId();
+		
+		JDBWasteTransactionType wt = new JDBWasteTransactionType(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+		saveData(session, "wasteTransactionCombo", wt.getHTMLPullDownCombo("wasteTransactionCombo", ""), true);
+		
+		String wasteLocationID = Common.sd.getData(sessionID, "wasteLocationID");
+		JDBWasteLocation wl = new JDBWasteLocation(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+		saveData(session, "wasteLocationCombo", wl.getHTMLPullDownCombo("wasteLocationCombo", wasteLocationID), true);
+		
+		String wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
+		JDBWasteMaterial wm = new JDBWasteMaterial(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+		saveData(session, "wasteMaterialCombo", wm.getHTMLPullDownCombo("wasteMaterialCombo", wasteMaterialID), true);
+		
+		
+		String wasteReasonID = Common.sd.getData(sessionID, "wasteReasonID");
+		JDBWasteReasons wr = new JDBWasteReasons(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+		saveData(session, "wasteReasonCombo", wr.getHTMLPullDownCombo("wasteReasonCombo",wasteReasonID), true);
 	}
 
 	private void releaseSessionResources(HttpSession session)

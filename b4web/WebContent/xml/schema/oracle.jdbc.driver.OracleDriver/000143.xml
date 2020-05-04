@@ -3,7 +3,7 @@
 <DDL>
 
 	<statement>
-		ALTER TABLE "APP_WEIGHT_SCALE" ADD ("SERIAL_NO" VARCHAR2(25) DEFAULT '' )
+		ALTER TABLE APP_WEIGHT_SCALE ADD (SERIAL_NO VARCHAR2(25) DEFAULT '' )
 	</statement>
 	
 	<statement>
@@ -104,7 +104,7 @@
     </statement>   
     
     <statement>
-		ALTER TABLE "APP_WEIGHT_SAMPLE_HEADER" ADD ("COMMENTS" VARCHAR2(250) DEFAULT '' )
+		ALTER TABLE APP_WEIGHT_SAMPLE_HEADER ADD (COMMENTS VARCHAR2(250) DEFAULT '' )
 	</statement> 
     		     
 </DDL>

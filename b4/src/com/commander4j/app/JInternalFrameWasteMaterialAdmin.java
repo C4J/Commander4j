@@ -128,7 +128,7 @@ public class JInternalFrameWasteMaterialAdmin extends javax.swing.JInternalFrame
 
 		JDBWasteMaterial tempReportID = new JDBWasteMaterial(Common.selectedHostID, Common.sessionID);
 
-		LinkedList<JDBListData> tempReportIDList = tempReportID.getWasteMaterials(rdbtnEnabled.isSelected());
+		LinkedList<JDBListData> tempReportIDList = tempReportID.getWasteMaterials(rdbtnEnabled.isSelected(),JDBWasteMaterial.displayModeFull);
 
 		int sel = -1;
 		for (int j = 0; j < tempReportIDList.size(); j++)
