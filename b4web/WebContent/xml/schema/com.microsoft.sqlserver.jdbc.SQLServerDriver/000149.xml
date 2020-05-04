@@ -469,11 +469,7 @@
     <statement>        
         INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'RPT_WASTE_TYPES')
     </statement>
-    
-    <statement>        
-        INSERT INTO SYS_USER_GROUP_MEMBERSHIP (USER_ID, GROUP_ID) VALUES ('DAVE', 'WASTE')
-    </statement>
-    
+        
     <statement>        
         INSERT INTO SYS_MENUS ( MODULE_ID , MENU_ID, SEQUENCE_ID) VALUES ('FRM_ADMIN_WASTE_LOG', 'MENU_WASTE', 0)
     </statement>
