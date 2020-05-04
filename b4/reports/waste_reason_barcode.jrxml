@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="waste_reason_barcode" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4400aaa-6088-48ee-aa46-5299e6bf6b1c">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="waste_reason_barcode" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4400aaa-6088-48ee-aa46-5299e6bf6b1c">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
 	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["My Company"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="p_waste_reason_id" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["CLEANING"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["%"]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM APP_WASTE_REASONS WHERE ENABLED = 'Y' AND  WASTE_REASON_ID LIKE $P{p_waste_reason_id}]]>
@@ -46,26 +46,24 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="241" splitType="Stretch">
+		<band height="124" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="17" y="189" width="539" height="30" uuid="d15e0045-9a8d-4f92-9e61-7ab5aa70c2a1">
+				<reportElement x="0" y="4" width="260" height="20" uuid="d15e0045-9a8d-4f92-9e61-7ab5aa70c2a1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce123d0e-2d3e-40c6-b349-f4198edb276b"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{WASTE_REASON_ID}+"  -  "+$F{DESCRIPTION}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement x="1" y="30" width="555" height="155" uuid="eef5140a-b5ba-45c2-9aab-4e5312b7ae71"/>
+				<reportElement x="0" y="32" width="219" height="80" uuid="eef5140a-b5ba-45c2-9aab-4e5312b7ae71"/>
 				<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.5" textPosition="bottom" quietZone="16.0">
 					<jr:codeExpression><![CDATA["93"+$F{WASTE_REASON_ID}]]></jr:codeExpression>
 				</jr:EAN128>
 			</componentElement>
 		</band>
 	</detail>
-	<pageFooter>
-		<band height="23" splitType="Stretch"/>
-	</pageFooter>
 </jasperReport>
