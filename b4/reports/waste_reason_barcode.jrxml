@@ -50,16 +50,16 @@
 		<band height="118" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<textField>
-				<reportElement x="0" y="13" width="277" height="18" uuid="d15e0045-9a8d-4f92-9e61-7ab5aa70c2a1">
+				<reportElement x="30" y="19" width="247" height="12" uuid="d15e0045-9a8d-4f92-9e61-7ab5aa70c2a1">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce123d0e-2d3e-40c6-b349-f4198edb276b"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{WASTE_REASON_ID}+"  -  "+$F{DESCRIPTION}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
 			</textField>
 			<componentElement>
 				<reportElement x="1" y="33" width="219" height="80" uuid="eef5140a-b5ba-45c2-9aab-4e5312b7ae71">
