@@ -327,6 +327,10 @@
     </statement>
     
     <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'RPT_WASTE_REASON_LAB')
+    </statement>
+    
+    <statement>        
         INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'FRM_WASTE_REPORT_ID')
     </statement>
     
