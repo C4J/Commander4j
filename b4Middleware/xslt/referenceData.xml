@@ -115,6 +115,7 @@
     <item type="SageUOM" id="CTN"><value>CTN</value></item>
     <item type="SageUOM" id="NA"><value>NA</value></item>
 	<item type="SageUOM" id="BOX"><value>BOX</value></item>
+    <item type="SageUOM" id="BTC"><value>BTC</value></item>
  
     <item type="SageShelfLifeRounding" id="03:Rounding Month End"><value>+</value></item>
     <item type="SageShelfLifeRounding" id="03:BRI:Rounding Month End"><value>+</value></item>

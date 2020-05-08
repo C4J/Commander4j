@@ -1321,6 +1321,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				if (Common.sd.getData(sessionID, "wasteQuantity").equals(""))
 				{
 					saveData(session, "wasteQuantity", ".000", true);
+					saveData(session, "wasteMaterialUOM", "", true);
 				}
 				
 
@@ -1333,7 +1334,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				
 				String wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
 				JDBWasteMaterial wm = new JDBWasteMaterial(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-				saveData(session, "wasteMaterialCombo", wm.getHTMLPullDownCombo("wasteMaterialCombo", wasteMaterialID), true);
+				saveData(session, "wasteMaterialCombo", wm.getHTMLPullDownCombo("wasteMaterialCombo", wasteMaterialID,"onchange=\"document.wasteLog.wasteBarcode.value = '92'.concat(document.wasteLog.wasteMaterialCombo.value);javascript:document.wasteLog.submit();"), true);
 				
 				
 				String wasteReasonID = Common.sd.getData(sessionID, "wasteReasonID");
@@ -2196,7 +2197,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		
 		if (button.equals("Cancel"))
 		{
-			wasteLogSaveLastUsed( request, session);
+			wasteLogClearLastUsed( request, session);
 			session.setAttribute("wasteBarcode", "");
 			session.setAttribute("_ErrorMessage", "");
 			displayMenu(request, response);
@@ -2232,7 +2233,25 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					{
 						session.setAttribute("wasteMaterialID", wasteMaterialID);
 						saveData(session, "wasteMaterialID", wasteMaterialID, true);
+						
+						JDBWasteMaterial wm = new JDBWasteMaterial(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+						
+						if (wm.getWasteMaterialProperties(wasteMaterialID))
+						{
+							session.setAttribute("wasteMaterialUOM", wm.getUOM());
+							saveData(session, "wasteMaterialUOM", wm.getUOM(), true);
+						}
+						else
+						{
+							session.setAttribute("wasteMaterialUOM", "");
+							saveData(session, "wasteMaterialUOM", "", true);
+						}
 					}
+//					else
+//					{
+//						session.setAttribute("wasteMaterialUOM", "");
+//						saveData(session, "wasteMaterialUOM", "", true);
+//					}
 					
 					if (wasteReasonID.equals("")==false)
 					{
@@ -2318,6 +2337,24 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		return result;
 	}
 	
+	private synchronized boolean wasteLogClearLastUsed( HttpServletRequest request, HttpSession session)
+	{
+
+		boolean result = true;
+
+
+		saveData(session, "wasteTransactionID", "", true);
+		saveData(session, "wasteLocationID", "", true);
+		saveData(session, "wasteMaterialID", "", true);
+		saveData(session, "wasteReasonID", "", true);
+		saveData(session, "wasteProcessOrder", "", true);
+		saveData(session, "wasteMaterialUOM", "", true);
+		saveData(session, "wasteQuantity", ".000", true);
+		
+		
+		return result;
+	}
+	
 	private synchronized void wasteComboRefesh( HttpServletRequest request, HttpSession session)
 	{
 		
@@ -2332,7 +2369,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		
 		String wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
 		JDBWasteMaterial wm = new JDBWasteMaterial(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		saveData(session, "wasteMaterialCombo", wm.getHTMLPullDownCombo("wasteMaterialCombo", wasteMaterialID), true);
+		saveData(session, "wasteMaterialCombo", wm.getHTMLPullDownCombo("wasteMaterialCombo", wasteMaterialID,"onchange=\"document.wasteLog.wasteBarcode.value = '92'.concat(document.wasteLog.wasteMaterialCombo.value);javascript:document.wasteLog.submit();"), true);
 		
 		
 		String wasteReasonID = Common.sd.getData(sessionID, "wasteReasonID");

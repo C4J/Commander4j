@@ -71,11 +71,12 @@
 					<div align="right"><%=Lang.getText("web_Waste_Material")%></div>
 				</td>
 				<td width="4">&nbsp;</td>
-				<td width="65%">
+				<td width="45%">
 					<%
 						out.println(session.getAttribute("wasteMaterialCombo"));
 					%>
 				</td>
+
 			</tr>
 			
 			<tr>
@@ -102,7 +103,10 @@
 				<td width="65%"><input name="wasteProcessOrder" type="text" id="wasteProcessOrder" tabindex="3" value="<%out.println(session.getAttribute("wasteProcessOrder"));%>" size="15" maxlength="15"></td>
 			</tr>
 			
-			<tr>
+		</table>
+		
+		<table width="238" align="center">
+		<tr>
 				<td width="35%" height="20"><div align="right"><%=Lang.getText("web_Waste_Quantity")%></div></td>
 				<td>&nbsp;</td>
 					<%
@@ -111,23 +115,29 @@
 							wasteQuantity = "0";
 						wasteQuantity = wasteQuantity.trim();
 					%>
-				<td width="65%"><input name="wasteQuantity" type="text" id="wasteQuantity" style="text-align: right" tabindex="4" value="<%out.println(session.getAttribute("wasteQuantity"));%>" size="15" maxlength="15"></td>
+				<td width="45%"><input name="wasteQuantity" type="text" id="wasteQuantity" style="text-align: right" tabindex="4" value="<%out.println(session.getAttribute("wasteQuantity"));%>" size="12" maxlength="12"></td>
+				
+				<td width="20%" height="20"><div align="left">
+					<%
+						out.println(session.getAttribute("wasteMaterialUOM"));
+					%>
+				</div></td>
 			</tr>
-			
 		</table>
 		
 
 		<table width="238" align="center">
 			<tr>
-				<td style="width: 30%; text-align: right"><%=Lang.getText("web_Waste_Scan")%>&nbsp;</td>
-				<td style="width: 70%; text-align: left">
-					<%
-						String wasteBarcode = (String) session.getAttribute("wasteBarcode");
-						if (wasteBarcode == null)
+				<td width="35%" height="20"><div align="right"><%=Lang.getText("web_Waste_Scan")%></div></td>
+				<td>&nbsp;</td>
+				<%
+					String wasteBarcode = (String) session.getAttribute("wasteBarcode");
+					if (wasteBarcode == null)
 							wasteBarcode = "";
-						wasteBarcode = wasteBarcode.trim();
-					%>
-					<input tabindex="1" name="wasteBarcode" type="text" id="wasteBarcode" size="20" maxlength="35" value="<%out.println(wasteBarcode);%>"/>
+					wasteBarcode = wasteBarcode.trim();
+				%>
+				<td style="width: 65%; text-align: left">
+					<input tabindex="1" name="wasteBarcode" type="text" id="wasteBarcode" size="16" maxlength="35" value="<%out.println(wasteBarcode);%>"/>
 				</td>
 			</tr>
 		</table>

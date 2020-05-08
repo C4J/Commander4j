@@ -277,7 +277,7 @@ public class JInternalFrameUomProperties extends JInternalFrame
 	private void save()
 	{
 		uom.setIsoUom(jTextFieldISO_UOM.getText().toUpperCase());
-		uom.setDescription(jTextFieldDescription.getText().toUpperCase());
+		uom.setDescription(jTextFieldDescription.getText());
 		uom.setLocalUom(jTextFieldLocal_UOM.getText().toUpperCase());
 		uom.update();
 		jButtonSave.setEnabled(false);

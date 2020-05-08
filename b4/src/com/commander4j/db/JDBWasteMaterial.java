@@ -375,14 +375,14 @@ public class JDBWasteMaterial
 		return icon;
 	}
 	
-	public String getHTMLPullDownCombo(String itemName, String defaultValue)
+	public String getHTMLPullDownCombo(String itemName, String defaultValue, String onchange)
 	{
 		String result = "";
 		String selected = "";
 		LinkedList<JDBWasteMaterial> materialList = new LinkedList<JDBWasteMaterial>();
 		
 		materialList.addAll(getWasteMaterialsList(true,displayModeShort));
-		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\" " +onchange + "\">";
 		result = result + "<OPTION></OPTION>";
 		
 		if (materialList.size() > 0)
