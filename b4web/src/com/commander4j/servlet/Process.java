@@ -2214,6 +2214,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			String wasteLocationID = "";
 			String wasteMaterialID = "";
 			String wasteReasonID = "";
+			String wasteProcessOrder = "";
+			String wasteSSCC = "";
 	
 			if (wasteBarcode.equals("") == false)
 			{
@@ -2222,6 +2224,24 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					wasteLocationID = bcode.getStringforAppID("91");
 					wasteMaterialID = bcode.getStringforAppID("92");
 					wasteReasonID = bcode.getStringforAppID("93");
+					wasteProcessOrder = bcode.getStringforAppID("94");
+					wasteSSCC = bcode.getStringforAppID("00");
+					
+					if (wasteSSCC.equals("")==false)
+					{
+						JDBPallet wpal = new JDBPallet(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+						if (wpal.getPalletProperties(wasteSSCC))
+						{
+							wasteProcessOrder=wpal.getProcessOrder();
+						}
+						wpal=null;
+					}
+					
+					if (wasteProcessOrder.equals("")==false)
+					{
+						session.setAttribute("wasteProcessOrder", wasteProcessOrder);
+						saveData(session, "wasteProcessOrder", wasteProcessOrder, true);	
+					}
 	
 					if (wasteLocationID.equals("")==false)
 					{
@@ -2246,12 +2266,9 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 							session.setAttribute("wasteMaterialUOM", "");
 							saveData(session, "wasteMaterialUOM", "", true);
 						}
+						wm=null;
 					}
-//					else
-//					{
-//						session.setAttribute("wasteMaterialUOM", "");
-//						saveData(session, "wasteMaterialUOM", "", true);
-//					}
+
 					
 					if (wasteReasonID.equals("")==false)
 					{
@@ -2319,7 +2336,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 		boolean result = true;
 
-		logger.debug("wasteLogSaveLastUsed - wasteTransactionID="+request.getParameter("wasteLocationCombo").toUpperCase());	
+		logger.debug("wasteLogSaveLastUsed - wasteTransactionID="+ request.getParameter("wasteTransactionCombo").toUpperCase());	
 		saveData(session, "wasteTransactionID", request.getParameter("wasteTransactionCombo").toUpperCase(), true);
 		
 		logger.debug("wasteLogSaveLastUsed - wasteLocationID="+request.getParameter("wasteLocationCombo").toUpperCase());	
@@ -2330,9 +2347,6 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		
 		logger.debug("wasteLogSaveLastUsed - wasteReasonID="+request.getParameter("wasteReasonCombo").toUpperCase());
 		saveData(session, "wasteReasonID", request.getParameter("wasteReasonCombo").toUpperCase(), true);
-		
-		logger.debug("wasteLogSaveLastUsed - wasteProcessOrder="+request.getParameter("wasteProcessOrder").toUpperCase());
-		saveData(session, "wasteProcessOrder", request.getParameter("wasteProcessOrder").toUpperCase(), true);
 		
 		return result;
 	}
@@ -2375,6 +2389,9 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		String wasteReasonID = Common.sd.getData(sessionID, "wasteReasonID");
 		JDBWasteReasons wr = new JDBWasteReasons(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 		saveData(session, "wasteReasonCombo", wr.getHTMLPullDownCombo("wasteReasonCombo",wasteReasonID), true);
+		
+//		String wasteProcessOrder = Common.sd.getData(sessionID, "wasteProcessOrder");
+//		saveData(session, "wasteProcessOrder",wasteProcessOrder, true);
 	}
 
 	private void releaseSessionResources(HttpSession session)
