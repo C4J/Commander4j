@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="waste_order_barcode" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4400aaa-6088-48ee-aa46-5299e6bf6b1c">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
+	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["My Company"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="p_waste_material_id" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["%"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM APP_PROCESS_ORDER WHERE STATUS = 'Ready' ]]>
+	</queryString>
+	<field name="PROCESS_ORDER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PROCESS_ORDER"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="MATERIAL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MATERIAL"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="STATUS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="DUE_DATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="DUE_DATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="DESCRIPTION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DESCRIPTION"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="LOCATION_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LOCATION_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="RECIPE_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="RECIPE_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="REQUIRED_QUANTITY" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="REQUIRED_QUANTITY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="REQUIRED_UOM" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="REQUIRED_UOM"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="UPDATED" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="UPDATED"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="DEFAULT_PALLET_STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DEFAULT_PALLET_STATUS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="REQUIRED_RESOURCE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="REQUIRED_RESOURCE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="CUSTOMER_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CUSTOMER_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<field name="INSPECTION_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="INSPECTION_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_process_order"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="0" width="280" height="41" uuid="8ef7f43e-4554-4acd-a6df-e192ae2c67d1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{COMPANY_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="250" y="0" width="306" height="41" uuid="f84d44cf-cd40-4a29-b933-136bb3466314"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Process Order Barcode]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="118" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="1" y="19" width="276" height="12" uuid="d15e0045-9a8d-4f92-9e61-7ab5aa70c2a1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce123d0e-2d3e-40c6-b349-f4198edb276b"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="1" y="33" width="219" height="80" uuid="eef5140a-b5ba-45c2-9aab-4e5312b7ae71">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<jr:EAN128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="1.5" textPosition="bottom" quietZone="16.0">
+					<jr:codeExpression><![CDATA["94"+$F{PROCESS_ORDER}]]></jr:codeExpression>
+				</jr:EAN128>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>
