@@ -46,6 +46,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -256,6 +257,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			{
 				jTextFieldRecipe.setText(jTable1.getValueAt(row, 6).toString());
 			}
+			if (fieldname.equals("Resource") == true)
+			{
+				jTextFieldRequiredResource.setText(jTable1.getValueAt(row, 10).toString());
+			}
 			buildSQL();
 			populateList();
 
@@ -322,8 +327,10 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 	private void print()
 	{
+
 		PreparedStatement temp = buildSQLr();
 		JLaunchReport.runReport("RPT_PROCESS_ORDERS", null, "", temp, "");
+
 	}
 
 	private String newRecord()
@@ -511,13 +518,40 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 	private void printLabels()
 	{
 
-		String lprocessOrder = "";
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
+		JPopupMenu popup = new JPopupMenu("Labels");
+
+		JMenuItem item1 = new JMenuItem(lang.get("mod_FRM_PROCESS_ORDER_LABEL"));
+		item1.addActionListener(new ActionListener()
 		{
-			lprocessOrder = jTable1.getValueAt(row, 0).toString();
-			JLaunchMenu.runForm("FRM_PROCESS_ORDER_LABEL", lprocessOrder);
-		}
+			public void actionPerformed(final ActionEvent e)
+			{
+				String lprocessOrder = "";
+				int row = jTable1.getSelectedRow();
+				if (row >= 0)
+				{
+					lprocessOrder = jTable1.getValueAt(row, 0).toString();
+					JLaunchMenu.runForm("FRM_PROCESS_ORDER_LABEL", lprocessOrder);
+				}
+			}
+		});
+		item1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PROCESS_ORDER_LABEL"));
+
+		JMenuItem item2 = new JMenuItem(lang.get("mod_RPT_WASTE_ORDER_LAB"));
+		item2.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(final ActionEvent e)
+			{
+				PreparedStatement temp = buildSQLr();
+				JLaunchReport.runReport("RPT_WASTE_ORDER_LAB", null, "", temp, "");
+			}
+		});
+		item2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_ORDER_LAB"));
+
+		popup.add(item1);
+		popup.add(item2);
+
+		// show on the button?
+		popup.show((Component) jScrollPane1, 661, 0);
 
 	}
 
@@ -1035,6 +1069,19 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 										}
 									});
 									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+									filterByMenu.add(newItemMenuItem);
+								}
+								
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											filterBy("Resource");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Process_Order_Required_Resource"));
 									filterByMenu.add(newItemMenuItem);
 								}
 
