@@ -196,7 +196,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 		sortFieldsSQL.add("WASTE_MATERIAL_ID,REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
 		sortFieldsSQL.add("WASTE_TYPE_ID,REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
 		sortFieldsSQL.add("PROCESS_ORDER,REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
-		sortFieldsSQL.add("WASTE_REASON_ID,REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
+		sortFieldsSQL.add("WASTE_REASON_ID,WASTE_MATERIAL_ID,REPORTING_GROUP,WASTE_REPORTING_ID,WASTE_LOCATION_ID,TRANSACTION_REF");
 		sortFieldsSQL.add("TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
 		sortFieldsSQL.add("REPORT_TIME,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
 		sortFieldsSQL.add("WASTE_TRANSACTION_TYPE,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
@@ -1213,9 +1213,22 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 			}
 		});
 		item2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING2"));
+		
+		JMenuItem item3 = new JMenuItem("Summary Report 3 (By Reason)");
+		item3.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(final ActionEvent e)
+			{
+				jComboBoxSortBy.setSelectedIndex(6);
+				
+				JLaunchReport.runReport("RPT_WASTE_REPORTING3", null, "", buildSQL(qPrint), "");
+			}
+		});
+		item3.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_REPORTING3"));
 
 		popup.add(item1);
 		popup.add(item2);
+		popup.add(item3);
 
 		// show on the button?
 		popup.show((Component) jScrollPane1, 490, 0);
