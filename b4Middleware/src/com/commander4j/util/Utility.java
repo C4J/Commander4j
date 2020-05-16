@@ -19,6 +19,32 @@ import org.w3c.dom.Document;
 
 public class Utility
 {
+	
+	public static String getFilenameFromPath(String path)
+	{
+		String result = "";
+		String temp = replaceNullStringwithBlank(path);
+		int size = temp.length();
+
+		if (size > 0)
+		{
+			for (int x = size; x > 0; x--)
+			{
+				if (temp.substring(x - 1, x).equals("\\"))
+				{
+					break;
+				}
+				if (temp.substring(x - 1, x).equals("/"))
+				{
+					break;
+				}
+				result = temp.substring(x - 1, x) + result;
+			}
+		}
+
+		return result;
+	}
+	
 	public static long compareTwoTimeStamps(java.sql.Timestamp currentTime, java.sql.Timestamp oldTime)
 	{
 	  long milliseconds1 = oldTime.getTime();

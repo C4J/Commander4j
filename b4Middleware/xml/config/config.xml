@@ -6,7 +6,7 @@
     <logArchiveRetentionDays>3</logArchiveRetentionDays>
     <enableEmailNotifications>false</enableEmailNotifications>
     <statusReportTime>09:00:00</statusReportTime>
-    
+
     <map id="map101" enabed="Y" description="NES Konnect XML Material to C4J Material Master">
         <input id="in1" description="Read Konnect XML Material Master">
             <type>XML</type>
@@ -213,13 +213,14 @@
         </output>
     </map>
 
-    <map id="map413" enabed="Y" description="GEN C4J Prod Dec XML to Dual Output (ASCII and CSV Files)">
+    <map id="map413" enabed="Y"
+        description="GEN C4J Prod Dec XML to Dual Output (ASCII and CSV Files)">
         <input id="in1" description="Read XML File">
             <type>XML</type>
             <path>./interface/input/413 (GEN XML to Dual Output)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT></XSLT>
+            <XSLT/>
         </input>
 
         <output id="out1" enabed="Y" description="Write ASCII File">
@@ -239,8 +240,8 @@
             <XSLT>C4J_PRODDEC_XML_to_SAGEX3_GoodsReceipt_CSV.xsl</XSLT>
         </output>
     </map>
-    
-    
+
+
 
     <map id="map114" enabed="Y" description="NES SAP Wonderware XML Material to C4J Material">
         <input id="in1" description="Read NES SAP WWare XML Material">
@@ -257,7 +258,7 @@
             <XSLT/>
         </output>
     </map>
-    
+
     <map id="map116" enabed="Y" description="NES SAP Mii XML Material to C4J Material">
         <input id="in1" description="Read NES SAP Mii XML Material">
             <type>XML</type>
@@ -266,7 +267,7 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>MII_MM_XML_to_C4J_XML.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write Commander4j Material">
             <path>./interface/output/116 (NES C4J - Material from MII)</path>
             <type>XML</type>
@@ -397,6 +398,22 @@
         </output>
     </map>
 
+    <map id="map422" enabed="Y" description="Email Send PDF">
+        <input id="in1" description="Read File">
+            <type>EMAIL</type>
+            <mask>pdf</mask>
+            <path>./interface/input/421 (GEN Email Send)</path>
+            <pollingInterval>2000</pollingInterval>
+        </input>
+        <output id="out1" enabed="Y" description="Send Email">
+            <path>./interface/output/421 (GEN Email Send)</path>
+            <type>EMAIL</type>
+            <subject>Test email of PDF document</subject>
+            <message>PDF Attached.</message>
+            <emailListID>PDF</emailListID>
+        </output>
+    </map>
+
     <map id="map122" enabed="Y" description="NES Atlas XML Filter Destination to C4J XML">
         <input id="in1" description="Read Atlas XML">
             <type>XML</type>
@@ -463,7 +480,7 @@
             <XSLT/>
         </output>
     </map>
-    
+
     <map id="map427" enabed="Y" description="GEN RAW Copy File Only">
         <input id="in1" description="Read RAW Input">
             <type>RAW</type>
@@ -472,13 +489,13 @@
             <pollingInterval>5000</pollingInterval>
             <XSLT/>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write Copy 1">
             <path>./interface/output/427 (GEN Copy 1)</path>
             <type>RAW</type>
             <XSLT/>
         </output>
-        
+
         <output id="out2" enabed="Y" description="Write Copy 2">
             <path>./interface/output/427 (GEN Copy 2)</path>
             <type>RAW</type>
@@ -527,7 +544,8 @@
     </map>
 
 
-    <map id="map130" enabed="Y" description="NES C4J ProdDec XML to B2MML S95 ProdDec XML + C4J Pallet Move XML">
+    <map id="map130" enabed="Y"
+        description="NES C4J ProdDec XML to B2MML S95 ProdDec XML + C4J Pallet Move XML">
         <input id="in1" description="Read C4J Prod Dec XML">
             <type>XML</type>
             <path>./interface/input/130 (NES C4J Production Declaration)</path>
@@ -570,7 +588,8 @@
         </output>
     </map>
 
-    <map id="map332" enabed="Y" description="FH C4J Production Declaration XML to SAGE X3 Goods Receipt CSV">
+    <map id="map332" enabed="Y"
+        description="FH C4J Production Declaration XML to SAGE X3 Goods Receipt CSV">
         <input id="in1" description="Read C4J XML File">
             <type>XML</type>
             <path>./interface/input/332 (FH C4J - Production Declaration)</path>
@@ -578,7 +597,7 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>C4J_PRODDEC_XML_to_SAGEX3_GoodsReceipt_CSV.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write SAGE CSV">
             <path>./interface/output/332 (FH SAGE X3 - Goods Receipt CSV)</path>
             <type>CSV</type>
@@ -598,15 +617,15 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>SAGE_Material_to_Commander4j_MATERIAL.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write C4J Material Master">
             <path>./interface/output/333 (FH C4J Material Bulk Message)</path>
             <type>XML</type>
             <XSLT/>
         </output>
     </map>
-    
-    
+
+
     <map id="map334" enabed="Y" description="FH SAGE Bulk Order to C4J Bulk Order">
         <input id="in1" description="Read SAGE XML Orders">
             <type>XML</type>
@@ -615,21 +634,21 @@
             <pollingInterval>1000</pollingInterval>
             <XSLT>SAGE_Order_to_Commander4j_Order.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Write C4J Order">
             <path>./interface/output/334 (FH C4J Order Bulk Message)</path>
             <type>XML</type>
             <XSLT/>
         </output>
     </map>
-    
+
     <map id="map428" enabed="Y" description="GEN PDF Document to printer queue.">
         <input id="in1" description="Read PDF Document">
             <type>PDF_PRINT</type>
             <path>./interface/input/428 (GEN Print PDF)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT></XSLT>
+            <XSLT/>
         </input>
 
         <output id="out1" enabed="Y" description="Print PDF Document to HP8600">
@@ -639,51 +658,52 @@
             <XSLT/>
         </output>
     </map>
-    
+
     <map id="map429" enabed="Y" description="GEN XML to MQTT Broker">
         <input id="in1" description="Read XML Document">
             <type>XML</type>
             <path>./interface/input/429 (GEN XML MQTT)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT></XSLT>
+            <XSLT/>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Send to MQTT Broker">
             <path>./interface/output/429 (GEN XML MQTT)</path>
             <type>MQTT</type>
             <mqtt>
                 <topic>MQTT Examples</topic>
-                <contentXPath></contentXPath>  <!-- Will use the following if not specified "/mqtt/content"-->
+                <contentXPath/>
+                <!-- Will use the following if not specified "/mqtt/content"-->
                 <qos>2</qos>
                 <broker>tcp://iot.eclipse.org:1883</broker>
-                <clientID>tcp://iot.eclipse.org:1883</clientID>        
+                <clientID>tcp://iot.eclipse.org:1883</clientID>
             </mqtt>
             <XSLT/>
         </output>
     </map>
-    
+
     <map id="map430" enabed="Y" description="GEN XML to SOCKET">
         <input id="in1" description="Read XML Document">
             <type>XML</type>
             <path>./interface/input/430 (GEN XML to SOCKET)</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT></XSLT>
+            <XSLT/>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Send to Host">
             <path>./interface/output/430 (GEN XML to SOCKET)</path>
             <type>SOCKET</type>
             <host>
                 <ip>127.0.0.1</ip>
-                <socket>8000</socket>  
+                <socket>8000</socket>
             </host>
             <copies>2</copies>
             <XSLT/>
         </output>
     </map>
-    
+
     <map id="map431" enabed="Y" description="GEN CSV to SOCKET">
         <input id="in1" description="Read CSV Document">
             <type>CSV</type>
@@ -693,13 +713,13 @@
             <csvOptions>separator=|^quote=none</csvOptions>
             <XSLT>CSV_to_SOCKET.xsl</XSLT>
         </input>
-        
+
         <output id="out1" enabed="Y" description="Send to Host">
             <path>./interface/output/431 (GEN CSV to SOCKET)</path>
             <type>SOCKET</type>
             <host>
                 <ip>127.0.0.1</ip>
-                <socket>9100</socket>  
+                <socket>9100</socket>
                 <repeat>1</repeat>
             </host>
             <XSLT/>

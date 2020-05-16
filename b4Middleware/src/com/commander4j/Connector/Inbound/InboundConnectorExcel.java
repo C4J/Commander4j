@@ -9,13 +9,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellValue;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -61,7 +60,7 @@ public class InboundConnectorExcel extends InboundConnectorABSTRACT
 		return result;
 	}
 
-	@SuppressWarnings("deprecation")
+
 	public boolean readXLSFile(String fullFilename)
 	{
 		logger.debug("connectorLoad [" + fullFilename + "]");
@@ -127,24 +126,28 @@ public class InboundConnectorExcel extends InboundConnectorABSTRACT
 								String outputValue="";
 								
 								switch (cellValue.getCellType()) {
-							    case Cell.CELL_TYPE_BOOLEAN:
+							    case BOOLEAN:
 							    	outputValue=String.valueOf(cellValue.getBooleanValue());
 							        break;
-							    case Cell.CELL_TYPE_NUMERIC:
+							    case NUMERIC :
 							        outputValue=String.valueOf(cellValue.getNumberValue());
-							        if (HSSFDateUtil.isCellDateFormatted(cell)) {
+							        if (DateUtil.isCellDateFormatted(cell)) {
 							        	outputValue	= Utility.getISODateStringFormat((cell.getDateCellValue()));
 							        }
 							        break;
-							    case Cell.CELL_TYPE_STRING:
+							    case STRING :
 							        outputValue=String.valueOf(cellValue.getStringValue());
 							        break;
-							    case Cell.CELL_TYPE_BLANK:
+							    case BLANK:
 							        break;
-							    case Cell.CELL_TYPE_ERROR:
+							    case ERROR :
 							        break;
-							    case Cell.CELL_TYPE_FORMULA: 
+							    case FORMULA : 
 							        break;
+								case _NONE:
+									break;
+								default:
+									break;
 							}
 								
 								Element xmlcol = addElement(data, "col", outputValue);
@@ -180,7 +183,6 @@ public class InboundConnectorExcel extends InboundConnectorABSTRACT
 
 	}
 
-	@SuppressWarnings("deprecation")
 	public boolean readXLSXFile(String fullFilename)
 	{
 		logger.debug("connectorLoad [" + fullFilename + "]");
@@ -246,27 +248,29 @@ public class InboundConnectorExcel extends InboundConnectorABSTRACT
 								String outputValue="";
 								
 								switch (cellValue.getCellType()) {
-							    case Cell.CELL_TYPE_BOOLEAN:
+							    case BOOLEAN:
 							    	outputValue=String.valueOf(cellValue.getBooleanValue());
 							        break;
-							    case Cell.CELL_TYPE_NUMERIC:
+							    case NUMERIC:
 							        outputValue=String.valueOf(cellValue.getNumberValue());
-							        if (HSSFDateUtil.isCellDateFormatted(cell)) {
+							        if (DateUtil.isCellDateFormatted(cell)) {
 							        	outputValue	= Utility.getISODateStringFormat((cell.getDateCellValue()));
 							        }
 
 							        break;
-							    case Cell.CELL_TYPE_STRING:
+							    case STRING:
 							        outputValue=String.valueOf(cellValue.getStringValue());
 							        break;
-							    case Cell.CELL_TYPE_BLANK:
+							    case BLANK:
 							        break;
-							    case Cell.CELL_TYPE_ERROR:
+							    case ERROR:
 							        break;
-
-							    // CELL_TYPE_FORMULA will never happen
-							    case Cell.CELL_TYPE_FORMULA: 
+							    case FORMULA: 
 							        break;
+								case _NONE:
+									break;
+								default:
+									break;
 							}
 								
 								Element xmlcol = addElement(data, "col", outputValue);

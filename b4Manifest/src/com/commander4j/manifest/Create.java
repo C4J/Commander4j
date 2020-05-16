@@ -149,7 +149,7 @@ public class Create
 							fos = new FileOutputStream(fout);
 							bw = new BufferedWriter(new OutputStreamWriter(fos));
 
-							prefix = "Manifest-Version: 1.0\n" + "Main-Class: com.commander4j.start.Init\n" + "Class-Path:";
+							prefix = "Manifest-Version: 1.0\n" + "Main-Class: "+startClass+"\n" + "Class-Path:";
 						}
 
 						bw.write(prefix + " " + file.getAbsolutePath().substring(source.length() + 1) + " ");
