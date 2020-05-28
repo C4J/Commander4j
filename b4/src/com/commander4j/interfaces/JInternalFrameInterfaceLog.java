@@ -490,7 +490,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(497, 522));
-			this.setBounds(0, 0, 1015, 638);
+			this.setBounds(0, 0, 1000, 638);
 			setVisible(true);
 			this.setClosable(true);
 			this.setTitle("Interface Log");
@@ -506,7 +506,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Search"));
 					jButtonRefresh.setMnemonic(KeyEvent.VK_S);
-					jButtonRefresh.setBounds(3, 135, 139, 32);
+					jButtonRefresh.setBounds(3, 145, 139, 32);
 					jButtonRefresh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							refresh();
@@ -517,7 +517,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 				jScrollPane1 = new JScrollPane();
 				jScrollPane1.getViewport().setBackground(Common.color_tablebackground);
 				jDesktopPane1.add(jScrollPane1);
-				jScrollPane1.setBounds(1, 172, 983, 290);
+				jScrollPane1.setBounds(-1, 179, 983, 290);
 				jTable1 = new JTable4j();
 				jScrollPane1.setViewportView(jTable1);
 
@@ -601,7 +601,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					jButtonClose.setBounds(843, 135, 139, 32);
+					jButtonClose.setBounds(843, 145, 139, 32);
 					{
 
 						jSpinnerIntModel.setValue(1000);
@@ -618,14 +618,14 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 					}
 					{
 						JLabel4j_std lblErrorMessage = new JLabel4j_std(lang.get("lbl_Message_Error"));
-						lblErrorMessage.setBounds(11, 506, 96, 21);
+						lblErrorMessage.setBounds(9, 513, 96, 21);
 						lblErrorMessage.setHorizontalAlignment(SwingConstants.TRAILING);
 						jDesktopPane1.add(lblErrorMessage);
 					}
 					{
 						errorMessage = new JTextField4j();
 						errorMessage.setEditable(false);
-						errorMessage.setBounds(112, 506, 860, 20);
+						errorMessage.setBounds(110, 513, 860, 20);
 						jDesktopPane1.add(errorMessage);
 						errorMessage.setColumns(10);
 					}
@@ -638,26 +638,26 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 
 					lblMessageDate = new JLabel4j_std(lang.get("lbl_Message_Date"));
 					lblMessageDate.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMessageDate.setBounds(21, 476, 84, 21);
+					lblMessageDate.setBounds(19, 483, 84, 21);
 					jDesktopPane1.add(lblMessageDate);
 					{
 						messageDate = new JTextField4j();
 						messageDate.setEditable(false);
 						messageDate.setColumns(10);
-						messageDate.setBounds(112, 476, 146, 20);
+						messageDate.setBounds(110, 483, 146, 20);
 						jDesktopPane1.add(messageDate);
 					}
 					{
 						workstation = new JTextField4j();
 						workstation.setEditable(false);
 						workstation.setColumns(10);
-						workstation.setBounds(370, 476, 376, 20);
+						workstation.setBounds(368, 483, 376, 20);
 						jDesktopPane1.add(workstation);
 					}
 					{
 						JLabel4j_std lblWorkstation = new JLabel4j_std(lang.get("lbl_Workstation"));
 						lblWorkstation.setHorizontalAlignment(SwingConstants.TRAILING);
-						lblWorkstation.setBounds(282, 476, 81, 21);
+						lblWorkstation.setBounds(280, 483, 81, 21);
 						jDesktopPane1.add(lblWorkstation);
 					}
 					{
@@ -826,7 +826,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 				});
 				button.setText(lang.get("btn_Excel"));
 				button.setMnemonic(lang.getMnemonicChar());
-				button.setBounds(423, 135, 139, 32);
+				button.setBounds(423, 145, 139, 32);
 				jDesktopPane1.add(button);
 			}
 
@@ -838,7 +838,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			});
 			button_1.setText(lang.get("btn_Clear_Filter"));
 			button_1.setMnemonic(lang.getMnemonicChar());
-			button_1.setBounds(143, 135, 139, 32);
+			button_1.setBounds(143, 145, 139, 32);
 			jDesktopPane1.add(button_1);
 			{
 
@@ -851,14 +851,14 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			{
 				lblFilename = new JLabel4j_std(lang.get("lbl_Interface_Filename"));
 				lblFilename.setHorizontalAlignment(SwingConstants.TRAILING);
-				lblFilename.setBounds(11, 536, 96, 21);
+				lblFilename.setBounds(9, 543, 96, 21);
 				jDesktopPane1.add(lblFilename);
 			}
 
 			textFieldFilename = new JTextField4j();
 			textFieldFilename.setEditable(false);
 			textFieldFilename.setColumns(10);
-			textFieldFilename.setBounds(112, 536, 860, 20);
+			textFieldFilename.setBounds(110, 543, 860, 20);
 			jDesktopPane1.add(textFieldFilename);
 
 			JButton4j btnResubmit = new JButton4j(Common.icon_release_16x16);
@@ -870,7 +870,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			});
 			btnResubmit.setText(lang.get("btn_Resubmit"));
 			btnResubmit.setMnemonic(lang.getMnemonicChar());
-			btnResubmit.setBounds(283, 135, 139, 32);
+			btnResubmit.setBounds(283, 145, 139, 32);
 			jDesktopPane1.add(btnResubmit);
 
 			JButton4j btnDelete = new JButton4j(Common.icon_delete_16x16);
@@ -882,7 +882,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			btnDelete.setToolTipText("Export all rows below to spreadsheet.");
 			btnDelete.setText(lang.get("btn_Delete"));
 			btnDelete.setMnemonic(lang.getMnemonicChar());
-			btnDelete.setBounds(563, 135, 139, 32);
+			btnDelete.setBounds(563, 145, 139, 32);
 			jDesktopPane1.add(btnDelete);
 
 			JButton4j btnArchiveResolved = new JButton4j(Common.icon_delete_16x16);
@@ -894,7 +894,7 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 			btnArchiveResolved.setToolTipText("Export all rows below to spreadsheet.");
 			btnArchiveResolved.setText(lang.get("btn_Archive"));
 			btnArchiveResolved.setMnemonic(lang.getMnemonicChar());
-			btnArchiveResolved.setBounds(703, 135, 139, 32);
+			btnArchiveResolved.setBounds(703, 145, 139, 32);
 			jDesktopPane1.add(btnArchiveResolved);
 			
 			calendarButtonFrom = new JCalendarButton(dateControlfrom);
