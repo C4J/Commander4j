@@ -201,14 +201,20 @@ public class JDBDespatch
 
 			rs = stmt.executeQuery();
 
-			rs.last();
-			int rows = rs.getRow();
-			rs.beforeFirst();
-
-			if (rows > 0)
+			while (rs.next())
 			{
 				result = false;
+				setErrorMessage(rs.getString("SSCC"));
 			}
+			
+//			rs.last();
+//			int rows = rs.getRow();
+//			rs.beforeFirst();
+//
+//			if (rows > 0)
+//			{
+//				result = false;
+//			}
 
 			rs.close();
 
@@ -1201,7 +1207,7 @@ public class JDBDespatch
 				{
 					if (isPalletBatchStatusOK(getDespatchNo()) == false)
 					{
-						setErrorMessage("Check Batch & Pallet Status");
+						setErrorMessage("Check Status of "+getErrorMessage());
 						result = false;
 					}
 

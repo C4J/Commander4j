@@ -20,7 +20,7 @@
 				<col id="2">LIV</col>
 				<col id="3"><xsl:value-of select="processOrder"/></col>
 				<col id="4"><xsl:value-of select="material"/></col>
-				<col id="5"><xsl:value-of select="floor(number(productionQuantity))"/></col>
+				<col id="5"><xsl:value-of select="productionQuantity"/></col>
 				<col id="6"><xsl:value-of select="productionUOM"/></col>
 				<col id="7">1</col>
 			</row>
@@ -28,7 +28,7 @@
 			<row id="2" cols="9">
 				<col id="1">S</col>
 				<col id="2"><xsl:value-of select="productionUOM"/></col>
-				<col id="3"><xsl:value-of select="floor(number(productionQuantity))"/></col>
+				<col id="3"><xsl:value-of select="productionQuantity"/></col>
 				<col id="4">1</col>
 				<col id="5"><xsl:value-of select="warehouse"/></col>
 				<col id="6">A</col>
