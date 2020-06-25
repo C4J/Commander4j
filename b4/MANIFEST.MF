@@ -94,13 +94,13 @@ Class-Path: lib/app/log4j-1.2.15.jar
  lib/barcode/serializer-2.7.2.jar 
  lib/barcode/avalon-framework-4.2.0.jar 
  lib/barcode/jdom-2.0.6.jar 
- lib/jasper/jasperreports-annotation-processors-6.12.2.jar 
- lib/jasper/jasperreports-fonts-6.12.2.jar 
- lib/jasper/jasperreports-metadata-6.12.2.jar 
- lib/jasper/jasperreports-functions-6.12.2.jar 
- lib/jasper/jasperreports-chart-customizers-6.12.2.jar 
- lib/jasper/jasperreports-custom-visualization-6.12.2.jar 
- lib/jasper/jasperreports-javaflow-6.12.2.jar 
- lib/jasper/jasperreports-6.12.2.jar 
- lib/jasper/jasperreports-chart-themes-6.12.2.jar 
+ lib/jasper/jasperreports-annotation-processors-6.13.0.jar 
+ lib/jasper/jasperreports-fonts-6.13.0.jar 
+ lib/jasper/jasperreports-metadata-6.13.0.jar 
+ lib/jasper/jasperreports-functions-6.13.0.jar 
+ lib/jasper/jasperreports-chart-customizers-6.13.0.jar 
+ lib/jasper/jasperreports-custom-visualization-6.13.0.jar 
+ lib/jasper/jasperreports-javaflow-6.13.0.jar 
+ lib/jasper/jasperreports-6.13.0.jar 
+ lib/jasper/jasperreports-chart-themes-6.13.0.jar 
  lib/serial/jSerialComm-2.6.2.jar 
