@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config name="AutoLab">
+    
+    <debug suppressLabelPrint="true" suppressOutputMessage="false"/>
+    
+    <!-- Folders -->
+    
+    <paths>
+        <labelSync path="/Users/dave/Commander4j/workspace.development/b4Modbus/remote_labels" frequency="10"/>
+        <dataSet path="/Users/dave/Commander4j/workspace.development/b4Modbus/remote_dataset"/>
+        <output path="/Users/dave/Commander4j/workspace.development/b4Modbus/interface/output/ProdDec"/>
+    </paths>
+    
+    <!-- Label Quantities -->
+    
+    <labels>
+        <pallet perPrint="2" total="2" field = "DESCRIPTION" criteria=""/>
+        <semiPallet perPrint="2" total="4" field = "DESCRIPTION" criteria=" SEMIP"/>
+    </labels>
+    
+    <!-- Customer Specific Batch Formats -->
+    
+    <batchFormats>
+        <customer id="SELF" pattern="{YEAR1}{JULIAN_DAY}{PROCESS_ORDER}"/>
+    </batchFormats>
+    
+    <!-- Copy of some System Keys normally read from database (jdbc) -->
+    
+    <controls>
+        <system key="HOST REF" value="VALIVE"/>
+        <system key="PLANT" value="0925"/>
+        <system key="BATCH FORMAT" value="{YEAR1}{JULIAN_DAY}{PROCESS_ORDER}"/>
+        <system key="BATCH EXPIRY TIME" value="-"/>     
+        <system key="LABEL_HEADER_COMMENT" value="Free format text"/>
+        <system key="EXPIRY DATE MODE" value="SSCC"/>
+        <system key="SSCC AUTO CONFIRM" value="Y"/>
+    </controls>
+    
+    <productionLines>
+        
+        <!-- CETEC 2 -->
+        
+        <productionLine name="CETEC 2" enabled="Y"> 
+            <modbus name="ADAM-6050">
+                <ipAddress>192.168.1.140</ipAddress>
+                <portNumber>502</portNumber>
+                <coilAddress>0</coilAddress>
+                <timeout>4000</timeout>
+                <coilTriggerValue>true</coilTriggerValue>
+            </modbus>
+            <printer name="ZEBRA CETEC 2"/>
+            <SSCC filename="CETEC 2.xml"/>
+        </productionLine>
+        
+        <!-- CETEC 4 -->
+        
+        <productionLine name="CETEC 4" enabled="Y"> 
+            <modbus name="ADAM-6050">
+                <ipAddress>192.168.1.140</ipAddress>
+                <portNumber>502</portNumber>
+                <coilAddress>1</coilAddress>
+                <timeout>4000</timeout>
+                <coilTriggerValue>true</coilTriggerValue>
+            </modbus> 
+            <printer name="ZEBRA CETEC 4"/>
+            <SSCC filename="CETEC 4.xml"/>
+        </productionLine>
+        
+        <!-- CETEC 5 -->
+        
+        <productionLine name="CETEC 5" enabled="Y"> 
+            <modbus name="ADAM-6050">
+                <ipAddress>192.168.1.140</ipAddress>
+                <portNumber>502</portNumber>
+                <coilAddress>2</coilAddress>
+                <timeout>4000</timeout>
+                <coilTriggerValue>true</coilTriggerValue>
+            </modbus>    
+            <printer name="ZEBRA CETEC 5"/>
+            <SSCC filename="CETEC 5.xml"/>
+        </productionLine>
+        
+        <!-- CETEC 6 -->
+        
+        <productionLine name="CETEC 6" enabled="Y"> 
+            <modbus name="ADAM-6050">
+                <ipAddress>192.168.1.140</ipAddress>
+                <portNumber>502</portNumber>
+                <coilAddress>3</coilAddress>
+                <timeout>4000</timeout>
+                <coilTriggerValue>true</coilTriggerValue>
+            </modbus>  
+            <printer name="ZEBRA CETEC 6"/>
+            <SSCC filename="CETEC 6.xml"/>
+        </productionLine>
+        
+    </productionLines>
+    
+    <!-- Alias field names so we can use unmodified .lbl templayte file -->  
+    
+    <fieldNamesLookup>
+         <fieldName csv="MATERIAL_DESCRIPTION" db="DESCRIPTION"/>
+         <fieldName csv="PROD_EAN" db="EAN"/>
+         <fieldName csv="PROD_QUANTITY" db="QUANTITY"/>
+    </fieldNamesLookup>
+        
+    <!-- Make unmodified copy of Quantity for use in ProdDec XML -->   
+    
+     <clone>
+         <field from="QUANTITY" to="QUANTITY_DECIMALS"/>
+     </clone>   
+     
+    <!-- Overide format of Quantity so we can use in ZPL -->   
+    
+    <formats>
+        <field name="QUANTITY" format="0000"/>
+    </formats>
+    
+</config>

@@ -23,7 +23,7 @@
 		
 		<xsl:variable name="byProductUOM" select="requiredUom"/>
 
-		<xsl:if test="$byProductUOM!='KG'">
+		<xsl:if test="$byProductUOM!='99'">
 			
 			<xsl:variable name="message_date_time" select="c4j_XSLT_Ext:getISODateTimeString()"
 				xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
