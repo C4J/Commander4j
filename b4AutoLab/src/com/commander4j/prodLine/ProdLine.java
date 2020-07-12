@@ -3,7 +3,6 @@ package com.commander4j.prodLine;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
-import com.commander4j.autolab.StartStop;
 import com.commander4j.dataset.DataSet;
 import com.commander4j.modbus.Modbus;
 import com.commander4j.utils.JUnique;
@@ -192,7 +191,7 @@ public class ProdLine extends Thread
 
 		run = true;
 		logger.debug("["+getUuid()+"] {"+getName()+"} Thread Started...");
-		StartStop.debugToFile("["+getUuid()+"] {"+getName()+"} Thread Started...");
+
 		
 		AutoLab.start_SSCC_Thread(getSsccSequenceFilename());
 		
@@ -262,7 +261,7 @@ public class ProdLine extends Thread
 		wait.manySec(1);
 		
 		logger.debug("["+getUuid()+"] {"+getName()+"} Thread Stopped...");
-		StartStop.debugToFile("["+getUuid()+"] {"+getName()+"} Thread Stopped...");
+
 	}
 	
 }

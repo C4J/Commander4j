@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.7" transformSequenceNumber="8">
-  <directoryPresets config="./interface/input" />
+  <directoryPresets config="." />
   <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Autolab4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.00" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
     <languages>
       <additionalLanguages>
-        <language id="da" />
         <language id="nl" />
         <language id="fr" />
         <language id="de" />
@@ -34,12 +33,19 @@
       <mountPoint id="124" location="xml" />
       <mountPoint id="125" location="xml/config" />
       <mountPoint id="126" location="xml/sscc" />
+      <mountPoint id="347" location="images" />
+      <mountPoint id="348" location="licences" />
       <mountPoint id="127" />
     </mountPoints>
     <entries>
-      <dirEntry mountPoint="237" file="./interface/input/dataset" subDirectory="dataset" />
-      <dirEntry mountPoint="119" file="../b4AutoLab/labels" subDirectory="labels" />
-      <dirEntry mountPoint="120" file="../b4AutoLab/lib" subDirectory="lib">
+      <dirEntry mountPoint="237" file="./interface/input/dataset" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="dataset" />
+      <dirEntry mountPoint="238" file="./interface/output/ProdDec" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="ProdDec">
+        <exclude>
+          <entry location="dirClean.ok" />
+        </exclude>
+      </dirEntry>
+      <dirEntry mountPoint="119" file="../b4AutoLab/labels" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="labels" />
+      <dirEntry mountPoint="120" file="../b4AutoLab/lib" uninstallMode="2" overrideUninstallMode="true" subDirectory="lib">
         <exclude>
           <entry location=".DS_Store" />
         </exclude>
@@ -49,30 +55,47 @@
           <entry location="Backup" />
         </exclude>
       </dirEntry>
-      <dirEntry mountPoint="123" file="../b4AutoLab/remote_labels" subDirectory="remote_labels" />
+      <dirEntry mountPoint="123" file="../b4AutoLab/remote_labels" overwriteMode="0" uninstallMode="1" subDirectory="remote_labels" />
       <dirEntry mountPoint="125" file="../b4AutoLab/xml/config" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="config" />
       <dirEntry mountPoint="126" file="../b4AutoLab/xml/sscc" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="sscc" />
+      <dirEntry mountPoint="347" file="./images/Launcher" subDirectory="Launcher" />
+      <dirEntry mountPoint="348" file="./licences" subDirectory="licences" />
       <fileEntry mountPoint="127" file="../b4AutoLab/autolab4j.jar" />
+      <fileEntry mountPoint="127" file="./Commander4j GNU GENERAL PUBLIC LICENSE.txt" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" />
     </entries>
   </files>
   <launchers>
-    <launcher name="autolab4j_service" id="128">
-      <executable name="Autolab4j_service" executableDir="." redirectStderr="false" executableMode="service" />
+    <launcher name="autolab4j_service" id="128" icnsFile="./images/Launcher/AutoLab4j.icns">
+      <executable name="AutoLab4j_Service" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." redirectStderr="false" executableMode="service" />
       <java mainClass="com.commander4j.autolab.StartStop">
         <classPath>
           <archive location="autolab4j.jar" failOnError="false" />
         </classPath>
       </java>
       <vmOptionsFile mode="none" />
+      <iconImageFiles>
+        <file path="./images/Launcher/AutoLab4j (PNG)/16x16.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/icon_32x32.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/icon_128x128.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/icon_256x256.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/icon_512x512.png" />
+      </iconImageFiles>
     </launcher>
-    <launcher name="autolab4j_console" id="130">
-      <executable name="Autolab4j_console" executableDir="." redirectStderr="false" executableMode="console" />
-      <java mainClass="com.commander4j.autolab.AutoLab">
+    <launcher name="autolab4j_console" id="130" icnsFile="./images/Launcher/AutoLab4j.icns">
+      <executable name="AutoLab4j_Console" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." redirectStderr="false" executableMode="console" />
+      <java mainClass="com.commander4j.autolab.StartStop">
         <classPath>
           <archive location="autolab4j.jar" failOnError="false" />
         </classPath>
       </java>
       <vmOptionsFile mode="none" />
+      <iconImageFiles>
+        <file path="./images/Launcher/AutoLab4j (PNG)/icon_16x16.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/icon_32x32.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/icon_128x128.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/icon_256x256.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/icon_512x512.png" />
+      </iconImageFiles>
     </launcher>
   </launchers>
   <installerGui>
@@ -124,6 +147,38 @@ return console.askOkCancel(message, true);
                 <serializedBean>
                   <property name="labelText" type="string">${i18n:ClickNext}</property>
                 </serializedBean>
+              </formComponent>
+            </formComponents>
+          </screen>
+          <screen id="349" beanClass="com.install4j.runtime.beans.screens.LicenseScreen" rollbackBarrierExitCode="0">
+            <formComponents>
+              <formComponent id="350" beanClass="com.install4j.runtime.beans.formcomponents.MultilineLabelComponent">
+                <serializedBean>
+                  <property name="labelText" type="string">${i18n:LicenseLabel3}</property>
+                </serializedBean>
+              </formComponent>
+              <formComponent id="351" beanClass="com.install4j.runtime.beans.formcomponents.LicenseComponent" useExternalParametrization="true" externalParametrizationName="License Agreement" externalParametrizationMode="include">
+                <serializedBean>
+                  <property name="displayedTextFile" id="LocalizedExternalFile0">
+                    <property name="languageIdToExternalFile">
+                      <entry>
+                        <string>en</string>
+                        <object class="com.install4j.api.beans.ExternalFile">
+                          <string>./Commander4j GNU GENERAL PUBLIC LICENSE.txt</string>
+                        </object>
+                      </entry>
+                    </property>
+                  </property>
+                  <property name="fillVertical" type="boolean" value="true" />
+                </serializedBean>
+                <externalParametrizationPropertyNames>
+                  <propertyName>textSource</propertyName>
+                  <propertyName>displayedText</propertyName>
+                  <propertyName>displayedTextFile</propertyName>
+                  <propertyName>variableName</propertyName>
+                  <propertyName>acceptInitiallySelected</propertyName>
+                  <propertyName>readAllRequired</propertyName>
+                </externalParametrizationPropertyNames>
               </formComponent>
             </formComponents>
           </screen>

@@ -1,6 +1,5 @@
 package com.commander4j.autolab;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -9,19 +8,16 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.LoggerContext;
-
 import java.util.Set;
 
+import org.apache.logging.log4j.Logger;
+
+import com.commander4j.common.Common;
 import com.commander4j.config.Config;
 import com.commander4j.config.ProdLineDefinition;
 import com.commander4j.labelsync.LabelSync;
 import com.commander4j.prodLine.ProdLine;
 import com.commander4j.sscc.SSCC_Sequence;
-import com.commander4j.common.Common;
 import com.commander4j.utils.JUtility;
 import com.commander4j.utils.JWait;
 
@@ -41,18 +37,23 @@ public class AutoLab extends Thread
 	@Override
 	public void run()
 	{
-		StartStop.debugToFile("StartAutoLab start");
+
 		StartAutoLab();
-		StartStop.debugToFile("StartAutoLab done");
 
 		while (run)
 		{
-			wait.milliSec(100);
+			try
+			{
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e)
+			{
+				run = false;
+				break;
+			}
 		}
 		
-		StartStop.debugToFile("StopAutoLab start");
 		StopAutoLab();
-		StartStop.debugToFile("StopAutoLab done");
 	}
 
 	public void requestStop()
@@ -66,7 +67,7 @@ public class AutoLab extends Thread
 
 		Locale.setDefault(new Locale(Common.locale_language, Common.locale_region));
 
-		initLogging("");
+
 
 		logger.debug("StartAutoLab() 1");
 
@@ -105,8 +106,6 @@ public class AutoLab extends Thread
 	{
 		boolean result = true;
 
-		StartStop.debugToFile("StopAutoLab() 1");
-
 		// Stop the Production Line Threads
 
 		Set<Entry<String, Thread>> entrySet2 = threadList_ProdLine.entrySet();
@@ -136,24 +135,11 @@ public class AutoLab extends Thread
 		sync.shutdown();
 
 		wait.oneSec();
-		StartStop.debugToFile("StopAutoLab() 2");
 
 		return result;
 	}
 
-	public static void initLogging(String filename)
-	{
-		if (filename.isEmpty())
-		{
-			filename = System.getProperty("user.dir") + File.separator + "xml" + File.separator + "config" + File.separator + "log4j2.xml";
-		}
 
-		LoggerContext context = (org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false);
-		File file = new File(filename);
-
-		context.setConfigLocation(file.toURI());
-
-	}
 
 	// These methods permit inter thread communication using the common uuid
 
