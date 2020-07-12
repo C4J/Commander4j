@@ -1,0 +1,32 @@
+2020-07-12T08:25:14 Main
+2020-07-12T08:25:14 Starting
+2020-07-12T08:25:14 StartAutoLab start
+2020-07-12T08:25:14 [56f55d65-788f-4372-abe2-b8dd4fd52c12] {ProdLine CETEC 6} Thread Started...
+2020-07-12T08:25:14 [3a60da01-60be-4292-ac13-840bc938d150] {ProdLine CETEC 5} Thread Started...
+2020-07-12T08:25:14 [2302d26d-c056-430f-9343-c8664a5e40db] {ProdLine CETEC 4} Thread Started...
+2020-07-12T08:25:14 [f825eb6a-f883-4b38-b14d-c65e4f7d8ac1] {ProdLine CETEC 2} Thread Started...
+2020-07-12T08:25:14 StartAutoLab done
+2020-07-12T08:25:28 Shutdown detected - requesting threads stop.
+2020-07-12T08:25:28 Waiting for threads to stop.
+2020-07-12T08:25:28 StopAutoLab start
+2020-07-12T08:25:28 StopAutoLab() 1
+2020-07-12T08:25:29 Waiting for threads to stop.
+2020-07-12T08:25:30 Waiting for threads to stop.
+2020-07-12T08:25:30 [56f55d65-788f-4372-abe2-b8dd4fd52c12] {ProdLine CETEC 6} Thread Stopped...
+2020-07-12T08:25:31 Waiting for threads to stop.
+2020-07-12T08:25:32 Waiting for threads to stop.
+2020-07-12T08:25:33 Waiting for threads to stop.
+2020-07-12T08:25:33 [2302d26d-c056-430f-9343-c8664a5e40db] {ProdLine CETEC 4} Thread Stopped...
+2020-07-12T08:25:34 Waiting for threads to stop.
+2020-07-12T08:25:35 Waiting for threads to stop.
+2020-07-12T08:25:36 Waiting for threads to stop.
+2020-07-12T08:25:36 [3a60da01-60be-4292-ac13-840bc938d150] {ProdLine CETEC 5} Thread Stopped...
+2020-07-12T08:25:37 Waiting for threads to stop.
+2020-07-12T08:25:38 Waiting for threads to stop.
+2020-07-12T08:25:39 Waiting for threads to stop.
+2020-07-12T08:25:40 Waiting for threads to stop.
+2020-07-12T08:25:40 [f825eb6a-f883-4b38-b14d-c65e4f7d8ac1] {ProdLine CETEC 2} Thread Stopped...
+2020-07-12T08:25:41 Waiting for threads to stop.
+2020-07-12T08:25:41 StopAutoLab() 2
+2020-07-12T08:25:41 StopAutoLab done
+2020-07-12T08:25:42 Stopped.
