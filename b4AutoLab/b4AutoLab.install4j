@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.7" transformSequenceNumber="8">
-  <directoryPresets config="." />
+  <directoryPresets config="./images/Launcher/AutoLab4j (PNG)" />
   <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Autolab4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.00" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
     <languages>
       <additionalLanguages>
@@ -75,10 +75,10 @@
       <vmOptionsFile mode="none" />
       <iconImageFiles>
         <file path="./images/Launcher/AutoLab4j (PNG)/16x16.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/icon_32x32.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/icon_128x128.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/icon_256x256.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/icon_512x512.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/32x32.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/48x48.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/128x128.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/256x256.png" />
       </iconImageFiles>
     </launcher>
     <launcher name="autolab4j_console" id="130" icnsFile="./images/Launcher/AutoLab4j.icns">
@@ -90,17 +90,48 @@
       </java>
       <vmOptionsFile mode="none" />
       <iconImageFiles>
-        <file path="./images/Launcher/AutoLab4j (PNG)/icon_16x16.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/icon_32x32.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/icon_128x128.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/icon_256x256.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/icon_512x512.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/16x16.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/32x32.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/48x48.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/128x128.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/256x256.png" />
       </iconImageFiles>
     </launcher>
   </launchers>
   <installerGui>
     <applications>
-      <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication">
+      <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication" customIcnsFile="./images/Launcher/AutoLab4j.icns" customIcoFile="./images/Launcher/AutoLab4j.ico">
+        <serializedBean>
+          <property name="customIconImageFiles">
+            <add>
+              <object class="com.install4j.api.beans.ExternalFile">
+                <string>./images/Launcher/AutoLab4j (PNG)/16x16.png</string>
+              </object>
+            </add>
+            <add>
+              <object class="com.install4j.api.beans.ExternalFile">
+                <string>./images/Launcher/AutoLab4j (PNG)/32x32.png</string>
+              </object>
+            </add>
+            <add>
+              <object class="com.install4j.api.beans.ExternalFile">
+                <string>./images/Launcher/AutoLab4j (PNG)/48x48.png</string>
+              </object>
+            </add>
+            <add>
+              <object class="com.install4j.api.beans.ExternalFile">
+                <string>./images/Launcher/AutoLab4j (PNG)/128x128.png</string>
+              </object>
+            </add>
+            <add>
+              <object class="com.install4j.api.beans.ExternalFile">
+                <string>./images/Launcher/AutoLab4j (PNG)/256x256.png</string>
+              </object>
+            </add>
+          </property>
+          <property name="disableConsoleOnWindows" type="boolean" value="true" />
+          <property name="useCustomIcon" type="boolean" value="true" />
+        </serializedBean>
         <startup>
           <screen id="1" beanClass="com.install4j.runtime.beans.screens.StartupScreen" rollbackBarrierExitCode="0">
             <actions>

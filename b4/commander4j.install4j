@@ -254,7 +254,6 @@
     <applications>
       <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication" customIcnsFile="./images/Launcher/CMD_Icon.icns" customIcoFile="./images/Launcher/CMD_Icon.ico" launchInNewProcess="false">
         <serializedBean>
-          <property name="allowUnattended" type="boolean" value="false" />
           <property name="customIconImageFiles">
             <add>
               <object class="com.install4j.api.beans.ExternalFile">
