@@ -131,7 +131,7 @@ public class Config
 				prodLine.setPrinter_Name(xmlDoc.findXPath("/config/productionLines/productionLine[" + String.valueOf(seq) + "]/printer//@name"));
 				logger.debug("         Printer Name         [" + prodLine.getPrinter_Name() + "]");
 
-				prodLine.setSscc_Filename(xmlDoc.findXPath("/config/productionLines/productionLine[" + String.valueOf(seq) + "]/SSCC//@filename").toUpperCase());
+				prodLine.setSscc_Filename(xmlDoc.findXPath("/config/productionLines/productionLine[" + String.valueOf(seq) + "]/SSCC//@filename"));
 				logger.debug("         SSCC Seq Filename    [" + prodLine.getSscc_Filename() + "]");
 				
 				config_ProdLines.put(prodLine.getProdLine_Name(), prodLine);

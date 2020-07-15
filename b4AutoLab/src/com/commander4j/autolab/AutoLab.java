@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.common.Common;
 import com.commander4j.config.Config;
 import com.commander4j.config.ProdLineDefinition;
+import com.commander4j.email.EmailQueue;
 import com.commander4j.labelsync.LabelSync;
 import com.commander4j.prodLine.ProdLine;
 import com.commander4j.sscc.SSCC_Sequence;
@@ -33,6 +34,8 @@ public class AutoLab extends Thread
 	public static HashMap<String, ProdLineDefinition> lines = new HashMap<String, ProdLineDefinition>();
 	public static LabelSync sync;
 	public static boolean run = true;
+	public static EmailQueue emailqueue = new EmailQueue();
+	public static String version = "1.00";
 
 	@Override
 	public void run()
@@ -64,12 +67,10 @@ public class AutoLab extends Thread
 	public boolean StartAutoLab()
 	{
 		boolean result = true;
+		
+		logger.debug("Version "+version);
 
 		Locale.setDefault(new Locale(Common.locale_language, Common.locale_region));
-
-
-
-		logger.debug("StartAutoLab() 1");
 
 		// *Get Configuration* //
 
@@ -96,8 +97,6 @@ public class AutoLab extends Thread
 
 		sync = new LabelSync("LabelSync", config.getLabelSyncPath(), config.getLabelSyncFrequency());
 		sync.start();
-
-		logger.debug("StartAutoLab() 2");
 
 		return result;
 	}

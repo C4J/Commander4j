@@ -131,7 +131,7 @@ public class DataSet extends Thread
 		setDataReady(false);
 
 		logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Thread Started...");
-
+		
 		File src = new File(getRemoteFilename());
 		File dst = new File(getLocalFilename());
 
@@ -140,13 +140,15 @@ public class DataSet extends Thread
 			if (src.exists())
 			{
 				logger.debug("[" + getUuid() + "] {" + getName() + "} " + " Found Remote DataSet "+src.getAbsolutePath());
-				utility.copyFile(getName(), src, dst);
+				utility.copyNewerFile(getName(), src, dst);
 
 				loadCSV("Remote", getRemoteFilename());
 
 				defaultLoaded = true;
 
 				FileUtils.deleteQuietly(src);
+				
+				AutoLab.emailqueue.addToQueue("Info", utility.getClientName() + " Remote DataSet Loaded ",AutoLab.threadList_ProdLine.get(getUuid()).getName()+" [" + getUuid() + "] {" + getName() + "} \n\n"+getRemoteFilename(), "");
 			}
 			else
 			{
@@ -159,10 +161,15 @@ public class DataSet extends Thread
 						loadCSV("Local", getLocalFilename());
 
 						defaultLoaded = true;
+						
+						AutoLab.emailqueue.addToQueue("Info",utility.getClientName() + " Local DataSet Loaded ",AutoLab.threadList_ProdLine.get(getUuid()).getName()+" [" + getUuid() + "] {" + getName() + "} \n\n"+getLocalFilename(), "");
 					}
 					else
 					{
 						logger.debug("[" + getUuid() + "] {" + getName() + "} " + "*ERROR* No DataSet Loaded");
+						
+						
+						AutoLab.emailqueue.addToQueue("Error", utility.getClientName() + " *ERROR* No DataSet Loaded",AutoLab.threadList_ProdLine.get(getUuid()).getName()+" [" + getUuid() + "] {" + getName() + "} \n\n"+getRemoteFilename()+"\n\n"+getLocalFilename(), "");
 					}
 				}
 			}

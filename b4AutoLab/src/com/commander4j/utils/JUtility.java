@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.autolab.AutoLab;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -83,7 +84,7 @@ public class JUtility
 		return value;
 	}
 
-	public boolean copyFile(String name, File src, File dst)
+	public boolean copyNewerFile(String name, File src, File dst)
 	{
 		boolean result = false;
 		try
@@ -668,5 +669,68 @@ public class JUtility
 
 		return result;
 	}
+	
+	public String getClientName()
+	{
+		String result = "";
+		String clientname = "";
 
+		try
+		{
+			clientname = System.getenv("Clientname").toString();
+
+			if (clientname.equals("Console"))
+			{
+				clientname = "unknown";
+			}
+		}
+		catch (Exception e)
+		{
+			clientname = "unknown";
+		}
+
+		if (clientname.equals("unknown"))
+		{
+			try
+			{
+				clientname = InetAddress.getLocalHost().getHostName().toLowerCase();
+			}
+			catch (Exception e)
+			{
+				clientname = "unknown";
+			}
+		}
+
+		if (clientname.contains("."))
+		{
+			String[] bits = clientname.split("\\.");
+			clientname=bits[0];
+		}
+		
+		result = left(clientname, 40);
+
+		return result;
+	}
+
+	public  String left(String inputstr, int size)
+	{
+		String result = replaceNullStringwithBlank(inputstr);
+
+		if (size > inputstr.length())
+		{
+			size = inputstr.length();
+		}
+
+		if (size >= 0)
+		{
+			result = inputstr.substring(0, size);
+		}
+		else
+		{
+			result = "";
+		}
+
+		return result;
+	}
+	
 }

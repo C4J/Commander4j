@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config name="AutoLab">
     
-    <debug suppressLabelPrint="true" suppressOutputMessage="false"/>
+    <debug suppressLabelPrint="true" suppressOutputMessage="true"/>
+    
+    <email enabled="true"/>
     
     <!-- Folders -->
     
     <paths>
-        <labelSync path="/Users/dave/Commander4j/workspace.development/b4AutoLab/remote_labels" frequency="10"/>
+        <labelSync path="/Users/dave/Commander4j/workspace.development/b4AutoLab/remote_labels" frequency="120"/>
         <dataSet path="/Users/dave/Commander4j/workspace.development/b4AutoLab/remote_dataset"/>
         <output path="/Users/dave/Commander4j/workspace.development/b4AutoLab/interface/output/ProdDec"/>
     </paths>
@@ -15,7 +17,7 @@
     
     <labels>
         <pallet perPrint="2" total="2" field = "DESCRIPTION" criteria=""/>
-        <semiPallet perPrint="2" total="4" field = "DESCRIPTION" criteria=" SEMIP"/>
+        <semiPallet perPrint="2" total="2" field = "DESCRIPTION" criteria=" SEMIP"/>
     </labels>
     
     <!-- Customer Specific Batch Formats -->

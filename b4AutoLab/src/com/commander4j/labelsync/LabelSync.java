@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.logging.log4j.Logger;
 
+import com.commander4j.autolab.AutoLab;
 import com.commander4j.utils.JUnique;
 import com.commander4j.utils.JUtility;
 import com.commander4j.utils.JWait;
@@ -110,6 +111,7 @@ public class LabelSync extends Thread
 
 				logger.debug("["+getUuid()+"] {"+getName()+"} Source Path      = " + source);
 				logger.debug("["+getUuid()+"] {"+getName()+"} Destination Path = " + destination);
+				String filesCopied = "";
 
 				Iterator<File> files = FileUtils.iterateFiles(new File(source), TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
 				int filesUpdated = 0;
@@ -120,16 +122,23 @@ public class LabelSync extends Thread
 					File sourceFile = files.next();
 
 					String foundFile = sourceFile.getName();
+					
 
 					File destinationFile = new File(destination + File.separator + foundFile);
 
-					if (utility.copyFile(getName(),sourceFile, destinationFile))
+					if (utility.copyNewerFile(getName(),sourceFile, destinationFile))
 					{
 						filesUpdated++;
+						filesCopied = filesCopied + foundFile+"\n";
 					}
 
 				}
-
+				
+				if (filesUpdated>0)
+				{
+					AutoLab.emailqueue.addToQueue("Info", utility.getClientName() +" LabelSync","LabelSync ["+getUuid()+"] {"+getName()+"} performed.",filesCopied+"\n\n"+filesUpdated+" file(s) copied.");
+				}
+				
 				logger.debug("["+getUuid()+"] {"+getName()+"} performed. "+filesUpdated+" files updated.");
 				countdown = frequency;
 			}

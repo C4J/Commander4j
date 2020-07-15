@@ -89,7 +89,8 @@ public class JFileIO
 		{
 			deleteFile(destFile);
 			org.apache.commons.io.FileUtils.moveFile(from, to);
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			logger.debug("move_File error :" + e.getMessage());
 			setErrorMessage(e.getMessage());
@@ -107,7 +108,8 @@ public class JFileIO
 		try
 		{
 			org.apache.commons.io.FileUtils.moveFileToDirectory(from, dir, createDestDir);
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			logger.debug("move_FileToDirectory error :" + e.getMessage());
 			setErrorMessage(e.getMessage());
@@ -124,9 +126,10 @@ public class JFileIO
 
 		try
 		{
-			result = FileUtils.readFileToString(file,"UTF-8");
+			result = FileUtils.readFileToString(file, "UTF-8");
 
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			logger.debug("readFiletoString error :" + e.getMessage());
 			setErrorMessage(e.getMessage());
@@ -145,7 +148,7 @@ public class JFileIO
 		return result;
 	}
 
-	public Boolean writeToDisk(String path, Document document, String filesuffix)
+	public Boolean writeToDisk(String path, Document document, String filename)
 	{
 		Boolean result = true;
 		try
@@ -161,14 +164,12 @@ public class JFileIO
 					path = path + java.io.File.separator;
 				}
 			}
-			
-			String filename = path;
-			
 
-			filename = filename + filesuffix;
-			
-			setFilename(filename);
+			String finalfilename = path + filename;
 
+			String tempFilename = path + filename + ".tmp";
+
+			setFilename(tempFilename);
 
 			// ===============================
 
@@ -183,7 +184,7 @@ public class JFileIO
 				// get a LSOutput object
 				LSOutput LSO = DOMiLS.createLSOutput();
 
-				FOS = new FileOutputStream(filename);
+				FOS = new FileOutputStream(tempFilename);
 				LSO.setByteStream((OutputStream) FOS);
 
 				// get a LSSerializer object
@@ -193,11 +194,20 @@ public class JFileIO
 				LSS.write(document, LSO);
 
 				FOS.close();
-			} 
+
+				File from = new File(tempFilename);
+				File to = new File(finalfilename);
+
+				FileUtils.deleteQuietly(to);
+
+				FileUtils.moveFile(from, to);
+
+			}
 
 			// ===============================
 
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			logger.debug("writeToDisk error :" + ex.getMessage());
 			setErrorMessage("Error writing message to disk. " + ex.getMessage());
@@ -229,7 +239,8 @@ public class JFileIO
 			fw.write(document);
 			fw.close();
 
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			logger.debug("writeToDisk error :" + ex.getMessage());
 			setErrorMessage("Error writing message to disk. " + ex.getMessage());
@@ -237,7 +248,7 @@ public class JFileIO
 		}
 		return result;
 	}
-	
+
 	public Boolean writeToDisk(String filename, Document document)
 	{
 		Boolean result = true;
@@ -268,11 +279,12 @@ public class JFileIO
 				LSS.write(document, LSO);
 
 				FOS.close();
-			} 
+			}
 
 			// ===============================
 
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			logger.debug("writeToDisk error :" + ex.getMessage());
 			setErrorMessage("Error writing message to disk. " + ex.getMessage());
@@ -287,8 +299,9 @@ public class JFileIO
 		File from = new File(filename);
 		try
 		{
-			result = FileUtils.readLines(from,"UTF-8");
-		} catch (IOException e)
+			result = FileUtils.readLines(from, "UTF-8");
+		}
+		catch (IOException e)
 		{
 			logger.debug("readFileLines error :" + e.getMessage());
 			e.printStackTrace();
@@ -303,7 +316,8 @@ public class JFileIO
 		try
 		{
 			FileUtils.writeLines(from, data);
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			result = false;
 			logger.debug("writeFileLines error :" + e.getMessage());
