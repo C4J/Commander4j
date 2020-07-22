@@ -26,6 +26,7 @@ public class Config
 	private String outputPath = "";
 	private boolean suppress_Label_Print = false;
 	private boolean suppress_Output_Message = false;
+	private boolean emailEnabled = false;
 	private String PalletPerPrint = "2";
 	private String PalletTotal = "2";
 	private String PalletCriteria = "";
@@ -34,6 +35,16 @@ public class Config
 	private String SemiPalletTotal = "4";
 	private String SemiPalletCriteria = "";
 	private String SemiPalletCriteriaField = "";
+	
+	public boolean isEmailEnabled()
+	{
+		return emailEnabled;
+	}
+
+	public void setEmailEnabled(boolean emailEnable)
+	{
+		this.emailEnabled = emailEnable;
+	}
 
 	public HashMap<String, ProdLineDefinition> getConfigProdLines()
 	{
@@ -53,6 +64,9 @@ public class Config
 		setFilename("config.xml");
 
 		xmlDoc = new JXMLDocument(getPath() + getFilename());
+		
+		setEmailEnabled(Boolean.valueOf(xmlDoc.findXPath("/config/email/@enabled")));
+		logger.debug("Config - Email Enabled               [" + isEmailEnabled() + "]");
 		
 		setSuppressLabelPrint(Boolean.valueOf(xmlDoc.findXPath("/config/debug/@suppressLabelPrint")));
 		logger.debug("Config - Suppress Label Print        [" + isSuppressLabelPrint() + "]");

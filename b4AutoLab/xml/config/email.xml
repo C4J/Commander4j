@@ -4,7 +4,7 @@
 
     <!-- SMTP No Authentication Example -->
     
-    <configuration>
+    <configuration2>
         <property name="mail.smtp.starttls.enable" value="false"/>
         <property name="mail.smtp.host" value="smtp.demo.com"/>
         <property name="mail.smtp.socketFactory.port" value="25"/>
@@ -15,11 +15,11 @@
         <property name="mail.smtp.port" value="25"/>
         <property name="mail.smtp.from" value="demo@email.com"/>
         <property name="mail.debug" value="true"/>
-    </configuration>
+    </configuration2>
     
     <!-- Microsoft smtp.live.com Example -->
     
-    <configuration0>
+    <configuration>
         <property name="mail.smtp.auth" value="true"/>
         <property name="mail.smtp.starttls.enable" value="true"/>
         <property name="mail.smtp.host" value="smtp.live.com"/>
@@ -28,10 +28,10 @@
         <property name="mail.smtp.password" value="password"/>
         <property name="mail.smtp.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
         <property name="mail.smtp.auth" value="true"/>
-        <property name="mail.smtp.port" value="25"/>
+        <property name="mail.smtp.port" value="25"/> 
         <property name="mail.smtp.from" value="email@outlook.com"/>
         <property name="mail.debug" value="true"/>
-    </configuration0>
+    </configuration>
 
     <!-- Google gmail Example -->
     
@@ -52,16 +52,16 @@
 
     <!-- Distribution Lists are referred to within message mapping Config.xml -->
 
-    <distributionList id="Monitor" enabled="N" maxFrequencyMins="0">
-        <toAddressList>dummy1@gmail.com,dummy2@gmail.com</toAddressList>
+    <distributionList id="Monitor" enabled="Y" maxFrequencyMins="0">
+        <toAddressList>davegarratt@icloud.com</toAddressList>
     </distributionList>
 
-    <distributionList id="Info" enabled="N" maxFrequencyMins="0">
-        <toAddressList>dummy1@gmail.com,dummy2@gmail.com</toAddressList>
+    <distributionList id="Info" enabled="Y" maxFrequencyMins="0">
+        <toAddressList>davegarratt@icloud.com</toAddressList>
     </distributionList>
 
-    <distributionList id="Error" enabled="N" maxFrequencyMins="5">
-        <toAddressList>dummy1@gmail.com,dummy2@gmail.com</toAddressList>
+    <distributionList id="Error" enabled="Y" maxFrequencyMins="5">
+        <toAddressList>davegarratt@icloud.com</toAddressList>
     </distributionList>
 
 

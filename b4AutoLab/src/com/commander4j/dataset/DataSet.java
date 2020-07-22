@@ -148,7 +148,6 @@ public class DataSet extends Thread
 
 				FileUtils.deleteQuietly(src);
 				
-				AutoLab.emailqueue.addToQueue("Info", utility.getClientName() + " Remote DataSet Loaded ",AutoLab.threadList_ProdLine.get(getUuid()).getName()+" [" + getUuid() + "] {" + getName() + "} \n\n"+getRemoteFilename(), "");
 			}
 			else
 			{
@@ -162,7 +161,6 @@ public class DataSet extends Thread
 
 						defaultLoaded = true;
 						
-						AutoLab.emailqueue.addToQueue("Info",utility.getClientName() + " Local DataSet Loaded ",AutoLab.threadList_ProdLine.get(getUuid()).getName()+" [" + getUuid() + "] {" + getName() + "} \n\n"+getLocalFilename(), "");
 					}
 					else
 					{

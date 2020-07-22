@@ -16,6 +16,7 @@ import com.commander4j.common.Common;
 import com.commander4j.config.Config;
 import com.commander4j.config.ProdLineDefinition;
 import com.commander4j.email.EmailQueue;
+import com.commander4j.email.EmailThread;
 import com.commander4j.labelsync.LabelSync;
 import com.commander4j.prodLine.ProdLine;
 import com.commander4j.sscc.SSCC_Sequence;
@@ -36,7 +37,9 @@ public class AutoLab extends Thread
 	public static boolean run = true;
 	public static EmailQueue emailqueue = new EmailQueue();
 	public static String version = "1.00";
-
+	private JUtility utils = new JUtility();
+	public static EmailThread emailthread;
+	
 	@Override
 	public void run()
 	{
@@ -68,6 +71,11 @@ public class AutoLab extends Thread
 	{
 		boolean result = true;
 		
+		emailthread = new EmailThread();
+		emailthread.start();
+		
+		
+		emailqueue.addToQueue("Info", "AutoLab started on "+utils.getClientName(), "AutoLab service version "+version+" started.", "");
 		logger.debug("Version "+version);
 
 		Locale.setDefault(new Locale(Common.locale_language, Common.locale_region));
@@ -104,7 +112,7 @@ public class AutoLab extends Thread
 	public boolean StopAutoLab()
 	{
 		boolean result = true;
-
+		
 		// Stop the Production Line Threads
 
 		Set<Entry<String, Thread>> entrySet2 = threadList_ProdLine.entrySet();
@@ -133,8 +141,34 @@ public class AutoLab extends Thread
 
 		sync.shutdown();
 
-		wait.oneSec();
-
+		emailqueue.addToQueue("Info", "AutoLab stopped on "+utils.getClientName(), "AutoLab service version "+version+" stopped.", "");
+		
+		while (emailqueue.getQueueSize() > 0)
+		{
+			try
+			{
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e)
+			{
+				break;
+			}
+		}
+		
+		emailthread.shutdown();
+		
+		while (emailthread.isAlive())
+		{
+			try
+			{
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e)
+			{
+				break;
+			}
+		}
+		
 		return result;
 	}
 

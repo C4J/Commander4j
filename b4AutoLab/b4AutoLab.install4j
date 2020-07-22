@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.7" transformSequenceNumber="8">
   <directoryPresets config="./images/Launcher/AutoLab4j (PNG)" />
-  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Autolab4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.00" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
+  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.01" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
     <languages>
       <additionalLanguages>
         <language id="nl" />
@@ -582,7 +582,7 @@ return console.askYesNo(message, true);
         </modules>
       </jreBundle>
     </windows>
-    <macosFolder name="macOS Folder" id="148">
+    <macosFolder name="macOS Folder" id="148" installDir="Commander4j_Auto_Labeller">
       <jreBundle jreBundleSource="generated">
         <modules>
           <defaultModules set="all" />

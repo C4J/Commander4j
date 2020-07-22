@@ -10,7 +10,7 @@ import org.apache.commons.mail.*;
 
 import org.apache.logging.log4j.Logger;
 
-import com.commander4j.common.Common;
+import com.commander4j.autolab.AutoLab;
 import com.commander4j.utils.JUtility;
 import com.commander4j.xml.JXMLDocument;
 
@@ -73,8 +73,9 @@ public class SendEmail
 	{
 		boolean result = true;
 
-		if (Common.emailEnabled == false)
+		if (AutoLab.config.isEmailEnabled() == false)
 		{
+			logger.debug("Email disabled in config.xml");
 			return result;
 		}
 
