@@ -141,51 +141,106 @@
         </output>
     </map>
 
-    <map id="map209" enabed="Y" description="CDF Tropos Material XML">
+    <map id="map209i" enabed="Y" description="CDF Tropos Material XML - IJM">
         <input id="in1" description="Read TROPOS Material XML File">
             <type>XML</type>
-            <path>./interface/input/209 (CDF Tropos Material XML)</path>
+            <path>./interface/input/209 (CDF Tropos Material XML) - IJM</path>
             <mask/>
             <prefix>IJM Inbound Material Master</prefix>
             <pollingInterval>1000</pollingInterval>
-            <XSLT>TROPOS_Material_to_Commander4j_Material.xsl</XSLT>
+            <XSLT>TROPOS_Material_to_Commander4j_Material_IJM.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write C4J Material Master">
-            <path>./interface/output/209 (CDF C4J - Material)</path>
+            <path>./interface/output/209 (CDF C4J - Material) - IJM</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+    
+    <map id="map209v" enabed="Y" description="CDF Tropos Material XML - VAL">
+        <input id="in1" description="Read TROPOS Material XML File">
+            <type>XML</type>
+            <path>./interface/input/209 (CDF Tropos Material XML) - VAL</path>
+            <mask/>
+            <prefix>VAL Inbound Material Master</prefix>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>TROPOS_Material_to_Commander4j_Material_VAL.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write C4J Material Master">
+            <path>./interface/output/209 (CDF C4J - Material) - VAL</path>
             <type>XML</type>
             <XSLT/>
         </output>
     </map>
 
-    <map id="map210" enabed="Y" description="CDF Tropos Works Order XML">
+    <map id="map210i" enabed="Y" description="CDF Tropos Works Order XML - IJM">
         <input id="in1" description="Read TROPOS Works Order XML File">
             <type>XML</type>
-            <path>./interface/input/210 (CDF Tropos Works Order XML)</path>
+            <path>./interface/input/210 (CDF Tropos Works Order XML) - IJM</path>
             <mask/>
             <prefix>IJM Production Order Print</prefix>
             <pollingInterval>1000</pollingInterval>
-            <XSLT>TROPOS_WorksOrder_to_Commander4j_Process_Order.xsl</XSLT>
+            <XSLT>TROPOS_WorksOrder_to_Commander4j_Process_Order_IJM.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write C4J Process Order">
-            <path>./interface/output/210 (CDF C4J - Process Order)</path>
+            <path>./interface/output/210 (CDF C4J - Process Order) - IJM</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+    
+    <map id="map210v" enabed="Y" description="CDF Tropos Works Order XML - VAL">
+        <input id="in1" description="Read TROPOS Works Order XML File">
+            <type>XML</type>
+            <path>./interface/input/210 (CDF Tropos Works Order XML) - VAL</path>
+            <mask/>
+            <prefix>VAL Production Order Print</prefix>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>TROPOS_WorksOrder_to_Commander4j_Process_Order_VAL.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write C4J Process Order">
+            <path>./interface/output/210 (CDF C4J - Process Order) - VAL</path>
             <type>XML</type>
             <XSLT/>
         </output>
     </map>
 
-    <map id="map211" enabed="Y" description="CDF C4J Production Declaration to TROPOS Goods Receipt">
+    <map id="map211i" enabed="Y" description="CDF C4J Production Declaration to TROPOS Goods Receipt - IJM">
         <input id="in1" description="Read C4J XML File">
             <type>XML</type>
-            <path>./interface/input/211 (CDF C4J - Production Declaration)</path>
+            <path>./interface/input/211 (CDF C4J - Production Declaration) - IJM</path>
             <mask/>
             <pollingInterval>1000</pollingInterval>
-            <XSLT>C4J_PRODDEC_XML_to_TROPOS_GoodsReceipt_CSV.xsl</XSLT>
+            <XSLT>C4J_PRODDEC_XML_to_TROPOS_GoodsReceipt_CSV_IJM.xsl</XSLT>
         </input>
 
         <output id="out1" enabed="Y" description="Write TROPOS CSV">
-            <path>./interface/output/211 (CDF TROPOS - Goods Receipt)</path>
+            <path>./interface/output/211 (CDF TROPOS - Goods Receipt) - IJM</path>
+            <type>CSV</type>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=none</csvOptions>
+            <outputFileExtension>csv</outputFileExtension>
+            <prefix>X</prefix>
+            <use83GUID>Y</use83GUID>
+            <XSLT/>
+        </output>
+    </map>
+    
+    <map id="map211v" enabed="Y" description="CDF C4J Production Declaration to TROPOS Goods Receipt - VAL">
+        <input id="in1" description="Read C4J XML File">
+            <type>XML</type>
+            <path>./interface/input/211 (CDF C4J - Production Declaration) - VAL</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_to_TROPOS_GoodsReceipt_CSV_VAL.xsl</XSLT>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write TROPOS CSV">
+            <path>./interface/output/211 (CDF TROPOS - Goods Receipt) - VAL</path>
             <type>CSV</type>
             <optionDelimeter>^</optionDelimeter>
             <csvOptions>separator=,^quote=none</csvOptions>

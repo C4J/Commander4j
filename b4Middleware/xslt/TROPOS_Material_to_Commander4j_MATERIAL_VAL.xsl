@@ -96,7 +96,7 @@
 							<xsl:value-of select="ANA"/>
 						</ean>
 						<variant>
-							<xsl:value-of select="c4j_XSLT_Ext:padVariant($variant)" xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
+							<xsl:value-of select="c4j_XSLT_Ext:padStringLeft($variant,2,'0')" xmlns:c4j_XSLT_Ext="com.commander4j.Transformation.XSLTExtension"/>
 						</variant>
 					</materialUOMDefinition>
 					<materialUOMDefinition>
