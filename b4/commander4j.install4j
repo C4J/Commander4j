@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.8" transformSequenceNumber="8">
   <directoryPresets config="./images/Launcher/CMD_Icon (PNG)" />
-  <application name="Commander4j" applicationId="6923-0356-2321-8111" mediaDir="../../Distribution/java8/Commander4j" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="8.06" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
+  <application name="Commander4j" applicationId="6923-0356-2321-8111" mediaDir="../../Distribution/java8/Commander4j" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="8.07" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="nl" />
@@ -13,7 +13,7 @@
         <language id="es" />
       </additionalLanguages>
     </languages>
-    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u252-b09.1" />
+    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u265-b01" />
   </application>
   <files keepModificationTimes="true" missingFilesStrategy="error">
     <mountPoints>
@@ -38,12 +38,26 @@
     </mountPoints>
     <entries>
       <dirEntry mountPoint="26" file="./reports" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="reports" overrideDirMode="true" />
-      <dirEntry mountPoint="27" file="./images" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="images" overrideDirMode="true" />
+      <dirEntry mountPoint="27" file="./images" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="images" overrideDirMode="true">
+        <exclude>
+          <entry location="misc/.DS_Store" />
+          <entry location=".DS_Store" />
+        </exclude>
+      </dirEntry>
       <dirEntry mountPoint="28" file="./audio" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="audio" overrideDirMode="true" />
       <fileEntry mountPoint="30" file="./xml/hosts/hosts.dtd" overwriteMode="0" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="30" file="./xml/hosts/hosts.xml" overwriteMode="0" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <dirEntry mountPoint="106" file="./xml/barcode" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="barcode" overrideDirMode="true" />
-      <dirEntry mountPoint="107" file="./xml/interface" overwriteMode="1" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="interface" overrideDirMode="true" />
+      <dirEntry mountPoint="107" file="./xml/interface" overwriteMode="1" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="interface" overrideDirMode="true">
+        <exclude>
+          <entry location="dirClean.ok" />
+          <entry location=".DS_Store" />
+          <entry location="input/.DS_Store" />
+          <entry location="recovery/.DS_Store" />
+          <entry location="backup/.DS_Store" />
+          <entry location="error/.DS_Store" />
+        </exclude>
+      </dirEntry>
       <dirEntry mountPoint="108" file="./xml/log" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="log" overrideDirMode="true" />
       <dirEntry mountPoint="109" file="./xml/schema" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="schema" overrideDirMode="true" />
       <dirEntry mountPoint="110" file="./xml/sql" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="sql" overrideDirMode="true" />
@@ -74,7 +88,11 @@
           <entry location="_notes" />
         </exclude>
       </dirEntry>
-      <dirEntry mountPoint="221" file="./labels" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="labels" overrideDirMode="true" />
+      <dirEntry mountPoint="221" file="./labels" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="labels" overrideDirMode="true">
+        <exclude>
+          <entry location=".DS_Store" />
+        </exclude>
+      </dirEntry>
       <fileEntry mountPoint="24" file="./commander4j.jar" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="24" file="./start_clone.cmd" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="24" file="./start_clone.sh" overwriteMode="1" fileMode="755" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" />
@@ -232,8 +250,8 @@
         <file path="./images/Launcher/iFace_Icon (PNG)/256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="terminal_Commander4j" id="1302">
-      <executable name="terminal_Commander4j" iconSet="true" executableDir="." redirectStderr="false" executableMode="console" />
+    <launcher name="Commander4j_Console" id="1302" excludeFromMenu="true">
+      <executable name="Commander4j_Console" iconSet="true" executableDir="." redirectStderr="false" executableMode="console" />
       <java mainClass="com.commander4j.sys.Start" arguments="Desktop">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />

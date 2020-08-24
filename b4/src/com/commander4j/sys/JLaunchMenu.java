@@ -316,6 +316,13 @@ public class JLaunchMenu
 			displayDialog(u, optionName);
 
 		}
+		
+		if (optionName.equals("FRM_PROCESS_ORDER_LABEL"))
+		{
+			final JInternalFrameProcessOrderLabel u;
+			u = new JInternalFrameProcessOrderLabel(Common.mainForm, strParam);
+			displayDialog(u, optionName);
+		}
 
 		if (optionName.equals("FRM_WEIGHT_ERROR"))
 		{
@@ -1939,19 +1946,6 @@ public class JLaunchMenu
 			else
 			{
 				u = new JInternalFramePalletProperties(StrParam);
-				displayForm(u, optionName);
-			}
-		}
-
-		if (optionName.equals("FRM_PROCESS_ORDER_LABEL"))
-		{
-			final JInternalFrameProcessOrderLabel u;
-			// if (isLoaded(JInternalFrameProcessOrderLabel.class))
-			// setVisible(JInternalFrameProcessOrderLabel.class);
-			// else
-			{
-				u = new JInternalFrameProcessOrderLabel(StrParam);
-				u.setTitle(mod.getDescription() + " [" + StrParam + "]");
 				displayForm(u, optionName);
 			}
 		}

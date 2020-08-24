@@ -46,7 +46,6 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -170,34 +169,33 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		super();
 		app_Init();
 	}
-	
-	public JInternalFrameProcessOrderAdmin(String keyField,String keyValue)
+
+	public JInternalFrameProcessOrderAdmin(String keyField, String keyValue)
 	{
 		super();
 		app_Init();
-		
-		updateSearch(keyField,keyValue);
+
+		updateSearch(keyField, keyValue);
 	}
-	
-	public void updateSearch(String keyField,String keyValue)
+
+	public void updateSearch(String keyField, String keyValue)
 	{
 		clearFilter();
-		
-		
+
 		if (keyField.equals("MATERIAL"))
 		{
 			jTextFieldMaterial.setText(keyValue);
 		}
-		
+
 		if (keyField.equals("LOCATION"))
 		{
 			jTextFieldLocation.setText(keyValue);
 		}
-		
+
 		buildSQL();
 		populateList();
-	}	
-	
+	}
+
 	private void app_Init()
 	{
 		getContentPane().setLayout(null);
@@ -278,7 +276,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		jTextFieldCustomer.setText("");
 		jTextFieldInspectionID.setText("");
 		jTextFieldRequiredResource.setText("");
-		//search();
+		search();
 	}
 
 	private void sortBy(String orderField)
@@ -481,24 +479,24 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			JLaunchMenu.runForm("FRM_QM_SAMPLE_LABEL", lprocessorder);
 		}
 	}
-	
+
 	private void palletHistory()
 	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY","PROCESS_ORDER", jTable1.getValueAt(row, 0).toString());
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_HISTORY", "PROCESS_ORDER", jTable1.getValueAt(row, 0).toString());
 		}
 	}
-	
+
 	private void palletAdmin()
 	{
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			JLaunchMenu.runForm("FRM_ADMIN_PALLETS","PROCESS_ORDER", jTable1.getValueAt(row, 0).toString());
+			JLaunchMenu.runForm("FRM_ADMIN_PALLETS", "PROCESS_ORDER", jTable1.getValueAt(row, 0).toString());
 		}
-	}	
+	}
 
 	private void setSequence(boolean descending)
 	{
@@ -518,40 +516,13 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 	private void printLabels()
 	{
 
-		JPopupMenu popup = new JPopupMenu("Labels");
-
-		JMenuItem item1 = new JMenuItem(lang.get("mod_FRM_PROCESS_ORDER_LABEL"));
-		item1.addActionListener(new ActionListener()
+		String lprocessOrder = "";
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
 		{
-			public void actionPerformed(final ActionEvent e)
-			{
-				String lprocessOrder = "";
-				int row = jTable1.getSelectedRow();
-				if (row >= 0)
-				{
-					lprocessOrder = jTable1.getValueAt(row, 0).toString();
-					JLaunchMenu.runForm("FRM_PROCESS_ORDER_LABEL", lprocessOrder);
-				}
-			}
-		});
-		item1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PROCESS_ORDER_LABEL"));
-
-		JMenuItem item2 = new JMenuItem(lang.get("mod_RPT_WASTE_ORDER_LAB"));
-		item2.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(final ActionEvent e)
-			{
-				PreparedStatement temp = buildSQLr();
-				JLaunchReport.runReport("RPT_WASTE_ORDER_LAB", null, "", temp, "");
-			}
-		});
-		item2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_ORDER_LAB"));
-
-		popup.add(item1);
-		popup.add(item2);
-
-		// show on the button?
-		popup.show((Component) jScrollPane1, 661, 0);
+			lprocessOrder = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runDialog("FRM_PROCESS_ORDER_LABEL", lprocessOrder);
+		}
 
 	}
 
@@ -767,7 +738,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 										printLabels();
 									}
 								});
-								newItemMenuItem.setText(lang.get("btn_Label"));
+								newItemMenuItem.setText(lang.get("mod_FRM_PROCESS_ORDER_LABEL"));
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_PROCESS_ORDER_LABEL"));
 								popupMenu.add(newItemMenuItem);
 							}
@@ -823,6 +794,23 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_SAMPLE_LABEL"));
 								popupMenu.add(newItemMenuItem);
 							}
+
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_sample_label_16x16);
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										PreparedStatement temp = buildSQLr();
+										JLaunchReport.runReport("RPT_WASTE_ORDER_LAB", null, "", temp, "");
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_RPT_WASTE_ORDER_LAB"));
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_WASTE_ORDER_LAB"));
+								popupMenu.add(newItemMenuItem);
+
+							}
+
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_history_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
@@ -848,7 +836,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 								newItemMenuItem.setText(lang.get("mod_FRM_ADMIN_PALLETS"));
 								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLETS"));
 								popupMenu.add(newItemMenuItem);
-							}							
+							}
 							{
 								mnReferenceData = new JMenu4j(lang.get("lbl_Referenced_Data"));
 								popupMenu.add(mnReferenceData);
@@ -1071,7 +1059,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
 									filterByMenu.add(newItemMenuItem);
 								}
-								
+
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
 									newItemMenuItem.addActionListener(new ActionListener()

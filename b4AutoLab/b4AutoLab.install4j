@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<install4j version="8.0.7" transformSequenceNumber="8">
+<install4j version="8.0.8" transformSequenceNumber="8">
   <directoryPresets config="./images/Launcher/AutoLab4j (PNG)" />
   <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.01" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
     <languages>
@@ -12,7 +12,7 @@
         <language id="pl" />
       </additionalLanguages>
     </languages>
-    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u252-b09.1">
+    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u265-b01">
       <modules>
         <defaultModules set="all" />
       </modules>
@@ -52,20 +52,33 @@
       </dirEntry>
       <dirEntry mountPoint="122" file="../b4AutoLab/remote_dataset" subDirectory="remote_dataset">
         <exclude>
+          <entry location=".DS_Store" />
           <entry location="Backup" />
         </exclude>
       </dirEntry>
       <dirEntry mountPoint="123" file="../b4AutoLab/remote_labels" overwriteMode="0" uninstallMode="1" subDirectory="remote_labels" />
-      <dirEntry mountPoint="125" file="../b4AutoLab/xml/config" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="config" />
+      <dirEntry mountPoint="125" file="../b4AutoLab/xml/config" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="config">
+        <exclude>
+          <entry location=".DS_Store" />
+        </exclude>
+      </dirEntry>
       <dirEntry mountPoint="126" file="../b4AutoLab/xml/sscc" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="sscc" />
-      <dirEntry mountPoint="347" file="./images/Launcher" subDirectory="Launcher" />
-      <dirEntry mountPoint="348" file="./licences" subDirectory="licences" />
+      <dirEntry mountPoint="347" file="./images/Launcher" subDirectory="Launcher">
+        <exclude>
+          <entry location=".DS_Store" />
+        </exclude>
+      </dirEntry>
+      <dirEntry mountPoint="348" file="./licences" subDirectory="licences">
+        <exclude>
+          <entry location=".DS_Store" />
+        </exclude>
+      </dirEntry>
       <fileEntry mountPoint="127" file="../b4AutoLab/autolab4j.jar" />
       <fileEntry mountPoint="127" file="./Commander4j GNU GENERAL PUBLIC LICENSE.txt" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" />
     </entries>
   </files>
   <launchers>
-    <launcher name="autolab4j_service" id="128" icnsFile="./images/Launcher/AutoLab4j.icns">
+    <launcher name="autolab4j_service" id="128" excludeFromMenu="true" icnsFile="./images/Launcher/AutoLab4j.icns">
       <executable name="AutoLab4j_Service" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." redirectStderr="false" executableMode="service" />
       <java mainClass="com.commander4j.autolab.StartStop">
         <classPath>

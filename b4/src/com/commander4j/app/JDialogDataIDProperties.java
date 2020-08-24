@@ -87,7 +87,7 @@ public class JDialogDataIDProperties extends javax.swing.JDialog {
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setTitle("Data ID Properties");
 		this.setResizable(false);
-		this.setSize(459, 168);
+		this.setSize( 469, 156);
 
 		Dimension screensize = Common.mainForm.getSize();
 
