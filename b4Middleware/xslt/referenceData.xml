@@ -108,8 +108,8 @@
     <item type="TroposUOM" id="EACH"><value>EA</value></item>  
     
     <item type="SageUOM" id="EA"><value>EA</value></item>  
+    <item type="SageUOM" id="KG"><value>KG</value></item> 
     <item type="SageUOM" id="UN"><value>EA</value></item>
-    <item type="SageUOM" id="KG"><value>KG</value></item>
     <item type="SageUOM" id="PAC"><value>CS</value></item>
     <item type="SageUOM" id="CS"><value>CS</value></item>
     <item type="SageUOM" id="BAG"><value>BAG</value></item>
@@ -127,7 +127,7 @@
     <item type="SageShelfLifeUom" id="03:BRI:Month"><value>M</value></item>  
     <item type="SageShelfLifeUom" id="03:Month"><value>M</value></item> 
     
-    <item type="SageMaterialType" id="D25">HALB</item>
+    <item type="SageMaterialType" id="D25"><value>HALB</value></item>
     
     <item type="SageWorksOrderStatus" id="01:BRI:Firm"><value>Ready</value></item>
     <item type="SageWorksOrderStatus" id="04:BRI:Closed"><value>Discarded</value></item>    

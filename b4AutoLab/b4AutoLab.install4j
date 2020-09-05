@@ -195,6 +195,7 @@ return console.askOkCancel(message, true);
             </formComponents>
           </screen>
           <screen id="349" beanClass="com.install4j.runtime.beans.screens.LicenseScreen" rollbackBarrierExitCode="0">
+            <condition>!context.isUpdateInstallation()</condition>
             <formComponents>
               <formComponent id="350" beanClass="com.install4j.runtime.beans.formcomponents.MultilineLabelComponent">
                 <serializedBean>

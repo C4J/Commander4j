@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.8" transformSequenceNumber="8">
-  <directoryPresets config="./xml/config/config_new.xml" />
+  <directoryPresets config=".." />
   <application name="Commander4j Middleware" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="2.02" allPathsRelative="true" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
@@ -206,6 +206,39 @@ return console.askOkCancel(message, true);
                 <serializedBean>
                   <property name="labelText" type="string">${i18n:ClickNext}</property>
                 </serializedBean>
+              </formComponent>
+            </formComponents>
+          </screen>
+          <screen id="722" beanClass="com.install4j.runtime.beans.screens.LicenseScreen" rollbackBarrierExitCode="0">
+            <condition>!context.isUpdateInstallation()</condition>
+            <formComponents>
+              <formComponent id="723" beanClass="com.install4j.runtime.beans.formcomponents.MultilineLabelComponent">
+                <serializedBean>
+                  <property name="labelText" type="string">${i18n:LicenseLabel3}</property>
+                </serializedBean>
+              </formComponent>
+              <formComponent id="724" beanClass="com.install4j.runtime.beans.formcomponents.LicenseComponent" useExternalParametrization="true" externalParametrizationName="License Agreement" externalParametrizationMode="include">
+                <serializedBean>
+                  <property name="displayedTextFile" id="LocalizedExternalFile0">
+                    <property name="languageIdToExternalFile">
+                      <entry>
+                        <string>en</string>
+                        <object class="com.install4j.api.beans.ExternalFile">
+                          <string>./Commander4j GNU GENERAL PUBLIC LICENSE.txt</string>
+                        </object>
+                      </entry>
+                    </property>
+                  </property>
+                  <property name="fillVertical" type="boolean" value="true" />
+                </serializedBean>
+                <externalParametrizationPropertyNames>
+                  <propertyName>textSource</propertyName>
+                  <propertyName>displayedText</propertyName>
+                  <propertyName>displayedTextFile</propertyName>
+                  <propertyName>variableName</propertyName>
+                  <propertyName>acceptInitiallySelected</propertyName>
+                  <propertyName>readAllRequired</propertyName>
+                </externalParametrizationPropertyNames>
               </formComponent>
             </formComponents>
           </screen>
