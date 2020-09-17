@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.8" transformSequenceNumber="8">
-  <directoryPresets config="./images/Launcher/AutoLab4j (PNG)" />
-  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.01" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
+  <directoryPresets config="." />
+  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.20" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
     <languages>
       <additionalLanguages>
         <language id="nl" />
@@ -63,7 +63,7 @@
         </exclude>
       </dirEntry>
       <dirEntry mountPoint="126" file="../b4AutoLab/xml/sscc" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="sscc" />
-      <dirEntry mountPoint="347" file="./images/Launcher" subDirectory="Launcher">
+      <dirEntry mountPoint="347" file="./images" overrideUninstallMode="true" subDirectory="images">
         <exclude>
           <entry location=".DS_Store" />
         </exclude>
@@ -95,7 +95,23 @@
       </iconImageFiles>
     </launcher>
     <launcher name="autolab4j_console" id="130" icnsFile="./images/Launcher/AutoLab4j.icns">
-      <executable name="AutoLab4j_Console" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." redirectStderr="false" executableMode="console" />
+      <executable name="AutoLab4j_Console" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." redirectStderr="false" executableMode="console" singleInstance="true" />
+      <java mainClass="com.commander4j.autolab.StartStop">
+        <classPath>
+          <archive location="autolab4j.jar" failOnError="false" />
+        </classPath>
+      </java>
+      <vmOptionsFile mode="none" />
+      <iconImageFiles>
+        <file path="./images/Launcher/AutoLab4j (PNG)/16x16.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/32x32.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/48x48.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/128x128.png" />
+        <file path="./images/Launcher/AutoLab4j (PNG)/256x256.png" />
+      </iconImageFiles>
+    </launcher>
+    <launcher name="autolab4j_GUI" id="451" icnsFile="./images/Launcher/AutoLab4j.icns">
+      <executable name="AutoLab4j_GUI" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." executableMode="gui" singleInstance="true" />
       <java mainClass="com.commander4j.autolab.StartStop">
         <classPath>
           <archive location="autolab4j.jar" failOnError="false" />

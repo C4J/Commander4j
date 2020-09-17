@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.autolab.AutoLab;
 import com.commander4j.dataset.DataSet;
 import com.commander4j.modbus.Modbus;
+import com.commander4j.notifier.TrayIconStatus;
 import com.commander4j.utils.JUnique;
 import com.commander4j.utils.JWait;
 import com.commander4j.zebra.Print;
@@ -47,6 +48,7 @@ public class ProdLine extends Thread
 		this.ssccSequenceFilename = ssccSequenceFilename;
 				
 		setName("ProdLine "+prodLineName);	
+		
 		logger.debug("["+getUuid()+"] {"+getName()+"} Instance Created.");
 	}
 	
@@ -191,6 +193,8 @@ public class ProdLine extends Thread
 
 		run = true;
 		logger.debug("["+getUuid()+"] {"+getName()+"} Thread Started...");
+		
+		AutoLab.updateTrayIconStatus(getUuid()).setStatus(TrayIconStatus.status_STARTUP, "Startup");
 
 		
 		AutoLab.start_SSCC_Thread(getSsccSequenceFilename());
@@ -206,19 +210,37 @@ public class ProdLine extends Thread
 		modbus1 = new Modbus(getUuid(),getName()+" "+getModbusName(),getModbusIPAddress(),getModbusPortNumber(),getModbusTimeOut(),getModbusCoil(),isModbusPrintOnValue(),getSsccSequenceFilename());
 		modbus1.start();
 		
+		AutoLab.updateTrayIconStatus(getUuid()).setStatus(TrayIconStatus.status_OK, "");
 		
 		while (run == true)
 		{
-			wait.oneSec();
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch (InterruptedException e)
+			{
+				run=false;
+			}
 		}
+		
+
 		
 		try
 		{
+			AutoLab.updateTrayIconStatus(getUuid()).setStatus(TrayIconStatus.status_SHUTDOWN4, "Shutdown Stage 4");
 			int retries=0;
 			while (modbus1.isAlive() && (retries<10))
 			{
 				modbus1.shutdown();
-				wait.milliSec(250);
+				try
+				{
+					Thread.sleep(250);
+				}
+				catch (InterruptedException e)
+				{
+
+				}
 			}
 			if (modbus1.isAlive())
 			{
@@ -230,8 +252,11 @@ public class ProdLine extends Thread
 			logger.debug("["+getUuid()+"] {"+getName()+"} Exception : "+ex1.getLocalizedMessage());
 		}
 		
+
+		
 		try
 		{
+			AutoLab.updateTrayIconStatus(getUuid()).setStatus(TrayIconStatus.status_SHUTDOWN3, "Shutdown Stage 3");
 			while (print1.isAlive())
 			{
 				print1.shutdown();
@@ -242,6 +267,8 @@ public class ProdLine extends Thread
 		{
 			logger.debug("["+getUuid()+"] {"+getName()+"} Exception : "+ex1.getLocalizedMessage());
 		}
+		
+		AutoLab.updateTrayIconStatus(getUuid()).setStatus(TrayIconStatus.status_SHUTDOWN2, "Shutdown 2");
 		
 		try
 		{
@@ -256,9 +283,20 @@ public class ProdLine extends Thread
 			logger.debug("["+getUuid()+"] {"+getName()+"} Exception : "+ex1.getLocalizedMessage());
 		}
 		
+		AutoLab.updateTrayIconStatus(getUuid()).setStatus(TrayIconStatus.status_SHUTDOWN1, "Shutdown 1");
+		
 		AutoLab.stop_SSCC_Thread(getSsccSequenceFilename());
 		
-		wait.manySec(1);
+		try
+		{
+			Thread.sleep(1000);
+		}
+		catch (InterruptedException e)
+		{
+
+		}
+
+		AutoLab.updateTrayIconStatus(getUuid()).setStatus(TrayIconStatus.status_SHUTDOWN, "Shutdown");
 		
 		logger.debug("["+getUuid()+"] {"+getName()+"} Thread Stopped...");
 

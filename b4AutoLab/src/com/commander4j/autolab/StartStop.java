@@ -29,9 +29,9 @@ public class StartStop
 		File file = new File( System.getProperty("user.dir") + File.separator +"log.txt");
 		file.delete();
 		
-		ShutdownHook sample = new ShutdownHook();
+		ShutdownHook shutdownHook = new ShutdownHook();
 
-		Runtime.getRuntime().addShutdownHook(sample);
+		Runtime.getRuntime().addShutdownHook(shutdownHook);
 		
 		wait = new JWait();
 		autolab = new AutoLab();
@@ -66,6 +66,10 @@ public class StartStop
 			}
 
 		}
+		
+		Runtime.getRuntime().removeShutdownHook(shutdownHook);
+		
+		System.exit(0);
 	}
 	
 	public static void initLogging(String filename)

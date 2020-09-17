@@ -67,6 +67,7 @@ public class ProcDec_XML
 		if (AutoLab.config.isSuppressOutputMessage())
 		{
 			result = true;
+			logger.debug("[" + getUuid()+"] OUTPUT SUPPRESSED - see config.xml ");
 		}
 		else
 		{

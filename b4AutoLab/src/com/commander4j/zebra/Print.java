@@ -144,6 +144,7 @@ public class Print extends Thread
 					if (AutoLab.config.isSuppressLabelPrint())
 					{
 						setDataReady(false);
+						logger.debug("[" + getUuid()+"] {"+getName()+"} PRINT SUPPRESSED - see config.xml ");
 					}
 					else
 					{

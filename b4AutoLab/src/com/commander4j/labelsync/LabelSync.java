@@ -136,7 +136,10 @@ public class LabelSync extends Thread
 				
 				if (filesUpdated>0)
 				{
-					AutoLab.emailqueue.addToQueue("Info", utility.getClientName() +" LabelSync","LabelSync ["+getUuid()+"] {"+getName()+"} performed.",filesCopied+"\n\n"+filesUpdated+" file(s) copied.");
+					AutoLab.emailqueue.addToQueue("Info", 
+												utility.getClientName() +" LabelSync",
+												"LabelSync ["+getUuid()+"] {"+getName()+"} performed.\n\n"+
+												filesCopied+"\n\n"+filesUpdated+" file(s) copied.","");
 				}
 				
 				logger.debug("["+getUuid()+"] {"+getName()+"} performed. "+filesUpdated+" files updated.");

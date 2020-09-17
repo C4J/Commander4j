@@ -115,6 +115,22 @@ public class Modbus extends Thread
 		else
 		{
 			run = false;
+			if (modbusClient.isConnected())
+			{
+				try
+				{
+					modbusClient.Disconnect();
+				}
+				catch (IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else
+			{
+				modbusClient=null;
+			}
 			logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Thread Shutdown Requested.");
 		}
 	}
@@ -305,7 +321,10 @@ public class Modbus extends Thread
 			catch (java.net.SocketException e)
 			{
 				logger.debug("[" + getUuid() + "] {" + getName() + "} " + "SocketException " + e.getLocalizedMessage());
-				wait.manySec(5);
+				if (run==false)
+				{break;
+				}
+				
 			}
 
 			catch (java.io.IOException e)
