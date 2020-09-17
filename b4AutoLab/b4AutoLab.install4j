@@ -2,7 +2,7 @@
 <install4j version="8.0.8" transformSequenceNumber="8">
   <directoryPresets config="." />
   <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.20" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
-    <languages>
+    <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="nl" />
         <language id="fr" />
@@ -10,6 +10,8 @@
         <language id="hu" />
         <language id="it" />
         <language id="pl" />
+        <language id="pt" />
+        <language id="es" />
       </additionalLanguages>
     </languages>
     <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u265-b01">
@@ -312,6 +314,18 @@ return console.askOkCancel(message, true);
                 <serializedBean>
                   <property name="itemName" type="string">${compiler:sys.fullName} ${compiler:sys.version}</property>
                 </serializedBean>
+              </action>
+              <action id="551" beanClass="com.install4j.runtime.beans.actions.desktop.AddStartupItemAction" actionElevationType="elevated" rollbackBarrierExitCode="0">
+                <serializedBean>
+                  <property name="allUsers" type="boolean" value="true" />
+                  <property name="executable">
+                    <object class="java.io.File">
+                      <string>AutoLab4j_GUI</string>
+                    </object>
+                  </property>
+                  <property name="name" type="string">AutoLab4j Startup</property>
+                </serializedBean>
+                <condition>Util.isWindows()</condition>
               </action>
             </actions>
             <formComponents>

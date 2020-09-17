@@ -17,7 +17,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class TrayIconSysInfo extends JDialog
+import com.commander4j.autolab.AutoLab;
+
+public class JDialogSysInfo extends JDialog
 {
 
 	/**
@@ -28,15 +30,16 @@ public class TrayIconSysInfo extends JDialog
 	private JTextField jTextFieldJavaVersion;
 	private JTextField jTextFieldOSName;
 	private JTextField jTextFieldOSVersion;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField jTextFieldModbusIP;
+	private JTextField jTextFieldModbusPort;
+	private JTextField jTextFieldModbusCoil;
+	private JTextField textField_LabelSource;
+	private JTextField textField_DataSetPath;
+	private JTextField textField_OutputPath;
 	private JTextField jTextFieldUserDir;
 	private JTextField jTextFieldUsername;
 	private JTextField jTextFieldWorkstationID;
+	private String uuid = "";
 
 	/**
 	 * Launch the application.
@@ -45,7 +48,7 @@ public class TrayIconSysInfo extends JDialog
 	{
 		try
 		{
-			TrayIconSysInfo dialog = new TrayIconSysInfo();
+			JDialogSysInfo dialog = new JDialogSysInfo("");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		}
@@ -58,9 +61,11 @@ public class TrayIconSysInfo extends JDialog
 	/**
 	 * Create the dialog.
 	 */
-	public TrayIconSysInfo()
+	public JDialogSysInfo(String uuid)
 	{
-		setTitle("System Information");
+		setUuid(uuid);
+		
+		setTitle("System Information ["+getClientName()+"]"+" Line [" + AutoLab.getProdLine_Name(uuid) + "]");
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setSize(585, 417);
@@ -162,41 +167,41 @@ public class TrayIconSysInfo extends JDialog
 		jTextFieldOSVersion.setBounds(166, 155, 372, 26);
 		contentPanel.add(jTextFieldOSVersion);
 		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(166, 183, 372, 26);
-		contentPanel.add(textField_2);
+		jTextFieldModbusIP = new JTextField();
+		jTextFieldModbusIP.setEditable(false);
+		jTextFieldModbusIP.setColumns(10);
+		jTextFieldModbusIP.setBounds(166, 183, 372, 26);
+		contentPanel.add(jTextFieldModbusIP);
 		
-		textField_3 = new JTextField();
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-		textField_3.setBounds(166, 208, 372, 26);
-		contentPanel.add(textField_3);
+		jTextFieldModbusPort = new JTextField();
+		jTextFieldModbusPort.setEditable(false);
+		jTextFieldModbusPort.setColumns(10);
+		jTextFieldModbusPort.setBounds(166, 208, 372, 26);
+		contentPanel.add(jTextFieldModbusPort);
 		
-		textField_4 = new JTextField();
-		textField_4.setEditable(false);
-		textField_4.setColumns(10);
-		textField_4.setBounds(166, 236, 372, 26);
-		contentPanel.add(textField_4);
+		jTextFieldModbusCoil = new JTextField();
+		jTextFieldModbusCoil.setEditable(false);
+		jTextFieldModbusCoil.setColumns(10);
+		jTextFieldModbusCoil.setBounds(166, 236, 372, 26);
+		contentPanel.add(jTextFieldModbusCoil);
 		
-		textField_5 = new JTextField();
-		textField_5.setEditable(false);
-		textField_5.setColumns(10);
-		textField_5.setBounds(166, 264, 372, 26);
-		contentPanel.add(textField_5);
+		textField_LabelSource = new JTextField();
+		textField_LabelSource.setEditable(false);
+		textField_LabelSource.setColumns(10);
+		textField_LabelSource.setBounds(166, 264, 372, 26);
+		contentPanel.add(textField_LabelSource);
 		
-		textField_6 = new JTextField();
-		textField_6.setEditable(false);
-		textField_6.setColumns(10);
-		textField_6.setBounds(166, 292, 372, 26);
-		contentPanel.add(textField_6);
+		textField_DataSetPath = new JTextField();
+		textField_DataSetPath.setEditable(false);
+		textField_DataSetPath.setColumns(10);
+		textField_DataSetPath.setBounds(166, 292, 372, 26);
+		contentPanel.add(textField_DataSetPath);
 		
-		textField_7 = new JTextField();
-		textField_7.setEditable(false);
-		textField_7.setColumns(10);
-		textField_7.setBounds(166, 320, 372, 26);
-		contentPanel.add(textField_7);
+		textField_OutputPath = new JTextField();
+		textField_OutputPath.setEditable(false);
+		textField_OutputPath.setColumns(10);
+		textField_OutputPath.setBounds(166, 320, 372, 26);
+		contentPanel.add(textField_OutputPath);
 		
 		jTextFieldUserDir = new JTextField();
 		jTextFieldUserDir.setEditable(false);
@@ -222,7 +227,12 @@ public class TrayIconSysInfo extends JDialog
 		jTextFieldJavaVersion.setText(System.getProperty("java.version"));
 		jTextFieldWorkstationID.setText(getClientName());
 		jTextFieldUsername.setText(System.getProperty("user.name"));
-
+		jTextFieldModbusIP.setText(AutoLab.getModBus_IP(getUuid()));
+		jTextFieldModbusPort.setText(AutoLab.getModBus_Port(getUuid()));
+		jTextFieldModbusCoil.setText(AutoLab.getModBus_CoilID(getUuid()));
+		textField_LabelSource.setText(AutoLab.getLabelSource());
+		textField_DataSetPath.setText(AutoLab.getDataSetPath(getUuid()));
+		textField_OutputPath.setText(AutoLab.config.getOutputPath());
 	}
 	
 	private  String getClientName()
@@ -241,6 +251,16 @@ public class TrayIconSysInfo extends JDialog
 		}
 		
 		return hostname;
+	}
+	
+	private String getUuid()
+	{
+		return uuid;
+	}
+
+	private void setUuid(String uuid)
+	{
+		this.uuid = uuid;
 	}
 	
 }

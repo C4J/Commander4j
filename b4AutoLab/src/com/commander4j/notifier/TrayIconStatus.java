@@ -95,21 +95,21 @@ public class TrayIconStatus
 
 			if (e.getSource().equals(menuItemABOUT))
 			{
-				TrayIconAbout dialog = new TrayIconAbout();
+				JDialogAbout dialog = new JDialogAbout();
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
 			}
 
 			if (e.getSource().equals(menuItemSYSINFO))
 			{
-				TrayIconSysInfo dialog = new TrayIconSysInfo();
+				JDialogSysInfo dialog = new JDialogSysInfo(getUuid());
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
 			}
 
 			if (e.getSource().equals(menuItemORDERINFO))
 			{	
-				TrayIconOrderInfo dialog = new TrayIconOrderInfo(getUuid());
+				JDialogOrderInfo dialog = new JDialogOrderInfo(getUuid());
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
 			}
@@ -120,7 +120,6 @@ public class TrayIconStatus
 				int res = JOptionPane.showConfirmDialog(null, "Shutdown AutoLab ?", "Close", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, confirmIcon);
 				if (res == 0)
 				{
-					//System.exit(0);
 					StartStop.autolab.requestStop();
 				}
 

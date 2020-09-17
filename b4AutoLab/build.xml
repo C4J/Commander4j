@@ -12,7 +12,7 @@
     <path id="b4AutoLab.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/modbus/EasyModbusJavaClient.jar"/>
-        <pathelement location="lib/apache/commons-io-2.7.jar"/>
+        <pathelement location="lib/apache/commons-io-2.8.0.jar"/>
         <pathelement location="lib/opencsv/commons-beanutils-1.9.4.jar"/>
         <pathelement location="lib/opencsv/commons-collections4-4.4.jar"/>
         <pathelement location="lib/opencsv/commons-lang3-3.10.jar"/>

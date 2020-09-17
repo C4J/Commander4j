@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.commander4j.autolab.AutoLab;
 
-public class TrayIconOrderInfo extends JDialog
+public class JDialogOrderInfo extends JDialog
 {
 
 	/**
@@ -46,7 +46,7 @@ public class TrayIconOrderInfo extends JDialog
 	{
 		try
 		{
-			TrayIconOrderInfo dialog = new TrayIconOrderInfo("");
+			JDialogOrderInfo dialog = new JDialogOrderInfo("");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		}
@@ -59,7 +59,7 @@ public class TrayIconOrderInfo extends JDialog
 	/**
 	 * Create the dialog.
 	 */
-	public TrayIconOrderInfo(String uuid)
+	public JDialogOrderInfo(String uuid)
 	{
 
 		setUuid(uuid);
@@ -246,12 +246,12 @@ public class TrayIconOrderInfo extends JDialog
 		textFieldVARIANT.setText(AutoLab.getDataSet_Field(getUuid(), "PROD_VARIANT"));
 	}
 
-	public String getUuid()
+	private String getUuid()
 	{
 		return uuid;
 	}
 
-	public void setUuid(String uuid)
+	private void setUuid(String uuid)
 	{
 		this.uuid = uuid;
 	}

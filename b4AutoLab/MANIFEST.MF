@@ -13,4 +13,4 @@ Class-Path: lib/mail/javax.mail.jar
  lib/modbus/EasyModbusJavaServer.jar 
  lib/apache/log4j-api-2.13.3.jar 
  lib/apache/log4j-core-2.13.3.jar 
- lib/apache/commons-io-2.7.jar 
+ lib/apache/commons-io-2.8.0.jar 

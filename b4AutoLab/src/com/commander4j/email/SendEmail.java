@@ -1,7 +1,7 @@
 package com.commander4j.email;
 
 import java.io.File;
-import java.sql.Timestamp;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Properties;
@@ -21,8 +21,7 @@ public class SendEmail
 
 	private Properties smtpProperties;
 	private HashMap<String, distributionList> distList = new HashMap<String, distributionList>();
-	private HashMap<String, Timestamp> emailLog = new HashMap<String, Timestamp>();
-	private Calendar cal;
+	private HashMap<String, Calendar> emailLog = new HashMap<String, Calendar>();
 	private JUtility utils = new JUtility();
 
 	public void init(String distributionID)
@@ -90,34 +89,42 @@ public class SendEmail
 			String emailKey = "[" + distributionID + "] - [" + subject + "]";
 			logger.debug(emailKey);
 
-			Timestamp lastSent;
-			Boolean okToSend;
+			Calendar lastSent;
+			Calendar now = Calendar.getInstance();
+			
+			Boolean okToSend = false;
 
 			if (emailLog.containsKey(emailKey))
 			{
-				lastSent = new Timestamp(emailLog.get(emailKey).getTime());
+				lastSent = emailLog.get(emailKey);
 			}
 			else
 			{
-				cal = Calendar.getInstance();
-				cal.add(Calendar.DAY_OF_YEAR, -30);
-				lastSent = new Timestamp(cal.getTime().getTime());
+				okToSend = true;
+				lastSent = now;
 				emailLog.put(emailKey, lastSent);
 			}
 
-			long ageInMins = utils.compareTwoTimeStamps(utils.getSQLDateTime(), lastSent);
-			logger.debug("Last email to " + emailKey + " was at " + lastSent);
+			
+			long seconds = (now.getTimeInMillis() - lastSent.getTimeInMillis()) / 1000;
+			
+			long ageInMins = seconds/60;
+			
+			logger.debug("Last email to " + emailKey + " was at " + utils.getISODateStringFromCalendar(lastSent));
+			logger.debug("Current time is " + utils.getISODateStringFromCalendar(now));
+			
 			logger.debug("Minutes since last email to " + emailKey + " is " + String.valueOf(ageInMins));
 
 			if (ageInMins >= distList.get(distributionID).maxFrequencyMins)
 			{
 				okToSend = true;
+				emailLog.put(emailKey, now);
 				logger.debug("Email allowed");
 			}
 			else
 			{
-				okToSend = false;
-				logger.debug("Email suppressed - too fequent");
+				//okToSend = false;
+				logger.debug("Email suppressed - too frequent");
 			}
 
 			if (okToSend)

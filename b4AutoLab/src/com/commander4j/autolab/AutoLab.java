@@ -237,6 +237,37 @@ public class AutoLab extends Thread
 
 	}
 	
+	public static synchronized String getDataSetPath(String uuid)
+	{
+		String result = ((ProdLine) threadList_ProdLine.get(uuid)).getRemoteDataSetPath();
+		return result;
+	}
+	
+	public static synchronized String getLabelSource()
+	{
+		String result = AutoLab.sync.getSource();
+		return result;
+	}
+	
+	public static synchronized String getModBus_IP(String uuid)
+	{
+		String result = ((ProdLine) threadList_ProdLine.get(uuid)).getModbusIPAddress();
+		return result;
+	}
+	
+	public static synchronized String getModBus_Port(String uuid)
+	{
+		int result = ((ProdLine) threadList_ProdLine.get(uuid)).getModbusPortNumber();
+		return String.valueOf(result);
+	}
+	
+	public static synchronized String getModBus_CoilID(String uuid)
+	{
+		int result = ((ProdLine) threadList_ProdLine.get(uuid)).getModbusCoil();
+		return String.valueOf(result);
+	}
+	
+	
 	public static synchronized String getProdLine_Name(String uuid)
 	{
 

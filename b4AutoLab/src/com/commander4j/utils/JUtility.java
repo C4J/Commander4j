@@ -190,6 +190,18 @@ public class JUtility
 
 		return result;
 	}
+	
+	public String getISODateStringFromCalendar(Calendar cal)
+	{
+		String result = "";
+		
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		result = format1.format(cal.getTime());
+
+		return result;
+	}
+	
 
 	public String getISODateStringFormat(Date ts)
 	{

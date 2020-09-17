@@ -19,7 +19,7 @@ import com.commander4j.autolab.AutoLab;
 
 import javax.swing.SwingConstants;
 
-public class TrayIconAbout extends JDialog
+public class JDialogAbout extends JDialog
 {
 
 	/**
@@ -35,7 +35,7 @@ public class TrayIconAbout extends JDialog
 	{
 		try
 		{
-			TrayIconAbout dialog = new TrayIconAbout();
+			JDialogAbout dialog = new JDialogAbout();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		}
@@ -48,7 +48,7 @@ public class TrayIconAbout extends JDialog
 	/**
 	 * Create the dialog.
 	 */
-	public TrayIconAbout()
+	public JDialogAbout()
 	{
 		setTitle("About");
 		setResizable(false);
