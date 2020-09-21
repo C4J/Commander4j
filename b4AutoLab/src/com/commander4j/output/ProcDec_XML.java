@@ -1,6 +1,5 @@
 package com.commander4j.output;
 
-import java.io.File;
 import java.util.Calendar;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -13,6 +12,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
 import com.commander4j.autolab.AutoLab;
+import com.commander4j.prodLine.ProdLine;
 import com.commander4j.utils.JFileIO;
 import com.commander4j.utils.JUtility;
 
@@ -30,6 +30,16 @@ public class ProcDec_XML
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger((ProcDec_XML.class));
 	private Calendar caldate;
 
+	public void appendNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+	}
+	
+	public void setNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).setNotification(message);
+	}
+	
 	public String getUuid()
 	{
 		return uuid;
@@ -67,6 +77,7 @@ public class ProcDec_XML
 		if (AutoLab.config.isSuppressOutputMessage())
 		{
 			result = true;
+			appendNotification("OUTPUT SUPPRESSED - see config.xml");
 			logger.debug("[" + getUuid()+"] OUTPUT SUPPRESSED - see config.xml ");
 		}
 		else
@@ -79,6 +90,8 @@ public class ProcDec_XML
 
 				setFilename(AutoLab.getDataSet_Field(uuid, "SSCC") + ".xml");
 				setPath(AutoLab.config.getOutputPath());
+				
+				appendNotification("Creating Production Declaration ["+getFilename()+"]");
 
 				Element element_message = (Element) document.createElement("message");
 
@@ -150,13 +163,16 @@ public class ProcDec_XML
 				document.appendChild(element_message);
 
 				fio.writeToDisk(getPath(), document, getFilename());
+				
+				appendNotification("File ["+getFilename()+"] created successfully ");
 
-				AutoLab.emailqueue.addToQueue("Info", utils.getClientName() + " ProdDec created.", getPath() + File.separator + getFilename(), "");
+				//AutoLab.emailqueue.addToQueue("Info", utils.getClientName() + " ProdDec created.", getPath() + File.separator + getFilename(), "");
 
 			}
 			catch (ParserConfigurationException e)
 			{
 				logger.debug("Error writing output file :" + e.getLocalizedMessage());
+				appendNotification("Error writing output file :" + e.getLocalizedMessage());
 			}
 		}
 

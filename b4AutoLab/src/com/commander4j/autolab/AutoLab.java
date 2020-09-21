@@ -1,5 +1,6 @@
 package com.commander4j.autolab;
 
+import java.awt.SystemTray;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -18,7 +19,8 @@ import com.commander4j.config.ProdLineDefinition;
 import com.commander4j.email.EmailQueue;
 import com.commander4j.email.EmailThread;
 import com.commander4j.labelsync.LabelSync;
-import com.commander4j.notifier.TrayIconStatus;
+import com.commander4j.notifier.TrayIconProdLineStatus;
+import com.commander4j.notifier.TrayIconSystemInfo;
 import com.commander4j.prodLine.ProdLine;
 import com.commander4j.sscc.SSCC_Sequence;
 import com.commander4j.utils.JUtility;
@@ -29,7 +31,7 @@ public class AutoLab extends Thread
 
 	public static HashMap<String, Thread> threadList_ProdLine = new HashMap<String, Thread>();
 	public static HashMap<String, Thread> threadList_SSCC = new HashMap<String, Thread>();
-	public static HashMap<String, TrayIconStatus> iconList_SystemTray = new HashMap<String, TrayIconStatus>();
+	public static HashMap<String, TrayIconProdLineStatus> iconList_SystemTray = new HashMap<String, TrayIconProdLineStatus>();
 	public static JWait wait = new JWait();
 	public static Logger logger = org.apache.logging.log4j.LogManager.getLogger((AutoLab.class));
 	public static Config config;
@@ -41,7 +43,8 @@ public class AutoLab extends Thread
 	public static String version = "1.20";
 	private JUtility utils = new JUtility();
 	public static EmailThread emailthread;
-	
+	TrayIconSystemInfo trayIconSystem = new TrayIconSystemInfo();
+
 	@Override
 	public void run()
 	{
@@ -57,11 +60,13 @@ public class AutoLab extends Thread
 			catch (InterruptedException e)
 			{
 				run = false;
-				//break;
+				// break;
 			}
 		}
-		
+
 		StopAutoLab();
+		
+		logger.debug("Application Terminated.");
 	}
 
 	public void requestStop()
@@ -72,13 +77,12 @@ public class AutoLab extends Thread
 	public boolean StartAutoLab()
 	{
 		boolean result = true;
-		
+
 		emailthread = new EmailThread();
 		emailthread.start();
-		
-		
-		emailqueue.addToQueue("Info", "AutoLab "+version+" started on "+utils.getClientName(), "AutoLab service version "+version+" started.", "");
-		logger.debug("Version "+version);
+
+		emailqueue.addToQueue("StartStop", "AutoLab " + version + " started on " + utils.getClientName(), "AutoLab service version " + version + " started.", "");
+		logger.debug("Version " + version);
 
 		Locale.setDefault(new Locale(Common.locale_language, Common.locale_region));
 
@@ -88,6 +92,9 @@ public class AutoLab extends Thread
 
 		lines.putAll(config.getConfigProdLines());
 
+	
+		trayIconSystem.init();
+		
 		// Start one thread per production line.
 
 		Set<Entry<String, ProdLineDefinition>> entrySet0 = lines.entrySet();
@@ -100,11 +107,12 @@ public class AutoLab extends Thread
 			ProdLine prodLine0 = new ProdLine(prodlinedef0.getProdLine_Name(), prodlinedef0.getModbus_Name(), prodlinedef0.getModbus_IPAddress(), Integer.valueOf(prodlinedef0.getModbus_Port()), Integer.valueOf(prodlinedef0.getModbus_Coil_Address()), Integer.valueOf(prodlinedef0.getModbus_Timeout()),
 					Boolean.valueOf(prodlinedef0.getModbus_Coil_Trigger_Value()), prodlinedef0.getPrinter_Name(), config.getDataSetPath(), prodlinedef0.getSscc_Filename());
 			threadList_ProdLine.put(prodLine0.getUuid(), prodLine0);
-			
-			TrayIconStatus trayIconStatus  = new TrayIconStatus();
+
+			logger.debug("Adding Icon to System Tray for uuid " + prodLine0.getUuid());
+			TrayIconProdLineStatus trayIconStatus = new TrayIconProdLineStatus();
 			trayIconStatus.init(prodLine0.getUuid());
 			iconList_SystemTray.put(prodLine0.getUuid(), trayIconStatus);
-			
+
 			threadList_ProdLine.get(prodLine0.getUuid()).start();
 		}
 
@@ -118,7 +126,7 @@ public class AutoLab extends Thread
 
 	public void StopAutoLab()
 	{
-		
+
 		// Stop the Production Line Threads
 
 		Set<Entry<String, Thread>> entrySet2 = threadList_ProdLine.entrySet();
@@ -129,8 +137,8 @@ public class AutoLab extends Thread
 			Map.Entry<String, Thread> me2 = (Map.Entry<String, Thread>) it2.next();
 
 			logger.debug("StopAutoLab " + ((ProdLine) me2.getValue()).getName());
-			
-			//String uuid = ((ProdLine) me2.getValue()).getUuid();
+
+			String uuid = ((ProdLine) me2.getValue()).getUuid();
 
 			int retries = 5;
 
@@ -139,17 +147,15 @@ public class AutoLab extends Thread
 
 				((ProdLine) me2.getValue()).shutdown();
 
-				
-
-					try
-					{
-						Thread.sleep(1000);
-					}
-					catch (InterruptedException e)
-					{
-						retries=0;
-					}
-					retries--;
+				try
+				{
+					Thread.sleep(1000);
+				}
+				catch (InterruptedException e)
+				{
+					retries = 0;
+				}
+				retries--;
 
 			}
 
@@ -157,17 +163,17 @@ public class AutoLab extends Thread
 			{
 				((ProdLine) me2.getValue()).interrupt();
 			}
+
+			logger.debug("Removing Icon from System Tray for uuid " + uuid);
+			SystemTray.getSystemTray().remove(iconList_SystemTray.get(uuid).getTrayIcon());
+			iconList_SystemTray.remove(uuid);
 			
-
-		//	iconList_SystemTray.put(uuid, null);
-		//	iconList_SystemTray.remove(uuid);
-
 		}
 
 		sync.shutdown();
 
-		emailqueue.addToQueue("Info", "AutoLab "+version+" stopped on "+utils.getClientName(), "AutoLab service version "+version+" stopped.", "");
-		
+		emailqueue.addToQueue("StartStop", "AutoLab " + version + " stopped on " + utils.getClientName(), "AutoLab service version " + version + " stopped.", "");
+
 		while (emailqueue.getQueueSize() > 0)
 		{
 			try
@@ -179,9 +185,9 @@ public class AutoLab extends Thread
 				break;
 			}
 		}
-		
+
 		emailthread.shutdown();
-		
+
 		while (emailthread.isAlive())
 		{
 			try
@@ -194,26 +200,25 @@ public class AutoLab extends Thread
 			}
 		}
 		
+		SystemTray.getSystemTray().remove(trayIconSystem.getTrayIcon());
+
 	}
-
-
 
 	// These methods permit inter thread communication using the common uuid
 
-	
-	public static synchronized TrayIconStatus updateTrayIconStatus(String uuid)
+	public static synchronized TrayIconProdLineStatus updateTrayIconStatus(String uuid)
 	{
-		TrayIconStatus result = ((TrayIconStatus) iconList_SystemTray.get(uuid));
+		TrayIconProdLineStatus result = ((TrayIconProdLineStatus) iconList_SystemTray.get(uuid));
 		return result;
 
 	}
-	
+
 	public static synchronized void removeTrayIconStatus(String uuid)
 	{
 		iconList_SystemTray.remove(uuid);
 
 	}
-	
+
 	public static synchronized boolean isDataSet_DataReady(String uuid)
 	{
 		boolean result = false;
@@ -236,45 +241,43 @@ public class AutoLab extends Thread
 		return result;
 
 	}
-	
+
 	public static synchronized String getDataSetPath(String uuid)
 	{
 		String result = ((ProdLine) threadList_ProdLine.get(uuid)).getRemoteDataSetPath();
 		return result;
 	}
-	
+
 	public static synchronized String getLabelSource()
 	{
 		String result = AutoLab.sync.getSource();
 		return result;
 	}
-	
+
 	public static synchronized String getModBus_IP(String uuid)
 	{
 		String result = ((ProdLine) threadList_ProdLine.get(uuid)).getModbusIPAddress();
 		return result;
 	}
-	
+
 	public static synchronized String getModBus_Port(String uuid)
 	{
 		int result = ((ProdLine) threadList_ProdLine.get(uuid)).getModbusPortNumber();
 		return String.valueOf(result);
 	}
-	
+
 	public static synchronized String getModBus_CoilID(String uuid)
 	{
 		int result = ((ProdLine) threadList_ProdLine.get(uuid)).getModbusCoil();
 		return String.valueOf(result);
 	}
-	
-	
+
 	public static synchronized String getProdLine_Name(String uuid)
 	{
 
 		String result = ((ProdLine) threadList_ProdLine.get(uuid)).getProdLineName();
 		return result;
 	}
-	
 
 	public static synchronized void setDataSet_FieldValue(String uuid, String fieldname, String value)
 	{

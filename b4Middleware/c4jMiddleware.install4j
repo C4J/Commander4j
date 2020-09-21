@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.8" transformSequenceNumber="8">
   <directoryPresets config=".." />
-  <application name="Commander4j Middleware" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="2.02" allPathsRelative="true" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
+  <application name="Commander4j Middleware" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="2.03" allPathsRelative="true" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="da" />

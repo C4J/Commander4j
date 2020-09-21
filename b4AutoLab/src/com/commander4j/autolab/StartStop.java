@@ -26,8 +26,7 @@ public class StartStop
 	{
 		initLogging("");
 		
-		File file = new File( System.getProperty("user.dir") + File.separator +"log.txt");
-		file.delete();
+		utils.setLookandFeel();
 		
 		ShutdownHook shutdownHook = new ShutdownHook();
 

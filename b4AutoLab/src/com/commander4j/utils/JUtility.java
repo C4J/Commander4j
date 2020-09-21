@@ -2,9 +2,13 @@
 package com.commander4j.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
+import com.commander4j.notifier.Xy;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -16,14 +20,115 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import javax.swing.UIManager;
+import javax.swing.plaf.metal.DefaultMetalTheme;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.metal.OceanTheme;
 
 import org.apache.commons.io.FileUtils;
 
 public class JUtility
 {
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger((JUtility.class));
+	public static int x = 50;
+	public static int y = 50;
 	
-	public  String getFilenameFromPath(String path)
+	public static synchronized Xy getNotifierLocation()
+	{
+		Xy result = new Xy();
+		result.x = x;
+		result.y = y;
+		x = x + 50;
+		y = y + 50;
+		return result;
+	}
+
+	public boolean zipFile(String inputFile, String outputFile)
+	{
+
+		boolean result = false;
+		try
+		{
+			logger.debug("Compressing " + inputFile + " into " + outputFile);
+
+			File test = new File(outputFile);
+			if (test.exists())
+			{
+				FileUtils.forceDelete(new File(outputFile));
+			}
+			test=null;
+
+			FileOutputStream fos = new FileOutputStream(outputFile);
+
+			ZipOutputStream zipOut = new ZipOutputStream(fos);
+
+			File fileToZip = new File(inputFile);
+
+			FileInputStream fis = new FileInputStream(fileToZip);
+
+			ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
+			zipOut.putNextEntry(zipEntry);
+
+			byte[] bytes = new byte[1024];
+			int length;
+
+			while ((length = fis.read(bytes)) >= 0)
+			{
+				zipOut.write(bytes, 0, length);
+			}
+
+			zipOut.close();
+			fis.close();
+			fos.close();
+
+			result = true;
+		}
+		catch (Exception ex)
+		{
+			logger.debug("Error Compressing File " + ex.getMessage());
+		}
+
+		return result;
+	}
+
+	public void SetLookAndFeel(String LOOKANDFEEL, String THEME)
+	{
+		try
+		{
+			if (LOOKANDFEEL.equals("Metal"))
+			{
+				if (THEME.equals("DefaultMetal"))
+					MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
+				else if (THEME.equals("Ocean"))
+					MetalLookAndFeel.setCurrentTheme(new OceanTheme());
+
+				UIManager.setLookAndFeel(new MetalLookAndFeel());
+
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public void setLookandFeel()
+	{
+
+		try
+		{
+			SetLookAndFeel("Metal", "Ocean");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public String getFilenameFromPath(String path)
 	{
 		String result = "";
 		String temp = replaceNullStringwithBlank(path);
@@ -47,19 +152,19 @@ public class JUtility
 
 		return result;
 	}
-	
-	public  long compareTwoTimeStamps(java.sql.Timestamp currentTime, java.sql.Timestamp oldTime)
+
+	public long compareTwoTimeStamps(java.sql.Timestamp currentTime, java.sql.Timestamp oldTime)
 	{
-	  long milliseconds1 = oldTime.getTime();
-	  long milliseconds2 = currentTime.getTime();
+		long milliseconds1 = oldTime.getTime();
+		long milliseconds2 = currentTime.getTime();
 
-	  long diff = milliseconds2 - milliseconds1;
-	  //long diffSeconds = diff / 1000;
-	  long diffMinutes = diff / (60 * 1000);
-	  //long diffHours = diff / (60 * 60 * 1000);
-	  //long diffDays = diff / (24 * 60 * 60 * 1000);
+		long diff = milliseconds2 - milliseconds1;
+		// long diffSeconds = diff / 1000;
+		long diffMinutes = diff / (60 * 1000);
+		// long diffHours = diff / (60 * 60 * 1000);
+		// long diffDays = diff / (24 * 60 * 60 * 1000);
 
-	   return diffMinutes;
+		return diffMinutes;
 	}
 
 	public String replaceNullObjectwithBlank(Object value)
@@ -190,19 +295,29 @@ public class JUtility
 
 		return result;
 	}
-	
+
 	public String getISODateStringFromCalendar(Calendar cal)
 	{
 		String result = "";
-		
+
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
+
+		result = format1.format(cal.getTime());
+
+		return result;
+	}
+
+	public String get24HourStringFromCalendar(Calendar cal)
+	{
+		String result = "";
+
+		SimpleDateFormat format1 = new SimpleDateFormat("HH:mm:ss");
+
 		result = format1.format(cal.getTime());
 
 		return result;
 	}
 	
-
 	public String getISODateStringFormat(Date ts)
 	{
 		String result = "";
@@ -529,7 +644,7 @@ public class JUtility
 			return null;
 		}
 	}
-	
+
 	public Calendar convertStringToCalendar(String format, String strDate)
 	{
 		try
@@ -537,7 +652,7 @@ public class JUtility
 
 			DateFormat formatter = new SimpleDateFormat(format);
 
-			Calendar cal  = Calendar.getInstance();
+			Calendar cal = Calendar.getInstance();
 			cal.setTime(formatter.parse(strDate));
 
 			return cal;
@@ -548,7 +663,7 @@ public class JUtility
 			return null;
 		}
 	}
-	
+
 	public String getFormattedCSVCalendarString(Calendar ts)
 	{
 		String result = "";
@@ -565,7 +680,7 @@ public class JUtility
 
 		return result;
 	}
-	
+
 	public String getFormattedISOCalendarString(Calendar ts)
 	{
 		String result = "";
@@ -573,7 +688,7 @@ public class JUtility
 		try
 		{
 			temp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts.getTimeInMillis());
-			
+
 			result = temp.substring(0, 4);
 			result = result + "-";
 			result = result + temp.substring(5, 7);
@@ -595,26 +710,25 @@ public class JUtility
 		return result;
 	}
 
-
 	public String formatNumber(String No, String fmt)
 	{
 		String result = "error";
 
 		Double dbl = (double) 0;
-		
-		dbl=Double.valueOf(No);
-		
-		DecimalFormat df = new DecimalFormat(fmt); 
-		
-		result = df.format(dbl); 
-		
+
+		dbl = Double.valueOf(No);
+
+		DecimalFormat df = new DecimalFormat(fmt);
+
+		result = df.format(dbl);
+
 		return result;
 	}
-	
-	public Calendar getRoundedExpiryDate(Calendar caldate,String rule)
+
+	public Calendar getRoundedExpiryDate(Calendar caldate, String rule)
 	{
 		String mode = AutoLab.config.getSystemKey("BATCH EXPIRY TIME");
-		
+
 		Calendar result = caldate;
 
 		if (rule.equals("-"))
@@ -628,7 +742,7 @@ public class JUtility
 			caldate.add(Calendar.MONTH, 1);
 			caldate.add(Calendar.DAY_OF_YEAR, -1);
 		}
-		
+
 		if (mode.equals("-"))
 		{
 			caldate.set(Calendar.HOUR_OF_DAY, 0);
@@ -647,10 +761,10 @@ public class JUtility
 
 		return result;
 	}
-	
+
 	public Calendar calcBBE(Calendar dateOfManufacture, Integer shelfLife, String shelfLifeUom, String shelfLifeRule)
 	{
-		Calendar result  = dateOfManufacture;
+		Calendar result = dateOfManufacture;
 
 		if (shelfLifeUom.equals("H"))
 		{
@@ -677,11 +791,11 @@ public class JUtility
 			result.add(Calendar.YEAR, shelfLife);
 		}
 
-		result = getRoundedExpiryDate(result,shelfLifeRule);
+		result = getRoundedExpiryDate(result, shelfLifeRule);
 
 		return result;
 	}
-	
+
 	public String getClientName()
 	{
 		String result = "";
@@ -716,15 +830,15 @@ public class JUtility
 		if (clientname.contains("."))
 		{
 			String[] bits = clientname.split("\\.");
-			clientname=bits[0];
+			clientname = bits[0];
 		}
-		
+
 		result = left(clientname, 40);
 
 		return result;
 	}
 
-	public  String left(String inputstr, int size)
+	public String left(String inputstr, int size)
 	{
 		String result = replaceNullStringwithBlank(inputstr);
 
@@ -744,5 +858,5 @@ public class JUtility
 
 		return result;
 	}
-	
+
 }

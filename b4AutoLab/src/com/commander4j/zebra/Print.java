@@ -5,6 +5,7 @@ import java.net.*;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
+import com.commander4j.prodLine.ProdLine;
 
 
 /**
@@ -30,6 +31,16 @@ public class Print extends Thread
 		setPrinterName(name);
 		setThreadName();
 		logger.debug("[" + getUuid()+"] {"+getName()+"} Print Instance Created.");
+	}
+	
+	public void appendNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+	}
+	
+	public void setNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).setNotification(message);
 	}
 
 	public void shutdown()
@@ -145,12 +156,15 @@ public class Print extends Thread
 					{
 						setDataReady(false);
 						logger.debug("[" + getUuid()+"] {"+getName()+"} PRINT SUPPRESSED - see config.xml ");
+						appendNotification("PRINT SUPPRESSED - see config.xml");
 					}
 					else
 					{
 
 						try
 						{
+							appendNotification("Sending data to printer ["+getPrinterName()+"] ["+getIpAddress()+"]" );
+							
 							this.clientSocket = new Socket(this.ipAddress, this.portNumber);
 
 							DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
@@ -162,14 +176,18 @@ public class Print extends Thread
 							setErrorMessage("");
 
 							setDataReady(false);
+							
+							appendNotification("Print complete.");
 						}
 						catch (UnknownHostException e)
 						{
 							setErrorMessage(e.getLocalizedMessage());
+							appendNotification("Error Sending data to printer : "+e.getLocalizedMessage());
 						}
 						catch (IOException e)
 						{
 							setErrorMessage(e.getLocalizedMessage());
+							appendNotification("Error Sending data to printer : "+e.getLocalizedMessage());
 						}
 					}
 				}

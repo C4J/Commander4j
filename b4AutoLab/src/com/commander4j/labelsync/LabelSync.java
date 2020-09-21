@@ -30,13 +30,13 @@ public class LabelSync extends Thread
 	public LabelSync(String name, String source, int frequency)
 	{
 		this.source = source;
-		this.destination  = System.getProperty("user.dir") + File.separator + "labels";
+		this.destination = System.getProperty("user.dir") + File.separator + "labels";
 		this.frequency = frequency;
 		this.countdown = frequency;
 		this.uuid = unique.getUniqueID();
 
 		setName(name);
-		logger.debug("["+getUuid()+"] Instance Created.");
+		logger.debug("[" + getUuid() + "] Instance Created.");
 	}
 
 	public void shutdown()
@@ -101,7 +101,9 @@ public class LabelSync extends Thread
 
 		run = true;
 		countdown = 0;
-		logger.debug("["+getUuid()+"] {"+getName()+"} Thread Started...");
+		logger.debug("[" + getUuid() + "] {" + getName() + "} Thread Started...");
+		File isSourceOK = new File(source);
+		File isDestinationOK = new File(destination);
 
 		while (run == true)
 		{
@@ -109,41 +111,56 @@ public class LabelSync extends Thread
 			if (countdown == 0)
 			{
 
-				logger.debug("["+getUuid()+"] {"+getName()+"} Source Path      = " + source);
-				logger.debug("["+getUuid()+"] {"+getName()+"} Destination Path = " + destination);
-				String filesCopied = "";
+				logger.debug("[" + getUuid() + "] {" + getName() + "} Source Path      = " + source);
+				logger.debug("[" + getUuid() + "] {" + getName() + "} Destination Path = " + destination);
 
-				Iterator<File> files = FileUtils.iterateFiles(new File(source), TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
-				int filesUpdated = 0;
 
-				while (files.hasNext())
+				if (isSourceOK.isDirectory())
 				{
 
-					File sourceFile = files.next();
-
-					String foundFile = sourceFile.getName();
-					
-
-					File destinationFile = new File(destination + File.separator + foundFile);
-
-					if (utility.copyNewerFile(getName(),sourceFile, destinationFile))
+					if (isDestinationOK.isDirectory())
 					{
-						filesUpdated++;
-						filesCopied = filesCopied + foundFile+"\n";
+
+						String filesCopied = "";
+
+						Iterator<File> files = FileUtils.iterateFiles(new File(source), TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
+						int filesUpdated = 0;
+
+						while (files.hasNext())
+						{
+
+							File sourceFile = files.next();
+
+							String foundFile = sourceFile.getName();
+
+							File destinationFile = new File(destination + File.separator + foundFile);
+
+							if (utility.copyNewerFile(getName(), sourceFile, destinationFile))
+							{
+								filesUpdated++;
+								filesCopied = filesCopied + foundFile + "\n";
+							}
+
+						}
+
+						if (filesUpdated > 0)
+						{
+							AutoLab.emailqueue.addToQueue("Info", "LabelSync completed on ["+utility.getClientName() + "]", "LabelSync [" + getUuid() + "] {" + getName() + "} performed.\n\n" + filesCopied + "\n\n" + filesUpdated + " file(s) copied.", "");
+						}
+
+						logger.debug("[" + getUuid() + "] {" + getName() + "} performed. " + filesUpdated + " files updated.");
+						countdown = frequency;
+					}
+					else
+					{
+						logger.error("[" + getUuid() + "] {" + getName() + "} Destination Directory not found. [" + source + "]");
 					}
 
 				}
-				
-				if (filesUpdated>0)
+				else
 				{
-					AutoLab.emailqueue.addToQueue("Info", 
-												utility.getClientName() +" LabelSync",
-												"LabelSync ["+getUuid()+"] {"+getName()+"} performed.\n\n"+
-												filesCopied+"\n\n"+filesUpdated+" file(s) copied.","");
+					logger.error("[" + getUuid() + "] {" + getName() + "} Source Directory not found. [" + source + "]");
 				}
-				
-				logger.debug("["+getUuid()+"] {"+getName()+"} performed. "+filesUpdated+" files updated.");
-				countdown = frequency;
 			}
 
 			countdown--;
@@ -151,7 +168,7 @@ public class LabelSync extends Thread
 			wait.oneSec();
 		}
 
-		logger.debug("["+getUuid()+"] {"+getName()+"} Thread Stopped...");
+		logger.debug("[" + getUuid() + "] {" + getName() + "} Thread Stopped...");
 	}
 
 }

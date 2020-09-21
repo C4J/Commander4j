@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config name="AutoLab">
     
-    <debug suppressLabelPrint="true" suppressOutputMessage="true"/>
+    <debug suppressLabelPrint="false" suppressOutputMessage="false"/>
     
     <email enabled="true"/>
     

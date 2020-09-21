@@ -50,8 +50,10 @@ public class SendEmail
 			}
 
 			String addressList = "";
+			String enabled = "";
 			addressList = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/toAddressList").trim());
 			String temp = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/@maxFrequencyMins").trim());
+			enabled = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/@enabled").trim());
 
 			if (temp.equals(""))
 				temp = "0";
@@ -61,6 +63,7 @@ public class SendEmail
 			newItem.listId = distributionID;
 			newItem.addressList = addressList;
 			newItem.maxFrequencyMins = Long.valueOf(temp);
+			newItem.enabled = enabled.toUpperCase();
 
 			distList.put(distributionID, newItem);
 		}
@@ -83,6 +86,8 @@ public class SendEmail
 		if (distList.containsKey(distributionID) == true)
 		{
 
+			if (distList.get(distributionID).enabled.equals("Y"))
+			{
 			String emailKey = "[" + distributionID + "] - [" + subject + "]";
 			logger.debug(emailKey);
 
@@ -203,7 +208,11 @@ public class SendEmail
 				attachment = null;
 				email = null;
 			}
-
+			}
+			else
+			{
+				logger.debug("Email Distribution list is disabled.");
+			}
 		}
 		else
 		{

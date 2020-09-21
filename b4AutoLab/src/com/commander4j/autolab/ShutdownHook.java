@@ -20,6 +20,7 @@ public class ShutdownHook extends Thread
 
 			wait.oneSec();
 		}
+	
 		LogManager.shutdown();
 	}
 

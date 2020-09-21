@@ -14,7 +14,6 @@ import com.commander4j.autolab.AutoLab;
 import com.commander4j.utils.JUtility;
 import com.commander4j.xml.JXMLDocument;
 
-
 public class SendEmail
 {
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((SendEmail.class));
@@ -52,8 +51,10 @@ public class SendEmail
 			}
 
 			String addressList = "";
+			String enabled = "";
 			addressList = utils.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/toAddressList").trim());
 			String temp = utils.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/@maxFrequencyMins").trim());
+			enabled = utils.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/@enabled").trim());
 
 			if (temp.equals(""))
 				temp = "0";
@@ -63,6 +64,7 @@ public class SendEmail
 			newItem.listId = distributionID;
 			newItem.addressList = addressList;
 			newItem.maxFrequencyMins = Long.valueOf(temp);
+			newItem.enabled = enabled.toUpperCase();
 
 			distList.put(distributionID, newItem);
 		}
@@ -86,131 +88,137 @@ public class SendEmail
 		if (distList.containsKey(distributionID) == true)
 		{
 
-			String emailKey = "[" + distributionID + "] - [" + subject + "]";
-			logger.debug(emailKey);
-
-			Calendar lastSent;
-			Calendar now = Calendar.getInstance();
-			
-			Boolean okToSend = false;
-
-			if (emailLog.containsKey(emailKey))
+			if (distList.get(distributionID).enabled.equals("Y"))
 			{
-				lastSent = emailLog.get(emailKey);
-			}
-			else
-			{
-				okToSend = true;
-				lastSent = now;
-				emailLog.put(emailKey, lastSent);
-			}
 
-			
-			long seconds = (now.getTimeInMillis() - lastSent.getTimeInMillis()) / 1000;
-			
-			long ageInMins = seconds/60;
-			
-			logger.debug("Last email to " + emailKey + " was at " + utils.getISODateStringFromCalendar(lastSent));
-			logger.debug("Current time is " + utils.getISODateStringFromCalendar(now));
-			
-			logger.debug("Minutes since last email to " + emailKey + " is " + String.valueOf(ageInMins));
+				String emailKey = "[" + distributionID + "] - [" + subject + "]";
+				logger.debug(emailKey);
 
-			if (ageInMins >= distList.get(distributionID).maxFrequencyMins)
-			{
-				okToSend = true;
-				emailLog.put(emailKey, now);
-				logger.debug("Email allowed");
-			}
-			else
-			{
-				//okToSend = false;
-				logger.debug("Email suppressed - too frequent");
-			}
+				Calendar lastSent;
+				Calendar now = Calendar.getInstance();
 
-			if (okToSend)
-			{
-				EmailAttachment attachment = new EmailAttachment();
-				MultiPartEmail email = new MultiPartEmail();
-				try
+				Boolean okToSend = false;
+
+				if (emailLog.containsKey(emailKey))
 				{
-					if (smtpProperties.get("mail.smtp.auth").toString().toLowerCase().equals("true"))
+					lastSent = emailLog.get(emailKey);
+				}
+				else
+				{
+					okToSend = true;
+					lastSent = now;
+					emailLog.put(emailKey, lastSent);
+				}
+
+				long seconds = (now.getTimeInMillis() - lastSent.getTimeInMillis()) / 1000;
+
+				long ageInMins = seconds / 60;
+
+				logger.debug("Last email to " + emailKey + " was at " + utils.getISODateStringFromCalendar(lastSent));
+				logger.debug("Current time is " + utils.getISODateStringFromCalendar(now));
+
+				logger.debug("Minutes since last email to " + emailKey + " is " + String.valueOf(ageInMins));
+
+				if (ageInMins >= distList.get(distributionID).maxFrequencyMins)
+				{
+					okToSend = true;
+					emailLog.put(emailKey, now);
+					logger.debug("Email allowed");
+				}
+				else
+				{
+					// okToSend = false;
+					logger.debug("Email suppressed - too frequent");
+				}
+
+				if (okToSend)
+				{
+					EmailAttachment attachment = new EmailAttachment();
+					MultiPartEmail email = new MultiPartEmail();
+					try
 					{
-						logger.debug("Email authentication required");
-						email.setAuthenticator(new DefaultAuthenticator(smtpProperties.get("mail.smtp.user").toString(), smtpProperties.get("mail.smtp.password").toString()));
-						email.setStartTLSEnabled(true);
-					}
-					else
-					{
-						logger.debug("Email No Authentication specified");
-					}
-
-					email.getMailSession().getProperties().putAll(smtpProperties);
-
-					String emails = distList.get(distributionID).addressList;
-					String[] emailArray = emails.split(",");
-					emails = null;
-
-					if (emailArray.length > 0)
-					{
-
-						for (int x = 0; x < emailArray.length; x++)
+						if (smtpProperties.get("mail.smtp.auth").toString().toLowerCase().equals("true"))
 						{
-							email.addTo(emailArray[x].toLowerCase(), "");
-							logger.debug("Email To: " + emailArray[x].toLowerCase());
+							logger.debug("Email authentication required");
+							email.setAuthenticator(new DefaultAuthenticator(smtpProperties.get("mail.smtp.user").toString(), smtpProperties.get("mail.smtp.password").toString()));
+							email.setStartTLSEnabled(true);
+						}
+						else
+						{
+							logger.debug("Email No Authentication specified");
 						}
 
-						emailArray = null;
+						email.getMailSession().getProperties().putAll(smtpProperties);
 
-						try
+						String emails = distList.get(distributionID).addressList;
+						String[] emailArray = emails.split(",");
+						emails = null;
+
+						if (emailArray.length > 0)
 						{
 
-							email.setFrom(smtpProperties.get("mail.smtp.from").toString(), "");
-							email.setSubject(subject);
-							email.setMsg(messageText);
-
-							// add the attachment
-							if (filename.equals("") == false)
+							for (int x = 0; x < emailArray.length; x++)
 							{
-								logger.debug("Email add attachment [" + utils.getFilenameFromPath(filename) + "]");
-
-								attachment.setPath(filename);
-								attachment.setDisposition(EmailAttachment.ATTACHMENT);
-								attachment.setDescription(filename);
-								attachment.setName(utils.getFilenameFromPath(filename));
-								email.attach(attachment);
+								email.addTo(emailArray[x].toLowerCase(), "");
+								logger.debug("Email To: " + emailArray[x].toLowerCase());
 							}
 
-							// send the email
-							logger.debug("Email begin send...");
+							emailArray = null;
 
-							email.send();
+							try
+							{
 
-							logger.debug("Email sent successfully");
+								email.setFrom(smtpProperties.get("mail.smtp.from").toString(), "");
+								email.setSubject(subject);
+								email.setMsg(messageText);
 
-						}
-						catch (Exception mex)
-						{
-							logger.error("Error sending email : " + mex.getMessage());
-							result = false;
+								// add the attachment
+								if (filename.equals("") == false)
+								{
+									logger.debug("Email add attachment [" + utils.getFilenameFromPath(filename) + "]");
+
+									attachment.setPath(filename);
+									attachment.setDisposition(EmailAttachment.ATTACHMENT);
+									attachment.setDescription(filename);
+									attachment.setName(utils.getFilenameFromPath(filename));
+									email.attach(attachment);
+								}
+
+								// send the email
+								logger.debug("Email begin send...");
+
+								email.send();
+
+								logger.debug("Email sent successfully");
+
+							}
+							catch (Exception mex)
+							{
+								logger.error("Error sending email : " + mex.getMessage());
+								result = false;
+							}
+
 						}
 
 					}
+					catch (Exception mex)
+					{
+						logger.error("Error sending email : " + mex.getMessage());
+						result = false;
+					}
 
+					attachment = null;
+					email = null;
 				}
-				catch (Exception mex)
-				{
-					logger.error("Error sending email : " + mex.getMessage());
-					result = false;
-				}
-
-				attachment = null;
-				email = null;
 			}
-
+			else
+			{
+				logger.debug("Email Distribution list ["+distributionID+"] is disabled.");
+			}
 		}
 		else
 		{
-			logger.debug("Disabled or empty email distribution list. No email sent.");
+			logger.debug("Disabled or empty email distribution list ["+distributionID+"]. No email sent.");
 		}
 
 		return result;

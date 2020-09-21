@@ -11,6 +11,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
+import com.commander4j.prodLine.ProdLine;
 import com.commander4j.utils.JUtility;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
@@ -48,6 +49,16 @@ public class DataSet extends Thread
 		logger.debug("[" + getUuid() + "] {" + getName() + "} Instance Created.");
 	}
 
+	public void appendNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+	}
+	
+	public void setNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).setNotification(message);
+	}
+	
 	public void shutdown()
 	{
 		this.run = false;
@@ -139,10 +150,12 @@ public class DataSet extends Thread
 		{
 			if (src.exists())
 			{
-				logger.debug("[" + getUuid() + "] {" + getName() + "} " + " Found Remote DataSet "+src.getAbsolutePath());
+				logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Found Remote DataSet "+src.getAbsolutePath());
 				utility.copyNewerFile(getName(), src, dst);
 
 				loadCSV("Remote", getRemoteFilename());
+				
+				appendNotification("Loading Data for Order ["+getData("PROCESS_ORDER")+"]");
 
 				defaultLoaded = true;
 
@@ -156,14 +169,18 @@ public class DataSet extends Thread
 					// Start by loading the
 					if (dst.exists())
 					{
+
 						logger.debug("[" + getUuid() + "] {" + getName() + "} " + " Found Local DataSet "+dst.getAbsolutePath());
 						loadCSV("Local", getLocalFilename());
+						
+						appendNotification("Using Local Cached Order ["+getData("PROCESS_ORDER")+"]");
 
 						defaultLoaded = true;
 						
 					}
 					else
 					{
+						appendNotification("*ERROR* No DataSet Loaded");
 						logger.debug("[" + getUuid() + "] {" + getName() + "} " + "*ERROR* No DataSet Loaded");
 						
 						

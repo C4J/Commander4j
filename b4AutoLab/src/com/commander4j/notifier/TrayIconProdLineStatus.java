@@ -1,6 +1,7 @@
 package com.commander4j.notifier;
 
 import java.awt.AWTException;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
@@ -11,14 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
 import com.commander4j.autolab.AutoLab;
-import com.commander4j.autolab.StartStop;
+import com.commander4j.prodLine.ProdLine;
 
-public class TrayIconStatus
+public class TrayIconProdLineStatus
 {
 
 	private TrayIcon trayIcon;
@@ -47,19 +46,13 @@ public class TrayIconStatus
 
 	private PopupMenu popup = new PopupMenu("c4jAutoLab");
 
-	private MenuItem menuItemOK = new MenuItem("Status OK");
-	private MenuItem menuItemWARN = new MenuItem("Status Warn");
-	private MenuItem menuItemERROR = new MenuItem("Status Error");
-	private MenuItem menuItemEmailConfig = new MenuItem("Email Config");
-	private MenuItem menuItemEmailLogs = new MenuItem("Email Logs");
-	private MenuItem menuItemSYSINFO = new MenuItem("System Info");
+	private MenuItem menuItemSYSINFO = new MenuItem("Information");
 	private MenuItem menuItemORDERINFO = new MenuItem("Order Info");
-	private MenuItem menuItemABOUT = new MenuItem("About");
-	private MenuItem menuItemQUIT = new MenuItem("Quit");
+	private MenuItem menuItemNOTIFICATION = new MenuItem("Show Notifications");
+
+
 	private String uuid = "";
 	private String prodLineName="";
-	
-	private ImageIcon confirmIcon = new ImageIcon("images/image_confirm.png");
 
 	private static String OS = System.getProperty("os.name", "unknown").toLowerCase(Locale.ROOT);
 
@@ -68,41 +61,9 @@ public class TrayIconStatus
 		public void actionPerformed(ActionEvent e)
 		{
 
-			if (e.getSource().equals(menuItemOK))
-			{
-				setStatus(status_OK, "");
-			}
-
-			if (e.getSource().equals(menuItemWARN))
-			{
-				setStatus(status_WARN, "Working Offline");
-			}
-
-			if (e.getSource().equals(menuItemERROR))
-			{
-				setStatus(status_ERROR, "Printer offline");
-			}
-
-			if (e.getSource().equals(menuItemEmailConfig))
-			{
-
-			}
-
-			if (e.getSource().equals(menuItemEmailLogs))
-			{
-
-			}
-
-			if (e.getSource().equals(menuItemABOUT))
-			{
-				JDialogAbout dialog = new JDialogAbout();
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
-			}
-
 			if (e.getSource().equals(menuItemSYSINFO))
 			{
-				JDialogSysInfo dialog = new JDialogSysInfo(getUuid());
+				JDialogProdLineInfo dialog = new JDialogProdLineInfo(getUuid());
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
 			}
@@ -113,21 +74,31 @@ public class TrayIconStatus
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
 			}
-
-			if (e.getSource().equals(menuItemQUIT))
-			{
-
-				int res = JOptionPane.showConfirmDialog(null, "Shutdown AutoLab ?", "Close", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, confirmIcon);
-				if (res == 0)
-				{
-					StartStop.autolab.requestStop();
-				}
-
+			
+			if (e.getSource().equals(menuItemNOTIFICATION))
+			{	
+				showNotificationWindow();
 			}
 
 		}
 	};
+	
+	private void showNotificationWindow()
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).prodLineNotify.setState(Frame.NORMAL);
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).prodLineNotify.toFront();
+	}
 
+	public void appendNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+	}
+	
+	public void setNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).setNotification(message);
+	}
+	
 	public TrayIcon getTrayIcon()
 	{
 		return trayIcon;
@@ -210,28 +181,13 @@ public class TrayIconStatus
 				imageShutdown5 = Toolkit.getDefaultToolkit().getImage("images/linux/image_shutdown5.gif");
 			}
 
-			popup.add(menuItemABOUT);
 			popup.add(menuItemSYSINFO);
 			popup.add(menuItemORDERINFO);
-			popup.add(menuItemEmailConfig);
-			popup.add(menuItemEmailLogs);
-			popup.add(menuItemQUIT);
-			popup.addSeparator();
-			popup.add(menuItemOK);
-			popup.add(menuItemWARN);
-			popup.add(menuItemERROR);
+			popup.add(menuItemNOTIFICATION);
 
-			menuItemOK.addActionListener(listener);
-			menuItemWARN.addActionListener(listener);
-			menuItemERROR.addActionListener(listener);
-			menuItemEmailConfig.addActionListener(listener);
-			menuItemEmailLogs.addActionListener(listener);
-			menuItemABOUT.addActionListener(listener);
 			menuItemSYSINFO.addActionListener(listener);
 			menuItemORDERINFO.addActionListener(listener);
-			menuItemQUIT.addActionListener(listener);
-
-
+			menuItemNOTIFICATION.addActionListener(listener);
 			
 			trayIcon = new TrayIcon(imageOK, "", popup);
 			trayIcon.setImageAutoSize(true);

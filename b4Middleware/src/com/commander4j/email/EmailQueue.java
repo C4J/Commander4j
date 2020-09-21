@@ -7,6 +7,11 @@ public class EmailQueue
 	public LinkedList<Email> queue = new LinkedList<Email>();
 	public SendEmail sendmail = new SendEmail();
 
+	public int getQueueSize()
+	{
+		return queue.size();
+	}
+	
 	public synchronized void addToQueue(String distributionID, String subject, String messageText, String filename)
 	{
 		Email email = new Email(distributionID, subject, messageText, filename);

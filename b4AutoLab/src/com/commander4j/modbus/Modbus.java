@@ -8,6 +8,7 @@ import com.commander4j.autolab.AutoLab;
 import com.commander4j.batch.Batch;
 import com.commander4j.label.Label;
 import com.commander4j.output.ProcDec_XML;
+import com.commander4j.prodLine.ProdLine;
 import com.commander4j.utils.JUtility;
 import com.commander4j.utils.JWait;
 import org.apache.logging.log4j.Logger;
@@ -54,6 +55,16 @@ public class Modbus extends Thread
 		setName("Modbus " + name + " (" + ipAddress + ") [Coil " + address + "]");
 		this.modbusClient = new ModbusClient();
 		logger.debug("[" + getUuid() + "] {" + getName() + "} Instance Created.");
+	}
+	
+	public void appendNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+	}
+	
+	public void setNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).setNotification(message);
 	}
 	
 	public String getSsccSequenceFilename()
@@ -183,6 +194,8 @@ public class Modbus extends Thread
 								if (run)
 								{
 									logger.debug("[" + getUuid() + "] {" + getName() + "} " + "[PRINT REQUEST DETECTED].....");
+									
+									appendNotification("Modbus Print Requeste Detected.");
 
 									if (AutoLab.isDataSet_DataReady(getUuid()))
 									{
