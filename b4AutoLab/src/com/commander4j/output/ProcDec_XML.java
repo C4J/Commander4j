@@ -172,7 +172,7 @@ public class ProcDec_XML
 			catch (ParserConfigurationException e)
 			{
 				logger.debug("Error writing output file :" + e.getLocalizedMessage());
-				appendNotification("Error writing output file :" + e.getLocalizedMessage());
+				appendNotification("Error writing output file :" + e.getLocalizedMessage()+".");
 			}
 		}
 

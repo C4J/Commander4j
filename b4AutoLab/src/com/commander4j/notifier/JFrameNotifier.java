@@ -41,13 +41,13 @@ public class JFrameNotifier extends JFrame
 		}
 	}
 
-	public void appendToMessage(String message)
+	public  synchronized void appendToMessage(String message)
 	{
 		
 		now = Calendar.getInstance();
 		time24 = utils.get24HourStringFromCalendar(now);
 		
-		if (allText.size()>30)
+		if (allText.size()>50)
 		{
 			allText.remove(0);
 		}

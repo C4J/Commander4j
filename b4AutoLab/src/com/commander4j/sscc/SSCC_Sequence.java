@@ -11,6 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
+import com.commander4j.autolab.AutoLab;
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.utils.JFileIO;
 import com.commander4j.utils.JUtility;
@@ -105,6 +106,8 @@ public class SSCC_Sequence extends Thread
 		{
 			logger.debug(getName()+" Error reading SSCC sequence number from file :"+e.getLocalizedMessage());
 		}
+		
+		AutoLab.systemNotify.appendToMessage("Generating SSCC ["+result+"] from "+getFilename());
 		
 		return result;
 	}

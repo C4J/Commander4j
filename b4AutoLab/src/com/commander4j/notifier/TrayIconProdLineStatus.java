@@ -47,8 +47,8 @@ public class TrayIconProdLineStatus
 	private PopupMenu popup = new PopupMenu("c4jAutoLab");
 
 	private MenuItem menuItemSYSINFO = new MenuItem("Information");
-	private MenuItem menuItemORDERINFO = new MenuItem("Order Info");
-	private MenuItem menuItemNOTIFICATION = new MenuItem("Show Notifications");
+	private MenuItem menuItemORDERINFO = new MenuItem("View Order Info");
+	private MenuItem menuItemNOTIFICATION = new MenuItem("View Log");
 
 
 	private String uuid = "";

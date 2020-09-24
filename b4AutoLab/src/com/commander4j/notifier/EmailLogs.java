@@ -23,7 +23,7 @@ public class EmailLogs
 
 			logger.debug("File to email [" + pathToZip + "]");
 
-			AutoLab.emailqueue.addToQueue("Config", "AutoLab Log (zip) from [" + utils.getClientName() + "]", "AutoLab version " + AutoLab.version + "\n\n", pathToZip);
+			AutoLab.emailqueue.addToQueue("Logs", "AutoLab Log (zip) from [" + utils.getClientName() + "]", "AutoLab version " + AutoLab.version + "\n\n", pathToZip);
 		}
 
 	}

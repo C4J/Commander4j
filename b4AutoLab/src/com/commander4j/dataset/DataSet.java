@@ -155,7 +155,7 @@ public class DataSet extends Thread
 
 				loadCSV("Remote", getRemoteFilename());
 				
-				appendNotification("Loading Data for Order ["+getData("PROCESS_ORDER")+"]");
+				appendNotification("Loading Data for Order ["+getData("PROCESS_ORDER")+"].");
 
 				defaultLoaded = true;
 
@@ -173,14 +173,14 @@ public class DataSet extends Thread
 						logger.debug("[" + getUuid() + "] {" + getName() + "} " + " Found Local DataSet "+dst.getAbsolutePath());
 						loadCSV("Local", getLocalFilename());
 						
-						appendNotification("Using Local Cached Order ["+getData("PROCESS_ORDER")+"]");
+						appendNotification("Using Local Cached Order ["+getData("PROCESS_ORDER")+"].");
 
 						defaultLoaded = true;
 						
 					}
 					else
 					{
-						appendNotification("*ERROR* No DataSet Loaded");
+						appendNotification("*ERROR* No DataSet Loaded.");
 						logger.debug("[" + getUuid() + "] {" + getName() + "} " + "*ERROR* No DataSet Loaded");
 						
 						

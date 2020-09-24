@@ -3,7 +3,6 @@ package com.commander4j.modbus;
 import java.io.IOException;
 import java.util.Calendar;
 
-
 import com.commander4j.autolab.AutoLab;
 import com.commander4j.batch.Batch;
 import com.commander4j.label.Label;
@@ -14,7 +13,6 @@ import com.commander4j.utils.JWait;
 import org.apache.logging.log4j.Logger;
 import de.re.easymodbus.exceptions.ModbusException;
 import de.re.easymodbus.modbusclient.ModbusClient;
-
 
 public class Modbus extends Thread
 {
@@ -33,40 +31,45 @@ public class Modbus extends Thread
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger((Modbus.class));
 	private int labelCount = 0;
 	boolean inProgress = false;
-	private String ssccSequenceFilename="";
-	private String sscc="";
+	private String ssccSequenceFilename = "";
+	private String sscc = "";
 	private String batchNo = "";
 	private JUtility utils = new JUtility();
 	private Batch batchNumber = new Batch();
 	private Calendar caldate;
 	private Calendar expiryDate;
-	private String expiryString ;
+	private String expiryString;
 	private ProcDec_XML prodDec = new ProcDec_XML();
+	private String lastMessage = "";
 
-	public Modbus(String uuid, String name, String ipAddress, int portNumber, int timeOut, int address, boolean printOnValue,String ssccSequenceFilename)
+	public Modbus(String uuid, String name, String ipAddress, int portNumber, int timeOut, int address, boolean printOnValue, String ssccSequenceFilename)
 	{
 		this.uuid = uuid;
 		this.ipAddress = ipAddress;
 		this.portNumber = portNumber;
 		this.timeOut = timeOut;
 		this.address = address;
-		this.ssccSequenceFilename=ssccSequenceFilename;
+		this.ssccSequenceFilename = ssccSequenceFilename;
 		this.printOnValue = printOnValue;
 		setName("Modbus " + name + " (" + ipAddress + ") [Coil " + address + "]");
 		this.modbusClient = new ModbusClient();
 		logger.debug("[" + getUuid() + "] {" + getName() + "} Instance Created.");
 	}
-	
+
 	public void appendNotification(String message)
 	{
-		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+		if (message.equals(lastMessage) == false)
+		{
+			((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+			lastMessage = message;
+		}
 	}
-	
+
 	public void setNotification(String message)
 	{
 		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).setNotification(message);
 	}
-	
+
 	public String getSsccSequenceFilename()
 	{
 		return ssccSequenceFilename;
@@ -130,6 +133,7 @@ public class Modbus extends Thread
 			{
 				try
 				{
+					appendNotification("Modbus disconnect from ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
 					modbusClient.Disconnect();
 				}
 				catch (IOException e)
@@ -140,7 +144,7 @@ public class Modbus extends Thread
 			}
 			else
 			{
-				modbusClient=null;
+				modbusClient = null;
 			}
 			logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Thread Shutdown Requested.");
 		}
@@ -161,6 +165,7 @@ public class Modbus extends Thread
 				{
 					try
 					{
+						appendNotification("Modbus disconnect from ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
 						modbusClient.Disconnect();
 					}
 					catch (IOException e1)
@@ -169,6 +174,8 @@ public class Modbus extends Thread
 					}
 				}
 
+				appendNotification("Modbus attempting connection to device ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
+
 				modbusClient.setipAddress(getIpAddress());
 				modbusClient.setPort(getPortNumber());
 				modbusClient.setConnectionTimeout(getTimeOut());
@@ -176,9 +183,16 @@ public class Modbus extends Thread
 
 				currentValue = false;
 				previousValue = false;
+				
+				if (modbusClient.isConnected())
+				{
+				    appendNotification("Modbus connected to device ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
+				}
 
 				while (modbusClient.isConnected() && (run == true))
 				{
+
+
 
 					try
 					{
@@ -194,7 +208,7 @@ public class Modbus extends Thread
 								if (run)
 								{
 									logger.debug("[" + getUuid() + "] {" + getName() + "} " + "[PRINT REQUEST DETECTED].....");
-									
+
 									appendNotification("Modbus Print Requeste Detected.");
 
 									if (AutoLab.isDataSet_DataReady(getUuid()))
@@ -205,22 +219,22 @@ public class Modbus extends Thread
 										{
 											sscc = AutoLab.get_SSCC_Sequence(getSsccSequenceFilename());
 											AutoLab.setDataSet_FieldValue(uuid, "SSCC", sscc);
-											
-									        //Get current date and time
+
+											// Get current date and time
 											caldate = Calendar.getInstance();
-											
+
 											batchNo = batchNumber.getDefaultBatchNumber(uuid, caldate);
 											AutoLab.setDataSet_FieldValue(uuid, "BATCH_NUMBER", batchNo);
 
-											//Convert current date time to String in correct format and store back into HashMap
+											// Convert current date time to
+											// String in correct format and
+											// store back into HashMap
 											AutoLab.setDataSet_FieldValue(uuid, "DATE_OF_MANUFACTURE", utils.getFormattedCSVCalendarString(caldate));
-											
+
 											expiryDate = utils.calcBBE(caldate, Integer.valueOf(AutoLab.getDataSet_Field(getUuid(), "SHELF_LIFE")), AutoLab.getDataSet_Field(getUuid(), "SHELF_LIFE_UOM"), AutoLab.getDataSet_Field(getUuid(), "SHELF_LIFE_RULE"));
 											expiryString = utils.getFormattedCSVCalendarString(expiryDate);
 											AutoLab.setDataSet_FieldValue(uuid, "EXPIRY_DATE", expiryString);
-											
 
-											
 											logger.debug("[" + getUuid() + "] {" + getName() + "} " + "--------------------------------------------------------------------------------------------------------------");
 											logger.debug("[" + getUuid() + "] {" + getName() + "} " + "SSCC                 = " + sscc + " <<NEW>>");
 										}
@@ -229,13 +243,15 @@ public class Modbus extends Thread
 											logger.debug("[" + getUuid() + "] {" + getName() + "} " + "--------------------------------------------------------------------------------------------------------------");
 											logger.debug("[" + getUuid() + "] {" + getName() + "} " + "SSCC                 = " + sscc + " <<REPEAT>>");
 										}
-										
-										//logger.debug("[" + getUuid() + "] {" + getName() + "} " + "--------------------------------------------------------------------------------------------------------------");
+
+										// logger.debug("[" + getUuid() + "] {"
+										// + getName() + "} " +
+										// "--------------------------------------------------------------------------------------------------------------");
 										logger.debug("[" + getUuid() + "] {" + getName() + "} " + "PROCESS_ORDER        = " + AutoLab.getDataSet_Field(getUuid(), "PROCESS_ORDER"));
 										logger.debug("[" + getUuid() + "] {" + getName() + "} " + "MATERIAL             = " + AutoLab.getDataSet_Field(getUuid(), "MATERIAL"));
 										logger.debug("[" + getUuid() + "] {" + getName() + "} " + "MATERIAL_DESCRIPTION = " + AutoLab.getDataSet_Field(getUuid(), "DESCRIPTION"));
 										logger.debug("[" + getUuid() + "] {" + getName() + "} " + "CUSTOMER_ID          = " + AutoLab.getDataSet_Field(getUuid(), "CUSTOMER_ID"));
-										logger.debug("[" + getUuid() + "] {" + getName() + "} " + "DATE_OF_MANUFACTURE  = " + AutoLab.getDataSet_Field(getUuid(), "DATE_OF_MANUFACTURE"));	
+										logger.debug("[" + getUuid() + "] {" + getName() + "} " + "DATE_OF_MANUFACTURE  = " + AutoLab.getDataSet_Field(getUuid(), "DATE_OF_MANUFACTURE"));
 										logger.debug("[" + getUuid() + "] {" + getName() + "} " + "SHELF_LIFE           = " + AutoLab.getDataSet_Field(getUuid(), "SHELF_LIFE"));
 										logger.debug("[" + getUuid() + "] {" + getName() + "} " + "SHELF_LIFE_UOM       = " + AutoLab.getDataSet_Field(getUuid(), "SHELF_LIFE_UOM"));
 										logger.debug("[" + getUuid() + "] {" + getName() + "} " + "SHELF_LIFE_RULE      = " + AutoLab.getDataSet_Field(getUuid(), "SHELF_LIFE_RULE"));
@@ -269,21 +285,21 @@ public class Modbus extends Thread
 
 												AutoLab.setDataSet_FieldValue(uuid, "LABEL_NO", String.valueOf(labelCount).trim());
 												logger.debug("**********************************************************************************************************************************************************************");
-												logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Printing " + labelCount + " of " + labelsPerPallet + " for Process Order " + AutoLab.getDataSet_Field(getUuid(), "PROCESS_ORDER")+" - SSCC "+sscc);
+												logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Printing " + labelCount + " of " + labelsPerPallet + " for Process Order " + AutoLab.getDataSet_Field(getUuid(), "PROCESS_ORDER") + " - SSCC " + sscc);
 												logger.debug("**********************************************************************************************************************************************************************");
 
 												Label label = new Label();
 												String zpl = label.process(uuid);
-												
-												AutoLab.set_PrintData(getUuid(),zpl);
+
+												AutoLab.set_PrintData(getUuid(), zpl);
 												AutoLab.request_Print(getUuid());
 
 												if (labelCount == labelsPerPallet)
 												{
 													labelCount = 0;
 													inProgress = false;
-													logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");	
-													logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++Generate Production Declaration "+sscc+" +++");
+													logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+													logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++Generate Production Declaration " + sscc + " +++");
 													logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 													prodDec.setUuid(uuid);
 													prodDec.processMessage();
@@ -294,7 +310,7 @@ public class Modbus extends Thread
 												}
 											}
 										}
-										
+
 									}
 								}
 							}
@@ -304,6 +320,8 @@ public class Modbus extends Thread
 					catch (IOException e1)
 					{
 						logger.debug("[" + getUuid() + "] {" + getName() + "} IOException during read " + e1.getLocalizedMessage());
+						appendNotification("Modbus Error with connection to device ["+":"+getPortNumber()+"] Coil "+address);
+						modbusClient.Disconnect();
 					}
 
 				}
@@ -313,6 +331,7 @@ public class Modbus extends Thread
 					try
 					{
 						modbusClient.Disconnect();
+						appendNotification("Modbus disconnect from device ["+":"+getPortNumber()+"] Coil "+address);
 					}
 					catch (IOException e1)
 					{
@@ -334,10 +353,11 @@ public class Modbus extends Thread
 			catch (java.net.SocketException e)
 			{
 				logger.debug("[" + getUuid() + "] {" + getName() + "} " + "SocketException " + e.getLocalizedMessage());
-				if (run==false)
-				{break;
+				if (run == false)
+				{
+					break;
 				}
-				
+
 			}
 
 			catch (java.io.IOException e)

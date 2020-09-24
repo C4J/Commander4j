@@ -2,6 +2,8 @@ package com.commander4j.email;
 
 import java.util.LinkedList;
 
+import com.commander4j.autolab.AutoLab;
+
 public class EmailQueue
 {
 	public LinkedList<Email> queue = new LinkedList<Email>();
@@ -14,6 +16,7 @@ public class EmailQueue
 	
 	public synchronized void addToQueue(String distributionID, String subject, String messageText, String filename)
 	{
+		AutoLab.systemNotify.appendToMessage("Requesting email to distribution list ["+distributionID+"].");
 		Email email = new Email(distributionID, subject, messageText, filename);
 		queue.addLast(email);
 	}

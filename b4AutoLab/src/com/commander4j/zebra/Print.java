@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.autolab.AutoLab;
 import com.commander4j.prodLine.ProdLine;
 
-
 /**
  * @author dave
  *
@@ -23,21 +22,27 @@ public class Print extends Thread
 	private Socket clientSocket;
 	private String errorMessage = "";
 	private String uuid = "";
+	private String lastMessage = "";
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger((Print.class));
+	private boolean firstError = true;
 
 	public Print(String uuid, String name)
 	{
 		this.uuid = uuid;
 		setPrinterName(name);
 		setThreadName();
-		logger.debug("[" + getUuid()+"] {"+getName()+"} Print Instance Created.");
+		logger.debug("[" + getUuid() + "] {" + getName() + "} Print Instance Created.");
 	}
-	
+
 	public void appendNotification(String message)
 	{
-		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+		if (message.equals(lastMessage) == false)
+		{
+			((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+			lastMessage = message;
+		}
 	}
-	
+
 	public void setNotification(String message)
 	{
 		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).setNotification(message);
@@ -45,7 +50,7 @@ public class Print extends Thread
 
 	public void shutdown()
 	{
-		logger.debug("[" + getUuid()+"] {"+getName()+"} Print Thread Shutdown Requested.");
+		logger.debug("[" + getUuid() + "] {" + getName() + "} Print Thread Shutdown Requested.");
 		run = false;
 	}
 
@@ -74,7 +79,7 @@ public class Print extends Thread
 	{
 		this.ipAddress = ipAddress;
 		setThreadName();
-		logger.debug("[" + getUuid()+"] {"+getName()+"} IP Address set to " + getIpAddress());
+		logger.debug("[" + getUuid() + "] {" + getName() + "} IP Address set to " + getIpAddress());
 	}
 
 	public int getPortNumber()
@@ -86,7 +91,7 @@ public class Print extends Thread
 	{
 		this.portNumber = portNumber;
 		setThreadName();
-		logger.debug("[" + getUuid()+"] {"+getName()+"} Port set to " + getPortNumber());
+		logger.debug("[" + getUuid() + "] {" + getName() + "} Port set to " + getPortNumber());
 	}
 
 	public String getUuid()
@@ -141,7 +146,7 @@ public class Print extends Thread
 	{
 
 		run = true;
-		logger.debug("[" + getUuid()+"] {"+getName()+"} Thread Started...");
+		logger.debug("[" + getUuid() + "] {" + getName() + "} Thread Started...");
 
 		while (run == true)
 		{
@@ -155,7 +160,7 @@ public class Print extends Thread
 					if (AutoLab.config.isSuppressLabelPrint())
 					{
 						setDataReady(false);
-						logger.debug("[" + getUuid()+"] {"+getName()+"} PRINT SUPPRESSED - see config.xml ");
+						logger.debug("[" + getUuid() + "] {" + getName() + "} PRINT SUPPRESSED - see config.xml ");
 						appendNotification("PRINT SUPPRESSED - see config.xml");
 					}
 					else
@@ -163,8 +168,12 @@ public class Print extends Thread
 
 						try
 						{
-							appendNotification("Sending data to printer ["+getPrinterName()+"] ["+getIpAddress()+"]" );
-							
+							if (firstError)
+							{
+								appendNotification("Sending data to printer [" + getPrinterName() + "] [" + getIpAddress() + "]:" + getPortNumber() + "]");
+								// firstError = false;
+							}
+
 							this.clientSocket = new Socket(this.ipAddress, this.portNumber);
 
 							DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
@@ -176,18 +185,27 @@ public class Print extends Thread
 							setErrorMessage("");
 
 							setDataReady(false);
-							
+
 							appendNotification("Print complete.");
+							firstError = true;
 						}
 						catch (UnknownHostException e)
 						{
 							setErrorMessage(e.getLocalizedMessage());
-							appendNotification("Error Sending data to printer : "+e.getLocalizedMessage());
+							if (firstError)
+							{
+								appendNotification("Error Sending data to printer : " + e.getLocalizedMessage());
+								firstError = false;
+							}
 						}
 						catch (IOException e)
 						{
 							setErrorMessage(e.getLocalizedMessage());
-							appendNotification("Error Sending data to printer : "+e.getLocalizedMessage());
+							if (firstError)
+							{
+								appendNotification("Error Sending data to printer : " + e.getLocalizedMessage());
+								firstError = false;
+							}
 						}
 					}
 				}
@@ -196,11 +214,11 @@ public class Print extends Thread
 			}
 			catch (InterruptedException e)
 			{
-				logger.debug("[" + getUuid()+"] {"+getName()+"} Interrupted Exception " + e.getLocalizedMessage());
+				logger.debug("[" + getUuid() + "] {" + getName() + "} Interrupted Exception " + e.getLocalizedMessage());
 				run = false;
 			}
 		}
 
-		logger.debug("[" + getUuid()+"] {"+getName()+"} Thread Stopped...");
+		logger.debug("[" + getUuid() + "] {" + getName() + "} Thread Stopped...");
 	}
 }

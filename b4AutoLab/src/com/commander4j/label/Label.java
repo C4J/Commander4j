@@ -17,6 +17,7 @@ import java.util.Map.Entry;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
+import com.commander4j.prodLine.ProdLine;
 import com.commander4j.utils.JUtility;
 
 
@@ -35,9 +36,10 @@ public class Label
 	{
 		this.uuid=uuid;
 		String labelData = "";
+		String fname = AutoLab.getDataSet_Field(uuid, "REPORT_FILENAME");
 		String template = System.getProperty("user.dir") + File.separator + "labels" + File.separator + AutoLab.getDataSet_Field(uuid, "REPORT_FILENAME");
 		File templateFile = new File(template);
-
+		appendNotification("Reading Label Layout ["+fname+"].");
 		labelData = getTemplate(templateFile);
 		expanded_variables = expandVariables(varLabelDEFINEs);
 		optimiseEAN128();
@@ -47,6 +49,15 @@ public class Label
 		return labelData;
 	}
 	
+	public void appendNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+	}
+	
+	public void setNotification(String message)
+	{
+		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).setNotification(message);
+	}
 
 	public String getTemplate(File aFile)
 	{

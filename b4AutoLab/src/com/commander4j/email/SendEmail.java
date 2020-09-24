@@ -189,12 +189,14 @@ public class SendEmail
 
 								email.send();
 
+								AutoLab.systemNotify.appendToMessage("Email sent successfully.");
 								logger.debug("Email sent successfully");
 
 							}
 							catch (Exception mex)
 							{
 								logger.error("Error sending email : " + mex.getMessage());
+								AutoLab.systemNotify.appendToMessage("Error sending email : " + mex.getMessage()+".");
 								result = false;
 							}
 
@@ -214,6 +216,7 @@ public class SendEmail
 			else
 			{
 				logger.debug("Email Distribution list ["+distributionID+"] is disabled.");
+				AutoLab.systemNotify.appendToMessage("Email Distribution list ["+distributionID+"] is Disabled.");
 			}
 		}
 		else
