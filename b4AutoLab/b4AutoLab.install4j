@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.8" transformSequenceNumber="8">
   <directoryPresets config="." />
-  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.20" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
+  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.27" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="nl" />
@@ -80,22 +80,6 @@
     </entries>
   </files>
   <launchers>
-    <launcher name="autolab4j_service" id="128" excludeFromMenu="true" icnsFile="./images/Launcher/AutoLab4j.icns">
-      <executable name="AutoLab4j_Service" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." redirectStderr="false" executableMode="service" />
-      <java mainClass="com.commander4j.autolab.StartStop">
-        <classPath>
-          <archive location="autolab4j.jar" failOnError="false" />
-        </classPath>
-      </java>
-      <vmOptionsFile mode="none" />
-      <iconImageFiles>
-        <file path="./images/Launcher/AutoLab4j (PNG)/16x16.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/32x32.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/48x48.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/128x128.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/256x256.png" />
-      </iconImageFiles>
-    </launcher>
     <launcher name="autolab4j_console" id="130" icnsFile="./images/Launcher/AutoLab4j.icns">
       <executable name="AutoLab4j_Console" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." redirectStderr="false" executableMode="console" singleInstance="true" />
       <java mainClass="com.commander4j.autolab.StartStop">
@@ -112,8 +96,8 @@
         <file path="./images/Launcher/AutoLab4j (PNG)/256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="autolab4j_GUI" id="451" icnsFile="./images/Launcher/AutoLab4j.icns">
-      <executable name="AutoLab4j_GUI" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." executableMode="gui" singleInstance="true" />
+    <launcher name="autolab4j_startup" id="451" icnsFile="./images/Launcher/AutoLab4j.icns">
+      <executable name="AutoLab4j_Startup" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." executableMode="gui" singleInstance="true" />
       <java mainClass="com.commander4j.autolab.StartStop">
         <classPath>
           <archive location="autolab4j.jar" failOnError="false" />
@@ -320,7 +304,7 @@ return console.askOkCancel(message, true);
                   <property name="allUsers" type="boolean" value="true" />
                   <property name="executable">
                     <object class="java.io.File">
-                      <string>AutoLab4j_GUI</string>
+                      <string>AutoLab4j_Startup</string>
                     </object>
                   </property>
                   <property name="name" type="string">AutoLab4j Startup</property>
@@ -619,7 +603,7 @@ return console.askYesNo(message, true);
     </styles>
   </installerGui>
   <mediaSets>
-    <windows name="Windows 64bit (with JRE)" id="134">
+    <windows name="Windows 64bit (with JRE)" id="134" installDir="Commander4j_AutoLab" customInstallBaseDir="C:\">
       <jreBundle jreBundleSource="generated" manualJreEntry="true">
         <modules>
           <defaultModules set="all" />

@@ -40,9 +40,9 @@ public class Label
 		String template = System.getProperty("user.dir") + File.separator + "labels" + File.separator + AutoLab.getDataSet_Field(uuid, "REPORT_FILENAME");
 		File templateFile = new File(template);
 		appendNotification("Reading Label Layout ["+fname+"].");
+		
+		preParseDEFINE_BARCODEs(templateFile);
 		labelData = getTemplate(templateFile);
-		expanded_variables = expandVariables(varLabelDEFINEs);
-		optimiseEAN128();
 
 		labelData = doParseFields(labelData);
 		labelData = doParseFunctions(labelData);
@@ -59,6 +59,48 @@ public class Label
 		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).setNotification(message);
 	}
 
+	public void preParseDEFINE_BARCODEs(File aFile)
+	{
+
+		try
+		{
+			BufferedReader input = new BufferedReader(new FileReader(aFile));
+			try
+			{
+				String line = null;
+				while ((line = input.readLine()) != null)
+				{
+					line = line.trim();
+					if ((line.startsWith("/*") == false) & (line.length() > 0))
+					{
+						
+						if (line.startsWith("DEFINE BARCODE "))
+						{
+
+							String parse = line.substring(15);
+							String delims = "[ ]+";
+							String[] tokens = parse.split(delims);
+
+							varLabelDEFINEs.put(tokens[0], tokens[1]);
+
+						}
+						
+					}
+				}
+				
+				expanded_variables = expandVariables(varLabelDEFINEs);
+				optimiseEAN128();
+				
+			} finally
+			{
+				input.close();
+			}
+		} catch (IOException ex)
+		{
+
+		}
+	}
+	
 	public String getTemplate(File aFile)
 	{
 		
@@ -83,11 +125,7 @@ public class Label
 						if (line.startsWith("DEFINE BARCODE "))
 						{
 							commandMode = true;
-							String parse = line.substring(15);
-							String delims = "[ ]+";
-							String[] tokens = parse.split(delims);
 
-							varLabelDEFINEs.put(tokens[0], tokens[1]);
 						}
 						
 						if (line.startsWith("SUPPRESS EOL"))

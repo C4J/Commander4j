@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -16,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import com.commander4j.resources.JRes;
 
 public class JDialogSysInfo extends JDialog
 {
@@ -31,6 +34,7 @@ public class JDialogSysInfo extends JDialog
 	private JTextField jTextFieldUserDir;
 	private JTextField jTextFieldUsername;
 	private JTextField jTextFieldWorkstationID;
+	private ImageIcon img = new ImageIcon("./images/windows/image_sys_control.gif");
 
 	/**
 	 * Launch the application.
@@ -54,11 +58,11 @@ public class JDialogSysInfo extends JDialog
 	 */
 	public JDialogSysInfo()
 	{
-		
+		setIconImage(img.getImage());
 		setTitle("System Information ["+getClientName()+"]");
 		setResizable(false);
 		setAlwaysOnTop(true);
-		setSize(585, 263);
+		setSize(704, 263);
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -66,8 +70,8 @@ public class JDialogSysInfo extends JDialog
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		JButton okClose = new JButton("Close");
-		okClose.setBounds(253, 193, 79, 29);
+		JButton okClose = new JButton(JRes.getText("close"));
+		okClose.setBounds(299, 193, 106, 29);
 		contentPanel.add(okClose);
 		okClose.addActionListener(new ActionListener()
 		{
@@ -111,38 +115,38 @@ public class JDialogSysInfo extends JDialog
 		
 		jTextFieldJavaVersion = new JTextField();
 		jTextFieldJavaVersion.setEditable(false);
-		jTextFieldJavaVersion.setBounds(166, 99, 372, 26);
+		jTextFieldJavaVersion.setBounds(166, 99, 516, 26);
 		contentPanel.add(jTextFieldJavaVersion);
 		jTextFieldJavaVersion.setColumns(10);
 		
 		jTextFieldOSName = new JTextField();
 		jTextFieldOSName.setEditable(false);
 		jTextFieldOSName.setColumns(10);
-		jTextFieldOSName.setBounds(166, 127, 372, 26);
+		jTextFieldOSName.setBounds(166, 127, 516, 26);
 		contentPanel.add(jTextFieldOSName);
 		
 		jTextFieldOSVersion = new JTextField();
 		jTextFieldOSVersion.setEditable(false);
 		jTextFieldOSVersion.setColumns(10);
-		jTextFieldOSVersion.setBounds(166, 155, 372, 26);
+		jTextFieldOSVersion.setBounds(166, 155, 516, 26);
 		contentPanel.add(jTextFieldOSVersion);
 		
 		jTextFieldUserDir = new JTextField();
 		jTextFieldUserDir.setEditable(false);
 		jTextFieldUserDir.setColumns(10);
-		jTextFieldUserDir.setBounds(166, 71, 372, 26);
+		jTextFieldUserDir.setBounds(166, 71, 516, 26);
 		contentPanel.add(jTextFieldUserDir);
 		
 		jTextFieldUsername = new JTextField();
 		jTextFieldUsername.setEditable(false);
 		jTextFieldUsername.setColumns(10);
-		jTextFieldUsername.setBounds(166, 43, 372, 26);
+		jTextFieldUsername.setBounds(166, 43, 516, 26);
 		contentPanel.add(jTextFieldUsername);
 		
 		jTextFieldWorkstationID = new JTextField();
 		jTextFieldWorkstationID.setEditable(false);
 		jTextFieldWorkstationID.setColumns(10);
-		jTextFieldWorkstationID.setBounds(170, 15, 372, 26);
+		jTextFieldWorkstationID.setBounds(170, 15, 516, 26);
 		contentPanel.add(jTextFieldWorkstationID);
 		
 		jTextFieldUserDir.setText(System.getProperty("user.dir"));

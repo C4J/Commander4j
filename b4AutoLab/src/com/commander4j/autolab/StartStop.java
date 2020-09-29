@@ -25,16 +25,33 @@ public class StartStop
 	public static void main(String[] args)
 	{
 		initLogging("");
-		
+
 		utils.setLookandFeel();
-		
+
 		ShutdownHook shutdownHook = new ShutdownHook();
 
-		Runtime.getRuntime().addShutdownHook(shutdownHook);
-		
+		Runtime.getRuntime().addShutdownHook(new Thread()
+		{
+			public void run()
+			{
+				logger.debug("Shutdown hook activated - requesting stop.");
+				StartStop.autolab.requestStop();
+				while (autolab.isAlive())
+				{
+					try
+					{
+						Thread.sleep(1000);
+					}
+					catch (InterruptedException e)
+					{
+
+					}
+				}
+			}
+		});
+
 		wait = new JWait();
 		autolab = new AutoLab();
-
 
 		autolab.start();
 
@@ -44,10 +61,10 @@ public class StartStop
 		{
 			wait.milliSec(1000);
 			counter++;
-			
-			if (args.length>0)
+
+			if (args.length > 0)
 			{
-				if (  args[0].toUpperCase().contentEquals("DEBUG"))
+				if (args[0].toUpperCase().contentEquals("DEBUG"))
 				{
 					if (counter == 15)
 					{
@@ -65,12 +82,12 @@ public class StartStop
 			}
 
 		}
-		
+
 		Runtime.getRuntime().removeShutdownHook(shutdownHook);
-		
+
 		System.exit(0);
 	}
-	
+
 	public static void initLogging(String filename)
 	{
 		if (filename.isEmpty())
@@ -83,11 +100,12 @@ public class StartStop
 
 		context.setConfigLocation(file.toURI());
 
-		if (factory instanceof Log4jContextFactory) {
-		   // LOG.info("register shutdown hook");
-		    Log4jContextFactory contextFactory = (Log4jContextFactory) factory;
+		if (factory instanceof Log4jContextFactory)
+		{
+			// LOG.info("register shutdown hook");
+			Log4jContextFactory contextFactory = (Log4jContextFactory) factory;
 
-		    ((DefaultShutdownCallbackRegistry) contextFactory.getShutdownCallbackRegistry()).stop();
+			((DefaultShutdownCallbackRegistry) contextFactory.getShutdownCallbackRegistry()).stop();
 		}
 
 	}

@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.swing.JFrame;
+
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.common.Common;
@@ -23,6 +25,7 @@ import com.commander4j.notifier.JFrameNotifier;
 import com.commander4j.notifier.TrayIconProdLineStatus;
 import com.commander4j.notifier.TrayIconSystemInfo;
 import com.commander4j.prodLine.ProdLine;
+import com.commander4j.resources.JRes;
 import com.commander4j.sscc.SSCC_Sequence;
 import com.commander4j.utils.JUtility;
 import com.commander4j.utils.JWait;
@@ -41,11 +44,12 @@ public class AutoLab extends Thread
 	public static LabelSync sync;
 	public static boolean run = true;
 	public static EmailQueue emailqueue = new EmailQueue();
-	public static String version = "1.20";
+	public static String version = "1.27";
 	private JUtility utils = new JUtility();
 	public static EmailThread emailthread;
-	TrayIconSystemInfo trayIconSystem = new TrayIconSystemInfo();
+	private TrayIconSystemInfo trayIconSystem = new TrayIconSystemInfo();
 	public static JFrameNotifier systemNotify;
+	public static JRes rb = new JRes();
 
 	@Override
 	public void run()
@@ -67,7 +71,7 @@ public class AutoLab extends Thread
 		}
 
 		StopAutoLab();
-		
+
 		logger.debug("Application Terminated.");
 	}
 
@@ -80,10 +84,10 @@ public class AutoLab extends Thread
 	{
 		boolean result = true;
 
-		systemNotify = new JFrameNotifier("","System Log","Starting");
+		systemNotify = new JFrameNotifier("", JRes.getText("system_log"), JRes.getText("starting"));
 		systemNotify.setVisible(true);
-		
-		systemNotify.appendToMessage("Starting Email Thread");
+
+		systemNotify.appendToMessage(JRes.getText("starting_email_thread"));
 		emailthread = new EmailThread();
 		emailthread.start();
 
@@ -92,16 +96,15 @@ public class AutoLab extends Thread
 
 		Locale.setDefault(new Locale(Common.locale_language, Common.locale_region));
 
-		systemNotify.appendToMessage("Loading Config");
+		systemNotify.appendToMessage(JRes.getText("loading_config"));
 		// *Get Configuration* //
 
 		config = new Config();
 
 		lines.putAll(config.getConfigProdLines());
 
-	
 		trayIconSystem.init();
-		
+
 		// Start one thread per production line.
 
 		Set<Entry<String, ProdLineDefinition>> entrySet0 = lines.entrySet();
@@ -115,11 +118,11 @@ public class AutoLab extends Thread
 					Boolean.valueOf(prodlinedef0.getModbus_Coil_Trigger_Value()), prodlinedef0.getPrinter_Name(), config.getDataSetPath(), prodlinedef0.getSscc_Filename());
 			threadList_ProdLine.put(prodLine0.getUuid(), prodLine0);
 
-			logger.debug("Adding Icon to System Tray for uuid " + prodLine0.getUuid());
+			logger.debug("[" + prodLine0.getUuid() + "] Adding Icon to System Tray");
 			TrayIconProdLineStatus trayIconStatus = new TrayIconProdLineStatus();
 			trayIconStatus.init(prodLine0.getUuid());
 			iconList_SystemTray.put(prodLine0.getUuid(), trayIconStatus);
-			systemNotify.appendToMessage("Starting "+prodlinedef0.getProdLine_Name()+" Thread.");
+			systemNotify.appendToMessage(JRes.getText("starting") + " " + prodlinedef0.getProdLine_Name() + " " + JRes.getText("thread"));
 			threadList_ProdLine.get(prodLine0.getUuid()).start();
 		}
 
@@ -145,8 +148,8 @@ public class AutoLab extends Thread
 			Map.Entry<String, Thread> me2 = (Map.Entry<String, Thread>) it2.next();
 
 			logger.debug("StopAutoLab " + ((ProdLine) me2.getValue()).getName());
-			
-			systemNotify.appendToMessage("Stopping "+ ((ProdLine) me2.getValue()).getProdLineName() + " Thread.");
+
+			systemNotify.appendToMessage(JRes.getText("stopping") + " " + ((ProdLine) me2.getValue()).getProdLineName() + " " + JRes.getText("thread"));
 
 			String uuid = ((ProdLine) me2.getValue()).getUuid();
 
@@ -174,10 +177,10 @@ public class AutoLab extends Thread
 				((ProdLine) me2.getValue()).interrupt();
 			}
 
-			logger.debug("Removing Icon from System Tray for uuid " + uuid);
+			logger.debug("[" + uuid + "] Removing Icon from System Tray");
 			SystemTray.getSystemTray().remove(iconList_SystemTray.get(uuid).getTrayIcon());
 			iconList_SystemTray.remove(uuid);
-			
+
 		}
 
 		systemNotify.appendToMessage("Stopping LabelSync Thread");
@@ -196,7 +199,7 @@ public class AutoLab extends Thread
 				break;
 			}
 		}
-		
+
 		systemNotify.appendToMessage("Stopping Email Thread");
 
 		emailthread.shutdown();
@@ -212,12 +215,46 @@ public class AutoLab extends Thread
 
 			}
 		}
-		
+
 		SystemTray.getSystemTray().remove(trayIconSystem.getTrayIcon());
-		
+
 		systemNotify.setVisible(false);
 		systemNotify.dispose();
-		systemNotify=null;
+		systemNotify = null;
+
+	}
+
+	public static synchronized void minimiseAll()
+	{
+		Set<Entry<String, Thread>> entrySet2 = threadList_ProdLine.entrySet();
+		Iterator<Entry<String, Thread>> it2 = entrySet2.iterator();
+		while (it2.hasNext())
+		{
+
+			Map.Entry<String, Thread> me2 = (Map.Entry<String, Thread>) it2.next();
+
+			((ProdLine) me2.getValue()).prodLineNotify.setExtendedState(JFrame.ICONIFIED);
+
+		}
+		
+		systemNotify.setExtendedState(JFrame.ICONIFIED);
+	}
+	
+	public static synchronized void restoreAll()
+	{
+		Set<Entry<String, Thread>> entrySet2 = threadList_ProdLine.entrySet();
+		Iterator<Entry<String, Thread>> it2 = entrySet2.iterator();
+		
+		systemNotify.setExtendedState(JFrame.NORMAL);
+		
+		while (it2.hasNext())
+		{
+
+			Map.Entry<String, Thread> me2 = (Map.Entry<String, Thread>) it2.next();
+
+			((ProdLine) me2.getValue()).prodLineNotify.setExtendedState(JFrame.NORMAL);
+
+		}
 
 	}
 

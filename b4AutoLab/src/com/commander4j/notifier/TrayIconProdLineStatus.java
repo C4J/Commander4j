@@ -49,6 +49,9 @@ public class TrayIconProdLineStatus
 	private MenuItem menuItemSYSINFO = new MenuItem("Information");
 	private MenuItem menuItemORDERINFO = new MenuItem("View Order Info");
 	private MenuItem menuItemNOTIFICATION = new MenuItem("View Log");
+	
+	private JDialogProdLineInfo dialogProdLineInfo;
+	private JDialogOrderInfo dialogOrderInfo;
 
 
 	private String uuid = "";
@@ -63,16 +66,27 @@ public class TrayIconProdLineStatus
 
 			if (e.getSource().equals(menuItemSYSINFO))
 			{
-				JDialogProdLineInfo dialog = new JDialogProdLineInfo(getUuid());
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
+				if (dialogProdLineInfo==null)
+				{
+					dialogProdLineInfo = new JDialogProdLineInfo(getUuid());
+					dialogProdLineInfo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				}
+				
+				dialogProdLineInfo.setVisible(true);
 			}
 
 			if (e.getSource().equals(menuItemORDERINFO))
 			{	
-				JDialogOrderInfo dialog = new JDialogOrderInfo(getUuid());
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
+				if (dialogOrderInfo==null)
+				{
+					dialogOrderInfo = new JDialogOrderInfo(getUuid());
+					dialogOrderInfo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				}
+				else
+				{
+					dialogOrderInfo.refresh();
+				}
+				dialogOrderInfo.setVisible(true);
 			}
 			
 			if (e.getSource().equals(menuItemNOTIFICATION))
@@ -181,6 +195,9 @@ public class TrayIconProdLineStatus
 				imageShutdown5 = Toolkit.getDefaultToolkit().getImage("images/linux/image_shutdown5.gif");
 			}
 
+			
+			menuItemSYSINFO.setLabel("Information"+" "+AutoLab.getProdLine_Name(getUuid()));
+			
 			popup.add(menuItemSYSINFO);
 			popup.add(menuItemORDERINFO);
 			popup.add(menuItemNOTIFICATION);

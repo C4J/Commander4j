@@ -15,7 +15,9 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import com.commander4j.autolab.AutoLab;
 import com.commander4j.autolab.StartStop;
+import com.commander4j.resources.JRes;
 
 public class TrayIconSystemInfo
 {
@@ -26,11 +28,16 @@ public class TrayIconSystemInfo
 
 	private PopupMenu popup = new PopupMenu("c4jAutoLab");
 
-	private MenuItem menuItemEmailConfig = new MenuItem("Email Config");
-	private MenuItem menuItemEmailLogs = new MenuItem("Email Logs");
-	private MenuItem menuItemSYSINFO = new MenuItem("System Information");
-	private MenuItem menuItemABOUT = new MenuItem("About");
-	private MenuItem menuItemQUIT = new MenuItem("Quit");
+	private MenuItem menuItemEmailConfig = new MenuItem(JRes.getText("email_config_to_support"));
+	private MenuItem menuItemEmailLogs = new MenuItem(JRes.getText("email_logs_to_support"));
+	private MenuItem menuItemSYSINFO = new MenuItem(JRes.getText("system_information"));
+	private MenuItem menuItemMINIMIZE = new MenuItem(JRes.getText("minimize_all"));
+	private MenuItem menuItemRESTORE = new MenuItem(JRes.getText("restore_all"));
+	private MenuItem menuItemABOUT = new MenuItem(JRes.getText("about"));
+	private MenuItem menuItemQUIT = new MenuItem(JRes.getText("quit"));
+
+	private JDialogSysInfo dialogSysInfo;
+	private JDialogAbout dialogAbout;
 
 	private static String OS = System.getProperty("os.name", "unknown").toLowerCase(Locale.ROOT);
 
@@ -41,37 +48,73 @@ public class TrayIconSystemInfo
 
 			if (e.getSource().equals(menuItemEmailConfig))
 			{
-				EmailConfig emailConfig = new EmailConfig();
-				emailConfig.sendConfigEmail();
+				SwingUtilities.invokeLater(() -> {
+					String option = JDialogQuestion.showDialogAndSelectOption(JRes.getText("email_config_to_support") + " ?", JRes.getText("please_confirm"), JOptionPane.QUESTION_MESSAGE, JRes.getText("yes"), JRes.getText("no"));
+
+					if (option.equals(JRes.getText("yes")))
+					{
+						EmailConfig emailConfig = new EmailConfig();
+						emailConfig.sendConfigEmail();
+					}
+				});
+
 			}
 
 			if (e.getSource().equals(menuItemEmailLogs))
 			{
-				EmailLogs emailLog = new EmailLogs();
-				emailLog.sendLogEmail();
+
+				SwingUtilities.invokeLater(() -> {
+					String option = JDialogQuestion.showDialogAndSelectOption(JRes.getText("email_logs_to_support") + " ?", JRes.getText("please_confirm"), JOptionPane.QUESTION_MESSAGE, JRes.getText("yes"), JRes.getText("no"));
+
+					if (option.equals(JRes.getText("yes")))
+					{
+						EmailLogs emailLog = new EmailLogs();
+						emailLog.sendLogEmail();
+					}
+				});
+
 			}
-			
+
+			if (e.getSource().equals(menuItemMINIMIZE))
+			{
+				AutoLab.minimiseAll();
+			}
+
+			if (e.getSource().equals(menuItemRESTORE))
+			{
+				AutoLab.restoreAll();
+			}
+
 			if (e.getSource().equals(menuItemSYSINFO))
 			{
-				JDialogSysInfo dialog = new JDialogSysInfo();
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
+
+				if (dialogSysInfo == null)
+				{
+					dialogSysInfo = new JDialogSysInfo();
+					dialogSysInfo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				}
+
+				dialogSysInfo.setVisible(true);
 			}
 
 			if (e.getSource().equals(menuItemABOUT))
 			{
-				JDialogAbout dialog = new JDialogAbout();
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
+				if (dialogAbout == null)
+				{
+					dialogAbout = new JDialogAbout();
+					dialogAbout.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				}
+				
+				dialogAbout.setVisible(true);
 			}
 
 			if (e.getSource().equals(menuItemQUIT))
 			{
 
 				SwingUtilities.invokeLater(() -> {
-					String option = JDialogQuit.showDialogAndSelectOption("Do you really want to quit?", "Please confirm", JOptionPane.QUESTION_MESSAGE, "Yes", "No");
+					String option = JDialogQuestion.showDialogAndSelectOption(JRes.getText("do_you_really_want_to_quit"), JRes.getText("please_confirm"), JOptionPane.QUESTION_MESSAGE, JRes.getText("yes"), JRes.getText("no"));
 
-					if (option.equals("Yes"))
+					if (option.equals(JRes.getText("yes")))
 					{
 						StartStop.autolab.requestStop();
 					}
@@ -91,11 +134,10 @@ public class TrayIconSystemInfo
 	{
 		this.trayIcon = trayIcon;
 	}
-		
+
 	public void init()
 	{
-		
-		
+
 		if (SystemTray.isSupported())
 		{
 
@@ -118,17 +160,19 @@ public class TrayIconSystemInfo
 			popup.add(menuItemSYSINFO);
 			popup.add(menuItemEmailConfig);
 			popup.add(menuItemEmailLogs);
+			popup.add(menuItemMINIMIZE);
+			popup.add(menuItemRESTORE);
 			popup.add(menuItemQUIT);
 
 			menuItemEmailConfig.addActionListener(listener);
 			menuItemEmailLogs.addActionListener(listener);
 			menuItemABOUT.addActionListener(listener);
+			menuItemMINIMIZE.addActionListener(listener);
+			menuItemRESTORE.addActionListener(listener);
 			menuItemSYSINFO.addActionListener(listener);
 
 			menuItemQUIT.addActionListener(listener);
 
-
-			
 			trayIcon = new TrayIcon(imageOK, "", popup);
 			trayIcon.setImageAutoSize(true);
 
@@ -151,7 +195,7 @@ public class TrayIconSystemInfo
 			SystemTray.getSystemTray().remove(trayIcon);
 		}
 	}
-	
+
 	private boolean isWindows()
 	{
 		return OS.contains("win");

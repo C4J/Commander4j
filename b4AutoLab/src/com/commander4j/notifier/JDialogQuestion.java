@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 import javax.swing.WindowConstants;
 
-public class JDialogQuit
+public class JDialogQuestion
 {
 
 	@SafeVarargs

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.apache.logging.log4j.Logger;
 
+import com.commander4j.utils.JUtility;
 import com.commander4j.xml.JXMLDocument;
 
 public class Config
@@ -35,6 +36,7 @@ public class Config
 	private String SemiPalletTotal = "4";
 	private String SemiPalletCriteria = "";
 	private String SemiPalletCriteriaField = "";
+	private JUtility util = new JUtility();
 	
 	public boolean isEmailEnabled()
 	{
@@ -74,16 +76,16 @@ public class Config
 		setSuppressOutputMessage(Boolean.valueOf(xmlDoc.findXPath("/config/debug/@suppressOutputMessage")));
 		logger.debug("       - Suppress Output XML         [" + isSuppressOutputMessage() + "]");
 		
-		setLabelSyncPath(xmlDoc.findXPath("/config/paths/labelSync/@path"));
+		setLabelSyncPath(util.formatPath(xmlDoc.findXPath("/config/paths/labelSync/@path")));
 		logger.debug("       - Label Sync Path             [" + getLabelSyncPath() + "]");	
 		
 		setLabelSyncFrequency(Integer.valueOf(xmlDoc.findXPath("/config/paths/labelSync/@frequency")));
 		logger.debug("       - Label Sync Frequency        [" + getLabelSyncFrequency() + "]");
 		
-		setDataSetPath(xmlDoc.findXPath("/config/paths/dataSet/@path"));
+		setDataSetPath(util.formatPath(xmlDoc.findXPath("/config/paths/dataSet/@path")));
 		logger.debug("       - DataSet Path                [" + getDataSetPath() + "]");
 		
-		setOutputPath(xmlDoc.findXPath("/config/paths/output/@path"));
+		setOutputPath(util.formatPath(xmlDoc.findXPath("/config/paths/output/@path")));
 		logger.debug("       - Output Path                 [" + getOutputPath() + "]");
 		
 		setPalletPerPrint(xmlDoc.findXPath("/config/labels/pallet/@perPrint"));

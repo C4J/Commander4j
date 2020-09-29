@@ -114,21 +114,21 @@ public class SendEmail
 
 				long ageInMins = seconds / 60;
 
-				logger.debug("Last email to " + emailKey + " was at " + utils.getISODateStringFromCalendar(lastSent));
-				logger.debug("Current time is " + utils.getISODateStringFromCalendar(now));
-
-				logger.debug("Minutes since last email to " + emailKey + " is " + String.valueOf(ageInMins));
+//				logger.debug("Last email to " + emailKey + " was at " + utils.getISODateStringFromCalendar(lastSent));
+//				logger.debug("Current time is " + utils.getISODateStringFromCalendar(now));
+//
+//				logger.debug("Minutes since last email to " + emailKey + " is " + String.valueOf(ageInMins));
 
 				if (ageInMins >= distList.get(distributionID).maxFrequencyMins)
 				{
 					okToSend = true;
 					emailLog.put(emailKey, now);
-					logger.debug("Email allowed");
+					//logger.debug("Email allowed");
 				}
 				else
 				{
 					// okToSend = false;
-					logger.debug("Email suppressed - too frequent");
+					//logger.debug("Email suppressed - too frequent");
 				}
 
 				if (okToSend)

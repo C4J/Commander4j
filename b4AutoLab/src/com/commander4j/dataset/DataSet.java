@@ -2,6 +2,7 @@ package com.commander4j.dataset;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,6 +34,7 @@ public class DataSet extends Thread
 	private String remoteFilename = "";
 	private String uuid = "";
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger((DataSet.class));
+	private String lastMessage = "";
 
 	public DataSet(String uuid, String productionLine, String printerName, String inputPath)
 	{
@@ -43,22 +45,27 @@ public class DataSet extends Thread
 		this.inputFilename = productionLine + "_" + this.printerName + ".CSV";
 		this.localFilename = System.getProperty("user.dir") + File.separator + "interface" + File.separator + "input" + File.separator + "dataset" + File.separator + getInputFilename();
 		this.remoteFilename = getInputPath() + File.separator + getInputFilename();
-		
+
 		setName("DataSet " + productionLine + "_" + printerName);
-		
+
 		logger.debug("[" + getUuid() + "] {" + getName() + "} Instance Created.");
 	}
 
 	public void appendNotification(String message)
 	{
-		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+		if (message.equals(lastMessage) == false)
+		{
+			((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).appendNotification(message);
+			lastMessage = message;
+		}
 	}
-	
+
 	public void setNotification(String message)
 	{
 		((ProdLine) AutoLab.threadList_ProdLine.get(uuid)).setNotification(message);
+		lastMessage = "";
 	}
-	
+
 	public void shutdown()
 	{
 		this.run = false;
@@ -137,54 +144,81 @@ public class DataSet extends Thread
 	public void run()
 	{
 
-		boolean defaultLoaded = false;
+		boolean remoteLoaded = false;
 		run = true;
 		setDataReady(false);
 
 		logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Thread Started...");
-		
-		File src = new File(getRemoteFilename());
-		File dst = new File(getLocalFilename());
+
+		File remoteFile = new File(getRemoteFilename());
+		appendNotification("Remote DataSet name is " + remoteFile.getAbsolutePath());
+
+		File localFile = new File(getLocalFilename());
+		appendNotification("Local DataSet name is " + localFile.getAbsolutePath());
 
 		while (run == true)
 		{
-			if (src.exists())
+			if (remoteFile.exists())
 			{
-				logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Found Remote DataSet "+src.getAbsolutePath());
-				utility.copyNewerFile(getName(), src, dst);
+				logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Found Remote DataSet " + remoteFile.getAbsolutePath());
 
-				loadCSV("Remote", getRemoteFilename());
-				
-				appendNotification("Loading Data for Order ["+getData("PROCESS_ORDER")+"].");
+				try
+				{
+					appendNotification("Copying Remote [" + getRemoteFilename() + "]");
+					FileUtils.copyFile(remoteFile, localFile);
 
-				defaultLoaded = true;
+					try
+					{
+						appendNotification("Deleting remote [" + getRemoteFilename() + "]");
+						java.nio.file.Files.delete(remoteFile.toPath());
 
-				FileUtils.deleteQuietly(src);
-				
+						appendNotification("Loading CSV from Local [" + getLocalFilename() + "]");
+						if (loadCSV("Remote", getLocalFilename()))
+						{
+							appendNotification("CSV Loaded Successfully.");
+							remoteLoaded = true;
+
+						}
+						else
+						{
+							appendNotification("Unable to load CSV data.");
+						}
+
+					}
+					catch (IOException e)
+					{
+						appendNotification("Error deleting remote file [" + e.getMessage() + "]");
+					}
+
+				}
+				catch (IOException e)
+				{
+					appendNotification("Error copying remote file [" + e.getMessage() + "]");
+				}
+
 			}
 			else
 			{
-				if (defaultLoaded == false)
+				if (remoteLoaded == false)
 				{
 					// Start by loading the
-					if (dst.exists())
+					if (localFile.exists())
 					{
 
-						logger.debug("[" + getUuid() + "] {" + getName() + "} " + " Found Local DataSet "+dst.getAbsolutePath());
+						logger.debug("[" + getUuid() + "] {" + getName() + "} " + " Found Local DataSet " + localFile.getAbsolutePath());
 						loadCSV("Local", getLocalFilename());
-						
-						appendNotification("Using Local Cached Order ["+getData("PROCESS_ORDER")+"].");
 
-						defaultLoaded = true;
-						
+						appendNotification("Using Local Cached Order [" + getData("PROCESS_ORDER") + "].");
+
+						remoteLoaded = true;
+
 					}
 					else
 					{
 						appendNotification("*ERROR* No DataSet Loaded.");
-						logger.debug("[" + getUuid() + "] {" + getName() + "} " + "*ERROR* No DataSet Loaded");
-						
-						
-						AutoLab.emailqueue.addToQueue("Error", utility.getClientName() + " *ERROR* No DataSet Loaded",AutoLab.threadList_ProdLine.get(getUuid()).getName()+" [" + getUuid() + "] {" + getName() + "} \n\n"+getRemoteFilename()+"\n\n"+getLocalFilename(), "");
+						//logger.debug("[" + getUuid() + "] {" + getName() + "} " + "*ERROR* No DataSet Loaded");
+
+						AutoLab.emailqueue.addToQueue("Error", utility.getClientName() + " *ERROR* No DataSet Loaded", AutoLab.threadList_ProdLine.get(getUuid()).getName() + " [" + getUuid() + "] {" + getName() + "} \n\n" + getRemoteFilename() + "\n\n" + getLocalFilename(), "");
 					}
 				}
 			}
@@ -200,8 +234,8 @@ public class DataSet extends Thread
 
 		}
 
-		src = null;
-		dst = null;
+		remoteFile = null;
+		localFile = null;
 
 		logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Thread Stopped...");
 	}
@@ -233,7 +267,7 @@ public class DataSet extends Thread
 			{
 				key = inputData.get(0)[x];
 				key = AutoLab.config.getDBFieldnameFromCSVFieldname(key);
-				
+
 				value = inputData.get(1)[x];
 
 				dataMap.put(key, value);
@@ -246,7 +280,7 @@ public class DataSet extends Thread
 						dataMap.put("LABELS_PER_PALLET", AutoLab.config.getPalletTotal());
 					}
 				}
-				
+
 				if (key.equals(AutoLab.config.getSemiPalletCriteriaField()))
 				{
 					if (value.contains(AutoLab.config.getSemiPalletCriteria()) || (AutoLab.config.getSemiPalletCriteria().equals("")))
@@ -255,12 +289,13 @@ public class DataSet extends Thread
 						dataMap.put("LABELS_PER_PALLET", AutoLab.config.getSemiPalletTotal());
 					}
 				}
-				
+
 				if (key.equals("CUSTOMER_ID"))
 				{
 					if (AutoLab.config.getCustomerBatchFormat(value).equals(""))
 					{
-						//If no customer specific batch format then use system key default.
+						// If no customer specific batch format then use system
+						// key default.
 						dataMap.put("BATCH_FORMAT", AutoLab.config.getSystemKey("BATCH FORMAT"));
 					}
 					else
@@ -268,13 +303,15 @@ public class DataSet extends Thread
 						dataMap.put("BATCH_FORMAT", AutoLab.config.getCustomerBatchFormat(value));
 					}
 				}
-				
-				if (AutoLab.config.getCloneFieldName(key).equals("")==false)
+
+				if (AutoLab.config.getCloneFieldName(key).equals("") == false)
 				{
 					dataMap.put(AutoLab.config.getCloneFieldName(key), value);
 				}
-				
+
 			}
+
+			csvReader.close();
 
 			csvReader = null;
 			csvParser = null;
@@ -294,19 +331,18 @@ public class DataSet extends Thread
 
 		return result;
 	}
-	
+
 	public Enumeration<String> getDataKeys()
 	{
 		return dataMap.keys();
 	}
 
-	
-	public void setData(String key,String value)
+	public void setData(String key, String value)
 	{
 
 		dataMap.put(key, value);
 	}
-	
+
 	public String getData(String key)
 	{
 		String result = "";

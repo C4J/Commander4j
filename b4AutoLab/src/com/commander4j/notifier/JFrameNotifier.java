@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 import java.util.Calendar;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import com.commander4j.resources.JRes;
 import com.commander4j.utils.JUtility;
 
 public class JFrameNotifier extends JFrame
@@ -27,6 +29,7 @@ public class JFrameNotifier extends JFrame
 	private Calendar now;
 	private String time24="";
 	private String uuid = "";
+	private ImageIcon img;
 
 	public void setMessage(String message)
 	{
@@ -81,6 +84,17 @@ public class JFrameNotifier extends JFrame
 	public JFrameNotifier(String uuid,String title, String message)
 	{
 		super();
+		
+		if (title.equals(JRes.getText("system_log")))
+		{
+			img = new ImageIcon("./images/windows/image_sys_control.gif");
+		}
+		else
+		{
+			img = new ImageIcon("./images/windows/image_ok.gif");
+		}
+		
+		setIconImage(img.getImage());
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowListener());
 		setTitle(title);
@@ -113,7 +127,7 @@ public class JFrameNotifier extends JFrame
 	{
 				
 		setResizable(false);
-		setBounds(100, 100, 581, 246);
+		setBounds(100, 100, 677, 246);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -121,11 +135,11 @@ public class JFrameNotifier extends JFrame
 		contentPane.setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 615, 236);
+		desktopPane.setBounds(0, 0, 677, 236);
 		contentPane.add(desktopPane);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 12, 557, 200);
+		scrollPane.setBounds(12, 12, 653, 200);
 		desktopPane.add(scrollPane);
 		messageArea.setEditable(false);
 		messageArea.setLineWrap(true);

@@ -209,7 +209,7 @@ public class Modbus extends Thread
 								{
 									logger.debug("[" + getUuid() + "] {" + getName() + "} " + "[PRINT REQUEST DETECTED].....");
 
-									appendNotification("Modbus Print Requeste Detected.");
+									appendNotification("Modbus Print Request Detected.");
 
 									if (AutoLab.isDataSet_DataReady(getUuid()))
 									{
@@ -288,6 +288,8 @@ public class Modbus extends Thread
 												logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Printing " + labelCount + " of " + labelsPerPallet + " for Process Order " + AutoLab.getDataSet_Field(getUuid(), "PROCESS_ORDER") + " - SSCC " + sscc);
 												logger.debug("**********************************************************************************************************************************************************************");
 
+												appendNotification("Preparing Label "+(x+1)+" of "+labelsPerPrint);
+												
 												Label label = new Label();
 												String zpl = label.process(uuid);
 

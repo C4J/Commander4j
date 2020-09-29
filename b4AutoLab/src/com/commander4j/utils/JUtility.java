@@ -46,6 +46,17 @@ public class JUtility
 		return result;
 	}
 
+
+	public String formatPath(String path)
+	{
+		String result = path;
+
+		result = result.replace("\\", File.separator);
+		result = result.replace("/", File.separator);
+
+		return result;
+	}
+	
 	public boolean zipFile(String inputFile, String outputFile)
 	{
 

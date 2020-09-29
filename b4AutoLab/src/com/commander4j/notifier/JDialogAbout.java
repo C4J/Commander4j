@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.commander4j.autolab.AutoLab;
+import com.commander4j.resources.JRes;
 
 import javax.swing.SwingConstants;
 
@@ -27,6 +28,7 @@ public class JDialogAbout extends JDialog
 	 */
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	private ImageIcon img = new ImageIcon("./images/windows/image_sys_control.gif");
 
 	/**
 	 * Launch the application.
@@ -50,10 +52,11 @@ public class JDialogAbout extends JDialog
 	 */
 	public JDialogAbout()
 	{
+		setIconImage(img.getImage());
 		setTitle("About");
 		setResizable(false);
 		setAlwaysOnTop(true);
-		setSize(257, 236);
+		setSize(257, 252);
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -61,8 +64,8 @@ public class JDialogAbout extends JDialog
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		JButton okClose = new JButton("Close");
-		okClose.setBounds(90, 178, 79, 29);
+		JButton okClose = new JButton(JRes.getText("close"));
+		okClose.setBounds(75, 178, 106, 29);
 		contentPanel.add(okClose);
 		okClose.addActionListener(new ActionListener()
 		{
@@ -80,7 +83,7 @@ public class JDialogAbout extends JDialog
 		labelLogo.setBounds(4, 0, 247, 114);
 		contentPanel.add(labelLogo);
 		
-		JLabel lblNewLabel = new JLabel("Version "+AutoLab.version);
+		JLabel lblNewLabel = new JLabel(JRes.getText("version")+" "+AutoLab.version);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(4, 115, 247, 16);
 		contentPanel.add(lblNewLabel);
