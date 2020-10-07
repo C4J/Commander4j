@@ -76,8 +76,6 @@ public class JFrameNotifier extends JFrame
 
 		messageArea.setCaretPosition(messageArea.getDocument().getLength());
 
-		setState(Frame.NORMAL);
-		toFront();
 		
 	}
 
@@ -100,9 +98,8 @@ public class JFrameNotifier extends JFrame
 		setTitle(title);
 		setMessage(message);
 		setUuid(uuid);
+
 		init();
-		setState(Frame.NORMAL);
-		toFront();
 
 	}
 	
@@ -149,12 +146,14 @@ public class JFrameNotifier extends JFrame
 
 		setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
+				
+		Xy xy = JUtility.restoreWindowLayout(getTitle());
 		
-		Xy xy = JUtility.getNotifierLocation();
-		setLocation(xy.x,xy.y);
+		setLocation(xy.x,xy.y);	
+	    setState(Frame.NORMAL);
+	    toFront();
 		
-		
-		
+		setVisible(true);
 	}
 	
 }

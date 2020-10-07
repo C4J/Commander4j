@@ -11,6 +11,7 @@ import org.apache.commons.mail.*;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
+import com.commander4j.resources.JRes;
 import com.commander4j.utils.JUtility;
 import com.commander4j.xml.JXMLDocument;
 
@@ -216,7 +217,7 @@ public class SendEmail
 			else
 			{
 				logger.debug("Email Distribution list ["+distributionID+"] is disabled.");
-				AutoLab.systemNotify.appendToMessage("Email Distribution list ["+distributionID+"] is Disabled.");
+				AutoLab.systemNotify.appendToMessage(JRes.getText("email_distribution_list_is_disabled")+" ["+distributionID+"]");
 			}
 		}
 		else

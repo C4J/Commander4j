@@ -8,6 +8,7 @@ import com.commander4j.batch.Batch;
 import com.commander4j.label.Label;
 import com.commander4j.output.ProcDec_XML;
 import com.commander4j.prodLine.ProdLine;
+import com.commander4j.resources.JRes;
 import com.commander4j.utils.JUtility;
 import com.commander4j.utils.JWait;
 import org.apache.logging.log4j.Logger;
@@ -133,7 +134,7 @@ public class Modbus extends Thread
 			{
 				try
 				{
-					appendNotification("Modbus disconnect from ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
+					appendNotification(JRes.getText("modbus_disconnecting_from")+" ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
 					modbusClient.Disconnect();
 				}
 				catch (IOException e)
@@ -165,7 +166,7 @@ public class Modbus extends Thread
 				{
 					try
 					{
-						appendNotification("Modbus disconnect from ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
+						appendNotification(JRes.getText("modbus_disconnecting_from")+" ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
 						modbusClient.Disconnect();
 					}
 					catch (IOException e1)
@@ -174,7 +175,7 @@ public class Modbus extends Thread
 					}
 				}
 
-				appendNotification("Modbus attempting connection to device ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
+				appendNotification(JRes.getText("modbus_attempting_connection_to_device")+" ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
 
 				modbusClient.setipAddress(getIpAddress());
 				modbusClient.setPort(getPortNumber());
@@ -186,7 +187,7 @@ public class Modbus extends Thread
 				
 				if (modbusClient.isConnected())
 				{
-				    appendNotification("Modbus connected to device ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
+				    appendNotification(JRes.getText("modbus_connected_to_device")+" ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
 				}
 
 				while (modbusClient.isConnected() && (run == true))
@@ -209,7 +210,7 @@ public class Modbus extends Thread
 								{
 									logger.debug("[" + getUuid() + "] {" + getName() + "} " + "[PRINT REQUEST DETECTED].....");
 
-									appendNotification("Modbus Print Request Detected.");
+									appendNotification(JRes.getText("modbus_print_request_detected"));
 
 									if (AutoLab.isDataSet_DataReady(getUuid()))
 									{
@@ -288,7 +289,7 @@ public class Modbus extends Thread
 												logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Printing " + labelCount + " of " + labelsPerPallet + " for Process Order " + AutoLab.getDataSet_Field(getUuid(), "PROCESS_ORDER") + " - SSCC " + sscc);
 												logger.debug("**********************************************************************************************************************************************************************");
 
-												appendNotification("Preparing Label "+(x+1)+" of "+labelsPerPrint);
+												appendNotification(JRes.getText("preparing_label")+" "+(x+1)+" "+JRes.getText("of")+" "+labelsPerPrint);
 												
 												Label label = new Label();
 												String zpl = label.process(uuid);
@@ -322,7 +323,7 @@ public class Modbus extends Thread
 					catch (IOException e1)
 					{
 						logger.debug("[" + getUuid() + "] {" + getName() + "} IOException during read " + e1.getLocalizedMessage());
-						appendNotification("Modbus Error with connection to device ["+":"+getPortNumber()+"] Coil "+address);
+						appendNotification(JRes.getText("modbus_cannot_connect_to_device")+" ["+":"+getPortNumber()+"] Coil "+address);
 						modbusClient.Disconnect();
 					}
 
@@ -333,7 +334,7 @@ public class Modbus extends Thread
 					try
 					{
 						modbusClient.Disconnect();
-						appendNotification("Modbus disconnect from device ["+":"+getPortNumber()+"] Coil "+address);
+						appendNotification(JRes.getText("modbus_disconnected_from_device")+" ["+":"+getPortNumber()+"] Coil "+address);
 					}
 					catch (IOException e1)
 					{

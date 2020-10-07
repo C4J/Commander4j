@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.8" transformSequenceNumber="8">
   <directoryPresets config="." />
-  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.27" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
+  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.28" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="nl" />
@@ -37,6 +37,7 @@
       <mountPoint id="126" location="xml/sscc" />
       <mountPoint id="347" location="images" />
       <mountPoint id="348" location="licences" />
+      <mountPoint id="628" location="layout" />
       <mountPoint id="127" />
     </mountPoints>
     <entries>
@@ -73,6 +74,16 @@
       <dirEntry mountPoint="348" file="./licences" subDirectory="licences">
         <exclude>
           <entry location=".DS_Store" />
+        </exclude>
+      </dirEntry>
+      <dirEntry mountPoint="628" file="./layout" uninstallMode="1" overrideUninstallMode="true" subDirectory="layout">
+        <exclude>
+          <entry location=".DS_Store" />
+          <entry location="CETEC 5.properties" />
+          <entry location="CETEC 2.properties" />
+          <entry location="Registro del sistema.properties" />
+          <entry location="CETEC 4.properties" />
+          <entry location="CETEC 6.properties" />
         </exclude>
       </dirEntry>
       <fileEntry mountPoint="127" file="../b4AutoLab/autolab4j.jar" />

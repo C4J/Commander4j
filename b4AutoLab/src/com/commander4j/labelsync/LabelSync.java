@@ -8,6 +8,7 @@ import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
+import com.commander4j.resources.JRes;
 import com.commander4j.utils.JUnique;
 import com.commander4j.utils.JUtility;
 import com.commander4j.utils.JWait;
@@ -145,7 +146,7 @@ public class LabelSync extends Thread
 
 						if (filesUpdated > 0)
 						{
-							AutoLab.systemNotify.appendToMessage("LabelSync completed - " + filesUpdated + " file(s) copied.");
+							AutoLab.systemNotify.appendToMessage(JRes.getText("labelsync_completed")+" - " + filesUpdated + " "+JRes.getText("files_copied"));
 							AutoLab.emailqueue.addToQueue("LabelSync", "LabelSync completed on ["+utility.getClientName() + "]", "LabelSync [" + getUuid() + "] {" + getName() + "} performed.\n\n" + filesCopied + "\n\n" + filesUpdated + " file(s) copied.", "");
 						}
 

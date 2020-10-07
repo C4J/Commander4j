@@ -4,13 +4,9 @@ package com.commander4j.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-
-import org.apache.logging.log4j.Logger;
-
-import com.commander4j.autolab.AutoLab;
-import com.commander4j.notifier.Xy;
-
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -20,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -29,23 +26,84 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.Logger;
+
+import com.commander4j.autolab.AutoLab;
+import com.commander4j.notifier.JFrameNotifier;
+import com.commander4j.notifier.Xy;
 
 public class JUtility
 {
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger((JUtility.class));
 	public static int x = 50;
 	public static int y = 50;
-	
+
 	public static synchronized Xy getNotifierLocation()
 	{
 		Xy result = new Xy();
+
 		result.x = x;
 		result.y = y;
+
 		x = x + 50;
 		y = y + 50;
+
 		return result;
 	}
 
+	public static synchronized Xy restoreWindowLayout(String title)
+	{
+		Xy result = new Xy();
+
+		try (InputStream input = new FileInputStream("./layout/" + title + ".properties"))
+		{
+
+			Properties prop = new Properties();
+
+			prop.load(input);
+
+			result.name = String.valueOf(prop.getProperty("name"));
+			result.x = Integer.valueOf(prop.getProperty("x"));
+			result.y = Integer.valueOf(prop.getProperty("y"));
+
+		}
+		catch (IOException ex)
+		{
+			result.name = title;
+			result.x = x;
+			result.y = y;
+			x = x + 50;
+			y = y + 50;
+		}
+
+		return result;
+	}
+
+	public static synchronized void saveWindowLayout(JFrameNotifier frame)
+	{
+		try (OutputStream output = new FileOutputStream("./layout/" + frame.getTitle() + ".properties"))
+		{
+
+			Properties prop = new Properties();
+
+			// set the properties value
+
+			prop.setProperty("name", frame.getTitle());
+			prop.setProperty("x", String.valueOf(frame.getLocation().x));
+			prop.setProperty("y", String.valueOf(frame.getLocation().y));
+
+			// save properties to project root folder
+			prop.store(output, null);
+
+			System.out.println(prop);
+
+		}
+		catch (IOException io)
+		{
+			io.printStackTrace();
+		}
+
+	}
 
 	public String formatPath(String path)
 	{
@@ -56,7 +114,7 @@ public class JUtility
 
 		return result;
 	}
-	
+
 	public boolean zipFile(String inputFile, String outputFile)
 	{
 
@@ -70,7 +128,7 @@ public class JUtility
 			{
 				FileUtils.forceDelete(new File(outputFile));
 			}
-			test=null;
+			test = null;
 
 			FileOutputStream fos = new FileOutputStream(outputFile);
 
@@ -328,7 +386,7 @@ public class JUtility
 
 		return result;
 	}
-	
+
 	public String getISODateStringFormat(Date ts)
 	{
 		String result = "";

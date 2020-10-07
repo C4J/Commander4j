@@ -33,6 +33,7 @@ public class TrayIconSystemInfo
 	private MenuItem menuItemSYSINFO = new MenuItem(JRes.getText("system_information"));
 	private MenuItem menuItemMINIMIZE = new MenuItem(JRes.getText("minimize_all"));
 	private MenuItem menuItemRESTORE = new MenuItem(JRes.getText("restore_all"));
+	private MenuItem menuItemSaveLayout = new MenuItem(JRes.getText("save_layout"));
 	private MenuItem menuItemABOUT = new MenuItem(JRes.getText("about"));
 	private MenuItem menuItemQUIT = new MenuItem(JRes.getText("quit"));
 
@@ -75,6 +76,11 @@ public class TrayIconSystemInfo
 
 			}
 
+			if (e.getSource().equals(menuItemSaveLayout))
+			{
+				AutoLab.saveWindowLayouts();
+			}
+			
 			if (e.getSource().equals(menuItemMINIMIZE))
 			{
 				AutoLab.minimiseAll();
@@ -162,6 +168,7 @@ public class TrayIconSystemInfo
 			popup.add(menuItemEmailLogs);
 			popup.add(menuItemMINIMIZE);
 			popup.add(menuItemRESTORE);
+			popup.add(menuItemSaveLayout);
 			popup.add(menuItemQUIT);
 
 			menuItemEmailConfig.addActionListener(listener);
@@ -169,6 +176,7 @@ public class TrayIconSystemInfo
 			menuItemABOUT.addActionListener(listener);
 			menuItemMINIMIZE.addActionListener(listener);
 			menuItemRESTORE.addActionListener(listener);
+			menuItemSaveLayout.addActionListener(listener);
 			menuItemSYSINFO.addActionListener(listener);
 
 			menuItemQUIT.addActionListener(listener);

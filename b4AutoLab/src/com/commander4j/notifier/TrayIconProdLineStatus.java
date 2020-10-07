@@ -16,6 +16,7 @@ import javax.swing.JDialog;
 
 import com.commander4j.autolab.AutoLab;
 import com.commander4j.prodLine.ProdLine;
+import com.commander4j.resources.JRes;
 
 public class TrayIconProdLineStatus
 {
@@ -46,9 +47,9 @@ public class TrayIconProdLineStatus
 
 	private PopupMenu popup = new PopupMenu("c4jAutoLab");
 
-	private MenuItem menuItemSYSINFO = new MenuItem("Information");
-	private MenuItem menuItemORDERINFO = new MenuItem("View Order Info");
-	private MenuItem menuItemNOTIFICATION = new MenuItem("View Log");
+	private MenuItem menuItemSYSINFO = new MenuItem(JRes.getText("information"));
+	private MenuItem menuItemORDERINFO = new MenuItem(JRes.getText("view_order"));
+	private MenuItem menuItemNOTIFICATION = new MenuItem(JRes.getText("view_log"));
 	
 	private JDialogProdLineInfo dialogProdLineInfo;
 	private JDialogOrderInfo dialogOrderInfo;
@@ -196,7 +197,7 @@ public class TrayIconProdLineStatus
 			}
 
 			
-			menuItemSYSINFO.setLabel("Information"+" "+AutoLab.getProdLine_Name(getUuid()));
+			menuItemSYSINFO.setLabel(JRes.getText("information")+" "+AutoLab.getProdLine_Name(getUuid()));
 			
 			popup.add(menuItemSYSINFO);
 			popup.add(menuItemORDERINFO);

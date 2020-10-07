@@ -29,26 +29,7 @@ public class StartStop
 		utils.setLookandFeel();
 
 		ShutdownHook shutdownHook = new ShutdownHook();
-
-		Runtime.getRuntime().addShutdownHook(new Thread()
-		{
-			public void run()
-			{
-				logger.debug("Shutdown hook activated - requesting stop.");
-				StartStop.autolab.requestStop();
-				while (autolab.isAlive())
-				{
-					try
-					{
-						Thread.sleep(1000);
-					}
-					catch (InterruptedException e)
-					{
-
-					}
-				}
-			}
-		});
+		Runtime.getRuntime().addShutdownHook(shutdownHook);
 
 		wait = new JWait();
 		autolab = new AutoLab();
@@ -82,8 +63,6 @@ public class StartStop
 			}
 
 		}
-
-		Runtime.getRuntime().removeShutdownHook(shutdownHook);
 
 		System.exit(0);
 	}

@@ -178,7 +178,7 @@ public class JDialogProdLineInfo extends JDialog
 		textFieldPrinterName.setBounds(262, 154, 566, 26);
 		contentPanel.add(textFieldPrinterName);
 		
-		JLabel lblPrinterName = new JLabel("Printer Name :");
+		JLabel lblPrinterName = new JLabel(JRes.getText("printer_name")+" :");
 		lblPrinterName.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPrinterName.setBounds(6, 159, 247, 16);
 		contentPanel.add(lblPrinterName);

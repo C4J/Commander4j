@@ -44,7 +44,7 @@ public class AutoLab extends Thread
 	public static LabelSync sync;
 	public static boolean run = true;
 	public static EmailQueue emailqueue = new EmailQueue();
-	public static String version = "1.27";
+	public static String version = "1.28";
 	private JUtility utils = new JUtility();
 	public static EmailThread emailthread;
 	private TrayIconSystemInfo trayIconSystem = new TrayIconSystemInfo();
@@ -85,9 +85,9 @@ public class AutoLab extends Thread
 		boolean result = true;
 
 		systemNotify = new JFrameNotifier("", JRes.getText("system_log"), JRes.getText("starting"));
-		systemNotify.setVisible(true);
 
-		systemNotify.appendToMessage(JRes.getText("starting_email_thread"));
+
+		systemNotify.appendToMessage(JRes.getText("starting_background_process")+ " ["+JRes.getText("email")+"]");
 		emailthread = new EmailThread();
 		emailthread.start();
 
@@ -122,13 +122,13 @@ public class AutoLab extends Thread
 			TrayIconProdLineStatus trayIconStatus = new TrayIconProdLineStatus();
 			trayIconStatus.init(prodLine0.getUuid());
 			iconList_SystemTray.put(prodLine0.getUuid(), trayIconStatus);
-			systemNotify.appendToMessage(JRes.getText("starting") + " " + prodlinedef0.getProdLine_Name() + " " + JRes.getText("thread"));
+			systemNotify.appendToMessage(JRes.getText("starting_background_process")+ " ["+JRes.getText("production_line")+" "+prodlinedef0.getProdLine_Name()+"]");
 			threadList_ProdLine.get(prodLine0.getUuid()).start();
 		}
 
 		// Start the label sync thread.
 
-		systemNotify.appendToMessage("Starting LabelSync Thread.");
+		systemNotify.appendToMessage(JRes.getText("starting_background_process")+ " ["+JRes.getText("labelsync")+"]");
 		sync = new LabelSync("LabelSync", config.getLabelSyncPath(), config.getLabelSyncFrequency());
 		sync.start();
 
@@ -149,7 +149,7 @@ public class AutoLab extends Thread
 
 			logger.debug("StopAutoLab " + ((ProdLine) me2.getValue()).getName());
 
-			systemNotify.appendToMessage(JRes.getText("stopping") + " " + ((ProdLine) me2.getValue()).getProdLineName() + " " + JRes.getText("thread"));
+			systemNotify.appendToMessage(JRes.getText("stopping_background_process") + " [" + ((ProdLine) me2.getValue()).getProdLineName() + "]");
 
 			String uuid = ((ProdLine) me2.getValue()).getUuid();
 
@@ -183,7 +183,7 @@ public class AutoLab extends Thread
 
 		}
 
-		systemNotify.appendToMessage("Stopping LabelSync Thread");
+		systemNotify.appendToMessage(JRes.getText("stopping_background_process")+" [LabelSync]");
 		sync.shutdown();
 
 		emailqueue.addToQueue("StartStop", "AutoLab " + version + " stopped on " + utils.getClientName(), "AutoLab service version " + version + " stopped.", "");
@@ -200,7 +200,7 @@ public class AutoLab extends Thread
 			}
 		}
 
-		systemNotify.appendToMessage("Stopping Email Thread");
+		systemNotify.appendToMessage(JRes.getText("stopping_background_process")+" ["+JRes.getText("email")+"]");
 
 		emailthread.shutdown();
 
@@ -238,6 +238,23 @@ public class AutoLab extends Thread
 		}
 		
 		systemNotify.setExtendedState(JFrame.ICONIFIED);
+	}
+	
+	public static synchronized void saveWindowLayouts()
+	{
+		Set<Entry<String, Thread>> entrySet2 = threadList_ProdLine.entrySet();
+		Iterator<Entry<String, Thread>> it2 = entrySet2.iterator();
+		while (it2.hasNext())
+		{
+
+			Map.Entry<String, Thread> me2 = (Map.Entry<String, Thread>) it2.next();
+
+			JUtility.saveWindowLayout(((ProdLine) me2.getValue()).prodLineNotify);
+
+		}
+		
+		JUtility.saveWindowLayout(systemNotify);
+
 	}
 	
 	public static synchronized void restoreAll()

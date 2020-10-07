@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Main-Class: com.commander4j.autolab.AutoLab
+Main-Class: com.commander4j.autolab.StartStop
 Class-Path: lib/mail/javax.mail.jar 
  lib/mail/commons-email-1.5.jar 
  lib/opencsv/commons-logging-1.2.jar 

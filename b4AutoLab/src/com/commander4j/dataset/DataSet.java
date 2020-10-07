@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.io.FileUtils;
-
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
 import com.commander4j.prodLine.ProdLine;
+import com.commander4j.resources.JRes;
 import com.commander4j.utils.JUtility;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
@@ -151,49 +152,68 @@ public class DataSet extends Thread
 		logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Thread Started...");
 
 		File remoteFile = new File(getRemoteFilename());
-		appendNotification("Remote DataSet name is " + remoteFile.getAbsolutePath());
+		
+		String pad="";
+		int maxLen=65;
+		if (remoteFile.getAbsolutePath().length()>maxLen)
+		{
+			pad="...";
+		}
+		else
+		{
+			pad="";
+		}
+		appendNotification(JRes.getText("remote")+" DataSet [" + pad+StringUtils.right(remoteFile.getAbsolutePath(), maxLen)+"]");
 
 		File localFile = new File(getLocalFilename());
-		appendNotification("Local DataSet name is " + localFile.getAbsolutePath());
+		if (localFile.getAbsolutePath().length()>maxLen)
+		{
+			pad="...";
+		}
+		else
+		{
+			pad="";
+		}
+		appendNotification(JRes.getText("local")+" DataSet [" +  pad+StringUtils.right(localFile.getAbsolutePath(), maxLen)+"]");
 
 		while (run == true)
 		{
 			if (remoteFile.exists())
 			{
-				logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Found Remote DataSet " + remoteFile.getAbsolutePath());
+				logger.debug("[" + getUuid() + "] {" + getName() + "} " + JRes.getText("found_remote")+ " DataSet " + remoteFile.getAbsolutePath());
 
 				try
 				{
-					appendNotification("Copying Remote [" + getRemoteFilename() + "]");
+					appendNotification(JRes.getText("copying_remote")+" [" + getRemoteFilename() + "]");
 					FileUtils.copyFile(remoteFile, localFile);
 
 					try
 					{
-						appendNotification("Deleting remote [" + getRemoteFilename() + "]");
+						appendNotification(JRes.getText("deleting_remote")+" [" + getRemoteFilename() + "]");
 						java.nio.file.Files.delete(remoteFile.toPath());
 
-						appendNotification("Loading CSV from Local [" + getLocalFilename() + "]");
+						appendNotification(JRes.getText("loading_CSV_from_local")+" [" + getLocalFilename() + "]");
 						if (loadCSV("Remote", getLocalFilename()))
 						{
-							appendNotification("CSV Loaded Successfully.");
+							appendNotification(JRes.getText("csv_loaded_successfully"));
 							remoteLoaded = true;
 
 						}
 						else
 						{
-							appendNotification("Unable to load CSV data.");
+							appendNotification(JRes.getText("unable_to_load_CSV_data"));
 						}
 
 					}
 					catch (IOException e)
 					{
-						appendNotification("Error deleting remote file [" + e.getMessage() + "]");
+						appendNotification(JRes.getText("error_deleting_remote_file")+" [" + e.getMessage() + "]");
 					}
 
 				}
 				catch (IOException e)
 				{
-					appendNotification("Error copying remote file [" + e.getMessage() + "]");
+					appendNotification(JRes.getText("error_copying_remote_file")+" [" + e.getMessage() + "]");
 				}
 
 			}
@@ -205,17 +225,17 @@ public class DataSet extends Thread
 					if (localFile.exists())
 					{
 
-						logger.debug("[" + getUuid() + "] {" + getName() + "} " + " Found Local DataSet " + localFile.getAbsolutePath());
+						logger.debug("[" + getUuid() + "] {" + getName() + "} " + " "+JRes.getText("found_local_dataset")+" " + localFile.getAbsolutePath());
 						loadCSV("Local", getLocalFilename());
 
-						appendNotification("Using Local Cached Order [" + getData("PROCESS_ORDER") + "].");
+						appendNotification(JRes.getText("using_cached_local_order")+" [" + getData("PROCESS_ORDER") + "].");
 
 						remoteLoaded = true;
 
 					}
 					else
 					{
-						appendNotification("*ERROR* No DataSet Loaded.");
+						appendNotification(JRes.getText("error_no_dataset_loaded"));
 						//logger.debug("[" + getUuid() + "] {" + getName() + "} " + "*ERROR* No DataSet Loaded");
 
 						AutoLab.emailqueue.addToQueue("Error", utility.getClientName() + " *ERROR* No DataSet Loaded", AutoLab.threadList_ProdLine.get(getUuid()).getName() + " [" + getUuid() + "] {" + getName() + "} \n\n" + getRemoteFilename() + "\n\n" + getLocalFilename(), "");

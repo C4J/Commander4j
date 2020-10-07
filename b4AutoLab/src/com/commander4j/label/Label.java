@@ -18,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
 import com.commander4j.prodLine.ProdLine;
+import com.commander4j.resources.JRes;
 import com.commander4j.utils.JUtility;
 
 
@@ -39,7 +40,7 @@ public class Label
 		String fname = AutoLab.getDataSet_Field(uuid, "REPORT_FILENAME");
 		String template = System.getProperty("user.dir") + File.separator + "labels" + File.separator + AutoLab.getDataSet_Field(uuid, "REPORT_FILENAME");
 		File templateFile = new File(template);
-		appendNotification("Reading Label Layout ["+fname+"].");
+		appendNotification(JRes.getText("read_label_layout")+" ["+fname+"].");
 		
 		preParseDEFINE_BARCODEs(templateFile);
 		labelData = getTemplate(templateFile);

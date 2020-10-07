@@ -103,7 +103,3 @@ DEFINE BARCODE END        *END*
 ^XZ
 
 /* End of Label */
-
-^XA^LT0040^XZ^XA
-
-/* End of Label */
