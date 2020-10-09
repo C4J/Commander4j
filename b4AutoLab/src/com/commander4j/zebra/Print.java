@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
 import com.commander4j.prodLine.ProdLine;
+import com.commander4j.resources.JRes;
 
 /**
  * @author dave
@@ -170,7 +171,7 @@ public class Print extends Thread
 						{
 							if (firstError)
 							{
-								appendNotification("Sending data to printer [" + getPrinterName() + "] [" + getIpAddress() + "]:" + getPortNumber() + "]");
+								appendNotification(JRes.getText("sending_data_to_printer")+" [" + getPrinterName() + "] [" + getIpAddress() + "]:" + getPortNumber() + "]");
 								// firstError = false;
 							}
 
@@ -194,7 +195,8 @@ public class Print extends Thread
 							setErrorMessage(e.getLocalizedMessage());
 							if (firstError)
 							{
-								appendNotification("Error Sending data to printer : " + e.getLocalizedMessage());
+								appendNotification(JRes.getText("error_sending_data_to_printer")+" : " + e.getLocalizedMessage());
+								logger.debug("Error Sending data to printer : " + e.getLocalizedMessage());
 								firstError = false;
 							}
 						}
@@ -203,7 +205,8 @@ public class Print extends Thread
 							setErrorMessage(e.getLocalizedMessage());
 							if (firstError)
 							{
-								appendNotification("Error Sending data to printer : " + e.getLocalizedMessage());
+								appendNotification(JRes.getText("error_sending_data_to_printer")+" : " + e.getLocalizedMessage());
+								logger.debug("Error Sending data to printer : " + e.getLocalizedMessage());
 								firstError = false;
 							}
 						}

@@ -44,7 +44,7 @@ public class AutoLab extends Thread
 	public static LabelSync sync;
 	public static boolean run = true;
 	public static EmailQueue emailqueue = new EmailQueue();
-	public static String version = "1.28";
+	public static String version = "1.29";
 	private JUtility utils = new JUtility();
 	public static EmailThread emailthread;
 	private TrayIconSystemInfo trayIconSystem = new TrayIconSystemInfo();

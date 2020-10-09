@@ -40,7 +40,7 @@ public class Label
 		String fname = AutoLab.getDataSet_Field(uuid, "REPORT_FILENAME");
 		String template = System.getProperty("user.dir") + File.separator + "labels" + File.separator + AutoLab.getDataSet_Field(uuid, "REPORT_FILENAME");
 		File templateFile = new File(template);
-		appendNotification(JRes.getText("read_label_layout")+" ["+fname+"].");
+		appendNotification(JRes.getText("reading_label_layout")+" ["+fname+"].");
 		
 		preParseDEFINE_BARCODEs(templateFile);
 		labelData = getTemplate(templateFile);

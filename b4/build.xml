@@ -107,15 +107,15 @@
         <pathelement location="lib/jasperlib/jaxen-1.1.6.jar"/>
         <pathelement location="lib/jasperlib/httpclient-4.5.8.jar"/>
         <pathelement location="lib/jasperlib/jaxen-1.1.6.jar"/>
-        <pathelement location="lib/jasper/jasperreports-6.14.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-annotation-processors-6.14.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-chart-customizers-6.14.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-chart-themes-6.14.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-fonts-6.14.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-functions-6.14.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-javaflow-6.14.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-metadata-6.14.0.jar"/>
-    	<pathelement location="lib/jasper/jasperreports-custom-visualization-6.14.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-6.15.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-annotation-processors-6.15.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-chart-customizers-6.15.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-chart-themes-6.15.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-fonts-6.15.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-functions-6.15.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-javaflow-6.15.0.jar"/>
+        <pathelement location="lib/jasper/jasperreports-metadata-6.15.0.jar"/>
+    	<pathelement location="lib/jasper/jasperreports-custom-visualization-6.15.0.jar"/>
         <pathelement location="lib/jasperlib_aux/joda-time-2.10.2.jar"/>
     </path>
     <target name="init">

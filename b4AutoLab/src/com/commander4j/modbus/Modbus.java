@@ -134,7 +134,7 @@ public class Modbus extends Thread
 			{
 				try
 				{
-					appendNotification(JRes.getText("modbus_disconnecting_from")+" ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
+					appendNotification(JRes.getText("modbus_disconnecting_from") + " [" + getIpAddress() + ":" + getPortNumber() + "] Coil " + address);
 					modbusClient.Disconnect();
 				}
 				catch (IOException e)
@@ -166,7 +166,7 @@ public class Modbus extends Thread
 				{
 					try
 					{
-						appendNotification(JRes.getText("modbus_disconnecting_from")+" ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
+						appendNotification(JRes.getText("modbus_disconnecting_from") + " [" + getIpAddress() + ":" + getPortNumber() + "] Coil " + address);
 						modbusClient.Disconnect();
 					}
 					catch (IOException e1)
@@ -175,7 +175,7 @@ public class Modbus extends Thread
 					}
 				}
 
-				appendNotification(JRes.getText("modbus_attempting_connection_to_device")+" ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
+				appendNotification(JRes.getText("modbus_attempting_connection_to_device") + " [" + getIpAddress() + ":" + getPortNumber() + "] Coil " + address);
 
 				modbusClient.setipAddress(getIpAddress());
 				modbusClient.setPort(getPortNumber());
@@ -184,16 +184,14 @@ public class Modbus extends Thread
 
 				currentValue = false;
 				previousValue = false;
-				
+
 				if (modbusClient.isConnected())
 				{
-				    appendNotification(JRes.getText("modbus_connected_to_device")+" ["+getIpAddress()+":"+getPortNumber()+"] Coil "+address);
+					appendNotification(JRes.getText("modbus_connected_to_device") + " [" + getIpAddress() + ":" + getPortNumber() + "] Coil " + address);
 				}
 
 				while (modbusClient.isConnected() && (run == true))
 				{
-
-
 
 					try
 					{
@@ -289,23 +287,45 @@ public class Modbus extends Thread
 												logger.debug("[" + getUuid() + "] {" + getName() + "} " + "Printing " + labelCount + " of " + labelsPerPallet + " for Process Order " + AutoLab.getDataSet_Field(getUuid(), "PROCESS_ORDER") + " - SSCC " + sscc);
 												logger.debug("**********************************************************************************************************************************************************************");
 
-												appendNotification(JRes.getText("preparing_label")+" "+(x+1)+" "+JRes.getText("of")+" "+labelsPerPrint);
-												
+												appendNotification(JRes.getText("preparing_label") + " " + (x + 1) + " " + JRes.getText("of") + " " + labelsPerPrint);
+
 												Label label = new Label();
 												String zpl = label.process(uuid);
 
 												AutoLab.set_PrintData(getUuid(), zpl);
 												AutoLab.request_Print(getUuid());
 
+												//* Wait for print thread to confirm its 
+												
+												while (AutoLab.isDataReady(getUuid()))
+												{
+													try
+													{
+														Thread.sleep(1000);
+														logger.debug("Waiting for confirmation that print is complete.");
+														appendNotification(JRes.getText("wait_for_print_confirmation"));
+													}
+													catch (Exception ex)
+													{
+														break;
+													}
+												}
+
 												if (labelCount == labelsPerPallet)
 												{
 													labelCount = 0;
 													inProgress = false;
-													logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-													logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++Generate Production Declaration " + sscc + " +++");
-													logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-													prodDec.setUuid(uuid);
-													prodDec.processMessage();
+
+													if (AutoLab.isDataReady(getUuid()) == false)
+													{
+														appendNotification(JRes.getText("print_confirmation_received"));
+														logger.debug("Print confirmation received");
+														logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+														logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++Generate Production Declaration " + sscc + " +++");
+														logger.debug("[" + getUuid() + "] {" + getName() + "} " + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+														prodDec.setUuid(uuid);
+														prodDec.processMessage();
+													}
 												}
 												else
 												{
@@ -323,7 +343,7 @@ public class Modbus extends Thread
 					catch (IOException e1)
 					{
 						logger.debug("[" + getUuid() + "] {" + getName() + "} IOException during read " + e1.getLocalizedMessage());
-						appendNotification(JRes.getText("modbus_cannot_connect_to_device")+" ["+":"+getPortNumber()+"] Coil "+address);
+						appendNotification(JRes.getText("modbus_cannot_connect_to_device") + " [" + ":" + getPortNumber() + "] Coil " + address);
 						modbusClient.Disconnect();
 					}
 
@@ -334,7 +354,7 @@ public class Modbus extends Thread
 					try
 					{
 						modbusClient.Disconnect();
-						appendNotification(JRes.getText("modbus_disconnected_from_device")+" ["+":"+getPortNumber()+"] Coil "+address);
+						appendNotification(JRes.getText("modbus_disconnected_from_device") + " [" + ":" + getPortNumber() + "] Coil " + address);
 					}
 					catch (IOException e1)
 					{
