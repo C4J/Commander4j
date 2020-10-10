@@ -288,7 +288,7 @@ public class JInternalFrameLabelHistory extends javax.swing.JInternalFrame
 			}
 
 			{
-				SpinnerModel model = new SpinnerNumberModel(100, 50, 1000, 50);
+				SpinnerModel model = new SpinnerNumberModel(100, 50, 10000, 50);
 				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
 				ne.getTextField().setFont(Common.font_std);
 

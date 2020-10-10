@@ -3,6 +3,10 @@ package com.commander4j.notifier;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.LinkedList;
 
@@ -14,8 +18,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import com.commander4j.autolab.AutoLab;
 import com.commander4j.resources.JRes;
 import com.commander4j.utils.JUtility;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JFrameNotifier extends JFrame
 {
@@ -30,6 +38,7 @@ public class JFrameNotifier extends JFrame
 	private String time24="";
 	private String uuid = "";
 	private ImageIcon img;
+	private String titlebar="";
 
 	public void setMessage(String message)
 	{
@@ -78,10 +87,20 @@ public class JFrameNotifier extends JFrame
 
 		
 	}
+	
+	public  synchronized void clearMessage()
+	{
+		allText.clear();
+		messageArea.setText("");
+
+		messageArea.setCaretPosition(messageArea.getDocument().getLength());
+	}
 
 	public JFrameNotifier(String uuid,String title, String message)
 	{
 		super();
+		
+		titlebar = title;
 		
 		if (title.equals(JRes.getText("system_log")))
 		{
@@ -124,7 +143,7 @@ public class JFrameNotifier extends JFrame
 	{
 				
 		setResizable(false);
-		setBounds(100, 100, 677, 246);
+		setBounds(100, 100, 677, 273);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -132,17 +151,67 @@ public class JFrameNotifier extends JFrame
 		contentPane.setLayout(null);
 
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 677, 236);
+		desktopPane.setBounds(0, 0, 677, 262);
 		contentPane.add(desktopPane);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 12, 653, 200);
+		scrollPane.setBounds(0, 0, 677, 215);
 		desktopPane.add(scrollPane);
 		messageArea.setEditable(false);
 		messageArea.setLineWrap(true);
 		messageArea.setWrapStyleWord(true);
 		
 		scrollPane.setViewportView(messageArea);
+		
+		JButton btnSave = new JButton(JRes.getText("save"));
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    BufferedWriter writer;
+			    String filename = System.getProperty("user.home")+File.separator+titlebar+".log";
+				try
+				{
+					writer = new BufferedWriter(new FileWriter(filename));
+				    writer.write(messageArea.getText().toString());
+				    writer.close();
+				    appendToMessage(JRes.getText("log_saved_to")+" : "+filename);
+				}
+				catch (IOException e1)
+				{
+
+				}
+				writer=null;
+
+			}
+		});
+		btnSave.setBounds(1, 220, 167, 25);
+		desktopPane.add(btnSave);
+		
+		JButton btnClear = new JButton(JRes.getText("clear"));
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clearMessage();
+			}
+		});
+		btnClear.setBounds(169, 220, 167, 25);
+		desktopPane.add(btnClear);
+		
+		JButton btnEmail = new JButton(JRes.getText("email"));
+		btnEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AutoLab.emailqueue.addToQueue("Logs", "AutoLab Log "+titlebar+".log from [" + utils.getClientName() + "]", messageArea.getText(),"");
+			}
+		});
+		btnEmail.setBounds(337, 220, 167, 25);
+		desktopPane.add(btnEmail);
+		
+		JButton btnMinimize = new JButton(JRes.getText("minimise"));
+		btnMinimize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 setState(Frame.ICONIFIED);
+			}
+		});
+		btnMinimize.setBounds(505, 220, 167, 25);
+		desktopPane.add(btnMinimize);
 
 		setAlwaysOnTop(true);
 		setLocationRelativeTo(null);
@@ -155,5 +224,4 @@ public class JFrameNotifier extends JFrame
 		
 		setVisible(true);
 	}
-	
 }
