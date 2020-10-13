@@ -7,34 +7,60 @@
 		DROP FUNCTION `c4j_GetLayers`;
 	</statement>
 
-	<statement>
-		CREATE FUNCTION `c4j_GetLayers`(XPROCESS_ORDER varchar(20)) RETURNS int(11)  NOT DETERMINISTIC READS SQL DATA
-		BEGIN
-			DECLARE result 					int;
-			DECLARE xlayers_uom 				varchar(3) CHARACTER SET utf8;
-			DECLARE xpallet_uom 				varchar(3) CHARACTER SET utf8;
-			DECLARE xbase_quantity 			decimal(22,3);
-			DECLARE xmaterial					varchar(20) CHARACTER SET utf8;
-			DECLARE xproduction_uom  		varchar(3) CHARACTER SET utf8;
-			DECLARE xproduction_quantity 	decimal(22,3);
-		
-			SET xproduction_quantity = c4j_GetFullPalletQuantity(XPROCESS_ORDER);
-			SET xmaterial = (SELECT MATERIAL FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER);
-			SET xproduction_uom = (SELECT REQUIRED_UOM FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER);
-			SET xbase_quantity = c4j_GetBaseQuantity(XMATERIAL,XPRODUCTION_QUANTITY,XPRODUCTION_UOM);
-		
-			SET xlayers_uom = c4j_GetControlValue('UOM BASE QTY PER LAYER');
-		
-			SET result = (SELECT CEILING(xbase_quantity / NUMERATOR * DENOMINATOR) FROM APP_MATERIAL_UOM WHERE MATERIAL = xmaterial AND UOM = xlayers_uom);
-			
-			SET result = COALESCE(result,1);
-		
-			IF result = 0 THEN 
-				SET result = 1;
-			END IF;
-		
-		    RETURN result;
-		END
-	</statement>
+		<statement>
+				CREATE FUNCTION `c4j_GetLayers`(
+					XPROCESS_ORDER VARCHAR ( 20 )) RETURNS int
+				    READS SQL DATA
+				BEGIN
+					DECLARE
+						result INT;
+					DECLARE
+						xlayers_uom VARCHAR ( 3 ) CHARACTER 
+						SET utf8;
+					DECLARE
+						xpallet_uom VARCHAR ( 3 ) CHARACTER 
+						SET utf8;
+					DECLARE
+						xbase_quantity DECIMAL ( 22, 3 );
+					DECLARE
+						xmaterial VARCHAR ( 20 ) CHARACTER 
+						SET utf8;
+					DECLARE
+						xproduction_uom VARCHAR ( 3 ) CHARACTER 
+						SET utf8;
+					DECLARE
+						xproduction_quantity DECIMAL ( 22, 3 );
+					
+					SET xproduction_quantity = c4j_GetFullPalletQuantity ( XPROCESS_ORDER );
+					
+					SET xmaterial = ( SELECT MATERIAL FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER );
+					
+					SET xproduction_uom = ( SELECT REQUIRED_UOM FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER = XPROCESS_ORDER );
+					
+					SET xbase_quantity = c4j_GetBaseQuantity ( XMATERIAL, XPRODUCTION_QUANTITY, XPRODUCTION_UOM );
+					
+					SET xlayers_uom = c4j_GetControlValue ( 'UOM BASE QTY PER LAYER' );
+					
+					SET result = (
+						SELECT
+							CEILING( xbase_quantity / NUMERATOR * DENOMINATOR ) 
+						FROM
+							APP_MATERIAL_UOM 
+						WHERE
+							MATERIAL = xmaterial 
+							AND UOM = xlayers_uom 
+						);
+					
+					SET result = COALESCE ( result, 1 );
+					IF
+						result = 0 THEN
+							
+							SET result = 1;
+						
+					END IF;
+					RETURN result;
+				
+				END
+		</statement>
 																	
 </DDL>

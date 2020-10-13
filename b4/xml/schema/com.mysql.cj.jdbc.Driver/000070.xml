@@ -19,36 +19,88 @@
 DROP FUNCTION `c4j_GetFinalBatchNumber`;
 </statement>
 
-<statement>
-CREATE FUNCTION `c4j_GetFinalBatchNumber`(XPRODUCTION_DATE datetime,XOVERRIDE_BATCH varchar(1),XOVERRIDE_BATCH_NUMBER varchar(40),XBATCH_OPTIONAL varchar(40),XPROCESS_ORDER varchar(40)) RETURNS varchar(100) CHARSET utf8   NOT DETERMINISTIC READS SQL DATA
-BEGIN
-	DECLARE result varchar(100) CHARACTER SET utf8;
-	DECLARE batchformat varchar(100) CHARACTER SET utf8;
-
-	IF XOVERRIDE_BATCH = 'Y' THEN
-		SET result = XOVERRIDE_BATCH_NUMBER;
-	END IF;
-
-	IF XOVERRIDE_BATCH = 'N' THEN
-			SET batchformat = c4j_GetControlValue('BATCH FORMAT');
-			SET result = batchformat;
-			SET result = REPLACE(result,'{PLANT}',c4j_GetPlant());
-			SET result = REPLACE(result,'{PROCESS_ORDER}',XPROCESS_ORDER);
-			SET result = REPLACE(result,'{YEAR4}',c4j_GetYear(XPRODUCTION_DATE,4));
-			SET result = REPLACE(result,'{YEAR2}',c4j_GetYear(XPRODUCTION_DATE,2));
-			SET result = REPLACE(result,'{YEAR1}',c4j_GetYear(XPRODUCTION_DATE,1));
-			SET result = REPLACE(result,'{MONTH}',c4j_GetMonth(XPRODUCTION_DATE));
-			SET result = REPLACE(result,'{DAY}',c4j_GetDay(XPRODUCTION_DATE));
-			SET result = REPLACE(result,'{JULIAN_DAY}',c4j_GetJulian(XPRODUCTION_DATE,1));
-			SET result = REPLACE(result,'{JULIAN0_DAY}',c4j_GetJulian(XPRODUCTION_DATE,0));
-			SET result = REPLACE(result,'{JULIAN1_DAY}',c4j_GetJulian(XPRODUCTION_DATE,1));
-	END IF;
-
-	SET result = CONCAT(result,XBATCH_OPTIONAL);
-
-RETURN result;
-END
-</statement>
+	<statement>
+				CREATE FUNCTION `c4j_GetFinalBatchNumber`(
+					XPRODUCTION_DATE datetime,
+					XOVERRIDE_BATCH VARCHAR ( 1 ),
+					XOVERRIDE_BATCH_NUMBER VARCHAR ( 40 ),
+					XBATCH_OPTIONAL VARCHAR ( 40 ),
+					XPROCESS_ORDER VARCHAR ( 40 )) RETURNS varchar(100) CHARSET utf8
+				    NO SQL
+				BEGIN
+					DECLARE
+						result VARCHAR ( 100 ) CHARACTER 
+						SET utf8;
+					DECLARE
+						batchformat VARCHAR ( 100 ) CHARACTER 
+						SET utf8;
+					IF
+						XOVERRIDE_BATCH = 'Y' THEN
+							
+							SET result = XOVERRIDE_BATCH_NUMBER;
+						
+					END IF;
+					IF
+						XOVERRIDE_BATCH = 'N' THEN
+							
+							SET batchformat = c4j_GetControlValue ( 'BATCH FORMAT' );
+						
+						SET result = batchformat;
+						
+						SET result = REPLACE (
+							result,
+							'{PLANT}',
+						c4j_GetPlant ());
+						
+						SET result = REPLACE ( result, '{PROCESS_ORDER}', XPROCESS_ORDER );
+						
+						SET result = REPLACE (
+							result,
+							'{YEAR4}',
+						c4j_GetYear ( XPRODUCTION_DATE, 4 ));
+						
+						SET result = REPLACE (
+							result,
+							'{YEAR2}',
+						c4j_GetYear ( XPRODUCTION_DATE, 2 ));
+						
+						SET result = REPLACE (
+							result,
+							'{YEAR1}',
+						c4j_GetYear ( XPRODUCTION_DATE, 1 ));
+						
+						SET result = REPLACE (
+							result,
+							'{MONTH}',
+						c4j_GetMonth ( XPRODUCTION_DATE ));
+						
+						SET result = REPLACE (
+							result,
+							'{DAY}',
+						c4j_GetDay ( XPRODUCTION_DATE ));
+						
+						SET result = REPLACE (
+							result,
+							'{JULIAN_DAY}',
+						c4j_GetJulian ( XPRODUCTION_DATE, 1 ));
+						
+						SET result = REPLACE (
+							result,
+							'{JULIAN0_DAY}',
+						c4j_GetJulian ( XPRODUCTION_DATE, 0 ));
+						
+						SET result = REPLACE (
+							result,
+							'{JULIAN1_DAY}',
+						c4j_GetJulian ( XPRODUCTION_DATE, 1 ));
+						
+					END IF;
+					
+					SET result = CONCAT( result, XBATCH_OPTIONAL );
+					RETURN result;
+				
+				END
+		</statement>
 
 <statement>
 CREATE 
