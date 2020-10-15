@@ -496,4 +496,51 @@
 				
 				END
 		</statement>
+		
+		<statement>
+				ALTER VIEW `view_pallet_expiry` AS
+				SELECT
+					`p`.`SSCC` AS `SSCC`,
+					`p`.`LOCATION_ID` AS `LOCATION_ID`,
+					`p`.`MATERIAL` AS `MATERIAL`,
+					`p`.`BATCH_NUMBER` AS `BATCH_NUMBER`,
+					`p`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+					`p`.`QUANTITY` AS `QUANTITY`,
+					`p`.`UOM` AS `UOM`,
+					`p`.`DATE_OF_MANUFACTURE` AS `DATE_OF_MANUFACTURE`,
+					`p`.`STATUS` AS `STATUS`,
+					`p`.`EAN` AS `EAN`,
+					`p`.`VARIANT` AS `VARIANT`,
+					`p`.`DESPATCH_NO` AS `DESPATCH_NO`,
+					`p`.`CONFIRMED` AS `CONFIRMED`,
+					`p`.`LAYERS` AS `LAYERS`,
+					`p`.`SSCC_EXPIRY_DATE` AS `SSCC_EXPIRY_DATE`,
+					`p`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+					`p`.`MHN_NUMBER` AS `MHN_NUMBER`,
+					`p`.`DECISION` AS `DECISION`,
+					`b`.`EXPIRY_DATE` AS `EXPIRY_DATE`,
+					`m`.`DESCRIPTION` AS `DESCRIPTION`,
+					`m`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+					`c`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+					`c`.`PRINT_ON_LABEL` AS `PRINT_ON_LABEL`,
+					`p`.`DATE_CREATED` AS `DATE_CREATED`,
+					`p`.`CREATED_BY_USER_ID` AS `CREATED_BY_USER_ID`,
+					`p`.`DATE_UPDATED` AS `DATE_UPDATED`,
+					`p`.`UPDATED_BY_USER_ID` AS `UPDATED_BY_USER_ID`,
+					`m`.`GROSS_WEIGHT` AS `GROSS_WEIGHT`,
+					`m`.`NET_WEIGHT` AS `NET_WEIGHT`,
+					`m`.`WEIGHT_UOM` AS `WEIGHT_UOM`,
+					`D`.`DATA` AS `PART_NO`,
+					`E`.`DATA` AS `CASE_CONTENT`,
+					`o`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE` 
+				FROM
+					((((((`app_pallet` `p`
+					LEFT JOIN `app_material_batch` `b` ON (((`b`.`MATERIAL` = `p`.`MATERIAL` ) 	AND ( `b`.`BATCH_NUMBER` = `p`.`BATCH_NUMBER` ))))
+					LEFT JOIN `app_material` `m` ON ((`m`.`MATERIAL` = `p`.`MATERIAL` )))		
+					LEFT JOIN `app_customer` `c` ON ((`c`.`CUSTOMER_ID` = `p`.`CUSTOMER_ID` )))
+					LEFT JOIN `app_process_order` `o` ON ((`o`.`PROCESS_ORDER` = `p`.`PROCESS_ORDER` )))
+					LEFT JOIN `app_material_customer_data` `D` ON (((`D`.`MATERIAL` = `p`.`MATERIAL` ) 	AND ( `D`.`CUSTOMER_ID` = `p`.`CUSTOMER_ID` ) AND ( `D`.`DATA_ID` = 'PART_NO' ))))
+					LEFT JOIN `app_material_customer_data` `E` ON (((`E`.`MATERIAL` = `p`.`MATERIAL` ) 	AND ( `E`.`CUSTOMER_ID` = `p`.`CUSTOMER_ID` ) AND ( `E`.`DATA_ID` = 'CASE_CONTENT' ))))
+	</statement>
+	
 </DDL>
