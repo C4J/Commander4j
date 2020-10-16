@@ -224,6 +224,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private JTextField4j textFieldUserUpdated;
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JMenuItem4j menuItemEdit;
+	private JTextField4j jTextFieldRequiredResource;
 
 	private void app_Init()
 	{
@@ -359,6 +360,11 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		if (jTextFieldCustomer.getText().equals("") == false)
 		{
 			q2.applyWhere("customer_id=", jTextFieldCustomer.getText());
+		}
+		
+		if (jTextFieldRequiredResource.getText().equals("") == false)
+		{
+			q2.applyWhere("required_resource = ", jTextFieldRequiredResource.getText());
 		}
 
 		if (jTextFieldBatch.getText().equals("") == false)
@@ -690,6 +696,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		textFieldUserUpdated.setText("");
 		textFieldMHN.setText("");
 		jComboBoxUOM.setSelectedIndex(0);
+		jTextFieldRequiredResource.setText("");
 	}
 
 	private void exportExcel(String mode)
@@ -2295,6 +2302,32 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			button_CalendarUpdatedDateTo.setEnabled(false);
 			button_CalendarUpdatedDateTo.setBounds(470, 164, 21, 21);
 			jDesktopPane1.add(button_CalendarUpdatedDateTo);
+			
+			JLabel4j_std label = new JLabel4j_std();
+			label.setText(lang.get("lbl_Process_Order_Required_Resource"));
+			label.setHorizontalAlignment(SwingConstants.TRAILING);
+			label.setBounds(10, 197, 121, 21);
+			jDesktopPane1.add(label);
+			
+			jTextFieldRequiredResource = new JTextField4j(JDBProcessOrder.field_required_resource);
+			jTextFieldRequiredResource.setBounds(144, 196, 105, 22);
+			jDesktopPane1.add(jTextFieldRequiredResource);
+			
+			JButton4j btnLookupResource = new JButton4j(Common.icon_lookup_16x16);
+			btnLookupResource.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.resources())
+					{
+						jTextFieldRequiredResource.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+			btnLookupResource.setBounds(250, 196, 22, 21);
+			jDesktopPane1.add(btnLookupResource);
 		}
 		catch (Exception e)
 		{
