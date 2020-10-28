@@ -38,8 +38,8 @@
       <mountPoint id="347" location="images" />
       <mountPoint id="348" location="licences" />
       <mountPoint id="628" location="layout" />
-      <mountPoint id="127" />
       <mountPoint id="730" location="labelary" />
+      <mountPoint id="127" />
     </mountPoints>
     <entries>
       <dirEntry mountPoint="237" file="./interface/input/dataset" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="dataset" />
@@ -87,32 +87,16 @@
           <entry location="CETEC 6.properties" />
         </exclude>
       </dirEntry>
-      <fileEntry mountPoint="127" file="../b4AutoLab/autolab4j.jar" />
-      <fileEntry mountPoint="127" file="./Commander4j GNU GENERAL PUBLIC LICENSE.txt" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <dirEntry mountPoint="730" file="./labelary" overwriteMode="1" overrideOverwriteMode="true" subDirectory="labelary">
         <exclude>
           <entry location=".DS_Store" />
         </exclude>
       </dirEntry>
+      <fileEntry mountPoint="127" file="../b4AutoLab/autolab4j.jar" />
+      <fileEntry mountPoint="127" file="./Commander4j GNU GENERAL PUBLIC LICENSE.txt" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" />
     </entries>
   </files>
   <launchers>
-    <launcher name="autolab4j_console" id="130" icnsFile="./images/Launcher/AutoLab4j.icns">
-      <executable name="AutoLab4j_Console" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." redirectStderr="false" executableMode="console" singleInstance="true" />
-      <java mainClass="com.commander4j.autolab.StartStop">
-        <classPath>
-          <archive location="autolab4j.jar" failOnError="false" />
-        </classPath>
-      </java>
-      <vmOptionsFile mode="none" />
-      <iconImageFiles>
-        <file path="./images/Launcher/AutoLab4j (PNG)/16x16.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/32x32.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/48x48.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/128x128.png" />
-        <file path="./images/Launcher/AutoLab4j (PNG)/256x256.png" />
-      </iconImageFiles>
-    </launcher>
     <launcher name="autolab4j_startup" id="451" icnsFile="./images/Launcher/AutoLab4j.icns">
       <executable name="AutoLab4j_Startup" iconSet="true" iconFile="./images/Launcher/AutoLab4j.ico" executableDir="." executableMode="gui" singleInstance="true" />
       <java mainClass="com.commander4j.autolab.StartStop">

@@ -17,6 +17,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -62,18 +63,19 @@ public class JFramePreview extends JFrame
 			try
 			{
 				connection = (HttpURLConnection) url.openConnection();
-
 				connection.setConnectTimeout(2000);
 				connection.setReadTimeout(2000);
 				connection.setRequestMethod("POST");
 				connection.setDoInput(true);
 				connection.setDoOutput(true);
 				connection.setUseCaches(false);
+				connection.setRequestProperty("Accept-Charset", "UTF-8");
+				connection.setRequestProperty("User-Agent", "Commander4j AutoLab4j");
 				connection.setRequestProperty("Content-Length", String.valueOf(zpl.length()));
 
 				// connection.setRequestProperty("Accept", "application/png");
 
-				OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+				OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(),Charset.forName("UTF-8"));
 				writer.write(zpl);
 				writer.flush();
 

@@ -4,6 +4,7 @@
     <debug suppressLabelPrint="true" suppressOutputMessage="false"/>
     
     <email enabled="true"/>
+    
     <updateURL>file:/Users/dave/Commander4j/Distribution/builds/development/b4AutoLab/main/updates.xml</updateURL>
     <updateMode>AUTOMATIC</updateMode>
     
