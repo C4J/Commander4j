@@ -143,7 +143,7 @@ public class JFrameNotifier extends JFrame
 	{
 				
 		setResizable(false);
-		setBounds(100, 100, 677, 273);
+		setBounds(100, 100, 684, 273);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

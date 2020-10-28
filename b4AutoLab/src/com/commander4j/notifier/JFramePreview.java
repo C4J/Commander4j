@@ -100,6 +100,7 @@ public class JFramePreview extends JFrame
 			{
 				ImageFilename = "./labelary/unavailabe.png";
 				appendNotification("Unable to connect "+AutoLab.config.getLabelaryURL());
+				appendNotification("Error "+e.getMessage());
 			}
 
 		}
@@ -107,6 +108,7 @@ public class JFramePreview extends JFrame
 		{
 			ImageFilename = "./labelary/unavailabe.png";
 			appendNotification("Error returned from "+AutoLab.config.getLabelaryURL());
+			appendNotification("Error "+e.getMessage());
 		}
 		return result;
 	}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.8" transformSequenceNumber="8">
-  <directoryPresets config="./images/Launcher" />
+  <directoryPresets config="." />
   <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.32" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
@@ -39,6 +39,7 @@
       <mountPoint id="348" location="licences" />
       <mountPoint id="628" location="layout" />
       <mountPoint id="127" />
+      <mountPoint id="730" location="labelary" />
     </mountPoints>
     <entries>
       <dirEntry mountPoint="237" file="./interface/input/dataset" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="dataset" />
@@ -88,6 +89,11 @@
       </dirEntry>
       <fileEntry mountPoint="127" file="../b4AutoLab/autolab4j.jar" />
       <fileEntry mountPoint="127" file="./Commander4j GNU GENERAL PUBLIC LICENSE.txt" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" />
+      <dirEntry mountPoint="730" file="./labelary" overwriteMode="1" overrideOverwriteMode="true" subDirectory="labelary">
+        <exclude>
+          <entry location=".DS_Store" />
+        </exclude>
+      </dirEntry>
     </entries>
   </files>
   <launchers>
