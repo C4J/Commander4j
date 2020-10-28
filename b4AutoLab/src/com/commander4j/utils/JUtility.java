@@ -20,6 +20,7 @@ import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -29,7 +30,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
-import com.commander4j.notifier.JFrameNotifier;
 import com.commander4j.notifier.Xy;
 
 public class JUtility
@@ -55,6 +55,8 @@ public class JUtility
 	{
 		Xy result = new Xy();
 
+		System.out.println("Restoring " +title);
+		
 		try (InputStream input = new FileInputStream("./layout/" + title + ".properties"))
 		{
 
@@ -79,7 +81,7 @@ public class JUtility
 		return result;
 	}
 
-	public static synchronized void saveWindowLayout(JFrameNotifier frame)
+	public static synchronized void saveWindowLayout(JFrame frame)
 	{
 		try (OutputStream output = new FileOutputStream("./layout/" + frame.getTitle() + ".properties"))
 		{
@@ -95,7 +97,7 @@ public class JUtility
 			// save properties to project root folder
 			prop.store(output, null);
 
-			System.out.println(prop);
+			System.out.println("Saving " +frame.getTitle() + " "+prop);
 
 		}
 		catch (IOException io)

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config name="AutoLab">
     
-    <debug suppressLabelPrint="false" suppressOutputMessage="false"/>
+    <debug suppressLabelPrint="true" suppressOutputMessage="false"/>
     
     <email enabled="true"/>
+    <updateURL>file:/Users/dave/Commander4j/Distribution/builds/development/b4AutoLab/main/updates.xml</updateURL>
+    <updateMode>AUTOMATIC</updateMode>
     
     <!-- Folders -->
     
@@ -38,13 +40,17 @@
         <system key="SSCC AUTO CONFIRM" value="Y"/>
     </controls>
     
+    <labelary enabled="true">
+    	<url>http://api.labelary.com/v1/printers/8dpmm/labels/6x9/0/</url>
+    </labelary>
+    
     <productionLines>
         
         <!-- CETEC 2 -->
         
         <productionLine name="CETEC 2" enabled="Y"> 
             <modbus name="ADAM-6050">
-                <ipAddress>192.168.1.140</ipAddress>
+                <ipAddress>192.168.1.60</ipAddress>
                 <portNumber>502</portNumber>
                 <coilAddress>0</coilAddress>
                 <timeout>4000</timeout>
@@ -58,7 +64,7 @@
         
         <productionLine name="CETEC 4" enabled="Y"> 
             <modbus name="ADAM-6050">
-                <ipAddress>192.168.1.140</ipAddress>
+                <ipAddress>192.168.1.60</ipAddress>
                 <portNumber>502</portNumber>
                 <coilAddress>1</coilAddress>
                 <timeout>4000</timeout>
@@ -72,7 +78,7 @@
         
         <productionLine name="CETEC 5" enabled="Y"> 
             <modbus name="ADAM-6050">
-                <ipAddress>192.168.1.140</ipAddress>
+                <ipAddress>192.168.1.60</ipAddress>
                 <portNumber>502</portNumber>
                 <coilAddress>2</coilAddress>
                 <timeout>4000</timeout>
@@ -86,7 +92,7 @@
         
         <productionLine name="CETEC 6" enabled="Y"> 
             <modbus name="ADAM-6050">
-                <ipAddress>192.168.1.140</ipAddress>
+                <ipAddress>192.168.1.60</ipAddress>
                 <portNumber>502</portNumber>
                 <coilAddress>3</coilAddress>
                 <timeout>4000</timeout>

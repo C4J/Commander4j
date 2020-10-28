@@ -37,6 +37,28 @@ public class Config
 	private String SemiPalletCriteria = "";
 	private String SemiPalletCriteriaField = "";
 	private JUtility util = new JUtility();
+	private boolean labelaryEnabled = false;
+	private String labelaryURL = "";
+	
+	public String getLabelaryURL()
+	{
+		return labelaryURL;
+	}
+
+	public void setLabelaryURL(String labelaryURL)
+	{
+		this.labelaryURL = labelaryURL;
+	}
+
+	public boolean isLabelaryEnabled()
+	{
+		return labelaryEnabled;
+	}
+
+	public void setLabelaryEnabled(boolean labelaryEnabled)
+	{
+		this.labelaryEnabled = labelaryEnabled;
+	}
 	
 	public boolean isEmailEnabled()
 	{
@@ -111,6 +133,13 @@ public class Config
 
 		setSemiPalletCriteria(xmlDoc.findXPath("/config/labels/semiPallet/@criteria"));
 		logger.debug("       - PALLET Print Criteria Field [" + getSemiPalletCriteria() + "]");
+		
+		setLabelaryEnabled(Boolean.valueOf(xmlDoc.findXPath("/config/labelary/@enabled")));
+		logger.debug("Config - Labelary Enabled            [" + isLabelaryEnabled() + "]");
+		
+		setLabelaryURL(xmlDoc.findXPath("/config/labelary/url"));
+		logger.debug("Config - Labelary URL                [" + getLabelaryURL() + "]");
+		
 		logger.debug("");
 
 		int seq = 1;

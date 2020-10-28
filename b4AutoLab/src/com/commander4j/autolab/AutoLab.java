@@ -44,7 +44,7 @@ public class AutoLab extends Thread
 	public static LabelSync sync;
 	public static boolean run = true;
 	public static EmailQueue emailqueue = new EmailQueue();
-	public static String version = "1.29";
+	public static String version = "1.30";
 	private JUtility utils = new JUtility();
 	public static EmailThread emailthread;
 	private TrayIconSystemInfo trayIconSystem = new TrayIconSystemInfo();
@@ -234,6 +234,8 @@ public class AutoLab extends Thread
 			Map.Entry<String, Thread> me2 = (Map.Entry<String, Thread>) it2.next();
 
 			((ProdLine) me2.getValue()).prodLineNotify.setExtendedState(JFrame.ICONIFIED);
+			
+			((ProdLine) me2.getValue()).prodLinePreview.setExtendedState(JFrame.ICONIFIED);
 
 		}
 		
@@ -250,6 +252,8 @@ public class AutoLab extends Thread
 			Map.Entry<String, Thread> me2 = (Map.Entry<String, Thread>) it2.next();
 
 			JUtility.saveWindowLayout(((ProdLine) me2.getValue()).prodLineNotify);
+			
+			JUtility.saveWindowLayout(((ProdLine) me2.getValue()).prodLinePreview);
 
 		}
 		
@@ -270,6 +274,8 @@ public class AutoLab extends Thread
 			Map.Entry<String, Thread> me2 = (Map.Entry<String, Thread>) it2.next();
 
 			((ProdLine) me2.getValue()).prodLineNotify.setExtendedState(JFrame.NORMAL);
+			
+			((ProdLine) me2.getValue()).prodLinePreview.setExtendedState(JFrame.NORMAL);
 
 		}
 
@@ -380,6 +386,14 @@ public class AutoLab extends Thread
 	public static synchronized void set_PrintData(String uuid, String data)
 	{
 		((ProdLine) threadList_ProdLine.get(uuid)).print1.setData(data);
+	}
+	
+	public static synchronized void set_PreviewData(String uuid, String data)
+	{
+		if (AutoLab.config.isLabelaryEnabled() == true)
+		{
+			((ProdLine) threadList_ProdLine.get(uuid)).prodLinePreview.setData(data);
+		}
 	}
 
 	public static synchronized boolean isDataReady(String uuid)

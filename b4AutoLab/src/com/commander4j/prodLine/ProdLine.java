@@ -6,6 +6,7 @@ import com.commander4j.autolab.AutoLab;
 import com.commander4j.dataset.DataSet;
 import com.commander4j.modbus.Modbus;
 import com.commander4j.notifier.JFrameNotifier;
+import com.commander4j.notifier.JFramePreview;
 import com.commander4j.notifier.TrayIconProdLineStatus;
 import com.commander4j.resources.JRes;
 import com.commander4j.utils.JUnique;
@@ -35,6 +36,7 @@ public class ProdLine extends Thread
 	private String ssccSequenceFilename;
 	private Logger logger = org.apache.logging.log4j.LogManager.getLogger((ProdLine.class));
 	public JFrameNotifier prodLineNotify;
+	public JFramePreview prodLinePreview;
 	
 	public ProdLine(String prodLineName,String modbusName,String modbusIPAddress,int modbusPortNumber,int modbusCoil,int modbusTimeout,boolean modbusPrintOnValue,String printerName,String remoteDataSetPath,String ssccSequenceFilename)
 	{
@@ -208,6 +210,13 @@ public class ProdLine extends Thread
 		prodLineNotify = new JFrameNotifier(getUuid(),getProdLineName(),JRes.getText("starting")+" ["+getProdLineName()+"]");
 		prodLineNotify.setVisible(true);
 		
+		if (AutoLab.config.isLabelaryEnabled() == true)
+		{
+			prodLinePreview = new JFramePreview(getUuid(),getProdLineName(),JRes.getText("starting")+" ["+getProdLineName()+"]");
+			prodLinePreview.setVisible(true);
+		}
+
+
 		logger.debug("["+getUuid()+"] {"+getName()+"} Thread Started...");
 		
 		AutoLab.updateTrayIconStatus(getUuid()).setStatus(TrayIconProdLineStatus.status_STARTUP, "Startup");
@@ -322,6 +331,13 @@ public class ProdLine extends Thread
 
 		}
 
+		if (AutoLab.config.isLabelaryEnabled() == true)
+		{
+			prodLinePreview.setVisible(false);
+			prodLinePreview.dispose();
+			prodLinePreview=null;
+		}
+		
 		prodLineNotify.appendToMessage(JRes.getText("stopped_background_process")+" SSCC");
 		
 		AutoLab.updateTrayIconStatus(getUuid()).setStatus(TrayIconProdLineStatus.status_SHUTDOWN, "Shutdown");

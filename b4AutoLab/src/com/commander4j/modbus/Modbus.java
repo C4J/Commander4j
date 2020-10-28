@@ -293,7 +293,10 @@ public class Modbus extends Thread
 												String zpl = label.process(uuid);
 
 												AutoLab.set_PrintData(getUuid(), zpl);
+												
 												AutoLab.request_Print(getUuid());
+												
+												AutoLab.set_PreviewData(getUuid(), zpl);
 
 												//* Wait for print thread to confirm its 
 												

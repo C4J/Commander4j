@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.8" transformSequenceNumber="8">
-  <directoryPresets config="." />
-  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.29" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
+  <directoryPresets config="./images/Launcher" />
+  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.30" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="nl" />
@@ -124,7 +124,7 @@
       </iconImageFiles>
     </launcher>
   </launchers>
-  <installerGui>
+  <installerGui autoUpdateDescriptorUrl="${installer:C4JUpdaterUrl}">
     <applications>
       <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication" customIcnsFile="./images/Launcher/AutoLab4j.icns" customIcoFile="./images/Launcher/AutoLab4j.ico">
         <serializedBean>
@@ -327,15 +327,6 @@ return console.askOkCancel(message, true);
               <formComponent id="16" beanClass="com.install4j.runtime.beans.formcomponents.ProgressComponent">
                 <serializedBean>
                   <property name="initialStatusMessage" type="string">${i18n:WizardPreparing}</property>
-                </serializedBean>
-              </formComponent>
-            </formComponents>
-          </screen>
-          <screen id="20" beanClass="com.install4j.runtime.beans.screens.FinishedScreen" styleId="41" rollbackBarrierExitCode="0" finishScreen="true">
-            <formComponents>
-              <formComponent id="21" beanClass="com.install4j.runtime.beans.formcomponents.MultilineLabelComponent" insetBottom="10">
-                <serializedBean>
-                  <property name="labelText" type="string">${form:finishedMessage}</property>
                 </serializedBean>
               </formComponent>
             </formComponents>

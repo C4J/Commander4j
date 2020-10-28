@@ -9,6 +9,7 @@ import org.apache.logging.log4j.core.impl.Log4jContextFactory;
 import org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry;
 import org.apache.logging.log4j.spi.LoggerContextFactory;
 
+import com.commander4j.utils.JUpdate;
 import com.commander4j.utils.JUtility;
 import com.commander4j.utils.JWait;
 
@@ -21,11 +22,14 @@ public class StartStop
 	public static boolean run = true;
 	public static Logger logger = org.apache.logging.log4j.LogManager.getLogger((AutoLab.class));
 	public static LoggerContextFactory factory = LogManager.getFactory();
+	public static JUpdate update = new JUpdate();
 
 	public static void main(String[] args)
 	{
 		initLogging("");
 
+		//update.updateCheck();
+		
 		utils.setLookandFeel();
 
 		ShutdownHook shutdownHook = new ShutdownHook();
