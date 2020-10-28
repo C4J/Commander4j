@@ -2,6 +2,8 @@ package com.commander4j.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+
 import org.apache.logging.log4j.Logger;
 import com.commander4j.autolab.AutoLab;
 import com.commander4j.xml.JXMLDocument;
@@ -31,12 +33,18 @@ public class JUpdate
 			if (updatePath.equals("") == false)
 			{
 
+				
 				String paramsAll[] =
 				{ "-VC4JUpdaterUrl=" + updatePath, "-VC4JUpdateMode=" + updateMode, "-VC4JUpdateDirectory=" + System.getProperty("user.dir") };
+				
+				logger.debug("Setting params = ["+Arrays.toString(paramsAll)+"]");
 
 				try
 				{
-					ApplicationLauncher.launchApplication("734", paramsAll, true, new ApplicationLauncher.Callback()
+
+					logger.debug("launchApplication");
+					
+					ApplicationLauncher.launchApplication("831", paramsAll, true, new ApplicationLauncher.Callback()
 					{
 						public void exited(int exitValue)
 						{

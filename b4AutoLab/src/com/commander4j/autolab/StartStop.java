@@ -28,7 +28,7 @@ public class StartStop
 	{
 		initLogging("");
 
-		//update.updateCheck();
+		update.updateCheck();
 		
 		utils.setLookandFeel();
 
