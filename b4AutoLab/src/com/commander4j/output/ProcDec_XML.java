@@ -98,6 +98,12 @@ public class ProcDec_XML
 				Element element_hostRef = addElement(document, "hostRef", AutoLab.config.getSystemKey("HOST REF"));
 
 				element_message.appendChild(element_hostRef);
+				
+				caldate = utils.convertStringToCalendar("dd-MMM-yyyy HH:mm:ss", AutoLab.getDataSet_Field(uuid, "DATE_OF_MANUFACTURE"));
+				
+				Element element_messageRef = addElement(document, "messageRef",  AutoLab.getDataSet_Field(uuid, "SSCC")+" "+utils.getFormattedISOCalendarString(caldate));
+				
+				element_message.appendChild(element_messageRef);
 
 				Element element_interfaceType = addElement(document, "interfaceType", "Production Declaration");
 
@@ -124,7 +130,7 @@ public class ProcDec_XML
 
 				element_productionDeclaration.appendChild(element_SSCC);
 
-				Element element_productionQuantity = addElement(document, "productionQuantity", AutoLab.getDataSet_Field(uuid, "QUANTITY_DECIMALS"));
+				Element element_productionQuantity = addElement(document, "productionQuantity", AutoLab.getDataSet_Field(uuid, "QUANTITY"));
 
 				element_productionDeclaration.appendChild(element_productionQuantity);
 

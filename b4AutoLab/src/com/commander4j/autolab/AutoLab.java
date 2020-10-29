@@ -44,7 +44,7 @@ public class AutoLab extends Thread
 	public static LabelSync sync;
 	public static boolean run = true;
 	public static EmailQueue emailqueue = new EmailQueue();
-	public static String version = "1.37";
+	public static String version = "1.38";
 	private JUtility utils = new JUtility();
 	public static EmailThread emailthread;
 	private TrayIconSystemInfo trayIconSystem = new TrayIconSystemInfo();
@@ -87,6 +87,7 @@ public class AutoLab extends Thread
 		systemNotify = new JFrameNotifier("", JRes.getText("system_log"), JRes.getText("starting"));
 
 
+		systemNotify.appendToMessage("AutoLab4j "+version);
 		systemNotify.appendToMessage(JRes.getText("starting_background_process")+ " ["+JRes.getText("email")+"]");
 		emailthread = new EmailThread();
 		emailthread.start();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.8" transformSequenceNumber="8">
   <directoryPresets config="." />
-  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.37" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
+  <application name="Commander4j Auto Labeller" applicationId="8985-6673-6807-0058" mediaDir="../../Distribution/java8/autolab4j" shortName="Commander4j_AutoLab" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.38" allPathsRelative="true" macVolumeId="864d4b492f1a625" javaMinVersion="1.8" javaMaxVersion="1.8">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="nl" />
@@ -430,7 +430,6 @@ return console.askYesNo(message, true);
           <property name="executionMode" type="enum" class="com.install4j.runtime.beans.applications.ExecutionMode" value="UNATTENDED_WITH_PROGRESS" />
           <property name="splashMessage" type="string">AutoLab4j Updater</property>
           <property name="useCustomIcon" type="boolean" value="true" />
-          <property name="vistaExecutionLevel" type="enum" class="com.install4j.runtime.beans.applications.VistaExecutionLevel" value="HIGHEST_AVAILABLE" />
           <property name="windowTitle" type="string">${i18n:updater.WindowTitle("${compiler:sys.fullName}")}</property>
         </serializedBean>
         <startup>
