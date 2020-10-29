@@ -60,10 +60,21 @@ public class SSCC_Sequence extends Thread
 		xmlDoc = new JXMLDocument(getPath() + getFilename());
 		
 		//Get next SSCC from XML - the actual value in the xml are the next ones to use. Once used the program stores the incremented version back in the file for the next pallet.
+		
 		String prefix = xmlDoc.findXPath("/sscc/prefix");
 		String sequence = xmlDoc.findXPath("/sscc/sequence");
 		String checkdigit = xmlDoc.findXPath("/sscc/checkDigit");
+		
+		//If SSCC sequence file missing or invalid use default values to create file.
+		if (prefix.equals("") || sequence.equals("") || checkdigit.equals(""))
+		{
+			prefix = "000000000";
+			sequence = "00000000";
+			checkdigit = "0";
+		}
+
 		checkdigit = barcode.calcCheckdigit(prefix+sequence);
+		
 		result = prefix+sequence+checkdigit;
 		
 		//Work out length of Sequence Number excluding check digit.
