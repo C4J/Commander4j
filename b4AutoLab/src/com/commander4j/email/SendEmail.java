@@ -190,7 +190,7 @@ public class SendEmail
 
 								email.send();
 
-								AutoLab.systemNotify.appendToMessage("Email sent successfully.");
+								AutoLab.systemNotify.appendToMessage("Email sent successfully. {"+distributionID+"}");
 								logger.debug("Email sent successfully");
 
 							}

@@ -44,7 +44,7 @@ public class AutoLab extends Thread
 	public static LabelSync sync;
 	public static boolean run = true;
 	public static EmailQueue emailqueue = new EmailQueue();
-	public static String version = "1.38";
+	public static String version = "1.46";
 	private JUtility utils = new JUtility();
 	public static EmailThread emailthread;
 	private TrayIconSystemInfo trayIconSystem = new TrayIconSystemInfo();
@@ -402,11 +402,11 @@ public class AutoLab extends Thread
 		return ((ProdLine) threadList_ProdLine.get(uuid)).print1.isDataReady();
 	}
 
-	public static synchronized void start_SSCC_Thread(String filename)
+	public static synchronized void start_SSCC_Thread(String uuid,String filename)
 	{
 		if (threadList_SSCC.containsKey(filename) == false)
 		{
-			SSCC_Sequence ssccSeq = new SSCC_Sequence(filename);
+			SSCC_Sequence ssccSeq = new SSCC_Sequence(uuid,filename);
 			threadList_SSCC.put(filename, ssccSeq);
 			threadList_SSCC.get(filename).start();
 		}

@@ -222,7 +222,7 @@ public class ProdLine extends Thread
 		AutoLab.updateTrayIconStatus(getUuid()).setStatus(TrayIconProdLineStatus.status_STARTUP, "Startup");
 
 		
-		AutoLab.start_SSCC_Thread(getSsccSequenceFilename());
+		AutoLab.start_SSCC_Thread(getUuid(),getSsccSequenceFilename());
 		prodLineNotify.appendToMessage(JRes.getText("starting_background_process")+ " SSCC");
 		
 		dataset1 = new DataSet(getUuid(),getProdLineName(),getPrinterName(),getRemoteDataSetPath());
