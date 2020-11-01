@@ -184,19 +184,21 @@ public class DataSet extends Thread
 
 				try
 				{
-					appendNotification(JRes.getText("copying_remote")+" [" + getRemoteFilename() + "]");
+					appendNotification(JRes.getText("copying_remote")+" [" + utility.abreviatedString(getRemoteFilename(),maxLen) + "]");
 					FileUtils.copyFile(remoteFile, localFile);
 
 					try
 					{
-						appendNotification(JRes.getText("deleting_remote")+" [" + getRemoteFilename() + "]");
+						appendNotification(JRes.getText("deleting_remote")+" [" + utility.abreviatedString(getRemoteFilename(),maxLen) + "]");
 						java.nio.file.Files.delete(remoteFile.toPath());
 
-						appendNotification(JRes.getText("loading_CSV_from_local")+" [" + getLocalFilename() + "]");
+						appendNotification(JRes.getText("loading_CSV_from_local")+" [" + utility.abreviatedString(getLocalFilename(),maxLen) + "]");
 						if (loadCSV("Remote", getLocalFilename()))
 						{
 							appendNotification(JRes.getText("csv_loaded_successfully"));
 							remoteLoaded = true;
+							appendNotification(AutoLab.threadList_ProdLine.get(getUuid()).getName()+" "+JRes.getText("new_order_loaded")+" [" + getData("PROCESS_ORDER") + "].");
+							AutoLab.emailqueue.addToQueue("OrderAssigned", AutoLab.threadList_ProdLine.get(getUuid()).getName()+" "+JRes.getText("new_order_loaded")+" [" + getData("PROCESS_ORDER") + "].",  utility.getClientName()+"\n\n"+AutoLab.threadList_ProdLine.get(getUuid()).getName()+" "+JRes.getText("new_order_loaded")+" [" + getData("PROCESS_ORDER") + "].", "");
 
 						}
 						else

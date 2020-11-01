@@ -27,6 +27,7 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Logger;
 
 import com.commander4j.autolab.AutoLab;
@@ -105,6 +106,25 @@ public class JUtility
 			io.printStackTrace();
 		}
 
+	}
+	
+	public String abreviatedString(String original,int max_length)
+	{
+		String result = "";
+		
+		String pad="";
+
+		if (original.length()>max_length)
+		{
+			pad="...";
+		}
+		else
+		{
+			pad="";
+		}
+		result = pad+StringUtils.right(original, max_length);
+		
+		return result;
 	}
 
 	public String formatPath(String path)
