@@ -171,7 +171,7 @@ public class SendEmail
 
 								email.setFrom(smtpProperties.get("mail.smtp.from").toString(), "");
 								email.setSubject(subject);
-								email.setMsg(messageText);
+								email.setMsg(messageText+"\n\n\n\n\n\n\n\nEmail from AutoLab4j running on ["+utils.getClientName()+"] distribution list ["+distributionID+"]");
 
 								// add the attachment
 								if (filename.equals("") == false)

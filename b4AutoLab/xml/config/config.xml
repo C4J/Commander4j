@@ -5,6 +5,8 @@
     
     <email enabled="true"/>
     
+    <!-- Auto Update Settings -->
+    
     <updateURL>file:/Users/dave/Commander4j/Distribution/builds/development/b4AutoLab/main/updates.xml</updateURL>
     <updateMode>AUTOMATIC</updateMode>
     
@@ -40,6 +42,8 @@
         <system key="EXPIRY DATE MODE" value="SSCC"/>
         <system key="SSCC AUTO CONFIRM" value="Y"/>
     </controls>
+    
+    <!-- URL of Internet Web Service used to display label on screen -->
     
     <labelary enabled="true">
     	<url>http://api.labelary.com/v1/printers/8dpmm/labels/6x9/0/</url>
