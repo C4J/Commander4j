@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		ALTER TABLE [dbo].[APP_CUSTOMER] ADD  [OVERRIDE_BATCH_FORMAT] [varchar](1)  DEFAULT 'N'
+	</statement>
+	
+	<statement>
+		UPDATE [dbo].[APP_CUSTOMER] SET [OVERRIDE_BATCH_FORMAT] = 'N'
+	</statement>
+	
+	<statement>
+		ALTER TABLE [dbo].[APP_CUSTOMER] ADD  [BATCH_FORMAT] [varchar](80)  DEFAULT ''
+	</statement>
+
+	<statement>
+		ALTER TABLE [dbo].[APP_CUSTOMER] ADD  [BATCH_VALIDATION] [varchar](80)  DEFAULT ''
+	</statement>
+	
+    <statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Override_Batch_Format', 'EN', 'Override Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Override_Batch_Format', 'FR', 'Override Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Override_Batch_Format', 'DE', 'Override Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Override_Batch_Format', 'IT', 'Override Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Override_Batch_Format', 'NL', 'Negeer Batch Formaat', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Override_Batch_Format', 'ES', 'Override Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Override_Batch_Format', 'HU', 'Override Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Override_Batch_Format', 'PL', 'Override Batch Format', '0')
+	</statement>
+	
+	
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Format', 'EN', 'Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Format', 'FR', 'Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Format', 'DE', 'Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Format', 'IT', 'Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Format', 'NL', ' Batch Formaat', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Format', 'ES', 'Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Format', 'HU', 'Batch Format', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Format', 'PL', 'Batch Format', '0')
+	</statement>
+
+
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Validation', 'EN', 'Batch Validation', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Validation', 'FR', 'Batch Validation', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Validation', 'DE', 'Batch Validation', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Validation', 'IT', 'Batch Validation', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Validation', 'NL', 'Batch validatie', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Validation', 'ES', 'Batch Validation', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Validation', 'HU', 'Batch Validation', '0')
+	</statement>
+	
+	<statement>	
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Batch_Validation', 'PL', 'Batch Validation', '0')
+	</statement>
+
+	<statement>
+     	ALTER TABLE APP_CUSTOMER ADD [CUSTOMER_DATA_03] VARCHAR(40) DEFAULT ''
+    </statement>
+
+    <statement>
+	    ALTER TABLE APP_CUSTOMER ADD [CUSTOMER_DATA_04] VARCHAR(40) DEFAULT ''
+    </statement>
+    
+    <statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_03','EN','Customer Data 3','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_04','EN','Customer Data 4','')
+	</statement>
+    
+    <statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_03','ES','Datos del cliente 3','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_04','ES','Datos del cliente 4','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_03','FR','Les données des clients 3','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_04','FR','Les données des clients 4','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_03','IT','Dati Cliente 3','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_04','IT','Dati Cliente 4','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_03','NL','Klant Data 3','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_04','NL','Klant Data 4','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_03','PL','Dane klienta 3','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_04','PL','Dane klienta 4','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_03','HU','Ügyféladatok 3','')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_04','HU','Ügyféladatok 4','')
+	</statement>
+
+	
+</DDL>

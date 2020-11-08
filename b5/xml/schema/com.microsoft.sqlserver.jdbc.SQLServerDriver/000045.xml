@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Yes','EN','Yes','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Yes','NL','Yes','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Yes','HU','Yes','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Yes','IT','Yes','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_No','EN','No','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_No','NL','No','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_No','HU','No','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_No','IT','No','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Prod_Dec_Confirm','EN','Production Confirmation','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Prod_Dec_Confirm','NL','Production Confirmation','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Prod_Dec_Confirm','HU','Production Confirmation','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Prod_Dec_Confirm','IT','Production Confirmation','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Amend','EN','Amend','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Amend','NL','Wijzigen','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Amend','HU','Módosítandó','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Amend','IT','Modificare','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Create','EN','Create','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Create','NL','Creëren','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Create','HU','Létrehozása','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Create','IT','Crea','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Exit','EN','Exit','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Exit','NL','Afslag','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Exit','HU','Kijárat','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Exit','IT','Esci','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Previous_Page','EN','Prev Page','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Previous_Page','NL','Vorige pagina','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Previous_Page','HU','Előző oldal','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Previous_Page','IT','Pagina Prec..','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Next_Page','EN','Next Page','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Next_Page','NL','Volgende pagina','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Next_Page','HU','Következő oldal','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Next_Page','IT','Pagina Succ..','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Add','EN','Add','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Add','NL','Toe te voegen','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Add','HU','Hozzáadása','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Add','IT','Aggiungi','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Remove','EN','Remove','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Remove','NL','Verwijder','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Remove','HU','Eltávolítás','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Remove','IT','Rimuovere','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_From','EN','From','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_From','NL','Uit','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_From','HU','-Tól','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_From','IT','Da','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_To','EN','To','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_To','NL','Op','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_To','HU','-hoz','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_To','IT','Per','')
+</statement>
+
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Count','EN','Count','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Count','NL','Tellen','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Count','HU','Gróf','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Count','IT','Conte','')
+</statement>
+
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Add_SSCC','EN','Add SSCC','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Add_SSCC','NL','Voeg SSCC','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Add_SSCC','HU','Hozzáadása SSCC','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Add_SSCC','IT','Aggiungi SSCC','')
+</statement>
+
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Print_STN','EN','Print STN','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Print_STN','NL','Print STN','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Print_STN','HU','Nyomtatás STN','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Print_STN','IT','Stampa STN','')
+</statement>
+
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Confirm_STN','EN','Confirm STN','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Confirm_STN','NL','Te bevestigen STN','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Confirm_STN','HU','Erősítse STN','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_Confirm_STN','IT','Conferma STN','')
+</statement>
+
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('lbl_Batch_Status','EN','Batch Status','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('lbl_Batch_Status','NL','Batch Status','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('lbl_Batch_Status','HU','Batch állapot','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('lbl_Batch_Status','IT','Batch di stato','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_DOM','EN','D.O.M.','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_DOM','NL','D.O.M.','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_DOM','HU','D.O.M.','')
+</statement>
+
+<statement>
+		INSERT INTO [dbo].[SYS_LANGUAGE] ([RESOURCE_KEY],[LANGUAGE_ID],[TEXT],[MNEMONIC]) VALUES ('web_DOM','IT','D.O.M.','')
+</statement>
+
+</DDL>

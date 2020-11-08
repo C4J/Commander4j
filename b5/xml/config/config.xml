@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE config SYSTEM "config.dtd">
+<config>
+    <appDisplayName>Commander4j</appDisplayName>
+    <appWebsite>http://www.commander4j.com</appWebsite>
+    <appAuthor>David Garratt</appAuthor>
+    <appSupportEmail>support@commander4j.com</appSupportEmail>
+    <appSplashScreenImage>splash.gif</appSplashScreenImage>
+    <appLanguage>en</appLanguage>
+    <appRegion>US</appRegion>
+</config>

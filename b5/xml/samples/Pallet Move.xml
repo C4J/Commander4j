@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+    <hostRef>service</hostRef>
+    <messageRef>12584314</messageRef>
+    <interfaceType>Pallet Move</interfaceType>
+    <messageInformation>Location=TEST</messageInformation>
+    <interfaceDirection>Input</interfaceDirection>
+    <messageDate>2016-08-01T14:58:16</messageDate>
+    <messageData>
+        <palletMove>
+            <pallet>
+                <sscc>350001615030751959</sscc>
+                <fromLocation>WISBECH</fromLocation>
+                <toLocation>WMPW</toLocation>
+            </pallet>
+            <pallet>
+                <sscc>350001615030744746</sscc>
+                <fromLocation>WISBECH</fromLocation>
+                <toLocation>WMPW</toLocation>
+            </pallet>
+            <pallet>
+                <sscc>350001615030749222</sscc>
+                <fromLocation>WISBECH</fromLocation>
+                <toLocation>WMPW</toLocation>
+            </pallet>
+            <pallet>
+                <sscc>350001615030749215</sscc>
+                <fromLocation>WISBECH</fromLocation>
+                <toLocation>WMPW</toLocation>
+            </pallet>
+        </palletMove>
+    </messageData>
+</message>

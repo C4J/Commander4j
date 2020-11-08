@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p1','EN','&lt;h1&gt;T1 Light Weight&lt;/h1&gt;&lt;h2&gt;Please re-check and block as required to last good result&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p2','EN','&lt;h3&gt;If the result is due to scale error or sample placement please use the comment&lt;br&gt;button to describe the cause.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p1','ES','&lt;h1&gt;Peso ligero T1&lt;/h1&gt;&lt;h2&gt;Vuelva a verificar y bloquee según sea necesario para obtener un buen resultado.&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p2','ES','&lt;h3&gt;Si el resultado se debe a un error de escala o ubicación de muestra, utilice el comentario&lt;br&gt;botón para describir la causa.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p1','DE','&lt;h1&gt;T1 Leichtgewicht&lt;/h1&gt;&lt;h2&gt;Bitte überprüfen und sperren Sie sie nach Bedarf, um ein gutes Ergebnis zu erzielen&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p2','DE','&lt;h3&gt;Wenn das Ergebnis auf einen Skalierungsfehler oder eine Probenplatzierung zurückzuführen ist, verwenden Sie bitte den Kommentar&lt;br&gt;Taste, um die Ursache zu beschreiben.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p1','HU','&lt;h1&gt;T1 könnyű&lt;/h1&gt;&lt;h2&gt;A jó eredmény elérése érdekében kérjük, ellenőrizze újra és blokkolja&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p2','HU','&lt;h3&gt;Ha az eredmény skálahiba vagy a minta elhelyezése miatt merül fel, kérjük, használja a megjegyzést&lt;br&gt;gomb az ok leírására.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p1','IT','&lt;h1&gt;T1 leggero&lt;/h1&gt;&lt;h2&gt;Ricontrolla e blocca come richiesto per ottenere un buon risultato&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p2','IT','&lt;h3&gt;Se il risultato è dovuto a errore di scala o posizionamento del campione, utilizzare il commento&lt;br&gt;pulsante per descrivere la causa.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p1','NL','&lt;h1&gt;T1 Lichtgewicht&lt;/h1&gt;&lt;h2&gt;Controleer en blokkeer indien nodig opnieuw om een goed resultaat te behouden&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p2','NL','&lt;h3&gt;Als het resultaat het gevolg is van een schaalfout of monsterplaatsing, gebruik dan de opmerking&lt;br&gt;knop om de oorzaak te beschrijven.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p1','PL','&lt;h1&gt;Lekka waga T1&lt;/h1&gt;&lt;h2&gt;Ponownie sprawdź i zablokuj, aby zachować dobry wynik&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p2','PL','&lt;h3&gt;Jeśli wynik wynika z błędu skali lub umieszczenia próbki, skorzystaj z komentarza&lt;br&gt;przycisk opisujący przyczynę.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p1','FR','&lt;h1&gt;T1 léger&lt;/h1&gt;&lt;h2&gt;Veuillez revérifier et bloquer au besoin pour durer un bon résultat&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T1_p2','FR','&lt;h3&gt;Si le résultat est dû à une erreur d''échelle ou au placement de l''échantillon, veuillez utiliser le commentaire&lt;br&gt;bouton pour décrire la cause.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p1','EN','&lt;h1&gt;T2 Light Weight&lt;/h1&gt;&lt;h2&gt;Please re-check &#38; block as required to last good result&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p2','EN','&lt;h3&gt;If the result is due to scale error or sample placement please use the comment&lt;br&gt;button to describe the cause.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p1','ES','&lt;h1&gt;Peso ligero T2&lt;/h1&gt;&lt;h2&gt;Vuelva a verificar y bloquee según sea necesario para obtener un buen resultado.&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p2','ES','&lt;h3&gt;Si el resultado se debe a un error de escala o ubicación de muestra, utilice el comentario&lt;br&gt;botón para describir la causa.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p1','DE','&lt;h1&gt;T2 Leichtgewicht&lt;/h1&gt;&lt;h2&gt;Bitte überprüfen und sperren Sie sie nach Bedarf, um ein gutes Ergebnis zu erzielen&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p2','DE','&lt;h3&gt;Wenn das Ergebnis auf einen Skalierungsfehler oder eine Probenplatzierung zurückzuführen ist, verwenden Sie bitte den Kommentar&lt;br&gt;Taste, um die Ursache zu beschreiben.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p1','HU','&lt;h1&gt;T2 könnyű&lt;/h1&gt;&lt;h2&gt;A jó eredmény elérése érdekében kérjük, ellenőrizze újra és blokkolja&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p2','HU','&lt;h3&gt;Ha az eredmény skálahiba vagy a minta elhelyezése miatt merül fel, kérjük, használja a megjegyzést&lt;br&gt;gomb az ok leírására.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p1','IT','&lt;h1&gt;T2 leggero&lt;/h1&gt;&lt;h2&gt;Ricontrolla e blocca come richiesto per ottenere un buon risultato&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p2','IT','&lt;h3&gt;Se il risultato è dovuto a errore di scala o posizionamento del campione, utilizzare il commento&lt;br&gt;pulsante per descrivere la causa.&lt;/h3&gt;','')
+   </statement>
+   
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p1','NL','&lt;h1&gt;T2 Lichtgewicht&lt;/h1&gt;&lt;h2&gt;Controleer en blokkeer indien nodig opnieuw om een goed resultaat te behouden&lt;/h2&gt;','')
+   </statement>
+   
+   <statement>
+         INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p2','NL','&lt;h3&gt;Als het resultaat het gevolg is van een schaalfout of monsterplaatsing, gebruik dan de opmerking&lt;br&gt;knop om de oorzaak te beschrijven.&lt;/h3&gt;','')
+   </statement>
+      
+   <statement>
+         INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p1','PL','&lt;h1&gt;Lekka waga T2&lt;/h1&gt;&lt;h2&gt;Ponownie sprawdź i zablokuj, aby zachować dobry wynik&lt;/h2&gt;','')
+   </statement>
+      
+   <statement>
+         INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p2','PL','&lt;h3&gt;Jeśli wynik wynika z błędu skali lub umieszczenia próbki, skorzystaj z komentarza&lt;br&gt;przycisk opisujący przyczynę.&lt;/h3&gt;','')
+   </statement>
+      
+   <statement>
+         INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p1','FR','&lt;h1&gt;T2 léger&lt;/h1&gt;&lt;h2&gt;Veuillez revérifier et bloquer au besoin pour durer un bon résultat&lt;/h2&gt;','')
+   </statement>
+      
+   <statement>
+         INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_T2_p2','FR','&lt;h3&gt;Si le résultat est dû à une erreur d''échelle ou au placement de l''échantillon, veuillez utiliser le commentaire&lt;br&gt;bouton pour décrire la cause.&lt;/h3&gt;','')
+   </statement>
+      
+    <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','EN','&lt;h1&gt;Order Mean below Nominal weight&lt;/h1&gt;&lt;h2&gt;Please increase weight and carry out recheck&lt;/h2&gt;','')
+   </statement>
+
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','FR','&lt;h1&gt;Moyenne inférieure à la valeur nominale&lt;/h1&gt;&lt;h2&gt;Veuillez ajuster le poids du produit pour le corriger.&lt;/h2&gt;','')
+   </statement>
+
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','DE','&lt;h1&gt;Mittelwert kleiner als nominell&lt;/h1&gt;&lt;h2&gt;Bitte korrigieren Sie das Produktgewicht.&lt;/h2&gt;','')
+   </statement>
+
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','NL','&lt;h1&gt;Gemiddeld minder dan nominaal&lt;/h1&gt;&lt;h2&gt;Pas het productgewicht aan om te corrigeren.&lt;/h2&gt;','')
+   </statement>
+
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','IT','&lt;h1&gt;Media inferiore a nominale&lt;/h1&gt;&lt;h2&gt;Si prega di regolare il peso del prodotto per correggere.&lt;/h2&gt;','')
+   </statement>
+
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','ES','&lt;h1&gt;Significa menos que nominal&lt;/h1&gt;&lt;h2&gt;Por favor, ajuste el peso del producto para corregir.&lt;/h2&gt;','')
+   </statement>
+
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','HU','&lt;h1&gt;Átlag kevesebb, mint a névleges&lt;/h1&gt;&lt;h2&gt;Kérjük, állítsa be a termék súlyát a helyes beállításhoz.&lt;/h2&gt;','')
+   </statement>
+
+   <statement>
+      INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('err_MeanVNominal_p1','PL','&lt;h1&gt;Oznacza mniej niż nominalny&lt;/h1&gt;&lt;h2&gt;Dostosuj wagę produktu, aby poprawić.&lt;/h2&gt;','')
+   </statement>
+      
+</DDL>

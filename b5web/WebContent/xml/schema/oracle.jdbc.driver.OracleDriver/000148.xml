@@ -1,0 +1,1676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+    <statement> 
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Analysis_Add','PL','Wejście nowej analizy','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_TransactionType_Select','PL','Wybierz typ transakcji','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Add','PL','Dodaj zużyty Lokalizacja','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Delete','PL','Usuń zużyty Lokalizacja','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_RenameTo','PL','Zmiana nazwy lokalizacji do odpadów','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Add','PL','Dodaj odpady','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Delete','PL','Usuwać odpady','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_ID_Rename','PL','Zmiana nazwy Materiał identyfikator','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Add','PL','Dodaj zużyty Reason','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Delete','PL','Usuwanie odpadów Powód','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_ID_Rename','PL','Powód zmiany nazwy ID do','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Add','PL','Dodaj zużyty ID Reporting','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Delete','PL','Usuń zużyty ID Reporting','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Rename','PL','Zmiana nazwy identyfikatora sprawozdawczej','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Add','PL','Dodaj Sprawozdawczość Grupy (Number)','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Delete','PL','Usuń grupę Reporting','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Rename','PL','Zmiana nazwy grupy sprawozdawczej','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Add','PL','Dodaj zużyty transakcja','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Delete','PL','Usuwanie odpadów transakcja','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Rename','PL','Zmiana nazwy typu transakcji do','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Add','PL','Dodaj rodzajów odpadów','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Delete','PL','Usuń rodzajów odpadów','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Rename','PL','Zmiana nazwy rodzajów odpadów identyfikator','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Conversion_To_KG','PL','Konwersja do KG','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Cost_Per_UOM','PL','Cost Per JM','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Disabled','PL','Wyłączone','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Hazard','PL','Niebezpieczny','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Include_In_Totals','PL','Obejmują sumy','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Permitted_Types','PL','dopuszczalne typy','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PO_Required','PL','Proces zamawiania reqd','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PPERequired','PL','Wymagane PPE','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reason_Reqd','PL','powodem Wymagane','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Recycle','PL','Recykling','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reporting_Group','PL','sprawozdawczość grupy','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Store_As_Negative','PL','Przechowywać jako ujemne','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Transaction_ID','PL','Identyfikator transakcji','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Type_ID','PL','Rodzaj','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG','PL','odpady Log','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG_EDIT','PL','Edit Log Entry odpadów','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_REPORTING','PL','Raportowanie odpady','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATION_REPORTING','PL','Lokalizacja Link do ID Reporting','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATIONS','PL','Lokalizacje na odpady','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_MATERIAL','PL','Odpady','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REASON','PL','Powody odpadowe','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORT_ID','PL','Odpady Raportowanie identyfikatory','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_GROUP','PL','Odpady Grupy Raportowanie','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_LOCATION','PL','Raportowanie ID Link do lokalizacji','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TRANSACTION','PL','Transakcje na odpady','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TYPE','PL','Rodzaje odpadów','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_MENU_WASTE','PL','Marnotrawstwo','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Analysis_Add','HU','Írja be az új elemzés','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_TransactionType_Select','HU','Select Tranzakció típusa','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Add','HU','Add Hulladék Hely','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Delete','HU','Törlés Hulladék Hely','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_RenameTo','HU','Nevezze hulladék hely a','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Add','HU','Add hulladék anyag','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Delete','HU','Törlés hulladék anyag','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_ID_Rename','HU','Nevezze Material ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Add','HU','Add Hulladék Ok','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Delete','HU','Delete Waste Ok','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_ID_Rename','HU','Rename Ok ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Add','HU','Hozzá Hulladék Reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Delete','HU','Törlés Hulladék Reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Rename','HU','Nevezze Reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Add','HU','Add készítési Csoport (Number)','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Delete','HU','Törlés készítési Csoport','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Rename','HU','Nevezze Reporting Csoport','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Add','HU','Add Hulladék Tranzakciós','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Delete','HU','Törlés Hulladék Tranzakciós','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Rename','HU','Nevezze Tranzakció típusa a','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Add','HU','Add Hulladék típusa','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Delete','HU','Törlés Hulladék típusa','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Rename','HU','Nevezze Hulladék típusa azonosítót','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Conversion_To_KG','HU','Átalakítás KG','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Cost_Per_UOM','HU','Költség mértékegység','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Disabled','HU','Tiltva','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Hazard','HU','Veszélyes','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Include_In_Totals','HU','Tartalmazza a összesítések','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Permitted_Types','HU','megengedett típusok','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PO_Required','HU','Feldolgozni a Reqd','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PPERequired','HU','PPE Kötelező','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reason_Reqd','HU','Ok Kötelező','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Recycle','HU','Újrahasznosít','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reporting_Group','HU','Beszámolási Csoport','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Store_As_Negative','HU','Menteni Negatív','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Transaction_ID','HU','Tranzakció azonosítója','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Type_ID','HU','típus','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG','HU','hulladék Log','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG_EDIT','HU','Szerkesztés Hulladék-bejegyzés','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_REPORTING','HU','hulladék Reporting','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATION_REPORTING','HU','Hely Link Reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATIONS','HU','hulladék Helyszínek','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_MATERIAL','HU','hulladék anyagok','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REASON','HU','hulladék okai','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORT_ID','HU','Hulladék Reporting azonosítók','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_GROUP','HU','Hulladék jelzőcsoportokat','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_LOCATION','HU','Jelentőkód Link Location','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TRANSACTION','HU','hulladék tranzakciók','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TYPE','HU','hulladékjegyzékről','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_MENU_WASTE','HU','Pazarlás','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Analysis_Add','FR','Analyse nouvelle entrée','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_TransactionType_Select','FR','Sélectionner le type de transaction','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Add','FR','Ajouter des déchets Lieu','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Delete','FR','Supprimer Emplacement des déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_RenameTo','FR','Renommer des déchets Emplacement à','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Add','FR','Ajouter des déchets de matériaux','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Delete','FR','Supprimer des déchets de matériaux','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_ID_Rename','FR','Renommer Matériel ID à','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Add','FR','Ajouter Raison déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Delete','FR','Supprimer Raison de déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_ID_Rename','FR','Renommer ID Raison de','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Add','FR','Ajouter ID déchets Rapports','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Delete','FR','Supprimer ID déchets Rapports','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Rename','FR','Renommer ID de rapport à','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Add','FR','Ajouter un groupe de rapports (Nombre)','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Delete','FR','Supprimer le groupe de rapports','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Rename','FR','Renommer le groupe Relevant','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Add','FR','Ajouter une transaction déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Delete','FR','Supprimer transaction déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Rename','FR','Renommer type de transaction à','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Add','FR','Ajouter un type de déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Delete','FR','Supprimer type déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Rename','FR','Renommer ID type de déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Conversion_To_KG','FR','Conversion en KG','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Cost_Per_UOM','FR','Coût par UOM','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Disabled','FR','désactivé','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Hazard','FR','Hasardeux','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Include_In_Totals','FR','Inclure dans les totaux','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Max_Delete','FR','Max Records à Supprimer','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Permitted_Types','FR','Types autorisés','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PO_Required','FR','Processus de commande Reqd','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PPERequired','FR','EPI requis','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reason_Reqd','FR','raison requis','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Recycle','FR','Recycler','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reporting_Group','FR','Groupe de rapports','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Store_As_Negative','FR','Magasin NEGATIFS','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Transaction_ID','FR','identifiant de transaction','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Type_ID','FR','Type','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG','FR','déchets Connexion','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG_EDIT','FR','Modifier déchets entrée du journal','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_REPORTING','FR','rapports sur les déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATION_REPORTING','FR','Localisation Lien vers ID de rapport','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATIONS','FR','Emplacements des déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_MATERIAL','FR','Gestion des déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REASON','FR','Raisons de déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORT_ID','FR','ID déchets de rapports','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_GROUP','FR','Groupes déchets de rapports','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_LOCATION','FR','ID de rapport Lien vers une','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TRANSACTION','FR','Transactions de déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TYPE','FR','Types de déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_MENU_WASTE','FR','Déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Barcode_Validate','FR','validation code-barres','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Scan_Barcode','FR','le code-barres','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Alternative','DE','Alternative','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_Export','DE','Export','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('btn_TestHelp','DE','Zeig Hilfe','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_TransactionType_Select','DE','Wählen Sie Transaktionsart','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Add','DE','In Abfall Ort','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Delete','DE','Löschen Abfall Ort','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_RenameTo','DE','Umbenennen Abfall Standort','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Add','DE','In Abfall-Material','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Delete','DE','Löschen Abfall-Material','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_ID_Rename','DE','Benennen Sie Material-ID zu','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Add','DE','In Abfall Reason','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Delete','DE','Löschen Waste Reason','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_ID_Rename','DE','Rename Reason-ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Add','DE','In Abfallberichterstattung ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Delete','DE','Löschen Abfallberichterstattung ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Rename','DE','Benennen Berichterstattung ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Add','DE','In Reporting-Gruppe (Anzahl)','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Delete','DE','Löschen Berichtsgruppe','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Rename','DE','Umbenennen Bericht Gruppe','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Add','DE','In Waste Transaktion','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Delete','DE','Löschen Abfall Transaktion','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Rename','DE','Benennen Transaktionsart zu','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Add','DE','In Abfallart','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Delete','DE','Löschen Abfallart','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Rename','DE','Benennen Sie Abfallart ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Conversion_To_KG','DE','Die Umwandlung in KG','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Cost_Per_UOM','DE','Kosten pro Mengeneinheit','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_03','DE','Kundendaten 3','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Customer_Data_04','DE','Kundendaten 4','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Disabled','DE','Deaktiviert','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Hazard','DE','gefährlich','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Include_In_Totals','DE','In Totals','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Permitted_Types','DE','Zulässige Typen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PO_Required','DE','Prozessauftrag Reqd','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PPERequired','DE','PPE Erforderlich','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reason_Reqd','DE','Grund Required','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Recycle','DE','Recyceln','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reporting_Group','DE','Reporting-Gruppe','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Store_As_Negative','DE','Shop als Negative','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Transaction_ID','DE','Transaktions-ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Type_ID','DE','Art','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG','DE','Abfall Log','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG_EDIT','DE','Bearbeiten Abfallprotokolleintrag','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_REPORTING','DE','Abfallberichterstattung','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATION_REPORTING','DE','Location Link zu Reporting-ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATIONS','DE','Abfall Standorte','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_MATERIAL','DE','Rohstoffe verschwenden','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REASON','DE','Abfall Gründe','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORT_ID','DE','Abfallberichterstattung IDs','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_GROUP','DE','Abfall Reporting-Gruppen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_LOCATION','DE','Reporting-ID Link zu Ort','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TRANSACTION','DE','Abfall Transaktionen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TYPE','DE','Abfallarten','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_MENU_WASTE','DE','Abfall','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Analysis_Add','ES','Un nuevo análisis de entrada','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_TransactionType_Select','ES','Seleccionar el tipo de transacción','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Add','ES','Añadir Residuos Localización','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Delete','ES','Eliminar residuos Localización','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_RenameTo','ES','Cambiar el nombre de Residuos Localización de','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Add','ES','Añadir material de desecho','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Delete','ES','Eliminar el material de desecho','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_ID_Rename','ES','Cambiar el nombre de ID de material a','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Add','ES','Añadir Razón de residuos','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Delete','ES','Razón de eliminación de residuos','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_ID_Rename','ES','Cambiar nombre Motivo Identificación de','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Add','ES','Añadir Residuos de Información ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Delete','ES','Eliminar residuos de Información ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Rename','ES','Renombrar Reporting ID a','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Add','ES','Añadir información de los grupos (Número)','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Delete','ES','Eliminar información de los grupos','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Rename','ES','Cambiar el nombre de Información Grupo de','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Add','ES','Añadir Residuos Transacción','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Delete','ES','Eliminar residuos de Transacción','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Rename','ES','Cambiar el nombre de tipo de transacción a','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Add','ES','Añadir desperdicios Tipo','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Delete','ES','Eliminar desperdicios Tipo','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Rename','ES','Cambiar el nombre de desperdicios Tipo de identificación para','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Conversion_To_KG','ES','La conversión a KG','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Cost_Per_UOM','ES','El costo por la UOM','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Disabled','ES','Discapacitado','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Hazard','ES','Peligroso','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Include_In_Totals','ES','Incluir en los totales','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Move_after_Make','ES','Mover después de que haga','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Pallet_Move','ES','Mover Pallet','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Permitted_Types','ES','Tipos permitidos','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PO_Required','ES','Proceso de pedido Reqd','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PPERequired','ES','PPE requerido','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Prefix_Code','ES','Código de prefijo','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reason_Reqd','ES','razón Obligatorio','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Recycle','ES','Reciclar','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reporting_Group','ES','Grupo de informes','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Store_As_Negative','ES','Tienda como negativo','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Table_Hint','ES','Haz clic derecho en la fila para ver opciones adicionales','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Transaction_ID','ES','ID de transacción','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Type_ID','ES','Tipo','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG','ES','residuos de registro','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG_EDIT','ES','Editar entrada de registro de residuos','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_REPORTING','ES','residuos de Información','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATION_REPORTING','ES','Ubicación Enlace a informes de Identificación','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATIONS','ES','Ubicaciones de residuos','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_MATERIAL','ES','Materiales de desecho','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REASON','ES','Razones de residuos','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORT_ID','ES','Residuos de Información identificadores','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_GROUP','ES','Grupos de residuos de Información','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_LOCATION','ES','Informes Identificación enlace a la ubicación','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TRANSACTION','ES','Transacciones de residuos','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TYPE','ES','Tipos de residuos','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_MENU_WASTE','ES','Residuos','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Analysis_Add','NL','Voer de nieuwe Analyse','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_TransactionType_Select','NL','Select Transactietype','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Add','NL','Voeg Waste Locatie','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Delete','NL','Verwijder Waste Locatie','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_RenameTo','NL','Hernoem Waste Location to','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Add','NL','Voeg Waste Materiaal','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Delete','NL','Verwijder afvalmateriaal','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_ID_Rename','NL','Hernoem Material ID aan','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Add','NL','Voeg Waste Reden','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Delete','NL','Delete Waste Reden','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_ID_Rename','NL','Rename Reden ID aan','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Add','NL','Voeg Waste Reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Delete','NL','Verwijder Waste Reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Rename','NL','Hernoem Reporting ID aan','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Add','NL','Voeg Reporting Group (Number)','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Delete','NL','Verwijder Reporting Group','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Rename','NL','Hernoem Reporting Group','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Add','NL','Voeg Waste Transaction','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Delete','NL','Verwijder Waste Transaction','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Rename','NL','Hernoem Transactietype aan','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Add','NL','Voeg Waste Type','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Delete','NL','Verwijder Waste Type','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Rename','NL','Hernoem Waste Type ID aan','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Conversion_To_KG','NL','Conversie naar KG','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Cost_Per_UOM','NL','Cost Per UOM','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Disabled','NL','Gehandicapt','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Hazard','NL','gevaarlijk','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Include_In_Totals','NL','Opnemen in Totalen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Permitted_Types','NL','toegestane','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PO_Required','NL','Proces Order reqd','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PPERequired','NL','PPE Required','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reason_Reqd','NL','reden Required','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Recycle','NL','Recycle','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reporting_Group','NL','Reporting Group','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Store_As_Negative','NL','Store als negatief','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Transaction_ID','NL','Transactie ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Type_ID','NL','Type','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG','NL','afval Log','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG_EDIT','NL','Bewerken Waste logitem','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_REPORTING','NL','afval Reporting','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATION_REPORTING','NL','Locatie Link Reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATIONS','NL','afval Locaties','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_MATERIAL','NL','Afvalstoffen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REASON','NL','afval Redenen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORT_ID','NL','Afval Reporting IDs','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_GROUP','NL','Afval Reporting Groepen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_LOCATION','NL','Rapportage ID Link naar locatie','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TRANSACTION','NL','afval Transacties','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TYPE','NL','Soorten afval','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_MENU_WASTE','NL','Verspilling','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Analysis_Add','IT','nuova analisi input','')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_TransactionType_Select','IT','Selezionare il tipo di transazione','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Add','IT','Aggiungere Rifiuti Località','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Delete','IT','Eliminazione dei rifiuti Località','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_RenameTo','IT','Rinominare Rifiuti posizione per','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Add','IT','Aggiungere materiale di scarto','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Delete','IT','Eliminare il materiale di scarto','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_ID_Rename','IT','Rinominare ID materiale per','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Add','IT','Aggiungere Motivo rifiuti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Delete','IT','Elimina Motivo rifiuti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_ID_Rename','IT','ID Motivo Rinomina per','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Add','IT','Aggiungere Rifiuti reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Delete','IT','Eliminazione dei rifiuti reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Rename','IT','Rinominare reporting ID per','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Add','IT','Aggiungere reporting di gruppo (numero)','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Delete','IT','Eliminare reporting di gruppo','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Rename','IT','Rinominare reporting di gruppo di','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Add','IT','Aggiungere Rifiuti transazione','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Delete','IT','Eliminazione dei rifiuti transazione','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Rename','IT','Rinominare Tipo di transazione a','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Add','IT','Aggiungi tipo di rifiuti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Delete','IT','Cancella Tipo rifiuti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Rename','IT','Rinominare rifiuti Tipo ID per','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Conversion_To_KG','IT','Conversione a KG','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Cost_Per_UOM','IT','COSTO PER UOM','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Disabled','IT','Disabilitato','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Hazard','IT','Pericoloso','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Include_In_Totals','IT','Includi nel Totali','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Permitted_Types','IT','Tipi consentiti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PO_Required','IT','Ordine di processo Reqd','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PPERequired','IT','DPI obbligatori','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reason_Reqd','IT','motivo richiesto','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Recycle','IT','Riciclare','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reporting_Group','IT','reporting di gruppo','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Store_As_Negative','IT','Store come negativo','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Transaction_ID','IT','ID transazione','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Type_ID','IT','genere','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG','IT','rifiuti Log','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG_EDIT','IT','Modifica dei rifiuti voce del registro','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_REPORTING','IT','rifiuti reporting','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATION_REPORTING','IT','Location Link Segnalazione ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATIONS','IT','Luoghi rifiuti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_MATERIAL','IT','Materiali di scarto','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REASON','IT','Motivi rifiuti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORT_ID','IT','Rifiuti reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_GROUP','IT','Rifiuti reporting Gruppi','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_LOCATION','IT','Segnalazione ID Collegamento ad un indirizzo','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TRANSACTION','IT','Le operazioni di rifiuti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TYPE','IT','Tipi di rifiuti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_MENU_WASTE','IT','Rifiuto','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_TransactionType_Select','EN','Select Transaction Type','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Add','EN','Add Waste Location','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_Delete','EN','Delete Waste Location','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Location_RenameTo','EN','Rename Waste Location to','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Add','EN','Add Waste Material','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_Delete','EN','Delete Waste Material','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Material_ID_Rename','EN','Rename Material ID to','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Add','EN','Add Waste Reason','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_Delete','EN','Delete Waste Reason','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reason_ID_Rename','EN','Rename Reason ID to','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Add','EN','Add Waste Reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Delete','EN','Delete Waste Reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Report_ID_Rename','EN','Rename Reporting ID to','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Add','EN','Add Reporting Group (Number)','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Delete','EN','Delete Reporting Group','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Reporting_Group_Rename','EN','Rename Reporting Group to','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Add','EN','Add Waste Transaction','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Delete','EN','Delete Waste Transaction','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Transaction_Rename','EN','Rename Transaction Type to','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Add','EN','Add Waste Type','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Delete','EN','Delete Waste Type','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Type_Rename','EN','Rename Waste Type ID to','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Conversion_To_KG','EN','Conversion to KG','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Cost_Per_UOM','EN','Cost Per UOM','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Disabled','EN','Disabled','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Hazard','EN','Hazardous','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Include_In_Totals','EN','Include in Totals','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Permitted_Types','EN','Permitted Types','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PO_Required','EN','Process Order Reqd','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_PPERequired','EN','PPE Required','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reason_Reqd','EN','Reason Required','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Recycle','EN','Recycle','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Reporting_Group','EN','Reporting Group','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Store_As_Negative','EN','Store as Negative','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Transaction_ID','EN','Transaction ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Type_ID','EN','Type','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG','EN','Waste Log','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_LOG_EDIT','EN','Edit Waste Log Entry','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_ADMIN_WASTE_REPORTING','EN','Waste Reporting','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATION_REPORTING','EN','Location Link to Reporting ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_LOCATIONS','EN','Waste Locations','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_MATERIAL','EN','Waste Materials','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REASON','EN','Waste Reasons','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORT_ID','EN','Waste Reporting IDs','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_GROUP','EN','Waste Reporting Groups','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_REPORTING_LOCATION','EN','Reporting ID Link to Location','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TRANSACTION','EN','Waste Transactions','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_TYPE','EN','Waste Types','0')
+    </statement>
+        
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_MENU_WASTE','EN','Waste','0')
+    </statement>
+
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','EN','Delete Waste Log Entry ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','DE','Löschen des Abfallprotokolleintrags ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','FR','Supprimer l''entrée du journal des déchets ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','HU','Törölje a hulladéknapló-bejegyzést ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','PL','Usuń wpis dziennika odpadów ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','ES','Eliminar entrada de registro de residuos ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','NL','Afvallogboekvermelding verwijderen ?','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Log_Delete','IT','Elimina voce registro rifiuti ?','0')
+    </statement>  
+</DDL>

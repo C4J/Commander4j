@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		ALTER TABLE APP_WEIGHT_PRODUCT_GROUP 
+			MODIFY (NOMINAL_WEIGHT DEFAULT 0 )
+			MODIFY (NOMINAL_WEIGHT_UOM DEFAULT '' )
+			MODIFY (TARE_WEIGHT DEFAULT 0 )
+			MODIFY (TARE_WEIGHT_UOM DEFAULT '' )
+	</statement>
+	
+	<statement>
+		INSERT INTO APP_WEIGHT_PRODUCT_GROUP (PRODUCT_GROUP)  SELECT DISTINCT DATA AS PRODUCT_GROUP FROM APP_MATERIAL_CUSTOMER_DATA WHERE CUSTOMER_ID = 'SELF' AND DATA_ID = 'PRODUCT_GROUP' AND DATA > ''
+	</statement>
+	
+	<statement>
+		UPDATE APP_WEIGHT_PRODUCT_GROUP SET DESCRIPTION = PRODUCT_GROUP
+	</statement>
+	
+	<statement>
+		INSERT INTO APP_WEIGHT_CONTAINER_CODE (CONTAINER_CODE)  SELECT DISTINCT DATA AS CONTAINER_CODE FROM APP_MATERIAL_CUSTOMER_DATA WHERE CUSTOMER_ID = 'SELF' AND DATA_ID = 'CONTAINER_CODE' AND DATA > ''
+	</statement>
+	
+	<statement>
+		UPDATE APP_WEIGHT_CONTAINER_CODE SET DESCRIPTION = CONTAINER_CODE
+	</statement>
+	
+	<statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'EN', 'Begin Weight Check', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'DE', 'Beginnen Sie mit der Gewichtskontrolle', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'ES', 'Comenzar control de peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'FR', 'Commencer le contrôle du poids', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'HU', 'Kezdje el a súlyellenőrzést', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'IT', 'Inizia il controllo del peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'NL', 'Begin met gewichtscontrole', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Begin_Weight_Check', 'PL', 'Rozpocznij kontrolę wagi', '0')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'EN', 'Frequency', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'DE', 'Frequenz', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'ES', 'Frecuencia', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'FR', 'La fréquence', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'HU', 'Frekvencia', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'IT', 'Frequenza', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'NL', 'Frequentie', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleFrequency', 'PL', 'Częstotliwość', '0')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'EN', 'Cancel Weight Check', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'DE', 'Gewichtsprüfung abbrechen', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'ES', 'Cancelar verificación de peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'FR', 'Annuler le contrôle du poids', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'HU', 'Mégsem a súlyellenőrzést', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'IT', 'Annulla controllo peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'NL', 'Annuleer gewichtscontrole', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Cancel_Weight_Check', 'PL', 'Anuluj kontrolę wagi', '0')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_WEIGHT_REPORTS')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('WEIGHTS', 'FRM_WEIGHT_REPORTS')
+    </statement>
+    
+     <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'EN', 'Weight Report', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'DE', 'Gewichtsbericht', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'ES', 'Informe de peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'FR', 'Rapport de poids', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'HU', 'Súlyjelentés', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'IT', 'Rapporto sul peso', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'NL', 'Gewichtsrapport', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_WEIGHT_REPORTS', 'PL', 'Raport masy', '0')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_MENUS(MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_WEIGHT_REPORTS', 'MENU_WEIGHTS', 0)
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_MODULES(MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) 
+       VALUES ('FRM_WEIGHT_REPORTS', 'N', 'Y', 'FORM', 'mod_FRM_WEIGHT_REPORTS', 0, 'weight-report.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_WEIGHT_REPORTS', '', '')
+    </statement>
+
+	<statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'EN', 'Details', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'DE', 'Einzelheiten', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'ES', 'Detalles', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'FR', 'Détails', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'HU', 'Részletek', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'IT', 'Dettagli', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'NL', 'Details', '0')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Details', 'PL', 'Detale', '0')
+    </statement>	
+    
+    <statement>
+       INSERT INTO SYS_MODULES(MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_WEIGHT_HEADER_STD', 'N', 'Y', 'REPORT', 'Weight Summary', 0, '', '', 'weight_header_std.jrxml', '', '', 'Y', 'N', 1, 'Standard', 'mod_FRM_WEIGHT_REPORTS', '', '')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'RPT_WEIGHT_HEADER_STD')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('WEIGHTS', 'RPT_WEIGHT_HEADER_STD')
+    </statement>
+
+    <statement>
+       INSERT INTO SYS_MODULES(MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) 
+       VALUES ('FRM_WEIGHT_REPORTS_DETAILS', 'N', 'Y', 'FORM', 'mod_FRM_WEIGHT_REPORTS', 0, 'weight-report.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_WEIGHT_REPORTS', '', '')
+    </statement>
+	
+	<statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_WEIGHT_REPORTS_DETAILS')
+    </statement>
+    
+    <statement>
+       INSERT INTO SYS_GROUP_PERMISSIONS(GROUP_ID, MODULE_ID) VALUES ('WEIGHTS', 'FRM_WEIGHT_REPORTS_DETAILS')
+    </statement>
+	
+</DDL>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<message>
+  <hostRef>1e8d719e-4de6-42d6-a7a9-f4731af2f7b0</hostRef>
+  <messageRef>1372</messageRef>
+  <interfaceType>Process Order Status Change</interfaceType>
+  <messageInformation>Process Order=0123456</messageInformation>
+  <interfaceDirection>Input</interfaceDirection>
+  <messageDate>2009-05-06T10:14:51</messageDate>
+  <messageData>
+    <processOrderStatusChange>
+      <orderNo>0123456</orderNo>
+      <status>Discarded</status>
+      <locationId>AINTREE</locationId>
+      <receipeId>987654321</receipeId>
+    </processOrderStatusChange>
+  </messageData>
+</message>

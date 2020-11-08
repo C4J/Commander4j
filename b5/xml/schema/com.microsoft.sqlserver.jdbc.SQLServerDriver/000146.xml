@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+	<statement>
+   	ALTER TABLE [dbo].[APP_WEIGHT_SAMPLE_HEADER] DROP CONSTRAINT [PK_APP_WEIGHT_SAMPLE_HEADER]
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[SAMPLE_POINT] [varchar](25)  collate database_default not null
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[USER_ID] [varchar](20) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[WORKSTATION_ID] [varchar](25) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[SCALE_ID] [varchar](15) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[PROCESS_ORDER] [varchar](10) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[REQUIRED_RESOURCE] [varchar](50) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[CUSTOMER_ID] [varchar](20) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[MATERIAL] [varchar](20) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[PRODUCT_GROUP] [varchar](25) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[CONTAINER_CODE] [varchar](12)  collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[TARE_WEIGHT_UOM] [varchar](3) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[NOMINAL_WEIGHT_UOM] [varchar](3) collate database_default
+	</statement>
+	
+	<statement>
+   	alter table APP_WEIGHT_SAMPLE_HEADER alter column 	[COMMENTS] [varchar](250) collate database_default
+	</statement>
+	
+	<statement>
+	   ALTER TABLE [dbo].[APP_WEIGHT_SAMPLE_HEADER] ADD CONSTRAINT [PK_APP_WEIGHT_SAMPLE_HEADER] PRIMARY KEY CLUSTERED ([SAMPLE_POINT], [SAMPLE_DATE])
+	   WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+	   ON [PRIMARY];
+	</statement>
+	
+	<statement>
+   	ALTER TABLE [dbo].[APP_WEIGHT_SAMPLE_DETAIL] DROP CONSTRAINT [PK_APP_WEIGHT_SAMPLE_DETAIL]
+	</statement>
+	
+	<statement>
+  	 alter table [dbo].[APP_WEIGHT_SAMPLE_DETAIL] alter column	[SAMPLE_POINT] [varchar](20) collate database_default not null
+	</statement>
+	
+	<statement>
+ 		alter table [dbo].[APP_WEIGHT_SAMPLE_DETAIL] alter column	[SAMPLE_WEIGHT_UOM] [varchar](3)  collate database_default
+	</statement>
+	
+	<statement>
+	   ALTER TABLE [dbo].[APP_WEIGHT_SAMPLE_DETAIL] ADD CONSTRAINT [PK_APP_WEIGHT_SAMPLE_DETAIL] PRIMARY KEY CLUSTERED ([SAMPLE_POINT], [SAMPLE_DATE], [SAMPLE_SEQUENCE])
+	   WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+	   ON [PRIMARY]
+	</statement>  
+   
+   <statement>
+		CREATE VIEW [dbo].[view_weight_samples2] AS SELECT
+			[APP_WEIGHT_SAMPLE_POINT].LOCATION,
+			[APP_WEIGHT_SAMPLE_HEADER].[PRODUCT_GROUP],
+			[APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_DATE],
+			CAST ( [APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_DATE] AS DATE ) AS SAMPLE_DATE_SHORT,
+			[APP_WEIGHT_SAMPLE_HEADER].[NOMINAL_WEIGHT],
+			[APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_COUNT],
+			[APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_MEAN],
+			[APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_STD_DEV],
+			[APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_T1_COUNT],
+			[APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_T2_COUNT] 
+		FROM
+			[APP_WEIGHT_SAMPLE_DETAIL]
+			JOIN [APP_WEIGHT_SAMPLE_HEADER] ON [APP_WEIGHT_SAMPLE_DETAIL].[SAMPLE_POINT] = [APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_POINT] 
+			AND [APP_WEIGHT_SAMPLE_DETAIL].[SAMPLE_DATE] = [APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_DATE]
+			JOIN [APP_WEIGHT_SAMPLE_POINT] ON [APP_WEIGHT_SAMPLE_POINT].[SAMPLE_POINT] = [APP_WEIGHT_SAMPLE_HEADER].[SAMPLE_POINT]
+   </statement>
+      
+</DDL>
