@@ -175,7 +175,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 	{
 		mode = "NEW";
 		ltype = "ADD";
-		lref = new Long(-1);
+		lref = Long.valueOf(-1);
 		clear();
 		jTextFieldTransactionRef.setText(mode);
 		jButtonSave.setEnabled(false);
