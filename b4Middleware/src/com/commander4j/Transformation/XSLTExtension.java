@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,7 +25,7 @@ public class XSLTExtension
 		Timestamp ts = getSQLDateTime();
 		try
 		{
-			String temp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
+			String temp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.UK).format(ts);
 			result = temp.substring(0, 4);
 			result = result + "-";
 			result = result + temp.substring(5, 7);
@@ -36,30 +37,31 @@ public class XSLTExtension
 			result = result + temp.substring(14, 16);
 			result = result + ":";
 			result = result + temp.substring(17, 19);
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			result = "Error";
 		}
 		return result;
 	}
-	
+
 	public static String getISODateTimeFilenameString()
 	{
 		String result = getISODateTimeString();
-		result=result.replace(":", "_");
-		result=result.replace("-", "_");
-		result=result.replace(" ", "_");
-		result=result.replace("T", "_");
-		
+		result = result.replace(":", "_");
+		result = result.replace("-", "_");
+		result = result.replace(" ", "_");
+		result = result.replace("T", "_");
+
 		return result;
 	}
 
 	public static String removeLeadingZeros(String param)
 	{
-		String result = StringUtils.stripStart(param,"0");
+		String result = StringUtils.stripStart(param, "0");
 		return result;
 	}
-	
+
 	public static String padStringLeft(String value, int size, String character)
 	{
 		String s = Utility.replaceNullStringwithBlank(value);
@@ -142,8 +144,8 @@ public class XSLTExtension
 	{
 		String result = inputString;
 
-		SimpleDateFormat fromUser = new SimpleDateFormat("dd-MMM-yy");
-		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat fromUser = new SimpleDateFormat("dd-MMM-yy", Locale.UK);
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
 
 		try
 		{
@@ -151,7 +153,8 @@ public class XSLTExtension
 			result = myFormat.format(fromUser.parse(inputString));
 			result = result + "T00:00:00";
 
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 
 			result = "Input date DD-MMM-YY format error [" + inputString + "]";
@@ -160,13 +163,13 @@ public class XSLTExtension
 
 		return result;
 	}
-	
+
 	public static synchronized String date_DDMMYYYY_to_ISO_Date(String inputString)
 	{
 		String result = inputString;
 
-		SimpleDateFormat fromUser = new SimpleDateFormat("ddMMyyyy");
-		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat fromUser = new SimpleDateFormat("ddMMyyyy", Locale.UK);
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.UK);
 
 		try
 		{
@@ -174,7 +177,8 @@ public class XSLTExtension
 			result = myFormat.format(fromUser.parse(inputString));
 			result = result + "T00:00:00";
 
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 
 			result = "Input date DD-MMM-YY format error [" + inputString + "]";
@@ -183,21 +187,21 @@ public class XSLTExtension
 
 		return result;
 	}
-	
-	
+
 	public static synchronized String date_DD_MM_YY_HH_MM_SS_to_ISO_Date(String inputString)
 	{
 		String result = inputString;
 
-		SimpleDateFormat fromUser = new SimpleDateFormat("dd-MM-yy HH:mm:ss");
-		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat fromUser = new SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale.UK);
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.UK);
 
 		try
 		{
 
 			result = myFormat.format(fromUser.parse(inputString));
 
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 
 			result = "Input date DD-MM-YY HH:mm:ss format error [" + inputString + "]";
@@ -206,20 +210,21 @@ public class XSLTExtension
 
 		return result;
 	}
-	
+
 	public static synchronized String ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS(String inputString)
 	{
 		String result = inputString.replace("T", " ");
 
-		SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.UK);
+		SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.UK);
 
 		try
 		{
 
 			result = myFormat.format(fromUser.parse(result));
 
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 
 			result = "Input date yyyy-MM-dd HH:mm:ss format error [" + result + "]";
@@ -228,20 +233,21 @@ public class XSLTExtension
 
 		return result;
 	}
-	
+
 	public static synchronized String ISO_Date_to_date_MMYYYY(String inputString)
 	{
 		String result = inputString.replace("T", " ");
 
-		SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		SimpleDateFormat myFormat = new SimpleDateFormat("MMyyyy");
+		SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.UK);
+		SimpleDateFormat myFormat = new SimpleDateFormat("MMyyyy", Locale.UK);
 
 		try
 		{
 
 			result = myFormat.format(fromUser.parse(result));
 
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 
 			result = "Input date yyyy-MM-dd HH:mm:ss format error [" + result + "]";
@@ -250,20 +256,21 @@ public class XSLTExtension
 
 		return result;
 	}
-	
+
 	public static synchronized String ISO_Date_to_date_DDMMYYYY(String inputString)
 	{
 		String result = inputString.replace("T", " ");
 
-		SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		SimpleDateFormat myFormat = new SimpleDateFormat("ddMMyyyy");
+		SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.UK);
+		SimpleDateFormat myFormat = new SimpleDateFormat("ddMMyyyy", Locale.UK);
 
 		try
 		{
 
 			result = myFormat.format(fromUser.parse(result));
 
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 
 			result = "Input date yyyy-MM-dd HH:mm:ss format error [" + result + "]";
@@ -271,7 +278,7 @@ public class XSLTExtension
 		}
 
 		return result;
-	}	
+	}
 
 	public static synchronized String formatDate(String inputString, String formatFrom, String formatTo)
 	{
@@ -285,7 +292,8 @@ public class XSLTExtension
 
 			result = myFormat.format(fromUser.parse(inputString));
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 
 			result = e.getMessage() + "[" + inputString + "],[" + formatFrom + "],[" + formatTo + "]";
@@ -312,7 +320,7 @@ public class XSLTExtension
 
 		return result;
 	}
-	
+
 	public static synchronized String subString(String inputString, int startpos, int length)
 	{
 		String result = inputString;
