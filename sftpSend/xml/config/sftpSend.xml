@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sftpSend>
+        <security>
+        	<authType>userPass</authType>
+            <username>dgadm</username>
+            <password>a4nQ/czt}7{>76+7</password>  
+            <StrictHostKeyChecking>no</StrictHostKeyChecking>
+            <knownHostsFile>./ssh/known_hosts</knownHostsFile>
+        </security>
+        
+        <source>
+            <localDir>./send/</localDir>
+            <localFileMask>*.xml"</localFileMask>
+        </source>
+
+        <destination>
+            <remoteHost>ns2.6info.fr</remoteHost>
+            <remoteDir>/home/dgadm/transfer/centurylogistics.co.uk/</remoteDir>     
+        </destination>
+
+    </sftpSend>
+</config>

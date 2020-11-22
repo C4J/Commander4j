@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: com.commander4j.sftpSend.Transfer
+Class-Path: lib/app/commons-io-2.8.0.jar 
+ lib/app/jsch-0.1.55.jar 
+ lib/app/log4j-api-2.13.3.jar 
+ lib/app/log4j-core-2.13.3.jar 
+
