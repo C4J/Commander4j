@@ -3,8 +3,8 @@
     <sftpSend>
         <security>
         	<authType>userPass</authType>
-            <username>dgadm</username>
-            <password>a4nQ/czt}7{>76+7</password>  
+            <username>aaaaa</username>
+            <password>bbbbb</password>  
             <StrictHostKeyChecking>no</StrictHostKeyChecking>
             <knownHostsFile>./ssh/known_hosts</knownHostsFile>
         </security>
@@ -16,7 +16,7 @@
 
         <destination>
             <remoteHost>ns2.6info.fr</remoteHost>
-            <remoteDir>/home/dgadm/transfer/centurylogistics.co.uk/</remoteDir>     
+            <remoteDir>/path/</remoteDir>     
         </destination>
 
     </sftpSend>
