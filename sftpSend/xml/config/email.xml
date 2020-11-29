@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<emailSettings>    
+    
+    <!--    Example Version-->
+    
+    <!-- The section called "configuration" is always the active one - rename as appropriate-->
+
+    <!-- SMTP No Authentication Example -->
+    
+    <configuration2>
+        <property name="mail.smtp.starttls.enable" value="false"/>
+        <property name="mail.smtp.host" value="smtp.demo.com"/>
+        <property name="mail.smtp.socketFactory.port" value="25"/>
+        <property name="mail.smtp.user" value="demo@email.com"/>
+        <property name="mail.smtp.password" value=""/>
+        <property name="mail.smtp.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
+        <property name="mail.smtp.auth" value="false"/>
+        <property name="mail.smtp.port" value="25"/>
+        <property name="mail.smtp.from" value="demo@email.com"/>
+        <property name="mail.debug" value="true"/>
+    </configuration2>
+    
+    <!-- Microsoft smtp.live.com Example -->
+    
+    <configuration>
+        <property name="mail.smtp.auth" value="true"/>
+        <property name="mail.smtp.starttls.enable" value="true"/>
+        <property name="mail.smtp.host" value="smtp.live.com"/>
+        <property name="mail.smtp.socketFactory.port" value="25"/>
+        <property name="mail.smtp.user" value="email@outlook.com"/>
+        <property name="mail.smtp.password" value="password"/>
+        <property name="mail.smtp.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
+        <property name="mail.smtp.auth" value="true"/>
+        <property name="mail.smtp.port" value="25"/>
+        <property name="mail.smtp.from" value="email@outlook.com"/>
+        <property name="mail.debug" value="true"/>
+    </configuration>
+
+    <!-- Google gmail Example -->
+    
+    <configuration1>
+        <property name="mail.smtp.auth" value="true"/>
+        <property name="mail.smtp.starttls.enable" value="true"/>
+        <property name="mail.smtp.host" value="smtp.gmail.com"/>
+        <property name="mail.smtp.socketFactory.port" value="465"/>
+        <property name="mail.smtp.user" value="email@gmail.com"/>
+        <property name="mail.smtp.password" value="password"/>
+        <property name="mail.smtp.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
+        <property name="mail.smtp.auth" value="true"/>
+        <property name="mail.smtp.port" value="465"/>
+        <property name="mail.smtp.from" value="email@gmail.com"/>
+        <property name="mail.debug" value="true"/>
+    </configuration1>
+
+
+    <!-- Distribution Lists are referred to within message mapping Config.xml -->
+
+    <distributionList id="StartStop" enabled="N" maxFrequencyMins="0">
+        <toAddressList>example@email.com</toAddressList>
+    </distributionList>
+
+    <distributionList id="LabelSync" enabled="N" maxFrequencyMins="0">
+        <toAddressList>example@email.com</toAddressList>
+    </distributionList>
+    
+    <distributionList id="Logs" enabled="Y" maxFrequencyMins="0">
+        <toAddressList>example@email.com</toAddressList>
+    </distributionList>
+
+    <distributionList id="Config" enabled="Y" maxFrequencyMins="0">
+        <toAddressList>example@email.com</toAddressList>
+    </distributionList>
+
+    <distributionList id="Monitor" enabled="Y" maxFrequencyMins="0">
+        <toAddressList>example@email.com</toAddressList>
+    </distributionList>
+
+    <distributionList id="Info" enabled="Y" maxFrequencyMins="0">
+        <toAddressList>example@email.com</toAddressList>
+    </distributionList>
+
+    <distributionList id="Error" enabled="Y" maxFrequencyMins="5">
+        <toAddressList>example@email.com</toAddressList>
+    </distributionList>
+    
+    <distributionList id="SSCC" enabled="Y" maxFrequencyMins="5">
+        <toAddressList>example@email.com</toAddressList>
+    </distributionList>
+    
+     <distributionList id="OrderAssigned" enabled="Y" maxFrequencyMins="0">
+        <toAddressList>example@email.com</toAddressList>
+    </distributionList>
+
+
+</emailSettings>
