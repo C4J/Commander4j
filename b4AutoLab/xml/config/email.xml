@@ -25,14 +25,15 @@
         <property name="mail.smtp.host" value="smtp.live.com"/>
         <property name="mail.smtp.socketFactory.port" value="25"/>
         
-        <property name="mail.smtp.user" value="email@outlook.com"/>
-        <property name="mail.smtp.password" value="password"/>
-
+        <!--  <property name="mail.smtp.user" value="email@outlook.com"/>  -->
+        <property name="mail.smtp.user" value="c4j_despatch@outlook.com"/>
+        <!--  <property name="mail.smtp.password" value="password"/>  -->
+        <property name="mail.smtp.password" value="Z7eEXWvQJi8T]?"/>
         <property name="mail.smtp.socketFactory.class" value="javax.net.ssl.SSLSocketFactory"/>
         <property name="mail.smtp.auth" value="true"/>
         <property name="mail.smtp.port" value="25"/>
-
-        <property name="mail.smtp.from" value="email@outlook.com"/>
+        <property name="mail.smtp.from" value="c4j_despatch@outlook.com"/>
+        <!--  <property name="mail.smtp.from" value="email@outlook.com"/>  -->
         <property name="mail.debug" value="true"/>
     </configuration>
 

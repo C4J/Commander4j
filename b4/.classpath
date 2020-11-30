@@ -96,15 +96,15 @@
 	<classpathentry kind="lib" path="lib/jasperlib/ant-1.10.8.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/groovy-sandbox-1.26-jaspersoft-1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/itext-2.1.7.js8.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.15.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-annotation-processors-6.15.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.15.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.15.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-custom-visualization-6.15.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.15.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.15.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.15.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.15.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.16.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-annotation-processors-6.16.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.16.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.16.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-custom-visualization-6.16.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.16.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.16.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.16.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.16.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/AdoptOpenJDK 8 [1.8.0_272]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
