@@ -26,13 +26,13 @@
         </security>
 
         <source>
-            <value id="localDir" encrypted="no">/Users/dave/Commander4j/workspace.development/sftpSend/send/</value>
+            <value id="localDir" encrypted="no">/localPath/</value>
             <value id="localFileMask" encrypted="no">*.xml</value>
+            <value id="backupDir" encrypted="no"></value>
         </source>
 
         <destination>
-            <value id="remoteDir" encrypted="no"
-                >/home/dgadm/transfer/centurylogistics.co.uk/purina/</value>
+            <value id="remoteDir" encrypted="no">/remotePath/</value>
             <value id="tempFileExtension" encrypted="no">.tmp</value>
         </destination>
 
@@ -56,7 +56,7 @@
         </security>
 
         <source>
-            <value id="localDir" encrypted="no">/home/dgadm/sftpSend2/send/</value>
+            <value id="localDir" encrypted="no">/localpath/</value>
             <value id="localFileMask">*.xml</value>
         </source>
 

@@ -52,21 +52,21 @@ public class Transfer extends Thread
 		Transfer.initLogging("");
 
 		logger.info("sftpSend Starting");
-		
+
 		ShutdownHook shutdownHook = new ShutdownHook();
 		Runtime.getRuntime().addShutdownHook(shutdownHook);
-		
+
 		sftpsend = new Transfer();
 		sftpsend.loadConfigXML();
-		
+
 		emailqueue.setEnabled(Boolean.valueOf(utils.replaceNullStringwithDefault(general.get("emailEnabled"), "no")));
-		
+
 		emailthread = new EmailThread();
-		
+
 		emailthread.start();
 
-		emailqueue.addToQueue("Monitor", utils.replaceNullStringwithDefault(general.get("title"), "SFTP Send"), "Program started on "+utils.getClientName() , "");
-		
+		emailqueue.addToQueue("Monitor", utils.replaceNullStringwithDefault(general.get("title"), "SFTP Send"), "Program started on " + utils.getClientName(), "");
+
 		logger.info("currentDirectory :" + source.get("localDir"));
 		logger.info("Scan for files...");
 
@@ -84,7 +84,6 @@ public class Transfer extends Thread
 			}
 		}
 
-		
 		emailthread.shutdown();
 
 		while (emailthread.isAlive())
@@ -98,11 +97,11 @@ public class Transfer extends Thread
 
 			}
 		}
-		
+
 		logger.info("sftpSend Shutdown");
-		
-		emailqueue.addToQueue("Monitor", utils.replaceNullStringwithDefault(general.get("title"), "SFTP Send"), "Program stopped on "+utils.getClientName() , "");
-		
+
+		emailqueue.addToQueue("Monitor", utils.replaceNullStringwithDefault(general.get("title"), "SFTP Send"), "Program stopped on " + utils.getClientName(), "");
+
 		System.exit(0);
 	}
 
@@ -147,14 +146,14 @@ public class Transfer extends Thread
 
 				sshClient.authPublickey(username, keys);
 			}
-			
+
 			sftpClient = sshClient.newSFTPClient();
 
 			result = true;
 		}
 		catch (UserAuthException e)
 		{
-			logger.error(e.getMessage());	
+			logger.error(e.getMessage());
 		}
 		catch (TransportException e)
 		{
@@ -187,19 +186,19 @@ public class Transfer extends Thread
 
 	private boolean send(String localFile)
 	{
-		boolean result=false;
+		boolean result = false;
 
 		try
 		{
 			// * Transfer file *//
-			
-			logger.info("put "+source.get("localDir") + localFile+","+destination.get("remoteDir") + localFile + destination.get("tempFileExtension"));
+
+			logger.info("put " + source.get("localDir") + localFile + "," + destination.get("remoteDir") + localFile + destination.get("tempFileExtension"));
 
 			sftpClient.put(source.get("localDir") + localFile, destination.get("remoteDir") + localFile + destination.get("tempFileExtension"));
 
 			try
 			{
-				logger.info("rm "+destination.get("remoteDir") + localFile);
+				logger.info("rm " + destination.get("remoteDir") + localFile);
 				sftpClient.rm(destination.get("remoteDir") + localFile);
 			}
 			catch (Exception e)
@@ -207,20 +206,20 @@ public class Transfer extends Thread
 
 			}
 
-			logger.info("rename "+destination.get("remoteDir") + localFile + destination.get("tempFileExtension")+","+ destination.get("remoteDir") + localFile);
+			logger.info("rename " + destination.get("remoteDir") + localFile + destination.get("tempFileExtension") + "," + destination.get("remoteDir") + localFile);
 			sftpClient.rename(destination.get("remoteDir") + localFile + destination.get("tempFileExtension"), destination.get("remoteDir") + localFile);
 
-			logger.info("delete "+source.get("localDir") + localFile);
+			logger.info("delete " + source.get("localDir") + localFile);
 			FileUtils.deleteQuietly(new File(source.get("localDir") + localFile));
-			
-			result=true;
+
+			result = true;
 
 		}
 		catch (IOException e)
 		{
 			logger.error(e.getMessage());
 		}
-		
+
 		return result;
 
 	}
@@ -232,43 +231,64 @@ public class Transfer extends Thread
 
 	private void transferFiles()
 	{
-		
+
 		File sourceDirectory = new File(source.get("localDir"));
-		
+
 		String[] filesNames = sourceDirectory.list(new WildcardFileFilter(source.get("localFileMask")));
 
 		if (filesNames.length > 0)
 		{
 			String sendList = utils.getClientName() + " transferred the following file(s) \n\n";
-			
+
 			logger.info("Files found :" + filesNames.length);
-			
+
 			if (connect())
 			{
 
 				for (int i = 0; i < filesNames.length; i++)
 				{
 
-					File xxx = new File(source.get("localDir") + filesNames[i]);
+					File sourceFile = new File(source.get("localDir") + filesNames[i]);
+
+					if (source.get("backupDir").equals("") == false)
+					{
+						File backupFile = new File(source.get("backupDir") + filesNames[i]);
+
+						try
+						{
+							FileUtils.copyFile(sourceFile, backupFile, true);
+							logger.info("Backup [" + sourceFile.getAbsolutePath() + "] to [" + backupFile.getAbsolutePath() + "]");
+						}
+						catch (IOException e)
+						{
+							logger.error("Unable to backup [" + sourceFile.getAbsolutePath() + "] to [" + backupFile.getAbsolutePath() + "]");
+						}
+						finally
+						{
+							backupFile = null;
+						}
+					}
+
 					logger.info("File :" + filesNames[i]);
 
-					if (xxx.isFile())
+					if (sourceFile.isFile())
 					{
 
 						if (send(filesNames[i]))
 						{
-							sendList = sendList + filesNames[i]+"\n";
+							sendList = sendList + filesNames[i] + "\n";
 						}
 					}
 
-					xxx = null;
+					sourceFile = null;
+
 				}
-				
-				sendList = sendList + "\n\nto "+security.get("remoteHost");
-				
+
+				sendList = sendList + "\n\nto " + security.get("remoteHost");
+
 				disconnect();
-				
-				emailqueue.addToQueue("Monitor", utils.replaceNullStringwithDefault(general.get("title"), "SFTP Send"), sendList , "");
+
+				emailqueue.addToQueue("Monitor", utils.replaceNullStringwithDefault(general.get("title"), "SFTP Send"), sendList, "");
 			}
 		}
 
@@ -292,9 +312,9 @@ public class Transfer extends Thread
 		String id = "";
 		String value = "";
 		String encrypted = "";
-		
+
 		// General //
-		
+
 		seq = 1;
 
 		while (xmlDoc.findXPath("/config/sftpSend2/general/value[" + String.valueOf(seq) + "]/@id").equals("") == false)
@@ -302,7 +322,7 @@ public class Transfer extends Thread
 			id = xmlDoc.findXPath("/config/sftpSend2/general/value[" + String.valueOf(seq) + "]/@id");
 			value = xmlDoc.findXPath("/config/sftpSend2/general/value[" + String.valueOf(seq) + "]");
 			encrypted = xmlDoc.findXPath("/config/sftpSend2/general/value[" + String.valueOf(seq) + "]/@encrypted");
-			
+
 			if (encrypted.equals("yes"))
 			{
 				value = cipher.decode(value);
@@ -324,7 +344,7 @@ public class Transfer extends Thread
 			id = xmlDoc.findXPath("/config/sftpSend2/security/value[" + String.valueOf(seq) + "]/@id");
 			value = xmlDoc.findXPath("/config/sftpSend2/security/value[" + String.valueOf(seq) + "]");
 			encrypted = xmlDoc.findXPath("/config/sftpSend2/security/value[" + String.valueOf(seq) + "]/@encrypted");
-			
+
 			if (encrypted.equals("yes"))
 			{
 				value = cipher.decode(value);
@@ -373,7 +393,7 @@ public class Transfer extends Thread
 			{
 				value = cipher.decode(value);
 			}
-			
+
 			if (id.equals("") == false)
 			{
 				destination.put(id, value);
@@ -381,10 +401,9 @@ public class Transfer extends Thread
 			seq++;
 		}
 
-		
 		source.put("localDir", Transfer.utils.formatPathTerminator(source.get("localDir")));
 		destination.put("remoteDir", destination.get("remoteDir"));
-		
+
 		return result;
 	}
 
