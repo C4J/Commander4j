@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.9" transformSequenceNumber="8">
-  <directoryPresets config="./lib" />
+  <directoryPresets config="." />
   <application name="SFTP Send" applicationId="1389-2676-6857-5998" mediaDir="../../Distribution/java8/sftpSend" shortName="sftpSend" publisher="David Garratt" publisherWeb="https://www.commander4j.com" version="3.04" allPathsRelative="true" macVolumeId="7e8a68a2fd94926b" javaMinVersion="1.8" javaMaxVersion="1.8" jdkMode="jdk" jdkName="JDK 1.8">
     <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u275-b01_openj9-0.23.0" />
   </application>
@@ -16,6 +16,7 @@
       <mountPoint id="63" location="send" />
       <mountPoint id="64" location="send/demo" />
       <mountPoint id="369" location="logs" />
+      <mountPoint id="789" location="Images" />
       <mountPoint id="65" />
     </mountPoints>
     <entries>
@@ -32,10 +33,14 @@
       </dirEntry>
       <dirEntry mountPoint="62" file="./xml/config" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="config">
         <exclude>
+          <entry location="email copy.xml" />
+          <entry location=".DS_Store" />
           <entry location="Examples" />
+          <entry location="sftpSend copy.xml" />
         </exclude>
       </dirEntry>
       <dirEntry mountPoint="64" file="./send/demo" overrideUninstallMode="true" subDirectory="demo" />
+      <dirEntry mountPoint="789" file="./Images" subDirectory="Images" />
       <fileEntry mountPoint="65" file="./sftpSend.jar" overrideUninstallMode="true" />
     </entries>
   </files>
@@ -104,6 +109,36 @@
   <installerGui>
     <applications>
       <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication">
+        <serializedBean>
+          <property name="customIconImageFiles">
+            <add>
+              <object class="com.install4j.api.beans.ExternalFile">
+                <string>./Images/icon_16x16.png</string>
+              </object>
+            </add>
+            <add>
+              <object class="com.install4j.api.beans.ExternalFile">
+                <string>./Images/icon_32x32.png</string>
+              </object>
+            </add>
+            <add>
+              <object class="com.install4j.api.beans.ExternalFile">
+                <string>./Images/icon_128x128.png</string>
+              </object>
+            </add>
+            <add>
+              <object class="com.install4j.api.beans.ExternalFile">
+                <string>./Images/icon_256x256.png</string>
+              </object>
+            </add>
+            <add>
+              <object class="com.install4j.api.beans.ExternalFile">
+                <string>./Images/icon_512x512.png</string>
+              </object>
+            </add>
+          </property>
+          <property name="useCustomIcon" type="boolean" value="true" />
+        </serializedBean>
         <startup>
           <screen id="1" beanClass="com.install4j.runtime.beans.screens.StartupScreen" rollbackBarrierExitCode="0">
             <actions>
