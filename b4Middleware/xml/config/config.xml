@@ -6,7 +6,7 @@
     <logArchiveRetentionDays>3</logArchiveRetentionDays>
     <enableEmailNotifications>true</enableEmailNotifications>
     <statusReportTime>09:00:00</statusReportTime>
-
+    
     <map id="map101" enabed="Y" description="NES Konnect XML Material to C4J Material Master">
         <input id="in1" description="Read Konnect XML Material Master">
             <type>XML</type>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.9" transformSequenceNumber="8">
   <directoryPresets config="./lib" />
-  <application name="SFTP Send" applicationId="1389-2676-6857-5998" mediaDir="../../Distribution/java8/sftpSend" shortName="sftpSend" publisher="David Garratt" publisherWeb="https://www.commander4j.com" version="3.02" allPathsRelative="true" macVolumeId="7e8a68a2fd94926b" javaMinVersion="1.8" javaMaxVersion="1.8" jdkMode="jdk" jdkName="JDK 1.8">
+  <application name="SFTP Send" applicationId="1389-2676-6857-5998" mediaDir="../../Distribution/java8/sftpSend" shortName="sftpSend" publisher="David Garratt" publisherWeb="https://www.commander4j.com" version="3.04" allPathsRelative="true" macVolumeId="7e8a68a2fd94926b" javaMinVersion="1.8" javaMaxVersion="1.8" jdkMode="jdk" jdkName="JDK 1.8">
     <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u275-b01_openj9-0.23.0" />
   </application>
   <files>
@@ -83,6 +83,16 @@
     <launcher name="EncryptData" id="271">
       <executable name="EncryptData" executableDir="." redirectStderr="false" executableMode="console" />
       <java mainClass="com.commander4j.util.EncryptData">
+        <classPath>
+          <archive location="sftpSend.jar" failOnError="false" />
+          <directory location="lib/app" failOnError="false" />
+          <directory location="lib/mail" failOnError="false" />
+        </classPath>
+      </java>
+    </launcher>
+    <launcher name="sftpSend_Service3" id="688">
+      <executable name="sftpSend_Service3" executableDir="." redirectStderr="false" executableMode="service" />
+      <java mainClass="com.commander4j.sftp.Transfer">
         <classPath>
           <archive location="sftpSend.jar" failOnError="false" />
           <directory location="lib/app" failOnError="false" />

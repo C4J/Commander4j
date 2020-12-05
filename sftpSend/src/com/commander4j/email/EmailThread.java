@@ -38,6 +38,9 @@ public class EmailThread extends Thread
 			Transfer.emailqueue.processQueue();
 
 		}
+		
+		Transfer.emailqueue.processQueue();
+		
 		logger.debug("EmailThread stopped.");
 	}
 }

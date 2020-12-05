@@ -45,6 +45,7 @@ public class Transfer extends Thread
 	public static JUtility utils = new JUtility();
 	public static EmailQueue emailqueue = new EmailQueue();
 	public static EmailThread emailthread;
+	public static String version = "3.04";
 
 	public static void main(String[] args)
 	{
@@ -83,6 +84,8 @@ public class Transfer extends Thread
 				run = false;
 			}
 		}
+		
+		emailqueue.addToQueue("Monitor", utils.replaceNullStringwithDefault(general.get("title"), "SFTP Send"), "Program stopped on " + utils.getClientName(), "");
 
 		emailthread.shutdown();
 
@@ -100,7 +103,7 @@ public class Transfer extends Thread
 
 		logger.info("sftpSend Shutdown");
 
-		emailqueue.addToQueue("Monitor", utils.replaceNullStringwithDefault(general.get("title"), "SFTP Send"), "Program stopped on " + utils.getClientName(), "");
+
 
 		System.exit(0);
 	}
@@ -235,6 +238,8 @@ public class Transfer extends Thread
 		File sourceDirectory = new File(source.get("localDir"));
 
 		String[] filesNames = sourceDirectory.list(new WildcardFileFilter(source.get("localFileMask")));
+		
+		int sendCount = 0;
 
 		if (filesNames.length > 0)
 		{
@@ -257,11 +262,11 @@ public class Transfer extends Thread
 						try
 						{
 							FileUtils.copyFile(sourceFile, backupFile, true);
-							logger.info("Backup [" + sourceFile.getAbsolutePath() + "] to [" + backupFile.getAbsolutePath() + "]");
+							logger.info("Backup [" + sourceFile.getName() + "] to [" + backupFile.getName() + "]");
 						}
 						catch (IOException e)
 						{
-							logger.error("Unable to backup [" + sourceFile.getAbsolutePath() + "] to [" + backupFile.getAbsolutePath() + "]");
+							logger.error("Unable to backup [" + sourceFile.getName() + "] to [" + backupFile.getName() + "]");
 						}
 						finally
 						{
@@ -277,6 +282,7 @@ public class Transfer extends Thread
 						if (send(filesNames[i]))
 						{
 							sendList = sendList + filesNames[i] + "\n";
+							sendCount++;
 						}
 					}
 
@@ -288,7 +294,10 @@ public class Transfer extends Thread
 
 				disconnect();
 
-				emailqueue.addToQueue("Monitor", utils.replaceNullStringwithDefault(general.get("title"), "SFTP Send"), sendList, "");
+				if (sendCount>0)
+				{
+					emailqueue.addToQueue("Monitor", utils.replaceNullStringwithDefault(general.get("title"), "SFTP Send"), sendList, "");
+				}
 			}
 		}
 
