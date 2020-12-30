@@ -86,10 +86,9 @@
 	<classpathentry kind="lib" path="lib/jasperlib/batik-xml-1.11.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/groovy-all-2.4.16.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/joda-time-2.10.2.jar"/>
-	<classpathentry kind="lib" path="lib/db/mssql-jdbc-8.2.0.jre8.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/core-3.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/rhino-1.7.11.jar"/>
-	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.20.jar"/>
+	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.22.jar"/>
 	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.6.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/ant-1.10.8.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/groovy-sandbox-1.26-jaspersoft-1.jar"/>
@@ -104,6 +103,7 @@
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.16.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.16.0.jar"/>
 	<classpathentry kind="lib" path="lib/mail/javax.activation-api.jar"/>
+	<classpathentry kind="lib" path="lib/db/mssql-jdbc-8.4.1.jre11.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java 11 JDK">
 		<attributes>
 			<attribute name="module" value="true"/>

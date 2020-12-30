@@ -81,10 +81,10 @@
     	<pathelement location="lib/cups4j/slf4j-simple-1.7.25.jar"/>
         <pathelement location="lib/jasperlib/httpclient-4.5.10.jar"/>
         <pathelement location="lib/jasperlib/httpcore-4.4.12.jar"/>
-        <pathelement location="lib/db/mssql-jdbc-8.2.0.jre8.jar"/>
+        <pathelement location="lib/db/mssql-jdbc-8.4.1.jre8.jar"/>
         <pathelement location="lib/jasperlib/batik-anim-1.11.jar"/>
         <pathelement location="lib/jasperlib/batik-ext-1.11.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-8.0.20.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-8.0.22.jar"/>
         <pathelement location="lib/serial/jSerialComm-2.6.2.jar"/>
         <pathelement location="lib/jasperlib/batik-awt-util-1.11.jar"/>
         <pathelement location="lib/jasperlib/batik-bridge-1.11.jar"/>

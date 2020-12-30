@@ -21,9 +21,9 @@
         <pathelement location="WebContent/WEB-INF/lib/jaxen-1.1.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/jcommon-1.0.23.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/log4j-1.2.15.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.16.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.22.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/ojdbc8.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/mssql-jdbc-8.2.0.jre8.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mssql-jdbc-8.4.1.jre8.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/xalan-2.7.1.jar"/>
     </path>
     <path id="Apache Tomcat v8.5 [Apache Tomcat v8.5].libraryclasspath">
