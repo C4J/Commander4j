@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -13,12 +15,13 @@ public class Create
 {
 
 	public static String[] excludes;
+	public static List<String> includes = new ArrayList<String>();
 	public static String source = "";
 	public static String startClass = "";
-	public static int outputLine = 0;
 	public static File fout;
 	public static FileOutputStream fos;
 	public static BufferedWriter bw;
+	public static String prefix = "";
 
 	public static void main(String[] args)
 	{
@@ -54,6 +57,7 @@ public class Create
 							break;
 						case 2:
 							startClass = line;
+							prefix = "Manifest-Version: 1.0\n" + "Main-Class: "+startClass+"\n" + "Class-Path:";
 							break;
 						case 3:
 							excludes = line.split(" ");
@@ -64,10 +68,31 @@ public class Create
 
 						if (lineNumber == 3)
 						{
-							System.out.println("Invoking b4Manifest on " + line);
+							System.out.println("Invoking b4Manifest on " + test);
 							topLevel(new File(source));
+							
+							Collections.sort(includes);
+						
+							fout = new File("MANIFEST.MF");
+							fos = new FileOutputStream(fout);
+							bw = new BufferedWriter(new OutputStreamWriter(fos));
+							
+							bw.write(prefix);
+							
+							for (int x=0;x<includes.size();x++)
+							{
+								bw.write(includes.get(x));
+								bw.newLine();
+								bw.flush();
+							}
+
+							bw.flush();
+							
+							fos.close();
+							fout=null;
+							
 							System.out.println("\nComplete.");
-							bw.close();
+
 							break;
 						}
 						lineNumber++;
@@ -128,7 +153,7 @@ public class Create
 				{
 					for (int x = 0; x < excludes.length; x++)
 					{
-						if (file.getAbsolutePath().endsWith(excludes[x]))
+						if (file.getAbsolutePath().toLowerCase().endsWith(excludes[x].toLowerCase()))
 						{
 							include = false;
 						}
@@ -137,23 +162,10 @@ public class Create
 
 				if (include)
 				{
-					outputLine++;
 
 					try
 					{
-						String prefix = "";
-
-						if (outputLine == 1)
-						{
-							fout = new File("MANIFEST.MF");
-							fos = new FileOutputStream(fout);
-							bw = new BufferedWriter(new OutputStreamWriter(fos));
-
-							prefix = "Manifest-Version: 1.0\n" + "Main-Class: "+startClass+"\n" + "Class-Path:";
-						}
-
-						bw.write(prefix + " " + file.getAbsolutePath().substring(source.length() + 1) + " ");
-						bw.newLine();
+						includes.add(" "+file.getAbsolutePath().substring(source.length() + 1) + " ");
 					}
 					catch (Exception e)
 					{

@@ -5,7 +5,6 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="b5">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../eclipse_development/Eclipse.app/Contents/Eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="11"/>
     <property name="source" value="11"/>
@@ -115,7 +114,7 @@
         <pathelement location="lib/mail/javax.activation-api.jar"/>
         <pathelement location="lib/db/mssql-jdbc-8.4.1.jre11.jar"/>
     </path>
-    <path id="run.Start (2).classpath">
+    <path id="run.Start b5.classpath">
         <path refid="b5.classpath"/>
         <pathelement location="lib/jasperlib/commons-digester-2.1.jar"/>
         <pathelement location="lib/jasperlib/antlr-2.7.5.jar"/>
@@ -225,6 +224,7 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -243,22 +243,9 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
-    <target name="Start (2)">
+    <target name="Start b5">
         <java classname="com.commander4j.sys.Start" failonerror="true" fork="yes">
-            <classpath refid="run.Start (2).classpath"/>
+            <classpath refid="run.Start b5.classpath"/>
         </java>
     </target>
 </project>

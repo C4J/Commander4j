@@ -14,7 +14,7 @@
     </languages>
     <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u275-b01" />
   </application>
-  <files keepModificationTimes="true" missingFilesStrategy="error">
+  <files keepModificationTimes="true" missingFilesStrategy="error" globalExcludeSuffixes="dirClean.ok,.DS_Store">
     <mountPoints>
       <mountPoint id="22" location="images" />
       <mountPoint id="24" location="xml" />

@@ -5,14 +5,12 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="b4AutoLab">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../eclipse_development/Eclipse.app/Contents/Eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
     <path id="b4AutoLab.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/modbus/EasyModbusJavaClient.jar"/>
-        <pathelement location="lib/apache/commons-io-2.8.0.jar"/>
         <pathelement location="lib/opencsv/commons-beanutils-1.9.4.jar"/>
         <pathelement location="lib/opencsv/commons-collections4-4.4.jar"/>
         <pathelement location="lib/opencsv/commons-lang3-3.10.jar"/>
@@ -24,11 +22,13 @@
         <pathelement location="lib/mail/javax.mail.jar"/>
         <pathelement location="lib/mail/commons-email-1.5.jar"/>
         <pathelement location="lib/devonly/i4jruntime.jar"/>
+        <pathelement location="lib/apache/commons-io-2.8.0.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -47,21 +47,8 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
-    <target name="AutoLab (2)">
-        <java classname="com.commander4j.autolab.AutoLab" failonerror="true" fork="yes">
+    <target name="StartStop">
+        <java classname="com.commander4j.autolab.StartStop" failonerror="true" fork="yes">
             <classpath refid="b4AutoLab.classpath"/>
         </java>
     </target>

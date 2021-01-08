@@ -20,7 +20,7 @@
       </modules>
     </jreBundles>
   </application>
-  <files>
+  <files globalExcludeSuffixes="dirClean.ok,.DS_Store">
     <mountPoints>
       <mountPoint id="116" location="interface" />
       <mountPoint id="117" location="interface/input" />

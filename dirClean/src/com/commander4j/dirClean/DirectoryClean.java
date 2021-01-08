@@ -8,6 +8,9 @@ import org.apache.commons.io.FileUtils;
 
 public class DirectoryClean
 {
+	
+	private static int deleted = 0;
+	
 	public static void main(String[] args)
 	{
 
@@ -33,8 +36,9 @@ public class DirectoryClean
 
 						if (line.equals("") == false)
 						{
-							System.out.println("Invoking dirClean on " + line);
+							//System.out.println("Invoking dirClean on " + line);
 							topLevel(new File(line));
+
 						}
 					}
 				}
@@ -50,7 +54,7 @@ public class DirectoryClean
 				System.out.println("\n");
 			}
 		}
-
+		System.out.println(" "+String.valueOf(deleted)+ " file(s) deleted.");
 	}
 
 	public static void topLevel(File dir)
@@ -60,7 +64,7 @@ public class DirectoryClean
 		if (test2.exists())
 		{
 
-			System.out.println("\n   Cleaning " + dir.getAbsolutePath() + "\n");
+			//System.out.println("\n   Cleaning " + dir.getAbsolutePath() + "\n");
 			dirTree(dir);
 
 		}
@@ -95,14 +99,15 @@ public class DirectoryClean
 			if (file.getAbsolutePath().endsWith("dirClean.ok") == false)
 			{
 
-				System.out.print("       Deleting " + file.getAbsolutePath());
+				//System.out.print("       Deleting " + file.getAbsolutePath());
 				if (FileUtils.deleteQuietly(file))
 				{
-					System.out.println(" ...ok");
+					System.out.print(".");
+					deleted++;
 				}
 				else
 				{
-					System.out.println(" ...error");
+					System.out.print("\nError deleting "+file.getName()+"\n");
 				}
 			}
 		}

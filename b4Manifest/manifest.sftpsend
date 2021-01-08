@@ -1,0 +1,3 @@
+/Users/dave/Commander4j/workspace.development/sftpSend
+com.commander4j.sftp.Transfer
+i4jruntime.jar sftpSend.jar

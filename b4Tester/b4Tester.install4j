@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<install4j version="8.0.8" transformSequenceNumber="8">
+<install4j version="8.0.9" transformSequenceNumber="8">
   <directoryPresets config="../../C4J Icons/Icons/Launcher/iTest_Icon (PNG)" />
   <application name="b4Tester" applicationId="9131-8210-3920-3217" mediaDir="../../Distribution/java8/b4Tester" shortName="b4Tester" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="1.0" allPathsRelative="true" macVolumeId="bae1c864414b1cc4" javaMinVersion="1.8" javaMaxVersion="1.8">
-    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u272-b10" />
+    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u275-b01" />
   </application>
-  <files>
+  <files globalExcludeSuffixes="dirClean.ok,.DS_Store">
     <mountPoints>
       <mountPoint id="58" location="xml" />
       <mountPoint id="59" location="xml/config" />

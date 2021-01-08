@@ -5,7 +5,6 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="messageSplitter">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../eclipse_development/Eclipse.app/Contents/Eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
@@ -19,6 +18,7 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -37,32 +37,8 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
-    <target name="ExtractXml1">
-        <java classname="com.commander4j.messageSplitter.ExtractXml1" failonerror="true" fork="yes">
-            <classpath refid="messageSplitter.classpath"/>
-        </java>
-    </target>
-    <target name="ExtractXml2">
-        <java classname="com.commander4j.messageSplitter.ExtractXml2" failonerror="true" fork="yes">
-            <classpath refid="messageSplitter.classpath"/>
-        </java>
-    </target>
     <target name="Splitter4j">
         <java classname="com.commander4j.messageSplitter.Splitter4j" failonerror="true" fork="yes">
-            <arg line="GUI"/>
             <classpath refid="messageSplitter.classpath"/>
         </java>
     </target>
