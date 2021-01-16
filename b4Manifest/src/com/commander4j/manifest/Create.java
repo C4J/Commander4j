@@ -35,6 +35,7 @@ public class Create
 			System.out.println("   Start Class");
 			System.out.println("   jars to exlude");
 			System.out.println("\n");
+			System.exit(1);
 		}
 		else
 		{
@@ -108,8 +109,10 @@ public class Create
 			{
 				System.out.println(test.getAbsolutePath() + " not found.\n");
 				System.out.println("\n");
+				System.exit(1);
 			}
 		}
+		System.exit(0);
 	}
 
 	public static void topLevel(File sourceFile)

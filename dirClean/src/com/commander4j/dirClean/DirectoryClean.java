@@ -20,6 +20,7 @@ public class DirectoryClean
 			System.out.println("\n");
 			System.out.println("Parameter file contains a list of folders to clean (1 folder per row)");
 			System.out.println("\n");
+			System.exit(1);
 		}
 		else
 		{
@@ -52,9 +53,11 @@ public class DirectoryClean
 			{
 				System.out.println(test.getAbsolutePath() + " not found.\n");
 				System.out.println("\n");
+				System.exit(1);
 			}
 		}
 		System.out.println(" "+String.valueOf(deleted)+ " file(s) deleted.");
+		System.exit(0);
 	}
 
 	public static void topLevel(File dir)
