@@ -13,7 +13,7 @@
         <language id="es" />
       </additionalLanguages>
     </languages>
-    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u275-b01" />
+    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u282-b08" />
   </application>
   <files keepModificationTimes="true" missingFilesStrategy="error" globalExcludeSuffixes="dirClean.ok,.DS_Store">
     <mountPoints>
