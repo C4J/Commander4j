@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="despatch_detail_unconfirmed" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="1f3ad6b2-82fe-4fa1-9a83-ed0bd9856ebc">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -81,26 +81,6 @@ ORDER BY P.DESPATCH_NO,P.MATERIAL,BATCH_NUMBER,SSCC]]>
 		<groupExpression><![CDATA[$F{DESPATCH_NO}]]></groupExpression>
 		<groupFooter>
 			<band height="30">
-				<textField>
-					<reportElement x="231" y="0" width="100" height="20" uuid="f8d4de86-e9c8-402f-93b4-883acef6e3fc"/>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="SansSerif" size="8" isBold="true" isUnderline="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{total_weight_kg_2}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement key="staticText" x="341" y="0" width="70" height="20" forecolor="#000000" uuid="dbff979d-343d-468d-b7c1-cb0b7b18c3f0"/>
-					<box>
-						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="0.0" lineColor="#000000"/>
-						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement verticalAlignment="Middle">
-						<font fontName="SansSerif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
-					</textElement>
-					<text><![CDATA[KG (Gross)]]></text>
-				</staticText>
 				<textField pattern="###0.000">
 					<reportElement x="155" y="2" width="66" height="18" uuid="f3d09392-3f7e-4ac5-99e8-e10a38ba3bd2"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -171,26 +151,6 @@ ORDER BY P.DESPATCH_NO,P.MATERIAL,BATCH_NUMBER,SSCC]]>
 						<font fontName="SansSerif" size="8"/>
 					</textElement>
 					<text><![CDATA[Count]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="255" y="0" width="76" height="20" uuid="43f4d0bc-a58b-4250-976e-a9d66bb6b13d"/>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<font fontName="SansSerif" size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{total_weight_kg_1}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement key="staticText" x="341" y="0" width="94" height="20" forecolor="#000000" uuid="21284bd6-91ff-4d88-9b64-b7cb6442d8de"/>
-					<box>
-						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="0.0" lineColor="#000000"/>
-						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement verticalAlignment="Middle">
-						<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
-					</textElement>
-					<text><![CDATA[KG (Gross)]]></text>
 				</staticText>
 				<textField pattern="###0.000">
 					<reportElement x="155" y="2" width="66" height="18" uuid="0320ae34-7f2b-47bb-9257-2ca397a6a6ec"/>
