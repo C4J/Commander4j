@@ -376,7 +376,7 @@ public class JInternalFrameModuleAdmin extends javax.swing.JInternalFrame
 								{
 									JDBListData item = (JDBListData) jListModules.getModel().getElementAt(sel);
 									mod.getModuleProperties(item.getmData().toString());
-									if (mod.getType().equals("REPORT"))
+									if (mod.getType().equals("REPORT") || mod.getType().equals("USER") )
 									{
 										jButtonAlternative.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MODULE_ALTERNATE"));
 									} else

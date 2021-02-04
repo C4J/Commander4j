@@ -17,7 +17,7 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/cups4j/simple-xml-2.7.1.jar 
  lib/cups4j/slf4j-api-1.7.25.jar 
  lib/cups4j/slf4j-simple-1.7.25.jar 
- lib/db/mssql-jdbc-8.4.1.jre11.jar 
+ lib/db/mssql-jdbc-8.4.1.jre8.jar 
  lib/db/mysql-connector-java-8.0.22.jar 
  lib/db/ojdbc8.jar 
  lib/jasper/jasperreports-6.16.0.jar 
@@ -75,6 +75,7 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib/jackson-databind-2.10.0.jar 
  lib/jasperlib/javax.persistence-api-2.2.jar 
  lib/jasperlib/javax.xml.soap-api-1.4.0.jar 
+ lib/jasperlib/jaxen-1.1.6.jar 
  lib/jasperlib/jcommon-1.0.23.jar 
  lib/jasperlib/jfreechart-1.5.0.jar 
  lib/jasperlib/lucene-analyzers-common-7.3.0.jar 
@@ -101,6 +102,5 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib_aux/joda-time-2.10.2.jar 
  lib/jasperlib_aux/xml-apis.jar 
  lib/jasperlib_aux/xmlgraphics-commons-2.2.jar 
- lib/mail/javax.activation-api.jar 
  lib/mail/javax.mail.jar 
  lib/serial/jSerialComm-2.6.2.jar 
