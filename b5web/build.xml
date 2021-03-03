@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="b5web">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="b4web">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="11"/>
@@ -32,42 +32,42 @@
         <pathelement location="WebContent/WEB-INF/lib/slf4j-simple-1.7.25.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/xalan-2.7.1.jar"/>
     </path>
-    <path id="Apache Tomcat v8.5 [Apache Tomcat v8.5 (Java 11)].libraryclasspath">
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-i18n-ko.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/el-api.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-i18n-es.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-websocket.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/jasper.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/jasper-el.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-util.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-i18n-de.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/catalina-storeconfig.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/jsp-api.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/catalina-tribes.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/catalina.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-jni.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/websocket-api.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-coyote.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/catalina-ha.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-api.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/annotations-api.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/jaspic-api.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-i18n-zh-CN.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/catalina-ant.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/ecj-4.6.3.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/servlet-api.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-util-scan.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-i18n-ja.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-i18n-ru.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-jdbc.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-i18n-fr.jar"/>
-        <pathelement location="../../apache-tomcat-8.5.59 (Java 11)/lib/tomcat-dbcp.jar"/>
+    <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0 (Java 11)].libraryclasspath">
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-i18n-ko.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/el-api.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/jasper.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/jasper-el.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-util.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-i18n-de.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/jsp-api.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/catalina-tribes.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/catalina.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-jni.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/websocket-api.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/catalina-ha.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-api.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/annotations-api.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/jaspic-api.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-i18n-zh-CN.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/catalina-ant.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/ecj-4.6.3.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/servlet-api.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-i18n-ru.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../apache-tomcat-9.0.43 (Java 11)/lib/tomcat-dbcp.jar"/>
     </path>
-    <path id="b5web.classpath">
+    <path id="b4web.classpath">
         <pathelement location="build/classes"/>
         <path refid="EAR Libraries.libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="Apache Tomcat v8.5 [Apache Tomcat v8.5 (Java 11)].libraryclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0 (Java 11)].libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
@@ -88,12 +88,12 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="b5web.classpath"/>
+            <classpath refid="b4web.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target name="war" depends="build">
-		  <war destfile="dist/b5web.war" webxml="WebContent/WEB-INF/web.xml">
+		  <war destfile="dist/b4web.war" webxml="WebContent/WEB-INF/web.xml">
 		  	<fileset dir="WebContent"/>
 		  	<lib dir="WebContent/WEB-INF/lib"/>
 		  	<classes dir="build/classes"/>

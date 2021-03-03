@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<install4j version="8.0.10" transformSequenceNumber="8">
+<install4j version="9.0" transformSequenceNumber="9">
   <directoryPresets config="./b5web.war" />
-  <application name="Commander5j" applicationId="1935-8329-3907-5095" mediaDir="../../Distribution/java11/Commander4j" shrinkRuntime="false" shortName="Commander5j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="9.00" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="11" javaMaxVersion="11" jdkMode="jdk" jdkName="JDK 11.0">
+  <application name="Commander4j" applicationId="6923-0356-2321-8111" mediaDir="../../Distribution/java11/Commander4j" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="9.00" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="11" javaMaxVersion="11" jdkMode="jdk" jdkName="JDK 11.0">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="nl" />
@@ -13,13 +13,9 @@
         <language id="es" />
       </additionalLanguages>
     </languages>
-    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk11/jdk-11.0.10+9">
-      <modules>
-        <defaultModules set="all" />
-      </modules>
-    </jreBundles>
+    <jreBundles jdkProviderId="AdoptOpenJDK" release="11/jdk-11.0.10+9" />
   </application>
-  <files keepModificationTimes="true" missingFilesStrategy="error" globalExcludeSuffixes="dirClean.ok,.DS_Store">
+  <files keepModificationTimes="true" missingFilesStrategy="error" globalExcludeSuffixes="dirClean.ok,.DS_Store" preserveSymlinks="false">
     <mountPoints>
       <mountPoint id="26" location="reports" />
       <mountPoint id="27" location="images" />
@@ -164,8 +160,8 @@
     </components>
   </files>
   <launchers>
-    <launcher name="Setup5j" id="40" icnsFile="./images/Launcher/Setup_Icon.icns">
-      <executable name="Setup5j" iconSet="true" iconFile="./images/Launcher/Setup_Icon.ico" executableDir="." executableMode="gui" executionLevel="highestAvailable" dpiAware="false" />
+    <launcher name="Setup4j" id="40" icnsFile="./images/Launcher/Setup_Icon.icns">
+      <executable name="Setup4j" iconSet="true" iconFile="./images/Launcher/Setup_Icon.ico" executableDir="." executableMode="gui" executionLevel="highestAvailable" dpiAware="false" />
       <java mainClass="com.commander4j.start.Init" vmParameters="-Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Setup">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -181,8 +177,8 @@
         <file path="./images/Launcher/Setup_Icon (PNG)/128x128.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="Commander5j" id="356" icnsFile="./images/Launcher/CMD_Icon.icns">
-      <executable name="Commander5j" iconSet="true" iconFile="./images/Launcher/CMD_Icon.ico" executableDir="." executableMode="gui" dpiAware="false" />
+    <launcher name="Commander4j" id="356" icnsFile="./images/Launcher/CMD_Icon.icns">
+      <executable name="Commander4j" iconSet="true" iconFile="./images/Launcher/CMD_Icon.ico" executableDir="." executableMode="gui" dpiAware="false" />
       <java mainClass="com.commander4j.start.Init" vmParameters="-Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Desktop">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -199,8 +195,8 @@
         <file path="./images/Launcher/CMD_Icon (PNG)/256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="Clone5j" id="492" icnsFile="./images/Launcher/Clone_Icon.icns">
-      <executable name="Clone5j" iconSet="true" iconFile="./images/Launcher/Clone_Icon.ico" executableDir="." executableMode="gui" executionLevel="highestAvailable" dpiAware="false" />
+    <launcher name="Clone4j" id="492" icnsFile="./images/Launcher/Clone_Icon.icns">
+      <executable name="Clone4j" iconSet="true" iconFile="./images/Launcher/Clone_Icon.ico" executableDir="." executableMode="gui" executionLevel="highestAvailable" dpiAware="false" />
       <java mainClass="com.commander4j.start.Init" vmParameters="-Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Clone">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -217,8 +213,8 @@
         <file path="./images/Launcher/Clone_Icon (PNG)/256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="Service5j" id="685" excludeFromMenu="true" icnsFile="./images/Launcher/iFace_Icon.icns">
-      <executable name="Service5j" iconSet="true" iconFile="./images/Launcher/iFace_Icon.ico" executableDir="." redirectStderr="false" executableMode="service" executionLevel="requireAdministrator" dpiAware="false" />
+    <launcher name="Service4j" id="685" excludeFromMenu="true" icnsFile="./images/Launcher/iFace_Icon.icns">
+      <executable name="Service4j" iconSet="true" iconFile="./images/Launcher/iFace_Icon.ico" executableDir="." redirectStderr="false" executableMode="service" executionLevel="requireAdministrator" dpiAware="false" />
       <java mainClass="com.commander4j.service.Interface4j" vmParameters="-Dlog4j.configuration=file:./xml/log/log4j.xml  -Dfile.encoding=Cp1252" arguments="Interface service">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -235,8 +231,8 @@
         <file path="./images/Launcher/iFace_Icon (PNG)/256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="Interface5j" id="778" icnsFile="./images/Launcher/iFace_Icon.icns">
-      <executable name="Interface5j" iconSet="true" iconFile="./images/Launcher/iFace_Icon.ico" executableDir="." redirectStderr="false" executableMode="console" dpiAware="false" />
+    <launcher name="Interface4j" id="778" icnsFile="./images/Launcher/iFace_Icon.icns">
+      <executable name="Interface4j" iconSet="true" iconFile="./images/Launcher/iFace_Icon.ico" executableDir="." redirectStderr="false" executableMode="console" dpiAware="false" />
       <java mainClass="com.commander4j.service.Interface4j" vmParameters="-Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Interface service">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -253,8 +249,8 @@
         <file path="./images/Launcher/iFace_Icon (PNG)/256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="Commander5j_Console" id="1302" excludeFromMenu="true">
-      <executable name="Commander5j_Console" iconSet="true" executableDir="." redirectStderr="false" executableMode="console" />
+    <launcher name="Commander4j_Console" id="1302" excludeFromMenu="true">
+      <executable name="Commander4j_Console" iconSet="true" executableDir="." redirectStderr="false" executableMode="console" />
       <java mainClass="com.commander4j.sys.Start" arguments="Desktop">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -794,8 +790,8 @@ return console.askYesNo(message, true);
 }
 return true;</validation>
                 <preActivation>WizardContext wizardContext = context.getWizardContext();
-wizardContext.setNextButtonVisible(false);
-wizardContext.setCancelButtonVisible(false);</preActivation>
+wizardContext.setControlButtonVisible(ControlButtonType.NEXT, false);
+wizardContext.setControlButtonVisible(ControlButtonType.CANCEL, false);</preActivation>
                 <formComponents>
                   <formComponent id="914" beanClass="com.install4j.runtime.beans.formcomponents.MultilineLabelComponent" useExternalParametrization="true" externalParametrizationName="Header" externalParametrizationMode="include">
                     <serializedBean>
@@ -1032,11 +1028,19 @@ else
           <group id="976" beanClass="com.install4j.runtime.beans.groups.VerticalFormComponentGroup" useExternalParametrization="true" externalParametrizationName="Customize banner image" externalParametrizationMode="include">
             <serializedBean>
               <property name="backgroundColor">
-                <object class="java.awt.Color">
-                  <int>255</int>
-                  <int>255</int>
-                  <int>255</int>
-                  <int>255</int>
+                <object class="com.install4j.runtime.beans.LightOrDarkColor">
+                  <object class="java.awt.Color">
+                    <int>255</int>
+                    <int>255</int>
+                    <int>255</int>
+                    <int>255</int>
+                  </object>
+                  <object class="java.awt.Color">
+                    <int>49</int>
+                    <int>52</int>
+                    <int>53</int>
+                    <int>255</int>
+                  </object>
                 </object>
               </property>
               <property name="borderSides">
@@ -1045,11 +1049,19 @@ else
                 </object>
               </property>
               <property name="imageEdgeBackgroundColor">
-                <object class="java.awt.Color">
-                  <int>25</int>
-                  <int>143</int>
-                  <int>220</int>
-                  <int>255</int>
+                <object class="com.install4j.runtime.beans.LightOrDarkColor">
+                  <object class="java.awt.Color">
+                    <int>25</int>
+                    <int>143</int>
+                    <int>220</int>
+                    <int>255</int>
+                  </object>
+                  <object class="java.awt.Color">
+                    <int>0</int>
+                    <int>74</int>
+                    <int>151</int>
+                    <int>255</int>
+                  </object>
                 </object>
               </property>
               <property name="imageEdgeBorder" type="boolean" value="true" />
@@ -1103,11 +1115,19 @@ else
               <group id="983" beanClass="com.install4j.runtime.beans.groups.VerticalFormComponentGroup" useExternalParametrization="true" externalParametrizationName="Customize title bar" externalParametrizationMode="include">
                 <serializedBean>
                   <property name="backgroundColor">
-                    <object class="java.awt.Color">
-                      <int>255</int>
-                      <int>255</int>
-                      <int>255</int>
-                      <int>255</int>
+                    <object class="com.install4j.runtime.beans.LightOrDarkColor">
+                      <object class="java.awt.Color">
+                        <int>255</int>
+                        <int>255</int>
+                        <int>255</int>
+                        <int>255</int>
+                      </object>
+                      <object class="java.awt.Color">
+                        <int>49</int>
+                        <int>52</int>
+                        <int>53</int>
+                        <int>255</int>
+                      </object>
                     </object>
                   </property>
                   <property name="borderSides">
@@ -1211,27 +1231,28 @@ else
   </installerGui>
   <mediaSets>
     <windows name="Windows 32bit (with JRE)" id="659" mediaFileName="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="Commander5j" jreBitType="32" useLegacyMediaFileIds="true" legacyMediaFileIds="32" customInstallBaseDir="C:\">
-      <jreBundle usePack200="false" jreBundleSource="generated" includedJre="windows-x86-1.8.0_202">
+      <jreBundle usePack200="false" includedJre="windows-x86-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </windows>
     <windows name="Windows 64bit (with JRE)" id="662" mediaFileName="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="Commander5j" useLegacyMediaFileIds="true" legacyMediaFileIds="578" customInstallBaseDir="C:\">
-      <jreBundle usePack200="false" jreBundleSource="generated" includedJre="windows-amd64-1.8.0_202">
+      <jreBundle usePack200="false" includedJre="windows-amd64-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </windows>
-    <unixInstaller name="Linux Installer" id="403" installDir="Commander5j" />
+    <unixInstaller name="Linux Installer" id="403" installDir="Commander5j">
+      <jreBundle jreBundleSource="none" />
+    </unixInstaller>
     <macosFolder name="Mac OS X Folder (with JRE)" id="678" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="Commander5j" useLegacyMediaFileIds="true" legacyMediaFileIds="584">
-      <jreBundle usePack200="false" jreBundleSource="generated" manualJreEntry="true">
+      <jreBundle usePack200="false" manualJreEntry="true">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </macosFolder>
   </mediaSets>
-  <buildOptions verbose="true" />
 </install4j>

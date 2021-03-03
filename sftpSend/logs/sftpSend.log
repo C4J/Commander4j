@@ -1,0 +1,9 @@
+2021-03-03 16:44:39,392 - sftpSend Starting
+2021-03-03 16:44:39,394 - loadConfigXML
+2021-03-03 16:44:39,504 - currentDirectory :/Users/dave/Commander4j/workspace.development/sftpSend/send/
+2021-03-03 16:44:39,504 - Scan for files...
+2021-03-03 16:44:40,524 - [Monitor] - [SFTP Dev to C4J (Test)]
+2021-03-03 16:44:40,536 - Email authentication required
+2021-03-03 16:44:40,552 - Email To: davegarratt@icloud.com
+2021-03-03 16:44:40,566 - Email begin send...
+2021-03-03 16:44:42,488 - Email sent successfully

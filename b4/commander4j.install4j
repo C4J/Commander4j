@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<install4j version="8.0.10" transformSequenceNumber="8">
+<install4j version="9.0" transformSequenceNumber="9">
   <directoryPresets config="./logs/dirClean.ok" />
   <application name="Commander4j" applicationId="6923-0356-2321-8111" mediaDir="../../Distribution/java8/Commander4j" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="9.00" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
     <languages skipLanguageSelection="true">
@@ -13,9 +13,9 @@
         <language id="es" />
       </additionalLanguages>
     </languages>
-    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u282-b08" />
+    <jreBundles jdkProviderId="AdoptOpenJDK" release="8/jdk8u282-b08" />
   </application>
-  <files keepModificationTimes="true" missingFilesStrategy="error" globalExcludeSuffixes="dirClean.ok,.DS_Store">
+  <files keepModificationTimes="true" missingFilesStrategy="error" globalExcludeSuffixes="dirClean.ok,.DS_Store" preserveSymlinks="false">
     <mountPoints>
       <mountPoint id="26" location="reports" />
       <mountPoint id="27" location="images" />
@@ -790,8 +790,8 @@ return console.askYesNo(message, true);
 }
 return true;</validation>
                 <preActivation>WizardContext wizardContext = context.getWizardContext();
-wizardContext.setNextButtonVisible(false);
-wizardContext.setCancelButtonVisible(false);</preActivation>
+wizardContext.setControlButtonVisible(ControlButtonType.NEXT,false);
+wizardContext.setControlButtonVisible(ControlButtonType.CANCEL,false);</preActivation>
                 <formComponents>
                   <formComponent id="914" beanClass="com.install4j.runtime.beans.formcomponents.MultilineLabelComponent" useExternalParametrization="true" externalParametrizationName="Header" externalParametrizationMode="include">
                     <serializedBean>
@@ -1028,11 +1028,19 @@ else
           <group id="976" beanClass="com.install4j.runtime.beans.groups.VerticalFormComponentGroup" useExternalParametrization="true" externalParametrizationName="Customize banner image" externalParametrizationMode="include">
             <serializedBean>
               <property name="backgroundColor">
-                <object class="java.awt.Color">
-                  <int>255</int>
-                  <int>255</int>
-                  <int>255</int>
-                  <int>255</int>
+                <object class="com.install4j.runtime.beans.LightOrDarkColor">
+                  <object class="java.awt.Color">
+                    <int>255</int>
+                    <int>255</int>
+                    <int>255</int>
+                    <int>255</int>
+                  </object>
+                  <object class="java.awt.Color">
+                    <int>49</int>
+                    <int>52</int>
+                    <int>53</int>
+                    <int>255</int>
+                  </object>
                 </object>
               </property>
               <property name="borderSides">
@@ -1041,11 +1049,19 @@ else
                 </object>
               </property>
               <property name="imageEdgeBackgroundColor">
-                <object class="java.awt.Color">
-                  <int>25</int>
-                  <int>143</int>
-                  <int>220</int>
-                  <int>255</int>
+                <object class="com.install4j.runtime.beans.LightOrDarkColor">
+                  <object class="java.awt.Color">
+                    <int>25</int>
+                    <int>143</int>
+                    <int>220</int>
+                    <int>255</int>
+                  </object>
+                  <object class="java.awt.Color">
+                    <int>0</int>
+                    <int>74</int>
+                    <int>151</int>
+                    <int>255</int>
+                  </object>
                 </object>
               </property>
               <property name="imageEdgeBorder" type="boolean" value="true" />
@@ -1099,11 +1115,19 @@ else
               <group id="983" beanClass="com.install4j.runtime.beans.groups.VerticalFormComponentGroup" useExternalParametrization="true" externalParametrizationName="Customize title bar" externalParametrizationMode="include">
                 <serializedBean>
                   <property name="backgroundColor">
-                    <object class="java.awt.Color">
-                      <int>255</int>
-                      <int>255</int>
-                      <int>255</int>
-                      <int>255</int>
+                    <object class="com.install4j.runtime.beans.LightOrDarkColor">
+                      <object class="java.awt.Color">
+                        <int>255</int>
+                        <int>255</int>
+                        <int>255</int>
+                        <int>255</int>
+                      </object>
+                      <object class="java.awt.Color">
+                        <int>49</int>
+                        <int>52</int>
+                        <int>53</int>
+                        <int>255</int>
+                      </object>
                     </object>
                   </property>
                   <property name="borderSides">
@@ -1207,22 +1231,24 @@ else
   </installerGui>
   <mediaSets>
     <windows name="Windows 32bit (with JRE)" id="659" mediaFileName="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="Commander4j" jreBitType="32" useLegacyMediaFileIds="true" legacyMediaFileIds="32" customInstallBaseDir="C:\">
-      <jreBundle jreBundleSource="generated" includedJre="windows-x86-1.8.0_202">
+      <jreBundle includedJre="windows-x86-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </windows>
     <windows name="Windows 64bit (with JRE)" id="662" mediaFileName="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="Commander4j" useLegacyMediaFileIds="true" legacyMediaFileIds="578" customInstallBaseDir="C:\">
-      <jreBundle jreBundleSource="generated" includedJre="windows-amd64-1.8.0_202">
+      <jreBundle includedJre="windows-amd64-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </windows>
-    <unixInstaller name="Linux Installer" id="403" installDir="Commander4j" />
+    <unixInstaller name="Linux Installer" id="403" installDir="Commander4j">
+      <jreBundle jreBundleSource="none" />
+    </unixInstaller>
     <macosFolder name="Mac OS X Folder (with JRE)" id="678" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" installDir="Commander4j" useLegacyMediaFileIds="true" legacyMediaFileIds="584">
-      <jreBundle jreBundleSource="generated" includedJre="macosx-amd64-1.8.0_202">
+      <jreBundle includedJre="macosx-amd64-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
