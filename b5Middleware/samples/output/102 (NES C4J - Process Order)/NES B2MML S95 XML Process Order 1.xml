@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <plant>0933</plant>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>CRID 20141231062957</messageRef>
+   <interfaceType>Process Order</interfaceType>
+   <messageInformation>Process Order=19013782</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2019-04-30T13:36:56</messageDate>
+   <messageData>
+      <processOrder>
+         <orderNo>19013782</orderNo>
+         <receipeId>100000000023858432</receipeId>
+         <dueDate>2014-12-30T15:29:03</dueDate>
+         <status>Ready</status>
+         <plant>0933</plant>
+         <warehouse>734</warehouse>
+         <storageLocation>0001</storageLocation>
+         <storageBin>DESPATCH</storageBin>
+         <storageType>PRO</storageType>
+         <location>WISBECH</location>
+         <material>43342157</material>
+         <description>FELIX SENIOR CiJ Rabbit Pch BS</description>
+         <requiredQuantity>80000</requiredQuantity>
+         <requiredUom>EA</requiredUom>
+         <defaultPalletStatus>Unrestricted</defaultPalletStatus>
+         <requiredResource>TP3PACK</requiredResource>
+      </processOrder>
+   </messageData>
+</message>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <plant>9768</plant>
+   <warehouse>HU3</warehouse>
+   <hostRef>WILIVE</hostRef>
+   <interfaceType>Material Auto Move</interfaceType>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageRef>MM 5114632</messageRef>
+   <messageInformation>Material=5114632/FERT</messageInformation>
+   <messageDate>2019-05-01T09:05:41</messageDate>
+   <messageData>
+      <materialAutoMove/>
+   </messageData>
+</message>

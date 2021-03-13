@@ -780,5 +780,69 @@
             <XSLT/>
         </output>
     </map>
+    
+    <map id="map432" enabed="Y" description="FFMW Material Master IDOC to C4J Material XML and Auto Move XML">
+        <input id="in1" description="Read IDOC">
+            <type>IDOC</type>
+            <path>./interface/input/432 (NES SAP IDOC Material Master SUD Tails)</path>
+            <mask>txt</mask>
+            <pollingInterval>1000</pollingInterval>
+            <idocSchemaFilename>./idoc/schema/ZMATMAS03.txt</idocSchemaFilename>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write Commander4j Material">
+            <path>./interface/output/432 C4J Material Definition</path>
+            <XSLT>ROCKWELL_MM_FFMW_XML_to_C4J_XML_SUD_TAILS.xsl</XSLT>
+            <type>XML</type>
+        </output>
+        
+        <output id="out2" enabed="Y" description="Write MM Auto Move XML File">
+            <path>./interface/output/432 C4J Material Auto Move</path>
+            <XSLT>ROCKWELL_MM_PROCUREMENT_AUTO_MOVE.xsl</XSLT>
+            <type>XML</type>
+        </output>
+    </map>
+    
+    <map id="map433" enabed="Y" description="Mii XML to C4J Material XML and Auto Move XML">
+        <input id="in1" description="Read XML">
+            <type>XML</type>
+            <path>./interface/input/433 (NES MII XML Material Master SUD Tails)</path>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write Commander4j Material">
+            <path>./interface/output/433 C4J Material Definition</path>
+            <XSLT>MII_MM_XML_to_C4J_XML_SUD_TAILS.xsl</XSLT>
+            <type>XML</type>
+        </output>
+        
+        <output id="out2" enabed="Y" description="Write MM Auto Move XML File">
+            <path>./interface/output/433 C4J Material Auto Move</path>
+            <XSLT>MII_MM_XML_to_C4J_XML_AUTO_MOVE.xsl</XSLT>
+            <type>XML</type>
+        </output>
+    </map>
+    
+    <map id="map434" enabed="Y" description="Mii XML to C4J Material XML and Auto Move XML">
+        <input id="in1" description="Read XML">
+            <type>XML</type>
+            <path>./interface/input/433 (NES MII XML Material Master SUD Tails)</path>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>
+        </input>
+        
+        <output id="out1" enabed="Y" description="Write Commander4j Material">
+            <path>./interface/output/433 C4J Material Definition</path>
+            <XSLT>MII_MM_XML_to_C4J_XML_SUD_TAILS.xsl</XSLT>
+            <type>XML</type>
+        </output>
+        
+        <output id="out2" enabed="Y" description="Write MM Auto Move XML File">
+            <path>./interface/output/433 C4J Material Auto Move</path>
+            <XSLT>MII_MM_XML_to_C4J_XML_AUTO_MOVE.xsl</XSLT>
+            <type>XML</type>
+        </output>
+    </map>
 
 </config>

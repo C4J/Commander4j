@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <hostRef>WILIVE</hostRef>
+   <messageRef>Atlas Message Run 2018-02-07T07:14:05</messageRef>
+   <interfaceType>Journey Definition</interfaceType>
+   <messageInformation>Atlas Message Run 2018-02-07T07:14:05</messageInformation>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageDate>2018-02-07T07:14:05</messageDate>
+   <messageData>
+      <journeyDefinition>
+         <ref>NVLR2934</ref>
+         <timeslot>2018-02-06T18:50:00</timeslot>
+         <destination>HAMS HALL</destination>
+         <haulier>TMS</haulier>
+         <loadType>FG</loadType>
+         <loadTypeDesc>Finished Goods</loadTypeDesc>
+         <action>Update</action>
+      </journeyDefinition>
+   </messageData>
+</message>

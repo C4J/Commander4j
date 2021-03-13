@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?><ZMATMAS03>
+    <IDOC BEGIN="1">
+        <EDI_DC40 SEGMENT="1">
+            <TABNAM>EDI_DC40</TABNAM>
+            <MANDT>103</MANDT>
+            <DOCNUM>0000000138204430</DOCNUM>
+            <DOCREL>740</DOCREL>
+            <STATUS>30</STATUS>
+            <DIRECT>1</DIRECT>
+            <OUTMOD>2</OUTMOD>
+            <IDOCTYP>MATMAS03</IDOCTYP>
+            <CIMTYP>ZMATMAS03</CIMTYP>
+            <MESTYP>/GLB/RGTWMSMATMAS</MESTYP>
+            <SNDPOR>SAPE8A</SNDPOR>
+            <SNDPRT>LS</SNDPRT>
+            <SNDPRN>E8APPR3103</SNDPRN>
+            <RCVPOR>MII_M2D</RCVPOR>
+            <RCVPRT>LS</RCVPRT>
+            <RCVPRN>HUEPCS0917</RCVPRN>
+            <CREDAT>20190321</CREDAT>
+            <CRETIM>144729</CRETIM>
+            <SERIAL>20190321144729</SERIAL>
+        </EDI_DC40>
+        <E1MARAM SEGMENT="1">
+            <MSGFN>018</MSGFN>
+            <MATNR>000000000043199862</MATNR>
+            <ERSDA>20101004</ERSDA>
+            <ERNAM>RFC-XISC4R</ERNAM>
+            <LAEDA>20180215</LAEDA>
+            <AENAM>RFC-PISE1Q-D</AENAM>
+            <PSTAT>KDEALBVQGS</PSTAT>
+            <MTART>HALB</MTART>
+            <MBRSH>2</MBRSH>
+            <MATKL>F60</MATKL>
+            <BISMT>000000000043066496</BISMT>
+            <MEINS>EA</MEINS>
+            <BSTME>CS</BSTME>
+            <BLANZ>000</BLANZ>
+            <EKWSL>Z004</EKWSL>
+            <BRGEW>110.000</BRGEW>
+            <NTGEW>100.000</NTGEW>
+            <GEWEI>GRM</GEWEI>
+            <VOLUM>234.360</VOLUM>
+            <VOLEH>CMQ</VOLEH>
+            <RAUBE>99</RAUBE>
+            <TEMPB>A</TEMPB>
+            <TRAGR>Z011</TRAGR>
+            <SPART>00</SPART>
+            <WESCH>0.000</WESCH>
+            <EAN11>5000161029686</EAN11>
+            <NUMTP>3G</NUMTP>
+            <LAENG>18.000</LAENG>
+            <BREIT>93.000</BREIT>
+            <HOEHE>140.000</HOEHE>
+            <MEABM>MMT</MEABM>
+            <ERGEW>0.000</ERGEW>
+            <ERVOL>0.000</ERVOL>
+            <GEWTO>0.0</GEWTO>
+            <VOLTO>0.0</VOLTO>
+            <XCHPF>X</XCHPF>
+            <FUELG>0</FUELG>
+            <STFAK>1</STFAK>
+            <QMPUR>X</QMPUR>
+            <MHDRZ>1</MHDRZ>
+            <MHDHB>24</MHDHB>
+            <MHDLP>0</MHDLP>
+            <VPSTA>KDEALBVQGS</VPSTA>
+            <MSTAE>Z3</MSTAE>
+            <MSTDE>20060913</MSTDE>
+            <MSTDV>00000000</MSTDV>
+            <COMPL>00</COMPL>
+            <RDMHD>+</RDMHD>
+            <IPRKZ>2</IPRKZ>
+            <MTPOS_MARA>NORM</MTPOS_MARA>
+            <GEWTO_NEW>0.0</GEWTO_NEW>
+            <VOLTO_NEW>0.0</VOLTO_NEW>
+            <SLED_BBD>B</SLED_BBD>
+            <GTIN_VARIANT>97</GTIN_VARIANT>
+            <ANP>000000000</ANP>
+            <_-NESGLB_-DISTR000 SEGMENT="1">
+                <GLN_NUMBER>5997204566669</GLN_NUMBER>
+                <WERKS>0917</WERKS>
+            </_-NESGLB_-DISTR000>
+            <_-NESGLB_-E1MARAM000 SEGMENT="1">
+                <GTIN_VARIANT>97</GTIN_VARIANT>
+            </_-NESGLB_-E1MARAM000>
+            <_-GLB_-RGTFLDGRP SEGMENT="1">
+                <FLDNAM>SUPPWT</FLDNAM>
+                <FLDVAL>KGM            628.000</FLDVAL>
+            </_-GLB_-RGTFLDGRP>
+            <_-GLB_-RGTFLDGRP SEGMENT="1">
+                <FLDNAM>HUTYP</FLDNAM>
+                <FLDVAL>P01</FLDVAL>
+            </_-GLB_-RGTFLDGRP>
+            <_-GLB_-RGTFLDGRP SEGMENT="1">
+                <FLDNAM>STACK</FLDNAM>
+                <FLDVAL>Y</FLDVAL>
+            </_-GLB_-RGTFLDGRP>
+            <E1MAKTM SEGMENT="1">
+                <MSGFN>018</MSGFN>
+                <SPRAS>E</SPRAS>
+                <MAKTX>FELIX GiJ Rabbit Pouch BSt 100g XB</MAKTX>
+                <SPRAS_ISO>EN</SPRAS_ISO>
+            </E1MAKTM>
+            <E1MAKTM SEGMENT="1">
+                <MSGFN>018</MSGFN>
+                <SPRAS>F</SPRAS>
+                <MAKTX>FELIX GiJ Lapin Pouch BSt 100g XB</MAKTX>
+                <SPRAS_ISO>FR</SPRAS_ISO>
+            </E1MAKTM>
+            <E1MAKTM SEGMENT="1">
+                <MSGFN>018</MSGFN>
+                <SPRAS>H</SPRAS>
+                <MAKTX>FELIX GiJ Rabbit Pouch BSt 100g XB</MAKTX>
+                <SPRAS_ISO>HU</SPRAS_ISO>
+            </E1MAKTM>
+            <E1MAKTM SEGMENT="1">
+                <MSGFN>018</MSGFN>
+                <SPRAS>L</SPRAS>
+                <MAKTX>FELIX GiJ Rabbit Pouch BSt 100g XB</MAKTX>
+                <SPRAS_ISO>PL</SPRAS_ISO>
+            </E1MAKTM>
+            <E1MARCM SEGMENT="1">
+                <MSGFN>018</MSGFN>
+                <WERKS>0917</WERKS>
+                <PSTAT>DEALBVQG</PSTAT>
+                <EKGRP>IMS</EKGRP>
+                <DISMM>X0</DISMM>
+                <DISPO>105</DISPO>
+                <PLIFZ>0</PLIFZ>
+                <WEBAZ>3</WEBAZ>
+                <PERKZ>M</PERKZ>
+                <AUSSS>0.00</AUSSS>
+                <DISLS>Z1</DISLS>
+                <BESKZ>E</BESKZ>
+                <MINBE>0.000</MINBE>
+                <EISBE>0.000</EISBE>
+                <BSTMI>0.000</BSTMI>
+                <BSTMA>0.000</BSTMA>
+                <BSTFE>0.000</BSTFE>
+                <BSTRF>4752.000</BSTRF>
+                <MABST>0.000</MABST>
+                <LOSFX>0</LOSFX>
+                <ALTSL>3</ALTSL>
+                <AUSDT>00000000</AUSDT>
+                <FHORI>000</FHORI>
+                <FEVOR>001</FEVOR>
+                <BEARZ>0.00</BEARZ>
+                <RUEZT>0.00</RUEZT>
+                <TRANZ>0.00</TRANZ>
+                <BASMG>0.000</BASMG>
+                <DZEIT>0</DZEIT>
+                <MAXLZ>0</MAXLZ>
+                <UEETO>0.0</UEETO>
+                <UEETK>X</UEETK>
+                <UNETO>0.0</UNETO>
+                <WZEIT>0</WZEIT>
+                <VZUSL>0.00</VZUSL>
+                <SSQSS>0000</SSQSS>
+                <KZDKZ>X</KZDKZ>
+                <UMLMC>0.000</UMLMC>
+                <LADGR>Z005</LADGR>
+                <XCHPF>X</XCHPF>
+                <USEQU>4</USEQU>
+                <LGRAD>0.0</LGRAD>
+                <OBJID>00000000</OBJID>
+                <MTVFP>XJ</MTVFP>
+                <VRVEZ>0.00</VRVEZ>
+                <VBAMG>0.000</VBAMG>
+                <VBEAZ>0.00</VBEAZ>
+                <HERKL>HU</HERKL>
+                <PRCTR>PETC</PRCTR>
+                <TRAME>0.000</TRAME>
+                <FXHOR>015</FXHOR>
+                <VRMOD>2</VRMOD>
+                <VINT1>000</VINT1>
+                <VINT2>000</VINT2>
+                <LOSGR>13000.000</LOSGR>
+                <FRTME>CS</FRTME>
+                <LGPRO>0001</LGPRO>
+                <KAUSF>0.00</KAUSF>
+                <TAKZT>0</TAKZT>
+                <AWSLS>GT0001</AWSLS>
+                <VRBDT>00000000</VRBDT>
+                <VRBFK>0.00</VRBFK>
+                <PREND>00000000</PREND>
+                <PRENG>00000000</PRENG>
+                <PRFRQ>0</PRFRQ>
+                <STRGR>40</STRGR>
+                <QMATA>ZDEFLT</QMATA>
+                <MMSTA>Z3</MMSTA>
+                <SFCPF>PI01</SFCPF>
+                <SHFLG>2</SHFLG>
+                <SHZET>07</SHZET>
+                <MMSTD>20101203</MMSTD>
+                <LOGGR>0001</LOGGR>
+                <DPLHO>0</DPLHO>
+                <MINLS>0.000</MINLS>
+                <MAXLS>0.000</MAXLS>
+                <FIXLS>0.000</FIXLS>
+                <LTINC>0.000</LTINC>
+                <COMPL>00</COMPL>
+                <APOKZ>3</APOKZ>
+                <EISLO>0.000</EISLO>
+                <ROTATION_DATE>O</ROTATION_DATE>
+                <_-GLB_-RGTE1MARCMBBD SEGMENT="1">
+                    <IPKRZ_PAL>00000000</IPKRZ_PAL>
+                    <PLANT_MHDRZ>    0</PLANT_MHDRZ>
+                    <PLANT_MHDHB>    0</PLANT_MHDHB>
+                    <DAYS_BEFORE_SALV>180</DAYS_BEFORE_SALV>
+                </_-GLB_-RGTE1MARCMBBD>
+                <E1MKALM SEGMENT="1">
+                    <MSGFN>009</MSGFN>
+                    <VERID>7999</VERID>
+                    <BDATU>99991231</BDATU>
+                    <ADATU>20101029</ADATU>
+                    <STLAL>01</STLAL>
+                    <STLAN>1</STLAN>
+                    <PLNTY>2</PLNTY>
+                    <PLNNR>HUALU206</PLNNR>
+                    <ALNAL>01</ALNAL>
+                    <LOSGR>0.000</LOSGR>
+                    <TEXT1>Pouch Filling Line 2 Black_box</TEXT1>
+                    <EWAHR>0</EWAHR>
+                    <VERTO>GLEI</VERTO>
+                    <BSTMI>1.000</BSTMI>
+                    <BSTMA>99999999.000</BSTMA>
+                </E1MKALM>
+            </E1MARCM>
+            <E1MARMM SEGMENT="1">
+                <MSGFN>005</MSGFN>
+                <MEINH>ZZ2</MEINH>
+                <UMREZ>   1</UMREZ>
+                <UMREN>   1</UMREN>
+                <LAENG>        0.000</LAENG>
+                <BREIT>        0.000</BREIT>
+                <HOEHE>        0.000</HOEHE>
+                <VOLUM>        0.000</VOLUM>
+                <BRGEW>        0.000</BRGEW>
+                <_-NESGLB_-E1MARMM000 SEGMENT="1"/>
+            </E1MARMM>
+            <E1MARMM SEGMENT="1">
+                <MSGFN>005</MSGFN>
+                <MEINH>LR</MEINH>
+                <UMREZ> 594</UMREZ>
+                <UMREN>   1</UMREN>
+                <LAENG>        0.000</LAENG>
+                <BREIT>        0.000</BREIT>
+                <HOEHE>        0.000</HOEHE>
+                <VOLUM>        0.000</VOLUM>
+                <BRGEW>        0.000</BRGEW>
+                <_-NESGLB_-E1MARMM000 SEGMENT="1"/>
+            </E1MARMM>
+            <E1MARMM SEGMENT="1">
+                <MSGFN>005</MSGFN>
+                <MEINH>D97</MEINH>
+                <UMREZ>4752</UMREZ>
+                <UMREN>   1</UMREN>
+                <LAENG>     1200.000</LAENG>
+                <BREIT>     1000.000</BREIT>
+                <HOEHE>     1299.000</HOEHE>
+                <MEABM>MMT</MEABM>
+                <VOLUM>        1.559</VOLUM>
+                <VOLEH>MTQ</VOLEH>
+                <BRGEW>      628.000</BRGEW>
+                <GEWEI>KGM</GEWEI>
+                <_-NESGLB_-E1MARMM000 SEGMENT="1"/>
+            </E1MARMM>
+            <E1MARMM SEGMENT="1">
+                <MSGFN>005</MSGFN>
+                <MEINH>EA</MEINH>
+                <UMREZ>   1</UMREZ>
+                <UMREN>   1</UMREN>
+                <EAN11>5000161029686</EAN11>
+                <NUMTP>3G</NUMTP>
+                <LAENG>       18.000</LAENG>
+                <BREIT>       93.000</BREIT>
+                <HOEHE>      140.000</HOEHE>
+                <MEABM>MMT</MEABM>
+                <VOLUM>      234.360</VOLUM>
+                <VOLEH>CMQ</VOLEH>
+                <BRGEW>      110.000</BRGEW>
+                <GEWEI>GRM</GEWEI>
+                <GTIN_VARIANT>97</GTIN_VARIANT>
+                <_-NESGLB_-E1MARMM000 SEGMENT="1">
+                    <GTIN_VARIANT>97</GTIN_VARIANT>
+                </_-NESGLB_-E1MARMM000>
+            </E1MARMM>
+            <E1MARMM SEGMENT="1">
+                <MSGFN>005</MSGFN>
+                <MEINH>CS</MEINH>
+                <UMREZ>   1</UMREZ>
+                <UMREN>   1</UMREN>
+                <EAN11>5000161029686</EAN11>
+                <NUMTP>3G</NUMTP>
+                <LAENG>       18.000</LAENG>
+                <BREIT>       93.000</BREIT>
+                <HOEHE>      140.000</HOEHE>
+                <MEABM>MMT</MEABM>
+                <VOLUM>      234.360</VOLUM>
+                <VOLEH>CMQ</VOLEH>
+                <BRGEW>      110.000</BRGEW>
+                <GEWEI>GRM</GEWEI>
+                <GTIN_VARIANT>77</GTIN_VARIANT>
+                <_-NESGLB_-E1MARMM000 SEGMENT="1">
+                    <GTIN_VARIANT>77</GTIN_VARIANT>
+                </_-NESGLB_-E1MARMM000>
+            </E1MARMM>
+        </E1MARAM>
+    </IDOC>
+</ZMATMAS03>

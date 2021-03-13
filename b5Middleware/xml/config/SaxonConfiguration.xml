@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns="http://saxon.sf.net/ns/configuration"
+    edition="HE"
+    licenseFileLocation=""
+    label="c4jMiddleware">
+
+    <resources>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_NVL</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_padStringLeft</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_padStringRight</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_subString</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_removeCommas</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_formatDate</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_ISO_Date_to_date_MMYYYY</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_ISO_Date_to_date_DDMMYYYY</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_getISODateTimeString</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_removeLeadingZeros</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_removeSpaces</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_padEAN</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_padVariant</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_trim</extensionFunction>
+        <extensionFunction>com.commander4j.Transformation.XSLT_Ext_concat</extensionFunction>
+    </resources>
+    
+</configuration>

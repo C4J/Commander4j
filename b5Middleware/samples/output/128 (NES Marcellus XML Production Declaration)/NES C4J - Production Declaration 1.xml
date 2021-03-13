@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MESSAGE id="350001615021853044_2016-08-01T14:58:16" number="350001615021853044_2016-08-01T14:58:16" type="Cmd4j Production Declaration">
+   <SOURCE name="Commander4j"/>
+   <DATA type="Pallet">
+      <FIELD name="SSCC" value="350001615021853044"/>
+      <FIELD name="Plant" value="0933"/>
+      <FIELD name="Warehouse" value="734"/>
+      <FIELD name="Material" value="43170672"/>
+      <FIELD name="LegacyMaterial" value=""/>
+      <FIELD name="EANCode" value="07613032213848"/>
+      <FIELD name="Variant" value="00"/>
+      <FIELD name="OrderNumber" value="20725187"/>
+      <FIELD name="CRID" value="100000000028949253"/>
+      <FIELD name="productionDate" value="2016-08-01T14:58:03"/>
+      <FIELD name="CompletionDate" value="01-08-2016 14:58:03"/>
+      <FIELD name="expiryDate" value="2018-08-31T00:00:00"/>
+      <FIELD name="BBE" value="31-08-2018 00:00:00"/>
+      <FIELD name="BBE1" value="082018"/>
+      <FIELD name="BBE2" value="31082018"/>
+      <FIELD name="Quantity" value="5616.000"/>
+      <FIELD name="UOM" value="EA"/>
+      <FIELD name="PalletType" value="FG"/>
+      <FIELD name="BatchNumber" value="6214093310"/>
+      <FIELD name="InterfaceMakeIndicator" value="Y"/>
+      <FIELD name="PrinterID" value=""/>
+      <FIELD name="PrintLabel" value="N"/>
+      <FIELD name="Final" value="N"/>
+      <FIELD name="Line" value=""/>
+   </DATA>
+</MESSAGE>

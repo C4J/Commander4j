@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config description="c4jMiddleware Example">
+
+    <logPath/>
+    <XSLTPath/>
+    <logArchiveRetentionDays>3</logArchiveRetentionDays>
+    <enableEmailNotifications>false</enableEmailNotifications>
+    <statusReportTime>09:00:00</statusReportTime>
+
+    <map id="map01" enabed="Y" description="NES Konnect XML Material to C4J Material Master">
+        <input id="in1" description="Read Konnect XML Material Master">
+            <type>XML</type>
+            <path>./interface/input/01 (NES Konnect XML Material)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>ROCKWELL_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write C4J Material Master">
+            <path>./interface/output/01 (C4J - Material)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map02" enabed="Y" description="NES B2MML S95 XML Process Order to C4J Process Order">
+        <input id="in1" description="Read B2MML S95 CR XML Process Order">
+            <type>XML</type>
+            <path>./interface/input/02 (NES B2MML S95 XML Process Order)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>S95_PROCESS_ORDER_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write Commander4j Process Order XML">
+            <path>./interface/output/02 (C4J - Process Order)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map03" enabed="Y" description="GEN Comma Separated Variables">
+        <input id="in1" description="Read GEN Comma Separated Variables">
+            <type>CSV</type>
+            <path>./interface/input/03 (GEN Comma Separated Variables)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>CSV_to_XML_Example.xsl</XSLT>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=none</csvOptions>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML Example">
+            <path>./interface/output/03 (XML)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map04" enabed="Y" description="NES B2MML S95 XML Batch Status to C4J Batch Status">
+        <input id="in1" description="Read S95 Batch Status Change">
+            <type>XML</type>
+            <path>./interface/input/04 (NES B2MML S95 XML Batch Status)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>S95_BATCH_STATUS_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write Commander4j Batch Status Change">
+            <path>./interface/output/04 (C4J - Batch Status)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map05" enabed="Y" description="NES B2MML S95 XML Pallet Status to C4J Pallet Status">
+        <input id="in1" description="Read SAP S95 TRANSFER ORDER XML">
+            <type>XML</type>
+            <path>./interface/input/05 (NES B2MML S95 XML Pallet Status)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>S95_TRANSFER_SCHEDULE_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write Commander4j Pallet Status Change XML">
+            <path>./interface/output/05 (C4J - Pallet Status)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map06" enabed="Y"
+        description="NES B2MML S95 XML Process Order Status to C4J Process Order Status">
+
+        <input id="in1" description="Read SAP S95 CRST XML">
+            <type>XML</type>
+            <path>./interface/input/06 (NES B2MML S95 XML Process Order Status)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>S95_PROCESS_ORDER_STATUS_CHANGE_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write Commander4j Process Order Status Change XML">
+            <path>./interface/output/06 (C4J - Process Order Status)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map07" enabed="Y"
+        description="NES C4J Production Declaration to B2MML S95 XML Production Declaration">
+        <input id="in1" description="Read C4J Prod Dec XML">
+            <type>XML</type>
+            <path>./interface/input/07 (C4J Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write B2MML S95 XML Prod Dec">
+            <path>./interface/output/07 (NES B2MML S95 XML Production Declaration)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map08" enabed="Y" description="GEN ASCII File Fixed Column to XML">
+        <input id="in1" description="Read ASCII Flat File">
+            <type>ASCII</type>
+            <path>./interface/input/08 (GEN ASCII File Fixed Column)</path>
+            <mask/>
+            <inputPattern>1-4,18-21</inputPattern>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>ASCII_to_XML_Example.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML">
+            <path>./interface/output/08 (XML)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map09" enabed="Y" description="CDF Tropos Material XML">
+        <input id="in1" description="Read TROPOS Material XML File">
+            <type>XML</type>
+            <path>./interface/input/09 (CDF Tropos Material XML)</path>
+            <mask/>
+            <prefix>IJM Inbound Material Master</prefix>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>TROPOS_Material_to_Commander4j_Material.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write C4J Material Master">
+            <path>./interface/output/09 (C4J - Material)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map10" enabed="Y" description="CDF Tropos Works Order XML">
+        <input id="in1" description="Read TROPOS Works Order XML File">
+            <type>XML</type>
+            <path>./interface/input/10 (CDF Tropos Works Order XML)</path>
+            <mask/>
+            <prefix>IJM Production Order Print</prefix>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>TROPOS_WorksOrder_to_Commander4j_Process_Order.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write C4J Process Order">
+            <path>./interface/output/10 (C4J - Process Order)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map11" enabed="Y" description="CDF C4J Production Declaration to TROPOS Goods Receipt">
+        <input id="in1" description="Read C4J XML File">
+            <type>XML</type>
+            <path>./interface/input/11 (C4J - Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_to_TROPOS_GoodsReceipt_CSV.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write TROPOS CSV">
+            <path>./interface/output/11 (TROPOS - Goods Receipt)</path>
+            <type>CSV</type>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=none</csvOptions>
+            <outputFileExtension>temp</outputFileExtension>
+            <prefix>G_</prefix>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map12" enabed="Y" description="GEN XML to ASCII Flat File">
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/12 (GEN XML to ASCII Flat File)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write ASCII File">
+            <path>./interface/output/12 (ASCII Fix Column)</path>
+            <type>ASCII</type>
+            <outputPattern>1-10,12-21,23-32</outputPattern>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map13" enabed="Y" description="GEN XML to Dual Output (ASCII and CSV Files)">
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/13 (GEN XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_to_ASCII_Flat_File.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write ASCII File">
+            <path>./interface/output/13 (Dual Output ASCII and CSV)</path>
+            <type>ASCII</type>
+            <outputPattern>1-10,12-21,23-32</outputPattern>
+            <outputFileExtension>txt</outputFileExtension>
+            <XSLT/>
+        </output>
+
+        <output id="out2" enabed="Y" description="Write CSV">
+            <path>./interface/output/13 (Dual Output ASCII and CSV)</path>
+            <type>CSV</type>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=:^quote=""</csvOptions>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map14" enabed="Y" description="NES SAP XML Material to C4J Material">
+        <input id="in1" description="Read NES SAP XML Material">
+            <type>XML</type>
+            <path>./interface/input/14 (NES SAP XML Material)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>WONDERWARE_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write Commander4j Material">
+            <path>./interface/output/14 (C4J - Material)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map15" enabed="Y" description="NES C4J Equipment Tracking to ASCII Flat File">
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/15 (C4J Equipment Tracking)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_Equipment_XML_to_ASCII_Flat_File.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write ASCII Fixed Column File">
+            <path>./interface/output/15 (NES Equipment Tracking)</path>
+            <type>ASCII</type>
+            <outputPattern>1-4,5-12,13-16,17-18,19-20,21-28,29-30,31-32,33-34,35-40,41-50</outputPattern>
+            <outputFileExtension>PAL</outputFileExtension>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map16" enabed="Y" description="GEN Split inbound XML into 2 outbounds">
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/16 (GEN Single Input XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML Copy 1">
+            <path>./interface/output/16a (GEN Single Input to Output XML Copy 1)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+
+        <output id="out2" enabed="Y" description="Write XML Copy 2">
+            <path>./interface/output/16b (GEN Single Input to Output XML Copy 2)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map17" enabed="Y" description="GEN Excel Spreadsheet to CSV">
+        <input id="in1" description="Read Excel File">
+            <type>XLS</type>
+            <path>./interface/input/17 (GEN Excel)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write CSV File">
+            <path>./interface/output/17 (GEN CSV)</path>
+            <type>CSV</type>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=none</csvOptions>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map18" enabed="Y" description="NES SAP Idoc Material Master to C4J XML">
+        <input id="in1" description="Read IDOC">
+            <type>IDOC</type>
+            <path>./interface/input/18 (NES SAP IDOC Material Master)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <idocSchemaFilename>./idoc/schema/ZMATMAS03c.txt</idocSchemaFilename>
+            <XSLT>ROCKWELL_MM_FFMW_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML File">
+            <path>./interface/output/18 (C4J - Material XML)</path>
+            <type>XML</type>
+        </output>
+    </map>
+
+    <map id="map19" enabed="Y" description="NES C4J Pre Advice XML to Excel Spreadsheet">
+        <input id="in1" description="C4J Pre Advice XM">
+            <type>XML</type>
+            <path>./interface/input/19 (NES C4J Pre Advice XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>XML to Excel Pre Advice Journey Ref.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write NES Excel XML File">
+            <path>./interface/output/19 (NES Pre Advice Excel)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map20" enabed="Y" description="GEN C4J Pre Advice XML to ASCII File">
+        <input id="in1" description="Read XML File">
+            <type>XML</type>
+            <path>./interface/input/20 (GEN C4J Pre Advice XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>XML to ASCII Pre Advice Journey Ref.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write ASCII File">
+            <path>./interface/output/20 (GEN Pre Advice ASCII)</path>
+            <type>ASCII</type>
+            <outputPattern>1-20,21-40</outputPattern>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map21" enabed="Y" description="GEN Email Send">
+        <input id="in1" description="Read File">
+            <type>EMAIL</type>
+            <mask/>
+            <path>./interface/input/21 (GEN Email Send)</path>
+            <pollingInterval>1000</pollingInterval>
+        </input>
+        <output id="out1" enabed="Y" description="Write File">
+            <path>./interface/output/21 (GEN Email Send)</path>
+            <type>EMAIL</type>
+            <subject>Test Email</subject>
+            <message>Open Attached using Excel</message>
+            <emailListID>Excel</emailListID>
+        </output>
+    </map>
+
+    <map id="map22" enabed="Y" description="NES Atlas XML Filter Destination to C4J XML">
+        <input id="in1" description="Read Atlas XML">
+            <type>XML</type>
+            <path>./interface/input/22 (NES Atlas Journey XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>ATLAS_XML_to_C4J_XML.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write Commander4j XML">
+            <path>./interface/output/22 (C4J Journey XML)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map24" enabed="Y" description="GEN C4J Pre Advice XML to CSV">
+        <input id="in1" description="Read XML">
+            <type>XML</type>
+            <path>./interface/input/24 (GEN C4J Pre Advice XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>Commander4j_to_PreAdvice_CSV.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write CSV">
+            <path>./interface/output/24 (GEN Pre Advice CSV)</path>
+            <type>RAW</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map25" enabed="Y" description="NES C4J Production Declaration Rounded Expiry Time">
+        <input id="in1" description="Read C4J Prod Dec XML">
+            <type>XML</type>
+            <path>./interface/input/25 (NES C4J Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_EXPIRY_23_59_59.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write S95 Prod Dec XML">
+            <path>./interface/output/25 (NES C4J Production Declaration Expiry 235959)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map26" enabed="Y" description="GEN EPCIS to TraceLink">
+        <input id="in1" description="Read EPCIS">
+            <type>XML</type>
+            <path>./interface/input/26 (GEN EPCIS)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>EPCIS_to_TRACELINK.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write TraceLink">
+            <path>./interface/output/26 (GEN TraceLink)</path>
+            <type>XML</type>
+            <XSLT/>
+        </output>
+    </map>
+
+    <map id="map28" enabed="Y" description="NES C4J ProdDec to Marcellus XML &amp; B2MML S95 XML">
+        <input id="in1" description="Commander4j ProdDec">
+            <type>XML</type>
+            <path>./interface/input/28 (NES C4J - Production Declaration XML)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>
+
+        </input>
+
+        <output id="out1" enabed="Y" description="Write Marcellus XML">
+            <path>./interface/output/28 (NES Marcellus XML Production Declaration)</path>
+            <type>XML</type>
+            <XSLT>C4J_PRODDEC_XML_to_Marcellus_XML.xsl</XSLT>
+        </output>
+
+        <output id="out2" enabed="Y" description="Write B2MML S95 Prod Dec">
+            <path>./interface/output/28 (NES B2MML S95 Production Declaration)</path>
+            <type>XML</type>
+            <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
+        </output>
+    </map>
+
+    <map id="map29" enabed="Y" description="NES Agedis NTR CSV to C4J Prod Dec XML">
+        <input id="in1" description="Read NTR CSV">
+            <type>CSV</type>
+            <path>./interface/input/29 (NES NTR Agedis CSV)</path>
+            <mask>NTR</mask>
+            <pollingInterval>1000</pollingInterval>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=|^quote=none</csvOptions>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write C4J XML Prod Dec">
+            <path>./interface/output/29 (NES C4J Prod Dec XML)</path>
+            <type>XML</type>
+            <XSLT>NTR__CSV_to_C4J_PROD_DEC_XML.xsl</XSLT>
+        </output>
+    </map>
+
+
+    <map id="map30" enabed="Y" description="NES C4J ProdDec XML to B2MML S95 ProdDec XML + C4J Pallet Move XML">
+        <input id="in1" description="Read C4J Prod Dec XML">
+            <type>XML</type>
+            <path>./interface/input/30 (NES C4J Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT/>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write B2MML S95 Prod Dec XML">
+            <path>./interface/output/30 (NES B2MML S95 Production Declaration)</path>
+            <type>XML</type>
+            <XSLT>C4J_PRODDEC_XML_to_S95_PRODDEC_XML.xsl</XSLT>
+        </output>
+
+        <output id="out2" enabed="Y" description="Write C4J Pallet Move XML">
+            <condition>
+                <param1 type="xquery">/message/messageData/palletMove/pallet/fromLocation</param1>
+                <comparitor>NOT EQUAL</comparitor>
+                <param2 type="xquery">/message/messageData/palletMove/pallet/toLocation</param2>
+            </condition>
+            <path>./interface/output/30 (NES C4J Pallet Move XML)</path>
+            <type>XML</type>
+            <XSLT>C4J_ProdDec_to_PalletMove.xsl</XSLT>
+        </output>
+    </map>
+
+    <map id="map31" enabed="Y" description="NES IDOC Material Master to C4J Material Auto Move XML">
+        <input id="in1" description="Read IDOC">
+            <type>IDOC</type>
+            <path>./interface/input/31 (NES SAP IDOC Material Master)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <idocSchemaFilename>./idoc/schema/ZMATMAS03c.txt</idocSchemaFilename>
+            <XSLT>ROCKWELL_MM_PROCUREMENT_AUTO_MOVE.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write XML File">
+            <path>./interface/output/31 (NES C4J Material Auto Move XML)</path>
+            <type>XML</type>
+        </output>
+    </map>
+
+
+    <map id="map32" enabed="Y" description="FH C4J Production Declaration XML to SAGE X3 Goods Receipt CSV">
+        <input id="in1" description="Read C4J XML File">
+            <type>XML</type>
+            <path>./interface/input/32 (FH C4J - Production Declaration)</path>
+            <mask/>
+            <pollingInterval>1000</pollingInterval>
+            <XSLT>C4J_PRODDEC_XML_to_SAGEX3_GoodsReceipt_CSV.xsl</XSLT>
+        </input>
+
+        <output id="out1" enabed="Y" description="Write SAGE CSV">
+            <path>./interface/output/32 (FH SAGE X3 - Goods Receipt CSV)</path>
+            <type>CSV</type>
+            <optionDelimeter>^</optionDelimeter>
+            <csvOptions>separator=,^quote=none</csvOptions>
+            <outputFileExtension>txt</outputFileExtension>
+            <prefix>G_</prefix>
+            <XSLT/>
+        </output>
+    </map>
+
+</config>

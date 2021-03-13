@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+    <hostRef>633236de-9d18-45bf-951c-92650bddc98b</hostRef>
+    <messageRef>383</messageRef>
+    <interfaceType>Production Declaration</interfaceType>
+    <messageInformation>SSCC=501443990000003299</messageInformation>
+    <interfaceDirection>Output</interfaceDirection>
+    <messageDate>2019-04-08T21:10:40</messageDate>
+    <messageData>
+        <productionDeclaration>
+            <SSCC>501443990000003299</SSCC>
+            <processOrder>MFG4222277</processOrder>
+            <recipe/>
+            <requiredResource/>
+            <material>12353659</material>
+            <description>BONIO THE ORIGINAL BiFc 5x650g~~BRI</description>
+            <old_code/>
+            <moveAfterMake>N</moveAfterMake>
+            <moveLocationID/>
+            <customerID>L4000</customerID>
+            <customerName>NPP UK</customerName>
+            <customerNameOnLabel>Y</customerNameOnLabel>
+            <customerOverridePack>N</customerOverridePack>
+            <customerPackModule/>
+            <customerOverridePallet>Y</customerOverridePallet>
+            <customerPalletModule>RPT_PAL_NESTLE</customerPalletModule>
+            <customerBatchOverride>Y</customerBatchOverride>
+            <customerBatchFormat>{YEAR1}{JULIAN_DAY}{PLANT}</customerBatchFormat>
+            <customerData01/>
+            <customerData02/>
+            <customerData03/>
+            <customerData04/>
+            <ean>07613032994013</ean>
+            <variant>02</variant>
+            <status>Unrestricted</status>
+            <batchDefaultFormat>F1{YEAR1}{JULIAN_DAY}</batchDefaultFormat>
+            <batch>9098092900</batch>
+            <batchStatus>Restricted</batchStatus>
+            <expiry_Mode>SSCC</expiry_Mode>
+            <expiryDate>2020-10-31T00:00:00</expiryDate>
+            <location>LIV</location>
+            <name>FHF Ltd</name>
+            <gln/>
+            <plant>0929</plant>
+            <warehouse>DESP</warehouse>
+            <storageLocation/>
+            <storageSection/>
+            <storageBin/>
+            <storageType/>
+            <productionQuantity>84.000</productionQuantity>
+            <productionUOM>CS</productionUOM>
+            <confirmed>Y</confirmed>
+            <productionDate>2019-04-08T21:09:20</productionDate>
+        </productionDeclaration>
+    </messageData>
+</message>

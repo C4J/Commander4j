@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<install4j version="8.0.10" transformSequenceNumber="8">
+<install4j version="9.0" transformSequenceNumber="9">
   <directoryPresets config=".." />
   <application name="Commander4j Middleware" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java8/c4jMiddleware" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="2.05" allPathsRelative="true" macVolumeId="ebde9226275d23ed" javaMinVersion="1.8" javaMaxVersion="1.8" allowBetaVM="true" jdkMode="jdk" jdkName="JDK 1.8">
     <languages skipLanguageSelection="true">
@@ -12,9 +12,9 @@
         <language id="pl" />
       </additionalLanguages>
     </languages>
-    <jreBundles jdkProviderId="AdoptOpenJDK" release="openjdk8/jdk8u282-b08" />
+    <jreBundles jdkProviderId="AdoptOpenJDK" release="8/jdk8u282-b08" />
   </application>
-  <files keepModificationTimes="true" missingFilesStrategy="error" globalExcludeSuffixes="dirClean.ok,.DS_Store">
+  <files keepModificationTimes="true" missingFilesStrategy="error" globalExcludeSuffixes="dirClean.ok,.DS_Store" preserveSymlinks="false">
     <mountPoints>
       <mountPoint id="22" location="images" />
       <mountPoint id="24" location="xml" />
@@ -51,7 +51,12 @@
           <entry location="c4jMiddleware.log" />
         </exclude>
       </dirEntry>
-      <dirEntry mountPoint="295" file="./xslt" overwriteMode="2" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="xslt" />
+      <dirEntry mountPoint="295" file="./xslt" overwriteMode="2" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="xslt">
+        <exclude>
+          <entry location="referenceData.xml" />
+          <entry location="configData.xml" />
+        </exclude>
+      </dirEntry>
       <fileEntry mountPoint="295" file="./xslt/configData.xml" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="295" file="./xslt/referenceData.xml" overwriteMode="2" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <dirEntry mountPoint="296" file="./samples" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="samples">
@@ -431,11 +436,19 @@ return console.askYesNo(message, true);
           <group id="599" beanClass="com.install4j.runtime.beans.groups.VerticalFormComponentGroup" useExternalParametrization="true" externalParametrizationName="Customize banner image" externalParametrizationMode="include">
             <serializedBean>
               <property name="backgroundColor">
-                <object class="java.awt.Color">
-                  <int>255</int>
-                  <int>255</int>
-                  <int>255</int>
-                  <int>255</int>
+                <object class="com.install4j.runtime.beans.LightOrDarkColor">
+                  <object class="java.awt.Color">
+                    <int>255</int>
+                    <int>255</int>
+                    <int>255</int>
+                    <int>255</int>
+                  </object>
+                  <object class="java.awt.Color">
+                    <int>49</int>
+                    <int>52</int>
+                    <int>53</int>
+                    <int>255</int>
+                  </object>
                 </object>
               </property>
               <property name="borderSides">
@@ -444,11 +457,19 @@ return console.askYesNo(message, true);
                 </object>
               </property>
               <property name="imageEdgeBackgroundColor">
-                <object class="java.awt.Color">
-                  <int>25</int>
-                  <int>143</int>
-                  <int>220</int>
-                  <int>255</int>
+                <object class="com.install4j.runtime.beans.LightOrDarkColor">
+                  <object class="java.awt.Color">
+                    <int>25</int>
+                    <int>143</int>
+                    <int>220</int>
+                    <int>255</int>
+                  </object>
+                  <object class="java.awt.Color">
+                    <int>0</int>
+                    <int>74</int>
+                    <int>151</int>
+                    <int>255</int>
+                  </object>
                 </object>
               </property>
               <property name="imageEdgeBorder" type="boolean" value="true" />
@@ -502,11 +523,19 @@ return console.askYesNo(message, true);
               <group id="606" beanClass="com.install4j.runtime.beans.groups.VerticalFormComponentGroup" useExternalParametrization="true" externalParametrizationName="Customize title bar" externalParametrizationMode="include">
                 <serializedBean>
                   <property name="backgroundColor">
-                    <object class="java.awt.Color">
-                      <int>255</int>
-                      <int>255</int>
-                      <int>255</int>
-                      <int>255</int>
+                    <object class="com.install4j.runtime.beans.LightOrDarkColor">
+                      <object class="java.awt.Color">
+                        <int>255</int>
+                        <int>255</int>
+                        <int>255</int>
+                        <int>255</int>
+                      </object>
+                      <object class="java.awt.Color">
+                        <int>49</int>
+                        <int>52</int>
+                        <int>53</int>
+                        <int>255</int>
+                      </object>
                     </object>
                   </property>
                   <property name="borderSides">
@@ -610,26 +639,28 @@ return console.askYesNo(message, true);
   </installerGui>
   <mediaSets>
     <macosFolder name="Mac OS X Folder (with JRE)" id="86" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}">
-      <jreBundle jreBundleSource="generated" includedJre="macosx-amd64-1.8.0_202">
+      <jreBundle includedJre="macosx-amd64-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </macosFolder>
     <windows name="Windows 64bit (with JRE)" id="88" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" customInstallBaseDir="C:\">
-      <jreBundle jreBundleSource="generated" includedJre="windows-amd64-1.8.0_202">
+      <jreBundle includedJre="windows-amd64-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </windows>
     <windows name="Windows 32bit (with JRE)" id="89" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" jreBitType="32" customInstallBaseDir="C:\">
-      <jreBundle jreBundleSource="generated" includedJre="windows-x86-1.8.0_202">
+      <jreBundle includedJre="windows-x86-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </windows>
-    <unixInstaller name="Unix Installer" id="90" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" />
+    <unixInstaller name="Unix Installer" id="90" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}">
+      <jreBundle jreBundleSource="none" />
+    </unixInstaller>
   </mediaSets>
 </install4j>

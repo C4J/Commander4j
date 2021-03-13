@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+   <plant>0917</plant>
+   <warehouse>HU3</warehouse>
+   <hostRef>WILIVE</hostRef>
+   <interfaceType>Material Definition</interfaceType>
+   <interfaceDirection>Input</interfaceDirection>
+   <messageRef>DOCNUM 139114651</messageRef>
+   <messageInformation>Mateial=43297235/HALB</messageInformation>
+   <messageDate>2019-03-29T22:10:29</messageDate>
+   <messageData>
+      <materialDefinition>
+         <material>43297235</material>
+         <old_material>GLS000000043384989</old_material>
+         <materialType>HALB</materialType>
+         <base_uom>EA</base_uom>
+         <gross_weight>90.000</gross_weight>
+         <net_weight>85.000</net_weight>
+         <weight_uom>GRM</weight_uom>
+         <!--Description for language E--><description>GOURMET PERLE GiG Rbt&amp;Ga Pch BSt 85g XE</description>
+         <enabled>Y</enabled>
+         <equipment_Type>U2</equipment_Type>
+         <!--Use PLANT = []--><shelf_life>24</shelf_life>
+         <shelf_life_uom>M</shelf_life_uom>
+         <shelf_life_rule>+</shelf_life_rule>
+         <materialUOMDefinition>
+            <uom>CS</uom>
+            <ean>07613031898787</ean>
+            <variant>77</variant>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>EA</uom>
+            <ean>07613031898770</ean>
+            <variant>00</variant>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>LR</uom>
+            <ean/>
+            <variant/>
+            <numerator>702</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>D97</uom>
+            <ean/>
+            <variant/>
+            <!--* LE VALUES *--><!--LE Quantity    = 5184--><!--LE Unit        = CS--><!--LE Numerator   = 1--><!--LE Denominator = 1--><!--* BASE VALUES *--><!--Base Unit      = EA--><!--* CALCULATIONS *--><!--Converting LE Quantity from CS to EA--><!--D97 (in EA) = 5184(CS) x 1 = 5184--><!--Calculated LE quantity is 5184--><!--LE Qty 5184 is different to Normal Qty 5616 - setting override flag--><numerator>5184</numerator>
+            <override>X</override>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <materialUOMDefinition>
+            <uom>ZZ2</uom>
+            <ean/>
+            <variant/>
+            <numerator>1</numerator>
+            <denominator>1</denominator>
+         </materialUOMDefinition>
+         <validLocations>
+            <location>
+               <location>BUK</location>
+               <status>Valid</status>
+            </location>
+         </validLocations>
+      </materialDefinition>
+   </messageData>
+</message>
