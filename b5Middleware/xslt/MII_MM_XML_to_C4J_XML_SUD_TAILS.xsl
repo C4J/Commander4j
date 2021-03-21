@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:c4j="http://www.commander4j.com"
-    xmlns:c4j_XSLT_Ext="http://com.commander4j.Transformation.XSLT_Ext"
-    xmlns:c4j_XSLT_Ext_padStringLeft="http://com.commander4j.Transformation.XSLT_Ext_padStringLeft"
-    xmlns:c4j_XSLT_Ext_padStringRight="http://com.commander4j.Transformation.XSLT_Ext_padStringRight"
-    xmlns:c4j_XSLT_Ext_removeLeadingZeros="http://com.commander4j.Transformation.XSLT_Ext_removeLeadingZeros"
-    xmlns:c4j_XSLT_Ext_removeSpaces="http://com.commander4j.Transformation.XSLT_Ext_removeSpaces"
-    xmlns:c4j_XSLT_Ext_trim="http://com.commander4j.Transformation.XSLT_Ext_trim"
-    xmlns:c4j_XSLT_Ext_subString="http://com.commander4j.Transformation.XSLT_Ext_subString"
-    xmlns:c4j_XSLT_Ext_formatDate="http://com.commander4j.Transformation.XSLT_Ext_formatDate"
-    xmlns:c4j_XSLT_Ext_concat="http://com.commander4j.Transformation.XSLT_Ext_concat"
-    xmlns:c4j_XSLT_Ext_padEAN="http://com.commander4j.Transformation.XSLT_Ext_padEAN"
-    xmlns:c4j_XSLT_Ext_padVariant="http://com.commander4j.Transformation.XSLT_Ext_padVariant"
-    exclude-result-prefixes="xs c4j"  version="2.0">
-    
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:c4j="http://www.commander4j.com"
+                xmlns:c4j_XSLT_Ext="http://com.commander4j.Transformation"
+                exclude-result-prefixes="xs c4j c4j_XSLT_Ext"  version="2.0">
+
     <xsl:output encoding="UTF-8" indent='yes' method="xml" />
     <xsl:strip-space  elements="*"/>
 
@@ -50,27 +39,26 @@
     <xsl:variable name="WAREHOUSE" >HU3</xsl:variable>
     <xsl:variable name="LANGUAGE"  >E</xsl:variable>
     <xsl:variable name="LOCATION"  >BUK</xsl:variable>
-    
     -->
   
     <!-- Local Variables -->
     
     <xsl:variable name="BASE_UOM"           select="string(/ZMATMAS03/IDOC/E1MARAM/MEINS)"/>
-    <xsl:variable name="MATERIAL"           select="string(c4j_XSLT_Ext_removeLeadingZeros:removeLeadingZeros(string(/ZMATMAS03/IDOC/E1MARAM/MATNR)))"/>
+    <xsl:variable name="MATERIAL"           select="c4j_XSLT_Ext:removeLeadingZeros(string(/ZMATMAS03/IDOC/E1MARAM/MATNR))"/>
     <xsl:variable name="MTYPE"              select="string(/ZMATMAS03/IDOC/E1MARAM/MTART)"/>
     <xsl:variable name="USE_PLANT"          select="string(/ZMATMAS03/IDOC/E1MARAM/_-NESGLB_-DISTR000/WERKS[.=$PLANT]/../AD_PLANT_DATA)"/>
     <xsl:variable name="FOUND_PLANT"        select="string(/ZMATMAS03/IDOC/E1MARAM/E1MARCM/WERKS[.=$PLANT])"/>
     <xsl:variable name="FOUND_WAREHOUSE"    select="string(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE])" />
     <xsl:variable name="LE_QTY"             select="number(concat('0',string(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHMG1)))" />
     <xsl:variable name="LE_UOM_NOTRIM"      select="string(/ZMATMAS03/IDOC/E1MARAM/E1MLGNM/LGNUM[.=$WAREHOUSE]/../LHME1)" />
-    <xsl:variable name="LE_UOM"             select="string(c4j_XSLT_Ext_trim:trim(string($LE_UOM_NOTRIM)))" />
+    <xsl:variable name="LE_UOM"             select="c4j_XSLT_Ext:trim(string($LE_UOM_NOTRIM))" />
 
-    <xsl:variable name="LE_NUMERATOR"       select="number(concat('0',c4j_XSLT_Ext_trim:trim(string(/ZMATMAS03/IDOC/E1MARAM/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREZ))))" />                                             
-    <xsl:variable name="LE_DENOMINATOR"     select="number(concat('0',c4j_XSLT_Ext_trim:trim(string(/ZMATMAS03/IDOC/E1MARAM/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREN))))" />
+    <xsl:variable name="LE_NUMERATOR"       select="number(concat('0',c4j_XSLT_Ext:trim(string(/ZMATMAS03/IDOC/E1MARAM/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREZ))))" />                                             
+    <xsl:variable name="LE_DENOMINATOR"     select="number(concat('0',c4j_XSLT_Ext:trim(string(/ZMATMAS03/IDOC/E1MARAM/E1MARMM/MEINH[.=$LE_UOM_NOTRIM]/../UMREN))))" />
     
     <xsl:variable name="STORAGE_BIN_SPACES" select="string(/ZMATMAS03/IDOC/E1MARAM/E1MARCM/WERKS[.=$PLANT]/../E1MARDM/LGORT[.=$STORAGE_LOCATION]/../LGPBE)"/>
        
-    <xsl:variable name="STORAGE_BIN" select="c4j_XSLT_Ext_removeSpaces:removeSpaces($STORAGE_BIN_SPACES)"/>
+    <xsl:variable name="STORAGE_BIN" select="c4j_XSLT_Ext:removeSpaces($STORAGE_BIN_SPACES)"/>
     <xsl:variable name="MATERIAL_TYPE" select="string(/ZMATMAS03/IDOC/E1MARAM/MTART)"/>
    
     <xsl:template match="/ZMATMAS03">
@@ -115,18 +103,18 @@
         <interfaceType>Material Definition</interfaceType>
         <interfaceDirection>Input</interfaceDirection>
         <xsl:variable name="SAPDOCNUM_LONG" select="string(DOCNUM)" />
-        <xsl:variable name="SAPDOCNUM_SHORT" select="c4j_XSLT_Ext_removeLeadingZeros:removeLeadingZeros($SAPDOCNUM_LONG)" />
+        <xsl:variable name="SAPDOCNUM_SHORT" select="c4j_XSLT_Ext:removeLeadingZeros($SAPDOCNUM_LONG)" />
         <messageRef>DOCNUM <xsl:value-of select="$SAPDOCNUM_SHORT"/></messageRef>
         <messageInformation>Material=<xsl:value-of select="$MATERIAL"/>/<xsl:value-of select="$MTYPE"/></messageInformation>
-        <xsl:variable name="CREATE_DATE" select="string(c4j_XSLT_Ext_trim:trim(string(CREDAT)))" />
-        <xsl:variable name="CREATE_TIME" select="string(c4j_XSLT_Ext_trim:trim(string(CRETIM)))" />
-        <xsl:variable name="CREATE_DATETIME" select="c4j_XSLT_Ext_concat:concat(string($CREATE_DATE),string($CREATE_TIME))"  />
-        <messageDate><xsl:value-of select="c4j_XSLT_Ext_formatDate:formatDate($CREATE_DATETIME, 'yyyyMMddHHmmss', 'yyyy-MM-dd''T''HH:mm:ss')"/></messageDate>
+        <xsl:variable name="CREATE_DATE" select="c4j_XSLT_Ext:trim(string(CREDAT))" />
+        <xsl:variable name="CREATE_TIME" select="c4j_XSLT_Ext:trim(string(CRETIM))" />
+        <xsl:variable name="CREATE_DATETIME" select="c4j_XSLT_Ext:concat($CREATE_DATE,$CREATE_TIME)"  />
+        <messageDate><xsl:value-of select="c4j_XSLT_Ext:formatDate($CREATE_DATETIME, 'yyyyMMddHHmmss', 'yyyy-MM-dd''T''HH:mm:ss')"/></messageDate>
     </xsl:template>
     
     <xsl:template match="E1MARAM">
         <xsl:variable name="MATERIAL_LONG" select="string(MATNR)" />
-        <xsl:variable name="MATERIAL_SHORT" select="c4j_XSLT_Ext_removeLeadingZeros:removeLeadingZeros($MATERIAL_LONG)" />
+        <xsl:variable name="MATERIAL_SHORT" select="c4j_XSLT_Ext:removeLeadingZeros($MATERIAL_LONG)" />
         <material><xsl:value-of select="$MATERIAL_SHORT" /></material>
         <old_material><xsl:value-of select="string(BISMT)" /></old_material>
         <materialType><xsl:value-of select="$MATERIAL_TYPE" /></materialType>
@@ -157,8 +145,8 @@
         </xsl:if>
         
         <xsl:if test="$USE_PLANT = ''">
-            <shelf_life> <xsl:value-of select="c4j_XSLT_Ext_trim:trim(MHDHB)" /></shelf_life>
-            <xsl:variable name="shelf_life_uom" select="c4j_XSLT_Ext_trim:trim(string(IPRKZ))" />
+            <shelf_life> <xsl:value-of select="c4j_XSLT_Ext:trim(MHDHB)" /></shelf_life>
+            <xsl:variable name="shelf_life_uom" select="c4j_XSLT_Ext:trim(string(IPRKZ))" />
             <shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('ShelfLifeUom',$shelf_life_uom)" /></shelf_life_uom>
             <!--<shelf_life_rule1><xsl:value-of select="RDMHD" /></shelf_life_rule1>-->
         </xsl:if>
@@ -173,8 +161,8 @@
     </xsl:template>
 
     <xsl:template match="E1MARCM/_-GLB_-RGTE1MARCMBBD">
-        <shelf_life> <xsl:value-of select="c4j_XSLT_Ext_trim:trim(PLANT_MHDHB)" /></shelf_life>
-        <xsl:variable name="shelf_life_uom" select="c4j_XSLT_Ext_trim:trim(string(PLANT_IPRKZ))" />
+        <shelf_life> <xsl:value-of select="c4j_XSLT_Ext:trim(PLANT_MHDHB)" /></shelf_life>
+        <xsl:variable name="shelf_life_uom" select="c4j_XSLT_Ext:trim(string(PLANT_IPRKZ))" />
         <shelf_life_uom><xsl:value-of select="c4j:getReferenceItem('ShelfLifeUom',$shelf_life_uom)" /></shelf_life_uom>
         <!--<shelf_life_rule2><xsl:value-of select="PLANT_RDMHD" /></shelf_life_rule2>-->
     </xsl:template>
@@ -190,11 +178,11 @@
     <!-- Get Units -->
     <xsl:template match="E1MARMM">
         <materialUOMDefinition>
-            <xsl:variable name="current_uom" select="c4j_XSLT_Ext_trim:trim(string(MEINH))"/>
-            <xsl:variable name="current_ean" select='c4j_XSLT_Ext_padEAN:padEAN(c4j_XSLT_Ext_trim:trim(string(EAN11)))' />
-            <xsl:variable name="current_variant" select='c4j_XSLT_Ext_padVariant:padVariant(c4j_XSLT_Ext_trim:trim(string(_-NESGLB_-E1MARMM000[1]/GTIN_VARIANT)))' />
-            <xsl:variable name="current_numerator" select="c4j_XSLT_Ext_trim:trim(string(UMREZ))" />
-            <xsl:variable name="current_denominator" select="c4j_XSLT_Ext_trim:trim(string(UMREN))" />
+            <xsl:variable name="current_uom" select="c4j_XSLT_Ext:trim(string(MEINH))"/>
+            <xsl:variable name="current_ean" select='c4j_XSLT_Ext:padEAN(c4j_XSLT_Ext:trim(string(EAN11)))' />
+            <xsl:variable name="current_variant" select='c4j_XSLT_Ext:padVariant(c4j_XSLT_Ext:trim(string(_-NESGLB_-E1MARMM000[1]/GTIN_VARIANT)))' />
+            <xsl:variable name="current_numerator" select="c4j_XSLT_Ext:trim(UMREZ)" />
+            <xsl:variable name="current_denominator" select="c4j_XSLT_Ext:trim(UMREN)" />
             
             <uom> <xsl:value-of select="$current_uom" /></uom>
             <ean><xsl:value-of select="$current_ean" /></ean>
@@ -221,7 +209,7 @@
                     <xsl:comment>Calculated LE quantity is <xsl:value-of select="$temp99" /></xsl:comment>
                     
                     <xsl:if test="$temp99=0">
-                        <numerator><xsl:value-of select="c4j_XSLT_Ext_trim:trim(UMREZ)" /></numerator>
+                        <numerator><xsl:value-of select="c4j_XSLT_Ext:trim(UMREZ)" /></numerator>
                     </xsl:if>
                     
                     <xsl:if test="$temp99>0">
@@ -260,8 +248,8 @@
 
         <xsl:variable name="current_sloc" select="LGORT"/>
         <xsl:variable name="current_status" select="./../MMSTA"/>
-        <xsl:variable name="temp1" select="c4j_XSLT_Ext_concat:concat($PLANT,'-')"  />
-        <xsl:variable name="temp2" select="c4j_XSLT_Ext_concat:concat($temp1,$current_sloc)"  />
+        <xsl:variable name="temp1" select="c4j_XSLT_Ext:concat($PLANT,'-')"  />
+        <xsl:variable name="temp2" select="c4j_XSLT_Ext:concat($temp1,$current_sloc)"  />
         <xsl:variable name="current_locn"><xsl:value-of select="c4j:getReferenceItem('PlantSLOCtoLocation',$temp2)"/></xsl:variable>  
 
         <xsl:if test="$current_locn!=''">     

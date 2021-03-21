@@ -25,7 +25,6 @@ import org.w3c.dom.Element;
 import com.commander4j.Interface.Inbound.InboundInterface;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
-import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.InboundConnectorABSTRACT;
 
@@ -132,7 +131,7 @@ public class InboundConnectorExcel extends InboundConnectorABSTRACT
 							    case NUMERIC :
 							        outputValue=String.valueOf(cellValue.getNumberValue());
 							        if (DateUtil.isCellDateFormatted(cell)) {
-							        	outputValue	= Utility.getISODateStringFormat((cell.getDateCellValue()));
+							        	outputValue	= util.getISODateStringFormat((cell.getDateCellValue()));
 							        }
 							        break;
 							    case STRING :
@@ -254,7 +253,7 @@ public class InboundConnectorExcel extends InboundConnectorABSTRACT
 							    case NUMERIC:
 							        outputValue=String.valueOf(cellValue.getNumberValue());
 							        if (DateUtil.isCellDateFormatted(cell)) {
-							        	outputValue	= Utility.getISODateStringFormat((cell.getDateCellValue()));
+							        	outputValue	= util.getISODateStringFormat((cell.getDateCellValue()));
 							        }
 
 							        break;

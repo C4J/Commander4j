@@ -9,7 +9,6 @@ import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JXMLDocument;
-import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
@@ -33,7 +32,7 @@ public class OutboundConnectorEmail extends OutboundConnectorABSTRACT
 		JXMLDocument document = new JXMLDocument();
 		document.setDocument(getData());
 
-		String inputFilename = Utility.replaceNullStringwithBlank(document.findXPath("//email/inputFilename").trim());
+		String inputFilename = util.replaceNullStringwithBlank(document.findXPath("//email/inputFilename").trim());
 		
 		String outputFilename = path;
 		

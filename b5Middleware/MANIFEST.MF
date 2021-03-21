@@ -33,7 +33,5 @@ Class-Path: lib/auxiliary/batik-all-1.13.jar
  lib/poi_lib/commons-codec-1.15.jar 
  lib/poi_lib/commons-collections4-4.4.jar 
  lib/poi_lib/commons-math3-3.6.1.jar 
- lib/saxon/jline-2.9.jar 
  lib/saxon/saxon-he-10.3.jar 
- lib/saxon/saxon-he-test-10.3.jar 
  lib/saxon/saxon-xqj-10.3.jar 

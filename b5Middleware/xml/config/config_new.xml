@@ -714,7 +714,7 @@
         </output>
     </map>
 
-    <map id="map429" enabed="Y" description="GEN XML to MQTT Broker">
+    <map id="map429" enabed="N" description="GEN XML to MQTT Broker">
         <input id="in1" description="Read XML Document">
             <type>XML</type>
             <path>./interface/input/429 (GEN XML MQTT)</path>
@@ -738,7 +738,7 @@
         </output>
     </map>
 
-    <map id="map430" enabed="Y" description="GEN XML to SOCKET">
+    <map id="map430" enabed="N" description="GEN XML to SOCKET">
         <input id="in1" description="Read XML Document">
             <type>XML</type>
             <path>./interface/input/430 (GEN XML to SOCKET)</path>
@@ -759,7 +759,7 @@
         </output>
     </map>
 
-    <map id="map431" enabed="Y" description="GEN CSV to SOCKET">
+    <map id="map431" enabed="N" description="GEN CSV to SOCKET">
         <input id="in1" description="Read CSV Document">
             <type>CSV</type>
             <path>./interface/input/431 (GEN CSV to SOCKET)</path>

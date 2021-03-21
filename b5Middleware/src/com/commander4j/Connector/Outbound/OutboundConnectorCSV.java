@@ -12,7 +12,6 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JXMLDocument;
-import com.commander4j.util.Utility;
 import com.opencsv.CSVWriter;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
@@ -152,7 +151,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 			{
 
 				// Get current row number
-				String rw = Utility.replaceNullStringwithBlank(document.findXPath("/data/row[" + String.valueOf(currentRow) + "]/@id").trim());
+				String rw = util.replaceNullStringwithBlank(document.findXPath("/data/row[" + String.valueOf(currentRow) + "]/@id").trim());
 				if (rw.equals(""))
 				{
 					rw = "0";
@@ -162,7 +161,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 				if (rows > 0)
 				{
 					// Get Number of columns on current row
-					String cl = Utility.replaceNullStringwithBlank(document.findXPath("/data/row[" + String.valueOf(currentRow) + "]/@cols").trim());
+					String cl = util.replaceNullStringwithBlank(document.findXPath("/data/row[" + String.valueOf(currentRow) + "]/@cols").trim());
 					if (cl.equals(""))
 					{
 						cl = "0";
@@ -177,7 +176,7 @@ public class OutboundConnectorCSV extends OutboundConnectorABSTRACT
 						for (int c = 1; c <= columns; c++)
 						{
 							String xpath = "//data/row[@id='" + String.valueOf(currentRow) + "']/col[@id='" + String.valueOf(c) + "']";
-							String dataString = Utility.replaceNullStringwithBlank(document.findXPath(xpath).trim());
+							String dataString = util.replaceNullStringwithBlank(document.findXPath(xpath).trim());
 							csvrow[c - 1] = dataString;
 
 						}

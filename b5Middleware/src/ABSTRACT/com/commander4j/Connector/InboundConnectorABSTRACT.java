@@ -24,6 +24,7 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 	private String filename = "";
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((InboundConnectorABSTRACT.class));
 	private Long inboundConnectorMessageCount = (long) 0;
+	protected Utility util = new Utility();
 
 	protected Document data;
 
@@ -34,7 +35,7 @@ public abstract class InboundConnectorABSTRACT implements InboundConnectorINTERF
 		Boolean result = false;
 		try
 		{
-			String destination = Common.logDir + java.io.File.separator + Utility.getCurrentTimeStampString() + " INPUT_BACKUP_" + getType() + " " + (new File(fullFilename)).getName();
+			String destination = Common.logDir + java.io.File.separator + util.getCurrentTimeStampString() + " INPUT_BACKUP_" + getType() + " " + (new File(fullFilename)).getName();
 			logger.debug("connectorLoad Backup [" + fullFilename + "] to [" + destination + "]");
 			Path from = Paths.get(fullFilename);
 			Path to = Paths.get(destination);

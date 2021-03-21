@@ -20,6 +20,7 @@ public class MiddlewareConfig
 	LinkedList<Map> maps = new LinkedList<Map>();
 	LinkedList<String> directoryErrors = new LinkedList<String>();
 	JFileIO fio = new JFileIO();
+	Utility util = new Utility();
 
 	public String getInterfaceStatistics()
 	{
@@ -27,8 +28,8 @@ public class MiddlewareConfig
 
 		for (int x = 0; x < getMaps().size(); x++)
 		{
-			result = result + "Map : [" + getMaps().get(x).getId() + "] Description [" + Utility.padString(getMaps().get(x).getDescription(), true, 60, " ") + "] Inbound Map Count ["
-					+ Utility.padString(getMaps().get(x).getInboundMapMessageCount().toString(), false, 5, " ") + "] Outbound Map Count [" + Utility.padString(getMaps().get(x).getOutboundMapMessageCount().toString(), false, 5, " ") + "]" + "\n";
+			result = result + "Map : [" + getMaps().get(x).getId() + "] Description [" + util.padString(getMaps().get(x).getDescription(), true, 60, " ") + "] Inbound Map Count ["
+					+ util.padString(getMaps().get(x).getInboundMapMessageCount().toString(), false, 5, " ") + "] Outbound Map Count [" + util.padString(getMaps().get(x).getOutboundMapMessageCount().toString(), false, 5, " ") + "]" + "\n";
 		}
 
 		return result;

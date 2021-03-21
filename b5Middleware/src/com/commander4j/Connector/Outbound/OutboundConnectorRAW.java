@@ -9,7 +9,6 @@ import org.apache.commons.io.IOUtils;
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JXMLDocument;
-import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
@@ -42,7 +41,7 @@ public class OutboundConnectorRAW extends OutboundConnectorABSTRACT
 		JXMLDocument document = new JXMLDocument();
 		document.setDocument(getData());
 
-		String byteArray64String = Utility.replaceNullStringwithBlank(document.findXPath("//data/content").trim());
+		String byteArray64String = util.replaceNullStringwithBlank(document.findXPath("//data/content").trim());
 		byte[] returnedBytes = Base64.decodeBase64(byteArray64String);
 
 		FileOutputStream output;

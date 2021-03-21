@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:c4j="http://www.commander4j.com"
-    xmlns:c4j_XSLT_Ext_removeLeadingZeros="http://com.commander4j.Transformation.XSLT_Ext_removeLeadingZeros"
-    xmlns:c4j_XSLT_Ext_trim="http://com.commander4j.Transformation.XSLT_Ext_trim"
-    xmlns:c4j_XSLT_Ext_concat="http://com.commander4j.Transformation.XSLT_Ext_concat"
-    xmlns:c4j_XSLT_Ext_formatDate="http://com.commander4j.Transformation.XSLT_Ext_formatDate"
-    
-    exclude-result-prefixes="xs c4j"  version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:c4j="http://www.commander4j.com"
+                xmlns:c4j_XSLT_Ext="http://com.commander4j.Transformation"
+                exclude-result-prefixes="xs c4j c4j_XSLT_Ext"  version="2.0">
 
     <xsl:output encoding="UTF-8" indent='yes' method="xml" />
     <xsl:strip-space  elements="*"/>
@@ -39,7 +34,7 @@
     
     <!-- Local Variables -->
 
-    <xsl:variable name="MATERIAL"               select="string(c4j_XSLT_Ext_removeLeadingZeros:removeLeadingZeros(string(/ZMATMAS03/IDOC/E1MARAM/MATNR)))"/>
+    <xsl:variable name="MATERIAL"               select="string(c4j_XSLT_Ext:removeLeadingZeros(string(/ZMATMAS03/IDOC/E1MARAM/MATNR)))"/>
     <xsl:variable name="MTYPE"                  select="string(/ZMATMAS03/IDOC/E1MARAM/MTART)"/>
     <xsl:variable name="USE_PLANT"              select="string(/ZMATMAS03/IDOC/E1MARAM/_-NESGLB_-DISTR000/WERKS[.=$PLANT]/../AD_PLANT_DATA)"/>
     <xsl:variable name="FOUND_PLANT"            select="string(/ZMATMAS03/IDOC/E1MARAM/E1MARCM/WERKS[.=$PLANT])"/>
@@ -86,13 +81,13 @@
         <interfaceType>Material Auto Move</interfaceType>
         <interfaceDirection>Input</interfaceDirection>
         <xsl:variable name="SAPDOCNUM_LONG" select="string(DOCNUM)" />
-        <xsl:variable name="SAPDOCNUM_SHORT" select="c4j_XSLT_Ext_removeLeadingZeros:removeLeadingZeros($SAPDOCNUM_LONG)" />
+        <xsl:variable name="SAPDOCNUM_SHORT" select="c4j_XSLT_Ext:removeLeadingZeros($SAPDOCNUM_LONG)" />
         <messageRef>DOCNUM <xsl:value-of select="$SAPDOCNUM_SHORT"/></messageRef>
         <messageInformation>Material=<xsl:value-of select="$MATERIAL"/>/<xsl:value-of select="$MTYPE"/></messageInformation>
-        <xsl:variable name="CREATE_DATE" select="c4j_XSLT_Ext_trim:trim(string(CREDAT))" />
-        <xsl:variable name="CREATE_TIME" select="c4j_XSLT_Ext_trim:trim(string(CRETIM))" />
-        <xsl:variable name="CREATE_DATETIME" select="c4j_XSLT_Ext_concat:concat($CREATE_DATE,$CREATE_TIME)"  />
-        <messageDate><xsl:value-of select="c4j_XSLT_Ext_formatDate:formatDate($CREATE_DATETIME, 'yyyyMMddHHmmss', 'yyyy-MM-dd''T''HH:mm:ss')"/></messageDate>
+        <xsl:variable name="CREATE_DATE" select="c4j_XSLT_Ext:trim(string(CREDAT))" />
+        <xsl:variable name="CREATE_TIME" select="c4j_XSLT_Ext:trim(string(CRETIM))" />
+        <xsl:variable name="CREATE_DATETIME" select="c4j_XSLT_Ext:concat($CREATE_DATE,$CREATE_TIME)"  />
+        <messageDate><xsl:value-of select="c4j_XSLT_Ext:formatDate($CREATE_DATETIME, 'yyyyMMddHHmmss', 'yyyy-MM-dd''T''HH:mm:ss')"/></messageDate>
     </xsl:template>
      
     <xsl:template match="E1MARAM">

@@ -17,7 +17,6 @@ import com.commander4j.Interface.Mapping.Map;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JXMLDocument;
-import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Interface.InboundInterfaceABSTRACT;
 import net.sf.saxon.Configuration;
@@ -87,7 +86,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 								{
 									data = connector.getData();
 
-									filename_imported = Utility.getCurrentTimeStampString() + " INPUT_IMPORTED_" + connector.getType() + "_" + getId() + "_" + file.getName();
+									filename_imported = util.getCurrentTimeStampString() + " INPUT_IMPORTED_" + connector.getType() + "_" + getId() + "_" + file.getName();
 
 									if (filename_imported.endsWith(".xml") == false)
 									{
@@ -99,7 +98,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 									if (getXSLTFilename().equals("") == false)
 									{
 
-										filename_transformed = Utility.getCurrentTimeStampString() + " INPUT_TRANSFORMED_" + connector.getType() + "_" + getId() + "_" + file.getName();
+										filename_transformed = util.getCurrentTimeStampString() + " INPUT_TRANSFORMED_" + connector.getType() + "_" + getId() + "_" + file.getName();
 
 										if (filename_transformed.endsWith(".xml") == false)
 										{
@@ -118,6 +117,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 										Serializer out = processor.newSerializer(new File(Common.logDir + File.separator + filename_transformed));
 										out.setOutputProperty(Serializer.Property.METHOD, "xml");
 										out.setOutputProperty(Serializer.Property.INDENT, "yes");
+										//out.setOutputProperty(Serializer.Property.STANDALONE, "yes");
 										Xslt30Transformer transformer = stylesheet.load30();
 										transformer.transform(source, out);
 										
@@ -169,7 +169,7 @@ public class InboundInterface extends InboundInterfaceABSTRACT
 	{
 		this.data = data;
 
-		logger.debug("processConnectorToInterfaceData [" + Utility.getStringFromDocument(data) + "]");
+		logger.debug("processConnectorToInterfaceData [" + util.getStringFromDocument(data) + "]");
 		map.processInboundInterfaceToMap(filename, data);
 
 	}

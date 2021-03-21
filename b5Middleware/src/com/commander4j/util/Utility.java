@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -20,7 +21,33 @@ import org.w3c.dom.Document;
 public class Utility
 {
 	
-	public static String getFilenameFromPath(String path)
+	public String getISODateTimeString()
+	{
+		String result = "";
+		Timestamp ts = getSQLDateTime();
+		try
+		{
+			String temp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.UK).format(ts);
+			result = temp.substring(0, 4);
+			result = result + "-";
+			result = result + temp.substring(5, 7);
+			result = result + "-";
+			result = result + temp.substring(8, 10);
+			result = result + "T";
+			result = result + temp.substring(11, 13);
+			result = result + ":";
+			result = result + temp.substring(14, 16);
+			result = result + ":";
+			result = result + temp.substring(17, 19);
+		}
+		catch (Exception ex)
+		{
+			result = "Error";
+		}
+		return result;
+	}
+	
+	public String getFilenameFromPath(String path)
 	{
 		String result = "";
 		String temp = replaceNullStringwithBlank(path);
@@ -45,7 +72,7 @@ public class Utility
 		return result;
 	}
 	
-	public static long compareTwoTimeStamps(java.sql.Timestamp currentTime, java.sql.Timestamp oldTime)
+	public long compareTwoTimeStamps(java.sql.Timestamp currentTime, java.sql.Timestamp oldTime)
 	{
 	  long milliseconds1 = oldTime.getTime();
 	  long milliseconds2 = currentTime.getTime();
@@ -59,7 +86,7 @@ public class Utility
 	   return diffMinutes;
 	}
 	
-	public static String getClientName()
+	public String getClientName()
 	{
 		String result = "";
 		String clientname = "";
@@ -93,7 +120,7 @@ public class Utility
 		return result;
 	}
 	
-	public static String left(String inputstr, int size)
+	public String left(String inputstr, int size)
 	{
 		String result = replaceNullStringwithBlank(inputstr);
 
@@ -113,7 +140,7 @@ public class Utility
 		return result;
 	}
 	
-	public static String getISODateStringFormat(Date ts)
+	public String getISODateStringFormat(Date ts)
 	{
 		String result = "";
 
@@ -135,7 +162,7 @@ public class Utility
 		return result;
 	}
 
-	public static String getISODateStringFromCalendar(Calendar cal)
+	public String getISODateStringFromCalendar(Calendar cal)
 	{
 		String result = "";
 		
@@ -146,16 +173,16 @@ public class Utility
 		return result;
 	}
 	
-	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
+	public final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
 
-	public static String getDateTimeString(String fmt)
+	public String getDateTimeString(String fmt)
 	{
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 		return sdf.format(cal.getTime());
 	}
 
-	public static String getCurrentTimeStampString()
+	public String getCurrentTimeStampString()
 	{
 		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS");// dd/MM/yyyy
 		Date now = new Date();
@@ -163,7 +190,7 @@ public class Utility
 		return strDate;
 	}
 	
-	public static Timestamp getSQLDateTime()
+	public Timestamp getSQLDateTime()
 	{
 		Calendar caldate = Calendar.getInstance();
 		Timestamp t = new Timestamp(caldate.getTimeInMillis());
@@ -172,7 +199,7 @@ public class Utility
 		return t;
 	}
 
-	public static synchronized String nvl(String value, String defaultValue)
+	public synchronized String nvl(String value, String defaultValue)
 	{
 		String result = "";
 
@@ -191,7 +218,7 @@ public class Utility
 		return result;
 	}
 
-	public static synchronized String getStringFromDocument(Document doc)
+	public synchronized String getStringFromDocument(Document doc)
 	{
 
 		try
@@ -209,7 +236,7 @@ public class Utility
 		}
 	}
 
-	public static String replaceNullObjectwithBlank(Object value)
+	public String replaceNullObjectwithBlank(Object value)
 	{
 		String result = "";
 
@@ -221,7 +248,7 @@ public class Utility
 		return result;
 	}
 
-	public static String replaceNullStringwithBlank(String value)
+	public String replaceNullStringwithBlank(String value)
 	{
 		if (value == null)
 		{
@@ -231,7 +258,7 @@ public class Utility
 		return value;
 	}
 
-	public static void pause(int value)
+	public void pause(int value)
 	{
 		for (int x = 0; x < value; x++)
 		{
@@ -246,7 +273,7 @@ public class Utility
 		}
 	}
 
-	public static void initLogging(String filename)
+	public void initLogging(String filename)
 	{
 		if (filename.isEmpty())
 		{
@@ -261,12 +288,12 @@ public class Utility
 
 	}
 
-	public static String getLogFilename(String filename)
+	public String getLogFilename(String filename)
 	{
 		return System.getProperty("user.dir") + File.separator + "interface" + File.separator + "log" + File.separator + filename;
 	}
 
-	public static String getISOTimeStampStringFormat(Timestamp ts)
+	public String getISOTimeStampStringFormat(Timestamp ts)
 	{
 		String result = "";
 
@@ -293,7 +320,7 @@ public class Utility
 		return result;
 	}
 
-	public static String padSpace(int size)
+	public String padSpace(int size)
 	{
 		String s = "";
 
@@ -305,7 +332,7 @@ public class Utility
 		return s;
 	}
 
-	public static String padString(int size, String character)
+	public String padString(int size, String character)
 	{
 		String s = "";
 
@@ -317,7 +344,7 @@ public class Utility
 		return s;
 	}
 
-	public static String padString(String input, boolean right, int size, String character)
+	public String padString(String input, boolean right, int size, String character)
 	{
 		int inputlength = 0;
 		String result = replaceNullStringwithBlank(input);

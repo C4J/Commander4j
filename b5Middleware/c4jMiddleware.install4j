@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="9.0" transformSequenceNumber="9">
-  <directoryPresets config="../../Distribution/java11/c4jMiddleware" />
-  <application name="Commander4j Middleware" applicationId="1915-8055-3520-8512" mediaDir="../../Distribution/java11/c4jMiddleware" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="2.05" allPathsRelative="true" macVolumeId="ebde9226275d23ed" javaMinVersion="11" javaMaxVersion="11" jdkMode="jdk" jdkName="JDK 1.8">
+  <directoryPresets config="./xml/config/SaxonConfiguration.xml" />
+  <application name="Commander4j Middleware" applicationId="5363-0854-7481-5178" mediaDir="../../Distribution/java11/c4jMiddleware" compression="9" shortName="c4jMiddleware" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="3.00" allPathsRelative="true" macVolumeId="ebde9226275d23ed" javaMinVersion="11" javaMaxVersion="11" jdkMode="jdk" jdkName="JDK 1.8">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="da" />
@@ -41,9 +41,12 @@
       <fileEntry mountPoint="32" file="./xml/config/config.dtd" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="32" file="./xml/config/email.xml" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="32" file="./xml/config/config_new.xml" overwriteMode="1" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" />
-      <dirEntry mountPoint="35" file="./lib" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="lib">
+      <fileEntry mountPoint="32" file="./xml/config/SaxonConfiguration.xml" overwriteMode="3" overrideOverwriteMode="true" />
+      <dirEntry mountPoint="35" file="./lib" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="lib" excludeSuffixes=".DS_Store">
         <exclude>
           <entry location=".DS_Store" />
+          <entry location="saxon/.DS_Store" />
+          <entry location="saxon/javadoc" />
         </exclude>
       </dirEntry>
       <dirEntry mountPoint="36" file="./logs" uninstallMode="2" overrideUninstallMode="true" subDirectory="logs">
@@ -640,21 +643,21 @@ return console.askYesNo(message, true);
   </installerGui>
   <mediaSets>
     <macosFolder name="Mac OS X Folder (with JRE)" id="86" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}">
-      <jreBundle includedJre="macosx-amd64-1.8.0_202">
+      <jreBundle usePack200="false" includedJre="macosx-amd64-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </macosFolder>
     <windows name="Windows 64bit (with JRE)" id="88" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" customInstallBaseDir="C:\">
-      <jreBundle includedJre="windows-amd64-1.8.0_202">
+      <jreBundle usePack200="false" includedJre="windows-amd64-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </windows>
     <windows name="Windows 32bit (with JRE)" id="89" mediaFileName="${compiler:sys.fullName}_${compiler:sys.platform}_${compiler:sys.version}${compiler:sys.withJre}" jreBitType="32" customInstallBaseDir="C:\">
-      <jreBundle includedJre="windows-x86-1.8.0_202">
+      <jreBundle usePack200="false" includedJre="windows-x86-1.8.0_202">
         <modules>
           <defaultModules set="all" />
         </modules>
@@ -664,5 +667,4 @@ return console.askYesNo(message, true);
       <jreBundle jreBundleSource="none" />
     </unixInstaller>
   </mediaSets>
-  <buildOptions verbose="true" />
 </install4j>

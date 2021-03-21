@@ -27,13 +27,15 @@
 	<classpathentry kind="lib" path="lib/ooxml-lib/xmlbeans-4.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/mail/javax.activation-api.jar"/>
 	<classpathentry kind="lib" path="lib/mail/javax.mail.jar"/>
-	<classpathentry kind="lib" path="lib/saxon/saxon-he-10.3.jar"/>
-	<classpathentry kind="lib" path="lib/saxon/saxon-he-test-10.3.jar"/>
+	<classpathentry kind="lib" path="lib/saxon/saxon-he-10.3.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/Users/dave/Commander4j/workspace.development/b5Middleware/lib/saxon/javadoc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/saxon/saxon-xqj-10.3.jar"/>
 	<classpathentry kind="lib" path="lib/mail/commons-email-1.5.jar"/>
 	<classpathentry kind="lib" path="lib/opencsv/opencsv-5.3.jar"/>
 	<classpathentry kind="lib" path="lib/mqtt/org.eclipse.paho.client.mqttv3_1.2.3.jar"/>
-	<classpathentry kind="lib" path="lib/saxon/jline-2.9.jar"/>
 	<classpathentry kind="lib" path="lib/log/log4j-api-2.14.0.jar"/>
 	<classpathentry kind="lib" path="lib/log/log4j-core-2.14.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons/commons-io-2.8.0.jar"/>

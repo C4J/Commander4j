@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    exclude-result-prefixes="xs"  version="2.0">
+    xmlns:c4j="http://www.commander4j.com"
+    xmlns:c4j_XSLT_Ext="http://com.commander4j.Transformation"
+    exclude-result-prefixes="xs c4j c4j_XSLT_Ext"  version="2.0">
 
     <xsl:output encoding="UTF-8" indent='yes' method="xml" />
     <xsl:strip-space  elements="*"/>

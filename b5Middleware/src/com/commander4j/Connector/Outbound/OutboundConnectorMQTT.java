@@ -14,7 +14,6 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JXMLDocument;
-import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
@@ -70,7 +69,7 @@ public class OutboundConnectorMQTT extends OutboundConnectorABSTRACT
 
 				JXMLDocument document = new JXMLDocument();
 				document.setDocument(getData());
-				String messageContent = Utility.replaceNullStringwithBlank(document.findXPath(getOutboundInterface().getMQTTContentXPath()));
+				String messageContent = util.replaceNullStringwithBlank(document.findXPath(getOutboundInterface().getMQTTContentXPath()));
 
 				persistence = new MemoryPersistence();
 

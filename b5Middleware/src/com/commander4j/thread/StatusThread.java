@@ -15,6 +15,7 @@ public class StatusThread extends Thread
 	String currentDate = "";
 	String lastRunDate = "";
 	int mb = 1024 * 1024;
+	Utility util = new Utility();
 	Runtime runtime = Runtime.getRuntime();
 	
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((StatusThread.class));
@@ -32,7 +33,7 @@ public class StatusThread extends Thread
 		{
 
 			JWait.oneSec();
-			currentDateTime = Utility.getDateTimeString("yyyy-MM-dd HH:mm:ss");
+			currentDateTime = util.getDateTimeString("yyyy-MM-dd HH:mm:ss");
 			currentDate = currentDateTime.substring(0, 10);
 			currentTime = currentDateTime.substring(11, 19);
 
@@ -62,7 +63,7 @@ public class StatusThread extends Thread
 					
 					report = report+"Garbage Collector Finished.\n\n";
 					
-					Common.emailqueue.addToQueue("Monitor", "Statistics ["+Common.configName+"] "+StartMain.version+" on "+ Utility.getClientName(), report, "");
+					Common.emailqueue.addToQueue("Monitor", "Statistics ["+Common.configName+"] "+StartMain.version+" on "+ util.getClientName(), report, "");
 					
 					logger.debug(report);
 				}

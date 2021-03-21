@@ -21,6 +21,7 @@ public class SendEmail
 	private Properties smtpProperties;
 	private HashMap<String, distributionList> distList = new HashMap<String, distributionList>();
 	private HashMap<String, Calendar> emailLog = new HashMap<String, Calendar>();
+	private Utility util = new Utility();
 
 	public void init(String distributionID)
 	{
@@ -51,9 +52,9 @@ public class SendEmail
 
 			String addressList = "";
 			String enabled = "";
-			addressList = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/toAddressList").trim());
-			String temp = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/@maxFrequencyMins").trim());
-			enabled = Utility.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/@enabled").trim());
+			addressList = util.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/toAddressList").trim());
+			String temp = util.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/@maxFrequencyMins").trim());
+			enabled = util.replaceNullStringwithBlank(doc.findXPath("//emailSettings/distributionList[@id='" + distributionID + "'][@enabled='Y']/@enabled").trim());
 
 			if (temp.equals(""))
 				temp = "0";
@@ -112,8 +113,8 @@ public class SendEmail
 			
 			long ageInMins = seconds/60;
 			
-			logger.debug("Last email to " + emailKey + " was at " + Utility.getISODateStringFromCalendar(lastSent));
-			logger.debug("Current time is " + Utility.getISODateStringFromCalendar(now));
+			logger.debug("Last email to " + emailKey + " was at " + util.getISODateStringFromCalendar(lastSent));
+			logger.debug("Current time is " + util.getISODateStringFromCalendar(now));
 			
 			logger.debug("Minutes since last email to " + emailKey + " is " + String.valueOf(ageInMins));
 
@@ -173,12 +174,12 @@ public class SendEmail
 							// add the attachment
 							if (filename.equals("") == false)
 							{
-								logger.debug("Email add attachment [" + Utility.getFilenameFromPath(filename) + "]");
+								logger.debug("Email add attachment [" + util.getFilenameFromPath(filename) + "]");
 
 								attachment.setPath(filename);
 								attachment.setDisposition(EmailAttachment.ATTACHMENT);
 								attachment.setDescription(filename);
-								attachment.setName(Utility.getFilenameFromPath(filename));
+								attachment.setName(util.getFilenameFromPath(filename));
 								email.attach(attachment);
 							}
 

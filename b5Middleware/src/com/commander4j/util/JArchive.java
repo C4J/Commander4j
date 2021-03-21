@@ -13,6 +13,7 @@ import com.commander4j.sys.Common;
 public class JArchive
 {
 
+	Utility util = new Utility();
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((JArchive.class));
 
 	public int archiveBackupFiles(String path, int daysToKeep)
@@ -24,12 +25,12 @@ public class JArchive
 		cal.add(Calendar.DATE, -1 * daysToKeep);
 		Date cutoffDate = cal.getTime();
 
-		if (Utility.replaceNullStringwithBlank(path).equals(""))
+		if (util.replaceNullStringwithBlank(path).equals(""))
 		{
 			path = Common.logDir;
 		}
 
-		if (Utility.replaceNullStringwithBlank(path).equals("."))
+		if (util.replaceNullStringwithBlank(path).equals("."))
 		{
 			path = Common.logDir;
 		}

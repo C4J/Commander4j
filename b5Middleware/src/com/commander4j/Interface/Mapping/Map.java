@@ -20,7 +20,8 @@ public class Map implements Comparable<Map>
 	private String description = "";
 	private Long inboundMapMsgCount = (long) 0;
 	private Long outboundMapMsgCount = (long) 0;
-
+	private Utility util = new Utility();
+	
 	public void run()
 	{
 
@@ -65,8 +66,8 @@ public class Map implements Comparable<Map>
 			}
 		}
 
-		return Utility.padString(getId(), true, 7, " ") + "  " + Utility.padString(getDescription(), true, 70, " ") + "  " + Utility.padString(getInboundInterface().getType(), true, 10, " ") + "  " + Utility.padString(outboundTypeList, true, 12, " ")
-				+ Utility.padString(getInboundMapMessageCount().toString(), false, 8, " ") + " " + Utility.padString(getOutboundMapMessageCount().toString(), false, 8, " ") + "  " + getInboundInterface().getInputPath();
+		return util.padString(getId(), true, 7, " ") + "  " + util.padString(getDescription(), true, 70, " ") + "  " + util.padString(getInboundInterface().getType(), true, 10, " ") + "  " + util.padString(outboundTypeList, true, 12, " ")
+				+ util.padString(getInboundMapMessageCount().toString(), false, 8, " ") + " " + util.padString(getOutboundMapMessageCount().toString(), false, 8, " ") + "  " + getInboundInterface().getInputPath();
 	}
 
 	public void setId(String ID)
@@ -138,7 +139,7 @@ public class Map implements Comparable<Map>
 
 	public void processMapToOutboundInterface(String filename, OutboundInterface outint, Document data)
 	{
-		logger.debug(">> processMapToOutboundInterface [" + filename + " - " + Utility.getStringFromDocument(data) + "]");
+		logger.debug(">> processMapToOutboundInterface [" + filename + " - " + util.getStringFromDocument(data) + "]");
 		outboundMapMsgCount++;
 		logger.debug(">> outboundMapMessages count [" + getOutboundMapMessageCount().toString() + "]");
 		outint.processInterfaceToConnector(filename, data);
@@ -147,7 +148,7 @@ public class Map implements Comparable<Map>
 	public void processInboundInterfaceToMap(String filename, Document data)
 	{
 
-		logger.debug("<< processInboundInterfaceToMap  [" + filename + " - " + Utility.getStringFromDocument(data) + "]");
+		logger.debug("<< processInboundInterfaceToMap  [" + filename + " - " + util.getStringFromDocument(data) + "]");
 		inboundMapMsgCount++;
 		logger.debug(">> inboundMapMessages count [" + getInboundMapMessageCount().toString() + "]");
 		for (int x = 0; x < outboundInterface.size(); x++)

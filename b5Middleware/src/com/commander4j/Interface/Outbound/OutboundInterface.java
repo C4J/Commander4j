@@ -15,7 +15,6 @@ import com.commander4j.Interface.Mapping.Map;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JXMLDocument;
-import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Interface.OutboundInterfaceABSTRACT;
 import net.sf.saxon.Configuration;
@@ -60,13 +59,13 @@ public class OutboundInterface extends OutboundInterfaceABSTRACT
 	{
 		this.data = data;
 
-		logger.debug("processInterfaceToConnector [" + Utility.getStringFromDocument(data) + "]");
+		logger.debug("processInterfaceToConnector [" + util.getStringFromDocument(data) + "]");
 
 		if (getXSLTFilename().equals("") == false)
 		{
 			getDescription();
 
-			filename_outputImported = Utility.getCurrentTimeStampString() + " OUTPUT_IMPORTED_" + connector.getType() + "_" + getId() + "_" + filename;
+			filename_outputImported = util.getCurrentTimeStampString() + " OUTPUT_IMPORTED_" + connector.getType() + "_" + getId() + "_" + filename;
 			if (filename_outputImported.endsWith(".xml") == false)
 			{
 				filename_outputImported = filename_outputImported + ".xml";
@@ -77,7 +76,7 @@ public class OutboundInterface extends OutboundInterfaceABSTRACT
 			if (writeSuccess)
 			{
 
-				filename_outputTransformed = Utility.getCurrentTimeStampString() + " OUTPUT_TRANSFORMED_" + connector.getType() + "_" + getId() + "_" + filename;
+				filename_outputTransformed = util.getCurrentTimeStampString() + " OUTPUT_TRANSFORMED_" + connector.getType() + "_" + getId() + "_" + filename;
 				if (filename_outputTransformed.endsWith(".xml") == false)
 				{
 					filename_outputTransformed = filename_outputTransformed + ".xml";
@@ -101,6 +100,7 @@ public class OutboundInterface extends OutboundInterfaceABSTRACT
 						Serializer out = processor.newSerializer(new File(Common.logDir + File.separator + filename_outputTransformed));
 						out.setOutputProperty(Serializer.Property.METHOD, "xml");
 						out.setOutputProperty(Serializer.Property.INDENT, "yes");
+						//out.setOutputProperty(Serializer.Property.STANDALONE, "yes");
 						Xslt30Transformer transformer = stylesheet.load30();
 						transformer.transform(source, out);
 

@@ -46,6 +46,7 @@ public class StartGUI extends JFrame
 	private JLabel label_NoOfMaps = new JLabel("");
 	private JList4j<Map> listMaps = new JList4j<Map>();
 	private static StartGUI frame;
+	Utility util = new Utility();
 
 	/**
 	 * Launch the application.
@@ -123,7 +124,7 @@ public class StartGUI extends JFrame
 	{
 		setResizable(false);
 		setTitle("Commander4j Middleware" + " " + StartMain.version);
-		Utility.initLogging("");
+		util.initLogging("");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 1319, 765);
 		contentPane = new JPanel();

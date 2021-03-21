@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:c4j="http://www.commander4j.com"
-	xmlns:c4j_XSLT_Ext_ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS="http://com.commander4j.Transformation.XSLT_Ext_ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS"
-	xmlns:c4j_XSLT_Ext_ISO_Date_to_date_MMYYYY="http://com.commander4j.Transformation.XSLT_Ext_ISO_Date_to_date_MMYYYY"
-	xmlns:c4j_XSLT_Ext_ISO_Date_to_date_DDMMYYYY="http://com.commander4j.Transformation.XSLT_Ext_ISO_Date_to_date_DDMMYYYY"
-	exclude-result-prefixes="xs c4j"  version="2.0">
+	xmlns:c4j_XSLT_Ext="http://com.commander4j.Transformation"
+	exclude-result-prefixes="xs c4j c4j_XSLT_Ext"  version="2.0">	
 	
 	<xsl:output encoding="UTF-8" indent='yes' method="xml" />
 	<xsl:strip-space  elements="*"/>	
@@ -78,7 +75,7 @@
 				</FIELD>
 				<FIELD name="CompletionDate">
 					<xsl:attribute name="value">
-						<xsl:value-of select="c4j_XSLT_Ext_ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS:ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS($compdate)" />
+						<xsl:value-of select="c4j_XSLT_Ext:ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS($compdate)" />
 					</xsl:attribute>
 				</FIELD>
 				<FIELD name="expiryDate">
@@ -88,17 +85,17 @@
 				</FIELD>
 				<FIELD name="BBE">
 					<xsl:attribute name="value">
-						<xsl:value-of select="c4j_XSLT_Ext_ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS:ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS($expirydate)" />
+						<xsl:value-of select="c4j_XSLT_Ext:ISO_Date_to_date_DD_MM_YYYY_HH_MM_SS($expirydate)" />
 					</xsl:attribute>
 				</FIELD>				
 				<FIELD name="BBE1">
 					<xsl:attribute name="value">
-						<xsl:value-of select="c4j_XSLT_Ext_ISO_Date_to_date_MMYYYY:ISO_Date_to_date_MMYYYY($expirydate)" />
+						<xsl:value-of select="c4j_XSLT_Ext:ISO_Date_to_date_MMYYYY($expirydate)" />
 					</xsl:attribute>
 				</FIELD>
 				<FIELD name="BBE2">
 					<xsl:attribute name="value">
-						<xsl:value-of select="c4j_XSLT_Ext_ISO_Date_to_date_DDMMYYYY:ISO_Date_to_date_DDMMYYYY($expirydate)" />
+						<xsl:value-of select="c4j_XSLT_Ext:ISO_Date_to_date_DDMMYYYY($expirydate)" />
 					</xsl:attribute>
 				</FIELD>
 				<FIELD name="Quantity">

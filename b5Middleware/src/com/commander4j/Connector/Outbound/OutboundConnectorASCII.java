@@ -14,7 +14,6 @@ import com.commander4j.sys.Common;
 import com.commander4j.sys.FixedASCIIColumns;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JXMLDocument;
-import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
@@ -72,14 +71,14 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 		JXMLDocument document = new JXMLDocument();
 		document.setDocument(getData());
 
-		String cl = Utility.replaceNullStringwithBlank(document.findXPath("//data/@cols").trim());
+		String cl = util.replaceNullStringwithBlank(document.findXPath("//data/@cols").trim());
 		if (cl.equals(""))
 		{
 			cl = "0";
 		}
 		int columns = Integer.valueOf(cl);
 
-		String rw = Utility.replaceNullStringwithBlank(document.findXPath("//data/@rows").trim());
+		String rw = util.replaceNullStringwithBlank(document.findXPath("//data/@rows").trim());
 		if (rw.equals(""))
 		{
 			rw = "0";
@@ -111,7 +110,7 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 
 					for (int r = 1; r <= rows; r++)
 					{
-						String rowdata = Utility.padSpace(maxColumn);
+						String rowdata = util.padSpace(maxColumn);
 						char[] rowdataArray = rowdata.toCharArray();
 
 						// Read new col value from XML
@@ -122,7 +121,7 @@ public class OutboundConnectorASCII extends OutboundConnectorABSTRACT
 							{
 								// Get the data from the XML input
 								String xpath = "//data/row[@id='" + String.valueOf(r) + "']/col[@id='" + String.valueOf(c) + "']";
-								String dataString = Utility.replaceNullStringwithBlank(document.findXPath(xpath).trim());
+								String dataString = util.replaceNullStringwithBlank(document.findXPath(xpath).trim());
 
 								// Get the position of the data within the ASCII
 								// file for this column.

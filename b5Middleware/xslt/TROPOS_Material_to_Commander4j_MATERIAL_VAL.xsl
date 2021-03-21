@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-	xmlns:c4j="http://www.commander4j.com" 
-	xmlns:c4j_XSLT_Ext_NVL="http://com.commander4j.Transformation.XSLT_Ext_NVL" 
-	xmlns:c4j_XSLT_Ext_padStringLeft="http://com.commander4j.Transformation.XSLT_Ext_padStringLeft" 
-	exclude-result-prefixes="xs c4j c4j_XSLT_Ext_NVL c4j_XSLT_Ext_padStringLeft" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:c4j="http://www.commander4j.com" xmlns:c4j_XSLT_Ext="http://com.commander4j.Transformation"
+	exclude-result-prefixes="xs c4j c4j_XSLT_Ext" version="2.0">
 
 	<xsl:output encoding="UTF-8" indent="yes" method="xml"/>
 	<xsl:strip-space elements="*"/>
 
 
 	<!-- CONFIG DATA -->
-	<xsl:variable name="HOSTREF"><xsl:value-of select="c4j:getConfigItem('config', 'HostRef')"/></xsl:variable>
-	<xsl:variable name="PLANT"><xsl:value-of select="c4j:getConfigItem('config', 'Plant')"/></xsl:variable>
-	<xsl:variable name="WAREHOUSE"><xsl:value-of select="c4j:getConfigItem('config', 'Warehouse')"/></xsl:variable>
-	<xsl:variable name="LANGUAGE"><xsl:value-of select="c4j:getConfigItem('config', 'Language')"/></xsl:variable>
+	<xsl:variable name="HOSTREF">
+		<xsl:value-of select="c4j:getConfigItem('config', 'HostRef')"/>
+	</xsl:variable>
+	<xsl:variable name="PLANT">
+		<xsl:value-of select="c4j:getConfigItem('config', 'Plant')"/>
+	</xsl:variable>
+	<xsl:variable name="WAREHOUSE">
+		<xsl:value-of select="c4j:getConfigItem('config', 'Warehouse')"/>
+	</xsl:variable>
+	<xsl:variable name="LANGUAGE">
+		<xsl:value-of select="c4j:getConfigItem('config', 'Language')"/>
+	</xsl:variable>
 
 	<xsl:template match="xml">
 		<xsl:param name="stock_conv" select="STOCK_UOM_PER_PALL"/>
 		<xsl:param name="pack_conv_temp" select="UOM_STOCK_BASE_UOM"/>
 
-		<xsl:param name="pack_conv" select="c4j_XSLT_Ext_NVL:nvl($pack_conv_temp, '1')"/>
+		<xsl:param name="pack_conv" select="c4j_XSLT_Ext:nvl($pack_conv_temp, '1')"/>
 
 		<xsl:param name="base_uom" select="UOM_BASE"/>
 		<xsl:param name="stock_uom" select="UOM_STOCK"/>
@@ -29,7 +32,7 @@
 		<xsl:param name="variant" select="VAR_CODE"/>
 		<xsl:param name="pallet_quantity" select="number($stock_conv) * number($pack_conv)"/>
 		<xsl:param name="layers_per_pallet_temp" select="LAYER_PER_PALLET"/>
-		<xsl:param name="layers_per_pallet" select="c4j_XSLT_Ext_NVL:nvl($layers_per_pallet_temp, '1')"/>
+		<xsl:param name="layers_per_pallet" select="c4j_XSLT_Ext:nvl($layers_per_pallet_temp, '1')"/>
 		<xsl:param name="layers_per_pallet_numerator" select="number($pallet_quantity) div number($layers_per_pallet)"/>
 
 
@@ -93,7 +96,7 @@
 							<xsl:value-of select="ANA"/>
 						</ean>
 						<variant>
-							<xsl:value-of select="c4j_XSLT_Ext_padStringLeft:padStringLeft($variant,2,'0')"/>
+							<xsl:value-of select="c4j_XSLT_Ext:padStringLeft($variant,2,'0')"/>
 						</variant>
 					</materialUOMDefinition>
 					<materialUOMDefinition>

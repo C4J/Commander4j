@@ -1,0 +1,131 @@
+
+/*  Logppak Case Labeller Script for Purina Wisbech */
+
+/*34567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890 */
+/*LABEL          COMMAND                       PARAMS                                                */
+/*34567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890 */
+/*        1        2         3         4         5        6          7         8         9         0 */
+
+/*                    N.B. Use spaces between columns - not tabs.                                    */
+
+Initialise        STRING_DELIMITER              "
+                  STATUS                        "Initialising"
+                  VARIABLE                      $variable_Plant="0933"
+                  VARIABLE                      $variable_Template="manual.llf" 
+                  USER_INPUTx                   "Enter Description :","Dog Food","$data_MATERIAL_DESCRIPTION" 
+                  SEND_DELAY                    100
+                  SEND_EOL                      "<CR>"
+                  RESPONSE_EOL                  "<CR>"
+                  TIMEOUT_SEND                  2000
+                  RECONNECT_DELAY               3000
+                  KEEP_ALIVE_INACTIVITY         5000
+                  KEEP_ALIVE_SEND               "?online"
+                  
+                  IGNORE_RESPONSE               "CMD->"
+                  IGNORE_RESPONSE               ""
+                  
+                  SUCCESS_RESPONSE              "0 No error(s)."
+                  SUCCESS_RESPONSE              "0 No Error(s)"
+                  SUCCESS_RESPONSE              "0 no error(s)."
+                  SUCCESS_RESPONSE              "0 No Error(s)."
+                  SUCCESS_RESPONSE              "0 No error(s)."
+                  SUCCESS_RESPONSE              "000<ACK>"
+                  SUCCESS_RESPONSE              ">ONLINE"
+
+                  FAIL_RESPONSE                 "Error(s)."
+                  FAIL_RESPONSE                 "error(s)."
+                  FAIL_RESPONSE                 "991 unknown command !"
+                  FAIL_RESPONSE                 "993 Checksum error!"
+                  FAIL_RESPONSE                 "994 Hex format error!"
+                  FAIL_RESPONSE                 "996 Timeout"
+                  FAIL_RESPONSE                 "997 Buffer overflow"
+                  FAIL_RESPONSE                 "1601 Unknown command:"
+                  FAIL_RESPONSE                 "63 Couldn't open file /c0/$variable_Template !"   
+                  FAIL_RESPONSE                 "992 File access error!"
+                  FAIL_RESPONSE                 "999<NAK>"
+                                                                                                                         
+                  ON_ERROR_RESONSE_GOTO         "Abort"
+                  ON_ERROR_COMMS_GOTO           "Initialise"
+                  ON_ERROR_TIMEOUT_GOTO         "Timeout"
+                  
+                  STATUS                        "Opening Connection"
+                  CONNECTION_OPEN
+                  
+                  STATUS                        "Setup Labeller"
+                  SEND                          "*VERBOSE"
+                  CHECK_SUCCESS
+                  SEND                          "*RDR"
+                  CHECK_SUCCESS
+                  SEND                          "LK,1"
+                  CHECK_SUCCESS
+                  GOTO                          Start
+                  
+Start             STATUS                        "Sending Data"
+                  SEND_FILE_INTELHEX            "manual.llf"  
+                  SEND_FILE_INTELHEX            "nestlelogo.pcx"
+                  MESSAGE_INFO                  "Starting Test"
+                  RETRIEVE_DATA
+                  SEND                          "<STX>LOAD,/c0/$variable_Template"
+                  SEND                          "FD,44,PADLEFT($data_PROD_VARIANT,2,0)"
+                  SEND                          "FD,1,$data_MATERIAL_DESCRIPTION"
+                  SEND                          "FD,112,$data_MATERIAL"
+                  SEND                          "FD,123,$data_BATCH_NUMBER"
+                  SEND                          "FD,124,$data_PROCESS_ORDER"
+                  SEND                          "FD,71,REPLACE($data_PROD_QUANTITY,.000,)"
+                  SEND                          "FD,72,PADLEFT($data_BASE_EAN,14,0)"
+                  SEND                          "FD,62,PADLEFT($data_PROD_EAN,14,0)"
+                  SEND                          "FD,61,REPLACE($data_BASE_QUANTITY,.000,)"
+                  SEND                          "FD,51,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,dd)"
+                  SEND                          "FD,52,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,MM)"
+                  SEND                          "FD,53,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,yyyy)"
+                  SEND                          "FD,43,$variable_Plant"
+                  SEND                          "FD,10,PADLEFT($data_PROD_VARIANT,2,0)"                 
+                  SEND                          "<ETX><CR>"
+                  
+                  FILE_DEFINE                   "file1.txt"
+                  FILE_WRITE                    "Hello World<CR>"
+                  FILE_WRITE                    $data_MATERIAL_DESCRIPTION                
+                  SEND_FILE_INTELHEX            "file2.txt"                    
+                                                     
+                  FILE_DEFINE                   "$data_PROCESS_ORDER_$data_BATCH_NUMBER.ldf"
+                  FILE_WRITE                    "FD,112,$data_MATERIAL<CR>"
+                  FILE_WRITE                    "LOAD,/c0/$variable_Template<CR>"
+                  FILE_WRITE                    "FD,44,PADLEFT($data_PROD_VARIANT,2,0)<CR>"
+                  FILE_WRITE                    "FD,1,$data_MATERIAL_DESCRIPTION<CR>"
+                  FILE_WRITE                    "FD,112,$data_MATERIAL<CR>"
+                  FILE_WRITE                    "FD,123,$data_BATCH_NUMBER<CR>"
+                  FILE_WRITE                    "FD,124,$data_PROCESS_ORDER<CR>"
+                  FILE_WRITE                    "FD,71,REPLACE($data_PROD_QUANTITY,.000,)<CR>"
+                  FILE_WRITE                    "FD,72,PADLEFT($data_BASE_EAN,14,0)<CR>"
+                  FILE_WRITE                    "FD,62,PADLEFT($data_PROD_EAN,14,0)<CR>"
+                  FILE_WRITE                    "FD,61,REPLACE($data_BASE_QUANTITY,.000,)<CR>"
+                  FILE_WRITE                    "FD,51,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,dd)<CR>"
+                  FILE_WRITE                    "FD,52,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,MM)<CR>"
+                  FILE_WRITE                    "FD,53,EXTRACT_DATE($data_EXPIRY_DATE,dd-MMM-yyyy HH:mm:ss,yyyy)<CR>"
+                  FILE_WRITE                    "FD,43,$variable_Plant<CR>"
+                  FILE_WRITE                    "FD,10,PADLEFT($data_PROD_VARIANT,2,0)<CR>"                   
+                  SEND_FILE_INTELHEX            "$data_PROCESS_ORDER_$data_BATCH_NUMBER.ldf" 
+ 
+                  DIR_REMOTE                    *.lqf
+                  EXIT
+                                    
+                  RECEIVE_FILE_INTELHEX         "*.pcx"               
+                            
+                  DIR_REMOTE                    "kuehne.lqf"
+                  
+                  BACKUP_REMOTE                 "*.ldf"
+                                                
+                  KEEP_ALIVE_ON
+                  GOTO                          Finish
+
+Finish            STATUS                        "Success"
+                  CONNECTION_CLOSE
+                  EXIT
+
+Abort             STATUS                        "Error"
+                  CONNECTION_CLOSE
+                  EXIT
+
+Timeout           STATUS                        "Timeout"
+                  CONNECTION_CLOSE
+                  EXIT

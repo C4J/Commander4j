@@ -62,7 +62,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	private String mqttClient="";
 	private String mqttBroker="";
 	private int mqttQos=2;
-
+	protected Utility util = new Utility();
 	private String hostIP = "127.0.0.1";
 	private int hostPort = 9100;
 	private int hostRepeat = 1;
@@ -84,7 +84,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 	public void setHostPort(String port)
 	{
-		port = Utility.replaceNullStringwithBlank(port);
+		port = util.replaceNullStringwithBlank(port);
 		if (port.equals("")) port = "9100";	
 		this.hostPort = Integer.valueOf(port);
 	}
@@ -96,7 +96,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 	public void setHostRepeat(String repeat)
 	{
-		repeat = Utility.replaceNullStringwithBlank(repeat);
+		repeat = util.replaceNullStringwithBlank(repeat);
 		if (repeat.equals("")) repeat = "1";	
 		this.hostRepeat = Integer.valueOf(repeat);
 	}
@@ -108,28 +108,28 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	
 	public void setMQTTTopic(String q)
 	{
-		this.mqttTopic = Utility.replaceNullStringwithBlank(q);
+		this.mqttTopic = util.replaceNullStringwithBlank(q);
 	}
 	
 	public void setMQTTContentXML(String q)
 	{
-		this.mqttContentXPath = Utility.replaceNullStringwithBlank(q);
+		this.mqttContentXPath = util.replaceNullStringwithBlank(q);
 	}
 	
 	public void setMQTTClient(String q)
 	{
-		this.mqttClient = Utility.replaceNullStringwithBlank(q);
+		this.mqttClient = util.replaceNullStringwithBlank(q);
 	}
 
 	public void setMQTTBroker(String q)
 	{
-		this.mqttBroker = Utility.replaceNullStringwithBlank(q);
+		this.mqttBroker = util.replaceNullStringwithBlank(q);
 	}
 	
 	public void setMQTTQos(String q)
 	{
 		try {
-			this.mqttQos = Integer.valueOf(Utility.replaceNullStringwithBlank(q));
+			this.mqttQos = Integer.valueOf(util.replaceNullStringwithBlank(q));
 		} catch (Exception ex){
 			this.mqttQos = 0;
 		}
@@ -167,19 +167,19 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 	
 	public void setQueueName(String q)
 	{
-		this.queueName = Utility.replaceNullStringwithBlank(q);
+		this.queueName = util.replaceNullStringwithBlank(q);
 	}
 
 	public String getQueueName()
 	{
-		return Utility.replaceNullStringwithBlank(this.queueName);
+		return util.replaceNullStringwithBlank(this.queueName);
 	}
 	
 	public String get83GUIDFilename(String prefix,String originalFilename)
 	{
 		String result = originalFilename;
 		
-		prefix = Utility.replaceNullStringwithBlank(prefix);
+		prefix = util.replaceNullStringwithBlank(prefix);
 		
 		int prefixLength = prefix.length();
 		
@@ -216,7 +216,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 	public void set83GUIDFilenameReqd(String yesNo)
 	{
-		this.Use8_3_GUID_Filename = Utility.replaceNullStringwithBlank(yesNo).toUpperCase();
+		this.Use8_3_GUID_Filename = util.replaceNullStringwithBlank(yesNo).toUpperCase();
 
 		if (this.Use8_3_GUID_Filename.equals(""))
 		{
@@ -268,27 +268,27 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 	public String getCompareParam1()
 	{
-		return Utility.replaceNullStringwithBlank(this.compareParam1);
+		return util.replaceNullStringwithBlank(this.compareParam1);
 	}
 
 	public String getCompareParam1_Type()
 	{
-		return Utility.replaceNullStringwithBlank(this.compareParam1_Type);
+		return util.replaceNullStringwithBlank(this.compareParam1_Type);
 	}
 
 	public String getCompareParam2()
 	{
-		return Utility.replaceNullStringwithBlank(this.compareParam2);
+		return util.replaceNullStringwithBlank(this.compareParam2);
 	}
 
 	public String getCompareParam2_Type()
 	{
-		return Utility.replaceNullStringwithBlank(this.compareParam2_Type);
+		return util.replaceNullStringwithBlank(this.compareParam2_Type);
 	}
 
 	public String getComparator()
 	{
-		return Utility.replaceNullStringwithBlank(this.comparitor);
+		return util.replaceNullStringwithBlank(this.comparitor);
 	}
 
 	public void setPrefix(String prefix)
@@ -298,7 +298,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 	public String getPrefix()
 	{
-		return Utility.replaceNullStringwithBlank(this.outputFilePrefix);
+		return util.replaceNullStringwithBlank(this.outputFilePrefix);
 	}
 
 	public void setDescription(String description)
@@ -344,7 +344,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 	public void setOutputFileExtension(String extension)
 	{
-		if (Utility.replaceNullStringwithBlank(extension).equals("") == false)
+		if (util.replaceNullStringwithBlank(extension).equals("") == false)
 		{
 			this.outputFileExtension = extension;
 		}
@@ -407,7 +407,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 	public void setOutputPattern(String pattern)
 	{
-		outputPattern = Utility.replaceNullStringwithBlank(pattern);
+		outputPattern = util.replaceNullStringwithBlank(pattern);
 
 	}
 
@@ -418,7 +418,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 	public void setCSVOptions(String options)
 	{
-		csvOptions = Utility.replaceNullStringwithBlank(options);
+		csvOptions = util.replaceNullStringwithBlank(options);
 
 	}
 
@@ -429,7 +429,7 @@ public abstract class OutboundInterfaceABSTRACT extends TimerTask implements Out
 
 	public void setOptionDelimeter(String value)
 	{
-		delimeter = Utility.replaceNullStringwithBlank(value);
+		delimeter = util.replaceNullStringwithBlank(value);
 
 	}
 

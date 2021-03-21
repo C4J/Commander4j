@@ -16,11 +16,12 @@ public class StartMain
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((StartMain.class));
 	public MiddlewareConfig cfg;
-	public static String version = "2.05";
+	public static String version = "3.00";
 	Boolean running = false;
 	LogArchiveThread archiveLog;
 	StatusThread statusthread;
 	EmailThread emailthread;
+	Utility util = new Utility();
 
 	public Boolean isRunning()
 	{
@@ -32,7 +33,7 @@ public class StartMain
 		Boolean result = true;
 
 		logger.debug("Application starting");
-		Utility.initLogging("");
+		util.initLogging("");
 
 		logger.debug("*************************");
 		logger.debug("**     STARTING        **");
@@ -68,7 +69,7 @@ public class StartMain
 			logger.debug("**      STARTED        **");
 			logger.debug("*************************");
 			
-			Common.emailqueue.addToQueue("Monitor", "Starting ["+Common.configName+"] "+StartMain.version+" on "+ Utility.getClientName(), "Program started", "");
+			Common.emailqueue.addToQueue("Monitor", "Starting ["+Common.configName+"] "+StartMain.version+" on "+ util.getClientName(), "Program started", "");
 			running = true;
 
 		} else
@@ -84,7 +85,7 @@ public class StartMain
 				errorMsg=errorMsg+cfg.getMapDirectoryErrors().get(x)+"\n";
 			}
 			
-			Common.emailqueue.addToQueue("Monitor", "Error Starting ["+Common.configName+"] "+StartMain.version+" on "+ Utility.getClientName(), "Errors :-\n\n"+errorMsg, "");
+			Common.emailqueue.addToQueue("Monitor", "Error Starting ["+Common.configName+"] "+StartMain.version+" on "+ util.getClientName(), "Errors :-\n\n"+errorMsg, "");
 			result = false;
 		}
 
@@ -139,7 +140,7 @@ public class StartMain
 		logger.debug("*************************");
 		
 		
-		Common.emailqueue.addToQueue("Monitor", "Stopping ["+Common.configName+"] on "+ Utility.getClientName(), statistics, "");
+		Common.emailqueue.addToQueue("Monitor", "Stopping ["+Common.configName+"] on "+ util.getClientName(), statistics, "");
 		
 		
 		try

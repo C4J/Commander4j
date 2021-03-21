@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.Interface.Outbound.OutboundInterface;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JXMLDocument;
-import com.commander4j.util.Utility;
 
 import ABSTRACT.com.commander4j.Connector.OutboundConnectorABSTRACT;
 
@@ -69,10 +68,10 @@ public class OutboundConnectorSOCKET extends OutboundConnectorABSTRACT
 					{
 
 						int line = 1;
-						while (Utility.replaceNullStringwithBlank(document.findXPath("/data/line[" + String.valueOf(line) + "]")).equals("*EOF*") == false)
+						while (util.replaceNullStringwithBlank(document.findXPath("/data/line[" + String.valueOf(line) + "]")).equals("*EOF*") == false)
 						{
-							send = Utility.replaceNullStringwithBlank(document.findXPath("/data/line[" + String.valueOf(line) + "]"));
-							eol = Utility.replaceNullStringwithBlank(document.findXPath("/data/line[" + String.valueOf(line) + "]/@eol"));
+							send = util.replaceNullStringwithBlank(document.findXPath("/data/line[" + String.valueOf(line) + "]"));
+							eol = util.replaceNullStringwithBlank(document.findXPath("/data/line[" + String.valueOf(line) + "]/@eol"));
 
 							if (eol.equals("") == false)
 							{

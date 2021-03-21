@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databases>
+
+	<database id="mySQL Test">
+
+		<jdbcDriver>com.mysql.jdbc.Driver</jdbcDriver>
+		<jdbcUsername>commander4j_dev</jdbcUsername>
+		<jdbcPassword>commander4j_dev</jdbcPassword>
+		<jdbcServer>localhost</jdbcServer>
+		<jdbcPort>3306</jdbcPort>
+		<jdbcSID />
+		<jdbcDatabase>commander4j_dev</jdbcDatabase>
+
+
+		<sqlSelect id="Query Order Status">
+			<statement>SELECT STATUS FROM APP_PROCESS_ORDER WHERE PROCESS_ORDER=?</statement>
+		</sqlSelect>
+		
+		
+		<sqlSelect id="Query Controls">
+			<statement>SELECT KEY_VALUE FROM SYS_CONTROL WHERE SYSTEM_KEY=?</statement>
+		</sqlSelect>		
+
+	</database>
+
+
+</databases>

@@ -20,6 +20,7 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 	private String type = "";
 	private String filename = "";
 	private String path = "";
+	protected Utility util = new Utility();
 
 	Logger logger = org.apache.logging.log4j.LogManager.getLogger((OutboundConnectorABSTRACT.class));
 
@@ -68,7 +69,7 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 
 			if (parm1type.equals("xquery"))
 			{
-				parm1value = Utility.replaceNullStringwithBlank(document.findXPath(getOutboundInterface().getCompareParam1()).trim());
+				parm1value = util.replaceNullStringwithBlank(document.findXPath(getOutboundInterface().getCompareParam1()).trim());
 
 			}
 
@@ -85,7 +86,7 @@ public abstract class OutboundConnectorABSTRACT implements OutboundConnectorINTE
 
 			if (parm2type.equals("xquery"))
 			{
-				parm2value = Utility.replaceNullStringwithBlank(document.findXPath(getOutboundInterface().getCompareParam2()).trim());
+				parm2value = util.replaceNullStringwithBlank(document.findXPath(getOutboundInterface().getCompareParam2()).trim());
 
 			}
 
