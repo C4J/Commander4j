@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<config>
-
-    <inputPath>./interface/input</inputPath>
-    <outputPath>./interface/output</outputPath>
-
-</config>
