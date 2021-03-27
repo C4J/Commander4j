@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.commander4j.b4Tester.TestStart
-Class-Path: lib/commons-io-2.6.jar 
- lib/log4j-api-2.11.0.jar 
- lib/log4j-core-2.11.0.jar 
