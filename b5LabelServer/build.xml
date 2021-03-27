@@ -3,24 +3,38 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="b4LabelServer">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="b5LabelServer">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.8"/>
-    <property name="source" value="1.8"/>
-    <path id="b4LabelServer.classpath">
+    <property name="target" value="11"/>
+    <property name="source" value="11"/>
+    <path id="b5LabelServer.classpath">
         <pathelement location="bin"/>
-        <pathelement location="lib/app/commons-io-2.6.jar"/>
-        <pathelement location="lib/app/commons-lang3-3.7.jar"/>
-        <pathelement location="lib/app/commons-codec-1.11.jar"/>
+        <pathelement location="lib/app/commons-io-2.8.0.jar"/>
+        <pathelement location="lib/app/commons-lang3-3.12.0.jar"/>
+        <pathelement location="lib/app/commons-codec-1.15.jar"/>
         <pathelement location="lib/devonly/i4jruntime.jar"/>
-        <pathelement location="lib/app/opencsv-4.1.jar"/>
+        <pathelement location="lib/app/opencsv-5.4.jar"/>
         <pathelement location="lib/db/ojdbc8.jar"/>
         <pathelement location="xml/config"/>
-        <pathelement location="lib/app/log4j-api-2.11.0.jar"/>
-        <pathelement location="lib/app/log4j-core-2.11.0.jar"/>
-        <pathelement location="lib/db/mssql-jdbc-6.4.0.jre8.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-8.0.15.jar"/>
+        <pathelement location="lib/app/log4j-api-2.14.1.jar"/>
+        <pathelement location="lib/app/log4j-core-2.14.1.jar"/>
+        <pathelement location="lib/db/mssql-jdbc-8.4.1.jre11.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-8.0.22.jar"/>
+    </path>
+    <path id="run.Service.classpath">
+        <path refid="b5LabelServer.classpath"/>
+        <pathelement location="lib/app/commons-io-2.8.0.jar"/>
+        <pathelement location="lib/app/commons-lang3-3.12.0.jar"/>
+        <pathelement location="lib/app/commons-codec-1.15.jar"/>
+        <pathelement location="lib/devonly/i4jruntime.jar"/>
+        <pathelement location="lib/app/opencsv-5.4.jar"/>
+        <pathelement location="lib/db/ojdbc8.jar"/>
+        <pathelement location="xml/config"/>
+        <pathelement location="lib/app/log4j-api-2.14.1.jar"/>
+        <pathelement location="lib/app/log4j-core-2.14.1.jar"/>
+        <pathelement location="lib/db/mssql-jdbc-8.4.1.jre11.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-8.0.22.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -41,13 +55,13 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="b4LabelServer.classpath"/>
+            <classpath refid="b5LabelServer.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target name="b4LabelServer">
+    <target name="Service">
         <java classname="com.commander4j.labeller.Service" failonerror="true" fork="yes">
-            <classpath refid="b4LabelServer.classpath"/>
+            <classpath refid="run.Service.classpath"/>
         </java>
     </target>
 </project>

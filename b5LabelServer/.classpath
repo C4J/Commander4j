@@ -6,16 +6,16 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/app/commons-io-2.6.jar"/>
-	<classpathentry kind="lib" path="lib/app/commons-lang3-3.7.jar"/>
-	<classpathentry kind="lib" path="lib/app/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="lib/app/commons-io-2.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/app/commons-lang3-3.12.0.jar"/>
+	<classpathentry kind="lib" path="lib/app/commons-codec-1.15.jar"/>
 	<classpathentry kind="lib" path="lib/devonly/i4jruntime.jar"/>
-	<classpathentry kind="lib" path="lib/app/opencsv-4.1.jar"/>
+	<classpathentry kind="lib" path="lib/app/opencsv-5.4.jar"/>
 	<classpathentry kind="lib" path="lib/db/ojdbc8.jar"/>
 	<classpathentry kind="lib" path="xml/config"/>
-	<classpathentry kind="lib" path="lib/app/log4j-api-2.11.0.jar"/>
-	<classpathentry kind="lib" path="lib/app/log4j-core-2.11.0.jar"/>
-	<classpathentry kind="lib" path="lib/db/mssql-jdbc-6.4.0.jre8.jar"/>
-	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.15.jar"/>
+	<classpathentry kind="lib" path="lib/app/log4j-api-2.14.1.jar"/>
+	<classpathentry kind="lib" path="lib/app/log4j-core-2.14.1.jar"/>
+	<classpathentry kind="lib" path="lib/db/mssql-jdbc-8.4.1.jre11.jar"/>
+	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.22.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
