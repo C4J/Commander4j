@@ -101,6 +101,6 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib_aux/joda-time-2.10.2.jar 
  lib/jasperlib_aux/xml-apis.jar 
  lib/jasperlib_aux/xmlgraphics-commons-2.2.jar 
- lib/mail/javax.activation-api.jar 
+ lib/mail/javax.activation-1.2.0.jar 
  lib/mail/javax.mail.jar 
  lib/serial/jSerialComm-2.6.2.jar 
