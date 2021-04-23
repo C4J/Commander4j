@@ -333,7 +333,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 		listStatement = query.getPreparedStatement();
 	}
 
-	private void processOrderChanged(String po)
+	public void processOrderChanged(String po)
 	{
 		clearFields();
 		checkSSCC();

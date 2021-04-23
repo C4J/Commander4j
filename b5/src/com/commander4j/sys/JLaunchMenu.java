@@ -1916,7 +1916,10 @@ public class JLaunchMenu
 		{
 			final JInternalFrameProductionDeclaration u;
 			if (isLoaded(JInternalFrameProductionDeclaration.class))
+			{
+				((JInternalFrameProductionDeclaration) isLoadedInstance(JInternalFrameProductionDeclaration.class)).processOrderChanged(StrParam);
 				setVisible(JInternalFrameProductionDeclaration.class);
+			}
 			else
 			{
 				u = new JInternalFrameProductionDeclaration(StrParam);
