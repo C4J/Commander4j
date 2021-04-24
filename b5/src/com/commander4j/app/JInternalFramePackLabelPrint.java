@@ -295,7 +295,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 		}
 	}
 
-	private void processOrderChanged(String po)
+	public void processOrderChanged(String po)
 	{
 		boolean valid = false;
 		clearFields();

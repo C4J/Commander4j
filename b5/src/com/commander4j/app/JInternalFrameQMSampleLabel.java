@@ -189,7 +189,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		btnPrint.setEnabled(result);
 	}
 
-	private void processOrderChanged(String processOrder)
+	public void processOrderChanged(String processOrder)
 	{
 		if (po.isValidProcessOrder(processOrder))
 		{

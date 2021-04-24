@@ -1503,7 +1503,10 @@ public class JLaunchMenu
 		{
 			final JInternalFrameQMSampleLabel u;
 			if (isLoaded(JInternalFrameQMSampleLabel.class))
+			{
+				((JInternalFrameQMSampleLabel) isLoadedInstance(JInternalFrameQMSampleLabel.class)).processOrderChanged(StrParam1);
 				setVisible(JInternalFrameQMSampleLabel.class);
+			}
 			else
 			{
 				u = new JInternalFrameQMSampleLabel(StrParam1);
@@ -1757,7 +1760,10 @@ public class JLaunchMenu
 		{
 			final JInternalFrameQMSampleLabel u;
 			if (isLoaded(JInternalFrameQMSampleLabel.class))
+			{
+				((JInternalFrameQMSampleLabel) isLoadedInstance(JInternalFrameQMSampleLabel.class)).processOrderChanged(StrParam);
 				setVisible(JInternalFrameQMSampleLabel.class);
+			}
 			else
 			{
 				u = new JInternalFrameQMSampleLabel(StrParam);
@@ -1770,7 +1776,10 @@ public class JLaunchMenu
 		{
 			final JInternalFramePackLabelPrint u;
 			if (isLoaded(JInternalFramePackLabelPrint.class))
+			{
+				((JInternalFramePackLabelPrint) isLoadedInstance(JInternalFramePackLabelPrint.class)).processOrderChanged(StrParam);
 				setVisible(JInternalFramePackLabelPrint.class);
+			}
 			else
 			{
 				u = new JInternalFramePackLabelPrint(StrParam);
