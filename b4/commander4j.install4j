@@ -269,7 +269,7 @@
   </launchers>
   <installerGui autoUpdateDescriptorUrl="${installer:C4JUpdaterUrl}">
     <applications>
-      <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication" customIcnsFile="./images/Launcher/CMD_Icon.icns" customIcoFile="./images/Launcher/CMD_Icon.ico" launchInNewProcess="false">
+      <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication" launchInNewProcess="false">
         <serializedBean>
           <property name="customIconImageFiles">
             <add>
