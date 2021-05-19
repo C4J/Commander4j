@@ -1,113 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="waste_reporting2" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="83f239a2-99a4-4e8b-8513-9897a96f0444">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="commander4j_waste"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="216"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="778"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
 	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["My Company"]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
-		<![CDATA[select *, (QUANTITY * CONVERSION_TO_KG) AS WEIGHT_KG,(QUANTITY * COST_PER_UOM) AS COST from view_waste_reporting 
+		<![CDATA[select * from view_waste_reporting2 
 order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCATION_ID asc,TRANSACTION_REF asc]]>
 	</queryString>
 	<field name="TRANSACTION_REF" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TRANSACTION_REF"/>
 		<property name="com.jaspersoft.studio.field.label" value="TRANSACTION_REF"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_log"/>
 	</field>
 	<field name="REPORT_TIME" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="REPORT_TIME"/>
 		<property name="com.jaspersoft.studio.field.label" value="REPORT_TIME"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_log"/>
 	</field>
 	<field name="WASTE_TRANSACTION_TYPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="WASTE_TRANSACTION_TYPE"/>
 		<property name="com.jaspersoft.studio.field.label" value="WASTE_TRANSACTION_TYPE"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_log"/>
 	</field>
 	<field name="DESCRIPTION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DESCRIPTION"/>
 		<property name="com.jaspersoft.studio.field.label" value="DESCRIPTION"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_transactions"/>
 	</field>
 	<field name="WASTE_LOCATION_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="WASTE_LOCATION_ID"/>
 		<property name="com.jaspersoft.studio.field.label" value="WASTE_LOCATION_ID"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_log"/>
 	</field>
 	<field name="DESCRIPTION_LOCATION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DESCRIPTION_LOCATION"/>
 		<property name="com.jaspersoft.studio.field.label" value="DESCRIPTION_LOCATION"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_locations"/>
 	</field>
 	<field name="WASTE_MATERIAL_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="WASTE_MATERIAL_ID"/>
 		<property name="com.jaspersoft.studio.field.label" value="WASTE_MATERIAL_ID"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_log"/>
 	</field>
 	<field name="DESCRIPTION_MATERIAL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DESCRIPTION_MATERIAL"/>
 		<property name="com.jaspersoft.studio.field.label" value="DESCRIPTION_MATERIAL"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
 	</field>
 	<field name="WASTE_TYPE_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="WASTE_TYPE_ID"/>
 		<property name="com.jaspersoft.studio.field.label" value="WASTE_TYPE_ID"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
 	</field>
 	<field name="DESCRIPTION_TYPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DESCRIPTION_TYPE"/>
 		<property name="com.jaspersoft.studio.field.label" value="DESCRIPTION_TYPE"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_types"/>
 	</field>
+	<field name="RECYCLABLE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RECYCLABLE"/>
+		<property name="com.jaspersoft.studio.field.label" value="RECYCLABLE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_types"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HAZARDOUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="HAZARDOUS"/>
+		<property name="com.jaspersoft.studio.field.label" value="HAZARDOUS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_types"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PPE_REQUIRED" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="PPE_REQUIRED"/>
+		<property name="com.jaspersoft.studio.field.label" value="PPE_REQUIRED"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_types"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="WASTE_REASON_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="WASTE_REASON_ID"/>
 		<property name="com.jaspersoft.studio.field.label" value="WASTE_REASON_ID"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_log"/>
 	</field>
 	<field name="DESCRIPTION_REASON" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DESCRIPTION_REASON"/>
 		<property name="com.jaspersoft.studio.field.label" value="DESCRIPTION_REASON"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_reasons"/>
 	</field>
 	<field name="PROCESS_ORDER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="PROCESS_ORDER"/>
 		<property name="com.jaspersoft.studio.field.label" value="PROCESS_ORDER"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_log"/>
 	</field>
 	<field name="USER_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="USER_ID"/>
 		<property name="com.jaspersoft.studio.field.label" value="USER_ID"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_log"/>
 	</field>
-	<field name="QUANTITY" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="QUANTITY"/>
+	<field name="WEIGHT_KG" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="WEIGHT_KG"/>
+		<property name="com.jaspersoft.studio.field.label" value="WEIGHT_KG"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_log"/>
 	</field>
-	<field name="UOM" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="UOM"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
+	<field name="TARE_WEIGHT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TARE_WEIGHT"/>
+		<property name="com.jaspersoft.studio.field.label" value="TARE_WEIGHT"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_log"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="COST_PER_UOM" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="COST_PER_UOM"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
+	<field name="NET_WEIGHT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="NET_WEIGHT"/>
+		<property name="com.jaspersoft.studio.field.label" value="NET_WEIGHT"/>
 	</field>
-	<field name="CONVERSION_TO_KG" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="CONVERSION_TO_KG"/>
+	<field name="COST_PER_KG" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="COST_PER_KG"/>
+		<property name="com.jaspersoft.studio.field.label" value="COST_PER_KG"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COST" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="COST"/>
+		<property name="com.jaspersoft.studio.field.label" value="COST"/>
 	</field>
 	<field name="WASTE_REPORTING_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="WASTE_REPORTING_ID"/>
 		<property name="com.jaspersoft.studio.field.label" value="WASTE_REPORTING_ID"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_reporting_ids"/>
 	</field>
 	<field name="REPORTING_ID_DESCRIPTION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="REPORTING_ID_DESCRIPTION"/>
 		<property name="com.jaspersoft.studio.field.label" value="REPORTING_ID_DESCRIPTION"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_reporting_ids"/>
 	</field>
 	<field name="REPORTING_GROUP" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="REPORTING_GROUP"/>
 		<property name="com.jaspersoft.studio.field.label" value="REPORTING_GROUP"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_reporting_ids"/>
 	</field>
 	<field name="GROUP_DESCRIPTION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="GROUP_DESCRIPTION"/>
 		<property name="com.jaspersoft.studio.field.label" value="GROUP_DESCRIPTION"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_reporting_group"/>
 	</field>
-	<field name="WEIGHT_KG" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="WEIGHT_KG"/>
-	</field>
-	<field name="COST" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="COST"/>
-	</field>
-	<variable name="WEIGHT_KG1" class="java.math.BigDecimal" resetType="Group" resetGroup="WASTE_MATERIAL_ID" calculation="Sum">
-		<variableExpression><![CDATA[$F{WEIGHT_KG}]]></variableExpression>
+	<variable name="NET_WEIGHT1" class="java.math.BigDecimal" resetType="Group" resetGroup="WASTE_MATERIAL_ID" calculation="Sum">
+		<variableExpression><![CDATA[$F{NET_WEIGHT}]]></variableExpression>
 	</variable>
 	<variable name="COST1" class="java.math.BigDecimal" resetType="Group" resetGroup="WASTE_MATERIAL_ID" calculation="Sum">
 		<variableExpression><![CDATA[$F{COST}]]></variableExpression>
@@ -150,7 +189,7 @@ order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCA
 					<textElement textAlignment="Right">
 						<font size="9" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$V{WEIGHT_KG1}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{NET_WEIGHT1}]]></textFieldExpression>
 				</textField>
 				<textField pattern="#,##0.000">
 					<reportElement x="730" y="2" width="69" height="12" uuid="aa21860d-2c4a-44bf-a819-b13947065655">
@@ -250,7 +289,7 @@ order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCA
 				<textElement textAlignment="Right">
 					<font size="9" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[Quantity]]></text>
+				<text><![CDATA[Weight KG]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="240" y="2" width="44" height="12" uuid="46f5574a-745f-4b8e-97f9-7e64fac3e53a">
@@ -297,10 +336,10 @@ order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCA
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e79dcbeb-70d0-4045-a9d1-82340e4a857b"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Right">
 					<font size="9" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[UOM]]></text>
+				<text><![CDATA[Tare]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="466" y="2" width="90" height="12" uuid="b19a484d-35a1-4a73-93dd-756359cb3e22">
@@ -330,7 +369,7 @@ order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCA
 				<textElement textAlignment="Right">
 					<font size="9" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[Weight KG]]></text>
+				<text><![CDATA[Net Weight]]></text>
 			</staticText>
 			<line direction="BottomUp">
 				<reportElement key="line" x="1" y="0" width="800" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="9573eba5-ca38-443d-8308-b10f20231020">
@@ -419,17 +458,17 @@ order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCA
 				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{WEIGHT_KG}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="632" y="1" width="30" height="12" uuid="8dba7d6f-fc8d-402b-8b36-1bbd375b4bc5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e79dcbeb-70d0-4045-a9d1-82340e4a857b"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{UOM}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{TARE_WEIGHT}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.000">
 				<reportElement x="667" y="0" width="59" height="12" uuid="b83d9a5e-1bef-4794-ae69-702c1f9ddd7a">
@@ -439,7 +478,7 @@ order by WASTE_MATERIAL_ID,REPORTING_GROUP asc,WASTE_REPORTING_ID asc,WASTE_LOCA
 				<textElement textAlignment="Right">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{WEIGHT_KG}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{NET_WEIGHT}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.000">
 				<reportElement x="730" y="1" width="70" height="12" uuid="667fe003-5cab-4628-bcee-7cff9df2e1fc">

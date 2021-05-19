@@ -34,6 +34,7 @@ import java.util.HashMap;
 import javax.swing.table.AbstractTableModel;
 
 import com.commander4j.db.JDBViewWasteReporting;
+import com.commander4j.sys.Common;
 
 public class JDBViewWasteReportingTableModel extends AbstractTableModel
 {
@@ -47,18 +48,17 @@ public class JDBViewWasteReportingTableModel extends AbstractTableModel
 	public static final int Material_Col 				= 5;
 	public static final int Material_Type_Col 			= 6;
 	public static final int Reason_Col 					= 7;	
-	public static final int Quantity_Col 				= 8;
-	public static final int UOM_Col 					= 9;
-	public static final int Cost_Per_Uom_Col 			= 10;
-	public static final int Conversion_To_Kg_Col 		= 11;
-	public static final int WeightKG_Col 				= 12;
-	public static final int Cost_Col 					= 13;
-	public static final int Process_Order_Col 			= 14;
-	public static final int Transaction_Ref_Col 		= 15;
+	public static final int WeightKG_Col 				= 8;
+	public static final int Tare_Weight_Col 			= 9;
+	public static final int Net_Weight_Col 				= 10;
+	public static final int Cost_Per_Kg_Col 			= 11;
+	public static final int Cost_Col 					= 12;
+	public static final int Process_Order_Col 			= 13;
+	public static final int Transaction_Ref_Col 		= 14;
 
 
 
-	private String[] mcolNames = {"Group", "Report ID",  "Location","Date Time", "Transaction",   "Material", "Mat Type", "Reason", "Quantity","UOM", "Cost Per UOM","Conv To KG", "Weight KG",  "Cost","Process Order","Txn Ref",};
+	private String[] mcolNames = {"Group", "Report ID",  "Location","Date Time", "Transaction",   "Material", "Mat Type", "Reason", "Weight Kg","Tare Weight","Net Weight", "Cost Per KG", "Cost","Process Order","Txn Ref",};
 	private ResultSet mResultSet;
 	private String grp = "";
 
@@ -122,7 +122,7 @@ public class JDBViewWasteReportingTableModel extends AbstractTableModel
 			if (cache.containsKey(row)==false)
 			{
 				mResultSet.absolute(row + 1);
-				final JDBViewWasteReporting prow = new JDBViewWasteReporting();
+				final JDBViewWasteReporting prow = new JDBViewWasteReporting(Common.selectedHostID, Common.sessionID);
 				prow.getPropertiesfromResultSet(mResultSet);
 				cache.put(row, prow);
 			}
@@ -150,16 +150,14 @@ public class JDBViewWasteReportingTableModel extends AbstractTableModel
 				return cache.get(row).getReasonID();
 			case Process_Order_Col:
 				return cache.get(row).getProcessOrder();
-			case Quantity_Col:
-				return cache.get(row).getQuantity();
-			case UOM_Col:
-				return cache.get(row).getUOM();
-			case Cost_Per_Uom_Col:
-				return cache.get(row).getCostPerUom();
-			case Conversion_To_Kg_Col:
-				return cache.get(row).getConversionToKg();
 			case WeightKG_Col:
 				return cache.get(row).getWeightKG();
+			case Tare_Weight_Col:
+				return cache.get(row).getTareWeight();
+			case Net_Weight_Col:
+				return cache.get(row).getNetWeight();
+			case Cost_Per_Kg_Col:
+				return cache.get(row).getCostPerUom();
 			case Cost_Col:
 				return cache.get(row).getCostTotal();
 

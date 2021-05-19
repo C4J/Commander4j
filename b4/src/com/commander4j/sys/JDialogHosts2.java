@@ -37,6 +37,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -57,7 +58,7 @@ import javax.swing.border.EtchedBorder;
 public class JDialogHosts2 extends JDialog
 {
 	private static final long serialVersionUID = 1;
-	private final JImagePanel4j jDesktopPane1 = new JImagePanel4j("./images/connection.jpg");
+	private final JImagePanel4j jDesktopPane1 = new JImagePanel4j(System.getProperty("user.dir")+File.separator+"images"+File.separator+"16x16"+File.separator+"connection.jpg");
 	private JButton4j jButtonClose;
 	private JList4j<JHost> jListHosts;
 	private JButton4j jButtonConnect;

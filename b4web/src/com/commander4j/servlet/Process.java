@@ -2258,8 +2258,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 						
 						if (wm.getWasteMaterialProperties(wasteMaterialID))
 						{
-							session.setAttribute("wasteMaterialUOM", wm.getUOM());
-							saveData(session, "wasteMaterialUOM", wm.getUOM(), true);
+							session.setAttribute("wasteMaterialUOM", "KG");
+							saveData(session, "wasteMaterialUOM", "KG", true);
 						}
 						else
 						{
@@ -2301,9 +2301,13 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				wlog.setLocationID(post_wasteLocationID);
 				wlog.setMaterialID(post_wasteMaterialID);
 				wlog.setReasonID(post_wasteReasonID);
+				if (post_wasteProcessOrder.equals("")==true)
+				{
+					post_wasteProcessOrder = JUtility.replaceNullStringwithBlank(request.getParameter("wasteProcessOrder"));	
+				}
 				wlog.setProcessOrder(post_wasteProcessOrder);
 				wlog.setWasteReportTime(JUtility.getSQLDateTime());
-				wlog.setQuantity(new BigDecimal(post_wasteQuantity));
+				wlog.setWeightKg(new BigDecimal(post_wasteQuantity));
 				
 				if (wlog.write())
 				{
@@ -2317,6 +2321,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					session.setAttribute("_ErrorMessage",wlog.getErrorMessage());
 					saveData(session, "_ErrorMessage", wlog.getErrorMessage(), true);
 					saveData(session, "wasteQuantity", request.getParameter("wasteQuantity"), true);
+					saveData(session,"wasteProcessOrder","", true);
+					session.setAttribute("wasteProcessOrder", "");
 				}
 
 			}
@@ -2347,6 +2353,9 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		
 		logger.debug("wasteLogSaveLastUsed - wasteReasonID="+request.getParameter("wasteReasonCombo").toUpperCase());
 		saveData(session, "wasteReasonID", request.getParameter("wasteReasonCombo").toUpperCase(), true);
+		
+		//logger.debug("wasteLogSaveLastUsed - wasteProcessOrder="+request.getParameter("wasteProcessOrder").toUpperCase());
+		//saveData(session, "wasteProcessOrder", request.getParameter("wasteProcessOrder").toUpperCase(), true);
 		
 		return result;
 	}
@@ -2390,8 +2399,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		JDBWasteReasons wr = new JDBWasteReasons(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 		saveData(session, "wasteReasonCombo", wr.getHTMLPullDownCombo("wasteReasonCombo",wasteReasonID), true);
 		
-//		String wasteProcessOrder = Common.sd.getData(sessionID, "wasteProcessOrder");
-//		saveData(session, "wasteProcessOrder",wasteProcessOrder, true);
+		String wasteProcessOrder = Common.sd.getData(sessionID, "wasteProcessOrder");
+		saveData(session, "wasteProcessOrder",wasteProcessOrder, true);
 	}
 
 	private void releaseSessionResources(HttpSession session)

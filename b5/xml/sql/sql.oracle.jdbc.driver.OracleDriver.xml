@@ -1973,7 +1973,7 @@
 		<?JDBWasteLocation?>		
 		<statement>
 			<id>JDBWasteLocation.create</id>
-			<text>insert into {schema}APP_WASTE_LOCATIONS (waste_location_id,description,process_order_required,reason_id_required,enabled) values (?,?,?,?,?)</text>
+			<text>insert into {schema}APP_WASTE_LOCATIONS (waste_location_id,description,process_order_required,reason_id_required,enabled,tare_weight) values (?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBWasteLocation.delete</id>
@@ -1997,7 +1997,7 @@
 		</statement>
 		<statement>
 			<id>JDBWasteLocation.update</id>
-			<text>update {schema}APP_WASTE_LOCATIONS set description=?,process_order_required=?,reason_id_required=?, enabled=? where waste_location_id=?</text>
+			<text>update {schema}APP_WASTE_LOCATIONS set description=?,process_order_required=?,reason_id_required=?, enabled=?,tare_weight=? where waste_location_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBWasteLocation.getLocationsAssignedtoReportingID</id>
@@ -2196,7 +2196,7 @@
 		<?JDBWasteMaterial?>		
 		<statement>
 			<id>JDBWasteMaterial.create</id>
-			<text>insert into {schema}APP_WASTE_MATERIAL (waste_material_id,waste_type_id,uom,cost_per_uom,conversion_to_kg,description,enabled) values (?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_WASTE_MATERIAL (waste_material_id,waste_type_id,cost_per_kg,description,enabled) values (?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBWasteMaterial.delete</id>
@@ -2216,7 +2216,7 @@
 		</statement>
 		<statement>
 			<id>JDBWasteMaterial.update</id>
-			<text>update {schema}APP_WASTE_MATERIAL set waste_type_id=?,uom=?,cost_per_uom=?,conversion_to_kg=?,description=?,enabled=? where waste_material_id=?</text>
+			<text>update {schema}APP_WASTE_MATERIAL set waste_type_id=?,cost_per_kg=?,description=?,enabled=? where waste_material_id=?</text>
 		</statement>	
 		<statement>
 			<id>JDBWasteMaterial.renameMaterialID</id>
@@ -2230,7 +2230,7 @@
 		<?JDBWasteLog?>		
 		<statement>
 			<id>JDBWasteLog.write</id>
-			<text>insert into {schema}APP_WASTE_LOG (transaction_ref,waste_transaction_type,report_time,waste_location_id,waste_material_id,process_order,waste_reason_id,user_id,quantity) values (?,?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_WASTE_LOG (transaction_ref,waste_transaction_type,report_time,waste_location_id,waste_material_id,process_order,waste_reason_id,user_id,weight_kg,tare_weight) values (?,?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBWasteLog.delete</id>
@@ -2250,7 +2250,7 @@
 		</statement>
 		<statement>
 			<id>JDBWasteLog.update</id>
-			<text>update {schema}APP_WASTE_LOG set report_time=?,waste_location_id=?,waste_material_id=?,process_order=?,waste_reason_id=?,user_id=?,quantity=? where transaction_ref=? and waste_transaction_type=?</text>
+			<text>update {schema}APP_WASTE_LOG set report_time=?,waste_location_id=?,waste_material_id=?,process_order=?,waste_reason_id=?,user_id=?,weight_kg=?,tare_weight=? where transaction_ref=? and waste_transaction_type=?</text>
 		</statement>	
 		<statement>
 			<id>JDBWasteLog.renameLocationID</id>

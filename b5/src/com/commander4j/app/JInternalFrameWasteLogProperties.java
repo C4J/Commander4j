@@ -125,7 +125,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 	private JTextField4j jTextFieldLocationDescription;
 	private JTextField4j jTextFieldProcessOrderDescription;
 	private JTextField4j jTextFieldMaterialTypeDescription;
-	private JTextField4j jTextFieldUOM;
+	private JLabel4j_std jTextFieldUOM;
 	private JLabel4j_std jStatusText;
 	private JCheckBox4j chckbx_PO_Reqd = new JCheckBox4j("");
 	private JCheckBox4j chckbx_Reason_Reqd = new JCheckBox4j("");
@@ -214,7 +214,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		wasteLog.setReasonID(jTextFieldWasteReason.getText());
 		wasteLog.setProcessOrder(jTextFieldProcessOrder.getText());
 		wasteLog.setWasteReportTime(JUtility.getTimestampFromDate(transactionDate.getDate()));
-		wasteLog.setQuantity((jFormattedTextFieldQuantity.getQuantity()));
+		wasteLog.setWeightKg((jFormattedTextFieldQuantity.getQuantity()));
 
 		if (mode.equals("EDIT"))
 		{
@@ -344,7 +344,6 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			jTextFieldTypeID.setText(matType);
 			jTextFieldMaterialDescription.setDisabledTextColor(Color.BLACK);
 			jTextFieldMaterialDescription.setText(wasteMaterial.getDescription());
-			jTextFieldUOM.setText(wasteMaterial.getUOM());
 
 			if (wasteType.getWasteTypeProperties(matType))
 			{
@@ -489,7 +488,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			processOrderChanged();
 			
 			jTextFieldUserID.setText(wasteLog.getUserID());
-			jFormattedTextFieldQuantity.setValue(wasteLog.getQuantity());
+			jFormattedTextFieldQuantity.setValue(wasteLog.getWeightKg());
 			transactionDate.setDate(wasteLog.getWasteReportTime());
 
 			jStatusText.setText("");
@@ -627,12 +626,13 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 				}
 
 				{
-					jTextFieldUOM = new JTextField4j();
+					jTextFieldUOM = new JLabel4j_std();
 					jDesktopPane1.add(jTextFieldUOM);
-					jTextFieldUOM.setText(ltype);
-					jTextFieldUOM.setBounds(233, 216, 45, 21);
-					jTextFieldUOM.setEnabled(false);
-					jTextFieldUOM.setEditable(false);
+					jTextFieldUOM.setText("KG");
+					jTextFieldUOM.setHorizontalAlignment(SwingConstants.LEFT);
+					jTextFieldUOM.setHorizontalTextPosition(SwingConstants.LEFT);
+					jTextFieldUOM.setBounds(226, 216, 45, 21);
+
 				}
 
 				{

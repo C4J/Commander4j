@@ -1,5 +1,7 @@
 package com.commander4j.db;
 
+import java.math.BigDecimal;
+
 /**
  * @author David Garratt
  * 
@@ -68,12 +70,13 @@ public class JDBWasteLocation
 	public static int displayModeFull = 0;
 	public static int displayModeShort = 1;
 	
-	private String dbErrorMessage;
-	private String dbWasteLocationID;  /* PK */
-	private String dbDescription;
-	private String dbProcessOrderRequired;
-	private String dbReasonIDRequired;
-	private String dbEnabled;
+	private String 		dbErrorMessage;
+	private String 		dbWasteLocationID;  /* PK */
+	private String 		dbDescription;
+	private String 		dbProcessOrderRequired;
+	private String 		dbReasonIDRequired;
+	private String 		dbEnabled;
+	private BigDecimal 	dbTareWeight;
 	
 	private final Logger logger = Logger.getLogger(JDBWasteLocation.class);
 	private String hostID;
@@ -92,6 +95,7 @@ public class JDBWasteLocation
 		setProcessOrderRequired("");
 		setReasonIDRequired("");
 		setEnabled(true);
+		setTareWeight(new BigDecimal("0.000"));
 	}
 	
 	public void setDisplayMode(int mode)
@@ -192,7 +196,8 @@ public class JDBWasteLocation
 				stmtupdate.setString(2, getDescription());
 				stmtupdate.setString(3, getProcessOrderRequired());
 				stmtupdate.setString(4, getReasonIDRequired());
-				stmtupdate.setString(5, getEnabled());
+				stmtupdate.setBigDecimal(5, getTareWeight());
+				stmtupdate.setString(6, getEnabled());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -269,6 +274,11 @@ public class JDBWasteLocation
 	public String getReasonIDRequired()
 	{
 		return JUtility.replaceNullStringwithBlank(dbReasonIDRequired).trim();
+	}
+	
+	public BigDecimal getTareWeight()
+	{
+		return dbTareWeight;
 	}
 
 	public String getProcessOrderRequired(String res)
@@ -347,6 +357,7 @@ public class JDBWasteLocation
 			setProcessOrderRequired(rs.getString("process_order_required"));
 			setReasonIDRequired(rs.getString("reason_id_required"));
 			setEnabled(rs.getString("enabled"));
+			setTareWeight(rs.getBigDecimal("tare_weight"));
 		} catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
@@ -620,6 +631,11 @@ public class JDBWasteLocation
 	{
 		dbReasonIDRequired = str;
 	}
+	
+	public void setTareWeight(BigDecimal tareWeight)
+	{
+		dbTareWeight = tareWeight;
+	}
 
 	public void setDescription(String desc)
 	{
@@ -719,7 +735,8 @@ public class JDBWasteLocation
 				stmtupdate.setString(2, getProcessOrderRequired());
 				stmtupdate.setString(3, getReasonIDRequired());
 				stmtupdate.setString(4, getEnabled());
-				stmtupdate.setString(5, getWasteLocationID());
+				stmtupdate.setBigDecimal(5, getTareWeight());
+				stmtupdate.setString(6, getWasteLocationID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

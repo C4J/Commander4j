@@ -81,7 +81,6 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 	private JTextField4j jTextFieldDescription;
 	private JComboBox4j<JDBWasteTypes> jComboBoxMaterialType = new JComboBox4j<JDBWasteTypes>();
 	private JLabel4j_std jLabel_Description;
-	private JLabel4j_std jLabel_UOM;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSave;
 	private JLabel4j_std jLabel_WasteMaterialID;
@@ -94,13 +93,9 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 	private Vector<JDBWasteTypes> typeList = new Vector<JDBWasteTypes>();
 	private Vector<JDBUom> uomList = new Vector<JDBUom>();
 	
-	private JComboBox4j<JDBUom> jComboBoxBaseUOM;
-	private ComboBoxModel<JDBUom> jComboBoxUOMModel;
-	
 	private ComboBoxModel<JDBWasteTypes> jComboBoxTypeModel;
 	
 	private JQuantityInput jFormattedTextFieldCostPerUOM;
-	private JQuantityInput jFormattedTextFieldConversionToKG;
 	private JDBUom uom = new JDBUom(Common.selectedHostID, Common.sessionID);
 
 	public void setMaterialID(String mat)
@@ -129,21 +124,13 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 		jTextFieldDescription.setText(wasteMaterials.getDescription());
 
 		chckbx_Enabled.setSelected(wasteMaterials.isEnabled());
-
-		uom.setInternalUom(wasteMaterials.getUOM());
-		uom.getInternalUomProperties();
-		
-		jComboBoxUOMModel.setSelectedItem(uom);
-		
 		
 		wasteTypes.setWasteTypeID(wasteMaterials.getWasteTypeID());
 		wasteTypes.getWasteTypeProperties();
 		
 		jComboBoxTypeModel.setSelectedItem(wasteTypes);
 		
-		jFormattedTextFieldCostPerUOM.setValue(wasteMaterials.getCostPerUOM());
-		
-		jFormattedTextFieldConversionToKG.setValue(wasteMaterials.getConversionToKg());
+		jFormattedTextFieldCostPerUOM.setValue(wasteMaterials.getCostPerKG());
 
 		jButtonSave.setEnabled(false);
 	}
@@ -180,7 +167,7 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 624, 331);
+			this.setBounds(25, 25, 624, 259);
 			setVisible(true);
 			this.setTitle("Waste Material ID Properties");
 			{
@@ -218,7 +205,7 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(140, 249, 110, 32);
+					jButtonSave.setBounds(140, 174, 110, 32);
 					jButtonSave.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -232,14 +219,14 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(252, 249, 110, 32);
+					jButtonHelp.setBounds(252, 174, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(363, 249, 110, 32);
+					jButtonClose.setBounds(363, 174, 110, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -271,14 +258,14 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 						}
 					});
 
-					chckbx_Enabled.setBounds(155, 218, 29, 23);
+					chckbx_Enabled.setBounds(155, 143, 29, 23);
 					jDesktopPane1.add(chckbx_Enabled);
 
 					JLabel4j_std jLabel_Enabled = new JLabel4j_std();
 					jLabel_Enabled.setText(lang.get("lbl_Enabled"));
 					jLabel_Enabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Enabled.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Enabled.setBounds(0, 220, 149, 21);
+					jLabel_Enabled.setBounds(0, 145, 149, 21);
 					chckbx_Enabled.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent e)
@@ -319,65 +306,19 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 					jDesktopPane1.add(jLabel_WasteType);
 
 				}
+								
+				JLabel4j_std jLabel_CostPerKG = new JLabel4j_std();
+				jLabel_CostPerKG.setText(lang.get("lbl_Cost_Per_KG"));
+				jLabel_CostPerKG.setHorizontalAlignment(SwingConstants.TRAILING);
+				jLabel_CostPerKG.setBounds(0, 113, 149, 21);
+				jDesktopPane1.add(jLabel_CostPerKG);
 				
 				{
-					jComboBoxUOMModel = new DefaultComboBoxModel<JDBUom>(uomList);
-					jComboBoxBaseUOM = new JComboBox4j<JDBUom>();
-					jDesktopPane1.add(jComboBoxBaseUOM);
-					jComboBoxBaseUOM.setModel(jComboBoxUOMModel);
-					jComboBoxBaseUOM.setMaximumRowCount(12);
-					jComboBoxBaseUOM.setBounds(155, 115, 318, 21);
-					jComboBoxBaseUOM.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-						}
-					});
-
-
-				}
-				
-				{
-					jLabel_UOM = new JLabel4j_std();
-					jDesktopPane1.add(jLabel_UOM);
-					jLabel_UOM.setBounds(0, 115, 149, 21);
-					jLabel_UOM.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel_UOM.setText(lang.get("lbl_Material_UOM"));
-				}
-				
-				
-				JLabel4j_std jLabel_CostPerUOM = new JLabel4j_std();
-				jLabel_CostPerUOM.setText(lang.get("lbl_Cost_Per_UOM"));
-				jLabel_CostPerUOM.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabel_CostPerUOM.setBounds(0, 150, 149, 21);
-				jDesktopPane1.add(jLabel_CostPerUOM);
-				
-				JLabel4j_std jLabel_ConversionToKG = new JLabel4j_std();
-				jLabel_ConversionToKG.setText(lang.get("lbl_Conversion_To_KG"));
-				jLabel_ConversionToKG.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabel_ConversionToKG.setBounds(0, 185, 149, 21);
-				jDesktopPane1.add(jLabel_ConversionToKG);
-				
-				{
-					jFormattedTextFieldCostPerUOM = new JQuantityInput(new BigDecimal("0"));
+					jFormattedTextFieldCostPerUOM = new JQuantityInput(new BigDecimal("0.000"));
 					jDesktopPane1.add(jFormattedTextFieldCostPerUOM);
 					jFormattedTextFieldCostPerUOM.setFont(Common.font_std);
 					jFormattedTextFieldCostPerUOM.setHorizontalAlignment(SwingConstants.TRAILING);
-					jFormattedTextFieldCostPerUOM.setBounds(155, 150, 60, 21);
-					jFormattedTextFieldCostPerUOM.addKeyListener(new KeyAdapter() {
-						public void keyReleased(KeyEvent evt) {
-							jButtonSave.setEnabled(true);
-						}
-					});
-				}
-				
-				{
-					jFormattedTextFieldConversionToKG = new JQuantityInput(new BigDecimal("0"));
-					jDesktopPane1.add(jFormattedTextFieldConversionToKG);
-					jFormattedTextFieldConversionToKG.setFont(Common.font_std);
-					jFormattedTextFieldConversionToKG.setHorizontalAlignment(SwingConstants.TRAILING);
-					jFormattedTextFieldConversionToKG.setBounds(155, 185, 60, 21);
+					jFormattedTextFieldCostPerUOM.setBounds(155, 113, 60, 21);
 					jFormattedTextFieldCostPerUOM.addKeyListener(new KeyAdapter() {
 						public void keyReleased(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -404,16 +345,11 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 		wasteMaterials.setWasteMaterialID(jTextFieldMaterialID.getText().toUpperCase());
 		wasteMaterials.setDescription(jTextFieldDescription.getText());
 		wasteMaterials.setEnabled(chckbx_Enabled.isSelected());
-		
-		JDBUom u = ((JDBUom) jComboBoxBaseUOM.getSelectedItem());
-		wasteMaterials.setUOM(u.getInternalUom());		
-		
+			
 		JDBWasteTypes t = ((JDBWasteTypes) jComboBoxMaterialType.getSelectedItem());
 				
 		wasteMaterials.setWasteTypeID(t.getWasteTypeID());
-
-		wasteMaterials.setCostPerUOM(jFormattedTextFieldCostPerUOM.getQuantity());
-		wasteMaterials.setConversionToKg(jFormattedTextFieldConversionToKG.getQuantity());
+		wasteMaterials.setCostPerKG(jFormattedTextFieldCostPerUOM.getQuantity());
 		wasteMaterials.update();
 
 		jButtonSave.setEnabled(false);

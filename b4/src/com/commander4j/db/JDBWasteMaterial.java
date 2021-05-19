@@ -73,9 +73,7 @@ public class JDBWasteMaterial
 	private String dbErrorMessage;
 	private String dbWasteMaterialID;  /* PK */
 	private String dbWasteTypeID;
-	private String dbUOM;
-	private BigDecimal dbCostPerUOM;
-	private BigDecimal dbConversionToKG;
+	private BigDecimal dbCostPerKG;
 	private String dbDescription;
 	private String dbEnabled;
 	
@@ -94,9 +92,7 @@ public class JDBWasteMaterial
 	{
 
 		setWasteTypeID("");
-		setUOM("");
-		setCostPerUOM(new BigDecimal("0"));
-		setConversionToKg(new BigDecimal("1"));
+		setCostPerKG(new BigDecimal("0"));
 		setDescription("");
 		setEnabled(true);
 	}
@@ -122,11 +118,9 @@ public class JDBWasteMaterial
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteMaterial.create"));
 				stmtupdate.setString(1, getWasteMaterialID());
 				stmtupdate.setString(2, getWasteTypeID());
-				stmtupdate.setString(3, getUOM());
-				stmtupdate.setBigDecimal(4, getCostPerUOM());
-				stmtupdate.setBigDecimal(5, getConversionToKg());
-				stmtupdate.setString(6, getDescription());
-				stmtupdate.setString(7, getEnabled());
+				stmtupdate.setBigDecimal(3, getCostPerKG());
+				stmtupdate.setString(4, getDescription());
+				stmtupdate.setString(5, getEnabled());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -171,34 +165,19 @@ public class JDBWasteMaterial
 		return result;
 	}
 	
-	public BigDecimal getCostPerUOM()
+	public BigDecimal getCostPerKG()
 	{
-		return dbCostPerUOM;
+		return dbCostPerKG;
 	}
 	
-	public void setCostPerUOM(BigDecimal val)
+	public void setCostPerKG(BigDecimal val)
 	{
-		dbCostPerUOM = val;
+		dbCostPerKG = val;
 	}
 	
-	public BigDecimal getConversionToKg()
-	{
-		return dbConversionToKG;
-	}
-	
-	public void setConversionToKg(BigDecimal val)
-	{
-		dbConversionToKG = val;
-	}
-
 	public String getWasteTypeID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbWasteTypeID).trim();
-	}
-	
-	public String getUOM()
-	{
-		return JUtility.replaceNullStringwithBlank(dbUOM).trim();
 	}
 
 	public String getWasteTypeID(String res)
@@ -213,18 +192,6 @@ public class JDBWasteMaterial
 		return result;
 	}
 	
-	public String getUOM(String res)
-	{
-		String result = "";
-
-		if (getWasteMaterialProperties(res))
-		{
-			result = getUOM();
-		}
-
-		return result;
-	}
-
 	public String getDescription()
 	{
 		return JUtility.replaceNullStringwithBlank(dbDescription);
@@ -274,9 +241,7 @@ public class JDBWasteMaterial
 			clear();
 			setWasteMaterialID(rs.getString("waste_material_id"));
 			setWasteTypeID(rs.getString("waste_type_id"));
-			setUOM(rs.getString("uom"));
-			setCostPerUOM(rs.getBigDecimal("cost_per_uom"));
-			setConversionToKg(rs.getBigDecimal("conversion_to_kg"));
+			setCostPerKG(rs.getBigDecimal("cost_per_kg"));
 			setDescription(rs.getString("description"));
 			setEnabled(rs.getString("enabled"));
 		} catch (SQLException e)
@@ -543,11 +508,6 @@ public class JDBWasteMaterial
 		dbWasteTypeID = str;
 	}
 	
-	public void setUOM(String str)
-	{
-		dbUOM = str;
-	}
-
 	public void setDescription(String desc)
 	{
 		dbDescription = desc;
@@ -621,12 +581,10 @@ public class JDBWasteMaterial
 				PreparedStatement stmtupdate;
 				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteMaterial.update"));
 				stmtupdate.setString(1, getWasteTypeID());
-				stmtupdate.setString(2, getUOM());
-				stmtupdate.setBigDecimal(3, getCostPerUOM());
-				stmtupdate.setBigDecimal(4, getConversionToKg());
-				stmtupdate.setString(5, getDescription());
-				stmtupdate.setString(6, getEnabled());
-				stmtupdate.setString(7, getWasteMaterialID());
+				stmtupdate.setBigDecimal(2, getCostPerKG());
+				stmtupdate.setString(3, getDescription());
+				stmtupdate.setString(4, getEnabled());
+				stmtupdate.setString(5, getWasteMaterialID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

@@ -75,19 +75,43 @@ public class JDBViewWasteReporting
 	private String			dbMaterialType;
 	private String 			dbReasonID;
 	private String 			dbProcessOrder;
-	private BigDecimal 		dbQuantity;
-	private String 			dbUOM;
-	private BigDecimal 		dbCostPerUom;	
-	private BigDecimal 		dbConversionToKg;	
 	private BigDecimal 		dbWeightKG;
+	private BigDecimal 		dbTareWeight;
+	private BigDecimal 		dbNetWeight;
+	private BigDecimal 		dbCostPerKg;	
 	private BigDecimal 		dbCost;
 	
 	private final Logger logger = Logger.getLogger(JDBViewWasteReporting.class);
+	private String hostID;
+	private String sessionID;
 
 
-	public JDBViewWasteReporting()
+	public JDBViewWasteReporting(String host, String session)
 	{
-
+		setHostID(host);
+		setSessionID(session);
+	}
+	
+	@SuppressWarnings("unused")
+	private String getSessionID()
+	{
+		return sessionID;
+	}
+	
+	private void setHostID(String host)
+	{
+		hostID = host;
+	}
+	
+	@SuppressWarnings("unused")
+	private String getHostID()
+	{
+		return hostID;
+	}
+	
+	private void setSessionID(String session)
+	{
+		sessionID = session;
 	}
 	
 	public void clear()
@@ -101,9 +125,9 @@ public class JDBViewWasteReporting
 		setMaterialType("");
 		setReasonID("");
 		setProcessOrder("");
-		setQuantity(new BigDecimal("0"));
-		setCostPerUom(new BigDecimal("0"));
-		setConversionToKg(new BigDecimal("0"));
+		setTareWeight(new BigDecimal("0.000"));
+		setNetWeight(new BigDecimal("0"));
+		setCostPerKg(new BigDecimal("0"));
 		setWeightKG(new BigDecimal("0"));
 		setCostTotal(new BigDecimal("0"));
 	}
@@ -140,23 +164,14 @@ public class JDBViewWasteReporting
 
 	public BigDecimal getCostPerUom()
 	{
-		return dbCostPerUom;
+		return dbCostPerKg;
 	}
 
-	public void setCostPerUom(BigDecimal dbCostPerUom)
+	public void setCostPerKg(BigDecimal dbCostPerUom)
 	{
-		this.dbCostPerUom = dbCostPerUom;
+		this.dbCostPerKg = dbCostPerUom;
 	}
 
-	public BigDecimal getConversionToKg()
-	{
-		return dbConversionToKg;
-	}
-
-	public void setConversionToKg(BigDecimal dbConversionToKg)
-	{
-		this.dbConversionToKg = dbConversionToKg;
-	}
 
 	public long getTransactionRef()
 	{
@@ -168,16 +183,27 @@ public class JDBViewWasteReporting
 		dbTransactionRef = transactionRef;
 	}
 
-	public BigDecimal getQuantity()
+	
+	public BigDecimal getTareWeight()
 	{
-		return dbQuantity;
+		return dbTareWeight;
 	}
 
-	public void setQuantity(BigDecimal dbQuantity)
+	public void setTareWeight(BigDecimal dbTare)
 	{
-		this.dbQuantity = dbQuantity;
+		this.dbTareWeight = dbTare;
 	}
 
+	public BigDecimal getNetWeight()
+	{
+		return dbNetWeight;
+	}
+
+	public void setNetWeight(BigDecimal dbNet)
+	{
+		this.dbNetWeight = dbNet;
+	}
+	
 	public BigDecimal getWeightKG()
 	{
 		return dbWeightKG;
@@ -208,10 +234,6 @@ public class JDBViewWasteReporting
 		return JUtility.replaceNullStringwithBlank(dbMaterialID).trim();
 	}
 	
-	public String getUOM()
-	{
-		return JUtility.replaceNullStringwithBlank(dbUOM).trim();
-	}
 
 	public String getProcessOrder()
 	{
@@ -270,12 +292,12 @@ public class JDBViewWasteReporting
 			setMaterialType(rs.getString("waste_type_id"));
 			setReasonID(rs.getString("waste_reason_id"));
 			setProcessOrder(rs.getString("process_order"));
-			setQuantity(rs.getBigDecimal("quantity"));
-			setUOM(rs.getString("uom"));
-			setCostPerUom(rs.getBigDecimal("cost_per_uom"));
-			setConversionToKg(rs.getBigDecimal("conversion_to_kg"));
+			setCostPerKg(rs.getBigDecimal("cost_per_kg"));
 			setWeightKG(rs.getBigDecimal("weight_kg"));
+			setTareWeight(rs.getBigDecimal("tare_weight"));
+			setNetWeight(rs.getBigDecimal("net_weight"));
 			setCostTotal(rs.getBigDecimal("cost"));
+
 		}
 		catch (SQLException e)
 		{
@@ -296,11 +318,6 @@ public class JDBViewWasteReporting
 	public void setMaterialID(String str)
 	{
 		dbMaterialID = str;
-	}
-
-	public void setUOM(String str)
-	{
-		dbUOM = str;
 	}
 	
 	public void setProcessOrder(String str)

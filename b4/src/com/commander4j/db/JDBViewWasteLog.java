@@ -75,16 +75,43 @@ public class JDBViewWasteLog
 	private String dbProcessOrder;
 	private String dbReasonID;
 	private String dbUserID;
-	private BigDecimal dbQuantity;
+	private BigDecimal dbTareWeight;
 	private BigDecimal dbWeightKG;
+	private BigDecimal dbNetWeight;
+	private BigDecimal dbCostPerKg;
 	private BigDecimal dbCostTotal;
 	
-	private final Logger logger = Logger.getLogger(JDBViewWasteLog.class);
+	private final Logger logger = Logger.getLogger(JDBWasteLog.class);
+	private String hostID;
+	private String sessionID;
 
 
-	public JDBViewWasteLog()
+	public JDBViewWasteLog(String host, String session)
 	{
-
+		setHostID(host);
+		setSessionID(session);
+	}
+	
+	@SuppressWarnings("unused")
+	private String getSessionID()
+	{
+		return sessionID;
+	}
+	
+	private void setHostID(String host)
+	{
+		hostID = host;
+	}
+	
+	@SuppressWarnings("unused")
+	private String getHostID()
+	{
+		return hostID;
+	}
+	
+	private void setSessionID(String session)
+	{
+		sessionID = session;
 	}
 
 	public void clear()
@@ -97,7 +124,7 @@ public class JDBViewWasteLog
 		setUserID("");
 		setMaterialID("");
 		setMaterialType("");
-		setQuantity(new BigDecimal("0"));
+		setTareWeight(new BigDecimal("0"));
 		setWeightKG(new BigDecimal("0"));
 		setCostTotal(new BigDecimal("0"));
 	}
@@ -112,14 +139,14 @@ public class JDBViewWasteLog
 		dbTransactionRef = transactionRef;
 	}
 
-	public BigDecimal getQuantity()
+	public BigDecimal getTareWeight()
 	{
-		return dbQuantity;
+		return dbTareWeight;
 	}
 
-	public void setQuantity(BigDecimal dbQuantity)
+	public void setTareWeight(BigDecimal dbQuantity)
 	{
-		this.dbQuantity = dbQuantity;
+		this.dbTareWeight = dbQuantity;
 	}
 
 	public BigDecimal getWeightKG()
@@ -132,6 +159,16 @@ public class JDBViewWasteLog
 		this.dbWeightKG = val;
 	}	
 	
+	public BigDecimal getNetWeightKG()
+	{
+		return dbNetWeight;
+	}
+
+	public void setNetWeightKG(BigDecimal val)
+	{
+		this.dbNetWeight = val;
+	}
+	
 	public BigDecimal getCostTotal()
 	{
 		return dbCostTotal;
@@ -141,6 +178,16 @@ public class JDBViewWasteLog
 	{
 		this.dbCostTotal = val;
 	}	
+	
+	public BigDecimal getCostPerKg()
+	{
+		return dbCostPerKg;
+	}
+
+	public void setCostPerKg(BigDecimal val)
+	{
+		this.dbCostPerKg = val;
+	}
 	
 	public String getLocationID()
 	{
@@ -226,13 +273,14 @@ public class JDBViewWasteLog
 			setLocationID(rs.getString("waste_location_id"));
 			setMaterialID(rs.getString("waste_material_id"));
 			setMaterialType(rs.getString("waste_type_id"));
-			setUOM(rs.getString("uom"));
 			setProcessOrder(rs.getString("process_order"));
 			setReasonID(rs.getString("waste_reason_id"));
 			setUserID(rs.getString("user_id"));
-			setQuantity(rs.getBigDecimal("quantity"));
 			setWeightKG(rs.getBigDecimal("weight_kg"));
+			setTareWeight(rs.getBigDecimal("tare_weight"));
 			setCostTotal(rs.getBigDecimal("cost"));
+			setNetWeightKG(rs.getBigDecimal("net_weight"));
+			setCostPerKg(rs.getBigDecimal("cost_per_kg"));
 		}
 		catch (SQLException e)
 		{

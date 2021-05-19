@@ -37,6 +37,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
 import java.util.LinkedList;
 
 import javax.swing.ComboBoxModel;
@@ -60,6 +61,7 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.renderer.MultiItemCheckListRenderer;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JHelp;
+import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 import javax.swing.JScrollPane;
 
@@ -80,6 +82,8 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 	private JTextField4j jTextFieldLocationID;
 	private JButton4j jButtonClose;
 	private JTextField4j jTextFieldDescription;
+	private JLabel4j_std jLabel_TareWeight;
+	private JLabel4j_std jLabel_TareWeightUOM;
 	private JLabel4j_std jLabel_Description;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSave;
@@ -93,6 +97,7 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 	private JCheckBox4j chckbx_Reason_Reqd = new JCheckBox4j("");
 	private JCheckBox4j chckbx_Enabled = new JCheckBox4j("");
 	private JList4j<JCheckListItem> listTypes;
+	private JQuantityInput jFormattedTextFieldTareWeight;
 	ComboBoxModel<JCheckListItem> model;
 
 	public void setLocationID(String location)
@@ -119,6 +124,8 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 
 		jTextFieldLocationID.setText(wasteLocation.getWasteLocationID());
 		jTextFieldDescription.setText(wasteLocation.getDescription());
+		
+		jFormattedTextFieldTareWeight.setValue(wasteLocation.getTareWeight());
 
 		chckbx_PO_Reqd.setSelected(wasteLocation.isProcessOrderRequired());
 
@@ -167,7 +174,7 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 624, 420);
+			this.setBounds(25, 25, 624, 432);
 			setVisible(true);
 			this.setTitle("Waste Location Properties");
 			{
@@ -199,7 +206,7 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(139, 332, 110, 32);
+					jButtonSave.setBounds(139, 356, 110, 32);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							save();
@@ -211,14 +218,14 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(251, 332, 110, 32);
+					jButtonHelp.setBounds(251, 356, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(362, 332, 110, 32);
+					jButtonClose.setBounds(362, 356, 110, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -233,6 +240,24 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Description.setBounds(0, 43, 149, 21);
 				}
+				
+				{
+					jLabel_TareWeight = new JLabel4j_std();
+					jDesktopPane1.add(jLabel_TareWeight);
+					jLabel_TareWeight.setText(lang.get("lbl_Tare_Weight"));
+					jLabel_TareWeight.setHorizontalAlignment(SwingConstants.RIGHT);
+					jLabel_TareWeight.setHorizontalTextPosition(SwingConstants.RIGHT);
+					jLabel_TareWeight.setBounds(0, 76, 149, 21);
+				}
+				
+				{
+					jLabel_TareWeightUOM = new JLabel4j_std();
+					jDesktopPane1.add(jLabel_TareWeightUOM);
+					jLabel_TareWeightUOM.setText("KG");
+					jLabel_TareWeightUOM.setHorizontalAlignment(SwingConstants.LEFT);
+					jLabel_TareWeightUOM.setHorizontalTextPosition(SwingConstants.LEFT);
+					jLabel_TareWeightUOM.setBounds(219, 76, 60, 21);
+				}
 
 				{
 					jTextFieldDescription = new JTextField4j(JDBWasteLocation.field_Description);
@@ -246,34 +271,34 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 						}
 					});
 					
-					chckbx_PO_Reqd.setBounds(155, 96, 29, 23);
+					chckbx_PO_Reqd.setBounds(155, 120, 29, 23);
 					jDesktopPane1.add(chckbx_PO_Reqd);
 					
-					chckbx_Reason_Reqd.setBounds(155, 126, 29, 23);
+					chckbx_Reason_Reqd.setBounds(155, 150, 29, 23);
 					jDesktopPane1.add(chckbx_Reason_Reqd);
 					
-					chckbx_Enabled.setBounds(155, 156, 29, 23);
+					chckbx_Enabled.setBounds(155, 180, 29, 23);
 					jDesktopPane1.add(chckbx_Enabled);
 					
 					JLabel4j_std jLabel_Description = new JLabel4j_std();
 					jLabel_Description.setText(lang.get("lbl_PO_Required"));
 					jLabel_Description.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Description.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Description.setBounds(0, 98, 149, 21);
+					jLabel_Description.setBounds(0, 122, 149, 21);
 					jDesktopPane1.add(jLabel_Description);
 					
 					JLabel4j_std jLabel_Reason_Reqd = new JLabel4j_std();
 					jLabel_Reason_Reqd.setText(lang.get("lbl_Reason_Reqd"));
 					jLabel_Reason_Reqd.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Reason_Reqd.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Reason_Reqd.setBounds(0, 128, 149, 21);
+					jLabel_Reason_Reqd.setBounds(0, 152, 149, 21);
 					jDesktopPane1.add(jLabel_Reason_Reqd);
 					
 					JLabel4j_std jLabel_Enabled = new JLabel4j_std();
 					jLabel_Enabled.setText(lang.get("lbl_Enabled"));
 					jLabel_Enabled.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel_Enabled.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel_Enabled.setBounds(0, 158, 149, 21);
+					jLabel_Enabled.setBounds(0, 182, 149, 21);
 					jDesktopPane1.add(jLabel_Enabled);
 					
 					chckbx_PO_Reqd.addActionListener(new ActionListener() {
@@ -296,12 +321,26 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 					JLabel4j_std jLabel_Permitted_Types = new JLabel4j_std();
 					jLabel_Permitted_Types.setHorizontalAlignment(SwingConstants.LEFT);
 					jLabel_Permitted_Types.setText(lang.get("lbl_Permitted_Types"));
-					jLabel_Permitted_Types.setBounds(191, 76, 397, 21);
+					jLabel_Permitted_Types.setBounds(191, 103, 397, 21);
 					jLabel_Permitted_Types.setFont(Common.font_bold);
 					jDesktopPane1.add(jLabel_Permitted_Types);
 					
+					
+					{
+						jFormattedTextFieldTareWeight = new JQuantityInput(new BigDecimal("0"));
+						jDesktopPane1.add(jFormattedTextFieldTareWeight);
+						jFormattedTextFieldTareWeight.setFont(Common.font_std);
+						jFormattedTextFieldTareWeight.setHorizontalAlignment(SwingConstants.TRAILING);
+						jFormattedTextFieldTareWeight.setBounds(155, 76, 60, 21);
+						jFormattedTextFieldTareWeight.addKeyListener(new KeyAdapter() {
+							public void keyReleased(KeyEvent evt) {
+								jButtonSave.setEnabled(true);
+							}
+						});
+					}
+					
 					JScrollPane scrollPane = new JScrollPane();
-					scrollPane.setBounds(192, 99, 393, 215);
+					scrollPane.setBounds(192, 125, 393, 215);
 
 					
 					listTypes = new JList4j<JCheckListItem>();
@@ -346,6 +385,7 @@ public class JInternalFrameWasteLocationProperties extends JInternalFrame
 	{
 		wasteLocation.setWasteLocationID(jTextFieldLocationID.getText().toUpperCase());
 		wasteLocation.setDescription(jTextFieldDescription.getText());
+		wasteLocation.setTareWeight(jFormattedTextFieldTareWeight.getQuantity());
 		wasteLocation.setProcessOrderRequired(chckbx_PO_Reqd.isSelected());
 		wasteLocation.setReasonIDRequired(chckbx_Reason_Reqd.isSelected()); 
 		wasteLocation.setEnabled(chckbx_Enabled.isSelected());

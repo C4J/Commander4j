@@ -193,7 +193,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 
 		sortFieldsSQL.add("REPORT_TIME,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
 		sortFieldsSQL.add("WASTE_TRANSACTION_TYPE,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
-		sortFieldsSQL.add("QUANTITY,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
+		sortFieldsSQL.add("WEIGHT_KG,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
 		sortFieldsSQL.add("WEIGHT_KG,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
 		sortFieldsSQL.add("COST,TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
 
@@ -515,11 +515,12 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Process_Order_Col).setPreferredWidth(90);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Transaction_Ref_Col).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Location_Col).setPreferredWidth(100);
-		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Quantity_Col).setPreferredWidth(90);
-		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.UOM_Col).setPreferredWidth(50);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Reason_Col).setPreferredWidth(150);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.User_id_Col).setPreferredWidth(110);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.WeightKG_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.TareWeight_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.NetWeight_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.CostPerKg_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.CostTotal_Col).setPreferredWidth(80);
 
 		jScrollPane1.repaint();

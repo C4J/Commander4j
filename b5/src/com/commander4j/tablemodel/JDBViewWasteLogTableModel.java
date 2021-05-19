@@ -34,6 +34,7 @@ import java.util.HashMap;
 import javax.swing.table.AbstractTableModel;
 
 import com.commander4j.db.JDBViewWasteLog;
+import com.commander4j.sys.Common;
 
 public class JDBViewWasteLogTableModel extends AbstractTableModel
 {
@@ -45,16 +46,17 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 	public static final int Material_Col = 3;
 	public static final int Material_Type_Col = 4;
 	public static final int Reason_Col = 5;
-	public static final int Quantity_Col = 6;
-	public static final int UOM_Col = 7;
-	public static final int WeightKG_Col = 8;
-	public static final int CostTotal_Col = 9;
-	public static final int Process_Order_Col = 10;
-    public static final int User_id_Col = 11;
-	public static final int Transaction_Ref_Col =12;
+	public static final int WeightKG_Col = 6;
+	public static final int TareWeight_Col = 7;
+	public static final int NetWeight_Col = 8;
+	public static final int CostPerKg_Col = 9;
+	public static final int CostTotal_Col = 10;
+	public static final int Process_Order_Col = 11;
+    public static final int User_id_Col = 12;
+	public static final int Transaction_Ref_Col =13;
 
 
-	private String[] mcolNames = {  "Location", "Date","Transaction",  "Material","Mat Type","Reason", "Quantity","UOM","Weight KG","Cost",  "Process Order","User ID","Txn Ref"};
+	private String[] mcolNames = {  "Location", "Date","Transaction",  "Material","Mat Type","Reason","Weight KG","Tare Weight","Net Weight","Cost Per Kg","Cost",  "Process Order","User ID","Txn Ref"};
 	private ResultSet mResultSet;
 
 	private int prowCount = -1;
@@ -117,7 +119,7 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 			if (cache.containsKey(row)==false)
 			{
 				mResultSet.absolute(row + 1);
-				final JDBViewWasteLog prow = new JDBViewWasteLog();
+				final JDBViewWasteLog prow = new JDBViewWasteLog(Common.selectedHostID, Common.sessionID);
 				prow.getPropertiesfromResultSet(mResultSet);
 				cache.put(row, prow);
 			}
@@ -136,18 +138,20 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 				return cache.get(row).getMaterialType();
 			case Process_Order_Col:
 				return cache.get(row).getProcessOrder();
-			case Quantity_Col:
-				return cache.get(row).getQuantity();
 			case Reason_Col:
 				return cache.get(row).getReasonID();
-			case UOM_Col:
-				return cache.get(row).getUOM();
 			case Location_Col:
 				return cache.get(row).getLocationID();
 			case User_id_Col:
 				return cache.get(row).getUserID();
 			case WeightKG_Col:
 				return cache.get(row).getWeightKG();
+			case TareWeight_Col:
+				return cache.get(row).getTareWeight();
+			case NetWeight_Col:
+				return cache.get(row).getNetWeightKG();
+			case CostPerKg_Col:
+				return cache.get(row).getCostPerKg();
 			case CostTotal_Col:
 				return cache.get(row).getCostTotal();
 

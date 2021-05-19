@@ -67,7 +67,7 @@ import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBQuery2;
 import com.commander4j.db.JDBUser;
-import com.commander4j.db.JDBWasteLog;
+import com.commander4j.db.JDBViewWasteReporting;
 import com.commander4j.db.JDBWasteReportingGroup;
 import com.commander4j.db.JDBWasteReportingIDS;
 import com.commander4j.db.JDBWasteTransactionType;
@@ -338,7 +338,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 
 	private void excel()
 	{
-		JDBWasteLog materialBatch = new JDBWasteLog(Common.selectedHostID, Common.sessionID);
+		JDBViewWasteReporting materialBatch = new JDBViewWasteReporting(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		export.saveAs("waste_reporting.xls", materialBatch.getWasteLogResultSet(buildSQL(qExcel)), Common.mainForm);
 	}
@@ -371,7 +371,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 		PreparedStatement result;
 
 		query.applyFrom("{schema}view_waste_reporting vwr");
-		query.applyWhat(JUtility.substSchemaName(schemaName, "vwr.*, (QUANTITY * CONVERSION_TO_KG) AS WEIGHT_KG,(QUANTITY * COST_PER_UOM) AS COST"));
+		query.applyWhat(JUtility.substSchemaName(schemaName, "vwr.*,(vwr.WEIGHT_KG - vwr.TARE_WEIGHT) AS NET_WEIGHT,((vwr.WEIGHT_KG - vwr.TARE_WEIGHT) * vwr.COST_PER_KG) AS COST"));
 
 		if (emptyresult)
 		{
@@ -442,7 +442,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 
 	private void populateList()
 	{
-		JDBWasteLog wasteLog = new JDBWasteLog(Common.selectedHostID, Common.sessionID);
+		JDBViewWasteReporting wasteLog = new JDBViewWasteReporting(Common.selectedHostID, Common.sessionID);
 		JDBViewWasteReportingTableModel wasteLogTable = new JDBViewWasteReportingTableModel(wasteLog.getWasteLogResultSet(buildSQL(qSearch)));
 		TableRowSorter<JDBViewWasteReportingTableModel> sorter = new TableRowSorter<JDBViewWasteReportingTableModel>(wasteLogTable);
 
@@ -463,10 +463,8 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Material_Type_Col).setPreferredWidth(100);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Process_Order_Col).setPreferredWidth(90);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Transaction_Ref_Col).setPreferredWidth(70);
-		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Quantity_Col).setPreferredWidth(90);
-		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.UOM_Col).setPreferredWidth(50);
-		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Cost_Per_Uom_Col).setPreferredWidth(80);
-		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Conversion_To_Kg_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.WeightKG_Col).setPreferredWidth(90);
+		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Cost_Per_Kg_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Reason_Col).setPreferredWidth(140);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.Process_Order_Col).setPreferredWidth(85);
 		jTable1.getColumnModel().getColumn(JDBViewWasteReportingTableModel.WeightKG_Col).setPreferredWidth(80);
@@ -742,12 +740,12 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					jLabelWasteReason.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jTextFieldWasteMaterial = new JTextField4j(JDBWasteLog.field_MaterialID);
+					jTextFieldWasteMaterial = new JTextField4j(JDBViewWasteReporting.field_MaterialID);
 					jDesktopPane1.add(jTextFieldWasteMaterial);
 					jTextFieldWasteMaterial.setBounds(134, 48, 125, 22);
 				}
 				{
-					jTextFieldWasteReason = new JTextField4j(JDBWasteLog.field_ReasonID);
+					jTextFieldWasteReason = new JTextField4j(JDBViewWasteReporting.field_ReasonID);
 					jDesktopPane1.add(jTextFieldWasteReason);
 					jTextFieldWasteReason.setBounds(134, 118, 125, 22);
 				}
@@ -767,7 +765,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jTextFieldWasteLocation = new JTextField4j(JDBWasteLog.field_LocationID);
+					jTextFieldWasteLocation = new JTextField4j(JDBViewWasteReporting.field_LocationID);
 					jDesktopPane1.add(jTextFieldWasteLocation);
 					jTextFieldWasteLocation.setBounds(401, 48, 127, 22);
 				}
@@ -1061,7 +1059,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 					});
 				}
 				{
-					jTextFieldProcessOrder = new JTextField4j(JDBWasteLog.field_ProcessOrder);
+					jTextFieldProcessOrder = new JTextField4j(JDBViewWasteReporting.field_ProcessOrder);
 					jDesktopPane1.add(jTextFieldProcessOrder);
 					jTextFieldProcessOrder.setBounds(134, 83, 126, 22);
 				}

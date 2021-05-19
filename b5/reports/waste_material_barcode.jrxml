@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="waste_material_barcode" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4400aaa-6088-48ee-aa46-5299e6bf6b1c">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
 	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["My Company"]]></defaultValueExpression>
 	</parameter>
@@ -13,30 +13,28 @@
 		<![CDATA[SELECT * FROM APP_WASTE_MATERIAL WHERE ENABLED = 'Y' AND  WASTE_MATERIAL_ID LIKE $P{p_waste_material_id}]]>
 	</queryString>
 	<field name="WASTE_MATERIAL_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="WASTE_MATERIAL_ID"/>
 		<property name="com.jaspersoft.studio.field.label" value="WASTE_MATERIAL_ID"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
 	</field>
 	<field name="WASTE_TYPE_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="WASTE_TYPE_ID"/>
 		<property name="com.jaspersoft.studio.field.label" value="WASTE_TYPE_ID"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
 	</field>
-	<field name="UOM" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="UOM"/>
+	<field name="COST_PER_KG" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="COST_PER_KG"/>
+		<property name="com.jaspersoft.studio.field.label" value="COST_PER_KG"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
-	</field>
-	<field name="COST_PER_UOM" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="COST_PER_UOM"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
-	</field>
-	<field name="CONVERSION_TO_KG" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="CONVERSION_TO_KG"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="DESCRIPTION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DESCRIPTION"/>
 		<property name="com.jaspersoft.studio.field.label" value="DESCRIPTION"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
 	</field>
 	<field name="ENABLED" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ENABLED"/>
 		<property name="com.jaspersoft.studio.field.label" value="ENABLED"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_waste_material"/>
 	</field>
