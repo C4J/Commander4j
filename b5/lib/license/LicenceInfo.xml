@@ -119,19 +119,19 @@
         
         <library>
             <description>Microsoft JDBC</description>
-            <version>8.4.1</version>
+            <version>9.2.1</version>
             <type>Microsoft JDBC License</type>
         </library>  
         
         <library>
             <description>mySQL JDBC</description>
-            <version>8.0.22</version>
+            <version>8.0.24</version>
             <type>mySQL JDBC License</type>
         </library>    
         
         <library>
             <description>Oracle JDBC</description>
-            <version>12c Release 2 (12.2)</version>
+            <version>Oracle Database 21c (21.1)</version>
             <type>Oracle JDBC License</type>
         </library> 
             

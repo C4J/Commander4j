@@ -30,7 +30,7 @@
         <pathelement location="lib/jasperlib/xalan-2.7.2.jar"/>
         <pathelement location="lib/jasperlib/xml-apis-ext-1.3.04.jar"/>
         <pathelement location="lib/app/log4j-1.2.17.jar"/>
-        <pathelement location="lib/db/ojdbc8.jar"/>
+        <pathelement location="lib/db/ojdbc11.jar"/>
         <pathelement location="lib/jasperlib/commons-pool2-2.4.2.jar"/>
         <pathelement location="lib/jasperlib/ecj-4.4.2.jar"/>
         <pathelement location="lib/jasperlib/commons-codec-1.11.jar"/>
@@ -103,7 +103,7 @@
         <pathelement location="lib/jasper/jasperreports-javaflow-6.17.0.jar"/>
         <pathelement location="lib/jasper/jasperreports-metadata-6.17.0.jar"/>
         <pathelement location="lib/mail/javax.activation-1.2.0.jar"/>
-        <pathelement location="lib/db/mssql-jdbc-8.4.1.jre11.jar"/>
+        <pathelement location="lib/db/mssql-jdbc-9.2.1.jre11.jar"/>
         <pathelement location="lib/jasperlib/batik-transcoder-1.14.jar"/>
         <pathelement location="lib/cups4j/hamcrest-core-1.3.jar"/>
         <pathelement location="lib/cups4j/stax-1.2.0.jar"/>
