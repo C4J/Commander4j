@@ -20,7 +20,7 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/cups4j/stax-api-1.0.1.jar 
  lib/cups4j/xpp3-1.1.3.3.jar 
  lib/db/mssql-jdbc-8.4.1.jre11.jar 
- lib/db/mysql-connector-java-8.0.22.jar 
+ lib/db/mysql-connector-java-8.0.24.jar 
  lib/db/ojdbc8.jar 
  lib/jasper/jasperreports-6.17.0.jar 
  lib/jasper/jasperreports-annotation-processors-6.17.0.jar 
