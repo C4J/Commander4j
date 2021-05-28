@@ -392,7 +392,7 @@ public class JInternalFrameWasteReportingLocation extends javax.swing.JInternalF
 				{
 					jLabel1 = new JLabel4j_title();
 					jDesktopPane1.add(jLabel1);
-					jLabel1.setText("Reporting Group");
+					jLabel1.setText("Reporting ID");
 					jLabel1.setBounds(10, 7, 235, 16);
 				}
 				{

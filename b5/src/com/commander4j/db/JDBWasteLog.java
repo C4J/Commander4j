@@ -515,7 +515,7 @@ public class JDBWasteLog
 								{
 									if ((poReqd == false) || ((poReqd == true) && processOrder.getProcessOrderProperties(getProcessOrder())))
 									{
-										if ((poReqd == false) || (getProcessOrder().equals("") == false))
+										if ((poReqd == false) && (getProcessOrder().equals("") == false))
 										{
 											setErrorMessage("Order not required");
 											setProcessOrder("");
