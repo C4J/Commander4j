@@ -1115,6 +1115,19 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
+		
+		if (optionName.equals("FRM_WASTE_CONTAINER"))
+		{
+			final JInternalFrameWasteContainerAdmin u;
+			if (isLoaded(JInternalFrameWasteContainerAdmin.class))
+				setVisible(JInternalFrameWasteContainerAdmin.class);
+			else
+			{
+				u = new JInternalFrameWasteContainerAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
 
 		if (optionName.equals("FRM_WASTE_LOCATION_REPORTING"))
 		{
@@ -1637,6 +1650,22 @@ public class JLaunchMenu
 			else
 			{
 				u = new JInternalFrameWasteLocationProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+		
+		
+		if (optionName.equals("FRM_WASTE_CONTAINER_EDIT"))
+		{
+			final JInternalFrameWasteContainerProperties u;
+			if (isLoaded(JInternalFrameWasteContainerProperties.class))
+			{
+				((JInternalFrameWasteContainerProperties) isLoadedInstance(JInternalFrameWasteContainerProperties.class)).setContainerID(StrParam);
+				setVisible(JInternalFrameWasteContainerProperties.class);
+			}
+			else
+			{
+				u = new JInternalFrameWasteContainerProperties(StrParam);
 				displayForm(u, optionName);
 			}
 		}

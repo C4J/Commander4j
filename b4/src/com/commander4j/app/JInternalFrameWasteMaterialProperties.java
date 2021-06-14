@@ -287,7 +287,7 @@ public class JInternalFrameWasteMaterialProperties extends JInternalFrame
 
 						jComboBoxTypeModel = new DefaultComboBoxModel<JDBWasteTypes>(typeList);
 						jComboBoxMaterialType.setModel(jComboBoxTypeModel);
-						jComboBoxMaterialType.setBounds(155, 80, 318, 21);
+						jComboBoxMaterialType.setBounds(155, 80, 433, 21);
 						jComboBoxMaterialType.addActionListener(new ActionListener()
 						{
 							public void actionPerformed(ActionEvent e)

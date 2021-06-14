@@ -1968,7 +1968,7 @@
 		<?JDBWasteLocation?>		
 		<statement>
 			<id>JDBWasteLocation.create</id>
-			<text>insert into {schema}APP_WASTE_LOCATIONS (waste_location_id,description,process_order_required,reason_id_required,enabled,tare_weight) values (?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_WASTE_LOCATIONS (waste_location_id,description,process_order_required,reason_id_required,enabled) values (?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBWasteLocation.delete</id>
@@ -1992,7 +1992,7 @@
 		</statement>
 		<statement>
 			<id>JDBWasteLocation.update</id>
-			<text>update {schema}APP_WASTE_LOCATIONS set description=?,process_order_required=?,reason_id_required=?, enabled=?,tare_weight=? where waste_location_id=?</text>
+			<text>update {schema}APP_WASTE_LOCATIONS set description=?,process_order_required=?,reason_id_required=?, enabled=? where waste_location_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBWasteLocation.getLocationsAssignedtoReportingID</id>
@@ -2012,6 +2012,43 @@
 			<id>JDBWasteLocation.renameLocationID</id>
 			<text>update {schema}APP_WASTE_LOCATIONS set waste_location_id=? where waste_location_id=?</text>
 		</statement>
+		
+		
+		<?JDBWasteContainer?>		
+		<statement>
+			<id>JDBWasteContainer.create</id>
+			<text>insert into {schema}APP_WASTE_CONTAINERS (waste_container_id,description,tare_weight,enabled) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBWasteContainer.delete</id>
+			<text>delete from {schema}APP_WASTE_CONTAINERS where waste_container_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteContainer.getProperties</id>
+			<text>select * from {schema}APP_WASTE_CONTAINERS where waste_container_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteContainer.getWasteContainers</id>
+			<text>select * from {schema}APP_WASTE_CONTAINERS order by waste_container_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteContainer.getWasteContainerList</id>
+			<text>select * from {schema}APP_WASTE_CONTAINERS where enabled = 'Y' order by waste_container_id</text>
+		</statement>
+		<statement>
+			<id>JDBWasteContainer.isValidWasteContainer</id>
+			<text>select * from {schema}APP_WASTE_CONTAINERS where waste_container_id= ?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteContainer.update</id>
+			<text>update {schema}APP_WASTE_CONTAINERS set description=?,tare_weight=?,enabled=? where waste_container_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteContainer.renameContainerID</id>
+			<text>update {schema}APP_WASTE_CONTAINERS set waste_container_id=? where waste_container_id=?</text>
+		</statement>		
+		
+		
 		
 		<?JDBWasteTransactionType?>		
 		<statement>
@@ -2225,7 +2262,7 @@
 		<?JDBWasteLog?>		
 		<statement>
 			<id>JDBWasteLog.write</id>
-			<text>insert into {schema}APP_WASTE_LOG (transaction_ref,waste_transaction_type,report_time,waste_location_id,waste_material_id,process_order,waste_reason_id,user_id,weight_kg,tare_weight) values (?,?,?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_WASTE_LOG (transaction_ref,waste_transaction_type,report_time,waste_location_id,waste_material_id,process_order,waste_reason_id,user_id,weight_kg,tare_weight,waste_container_id) values (?,?,?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBWasteLog.delete</id>
@@ -2245,11 +2282,15 @@
 		</statement>
 		<statement>
 			<id>JDBWasteLog.update</id>
-			<text>update {schema}APP_WASTE_LOG set report_time=?,waste_location_id=?,waste_material_id=?,process_order=?,waste_reason_id=?,user_id=?,weight_kg=?,tare_weight=? where transaction_ref=? and waste_transaction_type=?</text>
+			<text>update {schema}APP_WASTE_LOG set report_time=?,waste_location_id=?,waste_material_id=?,process_order=?,waste_reason_id=?,user_id=?,weight_kg=?,tare_weight=?,waste_container_id=? where transaction_ref=? and waste_transaction_type=?</text>
 		</statement>	
 		<statement>
 			<id>JDBWasteLog.renameLocationID</id>
 			<text>update {schema}APP_WASTE_LOG set waste_location_id=? where waste_location_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBWasteLog.renameContainerID</id>
+			<text>update {schema}APP_WASTE_LOG set waste_container_id=? where waste_container_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBWasteLog.renameMaterialID</id>

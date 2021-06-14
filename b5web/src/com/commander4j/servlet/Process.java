@@ -24,6 +24,7 @@ import com.commander4j.db.JDBPallet;
 import com.commander4j.db.JDBReportRequest;
 import com.commander4j.db.JDBUser;
 import com.commander4j.db.JDBViewBarcodeValidate;
+import com.commander4j.db.JDBWasteContainer;
 import com.commander4j.db.JDBWasteLocation;
 import com.commander4j.db.JDBWasteLog;
 import com.commander4j.db.JDBWasteMaterial;
@@ -1332,6 +1333,10 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				JDBWasteLocation wl = new JDBWasteLocation(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 				saveData(session, "wasteLocationCombo", wl.getHTMLPullDownCombo("wasteLocationCombo", wasteLocationID), true);
 				
+				String wasteContainerID = Common.sd.getData(sessionID, "wasteContainerID");
+				JDBWasteContainer wc = new JDBWasteContainer(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+				saveData(session, "wasteContainerCombo", wc.getHTMLPullDownCombo("wasteContainerCombo", wasteContainerID), true);
+				
 				String wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
 				JDBWasteMaterial wm = new JDBWasteMaterial(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 				saveData(session, "wasteMaterialCombo", wm.getHTMLPullDownCombo("wasteMaterialCombo", wasteMaterialID,"onchange=\"document.wasteLog.wasteBarcode.value = '92'.concat(document.wasteLog.wasteMaterialCombo.value);javascript:document.wasteLog.submit();"), true);
@@ -2212,6 +2217,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 			
 			String wasteBarcode = JUtility.replaceNullStringwithBlank(request.getParameter("wasteBarcode").toUpperCase());
 			String wasteLocationID = "";
+			String wasteContainerID = "";
 			String wasteMaterialID = "";
 			String wasteReasonID = "";
 			String wasteProcessOrder = "";
@@ -2225,6 +2231,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					wasteMaterialID = bcode.getStringforAppID("92");
 					wasteReasonID = bcode.getStringforAppID("93");
 					wasteProcessOrder = bcode.getStringforAppID("94");
+					wasteContainerID = bcode.getStringforAppID("95");
 					wasteSSCC = bcode.getStringforAppID("00");
 					
 					if (wasteSSCC.equals("")==false)
@@ -2247,6 +2254,12 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					{
 						session.setAttribute("wasteLocationID", wasteLocationID);
 						saveData(session, "wasteLocationID", wasteLocationID, true);	
+					}
+					
+					if (wasteContainerID.equals("")==false)
+					{
+						session.setAttribute("wasteContainerID", wasteContainerID);
+						saveData(session, "wasteContainerID", wasteContainerID, true);	
 					}
 					
 					if (wasteMaterialID.equals("")==false)
@@ -2290,6 +2303,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				
 				String post_wasteTransactionID = Common.sd.getData(sessionID, "wasteTransactionID");
 				String post_wasteLocationID = Common.sd.getData(sessionID, "wasteLocationID");
+				String post_wasteContainerID = Common.sd.getData(sessionID, "wasteContainerID");
 				String post_wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
 				String post_wasteReasonID = Common.sd.getData(sessionID, "wasteReasonID");
 				String post_wasteProcessOrder = Common.sd.getData(sessionID, "wasteProcessOrder");
@@ -2299,6 +2313,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				
 				wlog.setTransactionType(post_wasteTransactionID);
 				wlog.setLocationID(post_wasteLocationID);
+				wlog.setContainerID(post_wasteContainerID);
 				wlog.setMaterialID(post_wasteMaterialID);
 				wlog.setReasonID(post_wasteReasonID);
 				if (post_wasteProcessOrder.equals("")==true)
@@ -2348,6 +2363,9 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		logger.debug("wasteLogSaveLastUsed - wasteLocationID="+request.getParameter("wasteLocationCombo").toUpperCase());	
 		saveData(session, "wasteLocationID", request.getParameter("wasteLocationCombo").toUpperCase(), true);
 		
+		logger.debug("wasteLogSaveLastUsed - wasteContainerID="+request.getParameter("wasteContainerCombo").toUpperCase());	
+		saveData(session, "wasteContainerID", request.getParameter("wasteContainerCombo").toUpperCase(), true);
+		
 		logger.debug("wasteLogSaveLastUsed - wasteMaterialID="+request.getParameter("wasteMaterialCombo").toUpperCase());
 		saveData(session, "wasteMaterialID", request.getParameter("wasteMaterialCombo").toUpperCase(), true);
 		
@@ -2368,6 +2386,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 		saveData(session, "wasteTransactionID", "", true);
 		saveData(session, "wasteLocationID", "", true);
+		saveData(session, "wasteContainerID", "", true);
 		saveData(session, "wasteMaterialID", "", true);
 		saveData(session, "wasteReasonID", "", true);
 		saveData(session, "wasteProcessOrder", "", true);
@@ -2389,6 +2408,10 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		String wasteLocationID = Common.sd.getData(sessionID, "wasteLocationID");
 		JDBWasteLocation wl = new JDBWasteLocation(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 		saveData(session, "wasteLocationCombo", wl.getHTMLPullDownCombo("wasteLocationCombo", wasteLocationID), true);
+		
+		String wasteContainerID = Common.sd.getData(sessionID, "wasteContainerID");
+		JDBWasteContainer wc = new JDBWasteContainer(Common.sd.getData(sessionID, "selectedHost"), sessionID);
+		saveData(session, "wasteContainerCombo", wc.getHTMLPullDownCombo("wasteContainerCombo", wasteContainerID), true);
 		
 		String wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
 		JDBWasteMaterial wm = new JDBWasteMaterial(Common.sd.getData(sessionID, "selectedHost"), sessionID);

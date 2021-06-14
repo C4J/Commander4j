@@ -41,22 +41,23 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 	private static final long serialVersionUID = 1;
 
 	public static final int Location_Col = 0;
-	public static final int Transaction_Date_Col = 1;
-	public static final int Transaction_Type_Col = 2;
-	public static final int Material_Col = 3;
-	public static final int Material_Type_Col = 4;
-	public static final int Reason_Col = 5;
-	public static final int WeightKG_Col = 6;
-	public static final int TareWeight_Col = 7;
-	public static final int NetWeight_Col = 8;
-	public static final int CostPerKg_Col = 9;
-	public static final int CostTotal_Col = 10;
-	public static final int Process_Order_Col = 11;
-    public static final int User_id_Col = 12;
-	public static final int Transaction_Ref_Col =13;
+	public static final int Container_Col = 1;
+	public static final int Transaction_Date_Col = 2;
+	public static final int Transaction_Type_Col = 3;
+	public static final int Material_Col = 4;
+	public static final int Material_Type_Col = 5;
+	public static final int Reason_Col = 6;
+	public static final int WeightKG_Col = 7;
+	public static final int TareWeight_Col = 8;
+	public static final int NetWeight_Col = 9;
+	public static final int CostPerKg_Col = 10;
+	public static final int CostTotal_Col = 11;
+	public static final int Process_Order_Col = 12;
+    public static final int User_id_Col = 13;
+	public static final int Transaction_Ref_Col =14;
 
 
-	private String[] mcolNames = {  "Location", "Date","Transaction",  "Material","Mat Type","Reason","Weight KG","Tare Weight","Net Weight","Cost Per Kg","Cost",  "Process Order","User ID","Txn Ref"};
+	private String[] mcolNames = {  "Location","Container", "Date","Transaction",  "Material","Mat Type","Reason","Weight KG","Tare Weight","Net Weight","Cost Per Kg","Cost",  "Process Order","User ID","Txn Ref"};
 	private ResultSet mResultSet;
 
 	private int prowCount = -1;
@@ -142,6 +143,8 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 				return cache.get(row).getReasonID();
 			case Location_Col:
 				return cache.get(row).getLocationID();
+			case Container_Col:
+				return cache.get(row).getContainerID();
 			case User_id_Col:
 				return cache.get(row).getUserID();
 			case WeightKG_Col:

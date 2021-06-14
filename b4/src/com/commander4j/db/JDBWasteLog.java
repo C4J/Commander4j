@@ -62,6 +62,7 @@ public class JDBWasteLog
 {
 	public static int field_TransactionTypeID_id = 25;
 	public static int field_LocationID = 25;
+	public static int field_ContainerID = 25;
 	public static int field_MaterialID = 25;
 	public static int field_ProcessOrder = 10;
 	public static int field_ReasonID = 20;
@@ -72,6 +73,7 @@ public class JDBWasteLog
 	private Timestamp dbWasteReportTime;
 	private String dbTransactionType; /* PK */
 	private String dbLocationID;
+	private String dbContainerID;
 	private String dbMaterialID;
 	private String dbProcessOrder;
 	private String dbReasonID;
@@ -79,6 +81,7 @@ public class JDBWasteLog
 	private BigDecimal dbWeight_KG;
 	private JDBWasteTransactionType wasteTransactionType;
 	private JDBWasteLocation wasteLocation;
+	private JDBWasteContainer wasteContainer;
 	private JDBWasteMaterial wasteMaterial;
 	private JDBWasteTypes wasteTypes;
 	private JDBWasteLocationTypes wasteLocationTypes;
@@ -97,6 +100,7 @@ public class JDBWasteLog
 
 		wasteTransactionType = new JDBWasteTransactionType(getHostID(), getSessionID());
 		wasteLocation = new JDBWasteLocation(getHostID(), getSessionID());
+		wasteContainer = new JDBWasteContainer(getHostID(), getSessionID());
 		wasteMaterial = new JDBWasteMaterial(getHostID(), getSessionID());
 		wasteTypes = new JDBWasteTypes(getHostID(), getSessionID());
 		wasteReason = new JDBWasteReasons(getHostID(), getSessionID());
@@ -149,6 +153,7 @@ public class JDBWasteLog
 				stmtupdate.setString(8, Common.userList.getUser(getSessionID()).getUserId());
 				stmtupdate.setBigDecimal(9, getWeightKg());
 				stmtupdate.setBigDecimal(10, getTareWeight());
+				stmtupdate.setString(11, getContainerID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -221,6 +226,11 @@ public class JDBWasteLog
 	public String getLocationID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbLocationID).trim();
+	}
+
+	public String getContainerID()
+	{
+		return JUtility.replaceNullStringwithBlank(dbContainerID).trim();
 	}
 
 	public String getMaterialID()
@@ -301,6 +311,7 @@ public class JDBWasteLog
 			setUserID(rs.getString("user_id"));
 			setWeightKg(rs.getBigDecimal("weight_kg"));
 			setTareWeight(rs.getBigDecimal("tare_weight"));
+			setContainerID(rs.getString("waste_container_id"));
 		}
 		catch (SQLException e)
 		{
@@ -441,6 +452,11 @@ public class JDBWasteLog
 		dbLocationID = str;
 	}
 
+	public void setContainerID(String str)
+	{
+		dbContainerID = str;
+	}
+
 	public void setMaterialID(String str)
 	{
 		dbMaterialID = str;
@@ -502,75 +518,83 @@ public class JDBWasteLog
 				{
 					reasonReqd = wasteLocation.isReasonIDRequired();
 					poReqd = wasteLocation.isProcessOrderRequired();
-					setTareWeight(wasteLocation.getTareWeight());
-
-					if (wasteMaterial.getWasteMaterialProperties(getMaterialID()))
+					
+					if (wasteContainer.getWasteContainerProperties(getContainerID()))
 					{
-						if (wasteTypes.getWasteTypeProperties(wasteMaterial.getWasteTypeID()))
+						setTareWeight(wasteContainer.getTareWeight());
+
+						if (wasteMaterial.getWasteMaterialProperties(getMaterialID()))
 						{
-							if (wasteLocationTypes.getWasteLocationTypeProperties(getLocationID(), wasteMaterial.getWasteTypeID()))
+							if (wasteTypes.getWasteTypeProperties(wasteMaterial.getWasteTypeID()))
 							{
-
-								if ((reasonReqd == false) || ((reasonReqd == true) && wasteReason.getWasteReasonProperties(getReasonID())))
+								if (wasteLocationTypes.getWasteLocationTypeProperties(getLocationID(), wasteMaterial.getWasteTypeID()))
 								{
-									if ((poReqd == false) || ((poReqd == true) && processOrder.getProcessOrderProperties(getProcessOrder())))
+
+									if ((reasonReqd == false) || ((reasonReqd == true) && wasteReason.getWasteReasonProperties(getReasonID())))
 									{
-										if ((poReqd == false) && (getProcessOrder().equals("") == false))
+										if ((poReqd == false) || ((poReqd == true) && processOrder.getProcessOrderProperties(getProcessOrder())))
 										{
-											setErrorMessage("Order not required");
-											setProcessOrder("");
-										}
-
-										isNegativeValue = (getWeightKg().compareTo(new BigDecimal("0")) < 0);
-
-										if (storeAsNegative == isNegativeValue)
-										{
-											if (getWeightKg().compareTo(new BigDecimal("0")) == 0)
+											if ((poReqd == false) && (getProcessOrder().equals("") == false))
 											{
-												setErrorMessage("Weight KG cannot be zero");
+												setErrorMessage("Order not required");
+												setProcessOrder("");
+											}
+
+											isNegativeValue = (getWeightKg().compareTo(new BigDecimal("0")) < 0);
+
+											if (storeAsNegative == isNegativeValue)
+											{
+												if (getWeightKg().compareTo(new BigDecimal("0")) == 0)
+												{
+													setErrorMessage("Weight KG cannot be zero");
+												}
+												else
+												{
+													result = true;
+													setErrorMessage("");
+												}
 											}
 											else
 											{
-												result = true;
-												setErrorMessage("");
+												if (storeAsNegative)
+												{
+													setErrorMessage("Weight KG needs to be negative (-ve)");
+												}
+												else
+												{
+													setErrorMessage("Weight KG needs to be positive (+ve)");
+												}
 											}
+
 										}
 										else
 										{
-											if (storeAsNegative)
-											{
-												setErrorMessage("Weight KG needs to be negative (-ve)");
-											}
-											else
-											{
-												setErrorMessage("Weight KG needs to be positive (+ve)");
-											}
+											setErrorMessage(processOrder.getErrorMessage());
 										}
-
 									}
 									else
 									{
-										setErrorMessage(processOrder.getErrorMessage());
+										setErrorMessage(wasteReason.getErrorMessage());
 									}
 								}
 								else
 								{
-									setErrorMessage(wasteReason.getErrorMessage());
+									setErrorMessage(wasteLocationTypes.getErrorMessage());
 								}
 							}
 							else
 							{
-								setErrorMessage(wasteLocationTypes.getErrorMessage());
+								setErrorMessage(wasteTypes.getErrorMessage());
 							}
 						}
 						else
 						{
-							setErrorMessage(wasteTypes.getErrorMessage());
+							setErrorMessage(wasteMaterial.getErrorMessage());
 						}
 					}
 					else
 					{
-						setErrorMessage(wasteMaterial.getErrorMessage());
+						setErrorMessage(wasteContainer.getErrorMessage());
 					}
 				}
 				else
@@ -613,8 +637,9 @@ public class JDBWasteLog
 					stmtupdate.setString(6, Common.userList.getUser(getSessionID()).getUserId());
 					stmtupdate.setBigDecimal(7, getWeightKg());
 					stmtupdate.setBigDecimal(8, getTareWeight());
-					stmtupdate.setLong(9, getTransactionRef());
-					stmtupdate.setString(10, getTransactionType());
+					stmtupdate.setString(9, getContainerID());
+					stmtupdate.setLong(10, getTransactionRef());
+					stmtupdate.setString(11, getTransactionType());
 
 					stmtupdate.execute();
 					stmtupdate.clearParameters();

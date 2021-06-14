@@ -43,22 +43,23 @@ public class JDBViewWasteReportingTableModel extends AbstractTableModel
 	public static final int Reporting_Group_Col 		= 0;
 	public static final int Reporting_ID_Col 			= 1;
 	public static final int Location_Col 				= 2;
-	public static final int Report_Date_Col 			= 3;
-	public static final int Transaction_Type_Col 		= 4;
-	public static final int Material_Col 				= 5;
-	public static final int Material_Type_Col 			= 6;
-	public static final int Reason_Col 					= 7;	
-	public static final int WeightKG_Col 				= 8;
-	public static final int Tare_Weight_Col 			= 9;
-	public static final int Net_Weight_Col 				= 10;
-	public static final int Cost_Per_Kg_Col 			= 11;
-	public static final int Cost_Col 					= 12;
-	public static final int Process_Order_Col 			= 13;
-	public static final int Transaction_Ref_Col 		= 14;
+	public static final int Container_Col 				= 3;
+	public static final int Report_Date_Col 			= 4;
+	public static final int Transaction_Type_Col 		= 5;
+	public static final int Material_Col 				= 6;
+	public static final int Material_Type_Col 			= 7;
+	public static final int Reason_Col 					= 8;	
+	public static final int WeightKG_Col 				= 9;
+	public static final int Tare_Weight_Col 			= 10;
+	public static final int Net_Weight_Col 				= 11;
+	public static final int Cost_Per_Kg_Col 			= 12;
+	public static final int Cost_Col 					= 13;
+	public static final int Process_Order_Col 			= 14;
+	public static final int Transaction_Ref_Col 		= 15;
 
 
 
-	private String[] mcolNames = {"Group", "Report ID",  "Location","Date Time", "Transaction",   "Material", "Mat Type", "Reason", "Weight Kg","Tare Weight","Net Weight", "Cost Per KG", "Cost","Process Order","Txn Ref",};
+	private String[] mcolNames = {"Group", "Report ID",  "Location","Container","Date Time", "Transaction",   "Material", "Mat Type", "Reason", "Weight Kg","Tare Weight","Net Weight", "Cost Per KG", "Cost","Process Order","Txn Ref",};
 	private ResultSet mResultSet;
 	private String grp = "";
 
@@ -142,6 +143,8 @@ public class JDBViewWasteReportingTableModel extends AbstractTableModel
 				return cache.get(row).getTransactionType();
 			case Location_Col:
 				return cache.get(row).getLocationID();
+			case Container_Col:
+				return cache.get(row).getContainerID();
 			case Material_Col:
 				return cache.get(row).getMaterialID();
 			case Material_Type_Col:

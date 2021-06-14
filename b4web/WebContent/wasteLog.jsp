@@ -67,6 +67,18 @@
 			</tr>
 			
 			<tr>
+				<td width="35%" height="20">
+					<div align="right"><%=Lang.getText("web_Waste_Container")%></div>
+				</td>
+				<td width="4">&nbsp;</td>
+				<td width="65%">
+					<%
+						out.println(session.getAttribute("wasteContainerCombo"));
+					%>
+				</td>
+			</tr>
+			
+			<tr>
 				<td width="35%">
 					<div align="right"><%=Lang.getText("web_Waste_Material")%></div>
 				</td>

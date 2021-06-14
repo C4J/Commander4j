@@ -71,6 +71,7 @@ public class JDBViewWasteReporting
 	private Timestamp 		dbWasteReportTime;
 	private String 			dbTransactionType;
 	private String 			dbLocationID;
+	private String 			dbContainerID;
 	private String			dbMaterialID;
 	private String			dbMaterialType;
 	private String 			dbReasonID;
@@ -121,6 +122,7 @@ public class JDBViewWasteReporting
 		setReportTime(JUtility.getSQLDateTime());
 		setTransactionType("");
 		setLocationID("");
+		setContainerID("");
 		setMaterialID("");
 		setMaterialType("");
 		setReasonID("");
@@ -228,6 +230,11 @@ public class JDBViewWasteReporting
 	{
 		return JUtility.replaceNullStringwithBlank(dbLocationID).trim();
 	}
+	
+	public String getContainerID()
+	{
+		return JUtility.replaceNullStringwithBlank(dbContainerID).trim();
+	}
 
 	public String getMaterialID()
 	{
@@ -288,6 +295,7 @@ public class JDBViewWasteReporting
 			setReportTime(rs.getTimestamp("report_time"));
 			setTransactionType(rs.getString("waste_transaction_type"));
 			setLocationID(rs.getString("waste_location_id"));
+			setContainerID(rs.getString("waste_container_id"));
 			setMaterialID(rs.getString("waste_material_id"));
 			setMaterialType(rs.getString("waste_type_id"));
 			setReasonID(rs.getString("waste_reason_id"));
@@ -313,6 +321,11 @@ public class JDBViewWasteReporting
 	public void setLocationID(String str)
 	{
 		dbLocationID = str;
+	}
+	
+	public void setContainerID(String str)
+	{
+		dbContainerID = str;
 	}
 
 	public void setMaterialID(String str)

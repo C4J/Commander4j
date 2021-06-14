@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+
+   <statement>      
+        CREATE TABLE `APP_WASTE_CONTAINERS` (
+          `WASTE_CONTAINER_ID` varchar(25) NOT NULL DEFAULT '',
+          `DESCRIPTION` varchar(80) DEFAULT '',
+		  `TARE_WEIGHT` DECIMAL(22,3) NULL DEFAULT '0.000',
+		  `ENABLED` varchar(1) DEFAULT 'Y',
+          PRIMARY KEY (`WASTE_CONTAINER_ID`) USING BTREE
+        ) ENGINE=InnoDB ROW_FORMAT=DYNAMIC;
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_CONTAINERS','PL','Pojemniki na odpady','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_CONTAINERS','HU','Hulladék konténerek','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_CONTAINERS','FR','Conteneurs à déchets','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_CONTAINERS','DE','Abfallbehälter','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_CONTAINERS','ES','Contenedores de residuos','0')
+    </statement>
+    
+     <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_CONTAINERS','NL','Afvalcontainers','0')
+    </statement>
+    
+     <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_CONTAINERS','IT','Contenitori per rifiuti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('mod_FRM_WASTE_CONTAINERS','EN','Waste Containers','0')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_MODULES (MODULE_ID ,RF_ACTIVE ,DK_ACTIVE ,MODULE_TYPE ,HINT ,MNEMONIC ,ICON_FILENAME ,HELPSET_ID ,REPORT_FILENAME ,EXEC_FILENAME ,EXEC_DIR ,PRINT_PREVIEW ,PRINT_DIALOG ,PRINT_COPIES ,REPORT_TYPE ,RESOURCE_KEY ,AUTO_LABELLER_COMMAND_FILE ,AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_WASTE_CONTAINER', 'N', 'Y', 'FORM', 'Waste Containers', 0, 'waste_containers.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_WASTE_CONTAINERS', '', '')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_MODULES (MODULE_ID ,RF_ACTIVE ,DK_ACTIVE ,MODULE_TYPE ,HINT ,MNEMONIC ,ICON_FILENAME ,HELPSET_ID ,REPORT_FILENAME ,EXEC_FILENAME ,EXEC_DIR ,PRINT_PREVIEW ,PRINT_DIALOG ,PRINT_COPIES ,REPORT_TYPE ,RESOURCE_KEY ,AUTO_LABELLER_COMMAND_FILE ,AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_WASTE_CONTAINER_ADD', 'N', 'Y', 'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_MODULES (MODULE_ID ,RF_ACTIVE ,DK_ACTIVE ,MODULE_TYPE ,HINT ,MNEMONIC ,ICON_FILENAME ,HELPSET_ID ,REPORT_FILENAME ,EXEC_FILENAME ,EXEC_DIR ,PRINT_PREVIEW ,PRINT_DIALOG ,PRINT_COPIES ,REPORT_TYPE ,RESOURCE_KEY ,AUTO_LABELLER_COMMAND_FILE ,AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_WASTE_CONTAINER_DELETE', 'N', 'Y', 'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_MODULES (MODULE_ID ,RF_ACTIVE ,DK_ACTIVE ,MODULE_TYPE ,HINT ,MNEMONIC ,ICON_FILENAME ,HELPSET_ID ,REPORT_FILENAME ,EXEC_FILENAME ,EXEC_DIR ,PRINT_PREVIEW ,PRINT_DIALOG ,PRINT_COPIES ,REPORT_TYPE ,RESOURCE_KEY ,AUTO_LABELLER_COMMAND_FILE ,AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_WASTE_CONTAINER_EDIT', 'N', 'Y', 'FUNCTION', '1 mod_FRM_WASTE__CONTAINER_EDIT', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_WASTE_CONTAINER_EDIT', '', '')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_MODULES (MODULE_ID ,RF_ACTIVE ,DK_ACTIVE ,MODULE_TYPE ,HINT ,MNEMONIC ,ICON_FILENAME ,HELPSET_ID ,REPORT_FILENAME ,EXEC_FILENAME ,EXEC_DIR ,PRINT_PREVIEW ,PRINT_DIALOG ,PRINT_COPIES ,REPORT_TYPE ,RESOURCE_KEY ,AUTO_LABELLER_COMMAND_FILE ,AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_WASTE_CONTAINER_LABEL', 'N', 'Y', 'FUNCTION', '1 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_MODULES (MODULE_ID ,RF_ACTIVE ,DK_ACTIVE ,MODULE_TYPE ,HINT ,MNEMONIC ,ICON_FILENAME ,HELPSET_ID ,REPORT_FILENAME ,EXEC_FILENAME ,EXEC_DIR ,PRINT_PREVIEW ,PRINT_DIALOG ,PRINT_COPIES ,REPORT_TYPE ,RESOURCE_KEY ,AUTO_LABELLER_COMMAND_FILE ,AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_WASTE_CONTAINER_RENAME', 'N', 'Y', 'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+    </statement>
+
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Add','PL','Dodaj pojemnik','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Delete','PL','Usuń kontener','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_RenameTo','PL','Zmień nazwę lokalizacji odpadów na','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Add','HU','Tároló hozzáadása','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Delete','HU','Tároló törlése','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_RenameTo','HU','Nevezze át a hulladék helyét erre:','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Add','FR','Ajouter un conteneur','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Delete','FR','Supprimer le conteneur','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_RenameTo','FR','Renommer l''emplacement des déchets en','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Add','DE','Container hinzufügen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Delete','DE','Container löschen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_RenameTo','DE','Abfallstandort umbenennen in','0')
+    </statement>
+    
+     <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Add','ES','Agregar contenedor','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Delete','ES','Eliminar contenedor','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_RenameTo','ES','Cambiar el nombre de la ubicación de residuos a','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Add','NL','Container toevoegen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Delete','NL','Container verwijderen','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_RenameTo','NL','Hernoem afvallocatie naar','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Add','IT','Aggiungi contenitore','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Delete','IT','Elimina contenitore','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_RenameTo','IT','Rinomina luogo rifiuti in','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Add','EN','Add Waste Container','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_Delete','EN','Delete Waste Container','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('dlg_Waste_Container_RenameTo','EN','Rename Waste Container to','0')
+    </statement>
+
+    <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'FRM_WASTE_CONTAINER')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'FRM_WASTE_CONTAINER_ADD')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'FRM_WASTE_CONTAINER_DELETE')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'FRM_WASTE_CONTAINER_EDIT')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'FRM_WASTE_CONTAINER_LABEL')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'FRM_WASTE_CONTAINER_RENAME')
+    </statement>
+
+    <statement>        
+        INSERT INTO SYS_MENUS ( MODULE_ID , MENU_ID, SEQUENCE_ID) VALUES ('FRM_WASTE_CONTAINER', 'MENU_WASTE', 3)
+    </statement>
+    
+    <statement>
+   		 ALTER TABLE `APP_WASTE_LOG` ADD COLUMN `WASTE_CONTAINER_ID` varchar(25) NULL DEFAULT '' AFTER `TARE_WEIGHT`
+    </statement>
+    
+    <statement>
+   		 UPDATE `APP_WASTE_LOG` SET `WASTE_CONTAINER_ID`= ''
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Container_ID','EN','Container ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Container_ID','PL','Identyfikator kontenera','0')
+    </statement>
+        
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Container_ID','DE','Container-ID','0')
+    </statement>
+        
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Container_ID','FR','Identifiant du conteneur','0')
+    </statement>
+        
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Container_ID','SP','ID de contenedor','0')
+    </statement>
+        
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Container_ID','IT','ID contenitore','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Container_ID','ES','ID de contenedor','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Container_ID','NL','Container-ID','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Container_ID','HU','Konténer azonosítója','0')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_MODULES (MODULE_ID ,RF_ACTIVE ,DK_ACTIVE ,MODULE_TYPE ,HINT ,MNEMONIC ,ICON_FILENAME ,HELPSET_ID ,REPORT_FILENAME ,EXEC_FILENAME ,EXEC_DIR ,PRINT_PREVIEW ,PRINT_DIALOG ,PRINT_COPIES ,REPORT_TYPE ,RESOURCE_KEY ,AUTO_LABELLER_COMMAND_FILE ,AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_WASTE_CONTAINERS', 'N', 'Y', 'REPORT', '1 ', 0, '', '', 'waste_containers.jrxml', '', '', 'Y', 'N', 1, 'Standard', '', '', '')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'RPT_WASTE_CONTAINERS')
+    </statement>
+    
+     <statement>        
+        INSERT INTO SYS_MODULES (MODULE_ID ,RF_ACTIVE ,DK_ACTIVE ,MODULE_TYPE ,HINT ,MNEMONIC ,ICON_FILENAME ,HELPSET_ID ,REPORT_FILENAME ,EXEC_FILENAME ,EXEC_DIR ,PRINT_PREVIEW ,PRINT_DIALOG ,PRINT_COPIES ,REPORT_TYPE ,RESOURCE_KEY ,AUTO_LABELLER_COMMAND_FILE ,AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_WASTE_CONTAINER_LAB', 'N', 'Y', 'REPORT', '1 ', 0, '', '', 'waste_container_barcode.jrxml', '', '', 'Y', 'N', 1, 'Standard', '', '', '')
+    </statement>
+    
+    <statement>        
+        INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('WASTE', 'RPT_WASTE_CONTAINER_LAB')
+    </statement>
+    
+    <statement>
+	    CREATE OR REPLACE VIEW `view_waste_log` AS SELECT
+		`LOG`.`TRANSACTION_REF` AS `TRANSACTION_REF`,
+		`LOG`.`REPORT_TIME` AS `REPORT_TIME`,
+		`LOG`.`WASTE_TRANSACTION_TYPE` AS `WASTE_TRANSACTION_TYPE`,
+		`TRANS`.`DESCRIPTION` AS `DESCRIPTION_TRANSACTION`,
+		`LOG`.`WASTE_LOCATION_ID` AS `WASTE_LOCATION_ID`,
+		`LOG`.`WASTE_CONTAINER_ID` AS `WASTE_CONTAINER_ID`,
+		`LOCN`.`DESCRIPTION` AS `DESCRIPTION_LOCATION`,
+		`LOG`.`WASTE_MATERIAL_ID` AS `WASTE_MATERIAL_ID`,
+		`MAT`.`DESCRIPTION` AS `DESCRIPTION_MATERIAL`,
+		`MAT`.`WASTE_TYPE_ID` AS `WASTE_TYPE_ID`,
+		`TYP`.`DESCRIPTION` AS `DESCRIPTION_TYPE`,
+		`TYP`.`RECYCLABLE` AS `RECYCLABLE`,
+		`TYP`.`HAZARDOUS` AS `HAZARDOUS`,
+		`TYP`.`PPE_REQUIRED` AS `PPE_REQUIRED`,
+		`LOCN`.`REASON_ID_REQUIRED` AS `REASON_ID_REQUIRED`,
+		`LOG`.`WASTE_REASON_ID` AS `WASTE_REASON_ID`,
+		`REAS`.`DESCRIPTION` AS `DESCRIPTION_REASON`,
+		`LOCN`.`PROCESS_ORDER_REQUIRED` AS `PROCESS_ORDER_REQUIRED`,
+		`LOG`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+		`LOG`.`USER_ID` AS `USER_ID`,
+		`LOG`.`WEIGHT_KG` AS `WEIGHT_KG`,
+		`LOG`.`TARE_WEIGHT` AS `TARE_WEIGHT`,(
+			`LOG`.`WEIGHT_KG` - `LOG`.`TARE_WEIGHT` 
+		) AS `NET_WEIGHT`,
+		`MAT`.`COST_PER_KG` AS `COST_PER_KG`,((
+				`LOG`.`WEIGHT_KG` - `LOG`.`TARE_WEIGHT` 
+				) * `MAT`.`COST_PER_KG` 
+		) AS `COST`,
+		`TRANS`.`INCLUDE_IN_TOTALS` AS `INCLUDE_IN_TOTALS` 
+	FROM
+		(((((
+							`app_waste_material` `MAT`
+							JOIN `app_waste_log` `LOG` ON ((
+									`MAT`.`WASTE_MATERIAL_ID` = `LOG`.`WASTE_MATERIAL_ID` 
+								)))
+						JOIN `app_waste_types` `TYP` ON ((
+								`TYP`.`WASTE_TYPE_ID` = `MAT`.`WASTE_TYPE_ID` 
+							)))
+					LEFT JOIN `app_waste_reasons` `REAS` ON ((
+							`REAS`.`WASTE_REASON_ID` = `LOG`.`WASTE_REASON_ID` 
+						)))
+				JOIN `app_waste_locations` `LOCN` ON ((
+						`LOCN`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
+					)))
+			JOIN `app_waste_transactions` `TRANS` ON ((
+				`TRANS`.`WASTE_TRANSACTION_TYPE` = `LOG`.`WASTE_TRANSACTION_TYPE` 
+		)))
+    </statement>
+
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Waste_Container','EN','Contnr','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Waste_Container','PL','Contnr','0')
+    </statement>
+        
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Waste_Container','DE','Contnr','0')
+    </statement>
+        
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Waste_Container','FR','Contnr','0')
+    </statement>
+        
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Waste_Container','SP','Contnr','0')
+    </statement>
+        
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Waste_Container','IT','Contnr','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Waste_Container','ES','Contnr','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Waste_Container','NL','Contnr','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('web_Waste_Container','HU','Contnr','0')
+    </statement>
+    
+    <statement>
+	    CREATE OR REPLACE VIEW `view_waste_reporting` AS SELECT
+		`LOG`.`TRANSACTION_REF` AS `TRANSACTION_REF`,
+		`LOG`.`REPORT_TIME` AS `REPORT_TIME`,
+		`LOG`.`WASTE_TRANSACTION_TYPE` AS `WASTE_TRANSACTION_TYPE`,
+		`TRANS`.`DESCRIPTION` AS `DESCRIPTION`,
+		`LOG`.`WASTE_LOCATION_ID` AS `WASTE_LOCATION_ID`,
+		`LOG`.`WASTE_CONTAINER_ID` AS `WASTE_CONTAINER_ID`,
+		`LOCN`.`DESCRIPTION` AS `DESCRIPTION_LOCATION`,
+		`LOG`.`WASTE_MATERIAL_ID` AS `WASTE_MATERIAL_ID`,
+		`MAT`.`DESCRIPTION` AS `DESCRIPTION_MATERIAL`,
+		`MAT`.`WASTE_TYPE_ID` AS `WASTE_TYPE_ID`,
+		`TYP`.`DESCRIPTION` AS `DESCRIPTION_TYPE`,
+		`TYP`.`RECYCLABLE` AS `RECYCLABLE`,
+		`TYP`.`HAZARDOUS` AS `HAZARDOUS`,
+		`TYP`.`PPE_REQUIRED` AS `PPE_REQUIRED`,
+		`LOG`.`WASTE_REASON_ID` AS `WASTE_REASON_ID`,
+		`REAS`.`DESCRIPTION` AS `DESCRIPTION_REASON`,
+		`LOG`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+		`LOG`.`USER_ID` AS `USER_ID`,
+		`LOG`.`WEIGHT_KG` AS `WEIGHT_KG`,
+		`LOG`.`TARE_WEIGHT` AS `TARE_WEIGHT`,
+		`MAT`.`COST_PER_KG` AS `COST_PER_KG`,
+		`REPIDS`.`WASTE_REPORTING_ID` AS `WASTE_REPORTING_ID`,
+		`REPIDS`.`DESCRIPTION` AS `REPORTING_ID_DESCRIPTION`,
+		`REPIDS`.`REPORTING_GROUP` AS `REPORTING_GROUP`,
+		`GRP`.`DESCRIPTION` AS `GROUP_DESCRIPTION` 
+	FROM
+		((((((((
+										`app_waste_material` `MAT`
+										JOIN `app_waste_log` `LOG` ON ((
+												`MAT`.`WASTE_MATERIAL_ID` = `LOG`.`WASTE_MATERIAL_ID` 
+											)))
+									JOIN `app_waste_types` `TYP` ON ((
+											`TYP`.`WASTE_TYPE_ID` = `MAT`.`WASTE_TYPE_ID` 
+										)))
+								LEFT JOIN `app_waste_reasons` `REAS` ON ((
+										`REAS`.`WASTE_REASON_ID` = `LOG`.`WASTE_REASON_ID` 
+									)))
+							JOIN `app_waste_locations` `LOCN` ON ((
+									`LOCN`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
+								)))
+						JOIN `app_waste_location_reporting` `LOCNREP` ON ((
+								`LOCNREP`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
+							)))
+					JOIN `app_waste_reporting_ids` `REPIDS` ON ((
+							`REPIDS`.`WASTE_REPORTING_ID` = `LOCNREP`.`WASTE_REPORTING_ID` 
+						)))
+				JOIN `app_waste_transactions` `TRANS` ON ((
+						`TRANS`.`WASTE_TRANSACTION_TYPE` = `LOG`.`WASTE_TRANSACTION_TYPE` 
+					)))
+			JOIN `app_waste_reporting_group` `GRP` ON (((
+						`GRP`.`REPORTING_GROUP` = `REPIDS`.`REPORTING_GROUP` 
+					) 
+		AND ( `TRANS`.`INCLUDE_IN_TOTALS` = 'Y' ))))
+    </statement>
+    
+    <statement>
+	    CREATE OR REPLACE VIEW `view_waste_reporting2` AS SELECT
+		`LOG`.`TRANSACTION_REF` AS `TRANSACTION_REF`,
+		`LOG`.`REPORT_TIME` AS `REPORT_TIME`,
+		`LOG`.`WASTE_TRANSACTION_TYPE` AS `WASTE_TRANSACTION_TYPE`,
+		`TRANS`.`DESCRIPTION` AS `DESCRIPTION`,
+		`LOG`.`WASTE_LOCATION_ID` AS `WASTE_LOCATION_ID`,
+		`LOG`.`WASTE_CONTAINER_ID` AS `WASTE_CONTAINER_ID`,
+		`LOCN`.`DESCRIPTION` AS `DESCRIPTION_LOCATION`,
+		`LOG`.`WASTE_MATERIAL_ID` AS `WASTE_MATERIAL_ID`,
+		`MAT`.`DESCRIPTION` AS `DESCRIPTION_MATERIAL`,
+		`MAT`.`WASTE_TYPE_ID` AS `WASTE_TYPE_ID`,
+		`TYP`.`DESCRIPTION` AS `DESCRIPTION_TYPE`,
+		`TYP`.`RECYCLABLE` AS `RECYCLABLE`,
+		`TYP`.`HAZARDOUS` AS `HAZARDOUS`,
+		`TYP`.`PPE_REQUIRED` AS `PPE_REQUIRED`,
+		`LOG`.`WASTE_REASON_ID` AS `WASTE_REASON_ID`,
+		`REAS`.`DESCRIPTION` AS `DESCRIPTION_REASON`,
+		`LOG`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+		`LOG`.`USER_ID` AS `USER_ID`,
+		`LOG`.`WEIGHT_KG` AS `WEIGHT_KG`,
+		`LOG`.`TARE_WEIGHT` AS `TARE_WEIGHT`,(
+			`LOG`.`WEIGHT_KG` - `LOG`.`TARE_WEIGHT` 
+		) AS `NET_WEIGHT`,
+		`MAT`.`COST_PER_KG` AS `COST_PER_KG`,((
+				`LOG`.`WEIGHT_KG` - `LOG`.`TARE_WEIGHT` 
+				) * `MAT`.`COST_PER_KG` 
+		) AS `COST`,
+		`REPIDS`.`WASTE_REPORTING_ID` AS `WASTE_REPORTING_ID`,
+		`REPIDS`.`DESCRIPTION` AS `REPORTING_ID_DESCRIPTION`,
+		`REPIDS`.`REPORTING_GROUP` AS `REPORTING_GROUP`,
+		`GRP`.`DESCRIPTION` AS `GROUP_DESCRIPTION` 
+	FROM
+		((((((((
+										`app_waste_material` `MAT`
+										JOIN `app_waste_log` `LOG` ON ((
+												`MAT`.`WASTE_MATERIAL_ID` = `LOG`.`WASTE_MATERIAL_ID` 
+											)))
+									JOIN `app_waste_types` `TYP` ON ((
+											`TYP`.`WASTE_TYPE_ID` = `MAT`.`WASTE_TYPE_ID` 
+										)))
+								LEFT JOIN `app_waste_reasons` `REAS` ON ((
+										`REAS`.`WASTE_REASON_ID` = `LOG`.`WASTE_REASON_ID` 
+									)))
+							JOIN `app_waste_locations` `LOCN` ON ((
+									`LOCN`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
+								)))
+						JOIN `app_waste_location_reporting` `LOCNREP` ON ((
+								`LOCNREP`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
+							)))
+					JOIN `app_waste_reporting_ids` `REPIDS` ON ((
+							`REPIDS`.`WASTE_REPORTING_ID` = `LOCNREP`.`WASTE_REPORTING_ID` 
+						)))
+				JOIN `app_waste_transactions` `TRANS` ON ((
+						`TRANS`.`WASTE_TRANSACTION_TYPE` = `LOG`.`WASTE_TRANSACTION_TYPE` 
+					)))
+			JOIN `app_waste_reporting_group` `GRP` ON (((
+						`GRP`.`REPORTING_GROUP` = `REPIDS`.`REPORTING_GROUP` 
+					) 
+		AND ( `TRANS`.`INCLUDE_IN_TOTALS` = 'Y' ))))
+    </statement>
+
+</DDL>

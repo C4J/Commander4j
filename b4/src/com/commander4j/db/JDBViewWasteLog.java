@@ -59,6 +59,7 @@ public class JDBViewWasteLog
 {
 	public static int field_TransactionTypeID_id = 25;
 	public static int field_LocationID = 25;
+	public static int field_ContainerID = 25;
 	public static int field_MaterialID = 25;
 	public static int field_ProcessOrder = 10;
 	public static int field_ReasonID = 20;
@@ -69,6 +70,7 @@ public class JDBViewWasteLog
 	private Timestamp dbWasteReportTime;
 	private String dbTransactionType;
 	private String dbLocationID;
+	private String dbContainerID;
 	private String dbMaterialID;
 	private String dbMaterialType;
 	private String dbUOM;
@@ -119,6 +121,7 @@ public class JDBViewWasteLog
 		setWasteReportTime(JUtility.getSQLDateTime());
 		setTransactionType("");
 		setLocationID("");
+		setContainerID("");
 		setProcessOrder("");
 		setReasonID("");
 		setUserID("");
@@ -192,6 +195,11 @@ public class JDBViewWasteLog
 	public String getLocationID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbLocationID).trim();
+	}
+	
+	public String getContainerID()
+	{
+		return JUtility.replaceNullStringwithBlank(dbContainerID).trim();
 	}
 
 	public String getMaterialID()
@@ -271,6 +279,7 @@ public class JDBViewWasteLog
 			setWasteReportTime(rs.getTimestamp("report_time"));
 			setTransactionType(rs.getString("waste_transaction_type"));
 			setLocationID(rs.getString("waste_location_id"));
+			setContainerID(rs.getString("waste_container_id"));
 			setMaterialID(rs.getString("waste_material_id"));
 			setMaterialType(rs.getString("waste_type_id"));
 			setProcessOrder(rs.getString("process_order"));
@@ -298,6 +307,11 @@ public class JDBViewWasteLog
 		dbLocationID = str;
 	}
 
+	public void setContainerID(String str)
+	{
+		dbContainerID = str;
+	}
+	
 	public void setMaterialID(String str)
 	{
 		dbMaterialID = str;

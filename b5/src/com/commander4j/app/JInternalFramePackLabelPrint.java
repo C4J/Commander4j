@@ -1091,15 +1091,16 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				public void stateChanged(final ChangeEvent e)
 				{
 					int t = Integer.valueOf(jSpinnerQuantity.getValue().toString());
+					int maxt = Integer.valueOf(ctrl.getKeyValueWithDefault("MAX CASE LABEL PRINT", "1500", "Max number of labels that can be printed"));
 
 					if (t <= 0)
 					{
 						jSpinnerQuantity.setValue(1);
 					}
 
-					if (t > 1500)
+					if (t > maxt)
 					{
-						jSpinnerQuantity.setValue(1500);
+						jSpinnerQuantity.setValue(maxt);
 					}
 				}
 			});
