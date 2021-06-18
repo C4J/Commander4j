@@ -28,7 +28,7 @@
         <pathelement location="lib/cups4j/slf4j-api-1.7.25.jar"/>
         <pathelement location="lib/cups4j/slf4j-simple-1.7.25.jar"/>
         <pathelement location="lib/db/mssql-jdbc-8.4.1.jre8.jar"/>
-        <pathelement location="lib/db/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="lib/db/mysql-connector-java-8.0.25.jar"/>
         <pathelement location="lib/db/ojdbc8.jar"/>
         <pathelement location="lib/devonly/i4jruntime.jar"/>
         <pathelement location="lib/jasper/jasperreports-6.16.0.jar"/>

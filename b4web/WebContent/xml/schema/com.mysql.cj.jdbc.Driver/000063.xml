@@ -474,7 +474,9 @@ LEFT JOIN APP_QM_SELECTLIST valist ON (valist.SELECT_LIST_ID = dict.SELECT_LIST_
 		</statement>
 
 <statement>
-CREATE VIEW `view_auto_labeller` AS
+CREATE 
+     OR REPLACE 
+VIEW `view_auto_labeller` AS
     select 
         `AL`.`LINE` AS `LINE`,
         `AL`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
@@ -498,7 +500,7 @@ CREATE VIEW `view_auto_labeller` AS
         c4j_GetFinalBatchNumber(curdate(),
                 `AL`.`OVERRIDE_BATCH`,
                 `AL`.`OVERRIDE_BATCH_NUMBER`,
-                `AL`.`BATCH_OPTIONAL`) AS `BATCH_NUMBER`,
+                `AL`.`BATCH_OPTIONAL`,`AL`.`PROCESS_ORDER`) AS `BATCH_NUMBER`,
         c4j_GetFinalExpiryDate(curdate(),
                 `MAT`.`SHELF_LIFE`,
                 `MAT`.`SHELF_LIFE_UOM`,
@@ -518,11 +520,13 @@ CREATE VIEW `view_auto_labeller` AS
             and (`MAT`.`MATERIAL` = `PO`.`MATERIAL`)
             and (`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`)
             and (`MATUOM`.`MATERIAL` = `PO`.`MATERIAL`)
-            and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`))
+            and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`));
 </statement>
 
 <statement>
-CREATE VIEW `view_auto_labeller_full` AS
+CREATE 
+     OR REPLACE
+VIEW `view_auto_labeller_full` AS
     select 
         `PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
         `PO`.`STATUS` AS `STATUS`,
@@ -542,7 +546,7 @@ CREATE VIEW `view_auto_labeller_full` AS
         `CUST`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
         `MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
         `PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
-        c4j_GetFinalBatchNumber(curdate(), 'N', 'N', '') AS `BATCH_NUMBER`,
+        c4j_GetFinalBatchNumber(curdate(), 'N', 'N', '',`PO`.`PROCESS_ORDER`) AS `BATCH_NUMBER`,
         c4j_GetFinalExpiryDate(curdate(),
                 `MAT`.`SHELF_LIFE`,
                 `MAT`.`SHELF_LIFE_UOM`,
@@ -560,7 +564,7 @@ CREATE VIEW `view_auto_labeller_full` AS
         ((`MAT`.`MATERIAL` = `PO`.`MATERIAL`)
             and (`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`)
             and (`MATUOM`.`MATERIAL` = `PO`.`MATERIAL`)
-            and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`))
+            and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`));
 </statement>
 
 <statement>

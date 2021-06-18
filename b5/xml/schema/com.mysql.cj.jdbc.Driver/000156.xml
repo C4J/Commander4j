@@ -459,4 +459,184 @@
 		AND ( `TRANS`.`INCLUDE_IN_TOTALS` = 'Y' ))))
     </statement>
 
+	<statement>
+			
+			create or replace view view_auto_labeller_full as SELECT
+				`PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+				`PO`.`STATUS` AS `STATUS`,
+				`PO`.`MATERIAL` AS `MATERIAL`,
+				`PO`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
+				`app_material`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+				`app_material`.`DESCRIPTION` AS `DESCRIPTION`,
+				`app_material_uom`.`EAN` AS `EAN`,
+				`app_material_uom`.`VARIANT` AS `VARIANT`,
+				`app_material`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+				`app_material`.`SHELF_LIFE` AS `SHELF_LIFE`,
+				`app_material`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
+				`app_material`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
+				`PO`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+				`app_customer`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+				`app_material`.`UPDATED` AS `MATERIAL_UPDATED`,
+				`PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+				`c4j_GetFinalBatchNumber` (
+					curdate(),
+					'N',
+					'',
+					'',
+					`PO`.`PROCESS_ORDER` 
+				) AS `BATCH_NUMBER`,
+				`c4j_GetFinalExpiryDate` (
+					curdate(),
+					`app_material`.`SHELF_LIFE`,
+					`app_material`.`SHELF_LIFE_UOM`,
+					`app_material`.`SHELF_LIFE_RULE`,
+					'N',
+				curdate()) AS `EXPIRY_DATE`,
+				`c4j_GetLayers` ( `PO`.`PROCESS_ORDER` ) AS `DEFAULT_LAYERS`,
+				`c4j_GetFullPalletQuantity` ( `PO`.`PROCESS_ORDER` ) AS `DEFAULT_QUANTITY`,
+				`app_material_customer_data`.`DATA` AS `PART_NO` 
+			FROM
+				((((
+								`app_process_order` `PO`
+								JOIN `app_material_uom` ON (((
+											`PO`.`MATERIAL` = `app_material_uom`.`MATERIAL` 
+											) 
+									AND ( `PO`.`REQUIRED_UOM` = `app_material_uom`.`UOM` ))))
+							JOIN `app_customer` ON ((
+									`PO`.`CUSTOMER_ID` = `app_customer`.`CUSTOMER_ID` 
+								)))
+						JOIN `app_material` ON ((
+								`PO`.`MATERIAL` = `app_material`.`MATERIAL` 
+							)))
+					LEFT JOIN `app_material_customer_data` ON (((
+								`PO`.`MATERIAL` = `app_material_customer_data`.`MATERIAL` 
+								) 
+						AND ( `PO`.`CUSTOMER_ID` = `app_material_customer_data`.`CUSTOMER_ID` ) 
+				AND ( `app_material_customer_data`.`DATA_ID` = 'PART_NO' ))))
+	
+	</statement>
+	
+	
+	<statement>
+			
+			create or replace view view_label_data_process_order as SELECT
+				`PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+				`PO`.`STATUS` AS `STATUS`,
+				`PO`.`MATERIAL` AS `MATERIAL`,
+				`PO`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
+				`PO`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE`,
+				`PO`.`DUE_DATE` AS `DUE_DATE`,
+				`MAT`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+				`MAT`.`DESCRIPTION` AS `DESCRIPTION`,
+				RIGHT (( '00000000000000' + `MATUOM_PROD`.`EAN` ), 14 ) AS `PROD_EAN`,
+				RIGHT (( '00' + `MATUOM_PROD`.`VARIANT` ), 2 ) AS `PROD_VARIANT`,
+				`MATUOM_BASE`.`NUMERATOR` AS `PROD_QUANTITY`,
+				RIGHT (( '00000000000000' + `MATUOM_BASE`.`EAN` ), 14 ) AS `BASE_EAN`,
+				RIGHT (( '00' + `MATUOM_BASE`.`VARIANT` ), 2 ) AS `BASE_VARIANT`,
+				`MATUOM_PROD`.`NUMERATOR` AS `BASE_QUANTITY`,
+				`c4j_GetFullPalletQuantity` ( `PO`.`PROCESS_ORDER` ) AS `PALLET_QUANTITY`,
+				`c4j_GetLayers` ( `PO`.`PROCESS_ORDER` ) AS `PALLET_LAYERS`,
+				`MAT`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+				`MAT`.`SHELF_LIFE` AS `SHELF_LIFE`,
+				`MAT`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
+				`MAT`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
+				`PO`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+				`CUST`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+				`c4j_GetFinalBatchNumber` (
+					curdate(),
+					'N',
+					'',
+					'',
+					`PO`.`PROCESS_ORDER` 
+				) AS `BATCH_NUMBER`,
+				`c4j_GetFinalExpiryDate` (
+					curdate(),
+					`MAT`.`SHELF_LIFE`,
+					`MAT`.`SHELF_LIFE_UOM`,
+					`MAT`.`SHELF_LIFE_RULE`,
+					'N',
+				curdate()) AS `EXPIRY_DATE`,
+				`MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
+				`PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+				`app_material_customer_data`.`DATA` AS `PART_NO`,
+				ifnull( `CUST`.`CUSTOMER_DATA_01`, '' ) AS `CASE__LABEL`,
+				ifnull( `CUST`.`CUSTOMER_DATA_02`, '' ) AS `PALLET__LABEL`,
+				`CUST`.`UPDATED` AS `CUSTOMER_UPDATED` 
+			FROM
+				(((((
+									`app_process_order` `PO`
+									JOIN `app_material` `MAT` ON ((
+											`MAT`.`MATERIAL` = `PO`.`MATERIAL` 
+										)))
+								JOIN `app_customer` `CUST` ON ((
+										`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID` 
+									)))
+							JOIN `app_material_uom` `MATUOM_PROD` ON (((
+										`MATUOM_PROD`.`MATERIAL` = `PO`.`MATERIAL` 
+										) 
+								AND ( `MATUOM_PROD`.`UOM` = `PO`.`REQUIRED_UOM` ))))
+						JOIN `app_material_uom` `MATUOM_BASE` ON (((
+									`MATUOM_BASE`.`MATERIAL` = `PO`.`MATERIAL` 
+									) 
+								AND ( `MATUOM_BASE`.`UOM` = `MAT`.`BASE_UOM` ) 
+							AND ( `MATUOM_BASE`.`UOM` = `MAT`.`BASE_UOM` ))))
+					LEFT JOIN `app_material_customer_data` ON (((
+								`PO`.`MATERIAL` = `app_material_customer_data`.`MATERIAL` 
+								) 
+						AND ( `PO`.`CUSTOMER_ID` = `app_material_customer_data`.`CUSTOMER_ID` ) 
+				AND ( `app_material_customer_data`.`DATA_ID` = 'PART_NO' ))))
+		
+		
+	</statement>
+	
+	<statement>
+	
+			create or replace view view_labeller_process_order_info as SELECT
+				`PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+				`PO`.`MATERIAL` AS `MATERIAL`,
+				`PO`.`STATUS` AS `STATUS`,
+				`PO`.`DUE_DATE` AS `DUE_DATE`,
+				`MAT`.`DESCRIPTION` AS `DESCRIPTION`,
+				`MAT`.`SHELF_LIFE` AS `SHELF_LIFE`,
+				`MAT`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
+				`MAT`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
+				`PO`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
+				`MATUOM`.`EAN` AS `EAN`,
+				`MATUOM`.`VARIANT` AS `VARIANT`,
+				`MAT`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+				`C4J_GETLAYERS` ( `PO`.`PROCESS_ORDER` ) AS `DEFAULT_LAYERS`,
+				`C4J_GETFULLPALLETQUANTITY` ( `PO`.`PROCESS_ORDER` ) AS `DEFAULT_QUANTITY`,
+				`PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+				`MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
+				`CUST`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+				`CUSTDATA`.`DATA` AS `PART_NO`,
+				ifnull( `CUST`.`CUSTOMER_DATA_01`, '' ) AS `CASE__LABEL`,
+				ifnull( `CUST`.`CUSTOMER_DATA_02`, '' ) AS `PALLET__LABEL`,
+				`CUST`.`UPDATED` AS `CUSTOMER_UPDATED` 
+			FROM
+				(((((
+									`app_process_order` `PO`
+									LEFT JOIN `app_material` `MAT` ON ((
+											`MAT`.`MATERIAL` = `PO`.`MATERIAL` 
+										)))
+								LEFT JOIN `app_customer` `CUST` ON ((
+										`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID` 
+									)))
+							LEFT JOIN `app_material_uom` `MATUOM` ON (((
+										`MATUOM`.`MATERIAL` = `PO`.`MATERIAL` 
+										) 
+								AND ( `MATUOM`.`UOM` = `PO`.`REQUIRED_UOM` ))))
+						LEFT JOIN `app_material_uom` `MATUOMFULL` ON (((
+									`MATUOMFULL`.`MATERIAL` = `PO`.`MATERIAL` 
+									) 
+							AND ( `MATUOMFULL`.`UOM` = 'PAL' ))))
+					LEFT JOIN `app_material_customer_data` `CUSTDATA` ON (((
+								`CUSTDATA`.`MATERIAL` = `PO`.`MATERIAL` 
+								) 
+						AND ( `CUSTDATA`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID` ) 
+				AND ( `CUSTDATA`.`DATA_ID` = 'PART_NO' ))))
+	
+	</statement>
+
+
 </DDL>
