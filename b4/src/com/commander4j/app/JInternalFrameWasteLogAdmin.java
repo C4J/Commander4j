@@ -1046,7 +1046,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 						{
 							JLaunchLookup.dlgAutoExec = false;
 							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.waste_materials_for_location())
+							if (JLaunchLookup.waste_materials_all())
 							{
 								jTextFieldWasteMaterial.setText(JLaunchLookup.dlgResult);
 							}
