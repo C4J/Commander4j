@@ -189,6 +189,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		sortFieldsSQL = new LinkedList<String>();
 
 		sortFieldsSQL.add("TRANSACTION_REF,WASTE_TRANSACTION_TYPE");
+		
 		sortFieldsSQL.add("WASTE_LOCATION_ID,TRANSACTION_REF");
 		sortFieldsSQL.add("WASTE_CONTAINER_ID,TRANSACTION_REF");
 		sortFieldsSQL.add("WASTE_MATERIAL_ID,WASTE_LOCATION_ID,TRANSACTION_REF");

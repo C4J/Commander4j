@@ -193,7 +193,8 @@ public class JDBWasteLocation
 				stmtupdate.setString(1, getWasteLocationID());
 				stmtupdate.setString(2, getDescription());
 				stmtupdate.setString(3, getProcessOrderRequired());
-				stmtupdate.setString(4, getEnabled());
+				stmtupdate.setString(4, getReasonIDRequired());
+				stmtupdate.setString(5, getEnabled());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

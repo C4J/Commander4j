@@ -33,6 +33,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -274,6 +275,64 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 			}
 
 			populateList();
+
+		}
+	}
+	
+	private void copyToClipboard(String fieldname)
+	{
+		StringSelection stringSelection = new StringSelection("");
+		
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+
+			if (fieldname.equals("SSCC") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 4).toString());
+			}
+
+			if (fieldname.equals("Material") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 5).toString());
+			}
+
+			if (fieldname.equals("Batch") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 6).toString());
+			}
+
+			if (fieldname.equals("Process Order") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 7).toString());
+			}
+			if (fieldname.equals("Quantity") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 10).toString());
+			}
+			if (fieldname.equals("UOM") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 9).toString());
+			}
+			if (fieldname.equals("Despatch No") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 10).toString());
+			}
+			if (fieldname.equals("Status") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 11).toString());
+			}
+
+			if (fieldname.equals("Location") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 12).toString());
+			}
+			if (fieldname.equals("User") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 13).toString());
+			}
+						
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
 		}
 	}
@@ -969,6 +1028,102 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 									jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 								}
 							}
+							
+
+							{
+								final JMenu4j clipboardByMenu = new JMenu4j();
+								clipboardByMenu.setText(lang.get("lbl_Clipboard_Copy"));
+								popupMenu.add(clipboardByMenu);
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener() {
+										public void actionPerformed(final ActionEvent e) {
+											copyToClipboard("SSCC");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Pallet_SSCC"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener() {
+										public void actionPerformed(final ActionEvent e) {
+											copyToClipboard("Material");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Material"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener() {
+										public void actionPerformed(final ActionEvent e) {
+											copyToClipboard("Batch");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Material_Batch"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener() {
+										public void actionPerformed(final ActionEvent e) {
+											copyToClipboard("Location");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener() {
+										public void actionPerformed(final ActionEvent e) {
+											copyToClipboard("Process Order");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Process_Order"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener() {
+										public void actionPerformed(final ActionEvent e) {
+											copyToClipboard("Status");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Pallet_Status"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener() {
+										public void actionPerformed(final ActionEvent e) {
+											copyToClipboard("Despatch No");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Despatch_No"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener() {
+										public void actionPerformed(final ActionEvent e) {
+											copyToClipboard("User");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_User_ID"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+							}
+
 						}
 
 					}

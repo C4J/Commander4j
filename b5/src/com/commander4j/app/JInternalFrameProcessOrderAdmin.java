@@ -32,6 +32,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -261,6 +262,53 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 			}
 			buildSQL();
 			populateList();
+
+		}
+	}
+	
+	private void copyToClipboard(String fieldname)
+	{
+		StringSelection stringSelection = new StringSelection("");
+		
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+
+			if (fieldname.equals("Process Order") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
+			}
+
+			if (fieldname.equals("Material") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 1).toString());
+			}
+
+			if (fieldname.equals("Description") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 2).toString());
+			}
+
+			if (fieldname.equals("Status") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString());
+			}
+
+			if (fieldname.equals("Location") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 4).toString());
+			}
+
+			if (fieldname.equals("Recipe") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 6).toString());
+			}
+			if (fieldname.equals("Resource") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 10).toString());
+			}
+			
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
 		}
 	}
@@ -1090,6 +1138,92 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 									filterByMenu.add(newItemMenuItem);
 								}
 							}
+							
+							{
+								final JMenu4j clipboardMenu = new JMenu4j();
+								clipboardMenu.setText(lang.get("lbl_Clipboard_Copy"));
+								popupMenu.add(clipboardMenu);
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Process Order");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Process_Order"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Material");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Material"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Description");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Description"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Recipe");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Process_Order_Recipe"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Location");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Resource");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Process_Order_Required_Resource"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+							}
+
 						}
 					}
 				}
