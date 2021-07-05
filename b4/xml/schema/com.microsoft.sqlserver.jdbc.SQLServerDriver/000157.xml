@@ -34,5 +34,47 @@
     <statement>
         INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Clipboard_Copy','EN','Copy to Clipboard','0')
     </statement>
+         
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_REPORT_TIME]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [REPORT_TIME]
+		)
+    </statement>
+
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_LOCATION_ID]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [WASTE_LOCATION_ID]
+		)
+    </statement>
+
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_CONTAINER_ID]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [WASTE_CONTAINER_ID]
+		)
+    </statement>
+
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_MATERIAL_ID]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [WASTE_MATERIAL_ID]
+		)
+    </statement>
+
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_PO]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [PROCESS_ORDER]
+		)
+    </statement>
+
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_REASON_ID]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [WASTE_REASON_ID]
+		)   
+    </statement>
        
 </DDL>

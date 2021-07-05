@@ -35,4 +35,8 @@
         INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Clipboard_Copy','EN','Copy to Clipboard','0')
     </statement>
        
+    <statement>
+    	ALTER TABLE `commander4j_waste`.`APP_WASTE_LOG` ADD INDEX `LOG_CONTAINER_ID_IDX`(`WASTE_CONTAINER_ID`) USING BTREE
+    </statement>   
+       
 </DDL>
