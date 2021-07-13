@@ -33,6 +33,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -162,6 +163,40 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 	private JSpinner jSpinnerLimit = new JSpinner();
 	private JCheckBox4j checkBox4j_Enabled = new JCheckBox4j();
 
+	private void copyToClipboard(String fieldname)
+	{
+		StringSelection stringSelection = new StringSelection("");
+		
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+
+			if (fieldname.equals("Material") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
+			}
+
+			if (fieldname.equals("Description") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 1).toString());
+			}
+
+			if (fieldname.equals("Material Type") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 2).toString());
+			}
+
+			if (fieldname.equals("Equipment Type") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 10).toString());
+			}
+			
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+		}
+	}
+	
+	
 	private void clearFilter()
 	{
 
@@ -853,6 +888,65 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 									newItemMenuItem.setText(lang.get("btn_Clear_Filter"));
 									filterByMenu.add(newItemMenuItem);
 								}
+							}
+							
+							{
+								final JMenu4j clipboardMenu = new JMenu4j();
+								clipboardMenu.setText(lang.get("lbl_Clipboard_Copy"));
+								popupMenu.add(clipboardMenu);
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Material");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Material"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Description");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Description"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Material Type");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Material_Type"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Equipment Type");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Material_Equipment_Type"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
 							}
 						}
 					}

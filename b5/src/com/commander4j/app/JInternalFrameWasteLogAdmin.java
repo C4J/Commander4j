@@ -33,6 +33,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -398,6 +399,49 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 
 	}
 
+	private void copyToClipboard(String fieldname)
+	{
+		StringSelection stringSelection = new StringSelection("");
+		
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+
+			if (fieldname.equals("Location") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
+			}
+
+			if (fieldname.equals("Container") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 1).toString());
+			}
+			
+			if (fieldname.equals("Material") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 4).toString());
+			}
+			
+			if (fieldname.equals("Reason") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 6).toString());
+			}
+
+			if (fieldname.equals("Process Order") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 12).toString());
+			}
+
+			if (fieldname.equals("Net Weight") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 9).toString());
+			}
+						
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+		}
+	}
+	
 	private void sortBy(String fieldname)
 	{
 		jComboBoxSortBy.setSelectedItem(fieldname);
@@ -859,6 +903,94 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 									filterByMenu.add(newItemMenuItem);
 								}
 							}
+							
+							
+							{
+								final JMenu4j clipboardByMenu = new JMenu4j();
+								clipboardByMenu.setText(lang.get("lbl_Clipboard_Copy"));
+								popupMenu.add(clipboardByMenu);
+								
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Location");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+								
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Container");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Container_ID"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Material");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Material"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+								
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Reason");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Reason"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+								
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Process Order");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Process_Order"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+								
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Net Weight");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Material_Net_Weight"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+
+							}
+
+							
 						}
 					}
 				}

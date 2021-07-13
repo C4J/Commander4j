@@ -33,6 +33,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -138,6 +139,60 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
 	private JSpinner jSpinnerLimit = new JSpinner();
 
+	private void copyToClipboard(String fieldname)
+	{
+		StringSelection stringSelection = new StringSelection("");
+		
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+
+			if (fieldname.equals("Location ID") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
+			}
+
+			if (fieldname.equals("Plant") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 2).toString());
+			}
+
+			if (fieldname.equals("Warehouse") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString());
+			}
+
+			if (fieldname.equals("GLN") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 4).toString());
+			}
+
+			if (fieldname.equals("Storage Location") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 6).toString());
+			}
+
+			if (fieldname.equals("Storage Type") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 7).toString());
+			}
+			
+			if (fieldname.equals("Storage Section") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 8).toString());
+			}
+			
+			if (fieldname.equals("Storage Bin") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 9).toString());
+			}
+			
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+		}
+	}
+	
+	
 	private void clearFilter() {
 		jTextFieldLocationID.setText("");
 		jTextFieldPlant.setText("");
@@ -642,7 +697,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 											sortBy("GLN");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_GLN"));
+									newItemMenuItem.setText(lang.get("lbl_Storage_GLN"));
 									sortByMenu.add(newItemMenuItem);
 								}
 
@@ -736,7 +791,7 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 											filterBy("GLN");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_GLN"));
+									newItemMenuItem.setText(lang.get("lbl_Storage_GLN"));
 									filterByMenu.add(newItemMenuItem);
 								}
 
@@ -809,6 +864,117 @@ public class JInternalFrameLocationAdmin extends JInternalFrame
 									newItemMenuItem.setText(lang.get("btn_Clear_Filter"));
 									filterByMenu.add(newItemMenuItem);
 								}
+							}
+							
+							{
+								final JMenu4j clipboardMenu = new JMenu4j();
+								clipboardMenu.setText(lang.get("lbl_Clipboard_Copy"));
+								popupMenu.add(clipboardMenu);
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Location ID");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Storage_Location"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Plant");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Storage_Plant"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Warehouse");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Storage_Warehouse"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("GLN");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Storage_GLN"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Storage Location");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Storage_Location"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Storage Type");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Storage_Type"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+								
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Storage Section");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Storage_Section"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Storage Bin");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Storage_Bin"));
+									clipboardMenu.add(newItemMenuItem);
+								}
+								
 							}
 						}
 					}

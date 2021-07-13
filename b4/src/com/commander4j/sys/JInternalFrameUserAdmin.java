@@ -41,6 +41,7 @@ import java.util.LinkedList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
@@ -246,7 +247,40 @@ public class JInternalFrameUserAdmin extends javax.swing.JInternalFrame {
 
 	private void print()
 	{
-		JLaunchReport.runReport("RPT_USERS", null, "", null, "");
+		
+		
+		JPopupMenu popup = new JPopupMenu("Reports");
+
+		JMenuItem item1 = new JMenuItem("Users by User ID");
+		item1.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(final ActionEvent e)
+			{
+
+
+				JLaunchReport.runReport("RPT_USERS", null, "", null, "");
+			}
+		});
+		item1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_USERS"));
+
+		JMenuItem item2 = new JMenuItem("Users by Last Logon");
+		item2.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(final ActionEvent e)
+			{
+
+
+				JLaunchReport.runReport("RPT_USERS2", null, "", null, "");
+			}
+		});
+		item2.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_USERS"));
+		
+		popup.add(item1);
+		popup.add(item2);
+
+		// show on the button?
+		popup.show((Component) jScrollPane1, 490, 191);
+		
 	}
 
 	private void lock()
