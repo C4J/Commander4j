@@ -1179,19 +1179,19 @@ public class JDBDespatch
 		{
 			clear();
 
-			setDespatchNo(rs.getString("despatch_no"));
+			setDespatchNo(JUtility.replaceNullStringwithBlank(rs.getString("despatch_no")));
 			setDespatchDate(rs.getTimestamp("despatch_date"));
-			setLocationIDFrom(rs.getString("location_id_from"));
-			setLocationIDTo(rs.getString("location_id_to"));
-			setStatus(rs.getString("status"));
-			setTrailer(rs.getString("trailer"));
-			setLoadNo(rs.getString("load_no"));
-			setHaulier(rs.getString("haulier"));
+			setLocationIDFrom(JUtility.replaceNullStringwithBlank(rs.getString("location_id_from")));
+			setLocationIDTo(JUtility.replaceNullStringwithBlank(rs.getString("location_id_to")));
+			setStatus(JUtility.replaceNullStringwithBlank(rs.getString("status")));
+			setTrailer(JUtility.replaceNullStringwithBlank(rs.getString("trailer")));
+			setLoadNo(JUtility.replaceNullStringwithBlank(rs.getString("load_no")));
+			setHaulier(JUtility.replaceNullStringwithBlank(rs.getString("haulier")));
 			setTotalPallets(rs.getInt("total_pallets"));
 			setTransactionRef(rs.getLong("transaction_ref"));
-			setUserID(rs.getString("user_id"));
-			setJourneyRef(rs.getString("journey_ref"));
-			setJourneyRefOLD(rs.getString("journey_ref"));
+			setUserID(JUtility.replaceNullStringwithBlank(rs.getString("user_id")));
+			setJourneyRef(JUtility.replaceNullStringwithBlank(rs.getString("journey_ref")));
+			setJourneyRefOLD(JUtility.replaceNullStringwithBlank(rs.getString("journey_ref")));
 		}
 		catch (SQLException e)
 		{
