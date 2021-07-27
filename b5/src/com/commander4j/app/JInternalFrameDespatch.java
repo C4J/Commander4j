@@ -46,6 +46,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
@@ -77,23 +78,27 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchReport;
+import com.commander4j.util.JFileFilterXML;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
 /**
- * JInternalFrameDespatch class allows you to manually build a despatch and confirm it. 
- * A despatch will update the location of pallets in the database, record the movement 
- * in the PALLET_HISTORY table and generate an outbound message to interface with an ERP system.
- * There is also a web page for use on mobile had scanners which allows you to build a despatch 
- * by scanning the SSCC barcode.
+ * JInternalFrameDespatch class allows you to manually build a despatch and
+ * confirm it. A despatch will update the location of pallets in the database,
+ * record the movement in the PALLET_HISTORY table and generate an outbound
+ * message to interface with an ERP system. There is also a web page for use on
+ * mobile had scanners which allows you to build a despatch by scanning the SSCC
+ * barcode.
  * 
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameDespatch.jpg" >
  * 
  * @see com.commander4j.db.JDBDespatch JDBDespatch
  * @see com.commander4j.db.JDBJourney JDBJourney
- * @see com.commander4j.app.JInternalFrameJourneyAdmin JInternalFrameJourneyAdmin
- * @see com.commander4j.app.JInternalFrameJourneyProperties JInternalFrameJourneyProperties
+ * @see com.commander4j.app.JInternalFrameJourneyAdmin
+ *      JInternalFrameJourneyAdmin
+ * @see com.commander4j.app.JInternalFrameJourneyProperties
+ *      JInternalFrameJourneyProperties
  * @see com.commander4j.servlet.Process Process
  */
 public class JInternalFrameDespatch extends JInternalFrame
@@ -133,6 +138,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private JButton4j deleteButton = new JButton4j(Common.icon_delete_16x16);
 	private JButton4j buttonUnAssign = new JButton4j(Common.icon_arrow_right_16x16);
 	private JButton4j buttonAssign = new JButton4j(Common.icon_arrow_left_16x16);
+	private JButton4j btn_Picklist = new JButton4j(Common.icon_open_16x16);
 	private String currentdespatchno = "";
 	private String previousdespatchno = "";
 	private LinkedList<JDBDespatch> despList = new LinkedList<JDBDespatch>();
@@ -152,9 +158,9 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private PreparedStatement listStatement;
 	private JButton4j jButtonLookupJourneyRef;
 	private JTextField4j textFieldJourneyRef;
-	private JButton4j jButtonRemoveJourneyRef= new JButton4j(Common.icon_despatch_remove_16x16);
-	private JButton4j jButtonAddJourneyRef= new JButton4j(Common.icon_despatch_add_16x16);
-	
+	private JButton4j jButtonRemoveJourneyRef = new JButton4j(Common.icon_despatch_remove_16x16);
+	private JButton4j jButtonAddJourneyRef = new JButton4j(Common.icon_despatch_add_16x16);
+
 	public JInternalFrameDespatch()
 	{
 		super();
@@ -163,11 +169,11 @@ public class JInternalFrameDespatch extends JInternalFrame
 		setTitle("Despatch");
 		setVisible(true);
 		getContentPane().setLayout(null);
-		setBounds(100, 100, 856, 519);
+		setBounds(100, 100, 856, 538);
 
 		final JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBackground(Common.color_app_window);
-		desktopPane.setBounds(0, 0, 846, 453);
+		desktopPane.setBounds(0, 0, 846, 480);
 		getContentPane().add(desktopPane);
 		desktopPane.setLayout(null);
 
@@ -215,7 +221,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 								jButtonLookupJourneyRef.setEnabled(false);
 								jButtonRemoveJourneyRef.setEnabled(false);
 								jButtonAddJourneyRef.setEnabled(false);
-							} else
+							}
+							else
 							{
 								deleteButton.setEnabled(true);
 								jButtonLookupLocationFrom.setEnabled(true);
@@ -232,7 +239,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 									jButtonLookupJourneyRef.setEnabled(true);
 									jButtonRemoveJourneyRef.setEnabled(true);
 									jButtonAddJourneyRef.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DESPATCH_NO_JOURNEY"));
-								} else
+								}
+								else
 								{
 									jButtonLookupJourneyRef.setEnabled(false);
 									jButtonRemoveJourneyRef.setEnabled(false);
@@ -246,7 +254,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 							try
 							{
 								jTextFieldDespatchDate.setText(d.getDespatchDate().toString().substring(0, 19));
-							} catch (Exception ee)
+							}
+							catch (Exception ee)
 							{
 								jTextFieldDespatchDate.setText("N/A");
 							}
@@ -264,11 +273,13 @@ public class JInternalFrameDespatch extends JInternalFrame
 							populateAssignedList(d.getDespatchNo(), "");
 							clearUnAssignedList();
 						}
-					} else
+					}
+					else
 					{
 						blankDespatchFields();
 					}
-				} else
+				}
+				else
 				{
 					jButtonLookupLocationFrom.setEnabled(false);
 					buttonSetUserID.setEnabled(false);
@@ -286,7 +297,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		scrollPane.setViewportView(list_despatch);
 
 		final JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(520, 30, 150, 375);
+		scrollPane_1.setBounds(520, 30, 150, 402);
 		desktopPane.add(scrollPane_1);
 
 		list_unassigned = new JList4j<String>();
@@ -296,7 +307,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		scrollPane_1.setViewportView(list_unassigned);
 
 		final JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(325, 30, 150, 375);
+		scrollPane_2.setBounds(325, 30, 150, 402);
 		desktopPane.add(scrollPane_2);
 
 		list_assigned = new JList4j<String>();
@@ -355,7 +366,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 				if (textFieldDespatchLocationTo.getText().equals(""))
 				{
 					jStatusText.setText("Please define Destination Location");
-				} else
+				}
+				else
 				{
 					jStatusText.setText("");
 					if (list_unassigned.getSelectedIndex() > -1)
@@ -374,7 +386,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 									addtoList(assignedList, item);
 									removefromList(unassignedList, item);
 									jStatusText.setText("");
-								} else
+								}
+								else
 								{
 									jStatusText.setText(d.getErrorMessage());
 								}
@@ -449,12 +462,14 @@ public class JInternalFrameDespatch extends JInternalFrame
 							d.updateUserID(number, Common.userList.getUser(Common.sessionID).getUserId());
 							populateDespatchList(number);
 							setConfirmButtonStatus();
-						} else
+						}
+						else
 						{
 							JUtility.errorBeep();
 							JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 						}
-					} else
+					}
+					else
 					{
 						JUtility.errorBeep();
 						JOptionPane.showMessageDialog(Common.mainForm, d.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE);
@@ -463,7 +478,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		newButton.setText(lang.get("btn_New"));
-		newButton.setBounds(6, 417, 116, 30);
+		newButton.setBounds(6, 444, 116, 30);
 		desktopPane.add(newButton);
 
 		deleteButton.setText(lang.get("btn_Delete"));
@@ -481,7 +496,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 						if (question == 0)
 						{
-							if (textFieldJourneyRef.getText().equals("")==false)
+							if (textFieldJourneyRef.getText().equals("") == false)
 							{
 								textFieldJourneyRef.setText("");
 								d.setJourneyRef("");
@@ -495,7 +510,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 				}
 			}
 		});
-		deleteButton.setBounds(242, 417, 116, 30);
+		deleteButton.setBounds(242, 444, 116, 30);
 		desktopPane.add(deleteButton);
 
 		findButton.setText(lang.get("btn_Find"));
@@ -523,13 +538,14 @@ public class JInternalFrameDespatch extends JInternalFrame
 						HashMap<String, Object> parameters = new HashMap<String, Object>();
 						parameters.put("p_despatch_no", d.getDespatchNo());
 						JLaunchReport.runReport("RPT_DESPATCH", parameters, "", null, "");
-						//JLaunchReport.runReportToPDF("RPT_DESPATCH", parameters, "", null, "test.pdf");
+						// JLaunchReport.runReportToPDF("RPT_DESPATCH",
+						// parameters, "", null, "test.pdf");
 					}
 				}
 			}
 		});
 		printButton.setText(lang.get("btn_Print"));
-		printButton.setBounds(478, 417, 116, 30);
+		printButton.setBounds(478, 444, 116, 30);
 		desktopPane.add(printButton);
 
 		jLabel10 = new JLabel4j_std();
@@ -564,7 +580,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		});
 		closeButton.setText(lang.get("btn_Close"));
 		closeButton.setMnemonic(lang.getMnemonicChar());
-		closeButton.setBounds(714, 417, 116, 30);
+		closeButton.setBounds(714, 444, 116, 30);
 		desktopPane.add(closeButton);
 
 		jButtonHelp.addActionListener(new ActionListener()
@@ -574,7 +590,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		jButtonHelp.setText(lang.get("btn_Help"));
-		jButtonHelp.setBounds(596, 417, 116, 30);
+		jButtonHelp.setBounds(596, 444, 116, 30);
 		desktopPane.add(jButtonHelp);
 
 		//
@@ -602,7 +618,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 							{
 								populateDespatchList("");
 								setConfirmButtonStatus();
-							} else
+							}
+							else
 							{
 								refresh();
 								JUtility.errorBeep();
@@ -615,7 +632,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 
-		confirmButton.setBounds(360, 417, 116, 30);
+		confirmButton.setBounds(360, 444, 116, 30);
 		desktopPane.add(confirmButton);
 
 		final JLabel4j_title despatchesLabel = new JLabel4j_title();
@@ -647,7 +664,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 			}
 		});
 		refreshButton.setText(lang.get("btn_Refresh"));
-		refreshButton.setBounds(124, 417, 116, 30);
+		refreshButton.setBounds(124, 444, 116, 30);
 		desktopPane.add(refreshButton);
 
 		SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
@@ -676,7 +693,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 				if (JUtility.isNullORBlank(textFieldDespatchLocationFrom.getText()) == true)
 				{
 					findButton.setEnabled(false);
-				} else
+				}
+				else
 				{
 					findButton.setEnabled(true);
 				}
@@ -776,7 +794,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 						jButtonLookupJourneyRef.setEnabled(true);
 						jButtonRemoveJourneyRef.setEnabled(true);
 						jButtonAddJourneyRef.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DESPATCH_NO_JOURNEY"));
-					} else
+					}
+					else
 					{
 						jButtonLookupJourneyRef.setEnabled(false);
 						jButtonRemoveJourneyRef.setEnabled(false);
@@ -1037,22 +1056,26 @@ public class JInternalFrameDespatch extends JInternalFrame
 		jButtonLookupJourneyRef.setEnabled(false);
 		jButtonLookupJourneyRef.setBounds(251, 245, 21, 21);
 		desktopPane.add(jButtonLookupJourneyRef);
-		jButtonRemoveJourneyRef.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		jButtonRemoveJourneyRef.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
 				textFieldJourneyRef.setText("");
 				d.setJourneyRef("");
 				updateDespatch(d);
 			}
 		});
-		
+
 		jButtonRemoveJourneyRef.setEnabled(false);
 		jButtonRemoveJourneyRef.setToolTipText(lang.get("btn_Despatch_BLANK_Journey"));
 		jButtonRemoveJourneyRef.setBounds(272, 245, 21, 21);
 		desktopPane.add(jButtonRemoveJourneyRef);
-		
-		jButtonAddJourneyRef.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+
+		jButtonAddJourneyRef.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
 				JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
 				journey.setJourneyRef("NO JOURNEY");
 				journey.setStatus("Unassigned");
@@ -1070,8 +1093,54 @@ public class JInternalFrameDespatch extends JInternalFrame
 		jButtonAddJourneyRef.setToolTipText(lang.get("btn_Despatch_NO_JOURNEY"));
 		desktopPane.add(jButtonAddJourneyRef);
 
+		btn_Picklist.setText(lang.get("lbl_Picklist"));
+		btn_Picklist.setBounds(686, 395, 143, 30);
+		btn_Picklist.setEnabled(false);
+		desktopPane.add(btn_Picklist);
+
+		btn_Picklist.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				if (textFieldDespatchLocationTo.getText().equals(""))
+				{
+					jStatusText.setText("Please define Destination Location");
+				}
+				else
+				{
+
+					if (list_despatch.getModel().getSize() > 0)
+					{
+						if (list_despatch.getSelectedIndex() >= 0)
+						{
+							JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
+							d.getDespatchProperties();
+
+							JFileChooser chooser = new JFileChooser();
+							JFileFilterXML xmlFilter = new JFileFilterXML();
+							chooser.setFileFilter(xmlFilter);
+							chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+							chooser.setDialogTitle(lang.get("lbl_Picklist"));
+
+							chooser.addChoosableFileFilter(xmlFilter);
+
+							int returnVal = chooser.showOpenDialog(btn_Picklist);
+							if (returnVal == JFileChooser.APPROVE_OPTION)
+							{
+								d.applyPickList(chooser.getSelectedFile().getAbsolutePath());
+								populateAssignedList(d.getDespatchNo(), "");
+								clearUnAssignedList();
+								JDialogPicklistReport picklisterrs = new JDialogPicklistReport(Common.mainForm,d.getPicklistImportReport());
+								picklisterrs.setModal(true);
+							}
+						}
+					}
+				}
+			}
+		});
+
 		jStatusText = new JLabel4j_std("");
-		jStatusText.setBounds(0, 460, 845, 21);
+		jStatusText.setBounds(1, 485, 845, 21);
 		getContentPane().add(jStatusText);
 		jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 		jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
@@ -1138,7 +1207,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 		try
 		{
 			listStatement.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
@@ -1257,7 +1327,8 @@ public class JInternalFrameDespatch extends JInternalFrame
 		if (confirmedRadioButton.isSelected())
 		{
 			status = "Confirmed";
-		} else
+		}
+		else
 		{
 			status = "Unconfirmed";
 		}
@@ -1327,6 +1398,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 	public void setConfirmButtonStatus()
 	{
 		confirmButton.setEnabled(false);
+		btn_Picklist.setEnabled(false);
 
 		if ((textFieldDespatchLocationTo.getText().equals("") == false) | (textFieldDespatchLocationFrom.getText().equals("") == false))
 		{
@@ -1336,7 +1408,11 @@ public class JInternalFrameDespatch extends JInternalFrame
 				{
 					if (list_despatch.getSelectedIndex() >= 0)
 					{
-						confirmButton.setEnabled(true);
+						if (textFieldDespatchLocationTo.getText().equals("") == false)
+						{
+							confirmButton.setEnabled(true);
+							btn_Picklist.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DESPATCH_PICKLIST"));
+						}
 					}
 				}
 			}
@@ -1348,12 +1424,12 @@ public class JInternalFrameDespatch extends JInternalFrame
 		if (JUtility.isNullORBlank(fromlocation) == true)
 		{
 			findButton.setEnabled(false);
-		} else
+		}
+		else
 		{
 			findButton.setEnabled(true);
 		}
 	}
-
 
 	public boolean updateDespatch(JDBDespatch d)
 	{

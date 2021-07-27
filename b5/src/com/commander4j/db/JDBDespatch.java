@@ -44,6 +44,7 @@ import com.commander4j.messages.OutgoingDespatchPreAdvice;
 import com.commander4j.messages.OutgoingEquipmentTracking;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
+import com.commander4j.xml.JXMLDocument;
 
 /**
  * JDBDespatch class is used to insert/update/delete records in the APP_DESPATCH
@@ -91,12 +92,14 @@ public class JDBDespatch
 	private JEANBarcode bar;
 	private String last_lf_found = "none";
 	private String last_lt_found = "none";
-	@SuppressWarnings("unused")
-	private String home_location = "";
+
 	private JDBMaterialLocation ml;
 	private JDBJourney journey;
 	private JDBControl ctrl;
 	private Boolean allowDespatchToSelf = false;
+	private LinkedList<String> picklist = new LinkedList<String>();
+	private LinkedList<String> picklistReport = new LinkedList<String>();
+	private JXMLDocument picklistDoc;
 
 	public JDBDespatch(String host, String session)
 	{
@@ -111,7 +114,7 @@ public class JDBDespatch
 		ctrl = new JDBControl(getHostID(), getSessionID());
 		journey = new JDBJourney(getHostID(), getSessionID());
 		ctrl.getProperties("DEFAULT_LOCATION");
-		home_location = ctrl.getKeyValue();
+
 		allowDespatchToSelf = Boolean.valueOf(ctrl.getKeyValueWithDefault("DESPATCH_TO_SELF", "false", "Allow despatch to source location"));
 	}
 
@@ -138,8 +141,79 @@ public class JDBDespatch
 		setJourneyRefOLD(JUtility.replaceNullStringwithBlank(journeyRef));
 		ctrl = new JDBControl(getHostID(), getSessionID());
 		ctrl.getProperties("DEFAULT_LOCATION");
-		home_location = ctrl.getKeyValue();
+
 		allowDespatchToSelf = Boolean.valueOf(ctrl.getKeyValueWithDefault("DESPATCH_TO_SELF", "false", "Allow despatch to source location"));
+	}
+
+	public Boolean applyPickList(String filename)
+	{
+		Boolean result = true;
+
+		int ignored=0;
+		int errors=0;
+		int added=0;
+		picklist.clear();
+		picklistReport.clear();
+		picklistDoc = new JXMLDocument();
+
+		LinkedList<String> assigned = getAssignedSSCCs();
+
+		result = picklistDoc.setDocument(filename);
+
+		if (result)
+		{
+			int seq = 1;
+
+			while (JUtility.replaceNullStringwithBlank(picklistDoc.findXPath("/message/messageData/pickList/SSCC[" + String.valueOf(seq) + "]").trim()).equals("") == false)
+			{
+				String temp = JUtility.replaceNullStringwithBlank(picklistDoc.findXPath("/message/messageData/pickList/SSCC[" + String.valueOf(seq) + "]").trim());
+
+				if (assigned.indexOf(temp) == -1)
+				{
+
+					if (picklist.indexOf(temp) == -1)
+					{
+						picklist.add(temp);
+						
+						if (assignSSCC(temp)==false)
+						{
+							picklistReport.add(getErrorMessage());
+							result = false;
+							errors++;
+						}
+						else
+						{
+							picklistReport.add(temp+" added.");
+							added++;
+						}
+					}
+
+				}
+				else
+				{
+					picklistReport.add(temp+" already assigned.");
+					ignored++;
+				}
+				seq++;
+			}
+		}
+		else
+		{
+			result = false;
+			picklistReport.add("Unable to read file :"+filename);
+			errors++;
+		}
+		picklistReport.add("Added : "+added);
+		picklistReport.add("Ignored (already assigned) : "+ignored);
+		picklistReport.add("Errors : "+errors);
+
+		return result;
+	}
+	
+	public LinkedList<String> getPicklistImportReport()
+	{
+		
+		return picklistReport;
 	}
 
 	public Boolean isPalletBatchStatusOK(String despatchNo)
@@ -206,15 +280,15 @@ public class JDBDespatch
 				result = false;
 				setErrorMessage(rs.getString("SSCC"));
 			}
-			
-//			rs.last();
-//			int rows = rs.getRow();
-//			rs.beforeFirst();
-//
-//			if (rows > 0)
-//			{
-//				result = false;
-//			}
+
+			// rs.last();
+			// int rows = rs.getRow();
+			// rs.beforeFirst();
+			//
+			// if (rows > 0)
+			// {
+			// result = false;
+			// }
 
 			rs.close();
 
@@ -288,27 +362,27 @@ public class JDBDespatch
 									}
 									else
 									{
-										setErrorMessage("Batch status is " + pal.getMaterialBatchStatus());
+										setErrorMessage(sscc+" batch status is " + pal.getMaterialBatchStatus());
 									}
 								}
 								else
 								{
-									setErrorMessage("Pallet status is " + pal.getStatus());
+									setErrorMessage(sscc+" status is " + pal.getStatus());
 								}
 							}
 							else
 							{
-								setErrorMessage("Already Assigned to " + pal.getDespatchNo());
+								setErrorMessage(sscc+" assigned to " + pal.getDespatchNo());
 							}
 						}
 						else
 						{
-							setErrorMessage("Material " + pal.getMaterial() + " invalid for " + getLocationIDTo());
+							setErrorMessage(sscc+" material " + pal.getMaterial() + " invalid for " + getLocationIDTo());
 						}
 					}
 					else
 					{
-						setErrorMessage("Pallet is not in source location " + getLocationIDFrom());
+						setErrorMessage(sscc+" not in location " + getLocationIDFrom());
 					}
 				}
 				else
@@ -527,7 +601,7 @@ public class JDBDespatch
 								opa = new OutgoingDespatchPreAdvice(getHostID(), getSessionID());
 								opa.submit(txn);
 							}
-							
+
 							if (getLocationDBTo().isDespatchEmailRequired())
 							{
 								logger.debug("Requesting outbound despatch email message");
@@ -1207,7 +1281,7 @@ public class JDBDespatch
 				{
 					if (isPalletBatchStatusOK(getDespatchNo()) == false)
 					{
-						setErrorMessage("Check Status of "+getErrorMessage());
+						setErrorMessage("Check Status of " + getErrorMessage());
 						result = false;
 					}
 
