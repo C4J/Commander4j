@@ -405,6 +405,74 @@ public class JDBWasteMaterial
 		return wasteMaterialList;
 	}
 
+	
+	public String getHTMLPullDownCombofoLocation(String itemName, String defaultValue,String location,String onchange)
+	{
+		String result = "";
+		String selected = "";
+		LinkedList<JDBWasteMaterial> materialList = new LinkedList<JDBWasteMaterial>();
+		
+		materialList.addAll(getWasteMaterialIDsforlLocationList(location,true,displayModeShort));
+		
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\" " +onchange + "\">";
+		result = result + "<OPTION></OPTION>";
+		
+		if (materialList.size() > 0)
+		{
+			for (int x = 0; x < materialList.size(); x++)
+			{
+				if (materialList.get(x).getWasteMaterialID().equals(defaultValue))
+				{
+					selected = " SELECTED";
+				} else
+				{
+					selected = "";
+				}
+				result = result + "<OPTION" + selected + ">" + materialList.get(x).getWasteMaterialID()+"</OPTION>";
+			}
+		}
+		result = result + "</SELECT>";
+
+		return result;
+	}
+	
+	public LinkedList<JDBWasteMaterial> getWasteMaterialIDsforlLocationList(String location,Boolean enabled,int mode) {
+
+		LinkedList<JDBWasteMaterial> wasteMaterialList = new LinkedList<JDBWasteMaterial>();
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+		
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteLocationMaterial.getMaterialsforLocation"));
+			stmt.setFetchSize(250);
+			stmt.setString(1, location);
+			rs = stmt.executeQuery();
+
+			while (rs.next())
+			{
+				JDBWasteMaterial samp = new JDBWasteMaterial(getHostID(), getSessionID());
+				samp.setDisplayMode(mode);
+				samp.getPropertiesfromResultSet(rs);
+				
+				if (samp.isEnabled().equals(enabled))
+				{	
+					wasteMaterialList.addLast(samp);
+				}
+			}
+			rs.close();
+			stmt.close();
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return wasteMaterialList;
+	}
+	
 	public LinkedList<JDBListData> getWasteMaterials(Boolean enabled,int mode) {
 		
 		LinkedList<JDBListData> wasteMaterialList = new LinkedList<JDBListData>();
@@ -484,6 +552,40 @@ public class JDBWasteMaterial
 			} else
 			{
 				setErrorMessage("Waste Material ID [" + getWasteMaterialID() + "] not found.");
+			}
+			stmt.close();
+			rs.close();
+
+		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+	
+	public boolean isValidWasteMaterialLocation(String material,String location)
+	{
+
+		boolean result = false;
+
+		PreparedStatement stmt;
+		ResultSet rs;
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteMaterialLocation.isValid"));
+			stmt.setFetchSize(1);
+			stmt.setString(1,material);		
+			stmt.setString(2,location);
+
+			rs = stmt.executeQuery();
+
+			if (rs.next())
+			{
+				result = true;
+			} else
+			{
+				setErrorMessage("Material ["+material+"] invalid for Location ["+location+"]");
 			}
 			stmt.close();
 			rs.close();

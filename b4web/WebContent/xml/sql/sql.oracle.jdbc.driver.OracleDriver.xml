@@ -2229,6 +2229,26 @@
 			<text>update {schema}APP_WASTE_TYPES set waste_type_id=? where waste_type_id=?</text>
 		</statement>
 		
+		<?JDBWasteLocationMaterial?>		
+		<statement>
+			<id>JDBWasteLocationMaterial.isValid</id>
+			<text>select * from {schema}view_waste_location_materials where waste_location_id = ? and waste_material_id = ? </text>
+		</statement>
+		<statement>
+			<id>JDBWasteLocationMaterial.getMaterialsforLocation</id>
+			<text>select * from {schema}view_waste_location_materials where waste_location_id = ? order by waste_material_id</text>
+		</statement>
+				
+		<?JDBWasteMaterialLocation?>		
+		<statement>
+			<id>JDBWasteMaterialLocation.isValid</id>
+			<text>select * from {schema}view_waste_location_materials where waste_material_id = ? and waste_location_id = ? </text>
+		</statement>
+		<statement>
+			<id>JDBWasteMaterialLocation.getMaterialsforLocation</id>
+			<text>select * from {schema}view_waste_location_materials where waste_location_id = ? order by waste_material_id</text>
+		</statement>	
+				
 		<?JDBWasteMaterial?>		
 		<statement>
 			<id>JDBWasteMaterial.create</id>

@@ -518,73 +518,81 @@ public class JDBWasteLog
 				{
 					reasonReqd = wasteLocation.isReasonIDRequired();
 					poReqd = wasteLocation.isProcessOrderRequired();
-					
+
 					if (wasteContainer.getWasteContainerProperties(getContainerID()))
 					{
 						setTareWeight(wasteContainer.getTareWeight());
 
 						if (wasteMaterial.getWasteMaterialProperties(getMaterialID()))
 						{
-							if (wasteTypes.getWasteTypeProperties(wasteMaterial.getWasteTypeID()))
+							if (wasteMaterial.isValidWasteMaterialLocation(getMaterialID(), getLocationID()))
 							{
-								if (wasteLocationTypes.getWasteLocationTypeProperties(getLocationID(), wasteMaterial.getWasteTypeID()))
+
+								if (wasteTypes.getWasteTypeProperties(wasteMaterial.getWasteTypeID()))
 								{
-
-									if ((reasonReqd == false) || ((reasonReqd == true) && wasteReason.getWasteReasonProperties(getReasonID())))
+									if (wasteLocationTypes.getWasteLocationTypeProperties(getLocationID(), wasteMaterial.getWasteTypeID()))
 									{
-										if ((poReqd == false) || ((poReqd == true) && processOrder.getProcessOrderProperties(getProcessOrder())))
+
+										if ((reasonReqd == false) || ((reasonReqd == true) && wasteReason.getWasteReasonProperties(getReasonID())))
 										{
-											if ((poReqd == false) && (getProcessOrder().equals("") == false))
+											if ((poReqd == false) || ((poReqd == true) && processOrder.getProcessOrderProperties(getProcessOrder())))
 											{
-												setErrorMessage("Order not required");
-												setProcessOrder("");
-											}
-
-											isNegativeValue = (getWeightKg().compareTo(new BigDecimal("0")) < 0);
-
-											if (storeAsNegative == isNegativeValue)
-											{
-												if (getWeightKg().compareTo(new BigDecimal("0")) == 0)
+												if ((poReqd == false) && (getProcessOrder().equals("") == false))
 												{
-													setErrorMessage("Weight KG cannot be zero");
+													setErrorMessage("Order not required");
+													setProcessOrder("");
+												}
+
+												isNegativeValue = (getWeightKg().compareTo(new BigDecimal("0")) < 0);
+
+												if (storeAsNegative == isNegativeValue)
+												{
+													if (getWeightKg().compareTo(new BigDecimal("0")) == 0)
+													{
+														setErrorMessage("Weight KG cannot be zero");
+													}
+													else
+													{
+														result = true;
+														setErrorMessage("");
+													}
 												}
 												else
 												{
-													result = true;
-													setErrorMessage("");
+													if (storeAsNegative)
+													{
+														setErrorMessage("Weight KG needs to be negative (-ve)");
+													}
+													else
+													{
+														setErrorMessage("Weight KG needs to be positive (+ve)");
+													}
 												}
+
 											}
 											else
 											{
-												if (storeAsNegative)
-												{
-													setErrorMessage("Weight KG needs to be negative (-ve)");
-												}
-												else
-												{
-													setErrorMessage("Weight KG needs to be positive (+ve)");
-												}
+												setErrorMessage(processOrder.getErrorMessage());
 											}
-
 										}
 										else
 										{
-											setErrorMessage(processOrder.getErrorMessage());
+											setErrorMessage(wasteReason.getErrorMessage());
 										}
 									}
 									else
 									{
-										setErrorMessage(wasteReason.getErrorMessage());
+										setErrorMessage(wasteLocationTypes.getErrorMessage());
 									}
 								}
 								else
 								{
-									setErrorMessage(wasteLocationTypes.getErrorMessage());
+									setErrorMessage(wasteTypes.getErrorMessage());
 								}
 							}
 							else
 							{
-								setErrorMessage(wasteTypes.getErrorMessage());
+								setErrorMessage(wasteMaterial.getErrorMessage());
 							}
 						}
 						else

@@ -422,15 +422,15 @@ public class JDBWasteLocation
 
 		return rs;
 	}
-	
-	public String getHTMLPullDownCombo(String itemName, String defaultValue)
+		
+	public String getHTMLPullDownCombo(String itemName, String defaultValue, String onchange)
 	{
 		String result = "";
 		String selected = "";
 		LinkedList<JDBWasteLocation> locationList = new LinkedList<JDBWasteLocation>();
-				
+		
 		locationList.addAll(getWasteLocationsList(true,displayModeShort));
-		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\" " +onchange + "\">";
 		result = result + "<OPTION></OPTION>";
 		
 		if (locationList.size() > 0)
@@ -450,7 +450,7 @@ public class JDBWasteLocation
 		result = result + "</SELECT>";
 
 		return result;
-	}
+	}	
 	
 	public LinkedList<JDBWasteLocation> getWasteLocationsList(Boolean enabled,int mode) {
 		
@@ -595,6 +595,40 @@ public class JDBWasteLocation
 			} else
 			{
 				setErrorMessage("Waste Location ID " + getWasteLocationID() + " not found.");
+			}
+			stmt.close();
+			rs.close();
+
+		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+	
+	public boolean isValidWasteLocationMaterial(String location,String material)
+	{
+
+		boolean result = false;
+
+		PreparedStatement stmt;
+		ResultSet rs;
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteLocationMaterial.isValid"));
+			stmt.setFetchSize(1);
+			
+			stmt.setString(1,location);
+			stmt.setString(2,material);
+			rs = stmt.executeQuery();
+
+			if (rs.next())
+			{
+				result = true;
+			} else
+			{
+				setErrorMessage("Material ["+material+"] invalid for Location ["+location+"]");
 			}
 			stmt.close();
 			rs.close();
