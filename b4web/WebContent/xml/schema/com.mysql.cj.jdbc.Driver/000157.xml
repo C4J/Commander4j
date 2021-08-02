@@ -36,7 +36,7 @@
     </statement>
        
     <statement>
-    	ALTER TABLE `commander4j_waste`.`APP_WASTE_LOG` ADD INDEX `LOG_CONTAINER_ID_IDX`(`WASTE_CONTAINER_ID`) USING BTREE
+    	ALTER TABLE `APP_WASTE_LOG` ADD INDEX `LOG_CONTAINER_ID_IDX`(`WASTE_CONTAINER_ID`) USING BTREE
     </statement>   
        
 </DDL>
