@@ -48,7 +48,7 @@
       <fileEntry mountPoint="30" file="./xml/hosts/hosts.dtd" overwriteMode="0" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <fileEntry mountPoint="30" file="./xml/hosts/hosts.xml" overwriteMode="0" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" />
       <dirEntry mountPoint="106" file="./xml/barcode" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="barcode" overrideDirMode="true" />
-      <dirEntry mountPoint="107" file="./xml/interface" overwriteMode="1" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="interface" overrideDirMode="true">
+      <dirEntry mountPoint="107" file="./xml/interface" overwriteMode="0" uninstallMode="1" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="interface" overrideDirMode="true">
         <exclude>
           <entry location="dirClean.ok" />
           <entry location=".DS_Store" />

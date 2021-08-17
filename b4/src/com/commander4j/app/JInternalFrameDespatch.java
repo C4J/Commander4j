@@ -1130,6 +1130,9 @@ public class JInternalFrameDespatch extends JInternalFrame
 								d.applyPickList(chooser.getSelectedFile().getAbsolutePath());
 								populateAssignedList(d.getDespatchNo(), "");
 								clearUnAssignedList();
+								textFieldNoOfPallets.setText(String.valueOf(assignedList.size()));
+								d.setTotalPallets(assignedList.size());
+								updateDespatch(d);
 								JDialogPicklistReport picklisterrs = new JDialogPicklistReport(Common.mainForm,d.getPicklistImportReport());
 								picklisterrs.setModal(true);
 							}

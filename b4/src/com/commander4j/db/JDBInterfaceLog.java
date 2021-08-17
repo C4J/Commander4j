@@ -531,12 +531,14 @@ public class JDBInterfaceLog
 	{
 		dbMessageInformation = messageinformation.replaceAll("\\n", "");
 		dbMessageInformation = dbMessageInformation.replaceAll("  ", " ");
+		dbMessageInformation = JUtility.left(dbMessageInformation, field_message_information);
 	}
 
 	public void setMessageRef(String messageref)
 	{
 		dbMessageRef = messageref.replaceAll("\\n", "");
 		dbMessageRef = dbMessageRef.replaceAll("  ", " ");
+		dbMessageRef = JUtility.left(messageref, field_message_ref);
 	}
 
 	public void setMessageStatus(String messagestatus)
