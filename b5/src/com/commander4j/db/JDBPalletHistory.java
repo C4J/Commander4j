@@ -376,6 +376,7 @@ public class JDBPalletHistory
 			stmtupdate.setString(21, getPallet().getCustomerID());
 			stmtupdate.setString(22, getPallet().getMHNNumber());
 			stmtupdate.setString(23, getPallet().getDecision());
+			stmtupdate.setString(24,getPallet().getEquipmentType());
 			stmtupdate.execute();
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

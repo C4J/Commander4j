@@ -39,6 +39,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
@@ -47,10 +48,12 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.commander4j.db.JDBControl;
+import com.commander4j.db.JDBEquipmentType;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBListData;
 import com.commander4j.db.JDBMaterial;
@@ -137,6 +140,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JDBMaterialType materialtype = new JDBMaterialType(Common.selectedHostID, Common.sessionID);;
 	private JDBUom baseuom = new JDBUom(Common.selectedHostID, Common.sessionID);
 	private JDBUom weightuom = new JDBUom(Common.selectedHostID, Common.sessionID);
+	private JDBEquipmentType equipment = new JDBEquipmentType(Common.selectedHostID, Common.sessionID);
 	private JShelfLifeUom sluom = new JShelfLifeUom();
 	private JShelfLifeRoundingRule slrr = new JShelfLifeRoundingRule();
 	private Vector<JDBUom> uomList = new Vector<JDBUom>();
@@ -176,6 +180,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JButton4j jButtonRemoveContainerCode= new JButton4j(Common.icon_despatch_remove_16x16);
 	private JTextField4j textField4j_Product_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
 	private JTextField4j textField4j_Container_Code = new JTextField4j(JDBWTContainerCode.field_ContainerCode);
+	private JLabel4j_std jStatusText = new JLabel4j_std();
 
 	public JInternalFrameMaterialProperties(String mat)
 	{
@@ -187,7 +192,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_EDIT"));
-
+		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -307,7 +312,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(422, 483));
-			this.setBounds(0, 0, 668, 623);
+			this.setBounds(0, 0, 668, 629);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -333,7 +338,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 660, 591);
+				jDesktopPane1.setBounds(0, 0, 660, 627);
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(447, 385));
@@ -864,6 +869,23 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jTextFieldEquipmentType.setBounds(172, 362, 125, 21);
 					jDesktopPane1.add(jTextFieldEquipmentType);
 				}
+				
+				{
+					JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
+					jButtonLookupEquipment.setBounds(296, 361, 21, 21);
+					jButtonLookupEquipment.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "Y";
+							if (JLaunchLookup.equipmentType()) {
+								jTextFieldEquipmentType.setText(JLaunchLookup.dlgResult);
+								jButtonSave.setEnabled(true);
+							}
+						}
+					});
+					jDesktopPane1.add(jButtonLookupEquipment);
+				}
+				
 				{
 					jTextFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
 					jTextFieldInspectionID.addKeyListener(new KeyAdapter()
@@ -1064,6 +1086,12 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				
 				jButtonRemoveContainerCode.setBounds(302, 542, 21, 21);
 				jDesktopPane1.add(jButtonRemoveContainerCode);
+				
+
+				jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+				jStatusText.setForeground(new java.awt.Color(255, 0, 0));
+				jStatusText.setBounds(0, 575, 660, 21);
+				jDesktopPane1.add(jStatusText);
 
 				
 				jButtonSave.setEnabled(false);
@@ -1096,185 +1124,196 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			comboBoxPalletModuleID.setEnabled(false);
 		}
 	}
-
+	
 	private void save()
 	{
 		boolean result = true;
+		
+		String equipmentType = JUtility.replaceNullStringwithBlank(jTextFieldEquipmentType.getText());
+		if (equipmentType.equals("") == false) {
+			if (equipment.getEquipmentTypeProperties(equipmentType) == true) {
+				jButtonSave.setEnabled(true);
+				jStatusText.setText("");
+				material.setDescription(jTextFieldDescription.getText());
+				material.setMaterialType(((JDBMaterialType) jComboBoxMaterialType.getSelectedItem()).getType());
+				material.setBaseUom(((JDBUom) jComboBoxBaseUOM.getSelectedItem()).getInternalUom());
 
-		material.setDescription(jTextFieldDescription.getText());
-		material.setMaterialType(((JDBMaterialType) jComboBoxMaterialType.getSelectedItem()).getType());
-		material.setBaseUom(((JDBUom) jComboBoxBaseUOM.getSelectedItem()).getInternalUom());
+				material.setShelfLife((Integer) jSpinnerShelfLife.getValue());
+				material.setShelfLifeUom(((JShelfLifeUom) jComboBoxShelfLifeUOM.getSelectedItem()).getUom());
+				material.setShelfLifeRule(((JShelfLifeRoundingRule) jComboBoxRoundingRule.getSelectedItem()).getRule());
 
-		material.setShelfLife((Integer) jSpinnerShelfLife.getValue());
-		material.setShelfLifeUom(((JShelfLifeUom) jComboBoxShelfLifeUOM.getSelectedItem()).getUom());
-		material.setShelfLifeRule(((JShelfLifeRoundingRule) jComboBoxRoundingRule.getSelectedItem()).getRule());
+				material.setDefaultBatchStatus((String) jComboBoxDefaultBatchStatus.getSelectedItem());
 
-		material.setDefaultBatchStatus((String) jComboBoxDefaultBatchStatus.getSelectedItem());
+				BigDecimal bd = new BigDecimal(0).setScale(3, RoundingMode.HALF_UP);
+				bd = BigDecimal.valueOf(grossweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
+				material.setGrossWeight(bd);
+				bd = BigDecimal.valueOf(netweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
+				material.setNetWeight(bd);
 
-		BigDecimal bd = new BigDecimal(0).setScale(3, RoundingMode.HALF_UP);
-		bd = BigDecimal.valueOf(grossweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
-		material.setGrossWeight(bd);
-		bd = BigDecimal.valueOf(netweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
-		material.setNetWeight(bd);
+				try
+				{
+					material.setWeightUom(((JDBUom) jComboBoxWeightUOM.getSelectedItem()).getInternalUom());
+				}
+				catch (Exception e)
+				{
+					material.setWeightUom("");
+				}
 
-		try
-		{
-			material.setWeightUom(((JDBUom) jComboBoxWeightUOM.getSelectedItem()).getInternalUom());
-		}
-		catch (Exception e)
-		{
-			material.setWeightUom("");
-		}
+				material.setOldMaterial(jTextFieldLegacyCode.getText());
 
-		material.setOldMaterial(jTextFieldLegacyCode.getText());
+				material.setEquipmentType(jTextFieldEquipmentType.getText());
 
-		material.setEquipmentType(jTextFieldEquipmentType.getText());
+				material.setInspectionID(jTextFieldInspectionID.getText());
 
-		material.setInspectionID(jTextFieldInspectionID.getText());
+				if (checkBoxValidateScanPallet.isSelected())
+				{
 
-		if (checkBoxValidateScanPallet.isSelected())
-		{
+					material.setValidateScanPallet("Y");
+				}
+				else
+				{
+					material.setValidateScanPallet("N");
 
-			material.setValidateScanPallet("Y");
-		}
-		else
-		{
-			material.setValidateScanPallet("N");
+				}
 
-		}
+				if (checkBoxValidateScanCase.isSelected())
+				{
 
-		if (checkBoxValidateScanCase.isSelected())
-		{
+					material.setValidateScanCase("Y");
+				}
+				else
+				{
+					material.setValidateScanCase("N");
 
-			material.setValidateScanCase("Y");
-		}
-		else
-		{
-			material.setValidateScanCase("N");
+				}
 
-		}
+				if (checkBoxValidateScanEach.isSelected())
+				{
 
-		if (checkBoxValidateScanEach.isSelected())
-		{
+					material.setValidateScanEach("Y");
+				}
+				else
+				{
+					material.setValidateScanEach("N");
 
-			material.setValidateScanEach("Y");
-		}
-		else
-		{
-			material.setValidateScanEach("N");
+				}
 
-		}
+				if (checkBox4j_Enabled.isSelected())
+				{
+					material.setEnabled("Y");
+				}
+				else
+				{
+					material.setEnabled("N");
+				}
 
-		if (checkBox4j_Enabled.isSelected())
-		{
-			material.setEnabled("Y");
-		}
-		else
-		{
-			material.setEnabled("N");
-		}
+				if (checkBoxOverridePackLabel.isSelected())
+				{
+					if (comboBoxPackModuleID.getSelectedIndex() >= 0)
+					{
+						if (comboBoxPackModuleID.getSelectedItem().toString().equals(""))
+						{
+							material.setOverridePackLabel("N");
+							checkBoxOverridePackLabel.setSelected(false);
+							material.setPackLabelModuleID("");
+						}
+						else
+						{
+							material.setOverridePackLabel("Y");
+							checkBoxOverridePackLabel.setSelected(true);
+							material.setPackLabelModuleID(comboBoxPackModuleID.getSelectedItem().toString());
+						}
+					}
+					else
+					{
+						material.setOverridePackLabel("N");
+						checkBoxOverridePackLabel.setSelected(false);
+						material.setPackLabelModuleID("");
+					}
 
-		if (checkBoxOverridePackLabel.isSelected())
-		{
-			if (comboBoxPackModuleID.getSelectedIndex() >= 0)
-			{
-				if (comboBoxPackModuleID.getSelectedItem().toString().equals(""))
+				}
+				else
 				{
 					material.setOverridePackLabel("N");
-					checkBoxOverridePackLabel.setSelected(false);
 					material.setPackLabelModuleID("");
 				}
+
+				if (checkBox4jMoveAfterMake.isSelected())
+				{
+					if (textField4jMoveAfterMake.getText().toUpperCase().equals(""))
+					{
+						material.setMoveAfterMakeEnabled("N");
+						checkBox4jMoveAfterMake.setSelected(false);
+					}
+					else
+					{
+						material.setMoveAfterMakeEnabled("Y");
+						checkBox4jMoveAfterMake.setSelected(true);
+					}
+					material.setMoveAfterMakeLocationID(textField4jMoveAfterMake.getText().toUpperCase());
+				}
 				else
 				{
-					material.setOverridePackLabel("Y");
-					checkBoxOverridePackLabel.setSelected(true);
-					material.setPackLabelModuleID(comboBoxPackModuleID.getSelectedItem().toString());
+					material.setMoveAfterMakeEnabled("Y");
+					material.setMoveAfterMakeLocationID("");
+					textField4jMoveAfterMake.setText("");
 				}
-			}
-			else
-			{
-				material.setOverridePackLabel("N");
-				checkBoxOverridePackLabel.setSelected(false);
-				material.setPackLabelModuleID("");
-			}
 
-		}
-		else
-		{
-			material.setOverridePackLabel("N");
-			material.setPackLabelModuleID("");
-		}
-
-		if (checkBox4jMoveAfterMake.isSelected())
-		{
-			if (textField4jMoveAfterMake.getText().toUpperCase().equals(""))
-			{
-				material.setMoveAfterMakeEnabled("N");
-				checkBox4jMoveAfterMake.setSelected(false);
-			}
-			else
-			{
-				material.setMoveAfterMakeEnabled("Y");
-				checkBox4jMoveAfterMake.setSelected(true);
-			}
-			material.setMoveAfterMakeLocationID(textField4jMoveAfterMake.getText().toUpperCase());
-		}
-		else
-		{
-			material.setMoveAfterMakeEnabled("Y");
-			material.setMoveAfterMakeLocationID("");
-			textField4jMoveAfterMake.setText("");
-		}
-
-		if (checkBoxOverridePalletLabel.isSelected())
-		{
-			if (comboBoxPalletModuleID.getSelectedIndex() >= 0)
-			{
-				if (comboBoxPalletModuleID.getSelectedItem().toString().equals(""))
+				if (checkBoxOverridePalletLabel.isSelected())
+				{
+					if (comboBoxPalletModuleID.getSelectedIndex() >= 0)
+					{
+						if (comboBoxPalletModuleID.getSelectedItem().toString().equals(""))
+						{
+							material.setOverridePalletLabel("N");
+							checkBoxOverridePalletLabel.setSelected(false);
+							material.setPalletLabelModuleID("");
+						}
+						else
+						{
+							material.setOverridePalletLabel("Y");
+							checkBoxOverridePalletLabel.setSelected(true);
+							material.setPalletLabelModuleID(comboBoxPalletModuleID.getSelectedItem().toString());
+						}
+					}
+					else
+					{
+						material.setOverridePalletLabel("N");
+						checkBoxOverridePalletLabel.setSelected(false);
+						material.setPalletLabelModuleID("");
+					}
+				}
+				else
 				{
 					material.setOverridePalletLabel("N");
-					checkBoxOverridePalletLabel.setSelected(false);
 					material.setPalletLabelModuleID("");
+				}
+
+				if (material.isValidMaterial() == false)
+				{
+					result = material.create();
+					if (result == true)
+					{
+						result = material.update();
+					}
 				}
 				else
 				{
-					material.setOverridePalletLabel("Y");
-					checkBoxOverridePalletLabel.setSelected(true);
-					material.setPalletLabelModuleID(comboBoxPalletModuleID.getSelectedItem().toString());
+					result = material.update();
 				}
-			}
-			else
-			{
-				material.setOverridePalletLabel("N");
-				checkBoxOverridePalletLabel.setSelected(false);
-				material.setPalletLabelModuleID("");
-			}
-		}
-		else
-		{
-			material.setOverridePalletLabel("N");
-			material.setPalletLabelModuleID("");
-		}
+				if (result == false)
+				{
+					JOptionPane.showMessageDialog(Common.mainForm, material.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+				}
+				else
+				{
+					jButtonSave.setEnabled(false);
+				}
+			} else {
 
-		if (material.isValidMaterial() == false)
-		{
-			result = material.create();
-			if (result == true)
-			{
-				result = material.update();
+				jButtonSave.setEnabled(false);
+				jStatusText.setText(equipment.getErrorMessage());
 			}
-		}
-		else
-		{
-			result = material.update();
-		}
-		if (result == false)
-		{
-			JOptionPane.showMessageDialog(Common.mainForm, material.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-		}
-		else
-		{
-			jButtonSave.setEnabled(false);
 		}
 
 	}

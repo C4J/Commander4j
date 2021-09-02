@@ -1717,9 +1717,11 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 		jTable1.getColumnModel().getColumn(13).setPreferredWidth(100);
 		jTable1.getColumnModel().getColumn(14).setPreferredWidth(100);
 		jTable1.getColumnModel().getColumn(15).setPreferredWidth(100);
+		jTable1.getColumnModel().getColumn(16).setPreferredWidth(70);
+		
 		if (expiryMode.equals("SSCC"))
 		{
-			jTable1.getColumnModel().getColumn(16).setPreferredWidth(120);
+			jTable1.getColumnModel().getColumn(17).setPreferredWidth(120);
 		}
 		
 		jScrollPane1.repaint();

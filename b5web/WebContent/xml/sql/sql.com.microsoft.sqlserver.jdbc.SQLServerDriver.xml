@@ -4,7 +4,7 @@
 		<?JDBPalletHistory ?>
 		<statement>
 			<id>JDBPalletHistory.write</id>
-			<text>insert into {schema}APP_PALLET_HISTORY (transaction_ref,transaction_type,transaction_subtype,transaction_date,sscc,despatch_no,location_id,material,batch_number,process_order,quantity,uom,date_of_manufacture,status,ean,variant,user_id,confirmed,layers,sscc_expiry_date,customer_id,mhn_number,decision) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_PALLET_HISTORY (transaction_ref,transaction_type,transaction_subtype,transaction_date,sscc,despatch_no,location_id,material,batch_number,process_order,quantity,uom,date_of_manufacture,status,ean,variant,user_id,confirmed,layers,sscc_expiry_date,customer_id,mhn_number,decision,equipment_type) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBPalletHistory.selectWithExpiry</id>
@@ -17,9 +17,9 @@
 		<statement>
 			<id>JDBPalletHistory.insertFromPallet</id>
 			<text>INSERT INTO APP_PALLET_HISTORY (TRANSACTION_REF,TRANSACTION_TYPE,TRANSACTION_SUBTYPE,TRANSACTION_DATE,SSCC,LOCATION_ID,MATERIAL,BATCH_NUMBER,	PROCESS_ORDER,QUANTITY,
-					    	UOM,DATE_OF_MANUFACTURE,STATUS,EAN,VARIANT,DESPATCH_NO,USER_ID,CONFIRMED,LAYERS,SSCC_EXPIRY_DATE,CUSTOMER_ID,MHN_NUMBER,DECISION) 
+					    	UOM,DATE_OF_MANUFACTURE,STATUS,EAN,VARIANT,DESPATCH_NO,USER_ID,CONFIRMED,LAYERS,SSCC_EXPIRY_DATE,CUSTOMER_ID,MHN_NUMBER,DECISION,EQUIPMENT_TYPE) 
 				  SELECT ? as TRANSACTION_REF,? as TRANSACTION_TYPE,? AS TRANSACTION_SUBTYPE,? AS TRANSACTION_DATE,SSCC,LOCATION_ID,MATERIAL,BATCH_NUMBER,PROCESS_ORDER,QUANTITY,
-							UOM,DATE_OF_MANUFACTURE,STATUS,EAN,VARIANT,DESPATCH_NO,? AS USER_ID,CONFIRMED,LAYERS,SSCC_EXPIRY_DATE,CUSTOMER_ID,MHN_NUMBER,DECISION FROM APP_PALLET WHERE DESPATCH_NO = ?</text>
+							UOM,DATE_OF_MANUFACTURE,STATUS,EAN,VARIANT,DESPATCH_NO,? AS USER_ID,CONFIRMED,LAYERS,SSCC_EXPIRY_DATE,CUSTOMER_ID,MHN_NUMBER,DECISION,EQUIPMENT_TYPE FROM APP_PALLET WHERE DESPATCH_NO = ?</text>
 		</statement>		
 		<?JDBControl ?>
 		<statement>
@@ -699,7 +699,7 @@
 		</statement>
 		<statement>
 			<id>JDBPallet.update</id>
-			<text>update {schema}APP_PALLET set despatch_no=?,location_id=?,material=?,batch_number=?,process_order=?,quantity=?,uom=?,date_of_manufacture=?,status=?,ean=?,variant=?,confirmed=?,layers=?,sscc_expiry_date=?,customer_id=?,mhn_number=?,decision=?,updated_by_user_id=?,date_updated=? where sscc = ?</text>
+			<text>update {schema}APP_PALLET set despatch_no=?,location_id=?,material=?,batch_number=?,process_order=?,quantity=?,uom=?,date_of_manufacture=?,status=?,ean=?,variant=?,confirmed=?,layers=?,sscc_expiry_date=?,customer_id=?,mhn_number=?,decision=?,updated_by_user_id=?,date_updated=?,equipment_type=? where sscc = ?</text>
 		</statement>
 		<statement>
 			<id>JDBPallet.updateDespatchNo</id>
@@ -823,6 +823,10 @@
 			<text>
 				select count(sscc) as pallet_count from APP_PALLET where despatch_no = ? and location_id &lt;&gt; ?
 			</text>
+		</statement>
+		<statement>
+			<id>JDBDespatch.updateTotalEquipment</id>
+			<text>update app_despatch set total_equipment = ? where despatch_no = ?</text>
 		</statement>
 		<?JDBInterface ?>
 		<statement>
@@ -2387,7 +2391,62 @@
 		<statement>
 			<id>JDBWasteReportingGroup.renameReportingGroup</id>
 			<text>update {schema}APP_WASTE_REPORTING_GROUP set reporting_group=? where reporting_group=?</text>
-		</statement>			
-						
+		</statement>	
+				
+		<?JDBEquipmentType?>		
+		<statement>
+			<id>JDBEquipmentType.create</id>
+			<text>insert into {schema}APP_EQUIPMENT_TYPE (equipment_type,description,weight_kg,enabled) values (?,?,?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBEquipmentType.delete</id>
+			<text>delete from {schema}APP_EQUIPMENT_TYPE where equipment_type = ?</text>
+		</statement>
+		<statement>
+			<id>JDBEquipmentType.update</id>
+			<text>update {schema}APP_EQUIPMENT_TYPE set description = ?,weight_kg=?,enabled=? where equipment_type = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBEquipmentType.isValidEquipmentType</id>
+			<text>select * from {schema}APP_EQUIPMENT_TYPE where equipment_type = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBEquipmentType.getProperties</id>
+			<text>select * from {schema}APP_EQUIPMENT_TYPE where equipment_type = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBEquipmentType.getEquipmentTypes</id>
+			<text>select * from {schema}APP_EQUIPMENT_TYPE order by equipment_type</text>
+		</statement>	
+		
+		<?JDBDespatchEquipmentType?>		
+		<statement>
+			<id>JDBDespatchEquipmentType.create</id>
+			<text>insert into {schema}APP_DESPATCH_EQUIPMENT_TYPE (despatch_no,equipment_type,quantity) values (?,?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBDespatchEquipmentType.delete</id>
+			<text>delete from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ? and equipment_type = ?</text>
+		</statement>
+		<statement>
+			<id>JDBDespatchEquipmentType.deleteAll</id>
+			<text>delete from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ?</text>
+		</statement>		
+		<statement>
+			<id>JDBDespatchEquipmentType.update</id>
+			<text>update {schema}APP_DESPATCH_EQUIPMENT_TYPE set quantity = ? where despatch_no = ? and equipment_type = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBDespatchEquipmentType.isValidEquipmentType</id>
+			<text>select * from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ? and equipment_type = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBDespatchEquipmentType.getProperties</id>
+			<text>select * from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ? and equipment_type = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBDespatchEquipmentType.getEquipmentTypes</id>
+			<text>select * from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ? order by despatch_no,equipment_type</text>
+		</statement>										
 	</jdbcDriver>
 </SQL>

@@ -38,6 +38,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
 import com.commander4j.db.JDBDespatch;
+import com.commander4j.db.JDBDespatchEquipmentTypes;
 import com.commander4j.db.JDBEquipmentList;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceLog;
@@ -103,6 +104,7 @@ public class OutgoingEquipmentTracking
 		String device = inter.getDevice();
 
 		JDBDespatch desp = new JDBDespatch(getHostID(), getSessionID());
+		JDBDespatchEquipmentTypes despequip = new JDBDespatchEquipmentTypes(getHostID(), getSessionID());
 		desp.setTransactionRef(transactionRef);
 
 		Boolean suppressMessage = false;
@@ -221,8 +223,43 @@ public class OutgoingEquipmentTracking
 					equipmentTracking.appendChild(contents);
 
 					LinkedList<JDBEquipmentList> equipList = new LinkedList<JDBEquipmentList>();
+					LinkedList<JDBEquipmentList> equipListEmpty = new LinkedList<JDBEquipmentList>();
+					
+					//Get list of regular equipment assigned to pallets with product on them
 					equipList = desp.getEquipment();
+					
+					//Get a list of emply equipment (no product just pallets)
+					despequip.setDespatchNo(desp.getDespatchNo());
+					equipListEmpty = despequip.getEquipment() ;
+					
+					//Loop through the empty pallet list
+					for (int x = 0;x < equipListEmpty.size();x++)
+					{
+						String findType = equipListEmpty.get(x).getEquipmentID();
+						int countType  = equipListEmpty.get(x).getCount();
+						
+						boolean foundType = false;
+						
+						//Check if empty pallet type is present in the regular (full pallet type list)
+						
+						for (int y = 0; y < equipList.size(); y++)
+						{
+							if (equipList.get(y).getEquipmentID().equals(findType))
+							{
+								//If in both lists add the quantity of empty pallets into the quantity for normal pallets
+								foundType = true;
+								equipList.get(y).setCount(equipList.get(y).getCount()+countType);
+							}
+						}
+						
+						if (foundType==false)
+						{
+							//if Empty pallet type does not exist in regular pallet type list then add the empty pallet type into the regular list.
+							equipList.add(equipListEmpty.get(x));
+						}
+					}
 
+					//Write the pallet types and quantities to the xml file
 					for (int x = 0; x < equipList.size(); x++)
 					{
 						Element equipment = (Element) document.createElement("Equipment");

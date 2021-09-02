@@ -306,7 +306,13 @@ public class JLaunchMenu
 			final JDialogModuleAlternative u;
 			u = new JDialogModuleAlternative(Common.mainForm, strParam);
 			displayDialog(u, optionName);
-
+		}
+		
+		if (optionName.equals("FRM_ADMIN_DESPATCH_EQUIPMENT"))
+		{
+			final JDialogDespatchEquipment u;
+			u = new JDialogDespatchEquipment(Common.mainForm,strParam);
+			displayDialog(u,optionName);
 		}
 
 		if (optionName.equals("FRM_ADMIN_DATA_IDS_EDIT"))
@@ -1128,6 +1134,19 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
+		
+		if (optionName.equals("FRM_ADMIN_EQUIPMENT_TYPE"))
+		{
+			final JInternalFrameEquipmentAdmin u;
+			if (isLoaded(JInternalFrameEquipmentAdmin.class))
+				setVisible(JInternalFrameEquipmentAdmin.class);
+			else
+			{
+				u = new JInternalFrameEquipmentAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
 
 		if (optionName.equals("FRM_WASTE_LOCATION_REPORTING"))
 		{
@@ -1666,6 +1685,21 @@ public class JLaunchMenu
 			else
 			{
 				u = new JInternalFrameWasteContainerProperties(StrParam);
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_EQUIPMENT_TYPE_EDIT"))
+		{
+			final JInternalFrameEquipmentProperties u;
+			if (isLoaded(JInternalFrameEquipmentProperties.class))
+			{
+				((JInternalFrameEquipmentProperties) isLoadedInstance(JInternalFrameEquipmentProperties.class)).setEquipmentType(StrParam);
+				setVisible(JInternalFrameEquipmentProperties.class);
+			}
+			else
+			{
+				u = new JInternalFrameEquipmentProperties(StrParam);
 				displayForm(u, optionName);
 			}
 		}

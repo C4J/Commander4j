@@ -846,7 +846,7 @@ public class JDBUser
 
 	public String getPassword()
 	{
-		return dbPasswordCurrent;
+		return JUtility.replaceNullStringwithBlank(dbPasswordCurrent);
 	}
 
 	public String getLoginPassword()
@@ -869,11 +869,12 @@ public class JDBUser
 
 			JCipher advancedEncryptionStandard = new JCipher(Common.encryptionKey);
 
-			result = advancedEncryptionStandard.decode(dbPasswordCurrent);
+			result = advancedEncryptionStandard.decode(getPassword());
 		}
 		else
 		{
-			result = dbPasswordCurrent;
+
+			result = getPassword();
 		}
 
 		return result;
@@ -1980,10 +1981,11 @@ public class JDBUser
 
 	public void setPassword(String Password)
 	{
-		if (Password == null)
-		{
-			Password = "*";
-		}
+		Password = JUtility.replaceNullStringwithBlank(Password);
+		
+		Password = Password.replaceAll("\\r", "");
+		Password = Password.replaceAll("\\n", "");
+		
 		if (Password.equals(""))
 		{
 			Password = "*";

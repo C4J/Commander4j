@@ -53,6 +53,7 @@ import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBCustomer;
 import com.commander4j.db.JDBDespatch;
+import com.commander4j.db.JDBEquipmentType;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBLocation;
 import com.commander4j.db.JDBMaterial;
@@ -136,6 +137,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 	private JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 	private JDBDespatch despatch = new JDBDespatch(Common.selectedHostID, Common.sessionID);
+	private JDBEquipmentType equipment = new JDBEquipmentType(Common.selectedHostID, Common.sessionID);
 	private JDBCustomer customer = new JDBCustomer(Common.selectedHostID, Common.sessionID);
 	private JDBLocation location = new JDBLocation(Common.selectedHostID, Common.sessionID);
 	private JDBMaterialBatch materialBatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
@@ -155,6 +157,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 	private JTextField4j textFieldCustomer;
 	private boolean initialising = true;
 	private JButton4j buttonRefreshMaterialData;
+	private JTextField4j jTextFieldEquipment = new JTextField4j(15);
 
 	private void enableOrdisableFields(JComponent field) {
 		if (field == null) {
@@ -169,6 +172,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 			checkBoxConfirmed.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_CONFIRMED"));
 			textFieldDespatchNo.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DESPATCH"));
 			textFieldCustomer.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER"));
+			jTextFieldEquipment.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_EQUIPMENT"));
 			jButtonSave.setEnabled(true);
 			jButtonUndo.setEnabled(true);
 			enableSave();
@@ -193,6 +197,8 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 				textFieldDespatchNo.setEnabled(false);
 			if (field != textFieldCustomer)
 				textFieldCustomer.setEnabled(false);
+			if (field != jTextFieldEquipment)
+				jTextFieldEquipment.setEnabled(false);
 			field.setEnabled(true);
 			enableSave();
 		}
@@ -313,6 +319,22 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 			}
 		}
 	}
+	
+	private void equipmentChanged() {
+		if (initialising == false) {
+			jStatusText.setText("");
+			String equipmentType = JUtility.replaceNullStringwithBlank(jTextFieldEquipment.getText());
+			if (equipmentType.equals("") == false) {
+				if (equipment.getEquipmentTypeProperties(equipmentType) == true) {
+					enableOrdisableFields(null);
+				} else {
+					enableOrdisableFields(jTextFieldEquipment);
+					jButtonSave.setEnabled(false);
+					jStatusText.setText(equipment.getErrorMessage());
+				}
+			}
+		}
+	}
 
 	private void customerIDChanged() {
 		if (initialising == false) {
@@ -409,7 +431,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 			public void run() {
 				jTextFieldProcessOrder.requestFocus();
 				jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
-
+				
 				initialising = false;
 
 			}
@@ -451,6 +473,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 
 		pallet.setQuantity(jFormattedTextFieldQuantity.getQuantity());
 		pallet.setDespatchNo(textFieldDespatchNo.getText());
+		pallet.setEquipmentType(jTextFieldEquipment.getText());
 		pallet.setCustomerID(textFieldCustomer.getText());
 		Date exp = expiryDate.getDate();
 		pallet.setBatchExpiry(JUtility.getTimestampFromDate(exp));
@@ -562,6 +585,8 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 			getMaterialUoms(pallet.getMaterial());
 			paluom.getInternalUomProperties(pallet.getUom());
 			textFieldDespatchNo.setText(pallet.getDespatchNo());
+			jTextFieldEquipment.setText(pallet.getEquipmentType());
+			
 			jComboBoxUOM.setSelectedItem(paluom);
 			jTextFieldLayers.setText(String.valueOf(pallet.getLayersOnPallet()));
 
@@ -577,7 +602,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 	private void initGUI() {
 		try {
 			this.setPreferredSize(new java.awt.Dimension(471, 531));
-			this.setBounds(0, 0, 476, 598);
+			this.setBounds(0, 0, 476, 630);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -600,7 +625,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jButtonSave.setEnabled(false);
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
-					jButtonSave.setBounds(3, 502, 111, 32);
+					jButtonSave.setBounds(3, 533, 111, 32);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							save();
@@ -611,14 +636,14 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(229, 502, 111, 32);
+					jButtonHelp.setBounds(229, 533, 111, 32);
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setBounds(342, 502, 111, 32);
+					jButtonCancel.setBounds(342, 533, 111, 32);
 					jButtonCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -1008,7 +1033,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jStatusText);
 					jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-					jStatusText.setBounds(0, 540, 466, 21);
+					jStatusText.setBounds(0, 571, 466, 21);
 				}
 				{
 					jButton1 = new JButton4j(Common.icon_lookup_16x16);
@@ -1042,7 +1067,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					});
 					jButtonUndo.setMnemonic(KeyEvent.VK_U);
 					jButtonUndo.setText(lang.get("btn_Undo"));
-					jButtonUndo.setBounds(116, 502, 111, 32);
+					jButtonUndo.setBounds(116, 533, 111, 32);
 					jDesktopPane1.add(jButtonUndo);
 				}
 
@@ -1050,7 +1075,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jLabelProductionDate_1 = new JLabel4j_std();
 					jLabelProductionDate_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabelProductionDate_1.setText(lang.get("lbl_Confirmed"));
-					jLabelProductionDate_1.setBounds(7, 470, 133, 24);
+					jLabelProductionDate_1.setBounds(7, 493, 133, 24);
 					jDesktopPane1.add(jLabelProductionDate_1);
 				}
 
@@ -1064,7 +1089,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 						}
 					});
 					checkBoxConfirmed.setText("");
-					checkBoxConfirmed.setBounds(143, 470, 32, 24);
+					checkBoxConfirmed.setBounds(147, 493, 32, 24);
 					jDesktopPane1.add(checkBoxConfirmed);
 				}
 				{
@@ -1122,6 +1147,37 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					buttonRefreshMaterialData.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
 					jDesktopPane1.add(buttonRefreshMaterialData);
 				}
+				
+				JLabel4j_std jLabel_Equipment = new JLabel4j_std();
+				jLabel_Equipment.setHorizontalAlignment(SwingConstants.TRAILING);
+				jLabel_Equipment.setBounds(7, 472, 133, 21);
+				jLabel_Equipment.setText(lang.get("lbl_Material_Equipment_Type"));
+				jDesktopPane1.add(jLabel_Equipment);
+				jTextFieldEquipment.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyReleased(KeyEvent e) {
+						equipmentChanged();
+					}
+				});
+				
+				jTextFieldEquipment.setBounds(147, 472, 126, 21);
+				jTextFieldEquipment.setEnabled(false);
+				jDesktopPane1.add(jTextFieldEquipment);
+				
+				JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
+				jButtonLookupEquipment.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_EQUIPMENT"));
+				jButtonLookupEquipment.setBounds(273, 472, 21, 21);
+				jButtonLookupEquipment.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.dlgCriteriaDefault = "Y";
+						if (JLaunchLookup.equipmentType()) {
+							jTextFieldEquipment.setText(JLaunchLookup.dlgResult);
+							equipmentChanged();
+						}
+					}
+				});
+				jDesktopPane1.add(jButtonLookupEquipment);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

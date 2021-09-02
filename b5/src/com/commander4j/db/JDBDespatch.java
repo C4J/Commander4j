@@ -77,6 +77,7 @@ public class JDBDespatch
 	private String dbJourneyRef;
 	private String dbJourneyRefOLD;
 	private int dbTotalPallets;
+	private int dbTotalEquipment;
 	private String dbErrorMessage;
 	private Long dbTransactionRef;
 	private OutgoingDespatchConfirmation odc;
@@ -118,7 +119,7 @@ public class JDBDespatch
 		allowDespatchToSelf = Boolean.valueOf(ctrl.getKeyValueWithDefault("DESPATCH_TO_SELF", "false", "Allow despatch to source location"));
 	}
 
-	public JDBDespatch(String host, String session, String despatchNo, Timestamp despatchDate, String locationIdFrom, String locationIdTo, String status, int noofpallets, String trailer, String haulier, String loadNo, String userID, String journeyRef)
+	public JDBDespatch(String host, String session, String despatchNo, Timestamp despatchDate, String locationIdFrom, String locationIdTo, String status, int noofpallets, String trailer, String haulier, String loadNo, String userID, String journeyRef,int noofEquip)
 	{
 		setHostID(host);
 		setSessionID(session);
@@ -133,6 +134,7 @@ public class JDBDespatch
 		setLocationIDTo(JUtility.replaceNullStringwithBlank(locationIdTo));
 		setStatus(JUtility.replaceNullStringwithBlank(status));
 		setTotalPallets(noofpallets);
+		setTotalEquipment(noofEquip);
 		setTrailer(JUtility.replaceNullStringwithBlank(trailer));
 		setHaulier(JUtility.replaceNullStringwithBlank(haulier));
 		setLoadNo(JUtility.replaceNullStringwithBlank(loadNo));
@@ -459,7 +461,7 @@ public class JDBDespatch
 			while (rs.next())
 			{
 				result.addLast(new JDBDespatch(getHostID(), getSessionID(), rs.getString("despatch_no"), rs.getTimestamp("despatch_date"), rs.getString("location_id_from"), rs.getString("location_id_to"), rs.getString("status"), rs.getInt("total_pallets"),
-						rs.getString("trailer"), rs.getString("haulier"), rs.getString("load_no"), rs.getString("user_id"), rs.getString("journey_ref")));
+						rs.getString("trailer"), rs.getString("haulier"), rs.getString("load_no"), rs.getString("user_id"), rs.getString("journey_ref"),rs.getInt("total_equipment")));
 			}
 
 			rs.close();
@@ -709,6 +711,7 @@ public class JDBDespatch
 		LinkedList<String> assignedList = new LinkedList<String>();
 
 		JDBPallet pal = new JDBPallet(getHostID(), getSessionID());
+		JDBDespatchEquipmentTypes deq = new JDBDespatchEquipmentTypes(getHostID(), getSessionID());
 
 		if (isValid(false) == true)
 		{
@@ -750,6 +753,9 @@ public class JDBDespatch
 					}
 				}
 
+				deq.setDespatchNo(getDespatchNo());
+				deq.deleteAll();
+				
 				result = true;
 			}
 			catch (SQLException e)
@@ -879,7 +885,7 @@ public class JDBDespatch
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBDespatch(getHostID(), getSessionID(), "despatch_no", null, "location_id_from", "location_id_to", "status", 0, "trailer", "haulier", "load_no", "user_id", "journey_ref"));
+			result.addElement(new JDBDespatch(getHostID(), getSessionID(), "despatch_no", null, "location_id_from", "location_id_to", "status", 0, "trailer", "haulier", "load_no", "user_id", "journey_ref",0));
 		}
 		else
 		{
@@ -890,7 +896,7 @@ public class JDBDespatch
 				while (rs.next())
 				{
 					result.addElement(new JDBDespatch(getHostID(), getSessionID(), rs.getString("despatch_no"), rs.getTimestamp("despatch_date"), rs.getString("location_id_from"), rs.getString("location_id_to"), rs.getString("status"),
-							rs.getInt("total_pallets"), rs.getString("trailer"), rs.getString("haulier"), rs.getString("load_no"), rs.getString("user_id"), rs.getString("journey_ref")));
+							rs.getInt("total_pallets"), rs.getString("trailer"), rs.getString("haulier"), rs.getString("load_no"), rs.getString("user_id"), rs.getString("journey_ref"),rs.getInt("total_equipment")));
 				}
 
 				rs.close();
@@ -1213,6 +1219,12 @@ public class JDBDespatch
 	{
 		return dbTotalPallets;
 	}
+	
+	public int getTotalEquipment()
+	{
+		return dbTotalEquipment;
+	}
+
 
 	public String getTrailer()
 	{
@@ -1521,6 +1533,11 @@ public class JDBDespatch
 		dbTotalPallets = total_pallets;
 	}
 
+	public void setTotalEquipment(int total_equipment)
+	{
+		dbTotalEquipment = total_equipment;
+	}
+	
 	public void setTrailer(String trailer)
 	{
 		dbTrailer = trailer.trim();
@@ -1646,4 +1663,42 @@ public class JDBDespatch
 
 		return result;
 	}
+	
+	public boolean updateTotalEquipment(String despatchNO, int totequip)
+	{
+		boolean result = false;
+
+		setDespatchNo(despatchNO);
+		setTotalEquipment(totequip);
+
+		logger.debug("updateTotalEquipment [" + getDespatchNo() + "] [" + totequip + "]");
+
+		if (isValid(false) == true)
+		{
+			try
+			{
+				PreparedStatement stmtupdate;
+				stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBDespatch.updateTotalEquipment"));
+
+				stmtupdate.setInt(1, getTotalEquipment());
+				stmtupdate.setString(2, getDespatchNo());
+
+				stmtupdate.execute();
+
+				stmtupdate.clearParameters();
+				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+				stmtupdate.close();
+				result = true;
+			}
+			catch (SQLException e)
+			{
+				setErrorMessage(e.getMessage());
+			}
+		}
+
+		return result;
+	}
+	
+	
+	
 }

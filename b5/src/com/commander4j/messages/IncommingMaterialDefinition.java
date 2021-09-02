@@ -32,6 +32,7 @@ import java.math.BigDecimal;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBCustomer;
 import com.commander4j.db.JDBDataIDs;
+import com.commander4j.db.JDBEquipmentType;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBLocation;
 import com.commander4j.db.JDBMaterial;
@@ -144,6 +145,7 @@ public class IncommingMaterialDefinition
 		JDBMaterialLocation matlocn = new JDBMaterialLocation(getHostID(), getSessionID());
 		JDBLocation locn = new JDBLocation(getHostID(), getSessionID());
 		JDBMaterialUom matuom = new JDBMaterialUom(getHostID(), getSessionID());
+		JDBEquipmentType eqtype = new JDBEquipmentType(getHostID(), getSessionID());
 		JDBUom uomdb = new JDBUom(getHostID(), getSessionID());
 		JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
@@ -177,6 +179,20 @@ public class IncommingMaterialDefinition
 
 		shelf_life_uom = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/shelf_life_uom").trim());
 		equipment_type = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/equipment_Type").trim());
+		
+		if (equipment_type.trim().equals("")==false)
+		{
+			if (eqtype.getEquipmentTypeProperties(equipment_type)==false)
+			{
+				if (eqtype.create(equipment_type))
+				{
+					eqtype.setDescription("Auto created");
+					eqtype.setEnabled(true);
+					eqtype.update();
+				}
+			}
+		}
+		
 		shelf_life = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/shelf_life").trim());
 		shelf_life_rule = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/shelf_life_rule").trim());
 		gross_weight = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/gross_weight").trim());

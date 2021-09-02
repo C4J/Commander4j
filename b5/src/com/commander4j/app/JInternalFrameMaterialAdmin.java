@@ -58,6 +58,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.commander4j.db.JDBEquipmentType;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBMaterialType;
@@ -162,6 +163,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
 	private JSpinner jSpinnerLimit = new JSpinner();
 	private JCheckBox4j checkBox4j_Enabled = new JCheckBox4j();
+	private JTextField4j textFieldEquipmentType;
 
 	private void copyToClipboard(String fieldname)
 	{
@@ -218,6 +220,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 
 		slrr.getShelfLifeRuleProperties("");
 		jComboBoxRoundingRule.getModel().setSelectedItem(slrr);
+		textFieldEquipmentType.setText("");
 
 		buildSQL();
 		populateList();
@@ -427,6 +430,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 		query.addParamtoSQL("shelf_life_uom=", ((JShelfLifeUom) jComboBoxShelfLifeUOM.getSelectedItem()).getUom());
 		query.addParamtoSQL("shelf_life_rule=", ((JShelfLifeRoundingRule) jComboBoxRoundingRule.getSelectedItem()).getRule());
 		query.addParamtoSQL("default_batch_status=", ((String) jComboBoxDefaultBatchStatus.getSelectedItem()).toString());
+		query.addParamtoSQL("equipment_type=", textFieldEquipmentType.getText());
 
 		if (checkBox4j_Enabled.isSelected())
 		{
@@ -969,17 +973,17 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(125, 11, 125, 22);
+					jTextFieldMaterial.setBounds(113, 11, 125, 22);
 				}
 				{
 					JLabel4j_std lblInspectionID = new JLabel4j_std(lang.get("lbl_Inspection_ID"));
-					lblInspectionID.setBounds(34, 110, 83, 21);
+					lblInspectionID.setBounds(0, 110, 105, 21);
 					jDesktopPane1.add(lblInspectionID);
 					lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					textFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
-					textFieldInspectionID.setBounds(126, 110, 117, 22);
+					textFieldInspectionID.setBounds(114, 110, 117, 22);
 					jDesktopPane1.add(textFieldInspectionID);
 					textFieldInspectionID.setColumns(10);
 				}
@@ -988,40 +992,66 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jComboBoxMaterialType = new JComboBox4j<JDBMaterialType>();
 					jDesktopPane1.add(jComboBoxMaterialType);
 					jComboBoxMaterialType.setModel(jComboBox1Model);
-					jComboBoxMaterialType.setBounds(382, 11, 248, 21);
+					jComboBoxMaterialType.setBounds(372, 11, 248, 21);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBMaterial.field_description);
 					jDesktopPane1.add(jTextFieldDescription);
-					jTextFieldDescription.setBounds(126, 44, 506, 22);
+					jTextFieldDescription.setBounds(114, 44, 264, 22);
+				}
+				{
+					JLabel4j_std jLabel_Equipment = new JLabel4j_std();
+					jLabel_Equipment.setHorizontalAlignment(SwingConstants.TRAILING);
+					jLabel_Equipment.setBounds(405, 44, 135, 21);
+					jLabel_Equipment.setText(lang.get("lbl_Material_Equipment_Type"));
+					jDesktopPane1.add(jLabel_Equipment);
+				}
+				{
+					textFieldEquipmentType = new JTextField4j(JDBEquipmentType.field_EquipmentType);
+					textFieldEquipmentType.setBounds(549, 44, 91, 22);
+					jDesktopPane1.add(textFieldEquipmentType);
+				}
+				{
+					JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
+					jButtonLookupEquipment.setBounds(640, 44, 21, 21);
+					jButtonLookupEquipment.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "Y";
+							if (JLaunchLookup.equipmentType()) {
+								textFieldEquipmentType.setText(JLaunchLookup.dlgResult);
+							}
+						}
+					});
+					jDesktopPane1.add(jButtonLookupEquipment);
 				}
 				{
 					jLabel1 = new JLabel4j_std();
 					jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Material"));
-					jLabel1.setBounds(12, 11, 105, 21);
+					jLabel1.setBounds(0, 11, 105, 21);
 				}
 				{
 					jLabel2 = new JLabel4j_std();
 					jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Material_Type"));
-					jLabel2.setBounds(260, 11, 115, 21);
+					jLabel2.setBounds(250, 11, 115, 21);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Description"));
-					jLabel3.setBounds(12, 44, 106, 21);
+					jLabel3.setBounds(0, 44, 105, 21);
 				}
 				{
 					ComboBoxModel<JDBUom> jComboBox2Model = new DefaultComboBoxModel<JDBUom>(uomList);
 					jComboBoxBaseUOM = new JComboBox4j<JDBUom>();
 					jDesktopPane1.add(jComboBoxBaseUOM);
 					jComboBoxBaseUOM.setModel(jComboBox2Model);
-					jComboBoxBaseUOM.setBounds(126, 77, 154, 21);
+					jComboBoxBaseUOM.setBounds(114, 77, 154, 21);
 					jComboBoxBaseUOM.setMaximumRowCount(12);
 				}
 				{
@@ -1029,7 +1059,7 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
 					jDesktopPane1.add(jLabel4);
 					jLabel4.setText(lang.get("lbl_Base_UOM"));
-					jLabel4.setBounds(12, 77, 106, 21);
+					jLabel4.setBounds(0, 77, 105, 21);
 				}
 				{
 					jButtonAdd = new JButton4j(Common.icon_add_16x16);
@@ -1087,13 +1117,13 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jLabel7 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel7);
 					jLabel7.setText(lang.get("lbl_Material_Shelf_Life"));
-					jLabel7.setBounds(642, 11, 162, 21);
+					jLabel7.setBounds(665, 11, 162, 21);
 					jLabel7.setHorizontalAlignment(SwingConstants.RIGHT);
 				}
 				{
 					jTextFieldShelfLife = new JTextField4j();
 					jDesktopPane1.add(jTextFieldShelfLife);
-					jTextFieldShelfLife.setBounds(812, 11, 125, 22);
+					jTextFieldShelfLife.setBounds(835, 11, 125, 22);
 				}
 				{
 
@@ -1106,14 +1136,14 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jComboBoxShelfLifeUOM = new JComboBox4j<JShelfLifeUom>();
 					jDesktopPane1.add(jComboBoxShelfLifeUOM);
 					jComboBoxShelfLifeUOM.setModel(jComboBox5Model);
-					jComboBoxShelfLifeUOM.setBounds(813, 44, 125, 21);
+					jComboBoxShelfLifeUOM.setBounds(836, 44, 125, 21);
 					jComboBoxShelfLifeUOM.setMaximumRowCount(12);
 				}
 				{
 					jLabel8 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel8);
 					jLabel8.setText(lang.get("lbl_Material_Shelf_Life_UOM"));
-					jLabel8.setBounds(642, 44, 162, 21);
+					jLabel8.setBounds(665, 44, 162, 21);
 					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -1156,13 +1186,13 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jComboBoxRoundingRule = new JComboBox4j<JShelfLifeRoundingRule>();
 					jDesktopPane1.add(jComboBoxRoundingRule);
 					jComboBoxRoundingRule.setModel(jComboBoxRoundingRuleModel);
-					jComboBoxRoundingRule.setBounds(814, 77, 125, 21);
+					jComboBoxRoundingRule.setBounds(837, 77, 125, 21);
 				}
 				{
 					jLabel9 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel9);
 					jLabel9.setText(lang.get("lbl_Material_Shelf_Life_Rounding_Rule"));
-					jLabel9.setBounds(642, 78, 162, 21);
+					jLabel9.setBounds(634, 78, 193, 21);
 					jLabel9.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -1170,14 +1200,14 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Sort_By"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(277, 110, 98, 21);
+					jLabel10.setBounds(286, 110, 146, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(Common.materialSortBy);
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
 					jComboBoxSortBy.setModel(jComboBoxSortByModel);
-					jComboBoxSortBy.setBounds(382, 110, 168, 21);
+					jComboBoxSortBy.setBounds(447, 110, 168, 21);
 					jComboBoxSortBy.setMaximumRowCount(Common.materialSortBy.length);
 				}
 				{
@@ -1185,19 +1215,19 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel12);
 					jLabel12.setText(lang.get("lbl_Material_Default_Batch_Status"));
 					jLabel12.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel12.setBounds(372, 77, 126, 21);
+					jLabel12.setBounds(286, 78, 146, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxDefaultBatchStatusModel = new DefaultComboBoxModel<String>(Common.batchStatusIncBlank);
 					jComboBoxDefaultBatchStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxDefaultBatchStatus);
 					jComboBoxDefaultBatchStatus.setModel(jComboBoxDefaultBatchStatusModel);
-					jComboBoxDefaultBatchStatus.setBounds(504, 77, 126, 21);
+					jComboBoxDefaultBatchStatus.setBounds(447, 78, 168, 21);
 				}
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(551, 110, 21, 21);
+					jToggleButtonSequence.setBounds(616, 110, 21, 21);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1261,37 +1291,37 @@ public class JInternalFrameMaterialAdmin extends JInternalFrame
 							}
 						}
 					});
-					btnLookupInspection.setBounds(242, 110, 21, 21);
+					btnLookupInspection.setBounds(230, 110, 21, 21);
 					jDesktopPane1.add(btnLookupInspection);
 				}
 				
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Limit"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(752, 110, 84, 21);
+				label4j_std.setBounds(775, 110, 84, 21);
 				jDesktopPane1.add(label4j_std);
 
 				jCheckBoxLimit.setSelected(true);
 				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(840, 110, 21, 21);
+				jCheckBoxLimit.setBounds(863, 110, 21, 21);
 				jDesktopPane1.add(jCheckBoxLimit);
 
 				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
 				ne.getTextField().setFont(Common.font_std);
 				jSpinnerLimit.setEditor(ne);
 				jSpinnerLimit.setValue(1000);
-				jSpinnerLimit.setBounds(869, 110, 68, 21);
+				jSpinnerLimit.setBounds(892, 110, 68, 21);
 				jDesktopPane1.add(jSpinnerLimit);
 				
 				JLabel4j_std label4j_Enabled = new JLabel4j_std();
 				label4j_Enabled.setText(lang.get("lbl_Enabled"));
 				label4j_Enabled.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_Enabled.setBounds(590, 110, 84, 21);
+				label4j_Enabled.setBounds(644, 110, 84, 21);
 				jDesktopPane1.add(label4j_Enabled);
 				
 				checkBox4j_Enabled.setSelected(true);
 				checkBox4j_Enabled.setBackground(Color.WHITE);
-				checkBox4j_Enabled.setBounds(679, 110, 21, 21);
+				checkBox4j_Enabled.setBounds(733, 110, 21, 21);
 				jDesktopPane1.add(checkBox4j_Enabled);
 
 			}

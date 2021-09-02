@@ -55,7 +55,8 @@ public class JDBPalletTableModel extends AbstractTableModel
 	public static final int Confirmed_Col = 10;
 	public static final int Despatch_Col = 11;
 	public static final int MHN_Number_Col = 12;
-	private String[] mcolNames = { "SSCC", "Material", "Batch", "Process Order", "Quantity", "UOM", "Date of Manufacture", "Status", "Location","Date Created", "Conf", "Despatch","MHN Number" };
+	public static final int Equipment_Type_Col = 13;
+	private String[] mcolNames = { "SSCC", "Material", "Batch", "Process Order", "Quantity", "UOM", "Date of Manufacture", "Status", "Location","Date Created", "Conf", "Despatch","MHN Number","Equipment" };
 	private ResultSet mResultSet;
 	
 	private int prowCount = -1;
@@ -180,7 +181,9 @@ public class JDBPalletTableModel extends AbstractTableModel
 			case Despatch_Col:
 				return cache.get(row).getDespatchNo();
 			case MHN_Number_Col:
-				return cache.get(row).getMHNNumber();				
+				return cache.get(row).getMHNNumber();	
+			case Equipment_Type_Col:
+				return cache.get(row).getEquipmentType();
 			}
 
 		}
