@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Despatch2_Footer_Equip" pageWidth="240" pageHeight="99" columnWidth="240" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="69376984-3c86-49a0-b540-3d0349e3a887">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Despatch2_Footer_Equip" pageWidth="240" pageHeight="99" whenNoDataType="NoDataSection" columnWidth="240" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="69376984-3c86-49a0-b540-3d0349e3a887">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="4.0"/>
@@ -63,11 +63,17 @@ WHERE
 		<property name="com.jaspersoft.studio.field.name" value="TOTAL_WEIGHT"/>
 		<property name="com.jaspersoft.studio.field.label" value="TOTAL_WEIGHT"/>
 	</field>
-	<variable name="Variable_Footer_Equip_KG" class="java.math.BigDecimal" calculation="Sum">
+	<variable name="variable_Total_KG" class="java.math.BigDecimal" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTAL_WEIGHT}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
 	</variable>
-	<variable name="Variable_Footer_Equip_Quantity" class="java.lang.Integer" calculation="Sum">
+	<variable name="variable_Total_QTY" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{QUANTITY}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="Variable_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_WEIGHT}]]></variableExpression>
+		<initialValueExpression><![CDATA[BigDecimal.ZERO]]></initialValueExpression>
 	</variable>
 	<background>
 		<band/>
@@ -220,7 +226,7 @@ WHERE
 				<textElement textAlignment="Right">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{Variable_Footer_Equip_KG}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{variable_Total_KG}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="222" y="1" width="14" height="12" uuid="bab8a83f-6a7f-4e65-8ba7-e80ec799d23e"/>
@@ -236,7 +242,7 @@ WHERE
 				<textElement textAlignment="Right">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{Variable_Footer_Equip_Quantity}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{variable_Total_QTY}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement key="line" x="177" y="0" width="42" height="1" forecolor="#000000" uuid="f20e0ec1-cba3-4c3a-abb9-54437d90fea8"/>
