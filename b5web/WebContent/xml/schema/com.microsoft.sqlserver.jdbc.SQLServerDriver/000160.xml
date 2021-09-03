@@ -552,5 +552,38 @@
     <statement>
    		 INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, ENABLED,WEIGHT_KG) SELECT DISTINCT(EQUIPMENT_TYPE),'Auto created' as DESCRIPTION,'Y' as ENABLED,30 AS WEIGHT_KG FROM APP_MATERIAL WHERE EQUIPMENT_TYPE > '' AND EQUIPMENT_TYPE NOT IN (SELECT EQUIPMENT_TYPE FROM APP_EQUIPMENT_TYPE)
     </statement>
+    
+    <statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'EN', 'Update Pallets', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'DE', 'Paletten aktualisieren', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'FR', 'Mettre à jour les palettes', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'SP', 'Actualizar paletas', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'IT', 'Aggiorna pallet', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'NL', 'Pallets bijwerken', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'PL', 'Aktualizuj palety', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'HU', 'Raklapok frissítése', 'U')
+	</statement>
+    
 
 </DDL>

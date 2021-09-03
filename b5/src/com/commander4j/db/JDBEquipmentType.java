@@ -426,7 +426,7 @@ public class JDBEquipmentType
 				result = true;
 			} else
 			{
-				setErrorMessage("Waste Container ID " + getEquipmentType() + " not found.");
+				setErrorMessage("Equipment Type " + getEquipmentType() + " not valid.");
 			}
 			stmt.close();
 			rs.close();
@@ -534,6 +534,37 @@ public class JDBEquipmentType
 				result = true;
 			}
 		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+	
+	public boolean updatePallets()
+	{
+		boolean result = false;
+		setErrorMessage("");
+
+		try
+		{
+
+			PreparedStatement stmtupdate1;
+			stmtupdate1 = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBEquipmentType.updatePallet"));
+			stmtupdate1.execute();
+			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+			stmtupdate1.close();
+
+			PreparedStatement stmtupdate2;
+			stmtupdate2 = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBEquipmentType.updatePalletHistory"));
+			stmtupdate2.execute();
+			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+			stmtupdate2.close();
+
+			result = true;
+
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}

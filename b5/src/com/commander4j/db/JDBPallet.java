@@ -138,6 +138,7 @@ public class JDBPallet
 	public void setEquipmentType(String equip)
 	{
 		dbEquipmentType = JUtility.replaceNullStringwithBlank(equip);
+		dbEquipmentType=dbEquipmentType.toUpperCase();
 	}
 
 	public String getEquipmentType()

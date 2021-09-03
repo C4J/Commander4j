@@ -179,9 +179,10 @@ public class IncommingMaterialDefinition
 
 		shelf_life_uom = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/shelf_life_uom").trim());
 		equipment_type = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/equipment_Type").trim());
-		
+
 		if (equipment_type.trim().equals("")==false)
 		{
+			equipment_type=equipment_type.toUpperCase();
 			if (eqtype.getEquipmentTypeProperties(equipment_type)==false)
 			{
 				if (eqtype.create(equipment_type))

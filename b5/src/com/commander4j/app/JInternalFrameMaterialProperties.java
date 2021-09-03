@@ -53,7 +53,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.commander4j.db.JDBControl;
-import com.commander4j.db.JDBEquipmentType;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBListData;
 import com.commander4j.db.JDBMaterial;
@@ -140,7 +139,6 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JDBMaterialType materialtype = new JDBMaterialType(Common.selectedHostID, Common.sessionID);;
 	private JDBUom baseuom = new JDBUom(Common.selectedHostID, Common.sessionID);
 	private JDBUom weightuom = new JDBUom(Common.selectedHostID, Common.sessionID);
-	private JDBEquipmentType equipment = new JDBEquipmentType(Common.selectedHostID, Common.sessionID);
 	private JShelfLifeUom sluom = new JShelfLifeUom();
 	private JShelfLifeRoundingRule slrr = new JShelfLifeRoundingRule();
 	private Vector<JDBUom> uomList = new Vector<JDBUom>();
@@ -161,7 +159,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private Vector<JDBListData> moduleList = new Vector<JDBListData>();
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-    private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
+	private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 
 	private JCheckBox4j checkBoxOverridePackLabel = new JCheckBox4j();
 	private JCheckBox4j checkBoxOverridePalletLabel = new JCheckBox4j();
@@ -176,8 +174,8 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JCheckBox4j checkBox4jMoveAfterMake = new JCheckBox4j();
 	private JTextField4j textField4jMoveAfterMake = new JTextField4j(20);
 	private JButton4j button4jLocationLookup = new JButton4j("");
-	private JButton4j jButtonRemoveProductGroup= new JButton4j(Common.icon_despatch_remove_16x16);
-	private JButton4j jButtonRemoveContainerCode= new JButton4j(Common.icon_despatch_remove_16x16);
+	private JButton4j jButtonRemoveProductGroup = new JButton4j(Common.icon_despatch_remove_16x16);
+	private JButton4j jButtonRemoveContainerCode = new JButton4j(Common.icon_despatch_remove_16x16);
 	private JTextField4j textField4j_Product_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
 	private JTextField4j textField4j_Container_Code = new JTextField4j(JDBWTContainerCode.field_ContainerCode);
 	private JLabel4j_std jStatusText = new JLabel4j_std();
@@ -192,7 +190,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_EDIT"));
-		
+
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -274,17 +272,19 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					comboBoxPalletModuleID.setSelectedIndex(x);
 				}
 			}
-			
+
 			matCustData.setMaterial(lmaterial);
 			matCustData.setCustomerID("SELF");
-			matCustData.setDataID("PRODUCT_GROUP");;
+			matCustData.setDataID("PRODUCT_GROUP");
+			;
 
 			if (matCustData.getMaterialCustomerDataProperties())
 			{
 				textField4j_Product_Group.setText(matCustData.getData());
 			}
-			
-			matCustData.setDataID("CONTAINER_CODE");;
+
+			matCustData.setDataID("CONTAINER_CODE");
+			;
 
 			if (matCustData.getMaterialCustomerDataProperties())
 			{
@@ -869,15 +869,18 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jTextFieldEquipmentType.setBounds(172, 362, 125, 21);
 					jDesktopPane1.add(jTextFieldEquipmentType);
 				}
-				
+
 				{
 					JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
 					jButtonLookupEquipment.setBounds(296, 361, 21, 21);
-					jButtonLookupEquipment.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					jButtonLookupEquipment.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							JLaunchLookup.dlgAutoExec = true;
 							JLaunchLookup.dlgCriteriaDefault = "Y";
-							if (JLaunchLookup.equipmentType()) {
+							if (JLaunchLookup.equipmentType())
+							{
 								jTextFieldEquipmentType.setText(JLaunchLookup.dlgResult);
 								jButtonSave.setEnabled(true);
 							}
@@ -885,7 +888,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					});
 					jDesktopPane1.add(jButtonLookupEquipment);
 				}
-				
+
 				{
 					jTextFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
 					jTextFieldInspectionID.addKeyListener(new KeyAdapter()
@@ -981,45 +984,47 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					btnLookupInspection.setBounds(296, 391, 21, 21);
 					jDesktopPane1.add(btnLookupInspection);
 				}
-				
 
 				textField4j_Product_Group.setEnabled(false);
 				textField4j_Product_Group.setEditable(false);
 				textField4j_Product_Group.setBounds(172, 513, 217, 21);
 				jDesktopPane1.add(textField4j_Product_Group);
-				
+
 				JLabel4j_std label4j_Product_Group = new JLabel4j_std();
 				label4j_Product_Group.setText(lang.get("lbl_Product_Group"));
 				label4j_Product_Group.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_Product_Group.setBounds(7, 513, 159, 21);
 				jDesktopPane1.add(label4j_Product_Group);
-				
+
 				textField4j_Container_Code.setEnabled(false);
 				textField4j_Container_Code.setEditable(false);
 				textField4j_Container_Code.setBounds(172, 542, 109, 21);
 				jDesktopPane1.add(textField4j_Container_Code);
-				
+
 				JLabel4j_std label4j_Container_Code = new JLabel4j_std();
 				label4j_Container_Code.setText(lang.get("lbl_Container_Code"));
 				label4j_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_Container_Code.setBounds(7, 542, 159, 21);
 				jDesktopPane1.add(label4j_Container_Code);
-				
+
 				JButton4j button4j_LookupProductGroup = new JButton4j(Common.icon_lookup_16x16);
-				button4j_LookupProductGroup.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				button4j_LookupProductGroup.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault="";
+						JLaunchLookup.dlgCriteriaDefault = "";
 						if (JLaunchLookup.wtProductGroups())
 						{
-							if (textField4j_Product_Group.getText().equals(JLaunchLookup.dlgResult)==false)
+							if (textField4j_Product_Group.getText().equals(JLaunchLookup.dlgResult) == false)
 							{
 								textField4j_Product_Group.setText(JLaunchLookup.dlgResult);
 								matCustData.setMaterial(lmaterial);
 								matCustData.setCustomerID("SELF");
-								matCustData.setDataID("PRODUCT_GROUP");;
+								matCustData.setDataID("PRODUCT_GROUP");
+								;
 								matCustData.setData(JLaunchLookup.dlgResult);
-								if (matCustData.isValidMaterialCustomerData()==false)
+								if (matCustData.isValidMaterialCustomerData() == false)
 								{
 									matCustData.create();
 								}
@@ -1030,22 +1035,25 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				});
 				button4j_LookupProductGroup.setBounds(389, 513, 21, 21);
 				jDesktopPane1.add(button4j_LookupProductGroup);
-				
+
 				JButton4j button4j_LookupContainerCode = new JButton4j(Common.icon_lookup_16x16);
-				button4j_LookupContainerCode.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				button4j_LookupContainerCode.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault="";
+						JLaunchLookup.dlgCriteriaDefault = "";
 						if (JLaunchLookup.wtContainerCode())
 						{
-							if (textField4j_Container_Code.getText().equals(JLaunchLookup.dlgResult)==false)
+							if (textField4j_Container_Code.getText().equals(JLaunchLookup.dlgResult) == false)
 							{
 								textField4j_Container_Code.setText(JLaunchLookup.dlgResult);
 								matCustData.setMaterial(lmaterial);
 								matCustData.setCustomerID("SELF");
-								matCustData.setDataID("CONTAINER_CODE");;
+								matCustData.setDataID("CONTAINER_CODE");
+								;
 								matCustData.setData(JLaunchLookup.dlgResult);
-								if (matCustData.isValidMaterialCustomerData()==false)
+								if (matCustData.isValidMaterialCustomerData() == false)
 								{
 									matCustData.create();
 								}
@@ -1056,44 +1064,49 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				});
 				button4j_LookupContainerCode.setBounds(281, 542, 21, 21);
 				jDesktopPane1.add(button4j_LookupContainerCode);
-				jButtonRemoveProductGroup.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if (textField4j_Product_Group.getText().equals("")==false)
+				jButtonRemoveProductGroup.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						if (textField4j_Product_Group.getText().equals("") == false)
 						{
 							textField4j_Product_Group.setText("");
 							matCustData.setMaterial(lmaterial);
 							matCustData.setCustomerID("SELF");
-							matCustData.setDataID("PRODUCT_GROUP");;
-							matCustData.delete();;
+							matCustData.setDataID("PRODUCT_GROUP");
+							;
+							matCustData.delete();
+							;
 						}
 					}
 				});
-				
+
 				jButtonRemoveProductGroup.setBounds(411, 513, 21, 21);
 				jDesktopPane1.add(jButtonRemoveProductGroup);
-				jButtonRemoveContainerCode.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if (textField4j_Container_Code.getText().equals("")==false)
+				jButtonRemoveContainerCode.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						if (textField4j_Container_Code.getText().equals("") == false)
 						{
 							textField4j_Container_Code.setText("");
 							matCustData.setMaterial(lmaterial);
 							matCustData.setCustomerID("SELF");
-							matCustData.setDataID("CONTAINER_CODE");;
+							matCustData.setDataID("CONTAINER_CODE");
+							;
 							matCustData.delete();
 						}
 					}
 				});
-				
+
 				jButtonRemoveContainerCode.setBounds(302, 542, 21, 21);
 				jDesktopPane1.add(jButtonRemoveContainerCode);
-				
 
 				jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 				jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 				jStatusText.setBounds(0, 575, 660, 21);
 				jDesktopPane1.add(jStatusText);
 
-				
 				jButtonSave.setEnabled(false);
 			}
 		}
@@ -1124,196 +1137,186 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			comboBoxPalletModuleID.setEnabled(false);
 		}
 	}
-	
+
 	private void save()
 	{
 		boolean result = true;
-		
-		String equipmentType = JUtility.replaceNullStringwithBlank(jTextFieldEquipmentType.getText());
-		if (equipmentType.equals("") == false) {
-			if (equipment.getEquipmentTypeProperties(equipmentType) == true) {
-				jButtonSave.setEnabled(true);
-				jStatusText.setText("");
-				material.setDescription(jTextFieldDescription.getText());
-				material.setMaterialType(((JDBMaterialType) jComboBoxMaterialType.getSelectedItem()).getType());
-				material.setBaseUom(((JDBUom) jComboBoxBaseUOM.getSelectedItem()).getInternalUom());
 
-				material.setShelfLife((Integer) jSpinnerShelfLife.getValue());
-				material.setShelfLifeUom(((JShelfLifeUom) jComboBoxShelfLifeUOM.getSelectedItem()).getUom());
-				material.setShelfLifeRule(((JShelfLifeRoundingRule) jComboBoxRoundingRule.getSelectedItem()).getRule());
+		material.setDescription(jTextFieldDescription.getText());
+		material.setMaterialType(((JDBMaterialType) jComboBoxMaterialType.getSelectedItem()).getType());
+		material.setBaseUom(((JDBUom) jComboBoxBaseUOM.getSelectedItem()).getInternalUom());
 
-				material.setDefaultBatchStatus((String) jComboBoxDefaultBatchStatus.getSelectedItem());
+		material.setShelfLife((Integer) jSpinnerShelfLife.getValue());
+		material.setShelfLifeUom(((JShelfLifeUom) jComboBoxShelfLifeUOM.getSelectedItem()).getUom());
+		material.setShelfLifeRule(((JShelfLifeRoundingRule) jComboBoxRoundingRule.getSelectedItem()).getRule());
 
-				BigDecimal bd = new BigDecimal(0).setScale(3, RoundingMode.HALF_UP);
-				bd = BigDecimal.valueOf(grossweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
-				material.setGrossWeight(bd);
-				bd = BigDecimal.valueOf(netweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
-				material.setNetWeight(bd);
+		material.setDefaultBatchStatus((String) jComboBoxDefaultBatchStatus.getSelectedItem());
 
-				try
-				{
-					material.setWeightUom(((JDBUom) jComboBoxWeightUOM.getSelectedItem()).getInternalUom());
-				}
-				catch (Exception e)
-				{
-					material.setWeightUom("");
-				}
+		BigDecimal bd = new BigDecimal(0).setScale(3, RoundingMode.HALF_UP);
+		bd = BigDecimal.valueOf(grossweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
+		material.setGrossWeight(bd);
+		bd = BigDecimal.valueOf(netweightnumbermodel.getNumber().doubleValue()).setScale(3, RoundingMode.HALF_UP);
+		material.setNetWeight(bd);
 
-				material.setOldMaterial(jTextFieldLegacyCode.getText());
+		try
+		{
+			material.setWeightUom(((JDBUom) jComboBoxWeightUOM.getSelectedItem()).getInternalUom());
+		}
+		catch (Exception e)
+		{
+			material.setWeightUom("");
+		}
 
-				material.setEquipmentType(jTextFieldEquipmentType.getText());
+		material.setOldMaterial(jTextFieldLegacyCode.getText());
 
-				material.setInspectionID(jTextFieldInspectionID.getText());
+		material.setInspectionID(jTextFieldInspectionID.getText());
 
-				if (checkBoxValidateScanPallet.isSelected())
-				{
+		jTextFieldEquipmentType.setText(jTextFieldEquipmentType.getText().toUpperCase());
+		material.setEquipmentType(jTextFieldEquipmentType.getText().toUpperCase());
 
-					material.setValidateScanPallet("Y");
-				}
-				else
-				{
-					material.setValidateScanPallet("N");
+		if (checkBoxValidateScanPallet.isSelected())
+		{
 
-				}
+			material.setValidateScanPallet("Y");
+		}
+		else
+		{
+			material.setValidateScanPallet("N");
 
-				if (checkBoxValidateScanCase.isSelected())
-				{
+		}
 
-					material.setValidateScanCase("Y");
-				}
-				else
-				{
-					material.setValidateScanCase("N");
+		if (checkBoxValidateScanCase.isSelected())
+		{
 
-				}
+			material.setValidateScanCase("Y");
+		}
+		else
+		{
+			material.setValidateScanCase("N");
 
-				if (checkBoxValidateScanEach.isSelected())
-				{
+		}
 
-					material.setValidateScanEach("Y");
-				}
-				else
-				{
-					material.setValidateScanEach("N");
+		if (checkBoxValidateScanEach.isSelected())
+		{
 
-				}
+			material.setValidateScanEach("Y");
+		}
+		else
+		{
+			material.setValidateScanEach("N");
 
-				if (checkBox4j_Enabled.isSelected())
-				{
-					material.setEnabled("Y");
-				}
-				else
-				{
-					material.setEnabled("N");
-				}
+		}
 
-				if (checkBoxOverridePackLabel.isSelected())
-				{
-					if (comboBoxPackModuleID.getSelectedIndex() >= 0)
-					{
-						if (comboBoxPackModuleID.getSelectedItem().toString().equals(""))
-						{
-							material.setOverridePackLabel("N");
-							checkBoxOverridePackLabel.setSelected(false);
-							material.setPackLabelModuleID("");
-						}
-						else
-						{
-							material.setOverridePackLabel("Y");
-							checkBoxOverridePackLabel.setSelected(true);
-							material.setPackLabelModuleID(comboBoxPackModuleID.getSelectedItem().toString());
-						}
-					}
-					else
-					{
-						material.setOverridePackLabel("N");
-						checkBoxOverridePackLabel.setSelected(false);
-						material.setPackLabelModuleID("");
-					}
+		if (checkBox4j_Enabled.isSelected())
+		{
+			material.setEnabled("Y");
+		}
+		else
+		{
+			material.setEnabled("N");
+		}
 
-				}
-				else
+		if (checkBoxOverridePackLabel.isSelected())
+		{
+			if (comboBoxPackModuleID.getSelectedIndex() >= 0)
+			{
+				if (comboBoxPackModuleID.getSelectedItem().toString().equals(""))
 				{
 					material.setOverridePackLabel("N");
+					checkBoxOverridePackLabel.setSelected(false);
 					material.setPackLabelModuleID("");
 				}
-
-				if (checkBox4jMoveAfterMake.isSelected())
-				{
-					if (textField4jMoveAfterMake.getText().toUpperCase().equals(""))
-					{
-						material.setMoveAfterMakeEnabled("N");
-						checkBox4jMoveAfterMake.setSelected(false);
-					}
-					else
-					{
-						material.setMoveAfterMakeEnabled("Y");
-						checkBox4jMoveAfterMake.setSelected(true);
-					}
-					material.setMoveAfterMakeLocationID(textField4jMoveAfterMake.getText().toUpperCase());
-				}
 				else
 				{
-					material.setMoveAfterMakeEnabled("Y");
-					material.setMoveAfterMakeLocationID("");
-					textField4jMoveAfterMake.setText("");
+					material.setOverridePackLabel("Y");
+					checkBoxOverridePackLabel.setSelected(true);
+					material.setPackLabelModuleID(comboBoxPackModuleID.getSelectedItem().toString());
 				}
+			}
+			else
+			{
+				material.setOverridePackLabel("N");
+				checkBoxOverridePackLabel.setSelected(false);
+				material.setPackLabelModuleID("");
+			}
 
-				if (checkBoxOverridePalletLabel.isSelected())
-				{
-					if (comboBoxPalletModuleID.getSelectedIndex() >= 0)
-					{
-						if (comboBoxPalletModuleID.getSelectedItem().toString().equals(""))
-						{
-							material.setOverridePalletLabel("N");
-							checkBoxOverridePalletLabel.setSelected(false);
-							material.setPalletLabelModuleID("");
-						}
-						else
-						{
-							material.setOverridePalletLabel("Y");
-							checkBoxOverridePalletLabel.setSelected(true);
-							material.setPalletLabelModuleID(comboBoxPalletModuleID.getSelectedItem().toString());
-						}
-					}
-					else
-					{
-						material.setOverridePalletLabel("N");
-						checkBoxOverridePalletLabel.setSelected(false);
-						material.setPalletLabelModuleID("");
-					}
-				}
-				else
+		}
+		else
+		{
+			material.setOverridePackLabel("N");
+			material.setPackLabelModuleID("");
+		}
+
+		if (checkBox4jMoveAfterMake.isSelected())
+		{
+			if (textField4jMoveAfterMake.getText().toUpperCase().equals(""))
+			{
+				material.setMoveAfterMakeEnabled("N");
+				checkBox4jMoveAfterMake.setSelected(false);
+			}
+			else
+			{
+				material.setMoveAfterMakeEnabled("Y");
+				checkBox4jMoveAfterMake.setSelected(true);
+			}
+			material.setMoveAfterMakeLocationID(textField4jMoveAfterMake.getText().toUpperCase());
+		}
+		else
+		{
+			material.setMoveAfterMakeEnabled("Y");
+			material.setMoveAfterMakeLocationID("");
+			textField4jMoveAfterMake.setText("");
+		}
+
+		if (checkBoxOverridePalletLabel.isSelected())
+		{
+			if (comboBoxPalletModuleID.getSelectedIndex() >= 0)
+			{
+				if (comboBoxPalletModuleID.getSelectedItem().toString().equals(""))
 				{
 					material.setOverridePalletLabel("N");
+					checkBoxOverridePalletLabel.setSelected(false);
 					material.setPalletLabelModuleID("");
 				}
-
-				if (material.isValidMaterial() == false)
-				{
-					result = material.create();
-					if (result == true)
-					{
-						result = material.update();
-					}
-				}
 				else
 				{
-					result = material.update();
+					material.setOverridePalletLabel("Y");
+					checkBoxOverridePalletLabel.setSelected(true);
+					material.setPalletLabelModuleID(comboBoxPalletModuleID.getSelectedItem().toString());
 				}
-				if (result == false)
-				{
-					JOptionPane.showMessageDialog(Common.mainForm, material.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-				}
-				else
-				{
-					jButtonSave.setEnabled(false);
-				}
-			} else {
-
-				jButtonSave.setEnabled(false);
-				jStatusText.setText(equipment.getErrorMessage());
 			}
+			else
+			{
+				material.setOverridePalletLabel("N");
+				checkBoxOverridePalletLabel.setSelected(false);
+				material.setPalletLabelModuleID("");
+			}
+		}
+		else
+		{
+			material.setOverridePalletLabel("N");
+			material.setPalletLabelModuleID("");
+		}
+
+		if (material.isValidMaterial() == false)
+		{
+			result = material.create();
+			if (result == true)
+			{
+				result = material.update();
+			}
+		}
+		else
+		{
+			result = material.update();
+		}
+		if (result == false)
+		{
+			JOptionPane.showMessageDialog(Common.mainForm, material.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+		}
+		else
+		{
+			jButtonSave.setEnabled(false);
 		}
 
 	}

@@ -1043,7 +1043,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
 					{ "DATE_OF_MANUFACTURE", "DATE_CREATED", "DATE_UPDATED", "SSCC", "MATERIAL,BATCH_NUMBER", "MATERIAL,PROCESS_ORDER", "BATCH_NUMBER,MATERIAL", "PROCESS_ORDER,DATE_OF_MANUFACTURE", "QUANTITY", "STATUS", "LOCATION_ID", "UOM", "EAN",
-							"VARIANT" });
+							"VARIANT","EQUIPMENT_TYPE" });
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jComboBoxSortBy.setMaximumRowCount(15);
 					jDesktopPane1.add(jComboBoxSortBy);

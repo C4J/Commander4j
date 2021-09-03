@@ -2418,6 +2418,14 @@
 			<id>JDBEquipmentType.getEquipmentTypes</id>
 			<text>select * from {schema}APP_EQUIPMENT_TYPE order by equipment_type</text>
 		</statement>	
+		<statement>
+			<id>JDBEquipmentType.updatePallet</id>
+			<text>UPDATE APP_PALLET s SET s.EQUIPMENT_TYPE = (SELECT m.EQUIPMENT_TYPE FROM APP_MATERIAL m where m.MATERIAL = s.MATERIAL)  WHERE s.EQUIPMENT_TYPE IS NULL OR s.EQUIPMENT_TYPE = ''</text>
+		</statement>	
+		<statement>
+			<id>JDBEquipmentType.updatePalletHistory</id>
+			<text>UPDATE APP_PALLET_HISTORY s SET s.EQUIPMENT_TYPE = (SELECT m.EQUIPMENT_TYPE FROM APP_MATERIAL m where m.MATERIAL = s.MATERIAL) WHERE s.EQUIPMENT_TYPE IS NULL OR s.EQUIPMENT_TYPE = ''</text>
+		</statement>		
 		
 		<?JDBDespatchEquipmentType?>		
 		<statement>

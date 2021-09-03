@@ -150,7 +150,7 @@ public class Common
 	public static String[] auditEventActions = new String[] { "", "ADD", "REMOVE", "CREATE", "DELETE", "RENAME", "ENABLE", "DISABLE" };
 	public static String[] auditEventTypes = new String[] { "", "USER", "GROUP", "USER_GROUP", "GROUP_MODULE" };
 	public static String[] locationSortBy = new String[] { "LOCATION_ID", "PLANT", "WAREHOUSE", "DESCRIPTION", "GLN", "STORAGE_LOCATION", "STORAGE_TYPE", "STORAGE_SECTION", "STORAGE_BIN"};
-	public static String[] materialSortBy =new String[] {"MATERIAL", "MATERIAL_TYPE", "DESCRIPTION", "BASE_UOM", "PRODUCTION_UOM", "ISSUE_UOM", "SHELF_LIFE", "SHELF_LIFE_RULE", "DEFAULT_PALLET_STATUS", "DEFAULT_BATCH_STATUS"};
+	public static String[] materialSortBy =new String[] {"MATERIAL", "MATERIAL_TYPE", "DESCRIPTION", "BASE_UOM", "PRODUCTION_UOM", "ISSUE_UOM", "SHELF_LIFE", "SHELF_LIFE_RULE", "DEFAULT_PALLET_STATUS", "DEFAULT_BATCH_STATUS","EQUIPMENT_TYPE"};
 	public static String[] processSortBy = new String[] { "PROCESS_ORDER", "MATERIAL", "DESCRIPTION", "STATUS", "LOCATION_ID", "DUE_DATE", "RECIPE_ID" };
 	public static final JImageIconLoader imageIconloader = new JImageIconLoader();
 

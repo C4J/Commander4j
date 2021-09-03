@@ -196,7 +196,7 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 		initGUI();
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_EQUIPMENT_TYPE"));
-
+		
 		populateList("");
 	}
 
@@ -205,7 +205,7 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(455, 518));
-			this.setBounds(0, 0, 638, 543);
+			this.setBounds(0, 0, 667, 543);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -331,7 +331,7 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonAdd);
 					jButtonAdd.setText(lang.get("btn_Add"));
 					jButtonAdd.setMnemonic(lang.getMnemonicChar());
-					jButtonAdd.setBounds(501, 0, 125, 32);
+					jButtonAdd.setBounds(501, 0, 153, 32);
 					jButtonAdd.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_EQUIPMENT_TYPE_ADD"));
 					jButtonAdd.addActionListener(new ActionListener()
 					{
@@ -347,7 +347,7 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonDelete);
 					jButtonDelete.setText(lang.get("btn_Delete"));
 					jButtonDelete.setMnemonic(lang.getMnemonicChar());
-					jButtonDelete.setBounds(501, 31, 125, 32);
+					jButtonDelete.setBounds(501, 31, 153, 32);
 					jButtonDelete.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_EQUIPMENT_TYPE_DELETE"));
 					jButtonDelete.setFocusTraversalKeysEnabled(false);
 					jButtonDelete.addActionListener(new ActionListener()
@@ -364,7 +364,7 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonEdit);
 					jButtonEdit.setText(lang.get("btn_Edit"));
 					jButtonEdit.setMnemonic(lang.getMnemonicChar());
-					jButtonEdit.setBounds(501, 62, 125, 32);
+					jButtonEdit.setBounds(501, 62, 153, 32);
 					jButtonEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_EQUIPMENT_TYPE_EDIT"));
 					jButtonEdit.addActionListener(new ActionListener()
 					{
@@ -379,7 +379,7 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
-					jButtonPrint.setBounds(501, 93, 125, 32);
+					jButtonPrint.setBounds(501, 93, 153, 32);
 					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_EQUIPMENT_TYPE"));
 					jButtonPrint.addActionListener(new ActionListener()
 					{
@@ -400,14 +400,14 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(501, 186, 125, 32);
+					jButtonHelp.setBounds(501, 217, 153, 32);
 				}
 				{
 					jButtonRefresh = new JButton4j(Common.icon_refresh_16x16);
 					jDesktopPane1.add(jButtonRefresh);
 					jButtonRefresh.setText(lang.get("btn_Refresh"));
 					jButtonRefresh.setMnemonic(lang.getMnemonicChar());
-					jButtonRefresh.setBounds(501, 155, 125, 32);
+					jButtonRefresh.setBounds(501, 186, 153, 32);
 					jButtonRefresh.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -421,7 +421,7 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(501, 217, 125, 32);
+					jButtonClose.setBounds(501, 248, 153, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -435,7 +435,7 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(501, 124, 125, 32);
+					jButtonExcel.setBounds(501, 155, 153, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -449,12 +449,12 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 				ButtonGroup bgroup = new ButtonGroup();
 				JPanel panel = new JPanel();
 				panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-				panel.setBounds(501, 261, 125, 68);
+				panel.setBounds(505, 292, 145, 68);
 				jDesktopPane1.add(panel);
 				panel.setLayout(null);
 
 				rdbtnEnabled = new JRadioButton(lang.get("lbl_Enabled"));
-				rdbtnEnabled.setBounds(8, 8, 102, 23);
+				rdbtnEnabled.setBounds(8, 8, 122, 23);
 				panel.add(rdbtnEnabled);
 				rdbtnEnabled.setFont(Common.font_std);
 				rdbtnEnabled.addActionListener(new ActionListener()
@@ -468,7 +468,7 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 				bgroup.add(rdbtnEnabled);
 
 				rdbtnDisabled = new JRadioButton(lang.get("lbl_Disabled"));
-				rdbtnDisabled.setBounds(8, 35, 102, 23);
+				rdbtnDisabled.setBounds(8, 35, 122, 23);
 				panel.add(rdbtnDisabled);
 				rdbtnDisabled.setFont(Common.font_std);
 				rdbtnDisabled.addActionListener(new ActionListener()
@@ -480,6 +480,21 @@ public class JInternalFrameEquipmentAdmin extends javax.swing.JInternalFrame
 				});
 				rdbtnDisabled.setSelected(false);
 				bgroup.add(rdbtnDisabled);
+				
+				{
+					JButton4j jButtonUpdatePallets = new JButton4j(Common.icon_pallet_16x16);
+					jButtonUpdatePallets.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							JDBEquipmentType u = new JDBEquipmentType(Common.selectedHostID, Common.sessionID);
+							u.updatePallets();
+						}
+					});
+					jButtonUpdatePallets.setMnemonic('0');
+					jButtonUpdatePallets.setBounds(501, 124, 153, 32);
+					jButtonUpdatePallets.setText(lang.get("btn_Update_Pallets"));
+					jButtonUpdatePallets.setToolTipText("Update pallets with missing Equipment Types");
+					jDesktopPane1.add(jButtonUpdatePallets);
+				}
 
 			}
 		}
