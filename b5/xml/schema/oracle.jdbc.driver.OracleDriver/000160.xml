@@ -602,4 +602,11 @@
 		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'HU', 'Raklapok frissítése', 'U')
 	</statement>
  
+ 	<statement>
+		UPDATE SYS_MODULES SET REPORT_FILENAME = 'despatch2.jrxml' WHERE REPORT_FILENAME = 'despatch.jrxml' AND MODULE_ID IN ('RPT_DESPATCH','RPT_DESPATCH_EMAIL','RPT_DESPATCH_SERVICE')
+	</statement>
+	
+	<statement>
+		UPDATE SYS_MODULES SET REPORT_FILENAME = 'fhf_despatch2.jrxml' WHERE REPORT_FILENAME = 'fhf_despatch.jrxml' AND MODULE_ID IN ('RPT_DESPATCH','RPT_DESPATCH_EMAIL','RPT_DESPATCH_SERVICE')
+	</statement>
 </DDL>
