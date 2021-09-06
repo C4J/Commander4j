@@ -83,6 +83,7 @@ public class JDBPallet
 	private String dbUom;
 	private String dbVariant;
 	private String dbDespatchNo;
+	private String dbEquipmentType;
 	private Boolean dbConfirmed;
 	private final Logger logger = Logger.getLogger(JDBPallet.class);
 	private JDBMaterialBatch matBatch;
@@ -95,9 +96,9 @@ public class JDBPallet
 	private String hostID;
 	private String sessionID;
 	private JDBMaterialUom materialuom;
-	private String lastMaterialUomMaterial = "";
-	private String lastMaterialUomUom = "";
-	private String lastMaterialMaterial = "";
+	private String lastMaterialUom_Material = "";
+	private String lastMaterialUom_Uom = "";
+	private String lastMaterial_Material = "";
 	private JEANBarcode barcode = new JEANBarcode();
 	private OutgoingProductionDeclarationConfirmation opdc;
 	private long transactionRef = 0;
@@ -117,7 +118,7 @@ public class JDBPallet
 		clear();
 	}
 
-	public JDBPallet(String sscc, String material, String batch, String processOrder, BigDecimal quantity, String uom, BigDecimal baseQuantity, String baseUom, Timestamp dom, String status, String location, String ean, String variant)
+	public JDBPallet(String sscc, String material, String batch, String processOrder, BigDecimal quantity, String uom, BigDecimal baseQuantity, String baseUom, Timestamp dom, String status, String location, String ean, String variant,String equipment)
 	{
 		clear();
 		setSSCC(sscc);
@@ -131,6 +132,18 @@ public class JDBPallet
 		setStatus(status);
 		setDateOfManufacture(dom);
 		setLocationID(location);
+		setEquipmentType(equipment);
+	}
+
+	public void setEquipmentType(String equip)
+	{
+		dbEquipmentType = JUtility.replaceNullStringwithBlank(equip);
+		dbEquipmentType=dbEquipmentType.toUpperCase();
+	}
+
+	public String getEquipmentType()
+	{
+		return JUtility.replaceNullStringwithBlank(dbEquipmentType);
 	}
 
 	public String getPalletWeight(String sscc, String uom, int decimalPlaces)
@@ -229,11 +242,11 @@ public class JDBPallet
 		{
 			result = quantity;
 
-			if ((lastMaterialUomMaterial.equals(getMaterial()) == false) || (lastMaterialUomUom.equals(fromUom) == false))
+			if ((lastMaterialUom_Material.equals(getMaterial()) == false) || (lastMaterialUom_Uom.equals(fromUom) == false))
 			{
 				materialuom.getMaterialUomProperties(getMaterial(), fromUom);
-				lastMaterialUomMaterial = getMaterial();
-				lastMaterialUomUom = fromUom;
+				lastMaterialUom_Material = getMaterial();
+				lastMaterialUom_Uom = fromUom;
 			}
 
 			materialuom.getDenominator();
@@ -298,6 +311,7 @@ public class JDBPallet
 		dbDateUpdated = JUtility.getSQLDateTime();
 		dbCreatedBy = "";
 		dbUpdatedBy = "";
+		dbEquipmentType="";
 		setConfirmed(false);
 	}
 
@@ -307,11 +321,12 @@ public class JDBPallet
 
 		try
 		{
-			//update app_pallet set confirmed = 'Y', date_of_manufacture = ?, date_updated = ?, updated_by_user_id = ? where sscc = ? and confirmed = 'N'
-			
+			// update app_pallet set confirmed = 'Y', date_of_manufacture = ?,
+			// date_updated = ?, updated_by_user_id = ? where sscc = ? and
+			// confirmed = 'N'
+
 			PreparedStatement stmtupdate;
 			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.rapidConfirm"));
-
 
 			stmtupdate.setTimestamp(1, getDateOfManufacture());
 
@@ -322,11 +337,10 @@ public class JDBPallet
 			stmtupdate.setString(3, getUpdatedBy());
 
 			stmtupdate.setString(4, getSSCC());
-			
 
 			int rows = stmtupdate.executeUpdate();
-			
-			if (rows==1)
+
+			if (rows == 1)
 			{
 				result = true;
 			}
@@ -334,7 +348,6 @@ public class JDBPallet
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
-
 
 		}
 		catch (SQLException e)
@@ -567,10 +580,10 @@ public class JDBPallet
 
 	public String getBaseUom()
 	{
-		if (lastMaterialMaterial.equals(getMaterial()) == false)
+		if (lastMaterial_Material.equals(getMaterial()) == false)
 		{
 			material.getMaterialProperties(getMaterial());
-			lastMaterialMaterial = getMaterial();
+			lastMaterial_Material = getMaterial();
 		}
 
 		return material.getBaseUom();
@@ -729,7 +742,7 @@ public class JDBPallet
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBPallet("sscc", "material", "batch", "process_order", new BigDecimal("0"), "uom", new BigDecimal("0"), "base uom", null, "status", "location_id", "ean", "variant"));
+			result.addElement(new JDBPallet("sscc", "material", "batch", "process_order", new BigDecimal("0"), "uom", new BigDecimal("0"), "base uom", null, "status", "location_id", "ean", "variant","equipment_type"));
 		}
 		else
 		{
@@ -740,7 +753,7 @@ public class JDBPallet
 				while (rs.next())
 				{
 					result.addElement(new JDBPallet(rs.getString("sscc"), rs.getString("material"), rs.getString("batch_number"), rs.getString("process_order"), rs.getBigDecimal("quantity"), rs.getString("uom"), rs.getBigDecimal("base_quantity"),
-							rs.getString("base_uom"), rs.getTimestamp("date_of_manufacture"), rs.getString("status"), rs.getString("location_id"), rs.getString("ean"), rs.getString("variant")));
+							rs.getString("base_uom"), rs.getTimestamp("date_of_manufacture"), rs.getString("status"), rs.getString("location_id"), rs.getString("ean"), rs.getString("variant"),rs.getString("equipment_type")));
 				}
 
 				rs.close();
@@ -890,6 +903,7 @@ public class JDBPallet
 			setDespatchNo(rs.getString("despatch_no"));
 			setConfirmed(rs.getString("confirmed"));
 			setLayersOnPallet(rs.getInt("layers"));
+			setEquipmentType(rs.getString("equipment_type"));
 			try
 			{
 				if (expiryMode.equals("SSCC"))
@@ -1084,12 +1098,27 @@ public class JDBPallet
 		{
 			/* Get Material */
 			setMaterial(processOrder.getMaterial());
+
+			if (lastMaterial_Material.equals(getMaterial()) == false)
+			{
+
+				if (material.getMaterialProperties(processOrder.getMaterial()))
+				{
+					lastMaterial_Material = processOrder.getMaterial();
+				}
+				else
+				{
+					lastMaterial_Material = "";
+				}
+			}
+
+			setEquipmentType(material.getEquipmentType());
+
 			setLocationID(processOrder.getLocation());
 
 			setUom(processOrder.getRequiredUom());
 
 			setStatus(processOrder.getDefaultPalletStatus());
-			lastMaterialMaterial = getMaterial();
 
 			if (matUom.getMaterialUomProperties(getMaterial(), getUom()))
 			{
@@ -1395,7 +1424,8 @@ public class JDBPallet
 						stmtupdate.setString(18, getUpdatedBy());
 						setDateUpdated(JUtility.getSQLDateTime());
 						stmtupdate.setTimestamp(19, getDateUpdated());
-						stmtupdate.setString(20, getSSCC());
+						stmtupdate.setString(20, getEquipmentType());
+						stmtupdate.setString(21, getSSCC());
 						stmtupdate.execute();
 						Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 						stmtupdate.clearParameters();

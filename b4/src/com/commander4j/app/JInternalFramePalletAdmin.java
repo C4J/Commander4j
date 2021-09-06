@@ -66,6 +66,7 @@ import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBCustomer;
 import com.commander4j.db.JDBDespatch;
+import com.commander4j.db.JDBEquipmentType;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBLocation;
 import com.commander4j.db.JDBMHN;
@@ -223,6 +224,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private JCheckBox4j jCheckBoxUpdatedTo;
 	private JTextField4j textFieldUserCreated;
 	private JTextField4j textFieldUserUpdated;
+	private JTextField4j textFieldEquipmentType;
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JMenuItem4j menuItemEdit;
 	private JTextField4j jTextFieldRequiredResource;
@@ -464,6 +466,11 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		{
 			q2.applyWhere("updated_by_user_id = ", textFieldUserUpdated.getText());
 		}
+		
+		if (textFieldEquipmentType.getText().equals("")  == false)
+		{
+			q2.applyWhere("equipment_type = ", textFieldEquipmentType.getText());
+		}
 
 		Integer i;
 
@@ -698,6 +705,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		textFieldMHN.setText("");
 		jComboBoxUOM.setSelectedIndex(0);
 		jTextFieldRequiredResource.setText("");
+		textFieldEquipmentType.setText("");
 	}
 
 	private void exportExcel(String mode)
@@ -1030,12 +1038,12 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel10);
 					jLabel10.setText(lang.get("lbl_Limit"));
 					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(702, 200, 97, 21);
+					jLabel10.setBounds(777, 198, 97, 21);
 				}
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
 					{ "DATE_OF_MANUFACTURE", "DATE_CREATED", "DATE_UPDATED", "SSCC", "MATERIAL,BATCH_NUMBER", "MATERIAL,PROCESS_ORDER", "BATCH_NUMBER,MATERIAL", "PROCESS_ORDER,DATE_OF_MANUFACTURE", "QUANTITY", "STATUS", "LOCATION_ID", "UOM", "EAN",
-							"VARIANT" });
+							"VARIANT","EQUIPMENT_TYPE" });
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jComboBoxSortBy.setMaximumRowCount(15);
 					jDesktopPane1.add(jComboBoxSortBy);
@@ -1220,7 +1228,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					ne.getTextField().setFont(Common.font_std);
 					jSpinnerLimit.setEditor(ne);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
-					jSpinnerLimit.setBounds(824, 200, 68, 21);
+					jSpinnerLimit.setBounds(906, 198, 68, 21);
 					jSpinnerLimit.setValue(1000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 					jDesktopPane1.add(jSpinnerLimit);
@@ -1229,7 +1237,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jCheckBoxLimit = new JCheckBox4j();
 					jDesktopPane1.add(jCheckBoxLimit);
 					jCheckBoxLimit.setBackground(new java.awt.Color(255, 255, 255));
-					jCheckBoxLimit.setBounds(801, 200, 21, 21);
+					jCheckBoxLimit.setBounds(876, 198, 21, 21);
 					jCheckBoxLimit.setSelected(true);
 					jCheckBoxLimit.addActionListener(new ActionListener()
 					{
@@ -1479,7 +1487,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jLabel5_1 = new JLabel4j_std();
 					jLabel5_1.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabel5_1.setText(lang.get("lbl_Confirmed"));
-					jLabel5_1.setBounds(702, 167, 97, 21);
+					jLabel5_1.setBounds(702, 198, 97, 21);
 					jDesktopPane1.add(jLabel5_1);
 				}
 
@@ -1487,7 +1495,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					jCheckBoxConfirmed = new JCheckBox4j();
 					jCheckBoxConfirmed.setSelected(true);
 					jCheckBoxConfirmed.setBackground(Color.WHITE);
-					jCheckBoxConfirmed.setBounds(801, 167, 21, 21);
+					jCheckBoxConfirmed.setBounds(801, 197, 21, 21);
 					jDesktopPane1.add(jCheckBoxConfirmed);
 				}
 
@@ -2414,6 +2422,29 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			textFieldUserUpdated = new JTextField4j(JDBUser.field_user_id);
 			textFieldUserUpdated.setBounds(582, 167, 115, 22);
 			jDesktopPane1.add(textFieldUserUpdated);
+			
+			textFieldEquipmentType = new JTextField4j(JDBEquipmentType.field_EquipmentType);
+			textFieldEquipmentType.setBounds(866, 166, 88, 22);
+			jDesktopPane1.add(textFieldEquipmentType);
+			
+			JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
+			jButtonLookupEquipment.setBounds(953, 166, 21, 21);
+			jButtonLookupEquipment.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "Y";
+					if (JLaunchLookup.equipmentType()) {
+						textFieldEquipmentType.setText(JLaunchLookup.dlgResult);
+					}
+				}
+			});
+			jDesktopPane1.add(jButtonLookupEquipment);
+			
+			JLabel4j_std jLabel_Equipment = new JLabel4j_std();
+			jLabel_Equipment.setHorizontalAlignment(SwingConstants.TRAILING);
+			jLabel_Equipment.setBounds(724, 166, 135, 21);
+			jLabel_Equipment.setText(lang.get("lbl_Material_Equipment_Type"));
+			jDesktopPane1.add(jLabel_Equipment);
 
 			JButton4j jButtonLookupUserUpdated = new JButton4j(Common.icon_lookup_16x16);
 			jButtonLookupUserUpdated.setBounds(696, 167, 21, 21);
@@ -2515,6 +2546,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBPalletTableModel.Confirmed_Col).setPreferredWidth(40);
 		jTable1.getColumnModel().getColumn(JDBPalletTableModel.Despatch_Col).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBPalletTableModel.MHN_Number_Col).setPreferredWidth(70);
+		jTable1.getColumnModel().getColumn(JDBPalletTableModel.Equipment_Type_Col).setPreferredWidth(70);
 
 		jScrollPane1.repaint();
 

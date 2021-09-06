@@ -125,6 +125,29 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 	
+	public static boolean equipmentType() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_EQUIPMENT_TYPE"));
+		JDialogLookup.dlg_title = "Equipment Types";
+
+		JDialogLookup.hideDisabled=false;
+		JDialogLookup.dlg_key_field_name = "equipment_type";
+		JDialogLookup.dlg_criteria_field_name_default = "enabled";
+
+		JDialogLookup.dlg_orderBy_name_default = "description";
+		JDialogLookup.dlg_sort_descending = false;
+
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+	
 
 	public static boolean processOrders() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();

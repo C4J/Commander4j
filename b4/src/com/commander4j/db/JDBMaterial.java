@@ -66,7 +66,7 @@ public class JDBMaterial
 	private BigDecimal dbNetWeight;
 	private String dbOldMaterial;
 	private String dbInspectionID;
-	private String dbEquipmentType;
+    private String dbEquipmentType;
 	private Integer dbShelflife;
 	private String dbShelflifeRule;
 	private String dbShelflifeUom;
@@ -84,6 +84,7 @@ public class JDBMaterial
 	private JDBControl ctrl;
 	private JDBMaterialUom muom;
 	private JDBLocation moveLocation;
+	private JDBEquipmentType eqType;
 	private String BatchExpiryTimeRoudingMode = "";
 
 	private String dbOverride_Pack_Label;
@@ -411,6 +412,7 @@ public class JDBMaterial
 		muom = new JDBMaterialUom(getHostID(), getSessionID());
 		uom = new JDBUom(getHostID(), getSessionID());
 		moveLocation = new JDBLocation(getHostID(), getSessionID());
+		eqType = new JDBEquipmentType(getHostID(), getSessionID());
 	}
 
 	public JDBMaterial(String material, String description, String type, String baseUom, Integer shelflife, String shelflifeuom, String shelfliferule, String equipmentType, String overridePackLabel, String packLabelModule, String overridePalletLabel,
@@ -680,7 +682,7 @@ public class JDBMaterial
 
 	public String getEquipmentType()
 	{
-		return dbEquipmentType;
+		return JUtility.replaceNullStringwithBlank(dbEquipmentType);
 	}
 
 	/**
@@ -1130,6 +1132,19 @@ public class JDBMaterial
 					setErrorMessage(uom.getErrorMessage());
 			}
 		}
+		
+		//Check Equipment Type
+		if (result == true)
+		{
+			if (getEquipmentType().equals("")==false)
+			{
+				result = eqType.isValidEquipmentType(getEquipmentType());
+				if (result==false)
+				{
+					setErrorMessage(eqType.getErrorMessage());	
+				}
+			}
+		}
 
 		if (result == true)
 		{
@@ -1212,7 +1227,8 @@ public class JDBMaterial
 
 	public void setEquipmentType(String equipmentType)
 	{
-		dbEquipmentType = equipmentType;
+		dbEquipmentType = JUtility.replaceNullStringwithBlank(equipmentType);
+		dbEquipmentType=dbEquipmentType.toUpperCase();
 	}
 
 	private void setErrorMessage(String ErrorMsg)

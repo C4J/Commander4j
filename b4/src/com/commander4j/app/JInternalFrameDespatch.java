@@ -77,6 +77,7 @@ import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
+import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JFileFilterXML;
 import com.commander4j.util.JHelp;
@@ -114,8 +115,10 @@ public class JInternalFrameDespatch extends JInternalFrame
 	private JButton4j jButtonLookupLocationTo;
 	private JButton4j jButtonLookupLocationFrom;
 	private JButton4j jButtonLookupLoadNo;
+	private JButton4j jButtonEquipment;
 	private JTextField4j jTextFieldDespatchDate;
 	private JTextField4j textFieldNoOfPallets;
+	private JTextField4j textFieldQtyOfEquipment;
 	private JTextField4j textFieldDespatchLocationTo;
 	private JTextField4j textFieldDespatchStatus;
 	private JTextField4j textFieldDespatchLocationFrom;
@@ -221,6 +224,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 								jButtonLookupJourneyRef.setEnabled(false);
 								jButtonRemoveJourneyRef.setEnabled(false);
 								jButtonAddJourneyRef.setEnabled(false);
+								jButtonEquipment.setEnabled(false);
 							}
 							else
 							{
@@ -234,6 +238,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 								buttonUnAssign.setEnabled(true);
 								buttonAssign.setEnabled(true);
 								newButton.setEnabled(true);
+								jButtonEquipment.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DESPATCH_EQUIPMENT"));
 								if (d.isJourneyRefReqd().equals("Y"))
 								{
 									jButtonLookupJourneyRef.setEnabled(true);
@@ -267,6 +272,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 							textFieldJourneyRef.setText(d.getJourneyRef());
 
 							textFieldNoOfPallets.setText(Integer.toString(d.getTotalPallets()));
+							textFieldQtyOfEquipment.setText(Integer.toString(d.getTotalEquipment()));
 							setConfirmButtonStatus();
 							setFindButtonStatus(d.getLocationIDFrom());
 
@@ -286,6 +292,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 					jButtonLookupLocationTo.setEnabled(false);
 					jButtonLookupTrailer.setEnabled(false);
 					jButtonLookupHaulier.setEnabled(false);
+					jButtonEquipment.setEnabled(false);
 					buttonUnAssign.setEnabled(false);
 					buttonAssign.setEnabled(false);
 					populateAssignedList("", "");
@@ -675,14 +682,13 @@ public class JInternalFrameDespatch extends JInternalFrame
 		ne2.getTextField().setFont(Common.font_std);
 		spinnerDespatchLimit.setEditor(ne2);
 		spinnerDespatchLimit.setModel(jSpinnerIntModel);
-		spinnerDespatchLimit.setBounds(100, 332, 60, 20);
+		spinnerDespatchLimit.setBounds(15, 332, 60, 20);
 		spinnerDespatchLimit.setValue(50);
 		desktopPane.add(spinnerDespatchLimit);
 
 		jLabel10_1 = new JLabel4j_std();
-		jLabel10_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		jLabel10_1.setText(lang.get("lbl_Limit"));
-		jLabel10_1.setBounds(15, 331, 70, 21);
+		jLabel10_1.setBounds(85, 332, 75, 21);
 		desktopPane.add(jLabel10_1);
 
 		textFieldDespatchLocationFrom = new JTextField4j(JDBLocation.field_location_id);
@@ -734,16 +740,29 @@ public class JInternalFrameDespatch extends JInternalFrame
 		palletStatusLabel_1_1.setBounds(172, 312, 125, 20);
 		desktopPane.add(palletStatusLabel_1_1);
 
-		final JLabel4j_std palletStatusLabel_1_1_1 = new JLabel4j_std();
-		palletStatusLabel_1_1_1.setText(lang.get("lbl_No_Of_Pallets"));
-		palletStatusLabel_1_1_1.setBounds(172, 358, 120, 20);
-		desktopPane.add(palletStatusLabel_1_1_1);
+		final JLabel4j_std lbl_NoOfPallets = new JLabel4j_std();
+		lbl_NoOfPallets.setHorizontalAlignment(SwingConstants.TRAILING);
+		lbl_NoOfPallets.setText(lang.get("lbl_No_Of_Pallets"));
+		lbl_NoOfPallets.setBounds(120, 364, 120, 20);
+		desktopPane.add(lbl_NoOfPallets);
+		
+		final JLabel4j_std lbl_QtyOfEquipment = new JLabel4j_std();
+		lbl_QtyOfEquipment.setHorizontalAlignment(SwingConstants.TRAILING);
+		lbl_QtyOfEquipment.setText(lang.get("lbl_Quantity_Of_Equipment"));
+		lbl_QtyOfEquipment.setBounds(120, 397, 120, 20);
+		desktopPane.add(lbl_QtyOfEquipment);
 
 		textFieldNoOfPallets = new JTextField4j();
 		textFieldNoOfPallets.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldNoOfPallets.setEditable(false);
-		textFieldNoOfPallets.setBounds(172, 382, 68, 20);
+		textFieldNoOfPallets.setBounds(251, 365, 41, 20);
 		desktopPane.add(textFieldNoOfPallets);
+		
+		textFieldQtyOfEquipment = new JTextField4j();
+		textFieldQtyOfEquipment.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldQtyOfEquipment.setEditable(false);
+		textFieldQtyOfEquipment.setBounds(251, 396, 41, 20);
+		desktopPane.add(textFieldQtyOfEquipment);
 
 		jTextFieldDespatchDate = new JTextField4j();
 		jTextFieldDespatchDate.setEditable(false);
@@ -845,7 +864,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		confirmedRadioButton.setBackground(Common.color_app_window);
 		confirmedRadioButton.setText(lang.get("lbl_Confirmed"));
-		confirmedRadioButton.setBounds(10, 356, 129, 24);
+		confirmedRadioButton.setBounds(10, 369, 129, 20);
 		confirmedRadioButton.setFont(Common.font_std);
 		confirmedRadioButton.addActionListener(new ActionListener()
 		{
@@ -861,7 +880,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 
 		unconfirmedRadioButton.setBackground(Common.color_app_window);
 		unconfirmedRadioButton.setText(lang.get("lbl_Unconfirmed"));
-		unconfirmedRadioButton.setBounds(10, 381, 129, 24);
+		unconfirmedRadioButton.setBounds(10, 392, 129, 20);
 		unconfirmedRadioButton.setSelected(true);
 		unconfirmedRadioButton.setFont(Common.font_std);
 		unconfirmedRadioButton.addActionListener(new ActionListener()
@@ -978,6 +997,27 @@ public class JInternalFrameDespatch extends JInternalFrame
 		jButtonLookupLoadNo.setEnabled(false);
 		jButtonLookupLoadNo.setBounds(293, 202, 21, 21);
 		desktopPane.add(jButtonLookupLoadNo);
+		
+		jButtonEquipment = new JButton4j();
+		jButtonEquipment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (list_despatch.getModel().getSize() > 0)
+				{
+					if (list_despatch.getSelectedIndex() >= 0)
+					{
+						JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
+						JLaunchMenu.runDialog("FRM_ADMIN_DESPATCH_EQUIPMENT", d.getDespatchNo());
+						refresh();
+					}
+				}
+
+
+			}
+		});
+		jButtonEquipment.setText("...");
+		jButtonEquipment.setEnabled(false);
+		jButtonEquipment.setBounds(293, 396, 21, 21);
+		desktopPane.add(jButtonEquipment);
 
 		JLabel4j_std label = new JLabel4j_std();
 		label.setText(lang.get("lbl_User_ID"));
@@ -1196,6 +1236,7 @@ public class JInternalFrameDespatch extends JInternalFrame
 		textFieldDespatchStatus.setText("");
 		jTextFieldDespatchDate.setText("");
 		textFieldNoOfPallets.setText("");
+		textFieldQtyOfEquipment.setText("");
 		textFieldHaulier.setText("");
 		textFieldTrailer.setText("");
 		textFieldLoadNo.setText("");
@@ -1230,7 +1271,16 @@ public class JInternalFrameDespatch extends JInternalFrame
 			{
 				JDBDespatch d = (JDBDespatch) list_despatch.getSelectedValue();
 
-				q.addParamtoSQL("despatch_no <> ", d.getDespatchNo());
+				String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
+
+				if (driver.equals("oracle.jdbc.driver.OracleDriver"))
+				{
+					q.addParamtoSQL("nvl(despatch_no,'*') <> ", d.getDespatchNo());
+				}
+				else
+				{
+					q.addParamtoSQL("despatch_no <> ", d.getDespatchNo());
+				}
 
 			}
 		}

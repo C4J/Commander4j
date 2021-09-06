@@ -45,7 +45,6 @@ import javax.swing.SwingUtilities;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBWasteContainer;
-import com.commander4j.db.JDBWasteLocation;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JLabel4j_std;
@@ -167,7 +166,7 @@ public class JInternalFrameWasteContainerProperties extends JInternalFrame
 					jLabel_WasteContainer.setBounds(0, 10, 149, 21);
 				}
 				{
-					jTextFieldContainerID = new JTextField4j(JDBWasteLocation.field_WasteLocationID);
+					jTextFieldContainerID = new JTextField4j(JDBWasteContainer.field_WasteContainerID);
 					jDesktopPane1.add(jTextFieldContainerID);
 					jTextFieldContainerID.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldContainerID.setEditable(false);
@@ -236,7 +235,7 @@ public class JInternalFrameWasteContainerProperties extends JInternalFrame
 				}
 
 				{
-					jTextFieldDescription = new JTextField4j(JDBWasteLocation.field_Description);
+					jTextFieldDescription = new JTextField4j(JDBWasteContainer.field_Description);
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setPreferredSize(new java.awt.Dimension(40, 20));
 					jTextFieldDescription.setFocusCycleRoot(true);

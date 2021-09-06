@@ -39,6 +39,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
@@ -47,6 +48,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -157,7 +159,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private Vector<JDBListData> moduleList = new Vector<JDBListData>();
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);
-    private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
+	private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 
 	private JCheckBox4j checkBoxOverridePackLabel = new JCheckBox4j();
 	private JCheckBox4j checkBoxOverridePalletLabel = new JCheckBox4j();
@@ -172,10 +174,11 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 	private JCheckBox4j checkBox4jMoveAfterMake = new JCheckBox4j();
 	private JTextField4j textField4jMoveAfterMake = new JTextField4j(20);
 	private JButton4j button4jLocationLookup = new JButton4j("");
-	private JButton4j jButtonRemoveProductGroup= new JButton4j(Common.icon_despatch_remove_16x16);
-	private JButton4j jButtonRemoveContainerCode= new JButton4j(Common.icon_despatch_remove_16x16);
+	private JButton4j jButtonRemoveProductGroup = new JButton4j(Common.icon_despatch_remove_16x16);
+	private JButton4j jButtonRemoveContainerCode = new JButton4j(Common.icon_despatch_remove_16x16);
 	private JTextField4j textField4j_Product_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
 	private JTextField4j textField4j_Container_Code = new JTextField4j(JDBWTContainerCode.field_ContainerCode);
+	private JLabel4j_std jStatusText = new JLabel4j_std();
 
 	public JInternalFrameMaterialProperties(String mat)
 	{
@@ -269,17 +272,19 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					comboBoxPalletModuleID.setSelectedIndex(x);
 				}
 			}
-			
+
 			matCustData.setMaterial(lmaterial);
 			matCustData.setCustomerID("SELF");
-			matCustData.setDataID("PRODUCT_GROUP");;
+			matCustData.setDataID("PRODUCT_GROUP");
+			;
 
 			if (matCustData.getMaterialCustomerDataProperties())
 			{
 				textField4j_Product_Group.setText(matCustData.getData());
 			}
-			
-			matCustData.setDataID("CONTAINER_CODE");;
+
+			matCustData.setDataID("CONTAINER_CODE");
+			;
 
 			if (matCustData.getMaterialCustomerDataProperties())
 			{
@@ -307,7 +312,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(422, 483));
-			this.setBounds(0, 0, 668, 623);
+			this.setBounds(0, 0, 668, 629);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -333,7 +338,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 			{
 				jDesktopPane1 = new JDesktopPane();
-				jDesktopPane1.setBounds(0, 0, 660, 591);
+				jDesktopPane1.setBounds(0, 0, 660, 627);
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				this.getContentPane().add(jDesktopPane1);
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(447, 385));
@@ -864,6 +869,26 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					jTextFieldEquipmentType.setBounds(172, 362, 125, 21);
 					jDesktopPane1.add(jTextFieldEquipmentType);
 				}
+
+				{
+					JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
+					jButtonLookupEquipment.setBounds(296, 361, 21, 21);
+					jButtonLookupEquipment.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "Y";
+							if (JLaunchLookup.equipmentType())
+							{
+								jTextFieldEquipmentType.setText(JLaunchLookup.dlgResult);
+								jButtonSave.setEnabled(true);
+							}
+						}
+					});
+					jDesktopPane1.add(jButtonLookupEquipment);
+				}
+
 				{
 					jTextFieldInspectionID = new JTextField4j(JDBQMInspection.field_inspection_id);
 					jTextFieldInspectionID.addKeyListener(new KeyAdapter()
@@ -959,45 +984,47 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 					btnLookupInspection.setBounds(296, 391, 21, 21);
 					jDesktopPane1.add(btnLookupInspection);
 				}
-				
 
 				textField4j_Product_Group.setEnabled(false);
 				textField4j_Product_Group.setEditable(false);
 				textField4j_Product_Group.setBounds(172, 513, 217, 21);
 				jDesktopPane1.add(textField4j_Product_Group);
-				
+
 				JLabel4j_std label4j_Product_Group = new JLabel4j_std();
 				label4j_Product_Group.setText(lang.get("lbl_Product_Group"));
 				label4j_Product_Group.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_Product_Group.setBounds(7, 513, 159, 21);
 				jDesktopPane1.add(label4j_Product_Group);
-				
+
 				textField4j_Container_Code.setEnabled(false);
 				textField4j_Container_Code.setEditable(false);
 				textField4j_Container_Code.setBounds(172, 542, 109, 21);
 				jDesktopPane1.add(textField4j_Container_Code);
-				
+
 				JLabel4j_std label4j_Container_Code = new JLabel4j_std();
 				label4j_Container_Code.setText(lang.get("lbl_Container_Code"));
 				label4j_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
 				label4j_Container_Code.setBounds(7, 542, 159, 21);
 				jDesktopPane1.add(label4j_Container_Code);
-				
+
 				JButton4j button4j_LookupProductGroup = new JButton4j(Common.icon_lookup_16x16);
-				button4j_LookupProductGroup.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				button4j_LookupProductGroup.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault="";
+						JLaunchLookup.dlgCriteriaDefault = "";
 						if (JLaunchLookup.wtProductGroups())
 						{
-							if (textField4j_Product_Group.getText().equals(JLaunchLookup.dlgResult)==false)
+							if (textField4j_Product_Group.getText().equals(JLaunchLookup.dlgResult) == false)
 							{
 								textField4j_Product_Group.setText(JLaunchLookup.dlgResult);
 								matCustData.setMaterial(lmaterial);
 								matCustData.setCustomerID("SELF");
-								matCustData.setDataID("PRODUCT_GROUP");;
+								matCustData.setDataID("PRODUCT_GROUP");
+								;
 								matCustData.setData(JLaunchLookup.dlgResult);
-								if (matCustData.isValidMaterialCustomerData()==false)
+								if (matCustData.isValidMaterialCustomerData() == false)
 								{
 									matCustData.create();
 								}
@@ -1008,22 +1035,25 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				});
 				button4j_LookupProductGroup.setBounds(389, 513, 21, 21);
 				jDesktopPane1.add(button4j_LookupProductGroup);
-				
+
 				JButton4j button4j_LookupContainerCode = new JButton4j(Common.icon_lookup_16x16);
-				button4j_LookupContainerCode.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				button4j_LookupContainerCode.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
 						JLaunchLookup.dlgAutoExec = true;
-						JLaunchLookup.dlgCriteriaDefault="";
+						JLaunchLookup.dlgCriteriaDefault = "";
 						if (JLaunchLookup.wtContainerCode())
 						{
-							if (textField4j_Container_Code.getText().equals(JLaunchLookup.dlgResult)==false)
+							if (textField4j_Container_Code.getText().equals(JLaunchLookup.dlgResult) == false)
 							{
 								textField4j_Container_Code.setText(JLaunchLookup.dlgResult);
 								matCustData.setMaterial(lmaterial);
 								matCustData.setCustomerID("SELF");
-								matCustData.setDataID("CONTAINER_CODE");;
+								matCustData.setDataID("CONTAINER_CODE");
+								;
 								matCustData.setData(JLaunchLookup.dlgResult);
-								if (matCustData.isValidMaterialCustomerData()==false)
+								if (matCustData.isValidMaterialCustomerData() == false)
 								{
 									matCustData.create();
 								}
@@ -1034,38 +1064,49 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 				});
 				button4j_LookupContainerCode.setBounds(281, 542, 21, 21);
 				jDesktopPane1.add(button4j_LookupContainerCode);
-				jButtonRemoveProductGroup.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if (textField4j_Product_Group.getText().equals("")==false)
+				jButtonRemoveProductGroup.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						if (textField4j_Product_Group.getText().equals("") == false)
 						{
 							textField4j_Product_Group.setText("");
 							matCustData.setMaterial(lmaterial);
 							matCustData.setCustomerID("SELF");
-							matCustData.setDataID("PRODUCT_GROUP");;
-							matCustData.delete();;
+							matCustData.setDataID("PRODUCT_GROUP");
+							;
+							matCustData.delete();
+							;
 						}
 					}
 				});
-				
+
 				jButtonRemoveProductGroup.setBounds(411, 513, 21, 21);
 				jDesktopPane1.add(jButtonRemoveProductGroup);
-				jButtonRemoveContainerCode.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if (textField4j_Container_Code.getText().equals("")==false)
+				jButtonRemoveContainerCode.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						if (textField4j_Container_Code.getText().equals("") == false)
 						{
 							textField4j_Container_Code.setText("");
 							matCustData.setMaterial(lmaterial);
 							matCustData.setCustomerID("SELF");
-							matCustData.setDataID("CONTAINER_CODE");;
+							matCustData.setDataID("CONTAINER_CODE");
+							;
 							matCustData.delete();
 						}
 					}
 				});
-				
+
 				jButtonRemoveContainerCode.setBounds(302, 542, 21, 21);
 				jDesktopPane1.add(jButtonRemoveContainerCode);
 
-				
+				jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+				jStatusText.setForeground(new java.awt.Color(255, 0, 0));
+				jStatusText.setBounds(0, 575, 660, 21);
+				jDesktopPane1.add(jStatusText);
+
 				jButtonSave.setEnabled(false);
 			}
 		}
@@ -1128,9 +1169,10 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 
 		material.setOldMaterial(jTextFieldLegacyCode.getText());
 
-		material.setEquipmentType(jTextFieldEquipmentType.getText());
-
 		material.setInspectionID(jTextFieldInspectionID.getText());
+
+		jTextFieldEquipmentType.setText(jTextFieldEquipmentType.getText().toUpperCase());
+		material.setEquipmentType(jTextFieldEquipmentType.getText().toUpperCase());
 
 		if (checkBoxValidateScanPallet.isSelected())
 		{

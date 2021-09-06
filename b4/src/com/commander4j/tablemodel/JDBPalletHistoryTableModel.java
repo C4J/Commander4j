@@ -56,9 +56,11 @@ public class JDBPalletHistoryTableModel extends AbstractTableModel
 	public static final int User_id = 13;
 	public static final int mhn_number = 14;
 	public static final int decision = 15;
-	public static final int sscc_expiry_date_id = 16;
+	public static final int Equipment_Type_Col = 16;
+	public static final int sscc_expiry_date_id = 17;
 
-	private String[] mcolNames = { "Ref", "Type", "Subtype", "Date", "SSCC", "Material", "Batch", "Process Order", "Quantity", "UOM", "Despatch No", "Status", "Location", "User ID","MHN Number","Decision", "SSCC Expiry" };
+
+	private String[] mcolNames = { "Ref", "Type", "Subtype", "Date", "SSCC", "Material", "Batch", "Process Order", "Quantity", "UOM", "Despatch No", "Status", "Location", "User ID","MHN Number","Decision","Equipment", "SSCC Expiry" };
 	private ResultSet mResultSet;
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private int prowCount = -1;
@@ -181,6 +183,8 @@ public class JDBPalletHistoryTableModel extends AbstractTableModel
 				return cache.get(row).getPallet().getMHNNumber();
 			case decision:
 				return cache.get(row).getPallet().getDecision();
+			case Equipment_Type_Col:
+				return cache.get(row).getPallet().getEquipmentType();
 
 			}
 		}

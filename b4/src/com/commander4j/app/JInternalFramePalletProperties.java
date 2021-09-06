@@ -53,6 +53,7 @@ import com.commander4j.calendar.JCalendarButton;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBCustomer;
 import com.commander4j.db.JDBDespatch;
+import com.commander4j.db.JDBEquipmentType;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBLocation;
 import com.commander4j.db.JDBMaterial;
@@ -75,8 +76,9 @@ import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
 /**
- * JInternalFramePalletProperties allows you to view/edit all the fields on a pallet record held in the APP_PALLET table. Any changes made will
- * be written to the APP_PALLET_HISTORY_TABLE
+ * JInternalFramePalletProperties allows you to view/edit all the fields on a
+ * pallet record held in the APP_PALLET table. Any changes made will be written
+ * to the APP_PALLET_HISTORY_TABLE
  * 
  * <p>
  * <img alt="" src="./doc-files/JInternalFramePalletProperties.jpg" >
@@ -85,7 +87,8 @@ import com.commander4j.util.JUtility;
  * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
  *
  */
-public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
+public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
+{
 	private JLabel4j_std jLabelProductionDate_1;
 	private JButton4j jButtonUndo;
 	private static final long serialVersionUID = 1;
@@ -136,6 +139,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 	private JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 	private JDBDespatch despatch = new JDBDespatch(Common.selectedHostID, Common.sessionID);
+	private JDBEquipmentType equipment = new JDBEquipmentType(Common.selectedHostID, Common.sessionID);
 	private JDBCustomer customer = new JDBCustomer(Common.selectedHostID, Common.sessionID);
 	private JDBLocation location = new JDBLocation(Common.selectedHostID, Common.sessionID);
 	private JDBMaterialBatch materialBatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
@@ -155,9 +159,12 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 	private JTextField4j textFieldCustomer;
 	private boolean initialising = true;
 	private JButton4j buttonRefreshMaterialData;
+	private JTextField4j jTextFieldEquipment = new JTextField4j(15);
 
-	private void enableOrdisableFields(JComponent field) {
-		if (field == null) {
+	private void enableOrdisableFields(JComponent field)
+	{
+		if (field == null)
+		{
 			jTextFieldProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
 			jTextFieldMaterial.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
 			jTextFieldBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_BATCH"));
@@ -169,10 +176,13 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 			checkBoxConfirmed.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_CONFIRMED"));
 			textFieldDespatchNo.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DESPATCH"));
 			textFieldCustomer.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER"));
+			jTextFieldEquipment.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_EQUIPMENT"));
 			jButtonSave.setEnabled(true);
 			jButtonUndo.setEnabled(true);
 			enableSave();
-		} else {
+		}
+		else
+		{
 			if (field != jTextFieldProcessOrder)
 				jTextFieldProcessOrder.setEnabled(false);
 			if (field != jTextFieldMaterial)
@@ -193,36 +203,44 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 				textFieldDespatchNo.setEnabled(false);
 			if (field != textFieldCustomer)
 				textFieldCustomer.setEnabled(false);
+			if (field != jTextFieldEquipment)
+				jTextFieldEquipment.setEnabled(false);
 			field.setEnabled(true);
 			enableSave();
 		}
 	}
 
-	private void enableSave() {
+	private void enableSave()
+	{
 		boolean result = true;
 		String message = "";
 
-		if (jTextFieldLocation.getText().equals("")) {
+		if (jTextFieldLocation.getText().equals(""))
+		{
 			result = false;
 			message = lang.get("err_Location_Blank");
 		}
 
-		if (jTextFieldBatch.getText().equals("")) {
+		if (jTextFieldBatch.getText().equals(""))
+		{
 			result = false;
 			message = lang.get("err_Batch_Blank");
 		}
 
-		if (jTextFieldMaterial.getText().equals("")) {
+		if (jTextFieldMaterial.getText().equals(""))
+		{
 			result = false;
 			message = lang.get("err_Material_Blank");
 		}
 
-		if (jTextFieldProcessOrder.getText().equals("")) {
+		if (jTextFieldProcessOrder.getText().equals(""))
+		{
 			result = false;
 			message = lang.get("err_Process_Order_Blank");
 		}
 
-		if (textFieldCustomer.getText().equals("")) {
+		if (textFieldCustomer.getText().equals(""))
+		{
 			result = false;
 			message = lang.get("err_Customer_Blank");
 		}
@@ -232,13 +250,18 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 		jButtonUndo.setEnabled(result);
 	}
 
-	private void locationChanged() {
-		if (initialising == false) {
+	private void locationChanged()
+	{
+		if (initialising == false)
+		{
 			jStatusText.setText("");
-			if (location.getLocationProperties(jTextFieldLocation.getText()) == true) {
+			if (location.getLocationProperties(jTextFieldLocation.getText()) == true)
+			{
 				enableOrdisableFields(null);
 
-			} else {
+			}
+			else
+			{
 				enableOrdisableFields(jTextFieldLocation);
 				jButtonSave.setEnabled(false);
 				jStatusText.setText(location.getErrorMessage());
@@ -246,33 +269,45 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 		}
 	}
 
-	private void materialBatchChanged() {
-		if (initialising == false) {
+	private void materialBatchChanged()
+	{
+		if (initialising == false)
+		{
 			jStatusText.setText("");
-			if (materialBatch.getMaterialBatchProperties(jTextFieldMaterial.getText(), jTextFieldBatch.getText()) == true) {
+			if (materialBatch.getMaterialBatchProperties(jTextFieldMaterial.getText(), jTextFieldBatch.getText()) == true)
+			{
 				jTextFieldBatchStatus.setText(materialBatch.getStatus());
 				enableOrdisableFields(null);
 
-				if (expiryMode.equals("SSCC")) {
+				if (expiryMode.equals("SSCC"))
+				{
 					jButtonEditBatch.setVisible(false);
 					calendarButtonexpiryDate.setVisible(true);
 					expiryDate.setEnabled(true);
 					expiryDate.setDate(pallet.getBatchExpiry());
-				} else {
-					try {
+				}
+				else
+				{
+					try
+					{
 						expiryDate.setDate(materialBatch.getExpiryDate());
 						jStatusText.setText("Expiry Date set from Batch " + jTextFieldMaterial.getText() + " / " + jTextFieldBatch.getText());
-					} catch (Exception ex) {
+					}
+					catch (Exception ex)
+					{
 						jStatusText.setText(ex.getMessage());
 					}
 				}
 
-			} else {
+			}
+			else
+			{
 				jStatusText.setText(materialBatch.getErrorMessage());
 
 				jButtonSave.setEnabled(false);
 				enableOrdisableFields(jTextFieldBatch);
-				if (expiryMode.equals("BATCH")) {
+				if (expiryMode.equals("BATCH"))
+				{
 					jStatusText.setText("No Batch Record Found " + jTextFieldMaterial.getText() + " / " + jTextFieldBatch.getText() + " (auto create on save).");
 				}
 			}
@@ -280,16 +315,21 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 
 	}
 
-	private void materialChanged() {
-		if (initialising == false) {
+	private void materialChanged()
+	{
+		if (initialising == false)
+		{
 			jStatusText.setText("");
-			if (material.getMaterialProperties(jTextFieldMaterial.getText()) == true) {
+			if (material.getMaterialProperties(jTextFieldMaterial.getText()) == true)
+			{
 				enableOrdisableFields(null);
 				jTextFieldMaterialDescription.setText(material.getDescription());
 				getMaterialUoms(jTextFieldMaterial.getText());
 				materialBatchChanged();
 				uomChanged();
-			} else {
+			}
+			else
+			{
 				enableOrdisableFields(jTextFieldMaterial);
 				jTextFieldMaterialDescription.setText("");
 				jButtonSave.setEnabled(false);
@@ -298,14 +338,20 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 		}
 	}
 
-	private void despatchNoChanged() {
-		if (initialising == false) {
+	private void despatchNoChanged()
+	{
+		if (initialising == false)
+		{
 			jStatusText.setText("");
 			String despNo = JUtility.replaceNullStringwithBlank(textFieldDespatchNo.getText());
-			if (despNo.equals("") == false) {
-				if (despatch.getDespatchProperties(despNo) == true) {
+			if (despNo.equals("") == false)
+			{
+				if (despatch.getDespatchProperties(despNo) == true)
+				{
 					enableOrdisableFields(null);
-				} else {
+				}
+				else
+				{
 					enableOrdisableFields(textFieldDespatchNo);
 					jButtonSave.setEnabled(false);
 					jStatusText.setText(despatch.getErrorMessage());
@@ -314,36 +360,79 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 		}
 	}
 
-	private void customerIDChanged() {
-		if (initialising == false) {
+	private void equipmentChanged()
+	{
+		if (initialising == false)
+		{
+			jStatusText.setText("");
+			String equipmentType = JUtility.replaceNullStringwithBlank(jTextFieldEquipment.getText());
+			if (equipmentType.equals(""))
+			{
+				enableOrdisableFields(null);
+			}
+			else
+			{
+				if (equipmentType.equals("") == false)
+				{
+					if (equipment.getEquipmentTypeProperties(equipmentType) == true)
+					{
+						enableOrdisableFields(null);
+					}
+					else
+					{
+						enableOrdisableFields(jTextFieldEquipment);
+						jButtonSave.setEnabled(false);
+						jStatusText.setText(equipment.getErrorMessage());
+					}
+				}
+			}
+		}
+	}
+
+	private void customerIDChanged()
+	{
+		if (initialising == false)
+		{
 			jStatusText.setText("");
 			String customerID = JUtility.replaceNullStringwithBlank(textFieldCustomer.getText());
-			if (customerID.equals("") == false) {
-				if (customer.isValidCustomer(customerID) == true) {
+			if (customerID.equals("") == false)
+			{
+				if (customer.isValidCustomer(customerID) == true)
+				{
 					enableOrdisableFields(null);
-				} else {
+				}
+				else
+				{
 					enableOrdisableFields(textFieldCustomer);
 					jButtonSave.setEnabled(false);
 					jStatusText.setText(customer.getErrorMessage());
 				}
-			} else {
+			}
+			else
+			{
 				enableOrdisableFields(textFieldCustomer);
 				jStatusText.setText("Customer ID cannot be empty");
 			}
 		}
 	}
 
-	private void processOrderChanged() {
-		if (initialising == false) {
+	private void processOrderChanged()
+	{
+		if (initialising == false)
+		{
 			jStatusText.setText("");
-			if (processOrder.getProcessOrderProperties(jTextFieldProcessOrder.getText()) == true) {
+			if (processOrder.getProcessOrderProperties(jTextFieldProcessOrder.getText()) == true)
+			{
 				enableOrdisableFields(null);
-				if (jTextFieldMaterial.getText().equals(processOrder.getMaterial()) == false) {
+				if (jTextFieldMaterial.getText().equals(processOrder.getMaterial()) == false)
+				{
 					jTextFieldMaterial.setText(processOrder.getMaterial());
 					materialChanged();
 					jStatusText.setText("Material updated from process order");
 				}
-			} else {
+			}
+			else
+			{
 				enableOrdisableFields(jTextFieldProcessOrder);
 				jButtonSave.setEnabled(false);
 				jStatusText.setText(processOrder.getErrorMessage());
@@ -353,28 +442,37 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 		}
 	}
 
-	private void uomChanged() {
-		if (initialising == false) {
+	private void uomChanged()
+	{
+		if (initialising == false)
+		{
 			jStatusText.setText("");
-			try {
+			try
+			{
 				luom = ((JDBUom) jComboBoxUOM.getSelectedItem()).getInternalUom();
 				pallet.setUom(luom);
-				if (materialuom.getMaterialUomProperties(jTextFieldMaterial.getText(), luom)) {
+				if (materialuom.getMaterialUomProperties(jTextFieldMaterial.getText(), luom))
+				{
 					enableOrdisableFields(null);
-				} else {
+				}
+				else
+				{
 					enableOrdisableFields(jComboBoxUOM);
 					jButtonSave.setEnabled(false);
 					jStatusText.setText(materialuom.getErrorMessage());
 				}
 				jTextFieldEAN.setText(materialuom.getEan());
 				jTextFieldVariant.setText(materialuom.getVariant());
-			} catch (Exception e) {
+			}
+			catch (Exception e)
+			{
 
 			}
 		}
 	}
 
-	public void getMaterialUoms(String lmaterial) {
+	public void getMaterialUoms(String lmaterial)
+	{
 		uomList.clear();
 		materialuom.setMaterial(lmaterial);
 		uomList.addAll(materialuom.getMaterialUoms());
@@ -385,28 +483,29 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 
 	}
 
-	public JInternalFramePalletProperties(String sscc) {
-		
+	public JInternalFramePalletProperties(String sscc)
+	{
+
 		super();
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_EDIT"));
-		
+
 		JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 		expiryMode = ctrl.getKeyValue("EXPIRY DATE MODE");
-		
+
 		uomList.add(new JDBUom("", ""));
 		uomList.addAll(uom.getInternalUoms());
 		lsscc = sscc;
 		initGUI();
-		
+
 		this.setTitle("Pallet Properties");
 		refresh();
-		
 
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				jTextFieldProcessOrder.requestFocus();
 				jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
 
@@ -427,18 +526,19 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 				save();
 			}
 		}
-		
+
 		lsscc = sscc;
 		refresh();
 	}
-	
+
 	private void save()
 	{
 		boolean result = true;
 
 		long txnRef = 0;
 
-		if (pallet.isValidPallet(lsscc) == true) {
+		if (pallet.isValidPallet(lsscc) == true)
+		{
 			txnRef = pallet.writePalletHistory(txnRef, "EDIT", "FROM");
 		}
 
@@ -451,96 +551,129 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 
 		pallet.setQuantity(jFormattedTextFieldQuantity.getQuantity());
 		pallet.setDespatchNo(textFieldDespatchNo.getText());
+		jTextFieldEquipment.setText(jTextFieldEquipment.getText().toUpperCase());
+		pallet.setEquipmentType(jTextFieldEquipment.getText().toUpperCase());
 		pallet.setCustomerID(textFieldCustomer.getText());
 		Date exp = expiryDate.getDate();
 		pallet.setBatchExpiry(JUtility.getTimestampFromDate(exp));
-		if (expiryMode.equals("SSCC")) {
-			try {
+		if (expiryMode.equals("SSCC"))
+		{
+			try
+			{
 				Date d = expiryDate.getDate();
 				pallet.setBatchExpiry(JUtility.getTimestampFromDate(d));
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 
 			}
 		}
 
-		if (pallet.isValidPallet(lsscc) == true) {
+		if (pallet.isValidPallet(lsscc) == true)
+		{
 			result = pallet.update();
-			if (result == true) {
+			if (result == true)
+			{
 				pallet.writePalletHistory(txnRef, "EDIT", "TO");
-				pallet.updateStatus((String) jComboBoxDefaultPalletStatus.getSelectedItem(),true);
+				pallet.updateStatus((String) jComboBoxDefaultPalletStatus.getSelectedItem(), true);
 
 				jTextFieldLayers.setText(String.valueOf(pallet.getLayersOnPallet()));
 				enableOrdisableFields(null);
 				jButtonSave.setEnabled(false);
 				jButtonUndo.setEnabled(false);
-			} else {
+			}
+			else
+			{
 				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
+				JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 
 			}
-		} else {
+		}
+		else
+		{
 			result = pallet.create();
-			if (result == true) {
+			if (result == true)
+			{
 				txnRef = pallet.writePalletHistory(txnRef, "EDIT", "CREATE");
 				jTextFieldLayers.setText(String.valueOf(pallet.getLayersOnPallet()));
 				enableOrdisableFields(null);
 				jButtonSave.setEnabled(false);
 				jButtonUndo.setEnabled(false);
-			} else {
+			}
+			else
+			{
 				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
+				JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 
 			}
 		}
 
 	}
 
-	private void refresh() {
+	private void refresh()
+	{
 		pallet.setSSCC(lsscc);
-		
+
 		jTextFieldSSCC.setText(lsscc);
-		if (pallet.isValidPallet()) {
+		if (pallet.isValidPallet())
+		{
 			pallet.getPalletProperties(lsscc);
 
 			textFieldCustomer.setText(pallet.getCustomerID());
 			jTextFieldProcessOrder.setText(pallet.getProcessOrder());
 
-			if (processOrder.getProcessOrderProperties(jTextFieldProcessOrder.getText()) == true) {
+			if (processOrder.getProcessOrderProperties(jTextFieldProcessOrder.getText()) == true)
+			{
 				jTextFieldProcessOrderDescription.setText(processOrder.getDescription());
-			} else {
+			}
+			else
+			{
 				jTextFieldProcessOrderDescription.setText("Not found !");
 			}
 
 			jTextFieldMaterial.setText(pallet.getMaterial());
 
-			if (material.getMaterialProperties(jTextFieldMaterial.getText()) == true) {
+			if (material.getMaterialProperties(jTextFieldMaterial.getText()) == true)
+			{
 				jTextFieldMaterialDescription.setText(material.getDescription());
-			} else {
+			}
+			else
+			{
 				jTextFieldMaterialDescription.setText("Not found !");
 			}
 
 			jTextFieldBatch.setText(pallet.getBatchNumber());
 
-			if (materialBatch.getMaterialBatchProperties(jTextFieldMaterial.getText(), jTextFieldBatch.getText()) == true) {
+			if (materialBatch.getMaterialBatchProperties(jTextFieldMaterial.getText(), jTextFieldBatch.getText()) == true)
+			{
 				jTextFieldBatchStatus.setText(materialBatch.getStatus());
 
-				if (expiryMode.equals("SSCC")) {
+				if (expiryMode.equals("SSCC"))
+				{
 					jButtonEditBatch.setVisible(false);
 					calendarButtonexpiryDate.setVisible(true);
 					expiryDate.setEnabled(true);
 					expiryDate.setDate(pallet.getBatchExpiry());
-				} else {
-					try {
+				}
+				else
+				{
+					try
+					{
 						expiryDate.setDate(materialBatch.getExpiryDate());
 						jStatusText.setText("Expiry Date set from Batch " + jTextFieldMaterial.getText() + " / " + jTextFieldBatch.getText());
-					} catch (Exception ex) {
+					}
+					catch (Exception ex)
+					{
 						jStatusText.setText(ex.getMessage());
 					}
 				}
 
-			} else {
+			}
+			else
+			{
 				jStatusText.setText("Not found !");
-				if (expiryMode.equals("BATCH")) {
+				if (expiryMode.equals("BATCH"))
+				{
 					jStatusText.setText("No Batch Record Found " + jTextFieldMaterial.getText() + " / " + jTextFieldBatch.getText());
 				}
 			}
@@ -548,9 +681,12 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 			jTextFieldLocation.setText(pallet.getLocationID());
 			jFormattedTextFieldQuantity.setValue(pallet.getQuantity());
 
-			try {
+			try
+			{
 				productionDate.setDate(pallet.getDateOfManufacture());
-			} catch (Exception ex) {
+			}
+			catch (Exception ex)
+			{
 				productionDate.setDate(JUtility.getSQLDateTime());
 			}
 
@@ -562,6 +698,8 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 			getMaterialUoms(pallet.getMaterial());
 			paluom.getInternalUomProperties(pallet.getUom());
 			textFieldDespatchNo.setText(pallet.getDespatchNo());
+			jTextFieldEquipment.setText(pallet.getEquipmentType());
+
 			jComboBoxUOM.setSelectedItem(paluom);
 			jTextFieldLayers.setText(String.valueOf(pallet.getLayersOnPallet()));
 
@@ -574,10 +712,12 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 		}
 	}
 
-	private void initGUI() {
-		try {
+	private void initGUI()
+	{
+		try
+		{
 			this.setPreferredSize(new java.awt.Dimension(471, 531));
-			this.setBounds(0, 0, 476, 598);
+			this.setBounds(0, 0, 476, 630);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -600,27 +740,32 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jButtonSave.setEnabled(false);
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
-					jButtonSave.setBounds(3, 502, 111, 32);
-					jButtonSave.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonSave.setBounds(3, 533, 111, 32);
+					jButtonSave.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							save();
-						}});
+						}
+					});
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(229, 502, 111, 32);
+					jButtonHelp.setBounds(229, 533, 111, 32);
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setBounds(342, 502, 111, 32);
-					jButtonCancel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonCancel.setBounds(342, 533, 111, 32);
+					jButtonCancel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -633,8 +778,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jComboBoxUOM.setMaximumRowCount(12);
 					jComboBoxUOM.setBounds(147, 280, 287, 23);
 					jComboBoxUOM.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_UOM"));
-					jComboBoxUOM.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jComboBoxUOM.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							uomChanged();
 						}
 					});
@@ -666,8 +813,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					textFieldDespatchNo.setFocusCycleRoot(true);
 					textFieldDespatchNo.setEnabled(false);
 					textFieldDespatchNo.setBounds(147, 446, 119, 21);
-					textFieldDespatchNo.addKeyListener(new KeyAdapter() {
-						public void keyReleased(KeyEvent evt) {
+					textFieldDespatchNo.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(KeyEvent evt)
+						{
 							despatchNoChanged();
 						}
 					});
@@ -680,8 +829,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jComboBoxDefaultPalletStatus.setModel(jComboBox1Model);
 					jComboBoxDefaultPalletStatus.setBounds(147, 389, 168, 23);
 					jComboBoxDefaultPalletStatus.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_STATUS"));
-					jComboBoxDefaultPalletStatus.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jComboBoxDefaultPalletStatus.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 							jButtonUndo.setEnabled(true);
 						}
@@ -699,8 +850,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jTextFieldMaterial);
 					jTextFieldMaterial.setBounds(147, 87, 119, 21);
 					jTextFieldMaterial.setEditable(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
-					jTextFieldMaterial.addKeyListener(new KeyAdapter() {
-						public void keyReleased(KeyEvent evt) {
+					jTextFieldMaterial.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(KeyEvent evt)
+						{
 							materialChanged();
 						}
 					});
@@ -710,11 +863,14 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jButtonLookupMaterial);
 					jButtonLookupMaterial.setBounds(266, 87, 21, 21);
 					jButtonLookupMaterial.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
-					jButtonLookupMaterial.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonLookupMaterial.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JLaunchLookup.dlgAutoExec = false;
 							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.materials()) {
+							if (JLaunchLookup.materials())
+							{
 								jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
 								materialChanged();
 
@@ -734,8 +890,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jTextFieldBatch);
 					jTextFieldBatch.setBounds(147, 141, 119, 21);
 					jTextFieldBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_BATCH"));
-					jTextFieldBatch.addKeyListener(new KeyAdapter() {
-						public void keyReleased(KeyEvent evt) {
+					jTextFieldBatch.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(KeyEvent evt)
+						{
 							materialBatchChanged();
 						}
 					});
@@ -745,11 +903,14 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jButtonLookupBatch);
 					jButtonLookupBatch.setBounds(266, 141, 21, 21);
 					jButtonLookupBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_BATCH"));
-					jButtonLookupBatch.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonLookupBatch.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();
 							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.materialBatches()) {
+							if (JLaunchLookup.materialBatches())
+							{
 								jTextFieldBatch.setText(JLaunchLookup.dlgResult);
 								materialBatchChanged();
 							}
@@ -768,8 +929,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jTextFieldLocation);
 					jTextFieldLocation.setBounds(147, 226, 119, 21);
 					jTextFieldLocation.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_LOCATION"));
-					jTextFieldLocation.addKeyListener(new KeyAdapter() {
-						public void keyReleased(KeyEvent evt) {
+					jTextFieldLocation.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(KeyEvent evt)
+						{
 							locationChanged();
 						}
 					});
@@ -779,11 +942,14 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jButtonLookupLocation);
 					jButtonLookupLocation.setBounds(266, 226, 21, 21);
 					jButtonLookupLocation.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_LOCATION"));
-					jButtonLookupLocation.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonLookupLocation.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JLaunchLookup.dlgAutoExec = true;
 							JLaunchLookup.dlgCriteriaDefault = "Y";
-							if (JLaunchLookup.locations()) {
+							if (JLaunchLookup.locations())
+							{
 								jTextFieldLocation.setText(JLaunchLookup.dlgResult);
 								locationChanged();
 							}
@@ -802,8 +968,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jTextFieldProcessOrder);
 					jTextFieldProcessOrder.setBounds(147, 33, 119, 21);
 					jTextFieldProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
-					jTextFieldProcessOrder.addKeyListener(new KeyAdapter() {
-						public void keyReleased(KeyEvent evt) {
+					jTextFieldProcessOrder.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(KeyEvent evt)
+						{
 							processOrderChanged();
 						}
 					});
@@ -813,11 +981,14 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jButtonLookupProcessOrder);
 					jButtonLookupProcessOrder.setBounds(266, 33, 21, 21);
 					jButtonLookupProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
-					jButtonLookupProcessOrder.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonLookupProcessOrder.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JLaunchLookup.dlgCriteriaDefault = "Ready";
 							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.processOrders()) {
+							if (JLaunchLookup.processOrders())
+							{
 								jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
 								processOrderChanged();
 							}
@@ -883,8 +1054,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jFormattedTextFieldQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
 					jFormattedTextFieldQuantity.setBounds(147, 253, 91, 21);
 					jFormattedTextFieldQuantity.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_QUANTITY"));
-					jFormattedTextFieldQuantity.addKeyListener(new KeyAdapter() {
-						public void keyReleased(KeyEvent evt) {
+					jFormattedTextFieldQuantity.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(KeyEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 							jButtonUndo.setEnabled(true);
 						}
@@ -913,14 +1086,17 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 
 				}
 
-				productionDate.getEditor().addKeyListener(new KeyAdapter() {
-					public void keyPressed(KeyEvent e) {
+				productionDate.getEditor().addKeyListener(new KeyAdapter()
+				{
+					public void keyPressed(KeyEvent e)
+					{
 						jButtonSave.setEnabled(true);
 						jButtonUndo.setEnabled(true);
 					}
 				});
 
-				productionDate.addChangeListener(new ChangeListener() {
+				productionDate.addChangeListener(new ChangeListener()
+				{
 					public void stateChanged(final ChangeEvent e)
 
 					{
@@ -955,8 +1131,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jTextFieldMaterialDescription);
 					jTextFieldMaterialDescription.setBounds(147, 114, 287, 21);
 					jTextFieldMaterialDescription.setEnabled(false);
-					jTextFieldMaterialDescription.addKeyListener(new KeyAdapter() {
-						public void keyReleased(KeyEvent evt) {
+					jTextFieldMaterialDescription.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(KeyEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 							jButtonUndo.setEnabled(true);
 						}
@@ -974,8 +1152,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jTextFieldBatchStatus);
 					jTextFieldBatchStatus.setBounds(147, 168, 119, 21);
 					jTextFieldBatchStatus.setEnabled(false);
-					jTextFieldBatchStatus.addKeyListener(new KeyAdapter() {
-						public void keyReleased(KeyEvent evt) {
+					jTextFieldBatchStatus.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(KeyEvent evt)
+						{
 							jButtonSave.setEnabled(true);
 							jButtonUndo.setEnabled(true);
 						}
@@ -983,8 +1163,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 				}
 				{
 					expiryDate = new JDateControl();
-					expiryDate.addChangeListener(new ChangeListener() {
-						public void stateChanged(ChangeEvent e) {
+					expiryDate.addChangeListener(new ChangeListener()
+					{
+						public void stateChanged(ChangeEvent e)
+						{
 							jButtonSave.setEnabled(true);
 							jButtonUndo.setEnabled(true);
 						}
@@ -1008,15 +1190,17 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jStatusText);
 					jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-					jStatusText.setBounds(0, 540, 466, 21);
+					jStatusText.setBounds(0, 571, 466, 21);
 				}
 				{
 					jButton1 = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButton1);
 					jButton1.setBounds(266, 168, 21, 21);
 					jButton1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
-					jButton1.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButton1.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", jTextFieldMaterial.getText(), jTextFieldBatch.getText());
 						}
 					});
@@ -1026,8 +1210,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(jButtonEditBatch);
 					jButtonEditBatch.setBounds(278, 195, 21, 25);
 					jButtonEditBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
-					jButtonEditBatch.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonEditBatch.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", jTextFieldMaterial.getText(), jTextFieldBatch.getText());
 						}
 					});
@@ -1035,14 +1221,16 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 
 				{
 					jButtonUndo = new JButton4j(Common.icon_undo_16x16);
-					jButtonUndo.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					jButtonUndo.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							refresh();
 						}
 					});
 					jButtonUndo.setMnemonic(KeyEvent.VK_U);
 					jButtonUndo.setText(lang.get("btn_Undo"));
-					jButtonUndo.setBounds(116, 502, 111, 32);
+					jButtonUndo.setBounds(116, 533, 111, 32);
 					jDesktopPane1.add(jButtonUndo);
 				}
 
@@ -1050,21 +1238,23 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jLabelProductionDate_1 = new JLabel4j_std();
 					jLabelProductionDate_1.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabelProductionDate_1.setText(lang.get("lbl_Confirmed"));
-					jLabelProductionDate_1.setBounds(7, 470, 133, 24);
+					jLabelProductionDate_1.setBounds(7, 493, 133, 24);
 					jDesktopPane1.add(jLabelProductionDate_1);
 				}
 
 				{
 
 					checkBoxConfirmed.setBackground(Color.WHITE);
-					checkBoxConfirmed.addActionListener(new ActionListener() {
-						public void actionPerformed(final ActionEvent e) {
+					checkBoxConfirmed.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
 							jButtonSave.setEnabled(true);
 							jButtonUndo.setEnabled(true);
 						}
 					});
 					checkBoxConfirmed.setText("");
-					checkBoxConfirmed.setBounds(143, 470, 32, 24);
+					checkBoxConfirmed.setBounds(147, 493, 32, 24);
 					jDesktopPane1.add(checkBoxConfirmed);
 				}
 				{
@@ -1086,8 +1276,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(label);
 
 					textFieldCustomer = new JTextField4j(JDBCustomer.field_customer_id);
-					textFieldCustomer.addKeyListener(new KeyAdapter() {
-						public void keyReleased(KeyEvent e) {
+					textFieldCustomer.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(KeyEvent e)
+						{
 							customerIDChanged();
 						}
 					});
@@ -1096,11 +1288,14 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 
 					JButton4j button = new JButton4j(Common.icon_lookup_16x16);
 					button.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER"));
-					button.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
+					button.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
 							JLaunchLookup.dlgAutoExec = true;
 							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.customers()) {
+							if (JLaunchLookup.customers())
+							{
 								textFieldCustomer.setText(JLaunchLookup.dlgResult);
 								customerIDChanged();
 							}
@@ -1110,10 +1305,12 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					jDesktopPane1.add(button);
 				}
 				{
-					
+
 					buttonRefreshMaterialData = new JButton4j(Common.icon_refresh_16x16);
-					buttonRefreshMaterialData.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
+					buttonRefreshMaterialData.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent arg0)
+						{
 							materialChanged();
 						}
 					});
@@ -1122,8 +1319,46 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame {
 					buttonRefreshMaterialData.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
 					jDesktopPane1.add(buttonRefreshMaterialData);
 				}
+
+				JLabel4j_std jLabel_Equipment = new JLabel4j_std();
+				jLabel_Equipment.setHorizontalAlignment(SwingConstants.TRAILING);
+				jLabel_Equipment.setBounds(7, 472, 133, 21);
+				jLabel_Equipment.setText(lang.get("lbl_Material_Equipment_Type"));
+				jDesktopPane1.add(jLabel_Equipment);
+				jTextFieldEquipment.addKeyListener(new KeyAdapter()
+				{
+					@Override
+					public void keyReleased(KeyEvent e)
+					{
+						equipmentChanged();
+					}
+				});
+
+				jTextFieldEquipment.setBounds(147, 472, 126, 21);
+				jTextFieldEquipment.setEnabled(false);
+				jDesktopPane1.add(jTextFieldEquipment);
+
+				JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
+				jButtonLookupEquipment.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_EQUIPMENT"));
+				jButtonLookupEquipment.setBounds(273, 472, 21, 21);
+				jButtonLookupEquipment.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.dlgCriteriaDefault = "Y";
+						if (JLaunchLookup.equipmentType())
+						{
+							jTextFieldEquipment.setText(JLaunchLookup.dlgResult);
+							equipmentChanged();
+						}
+					}
+				});
+				jDesktopPane1.add(jButtonLookupEquipment);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
