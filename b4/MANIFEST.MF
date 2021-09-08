@@ -18,7 +18,7 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/cups4j/slf4j-api-1.7.25.jar 
  lib/cups4j/slf4j-simple-1.7.25.jar 
  lib/db/mssql-jdbc-8.4.1.jre8.jar 
- lib/db/mysql-connector-java-8.0.25.jar 
+ lib/db/mysql-connector-java-8.0.26.jar 
  lib/db/ojdbc8.jar 
  lib/jasper/jasperreports-6.16.0.jar 
  lib/jasper/jasperreports-annotation-processors-6.16.0.jar 

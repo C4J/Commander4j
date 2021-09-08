@@ -109,6 +109,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.25.jar"/>
+	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.26.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
