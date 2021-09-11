@@ -2387,19 +2387,19 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 
 		String wasteLocationID = Common.sd.getData(sessionID, "wasteLocationID");
 		JDBWasteLocation wl = new JDBWasteLocation(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		saveData(session, "wasteLocationCombo", wl.getHTMLPullDownCombo("wasteLocationCombo", wasteLocationID,"onchange=\"document.wasteLog.wasteBarcode.value = '91'.concat(document.wasteLog.wasteLocationCombo.value);javascript:document.wasteLog.submit();"), true);
+		saveData(session, "wasteLocationCombo", wl.getHTMLPullDownCombo("wasteLocationCombo"    , wasteLocationID,"onchange=\"document.wasteLog.wasteBarcode.value = '91'.concat(document.wasteLog.wasteLocationCombo.value);javascript:document.wasteLog.submit();"), true);
 
 		String wasteContainerID = Common.sd.getData(sessionID, "wasteContainerID");
 		JDBWasteContainer wc = new JDBWasteContainer(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		saveData(session, "wasteContainerCombo", wc.getHTMLPullDownCombo("wasteContainerCombo", wasteContainerID), true);
-
+		saveData(session, "wasteContainerCombo", wc.getHTMLPullDownCombo("wasteContainerCombo" , wasteContainerID,"onchange=\"document.wasteLog.wasteBarcode.value = '95'.concat(document.wasteLog.wasteContainerCombo.value);javascript:document.wasteLog.submit();"), true);
+		
 		String wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
 		JDBWasteMaterial wm = new JDBWasteMaterial(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		saveData(session, "wasteMaterialCombo",wm.getHTMLPullDownCombofoLocation("wasteMaterialCombo", wasteMaterialID,wasteLocationID, ""), true);
+		saveData(session, "wasteMaterialCombo",wm.getHTMLPullDownCombofoLocation("wasteMaterialCombo", wasteMaterialID,wasteLocationID, "onchange=\"document.wasteLog.wasteBarcode.value = '92'.concat(document.wasteLog.wasteMaterialCombo.value);javascript:document.wasteLog.submit();"), true);
 
 		String wasteReasonID = Common.sd.getData(sessionID, "wasteReasonID");
 		JDBWasteReasons wr = new JDBWasteReasons(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		saveData(session, "wasteReasonCombo", wr.getHTMLPullDownCombo("wasteReasonCombo", wasteReasonID), true);
+		saveData(session, "wasteReasonCombo", wr.getHTMLPullDownCombo("wasteReasonCombo", wasteReasonID, "onchange=\"document.wasteLog.wasteBarcode.value = '93'.concat(document.wasteLog.wasteReasonCombo.value);javascript:document.wasteLog.submit();"), true);
 
 		String wasteProcessOrder = Common.sd.getData(sessionID, "wasteProcessOrder");
 		saveData(session, "wasteProcessOrder", wasteProcessOrder, true);

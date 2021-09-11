@@ -307,14 +307,14 @@ public class JDBWasteReasons
 		return getWasteReasonProperties();
 	}
 	
-	public String getHTMLPullDownCombo(String itemName, String defaultValue)
+	public String getHTMLPullDownCombo(String itemName, String defaultValue, String onchange)
 	{
 		String result = "";
 		String selected = "";
 		LinkedList<JDBWasteReasons> reasonList = new LinkedList<JDBWasteReasons>();
 				
 		reasonList.addAll(getWasteReasonssList(true,displayModeShort));
-		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\" " +onchange + "\">";
 		result = result + "<OPTION></OPTION>";
 		
 		if (reasonList.size() > 0)
