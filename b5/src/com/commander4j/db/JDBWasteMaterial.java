@@ -43,9 +43,9 @@ import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
 /**
- * The JDBWasteMaterial class updates the table
- * APP_WASTE_MATERIAL. This table contains a single row for each unique
- * Waste Location as stored in the APP_WASTE_MATERIAL table. 
+ * The JDBWasteMaterial class updates the table APP_WASTE_MATERIAL. This table
+ * contains a single row for each unique Waste Location as stored in the
+ * APP_WASTE_MATERIAL table.
  * <p>
  * <img alt="" src="./doc-files/APP_WASTE_MATERIAL.jpg" >
  * 
@@ -66,21 +66,21 @@ public class JDBWasteMaterial
 	public static int field_WasteTypeID_id = 25;
 	public static int field_UOM = 3;
 	public static int field_Enabled = 1;
-	
+
 	public static int displayModeFull = 0;
 	public static int displayModeShort = 1;
-	
+
 	private String dbErrorMessage;
-	private String dbWasteMaterialID;  /* PK */
+	private String dbWasteMaterialID; /* PK */
 	private String dbWasteTypeID;
 	private BigDecimal dbCostPerKG;
 	private String dbDescription;
 	private String dbEnabled;
-	
+
 	private final Logger logger = Logger.getLogger(JDBWasteMaterial.class);
 	private String hostID;
 	private String sessionID;
-	private Integer displayMode=displayModeFull;
+	private Integer displayMode = displayModeFull;
 
 	public JDBWasteMaterial(String host, String session)
 	{
@@ -96,12 +96,12 @@ public class JDBWasteMaterial
 		setDescription("");
 		setEnabled(true);
 	}
-	
+
 	public void setDisplayMode(int mode)
 	{
 		displayMode = mode;
 	}
-	
+
 	public boolean create(String res)
 	{
 		boolean result = false;
@@ -126,19 +126,20 @@ public class JDBWasteMaterial
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 				stmtupdate.close();
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Waste Material " + getWasteMaterialID() + " already exists");
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
-	
-	
+
 	public boolean delete()
 	{
 		PreparedStatement stmtupdate;
@@ -157,24 +158,25 @@ public class JDBWasteMaterial
 				stmtupdate.close();
 				result = true;
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
-	
+
 	public BigDecimal getCostPerKG()
 	{
 		return dbCostPerKG;
 	}
-	
+
 	public void setCostPerKG(BigDecimal val)
 	{
 		dbCostPerKG = val;
 	}
-	
+
 	public String getWasteTypeID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbWasteTypeID).trim();
@@ -191,7 +193,7 @@ public class JDBWasteMaterial
 
 		return result;
 	}
-	
+
 	public String getDescription()
 	{
 		return JUtility.replaceNullStringwithBlank(dbDescription);
@@ -225,7 +227,8 @@ public class JDBWasteMaterial
 		try
 		{
 			rs = criteria.executeQuery();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			rs = null;
 			setErrorMessage(e.getMessage());
@@ -244,7 +247,25 @@ public class JDBWasteMaterial
 			setCostPerKG(rs.getBigDecimal("cost_per_kg"));
 			setDescription(rs.getString("description"));
 			setEnabled(rs.getString("enabled"));
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+	}
+
+	public void getPropertiesfromResultSetLocationMaterials(ResultSet rs)
+	{
+		try
+		{
+			clear();
+			setWasteMaterialID(rs.getString("waste_material_id"));
+			setWasteTypeID(rs.getString("waste_type_id"));
+			setCostPerKG(new BigDecimal("0"));
+			setDescription("");
+			setEnabled("Y");
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -275,13 +296,15 @@ public class JDBWasteMaterial
 			{
 				getPropertiesfromResultSet(rs);
 				result = true;
-			} else
+			}
+			else
 			{
-				setErrorMessage("Invalid Waste Material [" + getWasteMaterialID()+"]");
+				setErrorMessage("Invalid Waste Material [" + getWasteMaterialID() + "]");
 			}
 			rs.close();
 			stmt.close();
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -309,13 +332,13 @@ public class JDBWasteMaterial
 
 		return rs;
 	}
-	
+
 	public boolean getWasteMaterialProperties(String res)
 	{
 		setWasteMaterialID(res);
 		return getWasteMaterialProperties();
 	}
-	
+
 	public Icon getMaterialIcon()
 	{
 		Icon icon = new ImageIcon();
@@ -339,17 +362,17 @@ public class JDBWasteMaterial
 
 		return icon;
 	}
-	
+
 	public String getHTMLPullDownCombo(String itemName, String defaultValue, String onchange)
 	{
 		String result = "";
 		String selected = "";
 		LinkedList<JDBWasteMaterial> materialList = new LinkedList<JDBWasteMaterial>();
-		
-		materialList.addAll(getWasteMaterialsList(true,displayModeShort));
-		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\" " +onchange + "\">";
+
+		materialList.addAll(getWasteMaterialsList(true, displayModeShort));
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\" " + onchange + "\">";
 		result = result + "<OPTION></OPTION>";
-		
+
 		if (materialList.size() > 0)
 		{
 			for (int x = 0; x < materialList.size(); x++)
@@ -357,25 +380,27 @@ public class JDBWasteMaterial
 				if (materialList.get(x).getWasteMaterialID().equals(defaultValue))
 				{
 					selected = " SELECTED";
-				} else
+				}
+				else
 				{
 					selected = "";
 				}
-				result = result + "<OPTION" + selected + ">" + materialList.get(x).getWasteMaterialID()+"</OPTION>";
+				result = result + "<OPTION" + selected + ">" + materialList.get(x).getWasteMaterialID() + "</OPTION>";
 			}
 		}
 		result = result + "</SELECT>";
 
 		return result;
-	}	
-	
-	public LinkedList<JDBWasteMaterial> getWasteMaterialsList(Boolean enabled,int mode) {
+	}
+
+	public LinkedList<JDBWasteMaterial> getWasteMaterialsList(Boolean enabled, int mode)
+	{
 
 		LinkedList<JDBWasteMaterial> wasteMaterialList = new LinkedList<JDBWasteMaterial>();
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
-		
+
 		try
 		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteMaterial.getWasteMaterials"));
@@ -387,9 +412,9 @@ public class JDBWasteMaterial
 				JDBWasteMaterial samp = new JDBWasteMaterial(getHostID(), getSessionID());
 				samp.setDisplayMode(mode);
 				samp.getPropertiesfromResultSet(rs);
-				
+
 				if (samp.isEnabled().equals(enabled))
-				{	
+				{
 					wasteMaterialList.addLast(samp);
 				}
 			}
@@ -405,18 +430,17 @@ public class JDBWasteMaterial
 		return wasteMaterialList;
 	}
 
-	
-	public String getHTMLPullDownCombofoLocation(String itemName, String defaultValue,String location,String onchange)
+	public String getHTMLPullDownCombofoLocation(String itemName, String defaultValue, String location, String onchange)
 	{
 		String result = "";
 		String selected = "";
 		LinkedList<JDBWasteMaterial> materialList = new LinkedList<JDBWasteMaterial>();
-		
-		materialList.addAll(getWasteMaterialIDsforlLocationList(location,true,displayModeShort));
-		
-		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\" " +onchange + "\">";
+
+		materialList.addAll(getWasteMaterialIDsforlLocationList(location, true, displayModeShort));
+
+		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\" " + onchange + "\">";
 		result = result + "<OPTION></OPTION>";
-		
+
 		if (materialList.size() > 0)
 		{
 			for (int x = 0; x < materialList.size(); x++)
@@ -424,25 +448,27 @@ public class JDBWasteMaterial
 				if (materialList.get(x).getWasteMaterialID().equals(defaultValue))
 				{
 					selected = " SELECTED";
-				} else
+				}
+				else
 				{
 					selected = "";
 				}
-				result = result + "<OPTION" + selected + ">" + materialList.get(x).getWasteMaterialID()+"</OPTION>";
+				result = result + "<OPTION" + selected + ">" + materialList.get(x).getWasteMaterialID() + "</OPTION>";
 			}
 		}
 		result = result + "</SELECT>";
 
 		return result;
 	}
-	
-	public LinkedList<JDBWasteMaterial> getWasteMaterialIDsforlLocationList(String location,Boolean enabled,int mode) {
+
+	public LinkedList<JDBWasteMaterial> getWasteMaterialIDsforlLocationList(String location, Boolean enabled, int mode)
+	{
 
 		LinkedList<JDBWasteMaterial> wasteMaterialList = new LinkedList<JDBWasteMaterial>();
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
-		
+
 		try
 		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteLocationMaterial.getMaterialsforLocation"));
@@ -454,10 +480,10 @@ public class JDBWasteMaterial
 			{
 				JDBWasteMaterial samp = new JDBWasteMaterial(getHostID(), getSessionID());
 				samp.setDisplayMode(mode);
-				samp.getPropertiesfromResultSet(rs);
-				
+				samp.getPropertiesfromResultSetLocationMaterials(rs);
+
 				if (samp.isEnabled().equals(enabled))
-				{	
+				{
 					wasteMaterialList.addLast(samp);
 				}
 			}
@@ -472,16 +498,17 @@ public class JDBWasteMaterial
 
 		return wasteMaterialList;
 	}
-	
-	public LinkedList<JDBListData> getWasteMaterials(Boolean enabled,int mode) {
-		
+
+	public LinkedList<JDBListData> getWasteMaterials(Boolean enabled, int mode)
+	{
+
 		LinkedList<JDBListData> wasteMaterialList = new LinkedList<JDBListData>();
 		PreparedStatement stmt;
 		ResultSet rs;
 		setErrorMessage("");
 		Icon icon = new ImageIcon();
 		int index = 0;
-		
+
 		try
 		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteMaterial.getWasteMaterials"));
@@ -494,11 +521,11 @@ public class JDBWasteMaterial
 				samp.setDisplayMode(mode);
 				samp.getPropertiesfromResultSet(rs);
 				icon = samp.getMaterialIcon();
-				
+
 				if (samp.isEnabled().equals(enabled))
 				{
 					JDBListData mld = new JDBListData(icon, index, true, samp);
-					
+
 					wasteMaterialList.addLast(mld);
 				}
 			}
@@ -508,6 +535,7 @@ public class JDBWasteMaterial
 		}
 		catch (SQLException e)
 		{
+			System.out.println(e.getMessage());
 			setErrorMessage(e.getMessage());
 		}
 
@@ -525,7 +553,8 @@ public class JDBWasteMaterial
 		if (getEnabled().equals("Y"))
 		{
 			result = true;
-		} else
+		}
+		else
 		{
 			result = false;
 		}
@@ -549,22 +578,24 @@ public class JDBWasteMaterial
 			if (rs.next())
 			{
 				result = true;
-			} else
+			}
+			else
 			{
 				setErrorMessage("Waste Material ID [" + getWasteMaterialID() + "] not found.");
 			}
 			stmt.close();
 			rs.close();
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
-	
-	public boolean isValidWasteMaterialLocation(String material,String location)
+
+	public boolean isValidWasteMaterialLocation(String material, String location)
 	{
 
 		boolean result = false;
@@ -575,22 +606,24 @@ public class JDBWasteMaterial
 		{
 			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteMaterialLocation.isValid"));
 			stmt.setFetchSize(1);
-			stmt.setString(1,material);		
-			stmt.setString(2,location);
+			stmt.setString(1, material);
+			stmt.setString(2, location);
 
 			rs = stmt.executeQuery();
 
 			if (rs.next())
 			{
 				result = true;
-			} else
+			}
+			else
 			{
-				setErrorMessage("Material ["+material+"] invalid for Location ["+location+"]");
+				setErrorMessage("Material [" + material + "] invalid for Location [" + location + "]");
 			}
 			stmt.close();
 			rs.close();
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
@@ -609,7 +642,7 @@ public class JDBWasteMaterial
 	{
 		dbWasteTypeID = str;
 	}
-	
+
 	public void setDescription(String desc)
 	{
 		dbDescription = desc;
@@ -620,7 +653,8 @@ public class JDBWasteMaterial
 		if (enabled)
 		{
 			setEnabled("Y");
-		} else
+		}
+		else
 		{
 			setEnabled("N");
 		}
@@ -659,18 +693,18 @@ public class JDBWasteMaterial
 	{
 		String result = "";
 
-		if (displayMode==displayModeFull)
+		if (displayMode == displayModeFull)
 		{
-			result = JUtility.padString(getWasteMaterialID().toString(), true, field_WasteMaterialID, " ")+	getDescription();
+			result = JUtility.padString(getWasteMaterialID().toString(), true, field_WasteMaterialID, " ") + getDescription();
 		}
-		
-		if (displayMode==displayModeShort)
+
+		if (displayMode == displayModeShort)
 		{
 			result = getWasteMaterialID();
 		}
 		return result;
 	}
-	
+
 	public boolean update()
 	{
 		boolean result = false;
@@ -693,15 +727,16 @@ public class JDBWasteMaterial
 				stmtupdate.close();
 				result = true;
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
 
 		return result;
 	}
-	
-	public boolean rename(String oldMaterialID,String newMaterialID)
+
+	public boolean rename(String oldMaterialID, String newMaterialID)
 	{
 		boolean result = false;
 		setWasteMaterialID(oldMaterialID);
@@ -721,7 +756,7 @@ public class JDBWasteMaterial
 					stmtupdate.clearParameters();
 					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 					stmtupdate.close();
-					
+
 					stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWasteLog.renameMaterialID"));
 					stmtupdate.setString(1, newMaterialID);
 					stmtupdate.setString(2, oldMaterialID);
@@ -729,10 +764,9 @@ public class JDBWasteMaterial
 					stmtupdate.clearParameters();
 					Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 					stmtupdate.close();
-					
-					
+
 					setWasteMaterialID(newMaterialID);
-					
+
 					result = true;
 				}
 				else
@@ -740,7 +774,8 @@ public class JDBWasteMaterial
 					setErrorMessage(newMaterialID + " already exists.");
 				}
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			setErrorMessage(e.getMessage());
 		}
