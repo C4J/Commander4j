@@ -241,9 +241,8 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 
 			if (result == true)
 			{
-				lref = wasteLog.generateNewTransactionRef();
+				lref = wasteLog.getTransactionRef();
 				mode = "EDIT";
-				// jTextFieldTransactionType.setText(String.valueOf(wasteLog.getTransactionRef()));
 				jStatusText.setText("New log " + String.valueOf(wasteLog.getTransactionRef()) + " created.");
 				jTextFieldTransactionRef.setText(String.valueOf(wasteLog.getTransactionRef()));
 			}
@@ -259,9 +258,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		else
 		{
 			jStatusText.setText(wasteLog.getErrorMessage());
-			jButtonSave.setEnabled(false);
-			jButtonUndo.setEnabled(true);
-			jButtonNew.setEnabled(false);
+
 		}
 	}
 

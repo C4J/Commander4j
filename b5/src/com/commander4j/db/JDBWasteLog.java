@@ -537,42 +537,46 @@ public class JDBWasteLog
 										{
 											if ((poReqd == false) || ((poReqd == true) && processOrder.getProcessOrderProperties(getProcessOrder())))
 											{
-												if ((poReqd == false) && (getProcessOrder().equals("") == false))
+												if ((processOrder.getProcessOrderProperties(getProcessOrder()) == true) || (getProcessOrder().equals("")==true))
 												{
-													setErrorMessage("Order not required");
-													setProcessOrder("");
-												}
 
-												isNegativeValue = (getWeightKg().compareTo(new BigDecimal("0")) < 0);
+													isNegativeValue = (getWeightKg().compareTo(new BigDecimal("0")) < 0);
 
-												if (storeAsNegative == isNegativeValue)
-												{
-													if (getWeightKg().compareTo(new BigDecimal("0")) == 0)
+													if (storeAsNegative == isNegativeValue)
 													{
-														setErrorMessage("Weight KG cannot be zero");
+														if (getWeightKg().compareTo(new BigDecimal("0")) == 0)
+														{
+															setErrorMessage("Weight KG cannot be zero");
+														}
+														else
+														{
+															result = true;
+															setErrorMessage("");
+														}
 													}
 													else
 													{
-														result = true;
-														setErrorMessage("");
+														if (storeAsNegative)
+														{
+															setErrorMessage("Weight KG needs to be negative (-ve)");
+														}
+														else
+														{
+															setErrorMessage("Weight KG needs to be positive (+ve)");
+														}
 													}
 												}
 												else
 												{
-													if (storeAsNegative)
-													{
-														setErrorMessage("Weight KG needs to be negative (-ve)");
-													}
-													else
-													{
-														setErrorMessage("Weight KG needs to be positive (+ve)");
-													}
+													setErrorMessage(processOrder.getErrorMessage());
+													setProcessOrder("");
 												}
 
 											}
 											else
 											{
 												setErrorMessage(processOrder.getErrorMessage());
+												setProcessOrder("");
 											}
 										}
 										else

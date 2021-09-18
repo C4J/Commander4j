@@ -2284,7 +2284,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				String post_wasteContainerID = Common.sd.getData(sessionID, "wasteContainerID");
 				String post_wasteMaterialID = Common.sd.getData(sessionID, "wasteMaterialID");
 				String post_wasteReasonID = Common.sd.getData(sessionID, "wasteReasonID");
-				String post_wasteProcessOrder = Common.sd.getData(sessionID, "wasteProcessOrder");
+				String post_wasteProcessOrder = request.getParameter("wasteProcessOrder");
 				String post_wasteQuantity = request.getParameter("wasteQuantity");
 
 				JDBWasteLog wlog = new JDBWasteLog(Common.sd.getData(sessionID, "selectedHost"), sessionID);
@@ -2294,13 +2294,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				wlog.setContainerID(post_wasteContainerID);
 				wlog.setMaterialID(post_wasteMaterialID);
 				wlog.setReasonID(post_wasteReasonID);
-				
-				if (post_wasteProcessOrder.equals("") == true)
-				{
-					post_wasteProcessOrder = JUtility.replaceNullStringwithBlank(request.getParameter("wasteProcessOrder"));
-				}
-				
-				wlog.setProcessOrder(post_wasteProcessOrder);
+				wlog.setProcessOrder(post_wasteProcessOrder);			
+
 				wlog.setWasteReportTime(JUtility.getSQLDateTime());
 				wlog.setWeightKg(new BigDecimal(post_wasteQuantity));
 
@@ -2310,15 +2305,14 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 					session.setAttribute("_ErrorMessage", "Log " + String.valueOf(txn) + " created.");
 					saveData(session, "_ErrorMessage", "Log " + String.valueOf(txn) + " created.", true);
 					saveData(session, "wasteQuantity", ".000", true);
+					saveData(session,"wasteProcessOrder",wlog.getProcessOrder(), true);
 				}
 				else
 				{
 					session.setAttribute("_ErrorMessage", wlog.getErrorMessage());
 					saveData(session, "_ErrorMessage", wlog.getErrorMessage(), true);
 					saveData(session, "wasteQuantity", request.getParameter("wasteQuantity"), true);
-					saveData(session, "wasteProcessOrder", request.getParameter("wasteProcessOrder"), true);
-					// saveData(session,"wasteProcessOrder","", true);
-					// session.setAttribute("wasteProcessOrder", "");
+					saveData(session,"wasteProcessOrder",wlog.getProcessOrder(), true);
 				}
 
 			}
