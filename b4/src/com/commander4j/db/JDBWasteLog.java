@@ -67,6 +67,7 @@ public class JDBWasteLog
 	public static int field_ProcessOrder = 10;
 	public static int field_ReasonID = 20;
 	public static int field_UserID = 20;
+	public static int field_Comment = 130;
 
 	private String dbErrorMessage;
 	private long dbTransactionRef; /* PK */
@@ -78,6 +79,7 @@ public class JDBWasteLog
 	private String dbProcessOrder;
 	private String dbReasonID;
 	private String dbUserID;
+	private String dbComment;
 	private BigDecimal dbWeight_KG;
 	private JDBWasteTransactionType wasteTransactionType;
 	private JDBWasteLocation wasteLocation;
@@ -126,6 +128,7 @@ public class JDBWasteLog
 		setReasonID("");
 		setUserID("");
 		setMaterialID("");
+		setComment("");
 		setTareWeight(new BigDecimal("0.000"));
 	}
 
@@ -154,6 +157,7 @@ public class JDBWasteLog
 				stmtupdate.setBigDecimal(9, getWeightKg());
 				stmtupdate.setBigDecimal(10, getTareWeight());
 				stmtupdate.setString(11, getContainerID());
+				stmtupdate.setString(12,getComment());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -242,6 +246,11 @@ public class JDBWasteLog
 	{
 		return JUtility.replaceNullStringwithBlank(dbProcessOrder).trim();
 	}
+	
+	public String getComment()
+	{
+		return JUtility.replaceNullStringwithBlank(dbComment).trim();
+	}
 
 	public String getReasonID()
 	{
@@ -312,6 +321,7 @@ public class JDBWasteLog
 			setWeightKg(rs.getBigDecimal("weight_kg"));
 			setTareWeight(rs.getBigDecimal("tare_weight"));
 			setContainerID(rs.getString("waste_container_id"));
+			setComment(rs.getString("waste_comment"));
 		}
 		catch (SQLException e)
 		{
@@ -465,6 +475,11 @@ public class JDBWasteLog
 	public void setProcessOrder(String str)
 	{
 		dbProcessOrder = str;
+	}
+	
+	public void setComment(String str)
+	{
+		dbComment = str;
 	}
 
 	public void setTransactionType(String desc)
@@ -650,8 +665,9 @@ public class JDBWasteLog
 					stmtupdate.setBigDecimal(7, getWeightKg());
 					stmtupdate.setBigDecimal(8, getTareWeight());
 					stmtupdate.setString(9, getContainerID());
-					stmtupdate.setLong(10, getTransactionRef());
-					stmtupdate.setString(11, getTransactionType());
+					stmtupdate.setString(10,getComment());
+					stmtupdate.setLong(11, getTransactionRef());
+					stmtupdate.setString(12, getTransactionType());
 
 					stmtupdate.execute();
 					stmtupdate.clearParameters();

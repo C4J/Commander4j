@@ -55,9 +55,10 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 	public static final int Process_Order_Col = 12;
     public static final int User_id_Col = 13;
 	public static final int Transaction_Ref_Col =14;
+	public static final int Comment_Col =15;
 
 
-	private String[] mcolNames = {  "Location","Container", "Date","Transaction",  "Material","Mat Type","Reason","Weight KG","Tare Weight","Net Weight","Cost Per Kg","Cost",  "Process Order","User ID","Txn Ref"};
+	private String[] mcolNames = {  "Location","Container", "Date","Transaction",  "Material","Mat Type","Reason","Weight KG","Tare Weight","Net Weight","Cost Per Kg","Cost",  "Process Order","User ID","Txn Ref","Comment"};
 	private ResultSet mResultSet;
 
 	private int prowCount = -1;
@@ -157,6 +158,8 @@ public class JDBViewWasteLogTableModel extends AbstractTableModel
 				return cache.get(row).getCostPerKg();
 			case CostTotal_Col:
 				return cache.get(row).getCostTotal();
+			case Comment_Col:
+				return cache.get(row).getComment();
 
 			}
 		}

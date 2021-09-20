@@ -2290,7 +2290,7 @@
 		<?JDBWasteLog?>		
 		<statement>
 			<id>JDBWasteLog.write</id>
-			<text>insert into {schema}APP_WASTE_LOG (transaction_ref,waste_transaction_type,report_time,waste_location_id,waste_material_id,process_order,waste_reason_id,user_id,weight_kg,tare_weight,waste_container_id) values (?,?,?,?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_WASTE_LOG (transaction_ref,waste_transaction_type,report_time,waste_location_id,waste_material_id,process_order,waste_reason_id,user_id,weight_kg,tare_weight,waste_container_id,waste_comment) values (?,?,?,?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBWasteLog.delete</id>
@@ -2310,7 +2310,7 @@
 		</statement>
 		<statement>
 			<id>JDBWasteLog.update</id>
-			<text>update {schema}APP_WASTE_LOG set report_time=?,waste_location_id=?,waste_material_id=?,process_order=?,waste_reason_id=?,user_id=?,weight_kg=?,tare_weight=?,waste_container_id=? where transaction_ref=? and waste_transaction_type=?</text>
+			<text>update {schema}APP_WASTE_LOG set report_time=?,waste_location_id=?,waste_material_id=?,process_order=?,waste_reason_id=?,user_id=?,weight_kg=?,tare_weight=?,waste_container_id=?,waste_comment=? where transaction_ref=? and waste_transaction_type=?</text>
 		</statement>	
 		<statement>
 			<id>JDBWasteLog.renameLocationID</id>

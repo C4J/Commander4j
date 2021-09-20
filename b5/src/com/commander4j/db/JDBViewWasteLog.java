@@ -70,6 +70,7 @@ public class JDBViewWasteLog
 	private Timestamp dbWasteReportTime;
 	private String dbTransactionType;
 	private String dbLocationID;
+	private String dbComment;
 	private String dbContainerID;
 	private String dbMaterialID;
 	private String dbMaterialType;
@@ -130,6 +131,7 @@ public class JDBViewWasteLog
 		setTareWeight(new BigDecimal("0"));
 		setWeightKG(new BigDecimal("0"));
 		setCostTotal(new BigDecimal("0"));
+		setComment("");
 	}
 
 	public long getTransactionRef()
@@ -195,6 +197,11 @@ public class JDBViewWasteLog
 	public String getLocationID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbLocationID).trim();
+	}
+	
+	public String getComment()
+	{
+		return JUtility.replaceNullStringwithBlank(dbComment).trim();
 	}
 	
 	public String getContainerID()
@@ -290,6 +297,7 @@ public class JDBViewWasteLog
 			setCostTotal(rs.getBigDecimal("cost"));
 			setNetWeightKG(rs.getBigDecimal("net_weight"));
 			setCostPerKg(rs.getBigDecimal("cost_per_kg"));
+			setComment(rs.getString("waste_comment"));
 		}
 		catch (SQLException e)
 		{
@@ -305,6 +313,11 @@ public class JDBViewWasteLog
 	public void setLocationID(String str)
 	{
 		dbLocationID = str;
+	}
+	
+	public void setComment(String str)
+	{
+		dbComment = str;
 	}
 
 	public void setContainerID(String str)

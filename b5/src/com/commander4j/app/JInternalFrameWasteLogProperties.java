@@ -109,6 +109,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 	private JTextField4j jTextFieldWasteMaterial;
 	private JTextField4j jTextFieldWasteReason;
 	private JTextField4j jTextFieldWasteLocation;
+	private JTextField4j jTextFieldWasteComment;
 	private JTextField4j jTextFieldWasteContainer;
 	private JButton4j jButtonLookupWasteLocation;
 	private JButton4j jButtonLookupWasteContainer;
@@ -123,6 +124,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 	private JLabel4j_std jLabelProcessOrder;
 	private JQuantityInput jFormattedTextFieldQuantity;
 	private JLabel4j_std jLabelQuantity;
+	private JLabel4j_std jLabelComment;
 	private JLabel4j_std jLabelTransactionDate;
 	private JDateControl transactionDate;
 	private JTextField4j jTextFieldMaterialDescription;
@@ -196,6 +198,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		jTextFieldTypeID.setText("");
 		jTextFieldMaterialTypeDescription.setText("");
 		jTextFieldWasteLocation.setText("");
+		jTextFieldWasteComment.setText("");
 		jTextFieldWasteContainer.setText("");
 		jTextFieldLocationDescription.setText("");
 		jTextFieldContainerDescription.setText("");
@@ -219,6 +222,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		wasteLog.setTransactionType(ltype);
 		wasteLog.setMaterialID(jTextFieldWasteMaterial.getText());
 		wasteLog.setLocationID(jTextFieldWasteLocation.getText());
+		wasteLog.setComment(jTextFieldWasteComment.getText());
 		wasteLog.setContainerID(jTextFieldWasteContainer.getText());
 		wasteLog.setReasonID(jTextFieldWasteReason.getText());
 		wasteLog.setProcessOrder(jTextFieldProcessOrder.getText());
@@ -292,7 +296,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			if (ord.equals("") == false)
 			{
 				jTextFieldProcessOrderDescription.setDisabledTextColor(Color.RED);
-				jTextFieldProcessOrderDescription.setText("Process Order not required");
+				jTextFieldProcessOrderDescription.setText("Process Order optional");
 				jButtonSave.setEnabled(false);
 				jButtonUndo.setEnabled(true);
 			}
@@ -449,7 +453,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			if (reas.equals("") == false)
 			{
 				jTextFieldReasonDescription.setDisabledTextColor(Color.RED);
-				jTextFieldReasonDescription.setText("Reason not required");
+				jTextFieldReasonDescription.setText("Reason optional");
 				jButtonSave.setEnabled(false);
 				jButtonUndo.setEnabled(true);
 			}
@@ -505,6 +509,8 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 			jTextFieldTransactionRef.setText(String.valueOf(wasteLog.getTransactionRef()));
 			jTextFieldTransactionType.setText(wasteLog.getTransactionType());
 			
+			jTextFieldWasteComment.setText(wasteLog.getComment());
+			
 			jTextFieldWasteLocation.setText(wasteLog.getLocationID());
 			locationChanged();
 			
@@ -546,7 +552,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(358, 207));
-			this.setBounds(0, 0, 876, 406);
+			this.setBounds(0, 0, 876, 429);
 			setVisible(true);
 			this.setClosable(true);
 			{
@@ -574,7 +580,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jButtonSave.setEnabled(false);
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
-					jButtonSave.setBounds(246, 309, 112, 32);
+					jButtonSave.setBounds(255, 332, 112, 32);
 				}
 				{
 					jButtonNew = new JButton4j(Common.icon_add_16x16);
@@ -589,7 +595,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jButtonNew.setEnabled(false);
 					jButtonNew.setText(lang.get("btn_Add"));
 					jButtonNew.setMnemonic(lang.getMnemonicChar());
-					jButtonNew.setBounds(133, 309, 112, 32);
+					jButtonNew.setBounds(142, 332, 112, 32);
 				}
 				{
 					jButtonUndo = new JButton4j(Common.icon_undo_16x16);
@@ -604,21 +610,21 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jButtonUndo.setEnabled(false);
 					jButtonUndo.setText(lang.get("btn_Undo"));
 					jButtonUndo.setMnemonic(lang.getMnemonicChar());
-					jButtonUndo.setBounds(359, 309, 112, 32);
+					jButtonUndo.setBounds(368, 332, 112, 32);
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(472, 309, 112, 32);
+					jButtonHelp.setBounds(481, 332, 112, 32);
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setBounds(585, 309, 112, 32);
+					jButtonCancel.setBounds(594, 332, 112, 32);
 					jButtonCancel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -706,6 +712,19 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					});
 					jDesktopPane1.add(jTextFieldWasteLocation);
 					jTextFieldWasteLocation.setBounds(142, 47, 156, 22);
+				}
+				{
+					jTextFieldWasteComment = new JTextField4j(JDBWasteLog.field_Comment);
+					jTextFieldWasteComment.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyReleased(KeyEvent e) {
+							jButtonSave.setEnabled(true);
+							jButtonUndo.setEnabled(true);
+							jButtonNew.setEnabled(false);
+						}
+					});
+					jDesktopPane1.add(jTextFieldWasteComment);
+					jTextFieldWasteComment.setBounds(142, 286, 712, 22);
 				}
 				{
 					jTextFieldWasteContainer = new JTextField4j(JDBWasteLog.field_ContainerID);
@@ -919,6 +938,13 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jLabelQuantity.setBounds(0, 249, 130, 21);
 				}
 				{
+					jLabelComment = new JLabel4j_std();
+					jDesktopPane1.add(jLabelComment);
+					jLabelComment.setText(lang.get("lbl_Comment"));
+					jLabelComment.setHorizontalAlignment(SwingConstants.TRAILING);
+					jLabelComment.setBounds(0, 286, 130, 21);
+				}
+				{
 					jLabelTransactionDate = new JLabel4j_std();
 					jLabelTransactionDate.setHorizontalAlignment(SwingConstants.TRAILING);
 					jLabelTransactionDate.setText(lang.get("lbl_Transaction_Date"));
@@ -985,7 +1011,7 @@ public class JInternalFrameWasteLogProperties extends JInternalFrame
 					jDesktopPane1.add(jStatusText);
 					jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-					jStatusText.setBounds(0, 353, 866, 21);
+					jStatusText.setBounds(0, 376, 866, 21);
 				}
 
 				JLabel4j_std jLabel_Description = new JLabel4j_std();

@@ -2294,6 +2294,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				wlog.setContainerID(post_wasteContainerID);
 				wlog.setMaterialID(post_wasteMaterialID);
 				wlog.setReasonID(post_wasteReasonID);
+				wlog.setComment("");
 				wlog.setProcessOrder(post_wasteProcessOrder);			
 
 				wlog.setWasteReportTime(JUtility.getSQLDateTime());

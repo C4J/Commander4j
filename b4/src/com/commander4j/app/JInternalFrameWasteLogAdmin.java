@@ -139,6 +139,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 	private JLabel4j_std jLabelWasteMaterial;
 	private JLabel4j_std jLabelWasteReason;
 	private JLabel4j_std jLabelUser;
+	private JLabel4j_std jLabelComment;
 	private JTable4j jTable1;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSearch;
@@ -153,6 +154,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 	private JCalendarButton calendarButtonDateFrom;
 	private JCalendarButton calendarButtonDateTo;
 	private JCheckBox4j jCheckBoxLimit = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxComment = new JCheckBox4j();
 	private JSpinner jSpinnerLimit = new JSpinner();
 	private JDBWasteTransactionType blank = new JDBWasteTransactionType(Common.selectedHostID, Common.sessionID);
 	private Vector<JDBWasteTransactionType> transTypeList = new Vector<JDBWasteTransactionType>();
@@ -254,6 +256,8 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		jTextFieldProcessOrder.setText("");
 
 		jTextFieldUserID.setText("");
+		
+		jCheckBoxComment.setSelected(false);
 
 		jComboBoxTransactionType.setSelectedItem(blank);
 
@@ -509,6 +513,11 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		{
 			query.addParamtoSQL("waste_transaction_type=", x.getWasteTransactionType());
 		}
+		
+		if (jCheckBoxComment.isSelected())
+		{
+			query.addParamtoSQL("waste_comment >", "''");
+		}
 
 		if (jComboBoxRecycle.getSelectedIndex() > 0)
 		{
@@ -581,6 +590,7 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.NetWeight_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.CostPerKg_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.CostTotal_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBViewWasteLogTableModel.Comment_Col).setPreferredWidth(600);
 
 		jScrollPane1.repaint();
 
@@ -1382,6 +1392,20 @@ public class JInternalFrameWasteLogAdmin extends JInternalFrame
 				jCheckBoxLimit.setBackground(Color.WHITE);
 				jCheckBoxLimit.setBounds(872, 155, 21, 21);
 				jDesktopPane1.add(jCheckBoxLimit);
+				
+
+					jLabelComment = new JLabel4j_std();
+					jDesktopPane1.add(jLabelComment);
+					jLabelComment.setText(lang.get("lbl_Comment"));
+					jLabelComment.setHorizontalAlignment(SwingConstants.TRAILING);
+					jLabelComment.setBounds(567, 119, 130, 21);
+
+				
+				jCheckBoxComment = new JCheckBox4j();
+				jCheckBoxComment.setSelected(false);
+				jCheckBoxComment.setBackground(Color.WHITE);
+				jCheckBoxComment.setBounds(704, 119, 21, 21);
+				jDesktopPane1.add(jCheckBoxComment);
 
 				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
 				ne.getTextField().setFont(Common.font_std);
