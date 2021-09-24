@@ -368,7 +368,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 						jButtonSave.setEnabled(true);
 					}
 				});
-				comboBox_Model.setModel(new DefaultComboBoxModel<String>(new String[] {"N/A", "ICS465", "MONOBLOC", "VIPER"}));
+				comboBox_Model.setModel(new DefaultComboBoxModel<String>(new String[] {"N/A", "ICS465", "MONOBLOC", "ZK830","VIPER"}));
 
 				comboBox_Model.setBounds(155, 156, 237, 24);
 				jDesktopPane1.add(comboBox_Model);
@@ -380,7 +380,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					}
 				});
 				comboBox_Make.setModel(new DefaultComboBoxModel<String>(new String[]
-				{ "NONE", "METTLER TOLEDO" }));
+				{ "NONE", "AVERY W-TRONIX","METTLER TOLEDO" }));
 
 				comboBox_Make.setBounds(155, 117, 237, 24);
 				jDesktopPane1.add(comboBox_Make);
