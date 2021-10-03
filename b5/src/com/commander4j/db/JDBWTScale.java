@@ -45,6 +45,7 @@ public class JDBWTScale
 	private String dbModel = "";
 	private String dbParity = "";
 	private String dbEndOfLine = "";
+	private String dbCommandPrefix = "";
 	private int dbBaudRate = 0;
 
 	private int dbDataBits = 0;
@@ -140,6 +141,11 @@ public class JDBWTScale
 		this.dbEndOfLine = JUtility.replaceNullStringwithBlank(endOfLine);
 	}
 
+	public void setCommandPrefix(String prefix)
+	{
+		this.dbCommandPrefix = JUtility.replaceNullStringwithBlank(prefix);
+	}
+	
 	public String getParity()
 	{
 		return dbParity;
@@ -148,6 +154,11 @@ public class JDBWTScale
 	public String getEndOfLine()
 	{
 		return dbEndOfLine;
+	}
+	
+	public String getCommandPrefix()
+	{
+		return dbCommandPrefix;
 	}
 
 	public boolean create(String scaleId)
@@ -325,6 +336,7 @@ public class JDBWTScale
 			setConnection(rs.getString("connection"));
 			setParity(rs.getString("parity"));
 			setEndOfLine(rs.getString("end_of_line"));
+			setCommandPrefix(rs.getString("command_prefix"));
 
 		}
 		catch (SQLException e)
@@ -480,7 +492,8 @@ public class JDBWTScale
 				stmtupdate.setString(9, getParity());
 				stmtupdate.setString(10, getEndOfLine());
 				stmtupdate.setString(11, getSerialNo());
-				stmtupdate.setString(12, getScaleID());
+				stmtupdate.setString(12, getCommandPrefix());
+				stmtupdate.setString(13, getScaleID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -524,6 +537,7 @@ public class JDBWTScale
 				scale.setConnection(rs.getString("connection"));
 				scale.setParity(rs.getString("parity"));
 				scale.setEndOfLine(rs.getString("end_of_line"));
+				scale.setCommandPrefix(rs.getString("command_prefix"));
 				sampList.add(scale);
 			}
 			rs.close();
@@ -676,14 +690,17 @@ public class JDBWTScale
 		return result;
 	}
 	
-	private void scaleTX(String command)
+	public void scaleTX(String command)
 	{
 		if (comPort.isOpen())
 		{
-			byte[] bufferOUT = (command + "\r\n").getBytes();
+			String TXData = JUtility.getASCIIfromTokens(getCommandPrefix()+ command + getEndOfLine());
+			
+			byte[] bufferOUT = (TXData).getBytes();
+			
 			comPort.writeBytes(bufferOUT, bufferOUT.length);
 
-			System.out.println("Debug TX >" + new String(bufferOUT).replace("\r\n", "<CR><LF>") + "<");
+			//System.out.println("Debug TX [" + new String(getCommandPrefix()+command+getEndOfLine())+ "]");
 
 			try
 			{
@@ -695,20 +712,4 @@ public class JDBWTScale
 			}
 		}
 	}
-
-	public void scaleReset()
-	{
-		scaleTX("@");
-	}
-
-	public void scaleRequestWeightonChange()
-	{
-		scaleTX("SR");
-	}
-
-	public void scaleRequestStableWeight()
-	{
-		scaleTX("SI");
-	}
-
 }

@@ -88,6 +88,96 @@ public class JUtility
 	public static int field_timestamp = 20;
 
 	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
+	
+	public static String getASCIIfromTokens(String input)
+	{
+		
+		String result = input;
+
+		result = result.replace("<NONE>", "");
+		result = result.replace("<SOH>",  "\1");
+		result = result.replace("<STX>",  "\2");
+		result = result.replace("<ETX>",  "\3");
+		result = result.replace("<EOT>",  "\4");
+		result = result.replace("<ENQ>",  "\5");
+		result = result.replace("<ACK>",  "\6");
+		result = result.replace("<BEL>",  "\7");
+		result = result.replace("<BS>",   "\b");
+		result = result.replace("<HT>",   "\t");
+		result = result.replace("<LF>",   "\n");
+		result = result.replace("<VT>",   "\11");
+		result = result.replace("<FF>",   "\f");
+		result = result.replace("<CR>",   "\r");
+		
+		return result;
+	}
+	
+	public static String getTokensfromASCII(String input)
+	{
+		
+		String result = input;
+
+		result = result.replace("\1", "<SOH>" );
+		result = result.replace("\2", "<STX>" );
+		result = result.replace("\3", "<ETX>" );
+		result = result.replace("\4", "<EOT>" );
+		result = result.replace("\5", "<ENQ>" );
+		result = result.replace("\6", "<ACK>" );
+		result = result.replace("\7", "<BEL>" );
+		result = result.replace("\b", "<BS>" );
+		result = result.replace("\t", "<HT>" );
+		result = result.replace("\n", "<LF>" );
+		result = result.replace("\11", "<VT>" );
+		result = result.replace("\f", "<FF>" );
+		result = result.replace("\r", "<CR>" );
+		
+		return result;
+	}
+	
+	public static String removeTokens(String input)
+	{
+		
+		String result = input;
+
+		result = result.replace("<NONE>", "");
+		result = result.replace("<SOH>", "");
+		result = result.replace("<STX>", "");
+		result = result.replace("<ETX>", "");
+		result = result.replace("<EOT>", "");
+		result = result.replace("<ENQ>", "");
+		result = result.replace("<ACK>", "");
+		result = result.replace("<BEL>", "");
+		result = result.replace("<BS>", "");
+		result = result.replace("<HT>", "");
+		result = result.replace("<LF>", "");
+		result = result.replace("<VT>", "");
+		result = result.replace("<FF>", "");
+		result = result.replace("<CR>", "");
+		
+		return result;
+	}	
+	
+	public static String removeASCII(String input)
+	{
+		
+		String result = input;
+
+		result = result.replace("\1", "" );
+		result = result.replace("\2", "" );
+		result = result.replace("\3", "" );
+		result = result.replace("\4", "" );
+		result = result.replace("\5", "" );
+		result = result.replace("\6", "" );
+		result = result.replace("\7", "" );
+		result = result.replace("\b", "" );
+		result = result.replace("\t", "" );
+		result = result.replace("\n", "" );
+		result = result.replace("\11", "" );
+		result = result.replace("\f", "" );
+		result = result.replace("\r", "" );
+		
+		return result;
+	}
 
 	public static String getDateTimeString(String fmt)
 	{

@@ -1765,7 +1765,7 @@
 		</statement>
 		<statement>
 			<id>JDBWTScale.update</id>
-			<text>update {schema}APP_WEIGHT_SCALE set description = ?,make=?,model=?,baud_rate=?,data_bits=?,stop_bits=?,flow_control=?,connection=?,parity=?,end_of_line=?,serial_no=? where scale_id = ?</text>
+			<text>update {schema}APP_WEIGHT_SCALE set description = ?,make=?,model=?,baud_rate=?,data_bits=?,stop_bits=?,flow_control=?,connection=?,parity=?,end_of_line=?,serial_no=?,command_prefix=? where scale_id = ?</text>
 		</statement>	
 	    <statement>
 			<id>JDBWTScale.isValidScale</id>
@@ -2420,11 +2420,35 @@
 		</statement>	
 		<statement>
 			<id>JDBEquipmentType.updatePallet</id>
-			<text>UPDATE APP_PALLET s SET s.EQUIPMENT_TYPE = (SELECT m.EQUIPMENT_TYPE FROM APP_MATERIAL m where m.MATERIAL = s.MATERIAL)  WHERE s.EQUIPMENT_TYPE IS NULL OR s.EQUIPMENT_TYPE = ''</text>
+			<text>
+			UPDATE
+			    APP_PALLET
+			SET
+			   EQUIPMENT_TYPE = MAT.EQUIPMENT_TYPE
+			FROM
+			    APP_PALLET PAL
+			INNER JOIN
+			    APP_MATERIAL MAT
+			ON 
+			    PAL.MATERIAL = MAT.MATERIAL
+			WHERE PAL.EQUIPMENT_TYPE = '' AND MAT.EQUIPMENT_TYPE > ''
+			</text>
 		</statement>	
 		<statement>
 			<id>JDBEquipmentType.updatePalletHistory</id>
-			<text>UPDATE APP_PALLET_HISTORY s SET s.EQUIPMENT_TYPE = (SELECT m.EQUIPMENT_TYPE FROM APP_MATERIAL m where m.MATERIAL = s.MATERIAL) WHERE s.EQUIPMENT_TYPE IS NULL OR s.EQUIPMENT_TYPE = ''</text>
+			<text>
+			UPDATE
+			    APP_PALLET_HISTORY
+			SET
+			   EQUIPMENT_TYPE = MAT.EQUIPMENT_TYPE
+			FROM
+			    APP_PALLET PAL
+			INNER JOIN
+			    APP_MATERIAL MAT
+			ON 
+			    PAL.MATERIAL = MAT.MATERIAL
+			WHERE PAL.EQUIPMENT_TYPE = '' AND MAT.EQUIPMENT_TYPE > ''
+			</text>
 		</statement>		
 		
 		<?JDBDespatchEquipmentType?>		

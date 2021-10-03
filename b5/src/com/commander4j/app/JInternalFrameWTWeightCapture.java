@@ -110,6 +110,8 @@ import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
+import com.commander4j.scales.Scale;
+import com.commander4j.scales.ScaleCallbackInteface;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
@@ -118,9 +120,6 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
-import com.fazecast.jSerialComm.SerialPort;
-import com.fazecast.jSerialComm.SerialPortEvent;
-import com.fazecast.jSerialComm.SerialPortMessageListener;
 
 /**
  * The JInternalFrameWTDataCapture is for capturing/recording weight checks
@@ -190,7 +189,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JDBWTSamplePoint samplePointdb = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
 	private JDBWTTNE tnedb = new JDBWTTNE(Common.selectedHostID, Common.sessionID);
 	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
-	private JDBWTScale scaledb = new JDBWTScale(Common.selectedHostID, Common.sessionID);
+	//private JDBWTScale scaledb = new JDBWTScale(Common.selectedHostID, Common.sessionID);
+	private Scale scale;
 
 	private Integer sampleSequence = 0;
 	private Integer lGraphMaxPlots = 40;
@@ -298,13 +298,16 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private void shutdown()
 	{
 
-		if (SerialPort.getCommPorts().length > 0)
+		scale.shutdown(false);
+		
+		while (scale.isAlive())
 		{
-			if (scaledb.isConnected())
+			try
 			{
-				scaledb.comPort.removeDataListener();
-				scaledb.comPort.closePort();
-				scaledb.setConnected(false);
+				Thread.sleep(100);
+			}
+			catch (InterruptedException e)
+			{
 			}
 		}
 
@@ -1774,56 +1777,27 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 		if (result == true)
 		{
-			if (scaledb.connect(workdb.getScaleID(), workdb.getScalePort()))
+			scale = new Scale(Common.selectedHostID, Common.sessionID);
+			
+			class callback implements ScaleCallbackInteface
 			{
-				scaledb.scaleReset();
-				scaledb.scaleRequestWeightonChange();
-				scaledb.comPort.addDataListener(new SerialPortMessageListener()
+
+				@Override
+				public void setWeight(String weight)
 				{
-					@Override
-					public int getListeningEvents()
-					{
-						return SerialPort.LISTENING_EVENT_DATA_RECEIVED;
-					}
-
-					@Override
-					public void serialEvent(SerialPortEvent event)
-					{
-						byte[] newData = event.getReceivedData();
-						String data = new String(newData);
-
-						if (data.startsWith("S S "))
-						{
-							String temp = data.replaceAll("\\s{2,}", " ").trim();
-
-							String[] parts = temp.split(" ");
-							if (Double.valueOf(parts[2]) > 0)
-							{
-								logSampleWeight(parts[2], parts[3].toUpperCase());
-							}
-
-						}
-						data = data.replace("\r\n", "<CR><LF>");
-						System.out.println("Debug RX >" + data + "<");
-
-					}
-
-					@Override
-					public boolean delimiterIndicatesEndOfMessage()
-					{
-						// TODO Auto-generated method stub
-						return true;
-					}
-
-					@Override
-					public byte[] getMessageDelimiter()
-					{
-						byte[] eol = "\r\n".getBytes();
-						return eol;
-					}
-				});
-
+					System.out.println("Parent method : "+weight);
+					logSampleWeight(weight, "G");
+					
+				}
+				
 			}
+			callback cb = new callback();
+			
+			scale.setCallbackInterface(cb);
+			
+			scale.start();
+			
+			
 		}
 
 		updateSamplePoint(samplePoint, result);

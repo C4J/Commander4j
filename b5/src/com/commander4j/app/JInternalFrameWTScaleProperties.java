@@ -89,6 +89,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 	private JComboBox4j<String> comboBox_FlowControl;
 	private JComboBox4j<String> comboBox_Parity;
 	private JComboBox4j<String> comboBox_EndOfLine;
+	private JComboBox4j<String> comboBox_CommandPrefix;
 
 	public void setScaleID(String scaleid)
 	{
@@ -180,6 +181,11 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 		{
 			comboBox_EndOfLine.setSelectedIndex(0);
 		}
+		comboBox_CommandPrefix.setSelectedItem(scale.getCommandPrefix());
+		if (comboBox_CommandPrefix.getSelectedIndex()<0)
+		{
+			comboBox_CommandPrefix.setSelectedIndex(0);
+		}
 		jButtonSave.setEnabled(false);
 	}
 
@@ -214,7 +220,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 424, 537);
+			this.setBounds(25, 25, 424, 572);
 			setVisible(true);
 			this.setTitle("Scale Properties");
 			{
@@ -269,7 +275,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(42, 448, 110, 32);
+					jButtonSave.setBounds(42, 488, 110, 32);
 					jButtonSave.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -283,14 +289,14 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(154, 448, 110, 32);
+					jButtonHelp.setBounds(154, 488, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(266, 448, 110, 32);
+					jButtonClose.setBounds(266, 488, 110, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -376,6 +382,36 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
+						if (comboBox_Make.getSelectedItem().equals("METTLER TOLEDO"))
+						{
+							comboBox_EndOfLine.setSelectedItem("<CR><LF>");
+							comboBox_CommandPrefix.setSelectedItem("<NONE>");
+							comboBox_Connection.setSelectedItem("Serial");
+							comboBox_Baud.setSelectedItem("9600");
+							comboBox_DataBits.setSelectedItem("8");
+							comboBox_StopBits.setSelectedItem("1");
+							comboBox_Parity.setSelectedItem("None");
+							comboBox_FlowControl.setSelectedItem("NONE");
+							Object currentValue = comboBox_Model.getSelectedItem();
+							comboBox_Model.setModel(new DefaultComboBoxModel<String>(new String[] {"N/A", "ICS465", "MONOBLOC","VIPER"}));
+							comboBox_Model.setSelectedItem(currentValue);
+
+						}
+						if (comboBox_Make.getSelectedItem().equals("AVERY W-TRONIX"))
+						{
+							comboBox_EndOfLine.setSelectedItem("<CR>");
+							comboBox_CommandPrefix.setSelectedItem("<LF>");
+							comboBox_Connection.setSelectedItem("Serial");
+							comboBox_Baud.setSelectedItem("9600");
+							comboBox_DataBits.setSelectedItem("8");
+							comboBox_StopBits.setSelectedItem("1");
+							comboBox_Parity.setSelectedItem("None");
+							comboBox_FlowControl.setSelectedItem("NONE");
+							Object currentValue = comboBox_Model.getSelectedItem();
+							comboBox_Model.setModel(new DefaultComboBoxModel<String>(new String[] {"N/A", "ZK830",}));
+							comboBox_Model.setSelectedItem(currentValue);
+
+						}
 						jButtonSave.setEnabled(true);
 					}
 				});
@@ -504,17 +540,37 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 				label4j_EndOfLine.setBounds(0, 404, 149, 21);
 				jDesktopPane1.add(label4j_EndOfLine);
 				
+				JLabel4j_std label4j_CommandPrefix = new JLabel4j_std();
+				label4j_CommandPrefix.setText(lang.get("lbl_CommandPrefix"));
+				label4j_CommandPrefix.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_CommandPrefix.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_CommandPrefix.setBounds(0, 437, 149, 21);
+				jDesktopPane1.add(label4j_CommandPrefix);
+				
 				comboBox_EndOfLine = new JComboBox4j<String>();
 				comboBox_EndOfLine.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						jButtonSave.setEnabled(true);
 					}
 				});
-				comboBox_EndOfLine.setModel(new DefaultComboBoxModel<String>(new String[] {"CR/LF", "CR", "LF", "CR/LF/EOT"}));
+				comboBox_EndOfLine.setModel(new DefaultComboBoxModel<String>(new String[] {"<NONE>", "<CR>", "<LF>","<CR><LF>", "<CR><LF><EOT>"}));
 				comboBox_EndOfLine.setPreferredSize(new Dimension(40, 20));
 				comboBox_EndOfLine.setFocusCycleRoot(true);
-				comboBox_EndOfLine.setBounds(155, 401, 81, 24);
+				comboBox_EndOfLine.setBounds(155, 401, 134, 24);
 				jDesktopPane1.add(comboBox_EndOfLine);
+				
+				
+				comboBox_CommandPrefix = new JComboBox4j<String>();
+				comboBox_CommandPrefix.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						jButtonSave.setEnabled(true);
+					}
+				});
+				comboBox_CommandPrefix.setModel(new DefaultComboBoxModel<String>(new String[] {"<NONE>", "<CR>", "<LF>","<CR><LF>", "<CR><LF><EOT>"}));
+				comboBox_CommandPrefix.setPreferredSize(new Dimension(40, 20));
+				comboBox_CommandPrefix.setFocusCycleRoot(true);
+				comboBox_CommandPrefix.setBounds(155, 434, 134, 24);
+				jDesktopPane1.add(comboBox_CommandPrefix);
 
 			}
 		}
@@ -555,6 +611,7 @@ public class JInternalFrameWTScaleProperties extends JInternalFrame
 		scale.setConnection(comboBox_Connection.getSelectedItem().toString());
 		scale.setParity(comboBox_Parity.getSelectedItem().toString());
 		scale.setEndOfLine(comboBox_EndOfLine.getSelectedItem().toString());
+		scale.setCommandPrefix(comboBox_CommandPrefix.getSelectedItem().toString());
 
 		scale.update();
 		jButtonSave.setEnabled(false);
