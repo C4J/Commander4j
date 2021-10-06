@@ -131,6 +131,15 @@ public class JDBWTScale
 		return result;
 	}
 
+	public boolean disconnect()
+	{
+		boolean result=false;
+		
+		result = comPort.closePort();
+		
+		return result;
+	}
+	
 	public void setParity(String parity)
 	{
 		this.dbParity = JUtility.replaceNullStringwithBlank(parity);
@@ -700,7 +709,7 @@ public class JDBWTScale
 			
 			comPort.writeBytes(bufferOUT, bufferOUT.length);
 
-			//System.out.println("Debug TX [" + new String(getCommandPrefix()+command+getEndOfLine())+ "]");
+			System.out.println("Debug TX [" + new String(getCommandPrefix()+command+getEndOfLine())+ "]");
 
 			try
 			{

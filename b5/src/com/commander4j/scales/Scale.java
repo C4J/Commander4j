@@ -18,7 +18,7 @@ public class Scale extends Thread
 	private String hostID = "";
 	private String sessionID = "";
 	private boolean waitForResponse = false;
-	private String previousValue = "";
+	private String previousValue = "0.00";
 	private ScaleCallbackInteface cb;
 
 	private final Logger logger = Logger.getLogger(Scale.class);
@@ -66,8 +66,6 @@ public class Scale extends Thread
 		scaledb = new JDBWTScale(getHostID(), getSessionID());
 		workdb = new JDBWTWorkstation(getHostID(), getSessionID());
 
-		logger.debug("Host ID identified for service is  [" + hostID + "]");
-
 		if (workdb.getProperties(workstation))
 		{
 			if (scaledb.connect(workdb.getScaleID(), workdb.getScalePort()))
@@ -91,7 +89,10 @@ public class Scale extends Thread
 						@Override
 						public void serialEvent(SerialPortEvent event)
 						{
-							String data = JUtility.removeASCII(new String(event.getReceivedData()));
+							String rawdata = new String(event.getReceivedData());
+
+							String data = JUtility.removeASCII(rawdata);
+							logger.debug("Debug RX [" + data + "]");
 
 							try
 							{
@@ -100,31 +101,36 @@ public class Scale extends Thread
 								{
 									String value = data.substring(5).trim().replace("g", "").trim();
 
+									logger.debug(" Previous Weight = " + previousValue);
+									logger.debug(" Weight          = " + value);
+
 									if (value.equals(previousValue) == false)
 									{
-										System.out.println("Weight = " + value);
 
-										if ((cb == null) == false)
+										if (Double.valueOf(previousValue).intValue() == 0)
 										{
-											cb.setWeight(value);
+											if ((cb == null) == false)
+											{
+												logger.debug("**RECORD WEIGHT** [" + value + "]");
+												cb.setWeight(value);
+											}
+											previousValue = value;
+
 										}
-										previousValue = value;
+										else
+										{
+											previousValue = value;
+										}
 
 									}
+								}
 
-								}
-								else
-								{
-									previousValue = "";
-								}
 
 							}
 							catch (Exception ex)
 							{
-								System.out.println("Error [" + ex.getMessage() + "]");
+								logger.debug("Error [" + ex.getMessage() + "]");
 							}
-
-							waitForResponse = false;
 
 						}
 
@@ -143,7 +149,7 @@ public class Scale extends Thread
 							return eol;
 						}
 					});
-
+					
 					scaleReset();
 
 					// scaleRequestWeightonChange();
@@ -168,38 +174,49 @@ public class Scale extends Thread
 						@Override
 						public void serialEvent(SerialPortEvent event)
 						{
-							String data = JUtility.removeASCII(new String(event.getReceivedData()));
+
+							String rawdata = new String(event.getReceivedData());
+
+							String data = JUtility.removeASCII(rawdata);
+							logger.debug("Debug RX [" + data + "]");
 
 							try
 							{
 
-								if (data.startsWith(" 1G "))
+								if (data.startsWith(" 1G ") || data.startsWith("Z1G "))
 								{
 									String value = data.substring(5).trim().replace("g", "").trim();
 
+									logger.debug(" Previous Weight = " + previousValue);
+									logger.debug(" Weight          = " + value);
+
 									if (value.equals(previousValue) == false)
 									{
-										System.out.println("Weight = " + value);
-										if ((cb == null) == false)
+
+										if (Double.valueOf(previousValue).intValue() == 0)
 										{
-											cb.setWeight(value);
+											if ((cb == null) == false)
+											{
+												logger.debug("**RECORD WEIGHT** [" + value + "]");
+												cb.setWeight(value);
+											}
+											previousValue = value;
+
 										}
-										previousValue = value;
+										else
+										{
+											previousValue = value;
+										}
 
 									}
 								}
-								else
-								{
-									previousValue = "";
-								}
+
 
 							}
 							catch (Exception ex)
 							{
-								System.out.println("Error [" + ex.getMessage() + "]");
+								logger.debug("Error [" + ex.getMessage() + "]");
 							}
-
-							waitForResponse = false;
 
 						}
 
@@ -240,95 +257,88 @@ public class Scale extends Thread
 						run = false;
 						// break;
 					}
-
-					scaleRequestDisplayedWeight();
+					if (waitForResponse == false)
+					{
+						scaleRequestDisplayedWeight();
+					}
 
 				}
-				
-				cb=null;
-			}
-		}
 
-	}
+				cb = null;
 
-	private boolean waitForResponse(int timeout)
-	{
-		boolean result = false;
-
-		while (waitForResponse)
-		{
-			try
-			{
-				logger.debug("waitForResponse " + timeout);
-				Thread.sleep(1000);
-				timeout--;
-				if (timeout == 0)
+				if (scaledb.isConnected())
 				{
-					logger.debug("waitForResponse timeout");
-					waitForResponse = false;
+					scaledb.disconnect();
 				}
-			}
-			catch (InterruptedException e)
-			{
-				run = false;
-				waitForResponse = false;
-				// break;
 			}
 		}
 
-		return result;
 	}
+
 
 	public void scaleReset()
 	{
+
 		if (scaledb.getMake().equals("METTLER TOLEDO"))
 		{
-			waitForResponse = true;
-			scaledb.scaleTX("@");
-			waitForResponse(2);
+
+			scaleTX("@");
+
 		}
 		if (scaledb.getMake().equals("AVERY W-TRONIX"))
 		{
-			waitForResponse = true;
-			scaledb.scaleTX("C");
-			waitForResponse(2);
+
+			scaleTX("C");
+
 		}
 	}
 
 	public void scaleRequestWeightonChange()
 	{
+
 		if (scaledb.getMake().equals("METTLER TOLEDO"))
 		{
-			waitForResponse = true;
-			scaledb.scaleTX("SR");
-			waitForResponse(2);
+
+			scaleTX("SR");
+
 		}
 	}
 
 	public void scaleRequestStableWeight()
 	{
+
 		if (scaledb.getMake().equals("METTLER TOLEDO"))
 		{
-			waitForResponse = true;
-			scaledb.scaleTX("S");
-			waitForResponse(2);
+
+			scaleTX("S");
+
 		}
+
 	}
 
 	public void scaleRequestDisplayedWeight()
 	{
+
 		if (scaledb.getMake().equals("METTLER TOLEDO"))
 		{
-			waitForResponse = true;
-			scaledb.scaleTX("SI");
-			waitForResponse(2);
+
+			scaleTX("SI");
+
 		}
 		if (scaledb.getMake().equals("AVERY W-TRONIX"))
 		{
-			waitForResponse = true;
-			scaledb.scaleTX("W");
-			waitForResponse(2);
+
+			scaleTX("W");
+
 		}
+
+	}
+
+	private void scaleTX(String data)
+	{
+
+		scaledb.scaleTX(data);
+
 	}
 
 }

@@ -1521,7 +1521,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				tarelUom = matgroupdb.getTareWeightUOM();
 				lowerLimit = matgroupdb.getLowerLimit();
 				upperLimit = matgroupdb.getUpperLimit();
-
+				
 				lSampleSize = matgroupdb.getSamplesRequired();
 
 				fld_SampleSize.setText(String.valueOf(lSampleSize));
