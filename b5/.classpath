@@ -87,7 +87,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/core-3.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/rhino-1.7.11.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.26.jar"/>
-	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.6.2.jar"/>
+	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.7.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/ant-1.10.9.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/itext-2.1.7.js8.jar"/>
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.17.0.jar"/>
