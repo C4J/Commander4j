@@ -22,15 +22,15 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/db/mssql-jdbc-9.2.1.jre11.jar 
  lib/db/mysql-connector-java-8.0.26.jar 
  lib/db/ojdbc11.jar 
- lib/jasper/jasperreports-6.18.0.jar 
- lib/jasper/jasperreports-annotation-processors-6.18.0.jar 
- lib/jasper/jasperreports-chart-customizers-6.18.0.jar 
- lib/jasper/jasperreports-chart-themes-6.18.0.jar 
- lib/jasper/jasperreports-custom-visualization-6.18.0.jar 
- lib/jasper/jasperreports-fonts-6.18.0.jar 
- lib/jasper/jasperreports-functions-6.18.0.jar 
- lib/jasper/jasperreports-javaflow-6.18.0.jar 
- lib/jasper/jasperreports-metadata-6.18.0.jar 
+ lib/jasper/jasperreports-6.18.1.jar 
+ lib/jasper/jasperreports-annotation-processors-6.18.1.jar 
+ lib/jasper/jasperreports-chart-customizers-6.18.1.jar 
+ lib/jasper/jasperreports-chart-themes-6.18.1.jar 
+ lib/jasper/jasperreports-custom-visualization-6.18.1.jar 
+ lib/jasper/jasperreports-fonts-6.18.1.jar 
+ lib/jasper/jasperreports-functions-6.18.1.jar 
+ lib/jasper/jasperreports-javaflow-6.18.1.jar 
+ lib/jasper/jasperreports-metadata-6.18.1.jar 
  lib/jasperlib/ant-1.10.11.jar 
  lib/jasperlib/antlr-2.7.5.jar 
  lib/jasperlib/barbecue-1.5-beta1.jar 
