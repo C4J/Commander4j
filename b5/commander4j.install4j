@@ -166,6 +166,7 @@
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
           <directory location="xml/log" failOnError="false" />
+          <directory location="lib/jasper_properties" failOnError="false" />
         </classPath>
       </java>
       <macStaticAssociationActions mode="selected" />
@@ -183,6 +184,7 @@
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
           <directory location="xml/log" failOnError="false" />
+          <directory location="lib/jasper_properties" failOnError="false" />
         </classPath>
       </java>
       <macStaticAssociationActions mode="selected" />
@@ -201,6 +203,7 @@
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
           <directory location="xml/log" failOnError="false" />
+          <directory location="lib/jasper_properties" failOnError="false" />
         </classPath>
       </java>
       <macStaticAssociationActions mode="selected" />
@@ -219,6 +222,7 @@
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
           <directory location="xml/log" failOnError="false" />
+          <directory location="lib/jasper_properties" failOnError="false" />
         </classPath>
       </java>
       <macStaticAssociationActions mode="selected" />
@@ -237,6 +241,7 @@
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
           <directory location="xml/log" failOnError="false" />
+          <directory location="lib/jasper_properties" failOnError="false" />
         </classPath>
       </java>
       <macStaticAssociationActions mode="selected" />
@@ -254,6 +259,8 @@
       <java mainClass="com.commander4j.sys.Start" arguments="Desktop">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
+          <directory location="xml/log" failOnError="false" />
+          <directory location="lib/jasper_properties" failOnError="false" />
         </classPath>
       </java>
       <macStaticAssociationActions mode="selected" />

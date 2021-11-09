@@ -12,6 +12,7 @@ com.commander4j.html
 com.commander4j.interfaces
 com.commander4j.messages
 com.commander4j.renderer
+com.commander4j.scales
 com.commander4j.service
 com.commander4j.servlet
 com.commander4j.start

@@ -137,7 +137,7 @@
             
         <library>
             <description>Jasper Reports Library</description>
-            <version>6.18.0</version>
+            <version>6.18.1</version>
             <type>Jasper Reports License</type>
         </library>       
 
@@ -540,7 +540,7 @@
         
         <license>
         	<type>Jasper Reports License</type>
-            <filename>TIB_js-jrlib-ce_6.18.0_license.txt</filename>
+            <filename>TIB_js-jrlib-ce_6.18.1_license.txt</filename>
         </license>   
          
         <license>
