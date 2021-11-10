@@ -70,7 +70,7 @@ public class InboundMessageCollectionThread extends Thread
 
 		dir = new File(inputPath);
 
-		chld = dir.listFiles((FileFilter) FileFileFilter.FILE);
+		chld = dir.listFiles((FileFilter) FileFileFilter.INSTANCE);
 		
 		if (chld == null)
 		{

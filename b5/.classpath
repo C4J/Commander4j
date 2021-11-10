@@ -18,7 +18,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/olap4j-0.9.7.309-JS-3.jar"/>
 	<classpathentry kind="lib" path="lib/devonly/i4jruntime.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-email-1.5.jar"/>
-	<classpathentry kind="lib" path="lib/barcode/commons-cli-1.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/barcode/commons-cli-1.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/jdom-2.0.6.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-collections-3.2.2.jar"/>
@@ -32,11 +32,11 @@
 	<classpathentry kind="lib" path="lib/jasperlib/ecj-4.4.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-codec-1.11.jar"/>
 	<classpathentry kind="lib" path="lib/app/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="lib/app/opencsv-4.1.jar"/>
+	<classpathentry kind="lib" path="lib/app/opencsv-5.5.2.jar"/>
 	<classpathentry kind="lib" path="lib/app/jackcess-2.1.9.jar"/>
-	<classpathentry kind="lib" path="lib/app/commons-text-1.2.jar"/>
-	<classpathentry kind="lib" path="lib/app/commons-io-2.6.jar"/>
-	<classpathentry kind="lib" path="lib/app/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="lib" path="lib/app/commons-text-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/app/commons-io-2.11.0.jar"/>
+	<classpathentry kind="lib" path="lib/app/commons-lang3-3.12.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-analyzers-common-7.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-core-7.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/lucene-queryparser-7.3.0.jar"/>
