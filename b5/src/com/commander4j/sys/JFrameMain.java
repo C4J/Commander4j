@@ -73,7 +73,7 @@ import com.commander4j.util.JHelp;
 public class JFrameMain extends JFrame implements ComponentListener
 {
 	private static final long serialVersionUID = 1;
-	protected JDesktopPane4j desktopPane = new JDesktopPane4j("");
+	protected JDesktopPane4j desktopPane = new JDesktopPane4j("background.jpg");
 	private Container contentPane = getContentPane();
 	private JMenuToolbarMenuItem btnHome;
 	private JMenuToolbarMenuItem btnExit;
