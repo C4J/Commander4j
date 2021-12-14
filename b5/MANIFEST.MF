@@ -77,9 +77,9 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib/javax.xml.soap-api-1.4.0.jar 
  lib/jasperlib/jcommon-1.0.23.jar 
  lib/jasperlib/jfreechart-1.5.0.jar 
- lib/jasperlib/log4j-api-2.14.0.jar 
- lib/jasperlib/log4j-core-2.14.0.jar 
- lib/jasperlib/log4j-jcl-2.14.0.jar 
+ lib/jasperlib/log4j-api-2.15.0.jar 
+ lib/jasperlib/log4j-core-2.15.0.jar 
+ lib/jasperlib/log4j-jcl-2.15.0.jar 
  lib/jasperlib/lucene-analyzers-common-7.3.0.jar 
  lib/jasperlib/lucene-core-7.3.0.jar 
  lib/jasperlib/lucene-queryparser-7.3.0.jar 
