@@ -112,9 +112,9 @@
         <pathelement location="lib/cups4j/xpp3-1.1.3.3.jar"/>
         <pathelement location="lib/jasperlib/groovy-sandbox-1.26-jaspersoft-2.jar"/>
         <pathelement location="lib/jasperlib/groovy-3.0.7.jar"/>
-        <pathelement location="lib/jasperlib/log4j-api-2.15.0.jar"/>
-        <pathelement location="lib/jasperlib/log4j-core-2.15.0.jar"/>
-        <pathelement location="lib/jasperlib/log4j-jcl-2.15.0.jar"/>
+        <pathelement location="lib/jasperlib/log4j-api-2.17.0.jar"/>
+        <pathelement location="lib/jasperlib/log4j-core-2.17.0.jar"/>
+        <pathelement location="lib/jasperlib/log4j-jcl-2.17.0.jar"/>
         <pathelement location="lib/jasperlib/slf4j-nop-1.7.26.jar"/>
         <pathelement location="lib/jasperlib/slf4j-api-1.7.26.jar"/>
         <pathelement location="lib/jasperlib/velocity-engine-core-2.3.jar"/>
