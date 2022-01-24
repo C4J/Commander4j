@@ -87,7 +87,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/core-3.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/rhino-1.7.11.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.26.jar"/>
-	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.8.5.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/ant-1.10.11.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/itext-2.1.7.js9.jar"/>
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.18.1.jar"/>
@@ -108,9 +108,9 @@
 	<classpathentry kind="lib" path="lib/cups4j/xpp3-1.1.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/groovy-sandbox-1.26-jaspersoft-2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/groovy-3.0.7.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/log4j-api-2.17.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/log4j-core-2.17.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/log4j-jcl-2.17.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/log4j-api-2.17.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/log4j-core-2.17.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/log4j-jcl-2.17.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/slf4j-nop-1.7.26.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/slf4j-api-1.7.26.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/velocity-engine-core-2.3.jar"/>
