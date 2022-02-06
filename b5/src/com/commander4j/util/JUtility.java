@@ -54,10 +54,14 @@ import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.TimeZone;
+import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -89,6 +93,24 @@ public class JUtility
 
 	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
 	
+	public static Vector<String> getMonthNames()
+	{
+		Vector<String> result = new Vector<String>();
+
+		Locale lc = new Locale(Common.locale_language, Common.locale_region);
+		
+		result.add("");
+		
+		for (int z=1;z<=12;z++)
+		{
+			
+			result.add(Month.of(z).getDisplayName(TextStyle.FULL_STANDALONE, lc));
+			
+		}
+		
+		return result;
+	}
+		
 	public static String getASCIIfromTokens(String input)
 	{
 		
@@ -1114,14 +1136,111 @@ public class JUtility
 	 */
 	public static String getWeekOfYear(Calendar currentDate)
 	{
-		int temp = 0;
 		String result = "";
 
-		temp = currentDate.get(Calendar.WEEK_OF_YEAR);
-		result = String.valueOf(temp).trim();
+		Integer temp = 0;
+
+		TimeZone timeZone = TimeZone.getTimeZone(Common.locale_timezone);
+		
+		currentDate.setTimeZone(timeZone);
+		currentDate.setMinimalDaysInFirstWeek(4);
+		currentDate.setFirstDayOfWeek(Calendar.MONDAY);
+		
+	    temp = currentDate.get(Calendar.WEEK_OF_YEAR);
+	    result = String.valueOf(temp).trim();
 		result = padString(result,false,2,"0");
 
 		return result;
+	}
+	
+	public static String getWeekOfYear(Timestamp ts)
+	{
+		String result = "";
+
+		Integer temp = 0;
+
+		TimeZone timeZone = TimeZone.getTimeZone(Common.locale_timezone);
+		
+		Calendar calendar = Calendar.getInstance();
+		
+		calendar.setTimeZone(timeZone);
+		calendar.setMinimalDaysInFirstWeek(4);
+		calendar.setFirstDayOfWeek(Calendar.MONDAY);
+		
+	    calendar.setTimeInMillis(ts.getTime());
+	    
+	    temp = calendar.get(Calendar.WEEK_OF_YEAR);
+	    result = String.valueOf(temp).trim();
+		result = padString(result,false,2,"0");
+
+		return result;
+		
+	}
+	
+	public static String getDay(Timestamp ts)
+	{
+		String result = "";
+
+		TimeZone timeZone = TimeZone.getTimeZone(Common.locale_timezone);
+		
+		Calendar calendar = Calendar.getInstance();
+		
+		calendar.setTimeZone(timeZone);
+		calendar.setMinimalDaysInFirstWeek(4);
+		calendar.setFirstDayOfWeek(Calendar.MONDAY);
+		
+	    calendar.setTimeInMillis(ts.getTime());
+	    
+	    SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
+
+	    result = dayFormat.format(calendar.getTime());
+
+		return result;
+		
+	}
+	
+	public static String getMonth(Timestamp ts)
+	{
+		String result = "";
+
+		TimeZone timeZone = TimeZone.getTimeZone(Common.locale_timezone);
+		
+		Calendar calendar = Calendar.getInstance();
+		
+		calendar.setTimeZone(timeZone);
+		calendar.setMinimalDaysInFirstWeek(4);
+		calendar.setFirstDayOfWeek(Calendar.MONDAY);
+		
+	    calendar.setTimeInMillis(ts.getTime());
+	    
+	    SimpleDateFormat dayFormat = new SimpleDateFormat("MMMM", Locale.getDefault());
+
+	    result = dayFormat.format(calendar.getTime());
+
+		return result;
+		
+	}
+	
+	public static String getYear(Timestamp ts)
+	{
+		String result = "";
+
+		TimeZone timeZone = TimeZone.getTimeZone(Common.locale_timezone);
+		
+		Calendar calendar = Calendar.getInstance();
+		
+		calendar.setTimeZone(timeZone);
+		calendar.setMinimalDaysInFirstWeek(4);
+		calendar.setFirstDayOfWeek(Calendar.MONDAY);
+		
+	    calendar.setTimeInMillis(ts.getTime());
+	    
+	    SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+
+	    result = dayFormat.format(calendar.getTime());
+
+		return result;
+		
 	}
 
 	/**

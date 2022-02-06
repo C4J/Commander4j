@@ -228,6 +228,18 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JMenuItem4j menuItemEdit;
 	private JTextField4j jTextFieldRequiredResource;
+	private JDBPallet clone = new JDBPallet(Common.selectedHostID, Common.sessionID);
+	private String cloneErrorMesage = "";
+
+	private void setCloneErrorMessage(String err)
+	{
+		cloneErrorMesage = err;
+	}
+
+	private String getCloneErrorMesage()
+	{
+		return cloneErrorMesage;
+	}
 
 	private void app_Init()
 	{
@@ -364,7 +376,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		{
 			q2.applyWhere("customer_id=", jTextFieldCustomer.getText());
 		}
-		
+
 		if (jTextFieldRequiredResource.getText().equals("") == false)
 		{
 			q2.applyWhere("required_resource = ", jTextFieldRequiredResource.getText());
@@ -466,8 +478,8 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 		{
 			q2.applyWhere("updated_by_user_id = ", textFieldUserUpdated.getText());
 		}
-		
-		if (textFieldEquipmentType.getText().equals("")  == false)
+
+		if (textFieldEquipmentType.getText().equals("") == false)
 		{
 			q2.applyWhere("equipment_type = ", textFieldEquipmentType.getText());
 		}
@@ -779,11 +791,11 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 	private void copyToClipboard(String fieldname)
 	{
 		StringSelection stringSelection = new StringSelection("");
-		
+
 		int row = jTable1.getSelectedRow();
 		if (row >= 0)
 		{
-			
+
 			if (fieldname.equals("SSCC") == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
@@ -818,12 +830,12 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 11).toString());
 			}
-						
+
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
 		}
 	}
-	
+
 	private void initGUI()
 	{
 		try
@@ -1043,7 +1055,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				{
 					ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
 					{ "DATE_OF_MANUFACTURE", "DATE_CREATED", "DATE_UPDATED", "SSCC", "MATERIAL,BATCH_NUMBER", "MATERIAL,PROCESS_ORDER", "BATCH_NUMBER,MATERIAL", "PROCESS_ORDER,DATE_OF_MANUFACTURE", "QUANTITY", "STATUS", "LOCATION_ID", "UOM", "EAN",
-							"VARIANT","EQUIPMENT_TYPE" });
+							"VARIANT", "EQUIPMENT_TYPE" });
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jComboBoxSortBy.setMaximumRowCount(15);
 					jDesktopPane1.add(jComboBoxSortBy);
@@ -1706,6 +1718,20 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					popupMenu.add(menuItemConfirm);
 				}
 				{
+					final JMenuItem4j menuItemConfirm = new JMenuItem4j(Common.icon_clone_16x16);
+					menuItemConfirm.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PAL_CLONE_SSCC"));
+					menuItemConfirm.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							cloneSSCC();
+						}
+					});
+
+					menuItemConfirm.setText(lang.get("mod_FRM_PAL_CLONE_SSCC"));
+					popupMenu.add(menuItemConfirm);
+				}
+				{
 					menuItemSummary = new JMenuItem4j(Common.icon_report_16x16);
 					menuItemSummary.addActionListener(new ActionListener()
 					{
@@ -1730,6 +1756,24 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 					});
 					menuItemSplit.setText(lang.get("mod_FRM_PAL_SPLIT"));
 					popupMenu.add(menuItemSplit);
+				}
+				{
+					final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet_sampling_16x16);
+					newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PAL_SAMPLE"));
+					newItemMenuItem.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							int row = jTable1.getSelectedRow();
+							if (row >= 0)
+							{
+								String lsscc = jTable1.getValueAt(row, 0).toString();
+								JLaunchMenu.runForm("FRM_PAL_SAMPLE", lsscc);
+							}
+						}
+					});
+					newItemMenuItem.setText(lang.get("mod_FRM_PAL_SAMPLE"));
+					popupMenu.add(newItemMenuItem);
 				}
 				{
 					final JMenuItem4j menuItemMove = new JMenuItem4j(Common.icon_move_16x16);
@@ -1785,7 +1829,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 								{
 									String lmaterial = jTable1.getValueAt(row, 1).toString();
 									String lbatch = jTable1.getValueAt(row, 2).toString();
-									JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
+									JLaunchMenu.runDialog("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
 								}
 							}
 						});
@@ -2155,9 +2199,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 							orderMenu.add(rbdescending);
 						}
 					}
-					
-					
-					
+
 					{
 						final JMenu4j clipboardByMenu = new JMenu4j();
 						clipboardByMenu.setText(lang.get("lbl_Clipboard_Copy"));
@@ -2422,24 +2464,27 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			textFieldUserUpdated = new JTextField4j(JDBUser.field_user_id);
 			textFieldUserUpdated.setBounds(582, 167, 115, 22);
 			jDesktopPane1.add(textFieldUserUpdated);
-			
+
 			textFieldEquipmentType = new JTextField4j(JDBEquipmentType.field_EquipmentType);
 			textFieldEquipmentType.setBounds(866, 166, 88, 22);
 			jDesktopPane1.add(textFieldEquipmentType);
-			
+
 			JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
 			jButtonLookupEquipment.setBounds(953, 166, 21, 21);
-			jButtonLookupEquipment.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			jButtonLookupEquipment.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
 					JLaunchLookup.dlgAutoExec = true;
 					JLaunchLookup.dlgCriteriaDefault = "Y";
-					if (JLaunchLookup.equipmentType()) {
+					if (JLaunchLookup.equipmentType())
+					{
 						textFieldEquipmentType.setText(JLaunchLookup.dlgResult);
 					}
 				}
 			});
 			jDesktopPane1.add(jButtonLookupEquipment);
-			
+
 			JLabel4j_std jLabel_Equipment = new JLabel4j_std();
 			jLabel_Equipment.setHorizontalAlignment(SwingConstants.TRAILING);
 			jLabel_Equipment.setBounds(724, 166, 135, 21);
@@ -2482,17 +2527,17 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			button_CalendarUpdatedDateTo.setEnabled(false);
 			button_CalendarUpdatedDateTo.setBounds(470, 164, 21, 21);
 			jDesktopPane1.add(button_CalendarUpdatedDateTo);
-			
+
 			JLabel4j_std label = new JLabel4j_std();
 			label.setText(lang.get("lbl_Process_Order_Required_Resource"));
 			label.setHorizontalAlignment(SwingConstants.TRAILING);
 			label.setBounds(10, 197, 121, 21);
 			jDesktopPane1.add(label);
-			
+
 			jTextFieldRequiredResource = new JTextField4j(JDBProcessOrder.field_required_resource);
 			jTextFieldRequiredResource.setBounds(144, 196, 105, 22);
 			jDesktopPane1.add(jTextFieldRequiredResource);
-			
+
 			JButton4j btnLookupResource = new JButton4j(Common.icon_lookup_16x16);
 			btnLookupResource.addActionListener(new ActionListener()
 			{
@@ -2567,7 +2612,7 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 			String[] locnList = locn.getLocationListArray();
 
 			JDBPallet pal = new JDBPallet(Common.selectedHostID, Common.sessionID);
-			
+
 			if (pal.getPalletProperties(lsscc))
 			{
 				String dest = (String) JOptionPane.showInputDialog(Common.mainForm, "Move To", lsscc, JOptionPane.PLAIN_MESSAGE, Common.icon_interface_16x16, locnList, "Pallet Move");
@@ -2630,5 +2675,89 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+	}
+
+	private boolean cloneSSCC()
+	{
+		boolean result = true;
+		long txnRef = 0;
+		String fromSSCC = "";
+		String toSSCC = "";
+		
+		setCloneErrorMessage("");
+
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			fromSSCC = jTable1.getValueAt(row, 0).toString();
+
+			toSSCC = JUtility.replaceNullStringwithBlank((String) JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_SSCC_Add"), null, JOptionPane.QUESTION_MESSAGE, Common.icon_confirm_16x16, null, null));
+			
+			if (toSSCC.equals("") == false)
+			{
+				JEANBarcode bc = new JEANBarcode(Common.selectedHostID, Common.sessionID);
+				if (toSSCC.toUpperCase().equals("AUTO"))
+				{
+					do
+					{
+						toSSCC = bc.generateNewSSCC();
+					}
+					while (toSSCC.equals(""));
+				}
+
+				clone.setSSCC(toSSCC);
+
+				if (clone.isValidSSCCFormat())
+				{
+					if (clone.isValidPallet(toSSCC) == false)
+					{
+
+						if (clone.getPalletProperties(fromSSCC))
+						{
+							txnRef = clone.writePalletHistory(txnRef, "CLONE", "FROM");
+
+							clone.setSSCC(toSSCC);
+
+							if (clone.create(txnRef, "CLONE", "TO"))
+							{
+								setCloneErrorMessage(toSSCC + " created.");
+							}
+							else
+							{
+								result = false;
+								setCloneErrorMessage(clone.getErrorMessage());
+							}
+
+						}
+						else
+						{
+							result = false;
+							setCloneErrorMessage(clone.getErrorMessage());
+						}
+					}
+					else
+					{
+						result = false;
+						setCloneErrorMessage(toSSCC + " already exists.");
+					}
+				}
+				else
+				{
+					result = false;
+					setCloneErrorMessage(clone.getErrorMessage());
+				}
+				
+				jStatusText.setText(getCloneErrorMesage());
+				if (result==false)
+				{
+					JUtility.errorBeep();
+				}
+				JOptionPane.showMessageDialog(Common.mainForm, getCloneErrorMesage(), lang.get("mod_FRM_PAL_CLONE_SSCC"), JOptionPane.INFORMATION_MESSAGE, Common.icon_confirm_16x16);
+
+			}
+
+		}
+
+		return result;
 	}
 }

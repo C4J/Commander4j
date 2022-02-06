@@ -644,7 +644,7 @@ public class JInternalFramePalletHistoryAdmin extends JInternalFrame
 											{
 												String lmaterial = jTable1.getValueAt(row, 5).toString();
 												String lbatch = jTable1.getValueAt(row, 6).toString();
-												JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
+												JLaunchMenu.runDialog("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
 											}
 										}
 									});

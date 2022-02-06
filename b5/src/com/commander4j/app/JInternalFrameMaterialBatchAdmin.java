@@ -275,7 +275,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 							JDBMaterialBatch matbat = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
 							if (matbat.isValidMaterialBatch(lmaterial, lbatch) == false)
 							{
-								JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
+								JLaunchMenu.runDialog("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
 							} else
 							{
 								JOptionPane.showMessageDialog(Common.mainForm, "Material/Batch [" + lmaterial + " / " + lbatch + "] already exists", lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
@@ -382,7 +382,7 @@ public class JInternalFrameMaterialBatchAdmin extends JInternalFrame
 		{
 			lmaterial = jTable1.getValueAt(row, 0).toString();
 			lbatch = jTable1.getValueAt(row, 1).toString();
-			JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
+			JLaunchMenu.runDialog("FRM_ADMIN_MATERIAL_BATCH_EDIT", lmaterial, lbatch);
 		}
 
 	}

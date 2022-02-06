@@ -28,6 +28,7 @@ package com.commander4j.util;
  */
 
 import java.awt.Component;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -38,8 +39,10 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -52,21 +55,22 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 
+import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JCheckBox4j;
-
+import com.commander4j.sys.Common;
 
 public class JExcel
 {
 
 	private String dbErrorMessage;
 	private final Logger logger = Logger.getLogger(JExcel.class);
-	
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
-	public void setExcelRowLimit(JCheckBox4j cb,JSpinner spin)
+	public void setExcelRowLimit(JCheckBox4j cb, JSpinner spin)
 	{
 		if (cb.isSelected())
 		{
-			if (Long.valueOf(spin.getValue().toString())>65535)
+			if (Long.valueOf(spin.getValue().toString()) > 65535)
 			{
 				spin.setValue(65535);
 			}
@@ -76,7 +80,7 @@ public class JExcel
 			spin.setValue(65535);
 			cb.setSelected(true);
 		}
-		
+
 		if (cb.isSelected())
 		{
 			spin.setEnabled(true);
@@ -85,12 +89,13 @@ public class JExcel
 		{
 			spin.setEnabled(false);
 		}
-		
+
 		spin.repaint();
 		cb.repaint();
 	}
-	
-	public void saveAs(String defaultFilename, ResultSet rs, Component parent) {
+
+	public void saveAs(String defaultFilename, ResultSet rs, Component parent)
+	{
 
 		JFileChooser saveXLS = new JFileChooser();
 
@@ -119,7 +124,52 @@ public class JExcel
 		}
 	}
 
-	public void exportToExcel(String filename, String sqlText, Connection connection) {
+	public boolean saveAndView(String defaultFilename, ResultSet rs, Component parent)
+	{
+		boolean result = false;
+
+		JFileChooser saveXLS = new JFileChooser();
+
+		try
+		{
+			File f = new File(new File(System.getProperty("user.home")).getCanonicalPath());
+			saveXLS.setCurrentDirectory(f);
+			saveXLS.addChoosableFileFilter(new JFileFilterXLS());
+			saveXLS.setSelectedFile(new File(defaultFilename));
+		}
+		catch (Exception ex)
+		{
+		}
+
+		int retvalue = saveXLS.showSaveDialog(parent);
+		if (retvalue == 0)
+		{
+			File selectedFile;
+			selectedFile = saveXLS.getSelectedFile();
+			if (selectedFile != null)
+			{
+				String filename = selectedFile.getAbsolutePath();
+				JExcel export = new JExcel();
+				if (export.exportToExcel(filename, rs))
+				{
+					try
+					{
+						result = true;
+						Desktop.getDesktop().open(new File(filename));
+					}
+					catch (IOException e)
+					{
+						e.printStackTrace();
+					}
+				}
+
+			}
+		}
+		return result;
+	}
+
+	public void exportToExcel(String filename, String sqlText, Connection connection)
+	{
 		PreparedStatement statement;
 		try
 		{
@@ -133,7 +183,8 @@ public class JExcel
 		}
 	}
 
-	public void exportToExcel(String filename, PreparedStatement statement) {
+	public void exportToExcel(String filename, PreparedStatement statement)
+	{
 		ResultSet rs;
 		try
 		{
@@ -147,7 +198,9 @@ public class JExcel
 		}
 	}
 
-	public void exportToExcel(String filename, ResultSet rs) {
+	public boolean exportToExcel(String filename, ResultSet rs)
+	{
+		boolean result = false;
 		try
 		{
 
@@ -166,10 +219,10 @@ public class JExcel
 
 			HSSFCellStyle cellStyle_nvarchar = workbook.createCellStyle();
 			cellStyle_nvarchar.setAlignment(HorizontalAlignment.LEFT);
-			
+
 			HSSFCellStyle cellStyle_varchar2 = workbook.createCellStyle();
 			cellStyle_varchar2.setAlignment(HorizontalAlignment.LEFT);
-			
+
 			HSSFCellStyle cellStyle_title = workbook.createCellStyle();
 			cellStyle_title.setAlignment(HorizontalAlignment.CENTER);
 
@@ -188,7 +241,7 @@ public class JExcel
 			cellStyle_decimal.setAlignment(HorizontalAlignment.RIGHT);
 			DataFormat dataFormat = workbook.createDataFormat();
 			cellStyle_decimal.setDataFormat(dataFormat.getFormat("###,###,###,##0.00"));
-			
+
 			HSSFCellStyle cellStyle_integer = workbook.createCellStyle();
 			cellStyle_integer.setAlignment(HorizontalAlignment.RIGHT);
 			DataFormat intFormat = workbook.createDataFormat();
@@ -196,7 +249,8 @@ public class JExcel
 
 			HSSFFont font_title = workbook.createFont();
 			font_title.setColor((short) 0xc);
-			font_title.setBold(true);;
+			font_title.setBold(true);
+			;
 			font_title.setItalic(true);
 			font_title.setUnderline(HSSFFont.U_DOUBLE);
 			cellStyle_title.setFont(font_title);
@@ -252,7 +306,7 @@ public class JExcel
 							{
 								rtf_nvarchar = new HSSFRichTextString(rs.getString(column));
 							}
-						
+
 							cell.setCellStyle(cellStyle_nvarchar);
 							cell.setCellValue(rtf_nvarchar);
 							break;
@@ -266,7 +320,7 @@ public class JExcel
 							{
 								rtf_varchar = new HSSFRichTextString(rs.getString(column));
 							}
-						
+
 							cell.setCellStyle(cellStyle_varchar);
 							cell.setCellValue(rtf_varchar);
 							break;
@@ -335,7 +389,7 @@ public class JExcel
 						break;
 					}
 				}
-				
+
 				if (recordNumber == 65535)
 				{
 					break;
@@ -349,22 +403,47 @@ public class JExcel
 
 			if (recordNumber > 0)
 			{
-				try
+				File checkexists = new File(filename);
+				boolean confirmed = false;
+
+				if (checkexists.exists())
 				{
-					FileOutputStream fileOut = new FileOutputStream(filename);
-					workbook.write(fileOut);
-					fileOut.close();
+					JUtility.errorBeep();
+					confirmed = false;
+					int question = JOptionPane.showConfirmDialog(Common.mainForm, lang.get("lbl_File")+" [" + filename + "] "+lang.get("lbl_Already_Exists_Overwrite"), lang.get("lbl_Overwrite_Warning"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+					if (question == 0)
+					{
+						confirmed = true;
+					}
 				}
-				catch (Exception ex)
+				else
 				{
-					setErrorMessage(ex.getMessage());
+					confirmed = true;
+				}
+				checkexists = null;
+
+				if (confirmed)
+				{
+					try
+					{
+						FileUtils.deleteQuietly(new File(filename));
+						FileOutputStream fileOut = new FileOutputStream(filename);
+						workbook.write(fileOut);
+						fileOut.close();
+						result = true;
+					}
+					catch (Exception ex)
+					{
+						setErrorMessage(ex.getMessage());
+					}
 				}
 			}
 
 			try
 			{
 				workbook.close();
-			} catch (IOException e)
+			}
+			catch (IOException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -374,9 +453,11 @@ public class JExcel
 		{
 			setErrorMessage(e.getMessage());
 		}
+		return result;
 	}
 
-	private void setErrorMessage(String errorMsg) {
+	private void setErrorMessage(String errorMsg)
+	{
 		if (errorMsg.isEmpty() == false)
 		{
 			logger.error(errorMsg);
@@ -384,7 +465,8 @@ public class JExcel
 		dbErrorMessage = errorMsg;
 	}
 
-	public String getErrorMessage() {
+	public String getErrorMessage()
+	{
 		return dbErrorMessage;
 	}
 

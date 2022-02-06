@@ -145,7 +145,7 @@ public class Common
 	public static String[] messageTypesexclBlank = new String[] {"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", 	"Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration", 	"QM Inspection Request",	"QM Inspection Result" };
 	public static String[] messageTypesincBlank = new String[] { "", 	"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", "Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration", 	"QM Inspection Request",	"QM Inspection Result"	};
 
-	public static String[] transactionTypes = new String[] { "", "DESPATCH", "EDIT", "PRINT","PROD DEC", "STATUS CHANGE","MHN","SPLIT","MOVE","MANUAL"};
+	public static String[] transactionTypes = new String[] { "","CLONE", "DESPATCH", "EDIT", "PRINT","PROD DEC", "STATUS CHANGE","MHN","SPLIT","MOVE","MANUAL"};
 	public static String[] transactionSubTypes = new String[] { "", "ADD","REMOVE","CREATE","PRINT", "CONFIRM", "FROM", "TO", "MANUAL", "LABEL","DECISION","BEFORE","AFTER","DELETE" };
 	public static String[] auditEventActions = new String[] { "", "ADD", "REMOVE", "CREATE", "DELETE", "RENAME", "ENABLE", "DISABLE" };
 	public static String[] auditEventTypes = new String[] { "", "USER", "GROUP", "USER_GROUP", "GROUP_MODULE" };
@@ -308,7 +308,9 @@ public class Common
 	public final static Icon icon_lock_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_lock);
 	public final static Icon icon_production_line_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_production_line);
 	public final static Icon icon_weight_capture_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_weight_capture);
+	public final static Icon icon_pallet_sampling_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_pallet_sample);
 
+	public final static String image_pallet_sample = "pallet_sampling.gif";
 	public final static String image_weight_capture = "weight-capture.gif";
 	public final static String image_production_line = "prod_lines.gif";
 	public final static String image_lock = "lock.gif";
@@ -403,6 +405,7 @@ public class Common
 	public final static String image_despatch_remove = "journey_remove.gif";
 	public static String locale_language="GB";
 	public static String locale_region="en";
+	public static String locale_timezone="Europe/London";
 	
 	public static String statusReportTime = "00:00:00";
 	public static int user_password_expiry_days = 14;

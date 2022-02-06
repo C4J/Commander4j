@@ -497,10 +497,16 @@ public class JDBMaterialBatch
 
 	public Timestamp getExpiryDate()
 	{
+		if (expiryMode.equals("SSCC"))
+		{
+			dbMaterialBatchExpiry = new Timestamp(0);
+		}
+		
 		if (dbMaterialBatchExpiry != null)
 		{
 			dbMaterialBatchExpiry.setNanos(0);
 		}
+		
 		return dbMaterialBatchExpiry;
 	}
 
@@ -717,6 +723,12 @@ public class JDBMaterialBatch
 
 	public void setExpiryDate(Timestamp expiryDate)
 	{
+				
+		if (expiryMode.equals("SSCC"))
+		{
+			expiryDate = new Timestamp(0);
+		}
+	
 		if (expiryDate != null)
 		{
 			expiryDate.setNanos(0);

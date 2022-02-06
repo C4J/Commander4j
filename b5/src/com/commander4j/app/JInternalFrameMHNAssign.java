@@ -33,6 +33,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -519,6 +520,49 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 
 	}
 
+	private void copyToClipboard(String fieldname)
+	{
+		StringSelection stringSelection = new StringSelection("");
+		
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			
+			if (fieldname.equals("SSCC") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
+			}
+
+			if (fieldname.equals("Material") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 1).toString());
+			}
+
+			if (fieldname.equals("Batch") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 2).toString());
+			}
+
+			if (fieldname.equals("Process Order") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString());
+			}
+
+			if (fieldname.equals("Pallet Status") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 7).toString());
+			}
+
+			if (fieldname.equals("Location") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 9).toString());
+			}
+						
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+		}
+	}
+	
 	private void initGUI()
 	{
 		try
@@ -843,6 +887,92 @@ public class JInternalFrameMHNAssign extends JInternalFrame
 										orderMenu.add(rbdescending);
 									}
 								}
+							}
+							
+							{
+								final JMenu4j clipboardByMenu = new JMenu4j();
+								clipboardByMenu.setText(lang.get("lbl_Clipboard_Copy"));
+								popupMenu.add(clipboardByMenu);
+
+								{
+									final JMenuItem4j menuItemFilterBySSCC = new JMenuItem4j();
+									menuItemFilterBySSCC.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("SSCC");
+										}
+									});
+									menuItemFilterBySSCC.setText(lang.get("lbl_Pallet_SSCC"));
+									clipboardByMenu.add(menuItemFilterBySSCC);
+								}
+
+								{
+									final JMenuItem4j menuItemFilterByMaterial = new JMenuItem4j();
+									menuItemFilterByMaterial.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Material");
+										}
+									});
+									menuItemFilterByMaterial.setText(lang.get("lbl_Material"));
+									clipboardByMenu.add(menuItemFilterByMaterial);
+								}
+
+								{
+									final JMenuItem4j menuItemFilterByBatch = new JMenuItem4j();
+									menuItemFilterByBatch.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Batch");
+										}
+									});
+									menuItemFilterByBatch.setText(lang.get("lbl_Material_Batch"));
+									clipboardByMenu.add(menuItemFilterByBatch);
+								}
+
+								{
+									final JMenuItem4j menuItemFilterByLocation = new JMenuItem4j();
+									menuItemFilterByLocation.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Location");
+										}
+									});
+									menuItemFilterByLocation.setText(lang.get("lbl_Location_ID"));
+									clipboardByMenu.add(menuItemFilterByLocation);
+								}
+
+
+								{
+									final JMenuItem4j menuItemFilterByPalletStatus = new JMenuItem4j();
+									menuItemFilterByPalletStatus.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Pallet Status");
+										}
+									});
+									menuItemFilterByPalletStatus.setText(lang.get("lbl_Pallet_Status"));
+									clipboardByMenu.add(menuItemFilterByPalletStatus);
+								}
+
+								{
+									final JMenuItem4j menuItemFilterByProcessOrder = new JMenuItem4j();
+									menuItemFilterByProcessOrder.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Process Order");
+										}
+									});
+									menuItemFilterByProcessOrder.setText(lang.get("lbl_Process_Order"));
+									clipboardByMenu.add(menuItemFilterByProcessOrder);
+								}
+
 							}
 						}
 					}

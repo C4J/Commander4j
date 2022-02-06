@@ -29,8 +29,6 @@ package com.commander4j.app;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -40,13 +38,15 @@ import java.util.Date;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
+import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.commander4j.calendar.JCalendarButton;
+import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBMaterialBatch;
@@ -69,7 +69,7 @@ import com.commander4j.util.JUtility;
  * 
  * @see com.commander4j.db.JDBMaterialBatch JDBMaterialBatch
  */
-public class JInternalFrameMaterialBatchProperties extends JInternalFrame
+public class JDialogMaterialBatchProperties extends javax.swing.JDialog
 {
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
@@ -79,6 +79,7 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 	private String lmaterial;
 	private String lbatch;
 	private JDBMaterialBatch materialbatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
+	private JDBMaterial materialdb = new JDBMaterial(Common.selectedHostID, Common.sessionID);
 	private JTextField4j jTextFieldBatch;
 	private JLabel4j_std jLabel2;
 	private JComboBox4j<String> jComboBoxStatus;
@@ -89,21 +90,40 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 	private JDateControl dateTimePicker = new JDateControl();
 	private JDBLanguage lang;
 	private JCalendarButton calendarButton;
+	private String expiryMode;
+	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 
-	public JInternalFrameMaterialBatchProperties()
+
+	public JDialogMaterialBatchProperties(JFrame frame,String material, String batch)
 	{
-		super();
+		super();		
+		
+		lmaterial = material;
+		lbatch = batch;
+		
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-
+		expiryMode = ctrl.getKeyValue("EXPIRY DATE MODE");
+		
 		initGUI();
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
 
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Rectangle window = getBounds();
-		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		this.setTitle("Batch Properties");
+		this.setResizable(false);
+		this.setSize(358, 207);
 
+		Dimension screensize = Common.mainForm.getSize();
+
+		Dimension formsize = getSize();
+		int leftmargin = ((screensize.width - formsize.width) / 2);
+		int topmargin = ((screensize.height - formsize.height) / 2);
+
+		setLocation(leftmargin, topmargin);
+		
+		materialdb.getMaterialProperties(material);
+		
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
@@ -111,48 +131,6 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 				jComboBoxStatus.requestFocus();
 			}
 		});
-	}
-
-	public JInternalFrameMaterialBatchProperties(String material, String batch)
-	{
-		this();
-		lmaterial = material;
-		lbatch = batch;
-		jTextFieldMaterial.setText(lmaterial);
-		jTextFieldBatch.setText(lbatch);
-
-		materialbatch.setMaterial(lmaterial);
-		materialbatch.setBatch(lbatch);
-		jTextFieldMaterial.setText(materialbatch.getMaterial());
-		jTextFieldBatch.setText(materialbatch.getBatch());
-
-		if (materialbatch.getMaterialBatchProperties())
-		{
-			jComboBoxStatus.setSelectedItem(materialbatch.getStatus());
-			try
-			{
-				dateTimePicker.setDate(materialbatch.getExpiryDate());
-			} catch (Exception e)
-			{
-
-			}
-			jButtonUpdate.setEnabled(false);
-		} else
-		{
-			JDBMaterial mat = new JDBMaterial(Common.selectedHostID, Common.sessionID);
-			mat.getMaterialProperties(material);
-			jComboBoxStatus.setSelectedItem(mat.getDefaultBatchStatus());
-
-			Date de = JUtility.getSQLDateTime();
-			try
-			{
-				dateTimePicker.setDate(mat.calcBBE(de, mat.getShelfLife(), mat.getShelfLifeUom(), mat.getShelfLifeRule()));
-			} catch (Exception e)
-			{
-
-			}
-			jButtonUpdate.setEnabled(true);
-		}
 
 	}
 
@@ -160,10 +138,7 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 	{
 		try
 		{
-			this.setPreferredSize(new java.awt.Dimension(358, 207));
-			this.setBounds(0, 0, 378, 213);
-			setVisible(true);
-			this.setClosable(true);
+
 			{
 				jDesktopPane1 = new JDesktopPane();
 				jDesktopPane1.setBackground(Common.color_edit_properties);
@@ -295,12 +270,23 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 					{
 						public void stateChanged(final ChangeEvent e)
 						{
+							Date exp = materialdb.getRoundedExpiryDate(dateTimePicker.getDate());
+							dateTimePicker.setDate(exp);
 							jButtonUpdate.setEnabled(true);
 						}
 					});
 
 					// dateTimePicker.setEditable(true);
 					dateTimePicker.setBounds(126, 97, 150, 25);
+					if (expiryMode.equals("SSCC"))
+					{
+						dateTimePicker.setEnabled(false);
+					}
+					else
+					{
+						dateTimePicker.setEnabled(true);
+					}
+							
 					jDesktopPane1.add(dateTimePicker);
 				}
 				{
@@ -312,6 +298,44 @@ public class JInternalFrameMaterialBatchProperties extends JInternalFrame
 					});
 					calendarButton.setBounds(255, 101, 21, 21);
 					jDesktopPane1.add(calendarButton);
+				}
+				
+
+				
+				jTextFieldMaterial.setText(lmaterial);
+				jTextFieldBatch.setText(lbatch);
+
+				materialbatch.setMaterial(lmaterial);
+				materialbatch.setBatch(lbatch);
+				jTextFieldMaterial.setText(materialbatch.getMaterial());
+				jTextFieldBatch.setText(materialbatch.getBatch());
+
+				if (materialbatch.getMaterialBatchProperties())
+				{
+					jComboBoxStatus.setSelectedItem(materialbatch.getStatus());
+					try
+					{
+						dateTimePicker.setDate(materialbatch.getExpiryDate());
+					} catch (Exception e)
+					{
+
+					}
+					jButtonUpdate.setEnabled(false);
+				} else
+				{
+					JDBMaterial mat = new JDBMaterial(Common.selectedHostID, Common.sessionID);
+					mat.getMaterialProperties(lmaterial);
+					jComboBoxStatus.setSelectedItem(mat.getDefaultBatchStatus());
+
+					Date de = JUtility.getSQLDateTime();
+					try
+					{
+						dateTimePicker.setDate(mat.calcBBE(de, mat.getShelfLife(), mat.getShelfLifeUom(), mat.getShelfLifeRule()));
+					} catch (Exception e)
+					{
+
+					}
+					jButtonUpdate.setEnabled(true);
 				}
 			}
 		} catch (Exception e)

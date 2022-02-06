@@ -35,12 +35,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -58,10 +56,8 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBLocation;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBMaterialBatch;
-import com.commander4j.db.JDBMaterialUom;
 import com.commander4j.db.JDBPallet;
 import com.commander4j.db.JDBProcessOrder;
-import com.commander4j.db.JDBUom;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
@@ -89,399 +85,74 @@ import com.commander4j.util.JUtility;
  */
 public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 {
-	private JLabel4j_std jLabelProductionDate_1;
-	private JButton4j jButtonUndo;
+	private final static int newSSCC = 1;
 	private static final long serialVersionUID = 1;
-	private JDesktopPane jDesktopPane1;
+	private final static int updateSSCC = 2;
+	private JButton4j btn_BatchExpiry;
+	private JButton4j btn_Location;
+	private JButton4j btn_MaterialBatch;
+	private JButton4j btn_ProcessOrder;
+	private JCalendarButton calendarButtonexpiryDate;
+	private JCalendarButton calendarButtonproductionDate;
+	private String expiryMode;
+	private String defaultBatchStatus;
+	private String defaultPalletStatus;
+
+	private JDateControl fld_BatchExpiry;
+	private JTextField4j fld_BatchStatus;
+	private JCheckBox4j fld_Confirmed = new JCheckBox4j();
+	private JTextField4j fld_Customer;
+	private JTextField4j fld_DespatchNo;
+	private JDateControl fld_DOM;
+	private JTextField4j fld_EAN;
+	private JTextField4j fld_Equipment = new JTextField4j(JDBEquipmentType.field_EquipmentType);
+	private JTextField4j fld_Layers;
+	private JTextField4j fld_Location;
+	private JTextField4j fld_Material;
+	private JTextField4j fld_MaterialBatch;
+	private JTextField4j fld_MaterialDescription;
+	private JComboBox4j<String> fld_PalletStatus;
+	private JTextField4j fld_ProcessOrder;
+	private JTextField4j fld_ProcessOrderDescription;
+	private JQuantityInput fld_Quantity;
+	private JTextField4j fld_SSCC;
+	private JTextField4j fld_UOM;
+	private JTextField4j fld_Variant;
+	private JDBPallet initial_pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
 	private JButton4j jButtonCancel;
-	private JButton4j jButtonEditBatch;
-	private JButton4j jButton1;
-	private JLabel4j_std jStatusText;
-	private JComboBox4j<String> jComboBoxDefaultPalletStatus;
-	private JLabel4j_std jLabel15;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSave;
-	private JTextField4j jTextFieldSSCC;
-	private JTextField4j jTextFieldBatch;
-	private JLabel4j_std jLabel4;
-	private JLabel4j_std jLabel8;
-	private JLabel4j_std jLabelBatchExpiry;
-	private JDateControl expiryDate;
-	private JTextField4j jTextFieldBatchStatus;
-	private JLabel4j_std jLabel10;
-	private JTextField4j jTextFieldMaterialDescription;
-	private JLabel4j_std jLabel9;
-	private JTextField4j jTextFieldProcessOrderDescription;
-	private JDateControl productionDate;
-	private JLabel4j_std jLabelProductionDate;
-	private JLabel4j_std jLabelDespatchNo;
-	private JQuantityInput jFormattedTextFieldQuantity;
-	private JLabel4j_std jLabelQuantity;
-	private JTextField4j jTextFieldVariant;
-	private JLabel4j_std jLabel7;
-	private JTextField4j jTextFieldEAN;
-	private JLabel4j_std jLabel6;
-	private JButton4j jButtonLookupProcessOrder;
-	private JTextField4j jTextFieldProcessOrder;
-	private JLabel4j_std jLabelProcessOrder;
-	private JButton4j jButtonLookupLocation;
-	private JTextField4j jTextFieldLocation;
-	private JButton4j jButtonLookupBatch;
-	private JLabel4j_std jLabel3;
-	private JButton4j jButtonLookupMaterial;
-	private JTextField4j jTextFieldMaterial;
-	private JLabel4j_std jLabel2;
-	private JLabel4j_std jLabel5;
-	private JLabel4j_std jLabel1;
-	private JComboBox4j<JDBUom> jComboBoxUOM;
-	private JDBUom uom = new JDBUom(Common.selectedHostID, Common.sessionID);
-	private JDBUom paluom = new JDBUom(Common.selectedHostID, Common.sessionID);
-	private JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
-	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
-	private JDBDespatch despatch = new JDBDespatch(Common.selectedHostID, Common.sessionID);
-	private JDBEquipmentType equipment = new JDBEquipmentType(Common.selectedHostID, Common.sessionID);
-	private JDBCustomer customer = new JDBCustomer(Common.selectedHostID, Common.sessionID);
-	private JDBLocation location = new JDBLocation(Common.selectedHostID, Common.sessionID);
-	private JDBMaterialBatch materialBatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
-	private JDBProcessOrder processOrder = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
-	private JDBMaterialUom materialuom = new JDBMaterialUom(Common.selectedHostID, Common.sessionID);
-	private Vector<JDBUom> uomList = new Vector<JDBUom>();
-	private JCheckBox4j checkBoxConfirmed = new JCheckBox4j();
-	private String lsscc;
-	private String luom;
-	private JTextField4j jTextFieldLayers;
-	private JLabel4j_std lblLayers;
+	private JButton4j jButtonUndo;
+	private JDesktopPane jDesktopPane1;
+	private JLabel4j_std jStatusText;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
-	private JTextField4j textFieldDespatchNo;
-	private String expiryMode;
-	private JCalendarButton calendarButtonproductionDate;
-	private JCalendarButton calendarButtonexpiryDate;
-	private JTextField4j textFieldCustomer;
-	private boolean initialising = true;
-	private JButton4j buttonRefreshMaterialData;
-	private JTextField4j jTextFieldEquipment = new JTextField4j(15);
+	private JLabel4j_std lbl_BatchExpiry;
+	private JLabel4j_std lbl_BatchStatus;
+	private JLabel4j_std lbl_Confirmed;
+	private JLabel4j_std lbl_DespatchNo;
+	private JLabel4j_std lbl_DOM;
+	private JLabel4j_std lbl_EAN;
+	private JLabel4j_std lbl_Layers;
+	private JLabel4j_std lbl_Location;
+	private JLabel4j_std lbl_Material;
+	private JLabel4j_std lbl_MaterialBatch;
+	private JLabel4j_std lbl_MaterialDescription;
+	private JLabel4j_std lbl_PalletStatus;
+	private JLabel4j_std lbl_ProcessOrder;
+	private JLabel4j_std lbl_ProcessOrderDescription;
+	private JLabel4j_std lbl_Quantity;
+	private JLabel4j_std lbl_SSCC;
+	private JLabel4j_std lbl_UOM;
+	private JLabel4j_std lbl_Variant;
+	private String lsscc;
+	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
+	private JDBLocation location = new JDBLocation(Common.selectedHostID, Common.sessionID);
 
-	private void enableOrdisableFields(JComponent field)
-	{
-		if (field == null)
-		{
-			jTextFieldProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
-			jTextFieldMaterial.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
-			jTextFieldBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_BATCH"));
-			jTextFieldLocation.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_LOCATION"));
-			jFormattedTextFieldQuantity.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_QUANTITY"));
-			jComboBoxUOM.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_UOM"));
-			jComboBoxDefaultPalletStatus.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_STATUS"));
-			productionDate.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROD_DATE"));
-			checkBoxConfirmed.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_CONFIRMED"));
-			textFieldDespatchNo.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_DESPATCH"));
-			textFieldCustomer.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER"));
-			jTextFieldEquipment.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_EQUIPMENT"));
-			jButtonSave.setEnabled(true);
-			jButtonUndo.setEnabled(true);
-			enableSave();
-		}
-		else
-		{
-			if (field != jTextFieldProcessOrder)
-				jTextFieldProcessOrder.setEnabled(false);
-			if (field != jTextFieldMaterial)
-				jTextFieldMaterial.setEnabled(false);
-			if (field != jTextFieldBatch)
-				jTextFieldBatch.setEnabled(false);
-			if (field != jTextFieldLocation)
-				jTextFieldLocation.setEnabled(false);
-			if (field != jFormattedTextFieldQuantity)
-				jFormattedTextFieldQuantity.setEnabled(false);
-			if (field != jComboBoxUOM)
-				jComboBoxUOM.setEnabled(false);
-			if (field != jComboBoxDefaultPalletStatus)
-				jComboBoxDefaultPalletStatus.setEnabled(false);
-			if (field != productionDate)
-				productionDate.setEnabled(false);
-			if (field != textFieldDespatchNo)
-				textFieldDespatchNo.setEnabled(false);
-			if (field != textFieldCustomer)
-				textFieldCustomer.setEnabled(false);
-			if (field != jTextFieldEquipment)
-				jTextFieldEquipment.setEnabled(false);
-			field.setEnabled(true);
-			enableSave();
-		}
-	}
 
-	private void enableSave()
-	{
-		boolean result = true;
-		String message = "";
-
-		if (jTextFieldLocation.getText().equals(""))
-		{
-			result = false;
-			message = lang.get("err_Location_Blank");
-		}
-
-		if (jTextFieldBatch.getText().equals(""))
-		{
-			result = false;
-			message = lang.get("err_Batch_Blank");
-		}
-
-		if (jTextFieldMaterial.getText().equals(""))
-		{
-			result = false;
-			message = lang.get("err_Material_Blank");
-		}
-
-		if (jTextFieldProcessOrder.getText().equals(""))
-		{
-			result = false;
-			message = lang.get("err_Process_Order_Blank");
-		}
-
-		if (textFieldCustomer.getText().equals(""))
-		{
-			result = false;
-			message = lang.get("err_Customer_Blank");
-		}
-
-		jStatusText.setText(message);
-		jButtonSave.setEnabled(result);
-		jButtonUndo.setEnabled(result);
-	}
-
-	private void locationChanged()
-	{
-		if (initialising == false)
-		{
-			jStatusText.setText("");
-			if (location.getLocationProperties(jTextFieldLocation.getText()) == true)
-			{
-				enableOrdisableFields(null);
-
-			}
-			else
-			{
-				enableOrdisableFields(jTextFieldLocation);
-				jButtonSave.setEnabled(false);
-				jStatusText.setText(location.getErrorMessage());
-			}
-		}
-	}
-
-	private void materialBatchChanged()
-	{
-		if (initialising == false)
-		{
-			jStatusText.setText("");
-			if (materialBatch.getMaterialBatchProperties(jTextFieldMaterial.getText(), jTextFieldBatch.getText()) == true)
-			{
-				jTextFieldBatchStatus.setText(materialBatch.getStatus());
-				enableOrdisableFields(null);
-
-				if (expiryMode.equals("SSCC"))
-				{
-					jButtonEditBatch.setVisible(false);
-					calendarButtonexpiryDate.setVisible(true);
-					expiryDate.setEnabled(true);
-					expiryDate.setDate(pallet.getBatchExpiry());
-				}
-				else
-				{
-					try
-					{
-						expiryDate.setDate(materialBatch.getExpiryDate());
-						jStatusText.setText("Expiry Date set from Batch " + jTextFieldMaterial.getText() + " / " + jTextFieldBatch.getText());
-					}
-					catch (Exception ex)
-					{
-						jStatusText.setText(ex.getMessage());
-					}
-				}
-
-			}
-			else
-			{
-				jStatusText.setText(materialBatch.getErrorMessage());
-
-				jButtonSave.setEnabled(false);
-				enableOrdisableFields(jTextFieldBatch);
-				if (expiryMode.equals("BATCH"))
-				{
-					jStatusText.setText("No Batch Record Found " + jTextFieldMaterial.getText() + " / " + jTextFieldBatch.getText() + " (auto create on save).");
-				}
-			}
-		}
-
-	}
-
-	private void materialChanged()
-	{
-		if (initialising == false)
-		{
-			jStatusText.setText("");
-			if (material.getMaterialProperties(jTextFieldMaterial.getText()) == true)
-			{
-				enableOrdisableFields(null);
-				jTextFieldMaterialDescription.setText(material.getDescription());
-				getMaterialUoms(jTextFieldMaterial.getText());
-				materialBatchChanged();
-				uomChanged();
-			}
-			else
-			{
-				enableOrdisableFields(jTextFieldMaterial);
-				jTextFieldMaterialDescription.setText("");
-				jButtonSave.setEnabled(false);
-				jStatusText.setText(material.getErrorMessage());
-			}
-		}
-	}
-
-	private void despatchNoChanged()
-	{
-		if (initialising == false)
-		{
-			jStatusText.setText("");
-			String despNo = JUtility.replaceNullStringwithBlank(textFieldDespatchNo.getText());
-			if (despNo.equals("") == false)
-			{
-				if (despatch.getDespatchProperties(despNo) == true)
-				{
-					enableOrdisableFields(null);
-				}
-				else
-				{
-					enableOrdisableFields(textFieldDespatchNo);
-					jButtonSave.setEnabled(false);
-					jStatusText.setText(despatch.getErrorMessage());
-				}
-			}
-		}
-	}
-
-	private void equipmentChanged()
-	{
-		if (initialising == false)
-		{
-			jStatusText.setText("");
-			String equipmentType = JUtility.replaceNullStringwithBlank(jTextFieldEquipment.getText());
-			if (equipmentType.equals(""))
-			{
-				enableOrdisableFields(null);
-			}
-			else
-			{
-				if (equipmentType.equals("") == false)
-				{
-					if (equipment.getEquipmentTypeProperties(equipmentType) == true)
-					{
-						enableOrdisableFields(null);
-					}
-					else
-					{
-						enableOrdisableFields(jTextFieldEquipment);
-						jButtonSave.setEnabled(false);
-						jStatusText.setText(equipment.getErrorMessage());
-					}
-				}
-			}
-		}
-	}
-
-	private void customerIDChanged()
-	{
-		if (initialising == false)
-		{
-			jStatusText.setText("");
-			String customerID = JUtility.replaceNullStringwithBlank(textFieldCustomer.getText());
-			if (customerID.equals("") == false)
-			{
-				if (customer.isValidCustomer(customerID) == true)
-				{
-					enableOrdisableFields(null);
-				}
-				else
-				{
-					enableOrdisableFields(textFieldCustomer);
-					jButtonSave.setEnabled(false);
-					jStatusText.setText(customer.getErrorMessage());
-				}
-			}
-			else
-			{
-				enableOrdisableFields(textFieldCustomer);
-				jStatusText.setText("Customer ID cannot be empty");
-			}
-		}
-	}
-
-	private void processOrderChanged()
-	{
-		if (initialising == false)
-		{
-			jStatusText.setText("");
-			if (processOrder.getProcessOrderProperties(jTextFieldProcessOrder.getText()) == true)
-			{
-				enableOrdisableFields(null);
-				if (jTextFieldMaterial.getText().equals(processOrder.getMaterial()) == false)
-				{
-					jTextFieldMaterial.setText(processOrder.getMaterial());
-					materialChanged();
-					jStatusText.setText("Material updated from process order");
-				}
-			}
-			else
-			{
-				enableOrdisableFields(jTextFieldProcessOrder);
-				jButtonSave.setEnabled(false);
-				jStatusText.setText(processOrder.getErrorMessage());
-			}
-			jTextFieldProcessOrderDescription.setText(processOrder.getDescription());
-			textFieldCustomer.setText(processOrder.getCustomerID());
-		}
-	}
-
-	private void uomChanged()
-	{
-		if (initialising == false)
-		{
-			jStatusText.setText("");
-			try
-			{
-				luom = ((JDBUom) jComboBoxUOM.getSelectedItem()).getInternalUom();
-				pallet.setUom(luom);
-				if (materialuom.getMaterialUomProperties(jTextFieldMaterial.getText(), luom))
-				{
-					enableOrdisableFields(null);
-				}
-				else
-				{
-					enableOrdisableFields(jComboBoxUOM);
-					jButtonSave.setEnabled(false);
-					jStatusText.setText(materialuom.getErrorMessage());
-				}
-				jTextFieldEAN.setText(materialuom.getEan());
-				jTextFieldVariant.setText(materialuom.getVariant());
-			}
-			catch (Exception e)
-			{
-
-			}
-		}
-	}
-
-	public void getMaterialUoms(String lmaterial)
-	{
-		uomList.clear();
-		materialuom.setMaterial(lmaterial);
-		uomList.addAll(materialuom.getMaterialUoms());
-		ComboBoxModel<JDBUom> jComboBoxBaseUOMModel = new DefaultComboBoxModel<JDBUom>(uomList);
-		paluom.getInternalUomProperties(pallet.getUom());
-		jComboBoxBaseUOMModel.setSelectedItem(paluom);
-		jComboBoxUOM.setModel(jComboBoxBaseUOMModel);
-
-	}
+	private JDBMaterialBatch materialBatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
+	private JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
+	private int palletMode = 0;
+	private JDBProcessOrder processOrder = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 
 	public JInternalFramePalletProperties(String sscc)
 	{
@@ -493,223 +164,31 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 
 		JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 		expiryMode = ctrl.getKeyValue("EXPIRY DATE MODE");
+		defaultBatchStatus = ctrl.getKeyValue("DEFAULT BATCH STATUS");
+		defaultPalletStatus = ctrl.getKeyValue("DEFAULT PALLET STATUS");
 
-		uomList.add(new JDBUom("", ""));
-		uomList.addAll(uom.getInternalUoms());
-		lsscc = sscc;
 		initGUI();
 
-		this.setTitle("Pallet Properties");
+		setPalletSSCC(sscc);
+
+	}
+
+	private void customerIDChanged(String cust)
+	{
+		
+		pallet.setCustomerID(cust);
+
 		refresh();
 
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				jTextFieldProcessOrder.requestFocus();
-				jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
-
-				initialising = false;
-
-			}
-		});
 	}
 
-	public void setPalletSSCC(String sscc)
+	private void equipmentChanged()
 	{
-		if (jButtonSave.isEnabled())
-		{
-
-			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to SSCC [" + lsscc + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
-			if (question == 0)
-			{
-				save();
-			}
-		}
-
-		lsscc = sscc;
+		
+		pallet.setEquipmentType(fld_Equipment.getText());
+		
 		refresh();
-	}
 
-	private void save()
-	{
-		boolean result = true;
-
-		long txnRef = 0;
-
-		if (pallet.isValidPallet(lsscc) == true)
-		{
-			txnRef = pallet.writePalletHistory(txnRef, "EDIT", "FROM");
-		}
-
-		pallet.setProcessOrder(jTextFieldProcessOrder.getText());
-		pallet.setMaterial(jTextFieldMaterial.getText());
-		pallet.setBatchNumber(jTextFieldBatch.getText());
-		pallet.setLocationID(jTextFieldLocation.getText());
-		Date dom = productionDate.getDate();
-		pallet.setDateOfManufacture(JUtility.getTimestampFromDate(dom));
-
-		pallet.setQuantity(jFormattedTextFieldQuantity.getQuantity());
-		pallet.setDespatchNo(textFieldDespatchNo.getText());
-		jTextFieldEquipment.setText(jTextFieldEquipment.getText().toUpperCase());
-		pallet.setEquipmentType(jTextFieldEquipment.getText().toUpperCase());
-		pallet.setCustomerID(textFieldCustomer.getText());
-		Date exp = expiryDate.getDate();
-		pallet.setBatchExpiry(JUtility.getTimestampFromDate(exp));
-		if (expiryMode.equals("SSCC"))
-		{
-			try
-			{
-				Date d = expiryDate.getDate();
-				pallet.setBatchExpiry(JUtility.getTimestampFromDate(d));
-			}
-			catch (Exception ex)
-			{
-
-			}
-		}
-
-		if (pallet.isValidPallet(lsscc) == true)
-		{
-			result = pallet.update();
-			if (result == true)
-			{
-				pallet.writePalletHistory(txnRef, "EDIT", "TO");
-				pallet.updateStatus((String) jComboBoxDefaultPalletStatus.getSelectedItem(), true);
-
-				jTextFieldLayers.setText(String.valueOf(pallet.getLayersOnPallet()));
-				enableOrdisableFields(null);
-				jButtonSave.setEnabled(false);
-				jButtonUndo.setEnabled(false);
-			}
-			else
-			{
-				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-
-			}
-		}
-		else
-		{
-			result = pallet.create();
-			if (result == true)
-			{
-				txnRef = pallet.writePalletHistory(txnRef, "EDIT", "CREATE");
-				jTextFieldLayers.setText(String.valueOf(pallet.getLayersOnPallet()));
-				enableOrdisableFields(null);
-				jButtonSave.setEnabled(false);
-				jButtonUndo.setEnabled(false);
-			}
-			else
-			{
-				JUtility.errorBeep();
-				JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
-
-			}
-		}
-
-	}
-
-	private void refresh()
-	{
-		pallet.setSSCC(lsscc);
-
-		jTextFieldSSCC.setText(lsscc);
-		if (pallet.isValidPallet())
-		{
-			pallet.getPalletProperties(lsscc);
-
-			textFieldCustomer.setText(pallet.getCustomerID());
-			jTextFieldProcessOrder.setText(pallet.getProcessOrder());
-
-			if (processOrder.getProcessOrderProperties(jTextFieldProcessOrder.getText()) == true)
-			{
-				jTextFieldProcessOrderDescription.setText(processOrder.getDescription());
-			}
-			else
-			{
-				jTextFieldProcessOrderDescription.setText("Not found !");
-			}
-
-			jTextFieldMaterial.setText(pallet.getMaterial());
-
-			if (material.getMaterialProperties(jTextFieldMaterial.getText()) == true)
-			{
-				jTextFieldMaterialDescription.setText(material.getDescription());
-			}
-			else
-			{
-				jTextFieldMaterialDescription.setText("Not found !");
-			}
-
-			jTextFieldBatch.setText(pallet.getBatchNumber());
-
-			if (materialBatch.getMaterialBatchProperties(jTextFieldMaterial.getText(), jTextFieldBatch.getText()) == true)
-			{
-				jTextFieldBatchStatus.setText(materialBatch.getStatus());
-
-				if (expiryMode.equals("SSCC"))
-				{
-					jButtonEditBatch.setVisible(false);
-					calendarButtonexpiryDate.setVisible(true);
-					expiryDate.setEnabled(true);
-					expiryDate.setDate(pallet.getBatchExpiry());
-				}
-				else
-				{
-					try
-					{
-						expiryDate.setDate(materialBatch.getExpiryDate());
-						jStatusText.setText("Expiry Date set from Batch " + jTextFieldMaterial.getText() + " / " + jTextFieldBatch.getText());
-					}
-					catch (Exception ex)
-					{
-						jStatusText.setText(ex.getMessage());
-					}
-				}
-
-			}
-			else
-			{
-				jStatusText.setText("Not found !");
-				if (expiryMode.equals("BATCH"))
-				{
-					jStatusText.setText("No Batch Record Found " + jTextFieldMaterial.getText() + " / " + jTextFieldBatch.getText());
-				}
-			}
-
-			jTextFieldLocation.setText(pallet.getLocationID());
-			jFormattedTextFieldQuantity.setValue(pallet.getQuantity());
-
-			try
-			{
-				productionDate.setDate(pallet.getDateOfManufacture());
-			}
-			catch (Exception ex)
-			{
-				productionDate.setDate(JUtility.getSQLDateTime());
-			}
-
-			jTextFieldEAN.setText(pallet.getEAN());
-			jTextFieldVariant.setText(pallet.getVariant());
-
-			checkBoxConfirmed.setSelected(pallet.isConfirmed());
-
-			getMaterialUoms(pallet.getMaterial());
-			paluom.getInternalUomProperties(pallet.getUom());
-			textFieldDespatchNo.setText(pallet.getDespatchNo());
-			jTextFieldEquipment.setText(pallet.getEquipmentType());
-
-			jComboBoxUOM.setSelectedItem(paluom);
-			jTextFieldLayers.setText(String.valueOf(pallet.getLayersOnPallet()));
-
-			jComboBoxDefaultPalletStatus.setSelectedItem(pallet.getStatus());
-
-			enableOrdisableFields(null);
-
-			jButtonSave.setEnabled(false);
-			jButtonUndo.setEnabled(false);
-		}
 	}
 
 	private void initGUI()
@@ -717,7 +196,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(471, 531));
-			this.setBounds(0, 0, 476, 630);
+			this.setBounds(0, 0, 471, 630);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -728,11 +207,10 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(462, 497));
 				jDesktopPane1.setLayout(null);
 				{
-					jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
-					jDesktopPane1.add(jTextFieldSSCC);
-					jTextFieldSSCC.setEditable(false);
-					jTextFieldSSCC.setEnabled(false);
-					jTextFieldSSCC.setBounds(147, 6, 147, 21);
+					fld_SSCC = new JTextField4j(JDBPallet.field_sscc);
+					jDesktopPane1.add(fld_SSCC);
+					fld_SSCC.setEditable(false);
+					fld_SSCC.setBounds(147, 6, 147, 21);
 				}
 				{
 					jButtonSave = new JButton4j(Common.icon_update_16x16);
@@ -764,6 +242,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jButtonCancel.setBounds(342, 533, 111, 32);
 					jButtonCancel.addActionListener(new ActionListener()
 					{
+
 						public void actionPerformed(ActionEvent evt)
 						{
 							dispose();
@@ -771,178 +250,149 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					});
 				}
 				{
-					ComboBoxModel<JDBUom> jComboBoxBaseUOMModel = new DefaultComboBoxModel<JDBUom>(uomList);
-					jComboBoxUOM = new JComboBox4j<JDBUom>();
-					jDesktopPane1.add(jComboBoxUOM);
-					jComboBoxUOM.setModel(jComboBoxBaseUOMModel);
-					jComboBoxUOM.setMaximumRowCount(12);
-					jComboBoxUOM.setBounds(147, 280, 287, 23);
-					jComboBoxUOM.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_UOM"));
-					jComboBoxUOM.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							uomChanged();
-						}
-					});
+					fld_UOM = new JTextField4j();
+					fld_UOM.setEditable(false);
+					jDesktopPane1.add(fld_UOM);
+					fld_UOM.setBounds(147, 280, 32, 21);
 
 				}
 				{
-					jLabel1 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel1);
-					jLabel1.setText(lang.get("lbl_Pallet_SSCC"));
-					jLabel1.setBounds(7, 6, 133, 21);
-					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_SSCC = new JLabel4j_std();
+					jDesktopPane1.add(lbl_SSCC);
+					lbl_SSCC.setText(lang.get("lbl_Pallet_SSCC"));
+					lbl_SSCC.setBounds(7, 6, 133, 21);
+					lbl_SSCC.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
-					jLabel5 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel5);
-					jLabel5.setBounds(7, 280, 133, 21);
-					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5.setText(lang.get("lbl_Material_UOM"));
+					lbl_UOM = new JLabel4j_std();
+					jDesktopPane1.add(lbl_UOM);
+					lbl_UOM.setBounds(7, 280, 133, 21);
+					lbl_UOM.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_UOM.setText(lang.get("lbl_Material_UOM"));
 				}
 				{
-					jLabel15 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel15);
-					jLabel15.setText(lang.get("lbl_Pallet_Status"));
-					jLabel15.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel15.setBounds(7, 389, 133, 21);
+					lbl_PalletStatus = new JLabel4j_std();
+					jDesktopPane1.add(lbl_PalletStatus);
+					lbl_PalletStatus.setText(lang.get("lbl_Pallet_Status"));
+					lbl_PalletStatus.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_PalletStatus.setBounds(7, 389, 133, 21);
 				}
 				{
-					textFieldDespatchNo = new JTextField4j(JDBDespatch.field_despatch_no);
-					textFieldDespatchNo.setFocusCycleRoot(true);
-					textFieldDespatchNo.setEnabled(false);
-					textFieldDespatchNo.setBounds(147, 446, 119, 21);
-					textFieldDespatchNo.addKeyListener(new KeyAdapter()
-					{
-						public void keyReleased(KeyEvent evt)
-						{
-							despatchNoChanged();
-						}
-					});
-					jDesktopPane1.add(textFieldDespatchNo);
+					fld_DespatchNo = new JTextField4j(JDBDespatch.field_despatch_no);
+					fld_DespatchNo.setEditable(false);
+					fld_DespatchNo.setFocusCycleRoot(true);
+					fld_DespatchNo.setBounds(147, 446, 119, 21);
+					jDesktopPane1.add(fld_DespatchNo);
 				}
 				{
 					ComboBoxModel<String> jComboBox1Model = new DefaultComboBoxModel<String>(Common.palletStatus);
-					jComboBoxDefaultPalletStatus = new JComboBox4j<String>();
-					jDesktopPane1.add(jComboBoxDefaultPalletStatus);
-					jComboBoxDefaultPalletStatus.setModel(jComboBox1Model);
-					jComboBoxDefaultPalletStatus.setBounds(147, 389, 168, 23);
-					jComboBoxDefaultPalletStatus.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_STATUS"));
-					jComboBoxDefaultPalletStatus.addActionListener(new ActionListener()
+					fld_PalletStatus = new JComboBox4j<String>();
+					jDesktopPane1.add(fld_PalletStatus);
+					fld_PalletStatus.setModel(jComboBox1Model);
+					fld_PalletStatus.setBounds(147, 389, 168, 21);
+					fld_PalletStatus.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_STATUS"));
+					fld_PalletStatus.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
-							jButtonSave.setEnabled(true);
-							jButtonUndo.setEnabled(true);
+							palletStatusChanged(fld_PalletStatus.getSelectedItem().toString());
 						}
 					});
 				}
-				{
-					jLabel2 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel2);
-					jLabel2.setText(lang.get("lbl_Material"));
-					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2.setBounds(7, 87, 133, 21);
-				}
-				{
-					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
-					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(147, 87, 119, 21);
-					jTextFieldMaterial.setEditable(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
-					jTextFieldMaterial.addKeyListener(new KeyAdapter()
-					{
-						public void keyReleased(KeyEvent evt)
-						{
-							materialChanged();
-						}
-					});
-				}
-				{
-					jButtonLookupMaterial = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupMaterial);
-					jButtonLookupMaterial.setBounds(266, 87, 21, 21);
-					jButtonLookupMaterial.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
-					jButtonLookupMaterial.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.materials())
-							{
-								jTextFieldMaterial.setText(JLaunchLookup.dlgResult);
-								materialChanged();
 
-							}
-						}
-					});
+				{
+					fld_BatchStatus = new JTextField4j();
+					fld_BatchStatus.setEditable(false);
+					jDesktopPane1.add(fld_BatchStatus);
+					fld_BatchStatus.setBounds(147, 167, 168, 21);
+				}
+
+				{
+					lbl_Material = new JLabel4j_std();
+					jDesktopPane1.add(lbl_Material);
+					lbl_Material.setText(lang.get("lbl_Material"));
+					lbl_Material.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_Material.setBounds(7, 87, 133, 21);
 				}
 				{
-					jLabel3 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel3);
-					jLabel3.setText(lang.get("lbl_Material_Batch"));
-					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel3.setBounds(7, 141, 133, 21);
-				}
-				{
-					jTextFieldBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
-					jDesktopPane1.add(jTextFieldBatch);
-					jTextFieldBatch.setBounds(147, 141, 119, 21);
-					jTextFieldBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_BATCH"));
-					jTextFieldBatch.addKeyListener(new KeyAdapter()
+					fld_Material = new JTextField4j(JDBMaterial.field_material);
+					jDesktopPane1.add(fld_Material);
+					fld_Material.setBounds(147, 87, 119, 21);
+					fld_Material.setEditable(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
+					fld_Material.addKeyListener(new KeyAdapter()
 					{
 						public void keyReleased(KeyEvent evt)
 						{
-							materialBatchChanged();
+							materialChanged(fld_Material.getText());
 						}
 					});
 				}
 				{
-					jButtonLookupBatch = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupBatch);
-					jButtonLookupBatch.setBounds(266, 141, 21, 21);
-					jButtonLookupBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_BATCH"));
-					jButtonLookupBatch.addActionListener(new ActionListener()
+					lbl_MaterialBatch = new JLabel4j_std();
+					jDesktopPane1.add(lbl_MaterialBatch);
+					lbl_MaterialBatch.setText(lang.get("lbl_Material_Batch"));
+					lbl_MaterialBatch.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_MaterialBatch.setBounds(7, 141, 133, 21);
+				}
+				{
+					fld_MaterialBatch = new JTextField4j(JDBMaterialBatch.field_batch_number);
+					jDesktopPane1.add(fld_MaterialBatch);
+					fld_MaterialBatch.setBounds(147, 141, 119, 21);
+					fld_MaterialBatch.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(KeyEvent evt)
+						{
+							materialBatchChanged(fld_MaterialBatch.getText());
+						}
+					});
+				}
+				{
+					btn_MaterialBatch = new JButton4j(Common.icon_lookup_16x16);
+					jDesktopPane1.add(btn_MaterialBatch);
+					btn_MaterialBatch.setBounds(266, 141, 21, 21);
+					btn_MaterialBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_BATCH"));
+					btn_MaterialBatch.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
-							JLaunchLookup.dlgCriteriaDefault = jTextFieldMaterial.getText();
+							JLaunchLookup.dlgCriteriaDefault = fld_Material.getText();
 							JLaunchLookup.dlgAutoExec = true;
 							if (JLaunchLookup.materialBatches())
 							{
-								jTextFieldBatch.setText(JLaunchLookup.dlgResult);
-								materialBatchChanged();
+								fld_MaterialBatch.setText(JLaunchLookup.dlgResult);
+								materialBatchChanged(fld_MaterialBatch.getText());
 							}
 						}
 					});
 				}
 				{
-					jLabel4 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel4);
-					jLabel4.setText(lang.get("lbl_Location_ID"));
-					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel4.setBounds(7, 226, 133, 21);
+					lbl_Location = new JLabel4j_std();
+					jDesktopPane1.add(lbl_Location);
+					lbl_Location.setText(lang.get("lbl_Location_ID"));
+					lbl_Location.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_Location.setBounds(7, 226, 133, 21);
 				}
 				{
-					jTextFieldLocation = new JTextField4j(JDBLocation.field_location_id);
-					jDesktopPane1.add(jTextFieldLocation);
-					jTextFieldLocation.setBounds(147, 226, 119, 21);
-					jTextFieldLocation.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_LOCATION"));
-					jTextFieldLocation.addKeyListener(new KeyAdapter()
+					fld_Location = new JTextField4j(JDBLocation.field_location_id);
+					jDesktopPane1.add(fld_Location);
+					fld_Location.setBounds(147, 226, 119, 21);
+					fld_Location.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_LOCATION"));
+					fld_Location.addKeyListener(new KeyAdapter()
 					{
 						public void keyReleased(KeyEvent evt)
 						{
-							locationChanged();
+							fld_Location.setText(JLaunchLookup.dlgResult);
+							locationChanged(fld_Location.getText());
+
 						}
 					});
 				}
 				{
-					jButtonLookupLocation = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupLocation);
-					jButtonLookupLocation.setBounds(266, 226, 21, 21);
-					jButtonLookupLocation.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_LOCATION"));
-					jButtonLookupLocation.addActionListener(new ActionListener()
+					btn_Location = new JButton4j(Common.icon_lookup_16x16);
+					jDesktopPane1.add(btn_Location);
+					btn_Location.setBounds(266, 226, 21, 21);
+					btn_Location.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_LOCATION"));
+					btn_Location.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
@@ -950,38 +400,38 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 							JLaunchLookup.dlgCriteriaDefault = "Y";
 							if (JLaunchLookup.locations())
 							{
-								jTextFieldLocation.setText(JLaunchLookup.dlgResult);
-								locationChanged();
+								fld_Location.setText(JLaunchLookup.dlgResult);
+								locationChanged(fld_Location.getText());
 							}
 						}
 					});
 				}
 				{
-					jLabelProcessOrder = new JLabel4j_std();
-					jDesktopPane1.add(jLabelProcessOrder);
-					jLabelProcessOrder.setText(lang.get("lbl_Process_Order"));
-					jLabelProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProcessOrder.setBounds(7, 33, 133, 21);
+					lbl_ProcessOrder = new JLabel4j_std();
+					jDesktopPane1.add(lbl_ProcessOrder);
+					lbl_ProcessOrder.setText(lang.get("lbl_Process_Order"));
+					lbl_ProcessOrder.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_ProcessOrder.setBounds(7, 33, 133, 21);
 				}
 				{
-					jTextFieldProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
-					jDesktopPane1.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setBounds(147, 33, 119, 21);
-					jTextFieldProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
-					jTextFieldProcessOrder.addKeyListener(new KeyAdapter()
+					fld_ProcessOrder = new JTextField4j(JDBProcessOrder.field_process_order);
+					jDesktopPane1.add(fld_ProcessOrder);
+					fld_ProcessOrder.setBounds(147, 33, 119, 21);
+					fld_ProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
+					fld_ProcessOrder.addKeyListener(new KeyAdapter()
 					{
 						public void keyReleased(KeyEvent evt)
 						{
-							processOrderChanged();
+							processOrderChanged(fld_ProcessOrder.getText());
 						}
 					});
 				}
 				{
-					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButtonLookupProcessOrder);
-					jButtonLookupProcessOrder.setBounds(266, 33, 21, 21);
-					jButtonLookupProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
-					jButtonLookupProcessOrder.addActionListener(new ActionListener()
+					btn_ProcessOrder = new JButton4j(Common.icon_lookup_16x16);
+					jDesktopPane1.add(btn_ProcessOrder);
+					btn_ProcessOrder.setBounds(266, 33, 21, 21);
+					btn_ProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
+					btn_ProcessOrder.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
@@ -989,105 +439,119 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 							JLaunchLookup.dlgAutoExec = true;
 							if (JLaunchLookup.processOrders())
 							{
-								jTextFieldProcessOrder.setText(JLaunchLookup.dlgResult);
-								processOrderChanged();
+								pallet.setProcessOrder(JLaunchLookup.dlgResult);
+
+								processOrderChanged(JLaunchLookup.dlgResult);
 							}
 						}
 					});
 				}
 				{
-					jLabel6 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel6);
-					jLabel6.setText(lang.get("lbl_Material_UOM_EAN"));
-					jLabel6.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel6.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel6.setBounds(7, 335, 133, 21);
+					lbl_EAN = new JLabel4j_std();
+					jDesktopPane1.add(lbl_EAN);
+					lbl_EAN.setText(lang.get("lbl_Material_UOM_EAN"));
+					lbl_EAN.setHorizontalAlignment(SwingConstants.RIGHT);
+					lbl_EAN.setHorizontalTextPosition(SwingConstants.RIGHT);
+					lbl_EAN.setBounds(7, 335, 133, 21);
 				}
 				{
-					jTextFieldLayers = new JTextField4j();
-					jTextFieldLayers.setFocusCycleRoot(true);
-					jTextFieldLayers.setEnabled(false);
-					jTextFieldLayers.setBounds(147, 308, 32, 21);
-					jDesktopPane1.add(jTextFieldLayers);
+					fld_Layers = new JTextField4j();
+					fld_Layers.setEditable(false);
+					fld_Layers.setBounds(147, 308, 32, 21);
+					jDesktopPane1.add(fld_Layers);
 				}
 				{
-					lblLayers = new JLabel4j_std();
-					lblLayers.setText(lang.get("lbl_Pallet_Layers"));
-					lblLayers.setHorizontalTextPosition(SwingConstants.RIGHT);
-					lblLayers.setHorizontalAlignment(SwingConstants.RIGHT);
-					lblLayers.setBounds(7, 308, 133, 21);
-					jDesktopPane1.add(lblLayers);
+					lbl_Layers = new JLabel4j_std();
+					lbl_Layers.setText(lang.get("lbl_Pallet_Layers"));
+					lbl_Layers.setHorizontalTextPosition(SwingConstants.RIGHT);
+					lbl_Layers.setHorizontalAlignment(SwingConstants.RIGHT);
+					lbl_Layers.setBounds(7, 308, 133, 21);
+					jDesktopPane1.add(lbl_Layers);
 				}
 				{
-					jTextFieldEAN = new JTextField4j(JDBMaterialUom.field_ean);
-					jDesktopPane1.add(jTextFieldEAN);
-					jTextFieldEAN.setBounds(147, 335, 111, 21);
-					jTextFieldEAN.setFocusCycleRoot(true);
-					jTextFieldEAN.setEnabled(false);
+					fld_EAN = new JTextField4j();
+					fld_EAN.setEditable(false);
+					jDesktopPane1.add(fld_EAN);
+					fld_EAN.setBounds(147, 335, 111, 21);
 				}
 				{
-					jLabel7 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel7);
-					jLabel7.setText(lang.get("lbl_Material_UOM_Variant"));
-					jLabel7.setHorizontalAlignment(SwingConstants.RIGHT);
-					jLabel7.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabel7.setBounds(266, 335, 74, 21);
+					lbl_Variant = new JLabel4j_std();
+					jDesktopPane1.add(lbl_Variant);
+					lbl_Variant.setText(lang.get("lbl_Material_UOM_Variant"));
+					lbl_Variant.setHorizontalAlignment(SwingConstants.RIGHT);
+					lbl_Variant.setHorizontalTextPosition(SwingConstants.RIGHT);
+					lbl_Variant.setBounds(266, 335, 74, 21);
 				}
 				{
-					jTextFieldVariant = new JTextField4j(JDBMaterialUom.field_variant);
-					jDesktopPane1.add(jTextFieldVariant);
-					jTextFieldVariant.setBounds(352, 335, 32, 21);
-					jTextFieldVariant.setFocusCycleRoot(true);
-					jTextFieldVariant.setEnabled(false);
+					fld_Variant = new JTextField4j();
+					fld_Variant.setEditable(false);
+					jDesktopPane1.add(fld_Variant);
+					fld_Variant.setBounds(352, 335, 32, 21);
 				}
 				{
-					jLabelQuantity = new JLabel4j_std();
-					jDesktopPane1.add(jLabelQuantity);
-					jLabelQuantity.setText(lang.get("lbl_Pallet_Quantity"));
-					jLabelQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelQuantity.setBounds(7, 253, 133, 21);
+					lbl_Quantity = new JLabel4j_std();
+					jDesktopPane1.add(lbl_Quantity);
+					lbl_Quantity.setText(lang.get("lbl_Pallet_Quantity"));
+					lbl_Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_Quantity.setBounds(7, 253, 133, 21);
 				}
 				{
-					jFormattedTextFieldQuantity = new JQuantityInput(new BigDecimal("0"));
-					jDesktopPane1.add(jFormattedTextFieldQuantity);
-					jFormattedTextFieldQuantity.setFont(Common.font_std);
-					jFormattedTextFieldQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
-					jFormattedTextFieldQuantity.setBounds(147, 253, 91, 21);
-					jFormattedTextFieldQuantity.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_QUANTITY"));
-					jFormattedTextFieldQuantity.addKeyListener(new KeyAdapter()
+					fld_Quantity = new JQuantityInput(new BigDecimal("0"));
+					fld_Quantity.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							jButtonSave.setEnabled(true);
+							jButtonUndo.setEnabled(true);
+
+							pallet.setQuantity(fld_Quantity.getQuantity());
+							fld_Layers.setText(String.valueOf(pallet.calcLayersOnPallet(pallet.getBaseQuantity())));
+
+						}
+					});
+					jDesktopPane1.add(fld_Quantity);
+					fld_Quantity.setFont(Common.font_std);
+					fld_Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
+					fld_Quantity.setBounds(147, 253, 91, 21);
+					fld_Quantity.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_QUANTITY"));
+					fld_Quantity.addKeyListener(new KeyAdapter()
 					{
 						public void keyReleased(KeyEvent evt)
 						{
 							jButtonSave.setEnabled(true);
 							jButtonUndo.setEnabled(true);
+							pallet.setQuantity(fld_Quantity.getQuantity());
+							fld_Layers.setText(String.valueOf(pallet.calcLayersOnPallet(pallet.getBaseQuantity())));
+
 						}
 					});
 
 				}
 				{
-					jLabelDespatchNo = new JLabel4j_std();
-					jDesktopPane1.add(jLabelDespatchNo);
-					jLabelDespatchNo.setText(lang.get("lbl_Despatch_No"));
-					jLabelDespatchNo.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelDespatchNo.setBounds(7, 444, 133, 25);
+					lbl_DespatchNo = new JLabel4j_std();
+					jDesktopPane1.add(lbl_DespatchNo);
+					lbl_DespatchNo.setText(lang.get("lbl_Despatch_No"));
+					lbl_DespatchNo.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_DespatchNo.setBounds(7, 444, 133, 21);
 				}
 				{
-					jLabelProductionDate = new JLabel4j_std();
-					jDesktopPane1.add(jLabelProductionDate);
-					jLabelProductionDate.setText(lang.get("lbl_Pallet_DOM"));
-					jLabelProductionDate.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProductionDate.setBounds(7, 416, 133, 25);
+					lbl_DOM = new JLabel4j_std();
+					jDesktopPane1.add(lbl_DOM);
+					lbl_DOM.setText(lang.get("lbl_Pallet_DOM"));
+					lbl_DOM.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_DOM.setBounds(7, 416, 133, 21);
 				}
 				{
-					productionDate = new JDateControl();
-					jDesktopPane1.add(productionDate);
-					productionDate.setBounds(147, 416, 125, 25);
-					productionDate.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROD_DATE"));
+					fld_DOM = new JDateControl();
+					jDesktopPane1.add(fld_DOM);
+					fld_DOM.setBounds(147, 416, 125, 25);
+					fld_DOM.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROD_DATE"));
 
 				}
 
-				productionDate.getEditor().addKeyListener(new KeyAdapter()
+				fld_DOM.getEditor().addKeyListener(new KeyAdapter()
 				{
+
 					public void keyPressed(KeyEvent e)
 					{
 						jButtonSave.setEnabled(true);
@@ -1095,7 +559,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					}
 				});
 
-				productionDate.addChangeListener(new ChangeListener()
+				fld_DOM.addChangeListener(new ChangeListener()
 				{
 					public void stateChanged(final ChangeEvent e)
 
@@ -1106,84 +570,93 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				});
 
 				{
-					jTextFieldProcessOrderDescription = new JTextField4j(JDBProcessOrder.field_description);
-					jDesktopPane1.add(jTextFieldProcessOrderDescription);
-					jTextFieldProcessOrderDescription.setBounds(147, 60, 287, 21);
-					jTextFieldProcessOrderDescription.setEnabled(false);
+					fld_ProcessOrderDescription = new JTextField4j(JDBProcessOrder.field_description);
+					fld_ProcessOrderDescription.setEditable(false);
+					jDesktopPane1.add(fld_ProcessOrderDescription);
+					fld_ProcessOrderDescription.setBounds(147, 60, 287, 21);
 				}
 				{
-					jLabel8 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel8);
-					jLabel8.setText(lang.get("lbl_Description"));
-					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel8.setBounds(7, 60, 133, 21);
+					lbl_ProcessOrderDescription = new JLabel4j_std();
+					jDesktopPane1.add(lbl_ProcessOrderDescription);
+					lbl_ProcessOrderDescription.setText(lang.get("lbl_Description"));
+					lbl_ProcessOrderDescription.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_ProcessOrderDescription.setBounds(7, 60, 133, 21);
 				}
 				{
-					jLabel9 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel9);
-					jLabel9.setText(lang.get("lbl_Description"));
-					jLabel9.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel9.setBounds(7, 114, 133, 21);
+					lbl_MaterialDescription = new JLabel4j_std();
+					jDesktopPane1.add(lbl_MaterialDescription);
+					lbl_MaterialDescription.setText(lang.get("lbl_Description"));
+					lbl_MaterialDescription.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_MaterialDescription.setBounds(7, 114, 133, 21);
 				}
 				{
-					jTextFieldMaterialDescription = new JTextField4j(JDBMaterial.field_description);
-					jTextFieldMaterialDescription.setEditable(false);
-					jDesktopPane1.add(jTextFieldMaterialDescription);
-					jTextFieldMaterialDescription.setBounds(147, 114, 287, 21);
-					jTextFieldMaterialDescription.setEnabled(false);
-					jTextFieldMaterialDescription.addKeyListener(new KeyAdapter()
+					fld_MaterialDescription = new JTextField4j(JDBMaterial.field_description);
+					fld_MaterialDescription.setEditable(false);
+					jDesktopPane1.add(fld_MaterialDescription);
+					fld_MaterialDescription.setBounds(147, 114, 287, 21);
+					fld_MaterialDescription.setEnabled(false);
+
+				}
+				{
+					lbl_BatchStatus = new JLabel4j_std();
+					jDesktopPane1.add(lbl_BatchStatus);
+					lbl_BatchStatus.setText(lang.get("lbl_Material_Batch_Status"));
+					lbl_BatchStatus.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_BatchStatus.setBounds(7, 168, 133, 21);
+				}
+
+				{
+					btn_BatchExpiry = new JButton4j(Common.icon_edit_16x16);
+					jDesktopPane1.add(btn_BatchExpiry);
+					btn_BatchExpiry.setBounds(278, 195, 21, 25);
+					btn_BatchExpiry.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
+					btn_BatchExpiry.addActionListener(new ActionListener()
 					{
-						public void keyReleased(KeyEvent evt)
+						public void actionPerformed(ActionEvent evt)
 						{
-							jButtonSave.setEnabled(true);
-							jButtonUndo.setEnabled(true);
+							JLaunchMenu.runDialog("FRM_ADMIN_MATERIAL_BATCH_EDIT", fld_Material.getText(), fld_MaterialBatch.getText());
+							materialBatchChanged(fld_MaterialBatch.getText());
 						}
 					});
 				}
+
 				{
-					jLabel10 = new JLabel4j_std();
-					jDesktopPane1.add(jLabel10);
-					jLabel10.setText(lang.get("lbl_Material_Batch_Status"));
-					jLabel10.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel10.setBounds(7, 168, 133, 21);
-				}
-				{
-					jTextFieldBatchStatus = new JTextField4j(JDBMaterialBatch.field_batch_status);
-					jDesktopPane1.add(jTextFieldBatchStatus);
-					jTextFieldBatchStatus.setBounds(147, 168, 119, 21);
-					jTextFieldBatchStatus.setEnabled(false);
-					jTextFieldBatchStatus.addKeyListener(new KeyAdapter()
-					{
-						public void keyReleased(KeyEvent evt)
-						{
-							jButtonSave.setEnabled(true);
-							jButtonUndo.setEnabled(true);
-						}
-					});
-				}
-				{
-					expiryDate = new JDateControl();
-					expiryDate.addChangeListener(new ChangeListener()
+					fld_BatchExpiry = new JDateControl();
+					fld_BatchExpiry.addChangeListener(new ChangeListener()
 					{
 						public void stateChanged(ChangeEvent e)
 						{
+							Date exp = pallet.getMaterialObj().getRoundedExpiryDate(fld_BatchExpiry.getDate());
+							pallet.setBatchExpiry(JUtility.getTimestampFromDate(exp));
+							// fld_BatchExpiry.setDate(exp);
 							jButtonSave.setEnabled(true);
 							jButtonUndo.setEnabled(true);
 						}
 					});
 
-					jDesktopPane1.add(expiryDate);
-					expiryDate.setEnabled(false);
-					expiryDate.setBounds(147, 195, 125, 25);
-					expiryDate.getEditor().setPreferredSize(new java.awt.Dimension(87, 19));
-					expiryDate.getEditor().setSize(87, 21);
+					jDesktopPane1.add(fld_BatchExpiry);
+
+					if (expiryMode.equals("SSCC"))
+					{
+						fld_BatchExpiry.setEnabled(true);
+						// btn_BatchExpiry.setEnabled(true);
+					}
+					else
+					{
+						fld_BatchExpiry.setEnabled(false);
+						// btn_BatchExpiry.setEnabled(false);
+					}
+
+					fld_BatchExpiry.setBounds(147, 195, 125, 25);
+					fld_BatchExpiry.getEditor().setPreferredSize(new java.awt.Dimension(87, 19));
+					fld_BatchExpiry.getEditor().setSize(87, 21);
 				}
 				{
-					jLabelBatchExpiry = new JLabel4j_std();
-					jDesktopPane1.add(jLabelBatchExpiry);
-					jLabelBatchExpiry.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
-					jLabelBatchExpiry.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelBatchExpiry.setBounds(7, 199, 133, 21);
+					lbl_BatchExpiry = new JLabel4j_std();
+					jDesktopPane1.add(lbl_BatchExpiry);
+					lbl_BatchExpiry.setText(lang.get("lbl_Material_Batch_Expiry_Date"));
+					lbl_BatchExpiry.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_BatchExpiry.setBounds(7, 199, 133, 21);
 				}
 				{
 					jStatusText = new JLabel4j_std();
@@ -1192,32 +665,6 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 					jStatusText.setBounds(0, 571, 466, 21);
 				}
-				{
-					jButton1 = new JButton4j(Common.icon_lookup_16x16);
-					jDesktopPane1.add(jButton1);
-					jButton1.setBounds(266, 168, 21, 21);
-					jButton1.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
-					jButton1.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", jTextFieldMaterial.getText(), jTextFieldBatch.getText());
-						}
-					});
-				}
-				{
-					jButtonEditBatch = new JButton4j(Common.icon_edit_16x16);
-					jDesktopPane1.add(jButtonEditBatch);
-					jButtonEditBatch.setBounds(278, 195, 21, 25);
-					jButtonEditBatch.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_BATCH_EDIT"));
-					jButtonEditBatch.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent evt)
-						{
-							JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_BATCH_EDIT", jTextFieldMaterial.getText(), jTextFieldBatch.getText());
-						}
-					});
-				}
 
 				{
 					jButtonUndo = new JButton4j(Common.icon_undo_16x16);
@@ -1225,7 +672,9 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					{
 						public void actionPerformed(ActionEvent e)
 						{
+							pallet.getPalletProperties(lsscc);
 							refresh();
+							jButtonSave.setEnabled(false);
 						}
 					});
 					jButtonUndo.setMnemonic(KeyEvent.VK_U);
@@ -1235,108 +684,76 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				}
 
 				{
-					jLabelProductionDate_1 = new JLabel4j_std();
-					jLabelProductionDate_1.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelProductionDate_1.setText(lang.get("lbl_Confirmed"));
-					jLabelProductionDate_1.setBounds(7, 493, 133, 24);
-					jDesktopPane1.add(jLabelProductionDate_1);
+					lbl_Confirmed = new JLabel4j_std();
+					lbl_Confirmed.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_Confirmed.setText(lang.get("lbl_Confirmed"));
+					lbl_Confirmed.setBounds(7, 503, 133, 21);
+					jDesktopPane1.add(lbl_Confirmed);
 				}
 
 				{
 
-					checkBoxConfirmed.setBackground(Color.WHITE);
-					checkBoxConfirmed.addActionListener(new ActionListener()
+					fld_Confirmed.setBackground(Color.WHITE);
+					fld_Confirmed.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
 						{
-							jButtonSave.setEnabled(true);
-							jButtonUndo.setEnabled(true);
+							pallet.setConfirmed(fld_Confirmed.isSelected());
+							if (pallet.isConfirmed())
+							{
+								fld_Confirmed.setEnabled(false);
+							}
+							else
+							{
+								fld_Confirmed.setEnabled(true);
+							}
 						}
 					});
-					checkBoxConfirmed.setText("");
-					checkBoxConfirmed.setBounds(147, 493, 32, 24);
-					jDesktopPane1.add(checkBoxConfirmed);
+					fld_Confirmed.setText("");
+					fld_Confirmed.setBounds(147, 500, 21, 24);
+					jDesktopPane1.add(fld_Confirmed);
 				}
 				{
-					calendarButtonproductionDate = new JCalendarButton(productionDate);
+					calendarButtonproductionDate = new JCalendarButton(fld_DOM);
 					calendarButtonproductionDate.setBounds(275, 418, 21, 21);
 					jDesktopPane1.add(calendarButtonproductionDate);
 				}
 				{
-					calendarButtonexpiryDate = new JCalendarButton(expiryDate);
+					calendarButtonexpiryDate = new JCalendarButton(fld_BatchExpiry);
 					calendarButtonexpiryDate.setBounds(275, 197, 21, 21);
 					calendarButtonexpiryDate.setVisible(false);
 					jDesktopPane1.add(calendarButtonexpiryDate);
 				}
 				{
-					JLabel4j_std label = new JLabel4j_std();
-					label.setText(lang.get("lbl_Customer_ID"));
-					label.setHorizontalAlignment(SwingConstants.TRAILING);
-					label.setBounds(12, 362, 128, 21);
-					jDesktopPane1.add(label);
+					JLabel4j_std lbl_Customer = new JLabel4j_std();
+					lbl_Customer.setText(lang.get("lbl_Customer_ID"));
+					lbl_Customer.setHorizontalAlignment(SwingConstants.TRAILING);
+					lbl_Customer.setBounds(7, 362, 133, 21);
+					jDesktopPane1.add(lbl_Customer);
 
-					textFieldCustomer = new JTextField4j(JDBCustomer.field_customer_id);
-					textFieldCustomer.addKeyListener(new KeyAdapter()
+					fld_Customer = new JTextField4j(JDBCustomer.field_customer_id);
+					fld_Customer.setEditable(false);
+					fld_Customer.addKeyListener(new KeyAdapter()
 					{
 						public void keyReleased(KeyEvent e)
 						{
-							customerIDChanged();
+							customerIDChanged(fld_Customer.getText());
 						}
 					});
-					textFieldCustomer.setBounds(147, 362, 126, 21);
-					jDesktopPane1.add(textFieldCustomer);
-
-					JButton4j button = new JButton4j(Common.icon_lookup_16x16);
-					button.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_CUSTOMER"));
-					button.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent e)
-						{
-							JLaunchLookup.dlgAutoExec = true;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.customers())
-							{
-								textFieldCustomer.setText(JLaunchLookup.dlgResult);
-								customerIDChanged();
-							}
-						}
-					});
-					button.setBounds(273, 362, 21, 21);
-					jDesktopPane1.add(button);
-				}
-				{
-
-					buttonRefreshMaterialData = new JButton4j(Common.icon_refresh_16x16);
-					buttonRefreshMaterialData.addActionListener(new ActionListener()
-					{
-						public void actionPerformed(ActionEvent arg0)
-						{
-							materialChanged();
-						}
-					});
-					buttonRefreshMaterialData.setToolTipText("Refresh Material Data");
-					buttonRefreshMaterialData.setBounds(290, 87, 21, 21);
-					buttonRefreshMaterialData.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_MATERIAL"));
-					jDesktopPane1.add(buttonRefreshMaterialData);
+					fld_Customer.setBounds(147, 362, 126, 21);
+					jDesktopPane1.add(fld_Customer);
 				}
 
-				JLabel4j_std jLabel_Equipment = new JLabel4j_std();
-				jLabel_Equipment.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabel_Equipment.setBounds(7, 472, 133, 21);
-				jLabel_Equipment.setText(lang.get("lbl_Material_Equipment_Type"));
-				jDesktopPane1.add(jLabel_Equipment);
-				jTextFieldEquipment.addKeyListener(new KeyAdapter()
-				{
-					@Override
-					public void keyReleased(KeyEvent e)
-					{
-						equipmentChanged();
-					}
-				});
+				JLabel4j_std lbl_Equipment = new JLabel4j_std();
+				lbl_Equipment.setHorizontalAlignment(SwingConstants.TRAILING);
+				lbl_Equipment.setBounds(7, 472, 133, 21);
+				lbl_Equipment.setText(lang.get("lbl_Material_Equipment_Type"));
+				jDesktopPane1.add(lbl_Equipment);
 
-				jTextFieldEquipment.setBounds(147, 472, 126, 21);
-				jTextFieldEquipment.setEnabled(false);
-				jDesktopPane1.add(jTextFieldEquipment);
+
+				fld_Equipment.setBounds(147, 472, 126, 21);
+				fld_Equipment.setEnabled(false);
+				jDesktopPane1.add(fld_Equipment);
 
 				JButton4j jButtonLookupEquipment = new JButton4j(Common.icon_lookup_16x16);
 				jButtonLookupEquipment.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_EQUIPMENT"));
@@ -1349,7 +766,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 						JLaunchLookup.dlgCriteriaDefault = "Y";
 						if (JLaunchLookup.equipmentType())
 						{
-							jTextFieldEquipment.setText(JLaunchLookup.dlgResult);
+							fld_Equipment.setText(JLaunchLookup.dlgResult);
 							equipmentChanged();
 						}
 					}
@@ -1357,9 +774,310 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				jDesktopPane1.add(jButtonLookupEquipment);
 			}
 		}
-		catch (Exception e)
+		catch (
+
+		Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
+
+	private void locationChanged(String locn)
+	{
+		pallet.setLocationID(locn);
+
+		refresh();
+	}
+
+	private void materialBatchChanged(String batch)
+	{
+		pallet.setBatchNumber(batch);
+
+		if (expiryMode.equals("BATCH"))
+		{
+			if (materialBatch.getMaterialBatchProperties(pallet.getMaterial(), pallet.getBatchNumber()))
+			{
+				fld_BatchExpiry.setDate(materialBatch.getExpiryDate());
+			}
+		}
+
+		refresh();
+	}
+
+	private void palletStatusChanged(String status)
+	{
+		pallet.setStatus(fld_PalletStatus.getSelectedItem().toString());
+		refresh();
+	}
+	
+	private void materialChanged(String mater)
+	{
+		pallet.setMaterial(mater);
+		refresh();
+	}
+
+	private void processOrderChanged(String ponum)
+	{
+
+		pallet.setProcessOrder(ponum);
+
+		if (ponum.equals(""))
+		{
+			jButtonSave.setEnabled(false);
+		}
+		else
+		{
+			if (processOrder.getProcessOrderProperties(ponum))
+			{
+				pallet.populateFromProcessOrder();
+
+				if (palletMode == newSSCC)
+				{
+					pallet.setQuantity(new BigDecimal(processOrder.getFullPalletQuantity()));
+
+					material.getMaterialProperties(pallet.getMaterial());
+
+					if (expiryMode.equals("SSCC"))
+					{
+						fld_BatchExpiry.setDate(material.calcBBE(fld_DOM.getDate(), material.getShelfLife(), material.getShelfLifeUom(), material.getShelfLifeRule()));
+					}
+
+				}
+				refresh();
+			}
+			else
+			{
+				jButtonSave.setEnabled(false);
+				pallet.setQuantity(new BigDecimal("0.000"));
+				materialChanged("");
+			}
+		}
+
+	}
+
+	private void refresh()
+	{
+		boolean valid = true;
+		String msg = "";
+
+		fld_Customer.setText(pallet.getCustomerID());
+
+		if (processOrder.getProcessOrderProperties(pallet.getProcessOrder()) == false)
+		{
+			if (valid)
+			{
+				msg = processOrder.getErrorMessage();
+				valid = false;
+			}
+		}
+		fld_ProcessOrder.setText(pallet.getProcessOrder());
+		fld_ProcessOrderDescription.setText(processOrder.getDescription());
+		fld_Material.setText(pallet.getMaterial());
+
+		material.getMaterialProperties(pallet.getMaterial());
+
+		fld_MaterialDescription.setText(material.getDescription());
+		fld_MaterialBatch.setText(pallet.getBatchNumber());
+
+		if (materialBatch.getMaterialBatchProperties(pallet.getMaterial(), pallet.getBatchNumber()) == false)
+		{
+			materialBatch.setStatus(defaultBatchStatus);
+		}
+
+		fld_BatchStatus.setText(materialBatch.getStatus());
+
+		if (expiryMode.equals("SSCC"))
+		{
+			if ((pallet.getBatchExpiry() == null) == false)
+			{
+				fld_BatchExpiry.setDate(pallet.getBatchExpiry());
+			}
+		}
+		else
+		{
+			try
+			{
+				if ((materialBatch.getExpiryDate() == null) == false)
+				{
+					fld_BatchExpiry.setDate(materialBatch.getExpiryDate());
+				}
+			}
+			catch (Exception ex)
+			{
+			}
+		}
+
+		if (location.getLocationProperties(pallet.getLocationID()) == false)
+		{
+			if (valid)
+			{
+				msg = location.getErrorMessage();
+				valid = false;
+			}
+		}
+
+		fld_Location.setText(pallet.getLocationID());
+		fld_Quantity.setValue(pallet.getQuantity());
+		fld_Layers.setText(String.valueOf(pallet.calcLayersOnPallet(pallet.getBaseQuantity())));
+
+		fld_UOM.setText(pallet.getUom());
+
+		try
+		{
+			fld_DOM.setDate(pallet.getDateOfManufacture());
+		}
+		catch (Exception ex)
+		{
+			fld_DOM.setDate(JUtility.getSQLDateTime());
+		}
+
+		fld_EAN.setText(pallet.getEAN());
+		fld_Variant.setText(pallet.getVariant());
+
+		if (pallet.isConfirmed())
+		{
+			fld_Confirmed.setEnabled(false);
+		}
+		else
+		{
+			fld_Confirmed.setEnabled(true);
+		}
+
+		fld_Customer.setText(pallet.getCustomerID());
+		
+		fld_Confirmed.setSelected(pallet.isConfirmed());
+
+		fld_DespatchNo.setText(pallet.getDespatchNo());
+				
+		fld_Equipment.setText(pallet.getEquipmentType());
+		
+		fld_Layers.setText(String.valueOf(pallet.getLayersOnPallet()));
+
+		fld_PalletStatus.setSelectedItem(pallet.getStatus());
+
+		jButtonSave.setEnabled(valid);
+		jButtonUndo.setEnabled(true);
+		jStatusText.setText(msg);
+
+	}
+
+	private void save()
+	{
+
+		boolean result = false;
+
+		long txnRef = 0;
+
+		Date exp = pallet.getMaterialObj().getRoundedExpiryDate(fld_BatchExpiry.getDate());
+		pallet.setBatchExpiry(JUtility.getTimestampFromDate(exp));
+
+		switch (palletMode)
+		{
+
+		case updateSSCC:
+		{
+			if (pallet.update())
+			{
+				if (pallet.getStatus().equals(initial_pallet.getStatus()) == false)
+				{
+					String newStatus = pallet.getStatus();
+					pallet.setStatus(initial_pallet.getStatus());
+					pallet.updateStatus(newStatus, true);
+				}
+
+				txnRef = pallet.writePalletHistory(txnRef, "EDIT", "TO");
+
+				initial_pallet.writePalletHistory(txnRef, "EDIT", "FROM");
+
+				result = true;
+
+				initial_pallet.getPalletProperties(lsscc);
+			}
+		}
+		case newSSCC:
+		{
+			if (pallet.create())
+			{
+				txnRef = pallet.writePalletHistory(txnRef, "EDIT", "CREATE");
+
+				result = true;
+
+				initial_pallet.getPalletProperties(lsscc);
+
+				palletMode = updateSSCC;
+			}
+
+		}
+
+		}
+
+		if (result == false)
+		{
+
+			JUtility.errorBeep();
+			JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+
+		}
+		else
+		{
+			jButtonSave.setEnabled(false);
+		}
+
+	}
+
+	public void setPalletSSCC(String sscc)
+	{
+		lsscc = sscc;
+
+		if (jButtonSave.isEnabled())
+		{
+
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Save changes to SSCC [" + lsscc + "] ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+			if (question == 0)
+			{
+				save();
+			}
+		}
+
+		this.setTitle("Pallet Properties [" + sscc + "]");
+
+		pallet.setSSCC(lsscc);
+		fld_SSCC.setText(lsscc);
+
+		if (pallet.isValidPallet())
+		{
+			palletMode = updateSSCC;
+			pallet.getPalletProperties(lsscc);
+			initial_pallet.getPalletProperties(lsscc);
+			refresh();
+		}
+		else
+		{
+			palletMode = newSSCC;
+
+			refresh();
+
+			fld_PalletStatus.setSelectedItem(defaultPalletStatus);
+			fld_Confirmed.setSelected(true);
+		}
+
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				fld_ProcessOrder.requestFocus();
+				fld_ProcessOrder.setCaretPosition(fld_ProcessOrder.getText().length());
+
+				setButtonUnmodified();
+
+			}
+		});
+	}
+
+	private void setButtonUnmodified()
+	{
+		jButtonSave.setEnabled(false);
+		jButtonUndo.setEnabled(false);
+	}
+
 }

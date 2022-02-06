@@ -171,6 +171,29 @@ public class JLaunchLookup
 
 		return JDialogLookup.dlg_selected;
 	}
+	
+	public static boolean masterHoldNotices() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_MHN"));
+		JDialogLookup.dlg_title = "Master Hold Notice";
+
+		JDialogLookup.hideDisabled=false;
+		JDialogLookup.dlg_key_field_name = "mhn_number";
+		JDialogLookup.dlg_criteria_field_name_default = "status";
+		JDialogLookup.dlg_orderBy_name_default = "mhn_number";
+		JDialogLookup.dlg_sort_descending = true;
+
+
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
 
 	
 	public static boolean processOrdersResources() {
@@ -457,7 +480,7 @@ public class JLaunchLookup
 
 		JDialogLookup.hideDisabled=false;
 		JDialogLookup.dlg_key_field_name = "sample_point";
-		JDialogLookup.dlg_criteria_field_name_default = "sample_point";
+		JDialogLookup.dlg_criteria_field_name_default = "location";
 		JDialogLookup.dlg_orderBy_name_default = "sample_point";
 		JDialogLookup.dlg_sort_descending = false;
 
@@ -472,6 +495,29 @@ public class JLaunchLookup
 
 		return JDialogLookup.dlg_selected;
 	}	
+	
+	public static boolean samplePointLocations() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}view_sample_point_locations"));
+		JDialogLookup.dlg_title = "Location";
+
+		JDialogLookup.hideDisabled=false;
+		JDialogLookup.dlg_key_field_name = "Location";
+		JDialogLookup.dlg_criteria_field_name_default = "Location";
+		JDialogLookup.dlg_orderBy_name_default = "Location";
+		JDialogLookup.dlg_sort_descending = false;
+
+		// dlg_criteria_default = "";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
 
 	public static boolean materials() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
@@ -495,7 +541,53 @@ public class JLaunchLookup
 
 		return JDialogLookup.dlg_selected;
 	}
+	
+	public static boolean suppliers() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_SUPPLIER"));
+		JDialogLookup.dlg_title = "Suppliers";
 
+		JDialogLookup.hideDisabled=false;
+		JDialogLookup.dlg_key_field_name = "supplier_id";
+		JDialogLookup.dlg_criteria_field_name_default = "supplier_type";
+		JDialogLookup.dlg_orderBy_name_default = "description";
+		JDialogLookup.dlg_sort_descending = false;
+
+		// dlg_criteria_default = "";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+
+	public static boolean shiftNames() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_SHIFT_NAMES"));
+		JDialogLookup.dlg_title = "Shift Names";
+
+		JDialogLookup.hideDisabled=false;
+		JDialogLookup.dlg_key_field_name = "shift_id";
+		JDialogLookup.dlg_criteria_field_name_default = "enabled";
+		JDialogLookup.dlg_orderBy_name_default = "description";
+		JDialogLookup.dlg_sort_descending = false;
+
+		dlgCriteriaDefault = "Y";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+	
 	public static boolean waste_materials_for_location() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}view_waste_location_materials"));

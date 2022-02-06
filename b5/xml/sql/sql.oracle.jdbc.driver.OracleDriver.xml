@@ -291,23 +291,23 @@
 		</statement>
 		<statement>
 			<id>JDBUser.recordPasswordChange</id>
-			<text>insert into {schema}SYS_USERS_password_history (user_id,password_version,password)  (select user_id,password_version,password from {schema}SYS_USERS where user_id=?)</text>
+			<text>insert into {schema}SYS_USERS_PASSWORD_HISTORY (user_id,password_version,password)  (select user_id,password_version,password from {schema}SYS_USERS where user_id=?)</text>
 		</statement>
 		<statement>
 			<id>JDBUser.archivePasswordHistory</id>
-			<text>delete from {schema}SYS_USERS_password_history where user_id = ? and password_version &lt;= ? </text>
+			<text>delete from {schema}SYS_USERS_PASSWORD_HISTORY where user_id = ? and password_version &lt;= ? </text>
 		</statement>	
 		<statement>
 			<id>JDBUser.renamePasswordHistory</id>
-			<text>update {schema}SYS_USERS_password_history set user_id = ? where user_id = ?</text>
+			<text>update {schema}SYS_USERS_PASSWORD_HISTORY set user_id = ? where user_id = ?</text>
 		</statement>	
 		<statement>
 			<id>JDBUser.deletePasswordHistory</id>
-			<text>delete from {schema}SYS_USERS_password_history where user_id = ?</text>
+			<text>delete from {schema}SYS_USERS_PASSWORD_HISTORY where user_id = ?</text>
 		</statement>		
 		<statement>
 			<id>JDBUser.findInPasswordHistory</id>
-			<text>select * from {schema}SYS_USERS_password_history where user_id = ? and password_version &gt;= ? and password = ? </text>
+			<text>select * from {schema}SYS_USERS_PASSWORD_HISTORY where user_id = ? and password_version &gt;= ? and password = ? </text>
 		</statement>			
 		<statement>
 			<id>JDBUser.create</id>
@@ -500,11 +500,11 @@
 		</statement>
 		<statement>
 			<id>JDBMaterial.getMaterialUomCount</id>
-			<text>select count(uom) as uom from {schema}APP_MATERIAL_uom where material = ?</text>
+			<text>select count(uom) as uom from {schema}APP_MATERIAL_UOM where material = ?</text>
 		</statement>
 		<statement>
 			<id>JDBMaterial.getMaterialUoms</id>
-			<text>select * from {schema}APP_MATERIAL_uom where material = ? order by uom</text>
+			<text>select * from {schema}APP_MATERIAL_UOM where material = ? order by uom</text>
 		</statement>
 		<statement>
 			<id>JDBMaterial.isValidMaterial</id>
@@ -517,27 +517,27 @@
 		<?JDBMaterialUom ?>
 		<statement>
 			<id>JDBMaterialUom.isValidMaterialUom</id>
-			<text>select * from {schema}APP_MATERIAL_uom where material = ? and uom=?</text>
+			<text>select * from {schema}APP_MATERIAL_UOM where material = ? and uom=?</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialUom.create</id>
-			<text>insert into {schema}APP_MATERIAL_uom (material,uom) values (?,?)</text>
+			<text>insert into {schema}APP_MATERIAL_UOM (material,uom) values (?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialUom.update</id>
-			<text>update {schema}APP_MATERIAL_uom set ean=?,variant=?,numerator=?,denominator=?,override=? where material=? and uom=?</text>
+			<text>update {schema}APP_MATERIAL_UOM set ean=?,variant=?,numerator=?,denominator=?,override=? where material=? and uom=?</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialUom.delete</id>
-			<text>delete from {schema}APP_MATERIAL_uom where material = ? and uom = ?</text>
+			<text>delete from {schema}APP_MATERIAL_UOM where material = ? and uom = ?</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialUom.getMaterialUomProperties</id>
-			<text>select * from {schema}APP_MATERIAL_uom where material = ? and uom = ?</text>
+			<text>select * from {schema}APP_MATERIAL_UOM where material = ? and uom = ?</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialUom.getMaterialUoms</id>
-			<text>select * from {schema}APP_MATERIAL_uom where material=? order by uom</text>
+			<text>select * from {schema}APP_MATERIAL_UOM where material=? order by uom</text>
 		</statement>
 		<?JDBMaterialBatch ?>
 		<statement>
@@ -560,7 +560,7 @@
 			<id>JDBMaterialBatch.delete</id>
 			<text>delete from {schema}APP_MATERIAL_BATCH where material= ? and batch_number = ?</text>
 		</statement>
-		<?JDBJourneyRef ?>
+		<?JDBJourney ?>
 		<statement>
 			<id>JDBJourney.getProperties</id>
 			<text>select * from {schema}APP_JOURNEY where journey_ref = ?</text>
@@ -588,31 +588,31 @@
 		<?JDBMaterialType ?>
 		<statement>
 			<id>JDBMaterialType.getMaterialTypeProperties</id>
-			<text>select * from {schema}APP_MATERIAL_type where material_type = ?</text>
+			<text>select * from {schema}APP_MATERIAL_TYPE where material_type = ?</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialType.getMaterialTypes</id>
-			<text>select * from {schema}APP_MATERIAL_type order by material_type</text>
+			<text>select * from {schema}APP_MATERIAL_TYPE order by material_type</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialType.create</id>
-			<text>insert into {schema}APP_MATERIAL_type (material_type,description) values (?,?)</text>
+			<text>insert into {schema}APP_MATERIAL_TYPE (material_type,description) values (?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialType.delete</id>
-			<text>delete from {schema}APP_MATERIAL_type where material_type = ?</text>
+			<text>delete from {schema}APP_MATERIAL_TYPE where material_type = ?</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialType.renameTo</id>
-			<text>update {schema}APP_MATERIAL_type set material_type =? where material_type =?</text>
+			<text>update {schema}APP_MATERIAL_TYPE set material_type =? where material_type =?</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialType.update</id>
-			<text>update {schema}APP_MATERIAL_type set description=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=? where material_type=?</text>
+			<text>update {schema}APP_MATERIAL_TYPE set description=?,override_pack_label=?,pack_label_module_id=?,override_pallet_label=?,pallet_label_module_id=? where material_type=?</text>
 		</statement>
 		<statement>
 			<id>JDBMaterialType.isValidMaterialType</id>
-			<text>select * from {schema}APP_MATERIAL_type where material_type = ?</text>
+			<text>select * from {schema}APP_MATERIAL_TYPE where material_type = ?</text>
 		</statement>
 		<?JDBProcessOrder ?>
 		<statement>
@@ -818,8 +818,8 @@
 				)
 			</text>
 		</statement>
-			<statement>
-		<id>JDBDespatch.getDespatchPalletWrongLocationCount</id>
+		<statement>
+			<id>JDBDespatch.getDespatchPalletWrongLocationCount</id>
 			<text>
 				select count(sscc) as pallet_count from APP_PALLET where despatch_no = ? and location_id &lt;&gt; ?
 			</text>
@@ -827,7 +827,7 @@
 		<statement>
 			<id>JDBDespatch.updateTotalEquipment</id>
 			<text>update app_despatch set total_equipment = ? where despatch_no = ?</text>
-		</statement>	
+		</statement>
 		<?JDBInterface ?>
 		<statement>
 			<id>JDBInterface.getInterfaceProperties</id>
@@ -1027,10 +1027,6 @@
 			<text>delete from {schema}APP_MHN where mhn_number=?</text>
 		</statement>
 		<statement>
-			<id>JDBMHN.delete</id>
-			<text>delete from {schema}APP_MHN where mhn_number=?</text>
-		</statement>
-		<statement>
 			<id>JDBMHN.getMHNProperties</id>
 			<text>select * from {schema}APP_MHN where mhn_number=?</text>
 		</statement>
@@ -1067,10 +1063,10 @@
 			<id>JDBMaterialLocation.getProperties</id>
 			<text>select * from {schema}APP_MATERIAL_LOCATION where material = ? and location_id = ?</text>
 		</statement>
-		<?JDBQMInspection ?>
+		<?JDQMInspection ?>
 		<statement>
-			<id>JDQMInspection.create</id>
-			<text>JDBQMInspection insert into {schema}APP_QM_INSPECTION (inspection_id,description,extension_id) values (?,?,?)</text>
+			<id>JDBQMInspection.create</id>
+			<text>insert into {schema}APP_QM_INSPECTION (inspection_id,description,extension_id) values (?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMInspection.delete</id>
@@ -1085,7 +1081,7 @@
 			<text>select * from {schema}APP_QM_INSPECTION where inspection_id = ?</text>
 		</statement>
 		<statement>
-			<id>JDQMInspection.update</id>
+			<id>JDBQMInspection.update</id>
 			<text>update {schema}APP_QM_INSPECTION set description = ? where inspection_id = ?</text>
 		</statement>
 		<?JDBQMActivity ?>
@@ -1315,7 +1311,7 @@
 		<statement>
 			<id>JDBAutoLabeller.getLabellerIDsforGroup</id>
 			<text>select * from {schema}APP_AUTO_LABELLER WHERE GROUP_ID = ? order by LINE</text>
-		</statement>
+		</statement>	
 		<?JDBUserReports?>
 		<statement>
 			<id>JDBUserReport.create</id>
@@ -1344,11 +1340,11 @@
 		<statement>
 			<id>JDBUserReport.getUserReportIDs</id>
 			<text>select * from {schema}SYS_USER_REPORTS order by DISPLAY_SEQUENCE,USER_REPORT_ID</text>
-		</statement>
+		</statement>	
 		<statement>
 			<id>JDBUserReport.updateUserID</id>
 			<text>update {schema}SYS_USER_REPORTS set USER_ID=? where USER_ID = ?</text>
-		</statement>		
+		</statement>			
 		<?JDBShifts?>
 		<statement>
 			<id>JDBShifts.create</id>
@@ -1398,7 +1394,7 @@
 		<statement>
 			<id>JDBPrinters.getPrinterIDs</id>
 			<text>select * from {schema}SYS_PRINTERS where ENABLED = ? order by PRINTER_ID</text>
-		</statement>
+		</statement>	
 		<?JDBLabelData?>
 		<statement>
 			<id>JDBLabelData.create</id>
@@ -1411,7 +1407,7 @@
 		<statement>
 			<id>JDBLabelData.getProperties</id>
 			<text>SELECT * FROM {schema}APP_LABEL_DATA WHERE UNIQUE_ID = ?</text>
-		</statement>	
+		</statement>
 		<statement>
 			<id>JDBLabelData.updateLine</id>
 			<text>UPDATE {schema}APP_LABEL_DATA SET LINE=? WHERE UNIQUE_ID = ?</text>
@@ -1419,7 +1415,7 @@
 		<statement>
 			<id>JDBLabelData.renameLine</id>
 			<text>UPDATE {schema}APP_LABEL_DATA SET LINE=? WHERE LINE=?</text>
-		</statement>			
+		</statement>		
 		<statement>
 			<id>JDBLabelData.select</id>
 			<text>SELECT * FROM {schema}view_label_data WHERE UNIQUE_ID = ?</text>
@@ -1466,7 +1462,7 @@
 			<id>DBview_auto_labeller_printer.getEnabled</id>
 			<text>SELECT * FROM {schema}view_auto_labeller_printer</text>
 		</statement>
-		<!-- N.B Sequence of fields important below      -->		
+		<!-- N.B Sequence of fields important below      -->	
 		<statement>		
 			<id>DBview_auto_labeller_printer.getProperties</id>
 			<text>SELECT LINE,MODIFIED,UNIQUE_ID,LABEL_TYPE,PRINTER_ID,ENABLED,PRINTER_TYPE,IP_ADDRESS,PORT,GROUP_ID,LANGUAGE,
@@ -1476,7 +1472,7 @@
 			      MODULE_ID,OVERRIDE_MANUFACTURE_DATE,OVERRIDE_EXPIRY_DATE,OVERRIDE_BATCH_PREFIX,BATCH_PREFIX,BATCH_SUFFIX,
 			      REPORT_TYPE,MODULE_TYPE,REPORT_FILENAME,PART_NO
  				  FROM {schema}view_auto_labeller_printer where line = ? and printer_id = ?</text>
-		</statement>
+		</statement>	
 		<statement>		
 			<id>DBview_auto_labeller_printer.getProperties_Pack</id>
 			<text>SELECT LINE,MODIFIED,UNIQUE_ID,LABEL_TYPE,PRINTER_ID,ENABLED,PRINTER_TYPE,IP_ADDRESS,PORT,GROUP_ID,LANGUAGE,
@@ -1496,7 +1492,7 @@
 			      MODULE_ID,OVERRIDE_MANUFACTURE_DATE,OVERRIDE_EXPIRY_DATE,OVERRIDE_BATCH_PREFIX,BATCH_PREFIX,BATCH_SUFFIX,
 			      REPORT_TYPE,MODULE_TYPE,REPORT_FILENAME,PART_NO,LAYERS
  				  FROM {schema}view_auto_labeller_printer where line = ? and printer_id = ?</text>
-		</statement>						
+		</statement>					
 		<?JDBAutoLabellerResources?>
 		<statement>
 			<id>JDBAutoLabellerResources.create</id>
@@ -1517,8 +1513,8 @@
 		<statement>
 			<id>JDBAutoLabellerResources.renameLine</id>
 			<text>update {schema}APP_AUTO_LABELLER_RESOURCES set line=? where line=? and group_id = ? </text>
-		</statement>		
-		<?JDBMaterialCustomerData ?>
+		</statement>			
+		<?JDBMaterialCustomerData?>
 		<statement>
 			<id>JDBMaterialCustomerData.isValid</id>
 			<text>select * from {schema}APP_MATERIAL_CUSTOMER_DATA where material = ? and customer_id=? and data_id=?</text>
@@ -1538,7 +1534,7 @@
 		<statement>
 			<id>JDBMaterialCustomerData.getProperties</id>
 			<text>select * from {schema}APP_MATERIAL_CUSTOMER_DATA where material = ? and customer_id = ? and data_id=?</text>
-		</statement>	
+		</statement>
 		<?JDBArchive?>
 		<statement>
 			<id>JDBArchive.create</id>
@@ -1600,11 +1596,12 @@
 		<statement>
 			<id>JDBDataID.update</id>
 			<text>update {schema}APP_MATERIAL_DATA_IDS set description=? where data_id=?</text>
-		</statement>	
+		</statement>					
 		<?JDBAuditPermissions?>
 		<statement>
 			<id>JDBAuditPermissions.create</id>
-			<text>insert into {schema}SYS_AUDIT_PERMISSIONS (sys_audit_log_id,event_time,user_id,event_type,event_action,target,data,workstation_id) values (?,?,?,?,?,?,?,?)</text>		</statement>
+			<text>insert into {schema}SYS_AUDIT_PERMISSIONS (sys_audit_log_id,event_time,user_id,event_type,event_action,target,data,workstation_id) values (?,?,?,?,?,?,?,?)</text>
+		</statement>
 		<statement>
 			<id>JDBAuditPermissions.getProperties</id>
 			<text>select * from {schema}SYS_AUDIT_PERMISSIONS where sys_audit_log_id=?</text>
@@ -1646,7 +1643,7 @@
 			<id>JDBLineWorkstationMembership.renameLine</id>
 			<text>UPDATE {schema}SYS_WORKSTATION_LINE_MEMBERS SET LINE = ? WHERE LINE = ? AND GROUP_ID = ? </text>
 		</statement>
-		<?JDBProcessOrderResource ?>
+		<?JDBProcessOrderResource?>
 		<statement>
 			<id>JDBProcessOrderResource.create</id>
 			<text>insert into {schema}APP_PROCESS_ORDER_RESOURCE (required_resource,enabled,description,batch_suffix) values (?,?,?,?)</text>
@@ -1670,7 +1667,7 @@
 		<statement>
 			<id>JDBProcessOrderResource.getResources</id>
 			<text>select * from {schema}APP_PROCESS_ORDER_RESOURCE where enabled = 'Y' order by required_resource</text>
-		</statement>
+		</statement>	
 		<?JDBQMAnalysis?>	
 		<statement>
 			<id>JDBQMAnalysis.getAnalysis</id>
@@ -1699,8 +1696,8 @@
 		<statement>
 			<id>JDBQMAnalysis.update</id>
 			<text>update {schema}APP_QM_ANALYSIS set description=?,display_sequence=?,module_id=?,process_order_reqd=?,process_order_param=?,material_reqd=?,material_param=?,sample_date_start_reqd=?,sample_date_start_param=?,sample_date_end_reqd=?,sample_date_end_param=?,user_data_1_reqd=?,user_data_1_param=?,user_data_2_reqd=?,user_data_2_param=?,user_data_3_reqd=?,user_data_3_param=?,user_data_4_reqd=?,user_data_4_param=?,batch_suffix_reqd=?,batch_suffix_param=?,resource_reqd=?,resource_param=? where analysis_id=?</text>
-		</statement>	
-		<?JDBModuleAlternative ?>
+		</statement>
+		<?JDBModuleAlternative?>
 		<statement>
 			<id>JDBModuleAlternative.create</id>
 			<text>insert into {schema}SYS_MODULES_ALTERNATIVE (module_id,workstation_id,alt_module_id) values (?,?,?)</text>
@@ -1725,7 +1722,7 @@
 		<statement>
 			<id>JDBViewBarcodeValidate.getProperties</id>
 			<text>select * from {schema}view_barcode_validate where process_order = ?</text>
-		</statement>	
+		</statement>
 		<?JDBWeightWorkstation?>		
 		<statement>
 			<id>JDBWTWorkstation.create</id>
@@ -1746,7 +1743,7 @@
 		<statement>
 			<id>JDBWTWorkstation.getWorkstations</id>
 			<text>select * from {schema}APP_WEIGHT_WORKSTATION order by workstation_id</text>
-		</statement>	
+		</statement>
 	    <statement>
 			<id>JDBWTWorkstation.getProperties</id>
 			<text>select * from {schema}APP_WEIGHT_WORKSTATION where workstation_id = ?</text>
@@ -1771,7 +1768,7 @@
 		<statement>
 			<id>JDBWTScale.update</id>
 			<text>update {schema}APP_WEIGHT_SCALE set description = ?,make=?,model=?,baud_rate=?,data_bits=?,stop_bits=?,flow_control=?,connection=?,parity=?,end_of_line=?,serial_no=?,command_prefix=? where scale_id = ?</text>
-		</statement>	
+		</statement>
 	    <statement>
 			<id>JDBWTScale.isValidScale</id>
 			<text>select * from {schema}APP_WEIGHT_SCALE where scale_id = ?</text>
@@ -1784,7 +1781,7 @@
 			<id>JDBWTScale.getScales</id>
 			<text>select * from {schema}APP_WEIGHT_SCALE order by scale_id</text>
 		</statement>	
-		<?JDBWeightTNE?>			
+		<?JDBWeightTNE?>		
 		<statement>
 			<id>JDBWTTNE.create</id>
 			<text>insert into {schema}APP_WEIGHT_TNE (nominal_weight,nominal_weight_uom) values (?,?)</text>
@@ -1841,7 +1838,7 @@
 		<statement>
 			<id>JDBWTSamplePoint.getSamplePoints</id>
 			<text>select * from {schema}APP_WEIGHT_SAMPLE_POINT order by sample_point</text>
-		</statement>
+		</statement>	
 		<?JDBProductGroup?>		
 		<statement>
 			<id>JDBProductGroup.create</id>
@@ -1870,7 +1867,7 @@
 		<statement>
 			<id>JDBProductGroup.getProductGroups</id>
 			<text>select * from {schema}APP_WEIGHT_PRODUCT_GROUP order by product_group</text>
-		</statement>		
+		</statement>	
 		<?JDBWTContainerCode?>		
 		<statement>
 			<id>JDBWTContainerCode.create</id>
@@ -1936,9 +1933,9 @@
 		<statement>
 			<id>JDBWTSampleHeader.updateComments</id>
 			<text>update APP_WEIGHT_SAMPLE_HEADER set
-					comments = ?
+					comments = ? 
 					where sample_point = ? and sample_date = ?</text>
-		</statement>		
+		</statement>
 		<statement>
 			<id>JDBWTSampleHeader.isValidSampleHeader</id>
 			<text>select * from {schema}APP_WEIGHT_SAMPLE_HEADER where sample_point = ? and sample_date = ?</text>
@@ -2251,7 +2248,7 @@
 		<statement>
 			<id>JDBWasteMaterialLocation.getMaterialsforLocation</id>
 			<text>select * from {schema}view_waste_location_materials where waste_location_id = ? order by waste_material_id</text>
-		</statement>	
+		</statement>		
 				
 		<?JDBWasteMaterial?>		
 		<statement>
@@ -2319,7 +2316,7 @@
 		<statement>
 			<id>JDBWasteLog.renameContainerID</id>
 			<text>update {schema}APP_WASTE_LOG set waste_container_id=? where waste_container_id=?</text>
-		</statement>		
+		</statement>
 		<statement>
 			<id>JDBWasteLog.renameMaterialID</id>
 			<text>update {schema}APP_WASTE_LOG set waste_material_id=? where waste_material_id=?</text>
@@ -2395,8 +2392,8 @@
 		<statement>
 			<id>JDBWasteReportingGroup.renameReportingGroup</id>
 			<text>update {schema}APP_WASTE_REPORTING_GROUP set reporting_group=? where reporting_group=?</text>
-		</statement>	
-		
+		</statement>			
+				
 		<?JDBEquipmentType?>		
 		<statement>
 			<id>JDBEquipmentType.create</id>
@@ -2410,18 +2407,18 @@
 			<id>JDBEquipmentType.update</id>
 			<text>update {schema}APP_EQUIPMENT_TYPE set description = ?,weight_kg=?,enabled=? where equipment_type = ?</text>
 		</statement>
-	    <statement>
+	        <statement>
 			<id>JDBEquipmentType.isValidEquipmentType</id>
 			<text>select * from {schema}APP_EQUIPMENT_TYPE where equipment_type = ?</text>
 		</statement>
-	    <statement>
+	        <statement>
 			<id>JDBEquipmentType.getProperties</id>
 			<text>select * from {schema}APP_EQUIPMENT_TYPE where equipment_type = ?</text>
 		</statement>	
 		<statement>
 			<id>JDBEquipmentType.getEquipmentTypes</id>
 			<text>select * from {schema}APP_EQUIPMENT_TYPE order by equipment_type</text>
-		</statement>	
+		</statement>		
 		<statement>
 			<id>JDBEquipmentType.updatePallet</id>
 			<text>
@@ -2451,23 +2448,245 @@
 		<statement>
 			<id>JDBDespatchEquipmentType.deleteAll</id>
 			<text>delete from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ?</text>
-		</statement>		
+		</statement>
 		<statement>
 			<id>JDBDespatchEquipmentType.update</id>
 			<text>update {schema}APP_DESPATCH_EQUIPMENT_TYPE set quantity = ? where despatch_no = ? and equipment_type = ?</text>
 		</statement>
-	    <statement>
+	        <statement>
 			<id>JDBDespatchEquipmentType.isValidEquipmentType</id>
 			<text>select * from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ? and equipment_type = ?</text>
 		</statement>
-	    <statement>
+	        <statement>
 			<id>JDBDespatchEquipmentType.getProperties</id>
 			<text>select * from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ? and equipment_type = ?</text>
 		</statement>	
 		<statement>
 			<id>JDBDespatchEquipmentType.getEquipmentTypes</id>
 			<text>select * from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ? order by despatch_no,equipment_type</text>
-		</statement>		
-																								
+		</statement>	
+		
+		<?JDBPalletExtension?>		
+		<statement>
+			<id>JDBPalletExtension.create</id>
+			<text>insert into {schema}APP_PALLET_EXTENSION (sscc) values (?)</text>
+		</statement>	
+		<statement>
+			<id>JDBPalletExtension.delete</id>
+			<text>delete from {schema}APP_PALLET_EXTENSION where sscc = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPalletExtension.update</id>
+			<text>update {schema}APP_PALLET_EXTENSION set first_case_input = ?,first_case_time = ?,last_case_input = ?,last_case_time = ?,supplier_id1 = ?,shift_id = ?,incident_reference = ?,location = ?,product_group = ?,container_code = ?,pweek = ?,pday = ?,pmonth = ?,pyear = ?,pallet_quantity = ? where sscc = ?</text>
+		</statement>
+	        <statement>
+			<id>JDBPalletExtension.getProperties</id>
+			<text>select * from {schema}APP_PALLET_EXTENSION where sscc = ?</text>
+		</statement>	
+	        <statement>
+			<id>JDBPalletExtension.isValid</id>
+			<text>select * from {schema}APP_PALLET_EXTENSION where sscc = ?</text>
+		</statement>
+
+		<?JDBShiftNames?>		
+		<statement>
+			<id>JDBShiftNames.create</id>
+			<text>insert into {schema}APP_SHIFT_NAMES (shift_id,description,enabled) values (?,?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBShiftNames.delete</id>
+			<text>delete from {schema}APP_SHIFT_NAMES where shift_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShiftNames.update</id>
+			<text>update {schema}APP_SHIFT_NAMES set description = ?,enabled = ? where shift_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShiftNames.renameTo1</id>
+			<text>update {schema}APP_SHIFT_NAMES set shift_id = ? where shift_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShiftNames.renameTo2</id>
+			<text>update {schema}APP_PALLET_EXTENSION set shift_id = ? where shift_id = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBShiftNames.getProperties</id>
+			<text>select * from {schema}APP_SHIFT_NAMES where shift_id = ?</text>
+		</statement>	
+	    <statement>
+			<id>JDBShiftNames.isValid</id>
+			<text>select * from {schema}APP_SHIFT_NAMES where shift_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShiftNames.getShiftNames</id>
+			<text>select * from {schema}APP_SHIFT_NAMES order by shift_id</text>
+		</statement>
+
+		<?JDBPalletSamples?>
+		<statement>
+			<id>JDBPalletSamples.create</id>
+			<text>insert into {schema}APP_PALLET_SAMPLES (sscc,sample_sequence) values (?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBPalletSamples.delete</id>
+			<text>delete from {schema}APP_PALLET_SAMPLES where sscc = ? and sample_sequence = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPalletSamples.update</id>
+			<text>update {schema}APP_PALLET_SAMPLES set sample_date=?,sample_reason = ?,defect_type = ?,defect_id = ?,leaking = ?, comment=?, sample_quantity=?, user_id=?, sample_point = ? where sscc = ? and sample_sequence = ?</text>
+		</statement>
+	         <statement>
+			<id>JDBPalletSamples.getProperties</id>
+			<text>select * from {schema}APP_PALLET_SAMPLES where sscc = ? and sample_sequence = ?</text>
+		</statement>	
+	         <statement>
+			<id>JDBPalletSamples.isValid</id>
+			<text>select * from {schema}APP_PALLET_SAMPLES where sscc = ? and sample_sequence = ?</text>
+		</statement>
+
+		<?JDBSampleReasons ?>
+		<statement>
+			<id>JDBSampleReasons.getReasonProperties</id>
+			<text>select * from {schema}APP_SAMPLE_REASONS where sample_reason = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.getReasons</id>
+			<text>select * from {schema}APP_SAMPLE_REASONS order by sample_reason</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.create</id>
+			<text>insert into {schema}APP_SAMPLE_REASONS (sample_reason,description,enabled) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.delete</id>
+			<text>delete from {schema}APP_SAMPLE_REASONS where sample_reason = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.renameTo1</id>
+			<text>update {schema}APP_SAMPLE_REASONS set sample_reason =? where sample_reason =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.renameTo2</id>
+			<text>update {schema}APP_PALLET_SAMPLES set sample_reason =? where sample_reason =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.update</id>
+			<text>update {schema}APP_SAMPLE_REASONS set description=?,enabled=? where sample_reason=?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.isValidReason</id>
+			<text>select * from {schema}APP_SAMPLE_REASONS where sample_reason = ?</text>
+		</statement>
+		
+		<?JDBSampleDefectID?>
+		<statement>
+			<id>JDBSampleDefectID.getDefectProperties</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_ID where defect_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.getDefects</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_ID order by defect_id</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.create</id>
+			<text>insert into {schema}APP_SAMPLE_DEFECT_ID (defect_id,description,long_description,defect_type,enabled) values (?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.delete</id>
+			<text>delete from {schema}APP_SAMPLE_DEFECT_ID where defect_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.renameTo1</id>
+			<text>update {schema}APP_SAMPLE_DEFECT_ID set defect_id =? where defect_id =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.renameTo2</id>
+			<text>update {schema}APP_PALLET_SAMPLES set defect_id =? where defect_id =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.update</id>
+			<text>update {schema}APP_SAMPLE_DEFECT_ID set description=?,long_description=?,defect_type=?,enabled=? where defect_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.isValidDefect</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_ID where defect_id = ?</text>
+		</statement>
+		
+		<?JDBSampleDefectType?>
+		<statement>
+			<id>JDBSampleDefectType.getDefectProperties</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_TYPE where defect_type = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.getDefects</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_TYPE order by defect_type</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.getDefectsByOutputColumn</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_TYPE order by output_column,defect_type</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.create</id>
+			<text>insert into {schema}APP_SAMPLE_DEFECT_TYPE (defect_type,description,long_description,output_column,leaking_data,non_leaking_data,enabled) values (?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.delete</id>
+			<text>delete from {schema}APP_SAMPLE_DEFECT_TYPE where defect_type = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.renameTo1</id>
+			<text>update {schema}APP_SAMPLE_DEFECT_TYPE set defect_type =? where defect_type =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.renameTo2</id>
+			<text>update {schema}APP_SAMPLE_DEFECT_ID set defect_type =? where defect_type =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.renameTo3</id>
+			<text>update {schema}APP_PALLET_SAMPLES set defect_type =? where defect_type =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.update</id>
+			<text>update {schema}APP_SAMPLE_DEFECT_TYPE set description=?,long_description=?,output_column=?,leaking_data=?,non_leaking_data=?,enabled=? where defect_type=?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.isValidDefect</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_TYPE where defect_type = ?</text>
+		</statement>
+		
+		<?JDBSuppliers ?>
+		<statement>
+			<id>JDBSuppliers.getSupplierProperties</id>
+			<text>select * from {schema}APP_SUPPLIER where supplier_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.getSuppliers</id>
+			<text>select * from {schema}APP_SUPPLIER order by supplier_id</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.create</id>
+			<text>insert into {schema}APP_SUPPLIER (supplier_id,supplier_type,description,enabled) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.delete</id>
+			<text>delete from {schema}APP_SUPPLIER where supplier_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.renameTo1</id>
+			<text>update {schema}APP_SUPPLIER set supplier_id =? where supplier_id =?</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.renameTo2</id>
+			<text>update {schema}APP_PALLET_EXTENSION set supplier_id1 =? where supplier_id1 =?</text>
+		</statement>	
+		<statement>
+			<id>JDBSuppliers.update</id>
+			<text>update {schema}APP_SUPPLIER set supplier_type=?,description=?,enabled=? where supplier_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.isValidSupplier</id>
+			<text>select * from {schema}APP_SUPPLIER where supplier_id = ?</text>
+		</statement>
+
 	</jdbcDriver>
 </SQL>

@@ -54,5 +54,10 @@ public class JQuantityInput extends JFormattedTextField
 
 		return result;
 	}
+	
+	public void setQuantity(BigDecimal qty)
+	{
+		setText(qty.toString());
+	}
 		
 }

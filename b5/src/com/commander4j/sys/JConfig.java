@@ -2,6 +2,7 @@ package com.commander4j.sys;
 
 import java.io.File;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLDocument;
@@ -32,6 +33,12 @@ public class JConfig
 				Common.image_splash = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appSplashScreenImage").trim());
 				Common.locale_language = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appLanguage").trim());
 				Common.locale_region = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appRegion").trim());
+				Common.locale_timezone  = JUtility.replaceNullStringwithBlank(xmlMessage.findXPath("//config/appTimeZone").trim());
+				
+			    if (Common.locale_timezone.equals(""))
+				{
+					Common.locale_timezone= TimeZone.getDefault().getDisplayName();
+				}
 				
 				if (Common.locale_language.equals("")==true)
 				{

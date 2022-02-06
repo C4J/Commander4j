@@ -33,6 +33,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -403,8 +404,14 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 		{
 			query.addParamtoSQL("date_resolved<=", JUtility.getTimestampFromDate(dateControlResolvedTo.getDate()));
 		}		
-		
-		query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
+		if (jComboBoxSortBy.getSelectedItem().toString().equals("REASON"))
+		{
+			query.appendSort("reason1,reason2,reason3", jToggleButtonSequence.isSelected());
+		}
+		else
+		{
+			query.appendSort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
+		}
 		query.applyRestriction(false,"none",0);
 		query.bindParams();
 		result = query.getPreparedStatement();
@@ -441,6 +448,30 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_MHN"));
 
 		search();
+	}
+	
+	private void copyToClipboard(String fieldname)
+	{
+		StringSelection stringSelection = new StringSelection("");
+		
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			
+			if (fieldname.equals("MHN_NUMBER") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
+			}
+
+			if (fieldname.equals("REASON") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString()+","+jTable1.getValueAt(row, 4).toString()+","+jTable1.getValueAt(row, 5).toString());
+			}
+
+						
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+		}
 	}
 
 	private void initGUI()
@@ -743,6 +774,40 @@ public class JInternalFrameMHNAdmin extends JInternalFrame
 									filterByMenu.add(newItemMenuItem);
 								}
 							}
+							{
+								final JMenu4j clipboardByMenu = new JMenu4j();
+								clipboardByMenu.setText(lang.get("lbl_Clipboard_Copy"));
+								popupMenu.add(clipboardByMenu);
+
+								{
+									final JMenuItem4j menuItemFilterBySSCC = new JMenuItem4j();
+									menuItemFilterBySSCC.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("MHN_NUMBER");
+										}
+									});
+									menuItemFilterBySSCC.setText(lang.get("lbl_MHN_Number"));
+									clipboardByMenu.add(menuItemFilterBySSCC);
+								}
+
+
+								{
+									final JMenuItem4j menuItemFilterByBatch = new JMenuItem4j();
+									menuItemFilterByBatch.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("REASON");
+										}
+									});
+									menuItemFilterByBatch.setText(lang.get("lbl_Reason"));
+									clipboardByMenu.add(menuItemFilterByBatch);
+								}
+
+							}
+
 						}
 					}
 				}

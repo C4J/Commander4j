@@ -34,6 +34,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -498,6 +499,49 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 		this.me = this;
 
 	}
+	
+	private void copyToClipboard(String fieldname)
+	{
+		StringSelection stringSelection = new StringSelection("");
+		
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			
+			if (fieldname.equals("SSCC") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
+			}
+
+			if (fieldname.equals("Material") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 1).toString());
+			}
+
+			if (fieldname.equals("Batch") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 2).toString());
+			}
+
+			if (fieldname.equals("Process Order") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString());
+			}
+
+			if (fieldname.equals("Pallet Status") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 7).toString());
+			}
+
+			if (fieldname.equals("Location") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 9).toString());
+			}
+						
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+		}
+	}
 
 	private void initGUI()
 	{
@@ -564,6 +608,26 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 						jTable1 = new JTable4j();
 						jTable1.setToolTipText("Update decision by selecting one or more rows and then use the mouse right click popup menu options. ");
 						
+						jTable1.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
+
+								if (evt.getClickCount() == 2)
+								{
+									if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PAL_SAMPLE") == true)
+									{
+										int row = jTable1.getSelectedRow();
+										if (row >= 0)
+										{
+											String lsscc = jTable1.getValueAt(row, 0).toString();
+											JLaunchMenu.runForm("FRM_PAL_SAMPLE", lsscc);
+										}
+									}
+								}
+							}
+						});
+						
 						jTable1.setDefaultRenderer(Object.class, new TableCellRenderer_MHNPallet());
 						
 						jScrollPane1.setViewportView(jTable1);
@@ -612,6 +676,24 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 									}
 								});
 								newItemMenuItem.setText(lang.get("btn_Delete"));
+								popupMenu.add(newItemMenuItem);
+							}
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_pallet_sampling_16x16);
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PAL_SAMPLE"));
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										int row = jTable1.getSelectedRow();
+										if (row >= 0)
+										{
+											String lsscc = jTable1.getValueAt(row, 0).toString();
+											JLaunchMenu.runForm("FRM_PAL_SAMPLE", lsscc);
+										}
+									}
+								});
+								newItemMenuItem.setText(lang.get("mod_FRM_PAL_SAMPLE"));
 								popupMenu.add(newItemMenuItem);
 							}
 							{
@@ -693,10 +775,10 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 									{
 										public void actionPerformed(final ActionEvent e)
 										{
-											sortBy("MHN_NUMBER");
+											sortBy("SSCC");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_MHN_Number"));
+									newItemMenuItem.setText(lang.get("lbl_Pallet_SSCC"));
 									sortByMenu.add(newItemMenuItem);
 								}
 
@@ -706,10 +788,10 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 									{
 										public void actionPerformed(final ActionEvent e)
 										{
-											sortBy("INITIATOR");
+											sortBy("BATCH_NUMBER");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_Initiator"));
+									newItemMenuItem.setText(lang.get("lbl_Material_Batch"));
 									sortByMenu.add(newItemMenuItem);
 								}
 
@@ -719,12 +801,13 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 									{
 										public void actionPerformed(final ActionEvent e)
 										{
-											sortBy("RECORDER");
+											sortBy("PROCESS_ORDER");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_Recorder"));
+									newItemMenuItem.setText(lang.get("lbl_Process_Order"));
 									sortByMenu.add(newItemMenuItem);
 								}
+
 
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
@@ -732,28 +815,99 @@ public class JInternalFrameMHNProperties extends JInternalFrame
 									{
 										public void actionPerformed(final ActionEvent e)
 										{
-											sortBy("REASON");
+											sortBy("DATE_OF_MANUFACTURE");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_Reason"));
-									sortByMenu.add(newItemMenuItem);
-								}
-
-								{
-									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
-									newItemMenuItem.addActionListener(new ActionListener()
-									{
-										public void actionPerformed(final ActionEvent e)
-										{
-											sortBy("STATUS");
-										}
-									});
-									newItemMenuItem.setText(lang.get("lbl_Status"));
+									newItemMenuItem.setText(lang.get("lbl_Pallet_DOM"));
 									sortByMenu.add(newItemMenuItem);
 								}
 
 							}
+							{
+								final JMenu4j clipboardByMenu = new JMenu4j();
+								clipboardByMenu.setText(lang.get("lbl_Clipboard_Copy"));
+								popupMenu.add(clipboardByMenu);
 
+								{
+									final JMenuItem4j menuItemFilterBySSCC = new JMenuItem4j();
+									menuItemFilterBySSCC.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("SSCC");
+										}
+									});
+									menuItemFilterBySSCC.setText(lang.get("lbl_Pallet_SSCC"));
+									clipboardByMenu.add(menuItemFilterBySSCC);
+								}
+
+								{
+									final JMenuItem4j menuItemFilterByMaterial = new JMenuItem4j();
+									menuItemFilterByMaterial.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Material");
+										}
+									});
+									menuItemFilterByMaterial.setText(lang.get("lbl_Material"));
+									clipboardByMenu.add(menuItemFilterByMaterial);
+								}
+
+								{
+									final JMenuItem4j menuItemFilterByBatch = new JMenuItem4j();
+									menuItemFilterByBatch.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Batch");
+										}
+									});
+									menuItemFilterByBatch.setText(lang.get("lbl_Material_Batch"));
+									clipboardByMenu.add(menuItemFilterByBatch);
+								}
+
+								{
+									final JMenuItem4j menuItemFilterByLocation = new JMenuItem4j();
+									menuItemFilterByLocation.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Location");
+										}
+									});
+									menuItemFilterByLocation.setText(lang.get("lbl_Location_ID"));
+									clipboardByMenu.add(menuItemFilterByLocation);
+								}
+
+
+								{
+									final JMenuItem4j menuItemFilterByPalletStatus = new JMenuItem4j();
+									menuItemFilterByPalletStatus.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Pallet Status");
+										}
+									});
+									menuItemFilterByPalletStatus.setText(lang.get("lbl_Pallet_Status"));
+									clipboardByMenu.add(menuItemFilterByPalletStatus);
+								}
+
+								{
+									final JMenuItem4j menuItemFilterByProcessOrder = new JMenuItem4j();
+									menuItemFilterByProcessOrder.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Process Order");
+										}
+									});
+									menuItemFilterByProcessOrder.setText(lang.get("lbl_Process_Order"));
+									clipboardByMenu.add(menuItemFilterByProcessOrder);
+								}
+
+							}
 						}
 					}
 				}

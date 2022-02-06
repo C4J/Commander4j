@@ -1015,7 +1015,7 @@
 		</statement>
 		<statement>
 			<id>JDBMHNDecision.isValidDecision</id>
-			<text>select *from {schema}APP_MHN_DECISIONS where Decision = ?</text>
+			<text>select * from {schema}APP_MHN_DECISIONS where Decision = ?</text>
 		</statement>
 		<?JDBMHN ?>
 		<statement>
@@ -1810,7 +1810,7 @@
 			<id>JDBWTTNE.getTNEs</id>
 			<text>select * from {schema}APP_WEIGHT_TNE order by nominal_weight,nominal_weight_uom</text>
 		</statement>
-		<?JDBWeightSamplePoint?>		
+		<?JDBWTSamplePoint?>		
 		<statement>
 			<id>JDBWTSamplePoint.create</id>
 			<text>insert into {schema}APP_WEIGHT_SAMPLE_POINT (sample_point) values (?)</text>
@@ -2407,11 +2407,11 @@
 			<id>JDBEquipmentType.update</id>
 			<text>update {schema}APP_EQUIPMENT_TYPE set description = ?,weight_kg=?,enabled=? where equipment_type = ?</text>
 		</statement>
-	    <statement>
+	        <statement>
 			<id>JDBEquipmentType.isValidEquipmentType</id>
 			<text>select * from {schema}APP_EQUIPMENT_TYPE where equipment_type = ?</text>
 		</statement>
-	    <statement>
+	        <statement>
 			<id>JDBEquipmentType.getProperties</id>
 			<text>select * from {schema}APP_EQUIPMENT_TYPE where equipment_type = ?</text>
 		</statement>	
@@ -2463,17 +2463,240 @@
 			<id>JDBDespatchEquipmentType.update</id>
 			<text>update {schema}APP_DESPATCH_EQUIPMENT_TYPE set quantity = ? where despatch_no = ? and equipment_type = ?</text>
 		</statement>
-	    <statement>
+	        <statement>
 			<id>JDBDespatchEquipmentType.isValidEquipmentType</id>
 			<text>select * from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ? and equipment_type = ?</text>
 		</statement>
-	    <statement>
+	        <statement>
 			<id>JDBDespatchEquipmentType.getProperties</id>
 			<text>select * from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ? and equipment_type = ?</text>
 		</statement>	
 		<statement>
 			<id>JDBDespatchEquipmentType.getEquipmentTypes</id>
 			<text>select * from {schema}APP_DESPATCH_EQUIPMENT_TYPE where despatch_no = ? order by despatch_no,equipment_type</text>
-		</statement>		
+		</statement>	
+		
+		<?JDBPalletExtension?>		
+		<statement>
+			<id>JDBPalletExtension.create</id>
+			<text>insert into {schema}APP_PALLET_EXTENSION (sscc) values (?)</text>
+		</statement>	
+		<statement>
+			<id>JDBPalletExtension.delete</id>
+			<text>delete from {schema}APP_PALLET_EXTENSION where sscc = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPalletExtension.update</id>
+			<text>update {schema}APP_PALLET_EXTENSION set first_case_input = ?,first_case_time = ?,last_case_input = ?,last_case_time = ?,supplier_id1 = ?,shift_id = ?,incident_reference = ?,location = ?,product_group = ?,container_code = ?,pweek = ?,pday = ?,pmonth = ?,pyear = ?,pallet_quantity = ? where sscc = ?</text>
+		</statement>
+	        <statement>
+			<id>JDBPalletExtension.getProperties</id>
+			<text>select * from {schema}APP_PALLET_EXTENSION where sscc = ?</text>
+		</statement>	
+	        <statement>
+			<id>JDBPalletExtension.isValid</id>
+			<text>select * from {schema}APP_PALLET_EXTENSION where sscc = ?</text>
+		</statement>
+
+		<?JDBShiftNames?>		
+		<statement>
+			<id>JDBShiftNames.create</id>
+			<text>insert into {schema}APP_SHIFT_NAMES (shift_id,description,enabled) values (?,?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBShiftNames.delete</id>
+			<text>delete from {schema}APP_SHIFT_NAMES where shift_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShiftNames.update</id>
+			<text>update {schema}APP_SHIFT_NAMES set description = ?,enabled = ? where shift_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShiftNames.renameTo1</id>
+			<text>update {schema}APP_SHIFT_NAMES set shift_id = ? where shift_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShiftNames.renameTo2</id>
+			<text>update {schema}APP_PALLET_EXTENSION set shift_id = ? where shift_id = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBShiftNames.getProperties</id>
+			<text>select * from {schema}APP_SHIFT_NAMES where shift_id = ?</text>
+		</statement>	
+	    <statement>
+			<id>JDBShiftNames.isValid</id>
+			<text>select * from {schema}APP_SHIFT_NAMES where shift_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBShiftNames.getShiftNames</id>
+			<text>select * from {schema}APP_SHIFT_NAMES order by shift_id</text>
+		</statement>
+
+		<?JDBPalletSamples?>
+		<statement>
+			<id>JDBPalletSamples.create</id>
+			<text>insert into {schema}APP_PALLET_SAMPLES (sscc,sample_sequence) values (?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBPalletSamples.delete</id>
+			<text>delete from {schema}APP_PALLET_SAMPLES where sscc = ? and sample_sequence = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPalletSamples.update</id>
+			<text>update {schema}APP_PALLET_SAMPLES set sample_date=?,sample_reason = ?,defect_type = ?,defect_id = ?,leaking = ?, comment=?, sample_quantity=?, user_id=?, sample_point = ? where sscc = ? and sample_sequence = ?</text>
+		</statement>
+	         <statement>
+			<id>JDBPalletSamples.getProperties</id>
+			<text>select * from {schema}APP_PALLET_SAMPLES where sscc = ? and sample_sequence = ?</text>
+		</statement>	
+	         <statement>
+			<id>JDBPalletSamples.isValid</id>
+			<text>select * from {schema}APP_PALLET_SAMPLES where sscc = ? and sample_sequence = ?</text>
+		</statement>
+
+		<?JDBSampleReasons ?>
+		<statement>
+			<id>JDBSampleReasons.getReasonProperties</id>
+			<text>select * from {schema}APP_SAMPLE_REASONS where sample_reason = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.getReasons</id>
+			<text>select * from {schema}APP_SAMPLE_REASONS order by sample_reason</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.create</id>
+			<text>insert into {schema}APP_SAMPLE_REASONS (sample_reason,description,enabled) values (?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.delete</id>
+			<text>delete from {schema}APP_SAMPLE_REASONS where sample_reason = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.renameTo1</id>
+			<text>update {schema}APP_SAMPLE_REASONS set sample_reason =? where sample_reason =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.renameTo2</id>
+			<text>update {schema}APP_PALLET_SAMPLES set sample_reason =? where sample_reason =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.update</id>
+			<text>update {schema}APP_SAMPLE_REASONS set description=?,enabled=? where sample_reason=?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleReasons.isValidReason</id>
+			<text>select * from {schema}APP_SAMPLE_REASONS where sample_reason = ?</text>
+		</statement>
+		
+		<?JDBSampleDefectID?>
+		<statement>
+			<id>JDBSampleDefectID.getDefectProperties</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_ID where defect_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.getDefects</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_ID order by defect_id</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.create</id>
+			<text>insert into {schema}APP_SAMPLE_DEFECT_ID (defect_id,description,long_description,defect_type,enabled) values (?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.delete</id>
+			<text>delete from {schema}APP_SAMPLE_DEFECT_ID where defect_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.renameTo1</id>
+			<text>update {schema}APP_SAMPLE_DEFECT_ID set defect_id =? where defect_id =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.renameTo2</id>
+			<text>update {schema}APP_PALLET_SAMPLES set defect_id =? where defect_id =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.update</id>
+			<text>update {schema}APP_SAMPLE_DEFECT_ID set description=?,long_description=?,defect_type=?,enabled=? where defect_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectID.isValidDefect</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_ID where defect_id = ?</text>
+		</statement>
+		
+		<?JDBSampleDefectType?>
+		<statement>
+			<id>JDBSampleDefectType.getDefectProperties</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_TYPE where defect_type = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.getDefects</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_TYPE order by defect_type</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.getDefectsByOutputColumn</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_TYPE order by output_column,defect_type</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.create</id>
+			<text>insert into {schema}APP_SAMPLE_DEFECT_TYPE (defect_type,description,long_description,output_column,leaking_data,non_leaking_data,enabled) values (?,?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.delete</id>
+			<text>delete from {schema}APP_SAMPLE_DEFECT_TYPE where defect_type = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.renameTo1</id>
+			<text>update {schema}APP_SAMPLE_DEFECT_TYPE set defect_type =? where defect_type =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.renameTo2</id>
+			<text>update {schema}APP_SAMPLE_DEFECT_ID set defect_type =? where defect_type =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.renameTo3</id>
+			<text>update {schema}APP_PALLET_SAMPLES set defect_type =? where defect_type =?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.update</id>
+			<text>update {schema}APP_SAMPLE_DEFECT_TYPE set description=?,long_description=?,output_column=?,leaking_data=?,non_leaking_data=?,enabled=? where defect_type=?</text>
+		</statement>
+		<statement>
+			<id>JDBSampleDefectType.isValidDefect</id>
+			<text>select * from {schema}APP_SAMPLE_DEFECT_TYPE where defect_type = ?</text>
+		</statement>
+		
+		<?JDBSuppliers ?>
+		<statement>
+			<id>JDBSuppliers.getSupplierProperties</id>
+			<text>select * from {schema}APP_SUPPLIER where supplier_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.getSuppliers</id>
+			<text>select * from {schema}APP_SUPPLIER order by supplier_id</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.create</id>
+			<text>insert into {schema}APP_SUPPLIER (supplier_id,supplier_type,description,enabled) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.delete</id>
+			<text>delete from {schema}APP_SUPPLIER where supplier_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.renameTo1</id>
+			<text>update {schema}APP_SUPPLIER set supplier_id =? where supplier_id =?</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.renameTo2</id>
+			<text>update {schema}APP_PALLET_EXTENSION set supplier_id1 =? where supplier_id1 =?</text>
+		</statement>	
+		<statement>
+			<id>JDBSuppliers.update</id>
+			<text>update {schema}APP_SUPPLIER set supplier_type=?,description=?,enabled=? where supplier_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBSuppliers.isValidSupplier</id>
+			<text>select * from {schema}APP_SUPPLIER where supplier_id = ?</text>
+		</statement>
+
 	</jdbcDriver>
 </SQL>

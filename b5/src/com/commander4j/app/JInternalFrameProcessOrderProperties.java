@@ -180,6 +180,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 		} else
 		{
 
+			jComboBoxPalletStatus.setSelectedItem("Ready");
 			jTextFieldLocation.setText(ctrl.getKeyValue("DEFAULT_LOCATION"));
 			try
 			{

@@ -114,4 +114,4 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib_aux/xmlgraphics-commons-2.2.jar 
  lib/mail/javax.activation-1.2.0.jar 
  lib/mail/javax.mail.jar 
- lib/serial/jSerialComm-2.8.5.jar 
+ lib/serial/jSerialComm-2.9.0.jar 

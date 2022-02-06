@@ -276,7 +276,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 			matCustData.setMaterial(lmaterial);
 			matCustData.setCustomerID("SELF");
 			matCustData.setDataID("PRODUCT_GROUP");
-			;
+
 
 			if (matCustData.getMaterialCustomerDataProperties())
 			{
