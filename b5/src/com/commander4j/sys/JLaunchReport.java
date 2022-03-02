@@ -164,6 +164,24 @@ public class JLaunchReport {
 		ctrl.getProperties("PLANT");
 		stdparams.put("PLANT", ctrl.getKeyValue());
 		stdparams.put("SUBREPORT_DIR", System.getProperty("user.dir") + File.separator + "reports" + File.separator);
+
+		String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
+		
+		if (driver.equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
+		{
+			stdparams.put("p_database","sqlserver");
+		}
+
+		if (driver.equals("oracle.jdbc.driver.OracleDriver"))
+		{
+			stdparams.put("p_database","oracle");
+		}
+
+		if (driver.equals("com.mysql.cj.jdbc.Driver"))
+		{
+			stdparams.put("p_database","mysql");
+		}
+		
 		System.getProperty("user.dir");
 		ctrl.getProperties("LABEL_HEADER_COMMENT");
 

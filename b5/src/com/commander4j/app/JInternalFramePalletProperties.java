@@ -56,6 +56,7 @@ import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBLocation;
 import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBMaterialBatch;
+import com.commander4j.db.JDBMaterialUom;
 import com.commander4j.db.JDBPallet;
 import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.gui.JButton4j;
@@ -92,6 +93,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 	private JButton4j btn_Location;
 	private JButton4j btn_MaterialBatch;
 	private JButton4j btn_ProcessOrder;
+	private JButton4j btn_RefreshProcessOrder;
 	private JCalendarButton calendarButtonexpiryDate;
 	private JCalendarButton calendarButtonproductionDate;
 	private String expiryMode;
@@ -146,8 +148,8 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 	private JLabel4j_std lbl_Variant;
 	private String lsscc;
 	private JDBMaterial material = new JDBMaterial(Common.selectedHostID, Common.sessionID);
+	private JDBMaterialUom materialUom = new JDBMaterialUom(Common.selectedHostID, Common.sessionID);
 	private JDBLocation location = new JDBLocation(Common.selectedHostID, Common.sessionID);
-
 
 	private JDBMaterialBatch materialBatch = new JDBMaterialBatch(Common.selectedHostID, Common.sessionID);
 	private JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
@@ -175,7 +177,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 
 	private void customerIDChanged(String cust)
 	{
-		
+
 		pallet.setCustomerID(cust);
 
 		refresh();
@@ -184,9 +186,9 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 
 	private void equipmentChanged()
 	{
-		
+
 		pallet.setEquipmentType(fld_Equipment.getText());
-		
+
 		refresh();
 
 	}
@@ -442,6 +444,56 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 								pallet.setProcessOrder(JLaunchLookup.dlgResult);
 
 								processOrderChanged(JLaunchLookup.dlgResult);
+							}
+						}
+					});
+				}
+				{
+					btn_RefreshProcessOrder = new JButton4j(Common.icon_refresh_16x16);
+					btn_RefreshProcessOrder.setToolTipText(lang.get("btn_Refresh"));
+					jDesktopPane1.add(btn_RefreshProcessOrder);
+					btn_RefreshProcessOrder.setBounds(287, 33, 21, 21);
+					btn_RefreshProcessOrder.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER"));
+
+					btn_RefreshProcessOrder.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+							if (processOrder.getProcessOrderProperties(fld_ProcessOrder.getText()) == true)
+							{
+								if (material.getMaterialProperties(processOrder.getMaterial()) == true)
+								{
+									if (materialUom.getMaterialUomProperties(processOrder.getMaterial(), processOrder.getRequiredUom())==true)
+									{
+										
+										fld_ProcessOrderDescription.setText(processOrder.getDescription());
+										
+										pallet.setMaterial(processOrder.getMaterial());
+										fld_Material.setText(processOrder.getMaterial());
+										lbl_MaterialDescription.setText(material.getDescription());
+										
+										pallet.setCustomerID(processOrder.getCustomerID());
+										fld_Customer.setText(processOrder.getCustomerID());
+										
+										pallet.setUom(processOrder.getRequiredUom());
+										fld_UOM.setText(pallet.getUom());
+										
+										pallet.setEAN(materialUom.getEan());
+										fld_EAN.setText(pallet.getEAN());
+										
+										pallet.setVariant(materialUom.getVariant());
+										fld_Variant.setText(pallet.getVariant());	
+										
+										pallet.setCustomerID(processOrder.getCustomerID());
+										fld_Customer.setText(pallet.getCustomerID());
+										
+										pallet.calcBaseUOMQuantity(pallet.getUom(), pallet.getQuantity());
+										
+										fld_Layers.setText(String.valueOf(pallet.calcLayersOnPallet(pallet.getBaseQuantity())));
+										pallet.setLayersOnPallet(pallet.calcLayersOnPallet(pallet.getBaseQuantity()));
+									}
+									
+								}
 							}
 						}
 					});
@@ -750,7 +802,6 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 				lbl_Equipment.setText(lang.get("lbl_Material_Equipment_Type"));
 				jDesktopPane1.add(lbl_Equipment);
 
-
 				fld_Equipment.setBounds(147, 472, 126, 21);
 				fld_Equipment.setEnabled(false);
 				jDesktopPane1.add(fld_Equipment);
@@ -809,7 +860,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 		pallet.setStatus(fld_PalletStatus.getSelectedItem().toString());
 		refresh();
 	}
-	
+
 	private void materialChanged(String mater)
 	{
 		pallet.setMaterial(mater);
@@ -944,13 +995,13 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 		}
 
 		fld_Customer.setText(pallet.getCustomerID());
-		
+
 		fld_Confirmed.setSelected(pallet.isConfirmed());
 
 		fld_DespatchNo.setText(pallet.getDespatchNo());
-				
+
 		fld_Equipment.setText(pallet.getEquipmentType());
-		
+
 		fld_Layers.setText(String.valueOf(pallet.getLayersOnPallet()));
 
 		fld_PalletStatus.setSelectedItem(pallet.getStatus());

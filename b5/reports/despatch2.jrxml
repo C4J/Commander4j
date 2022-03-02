@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Despatch2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="b00413c5-60ef-4def-a9dd-a98e221fdead">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[IkFQUF9ERVNQQVRDSCIgLDE5NywxNSw0MDg0YjIwZC05ODM0LTQyZTctOWE3My1hNzhjMGU4NTIw
+NjA7IkFQUF9KT1VSTkVZIiAsMTUsNjksMGNlMDMwYWQtYTI3NS00YjdmLWJkZDctMjk4MmI0Mjlk
+MDRlOw==]]>
+	</property>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="244"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="750"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQL Server"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
-	<parameter name="p_despatch_no" class="java.lang.String">
-		<defaultValueExpression><![CDATA["WK31417"]]></defaultValueExpression>
+	<parameter name="p_despatch_no" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["WK33259"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<parameter name="COMPANY_NAME" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["My Company Name"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="p_database" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["mysql"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT APP_DESPATCH.*,APP_JOURNEY.TIMESLOT FROM APP_DESPATCH LEFT JOIN APP_JOURNEY ON  APP_JOURNEY.JOURNEY_REF = APP_DESPATCH.JOURNEY_REF WHERE APP_DESPATCH.DESPATCH_NO =  $P{p_despatch_no}]]>
@@ -476,7 +483,7 @@
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<returnValue subreportVariable="Variable_2" toVariable="Variable_2"/>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "despatch2_detail_"+LOWER( $F{STATUS})+".jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "despatch2_detail_"+LOWER( $F{STATUS})+"_"+LOWER( $P{p_database})+".jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="47">
