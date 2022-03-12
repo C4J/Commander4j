@@ -174,7 +174,21 @@ public class parseFunction
 					target = params[0];
 					start = Integer.valueOf(params[1].toString());
 					end = Integer.valueOf(params[2].toString());
-					result = target.substring(start - 1, start + end - 1);
+					size = target.length();
+
+					if (start > size)
+					{
+						result = "";
+					}
+					else
+					{
+						while ((start + end - 1) > size)
+						{
+							end--;
+						}
+
+						result = target.substring(start - 1, start + end - 1);
+					}
 				}
 				else
 				{
@@ -539,7 +553,8 @@ public class parseFunction
 
 						if (dateOfManufacture == null)
 						{
-							// If the date is null then return a string of spaces the same size as the format spec.
+							// If the date is null then return a string of
+							// spaces the same size as the format spec.
 							result = JUtility.padSpace(params[0].length());
 						}
 						else
