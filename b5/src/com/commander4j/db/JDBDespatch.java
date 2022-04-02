@@ -1198,6 +1198,7 @@ public class JDBDespatch
 			setUserID(JUtility.replaceNullStringwithBlank(rs.getString("user_id")));
 			setJourneyRef(JUtility.replaceNullStringwithBlank(rs.getString("journey_ref")));
 			setJourneyRefOLD(JUtility.replaceNullStringwithBlank(rs.getString("journey_ref")));
+			setTotalEquipment(rs.getInt("total_equipment"));
 		}
 		catch (SQLException e)
 		{

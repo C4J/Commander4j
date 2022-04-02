@@ -121,7 +121,8 @@ public class OutgoingEquipmentTracking
 			gmh.setInterfaceDirection(inter.getInterfaceDirection());
 			gmh.setMessageDate(JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime()));
 
-			if (desp.getDespatchPalletCount()==0)
+			
+			if ((desp.getDespatchPalletCount()==0) & (desp.getTotalEquipment()==0))
 			{
 				setErrorMessage("Message Suppressed - 0 pallets assigned to despatch ["+desp.getDespatchNo()+"]");
 				suppressMessage = true;			

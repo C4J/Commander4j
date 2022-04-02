@@ -28,16 +28,15 @@ package com.commander4j.thread;
  */
 
 import java.io.File;
-import java.io.FileFilter;
-import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
-import org.apache.commons.io.comparator.LastModifiedFileComparator;
-import org.apache.commons.io.filefilter.FileFileFilter;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
+
 public class InboundMessageCollectionThread extends Thread
 {
 	public boolean allDone = false;
@@ -49,9 +48,7 @@ public class InboundMessageCollectionThread extends Thread
 	private String inputPath;
 	private int inputPathCount = 0;
 	private final Logger logger = Logger.getLogger(InboundMessageCollectionThread.class);
-	private LinkedList<String> filenames = new LinkedList<String>();
-	private File[] chld;
-	private String fileName;
+
 	private JFileIO mover = new JFileIO();
 	public static boolean recoveringFiles = false;
 
@@ -63,37 +60,15 @@ public class InboundMessageCollectionThread extends Thread
 		inputPathCount = inputPathList.size();
 	}
 
-	private LinkedList<String> getInputFilename(String inputPath)
-	{
-		LinkedList<String> Result = new LinkedList<String>();
-		File dir;
-
-		dir = new File(inputPath);
-
-		chld = dir.listFiles((FileFilter) FileFileFilter.INSTANCE);
-		
-		if (chld == null)
-		{
-			logger.debug("Specified directory does not exist or is not a directory. [" + inputPath + "]");
-		}
-		else
-		{
-			Arrays.sort(chld, LastModifiedFileComparator.LASTMODIFIED_COMPARATOR);
-			for (int i = 0; i < chld.length; i++)
-			{
-				fileName = chld[i].getName();
-				if (fileName.toLowerCase().endsWith(".xml"))
-				{
-					Result.addLast(fileName);
-				}
-			}
-		}
-
-		return Result;
-	}
-
 	public void run()
 	{
+		File dir;
+		String[] extensions =
+		{ "xml", "XML" };
+		List<File> filenames;
+		File sizeFile;
+		long size;
+
 		while (true)
 		{
 			try
@@ -107,7 +82,7 @@ public class InboundMessageCollectionThread extends Thread
 
 			if (allDone)
 			{
-				logger.debug("fileCollectorThread closed.");
+				logger.debug("InboundMessageCollectionThread closed.");
 				return;
 			}
 
@@ -115,7 +90,8 @@ public class InboundMessageCollectionThread extends Thread
 			{
 
 				inputPath = inputPathList.get(x) + java.io.File.separator;
-				filenames = getInputFilename(inputPathList.get(x));
+				dir = new File(inputPathList.get(x));
+				filenames = (List<File>) FileUtils.listFiles(dir, extensions, false);
 
 				if (filenames.size() > 0)
 				{
@@ -123,17 +99,30 @@ public class InboundMessageCollectionThread extends Thread
 					recoveringFiles = true;
 					for (int i = filenames.size() - 1; i >= 0; i--)
 					{
-						inputFile = inputPath + filenames.get(i);
-						renamedFile = inputPath + filenames.get(i).replaceAll(".xml", ".lmx");
+						inputFile = inputPath + filenames.get(i).getName();
 
-						renamedOutputFile = Common.base_dir + java.io.File.separator + "xml" + java.io.File.separator + "interface" + java.io.File.separator + "recovery" + java.io.File.separator + filenames.get(i).replaceAll(".xml", ".lmx");
-						outputFile = Common.base_dir + java.io.File.separator + "xml" + java.io.File.separator + "interface" + java.io.File.separator + "recovery" + java.io.File.separator + filenames.get(i);
-
-						//If file already exists delete it.
+						sizeFile = new File(inputFile);
+						size = FileUtils.sizeOf(sizeFile);
 						
-						mover.move_File(inputFile, renamedFile);
-						mover.move_File(renamedFile, renamedOutputFile);
-						mover.move_File(renamedOutputFile, outputFile);
+						if (size > 0)
+						{
+
+							renamedFile = inputPath + filenames.get(i).getName().replaceAll(".xml", ".lmx");
+
+							renamedOutputFile = Common.base_dir + java.io.File.separator + "xml" + java.io.File.separator + "interface" + java.io.File.separator + "recovery" + java.io.File.separator + filenames.get(i).getName().replaceAll(".xml", ".lmx");
+							outputFile = Common.base_dir + java.io.File.separator + "xml" + java.io.File.separator + "interface" + java.io.File.separator + "recovery" + java.io.File.separator + filenames.get(i).getName();
+
+							// If file already exists delete it.
+
+							logger.debug("Rename " + inputFile + " to " + renamedFile);
+							mover.move_File(inputFile, renamedFile);
+
+							logger.debug("Move " + renamedFile + " to " + renamedOutputFile);
+							mover.move_File(renamedFile, renamedOutputFile);
+
+							logger.debug("Rename " + renamedOutputFile + " to " + outputFile);
+							mover.move_File(renamedOutputFile, outputFile);
+						}
 
 						if (allDone)
 						{
@@ -143,6 +132,7 @@ public class InboundMessageCollectionThread extends Thread
 					}
 					recoveringFiles = false;
 				}
+
 			}
 		}
 	}
