@@ -22,15 +22,15 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/db/mssql-jdbc-9.2.1.jre11.jar 
  lib/db/mysql-connector-java-8.0.26.jar 
  lib/db/ojdbc11.jar 
- lib/jasper/jasperreports-6.18.1.jar 
- lib/jasper/jasperreports-annotation-processors-6.18.1.jar 
- lib/jasper/jasperreports-chart-customizers-6.18.1.jar 
- lib/jasper/jasperreports-chart-themes-6.18.1.jar 
- lib/jasper/jasperreports-custom-visualization-6.18.1.jar 
- lib/jasper/jasperreports-fonts-6.18.1.jar 
- lib/jasper/jasperreports-functions-6.18.1.jar 
- lib/jasper/jasperreports-javaflow-6.18.1.jar 
- lib/jasper/jasperreports-metadata-6.18.1.jar 
+ lib/jasper/jasperreports-6.19.1.jar 
+ lib/jasper/jasperreports-annotation-processors-6.19.1.jar 
+ lib/jasper/jasperreports-chart-customizers-6.19.1.jar 
+ lib/jasper/jasperreports-chart-themes-6.19.1.jar 
+ lib/jasper/jasperreports-custom-visualization-6.19.1.jar 
+ lib/jasper/jasperreports-fonts-6.19.1.jar 
+ lib/jasper/jasperreports-functions-6.19.1.jar 
+ lib/jasper/jasperreports-javaflow-6.19.1.jar 
+ lib/jasper/jasperreports-metadata-6.19.1.jar 
  lib/jasperlib/SparseBitSet-1.2.jar 
  lib/jasperlib/ant-1.10.11.jar 
  lib/jasperlib/antlr-2.7.5.jar 
@@ -68,7 +68,7 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib/hibernate-core-5.4.24.Final.jar 
  lib/jasperlib/httpclient-4.5.13.jar 
  lib/jasperlib/httpcore-4.4.12.jar 
- lib/jasperlib/icu4j-57.1.jar 
+ lib/jasperlib/icu4j-70.1.jar 
  lib/jasperlib/itext-2.1.7.js9.jar 
  lib/jasperlib/jackson-annotations-2.13.1.jar 
  lib/jasperlib/jackson-core-2.13.1.jar 
@@ -82,13 +82,13 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib/javax.xml.soap-api-1.4.0.jar 
  lib/jasperlib/jcommon-1.0.23.jar 
  lib/jasperlib/jfreechart-1.5.0.jar 
- lib/jasperlib/log4j-api-2.17.1.jar 
- lib/jasperlib/log4j-core-2.17.1.jar 
- lib/jasperlib/log4j-jcl-2.17.1.jar 
+ lib/jasperlib/log4j-api-2.17.2.jar 
+ lib/jasperlib/log4j-core-2.17.2.jar 
+ lib/jasperlib/log4j-jcl-2.17.2.jar 
  lib/jasperlib/lucene-analyzers-common-7.3.0.jar 
  lib/jasperlib/lucene-core-7.3.0.jar 
  lib/jasperlib/lucene-queryparser-7.3.0.jar 
- lib/jasperlib/metadata-extractor-2.16.0.jar 
+ lib/jasperlib/metadata-extractor-2.17.0.jar 
  lib/jasperlib/mondrian-3.1.1.12687.jar 
  lib/jasperlib/net.tascalate.asmx-7.0.1.jar 
  lib/jasperlib/net.tascalate.asmx.analysis-7.0.1.jar 
