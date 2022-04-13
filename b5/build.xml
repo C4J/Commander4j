@@ -38,7 +38,7 @@
         <pathelement location="lib/app/opencsv-5.5.2.jar"/>
         <pathelement location="lib/app/jackcess-2.1.9.jar"/>
         <pathelement location="lib/app/commons-text-1.9.jar"/>
-        <pathelement location="lib/app/commons-io-2.6.jar"/>
+        <pathelement location="lib/app/commons-io-2.8.0.jar"/>
         <pathelement location="lib/app/commons-lang3-3.12.0.jar"/>
         <pathelement location="lib/jasperlib/lucene-analyzers-common-7.3.0.jar"/>
         <pathelement location="lib/jasperlib/lucene-core-7.3.0.jar"/>
