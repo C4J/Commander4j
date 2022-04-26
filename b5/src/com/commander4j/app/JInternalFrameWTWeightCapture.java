@@ -189,7 +189,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JDBWTSamplePoint samplePointdb = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
 	private JDBWTTNE tnedb = new JDBWTTNE(Common.selectedHostID, Common.sessionID);
 	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
-	//private JDBWTScale scaledb = new JDBWTScale(Common.selectedHostID, Common.sessionID);
+	// private JDBWTScale scaledb = new JDBWTScale(Common.selectedHostID,
+	// Common.sessionID);
 	private Scale scale;
 
 	private Integer sampleSequence = 0;
@@ -298,16 +299,20 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private void shutdown()
 	{
 
-		scale.shutdown(false);
-		
-		while (scale.isAlive())
+		if (scale != null)
 		{
-			try
+
+			scale.shutdown(false);
+
+			while (scale.isAlive())
 			{
-				Thread.sleep(100);
-			}
-			catch (InterruptedException e)
-			{
+				try
+				{
+					Thread.sleep(100);
+				}
+				catch (InterruptedException e)
+				{
+				}
 			}
 		}
 
@@ -1143,17 +1148,17 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							updateGraph();
 						}
 					});
-					
+
 					if (t2_count > 0)
 					{
-						JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T2_p1")+lang.get("err_T1_p2"));
+						JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T2_p1") + lang.get("err_T1_p2"));
 
 					}
 					else
 					{
 						if (t1_count > 0)
 						{
-							JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T1_p1")+lang.get("err_T1_p2"));
+							JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T1_p1") + lang.get("err_T1_p2"));
 						}
 					}
 
@@ -1521,7 +1526,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				tarelUom = matgroupdb.getTareWeightUOM();
 				lowerLimit = matgroupdb.getLowerLimit();
 				upperLimit = matgroupdb.getUpperLimit();
-				
+
 				lSampleSize = matgroupdb.getSamplesRequired();
 
 				fld_SampleSize.setText(String.valueOf(lSampleSize));
@@ -1778,26 +1783,25 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		if (result == true)
 		{
 			scale = new Scale(Common.selectedHostID, Common.sessionID);
-			
+
 			class callback implements ScaleCallbackInteface
 			{
 
 				@Override
 				public void setWeight(String weight)
 				{
-					System.out.println("Parent method : "+weight);
+					System.out.println("Parent method : " + weight);
 					logSampleWeight(weight, "G");
-					
+
 				}
-				
+
 			}
 			callback cb = new callback();
-			
+
 			scale.setCallbackInterface(cb);
-			
+
 			scale.start();
-			
-			
+
 		}
 
 		updateSamplePoint(samplePoint, result);

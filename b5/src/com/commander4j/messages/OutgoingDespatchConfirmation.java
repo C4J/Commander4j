@@ -46,7 +46,9 @@ import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceLog;
 import com.commander4j.db.JDBInterfaceRequest;
 import com.commander4j.db.JDBPalletHistory;
+import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBControl;
+import com.commander4j.db.JDBCustomer;
 import com.commander4j.db.JDBUom;
 import com.commander4j.email.JeMailOutGoingMessage;
 import com.commander4j.sys.Common;
@@ -103,6 +105,9 @@ public class OutgoingDespatchConfirmation
 		GenericMessageHeader gmh = new GenericMessageHeader();
 		JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 		JDBUom uoml = new JDBUom(getHostID(), getSessionID());
+		JDBProcessOrder order = new JDBProcessOrder(getHostID(), getSessionID());
+		JDBCustomer cust = new JDBCustomer(getHostID(), getSessionID());
+		
 		String batchDateMode = ctrl.getKeyValue("EXPIRY DATE MODE");
 		
 		inter.getInterfaceProperties("Despatch Confirmation", "Output");
@@ -507,6 +512,30 @@ public class OutgoingDespatchConfirmation
 
 							Element batchStatus = addElement(document, "batchStatus", palhist.getPallet().getMaterialBatchStatus());
 							pallet.appendChild(batchStatus);
+							
+							
+							if (order.getProcessOrderProperties(palhist.getPallet().getProcessOrder()) == true)
+							{
+								Element customer = addElement(document, "customerID", order.getCustomerID());
+								pallet.appendChild(customer);
+								
+								if (cust.getCustomerProperties(order.getCustomerID())==true)
+								{
+
+									Element batchOverride = addElement(document, "customerBatchOverride",cust.getCustomerBatchOverride());
+									pallet.appendChild(batchOverride);
+									
+									Element batchFormat = addElement(document, "customerBatchFormat",cust.getCustomerBatchFormat());
+									pallet.appendChild(batchFormat);
+									
+								}
+							}
+							else
+							{
+								Element customer = addElement(document, "customerID", "");
+								pallet.appendChild(customer);
+							}
+							
 
 							contents.appendChild(pallet);
 

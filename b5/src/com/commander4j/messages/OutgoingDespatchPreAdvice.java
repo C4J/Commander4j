@@ -39,11 +39,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
 import com.commander4j.db.JDBControl;
+import com.commander4j.db.JDBCustomer;
 import com.commander4j.db.JDBDespatch;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceLog;
 import com.commander4j.db.JDBInterfaceRequest;
 import com.commander4j.db.JDBPalletHistory;
+import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBUom;
 import com.commander4j.email.JeMailOutGoingMessage;
 import com.commander4j.sys.Common;
@@ -98,6 +100,9 @@ public class OutgoingDespatchPreAdvice
 		JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 		JDBUom uoml = new JDBUom(getHostID(), getSessionID());
 		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
+		JDBProcessOrder order = new JDBProcessOrder(getHostID(), getSessionID());
+		JDBCustomer cust = new JDBCustomer(getHostID(), getSessionID());
+		
 		String batchDateMode = ctrl.getKeyValue("EXPIRY DATE MODE");
 		
 		inter.getInterfaceProperties("Despatch Pre Advice", "Output");
@@ -116,6 +121,13 @@ public class OutgoingDespatchPreAdvice
 		gmh.setMessageInformation("Despatch=" + desp.getDespatchNo());
 		gmh.setInterfaceDirection(inter.getInterfaceDirection());
 		gmh.setMessageDate(JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime()));
+		
+
+		if (desp.getDespatchPalletCount()==0)
+		{
+			setErrorMessage("Message Suppressed - 0 pallets assigned to despatch");
+			suppressMessage = true;			
+		}
 
 		if (sourceGLN.length() == 0)
 		{
@@ -194,14 +206,52 @@ public class OutgoingDespatchPreAdvice
 					Element locationFrom = addElement(document, "fromLocation", desp.getLocationIDFrom());
 					despatchConfirmation.appendChild(locationFrom);
 
+					Element locationFromPlant = addElement(document, "fromPlant", desp.getLocationDBFrom().getPlant());
+					despatchConfirmation.appendChild(locationFromPlant);
+					
+					Element locationFromWarehouse = addElement(document, "fromWarehouse", desp.getLocationDBFrom().getWarehouse());
+					despatchConfirmation.appendChild(locationFromWarehouse);
+					
+					Element locationFromStorageSection = addElement(document, "fromStorageSection", desp.getLocationDBFrom().getStorageSection());
+					despatchConfirmation.appendChild(locationFromStorageSection);
+					
+					Element locationFromStorageType = addElement(document, "fromStorageType", desp.getLocationDBFrom().getStorageType());
+					despatchConfirmation.appendChild(locationFromStorageType);
+					
+					Element locationFromStorageBin = addElement(document, "fromStorageBin", desp.getLocationDBFrom().getStorageBin());
+					despatchConfirmation.appendChild(locationFromStorageBin);		
+					
+					
+					
 					Element locationFromGLN = addElement(document, "fromGLN", desp.getLocationDBFrom().getGLN());
 					despatchConfirmation.appendChild(locationFromGLN);
+
+					Element locationFromStorageLocation = addElement(document, "fromStorageLocation", desp.getLocationDBFrom().getStorageLocation());
+					despatchConfirmation.appendChild(locationFromStorageLocation);
 
 					Element locationTo = addElement(document, "toLocation", desp.getLocationIDTo());
 					despatchConfirmation.appendChild(locationTo);
 
+					Element locationToPlant = addElement(document, "toPlant", desp.getLocationDBTo().getPlant());
+					despatchConfirmation.appendChild(locationToPlant);
+					
+					Element locationToWarehouse = addElement(document, "toWarehouse", desp.getLocationDBTo().getWarehouse());
+					despatchConfirmation.appendChild(locationToWarehouse);	
+					
+					Element locationToStorageSection = addElement(document, "toStorageSection", desp.getLocationDBTo().getStorageSection());
+					despatchConfirmation.appendChild(locationToStorageSection);
+					
+					Element locationToStorageType = addElement(document, "toStorageType", desp.getLocationDBTo().getStorageType());
+					despatchConfirmation.appendChild(locationToStorageType);
+					
+					Element locationToStorageBin = addElement(document, "toStorageBin", desp.getLocationDBTo().getStorageBin());
+					despatchConfirmation.appendChild(locationToStorageBin);						
+					
 					Element locationToGLN = addElement(document, "toGLN", desp.getLocationDBTo().getGLN());
 					despatchConfirmation.appendChild(locationToGLN);
+
+					Element locationToStorageLocation = addElement(document, "toStorageLocation", desp.getLocationDBTo().getStorageLocation());
+					despatchConfirmation.appendChild(locationToStorageLocation);
 
 					Element contents = (Element) document.createElement("contents");
 					despatchConfirmation.appendChild(contents);
@@ -225,6 +275,9 @@ public class OutgoingDespatchPreAdvice
 							Element sscc = addElement(document, "SSCC", palhist.getPallet().getSSCC());
 							pallet.appendChild(sscc);
 
+							Element processOrder = addElement(document, "processOrder", palhist.getPallet().getProcessOrder());
+							pallet.appendChild(processOrder);
+							
 							Element material = addElement(document, "material", palhist.getPallet().getMaterial());
 							pallet.appendChild(material);
 							
@@ -272,6 +325,28 @@ public class OutgoingDespatchPreAdvice
 
 							Element batchStatus = addElement(document, "batchStatus", palhist.getPallet().getMaterialBatchStatus());
 							pallet.appendChild(batchStatus);
+							
+							if (order.getProcessOrderProperties(palhist.getPallet().getProcessOrder()) == true)
+							{
+								Element customer = addElement(document, "customerID", order.getCustomerID());
+								pallet.appendChild(customer);
+								
+								if (cust.getCustomerProperties(order.getCustomerID())==true)
+								{
+
+									Element batchOverride = addElement(document, "customerBatchOverride",cust.getCustomerBatchOverride());
+									pallet.appendChild(batchOverride);
+									
+									Element batchFormat = addElement(document, "customerBatchFormat",cust.getCustomerBatchFormat());
+									pallet.appendChild(batchFormat);
+									
+								}
+							}
+							else
+							{
+								Element customer = addElement(document, "customerID", "");
+								pallet.appendChild(customer);
+							}
 
 							contents.appendChild(pallet);
 
