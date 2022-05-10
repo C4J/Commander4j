@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="9.0.6" transformSequenceNumber="9">
-  <directoryPresets config="./images/Launcher" />
+  <directoryPresets config="./images/icons/CMD4j_Icons" />
   <application name="Commander4j" applicationId="6923-0356-2321-8111" mediaDir="../../../Distribution/java11/b5Commander4j" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="9.41" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="11" javaMaxVersion="11" jdkMode="jdk" jdkName="JDK 11.0">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
@@ -13,7 +13,7 @@
         <language id="es" />
       </additionalLanguages>
     </languages>
-    <jreBundles jdkProviderId="Zulu" release="11/11.0.14.1" />
+    <jreBundles jdkProviderId="Zulu" release="11/11.0.15" />
   </application>
   <files keepModificationTimes="true" missingFilesStrategy="error" globalExcludeSuffixes="dirClean.ok,.DS_Store" preserveSymlinks="false">
     <mountPoints>
@@ -160,8 +160,8 @@
     </components>
   </files>
   <launchers>
-    <launcher name="Setup4j" id="40" icnsFile="./images/Launcher/Setup_Icon.icns">
-      <executable name="Setup4j" iconSet="true" iconFile="./images/Launcher/Setup_Icon.ico" executableDir="." executableMode="gui" executionLevel="highestAvailable" dpiAware="false" />
+    <launcher name="Setup4j" id="40" icnsFile="./images/icons/Setup4j_Icons/MyIcon.icns">
+      <executable name="Setup4j" iconSet="true" iconFile="./images/icons/Setup4j_Icons/icon.ico" executableDir="." executableMode="gui" executionLevel="highestAvailable" dpiAware="false" />
       <java mainClass="com.commander4j.start.Init" vmParameters="-Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Setup">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -172,14 +172,15 @@
       <macStaticAssociationActions mode="selected" />
       <vmOptionsFile mode="none" />
       <iconImageFiles>
-        <file path="./images/Launcher/Setup_Icon (PNG)/16x16.png" />
-        <file path="./images/Launcher/Setup_Icon (PNG)/32x32.png" />
-        <file path="./images/Launcher/Setup_Icon (PNG)/48x48.png" />
-        <file path="./images/Launcher/Setup_Icon (PNG)/128x128.png" />
+        <file path="./images/icons/Setup4j_Icons/MyIcon.iconset/icon_16x16.png" />
+        <file path="./images/icons/Setup4j_Icons/MyIcon.iconset/icon_32x32.png" />
+        <file path="./images/icons/Setup4j_Icons/MyIcon.iconset/icon_48x48.png" />
+        <file path="./images/icons/Setup4j_Icons/MyIcon.iconset/icon_128x128.png" />
+        <file path="./images/icons/Setup4j_Icons/MyIcon.iconset/icon_256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="Commander4j" id="356" icnsFile="./images/Launcher/CMD_Icon.icns">
-      <executable name="Commander4j" iconSet="true" iconFile="./images/Launcher/CMD_Icon.ico" executableDir="." executableMode="gui" dpiAware="false" />
+    <launcher name="Commander4j" id="356" icnsFile="./images/icons/CMD4j_Icons/MyIcon.icns">
+      <executable name="Commander4j" iconSet="true" iconFile="./images/icons/CMD4j_Icons/icon.ico" executableDir="." executableMode="gui" dpiAware="false" />
       <java mainClass="com.commander4j.start.Init" vmParameters="-Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Desktop">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -190,15 +191,15 @@
       <macStaticAssociationActions mode="selected" />
       <vmOptionsFile mode="none" />
       <iconImageFiles>
-        <file path="./images/Launcher/CMD_Icon (PNG)/16x16.png" />
-        <file path="./images/Launcher/CMD_Icon (PNG)/32x32.png" />
-        <file path="./images/Launcher/CMD_Icon (PNG)/48x48.png" />
-        <file path="./images/Launcher/CMD_Icon (PNG)/128x128.png" />
-        <file path="./images/Launcher/CMD_Icon (PNG)/256x256.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_16x16.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_32x32.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_48x48.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_128x128.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="Clone4j" id="492" icnsFile="./images/Launcher/Clone_Icon.icns">
-      <executable name="Clone4j" iconSet="true" iconFile="./images/Launcher/Clone_Icon.ico" executableDir="." executableMode="gui" executionLevel="highestAvailable" dpiAware="false" />
+    <launcher name="Clone4j" id="492" icnsFile="./images/icons/Clone4j_Icons/MyIcon.icns">
+      <executable name="Clone4j" iconSet="true" iconFile="./images/icons/Clone4j_Icons/icon.ico" executableDir="." executableMode="gui" executionLevel="highestAvailable" dpiAware="false" />
       <java mainClass="com.commander4j.start.Init" vmParameters="-Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Clone">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -209,15 +210,15 @@
       <macStaticAssociationActions mode="selected" />
       <vmOptionsFile mode="none" />
       <iconImageFiles>
-        <file path="./images/Launcher/Clone_Icon (PNG)/16x16.png" />
-        <file path="./images/Launcher/Clone_Icon (PNG)/32x32.png" />
-        <file path="./images/Launcher/Clone_Icon (PNG)/48x48.png" />
-        <file path="./images/Launcher/Clone_Icon (PNG)/128x128.png" />
-        <file path="./images/Launcher/Clone_Icon (PNG)/256x256.png" />
+        <file path="./images/icons/Clone4j_Icons/MyIcon.iconset/icon_16x16.png" />
+        <file path="./images/icons/Clone4j_Icons/MyIcon.iconset/icon_32x32.png" />
+        <file path="./images/icons/Clone4j_Icons/MyIcon.iconset/icon_48x48.png" />
+        <file path="./images/icons/Clone4j_Icons/MyIcon.iconset/icon_128x128.png" />
+        <file path="./images/icons/Clone4j_Icons/MyIcon.iconset/icon_256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="Service4j" id="685" excludeFromMenu="true" icnsFile="./images/Launcher/iFace_Icon.icns">
-      <executable name="Service4j" iconSet="true" iconFile="./images/Launcher/iFace_Icon.ico" executableDir="." redirectStderr="false" executableMode="service" executionLevel="requireAdministrator" dpiAware="false" />
+    <launcher name="Service4j" id="685" excludeFromMenu="true" icnsFile="./images/icons/iFace4j_Icons/MyIcon.icns">
+      <executable name="Service4j" iconSet="true" iconFile="./images/icons/iFace4j_Icons/icon.ico" executableDir="." redirectStderr="false" executableMode="service" executionLevel="requireAdministrator" dpiAware="false" />
       <java mainClass="com.commander4j.service.Interface4j" vmParameters="-Dlog4j.configuration=file:./xml/log/log4j.xml  -Dfile.encoding=Cp1252" arguments="Interface service">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -228,15 +229,15 @@
       <macStaticAssociationActions mode="selected" />
       <vmOptionsFile mode="none" />
       <iconImageFiles>
-        <file path="./images/Launcher/iFace_Icon (PNG)/16x16.png" />
-        <file path="./images/Launcher/iFace_Icon (PNG)/32x32.png" />
-        <file path="./images/Launcher/iFace_Icon (PNG)/48x48.png" />
-        <file path="./images/Launcher/iFace_Icon (PNG)/128x128.png" />
-        <file path="./images/Launcher/iFace_Icon (PNG)/256x256.png" />
+        <file path="./images/icons/iFace4j_Icons/MyIcon.iconset/icon_16x16.png" />
+        <file path="./images/icons/iFace4j_Icons/MyIcon.iconset/icon_32x32.png" />
+        <file path="./images/icons/iFace4j_Icons/MyIcon.iconset/icon_48x48.png" />
+        <file path="./images/icons/iFace4j_Icons/MyIcon.iconset/icon_128x128.png" />
+        <file path="./images/icons/iFace4j_Icons/MyIcon.iconset/icon_256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="Interface4j" id="778" icnsFile="./images/Launcher/iFace_Icon.icns">
-      <executable name="Interface4j" iconSet="true" iconFile="./images/Launcher/iFace_Icon.ico" executableDir="." redirectStderr="false" executableMode="console" dpiAware="false" />
+    <launcher name="Interface4j" id="778" icnsFile="./images/icons/iFace4j_Icons/MyIcon.icns">
+      <executable name="Interface4j" iconSet="true" iconFile="./images/icons/iFace4j_Icons/icon.ico" executableDir="." redirectStderr="false" executableMode="console" dpiAware="false" />
       <java mainClass="com.commander4j.service.Interface4j" vmParameters="-Dlog4j.configuration=file:./xml/log/log4j.xml -Dfile.encoding=Cp1252" arguments="Interface service">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -247,15 +248,15 @@
       <macStaticAssociationActions mode="selected" />
       <vmOptionsFile mode="none" />
       <iconImageFiles>
-        <file path="./images/Launcher/iFace_Icon (PNG)/16x16.png" />
-        <file path="./images/Launcher/iFace_Icon (PNG)/32x32.png" />
-        <file path="./images/Launcher/iFace_Icon (PNG)/48x48.png" />
-        <file path="./images/Launcher/iFace_Icon (PNG)/128x128.png" />
-        <file path="./images/Launcher/iFace_Icon (PNG)/256x256.png" />
+        <file path="./images/icons/iFace4j_Icons/MyIcon.iconset/icon_16x16.png" />
+        <file path="./images/icons/iFace4j_Icons/MyIcon.iconset/icon_32x32.png" />
+        <file path="./images/icons/iFace4j_Icons/MyIcon.iconset/icon_48x48.png" />
+        <file path="./images/icons/iFace4j_Icons/MyIcon.iconset/icon_128x128.png" />
+        <file path="./images/icons/iFace4j_Icons/MyIcon.iconset/icon_256x256.png" />
       </iconImageFiles>
     </launcher>
-    <launcher name="Commander4j_Console" id="1302" excludeFromMenu="true">
-      <executable name="Commander4j_Console" iconSet="true" executableDir="." redirectStderr="false" executableMode="console" />
+    <launcher name="Commander4j_Console" id="1302" excludeFromMenu="true" icnsFile="./images/icons/CMD4j_Icons/MyIcon.icns">
+      <executable name="Commander4j_Console" iconSet="true" iconFile="./images/icons/CMD4j_Icons/icon.ico" executableDir="." redirectStderr="false" executableMode="console" />
       <java mainClass="com.commander4j.sys.Start" arguments="Desktop">
         <classPath>
           <archive location="commander4j.jar" failOnError="false" />
@@ -266,42 +267,42 @@
       <macStaticAssociationActions mode="selected" />
       <vmOptionsFile mode="none" />
       <iconImageFiles>
-        <file path="./images/Launcher/CMD_Icon (PNG)/16x16.png" />
-        <file path="./images/Launcher/CMD_Icon (PNG)/32x32.png" />
-        <file path="./images/Launcher/CMD_Icon (PNG)/48x48.png" />
-        <file path="./images/Launcher/CMD_Icon (PNG)/128x128.png" />
-        <file path="./images/Launcher/CMD_Icon (PNG)/256x256.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_16x16.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_32x32.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_48x48.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_128x128.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_256x256.png" />
       </iconImageFiles>
     </launcher>
   </launchers>
   <installerGui autoUpdateDescriptorUrl="${installer:C4JUpdaterUrl}">
     <applications>
-      <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication" launchInNewProcess="false">
+      <application id="installer" beanClass="com.install4j.runtime.beans.applications.InstallerApplication" customIcnsFile="./images/icons/CMD4j_Icons/MyIcon.icns" customIcoFile="./images/icons/CMD4j_Icons/icon.ico" launchInNewProcess="false">
         <serializedBean>
           <property name="customIconImageFiles">
             <add>
               <object class="com.install4j.api.beans.ExternalFile">
-                <string>./images/Launcher/CMD_Icon (PNG)/16x16.png</string>
+                <string>./images/icons/CMD4j_Icons/MyIcon.iconset/icon_16x16.png</string>
               </object>
             </add>
             <add>
               <object class="com.install4j.api.beans.ExternalFile">
-                <string>./images/Launcher/CMD_Icon (PNG)/32x32.png</string>
+                <string>./images/icons/CMD4j_Icons/MyIcon.iconset/icon_32x32.png</string>
               </object>
             </add>
             <add>
               <object class="com.install4j.api.beans.ExternalFile">
-                <string>./images/Launcher/CMD_Icon (PNG)/48x48.png</string>
+                <string>./images/icons/CMD4j_Icons/MyIcon.iconset/icon_48x48.png</string>
               </object>
             </add>
             <add>
               <object class="com.install4j.api.beans.ExternalFile">
-                <string>./images/Launcher/CMD_Icon (PNG)/128x128.png</string>
+                <string>./images/icons/CMD4j_Icons/MyIcon.iconset/icon_128x128.png</string>
               </object>
             </add>
             <add>
               <object class="com.install4j.api.beans.ExternalFile">
-                <string>./images/Launcher/CMD_Icon (PNG)/256x256.png</string>
+                <string>./images/icons/CMD4j_Icons/MyIcon.iconset/icon_256x256.png</string>
               </object>
             </add>
           </property>
