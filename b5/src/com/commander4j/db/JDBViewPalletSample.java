@@ -162,7 +162,7 @@ public class JDBViewPalletSample
 			setSampleDefectType(rs.getString("defect_type"));
 			setSampleDefectID(rs.getString("defect_id"));
 			setLeaking(rs.getString("leaking"));
-			setComment(rs.getString("comment"));
+			setComment(rs.getString("sample_comment"));
 			setStartQuantity(rs.getBigDecimal("start_quantity"));
 			setSampleQuantity(rs.getBigDecimal("sample_quantity"));
 			setLocation(rs.getString("location"));

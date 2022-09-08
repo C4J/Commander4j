@@ -77,7 +77,8 @@ import com.commander4j.util.JExcel;
 import com.commander4j.util.JUtility;
 
 /**
- * The JInternalFrameQMResultEnquiry is used for querying the APP_QM_RESULT table
+ * The JInternalFrameQMResultEnquiry is used for querying the APP_QM_RESULT
+ * table
  * 
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameQMResultEnquiry.jpg" >
@@ -116,10 +117,12 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 
 	private PreparedStatement buildSQL()
 	{
+		String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
+
 		PreparedStatement result;
 		String resultSQL = "";
 
-		String startSQL = "SELECT  Sample_ID, Sample_Date,Material,Process_Order, User_Data_1, User_Data_2, User_Data_3, User_Data_4 ";
+		String startSQL = "SELECT Sample_ID, Sample_Date, Material, Process_Order, User_Data_1, User_Data_2, User_Data_3, User_Data_4 ";
 
 		String fieldsSQL = "";
 		int x = listDictionary.getModel().getSize();
@@ -134,11 +137,22 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 					JDBQMDictionary dictItem = (JDBQMDictionary) tempItem.getValue();
 					String testID = dictItem.getTestID();
 					String description = dictItem.getDescription();
-					String tempField = ",MAX(CASE TEST_ID WHEN '" + testID + "' THEN RESULT ELSE NULL END) AS '" + description + "'";
+					String tempField = "";
+					
+					if (driver.equals("oracle.jdbc.driver.OracleDriver"))
+					{
+						tempField = ",MAX(CASE TEST_ID WHEN '" + testID + "' THEN RESULT ELSE NULL END) AS \"" + description + "\"";
+					}
+					else
+					{
+						tempField = ",MAX(CASE TEST_ID WHEN '" + testID + "' THEN RESULT ELSE NULL END) AS '" + description + "'";
+					}
+					
 					if (fieldsSQL.equals(""))
 					{
 						fieldsSQL = tempField;
-					} else
+					}
+					else
 					{
 						fieldsSQL = fieldsSQL + tempField;
 					}
@@ -184,7 +198,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		{
 			whereSQL = whereSQL + " AND USER_DATA_4 = '" + textFieldUserData4.getText() + "'";
 		}
-		
+
 		int dateParams = 0;
 
 		if (checkBoxSampleFrom.isSelected())
@@ -208,7 +222,8 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				{
 					whereSQL = whereSQL + " AND SAMPLE_DATE <= ? ";
 				}
-			} else
+			}
+			else
 			{
 				if (dateParams == 2)
 				{
@@ -250,13 +265,31 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				{
 					JDBQMDictionary dictItem = (JDBQMDictionary) tempItem.getValue();
 					String description = dictItem.getDescription();
+					String testID = dictItem.getTestID();
+					String tempField = "MAX(CASE TEST_ID WHEN '" + testID + "' THEN RESULT ELSE NULL END)";
 
 					if (count == 0)
 					{
-						sqlHaving = " HAVING (" + fieldDelim1 + description + fieldDelim2 + " IS NOT NULL) ";
-					} else
+						if (driver.equals("oracle.jdbc.driver.OracleDriver"))
+						{
+							sqlHaving = " HAVING (" + tempField + " IS NOT NULL) ";
+						}
+						else
+						{
+							sqlHaving = " HAVING (" + fieldDelim1 + description + fieldDelim2 + " IS NOT NULL) ";
+						}
+
+					}
+					else
 					{
-						sqlHaving = sqlHaving + " OR (" + fieldDelim1 + description + fieldDelim2 + " IS NOT NULL) ";
+						if (driver.equals("oracle.jdbc.driver.OracleDriver"))
+						{
+							sqlHaving = sqlHaving + " OR (" + tempField + " IS NOT NULL) ";
+						}
+						else
+						{
+							sqlHaving = sqlHaving + " OR (" + fieldDelim1 + description + fieldDelim2 + " IS NOT NULL) ";
+						}
 					}
 					count++;
 				}
@@ -280,7 +313,8 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				{
 					query.addParameter(JUtility.getTimestampFromDate(dateSampleTo.getDate()));
 				}
-			} else
+			}
+			else
 			{
 				if (dateParams == 2)
 				{
@@ -305,15 +339,17 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 			PreparedStatement ps = buildSQL();
 			ResultSet rs = ps.executeQuery();
 
-			String[] columnNames = {lang.get("lbl_SampleID"),lang.get("lbl_Sample_Date"),lang.get("lbl_Material"),lang.get("lbl_Process_Order"),lang.get("lbl_User_Data1"),lang.get("lbl_User_Data2"),lang.get("lbl_User_Data3"),lang.get("lbl_User_Data4")};
-			
-			model.setQuery(rs,columnNames);
+			String[] columnNames =
+			{ lang.get("lbl_SampleID"), lang.get("lbl_Sample_Date"), lang.get("lbl_Material"), lang.get("lbl_Process_Order"), lang.get("lbl_User_Data1"), lang.get("lbl_User_Data2"), lang.get("lbl_User_Data3"), lang.get("lbl_User_Data4") };
+
+			model.setQuery(rs, columnNames);
 
 			table.setModel(model);
 			table.setCellRenderers("", "", "", "result");
 			table.setColumnWidths();
 
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
@@ -448,7 +484,8 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				{
 					rs = temp.executeQuery();
 					export.saveAs("qm_results.xls", rs, Common.mainForm);
-				} catch (Exception e)
+				}
+				catch (Exception e)
 				{
 					rs = null;
 
@@ -474,7 +511,8 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				{
 					dateSampleFrom.setEnabled(true);
 					calendarButtonsampleDateFrom.setEnabled(true);
-				} else
+				}
+				else
 				{
 					dateSampleFrom.setEnabled(false);
 					calendarButtonsampleDateFrom.setEnabled(false);
@@ -500,7 +538,8 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				{
 					dateSampleTo.setEnabled(true);
 					calendarButtonsampleDateTo.setEnabled(true);
-				} else
+				}
+				else
 				{
 					dateSampleTo.setEnabled(false);
 					calendarButtonsampleDateTo.setEnabled(false);
@@ -526,22 +565,22 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		lbl_UserData2.setHorizontalAlignment(SwingConstants.TRAILING);
 		lbl_UserData2.setBounds(263, 44, 111, 22);
 		desktopPane.add(lbl_UserData2);
-		
+
 		JLabel4j_std lbl_UserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
 		lbl_UserData3.setHorizontalAlignment(SwingConstants.TRAILING);
 		lbl_UserData3.setBounds(6, 78, 111, 22);
 		desktopPane.add(lbl_UserData3);
-		
+
 		textFieldUserData3 = new JTextField4j(20);
 		textFieldUserData3.setColumns(20);
 		textFieldUserData3.setBounds(123, 78, 138, 22);
 		desktopPane.add(textFieldUserData3);
-		
+
 		JLabel4j_std lbl_UserData4 = new JLabel4j_std(lang.get("lbl_User_Data4"));
 		lbl_UserData4.setHorizontalAlignment(SwingConstants.TRAILING);
 		lbl_UserData4.setBounds(263, 78, 111, 22);
 		desktopPane.add(lbl_UserData4);
-		
+
 		textFieldUserData4 = new JTextField4j(20);
 		textFieldUserData4.setColumns(20);
 		textFieldUserData4.setBounds(386, 78, 138, 22);
@@ -595,7 +634,8 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 				if (jCheckBoxLimit.isSelected())
 				{
 					jSpinnerLimit.setEnabled(true);
-				} else
+				}
+				else
 				{
 					jSpinnerLimit.setEnabled(false);
 				}
@@ -704,7 +744,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 			{
 				textFieldProcessOrder.requestFocus();
 				textFieldProcessOrder.setCaretPosition(textFieldProcessOrder.getText().length());
-				
+
 			}
 		});
 

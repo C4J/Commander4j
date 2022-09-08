@@ -56,13 +56,15 @@ public class QMIndexRenderer implements TableCellRenderer
 		{
 			foreground = Common.color_listFontSelected;
 			background = Common.color_listHighlighted;
-		} else
+		}
+		else
 		{
 			if (row % 2 == 0)
 			{
 				foreground = Common.color_listFontStandard;
 				background = Common.color_tablerow3;
-			} else
+			}
+			else
 			{
 				foreground = Common.color_listFontStandard;
 				background = Common.color_tablerow2;
@@ -71,19 +73,27 @@ public class QMIndexRenderer implements TableCellRenderer
 
 		String s = "";
 
-		if (value.getClass().equals(Integer.class))
+		if (value == null)
 		{
-			s = String.valueOf(value);
+			s="";
 		}
-
-		if (value.getClass().equals(Timestamp.class))
+		else
 		{
-			s = ((Timestamp) value).toString().substring(0, 16);
-		}
+			if (value.getClass().equals(Integer.class))
+			{
+				s = String.valueOf(value);
+			}
 
-		if (value.getClass().equals(String.class))
-		{
-			s = value.toString();
+			if (value.getClass().equals(Timestamp.class))
+			{
+				s = ((Timestamp) value).toString().substring(0, 16);
+			}
+
+			if (value.getClass().equals(String.class))
+			{
+				s = value.toString();
+			}
+
 		}
 
 		if (c instanceof JLabel)
@@ -94,7 +104,6 @@ public class QMIndexRenderer implements TableCellRenderer
 			((JLabel) c).setForeground(foreground);
 			((JLabel) c).setBackground(background);
 		}
-
 
 		return c;
 	}

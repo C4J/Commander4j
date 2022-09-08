@@ -44,7 +44,7 @@ public class JMenuRFPrinterList
 		String selected = "";
 		LinkedList<String> list = new LinkedList<String>();
 		list = JPrint.getPrinterNames();
-		result = "<SELECT width=\"100%\" style=\"width: 100%\" NAME=\"" + "selectedPrintQueue" + "\">";
+		result = "<SELECT width=\"100%\" style=\"font-size: 24px; width: 100%\" NAME=\"" + "selectedPrintQueue" + "\">";
 		result = result + "<OPTION>";
 
 		if (list.size() > 0)

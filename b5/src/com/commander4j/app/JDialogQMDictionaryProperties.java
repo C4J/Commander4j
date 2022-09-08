@@ -73,8 +73,7 @@ import com.commander4j.util.JUtility;
  * @see com.commander4j.db.JDBQMResult JDBQMResult
  *
  */
-public class JDialogQMDictionaryProperties extends javax.swing.JDialog
-{
+public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField4j textFieldITestD;
@@ -89,56 +88,48 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 	private JCheckBox4j chckbxVisible;
 	private JTextField4j textFieldUOM;
 	private JSpinner spinnerWidth;
-	private String[] fieldAlignment = new String[]
-	{ "Left", "Right", "Center" };
+	private String[] fieldAlignment = new String[] { "Left", "Right", "Center" };
 	private JComboBox4j<String> comboBoxAlignment;
 
-	private void enableSave()
-	{
-		if (textFieldITestD.getText().equals("") == false)
-		{
-			if (textFieldDescription.getText().equals("") == false)
-			{
+	private void enableSave() {
+		if (textFieldITestD.getText().equals("") == false) {
+			if (textFieldDescription.getText().equals("") == false) {
 				btnSave.setEnabled(true);
 			}
 		}
 	}
 
-	private void save()
-	{
+	private void save() {
 		String insp = textFieldITestD.getText();
 		String description = textFieldDescription.getText();
 		String visible;
-		if (chckbxVisible.isSelected())
-		{
+		if (chckbxVisible.isSelected()) {
 			visible = "Y";
 
-		} else
-		{
+		} else {
 			visible = "N";
 
 		}
 
-		if (dict.isValid(insp) == false)
-		{
+		if (dict.isValid(insp) == false) {
 			// dict.create(insp,description);
-			dict.create(insp, JLabel.TRAILING, comboBoxDataType.getSelectedItem().toString(), textFieldUOM.getText(), "Y", description, visible, 10);
-		} else
-		{
-			dict.setFieldAlignment(comboBoxAlignment.getSelectedItem().toString());
-			dict.setDescription(description);
-			dict.setDataType(comboBoxDataType.getSelectedItem().toString());
-			dict.setSelectListID(comboBoxSelectList.getSelectedItem().toString());
-			dict.setVisible(visible);
-			dict.setUOM(textFieldUOM.getText());
-			dict.setFieldWidth(Integer.valueOf(spinnerWidth.getValue().toString()));
-			dict.update();
+			dict.create(insp, JLabel.TRAILING, comboBoxDataType.getSelectedItem().toString(), textFieldUOM.getText(),
+					"Y", description, visible, Integer.valueOf(spinnerWidth.getValue().toString()));
 		}
+
+		dict.setFieldAlignment(comboBoxAlignment.getSelectedItem().toString());
+		dict.setDescription(description);
+		dict.setDataType(comboBoxDataType.getSelectedItem().toString());
+		dict.setSelectListID(comboBoxSelectList.getSelectedItem().toString());
+		dict.setVisible(visible);
+		dict.setUOM(textFieldUOM.getText());
+		dict.setFieldWidth(Integer.valueOf(spinnerWidth.getValue().toString()));
+		dict.update();
+
 		btnSave.setEnabled(false);
 	}
 
-	public JDialogQMDictionaryProperties(JFrame frame, String testid)
-	{
+	public JDialogQMDictionaryProperties(JFrame frame, String testid) {
 
 		super(frame, "Dictionary Properties", ModalityType.APPLICATION_MODAL);
 
@@ -172,11 +163,9 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 		lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
 
 		textFieldITestD = new JTextField4j(JDBQMDictionary.field_test_id);
-		textFieldITestD.addKeyListener(new KeyAdapter()
-		{
+		textFieldITestD.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent e)
-			{
+			public void keyReleased(KeyEvent e) {
 				enableSave();
 			}
 		});
@@ -186,11 +175,9 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 		textFieldITestD.setColumns(10);
 
 		textFieldDescription = new JTextField4j(JDBQMDictionary.field_description);
-		textFieldDescription.addKeyListener(new KeyAdapter()
-		{
+		textFieldDescription.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent e)
-			{
+			public void keyReleased(KeyEvent e) {
 				enableSave();
 			}
 		});
@@ -200,10 +187,8 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 
 		btnSave = new JButton4j(lang.get("btn_Save"));
 		btnSave.setEnabled(false);
-		btnSave.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				save();
 			}
 		});
@@ -212,10 +197,8 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 		desktopPane.add(btnSave);
 
 		btnClose = new JButton4j(lang.get("btn_Close"));
-		btnClose.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
@@ -235,10 +218,8 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 
 		ComboBoxModel<String> jComboBox1Model = new DefaultComboBoxModel<String>(Common.dataTypes);
 		comboBoxDataType = new JComboBox4j<String>();
-		comboBoxDataType.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
+		comboBoxDataType.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				enableSave();
 			}
 		});
@@ -247,10 +228,8 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 		desktopPane.add(comboBoxDataType);
 
 		comboBoxSelectList = new JComboBox4j<String>();
-		comboBoxSelectList.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
+		comboBoxSelectList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				enableSave();
 			}
 		});
@@ -258,16 +237,13 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 		LinkedList<String> items = new LinkedList<String>();
 		items = slist.getSelectListSummary();
 
-		if (dict.getSelectListID().equals("") == false)
-		{
-			if (items.contains(dict.getSelectListID()) == false)
-			{
+		if (dict.getSelectListID().equals("") == false) {
+			if (items.contains(dict.getSelectListID()) == false) {
 				items.addFirst(dict.getSelectListID());
 			}
 		}
 
-		for (int x = 0; x < items.size(); x++)
-		{
+		for (int x = 0; x < items.size(); x++) {
 			comboBoxSelectList.addItem(items.get(x));
 		}
 
@@ -280,10 +256,8 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 		desktopPane.add(lblSelectListID);
 
 		chckbxVisible = new JCheckBox4j("");
-		chckbxVisible.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
+		chckbxVisible.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				enableSave();
 			}
 		});
@@ -302,11 +276,9 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 		desktopPane.add(lblUOM);
 
 		textFieldUOM = new JTextField4j(JDBQMDictionary.field_uom);
-		textFieldUOM.addKeyListener(new KeyAdapter()
-		{
+		textFieldUOM.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent arg0)
-			{
+			public void keyReleased(KeyEvent arg0) {
 				enableSave();
 			}
 		});
@@ -319,11 +291,9 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 
 		spinnerWidth.setBounds(494, 132, 68, 28);
 		JSpinner.NumberEditor ne_spinnerWidth = new JSpinner.NumberEditor(spinnerWidth);
-		ne_spinnerWidth.getTextField().addKeyListener(new KeyAdapter()
-		{
+		ne_spinnerWidth.getTextField().addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e)
-			{
+			public void keyPressed(KeyEvent e) {
 				enableSave();
 			}
 		});
@@ -331,10 +301,8 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 		ne_spinnerWidth.getTextField().setFont(Common.font_std);
 		spinnerWidth.setEditor(ne_spinnerWidth);
 		spinnerWidth.setValue(50);
-		spinnerWidth.addChangeListener(new ChangeListener()
-		{
-			public void stateChanged(ChangeEvent e)
-			{
+		spinnerWidth.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
 				enableSave();
 			}
 		});
@@ -370,27 +338,21 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog
 
 		spinnerWidth.setValue(dict.getFieldWidth());
 
-		if (testid.equals(""))
-		{
+		if (testid.equals("")) {
 			textFieldITestD.setEnabled(true);
 
-			SwingUtilities.invokeLater(new Runnable()
-			{
-				public void run()
-				{
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
 					textFieldITestD.requestFocus();
 					textFieldITestD.setCaretPosition(textFieldITestD.getText().length());
 				}
 			});
 
-		} else
-		{
+		} else {
 			textFieldITestD.setEnabled(false);
 
-			SwingUtilities.invokeLater(new Runnable()
-			{
-				public void run()
-				{
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
 					textFieldDescription.requestFocus();
 					textFieldDescription.setCaretPosition(textFieldDescription.getText().length());
 				}

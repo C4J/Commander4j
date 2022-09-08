@@ -439,12 +439,6 @@
         	<description>Beanshell</description>
          	<version>2.0b6</version>
         	<type>Apache License 2.0</type>    
-        </library>  
-        
-        <library>
-        	<description>Joda Time</description>
-         	<version>2.10.2</version>
-        	<type>Apache License 2.0</type>    
         </library>        
  
         <library>

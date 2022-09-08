@@ -153,12 +153,18 @@ public class parseData {
 						{
 						case java.sql.Types.VARCHAR:
 							fieldData = JUtility.replaceNullStringwithBlank(rs.getString(fieldColumn));
+							fieldData = fieldData.replace("(", "{");
+							fieldData = fieldData.replace(")", "}");
 							break;
 						case java.sql.Types.NVARCHAR:
 							fieldData = JUtility.replaceNullStringwithBlank(rs.getString(fieldColumn));
+							fieldData = fieldData.replace("(", "{");
+							fieldData = fieldData.replace(")", "}");
 							break;
 						case java.sql.Types.CHAR:
 							fieldData = JUtility.replaceNullStringwithBlank(rs.getString(fieldColumn));
+							fieldData = fieldData.replace("(", "{");
+							fieldData = fieldData.replace(")", "}");
 							break;
 						case java.sql.Types.DATE:
 							try

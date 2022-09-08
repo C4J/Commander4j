@@ -1,0 +1,14 @@
+<!ELEMENT barcode ( ean-128 ) >
+<!ELEMENT check-digit-marker ( #PCDATA ) >
+<!ELEMENT ean-128 ( height, module-width, check-digit-marker, group-separator, template, quiet-zone, human-readable ) >
+<!ELEMENT font-name ( #PCDATA ) >
+<!ELEMENT font-size ( #PCDATA ) >
+<!ELEMENT group-separator ( #PCDATA ) >
+<!ELEMENT height ( #PCDATA ) >
+<!ELEMENT human-readable ( placement, font-name, font-size, omit-brackets ) >
+<!ELEMENT module-width ( #PCDATA ) >
+<!ELEMENT omit-brackets ( #PCDATA ) >
+<!ELEMENT placement ( #PCDATA ) >
+<!ELEMENT quiet-zone ( #PCDATA ) >
+<!ATTLIST quiet-zone enabled NMTOKEN #REQUIRED >
+<!ELEMENT template ( #PCDATA ) >

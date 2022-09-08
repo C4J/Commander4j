@@ -3,21 +3,22 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="b4web">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="b5web">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="11"/>
     <property name="source" value="11"/>
     <path id="EAR Libraries.libraryclasspath"/>
     <path id="Web App Libraries.libraryclasspath">
-        <pathelement location="WebContent/WEB-INF/lib/ant-1.10.9.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ant-1.10.11.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/avalon-framework-4.2.0.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commander4j.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/commons-codec-1.11.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-codec-1.15.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commons-io-2.6.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commons-lang-2.6.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/commons-lang3-3.8.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-lang3-3.12.0.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-text-1.9.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/cups4j-0.7.8.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/hamcrest-core-1.3.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/httpclient-4.5.13.jar"/>
@@ -25,9 +26,10 @@
         <pathelement location="WebContent/WEB-INF/lib/jaxen-1.1.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/jcommon-1.0.23.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/mssql-jdbc-9.2.1.jre11.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.26.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mssql-jdbc-9.4.1.jre11.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-8.0.29.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/ojdbc11.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ucp11.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/simple-xml-2.7.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/slf4j-api-1.7.26.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/slf4j-nop-1.7.26.jar"/>
@@ -36,7 +38,7 @@
         <pathelement location="WebContent/WEB-INF/lib/xalan-2.7.2.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/xpp3-1.1.3.3.jar"/>
     </path>
-    <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0 (Java 11)].libraryclasspath">
+    <path id="Server Runtime [Apache Tomcat v9.0].libraryclasspath">
         <pathelement location="../../../tools/apache-tomcat-9 (Java 11)/lib/tomcat-i18n-ko.jar"/>
         <pathelement location="../../../tools/apache-tomcat-9 (Java 11)/lib/el-api.jar"/>
         <pathelement location="../../../tools/apache-tomcat-9 (Java 11)/lib/tomcat-i18n-es.jar"/>
@@ -70,11 +72,11 @@
         <pathelement location="../../../tools/apache-tomcat-9 (Java 11)/lib/tomcat-i18n-fr.jar"/>
         <pathelement location="../../../tools/apache-tomcat-9 (Java 11)/lib/tomcat-dbcp.jar"/>
     </path>
-    <path id="b4web.classpath">
+    <path id="b5web.classpath">
         <pathelement location="build/classes"/>
         <path refid="EAR Libraries.libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
-        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0 (Java 11)].libraryclasspath"/>
+        <path refid="Server Runtime [Apache Tomcat v9.0].libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
@@ -95,12 +97,12 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="b4web.classpath"/>
+            <classpath refid="b5web.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target name="war" depends="build">
-		  <war destfile="dist/b4web.war" webxml="WebContent/WEB-INF/web.xml">
+		  <war destfile="dist/b5web.war" webxml="WebContent/WEB-INF/web.xml">
 		  	<fileset dir="WebContent"/>
 		  	<lib dir="WebContent/WEB-INF/lib"/>
 		  	<classes dir="build/classes"/>

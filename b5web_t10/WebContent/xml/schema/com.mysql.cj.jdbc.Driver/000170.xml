@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+    <statement>
+		CREATE OR REPLACE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW  `view_qm_results` AS SELECT
+			`app_qm_sample`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+			`app_qm_sample`.`MATERIAL` AS `MATERIAL`,
+			`app_qm_sample`.`SAMPLE_ID` AS `SAMPLE_ID`,
+			`app_qm_sample`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
+			`app_qm_sample`.`USER_DATA_1` AS `USER_DATA_1`,
+			`app_qm_sample`.`USER_DATA_2` AS `USER_DATA_2`,
+			`app_qm_sample`.`USER_DATA_3` AS `USER_DATA_3`,
+			`app_qm_sample`.`USER_DATA_4` AS `USER_DATA_4`,
+			`app_qm_result`.`TEST_ID` AS `TEST_ID`,
+			`app_qm_dictionary`.`DESCRIPTION` AS `DESCRIPTION`,
+			`app_qm_result`.`VALUE` AS `VALUE`,
+			COALESCE ( `app_qm_selectlist`.`DESCRIPTION`, `app_qm_result`.`VALUE` ) AS `RESULT` 
+		FROM
+			(((
+						`app_qm_sample`
+						LEFT JOIN `app_qm_result` ON ((
+								`app_qm_sample`.`SAMPLE_ID` = `app_qm_result`.`SAMPLE_ID` 
+							)))
+					LEFT JOIN `app_qm_dictionary` ON ((
+							`app_qm_result`.`TEST_ID` = `app_qm_dictionary`.`TEST_ID` 
+						)))
+				LEFT JOIN `app_qm_selectlist` ON ((
+					`app_qm_dictionary`.`SELECT_LIST_ID` = `app_qm_selectlist`.`SELECT_LIST_ID` 
+			)));
+    </statement>
+
+</DDL>

@@ -53,6 +53,7 @@ public class JMenuRFDespatchList
 	private int despatchCount=0;
 	private int returnedPage=1;
 	private int maxPages=1;
+	private int itemsPerPage=8;
 
 	public JMenuRFDespatchList(String host, String session)
 	{
@@ -150,6 +151,14 @@ public class JMenuRFDespatchList
 		return result;
 	}
 	
+	
+	public String buildDespatchList(String status, String defaultItem, int currentPage,int maxitems) {
+		String result = "";
+		itemsPerPage = maxitems;
+		result = buildDespatchList(status, defaultItem,currentPage);
+		return result;
+	}
+	
 	public String buildDespatchList(String status, String defaultItem, int currentPage) {
 
 		String result = "";
@@ -163,7 +172,7 @@ public class JMenuRFDespatchList
 
 		list = desp.browseDespatchData(status, 9999);
 		
-		list = paginateList(list,currentPage,8);
+		list = paginateList(list,currentPage,itemsPerPage);
 		
 		if (list.size() > 0)
 		{

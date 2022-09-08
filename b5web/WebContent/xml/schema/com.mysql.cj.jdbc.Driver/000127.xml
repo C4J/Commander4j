@@ -34,63 +34,6 @@
 			LEFT JOIN APP_MATERIAL AS m ON m.MATERIAL = p.MATERIAL 
 			LEFT JOIN APP_MATERIAL_BATCH AS b ON b.MATERIAL = p.MATERIAL AND b.BATCH_NUMBER = p.BATCH_NUMBER
 	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_MATERIAL
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_MATERIAL_BATCH
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_PALLET
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_PALLET_HISTORY
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_MATERIAL_BATCH
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_MHN
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_DESPATCH
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_JOURNEY
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_QM_ACTIVITY
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_QM_INSPECTION
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_QM_RESULT
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_QM_SAMPLE
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_QM_TEST
-	</statement>
-	
-	<statement>
-		ANALYZE TABLE APP_LABEL_DATA;
-	</statement>
-	
-	
+		
 	
 </DDL>

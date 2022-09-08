@@ -97,7 +97,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 	private Vector<JDBWTScale> scaleList = new Vector<JDBWTScale>();
 	private Vector<String> portList = new Vector<String>();
 	private String[] standardPorts = new String[]
-	{ "","COM1", "COM2", "COM3", "COM4" };
+	{ "","COM1", "COM2", "COM3", "COM4", "COM5", "COM6" };
 
 	public void setWorkstationID(String wstation)
 	{

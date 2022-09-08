@@ -221,7 +221,7 @@ public class JDBPalletSamples
 			setSampleDefectType(rs.getString("defect_type"));
 			setSampleDefectID(rs.getString("defect_id"));
 			setSampleLeaking(rs.getString("leaking"));
-			setSampleComment(rs.getString("comment"));
+			setSampleComment(rs.getString("sample_comment"));
 			setSampleQuantity(rs.getBigDecimal("sample_quantity"));
 			setUserID(rs.getString("user_id"));
 			setSamplePoint(rs.getString("sample_point"));

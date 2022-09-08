@@ -298,7 +298,7 @@ public class JDBLocation
 		String selected = "";
 		LinkedList<JDBLocation> locationList = new LinkedList<JDBLocation>();
 		locationList.addAll(getLocationList());
-		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
+		result = "<SELECT width=\"100%\" style=\"font-size: 24px;\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
 		result = result + "<OPTION></OPTION>";
 		if (locationList.size() > 0)
 		{
@@ -329,7 +329,7 @@ public class JDBLocation
 
 		journeyList.addAll(jlistdb.getJourneyList(defaultValue));
 
-		result = "<SELECT width=\"100%\" style=\"width: 100%\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">" + "<OPTION></OPTION>";
+		result = "<SELECT width=\"100%\" style=\"font-size: 24px;\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">" + "<OPTION></OPTION>";
 
 		if (journeyList.size() > 0)
 		{

@@ -58,6 +58,7 @@ import javax.swing.event.ListSelectionListener;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBMaterial;
+import com.commander4j.db.JDBMaterialCustomerData;
 import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBQMActivity;
 import com.commander4j.db.JDBQMInspection;
@@ -80,7 +81,8 @@ import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
 
 /**
- * The JInternalFrameQMSampleLabel is used printing sample labels and populating the APP_QM_SAMPLE table
+ * The JInternalFrameQMSampleLabel is used printing sample labels and populating
+ * the APP_QM_SAMPLE table
  * 
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameQMSampleLabel.jpg" >
@@ -104,6 +106,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 	private JDBQMActivity activity = new JDBQMActivity(Common.selectedHostID, Common.sessionID);
 	private JDBQMSample sample = new JDBQMSample(Common.selectedHostID, Common.sessionID);
 	private JDBUserReport userReport = new JDBUserReport(Common.selectedHostID, Common.sessionID);
+	private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<String> comboBoxPrintQueue = new JComboBox4j<String>();
 	private JSpinner spinnerCopies;
 	private JList4j<JDBQMActivity> listActivities;
@@ -119,6 +122,8 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 	private JLabel4j_std lblStatusBar;
 	private Boolean qmud1 = false;
 	private Boolean qmud2 = false;
+	private Boolean qmud3 = false;
+	private Boolean qmud4 = false;
 	private Boolean processOrderValid = false;
 	private JDateControl sampleDateTime;
 	private JCheckBox4j chckbxAutoTime;
@@ -127,6 +132,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 	private JRadioButton4j resolution_default = new JRadioButton4j("Default Resolution");
 	private JTextField4j textFieldUserData3;
 	private JTextField4j textFieldUserData4;
+	private JButton4j jButtonLookup_Shift_Names;
 
 	public class ClockListener implements ActionListener
 	{
@@ -153,6 +159,9 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		Boolean result = false;
 		Boolean ud1 = false;
 		Boolean ud2 = false;
+		Boolean ud3 = false;
+		Boolean ud4 = false;
+		
 		if (processOrderValid == true)
 		{
 			if (listActivities.getSelectedIndex() != -1)
@@ -164,7 +173,8 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 					{
 						ud1 = true;
 					}
-				} else
+				}
+				else
 				{
 					ud1 = true;
 				}
@@ -176,14 +186,45 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 					{
 						ud2 = true;
 					}
-				} else
+				}
+				else
 				{
 					ud2 = true;
 				}
-				if (ud1 & ud2)
+				
+				ud3 = false;
+				if (qmud3 == true)
+				{
+					if (textFieldUserData3.getText().equals("") == false)
+					{
+						ud3 = true;
+					}
+				}
+				else
+				{
+					ud3 = true;
+				}
+				
+				
+				ud4 = false;
+				if (qmud4 == true)
+				{
+					if (textFieldUserData4.getText().equals("") == false)
+					{
+						ud4 = true;
+					}
+				}
+				else
+				{
+					ud4 = true;
+				}				
+				
+				if (ud1 & ud2 & ud3 & ud4)
 				{
 					result = true;
 				}
+				
+				
 			}
 		}
 		btnPrint.setEnabled(result);
@@ -202,7 +243,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			textFieldResource.setText(po.getRequiredResource());
 			dueDate.setDate(po.getDueDate());
 			processOrderValid = true;
-			
+
 			if (textFieldStatus.getText().equals("Ready") || (textFieldStatus.getText().equals("Running")))
 			{
 				textFieldStatus.setBackground(Color.WHITE);
@@ -211,13 +252,13 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			{
 				textFieldStatus.setBackground(Color.RED);
 			}
-			
+
 			if (userReport.getUserReportProperties("USER_DATA_1"))
 			{
 				JUserReportParameter param1 = new JUserReportParameter();
-				param1.parameterPosition=1;
-				param1.parameterType="String";
-				param1.parameterStringValue=po.getProcessOrder();
+				param1.parameterPosition = 1;
+				param1.parameterType = "String";
+				param1.parameterStringValue = po.getProcessOrder();
 				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
 				paramList.add(param1);
 				userReport.setSYSTEMparameters(paramList);
@@ -230,13 +271,13 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			{
 				textFieldUserData1.setText("");
 			}
-			
+
 			if (userReport.getUserReportProperties("USER_DATA_2"))
 			{
 				JUserReportParameter param1 = new JUserReportParameter();
-				param1.parameterPosition=1;
-				param1.parameterType="String";
-				param1.parameterStringValue=po.getProcessOrder();
+				param1.parameterPosition = 1;
+				param1.parameterType = "String";
+				param1.parameterStringValue = po.getProcessOrder();
 				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
 				paramList.add(param1);
 				userReport.setSYSTEMparameters(paramList);
@@ -249,13 +290,13 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			{
 				textFieldUserData2.setText("");
 			}
-			
+
 			if (userReport.getUserReportProperties("USER_DATA_3"))
 			{
 				JUserReportParameter param1 = new JUserReportParameter();
-				param1.parameterPosition=1;
-				param1.parameterType="String";
-				param1.parameterStringValue=po.getProcessOrder();
+				param1.parameterPosition = 1;
+				param1.parameterType = "String";
+				param1.parameterStringValue = po.getProcessOrder();
 				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
 				paramList.add(param1);
 				userReport.setSYSTEMparameters(paramList);
@@ -268,13 +309,13 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			{
 				textFieldUserData3.setText("");
 			}
-			
+
 			if (userReport.getUserReportProperties("USER_DATA_4"))
 			{
 				JUserReportParameter param1 = new JUserReportParameter();
-				param1.parameterPosition=1;
-				param1.parameterType="String";
-				param1.parameterStringValue=po.getProcessOrder();
+				param1.parameterPosition = 1;
+				param1.parameterType = "String";
+				param1.parameterStringValue = po.getProcessOrder();
 				LinkedList<JUserReportParameter> paramList = new LinkedList<JUserReportParameter>();
 				paramList.add(param1);
 				userReport.setSYSTEMparameters(paramList);
@@ -288,8 +329,25 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				textFieldUserData4.setText("");
 			}
 			
+			matCustData.setMaterial(po.getMaterial());
+			matCustData.setCustomerID(po.getCustomerID());
+			matCustData.setDataID("PRODUCT_GROUP");
+
+			if (matCustData.getMaterialCustomerDataProperties())
+			{
+				textFieldUserData4.setText(matCustData.getData());
+			}
+
+			matCustData.setDataID("CONTAINER_CODE");
+
+			if (matCustData.getMaterialCustomerDataProperties())
+			{
+				textFieldUserData1.setText(matCustData.getData());
+			}
+
 			populateActivityList(po.getInspectionID());
-		} else
+		}
+		else
 		{
 			textFieldDescription.setText("");
 			textFieldInspectionID.setText("");
@@ -298,6 +356,8 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			textFieldResource.setText("");
 			textFieldUserData1.setText("");
 			textFieldUserData2.setText("");
+			textFieldUserData3.setText("");
+			textFieldUserData4.setText("");
 			dueDate.setDate(JUtility.getSQLDate());
 			populateActivityList("");
 			processOrderValid = false;
@@ -344,18 +404,19 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		if (JPrint.getNumberofPrinters() == 0)
 		{
 			comboBoxPrintQueue.setEnabled(false);
-		} else
+		}
+		else
 		{
 			comboBoxPrintQueue.setEnabled(true);
-			
+
 			setDefaultDPI(defaultitem);
 		}
 	}
-	
+
 	private void setDefaultDPI(String defaultitem)
 	{
 		boolean Default = true;
-		
+
 		if (defaultitem.contains("203"))
 		{
 			resolution_200dpi.setSelected(true);
@@ -368,7 +429,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		}
 		if (defaultitem.contains("300"))
 		{
-			resolution_300dpi.setSelected(true);	
+			resolution_300dpi.setSelected(true);
 			Default = false;
 		}
 		if (Default)
@@ -376,25 +437,25 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			resolution_default.setSelected(true);
 		}
 	}
-	
+
 	private String getDefaultDPI()
 	{
 		String result = "";
-		
+
 		if (resolution_300dpi.isSelected())
 		{
 			result = "300";
-			
+
 		}
 		if (resolution_200dpi.isSelected())
 		{
 			result = "200";
-			
+
 		}
 		if (resolution_default.isSelected())
 		{
 			result = "";
-			
+
 		}
 		return result;
 	}
@@ -438,6 +499,8 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 
 		qmud1 = Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_1_REQD", "true", "QM USER DATA 1 REQD"));
 		qmud2 = Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_2_REQD", "true", "QM USER DATA 2 REQD"));
+		qmud3 = Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_3_REQD", "true", "QM USER DATA 3 REQD"));
+		qmud4 = Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_4_REQD", "true", "QM USER DATA 4 REQD"));
 
 		setVisible(true);
 		this.setClosable(true);
@@ -503,15 +566,15 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				Long sampleID = sample.generateSampleID();
 				String activityID = ((JDBQMActivity) listActivities.getSelectedValue()).getActivityID();
 				Timestamp ts = JUtility.getTimestampFromDate(sampleDateTime.getDate());
-				sample.create(sampleID, po.getInspectionID(), activityID, po.getProcessOrder(), po.getMaterial(), textFieldUserData1.getText(), textFieldUserData2.getText(), textFieldUserData3.getText(), textFieldUserData4.getText(),ts);
+				sample.create(sampleID, po.getInspectionID(), activityID, po.getProcessOrder(), po.getMaterial(), textFieldUserData1.getText(), textFieldUserData2.getText(), textFieldUserData3.getText(), textFieldUserData4.getText(), ts);
 				String pq = comboBoxPrintQueue.getSelectedItem().toString();
 				buildSQL1Record(sampleID);
 				String dpi = getDefaultDPI();
-				if (dpi.equals("")==false)
+				if (dpi.equals("") == false)
 				{
 					dpi = "_" + dpi;
 				}
-				JLaunchReport.runReport("RPT_SAMPLE_LABEL"+dpi, listStatement, false, pq, Integer.valueOf(spinnerCopies.getValue().toString()), false);
+				JLaunchReport.runReport("RPT_SAMPLE_LABEL" + dpi, listStatement, false, pq, Integer.valueOf(spinnerCopies.getValue().toString()), false);
 				lblStatusBar.setText(Integer.valueOf(spinnerCopies.getValue().toString()) + " labels printed. " + sample.getSampleDate().toString());
 			}
 		});
@@ -695,7 +758,8 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				if (chckbxAutoTime.isSelected())
 				{
 					sampleDateTime.setEnabled(true);
-				} else
+				}
+				else
 				{
 					sampleDateTime.setEnabled(false);
 				}
@@ -707,10 +771,8 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		textFieldProcessOrder.requestFocus();
 		textFieldProcessOrder.setCaretPosition(textFieldProcessOrder.getText().length());
 
-
 		resolution_200dpi.setBounds(313, 500, 85, 23);
 		desktopPane.add(resolution_200dpi);
-
 
 		resolution_300dpi.setBounds(411, 500, 85, 23);
 		desktopPane.add(resolution_300dpi);
@@ -719,20 +781,22 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		resolution_default.setBounds(145, 500, 156, 23);
 		desktopPane.add(resolution_default);
 
-		ButtonGroup group = new ButtonGroup( );
+		ButtonGroup group = new ButtonGroup();
 		group.add(resolution_200dpi);
 		group.add(resolution_300dpi);
 		group.add(resolution_default);
-		
+
 		JLabel4j_std lblUserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
 		lblUserData3.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblUserData3.setBounds(6, 198, 111, 16);
 		desktopPane.add(lblUserData3);
-		
+
 		textFieldUserData3 = new JTextField4j(20);
-		textFieldUserData3.addKeyListener(new KeyAdapter() {
+		textFieldUserData3.addKeyListener(new KeyAdapter()
+		{
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void keyReleased(KeyEvent e)
+			{
 				printEnable();
 			}
 		});
@@ -740,16 +804,18 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		textFieldUserData3.setColumns(20);
 		textFieldUserData3.setBounds(125, 193, 134, 22);
 		desktopPane.add(textFieldUserData3);
-		
+
 		JLabel4j_std lblUserData4 = new JLabel4j_std(lang.get("lbl_User_Data4"));
 		lblUserData4.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblUserData4.setBounds(288, 198, 111, 16);
 		desktopPane.add(lblUserData4);
-		
+
 		textFieldUserData4 = new JTextField4j(20);
-		textFieldUserData4.addKeyListener(new KeyAdapter() {
+		textFieldUserData4.addKeyListener(new KeyAdapter()
+		{
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void keyReleased(KeyEvent e)
+			{
 				printEnable();
 			}
 		});
@@ -757,9 +823,9 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		textFieldUserData4.setColumns(20);
 		textFieldUserData4.setBounds(411, 193, 134, 22);
 		desktopPane.add(textFieldUserData4);
-		
+
 		populatePrinterList(JPrint.getDefaultPrinterQueueName());
-		
+
 		comboBoxPrintQueue.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -769,8 +835,30 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			}
 		});
 		
+		{
+			jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
+			desktopPane.add(jButtonLookup_Shift_Names);
+			jButtonLookup_Shift_Names.setBounds(261, 193, 21, 21);
+			jButtonLookup_Shift_Names.setEnabled(true);
+			jButtonLookup_Shift_Names.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "LAMINATE";
+					if (JLaunchLookup.shiftNames())
+					{
+						textFieldUserData3.setText(JLaunchLookup.dlgResult);
+						textFieldUserData3.setCaretPosition(textFieldUserData3.getText().length());
+						printEnable();
+
+					}
+				}
+			});
+		}
+
 		processOrderChanged(processOrder);
-		
+
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
@@ -780,6 +868,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 
 			}
 		});
+
 
 
 		timer.start();

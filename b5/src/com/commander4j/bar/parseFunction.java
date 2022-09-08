@@ -33,6 +33,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.commander4j.app.JVersion;
@@ -104,7 +105,7 @@ public class parseFunction
 		// Supported Expressions using format
 
 		String[] Functions = new String[]
-		{ "<SUBTR_LPAD(", "<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(", "<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(", "<PRODDATE(",
+		{ "<SUBTR_LPAD(", "<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(",  "<JULIAN_YJJJ(","<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(", "<PRODDATE(",
 				"<PALLET_WEIGHT_TEXT(", "<PALLET_WEIGHT_BARCODE(" };
 
 		// For each expression above
@@ -149,6 +150,8 @@ public class parseFunction
 				}
 			}
 		}
+		parseResult = parseResult.replace("{", "(");
+		parseResult = parseResult.replace("}", ")");
 		return parseResult;
 	}
 
@@ -534,6 +537,38 @@ public class parseFunction
 				{
 					result = functionName + incorrectNoParams;
 				}
+			}
+
+			if (functionName.equals("JULIAN_YJJJ"))
+			{
+
+				Timestamp dateOfManufacture;
+
+				dateOfManufacture = rs.getTimestamp("date_of_manufacture");
+
+				if (dateOfManufacture == null)
+				{
+					// If the date is null then return a string of
+					// spaces the same size as the format spec.
+					result = JUtility.padSpace(3);
+				}
+				else
+				{
+					dateOfManufacture.setNanos(0);
+					
+					DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+					String temp = dateFormat.format(dateOfManufacture);
+					
+					Calendar caldate = Calendar.getInstance();
+					caldate.setTimeInMillis(dateOfManufacture.getTime());
+					
+					long jd = JUtility.getJulianDay(caldate);
+					String jds = Long.toString(jd).trim();
+					jds = JUtility.padString(jds, false, 3, "0");
+					result = temp.substring(0, 1) + jds;
+				}
+
 			}
 
 			if (functionName.equals("PRODDATE"))

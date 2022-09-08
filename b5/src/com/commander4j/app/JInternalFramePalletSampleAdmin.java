@@ -110,6 +110,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 	private static boolean dlg_sort_descending = true;
 	private JDesktopPane jDesktopPane1;
 	private JButton4j jButtonSearch1;
+	private JButton4j jButtonQuantityChanges;
 	private JTextField4j jTextFieldLocationID;
 	private JButton4j jButtonLookupProcessOrder;
 	private JButton4j jButtonLookupMHN;
@@ -1100,6 +1101,24 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					});
 				}
 				{
+					jButtonQuantityChanges = new JButton4j(Common.icon_report_16x16);
+					jDesktopPane1.add(jButtonQuantityChanges);
+					jButtonQuantityChanges.setText(lang.get("btn_Sorting_Qty"));
+					jButtonQuantityChanges.setBounds(78, 213, 176, 32);
+					jButtonQuantityChanges.setMnemonic(java.awt.event.KeyEvent.VK_S);
+					jButtonQuantityChanges.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_SORTING_QTY"));
+					jButtonQuantityChanges.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+
+							populateList();
+							JLaunchReport.runReport("RPT_SORTING_QTY", null, true, null, 1, false);
+
+						}
+					});
+				}
+				{
 					jTextFieldMaterial = new JTextField4j(JDBMaterial.field_material);
 					jDesktopPane1.add(jTextFieldMaterial);
 					jTextFieldMaterial.setBounds(824, 43, 130, 22);
@@ -1648,7 +1667,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 
 				{
 
-					jTextFieldIncidentRef.setBounds(114, 186, 92, 22);
+					jTextFieldIncidentRef.setBounds(114, 183, 92, 22);
 					jDesktopPane1.add(jTextFieldIncidentRef);
 				}
 
@@ -1728,7 +1747,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jLabel_Sample_Point.setBounds(0, 113, 108, 21);
 				}
 
-				jTextFieldSample_Location_Plant.setBounds(115, 78, 92, 22);
+				jTextFieldSample_Location_Plant.setBounds(114, 78, 92, 22);
 				jDesktopPane1.add(jTextFieldSample_Location_Plant);
 
 				JButton4j button4j_sublocation = new JButton4j(Common.icon_lookup_16x16);

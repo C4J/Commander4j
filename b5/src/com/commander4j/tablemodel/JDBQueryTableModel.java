@@ -29,6 +29,8 @@ package com.commander4j.tablemodel;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
@@ -90,7 +92,17 @@ public class JDBQueryTableModel extends AbstractTableModel
 				Object[] record = new Object[colCount];
 				for (int i = 0; i < colCount; i++)
 				{
-					record[i] = rs.getObject(i + 1);
+					
+					// Special mod for mySQL to convert LocalDateTime into Timestamp
+					if (rs.getObject(i + 1) instanceof LocalDateTime)
+					{
+						record[i] = Timestamp.valueOf((LocalDateTime) rs.getObject(i + 1));
+					}
+					else
+					{
+						record[i] = rs.getObject(i + 1);
+					}
+					
 				}
 				cache.addElement(record);
 			}

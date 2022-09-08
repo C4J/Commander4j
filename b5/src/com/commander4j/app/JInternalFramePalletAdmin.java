@@ -359,7 +359,14 @@ public class JInternalFramePalletAdmin extends JInternalFrame
 
 		if (jTextFieldSSCC.getText().equals("") == false)
 		{
-			q2.applyWhere("sscc = ", jTextFieldSSCC.getText());
+			if (jTextFieldSSCC.getText().toString().length()==18)
+			{
+				q2.applyWhere("sscc = ", jTextFieldSSCC.getText());
+			}
+			else
+			{
+				q2.applyWhere("sscc like ", "%"+jTextFieldSSCC.getText()+"%");
+			}
 		}
 
 		if (textFieldMHN.getText().equals("") == false)

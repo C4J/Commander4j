@@ -2533,7 +2533,7 @@
 		</statement>
 		<statement>
 			<id>JDBPalletSamples.update</id>
-			<text>update {schema}APP_PALLET_SAMPLES set sample_date=?,sample_reason = ?,defect_type = ?,defect_id = ?,leaking = ?, comment=?, sample_quantity=?, user_id=?, sample_point = ? where sscc = ? and sample_sequence = ?</text>
+			<text>update {schema}APP_PALLET_SAMPLES set sample_date=?,sample_reason = ?,defect_type = ?,defect_id = ?,leaking = ?, sample_comment=?, sample_quantity=?, user_id=?, sample_point = ? where sscc = ? and sample_sequence = ?</text>
 		</statement>
 	         <statement>
 			<id>JDBPalletSamples.getProperties</id>

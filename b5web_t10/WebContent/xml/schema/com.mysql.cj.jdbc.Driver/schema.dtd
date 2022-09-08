@@ -1,0 +1,10 @@
+<?xml encoding="UTF-8"?>
+<!ELEMENT DDL (statement+)>
+
+<!ELEMENT statement (#PCDATA)>
+
+
+
+
+
+

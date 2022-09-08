@@ -47,6 +47,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 	private Logger logger = Logger.getLogger(Process.class);
 	private JEANBarcode bcode;
 	private boolean bcodeLoaded = false;
+	private Integer despatchListSize = 8;
 
 	public Process()
 	{
@@ -388,7 +389,7 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 		int currentDespatchListPage = Integer.valueOf(temp);
 
 		JMenuRFDespatchList dl = new JMenuRFDespatchList(Common.sd.getData(sessionID, "selectedHost"), sessionID);
-		String html = dl.buildDespatchList("Unconfirmed", Common.sd.getData(sessionID, "despatchNo"), currentDespatchListPage);
+		String html = dl.buildDespatchList("Unconfirmed", Common.sd.getData(sessionID, "despatchNo"), currentDespatchListPage,despatchListSize);
 
 		currentDespatchListPage = dl.getReturnedPage();
 		saveData(session, "currentDespatchListPage", String.valueOf(currentDespatchListPage), true);
@@ -1242,6 +1243,8 @@ public class Process extends javax.servlet.http.HttpServlet implements javax.ser
 				Common.user_max_password_attempts = Integer.parseInt(control.getKeyValue());
 			}
 
+			despatchListSize = Integer.valueOf(control.getKeyValueWithDefault("DESPATCH_LIST_SIZE", "8", "Mobile Device Despatch List Size"));
+			
 			JDBUser usr = new JDBUser(Common.sd.getData(sessionID, "selectedHost"), sessionID);
 			usr.setUserId(Common.sd.getData(sessionID, "username").toUpperCase());
 			usr.setLoginPassword(Common.sd.getData(sessionID, "password"));
