@@ -1405,9 +1405,27 @@ public class JUtility
 			year = Integer.valueOf(isoString.substring(0, 4));
 			month = Integer.valueOf(isoString.substring(5, 7));
 			day = Integer.valueOf(isoString.substring(8, 10));
+			try
+			{
 			hour = Integer.valueOf(isoString.substring(11, 13));
+			}
+			catch (Exception ex)
+			{
+			}
+			try
+			{
 			min = Integer.valueOf(isoString.substring(14, 16));
+			}
+			catch (Exception ex)
+			{
+			}
+			try
+			{
 			second = Integer.valueOf(isoString.substring(17, 19));
+			}
+			catch (Exception ex)
+			{
+			}
 
 			if ((month < 1) | (month > 12))
 			{

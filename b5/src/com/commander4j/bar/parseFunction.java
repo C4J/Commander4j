@@ -105,7 +105,7 @@ public class parseFunction
 		// Supported Expressions using format
 
 		String[] Functions = new String[]
-		{ "<SUBTR_LPAD(", "<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(",  "<JULIAN_YJJJ(","<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(", "<PRODDATE(",
+		{ "<SUBTR_LPAD(", "<DATETIME(", "<SUBSTRING(", "<LEFT(", "<RIGHT(", "<PADLEFT(", "<PADRIGHT(",  "<JULIAN_YJJJ(","<UPPERCASE(", "<LOWERCASE(", "<TRIM(", "<LTRIM(", "<RTRIM(", "<TIMESTAMP(", "<USERNAME(", "<VERSION(", "<IIF(", "<EXPIRYDATE(", "<PRODDATE(", "<DATE_CREATED(",
 				"<PALLET_WEIGHT_TEXT(", "<PALLET_WEIGHT_BARCODE(" };
 
 		// For each expression above
@@ -585,6 +585,47 @@ public class parseFunction
 						Timestamp dateOfManufacture;
 
 						dateOfManufacture = rs.getTimestamp("date_of_manufacture");
+
+						if (dateOfManufacture == null)
+						{
+							// If the date is null then return a string of
+							// spaces the same size as the format spec.
+							result = JUtility.padSpace(params[0].length());
+						}
+						else
+						{
+							dateOfManufacture.setNanos(0);
+							DateFormat dateFormat = new SimpleDateFormat(params[0]);
+
+							result = dateFormat.format(dateOfManufacture);
+						}
+
+					}
+					catch (Exception ex)
+					{
+						result = functionName + incorrectDateTimeFormat;
+					}
+				}
+				else
+				{
+					result = functionName + incorrectNoParams;
+				}
+			}
+			
+			if (functionName.equals("DATE_CREATED"))
+			{
+				if (params.length == 1)
+				{
+					try
+					{
+						if (params[0].equals(""))
+						{
+							params[0] = "dd/MM/yyyy";
+						}
+
+						Timestamp dateOfManufacture;
+
+						dateOfManufacture = rs.getTimestamp("date_created");
 
 						if (dateOfManufacture == null)
 						{
