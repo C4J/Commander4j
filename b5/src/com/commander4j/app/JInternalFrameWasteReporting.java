@@ -1405,7 +1405,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 		{
 			public void actionPerformed(final ActionEvent e)
 			{
-				jComboBoxSortBy.setSelectedIndex(3);
+				jComboBoxSortBy.setSelectedIndex(4);
 
 				JLaunchReport.runReport("RPT_WASTE_REPORTING2", null, "", buildSQL(qPrint), "");
 			}
@@ -1417,7 +1417,7 @@ public class JInternalFrameWasteReporting extends JInternalFrame
 		{
 			public void actionPerformed(final ActionEvent e)
 			{
-				jComboBoxSortBy.setSelectedIndex(6);
+				jComboBoxSortBy.setSelectedIndex(7);
 				
 				JLaunchReport.runReport("RPT_WASTE_REPORTING3", null, "", buildSQL(qPrint), "");
 			}
