@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="stylesPanels.css">
+	<title>Tray Menu</title>
+
+	<script src="scriptTrays.js"></script> <!-- Link to the javascript file -->
+	
+	<style>
+  
+  	  .is-scrollLocked {
+		   overflow: hidden;
+	   }
+	       
+      .grid-container {
+		  display: grid;
+		  grid-template-columns: 150px 150px 150px;
+		  padding: 10px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 10px;
+		  font-size: 16px;
+		}
+	</style>
+	
+</head>
+
+<body onLoad="buildTrayTable()">
+
+	<h1  id="heading" style="text-align:center">Trays</h1>
+	<h2 id="userid" style="text-align:center">Panelist</h2>
+	
+	<table id="trayTable">
+		<thead>
+			<tr>
+				<th>Tray ID</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody id="trayTable-output">
+		</tbody>
+	</table>
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">Back</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" id="nextButton" onclick="next()">Next</button></div>     
+	</div>
+
+
+</body>
+
+<script>
+
+	document.getElementById('heading').innerHTML = "Panel "+sessionStorage.getItem('selectedPanel')+" Trays";
+	document.getElementById('userid').innerHTML = "Panelist ["+sessionStorage.getItem('selectedUser')+"]";
+
+	
+	sessionStorage.setItem("selectedResult", "");
+
+	function buildTrayTable() {
+	
+		var selected = sessionStorage.getItem('selectedPanel');
+		
+		fetch("/c4jWS/Trays?panelID="+selected)
+			.then(function(response) { return response.json(); })
+			.then(function(trays) {
+				let placeholder = document.querySelector("#trayTable-output");
+				let out = "";
+				for (let tray of trays) {
+					out += `
+			<tr>
+				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${tray.trayID}" name="traySelectList" onchange="trayListSave('selectedTray',${tray.trayID});" value="${tray.trayID}" ` + trayListGet('selectedTray', tray.trayID) + `>  <label for="${tray.trayID}"> ${tray.trayID}</label></td>
+				<td style="color:black; background-color:#f0f8ff">${tray.description}</td>
+			</tr>`;
+				}
+	
+				placeholder.innerHTML = out;
+			})
+	}
+	
+	function next() 
+	{
+		var selectedTray = sessionStorage.getItem('selectedTray');
+		
+		if (selectedTray !== null)
+		{
+			if (selectedTray)			
+			{
+				if (selectedTray !== '')
+				{
+					window.location='resultSampleSelect.html';	
+				}
+			}
+		}
+	}
+	
+	function back()
+	{
+		window.location='resultPanelSelect.html';	
+	}
+	
+	function refresh()
+	{
+		console.log('resultTraySelect.html'); 
+		location.reload();
+	}
+	
+</script>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>c4jWS Trays</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+ 	<p><a href="index.html">Home</a></p>
+ 	<h1>/Trays</h1>
+ 	<h2>Table APP_QM_PANEL_TRAY</h2>
+ 	<table style="width:800px">
+ 	<tr><th width=125px>Field Name</th><th width=75px>Type</th><th width=55px>Size</th><th width=55px>Primary Key</th><th width=355px>Comment</th></tr>
+ 	<tr><td>PANEL_ID</td><td>Long</td><td></td><td align="center">1</td><td>Auto Generated increments for each day or session. See /Panels</td></tr>
+ 	<tr><td>TRAY_ID</td><td>Long</td><td></td><td align="center">2</td><td>Auto Generated used to represent virtual tray identity. Note that a physical tray will be allocated a new virtual Tray ID each time new samples are arranged on it.</td></tr>
+ 	<tr><td>DESCRIPTION</td><td>String</td><td align="center">40</td><td></td><td>User comments for Tray, optional</td></tr>
+ 	<tr><td>STATUS</td><td>String</td><td align="center">15</td><td></td><td>Prepare, Panel, Complete</td></tr>
+ 	<tr><td>PLANT</td><td>String</td><td align="center">40</td><td></td><td>Pouch 1, Pouch 2, Pouch 3, Pouch 4 for example.</td></tr>
+ 	<tr><td>UPDATED</td><td>Timestamp</td><td></td><td></td><td>System maintained</td></tr>
+ 	<tr><td>CREATED</td><td>Timestamp</td><td></td><td></td><td>System maintained</td></tr>
+ 	</table>
+ 	<p><i>Before an operator can prepare a physical tray of samples it must be created on the system. The system will generate a unique trayId for you. If the same tray is used more than once, on subsequent days for example it is created each time with a new Tray ID. This allows the system to maintain a record of which samples were grouped together. The PANEL_ID is part of the primary key and links to the day (panel scoring session). \nTypically a Panel occurs once a day and each Panel has a unique Panel ID generated for it.</i></p>
+ 
+ 	<h2>Transactions</h2>
+ 	<h3>GET (Read)</h3>
+
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve Trays for a specific panelID and status</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Trays?panelID={id}&amp;status={status}&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve Tray for a specific panelId and trayId</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Trays?panelID={id}&amp;trayID={id}&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+ 	<table style="width:600px">
+ 	 <tr><td><b>&nbsp;Retrieve all Trays for a specific panelID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Trays?panelID={id}&nbsp;</td></tr>
+ 	</table>
+
+ 	<h4>Status Codes</h4>
+ 	
+ 	<table style="width:600px">
+ 	<tr><th width=55px>Status</th><th width=185px>Meaning</th></tr>
+ 	<tr><td>Prepare</td><td>Tray which is currently having samples added to it and it not ready to be scored.</td></tr>
+ 	<tr><td>Panel</td><td>Tray which has had all the sample associated with it and can be scored.</td></tr>
+ 	<tr><td>Complete</td><td>Tray which has had all the sample scores from all the attendees recorded. <br/>It can then be reviewed prior to posting into the main database</td></tr>
+ 	<tr><td>Closed</td><td>Tray which has had all the sample posted to the main database</td></tr>
+ 	</table>
+
+  
+    <h4>JSON Example</h4>
+    <pre>
+[
+ {
+    "panelID": 1,
+    "trayID": 6,
+    "plant": "Pouch 4a",
+    "description": "New Product Trial",
+    "status": "Complete",
+    "updated": "2022-09-25T18:36:56",
+    "created": "2022-09-25T08:35:06"
+  },
+  {
+    "panelID": 1,
+    "trayID": 7,
+    "plant": "Pouch 4b",
+    "description": "New Product Trial",
+    "status": "Panel",
+    "updated": "2022-09-25T18:44:30",
+    "created": "2022-09-25T08:42:30"
+  }
+]
+  </pre>
+    <h3>POST (Create)</h3>
+    
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Inserts data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Trays</td></tr>
+ 	</table>
+ 	<p>*Server maintains created/updated record time stamps - leave trayID blank as the server will auto create and return in response body.</p>
+
+    <h4>JSON Example - POST</h4>
+    <pre>
+[
+ {
+    "panelID": 1,
+    "plant": "Pouch 4a",
+    "description": "New Product Trial",
+    "status": "Prepare"
+  }
+]
+    </pre>
+    
+    <h4>JSON Example - Response</h4>
+    <pre>
+[
+ {
+    "panelID": 1,
+    "trayID": 8,
+    "plant": "Pouch 4a",
+    "description": "New Product Trial",
+    "status": "Prepare",
+    "created": "2022-09-25T08:52:30"
+  }
+ ]
+    </pre>
+    
+
+    <h3>PUT (Update)</h3>
+    
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Updates data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Trays</td></tr>
+ 	</table>
+ 	<p>*Server maintains created/updated record time stamps.</p>
+
+    <h4>JSON Example - PUT</h4>
+    <pre>
+[
+ {
+    "panelID": 1,
+    "trayID": 8,
+    "plant": "Pouch 4a",
+    "description": "New Product Trial",
+    "status": "Panel"
+  }
+]
+    </pre>
+    
+    <h4>JSON Example - Response</h4>
+    <pre>
+[
+ {
+    "panelID": 1,
+    "trayID": 8,
+    "plant": "Pouch 4a",
+    "description": "New Product Trial",
+    "status": "Panel",
+    "updated": "2022-09-25T18:55:30",
+    "created": "2022-09-25T08:52:30"
+  }
+ ]
+</pre>
+  
+    <h3>DELETE (Delete)</h3>
+    
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Deletes Tray as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Trays</td></tr>
+ 	</table>
+ 	 <br/>
+ 	<table style="width:600px">
+    <tr><td><b>&nbsp;Deletes Tray as per parameters for panelID and trayID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Trays?panelID={id}&amp;trayID={8}&nbsp;</td></tr>
+ 	</table>
+
+    <h4>JSON Example - PUT</h4>
+    <pre>
+[
+ {
+    "panelID": 1,
+    "trayID": 8,
+  }
+]
+    </pre>
+
+</body>
+</html>

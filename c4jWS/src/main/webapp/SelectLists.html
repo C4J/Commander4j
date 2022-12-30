@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>c4jWS SelectLists</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+ 	<p><a href="index.html">Home</a></p>
+ 	<h1>/SelectLists</h1>
+ 	<h2>Table APP_QM_SELECTLIST</h2>
+ 	<table style="width:800px">
+ 	<tr><th width=125px>Field Name</th><th width=75px>Type</th><th width=55px>Size</th><th width=55px>Primary Key</th><th width=355px>Comment</th></tr>
+ 	<tr><td>SELECT_LIST_ID</td><td>String</td><td>40</td><td align="center">1</td><td>Key Identification.</td></tr>
+ 	<tr><td>VALUE</td><td>String</td><td>80</td><td></td><td>Value actually stored in database result table and passed in c4jWS/TrayResults</td></tr>
+ 	<tr><td>DESCRIPTION</td><td>String</td><td>255</td><td></td><td>Detailed description of value - used in combo box.</td></tr>
+ 	<tr><td>SEQUENCE</td><td>String</td><td>255</td><td></td><td>Sort Order</td></tr>
+ 	<tr><td>VISIBLE</td><td>String</td><td>255</td><td></td><td>Determines if an item should appear in the list. Allows and item to be hidden but not deleted.</td></tr>
+ 	</table>
+ 	<p><i>For this application determine the selectListID key value to use via a REST request to c4jWS/TrayResults using key "QM PANEL SELECTLIST 1"</i></p>
+ 
+ 	<h2>Transactions</h2>
+ 	<h3>GET (Read)</h3>
+
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve value for a specified systemKey</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/SelectLists?selectListID={key}&nbsp;</td></tr>
+ 	</table>
+ 	
+    <h4>JSON Example</h4>
+    <pre>
+[
+  {
+    "selectListID": "ZWSIPANE",
+    "value": "001",
+    "description": "IN",
+    "visible": "Y"
+  },
+  {
+    "selectListID": "ZWSIPANE",
+    "value": "010",
+    "description": "INC - EXCESS SHRIMP",
+    "visible": "Y"
+  },
+  {
+    "selectListID": "ZWSIPANE",
+    "value": "011",
+    "description": "INC - COLOUR",
+    "visible": "Y"
+  },
+  {
+    "selectListID": "ZWSIPANE",
+    "value": "012",
+    "description": "INC - EXCESS CHUNK",
+    "visible": "Y"
+  },
+  {
+    "selectListID": "ZWSIPANE",
+    "value": "013",
+    "description": "INC - EXCESS VEG",
+    "visible": "Y"
+  },
+  {
+    "selectListID": "ZWSIPANE",
+    "value": "067",
+    "description": "OUT - CLOUDY",
+    "visible": "Y"
+  },
+  {
+    "selectListID": "ZWSIPANE",
+    "value": "068",
+    "description": "OUT - FOREIGN BODY",
+    "visible": "Y"
+  },
+  {
+    "selectListID": "ZWSIPANE",
+    "value": "069",
+    "description": "OUT - OVERPROCESSED",
+    "visible": "Y"
+  },
+  {
+    "selectListID": "ZWSIPANE",
+    "value": "070",
+    "description": "OUT - JELLY NOT GRAVY",
+    "visible": "Y"
+  }
+]
+</pre>
+
+</body>
+</html>

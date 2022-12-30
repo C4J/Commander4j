@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="stylesPanels.css">
+	<title>Sample Menu</title>
+
+	<script src="scriptSamples.js"></script> <!-- Link to the javascript file -->
+	<script src="scriptResults.js"></script> <!-- Link to the javascript file -->
+	
+	<style>
+	
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }
+	   	
+      .box {
+        width: 350px;
+        height: 30px;
+        border: 1px solid #999;
+        font-size: 16px;
+        color: #1c87c9;
+        background-color: #eee;
+        border-radius: 5px;
+        box-shadow: 4px 4px #ccc;
+      }
+      
+      .grid-container {
+		  display: grid;
+		  grid-template-columns: 150px 150px 150px;
+		  padding: 5px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>
+	
+</head>
+
+<body onLoad="buildSampleTable()">
+
+	<h1 id="heading" style="text-align:center">Samples</h1>
+	<h2 id="userid" style="text-align:center">Panelist</h2>
+	
+	<table id="sampleTable">
+		<thead>
+			<tr>
+				<th>Sample ID</th>
+				<th>Result</th>
+				<th>Sequence</th>
+			</tr>
+		</thead>
+		<tbody id="sampleTable-output">
+		</tbody>
+	</table>
+	
+	<br>	
+	<div align="center" id="resultCombobox-output"></div>
+	<br>
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" id="selecButton" onclick="selectAll()">Select All</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" id="deselectButton" onclick="DeselectAll()">Deselect All</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" id="applyButton" onclick="GetSelected()">Apply</button></div>     
+	</div>
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">Back</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>    
+	</div>
+		
+
+</body>
+
+<script>
+	
+	document.getElementById('heading').innerHTML = "Panel "+sessionStorage.getItem('selectedPanel')+" Tray "+" "+sessionStorage.getItem('selectedTray');
+	document.getElementById('userid').innerHTML = "Panelist ["+sessionStorage.getItem('selectedUser')+"]";
+
+		
+	function buildSampleTable() {
+	
+		var selectedTray = sessionStorage.getItem('selectedTray');
+		var selectedUser = sessionStorage.getItem('selectedUser');
+	
+		fetch("/c4jWS/TrayResults?trayID="+selectedTray+"&userID="+selectedUser)
+			.then(function(response) { return response.json(); })
+			.then(function(samples) {
+				let placeholder = document.querySelector("#sampleTable-output");
+				let out = "";
+				for (let sample of samples) {
+					out += `
+			<tr>
+				<td style="color:black; background-color:#f0f8ff"><input type="checkbox" id="${sample.sampleID}" name="sampleSelectList" onchange="sampleListSave('selectedSample',${sample.sampleID});" value="${sample.sampleID}" ` + sampleListGet('selectedTray', sample.sampleID) + `>  <label for="${sample.sampleID}"> ${sample.sampleID}</label></td>
+				<td style="color:black; background-color:#f0f8ff">${sample.value}</td>
+				<td style="color:black; background-color:#f0f8ff">${sample.sequenceID}</td>
+			</tr>`;
+				}
+	
+				placeholder.innerHTML = out;
+			})
+			
+			buildResultListComboBox();
+	}
+	
+
+	function buildResultListComboBox() {
+		
+		var dropdownHTML = '<label for "resultSelect">Decision : </label><select id="resultSelect" name="resultSelect" class="box" onchange="newSelection(this.value)">';
+		
+		fetch("/c4jWS/SelectLists?selectListID=ZWSIPANE")
+			.then(function(response) { return response.json(); })
+			.then(function(records) {
+				dropdownHTML+='<option value=""></option>';
+				for (let record of records) {
+				    var name = record.value + " - " + record.description;
+				    var value = record.value;
+				    dropdownHTML+='<option value="'+value+'" '+getComboChecked(record.value)+'>'+name+'</option>';
+				}
+				
+				 dropdownHTML+='</select>';        
+
+				 var container=document.getElementById("resultCombobox-output");
+				 container.innerHTML=dropdownHTML;
+	
+			})
+	}
+	
+	function newSelection(combovalue)
+	{
+	    console.log('selected result = '+combovalue); 
+	    sessionStorage.setItem("selectedResult", combovalue);
+	    
+	    var button=document.getElementById("applyButton");
+	    
+	    if (combovalue === "")
+	    {
+	    	button.disabled = true;
+	    }
+	    else
+	    {
+	    	button.disabled = false;
+	    }
+	}
+	
+	function back()
+	{
+		window.location='resultTraySelect.html';	
+	}
+	
+	function refresh()
+	{
+		console.log('resultSampleSelect.html'); 
+		location.reload();
+	}
+	
+	function getComboChecked(input)
+	{
+		var result = "";
+		
+		var selectedResult = sessionStorage.getItem('selectedResult');
+		
+		if (selectedResult !== null)
+		{
+			if (input == selectedResult)
+			{
+				result = 'selected';
+			}
+		}
+		
+		return result;
+	}
+	
+    function GetSelected() 
+    {
+    	var updateCount = 0;
+    	var selectedTray = sessionStorage.getItem('selectedTray');
+    	var selectedResult = sessionStorage.getItem('selectedResult');
+    	var selectedUser = sessionStorage.getItem('selectedUser');
+    	var results = {};
+    	list = new Array();
+    	
+    	const checkboxes = document.getElementsByTagName('input');
+    	
+    	for (const checkbox of checkboxes) 
+    	{
+    	  if (checkbox.type == 'checkbox')
+    		{
+    		  if (checkbox.checked)
+    		  {
+    			  if (selectedResult !== "")
+    			  {
+	    			  console.log("trayID = ["+selectedTray+"] sampleID = ["+checkbox.id+"] result=["+selectedResult+"]");
+	    			  list.push({
+	    				  "trayID": selectedTray,
+	    				  "sampleID": checkbox.id,
+	    				  "userID": selectedUser,
+	    				  "testID": "PANEL",
+	    				  "value": selectedResult
+	
+	    			  });
+    			  updateCount = updateCount + 1;
+    			  }
+    		  }
+    		}
+    	}
+    	
+    	if (updateCount > 0)
+    	{
+    		  console.log(JSON.stringify(list));
+    		  postUpdates(list);  
+    	}
+    }
+    
+	function postUpdates(dataObject) {
+		
+		
+		console.log('post sample results');
+	
+		console.log(JSON.stringify(dataObject));
+	
+		let response = fetch("/c4jWS/TrayResults", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(`HTTP error, status = ${response.status}`);
+				}
+				return response.json();
+			})
+			.then((data) => {
+		  		  refresh();
+			})
+			.catch((error) => {
+				console.log("Error " + error);
+			});
+	
+		console.log(response);
+
+	};
+    
+    function selectAll() 
+    {
+    	
+    	const checkboxes = document.getElementsByTagName('input');
+    	
+    	for (const checkbox of checkboxes) 
+    	{
+    	  if (checkbox.type == 'checkbox')
+    	  {
+    		  if (checkbox.checked == false)
+    		  {
+    		     checkbox.checked = true;
+    		  }
+    	  }
+    	}
+    }
+    
+    function DeselectAll() 
+    {
+    	
+    	const checkboxes = document.getElementsByTagName('input');
+    	
+    	for (const checkbox of checkboxes) 
+    	{
+    	  if (checkbox.type == 'checkbox')
+    		{
+    		  if (checkbox.checked)
+    		  {
+    			  checkbox.checked = false;
+    		  }
+    		}
+    	}
+    }
+	
+</script>
+
+</html>

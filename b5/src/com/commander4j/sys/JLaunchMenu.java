@@ -634,6 +634,19 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
+		
+		if (optionName.equals("FRM_QM_PANEL_RESULTS"))
+		{
+			final JInternalFrameQMPanelResultsAdmin u;
+			if (isLoaded(JInternalFrameQMPanelResultsAdmin.class))
+				setVisible(JInternalFrameQMPanelResultsAdmin.class);
+			else
+			{
+				u = new JInternalFrameQMPanelResultsAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
 
 		if (optionName.equals("FRM_ADMIN_USER_REPORT"))
 		{

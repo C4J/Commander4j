@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="stylesPanels.css">
+	 
+	<title>Select Panelist</title>
+
+	<script src="scriptUsers.js"></script> <!-- Link to the javascript file -->
+	
+	<style>
+	
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }	
+	
+      .box {
+        width: 350px;
+        height: 30px;
+        border: 1px solid #999;
+        font-size: 18px;
+        color: #1c87c9;
+        background-color: #eee;
+        border-radius: 5px;
+        box-shadow: 4px 4px #ccc;
+      }
+      
+      .grid-container {
+		  display: grid;
+		  grid-template-columns: 150px 150px 150px;
+		  padding: 10px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 10px;
+		  font-size: 16px;
+		}
+	</style>
+	
+</head>
+
+<body onLoad="buildUserComboBox()">
+
+<h1 style="text-align:center">Select Panelist</h1>
+
+<br><br><br><br>	
+	<div align="center" id="userCombobox-output"></div>
+<br><br><br><br>
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">Back</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" id="nextButton" onclick="next()" disabled>Next</button></div>     
+	</div>
+	
+
+</body>
+
+<script>
+		
+   		
+	function buildUserComboBox() {
+		
+		var dropdownHTML = '<label for "userSelect">Panelist : </label><select id="userSelect" name="userSelect" class="box" onchange="newSelection(this.value)">';
+		
+		fetch("/c4jWS/Users?enabled=Y")
+			.then(function(response) { return response.json(); })
+			.then(function(users) {
+				dropdownHTML+='<option value=""></option>';
+				for (let user of users) {
+				    var name = user.userID + " - " + user.firstname + " " + user.surname;
+				    var value = user.userID;
+				    dropdownHTML+='<option value="'+value+'" '+getComboChecked(user.userID)+'>'+name+'</option>';
+				}
+				
+				 dropdownHTML+='</select>';        
+
+				 var container=document.getElementById("userCombobox-output");
+				 container.innerHTML=dropdownHTML;
+	
+			})
+			
+			var selectedUser = sessionStorage.getItem('selectedUser');
+			var enabled = true;	
+		
+			if (selectedUser !== null)
+			{
+				if (selectedUser !== "")	
+				{
+					enabled = false;	
+				}
+			}
+			
+			var button=document.getElementById("nextButton");
+			button.disabled = enabled;
+	}
+	
+	function newSelection(combovalue)
+	{
+	    console.log('selected user = '+combovalue); 
+	    
+	    sessionStorage.setItem("selectedUser", combovalue);
+	    sessionStorage.setItem("selectedPanel", "");
+	    sessionStorage.setItem("selectedTray", "");
+	    
+	    var button=document.getElementById("nextButton");
+	    
+	    if (combovalue === "")
+	    {
+	    	button.disabled = true;
+	    }
+	    else
+	    {
+	    	button.disabled = false;
+	    }
+	}
+	
+	function next()
+	{
+		var selectedUser = sessionStorage.getItem('selectedUser');
+		
+		if (selectedUser !== null)
+		{
+			if (selectedUser !== "")	
+			{
+				window.location='resultPanelSelect.html';	
+			}
+		}
+	}
+	
+	function back()
+	{
+		window.location='menu.html';	
+	}
+	
+	function refresh()
+	{
+		console.log('resultUserSelect.html'); 
+		location.reload();
+	}
+	
+	function getComboChecked(input)
+	{
+		var result = "";
+		
+		var selectedUser = sessionStorage.getItem('selectedUser');
+		
+		if (selectedUser !== null)
+		{
+			if (input == selectedUser)
+			{
+				result = 'selected';
+			}
+		}
+		
+		return result;
+	}
+	
+</script>
+
+</html>
+

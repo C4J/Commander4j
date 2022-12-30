@@ -50,6 +50,7 @@ import com.commander4j.db.JDBQMSelectList;
 import com.commander4j.renderer.JDBListRenderer;
 import com.commander4j.renderer.RenderColumnPrefs;
 import com.commander4j.renderer.TableCellRenderer_Default;
+import com.commander4j.renderer.TableCellRenderer_PanelResults;
 import com.commander4j.renderer.TableHeaderRenderer;
 import com.commander4j.renderer.WeightSampleDetailCellRenderer;
 import com.commander4j.util.JImageIconLoader;
@@ -189,6 +190,7 @@ public class Common
 	public final static Font font_textArea = new java.awt.Font("Monospaced", 0, 14);
 	
 	public static final TableCellRenderer_Default renderer_table = new TableCellRenderer_Default();
+	public static final TableCellRenderer_PanelResults renderer_table_panel_results = new TableCellRenderer_PanelResults();
 	public static final TableHeaderRenderer renderer_tableheader = new TableHeaderRenderer();
 	
 	public final static Color color_textfield_foreground_focus_color = Color.BLACK;

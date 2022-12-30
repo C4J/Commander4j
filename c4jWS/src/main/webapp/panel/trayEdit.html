@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="stylesPanels.css">
+	<title>Tray Edit</title>
+
+	<script src="scriptTrays.js"></script>
+	
+	<style>
+	
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }
+	         
+      .grid-container {
+		  display: grid;
+		  flex-wrap: wrap;
+		  grid-template-columns: 100px 100px 100px 100px;
+		  padding: 2px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>
+
+</head>
+
+<body onLoad="getTrayProperties()">
+
+	<h1 id="heading" style="text-align:center">Tray</h1>
+
+	<table id="trayEditTable">
+
+		<tr>
+			<td style="color:black; background-color:#f0f8ff">Description</td>
+			<td style="color:black; background-color:#f0f8ff"><input type="text" id="description" name="description" autofocus></td>
+		</tr>
+		<tr>
+			<td style="color:black; background-color:#f0f8ff">Created</td>
+			<td style="color:black; background-color:#f0f8ff"><input  style="color:black; background-color:#f0f8ff" type="text" id="created" name="created" disabled></td>
+		</tr>
+		<tr>
+			<td style="color:black; background-color:#f0f8ff">Updated</td>
+			<td style="color:black; background-color:#f0f8ff"><input  style="color:black; background-color:#f0f8ff" type="text" id="updated" name="updated" disabled></td>
+		</tr>
+	</table>
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" onclick="sampleMenu()">Samples</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick='updateTray(document.getElementById("description").value)'>Save</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshTray()">Refresh</button></div>   
+  		 <div class="grid-item" align="center"><button class="button" onclick="trayMenu()">Back</button></div> 
+	</div>
+
+</body>
+
+<script>
+	
+	document.getElementById('heading').innerHTML = "Panel "+sessionStorage.getItem('selectedPanel')+" - Tray "+sessionStorage.getItem('selectedTray');
+	
+	function getTrayProperties() {
+
+		var selectedPanel = sessionStorage.getItem('selectedPanel');
+		var selectedTray = sessionStorage.getItem('selectedTray');
+
+		console.debug('buildTrayEdit  selected panel =' + selectedPanel);
+		console.debug('buildTrayEdit  selected tray =' + selectedTray);
+
+		fetch("/c4jWS/Trays?panelID=" + selectedPanel + "&trayID=" + selectedTray)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(`HTTP error, status = ${response.status}`);
+				}
+				return response.json();
+			})
+			.then((data) => {
+
+				console.log("Returned  value panelID=" + data[0].panelID + " trayID=" + data[0].trayID);
+
+				document.getElementById("description").value = data[0].description;
+				
+				document.getElementById("created").value = formatDate(data[0].created);
+				
+				if (data[0].updated)
+				{
+					document.getElementById("updated").value = formatDate(data[0].updated);	
+				}
+				else 
+				{
+					 document.getElementById("updated").value = "";
+				}
+				
+				return data;
+			})
+			.catch((error) => {
+				console.log("Error " + error);
+			});
+
+	}
+</script>
+			
+</html>

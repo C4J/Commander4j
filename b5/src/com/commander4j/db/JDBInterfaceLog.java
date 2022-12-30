@@ -536,6 +536,7 @@ public class JDBInterfaceLog
 
 	public void setMessageRef(String messageref)
 	{
+		messageref = JUtility.replaceNullStringwithBlank(messageref);
 		dbMessageRef = messageref.replaceAll("\\n", "");
 		dbMessageRef = dbMessageRef.replaceAll("  ", " ");
 		dbMessageRef = JUtility.left(messageref, field_message_ref);

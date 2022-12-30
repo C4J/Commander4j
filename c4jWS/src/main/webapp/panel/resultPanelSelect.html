@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="stylesPanels.css">
+	<title>Panel Menu</title>
+
+	<script src="scriptPanels.js"></script> <!-- Link to the javascript file -->
+	
+	<style>
+	
+ 	  .is-scrollLocked {
+		   overflow: hidden;
+	   }
+	        
+      .grid-container {
+		  display: grid;
+		  grid-template-columns: 150px 150px 150px;
+		  padding: 10px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 10px;
+		  font-size: 16px;
+		}
+	</style>
+	
+</head>
+
+<body onLoad="buildPanelTable()">
+
+	<h1 id="heading" style="text-align:center">Panels</h1>
+	<h2 id="userid" style="text-align:center">Panelist</h2>
+		
+	<table id="panelTable">
+		<thead>
+			<tr>
+				<th>Panel ID</th>
+				<th>Plant</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody id="panelsTable-output">
+		</tbody>
+	</table>
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">Back</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" id="nextButton" onclick="next()">Next</button></div>     
+	</div>
+
+</body>
+
+<script>
+	
+	document.getElementById('userid').innerHTML = "Panelist ["+sessionStorage.getItem('selectedUser')+"]";
+	
+	function buildPanelTable() {
+	
+		
+		fetch("/c4jWS/Panels?status=Ready")
+			.then(function(response) { return response.json(); })
+			.then(function(panels) {
+				let placeholder = document.querySelector("#panelsTable-output");
+				let out = "";
+				for (let panel of panels) {
+					out += `
+			<tr>
+				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${panel.panelID}" name="panelSelectList" onchange="panelListSave('selectedPanel',${panel.panelID});" value="${panel.panelID}" ` + panelListGet('selectedPanel', panel.panelID) + `>  <label for="${panel.panelID}"> ${panel.panelID}</label></td>
+				<td style="color:black; background-color:#f0f8ff">`+panel.plant+`</td>
+				<td style="color:black; background-color:#f0f8ff">`+panel.description+`</td>
+			</tr>`;
+				}
+	
+				placeholder.innerHTML = out;
+			})
+	}
+	
+	
+	function next() 
+	{
+		var selectedPanel = sessionStorage.getItem('selectedPanel');
+		
+		if (selectedPanel !== null)
+		{
+			if (selectedPanel)			
+			{
+				if (selectedPanel !== '')
+				{
+					window.location='resultTraySelect.html';	
+				}
+			}
+		}
+	}
+	
+	function back()
+	{
+		window.location='resultUserSelect.html';	
+	}
+	
+	function refresh()
+	{
+		console.log('resultPanelSelect.html'); 
+		location.reload();
+	}
+	
+</script>
+
+</html>
+

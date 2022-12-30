@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="stylesPanels.css">
+	<title>Sample Menu</title>
+
+	<script src="scriptSamples.js"></script> <!-- Link to the javascript file -->
+	
+	<style>
+      
+      .is-scrollLocked {
+		   overflow: hidden;
+		}
+		      
+      .grid-container {
+		  display: grid;
+		  flex-wrap: wrap;
+		  grid-template-columns: 150px 150px 150px;
+		  padding: 2px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>
+	
+</head>
+
+<body onLoad="buildSampleTable()">
+
+	<h1 id="heading" style="text-align:center">Panel</h1>
+	<h2 style="text-align:center">Samples</h2>
+	
+	<table id="sampleTable">
+		<thead>
+			<tr>
+				<th>Sample ID</th>
+				<th>Sequence</th>
+			</tr>
+		</thead>
+		<tbody id="sampleTable-output">
+		</tbody>
+	</table>
+	
+	<table id="sampleScan" width="100px">
+		<tr>
+			<td><input type="text" id="scanData" name="scanData" maxlength="10" autofocus></td>
+			<td><button class="button"  onclick='newSample(document.getElementById("scanData").value)'>Add</button></td>
+		</tr>
+	</table>
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmDeleteSample()">Delete</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshSample()">Refresh</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" onclick="trayMenu()">Back</button></div>   
+	</div>
+
+</body>
+
+<script>
+	
+   document.getElementById('heading').innerHTML = "Panel "+sessionStorage.getItem('selectedPanel')+" Tray "+sessionStorage.getItem('selectedTray');
+	
+	var barcode = document.getElementById("scanData");
+	barcode.addEventListener("keydown", function (e) {
+		if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+			newSample(document.getElementById("scanData").value);
+		}
+	});
+	
+	function buildSampleTable() {
+	
+		var selected = sessionStorage.getItem('selectedTray');
+	
+		fetch("/c4jWS/TraySamples?trayID="+selected)
+			.then(function(response) { return response.json(); })
+			.then(function(samples) {
+				let placeholder = document.querySelector("#sampleTable-output");
+				let out = "";
+				for (let sample of samples) {
+					out += `
+			<tr>
+				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${sample.sampleID}" name="sampleSelectList" onchange="sampleListSave('selectedSample',${sample.sampleID});" value="${sample.sampleID}" ` + sampleListGet('selectedTray', sample.sampleID) + `>  <label for="${sample.sampleID}"> ${sample.sampleID}</label></td>
+				<td style="color:black; background-color:#f0f8ff">${sample.sequenceID}</td>
+			</tr>`;
+				}
+	
+				placeholder.innerHTML = out;
+			})
+	}
+	
+	function confirmDeleteSample() {
+		
+		var selectedSample = sessionStorage.getItem('selectedSample');
+		
+		if (selectedSample !== null)
+		{
+			if (selectedSample)			
+			{
+				if (selectedSample !== '')
+				{		
+					var result =  confirm("Delete Sample ["+selectedSample+"] ?");
+					if (result == true)
+					{
+						deleteSample();
+					}
+				}
+			}
+		}		
+	}
+	
+</script>
+
+</html>

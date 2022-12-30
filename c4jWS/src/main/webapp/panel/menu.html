@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	 <link rel="stylesheet" href="stylesPanels.css">
+	<title>Main Menu</title>
+	
+	<style>
+	
+		.is-scrollLocked {
+		   overflow: hidden;
+		}
+		
+		.grid-container {
+		  display: grid;
+		  grid-template-columns: 150px;
+		  padding: 10px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 10px;
+		  font-size: 16px;
+		}
+	</style>
+	
+</head>
+
+<body>
+
+<h1 style="text-align:center">Main Menu</h1>
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" onclick="results()">Results</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick="setup()">Setup</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" onclick="admin()">Admin</button></div>   
+	</div>
+	
+</body>
+
+<script>
+
+	function setup()
+	{
+		sessionStorage.setItem("selectedUser", "");
+		sessionStorage.setItem("selectedPanel", "");
+		sessionStorage.setItem("selectedTray", "");
+		window.location='panels.html';	
+	}
+	
+	function results()
+	{
+		sessionStorage.setItem("selectedUser", "");
+		sessionStorage.setItem("selectedPanel", "");
+		sessionStorage.setItem("selectedTray", "");
+		window.location='resultUserSelect.html';	
+	}
+	
+	function admin()
+	{
+		window.location='admin.html';	
+	}
+
+</script>
+
+</html>
+

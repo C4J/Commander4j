@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	<link rel="stylesheet" href="stylesPanels.css">
+	<title>Panel Menu</title>
+
+	<script src="scriptPanels.js"></script> <!-- Link to the javascript file -->
+	
+	<style>
+	
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }
+	         
+      .grid-container {
+		  display: grid;
+		  flex-wrap: wrap;
+		  grid-template-columns: 150px 150px 150px;
+		  padding: 2px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>
+	
+</head>
+
+<body onLoad="buildPanelTable()">
+
+<h1 style="text-align:center">Panels</h1>
+			
+	<table id="panelTable">
+		<thead>
+			<tr>
+				<th>Panel ID</th>
+				<th>Plant</th>
+				<th>Description</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody id="panelsTable-output">
+		</tbody>
+	</table>
+	
+	
+	<div class="grid-container">
+	
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewPanel()">New</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick="editPanelRecord()">Edit</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmDeletePanel()">Delete</button></div>   
+	</div>
+	
+	<div class="grid-container">  
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshPanel()">Refresh</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick="menu()">Back</button></div>   
+  		 <div class="grid-item" align="center"><button class="button" onclick="loadTrays()">Trays</button></div> 
+	</div>
+
+</body>
+
+<script>
+	
+	function setCheckedValue(radioObj, newValue) {
+		if(!radioObj)
+			return;
+		var radioLength = radioObj.length;
+		if(radioLength == undefined) {
+			radioObj.checked = (radioObj.value == newValue.toString());
+			return;
+		}
+		for(var i = 0; i < radioLength; i++) {
+			radioObj[i].checked = false;
+			if(radioObj[i].value == newValue.toString()) {
+				radioObj[i].checked = true;
+			}
+		}
+	}
+	
+	function getCheckedValue(radioObj) {
+		if(!radioObj)
+			return "";
+		var radioLength = radioObj.length;
+		if(radioLength == undefined)
+			if(radioObj.checked)
+				return radioObj.value;
+			else
+				return "";
+		for(var i = 0; i < radioLength; i++) {
+			if(radioObj[i].checked) {
+				return radioObj[i].value;
+			}
+		}
+		return "";
+	}
+	
+	function buildPanelTable() {
+			
+		fetch("/c4jWS/Panels?maxRows=15")
+			.then(function(response) { return response.json(); })
+			.then(function(panels) {
+				let placeholder = document.querySelector("#panelsTable-output");
+				let out = "";
+				for (let panel of panels) {
+					out += `
+			<tr>
+				<td style="color:black; background-color:`+getStatusColour(panel.status)+`"><input type="radio" id="${panel.panelID}" name="panelSelectList" onchange="panelListSave('selectedPanel',${panel.panelID});" value="${panel.panelID}" ` + panelListGet('selectedPanel', panel.panelID) + `>  <label for="${panel.panelID}"> ${panel.panelID}</label></td>
+				<td style="color:white; background-color:`+getStatusColour(panel.status)+`">`+panel.plant+`</td>
+				<td style="color:white; background-color:`+getStatusColour(panel.status)+`">`+panel.description+`</td>
+				<td style="color:white; background-color:`+getStatusColour(panel.status)+`">`+panel.status+`</td>
+			</tr>`;
+				}
+				placeholder.innerHTML = out;
+			})
+	}
+	
+	function confirmNewPanel() {
+		var result =  confirm("Create new Panel ?");
+		if (result == true)
+		{
+		    panelListSave('panelStatus','Prepare');
+			newPanel();
+		}
+	}
+	
+	function confirmDeletePanel() {
+		var selectedPanel = sessionStorage.getItem('selectedPanel');
+		
+		if (selectedPanel !== null)
+		{
+			if (selectedPanel)			
+			{
+				if (selectedPanel !== '')
+				{
+					var result =  confirm("Delete Panel ["+selectedPanel+"] ?");
+					if (result == true)
+					{
+						deletePanel();
+					}
+				}
+			}
+		}
+	}
+	
+	function menu()
+	{
+		window.location='menu.html';	
+	}
+	
+</script>
+
+</html>
+

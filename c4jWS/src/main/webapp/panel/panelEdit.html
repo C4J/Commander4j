@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="stylesPanels.css">
+	<title>Panel Edit</title>
+
+	<script src="scriptPanels.js"></script>
+	
+	<style>
+	
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }
+      
+      .grid-container {
+		  display: grid;
+		  flex-wrap: wrap;
+		  grid-template-columns: 90px 90px 90px 90px;
+		  padding: 2px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>
+
+</head>
+
+<body onLoad="getPanelProperties()">
+
+	<h1 id="heading" style="text-align:center">Panel</h1>
+
+	<table id="trayEditTable">
+
+		<tr>
+			<td style="color:black; background-color:#f0f8ff">Plant</td>
+			<td style="color:black; background-color:#f0f8ff"><input type="text" id="plant" name="plant" autofocus></td>
+		</tr>
+		<tr>
+			<td style="color:black; background-color:#f0f8ff">Description</td>
+			<td  style="color:black; background-color:#f0f8ff" id="descrow"><input type="text" id="description" name="description"></td>
+		</tr>
+		<tr>
+			<td style="color:black; background-color:#f0f8ff">Created</td>
+			<td style="color:black; background-color:#f0f8ff"><input  style="color:black; background-color:#f0f8ff" type="text" id="created" name="created" disabled></td>
+		</tr>
+		<tr>
+			<td style="color:black; background-color:#f0f8ff">Updated</td>
+			<td style="color:black; background-color:#f0f8ff"><input  style="color:black; background-color:#f0f8ff" type="text" id="updated" name="updated" disabled></td>
+		</tr>
+		<tr>
+			<td style="color:black; background-color:#f0f8ff">Status</td>
+			<td style="color:black; background-color:#f0f8ff">
+				<select name="status" id="status">
+				  	<option value="Prepare">Prepare</option>
+				  	<option value="Ready">Ready</option>
+				  	<option value="Complete">Complete</option>
+		  	</select>
+			</td>
+		</tr>
+	</table>
+
+	<table id="panelEditTable">
+		<tbody id="panelEdit-output">
+	</table>
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" onclick="loadTrays()">Trays</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick='updatePanel(document.getElementById("plant").value,document.getElementById("description").value,document.getElementById("status").value)'>Save</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshPanel()">Refresh</button></div>   
+  		 <div class="grid-item" align="center"><button class="button" onclick="panelMenu()">Back</button></div> 
+	</div>
+
+</body>
+
+<script>
+
+	document.getElementById('heading').innerHTML = "Panel "+sessionStorage.getItem('selectedPanel');
+
+	function getPanelProperties() {
+
+		var selectedPanel = sessionStorage.getItem('selectedPanel');
+
+		console.debug('buildTrayEdit  selected panel =' + selectedPanel);
+
+		fetch("/c4jWS/Panels?panelID=" + selectedPanel)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(`HTTP error, status = ${response.status}`);
+				}
+				return response.json();
+			})
+			.then((data) => {
+
+				console.log("Returned  value panelID=" + data[0].panelID);
+				
+				document.getElementById("plant").value = data[0].plant;
+				document.getElementById("description").value = data[0].description;
+				
+				document.getElementById("created").value = formatDate(data[0].created);
+				
+				if (data[0].updated)
+				{
+					document.getElementById("updated").value = formatDate(data[0].updated);	
+				}
+				else 
+				{
+					 document.getElementById("updated").value = "";
+				}
+				
+				let element = document.getElementById("status");
+				element.value = data[0].status;	
+				
+			    
+				document.getElementById('status').style.backgroundColor = getStatusColour(data[0].status);
+
+
+				return data;
+			})
+			.catch((error) => {
+				console.log("Error " + error);
+			});
+
+	}
+</script>
+
+</html>

@@ -166,7 +166,7 @@ public class JDBStructure
 					actual_schema = rs.getString("TABLE_CAT");
 					if (driver.equals("com.mysql.cj.jdbc.Driver"))
 					{
-						if (actual_schema.equals(required_schema) == true)
+						if (actual_schema.toUpperCase().equals(required_schema.toUpperCase()) == true)
 						{
 							includeTable = true;
 						}

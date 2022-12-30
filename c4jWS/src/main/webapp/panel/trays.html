@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="stylesPanels.css">
+	<title>Tray Menu</title>
+
+	<script src="scriptTrays.js"></script> <!-- Link to the javascript file -->
+	
+	<style>
+	
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   } 
+	        
+      .grid-container {
+		  display: grid;
+		  flex-wrap: wrap;
+		  grid-template-columns: 150px 150px 150px;
+		  padding: 2px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>
+	
+</head>
+
+<body onLoad="buildTrayTable()">
+
+	<h1 id="heading" style="text-align:center">Trays</h1>
+	
+	<table id="trayTable">
+		<thead>
+			<tr>
+				<th>Tray ID</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody id="trayTable-output">
+		</tbody>
+	</table>
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewTray()">New</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick="editTrayRecord()">Edit</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmDeleteTray()">Delete</button></div>   
+	</div>
+	
+	<div class="grid-container">  
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshTray()">Refresh</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick="panelMenu()">Back</button></div>   
+  		 <div class="grid-item" align="center"><button class="button" onclick="sampleMenu()">Samples</button></div> 
+	</div>
+
+</body>
+
+<script>
+
+	document.getElementById('heading').innerHTML = "Panel "+sessionStorage.getItem('selectedPanel')+" Trays";
+		
+	function setCheckedValue(radioObj, newValue) {
+		if(!radioObj)
+			return;
+		var radioLength = radioObj.length;
+		if(radioLength == undefined) {
+			radioObj.checked = (radioObj.value == newValue.toString());
+			return;
+		}
+		for(var i = 0; i < radioLength; i++) {
+			radioObj[i].checked = false;
+			if(radioObj[i].value == newValue.toString()) {
+				radioObj[i].checked = true;
+			}
+		}
+	}
+	
+	function getCheckedValue(radioObj) {
+		if(!radioObj)
+			return "";
+		var radioLength = radioObj.length;
+		if(radioLength == undefined)
+			if(radioObj.checked)
+				return radioObj.value;
+			else
+				return "";
+		for(var i = 0; i < radioLength; i++) {
+			if(radioObj[i].checked) {
+				return radioObj[i].value;
+			}
+		}
+		return "";
+	}
+
+	function buildTrayTable() {
+	
+		var selected = sessionStorage.getItem('selectedPanel');
+
+		
+		fetch("/c4jWS/Trays?panelID="+selected)
+			.then(function(response) { return response.json(); })
+			.then(function(trays) {
+				let placeholder = document.querySelector("#trayTable-output");
+				let out = "";
+				for (let tray of trays) {
+					out += `
+			<tr>
+				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${tray.trayID}" name="traySelectList" onchange="trayListSave('selectedTray',${tray.trayID});" value="${tray.trayID}" ` + trayListGet('selectedTray', tray.trayID) + `>  <label for="${tray.trayID}"> ${tray.trayID}</label></td>
+				<td style="color:black; background-color:#f0f8ff">${tray.description}</td>
+			</tr>`;
+				}
+	
+				placeholder.innerHTML = out;
+			})
+	}
+	
+	
+	function confirmNewTray() {
+		var result =  confirm("Create new Tray ?");
+		if (result == true)
+		{
+			newTray();
+		}
+	}
+	
+	function confirmDeleteTray() {
+		
+		var selectedTray = sessionStorage.getItem('selectedTray');
+		
+		if (selectedTray !== null)
+		{
+			if (selectedTray)			
+			{
+				if (selectedTray !== '')
+				{					
+					var result =  confirm("Delete Tray ["+selectedTray+"] ?");
+					if (result == true)
+					{
+						deleteTray();
+					}
+				}
+			}
+		}		
+	}
+</script>
+
+</html>

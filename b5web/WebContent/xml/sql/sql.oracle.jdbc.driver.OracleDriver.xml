@@ -2687,6 +2687,160 @@
 			<id>JDBSuppliers.isValidSupplier</id>
 			<text>select * from {schema}APP_SUPPLIER where supplier_id = ?</text>
 		</statement>
+		
+		<?JDBQMTrays ?>
+		<statement>
+			<id>JDBQMTrays.getProperties</id>
+			<text>select * from {schema}APP_QM_PANEL_TRAY where panel_id=? and tray_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrays.isValid</id>
+			<text>select * from {schema}APP_QM_PANEL_TRAY where panel_id=? and tray_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrays.create</id>
+			<text>insert into {schema}APP_QM_PANEL_TRAY (panel_id,tray_id,description,created) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrays.update</id>
+			<text>update {schema}APP_QM_PANEL_TRAY set description=?,updated=? where panel_id=? and tray_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBQMTrays.delete</id>
+			<text>delete from {schema}APP_QM_PANEL_TRAY where panel_id=? and tray_id=?</text>
+		</statement>			
+		<statement>
+			<id>JDBQMTrays.getByPanel</id>
+			<text>select * from {schema}APP_QM_PANEL_TRAY where panel_id = ? order by tray_id</text>
+		</statement>
+		
+		<?JDBQMTraySamples ?>
+		<statement>
+			<id>JDBQMTraySamples.isValid</id>
+			<text>select * from {schema}APP_QM_PANEL_TRAY_SAMPLES where tray_id = ? and sample_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTraySamples.getProperties</id>
+			<text>select * from {schema}APP_QM_PANEL_TRAY_SAMPLES where tray_id = ? and sample_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTraySamples.create</id>
+			<text>insert into {schema}APP_QM_PANEL_TRAY_SAMPLES (tray_id,sample_id,sequence_id,created) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMTraySamples.update</id> 
+			<text>update {schema}APP_QM_PANEL_TRAY_SAMPLES set sequence_id = ?,updated = ? where tray_id = ? and sample_id = ?</text>
+		</statement>		
+		<statement>
+			<id>JDBQMTraySamples.delete</id>
+			<text>delete from {schema}APP_QM_PANEL_TRAY_SAMPLES where tray_id = ? and sample_id = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBQMTraySamples.getByTrayID</id>
+			<text>select * from {schema}APP_QM_PANEL_TRAY_SAMPLES where tray_id = ? order by sequence_id</text>
+		</statement>	
+		<statement>
+			<id>JDBQMTraySamples.maxSequenceID</id>
+			<text>select coalesce(max(sequence_id),0) AS max_sequence_id from {schema}APP_QM_PANEL_TRAY_SAMPLES where tray_id = ?</text>
+		</statement>		
+		
+		<?JDBQMPanels ?>
+		<statement>
+			<id>JDBQMPanels.getProperties</id>
+			<text>select * from {schema}APP_QM_PANEL where panel_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBQMPanels.isValid</id>
+			<text>select * from {schema}APP_QM_PANEL where panel_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBQMPanels.create</id>
+			<text>insert into {schema}APP_QM_PANEL (panel_id,panel_date,description,plant,status,created) values (?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMPanels.update</id>
+			<text>update {schema}APP_QM_PANEL set panel_date=?,description=?,plant=?,status=?,updated=? where panel_id=?</text>
+		</statement>	
+		<statement>
+			<id>JDBQMPanels.delete</id>
+			<text>delete from {schema}APP_QM_PANEL where panel_id=?</text>
+		</statement>			
+		<statement>
+			<id>JDBQMPanels.getByStatus</id>
+			<text>select * from {schema}APP_QM_PANEL where status = ? order by panel_id</text>
+		</statement>
+		<statement>
+			<id>JDBQMPanels.getListLimit</id>
+			<text>select * from (select  * from {schema}app_qm_panel order by (case status when 'Prepare' then 1 when 'Ready' then 2 when 'Complete' then 3 else 4 end),panel_id desc) where rownum &lt;= ?</text>
+		</statement>
+		
+		<?JDBQMTrayResults ?>
+		<statement>
+			<id>JDBQMTrayResults.isValid</id>
+			<text>select * from {schema}APP_QM_PANEL_TRAY_RESULTS where tray_id = ? and sample_id = ? and user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrayResults.getProperties</id>
+			<text>select * from {schema}APP_QM_PANEL_TRAY_RESULTS where tray_id = ? and sample_id = ? and user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrayResults.create</id>
+			<text>insert into {schema}APP_QM_PANEL_TRAY_RESULTS (tray_id,sample_id,user_id,test_id,value,created) values (?,?,?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMTrayResults.update</id> 
+			<text>update {schema}APP_QM_PANEL_TRAY_RESULTS set test_id = ?,value = ?,updated = ? where tray_id = ? and sample_id = ? and user_id = ?</text>
+		</statement>		
+		<statement>
+			<id>JDBQMTrayResults.delete</id>
+			<text>delete from {schema}APP_QM_PANEL_TRAY_RESULTS where tray_id = ? and sample_id = ? and user_id = ?</text>
+		</statement>	
+		<statement>
+			<id>JDBQMTrayResults.getByTrayID</id>
+			<text>select
+				app_qm_panel_tray_samples.tray_id, 
+				app_qm_panel_tray_samples.sample_id, 
+				app_qm_panel_tray_samples.sequence_id, 
+				app_qm_panel_tray_samples.updated, 
+				app_qm_panel_tray_samples.created,
+				? as user_id,
+				? as test_id,
+				(select value from app_qm_panel_tray_results where app_qm_panel_tray_results.tray_id = app_qm_panel_tray_samples.tray_id
+				and app_qm_panel_tray_results.sample_id = app_qm_panel_tray_samples.sample_id
+				and app_qm_panel_tray_results.user_id = ? and test_id = ?) as 'value'
+			from
+				app_qm_panel_tray_samples
+			where tray_id = ?
+			order by sequence_id
+			</text>
+		</statement>			
+	
+		<?JDBQMUsers ?>
+		<statement>
+			<id>JDBQMUsers.isValid</id>
+			<text>select * from {schema}APP_QM_USERS where user_id=?</text>
+		</statement>
+		<statement>
+			<id>JDBQMUsers.getProperties</id>
+			<text>select * from {schema}APP_QM_USERS where user_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBQMUsers.create</id>
+			<text>insert into {schema}APP_QM_USERS (user_id,first_name,surname,enabled) values (?,?,?,?)</text>
+		</statement>
+		<statement>
+			<id>JDBQMUsers.update</id> 
+			<text>update {schema}APP_QM_USERS set first_name = ?,surname = ?,enabled = ? where user_id = ?</text>
+		</statement>			
+			<statement>
+			<id>JDBQMUsers.getByEnabled</id> 
+			<text>select * from {schema}APP_QM_USERS where enabled = ? order by user_id</text>
+		</statement>	
+			
+		<statement>
+			<id>JDBQMUsers.getByUserID</id> 
+			<text>select * from {schema}APP_QM_USERS where user_id = ?</text>
+		</statement>
 
 	</jdbcDriver>
 </SQL>

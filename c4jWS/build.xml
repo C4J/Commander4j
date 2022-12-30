@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="c4jWS">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="11"/>
+    <property name="source" value="11"/>
+    <path id="Server Runtime [Apache Tomcat v10.0].libraryclasspath">
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-i18n-ko.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/el-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/jasper.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/jasper-el.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-util.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/jakartaee-migration-1.0.1-shaded.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-i18n-de.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/jsp-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-i18n-cs.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/catalina.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-jni.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/ecj-4.20.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-i18n-pt-BR.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/catalina-ssi.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/websocket-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/catalina-ha.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/annotations-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/jaspic-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-i18n-zh-CN.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/catalina-ant.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/servlet-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-i18n-ru.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-dbcp.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="src/main/webapp/WEB-INF/lib/aopalliance-repackaged-3.0.3.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/commons-codec-1.15.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/commons-io-2.8.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/commons-lang3-3.12.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/commons-text-1.9.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/gson-2.9.2-SNAPSHOT.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/hk2-api-3.0.3.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/hk2-locator-3.0.3.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/hk2-utils-3.0.3.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.activation-2.0.1.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.annotation-api-2.0.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.inject-api-2.0.1.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.json-2.0.0-module.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.json-api-2.0.2.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.json.bind-api-2.0.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.persistence-api-3.0.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.servlet-api-5.0.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.validation-api-3.0.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.ws.rs-api-3.0.0-sources.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.ws.rs-api-3.0.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jakarta.xml.bind-api-3.0.1.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/javassist-3.28.0-GA.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jersey-client.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jersey-common.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jersey-container-servlet-core.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jersey-container-servlet.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jersey-hk2.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jersey-media-jaxb.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jersey-media-json-binding.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jersey-media-sse.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/jersey-server.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/log4j-1.2.17.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/mssql-jdbc-9.4.1.jre11.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/ojdbc11.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/org.osgi.core-6.0.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/osgi-resource-locator-1.0.3.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/parsson-1.0.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/ucp11.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/xalan-2.7.2.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/yasson-2.0.4.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="c4jWS.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Server Runtime [Apache Tomcat v10.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src/main/java">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/main/java"/>
+            <classpath refid="c4jWS.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+</project>

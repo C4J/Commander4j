@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta charset="UTF-8">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="stylesPanels.css">
+	<title>Tray Menu</title>
+
+	<script src="scriptUsers.js"></script> <!-- Link to the javascript file -->
+	
+	<style>
+	
+ 	  .is-scrollLocked {
+		   overflow: hidden;
+	   }  
+	      
+      .grid-container {
+		  display: grid;
+		  flex-wrap: wrap;
+		  grid-template-columns: 100px 100px 100px 100px;
+		  padding: 2px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>	
+	
+</head>
+
+<body onLoad="buildUserTable()">
+
+	<h1  style="text-align:center">Users</h1>
+
+	<div align="center">
+		Filter by Status : 
+		<input type="radio" name="filterStatus" onChange="filterChange(this)" value="Y" id="Y">
+		<label  style="color: green;" for="Y">: Enabled</label>		
+		<input type="radio" name="filterStatus" onChange="filterChange(this)" value="N" id="N">
+		<label  style="color: red;" for="N">: Disabled</label>
+	</div>
+	
+	<table id="userTable">
+		<thead>
+			<tr>
+				<th>User ID</th>
+				<th>First Name</th>
+				<th>Surname</th>
+				<th>Enabled</th>
+			</tr>
+		</thead>
+		<tbody id="userTable-output">
+		</tbody>
+	</table>	
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewUser()">Add</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick="editUserRecord()">Edit</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" onclick="refreshUser()">Refresh</button></div>   
+  		 <div class="grid-item" align="center"><button class="button" onclick="adminMenu()">Back</button></div> 
+	</div>
+
+</body>
+
+<script>
+
+	var filterCombo = document.querySelectorAll('input[type=radio][name="filterStatus"]');
+	var filter = sessionStorage.getItem('userStatus');
+	
+	if ((filter === undefined) || (filter === null) || (filter === ""))
+	{
+	      sessionStorage.setItem('userStatus', 'Y');
+		  filterCombo.value = 'Y';   	
+		  setCheckedValue(filterCombo,'Y');
+		  filter = "Y";
+	}
+	else
+	{
+		setCheckedValue(filterCombo, filter);
+	}
+	
+	function filterChange(radio) {
+	    console.debug(radio.value);
+	    userListSave('userStatus',radio.value);
+	    refreshUser();
+	}
+	
+	function setCheckedValue(radioObj, newValue) {
+		if(!radioObj)
+			return;
+		var radioLength = radioObj.length;
+		if(radioLength == undefined) {
+			radioObj.checked = (radioObj.value == newValue.toString());
+			return;
+		}
+		for(var i = 0; i < radioLength; i++) {
+			radioObj[i].checked = false;
+			if(radioObj[i].value == newValue.toString()) {
+				radioObj[i].checked = true;
+			}
+		}
+	}
+	
+	function getCheckedValue(radioObj) {
+		if(!radioObj)
+			return "";
+		var radioLength = radioObj.length;
+		if(radioLength == undefined)
+			if(radioObj.checked)
+				return radioObj.value;
+			else
+				return "";
+		for(var i = 0; i < radioLength; i++) {
+			if(radioObj[i].checked) {
+				return radioObj[i].value;
+			}
+		}
+		return "";
+	}
+
+	function buildUserTable() {
+	
+		
+		fetch("/c4jWS/Users?enabled="+filter)
+			.then(function(response) { return response.json(); })
+			.then(function(users) {
+				let placeholder = document.querySelector("#userTable-output");
+				let out = "";
+				for (let user of users) {
+					out += `
+			<tr>
+				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${user.userID}" name="userSelectList" onchange="userListSave('selectedUser','${user.userID}');" value="${user.userID}" ` + userListGet('selectedUser', user.userID) + `>  <label for="${user.userID}"> ${user.userID}</label></td>
+				<td style="color:black; background-color:#f0f8ff">${user.firstname}</td>
+				<td style="color:black; background-color:#f0f8ff">${user.surname}</td>
+				<td style="color:black; background-color:#f0f8ff"><input type="checkbox" id="enabled" name="enabled" disabled `+getChecked(user.enabled)+`</td>
+			</tr>`;
+				}
+	
+				placeholder.innerHTML = out;
+			})
+	}
+	
+	function confirmNewUser() {
+		var result =  confirm("Create new User ?");
+		if (result == true)
+		{
+			var userID = prompt("New user id ?");
+			userID = userID.toUpperCase();
+			userListSave('selectedUser', userID);
+			newUser();
+		}
+	}
+	
+	function adminMenu()
+	{
+		window.location='admin.html';	
+	}
+	
+</script>
+
+</html>

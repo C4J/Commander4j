@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>c4jWS TrayResults</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+ 	<p><a href="index.html">Home</a></p>
+ 	<h1>/TrayResults</h1>
+ 	<h2>Table APP_QM_PANEL_TRAY_RESULTS</h2>
+ 	<table style="width:800px">
+ 	<tr><th width=125px>Field Name</th><th width=75px>Type</th><th width=55px>Size</th><th width=55px>Primary Key</th><th width=355px>Comment</th></tr>
+ 	<tr><td>TRAY_ID</td><td>Long</td><td></td><td align="center">1</td><td>Link to APP_QM_PANEL_TRAY</td></tr>
+ 	<tr><td>SAMPLE_ID</td><td>Long</td><td></td><td align="center">2</td><td>Link to APP_QM_TRAY_SAMPLE</td></tr>
+ 	<tr><td>USER_ID</td><td>String</td><td align="center">20</td><td align="center">3</td><td>User ID of person recording result</td></tr>
+ 	<tr><td>TEST_ID</td><td>String</td><td align="center">50</td><td></td><td>Test Identification</td></tr>
+ 	<tr><td>VALUE</td><td>String</td><td align="center">50</td><td></td><td>Result</td></tr>
+ 	<tr><td>UPDATED</td><td>Timestamp</td><td></td><td></td><td>System maintained</td></tr>
+ 	<tr><td>CREATED</td><td>Timestamp</td><td></td><td></td><td>System maintained</td></tr>
+ 	</table>
+ 	<p><i>This table records a result per user for each sample in the APP_QM_TRAY_SAMPLE table</i></p>
+ 
+ 	<h2>Transactions</h2>
+ 	<h3>GET (Read)</h3>
+
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve All Results for a specific trayID and userID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/TrayResults?trayID={id}&amp;userID={id}&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve record for specific trayID, sampleID and userID primary key</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/TrayResults?trayID={id}&amp;sampleID={id}}&amp;userID={id}&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+  
+    <h4>JSON Example</h4>
+    <pre>
+[
+  {
+    "trayID": 2,
+    "sampleID": 830196,
+    "userID": "DAVE",
+    "testID": "PANEL",
+    "value": "051",
+    "updated": "2022-09-30T20:18:37",
+    "created": "2022-09-30T20:18:39"
+  },
+  {
+    "trayID": 2,
+    "sampleID": 830200,
+    "userID": "DAVE",
+    "testID": "PANEL",
+    "value": "051",
+    "updated": "2022-09-30T19:43:50",
+    "created": "2022-09-30T19:43:54"
+  }
+]
+  </pre>
+    <h3>POST (Create)</h3>
+    
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Inserts data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/TrayResults</td></tr>
+ 	</table>	
+ 	<p>*Server maintains created/updated record time stamps.</p>
+ 	
+    <h4>JSON Example - POST</h4>
+
+<pre>
+[
+  {
+    "trayID": 2,
+    "sampleID": 830196,
+    "userID": "DAVE",
+    "testID": "PANEL",
+    "value": "052"
+  }
+]
+</pre>
+
+    <h3>PUT (Update)</h3>
+    
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Updates data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/TrayResults</td></tr>
+ 	</table>
+ 	<p>*Server maintains created/updated record time stamps.</p>
+
+    <h4>JSON Example - PUT</h4>
+    <pre>
+[
+  {
+    "trayID": 2,
+    "sampleID": 830196,
+    "userID": "DAVE",
+    "testID": "PANEL",
+    "value": "052"
+  }
+]
+    </pre>
+    
+    <h4>JSON Example - Response</h4>
+    <pre>
+[
+  {
+    "trayID": 2,
+    "sampleID": 830196,
+    "userID": "DAVE",
+    "testID": "PANEL",
+    "value": "052",
+    "updated": "2022-09-30T20:18:37",
+    "created": "2022-09-30T20:28:39"
+  }
+]
+</pre>
+  
+    <h3>DELETE (Delete)</h3>
+    
+ 	<br/>
+ 	<table style="width:600px">
+    <tr><td><b>&nbsp;Deletes Tray as per parameters for trayID,sampleID and userID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/TrayResults?trayID={id}&amp;sampleID={id}&amp;userID={id}&nbsp;</td></tr>
+ 	</table>
+ 	<br/>
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Deletes Tray as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/TrayResults</td></tr>
+ 	</table>
+
+    <h4>JSON Example - DELETE</h4>
+    <pre>
+[
+ {
+    "trayID": 8,
+    "sampleID": 1,
+    "userID": DAVID
+  }
+]
+    </pre>
+
+</body>
+</html>

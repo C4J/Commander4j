@@ -77,7 +77,7 @@ public class JDBInterfaceRequest
 
 	public void setStatus(String status)
 	{
-		dbStatus = status;
+		dbStatus = JUtility.replaceNullStringwithBlank(status);
 	}
 
 	public void setUniqueID(String unq)
