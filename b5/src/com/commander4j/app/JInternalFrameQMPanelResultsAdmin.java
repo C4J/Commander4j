@@ -78,6 +78,7 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.renderer.TableCellRenderer_PanelResults;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
+import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBViewQMPanelResultsTableModel;
 import com.commander4j.util.JDateControl;
@@ -398,6 +399,16 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 	{
 		populateList();
 	}
+	
+	private void editRecord()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			String temp = jTable1.getValueAt(row, 2).toString();
+			JLaunchMenu.runForm("FRM_QM_SAMPLE_EDIT", temp);
+		}
+	}
 
 	private void excel()
 	{
@@ -417,29 +428,44 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		if (row >= 0)
 		{
 
-			if (fieldname.equals("Location") == true)
+			if (fieldname.equals("Panel ID") == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
 			}
 			
-			if (fieldname.equals("Material") == true)
+			if (fieldname.equals("Tray ID") == true)
 			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 4).toString());
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 1).toString());
 			}
 			
-			if (fieldname.equals("Reason") == true)
+			if (fieldname.equals("Sample ID") == true)
 			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 6).toString());
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 2).toString());
+			}
+
+			if (fieldname.equals("Result") == true)
+			{				
+				stringSelection = new StringSelection("[" + jTable1.getValueAt(row, 9).toString() + "] "+jTable1.getValueAt(row, 10).toString());
 			}
 
 			if (fieldname.equals("Process Order") == true)
 			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 11).toString());
+			}
+			
+			if (fieldname.equals("Material") == true)
+			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, 12).toString());
 			}
-
-			if (fieldname.equals("Net Weight") == true)
+			
+			if (fieldname.equals("Sample Date") == true)
 			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 9).toString());
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString());
+			}
+			
+			if (fieldname.equals("Panel Date") == true)
+			{
+				stringSelection = new StringSelection(jTable1.getValueAt(row, 4).toString());
 			}
 						
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
@@ -653,6 +679,20 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 								});
 								newItemMenuItem.setText(lang.get("btn_Excel"));
 								popupMenu.add(newItemMenuItem);
+							}
+							
+							{
+								final JMenuItem4j menuItemEdit = new JMenuItem4j(Common.icon_edit_16x16);
+								menuItemEdit.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_QM_SAMPLE_EDIT"));
+								menuItemEdit.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										editRecord();
+									}
+								});
+								menuItemEdit.setText(lang.get("btn_Edit"));
+								popupMenu.add(menuItemEdit);
 							}
 
 							{
@@ -905,10 +945,10 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 									{
 										public void actionPerformed(final ActionEvent e)
 										{
-											copyToClipboard("Location");
+											copyToClipboard("Panel ID");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_Location_ID"));
+									newItemMenuItem.setText(lang.get("lbl_Panel_ID"));
 									clipboardByMenu.add(newItemMenuItem);
 								}
 								
@@ -918,10 +958,10 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 									{
 										public void actionPerformed(final ActionEvent e)
 										{
-											copyToClipboard("Container");
+											copyToClipboard("Tray ID");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_Container_ID"));
+									newItemMenuItem.setText(lang.get("lbl_Tray_ID"));
 									clipboardByMenu.add(newItemMenuItem);
 								}
 
@@ -931,10 +971,10 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 									{
 										public void actionPerformed(final ActionEvent e)
 										{
-											copyToClipboard("Material");
+											copyToClipboard("Sample ID");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_Material"));
+									newItemMenuItem.setText(lang.get("lbl_SampleID"));
 									clipboardByMenu.add(newItemMenuItem);
 								}
 								
@@ -944,10 +984,10 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 									{
 										public void actionPerformed(final ActionEvent e)
 										{
-											copyToClipboard("Reason");
+											copyToClipboard("Result");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_Reason"));
+									newItemMenuItem.setText(lang.get("lbl_Result"));
 									clipboardByMenu.add(newItemMenuItem);
 								}
 								
@@ -970,10 +1010,36 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 									{
 										public void actionPerformed(final ActionEvent e)
 										{
-											copyToClipboard("Net Weight");
+											copyToClipboard("Material");
 										}
 									});
-									newItemMenuItem.setText(lang.get("lbl_Material_Net_Weight"));
+									newItemMenuItem.setText(lang.get("lbl_Material"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+								
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Sample Date");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Sample_Date"));
+									clipboardByMenu.add(newItemMenuItem);
+								}
+								
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											copyToClipboard("Panel Date");
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Panel_Date"));
 									clipboardByMenu.add(newItemMenuItem);
 								}
 
@@ -1514,9 +1580,9 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
-							JLaunchLookup.dlgCriteriaDefault = "";
+							JLaunchLookup.dlgCriteriaDefault = "Y";
 							JLaunchLookup.dlgAutoExec = true;
-							if (JLaunchLookup.users())
+							if (JLaunchLookup.panelUsers())
 							{
 								jTextFieldUserID.setText(JLaunchLookup.dlgResult);
 							}
