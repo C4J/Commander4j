@@ -49,7 +49,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib_aux/xmlgraphics-commons-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/asm-all-5.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/bsh-2.0b6.jar"/>
-	<classpathentry kind="lib" path="lib/cups4j/cups4j-0.7.8.jar"/>
+	<classpathentry kind="lib" path="lib/cups4j/cups4j-0.7.9.jar"/>
 	<classpathentry kind="lib" path="lib/cups4j/simple-xml-2.7.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-anim-1.14.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-ext-1.14.jar"/>
@@ -84,7 +84,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/core-3.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/rhino-1.7.14.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-java-8.0.29.jar"/>
-	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.9.2.jar"/>
+	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.9.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/ant-1.10.11.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/itext-2.1.7.js10.jar"/>
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.20.0.jar"/>

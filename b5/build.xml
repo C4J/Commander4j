@@ -53,7 +53,7 @@
         <pathelement location="lib/jasperlib_aux/xmlgraphics-commons-2.2.jar"/>
         <pathelement location="lib/jasperlib_aux/asm-all-5.2.jar"/>
         <pathelement location="lib/jasperlib_aux/bsh-2.0b6.jar"/>
-        <pathelement location="lib/cups4j/cups4j-0.7.8.jar"/>
+        <pathelement location="lib/cups4j/cups4j-0.7.9.jar"/>
         <pathelement location="lib/cups4j/simple-xml-2.7.1.jar"/>
         <pathelement location="lib/jasperlib/batik-anim-1.14.jar"/>
         <pathelement location="lib/jasperlib/batik-ext-1.14.jar"/>
@@ -89,7 +89,7 @@
         <pathelement location="lib/jasperlib/core-3.4.0.jar"/>
         <pathelement location="lib/jasperlib/rhino-1.7.14.jar"/>
         <pathelement location="lib/db/mysql-connector-java-8.0.29.jar"/>
-        <pathelement location="lib/serial/jSerialComm-2.9.2.jar"/>
+        <pathelement location="lib/serial/jSerialComm-2.9.3.jar"/>
         <pathelement location="lib/jasperlib/ant-1.10.11.jar"/>
         <pathelement location="lib/jasperlib/itext-2.1.7.js10.jar"/>
         <pathelement location="lib/jasper/jasperreports-6.19.1.jar"/>

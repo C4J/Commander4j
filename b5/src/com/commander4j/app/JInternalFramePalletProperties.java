@@ -618,6 +618,9 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					{
 						jButtonSave.setEnabled(true);
 						jButtonUndo.setEnabled(true);
+
+						pallet.setDateOfManufacture(JUtility.getTimestampFromDate(fld_DOM.getDate()));
+
 					}
 				});
 

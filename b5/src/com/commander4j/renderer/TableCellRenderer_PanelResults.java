@@ -206,7 +206,7 @@ public class TableCellRenderer_PanelResults extends DefaultTableCellRenderer
 		}
 		catch (Exception ex)
 		{
-
+			System.out.println(ex.getMessage());
 		}
 
 		return this;
