@@ -110,9 +110,7 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib/servlet-api-2.4.jar 
  lib/jasperlib/slf4j-api-1.7.26.jar 
  lib/jasperlib/slf4j-nop-1.7.26.jar 
- lib/jasperlib/spring-beans-5.3.14.jar 
  lib/jasperlib/spring-beans-5.3.20.jar 
- lib/jasperlib/spring-core-5.3.14.jar 
  lib/jasperlib/spring-core-5.3.20.jar 
  lib/jasperlib/spring-jcl-5.3.14.jar 
  lib/jasperlib/stax2-api-4.2.1.jar 
