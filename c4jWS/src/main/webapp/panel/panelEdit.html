@@ -80,7 +80,7 @@
 	</table>
 	
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" onclick="loadTrays()">Trays</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick='updatePanel(document.getElementById("plant").value,document.getElementById("description").value,document.getElementById("status").value);loadTrays()'>Trays</button></div> 
   		 <div class="grid-item" align="center"><button class="button" onclick='updatePanel(document.getElementById("plant").value,document.getElementById("description").value,document.getElementById("status").value)'>Save</button></div>  
   		 <div class="grid-item" align="center"><button class="button" onclick="refreshPanel()">Refresh</button></div>   
   		 <div class="grid-item" align="center"><button class="button" onclick="panelMenu()">Back</button></div> 
@@ -91,6 +91,20 @@
 <script>
 
 	document.getElementById('heading').innerHTML = "Panel "+sessionStorage.getItem('selectedPanel');
+	
+	var plantfield = document.getElementById("plant");
+	plantfield.addEventListener("keydown", function (e) {
+		if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+			 document.getElementById("description").focus();
+		}
+	});
+	
+	var descfield = document.getElementById("description");
+	descfield.addEventListener("keydown", function (e) {
+		if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+			 document.getElementById("plant").focus();
+		}
+	});
 
 	function getPanelProperties() {
 

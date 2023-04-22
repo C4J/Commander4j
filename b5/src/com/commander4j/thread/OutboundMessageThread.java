@@ -48,6 +48,7 @@ import com.commander4j.messages.OutgoingPalletDelete;
 import com.commander4j.messages.OutgoingPalletSplit;
 import com.commander4j.messages.OutgoingPalletStatusChange;
 import com.commander4j.messages.OutgoingProductionDeclarationConfirmation;
+import com.commander4j.messages.OutgoingProductionUnConfirm;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JUnique;
@@ -119,6 +120,7 @@ public class OutboundMessageThread extends Thread
 			JDBInterfaceRequest ir = new JDBInterfaceRequest(getHostID(), getSessionID());
 			JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 			OutgoingProductionDeclarationConfirmation opdc = new OutgoingProductionDeclarationConfirmation(getHostID(), getSessionID());
+			OutgoingProductionUnConfirm opuc = new OutgoingProductionUnConfirm(getHostID(), getSessionID());
 			OutgoingDespatchConfirmation odc = new OutgoingDespatchConfirmation(getHostID(), getSessionID());
 			OutgoingDespatchPreAdvice opa = new OutgoingDespatchPreAdvice(getHostID(), getSessionID());
 			OutgoingDespatchEmail ode = new OutgoingDespatchEmail(getHostID(), getSessionID());
@@ -183,6 +185,13 @@ public class OutboundMessageThread extends Thread
 								messageProcessedOK = opdc.processMessage(ir.getTransactionRef());
 								errorMessage = opdc.getErrorMessage();
 								GenericMessageHeader.updateStats("Output","Production Declaration", messageProcessedOK.toString());
+							}
+							
+							if (ir.getInterfaceType().equals("Production Unconfirm"))
+							{
+								messageProcessedOK = opuc.processMessage(ir.getTransactionRef());
+								errorMessage = opuc.getErrorMessage();
+								GenericMessageHeader.updateStats("Output","Production Unconfirm", messageProcessedOK.toString());
 							}
 
 							if (ir.getInterfaceType().equals("Pallet Status Change"))

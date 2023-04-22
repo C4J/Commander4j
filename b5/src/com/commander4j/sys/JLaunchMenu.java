@@ -306,12 +306,12 @@ public class JLaunchMenu
 			u = new JDialogModuleAlternative(Common.mainForm, strParam);
 			displayDialog(u, optionName);
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_DESPATCH_EQUIPMENT"))
 		{
 			final JDialogDespatchEquipment u;
-			u = new JDialogDespatchEquipment(Common.mainForm,strParam);
-			displayDialog(u,optionName);
+			u = new JDialogDespatchEquipment(Common.mainForm, strParam);
+			displayDialog(u, optionName);
 		}
 
 		if (optionName.equals("FRM_ADMIN_DATA_IDS_EDIT"))
@@ -321,7 +321,7 @@ public class JLaunchMenu
 			displayDialog(u, optionName);
 
 		}
-		
+
 		if (optionName.equals("FRM_PROCESS_ORDER_LABEL"))
 		{
 			final JInternalFrameProcessOrderLabel u;
@@ -476,7 +476,7 @@ public class JLaunchMenu
 			// u.setTitle(mod.getDescription());
 			displayDialog(u, optionName);
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_MATERIAL_BATCH_EDIT"))
 		{
 			final JDialogMaterialBatchProperties u;
@@ -634,7 +634,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_QM_PANEL_RESULTS"))
 		{
 			final JInternalFrameQMPanelResultsAdmin u;
@@ -868,7 +868,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_WASTE_REPORTING"))
 		{
 			final JInternalFrameWasteReporting u;
@@ -933,7 +933,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_SAMPLE_REASON"))
 		{
 			final JInternalFrameSampleReasonAdmin u;
@@ -946,7 +946,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_SUPPLIER"))
 		{
 			final JInternalFrameSupplierAdmin u;
@@ -959,7 +959,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_SAMPLE_DEFECT_ID"))
 		{
 			final JInternalFrameSampleDefectIDAdmin u;
@@ -972,7 +972,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_SAMPLE_DEFECT_TYPE"))
 		{
 			final JInternalFrameSampleDefectTypeAdmin u;
@@ -1063,7 +1063,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_PALLET_SAMPLE"))
 		{
 			final JInternalFramePalletSampleAdmin u;
@@ -1206,7 +1206,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WASTE_CONTAINER"))
 		{
 			final JInternalFrameWasteContainerAdmin u;
@@ -1219,7 +1219,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_EQUIPMENT_TYPE"))
 		{
 			final JInternalFrameEquipmentAdmin u;
@@ -1323,7 +1323,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_SHIFT_NAMES"))
 		{
 			final JInternalFrameShiftNameAdmin u;
@@ -1336,7 +1336,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WASTE_REPORTING_GROUP"))
 		{
 			final JInternalFrameWasteReportingGroupAdmin u;
@@ -1479,7 +1479,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_PAL_SAMPLE"))
 		{
 			final JInternalFramePalletSample u;
@@ -1549,22 +1549,22 @@ public class JLaunchMenu
 
 	public static void runForm(String optionName, String StrParam1, Long StrParam2)
 	{
-	if (optionName.equals("FRM_PAL_SAMPLE_EDIT"))
-	{
-		final JInternalFramePalletSampleProperties u;
-		if (isLoaded(JInternalFramePalletSampleProperties.class))
+		if (optionName.equals("FRM_PAL_SAMPLE_EDIT"))
 		{
-			((JInternalFramePalletSampleProperties) isLoadedInstance(JInternalFramePalletSampleProperties.class)).setSampleID(StrParam1,StrParam2);
-			setVisible(JInternalFramePalletSampleProperties.class);
-		}
-		else
-		{
-			u = new JInternalFramePalletSampleProperties(StrParam1,StrParam2);
-			displayForm(u, optionName);
+			final JInternalFramePalletSampleProperties u;
+			if (isLoaded(JInternalFramePalletSampleProperties.class))
+			{
+				((JInternalFramePalletSampleProperties) isLoadedInstance(JInternalFramePalletSampleProperties.class)).setSampleID(StrParam1, StrParam2);
+				setVisible(JInternalFramePalletSampleProperties.class);
+			}
+			else
+			{
+				u = new JInternalFramePalletSampleProperties(StrParam1, StrParam2);
+				displayForm(u, optionName);
+			}
 		}
 	}
-	}
-	
+
 	public static void runForm(String optionName, String StrParam1, String StrParam2)
 	{
 		mod.setModuleId(optionName);
@@ -1790,8 +1790,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
-		
+
 		if (optionName.equals("FRM_WASTE_CONTAINER_EDIT"))
 		{
 			final JInternalFrameWasteContainerProperties u;
@@ -1806,7 +1805,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_EQUIPMENT_TYPE_EDIT"))
 		{
 			final JInternalFrameEquipmentProperties u;
@@ -1851,7 +1850,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_WASTE_REPORTING_GROUP_EDIT"))
 		{
 			final JInternalFrameWasteReportingGroupProperties u;
@@ -2135,7 +2134,10 @@ public class JLaunchMenu
 		{
 			final JInternalFramePalletProperties u;
 			if (isLoaded(JInternalFramePalletProperties.class))
+			{
+				setVisible(JInternalFramePalletProperties.class);
 				((JInternalFramePalletProperties) isLoadedInstance(JInternalFramePalletProperties.class)).setPalletSSCC(StrParam);
+			}
 			else
 			{
 				u = new JInternalFramePalletProperties(StrParam);
@@ -2146,8 +2148,9 @@ public class JLaunchMenu
 		if (optionName.equals("FRM_PAL_PROD_CONFIRM"))
 		{
 			final JInternalFrameProductionConfirmation u;
+
 			if (isLoaded(JInternalFrameProductionConfirmation.class))
-				setVisible(JInternalFrameProductionConfirmation.class);
+				((JInternalFrameProductionConfirmation) isLoadedInstance(JInternalFrameProductionConfirmation.class)).setSSCC(StrParam);
 			else
 			{
 				u = new JInternalFrameProductionConfirmation(StrParam);
@@ -2155,15 +2158,14 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
-		
+
 		if (optionName.equals("FRM_PAL_SAMPLE"))
 		{
 			final JInternalFramePalletSample u;
 			if (isLoaded(JInternalFramePalletSample.class))
 			{
 				((JInternalFramePalletSample) isLoadedInstance(JInternalFramePalletSample.class)).setPalletSSCC(StrParam);
-		     	setVisible(JInternalFramePalletSample.class);
+				setVisible(JInternalFramePalletSample.class);
 			}
 			else
 			{
@@ -2258,7 +2260,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_SAMPLE_REASON_EDIT"))
 		{
 			final JInternalFrameSampleReasonProperties u;
@@ -2271,7 +2273,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_SAMPLE_DEFECT_ID_EDIT"))
 		{
 			final JInternalFrameSampleDefectIDProperties u;
@@ -2284,7 +2286,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_SAMPLE_DEFECT_TYPE_EDIT"))
 		{
 			final JInternalFrameSampleDefectTypeProperties u;
@@ -2297,7 +2299,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_SUPPLIER_EDIT"))
 		{
 			final JInternalFrameSupplierProperties u;
@@ -2323,7 +2325,7 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
-		
+
 		if (optionName.equals("FRM_ADMIN_SHIFT_NAMES_EDIT"))
 		{
 			final JInternalFrameShiftNameProperties u;

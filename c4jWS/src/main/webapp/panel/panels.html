@@ -119,7 +119,7 @@
 				for (let panel of panels) {
 					out += `
 			<tr>
-				<td style="color:black; background-color:`+getStatusColour(panel.status)+`"><input type="radio" id="${panel.panelID}" name="panelSelectList" onchange="panelListSave('selectedPanel',${panel.panelID});" value="${panel.panelID}" ` + panelListGet('selectedPanel', panel.panelID) + `>  <label for="${panel.panelID}"> ${panel.panelID}</label></td>
+				<td style="color:black; background-color:`+getStatusColour(panel.status)+`"><input type="radio" id="${panel.panelID}" name="panelSelectList" onchange="panelListSave('selectedPanel',${panel.panelID});panelListSave('selectedPanelPlant','${panel.plant}');" value="${panel.panelID}" ` + panelListGet('selectedPanel', panel.panelID) + `>  <label for="${panel.panelID}"> ${panel.panelID}</label></td>
 				<td style="color:white; background-color:`+getStatusColour(panel.status)+`">`+panel.plant+`</td>
 				<td style="color:white; background-color:`+getStatusColour(panel.status)+`">`+panel.description+`</td>
 				<td style="color:white; background-color:`+getStatusColour(panel.status)+`">`+panel.status+`</td>

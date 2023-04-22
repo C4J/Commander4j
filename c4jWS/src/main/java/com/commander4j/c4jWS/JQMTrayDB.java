@@ -273,6 +273,7 @@ public class JQMTrayDB
 		ResultSet rs;
 		setErrorMessage("");
 		LinkedList<JQMTrayEntity> result = new LinkedList<JQMTrayEntity>();
+		int seq = 0;
 
 		try
 		{
@@ -288,6 +289,8 @@ public class JQMTrayDB
 				
 				tent.setPanelID(rs.getLong("panel_id"));
 				tent.setTrayID(rs.getLong("tray_id"));
+				seq++;
+				tent.setTraySequence(seq);
 				tent.setDescription(JUtility.replaceNullStringwithBlank(rs.getString("description")));
 				tent.setCreated(rs.getTimestamp("created"));
 				tent.setUpdated(rs.getTimestamp("updated"));

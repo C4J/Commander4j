@@ -42,7 +42,7 @@ import java.util.Map;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-import org.apache.xalan.xsltc.runtime.Hashtable;
+import java.util.Hashtable;
 
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBControl;
@@ -115,7 +115,7 @@ public class Common
 	public static String interface_backup_path = "xml/interface/backup/";
 	public static String interface_output_path = "xml/interface/output/";
 	
-	public static Hashtable paths = new Hashtable();
+	public static Hashtable<String,String> paths = new Hashtable<String,String>();
 	public static JSessionData sd = new JSessionData();
 
 	public static String[] dataTypes = new String[] { "string", "numeric","boolean", "date", "time", "timestamp","integer" ,"list"};
@@ -143,11 +143,11 @@ public class Common
 	public static String[] locationStatusIncBlank = new String[] { "", "Valid", "Invalid" };
 	public static String[] processOrderStatus = new String[] { "Discarded", "Finished", "Held", "Ready", "Running" };
 	public static String[] processOrderStatusincBlank = new String[] { "", "Discarded", "Finished", "Held", "Ready", "Running" };
-	public static String[] messageTypesexclBlank = new String[] {"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", 	"Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration", 	"QM Inspection Request",	"QM Inspection Result" };
-	public static String[] messageTypesincBlank = new String[] { "", 	"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", "Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration", 	"QM Inspection Request",	"QM Inspection Result"	};
+	public static String[] messageTypesexclBlank = new String[] {"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", 	"Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration",	"Production Unconfirm", 	"QM Inspection Request",	"QM Inspection Result" };
+	public static String[] messageTypesincBlank = new String[] { "", 	"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", "Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration",	"Production Unconfirm", 	"QM Inspection Request",	"QM Inspection Result"	};
 
 	public static String[] transactionTypes = new String[] { "","CLONE", "DESPATCH", "EDIT", "PRINT","PROD DEC", "STATUS CHANGE","MHN","SPLIT","MOVE","MANUAL"};
-	public static String[] transactionSubTypes = new String[] { "", "ADD","REMOVE","CREATE","PRINT", "CONFIRM", "FROM", "TO", "MANUAL", "LABEL","DECISION","BEFORE","AFTER","DELETE" };
+	public static String[] transactionSubTypes = new String[] { "", "ADD","REMOVE","CREATE","PRINT", "CONFIRM", "FROM", "TO", "MANUAL", "LABEL","DECISION","BEFORE","AFTER","DELETE","UNCONFIRM" };
 	public static String[] auditEventActions = new String[] { "", "ADD", "REMOVE", "CREATE", "DELETE", "RENAME", "ENABLE", "DISABLE" };
 	public static String[] auditEventTypes = new String[] { "", "USER", "GROUP", "USER_GROUP", "GROUP_MODULE" };
 	public static String[] locationSortBy = new String[] { "LOCATION_ID", "PLANT", "WAREHOUSE", "DESCRIPTION", "GLN", "STORAGE_LOCATION", "STORAGE_TYPE", "STORAGE_SECTION", "STORAGE_BIN"};
@@ -270,6 +270,7 @@ public class Common
 	public final static Icon icon_menu_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_menu);
 	public final static Icon icon_form = Common.imageIconloader.getImageIcon16x16(Common.image_form);
 	public final static Icon icon_scanner_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_scanner);
+	public final static Icon icon_unconfirm_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_unconfirm);
 	public final static Icon icon_report_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_report);
 	public final static Icon icon_label_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_label);
 	public final static Icon icon_pallet_label_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_pallet_label);
@@ -369,6 +370,7 @@ public class Common
 	public final static String image_menu = "menu.gif";
 	public final static String image_form = "form.gif";
 	public final static String image_scanner = "pallet_confirm.gif";
+	public final static String image_unconfirm = "pallet_unconfirm.gif";
 	public final static String image_interface = "interface.gif";
 	public final static String image_units = "units.gif";
 	public final static String image_customer = "customer.gif";

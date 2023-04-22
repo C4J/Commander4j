@@ -89,8 +89,8 @@
 
 <script>
 	
-	document.getElementById('heading').innerHTML = "Panel "+sessionStorage.getItem('selectedPanel')+" Tray "+" "+sessionStorage.getItem('selectedTray');
-	document.getElementById('userid').innerHTML = "Panelist ["+sessionStorage.getItem('selectedUser')+"]";
+    document.getElementById('heading').innerHTML = sessionStorage.getItem('selectedPanelPlant')+" Tray "+" "+sessionStorage.getItem('selectedTraySeq');
+	document.getElementById('userid').innerHTML = "Panelist ["+sessionStorage.getItem('selectedUsername')+"]";
 
 		
 	function buildSampleTable() {

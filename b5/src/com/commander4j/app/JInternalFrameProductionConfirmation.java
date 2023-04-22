@@ -60,14 +60,16 @@ import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
 
-
 /**
- * The JInternalFrameProductionConfirmation class is used to confirm an already created SSCC.
+ * The JInternalFrameProductionConfirmation class is used to confirm an already
+ * created SSCC.
  * 
  * <p>
  * <img alt="" src="./doc-files/JInternalFrameProductionConfirmation.jpg" >
  * JInternalFrameProductionDeclaration
- * @see com.commander4j.app.JInternalFrameProductionDeclaration JInternalFrameProductionConfirmation
+ * 
+ * @see com.commander4j.app.JInternalFrameProductionDeclaration
+ *      JInternalFrameProductionConfirmation
  * @see com.commander4j.db.JDBPallet JDBPallet
  * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
  * @see com.commander4j.servlet.Process
@@ -89,7 +91,8 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 	private JButton4j jButtonCancel;
 	private JLabel4j_std jStatusText;
 	private JButton4j jButtonHelp;
-	private JButton4j jButtonSave;
+	private JButton4j jButtonConfirm;
+	private JButton4j jButtonUnConfirm;
 	private JTextField4j jTextFieldSSCC;
 	private JTextField4j jTextFieldBatch;
 	private JLabel4j_std jLabel8;
@@ -109,6 +112,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 	private JLabel4j_std jLabel2;
 	private JLabel4j_std jLabel5;
 	private JLabel4j_std jLabel1;
+	private JTextField4j jTextFieldProcessOrderStatus = new JTextField4j();
 	private JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
 	private JCheckBox4j checkBoxConfirmed = new JCheckBox4j();
 	private String lsscc;
@@ -127,10 +131,13 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_PAL_PROD_CONFIRM"));
 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
 				jTextFieldSSCC.requestFocus();
 				jTextFieldSSCC.setCaretPosition(jTextFieldSSCC.getText().length());
+				
 			}
 		});
 	}
@@ -138,14 +145,20 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 	public JInternalFrameProductionConfirmation(String sscc)
 	{
 		this();
+		setSSCC(sscc);
+
+	}
+	
+	public void setSSCC(String sscc)
+	{
 		lsscc = sscc;
 		jTextFieldSSCC.setText(lsscc);
 
 		refresh();
-
 	}
 
-	private void refresh() {
+	private void refresh()
+	{
 		pallet.setSSCC(lsscc);
 
 		if (pallet.isValidPallet())
@@ -172,7 +185,16 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 			materialBatchChanged();
 			locationChanged();
 
-			jButtonSave.setEnabled(true);
+			if (pallet.isConfirmed())
+			{
+				jButtonConfirm.setEnabled(false);
+				jButtonUnConfirm.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PAL_PROD_UNCONFIRM"));
+			}
+			else
+			{
+				jButtonConfirm.setEnabled(true);
+				jButtonUnConfirm.setEnabled(false);
+			}
 			jStatusText.setText("SSCC " + pallet.getSSCC() + " retrieved.");
 		}
 		else
@@ -182,14 +204,16 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 		}
 	}
 
-	private void locationChanged() {
+	private void locationChanged()
+	{
 		if (location.getLocationProperties(jTextFieldLocation.getText()) == true)
 		{
 			jStatusText.setText(location.getErrorMessage());
 		}
 	}
 
-	private void materialBatchChanged() {
+	private void materialBatchChanged()
+	{
 		if (materialBatch.getMaterialBatchProperties(jTextFieldMaterial.getText(), jTextFieldBatch.getText()) == true)
 		{
 			jTextFieldBatchStatus.setText(materialBatch.getStatus());
@@ -197,7 +221,8 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 
 	}
 
-	private void materialChanged() {
+	private void materialChanged()
+	{
 		if (material.getMaterialProperties(jTextFieldMaterial.getText()) == true)
 		{
 			jTextFieldMaterialDescription.setText(material.getDescription());
@@ -205,15 +230,28 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 
 	}
 
-	private void processOrderChanged() {
+	private void processOrderChanged()
+	{
 		if (processOrder.getProcessOrderProperties(jTextFieldProcessOrder.getText()) == true)
 		{
 			jTextFieldProcessOrderDescription.setText(processOrder.getDescription());
+			
+			jTextFieldProcessOrderStatus.setText(processOrder.getStatus());
+			
+			if (jTextFieldProcessOrderStatus.getText().equals("Ready") || (jTextFieldProcessOrderStatus.getText().equals("Running")))
+			{
+				jTextFieldProcessOrderStatus.setBackground(Color.WHITE);
+			}
+			else
+			{
+				jTextFieldProcessOrderStatus.setBackground(Color.RED);
+			}
 		}
 
 	}
 
-	private void blankfields() {
+	private void blankfields()
+	{
 
 		jTextFieldProcessOrder.setText("");
 		jTextFieldMaterial.setText("");
@@ -228,15 +266,26 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 		jTextFieldBaseUom.setText("");
 		jFormattedTextFieldBaseQuantity.setText("");
 
-		jButtonSave.setEnabled(false);
+		jButtonConfirm.setEnabled(false);
+		jButtonUnConfirm.setEnabled(false);
+		
+		jTextFieldProcessOrderStatus.setText("");
+		jTextFieldProcessOrderStatus.setBackground(Color.WHITE);
+		jTextFieldProcessOrderDescription.setText("");
+		jTextFieldMaterialDescription.setText("");
+		jTextFieldLocation.setText("");
+		jTextFieldLocation.setText("");
+		jTextFieldBatchStatus.setText("");
+		jTextFieldUom.setText("");
 
 	}
 
-	private void initGUI() {
+	private void initGUI()
+	{
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(471, 531));
-			this.setBounds(0, 0, 469+Common.LFAdjustWidth, 558+Common.LFAdjustHeight);
+			this.setBounds(0, 0, 469 + Common.LFAdjustWidth, 558 + Common.LFAdjustHeight);
 			setVisible(true);
 			this.setIconifiable(true);
 			this.setClosable(true);
@@ -247,8 +296,10 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 				jDesktopPane1.setPreferredSize(new java.awt.Dimension(462, 497));
 				{
 					jTextFieldSSCC = new JTextField4j(JDBPallet.field_sscc);
-					jTextFieldSSCC.addKeyListener(new KeyAdapter() {
-						public void keyReleased(final KeyEvent e) {
+					jTextFieldSSCC.addKeyListener(new KeyAdapter()
+					{
+						public void keyReleased(final KeyEvent e)
+						{
 							lsscc = jTextFieldSSCC.getText();
 							lsscc = JUtility.replaceNullStringwithBlank(lsscc);
 							if (lsscc.length() == 18)
@@ -269,15 +320,18 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jTextFieldSSCC.setBounds(147, 14, 133, 21);
 				}
 				{
-					jButtonSave = new JButton4j(Common.icon_scanner_16x16);
-					jDesktopPane1.add(jButtonSave);
-					jButtonSave.setEnabled(true);
-					jButtonSave.setText(lang.get("btn_Confirm"));
-					jButtonSave.setMnemonic(lang.getMnemonicChar());
-					jButtonSave.setBounds(63, 450, 100, 32);
-					jButtonSave.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonConfirm = new JButton4j(Common.icon_scanner_16x16);
+					jDesktopPane1.add(jButtonConfirm);
+					jButtonConfirm.setEnabled(true);
+					jButtonConfirm.setText(lang.get("btn_Confirm"));
+					jButtonConfirm.setMnemonic(lang.getMnemonicChar());
+					jButtonConfirm.setBounds(8, 450, 110, 32);
+					jButtonConfirm.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							boolean result = true;
+							String errMsg="";
 
 							refresh();
 							if (pallet.isConfirmed() == false)
@@ -292,8 +346,10 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 								}
 								else
 								{
-									jStatusText.setText(pallet.getErrorMessage());
+									errMsg = pallet.getErrorMessage();
+									jStatusText.setText(errMsg);
 								}
+								refresh();
 							}
 							else
 							{
@@ -303,31 +359,78 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 
 							if (result == false)
 							{
-								JOptionPane.showMessageDialog(Common.mainForm, pallet.getErrorMessage(), lang.get("err_Error"), JOptionPane.ERROR_MESSAGE,Common.icon_confirm_16x16);
+								JOptionPane.showMessageDialog(Common.mainForm, errMsg, lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
 							}
 							else
 							{
 								jFormattedTextFieldBaseQuantity.setText(pallet.getBaseQuantity().toString());
-								jButtonSave.setEnabled(false);
 							}
 						}
 					});
+				}
+				{
+					jButtonUnConfirm = new JButton4j(Common.icon_unconfirm_16x16);
+					jButtonUnConfirm.setText(lang.get("btn_Unconfirm"));
+					jButtonUnConfirm.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							boolean result = true;
+							String errMsg="";
+
+							refresh();
+							if (pallet.isConfirmed() == true)
+							{
+								pallet.setTransactionRef(0);
+								result = pallet.Unconfirm();
+								if (result == true)
+								{
+									checkBoxConfirmed.setSelected(false);
+									jStatusText.setText("SSCC " + pallet.getSSCC() + " Unconfirmed.");
+								}
+								else
+								{
+									errMsg=pallet.getErrorMessage();
+									jStatusText.setText(errMsg);
+								}
+								refresh();
+							}
+							else
+							{
+								jStatusText.setText("SSCC " + pallet.getSSCC() + " already Unconfirmed.");
+								// already confirmed
+							}
+
+							if (result == false)
+							{
+								JOptionPane.showMessageDialog(Common.mainForm, errMsg, lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+							}
+							else
+							{
+								jFormattedTextFieldBaseQuantity.setText(pallet.getBaseQuantity().toString());
+							}
+						}
+					});
+					jButtonUnConfirm.setBounds(116, 450, 110, 32);
+					jDesktopPane1.add(jButtonUnConfirm);
 				}
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(169, 450, 100, 32);
+					jButtonHelp.setBounds(225, 450, 110, 32);
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setBounds(275, 450, 100, 32);
-					jButtonCancel.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent evt) {
+					jButtonCancel.setBounds(332, 450, 110, 32);
+					jButtonCancel.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
 							dispose();
 						}
 					});
@@ -468,7 +571,7 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jDesktopPane1.add(jStatusText);
 					jStatusText.setForeground(new java.awt.Color(255, 0, 0));
 					jStatusText.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-					jStatusText.setBounds(0, 490, 445, 21);
+					jStatusText.setBounds(0, 490, 459, 21);
 				}
 
 				{
@@ -557,6 +660,12 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 					jTextFieldUom.setEnabled(false);
 					jDesktopPane1.add(jTextFieldUom);
 				}
+
+				jTextFieldProcessOrderStatus.setText("");
+				jTextFieldProcessOrderStatus.setEnabled(false);
+				jTextFieldProcessOrderStatus.setEditable(false);
+				jTextFieldProcessOrderStatus.setBounds(308, 44, 126, 21);
+				jDesktopPane1.add(jTextFieldProcessOrderStatus);
 			}
 		}
 		catch (Exception e)
@@ -564,5 +673,4 @@ public class JInternalFrameProductionConfirmation extends javax.swing.JInternalF
 			e.printStackTrace();
 		}
 	}
-
 }

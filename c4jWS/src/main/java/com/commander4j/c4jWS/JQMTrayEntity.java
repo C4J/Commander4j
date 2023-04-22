@@ -11,6 +11,7 @@ public class JQMTrayEntity
 {
 	private Long panelID;
 	private Long trayID;
+	private int traySequence;
 	private String description;
 	private Timestamp updated;
 	private Timestamp created;
@@ -30,6 +31,14 @@ public class JQMTrayEntity
 	public void setTrayID(Long trayID)
 	{
 		this.trayID = trayID;
+	}
+	public int getTraySequence()
+	{
+		return traySequence;
+	}
+	public void setTraySequence(int traySequence)
+	{
+		this.traySequence = traySequence;
 	}
 	public String getDescription()
 	{

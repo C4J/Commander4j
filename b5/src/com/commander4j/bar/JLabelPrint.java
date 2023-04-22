@@ -267,7 +267,22 @@ public class JLabelPrint
 				expanded_variables = expandVariables(rs, variables);
 				expanded_variables.put("EXPIRY_DATE_MODE", ctrl.getKeyValue("EXPIRY DATE MODE"));
 				expanded_variables.put("PLANT", ctrl.getKeyValue("PLANT"));
-
+				
+				//Put number of copies into memory so it can be resolved within the label template.
+				expanded_variables.put("ZPL_LABEL_COUNT",String.valueOf(copiesOfEachLabel));
+				
+				if (JUtility.replaceNullStringwithBlank(expanded_variables.get("COUNT_MODE")).equals("ZPL"))
+				{
+					//Override output to send only 1 label to printer and let ZPL provide required copies.
+					copiesOfEachLabel=1;
+				}
+				
+				if (JUtility.replaceNullStringwithBlank(expanded_variables.get("COUNT_MODE")).equals(""))
+				{
+					//For backwards compatibility = if mode not found in label template make sure ZPL_LABEL_COUNT = 1 as this function will send label x times
+					expanded_variables.put("ZPL_LABEL_COUNT",String.valueOf(1));
+				}
+				
 				if (incLabelHeaderText)
 				{
 					expanded_variables.put("HEADER_COMMENT", ctrl.getKeyValue("LABEL_HEADER_COMMENT"));

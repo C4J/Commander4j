@@ -662,7 +662,7 @@
 		</statement>
 		<statement>
 			<id>JDBLocation.update</id>
-			<text>update {schema}APP_LOCATION set plant=?,warehouse=?,gln=?,description=?,storage_location=?,storage_type=?,storage_section=?,storage_bin=?,equipment_tracking_id=?,msg_despatch_confirm=?,msg_despatch_preadvice=?,msg_despatch_equip_track=?,msg_prod_confirm=?,permitted_pallet_status=?,permitted_batch_status=?,msg_pallet_status=?,msg_pallet_split=?,msg_pallet_delete=?,enabled=?,msg_journey_ref=?,email_despatch=? where location_id=?</text>
+			<text>update {schema}APP_LOCATION set plant=?,warehouse=?,gln=?,description=?,storage_location=?,storage_type=?,storage_section=?,storage_bin=?,equipment_tracking_id=?,msg_despatch_confirm=?,msg_despatch_preadvice=?,msg_despatch_equip_track=?,msg_prod_confirm=?,permitted_pallet_status=?,permitted_batch_status=?,msg_pallet_status=?,msg_pallet_split=?,msg_pallet_delete=?,enabled=?,msg_journey_ref=?,email_despatch=?,msg_prod_unconfirm=?  where location_id=?</text>
 		</statement>
 		<statement>
 			<id>JDBLocation.getLocationProperties</id>
@@ -684,6 +684,10 @@
 		<statement>
 			<id>JDBPallet.rapidConfirm</id>
 			<text>update APP_PALLET set confirmed = 'Y', date_of_manufacture = ?, date_updated = ?, updated_by_user_id = ? where sscc = ? and confirmed = 'N'</text>
+		</statement>
+		<statement>
+			<id>JDBPallet.rapidUnConfirm</id>
+			<text>update APP_PALLET set confirmed = 'N', date_updated = ?, updated_by_user_id = ? where sscc = ? and confirmed = 'Y'</text>
 		</statement>
 		<statement>
 			<id>JDBPallet.getPalletProperties</id>

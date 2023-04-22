@@ -107,6 +107,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 	private JLabel4j_std lblMsgPalletSplit;
 	private JLabel4j_std lblMsgEquipmentTracking;
 	private JLabel4j_std lblMsgProductionConfirmation;
+	private JLabel4j_std lblMsgProductionUnConfirm;
 	private JCheckBox4j checkBox_DespatchConfirm;
 	private JCheckBox4j checkBox_PreAdvice;
 	private JCheckBox4j checkBox_StatusChange;
@@ -114,6 +115,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 	private JCheckBox4j checkBox_JourneyRef;
 	private JCheckBox4j checkBox_Equipment_Tracking;
 	private JCheckBox4j checkBox_Production_Confirmation;
+	private JCheckBox4j checkBox_Production_UnConfirm;
 	private JCheckBox4j checkBox_PalletDelete;
 	private JScrollPane scrollPane;
 	private JList4j<String> palletStatusList;
@@ -184,6 +186,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 			checkBox_PalletDelete.setSelected(location.isPalletDeleteMessageRequired());
 			checkBox_Equipment_Tracking.setSelected(location.isDespatchEquipmentTrackingMessageRequired());
 			checkBox_Production_Confirmation.setSelected(location.isProductionConfirmationMessageRequired());
+			checkBox_Production_UnConfirm.setSelected(location.isProductionUnConfirmMessageRequired());
 
 			int count = JUtility.countOccurrences(location.getPermittedPalletStatus(), "^") - 1;
 
@@ -264,6 +267,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 		location.setEnabled(chckbxEnabled.isSelected());
 		location.setMsgJourneyRef(checkBox_JourneyRef.isSelected());
 		location.setEmailDespatch(checkBox_EmailPreAdvice.isSelected());
+		location.setMsgProdUnConfirm(checkBox_Production_UnConfirm.isSelected());
 
 		String palletStatusSelected = "^";
 		if (palletStatusList.isSelectionEmpty() == false)
@@ -574,6 +578,13 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jDesktopPane1.add(lblMsgProductionConfirmation);
 				}
 				{
+					lblMsgProductionUnConfirm = new JLabel4j_std();
+					lblMsgProductionUnConfirm.setText("Msg Production UnConfirm");
+					lblMsgProductionUnConfirm.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblMsgProductionUnConfirm.setBounds(225, 427, 181, 21);
+					jDesktopPane1.add(lblMsgProductionUnConfirm);
+				}
+				{
 					checkBox_DespatchConfirm = new JCheckBox4j("");
 					checkBox_DespatchConfirm.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
@@ -659,6 +670,16 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					});
 					checkBox_Production_Confirmation.setBounds(413, 328, 31, 24);
 					jDesktopPane1.add(checkBox_Production_Confirmation);
+				}
+				{
+					checkBox_Production_UnConfirm = new JCheckBox4j("");
+					checkBox_Production_UnConfirm.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							jButtonSave.setEnabled(true);
+						}
+					});
+					checkBox_Production_UnConfirm.setBounds(413, 424, 31, 24);
+					jDesktopPane1.add(checkBox_Production_UnConfirm);
 				}
 				{
 					jButtonSave = new JButton4j(Common.icon_update_16x16);

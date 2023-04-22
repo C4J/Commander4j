@@ -48,7 +48,7 @@
 	<table id="trayTable">
 		<thead>
 			<tr>
-				<th>Tray ID</th>
+				<th>Tray</th>
 				<th>Description</th>
 			</tr>
 		</thead>
@@ -67,8 +67,8 @@
 
 <script>
 
-	document.getElementById('heading').innerHTML = "Panel "+sessionStorage.getItem('selectedPanel')+" Trays";
-	document.getElementById('userid').innerHTML = "Panelist ["+sessionStorage.getItem('selectedUser')+"]";
+	document.getElementById('heading').innerHTML = sessionStorage.getItem('selectedPanelPlant')+" [Panel "+sessionStorage.getItem('selectedPanel')+"]";
+	document.getElementById('userid').innerHTML = "Panelist ["+sessionStorage.getItem('selectedUsername')+"]";
 
 	
 	sessionStorage.setItem("selectedResult", "");
@@ -85,7 +85,7 @@
 				for (let tray of trays) {
 					out += `
 			<tr>
-				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${tray.trayID}" name="traySelectList" onchange="trayListSave('selectedTray',${tray.trayID});" value="${tray.trayID}" ` + trayListGet('selectedTray', tray.trayID) + `>  <label for="${tray.trayID}"> ${tray.trayID}</label></td>
+				<td style="color:black; background-color:#f0f8ff"><input type="radio" id="${tray.traySequence}" name="traySelectList" onchange="trayListSave('selectedTray',${tray.trayID});trayListSave('selectedTraySeq',${tray.traySequence})" value="${tray.traySequence}" ` + trayListGet('selectedTray', tray.trayID) + `>  <label for="${tray.traySequence}"> ${tray.traySequence}</label></td>
 				<td style="color:black; background-color:#f0f8ff">${tray.description}</td>
 			</tr>`;
 				}

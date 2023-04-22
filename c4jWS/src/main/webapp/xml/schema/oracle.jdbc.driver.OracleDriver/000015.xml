@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+	
+
+<statement>
+	CREATE TABLE "SYS_LANGUAGE" 
+   (	
+   		"RESOURCE_KEY" VARCHAR2(50), 
+			"LANGUAGE_ID" VARCHAR2(2), 
+			"TEXT" VARCHAR2(150), 
+			"MNEMONIC" VARCHAR2(1)
+   )
+</statement>
+
+<statement>
+	CREATE UNIQUE INDEX "SYS_LANGUAGE_PK" ON "SYS_LANGUAGE" ("RESOURCE_KEY", "LANGUAGE_ID")
+</statement>
+
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Add','EN','Add','A')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Archive','EN','Archive','A')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Clear_Filter','EN','Clear Filter','F')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Close','EN','Close','C')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Confirm','EN','Confirm','f')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Delete','EN','Delete','D')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Edit','EN','Edit','E')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Edit_Batch','EN','Edit Batch','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Edit_Location','EN','Edit Location','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Edit_Material','EN','Edit Material','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Edit_Process_Order','EN','Edit Process Order','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Excel','EN','Excel','x')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Find','EN','Find','F')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Help','EN','Help','H')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Interface_Start','EN','Start Interface','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Interface_Stop','EN','Stop Interface','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Label','EN','Label','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Material_Batches','EN','Batches','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Material_UOM_Conversions','EN','UOM Conversions','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_New','EN','New','N')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Ok','EN','Ok','O')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Permissions','EN','Permissions','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Print','EN','Print','P')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Refresh','EN','Refresh','R')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Rename','EN','Rename','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Resubmit','EN','Resubmit','R')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Save','EN','Save','S')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Search','EN','Search','S')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Select','EN','Select','S')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Undo','EN','Undo','U')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Confirm','EN','Confirm','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Despatch_Confirm','EN','Confirm Despatch ','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Despatch_Create','EN','Create Despatch ?','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Despatch_Delete','EN','Delete Despatch','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Error','EN','Error','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Information','EN','Information','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Material_Batch_Input','EN','Input Batch','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Material_Input','EN','Input Material','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Material_Type_Add','EN','Add Material Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Material_Type_Delete','EN','Delete Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Material_Type_Rename','EN','Rename Type To','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Material_UOM_Input','EN','Enter UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_Process_Order_Add','EN','Enter Process Order No (Blank = Auto)','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_SSCC_Add','EN','Enter SSCC or AUTO','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_SSCC_Delete','EN','Delete SSCC','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_SSCC_Print_Maximum','EN','Maxiumum number of labels which can be printed is 100. Change criterial or limit of records.','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_UOM_Add','EN','Add UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_UOM_Delete','EN','Delete UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('dlg_UOM_Rename','EN','Rename UOM to','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('err_Batch_Blank','EN','Batch is Blank','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('err_Location_Blank','EN','Location is Blank','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('err_Material_Blank','EN','Material is Blank','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('err_Process_Order_Blank','EN','Process Order is Blank','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Assigned','EN','Assigned','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Base_UOM','EN','Base UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Batch','EN','Batch','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Confirmed','EN','Confirmed','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Description','EN','Description','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Despatch_Date','EN','Despatch Date','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Despatch_No','EN','Despatch No','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Despatch_Status','EN','Despatch Status','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Despatches','EN','Depatches','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Email_Addresses','EN','Email Addresses','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Email_Error','EN','Error','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Email_Notifications','EN','Email Notifications','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Email_Success','EN','Success','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Email_Warning','EN','Warning','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Filter_By','EN','Filter By','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Find','EN','Find','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_From_Location','EN','From Location','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Group_ID','EN','Group ID','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Haulier','EN','Haulier','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Interface_Device','EN','Device','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Interface_Direction','EN','Interface Direction','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Interface_Enabled','EN','Enabled','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Interface_Filename','EN','Filename','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Interface_Format','EN','Format','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Interface_Path','EN','Path','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Interface_Type','EN','Interface Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Language','EN','Language','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Language_Key','EN','Resource Key','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Language_Mnemonic','EN','Mnemonic','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Limit','EN','Limit','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Load_No','EN','Load No','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Location_ID','EN','Location ID','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material','EN','Material','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Base_UOM','EN','Base UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Batch','EN','Batch','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Batch_Expiry_Date','EN','Expiry Date','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Batch_Expiry_From','EN','Expiry From','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Batch_Expiry_To','EN','Expiry To','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Batch_Status','EN','Status','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Default_Batch_Status','EN','Default Batch Status','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Equipment_Type','EN','Equipment Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Gross_Weight','EN','Gross Weight','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Legacy_Code','EN','Legacy Code','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Net_Weight','EN','Net Weight','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Shelf_Life','EN','Shelf Life','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Shelf_Life_Rounding_Rule','EN','Rounding Rule','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Shelf_Life_UOM','EN','Shelf Life UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Type','EN','Material Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_UOM','EN','UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_UOM_Denominator','EN','Denominator','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_UOM_EAN','EN','EAN','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_UOM_Numerator','EN','Numerator','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_UOM_Variant','EN','Variant','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Material_Weight_UOM','EN','Weight UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Date','EN','Message Date','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Despatch_Confirm','EN','Msg Despatch Confirm','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Despatch_Pre_Advice','EN','Msg Despatch Pre Advice','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Equipment_Tracking','EN','Msg Equipment Tracking','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Error','EN','Result','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Event_Date','EN','Event Date','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Information','EN','Message Information','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Production_Confirmation','EN','Msg Production Confirm','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Reference','EN','Message Reference','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Status','EN','Message Status','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Message_Type','EN','Message Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_ALL','EN','All','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Desktop','EN','Desktop','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Executable','EN','Executables','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Executable_Directory','EN','Executable Directory','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Executable_Filename','EN','Executable Filename','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Form','EN','Forms','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Function','EN','Functions','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Help','EN','Help','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Icon_Filename','EN','Icon Filename','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_ID','EN','Module ID','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Menu','EN','Menus','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Print_Copies','EN','Print Copies','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Print_Dialog','EN','Print Dialog','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Print_Preview','EN','Print Preview','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Report','EN','Reports','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Report_Filename','EN','Report Filename','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Report_Type','EN','Report Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Scanner','EN','Scanner','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Module_Type','EN','Module Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_No_Of_Pallets','EN','No Of Pallets','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Number_of_SSCCs','EN','Number of SSCCs','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Options','EN','Options','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Pallet','EN','Pallet','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Pallet_Base_Quantity','EN','Base Quantity','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Pallet_Base_UOM','EN','Base UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Pallet_DOM','EN','Date of Manufacture','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Pallet_Layers','EN','Layers','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Pallet_Quantity','EN','Quantity','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Pallet_SSCC','EN','SSCC','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Pallet_Status','EN','Pallet Status','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Pallet_UOM','EN','UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Preview','EN','Preview','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Print','EN','Print','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Print_Queue','EN','Print Queue','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Process_Order','EN','Process Order','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Process_Order_Default_Pallet_Status','EN','Default Pallet Status','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Process_Order_Due_Date','EN','Due Date','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Process_Order_Recipe','EN','Recipe','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Process_Order_Required_Quantity','EN','Quantity','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Process_Order_Required_UOM','EN','UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Process_Order_Status','EN','Status','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Sort_By','EN','Sort By','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Storage_Bin','EN','Bin','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Storage_Equipment_Tracking_ID','EN','Equipment Tracking ID','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Storage_GLN','EN','GLN','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Storage_Location','EN','Location','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Storage_Location_Permit_Batch_Status','EN','Permit Batch Status','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Storage_Location_Permit_Pallet_Status','EN','Permit Pallet Status','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Storage_Plant','EN','Plant','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Storage_Section','EN','Section','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Storage_Type','EN','Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Storage_Warehouse','EN','Warehouse','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_To_Location','EN','To Location','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Trailer','EN','Trailer','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Transaction_Date','EN','Transaction Date','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Transaction_Ref','EN','Transaction Ref','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Transaction_Subtype','EN','Transaction Subtype','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Transaction_Type','EN','Transaction Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Unassigned','EN','Unassigned','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Unassigned_Filter','EN','Unassigned Filter','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Unconfirmed','EN','Unconfirmed','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_UOM_Conversion','EN','UOM Conversion','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_UOM_Internal','EN','Internal UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_UOM_ISO','EN','ISO UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_UOM_Local','EN','Local UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account','EN','Account','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Bad_Passwords','EN','Bad Passwords','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Email','EN','Email','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Expires','EN','Account Expires','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Expiry_Date','EN','Expiry Date','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Last_Logon','EN','Last Logon','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Last_Password_Change','EN','Last Password Change','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Lock','EN','Lock','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Locked','EN','Locked','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Password','EN','Password','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Password_Change_Allowed','EN','Password Change Allowed','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Password_Expires','EN','Password Expires','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Password_Verify','EN','Verify','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_Account_Unlock','EN','Unlock','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_User_ID','EN','User ID','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Workstation','EN','Workstation','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_EXEC_CONFIG','EN','Host Configuration','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_EXEC_IREPORT','EN','iReports','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_CONTROL_EDIT','EN','System Controls','C')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_DESPATCH','EN','Despatch Pallets','D')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_GROUP_ADD','EN','Add a Group','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_GROUP_DELETE','EN','Delete a Group','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_GROUP_EDIT','EN','Group Properties','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_GROUP_PERM','EN','Group Permissions','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_GROUP_RENAME','EN','Rename a Group','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_GROUPS','EN','Groups','G')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_INTERFACE','EN','Interface Admin','I')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_EDIT','EN','Edit Interface','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_LOG','EN','Interface Log','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_PROCESS','EN','Process Interface Messages','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_INTERFACE_REQUEST','EN','Interface Request Administration','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_LOCATION_ADD','EN','Add a new location','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_LOCATION_DELETE','EN','Delete a location','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_LOCATION_EDIT','EN','Edit a location','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_LOCATIONS','EN','Administer Locations','L')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_ADD','EN','Add a Material','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_BATCH','EN','Administer Batches','B')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_BATCH_EDIT','EN','Edit a Material Batch Record','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_DELETE','EN','Delete a Material','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_EDIT','EN','Edit a Material','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE','EN','Administer Material Types','T')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_ADD','EN','Add a Material Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_DELETE','EN','Delete a Material Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_EDIT','EN','Add or Update a Material Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_PRINT','EN','Print Material Types','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_TYPE_RENAME','EN','Rename a Material Type','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM','EN','Administer UOMs for a Material','U')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_ADD','EN','Add a Material UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_DELETE','EN','Delete a Material UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIAL_UOM_EDIT','EN','Edit Material UOM Properties','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MATERIALS','EN','Administer Materials','M')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MENU','EN','Menu Maintenance','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MODULE_ADD','EN','Add a Module','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MODULE_DELETE','EN','Delete a Module','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MODULE_EDIT','EN','Edit the Module Properties','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MODULE_RENAME','EN','Rename a Module','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_MODULES','EN','Modules','M')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_ADD','EN','Add a Pallet','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_DELETE','EN','Delete a Pallet','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT','EN','Edit Pallet','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_BATCH','EN','Edit Pallet Batch','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_LOCATION','EN','Edit Pallet Location','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_MATERIAL','EN','Edit Material of Pallet','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER','EN','Edit Process Order','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_PROD_DATE','EN','Edit Production Date','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_QUANTITY','EN','Edit Pallet Quantity','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_STATUS','EN','Edit Pallet Status','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_EDIT_UOM','EN','Edit a Material UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_HISTORY','EN','Pallet History','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLET_PRINT','EN','Pallet Print','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PALLETS','EN','Administer Pallets','P')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER','EN','Administer Process Orders','O')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_ADD','EN','Add a process order','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_DELETE','EN','Delete a process order','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_PROCESS_ORDER_EDIT','EN','Edit a Process Order','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_RF_MENU','EN','RF Menu Maintenance','F')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_TOOLBAR','EN','Toolbar Maintenance','T')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_UOM','EN','Administer Units of Measure','U')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_UOM_ADD','EN','Add a new UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_UOM_DELETE','EN','Delete a UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_UOM_EDIT','EN','Edit a UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_UOM_PRINT','EN','Print UOMs','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_UOM_RENAME','EN','Rename a UOM','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_USER_ADD','EN','Add a new User','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_USER_DELETE','EN','Delete a User','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_USER_EDIT','EN','User Properties','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_USER_PERM','EN','User Permissions','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_USER_RENAME','EN','Rename a User','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_USERS','EN','Users','S')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_CM_PRINTERS','EN','Default Printer','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_PAL_INFO','EN','Pallet Info','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_PAL_PROD_CONFIRM','EN','Production Confirmation','C')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_PAL_PROD_DEC','EN','Production Declaration','D')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_PRODDEC_CONFIRM','EN','Permits user to check the Confirmed Box','C')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_PRODDEC_PREVIEW','EN','Permits user to click preview box','P')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_PRODDEC_PRINT','EN','Permits user to enable/disable print box','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_SYSTEM_KEYS','EN','System Keys Maintenance','S')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_SYSTEM_KEYS_ADD','EN','Add a System Key','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_SYSTEM_KEYS_DELETE','EN','Delete a System Key','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_SYSTEM_KEYS_EDIT','EN','Edit a System Key','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_MENU_ADMIN','EN','Administration','A')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_MENU_CUSTOMISE','EN','Customise Application','C')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_MENU_DATA_MAINT','EN','Data Maintenance','D')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_MENU_INTERFACE','EN','Interfaces','I')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_MENU_PAL','EN','Pallet Transactions','P')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_MENU_PAL_REPORTS','EN','Reports Menu','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_MENU_PERMISSIONS','EN','Permissions','R')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_MENU_SETUP','EN','Setup','S')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_MENU_TOOLS','EN','Tools','T')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_root','EN','Main Menu','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('web_Cancel','EN','Cancel','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('web_SSCC','EN','SSCC','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('web_Submit','EN','Submit','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('btn_Edit_Pallet','EN','Edit Pallet','')
+</statement>
+<statement>
+insert into  SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('lbl_Referenced_Data','EN','Referenced Data','')
+</statement>
+
+
+<statement>
+ALTER TABLE SYS_MODULES ADD resource_key VARCHAR2(50)
+</statement>
+
+<statement>
+update SYS_MODULES SET resource_key = 'mod_' || module_id
+</statement>
+
+<statement>
+ALTER TABLE SYS_MODULES drop column description
+</statement>
+
+</DDL>

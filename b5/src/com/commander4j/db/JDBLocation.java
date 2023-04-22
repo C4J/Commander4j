@@ -60,6 +60,7 @@ public class JDBLocation
 	private String db_msg_despatch_preadvice = "";
 	private String db_msg_despatch_equip_track = "";
 	private String db_msg_prod_confirm = "";
+	private String db_msg_prod_unconfirm = "";
 	private String dbStorageSection;
 	private String dbStorageType;
 	private String dbWarehouse;
@@ -151,6 +152,7 @@ public class JDBLocation
 		setMsgDespatchPreadvice("N");
 		setMsgDespatchEquipTrack("N");
 		setMsgProdConfirm("N");
+		setMsgProdUnConfirm("N");
 		setMsgDelete("N");
 		setMsgJourneyRef("N");
 		setEmailDespatch("N");
@@ -542,6 +544,11 @@ public class JDBLocation
 	{
 		return JUtility.replaceNullStringwithBlank(db_msg_prod_confirm);
 	}
+	
+	public String getMsgProdUnConfirm()
+	{
+		return JUtility.replaceNullStringwithBlank(db_msg_prod_unconfirm);
+	}
 
 	public String getPlant()
 	{
@@ -572,6 +579,7 @@ public class JDBLocation
 			setMsgDespatchPreadvice(rs.getString("msg_despatch_preadvice"));
 			setMsgDespatchEquipTrack(rs.getString("msg_despatch_equip_track"));
 			setMsgProdConfirm(rs.getString("msg_prod_confirm"));
+			setMsgProdUnConfirm(rs.getString("msg_prod_unconfirm"));
 			setPermittedPalletStatus(rs.getString("permitted_pallet_status"));
 			setPermittedBatchStatus(rs.getString("permitted_batch_status"));
 			setEnabled(rs.getString("enabled"));
@@ -716,6 +724,16 @@ public class JDBLocation
 	{
 		Boolean result = false;
 		if (getMsgProdConfirm().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+	
+	public Boolean isProductionUnConfirmMessageRequired()
+	{
+		Boolean result = false;
+		if (getMsgProdUnConfirm().equals("Y"))
 		{
 			result = true;
 		}
@@ -938,6 +956,11 @@ public class JDBLocation
 	{
 		db_msg_prod_confirm = dbMsgProdConfirm;
 	}
+	
+	public void setMsgProdUnConfirm(String dbMsgProdUnConfirm)
+	{
+		db_msg_prod_unconfirm = dbMsgProdUnConfirm;
+	}
 
 	public void setMsgProdConfirm(Boolean dbMsgProdConfirm)
 	{
@@ -947,6 +970,18 @@ public class JDBLocation
 		} else
 		{
 			db_msg_prod_confirm = "N";
+		}
+
+	}
+	
+	public void setMsgProdUnConfirm(Boolean dbMsgProdUnConfirm)
+	{
+		if (dbMsgProdUnConfirm)
+		{
+			db_msg_prod_unconfirm = "Y";
+		} else
+		{
+			db_msg_prod_unconfirm = "N";
 		}
 
 	}
@@ -1030,7 +1065,9 @@ public class JDBLocation
 				stmtupdate.setString(19, getEnabled());
 				stmtupdate.setString(20, getMsgJourneyRef());
 				stmtupdate.setString(21, getEmailDespatch());
-				stmtupdate.setString(22, getLocationID());
+				stmtupdate.setString(22, getMsgProdUnConfirm());
+				stmtupdate.setString(23, getLocationID());
+
 				stmtupdate.execute();
 
 				stmtupdate.clearParameters();

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE barcode SYSTEM "barcode4j.dtd">
+<barcode>
+  <ean-128>
+      <height>15mm</height>
+      <module-width>0.3mm</module-width>
+      <check-digit-marker>&#xF0;</check-digit-marker>
+      <group-separator>&#xF1;</group-separator>
+      <template>(01)n14(20)n2(17)n6(37)n4(10)an1-20</template>
+      <quiet-zone enabled="true">5mm</quiet-zone>
+      <human-readable>
+          <placement>bottom</placement>
+          <font-name>Helvetica</font-name>
+          <font-size>6pt</font-size>
+          <omit-brackets>false</omit-brackets>
+      </human-readable>
+  </ean-128>
+</barcode>

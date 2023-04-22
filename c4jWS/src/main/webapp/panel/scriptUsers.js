@@ -83,6 +83,10 @@
 	
 	function userListSave(key,val) 
 	{
+		if (val === null) 
+		{
+			val="";
+		}
 		console.log('userListSave key='+key);
 		console.log('userListSave value='+val);
 		sessionStorage.setItem(key, val);

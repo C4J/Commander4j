@@ -74,7 +74,7 @@
    		
 	function buildUserComboBox() {
 		
-		var dropdownHTML = '<label for "userSelect">Panelist : </label><select id="userSelect" name="userSelect" class="box" onchange="newSelection(this.value)">';
+		var dropdownHTML = '<label for "userSelect">Panelist : </label><select id="userSelect" name="userSelect" class="box" onchange="newSelection()">';
 		
 		fetch("/c4jWS/Users?enabled=Y")
 			.then(function(response) { return response.json(); })
@@ -108,17 +108,25 @@
 			button.disabled = enabled;
 	}
 	
-	function newSelection(combovalue)
+	function newSelection()
 	{
-	    console.log('selected user = '+combovalue); 
+		
+		var select = document.getElementById("userSelect");
+		var option = select.options[select.selectedIndex];
+		var label = option.text;
+		var val = option.value;
+		    
+	    console.log('selected user = '+val); 
+	    console.log('selected name = '+label); 
 	    
-	    sessionStorage.setItem("selectedUser", combovalue);
+	    sessionStorage.setItem("selectedUser", val);
+	    sessionStorage.setItem("selectedUsername", label);
 	    sessionStorage.setItem("selectedPanel", "");
 	    sessionStorage.setItem("selectedTray", "");
 	    
 	    var button=document.getElementById("nextButton");
 	    
-	    if (combovalue === "")
+	    if (val === "")
 	    {
 	    	button.disabled = true;
 	    }

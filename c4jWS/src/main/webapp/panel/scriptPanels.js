@@ -84,12 +84,18 @@
 		.then(function(res){ console.log(res) })
 		.catch(function(res){ console.log(res) });
 		
+		panelListSave("selectedPanelPlant",plant)
+		
 		refreshPanel();
 	
 	};
 	
 	function panelListSave(key,val) 
 	{
+		if (val === null) 
+		{
+			val="";
+		}
 		console.log('panelListSave key='+key);
 		console.log('panelListSave value='+val);
 		sessionStorage.setItem(key, val);

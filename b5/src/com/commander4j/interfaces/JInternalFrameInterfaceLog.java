@@ -78,6 +78,7 @@ import com.commander4j.messages.OutgoingDespatchEmail;
 import com.commander4j.messages.OutgoingDespatchPreAdvice;
 import com.commander4j.messages.OutgoingEquipmentTracking;
 import com.commander4j.messages.OutgoingProductionDeclarationConfirmation;
+import com.commander4j.messages.OutgoingProductionUnConfirm;
 import com.commander4j.sys.Common;
 import com.commander4j.tablemodel.JDBInterfaceLogTableModel;
 import com.commander4j.util.JDateControl;
@@ -206,6 +207,15 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 							opdc.submit(Long.valueOf(messageRef));
 							errorMessage.setText(opdc.getErrorMessage());
 							opdc = null;
+						}
+						
+						if (transactionType.endsWith("Production Unconfirm"))
+						{
+							OutgoingProductionUnConfirm opuc = new OutgoingProductionUnConfirm(Common.selectedHostID, Common.sessionID);
+							//opdc.processMessage(Long.valueOf(messageRef));
+							opuc.submit(Long.valueOf(messageRef));
+							errorMessage.setText(opuc.getErrorMessage());
+							opuc = null;
 						}
 
 						if (transactionType.equals("Despatch Confirmation"))

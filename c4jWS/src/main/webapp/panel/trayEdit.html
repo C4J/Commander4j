@@ -62,7 +62,7 @@
 	</table>
 	
 	<div class="grid-container">
-  		 <div class="grid-item" align="center"><button class="button" onclick="sampleMenu()">Samples</button></div> 
+  		 <div class="grid-item" align="center"><button class="button" onclick='updateTray(document.getElementById("description").value);sampleMenu()'>Samples</button></div>
   		 <div class="grid-item" align="center"><button class="button" onclick='updateTray(document.getElementById("description").value)'>Save</button></div>  
   		 <div class="grid-item" align="center"><button class="button" onclick="refreshTray()">Refresh</button></div>   
   		 <div class="grid-item" align="center"><button class="button" onclick="trayMenu()">Back</button></div> 
@@ -72,7 +72,7 @@
 
 <script>
 	
-	document.getElementById('heading').innerHTML = "Panel "+sessionStorage.getItem('selectedPanel')+" - Tray "+sessionStorage.getItem('selectedTray');
+    document.getElementById('heading').innerHTML = sessionStorage.getItem('selectedPanelPlant')+" - [ID "+sessionStorage.getItem('selectedPanel')+"] - Tray "+sessionStorage.getItem('selectedTraySeq');
 	
 	function getTrayProperties() {
 

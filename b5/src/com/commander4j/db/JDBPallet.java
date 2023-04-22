@@ -46,6 +46,7 @@ import com.commander4j.messages.OutgoingPalletDelete;
 import com.commander4j.messages.OutgoingPalletSplit;
 import com.commander4j.messages.OutgoingPalletStatusChange;
 import com.commander4j.messages.OutgoingProductionDeclarationConfirmation;
+import com.commander4j.messages.OutgoingProductionUnConfirm;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.JWait;
@@ -101,6 +102,7 @@ public class JDBPallet
 	private String lastMaterial_Material = "";
 	private JEANBarcode barcode = new JEANBarcode();
 	private OutgoingProductionDeclarationConfirmation opdc;
+	private OutgoingProductionUnConfirm opuc;
 	private long transactionRef = 0;
 	private Timestamp dbBatchExpiry;
 	private Timestamp dbDateCreated;
@@ -357,6 +359,46 @@ public class JDBPallet
 
 		return result;
 	}
+	
+	public Boolean rapidUnConfirm()
+	{
+		Boolean result = false;
+
+		try
+		{
+
+			// Change Pallet Confirmed status
+
+			PreparedStatement stmtupdate;
+			stmtupdate = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBPallet.rapidUnConfirm"));
+
+			setDateUpdated(JUtility.getSQLDateTime());
+			stmtupdate.setTimestamp(1, getDateUpdated());
+
+			setUpdatedBy(Common.userList.getUser(getSessionID()).getUserId());
+			stmtupdate.setString(2, getUpdatedBy());
+
+			stmtupdate.setString(3, getSSCC());
+
+			int rows = stmtupdate.executeUpdate();
+			
+			if (rows == 1)
+			{	
+				result = true;
+			}
+			
+			stmtupdate.clearParameters();
+			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
+			stmtupdate.close();
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
 
 	/**
 	 * This method will confirm an unconfirmed pallet. When a pallet label is
@@ -418,6 +460,53 @@ public class JDBPallet
 		return result;
 	}
 
+	public Boolean Unconfirm()
+	{
+		Boolean result = false;
+		logger.debug("Confirmation status for SSCC " + getSSCC() + " is " + isConfirmed().toString());
+		if (isConfirmed() == true)
+		{
+			if (getProcessOrderObj(true).getStatus().equals("Ready") || getProcessOrderObj(true).getStatus().equals("Running"))
+			{
+
+				if (rapidUnConfirm() == true)
+				{
+
+					result = true;
+					setErrorMessage("");
+					writePalletHistory(getTransactionRef(), "PROD DEC", "UNCONFIRM");
+
+					logger.debug(getSSCC() + " Unconfirmed.");
+					
+					if (getLocationObj().isProductionUnConfirmMessageRequired())
+					{
+						opuc.submit(getTransactionRef());
+					}
+					else
+					{
+						logger.error("Location " + getLocationObj().getLocationID() + " does not require this message.");
+					}
+					setConfirmed(false);
+
+				}
+				else
+				{
+					logger.error("Error Unconfirming SSCC [" + getSSCC());
+				}
+			}
+			else
+			{
+				setErrorMessage("Cannot Unconfirm SSCC " + getSSCC() + " as Process Order " + getProcessOrder() + " status is " + getProcessOrderObj(true).getStatus());
+			}
+		}
+		else
+		{
+			setErrorMessage("SSCC " + getSSCC() + " not confirmed.");
+		}
+
+		return result;
+	}
+	
 	public boolean create()
 	{
 		return create("", "");
@@ -1007,6 +1096,7 @@ public class JDBPallet
 	{
 		materialuom = new JDBMaterialUom(getHostID(), getSessionID());
 		opdc = new OutgoingProductionDeclarationConfirmation(getHostID(), getSessionID());
+		opuc = new OutgoingProductionUnConfirm(getHostID(), getSessionID());
 		ctrl = new JDBControl(getHostID(), getSessionID());
 		matBatch = new JDBMaterialBatch(getHostID(), getSessionID());
 		material = new JDBMaterial(getHostID(), getSessionID());

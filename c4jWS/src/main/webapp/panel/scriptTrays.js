@@ -78,6 +78,10 @@
 	
 	function trayListSave(key,val) 
 	{
+		if (val === null) 
+		{
+			val="";
+		}
 		console.log('trayListSave key='+key);
 		console.log('trayListSave value='+val);
 		sessionStorage.setItem(key, val);

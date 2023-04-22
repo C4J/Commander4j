@@ -17,19 +17,18 @@ public class AppServletContextListener implements ServletContextListener
 		String uniqueID = "service";
 		Common.applicationMode = "Servlet";
 		String logfilename = sce.getServletContext().getRealPath("/xml/log/log4j.xml");
-		String 	xmlfilename = sce.getServletContext().getRealPath("/xml/hosts/hosts.xml");
+		String xmlfilename = sce.getServletContext().getRealPath("/xml/hosts/hosts.xml");
 		
 		DOMConfigurator.configure(logfilename);
 		
 		logger.debug("contextInitialized ["+sce.getServletContext().getServletContextName()+"]");
 		
 		Common.paths.clear();
-		Common.paths.put("sql.com.ibm.db2.jcc.DB2Driver.xml", sce.getServletContext().getRealPath("/xml/sql/sql.com.ibm.db2.jcc.DB2Driver.xml"));
+
 		Common.paths.put("sql.com.mysql.jdbc.Driver.xml", sce.getServletContext().getRealPath("/xml/sql/sql.com.mysql.jdbc.Driver.xml"));
 		Common.paths.put("sql.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml", sce.getServletContext().getRealPath("/xml/sql/sql.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml"));
 		Common.paths.put("sql.oracle.jdbc.driver.OracleDriver.xml", sce.getServletContext().getRealPath("/xml/sql/sql.oracle.jdbc.driver.OracleDriver.xml"));
 
-		Common.paths.put("view.com.ibm.db2.jcc.DB2Driver.xml", sce.getServletContext().getRealPath("/xml/view/view.com.ibm.db2.jcc.DB2Driver.xml"));
 		Common.paths.put("view.com.mysql.jdbc.Driver.xml", sce.getServletContext().getRealPath("/xml/view/view.com.mysql.jdbc.Driver.xml"));
 		Common.paths.put("view.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml", sce.getServletContext().getRealPath("/xml/view/view.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml"));
 		Common.paths.put("view.oracle.jdbc.driver.OracleDriver.xml", sce.getServletContext().getRealPath("/xml/view/view.oracle.jdbc.driver.OracleDriver.xml"));
