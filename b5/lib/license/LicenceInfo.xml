@@ -143,7 +143,7 @@
             
         <library>
             <description>Jasper Reports Library</description>
-            <version>6.20.3</version>
+            <version>6.20.5</version>
             <type>Jasper Reports License</type>
         </library>       
 
@@ -401,15 +401,21 @@
         
         <library>
         	<description>Spring Beans</description>
-        	<version>5.1.4.RELEASE</version>
+        	<version>5.3.27</version>
          	<type>Apache License 2.0</type>
         </library>
   
         <library>
         	<description>Spring Core</description>
-        	<version>5.1.4.RELEASE</version>
+        	<version>5.3.27</version>
          	<type>Apache License 2.0</type>
         </library>  
+        
+        <library>
+        	<description>Spring JCL</description>
+        	<version>5.3.27</version>
+         	<type>Apache License 2.0</type>
+        </library> 
         
         <library>
         	<description>Apache Velocity</description>

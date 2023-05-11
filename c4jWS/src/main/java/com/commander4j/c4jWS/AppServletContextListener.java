@@ -44,6 +44,8 @@ public class AppServletContextListener implements ServletContextListener
 
 	public void contextDestroyed(ServletContextEvent sce)
 	{
+		Common.hostList.getHost(Common.selectedHostID).disconnectAll();
+		
 		logger.debug("contextDestroyed ["+sce.getServletContext().getServletContextName()+"]");
 		logger.removeAllAppenders();
 		logger = null;

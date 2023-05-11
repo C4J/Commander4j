@@ -898,7 +898,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 
 							if (jCheckBoxAutoPrint.isSelected())
 							{
-								String pq = comboBoxPrintQueue.getSelectedItem().toString();
+								String pq = JUtility.replaceNullStringwithBlank(comboBoxPrintQueue.getSelectedItem().toString());
 								buildSQL(ssccList, ssccItems);
 								JLaunchReport.runReport(labelPrint.getPalletLabelReportName(pallet.getProcessOrder()), listStatement, jCheckBoxAutoPreview.isSelected(), pq,
 										Integer.valueOf(jSpinnerCopies.getValue().toString()), checkBoxIncHeaderText.isSelected());

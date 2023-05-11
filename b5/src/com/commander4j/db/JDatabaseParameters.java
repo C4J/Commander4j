@@ -216,7 +216,7 @@ public class JDatabaseParameters
 		if (getjdbcDriver().equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
 		{
 
-			value = "jdbc:sqlserver://jdbcServer\\jdbcSID:jdbcPort;databaseName=jdbcDatabase;selectMethod=direct";
+			value = "jdbc:sqlserver://jdbcServer\\jdbcSID:jdbcPort;databaseName=jdbcDatabase;selectMethod=direct;encrypt=false;trustServerCertificate=false";
 
 		}
 

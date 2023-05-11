@@ -306,6 +306,8 @@ public class JHostList
 				}
 			}
 		}
+		
+		JHost.deRegisterDrivers();
 	}
 
 	public void disconnectSessionAllHosts(String sessionID)

@@ -28,6 +28,7 @@ package com.commander4j.sys;
  */
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Enumeration;
@@ -248,10 +249,9 @@ public class JHost
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
 	public static void deRegisterDrivers()
 	{
-		java.util.Enumeration e = java.sql.DriverManager.getDrivers();
+		Enumeration<Driver> e = java.sql.DriverManager.getDrivers();
 		while (e.hasMoreElements())
 		{
 			Object driverAsObject = e.nextElement();
@@ -262,7 +262,7 @@ public class JHost
 			}
 			catch (SQLException e1)
 			{
-				e1.printStackTrace();
+
 			}
 		}
 	}

@@ -33,8 +33,8 @@
 	<classpathentry kind="lib" path="lib/app/commons-text-1.10.0.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/serializer-2.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-collections4-4.2.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/spring-beans-5.3.26.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/spring-core-5.3.26.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/spring-beans-5.3.27.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/spring-core-5.3.27.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/javax.xml.soap-api-1.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/xmpcore-6.1.11.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/xmlgraphics-commons-2.2.jar"/>
@@ -54,7 +54,7 @@
 	<classpathentry kind="lib" path="lib/serial/jSerialComm-2.9.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/ant-1.10.11.jar"/>
 	<classpathentry kind="lib" path="lib/mail/javax.activation-1.2.0.jar"/>
-	<classpathentry kind="lib" path="lib/db/mssql-jdbc-9.4.1.jre11.jar"/>
+	<classpathentry kind="lib" path="lib/db/mssql-jdbc-12.2.0.jre11.jar"/>
 	<classpathentry kind="lib" path="lib/cups4j/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="lib" path="lib/cups4j/stax-1.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/cups4j/stax-api-1.0.1.jar"/>
@@ -70,15 +70,15 @@
 	<classpathentry kind="lib" path="lib/db/ucp11.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/jcommander-1.82.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/testng-7.7.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-annotation-processors-6.20.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-castor-6.20.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.20.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.20.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-custom-visualization-6.20.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.20.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.20.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.20.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-xalan-6.20.3.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-annotation-processors-6.20.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-castor-6.20.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.20.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.20.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-custom-visualization-6.20.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.20.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.20.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.20.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-xalan-6.20.5.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-anim-1.16.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-awt-util-1.16.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-bridge-1.16.jar"/>
@@ -158,7 +158,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/poi-ooxml-lite-5.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/saaj-api-1.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/slf4j-api-1.8.0-beta4.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/spring-jcl-5.3.26.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/spring-jcl-5.3.27.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/tools-1.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/tyrus-client-1.13.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/tyrus-container-grizzly-client-1.13.1.jar"/>
@@ -184,7 +184,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib_aux/junit-platform-engine-1.9.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/objenesis-3.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/opentest4j-1.2.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.20.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.20.3.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.20.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.20.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

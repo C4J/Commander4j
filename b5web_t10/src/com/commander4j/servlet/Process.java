@@ -1079,12 +1079,11 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		Common.applicationMode = "Servlet";
 
 		Common.paths.clear();
-		Common.paths.put("sql.com.ibm.db2.jcc.DB2Driver.xml", getServletContext().getRealPath("/xml/sql/sql.com.ibm.db2.jcc.DB2Driver.xml"));
+
 		Common.paths.put("sql.com.mysql.jdbc.Driver.xml", getServletContext().getRealPath("/xml/sql/sql.com.mysql.jdbc.Driver.xml"));
 		Common.paths.put("sql.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml", getServletContext().getRealPath("/xml/sql/sql.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml"));
 		Common.paths.put("sql.oracle.jdbc.driver.OracleDriver.xml", getServletContext().getRealPath("/xml/sql/sql.oracle.jdbc.driver.OracleDriver.xml"));
 
-		Common.paths.put("view.com.ibm.db2.jcc.DB2Driver.xml", getServletContext().getRealPath("/xml/view/view.com.ibm.db2.jcc.DB2Driver.xml"));
 		Common.paths.put("view.com.mysql.jdbc.Driver.xml", getServletContext().getRealPath("/xml/view/view.com.mysql.jdbc.Driver.xml"));
 		Common.paths.put("view.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml", getServletContext().getRealPath("/xml/view/view.com.microsoft.sqlserver.jdbc.SQLServerDriver.xml"));
 		Common.paths.put("view.oracle.jdbc.driver.OracleDriver.xml", getServletContext().getRealPath("/xml/view/view.oracle.jdbc.driver.OracleDriver.xml"));
