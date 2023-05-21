@@ -14,7 +14,7 @@
         <pathelement location="WebContent/WEB-INF/lib/avalon-framework-4.2.0.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commander4j.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commons-codec-1.15.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/commons-io-2.6.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-io-2.12.0.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commons-lang-2.6.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commons-lang3-3.12.0.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>

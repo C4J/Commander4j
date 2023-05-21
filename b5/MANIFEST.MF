@@ -67,7 +67,7 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib/commons-dbcp-1.2.jar 
  lib/jasperlib/commons-digester-2.1.jar 
  lib/jasperlib/commons-discovery-0.2.jar 
- lib/jasperlib/commons-io-2.8.0.jar 
+ lib/jasperlib/commons-io-2.12.0.jar 
  lib/jasperlib/commons-lang3-3.12.0.jar 
  lib/jasperlib/commons-logging-1.2.jar 
  lib/jasperlib/commons-math-1.0.jar 

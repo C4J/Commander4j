@@ -610,7 +610,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 				if (mode.equals("Print"))
 				{
 
-					String pq = comboBoxPrintQueue.getSelectedItem().toString();
+					String pq = JUtility.replaceNullStringwithBlank(comboBoxPrintQueue.getSelectedItem().toString());
 					buildSQL(key);
 
 					JLaunchReport.runReport(labelPrint.getPackLabelReportName(processOrder), listStatement, jCheckBoxAutoPreview.isSelected(), pq, noOfLabels, checkBoxIncHeaderText.isSelected());
