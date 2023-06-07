@@ -1336,6 +1336,19 @@ public class JLaunchMenu
 				displayForm(u, optionName);
 			}
 		}
+		
+		if (optionName.equals("FRM_ADMIN_PACKING_LINES"))
+		{
+			final JInternalFramePackingLineAdmin u;
+			if (isLoaded(JInternalFramePackingLineAdmin.class))
+				setVisible(JInternalFramePackingLineAdmin.class);
+			else
+			{
+				u = new JInternalFramePackingLineAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
 
 		if (optionName.equals("FRM_WASTE_REPORTING_GROUP"))
 		{
@@ -2334,6 +2347,19 @@ public class JLaunchMenu
 			// else
 			{
 				u = new JInternalFrameShiftNameProperties(StrParam);
+				u.setTitle(mod.getDescription() + " [" + StrParam + "]");
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_ADMIN_PACKING_LINES_EDIT"))
+		{
+			final JInternalFramePackingLineProperties u;
+			// if (isLoaded(JInternalFrameMHNDecisionProperties.class))
+			// setVisible(JInternalFrameMHNDecisionProperties.class);
+			// else
+			{
+				u = new JInternalFramePackingLineProperties(StrParam);
 				u.setTitle(mod.getDescription() + " [" + StrParam + "]");
 				displayForm(u, optionName);
 			}

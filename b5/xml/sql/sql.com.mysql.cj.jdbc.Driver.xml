@@ -2845,5 +2845,31 @@
 			<text>select * from {schema}APP_QM_USERS where user_id = ?</text>
 		</statement>
 		
+		<?JDBPackingLines?>		
+		<statement>
+			<id>JDBPackingLines.create</id>
+			<text>insert into {schema}APP_PACKING_LINES (packing_line_id,description,enabled) values (?,?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBPackingLines.delete</id>
+			<text>delete from {schema}APP_PACKING_LINES where packing_line_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPackingLines.update</id>
+			<text>update {schema}APP_PACKING_LINES set description = ?,enabled = ? where packing_line_id = ?</text>
+		</statement>
+	        <statement>
+			<id>JDBPackingLines.getProperties</id>
+			<text>select * from {schema}APP_PACKING_LINES where packing_line_id = ?</text>
+		</statement>	
+	        <statement>
+			<id>JDBPackingLines.isValid</id>
+			<text>select * from {schema}APP_PACKING_LINES where packing_line_id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBPackingLines.getNames</id>
+			<text>select * from {schema}APP_PACKING_LINES order by packing_line_id</text>
+		</statement>
+		
 	</jdbcDriver>
 </SQL>

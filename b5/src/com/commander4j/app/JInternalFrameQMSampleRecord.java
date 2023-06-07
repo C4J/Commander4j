@@ -57,6 +57,7 @@ import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
+import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JPrint;
@@ -109,6 +110,8 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 	private PreparedStatement listStatement;
 	private JSpinner spinnerCopies;
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
+	private JButton4j jButtonLookup_Shift_Names;
+	private JButton4j jButtonLookup_Packing_Line;
 
 	public JInternalFrameQMSampleRecord(String samp)
 	{
@@ -325,9 +328,10 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				{
 					jTextFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
 					jTextFieldUserData2.setToolTipText("Custom Field USER_DATA_2");
-					jDesktopPane1.add(jTextFieldUserData2);
+					jTextFieldUserData2.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_2_EDITABLE", "true", "QM USER DATA 2 EDITABLE")));
 					jTextFieldUserData2.setBounds(147, 246, 119, 21);
 					jTextFieldUserData2.setFocusCycleRoot(true);
+					jDesktopPane1.add(jTextFieldUserData2);
 				}
 				{
 					lblUserData1 = new JLabel4j_std();
@@ -377,6 +381,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 					jTextFieldUserData1.setToolTipText("Custom Field USER_DATA_1");
 					jTextFieldUserData1.setFocusCycleRoot(true);
 					jTextFieldUserData1.setBounds(147, 220, 119, 21);
+					jTextFieldUserData1.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_1_EDITABLE", "true", "QM USER DATA 1 EDITABLE")));
 					jDesktopPane1.add(jTextFieldUserData1);
 				}
 
@@ -460,11 +465,55 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				jDesktopPane1.add(lblUserData3);
 				
 				jTextFieldUserData3 = new JTextField4j(20);
+				jTextFieldUserData3.setEditable(false);
 				jTextFieldUserData3.setToolTipText("Custom Field USER_DATA_3");
 				jTextFieldUserData3.setText("");
 				jTextFieldUserData3.setFocusCycleRoot(true);
 				jTextFieldUserData3.setBounds(147, 274, 119, 21);
+				jTextFieldUserData3.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_3_EDITABLE", "true", "QM USER DATA 3 EDITABLE")));
 				jDesktopPane1.add(jTextFieldUserData3);
+				
+				{
+					jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
+					jDesktopPane1.add(jButtonLookup_Shift_Names);
+					jButtonLookup_Shift_Names.setBounds(265, 274, 21, 21);
+					jButtonLookup_Shift_Names.setEnabled(true);
+					jButtonLookup_Shift_Names.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "";
+							if (JLaunchLookup.shiftNames())
+							{
+								jTextFieldUserData3.setText(JLaunchLookup.dlgResult);
+								jTextFieldUserData3.setCaretPosition(jTextFieldUserData3.getText().length());
+
+							}
+						}
+					});
+				}
+				
+				{
+					jButtonLookup_Packing_Line = new JButton4j(Common.icon_lookup_16x16);
+					jDesktopPane1.add(jButtonLookup_Packing_Line);
+					jButtonLookup_Packing_Line.setBounds(265, 246, 21, 21);
+					jButtonLookup_Packing_Line.setEnabled(true);
+					jButtonLookup_Packing_Line.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "";
+							if (JLaunchLookup.packingLine())
+							{
+								jTextFieldUserData2.setText(JLaunchLookup.dlgResult);
+								jTextFieldUserData2.setCaretPosition(jTextFieldUserData2.getText().length());
+
+							}
+						}
+					});
+				}
 				
 				JLabel4j_std lblUserData4 = new JLabel4j_std();
 				lblUserData4.setText(lang.get("lbl_User_Data4"));
@@ -477,6 +526,7 @@ public class JInternalFrameQMSampleRecord extends javax.swing.JInternalFrame
 				jTextFieldUserData4.setText("");
 				jTextFieldUserData4.setFocusCycleRoot(true);
 				jTextFieldUserData4.setBounds(147, 300, 119, 21);
+				jTextFieldUserData4.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_4_EDITABLE", "true", "QM USER DATA 4 EDITABLE")));
 				jDesktopPane1.add(jTextFieldUserData4);
 
 				populatePrinterList(JPrint.getDefaultPrinterQueueName());

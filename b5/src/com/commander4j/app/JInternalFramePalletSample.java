@@ -1141,7 +1141,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 						public void actionPerformed(ActionEvent evt)
 						{
 							JLaunchLookup.dlgAutoExec = true;
-							JLaunchLookup.dlgCriteriaDefault = "LAMINATE";
+							JLaunchLookup.dlgCriteriaDefault = "";
 							if (JLaunchLookup.shiftNames())
 							{
 								jTextFieldShift.setText(JLaunchLookup.dlgResult);

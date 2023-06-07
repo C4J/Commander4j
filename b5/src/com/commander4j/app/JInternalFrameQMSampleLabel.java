@@ -133,6 +133,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 	private JTextField4j textFieldUserData3;
 	private JTextField4j textFieldUserData4;
 	private JButton4j jButtonLookup_Shift_Names;
+	private JButton4j jButtonLookup_Packing_Line;
 
 	public class ClockListener implements ActionListener
 	{
@@ -722,6 +723,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 
 		textFieldUserData1.setColumns(20);
 		textFieldUserData1.setBounds(125, 162, 134, 22);
+		textFieldUserData1.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_1_EDITABLE", "true", "QM USER DATA 1 EDITABLE")));
 		desktopPane.add(textFieldUserData1);
 
 		textFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
@@ -736,7 +738,8 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		});
 
 		textFieldUserData2.setColumns(20);
-		textFieldUserData2.setBounds(411, 162, 134, 22);
+		textFieldUserData2.setBounds(411, 162, 115, 22);
+		textFieldUserData2.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_2_EDITABLE", "true", "QM USER DATA 2 EDITABLE")));
 		desktopPane.add(textFieldUserData2);
 
 		lblStatusBar = new JLabel4j_std();
@@ -792,6 +795,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(lblUserData3);
 
 		textFieldUserData3 = new JTextField4j(20);
+		textFieldUserData3.setEditable(false);
 		textFieldUserData3.addKeyListener(new KeyAdapter()
 		{
 			@Override
@@ -802,7 +806,8 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		});
 		textFieldUserData3.setToolTipText("Custom Field USER_DATA_3");
 		textFieldUserData3.setColumns(20);
-		textFieldUserData3.setBounds(125, 193, 134, 22);
+		textFieldUserData3.setBounds(125, 193, 115, 22);
+		textFieldUserData3.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_3_EDITABLE", "true", "QM USER DATA 3 EDITABLE")));
 		desktopPane.add(textFieldUserData3);
 
 		JLabel4j_std lblUserData4 = new JLabel4j_std(lang.get("lbl_User_Data4"));
@@ -822,6 +827,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		textFieldUserData4.setToolTipText("Custom Field USER_DATA_4");
 		textFieldUserData4.setColumns(20);
 		textFieldUserData4.setBounds(411, 193, 134, 22);
+		textFieldUserData4.setEditable(Boolean.valueOf(ctrl.getKeyValueWithDefault("QM_USER_DATA_4_EDITABLE", "true", "QM USER DATA 4 EDITABLE")));
 		desktopPane.add(textFieldUserData4);
 
 		populatePrinterList(JPrint.getDefaultPrinterQueueName());
@@ -838,18 +844,40 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		{
 			jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
 			desktopPane.add(jButtonLookup_Shift_Names);
-			jButtonLookup_Shift_Names.setBounds(261, 193, 21, 21);
+			jButtonLookup_Shift_Names.setBounds(238, 193, 21, 21);
 			jButtonLookup_Shift_Names.setEnabled(true);
 			jButtonLookup_Shift_Names.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent evt)
 				{
 					JLaunchLookup.dlgAutoExec = true;
-					JLaunchLookup.dlgCriteriaDefault = "LAMINATE";
+					JLaunchLookup.dlgCriteriaDefault = "";
 					if (JLaunchLookup.shiftNames())
 					{
 						textFieldUserData3.setText(JLaunchLookup.dlgResult);
 						textFieldUserData3.setCaretPosition(textFieldUserData3.getText().length());
+						printEnable();
+
+					}
+				}
+			});
+		}
+		
+		{
+			jButtonLookup_Packing_Line = new JButton4j(Common.icon_lookup_16x16);
+			desktopPane.add(jButtonLookup_Packing_Line);
+			jButtonLookup_Packing_Line.setBounds(524, 162, 21, 21);
+			jButtonLookup_Packing_Line.setEnabled(true);
+			jButtonLookup_Packing_Line.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.packingLine())
+					{
+						textFieldUserData2.setText(JLaunchLookup.dlgResult);
+						textFieldUserData2.setCaretPosition(textFieldUserData2.getText().length());
 						printEnable();
 
 					}

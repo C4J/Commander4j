@@ -611,6 +611,29 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 	
+	public static boolean packingLine() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_PACKING_LINES"));
+		JDialogLookup.dlg_title = "Packing Lines";
+
+		JDialogLookup.hideDisabled=false;
+		JDialogLookup.dlg_key_field_name = "packing_line_id";
+		JDialogLookup.dlg_criteria_field_name_default = "enabled";
+		JDialogLookup.dlg_orderBy_name_default = "packing_line_id";
+		JDialogLookup.dlg_sort_descending = false;
+
+		dlgCriteriaDefault = "Y";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+	
 	public static boolean waste_materials_for_location() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}view_waste_location_materials"));

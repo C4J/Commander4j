@@ -114,6 +114,8 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 	private JSpinner jSpinnerLimit;
 	private JCheckBox4j jCheckBoxLimit;
 	private JLabel4j_std jLabel10;
+	private JButton4j jButtonLookup_Shift_Names;
+	private JButton4j jButtonLookup_Packing_Line;
 
 	private PreparedStatement buildSQL()
 	{
@@ -572,9 +574,52 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 		desktopPane.add(lbl_UserData3);
 
 		textFieldUserData3 = new JTextField4j(20);
+		textFieldUserData3.setEditable(false);
 		textFieldUserData3.setColumns(20);
-		textFieldUserData3.setBounds(123, 78, 138, 22);
+		textFieldUserData3.setBounds(123, 78, 119, 22);
 		desktopPane.add(textFieldUserData3);
+		
+		{
+			jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
+			desktopPane.add(jButtonLookup_Shift_Names);
+			jButtonLookup_Shift_Names.setBounds(240, 78, 21, 21);
+			jButtonLookup_Shift_Names.setEnabled(true);
+			jButtonLookup_Shift_Names.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.shiftNames())
+					{
+						textFieldUserData3.setText(JLaunchLookup.dlgResult);
+						textFieldUserData3.setCaretPosition(textFieldUserData3.getText().length());
+
+					}
+				}
+			});
+		}
+		
+		{
+			jButtonLookup_Packing_Line = new JButton4j(Common.icon_lookup_16x16);
+			desktopPane.add(jButtonLookup_Packing_Line);
+			jButtonLookup_Packing_Line.setBounds(503, 45, 21, 21);
+			jButtonLookup_Packing_Line.setEnabled(true);
+			jButtonLookup_Packing_Line.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent evt)
+				{
+					JLaunchLookup.dlgAutoExec = true;
+					JLaunchLookup.dlgCriteriaDefault = "";
+					if (JLaunchLookup.packingLine())
+					{
+						textFieldUserData2.setText(JLaunchLookup.dlgResult);
+						textFieldUserData2.setCaretPosition(textFieldUserData2.getText().length());
+
+					}
+				}
+			});
+		}
 
 		JLabel4j_std lbl_UserData4 = new JLabel4j_std(lang.get("lbl_User_Data4"));
 		lbl_UserData4.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -593,7 +638,7 @@ public class JInternalFrameQMResultEnquiry extends JInternalFrame
 
 		textFieldUserData2 = new JTextField4j(JDBQMSample.field_data_2);
 		textFieldUserData2.setColumns(20);
-		textFieldUserData2.setBounds(386, 44, 138, 22);
+		textFieldUserData2.setBounds(386, 44, 119, 22);
 		desktopPane.add(textFieldUserData2);
 
 		calendarButtonsampleDateFrom = new JCalendarButton(dateSampleFrom);
