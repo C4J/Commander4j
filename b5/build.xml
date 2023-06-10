@@ -105,7 +105,7 @@
         <pathelement location="lib/jasperlib/classmate-1.5.1.jar"/>
         <pathelement location="lib/jasperlib/commons-dbcp-1.2.jar"/>
         <pathelement location="lib/jasperlib/commons-discovery-0.2.jar"/>
-        <pathelement location="lib/jasperlib/commons-io-2.12.0.jar"/>
+        <pathelement location="lib/jasperlib/commons-io-2.13.0.jar"/>
         <pathelement location="lib/jasperlib/commons-lang3-3.12.0.jar"/>
         <pathelement location="lib/jasperlib/commons-logging-1.2.jar"/>
         <pathelement location="lib/jasperlib/commons-math-1.0.jar"/>

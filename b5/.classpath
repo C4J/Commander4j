@@ -100,7 +100,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/classmate-1.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-dbcp-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-discovery-0.2.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/commons-io-2.12.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/commons-io-2.13.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-lang3-3.12.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-math-1.0.jar"/>

@@ -46,7 +46,7 @@
     <path id="Web App Libraries.libraryclasspath">
         <pathelement location="src/main/webapp/WEB-INF/lib/aopalliance-repackaged-3.0.3.jar"/>
         <pathelement location="src/main/webapp/WEB-INF/lib/commons-codec-1.15.jar"/>
-        <pathelement location="src/main/webapp/WEB-INF/lib/commons-io-2.12.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/commons-io-2.13.0.jar"/>
         <pathelement location="src/main/webapp/WEB-INF/lib/commons-lang3-3.12.0.jar"/>
         <pathelement location="src/main/webapp/WEB-INF/lib/commons-text-1.9.jar"/>
         <pathelement location="src/main/webapp/WEB-INF/lib/gson-2.10.1.jar"/>
