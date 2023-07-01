@@ -415,6 +415,20 @@ public class JDBPallet
 
 	public Boolean confirm()
 	{
+		Boolean result = confirmCore(true);
+
+		return result;
+	}
+	
+	public Boolean confirmNoInterface()
+	{
+		Boolean result = confirmCore(false);
+
+		return result;
+	}
+	
+	public Boolean confirmCore(Boolean requestInterface)
+	{
 		Boolean result = false;
 		logger.debug("Confirmation status for SSCC " + getSSCC() + " is " + isConfirmed().toString());
 		if (isConfirmed() == false)
@@ -434,7 +448,14 @@ public class JDBPallet
 
 					if (getLocationObj().isProductionConfirmationMessageRequired())
 					{
-						opdc.submit(getTransactionRef());
+						if (requestInterface)
+						{
+							opdc.submit(getTransactionRef());
+						}
+						else
+						{
+							logger.error("confirmNoInterface invoked - output interface request not invoked.");
+						}
 					}
 					else
 					{
@@ -457,7 +478,7 @@ public class JDBPallet
 			setErrorMessage("SSCC " + getSSCC() + " already confirmed.");
 		}
 
-		return result;
+		return result;	
 	}
 
 	public Boolean Unconfirm()

@@ -47,8 +47,10 @@ import com.commander4j.util.JUtility;
  *
  * @see com.commander4j.db.JDBPallet JDBPallet
  * @see com.commander4j.db.JDBPalletHistory JDBPalletHistory
- * @see com.commander4j.app.JInternalFrameProductionDeclaration JInternalFrameProductionDeclaration
- * @see com.commander4j.app.JInternalFrameProductionConfirmation JInternalFrameProductionConfirmation
+ * @see com.commander4j.app.JInternalFrameProductionDeclaration
+ *      JInternalFrameProductionDeclaration
+ * @see com.commander4j.app.JInternalFrameProductionConfirmation
+ *      JInternalFrameProductionConfirmation
  */
 public class IncommingProductionDeclarationConfirmation
 {
@@ -57,6 +59,7 @@ public class IncommingProductionDeclarationConfirmation
 	private String sessionID;
 	private String errorMessage;
 	private String confirmed;
+	private String suppressInterface;
 
 	public String getErrorMessage()
 	{
@@ -105,6 +108,20 @@ public class IncommingProductionDeclarationConfirmation
 		String sscc = gmh.getXMLDocument().findXPath("//message/messageData/productionDeclaration/SSCC").trim();
 		confirmed = gmh.getXMLDocument().findXPath("//message/messageData/productionDeclaration/confirmed").trim().toUpperCase();
 
+		suppressInterface = gmh.getXMLDocument().findXPath("//message/messageData/productionDeclaration/suppressOutputInterface").trim().toUpperCase();
+
+		suppressInterface = JUtility.replaceNullStringwithBlank(suppressInterface);
+
+		if (suppressInterface.equals(""))
+		{
+			suppressInterface = "N";
+		}
+
+		if (suppressInterface.equals("N") == false)
+		{
+			suppressInterface = "Y";
+		}
+
 		if (pal.getPalletProperties(sscc) == false)
 		{
 			pal.setSSCC(sscc);
@@ -114,14 +131,13 @@ public class IncommingProductionDeclarationConfirmation
 			{
 
 				pal.setBatchNumber(gmh.getXMLDocument().findXPath("//message/messageData/productionDeclaration/batch").trim());
-				
-				if (pal.getBatchNumber().length()>JDBMaterialBatch.field_batch_number)
+
+				if (pal.getBatchNumber().length() > JDBMaterialBatch.field_batch_number)
 				{
 					result = false;
-					setErrorMessage("SSCC " + pal.getSSCC() + " Batch Number (" + pal.getBatchNumber() + ") is too long. Max length is "+String.valueOf(JDBMaterialBatch.field_batch_number)+" characters.");
+					setErrorMessage("SSCC " + pal.getSSCC() + " Batch Number (" + pal.getBatchNumber() + ") is too long. Max length is " + String.valueOf(JDBMaterialBatch.field_batch_number) + " characters.");
 				}
-				
-				
+
 				pal.setQuantity(new BigDecimal(gmh.getXMLDocument().findXPath("//message/messageData/productionDeclaration/productionQuantity").trim()));
 
 				String prodDateString = gmh.getXMLDocument().findXPath("//message/messageData/productionDeclaration/productionDate").trim();
@@ -134,7 +150,8 @@ public class IncommingProductionDeclarationConfirmation
 				{
 					result = false;
 					setErrorMessage("SSCC " + pal.getSSCC() + " Expiry Date in wrong format (" + expireString + ") yyyy-mm-ddThh:mm:ss");
-				} else
+				}
+				else
 				{
 
 					pal.setBatchExpiry(JUtility.getTimestampFromDate(mat.getRoundedExpiryTime(expireTime)));
@@ -143,14 +160,16 @@ public class IncommingProductionDeclarationConfirmation
 					{
 						result = false;
 						setErrorMessage("SSCC " + pal.getSSCC() + " has Expiry Date before Production Date.");
-					} else
+					}
+					else
 					{
 
 						if (pal.create("PROD DEC", "CREATE") == false)
 						{
 							result = false;
 							setErrorMessage("SSCC " + pal.getSSCC() + " " + pal.getErrorMessage());
-						} else
+						}
+						else
 						{
 							result = true;
 							setErrorMessage("SSCC " + pal.getSSCC() + " created.");
@@ -158,13 +177,15 @@ public class IncommingProductionDeclarationConfirmation
 					}
 				}
 
-			} else
+			}
+			else
 			{
 				result = false;
 				setErrorMessage("SSCC " + pal.getSSCC() + " " + pal.getErrorMessage());
 			}
 
-		} else
+		}
+		else
 		{
 			result = true;
 			// setErrorMessage("SSCC " + pal.getSSCC() + " already exists.");
@@ -182,15 +203,29 @@ public class IncommingProductionDeclarationConfirmation
 
 					pal.setDateOfManufacture(prodDateTime);
 
-					if (pal.confirm() == false)
+					Boolean confirmResult = false;
+
+					if (suppressInterface.equals("N"))
+					{
+						confirmResult = pal.confirm();
+					}
+					else
+					{
+						confirmResult = pal.confirmNoInterface();
+					}
+					
+					if (confirmResult == false)
 					{
 						result = false;
 						setErrorMessage(pal.getErrorMessage());
-					} else
+					}
+					else
 					{
 						setErrorMessage("SSCC " + pal.getSSCC() + " confirmed.");
 					}
-				} else
+
+				}
+				else
 				{
 					setErrorMessage("SSCC " + pal.getSSCC() + " already confirmed.");
 					result = false;
