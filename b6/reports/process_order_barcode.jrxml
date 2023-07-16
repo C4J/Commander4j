@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="process_order_barcode" language="groovy" pageWidth="215" pageHeight="215" columnWidth="215" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6e435b7f-61e4-42dc-b76c-dbcb85542e7f">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[select * from view_process_order_resource WHERE process_order = '18177673']]>
+	</queryString>
+	<field name="PROCESS_ORDER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PROCESS_ORDER"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_process_order_resource"/>
+	</field>
+	<field name="MATERIAL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MATERIAL"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_process_order_resource"/>
+	</field>
+	<field name="STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="STATUS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_process_order_resource"/>
+	</field>
+	<field name="REQUIRED_RESOURCE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="REQUIRED_RESOURCE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_process_order_resource"/>
+	</field>
+	<field name="RESOURCE_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="RESOURCE_NAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_process_order_resource"/>
+	</field>
+	<field name="BATCH_SUFFIX" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="BATCH_SUFFIX"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_process_order_resource"/>
+	</field>
+	<field name="DESCRIPTION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DESCRIPTION"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_process_order_resource"/>
+	</field>
+	<field name="MATERIAL_TYPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MATERIAL_TYPE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_process_order_resource"/>
+	</field>
+	<field name="PLANT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PLANT"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_process_order_resource"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="215" splitType="Stretch">
+			<componentElement>
+				<reportElement x="9" y="51" width="195" height="144" uuid="cff24687-09dd-49fe-83b3-07bf6012ea58"/>
+				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="2.0" textPosition="top">
+					<jr:codeExpression><![CDATA[$F{PROCESS_ORDER}]]></jr:codeExpression>
+				</jr:Code128>
+			</componentElement>
+			<textField>
+				<reportElement x="7" y="30" width="195" height="12" uuid="6b8e4101-3fcc-45f9-9b38-7376428c7e64"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="7" y="10" width="64" height="10" uuid="04921b4c-c534-4522-8ba4-5ddb562041c5"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="10" width="34" height="10" uuid="4d78b5cb-0ebf-418e-90df-6f787977572f"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PLANT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="10" width="26" height="10" uuid="70f94941-0a25-454a-b13e-7599ed555eb7"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Plant]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="102" y="10" width="34" height="10" uuid="ed41c7c2-3b51-4858-b470-43fe95b3a695"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BATCH_SUFFIX}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="72" y="10" width="26" height="10" uuid="2f4f1584-97a8-4521-85a1-455aab81fe27"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Serif" size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Line]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

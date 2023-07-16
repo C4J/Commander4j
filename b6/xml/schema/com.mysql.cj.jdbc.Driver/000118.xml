@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	INSERT INTO `SYS_MODULES` (`MODULE_ID`, `RF_ACTIVE`, `DK_ACTIVE`, `MODULE_TYPE`, `HINT`, `MNEMONIC`, `ICON_FILENAME`, `HELPSET_ID`, `REPORT_FILENAME`, `EXEC_FILENAME`, `EXEC_DIR`, `PRINT_PREVIEW`, `PRINT_DIALOG`, `PRINT_COPIES`, `REPORT_TYPE`, `RESOURCE_KEY`) VALUES 
+	('FRM_LABEL_MANUAL_EDIT_DOM', 'N', 'Y', 'FUNCTION', 'Label Printing Print', '0', '', 'http://www.commander4j.com/mw/index.php/Case_Label_Printing', '', '', '', 'N', 'N', '0', '', 'mod_MENU_LABELS')
+</statement>
+
+<statement>
+	INSERT INTO `SYS_MODULES` (`MODULE_ID`, `RF_ACTIVE`, `DK_ACTIVE`, `MODULE_TYPE`, `HINT`, `MNEMONIC`, `ICON_FILENAME`, `HELPSET_ID`, `REPORT_FILENAME`, `EXEC_FILENAME`, `EXEC_DIR`, `PRINT_PREVIEW`, `PRINT_DIALOG`, `PRINT_COPIES`, `REPORT_TYPE`, `RESOURCE_KEY`) VALUES 
+	('FRM_LABEL_MANUAL_EDIT_EXPIRY', 'N', 'Y', 'FUNCTION', 'Label Printing Print', '0', '', 'http://www.commander4j.com/mw/index.php/Case_Label_Printing', '', '', '', 'N', 'N', '0', '', 'mod_MENU_LABELS')
+</statement>
+
+<statement>
+	INSERT INTO `SYS_MODULES` (`MODULE_ID`, `RF_ACTIVE`, `DK_ACTIVE`, `MODULE_TYPE`, `HINT`, `MNEMONIC`, `ICON_FILENAME`, `HELPSET_ID`, `REPORT_FILENAME`, `EXEC_FILENAME`, `EXEC_DIR`, `PRINT_PREVIEW`, `PRINT_DIALOG`, `PRINT_COPIES`, `REPORT_TYPE`, `RESOURCE_KEY`) VALUES 
+	('FRM_PAL_PROD_DEC_MANUAL_EDIT_DOM', 'N', 'Y', 'FUNCTION', 'Label Printing Print', '0', '', 'http://www.commander4j.com/mw/index.php/Case_Label_Printing', '', '', '', 'N', 'N', '0', '', 'mod_MENU_LABELS')
+</statement>
+
+<statement>
+	INSERT INTO `SYS_MODULES` (`MODULE_ID`, `RF_ACTIVE`, `DK_ACTIVE`, `MODULE_TYPE`, `HINT`, `MNEMONIC`, `ICON_FILENAME`, `HELPSET_ID`, `REPORT_FILENAME`, `EXEC_FILENAME`, `EXEC_DIR`, `PRINT_PREVIEW`, `PRINT_DIALOG`, `PRINT_COPIES`, `REPORT_TYPE`, `RESOURCE_KEY`) VALUES 
+	('FRM_PAL_PROD_DEC_MANUAL_EDIT_EXPIRY', 'N', 'Y', 'FUNCTION', 'Label Printing Print', '0', '', 'http://www.commander4j.com/mw/index.php/Case_Label_Printing', '', '', '', 'N', 'N', '0', '', 'mod_MENU_LABELS')
+</statement>
+
+
+		
+</DDL>

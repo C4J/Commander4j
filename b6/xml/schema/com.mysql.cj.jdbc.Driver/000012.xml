@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+ALTER TABLE `APP_DESPATCH` ADD COLUMN `LOAD_NO` VARCHAR(20) AFTER `TRANSACTION_REF`;
+</statement>
+
+
+</DDL>

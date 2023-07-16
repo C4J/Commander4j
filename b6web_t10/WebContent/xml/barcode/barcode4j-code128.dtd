@@ -1,0 +1,38 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT barcode (code128)>
+<!ATTLIST barcode
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT code128 (height,module-width,quiet-zone,human-readable)>
+<!ATTLIST code128
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT height (#PCDATA)>
+<!ATTLIST height
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT module-width (#PCDATA)>
+<!ATTLIST module-width
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT quiet-zone (#PCDATA)>
+<!ATTLIST quiet-zone
+  xmlns CDATA #FIXED ''
+  enabled CDATA #REQUIRED>
+
+<!ELEMENT human-readable (placement,font-name,font-size)>
+<!ATTLIST human-readable
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT placement (#PCDATA)>
+<!ATTLIST placement
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT font-name (#PCDATA)>
+<!ATTLIST font-name
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT font-size (#PCDATA)>
+<!ATTLIST font-size
+  xmlns CDATA #FIXED ''>

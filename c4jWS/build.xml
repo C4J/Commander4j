@@ -6,8 +6,8 @@
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="c4jWS">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="11"/>
-    <property name="source" value="11"/>
+    <property name="target" value="17"/>
+    <property name="source" value="17"/>
     <path id="Server Runtime [Apache Tomcat v10.0].libraryclasspath">
         <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/tomcat-i18n-ko.jar"/>
         <pathelement location="../../../tools/apache-tomcat-10 (Java 11)/lib/el-api.jar"/>

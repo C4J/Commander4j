@@ -1,0 +1,383 @@
+/*  Copyright Oracle 2007
+  In order to use this policy file as is, define the following system properties
+
+  -Doracle.jdbc.policy.CLIENT_HOST=client.myco.com
+  -Doracle.jdbc.policy.CONFIG_FILE=$TNS_ADMIN/ojdbc.properties
+  -Doracle.jdbc.policy.CONNECTION_POOL_CODE_BASE=myConnectionPool.jar
+  -Doracle.jdbc.policy.DBMS_HOST=db.myco.com
+  -Doracle.jdbc.policy.DBMS_PORT=1521
+  -Doracle.jdbc.policy.DMS_CODE_BASE=$ORACLE_HOME/lib/dms.jar
+  -Doracle.jdbc.policy.JDBC_CODE_BASE=$ORACLE_HOME/lib/ojdbc??.jar for the jar used
+  -Doracle.jdbc.policy.ORAI18N=$ORACLE_HOME/lib/orai18n.jar
+  -Doracle.jdbc.policy.ONS_CODE_BASE=$ORACLE_HOME/opmn/lib/ons.jar
+  -Doracle.jdbc.policy.OPMN_CONFIG=$ORACLE_HOME/opmn/conf/*
+  -Doracle.jdbc.policy.REMOTE_ONS_HOST1=db.myco.com
+  -Doracle.jdbc.policy.REMOTE_ONS_PORT1=4200
+  -Doracle.jdbc.policy.RSI_CODE_BASE=$ORACLE_HOME/lib/rsi.jar
+  -Doracle.jdbc.policy.TNS_ADMIN=$TNS_ADMIN
+  -Doracle.jdbc.policy.USER_CODE_BASE=/home/myapp/lib/-
+
+  Of course you can also edit this file and replace the macros (stuff enclosed in ${foo} )
+  with the actual values. You can add multiple SocketPermissions to support multiple hosts
+  and clients for the Thin driver or you can use wildcards (*). If you don't use DMS you don't
+  need to define the DMS system properties.
+*/
+
+grant codeBase "file:${oracle.jdbc.policy.JDBC_CODE_BASE}" {
+
+  /* Always needed */
+  permission java.sql.SQLPermission "deregisterDriver", "";
+  permission java.util.PropertyPermission "user.name", "read";
+  permission java.util.PropertyPermission "oracle.jdbc.*", "read";
+  permission java.util.PropertyPermission "database", "read"; 
+  permission java.util.PropertyPermission "oracle.net.*", "read";
+  permission java.util.PropertyPermission "javax.net.ssl.*", "read";
+  permission java.util.PropertyPermission "line.separator", "read";
+  permission java.lang.management.ManagementPermission "control";
+  permission javax.management.MBeanServerPermission "createMBeanServer";
+  permission javax.management.MBeanPermission "oracle.jdbc.driver.OracleDiagnosabilityMBean#[com.oracle.jdbc:type=diagnosability,*]", "registerMBean";
+  permission javax.management.MBeanPermission "oracle.jdbc.replay.driver.ReplayStatisticsMBeanImpl#[com.oracle.jdbc:type=ReplayStatistics,*]", "registerMBean";
+  permission javax.management.MBeanTrustPermission "register";
+  permission java.lang.RuntimePermission "getenv.TNS_ADMIN";
+  permission java.lang.RuntimePermission "accessDeclaredMembers"; 
+  permission java.lang.RuntimePermission "charsetProvider";
+  permission java.util.PropertyPermission "TNS_ADMIN", "read";
+  permission java.util.PropertyPermission "java.util.logging.config.file", "read"; 
+
+  /* Needed only if you use the Thin driver */
+  permission java.net.SocketPermission "${oracle.jdbc.policy.CLIENT_HOST}", "connect,resolve";
+  permission java.net.SocketPermission "${oracle.jdbc.policy.DBMS_HOST}:${oracle.jdbc.policy.DBMS_PORT}", "connect,resolve";
+
+  /* Needed only if you use the OCI driver */
+  permission java.lang.RuntimePermission "loadLibrary.ocijdbc20";
+  permission java.lang.RuntimePermission "loadLibrary.ocijdbc21";
+  permission java.lang.RuntimePermission "loadLibrary.ocijdbc23";
+
+  /* Needed only if you need orai18n.jar in your class path for National Character Set support */
+  permission java.io.FilePermission "${oracle.jdbc.policy.ORAI18N}", "read";
+  permission java.io.FilePermission "${oracle.jdbc.policy.JDBC_CODE_BASE}","read"; 
+
+  /* Needed only if you use asynchronous notification: AQ notification or 
+     Databasase Change Notification. */
+  permission java.net.SocketPermission "${oracle.jdbc.policy.DBMS_HOST}", "accept";
+
+  /* Needed only if you use a DMS enabled jar */
+  permission java.util.PropertyPermission "oracle.dms.console.DMSConsole", "read";
+  permission java.util.PropertyPermission "oracle.dms.mount", "read";
+  permission java.util.PropertyPermission "oracle.dms.property.file", "read";
+  permission java.util.PropertyPermission "oracle.dms.clock", "read";
+  permission java.util.PropertyPermission "oracle.dms.clock.units", "read";
+  permission java.util.PropertyPermission "oracle.dms.publisher.classes", "read";
+
+  /* Needed only if you use XA */
+  permission java.util.PropertyPermission "oracle.jserver.version", "read";
+
+  /*Needed only if you use xml */
+   permission java.util.PropertyPermission "oracle.xdkjava.compatibility.version", "read";
+
+  /* Needed only if you use Fast Connection Failover */
+  permission oracle.ons.CreatePermission "ONSUser";
+  permission oracle.ons.SubscribePermission "ONSUser";
+  permission java.io.FilePermission "${oracle.jdbc.policy.OPMN_CONFIG}", "read";
+  permission java.util.PropertyPermission "oracle.ons.*", "read";
+  /* Add additional remote ONS host:port if necessary, one pair per line */
+  permission java.net.SocketPermission "${oracle.jdbc.policy.REMOTE_ONS_HOST1}:${oracle.jdbc.policy.REMOTE_ONS_PORT1}", "connect,resolve";
+
+  /* For Oracle RowSets only */
+  permission java.util.PropertyPermission "rowset.properties", "read";
+  permission java.util.PropertyPermission "rowset.provider.classname", "read";
+  permission java.io.FilePermission "${oracle.jdbc.policy.ROWSET_CODE_BASE}", "read";
+
+  /* For OracleWebRowSet only*/
+  permission java.util.PropertyPermission "javax.xml.parsers.SAXParserFactory","read";  
+  permission java.util.PropertyPermission "javax.xml.parsers.DocumentBuilderFactory","read"; 
+  permission java.net.SocketPermission "java.sun.com:80", "connect,resolve";
+  permission java.util.PropertyPermission "oracle.xml.jaxp.NoShowForInvalidURLError", "read";
+  permission java.util.PropertyPermission "oracle.xml.reportdocevents", "read";
+  permission java.util.PropertyPermission "oracle.xdkjava.security.resolveEntityDefault", "read";
+  permission java.net.URLPermission "http://oracle.com/webfolder/technetwork/jsc/xml/ns/jdbc/webrowset.xsd", "GET:";
+
+  /* Needed only by Oracle Fusion Applications.Do not grant otherwise. */
+  permission oracle.jdbc.proxy.ExtractDelegatePermission; 
+
+  /* Allow the JDBC driver to auto-resolve and instantiate the Oracle PKI
+   * Provider (For SSL with Oracle Wallets). Not needed if the Oracle PKI
+   * provider is registered with Java security.
+   */
+  permission java.util.PropertyPermission "oracle.pki.*", "read";
+  permission java.security.SecurityPermission "putProviderProperty.OraclePKI";
+
+  /* Allow the driver to obtain all key stores from Key Store Service */
+  permission oracle.security.jps.service.keystore.KeyStoreAccessPermission "stripeName=*,keystoreName=*,alias=*", "read";
+
+  /* Needed only by java.sql.Connection.abort() */
+  permission java.sql.SQLPermission "callAbort"; 
+  /* Needed only by oracle.jdbc.OracleConnection.physicalConnectionWithin().abort() */
+  permission oracle.jdbc.OracleSQLPermission "callAbort"; 
+  
+  /* Needed only for Kerberos authentication */
+  permission javax.security.auth.AuthPermission "modifyPrincipals";
+  permission javax.security.auth.AuthPermission "modifyPrivateCredentials";
+  permission javax.security.auth.AuthPermission "getSubject";
+  permission javax.security.auth.AuthPermission "setLoginConfiguration";
+  permission javax.security.auth.AuthPermission "getLoginConfiguration";
+  permission javax.security.auth.AuthPermission "createLoginContext.kprb5module"; 
+  permission javax.security.auth.AuthPermission "doAs";
+  permission javax.security.auth.kerberos.ServicePermission "*", "initiate";
+  permission java.lang.RuntimePermission "accessClassInPackage.sun.security.krb5.internal";
+  permission javax.security.auth.PrivateCredentialPermission "javax.security.auth.kerberos.KerberosTicket * \"*\"", "read";
+  permission com.sun.security.jgss.InquireSecContextPermission "KRB5_GET_KRB_CRED";
+  permission java.lang.RuntimePermission "accessClassInPackage.com.sun.jndi.url.dns";
+
+  /* Needed only for getting ssl connection */
+  permission java.security.SecurityPermission "getProperty.ssl.keyManagerFactory.algorithm";
+  permission java.security.SecurityPermission "getProperty.ssl.trustManagerFactory.algorithm";
+  
+  /* Needed when using tnsname */
+  permission java.net.SocketPermission "*", "accept,listen,connect,resolve";
+
+  /* Needed when setting propertie OracleConnection.NTF_LOCAL_HOST, OracleConnection.NTF_LOCAL_TCP_PORT */
+  permission java.net.SocketPermission "localhost:*", "accept,listen,connect,resolve";
+  permission java.net.SocketPermission "localhost", "connect,resolve";
+
+  /* Needed when calling Connection.setClientInfo() */
+  permission oracle.jdbc.OracleSQLPermission "clientInfo.*";
+  permission oracle.jdbc.OracleSQLPermission "clientInfo.";
+  permission oracle.jdbc.OracleSQLPermission "clientInfo.OCSID.CLIENTID";
+
+  /* Needed when calling Connection.setNetworkTimeout() */
+  permission java.sql.SQLPermission "setNetworkTimeout";
+
+  /* Needed when calling OracleConnectionWrapper.proxyFor() */
+  permission java.lang.RuntimePermission "getClassLoader";
+
+  /* Needed when calling InvocationHandler.invoke() */
+  permission java.lang.RuntimePermission "accessClassInPackage.sun.misc";
+  
+  /* Needed when using dms jar */
+  permission java.lang.RuntimePermission "modifyThreadGroup";
+
+  /* Needed when oracle.jdbc.tokenAuthentiction=OCI_TOKEN and oracle.jdbc.tokenLocation is not set */
+  permission java.util.PropertyPermission "user.home", "read";
+};
+
+/* Needed only if you use a DMS enabled jar */
+grant codeBase "file:${oracle.jdbc.policy.DMS_CODE_BASE}" {
+  permission java.util.PropertyPermission "oracle.dms.console.DMSConsole", "read";
+  permission java.util.PropertyPermission "oracle.dms.mount", "read";
+  permission java.util.PropertyPermission "oracle.dms.property.file", "read";
+  permission java.util.PropertyPermission "oracle.dms.clock", "read";
+  permission java.util.PropertyPermission "oracle.dms.clock.units", "read";
+  permission java.util.PropertyPermission "oracle.dms.publisher.classes", "read";
+  permission java.lang.management.ManagementPermission "control";
+  permission java.util.PropertyPermission "java.class.path", "read";
+  permission java.util.PropertyPermission "java.library.path", "read";
+  permission java.util.PropertyPermission "oracle.jdbc.editionName", "read";
+  permission java.lang.RuntimePermission ".DOMAIN_HOME";
+  permission java.lang.management.ManagementPermission "monitor";
+  permission java.lang.RuntimePermission "modifyThreadGroup";
+ }; 
+
+/* Needed only if you require orai18n.jar for national
+      character set support. */
+
+grant codeBase "file:${oracle.jdbc.policy.ORAI18N}" {
+  permission java.io.FilePermission "${oracle.jdbc.policy.ORAI18N}", "read";
+  permission java.io.FilePermission "${oracle.jdbc.policy.JDBC_CODE_BASE}","read"; 
+  permission java.lang.RuntimePermission "charsetProvider";
+};
+
+
+/* Needed only if you use a JNDI  */
+grant codeBase "file:${oracle.jdbc.policy.JNDI}" {
+  permission java.io.FilePermission "${oracle.jdbc.policy.JNDI}", "read";
+};
+
+/*For Oracle RowSets only */
+
+grant codeBase "file:${oracle.jdbc.policy.ROWSET_CODE_BASE}" {
+   permission java.util.PropertyPermission "rowset.properties", "read";
+   permission java.util.PropertyPermission "rowset.provider.classname", "read";
+   permission java.net.URLPermission "http://oracle.com/webfolder/technetwork/jsc/xml/ns/jdbc/webrowset.xsd", "GET:";
+ 
+};
+
+/* Needed only if you use XML parser   */
+grant codeBase "file:${oracle.jdbc.policy.XMLPARSER_CODE_BASE}" {
+  permission java.util.PropertyPermission "oracle.xdkjava.compatibility.version" , "read";                                                                    
+   /* For OracleWebRowSet only*/
+  permission java.net.SocketPermission "java.sun.com:80", "connect,resolve";
+  permission java.util.PropertyPermission "oracle.xml.jaxp.NoShowForInvalidURLError", "read";
+  permission java.util.PropertyPermission "oracle.xml.reportdocevents", "read";
+  permission java.util.PropertyPermission "oracle.xdkjava.security.resolveEntityDefault", "read";
+  permission java.net.URLPermission "http://oracle.com/webfolder/technetwork/jsc/xml/ns/jdbc/webrowset.xsd", "GET:";
+  
+  /* Needed only if you use Key Store Service */
+  permission java.io.FilePermission "${oracle.jdbc.policy.KSS_ROOT}/-","read";
+ };  
+
+/* Needed only if you use XDB   */
+
+grant codeBase "file:${oracle.jdbc.policy.XDB_CODE_BASE}" {
+  permission java.io.FilePermission "${oracle.jdbc.policy.ORAI18N}", "read";
+  permission java.io.FilePermission "${oracle.jdbc.policy.JDBC_CODE_BASE}","read"; 
+  permission java.util.PropertyPermission "oracle.jserver.version.*","read";
+  permission java.util.PropertyPermission "oracle.xdkjava.compatibility.version", "read";
+  permission java.util.PropertyPermission "oracle.xml.jaxp.NoShowForInvalidURLError", "read";
+  permission java.util.PropertyPermission "oracle.xml.reportdocevents", "read";
+  permission java.util.PropertyPermission "oracle.xdkjava.security.resolveEntityDefault", "read";
+  permission javax.security.auth.AuthPermission "getSubject";
+};
+
+/* Needed only if you use Oracle AQ (Advanced Queueing)   */
+grant codeBase "file:${oracle.jdbc.policy.AQ_CODE_BASE}" {
+  permission java.io.FilePermission "${oracle.jdbc.policy.ORAI18N}", "read";
+  permission java.io.FilePermission "${oracle.jdbc.policy.JDBC_CODE_BASE}","read"; 
+  permission java.util.PropertyPermission "oracle.jms.*","read";
+  permission java.net.SocketPermission "${oracle.jdbc.policy.DBMS_HOST}:${oracle.jdbc.policy.DBMS_PORT}", "connect,resolve";
+  permission java.net.SocketPermission "${oracle.jdbc.policy.CLIENT_HOST}", "connect,resolve";
+};
+
+/* Needed only if you use Fast Connection Failover */
+grant codeBase "file:${oracle.jdbc.policy.ONS_CODE_BASE}" {
+
+  permission oracle.ons.CreatePermission "ONSUser";
+  permission oracle.ons.SubscribePermission "ONSUser";
+  permission java.io.FilePermission "${oracle.jdbc.policy.OPMN_CONFIG}", "read";
+  permission java.util.PropertyPermission "oracle.ons.*", "read";
+  /* Add additional remote ONS host:port if necessary, one pair per line */
+  permission java.net.SocketPermission "${oracle.jdbc.policy.REMOTE_ONS_HOST1}:${oracle.jdbc.policy.REMOTE_ONS_PORT1}", "connect,resolve";
+  permission java.net.SocketPermission "localhost", "connect,resolve";
+
+};
+
+/* Needed only if you use UCP */
+grant codeBase "file:${oracle.jdbc.policy.CONNECTION_POOL_CODE_BASE}" {
+
+  permission java.io.FilePermission "${oracle.jdbc.policy.CONNECTION_POOL_CODE_BASE}","read";
+
+  /* Always needed */
+  permission java.util.PropertyPermission "oracle.ucp.*", "read";
+  permission java.util.PropertyPermission "oracle.jdbc.*", "read";
+  permission java.util.PropertyPermission "oracle.jdbc.fanEnabled", "write";
+  permission java.util.PropertyPermission "oracle.jdbc.beginRequestAtConnectionCreation", "write";
+  permission java.util.PropertyPermission "java.util.logging.config.file", "read";
+  permission java.lang.RuntimePermission "accessDeclaredMembers"; 
+  permission java.io.FilePermission "${oracle.jdbc.policy.JDBC_CODE_BASE}","read";
+  
+  /* Thread Permissions for UCP Operations*/
+  permission java.lang.RuntimePermission "stopThread";
+  permission java.lang.RuntimePermission "modifyThread";
+  permission java.lang.RuntimePermission "modifyThreadGroup";
+  permission java.lang.RuntimePermission "getStackTrace";
+  permission java.lang.RuntimePermission "shutdownHooks";
+
+  /* Permissions required for UCP MBeans */
+  permission javax.management.MBeanServerPermission "createMBeanServer,findMBeanServer";
+  permission javax.management.MBeanPermission "oracle.ucp.admin.*",
+  "getMBeanInfo, getAttribute ,setAttribute ,invoke, registerMBean, unregisterMBean";
+  permission javax.management.MBeanTrustPermission "register";
+  permission javax.management.MBeanPermission "oracle.ucp.admin.UniversalConnectionPoolManagerMBean#-[oracle.ucp.admin:name=UniversalConnectionPoolManagerMBean(*),*]", "registerMBean";
+  permission javax.management.MBeanPermission "oracle.ucp.admin.JDBCUniversalConnectionPoolMBeanImpl#-[oracle.ucp.admin.UniversalConnectionPoolMBean:name=*]", "registerMBean";
+
+  /* Needed only if you use the Thin driver */
+  permission java.net.SocketPermission "${oracle.jdbc.policy.CLIENT_HOST}", "connect,resolve";
+  permission java.net.SocketPermission "${oracle.jdbc.policy.DBMS_HOST}:${oracle.jdbc.policy.DBMS_PORT}", "connect,resolve";
+
+  /* Permissions required for JDBC Drivers */
+  /* Needed when calling Connection.setClientInfo() */
+  permission oracle.jdbc.OracleSQLPermission "clientInfo.*";
+  permission oracle.jdbc.OracleSQLPermission "clientInfo.";
+  permission oracle.jdbc.OracleSQLPermission "clientInfo.OCSID.CLIENTID";
+
+  /* Needed only for Kerberos authentication */
+  permission javax.security.auth.AuthPermission "modifyPrincipals";
+  permission javax.security.auth.AuthPermission "modifyPrivateCredentials";
+  permission javax.security.auth.AuthPermission "getSubject";
+  permission javax.security.auth.AuthPermission "setLoginConfiguration";
+  permission javax.security.auth.AuthPermission "getLoginConfiguration";
+  permission javax.security.auth.AuthPermission "createLoginContext.kprb5module";
+  permission javax.security.auth.AuthPermission "doAs";
+  permission javax.security.auth.kerberos.ServicePermission "*", "initiate";
+  permission java.lang.RuntimePermission "accessClassInPackage.sun.security.krb5.internal";
+  permission javax.security.auth.PrivateCredentialPermission "javax.security.auth.kerberos.KerberosTicket * \"*\"", "read";
+  permission com.sun.security.jgss.InquireSecContextPermission "KRB5_GET_KRB_CRED";
+  permission java.lang.RuntimePermission "accessClassInPackage.com.sun.jndi.url.dns";
+
+  /* Needed only for getting ssl connection */
+  permission java.security.SecurityPermission "getProperty.ssl.keyManagerFactory.algorithm";
+  permission java.security.SecurityPermission "getProperty.ssl.trustManagerFactory.algorithm";
+};
+
+grant codeBase "file:${oracle.jdbc.policy.RSI_CODE_BASE}" {
+  /* Always needed */
+  permission java.lang.reflect.ReflectPermission "suppressAccessChecks"; 
+
+  /* Thread Permission for RSI Operation */
+  permission java.lang.RuntimePermission "getClassLoader";
+  permission java.lang.RuntimePermission "setContextClassLoader";
+};
+
+grant codeBase "file:${oracle.jdbc.policy.USER_CODE_BASE}" {
+
+  permission java.sql.SQLPermission "deregisterDriver";
+  permission java.lang.RuntimePermission "getStackTrace";
+  permission java.lang.RuntimePermission "modifyThreadGroup";
+  permission java.net.SocketPermission "*", "connect,resolve";
+
+  permission java.io.FilePermission "${oracle.jdbc.policy.USER_CODE_BASE}","read,write";
+  permission java.io.FilePermission "${oracle.jdbc.policy.ORAI18N}", "read";
+  permission java.io.FilePermission "${oracle.jdbc.policy.JDBC_CODE_BASE}","read"; 
+  permission javax.management.MBeanServerPermission "createMBeanServer";
+ 
+  permission java.lang.RuntimePermission "accessDeclaredMembers";
+  permission java.util.PropertyPermission "oracle.jdbc.*", "read"; 
+   
+  permission java.lang.RuntimePermission "loadLibrary.heteroxa12";
+
+  /* Needed only if you use the UCP */
+  permission java.util.PropertyPermission "java.util.logging.config.file", "read";
+  permission java.lang.RuntimePermission "shutdownHooks";
+   
+  /* Needed only if you use the Thin driver */
+  permission java.net.SocketPermission "${oracle.jdbc.policy.DBMS_HOST}:${oracle.jdbc.policy.DBMS_PORT}", 
+    "connect,resolve";
+  permission java.net.SocketPermission "${oracle.jdbc.policy.CLIENT_HOST}", "connect,resolve";
+
+  /* Needed only if you use asynchronous notification: AQ notification or 
+     Databasase Change Notification. */
+  permission java.net.SocketPermission "${oracle.jdbc.policy.DBMS_HOST}", "accept";
+
+  /* Needed only if you use a DMS enabled jar */
+  permission java.util.PropertyPermission "oracle.dms.console.DMSConsole", "read";
+  permission java.util.PropertyPermission "oracle.dms.mount", "read";
+  permission java.util.PropertyPermission "oracle.dms.property.file", "read";
+  permission java.util.PropertyPermission "oracle.dms.clock", "read";
+  permission java.util.PropertyPermission "oracle.dms.clock.units", "read";
+  permission java.util.PropertyPermission "oracle.dms.publisher.classes", "read";
+   /* For Oracle RowSets only */
+  permission java.util.PropertyPermission "rowset.properties", "read";
+  permission java.util.PropertyPermission "rowset.provider.classname", "read";
+  permission java.io.FilePermission "${oracle.jdbc.policy.ROWSET_CODE_BASE}", "read";
+
+  /* For OracleWebRowSet only*/
+  permission java.net.SocketPermission "java.sun.com:80", "connect,resolve";
+  permission java.net.URLPermission "http://oracle.com/webfolder/technetwork/jsc/xml/ns/jdbc/webrowset.xsd", "GET:";
+
+  /* Needed only if you use Key Store Service. Replace the * to limit access. */
+  permission oracle.security.jps.service.keystore.KeyStoreAccessPermission "stripeName=*,keystoreName=*,alias=*", "read";
+
+  /* Needed if you use RSI*/
+  permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+  permission java.lang.RuntimePermission "getClassLoader";
+  permission java.lang.RuntimePermission "setContextClassLoader";
+
+  /* Needed if you use tnsnames.ora */
+  permission java.io.FilePermission "${oracle.jdbc.policy.TNS_ADMIN}${/}tnsnames.ora", "read";
+
+  /* Needed if TNS_ADMIN is specified as an environment variable, connection property, or URL parameter. */
+  permission java.io.FilePermission "${oracle.jdbc.policy.TNS_ADMIN}${/}ojdbc.properties", "read";
+
+  /** Needed if oracle.jdbc.config.file is specified */
+  permission java.io.FilePermission "${oracle.jdbc.policy.CONFIG_FILE}", "read";
+};

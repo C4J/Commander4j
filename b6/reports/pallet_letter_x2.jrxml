@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pallet_letter_x2" language="groovy" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8c572d46-b9a9-41fa-9081-ed8345fd31a0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
+	<parameter name="SSCC" class="java.lang.String">
+		<defaultValueExpression><![CDATA["350001612200000015"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM view_pallet_expiry WHERE SSCC = $P{SSCC}]]>
+	</queryString>
+	<field name="SSCC" class="java.lang.String"/>
+	<field name="LOCATION_ID" class="java.lang.String"/>
+	<field name="MATERIAL" class="java.lang.String"/>
+	<field name="BATCH_NUMBER" class="java.lang.String"/>
+	<field name="PROCESS_ORDER" class="java.lang.String"/>
+	<field name="QUANTITY" class="java.math.BigDecimal"/>
+	<field name="UOM" class="java.lang.String"/>
+	<field name="DATE_OF_MANUFACTURE" class="java.sql.Timestamp"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="EAN" class="java.lang.String"/>
+	<field name="VARIANT" class="java.lang.String"/>
+	<field name="DESPATCH_NO" class="java.lang.String"/>
+	<field name="CONFIRMED" class="java.lang.String"/>
+	<field name="LAYERS" class="java.lang.Integer"/>
+	<field name="SSCC_EXPIRY_DATE" class="java.sql.Timestamp"/>
+	<field name="CUSTOMER_ID" class="java.lang.String"/>
+	<field name="MHN_NUMBER" class="java.lang.String"/>
+	<field name="DECISION" class="java.lang.String"/>
+	<field name="EXPIRY_DATE" class="java.sql.Timestamp"/>
+	<field name="DESCRIPTION" class="java.lang.String"/>
+	<field name="OLD_MATERIAL" class="java.lang.String"/>
+	<field name="CUSTOMER_NAME" class="java.lang.String"/>
+	<field name="PRINT_ON_LABEL" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="792" splitType="Stretch">
+			<break>
+				<reportElement x="0" y="376" width="612" height="1" uuid="15935dbd-b691-4c07-8ed1-89d6c5040082"/>
+			</break>
+			<subreport>
+				<reportElement x="0" y="0" width="612" height="376" uuid="64657c70-db5c-4d3a-93fd-dbe7d61b6742"/>
+				<subreportParameter name="SSCC">
+					<subreportParameterExpression><![CDATA[$F{SSCC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LABEL_NO">
+					<subreportParameterExpression><![CDATA["L1"]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "pallet_letter_x1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="377" width="612" height="415" uuid="a6e84372-afa7-4b74-8262-8e38acfa54f9"/>
+				<subreportParameter name="SSCC">
+					<subreportParameterExpression><![CDATA[$F{SSCC}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LABEL_NO">
+					<subreportParameterExpression><![CDATA["L2"]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "pallet_letter_x1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

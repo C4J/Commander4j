@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+    UPDATE SYS_MODULES SET REPORT_FILENAME = 'pallet_a4_x2.jrxml' WHERE MODULE_ID = 'RPT_PALLET_LABEL' AND REPORT_TYPE = 'Standard'
+</statement>
+	
+</DDL>

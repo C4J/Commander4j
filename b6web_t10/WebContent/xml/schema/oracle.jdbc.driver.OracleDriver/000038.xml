@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+CREATE VIEW view_pallet_expiry AS 
+select p.*,b.expiry_date,m.description,c.customer_name,c.print_on_label from 
+                APP_PALLET p, APP_MATERIAL_BATCH b, 
+                APP_MATERIAL m,APP_CUSTOMER c 
+                where b.material = p.material and 
+                b.batch_number = p.batch_number and 
+                m.material = p.material and 
+                c.customer_id = p.customer_id 
+</statement>
+
+</DDL>

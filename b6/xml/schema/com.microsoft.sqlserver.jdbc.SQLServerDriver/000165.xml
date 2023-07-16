@@ -1,0 +1,2222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+    
+    <statement>
+			CREATE TABLE [dbo].[APP_PALLET_EXTENSION](
+				[SSCC] [varchar](18) NOT NULL,
+				[FIRST_CASE_INPUT] [varchar](1) NOT NULL,
+				[FIRST_CASE_TIME] [datetime] NULL,
+				[LAST_CASE_INPUT] [varchar](1) NOT NULL,
+				[LAST_CASE_TIME] [datetime] NULL,
+				[SHIFT_ID] [varchar](15) NOT NULL,
+				[SUPPLIER_ID1] [varchar](15) NOT NULL,
+				[INCIDENT_REFERENCE] [varchar](20) NOT NULL,
+				[LOCATION] [varchar](35) NOT NULL,
+				[PRODUCT_GROUP] [varchar](25) NOT NULL,
+				[CONTAINER_CODE] [varchar](12) NOT NULL,
+				[PWEEK] [int] NOT NULL,
+				[PDAY] [varchar](25) NOT NULL,
+				[PMONTH] [varchar](25) NOT NULL,
+				[PYEAR] [varchar](4) NOT NULL,
+  				[PALLET_QUANTITY] numeric(22,3) DEFAULT 0.00 NOT NULL
+			 CONSTRAINT [PK_APP_PALLET_EXTENSION] PRIMARY KEY CLUSTERED 
+			(
+				[SSCC] ASC
+			)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+			) ON [PRIMARY]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_FIRST_CASE_INPUT]  DEFAULT ('N') FOR [FIRST_CASE_INPUT]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_LAST_CASE_INPUT]  DEFAULT ('N') FOR [LAST_CASE_INPUT]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_SHIFT_ID]  DEFAULT ('') FOR [SHIFT_ID]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_SUPPLIER_ID1]  DEFAULT ('') FOR [SUPPLIER_ID1]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_INCIDENT_REFERENCE]  DEFAULT ('') FOR [INCIDENT_REFERENCE]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_LOCATION]  DEFAULT ('') FOR [LOCATION]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_PRODUCT_GROUP]  DEFAULT ('') FOR [PRODUCT_GROUP]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_CONTAINER_CODE]  DEFAULT ('') FOR [CONTAINER_CODE]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_PWEEK]  DEFAULT ((0)) FOR [PWEEK]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_PDAY]  DEFAULT ('') FOR [PDAY]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_PMONTH]  DEFAULT ('') FOR [PMONTH]
+    </statement>
+
+    <statement>
+				ALTER TABLE [dbo].[APP_PALLET_EXTENSION] ADD  CONSTRAINT [DF_APP_PALLET_EXTENSION_PYEAR]  DEFAULT ('') FOR [PYEAR]
+    </statement>
+    
+    <statement>   
+			CREATE TABLE [dbo].[APP_PALLET_SAMPLES](
+				[SSCC] [varchar](18) NOT NULL,
+				[SAMPLE_SEQUENCE] [numeric](38, 0) NOT NULL,
+				[SAMPLE_DATE] [datetime] NULL,
+				[SAMPLE_REASON] [varchar](15) NOT NULL,
+				[DEFECT_TYPE] [varchar](12) NOT NULL,
+				[DEFECT_ID] [varchar](12) NOT NULL,
+				[LEAKING] [varchar](1) NOT NULL,
+				[COMMENT] [varchar](80) NOT NULL,
+				[SAMPLE_QUANTITY] [numeric](22, 3) NOT NULL,
+				[USER_ID] [varchar](20) NOT NULL,
+				[SAMPLE_POINT] [varchar](25) NOT NULL,
+			 CONSTRAINT [PK_APP_PALLET_SAMPLES] PRIMARY KEY CLUSTERED 
+			(
+				[SSCC] ASC,
+				[SAMPLE_SEQUENCE] ASC
+			)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+			) ON [PRIMARY]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_PALLET_SAMPLES] ADD  CONSTRAINT [DF_APP_PALLET_SAMPLES_SAMPLE_SEQUENCE]  DEFAULT ((0)) FOR [SAMPLE_SEQUENCE]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_PALLET_SAMPLES] ADD  CONSTRAINT [DF_APP_PALLET_SAMPLES_SAMPLE_REASON]  DEFAULT ('') FOR [SAMPLE_REASON]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_PALLET_SAMPLES] ADD  CONSTRAINT [DF_APP_PALLET_SAMPLES_DEFECT_TYPE]  DEFAULT ('') FOR [DEFECT_TYPE]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_PALLET_SAMPLES] ADD  CONSTRAINT [DF_APP_PALLET_SAMPLES_DEFECT_ID]  DEFAULT ('') FOR [DEFECT_ID]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_PALLET_SAMPLES] ADD  CONSTRAINT [DF_APP_PALLET_SAMPLES_LEAKING]  DEFAULT ('N') FOR [LEAKING]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_PALLET_SAMPLES] ADD  CONSTRAINT [DF_APP_PALLET_SAMPLES_COMMENT]  DEFAULT ('') FOR [COMMENT]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_PALLET_SAMPLES] ADD  CONSTRAINT [DF_APP_PALLET_SAMPLES_SAMPLE_QUANTITY]  DEFAULT ((0.000)) FOR [SAMPLE_QUANTITY]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_PALLET_SAMPLES] ADD  CONSTRAINT [DF_APP_PALLET_SAMPLES_USER_ID]  DEFAULT ('') FOR [USER_ID]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_PALLET_SAMPLES] ADD  CONSTRAINT [DF_APP_PALLET_SAMPLES_SAMPLE_POINT]  DEFAULT ('') FOR [SAMPLE_POINT]
+    </statement>
+    
+    <statement>        
+			CREATE TABLE [dbo].[APP_SAMPLE_DEFECT_ID](
+				[DEFECT_ID] [varchar](12) NOT NULL,
+				[DESCRIPTION] [varchar](40) NOT NULL,
+				[LONG_DESCRIPTION] [varchar](255) NOT NULL,
+				[DEFECT_TYPE] [varchar](12) NOT NULL,
+				[ENABLED] [varchar](1) NOT NULL,
+			 CONSTRAINT [PK_APP_SAMPLE_DEFECT_ID] PRIMARY KEY CLUSTERED 
+			(
+				[DEFECT_ID] ASC
+			)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+			) ON [PRIMARY]
+    </statement>
+
+    <statement>        
+			ALTER TABLE [dbo].[APP_SAMPLE_DEFECT_ID] ADD  CONSTRAINT [DF_APP_SAMPLE_DEFECT_ID_DEFECT_ID]  DEFAULT ('') FOR [DEFECT_ID]
+    </statement>
+
+    <statement>        
+			ALTER TABLE [dbo].[APP_SAMPLE_DEFECT_ID] ADD  CONSTRAINT [DF_APP_SAMPLE_DEFECT_ID_DESCRIPTION]  DEFAULT ('') FOR [DESCRIPTION]
+    </statement>
+
+    <statement>        
+			ALTER TABLE [dbo].[APP_SAMPLE_DEFECT_ID] ADD  CONSTRAINT [DF_APP_SAMPLE_DEFECT_ID_LONG_DESCRIPTION]  DEFAULT ('') FOR [LONG_DESCRIPTION]
+    </statement>
+
+    <statement>        
+			ALTER TABLE [dbo].[APP_SAMPLE_DEFECT_ID] ADD  CONSTRAINT [DF_APP_SAMPLE_DEFECT_ID_DEFECT_TYPE]  DEFAULT ('') FOR [DEFECT_TYPE]
+    </statement>
+
+    <statement>        
+			ALTER TABLE [dbo].[APP_SAMPLE_DEFECT_ID] ADD  CONSTRAINT [DF_APP_SAMPLE_DEFECT_ID_ENABLED]  DEFAULT ('Y') FOR [ENABLED]
+    </statement>
+    
+    
+    <statement>  
+			CREATE TABLE [dbo].[APP_SAMPLE_DEFECT_TYPE](
+				[DEFECT_TYPE] [varchar](12) NOT NULL,
+				[DESCRIPTION] [varchar](40) NOT NULL,
+				[LONG_DESCRIPTION] [varchar](255) NOT NULL,
+				[OUTPUT_COLUMN] [int] NOT NULL,
+				[LEAKING_DATA] varchar(1) DEFAULT 'Y' NULL,
+        [NON_LEAKING_DATA] varchar(1) DEFAULT 'Y' NULL,
+				[ENABLED] [varchar](1) NOT NULL,
+			 CONSTRAINT [PK_APP_SAMPLE_DEFECT_TYPE] PRIMARY KEY CLUSTERED 
+			(
+				[DEFECT_TYPE] ASC
+			)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+			) ON [PRIMARY]
+    </statement>
+
+    <statement>  
+			ALTER TABLE [dbo].[APP_SAMPLE_DEFECT_TYPE] ADD  CONSTRAINT [DF_APP_SAMPLE_DEFECT_TYPE_DEFECT_TYPE]  DEFAULT ('') FOR [DEFECT_TYPE]
+    </statement>
+
+    <statement>  
+			ALTER TABLE [dbo].[APP_SAMPLE_DEFECT_TYPE] ADD  CONSTRAINT [DF_APP_SAMPLE_DEFECT_TYPE_DESCRIPTION]  DEFAULT ('') FOR [DESCRIPTION]
+    </statement>
+
+    <statement>  
+			ALTER TABLE [dbo].[APP_SAMPLE_DEFECT_TYPE] ADD  CONSTRAINT [DF_APP_SAMPLE_DEFECT_TYPE_LONG_DESCRIPTION]  DEFAULT ('') FOR [LONG_DESCRIPTION]
+    </statement>
+
+    <statement>  
+			ALTER TABLE [dbo].[APP_SAMPLE_DEFECT_TYPE] ADD  CONSTRAINT [DF_APP_SAMPLE_DEFECT_TYPE_OUTPUT_COLUMN]  DEFAULT ((0)) FOR [OUTPUT_COLUMN]
+    </statement>
+
+    <statement>  
+			ALTER TABLE [dbo].[APP_SAMPLE_DEFECT_TYPE] ADD  CONSTRAINT [DF_APP_SAMPLE_DEFECT_TYPE_ENABLED]  DEFAULT ('Y') FOR [ENABLED]
+    </statement>
+
+    <statement>   
+			CREATE TABLE [dbo].[APP_SAMPLE_REASONS](
+				[SAMPLE_REASON] [varchar](15) NOT NULL,
+				[DESCRIPTION] [varchar](80) NOT NULL,
+				[ENABLED] [varchar](1) NOT NULL,
+			 CONSTRAINT [PK_APP_SAMPLE_REASONS] PRIMARY KEY CLUSTERED 
+			(
+				[SAMPLE_REASON] ASC
+			)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+			) ON [PRIMARY]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_SAMPLE_REASONS] ADD  CONSTRAINT [DF_Table_1_DEFECT_TYPE]  DEFAULT ('') FOR [SAMPLE_REASON]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_SAMPLE_REASONS] ADD  CONSTRAINT [DF_APP_SAMPLE_REASONS_DESCRIPTION]  DEFAULT ('') FOR [DESCRIPTION]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_SAMPLE_REASONS] ADD  CONSTRAINT [DF_APP_SAMPLE_REASONS_ENABLED]  DEFAULT ('Y') FOR [ENABLED]
+    </statement>
+    
+    <statement>   
+			CREATE TABLE [dbo].[APP_SHIFT_NAMES](
+				[SHIFT_ID] [varchar](10) NOT NULL,
+				[DESCRIPTION] [varchar](45) NOT NULL,
+				[ENABLED] [varchar](1) NOT NULL,
+			 CONSTRAINT [PK_APP_SHIFT_NAMES] PRIMARY KEY CLUSTERED 
+			(
+				[SHIFT_ID] ASC
+			)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+			) ON [PRIMARY]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_SHIFT_NAMES] ADD  CONSTRAINT [DF_APP_SHIFT_NAMES_DESCRIPTION]  DEFAULT ('') FOR [DESCRIPTION]
+    </statement>
+
+    <statement>   
+			ALTER TABLE [dbo].[APP_SHIFT_NAMES] ADD  CONSTRAINT [DF_APP_SHIFT_NAMES_ENABLED]  DEFAULT ('Y') FOR [ENABLED]
+    </statement>
+    
+    <statement>  
+			CREATE TABLE [dbo].[APP_SUPPLIER](
+				[SUPPLIER_ID] [varchar](15) NOT NULL,
+				[SUPPLIER_TYPE] [varchar](12) NOT NULL,
+				[DESCRIPTION] [varchar](80) NOT NULL,
+				[ENABLED] [varchar](1) NOT NULL,
+			 CONSTRAINT [PK_APP_SUPPLIER] PRIMARY KEY CLUSTERED 
+			(
+				[SUPPLIER_ID] ASC
+			)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+			) ON [PRIMARY]
+    </statement>
+    
+    <statement>  
+			ALTER TABLE [dbo].[APP_SUPPLIER] ADD  CONSTRAINT [DF_APP_SUPPLIER_SUPPLIER_TYPE]  DEFAULT ('LAMINATE') FOR [SUPPLIER_TYPE]
+    </statement>
+    
+    <statement>  
+			ALTER TABLE [dbo].[APP_SUPPLIER] ADD  CONSTRAINT [DF_APP_SUPPLIER_DESCRIPTION]  DEFAULT ('') FOR [DESCRIPTION]
+    </statement>
+    
+    <statement>  
+			ALTER TABLE [dbo].[APP_SUPPLIER] ADD  CONSTRAINT [DF_APP_SUPPLIER_ENABLED]  DEFAULT ('Y') FOR [ENABLED]
+    </statement>
+ 
+    <statement>     
+	    CREATE  VIEW view_pallet_samples AS   (	SELECT
+			app_pallet_samples.SSCC AS SSCC,
+			app_pallet_samples.SAMPLE_SEQUENCE AS SAMPLE_SEQUENCE,
+			app_pallet_samples.SAMPLE_DATE AS SAMPLE_DATE,
+			app_pallet_samples.SAMPLE_REASON AS SAMPLE_REASON,
+			app_pallet_samples.DEFECT_TYPE AS DEFECT_TYPE,
+			app_pallet_samples.DEFECT_ID AS DEFECT_ID,
+			app_pallet_samples.LEAKING AS LEAKING,
+			app_pallet_samples.COMMENT AS COMMENT,
+			app_pallet_extension.PALLET_QUANTITY AS START_QUANTITY,
+			app_pallet_samples.SAMPLE_QUANTITY AS SAMPLE_QUANTITY,
+			app_pallet_samples.SAMPLE_POINT AS SAMPLE_POINT,
+			app_pallet_extension.FIRST_CASE_INPUT AS FIRST_CASE_INPUT,
+			app_pallet_extension.FIRST_CASE_TIME AS FIRST_CASE_TIME,
+			app_pallet_extension.LAST_CASE_INPUT AS LAST_CASE_INPUT,
+			app_pallet_extension.LAST_CASE_TIME AS LAST_CASE_TIME,
+			app_pallet_extension.SHIFT_ID AS SHIFT_ID,
+			app_pallet_extension.SUPPLIER_ID1 AS SUPPLIER_ID1,
+			app_pallet_extension.INCIDENT_REFERENCE AS INCIDENT_REFERENCE,
+			app_pallet_extension.LOCATION AS LOCATION,
+			app_pallet_extension.PRODUCT_GROUP AS PRODUCT_GROUP,
+			app_pallet_extension.CONTAINER_CODE AS CONTAINER_CODE,
+			app_pallet_extension.PWEEK AS PWEEK,
+			app_pallet_extension.PDAY AS PDAY,
+			app_pallet_extension.PMONTH AS PMONTH,
+			app_pallet_extension.PYEAR AS PYEAR,
+			app_supplier.SUPPLIER_TYPE AS SUPPLIER_TYPE,
+			app_supplier.DESCRIPTION AS SUPPLIER_DESCRIPTION,
+			app_pallet.LOCATION_ID AS LOCATION_ID,
+			app_pallet.MATERIAL AS MATERIAL,
+			app_pallet.BATCH_NUMBER AS BATCH_NUMBER,
+			app_pallet.PROCESS_ORDER AS PROCESS_ORDER,
+			app_pallet.DATE_OF_MANUFACTURE AS DATE_OF_MANUFACTURE,
+			app_pallet.STATUS AS PALLET_STATUS,
+			app_pallet.MHN_NUMBER AS MHN_NUMBER,
+			app_pallet.DECISION AS DECISION,
+			app_sample_defect_type.DESCRIPTION AS DEFECT_TYPE_DESCRIPTION,
+			app_sample_defect_type.NON_LEAKING_DATA AS NON_LEAKING_DATA,
+	    app_sample_defect_type.LEAKING_DATA AS LEAKING_DATA,
+			app_sample_defect_id.DESCRIPTION AS DEFECT_ID_DESCRIPTION 
+		FROM
+			(((((
+								app_pallet_samples
+								LEFT JOIN app_pallet_extension ON ((
+										app_pallet_samples.SSCC = app_pallet_extension.SSCC 
+									)))
+							LEFT JOIN app_supplier ON ((
+									app_pallet_extension.SUPPLIER_ID1 = app_supplier.SUPPLIER_ID 
+								)))
+						LEFT JOIN app_sample_defect_id ON ((
+								app_pallet_samples.DEFECT_ID = app_sample_defect_id.DEFECT_ID 
+							)))
+					LEFT JOIN app_sample_defect_type ON ((
+							app_pallet_samples.DEFECT_TYPE = app_sample_defect_type.DEFECT_TYPE 
+						)))
+				LEFT JOIN app_pallet ON ((
+					app_pallet_samples.SSCC = app_pallet.SSCC 
+			))))
+    </statement>
+    
+    <statement>        
+		CREATE VIEW view_sample_point_locations AS (select distinct app_weight_sample_point.LOCATION AS Location from app_weight_sample_point)
+    </statement>
+    
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_PALLET_SAMPLE')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_DEFECT_ID')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_DEFECT_ID_ADD')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_DEFECT_ID_DELETE')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_DEFECT_ID_EDIT')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_DEFECT_ID_RENAME')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_DEFECT_TYPE')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_DEFECT_TYPE_ADD')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_DEFECT_TYPE_DELETE')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_DEFECT_TYPE_EDIT')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_DEFECT_TYPE_RENAME')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_REASON')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_REASON_ADD')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_REASON_DELETE')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_REASON_EDIT')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SAMPLE_REASON_RENAME')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SHIFT_NAMES')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SHIFT_NAMES_ADD')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SHIFT_NAMES_DELETE')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SHIFT_NAMES_EDIT')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SHIFT_NAMES_RENAME')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SUPPLIER')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SUPPLIER_ADD')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SUPPLIER_DELETE')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SUPPLIER_EDIT')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_SUPPLIER_RENAME')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_PAL_SAMPLE')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_PAL_SAMPLE_EDIT')
+    </statement>
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'MENU_SORTING')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'RPT_SAMPLE_DEFECT_ID')
+    </statement>
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'RPT_SAMPLE_DEFECT_TYPE')
+    </statement>
+    
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'RPT_SAMPLE_REASONS')
+    </statement>   
+
+    <statement>          
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'RPT_SHIFT_NAMES')
+    </statement>   
+
+    <statement>   
+			INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'RPT_SUPPLIERS')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Confirm_Save', 'EN', 'Save Changes ?', '0')
+    </statement>   
+    
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Confirm_Save', 'DE', 'Änderungen speichern ?', '0')
+    </statement>   
+    
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Confirm_Save', 'FR', 'Sauvegarder les modifications ?', '0')
+    </statement>   
+    
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Confirm_Save', 'NL', 'Wijzigingen opslaan ?', '0')
+    </statement>   
+    
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Confirm_Save', 'ES', 'Guardar cambios ?', '0')
+    </statement>   
+    
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Confirm_Save', 'PL', 'Zapisz zmiany ?', '0')
+    </statement>   
+    
+     <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Confirm_Save', 'HU', 'Változtatások mentése ?', '0')
+    </statement>   
+    
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Add', 'EN', 'Add Defect ID', '0')
+    </statement>
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Add', 'DE', 'Fehler hinzufügen', '0')
+    </statement>
+    
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Add', 'FR', 'Ajouter un identifiant de défaute', '0')
+    </statement>
+    
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Add', 'NL', 'Voeg defect-ID toe', '0')
+    </statement>
+    
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Add', 'ES', 'Añadir identificación de defecto', '0')
+    </statement>
+    
+     <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Add', 'PL', 'Dodaj identyfikator defektów.', '0')
+    </statement>
+    
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Add', 'HU', 'Hibásító hozzáadása', '0')
+    </statement>
+
+
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Delete', 'DE', 'Defekt-ID löschen', '0')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Delete', 'FR', 'Supprimer l''identifiant de défaute', '0')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Delete', 'NL', 'Verwijder defect-ID', '0')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Delete', 'ES', 'Eliminar identificación de defecto', '0')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Delete', 'PL', 'Usuń identyfikator defektu', '0')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Delete', 'HU', 'A hiba azonosítójának törlése', '0')
+	</statement>
+	
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Rename', 'EN', 'Rename Defect ID to ', '0')
+    </statement>
+    
+    <statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Rename', 'DE', 'Umbenennen von Defekten-ID', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Rename', 'FR', 'Renommer l''identifiant de défaute', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Rename', 'NL', 'Hernoemende defect-ID', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Rename', 'ES', 'Cambiar nombre de la identificación de defectos', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Rename', 'PL', 'Zmień nazwę defektu ID.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_ID_Rename', 'HU', 'A hiba azonosítójának átnevezése', '0')
+	</statement>
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Add', 'EN', 'Add Defect Type', '0')
+    </statement>   
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Add', 'DE', 'Fehlertyp hinzufügen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Add', 'FR', 'Ajouter le type de défaut', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Add', 'NL', 'Voeg defecttype toe', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Add', 'ES', 'Añadir tipo de defecto', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Add', 'PL', 'Dodaj typ defektu', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Add', 'HU', 'Hibás típus hozzáadása', '0')
+	</statement>
+    
+    
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Delete', 'EN', 'Delete Defect Type', '0')
+    </statement>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Delete', 'DE', 'Defektstyp löschen', '0')
+	</statement>
+		
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Delete', 'FR', 'Supprimer le type de défaut', '0')
+	</statement>
+		
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Delete', 'NL', 'Verwijder defecttype', '0')
+	</statement>
+		
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Delete', 'ES', 'Eliminar tipo de defecto', '0')
+	</statement>
+		
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Delete', 'PL', 'Usuń typ defektu', '0')
+	</statement>
+		
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Delete', 'HU', 'A hiba típusának törlése', '0')
+	</statement>
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Rename', 'EN', 'Rename Defect Type to', '0')
+    </statement>   
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Rename', 'DE', 'Umbenennen von Defektyp in', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Rename', 'FR', 'Renommer le type de défaut à', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Rename', 'NL', 'Hernoemende defecttype naar', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Rename', 'ES', 'Cambiar nombre de tipo de defecto a', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Rename', 'PL', 'Zmień nazwę defektów typu', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Defect_Type_Rename', 'HU', 'A hiba típusának átnevezése', '0')
+	</statement>
+
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Sample_Delete', 'EN', 'Delete Sample ?', '0')
+    </statement>
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Sample_Delete', 'DE', 'Probe löschen?', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Sample_Delete', 'FR', 'Supprimer l''échantillon?', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Sample_Delete', 'NL', 'Sample verwijderen?', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Sample_Delete', 'ES', 'Eliminar muestra?', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Sample_Delete', 'PL', 'Usuń próbkę?', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Sample_Delete', 'HU', 'A minta törlése?', '0')
+	</statement>
+
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Add', 'EN', 'Add Shift', '0')
+    </statement>   
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Add', 'DE', 'Verschiebung hinzufügen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Add', 'FR', 'Ajouter un quart de travail', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Add', 'NL', 'Voeg shift toe', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Add', 'ES', 'Añadir turno', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Add', 'PL', 'Dodaj Shift.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Add', 'HU', 'Shift hozzáadása', '0')
+	</statement>
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Rename', 'EN', 'Rename Shift to', '0')
+    </statement>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Rename', 'DE', 'Umbenennen von Shift to', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Rename', 'FR', 'Renommer décalage vers', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Rename', 'NL', 'Hernoem shift naar', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Rename', 'ES', 'Cambiar nombre CAMBIO A', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Rename', 'PL', 'Zmień nazwę zmiany', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Shift_Rename', 'HU', 'Átmenő váltás átnevezése', '0')
+	</statement>
+
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Add', 'EN', 'Add Supplier', '0')
+    </statement>  
+    
+ 	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Add', 'DE', 'Lieferer hinzufügen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Add', 'FR', 'Ajouter fournisseur', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Add', 'NL', 'Voeg leverancier toe', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Add', 'ES', 'Añadir proveedor', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Add', 'PL', 'Dodaj dostawcę', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Add', 'HU', 'Szállító hozzáadása', '0')
+	</statement>
+	    
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Delete', 'EN', 'Delete Supplier', '0')
+    </statement>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Delete', 'DE', 'Lieferer löschen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Delete', 'FR', 'Supprimer le fournisseur', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Delete', 'NL', 'Verwijder leverancier', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Delete', 'ES', 'Eliminar proveedor', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Delete', 'PL', 'Usuń dostawcę', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Delete', 'HU', 'Szállító törlése', '0')
+	</statement>
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Rename', 'EN', 'Rename Supplier to', '0')
+    </statement>   
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Rename', 'DE', 'Lieferant umbenennen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Rename', 'FR', 'Renommer fournisseur', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Rename', 'NL', 'Hernoem leverancier', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Rename', 'ES', 'Cambiar nombre proveedor', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Rename', 'PL', 'Zmień nazwę dostawcy', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Supplier_Rename', 'HU', 'Rename szállító', '0')
+	</statement>
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Day', 'EN', 'Day of Week', '0')
+    </statement>
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Day', 'DE', 'Wochentag', '0')
+	</statement>
+		
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Day', 'FR', 'Jour de la semaine', '0')
+	</statement>
+		
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Day', 'NL', 'Dag van de week', '0')
+	</statement>
+		
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Day', 'ES', 'Día de la semana', '0')
+	</statement>
+		
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Day', 'PL', 'Dzień tygodnia', '0')
+	</statement>
+		
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Day', 'HU', 'A hét napja', '0')
+	</statement> 
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_ID', 'EN', 'Defect ID', '0')
+    </statement>  
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_ID', 'DE', 'Defekt-ID.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_ID', 'FR', 'Identifiant de défaute', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_ID', 'NL', 'Defect ID', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_ID', 'ES', 'Identificación de defecto', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_ID', 'PL', 'Identyfikator wada', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_ID', 'HU', 'Hibás azonosító', '0')
+	</statement>
+ 
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_Type', 'EN', 'Defect Type', '0')
+    </statement>
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_Type', 'DE', 'Defektyp.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_Type', 'FR', 'Type de défaut', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_Type', 'NL', 'Defect type', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_Type', 'ES', 'Tipo de defecto', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_Type', 'PL', 'Typ defektu', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Defect_Type', 'HU', 'Hiba típus', '0')
+	</statement>
+
+
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Filler_ID', 'EN', 'Filler ID', '0')
+    </statement>   
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Filler_ID', 'DE', 'Füller-ID.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Filler_ID', 'FR', 'Identifiant de remplissage', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Filler_ID', 'NL', 'Vul-', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Filler_ID', 'ES', 'ID de relleno', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Filler_ID', 'PL', 'Identyfikator wypełniacza', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Filler_ID', 'HU', 'Töltőanyag-azonosító', '0')
+	</statement>
+	
+	
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_First_Case_Time', 'EN', 'First Case Time', '0')
+    </statement>
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_First_Case_Time', 'DE', 'Erste Fallzeit.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_First_Case_Time', 'FR', 'Premier cas', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_First_Case_Time', 'NL', 'Eerste kasttijd', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_First_Case_Time', 'ES', 'Primer tiempo', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_First_Case_Time', 'PL', 'Pierwszy czas', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_First_Case_Time', 'HU', 'Első alkalommal', '0')
+	</statement>
+	
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Incident_Ref', 'EN', 'Incident Ref', '0')
+    </statement>   
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Incident_Ref', 'DE', 'Vorfallreferenz', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Incident_Ref', 'FR', 'Référence incident', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Incident_Ref', 'NL', 'Incidentreferentie', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Incident_Ref', 'ES', 'Referencia de incidentes', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Incident_Ref', 'PL', 'Incydentowy odniesienie', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Incident_Ref', 'HU', 'Incidens referencia', '0')
+	</statement>
+
+    
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Last_Case_Time', 'EN', 'Last Case Time', '0')
+    </statement>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Last_Case_Time', 'DE', 'Letzte Fallzeit', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Last_Case_Time', 'FR', 'Dernière période', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Last_Case_Time', 'NL', 'Last Case Time', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Last_Case_Time', 'ES', 'Último tiempo de caso', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Last_Case_Time', 'PL', 'Ostatni czas', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Last_Case_Time', 'HU', 'Utolsó eset', '0')
+	</statement>
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking', 'EN', 'Leaking', '0')
+    </statement>   
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking', 'DE', 'Lecking', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking', 'FR', 'Fuite', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking', 'NL', 'Lekkend', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking', 'ES', 'Fugas', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking', 'PL', 'Wyciekający', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking', 'HU', 'Szivárgás', '0')
+	</statement>
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Long_Description', 'EN', 'Long Description', '0')
+    </statement>
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Long_Description', 'DE', 'Lange Beschreibung', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Long_Description', 'FR', 'longue description', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Long_Description', 'NL', 'lange beschrijving', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Long_Description', 'ES', 'descripción larga', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Long_Description', 'PL', 'długi opis', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Long_Description', 'HU', 'hosszú leírás', '0')
+	</statement>
+    
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Month', 'EN', 'Month', '0')
+    </statement>   
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Month', 'DE', 'Monat', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Month', 'FR', 'Mois', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Month', 'NL', 'Maand', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Month', 'ES', 'Mes', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Month', 'PL', 'Miesiąc', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Month', 'HU', 'Hónap', '0')
+	</statement>
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Quantity', 'EN', 'Sample Quantity', '0')
+    </statement>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Quantity', 'DE', 'Beispielmenge', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Quantity', 'FR', 'Quantité d''échantillons', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Quantity', 'NL', 'Voorbeeldhoeveelheid', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Quantity', 'ES', 'Cantidad de Muestra', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Quantity', 'PL', 'Próbka ilość', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Quantity', 'HU', 'Minta mennyisége', '0')
+	</statement>
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_SubLocation', 'EN', 'Filler', '0')
+    </statement>   
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleSubLocation', 'DE', 'Füllstoff', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleSubLocation', 'FR', 'Obturation', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleSubLocation', 'NL', 'Vulmiddel', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleSubLocation', 'ES', 'Relleno', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleSubLocation', 'PL', 'Podsadzkarz', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_SampleSubLocation', 'HU', 'Töltőanyag', '0')
+	</statement>
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Starting_Quantity', 'EN', 'Starting Quantity', '0')
+    </statement>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Starting_Quantity', 'DE', 'Startmenge.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Starting_Quantity', 'FR', 'Quantité de départ', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Starting_Quantity', 'NL', 'Hoeveelheid', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Starting_Quantity', 'ES', 'Cantidad de inicio', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Starting_Quantity', 'PL', 'Rozpoczynająca ilość', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Starting_Quantity', 'HU', 'Kezdeti mennyiség', '0')
+	</statement>
+
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID', 'EN', 'Supplier ID', '0')
+    </statement>   
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID', 'DE', 'Lieferanten ID', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID', 'FR', 'ID du fournisseur', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID', 'NL', 'Leverancier ID', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID', 'ES', 'Identificación del proveedor', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID', 'PL', 'Identyfikator dostawcy', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID', 'HU', 'Szállító_id', '0')
+	</statement>
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID1', 'EN', 'Laminate Supplier', '0')
+    </statement>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID1', 'DE', 'Laminatlieferant.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID1', 'FR', 'Stratifié fournisseur', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID1', 'NL', 'Laminaat leverancier', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID1', 'ES', 'Proveedor de laminado', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID1', 'PL', 'Dostawca laminatu', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_ID1', 'HU', 'Laminált szállító', '0')
+	</statement>
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Supplier_Type', 'EN', 'Supplier Type', '0')
+    </statement>
+    
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Week_Number', 'EN', 'Week Number', '0')
+    </statement>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Week_Number', 'DE', 'Wochennummer', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Week_Number', 'FR', 'Numéro de semaine', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Week_Number', 'NL', 'Weeknummer', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Week_Number', 'ES', 'Número de la semana', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Week_Number', 'PL', 'Numer tygodnia.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Week_Number', 'HU', 'Hét szám', '0')
+	</statement>
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Year', 'EN', 'Year', '')
+    </statement>  
+    
+   	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Year', 'DE', 'Jahr', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Year', 'FR', 'An', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Year', 'NL', 'Jaar', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Year', 'ES', 'Año', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Year', 'PL', 'Rok', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Year', 'HU', 'Év', '0')
+	</statement>
+     
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_PALLET_SAMPLE', 'EN', 'Enquiries &amp; Reports', '0')
+    </statement>
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_PALLET_SAMPLE', 'DE', 'Anfragen &amp; Berichte.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_PALLET_SAMPLE', 'FR', 'Demandes et rapports', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_PALLET_SAMPLE', 'NL', 'Vragen en rapporten', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_PALLET_SAMPLE', 'ES', 'Consultas e informes', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_PALLET_SAMPLE', 'PL', 'Zapytania i raporty', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_PALLET_SAMPLE', 'HU', 'Kérdések és jelentések', '0')
+	</statement>
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_ID', 'EN', 'Defects IDs', '0')
+    </statement>   
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_ID', 'DE', 'Defekte IDs.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_ID', 'FR', 'Identifiant de défaute', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_ID', 'NL', 'Defect IDs', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_ID', 'ES', 'De defecto de identificación', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_ID', 'PL', 'Identyfikator wada', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_ID', 'HU', 'A hiba azonosítója', '0')
+	</statement>
+   
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 'EN', 'Defect Types', '0')
+    </statement>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 'DE', 'Defektarten', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 'FR', 'Types de défauts', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 'NL', 'Defect typen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 'ES', 'Tipos de defectos', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 'PL', 'Typy defektów.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 'HU', 'Hibás típusok', '0')
+	</statement>
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_REASON', 'EN', 'Sample Reasons', '0')
+    </statement>   
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_REASON', 'DE', 'Mustergrüne', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_REASON', 'FR', 'Échantillons de motifs', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_REASON', 'NL', 'Monsterredenen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_REASON', 'ES', 'Muestra razones', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_REASON', 'PL', 'Przykładowe powody', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SAMPLE_REASON', 'HU', 'Mintavételi okok', '0')
+	</statement>
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES', 'EN', 'Shift Names', '0')
+    </statement>
+    
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES', 'DE', 'Verschiebungsnamen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES', 'FR', 'Noms de changement de vitesse', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES', 'NL', 'Verschuivingsnamen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES', 'ES', 'Nombres de turno', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES', 'PL', 'Nazwy zmian', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES', 'HU', 'Váltási nevek', '0')
+	</statement>
+    
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES_EDIT', 'EN', 'Shift Name Properties', '0')
+    </statement>   
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES_EDIT', 'DE', 'Verschiebungsname-Eigenschaften', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES_EDIT', 'FR', 'Propriétés du nom de changement de vitesse', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES_EDIT', 'NL', 'Shift Name-eigenschappen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES_EDIT', 'ES', 'Propiedades de nombre de cambio', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES_EDIT', 'PL', 'Właściwości nazwy zmiany', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SHIFT_NAMES_EDIT', 'HU', 'Shift Name tulajdonságai', '0')
+	</statement>
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SUPPLIER', 'EN', 'Supplier Admin', '0')
+    </statement>
+
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SUPPLIER_EDIT', 'EN', 'Supplier Properties', '0')
+    </statement>   
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SUPPLIER_EDIT', 'DE', 'Lieferanteneigenschaften.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SUPPLIER_EDIT', 'FR', 'Propriétés du fournisseur', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SUPPLIER_EDIT', 'NL', 'Leveranciereigenschappen', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SUPPLIER_EDIT', 'ES', 'Propiedades del proveedor', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SUPPLIER_EDIT', 'PL', 'Właściwości dostawcy', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_SUPPLIER_EDIT', 'HU', 'Szállítói tulajdonságok', '0')
+	</statement>
+
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE', 'EN', 'Pallet Samples &amp; Faults', '0')
+    </statement>
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE', 'DE', 'Palettenproben und Fehler', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE', 'FR', 'Échantillons de palettes et défauts', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE', 'NL', 'Palletmonsters en fouten', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE', 'ES', 'Muestras de paletas y fallas.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE', 'PL', 'Próbki palety i błędy', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE', 'HU', 'Raklapminták és hibák', '0')
+	</statement>
+
+
+    <statement>          
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE_EDIT', 'EN', 'Edit Sample', '0')
+    </statement>   
+
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE_EDIT', 'DE', 'Probe bearbeiten.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE_EDIT', 'FR', 'Modifier l''échantillon', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE_EDIT', 'NL', 'Bewerk monster', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE_EDIT', 'ES', 'Editar muestra', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE_EDIT', 'PL', 'Edytuj próbkę.', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_PAL_SAMPLE_EDIT', 'HU', 'Minta szerkesztése', '0')
+	</statement>
+
+
+    <statement>   
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_SORTING', 'EN', 'Sorting', '0')
+    </statement>
+    
+ 	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_SORTING', 'DE', 'Sortierung', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_SORTING', 'FR', 'Tri', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_SORTING', 'NL', 'Sorteren', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_SORTING', 'ES', 'Clasificación', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_SORTING', 'PL', 'Sortowanie', '0')
+	</statement>
+	
+	<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_SORTING', 'HU', 'Válogatás', '0')
+	</statement>
+    
+
+    <statement>          
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_ADMIN_PALLET_SAMPLE', 'MENU_SORTING', 1)
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_ID', 'MENU_SORTING', 4)
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_TYPE', 'MENU_SORTING', 3)
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_ADMIN_SAMPLE_REASON', 'MENU_SORTING', 2)
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_ADMIN_SHIFT_NAMES', 'MENU_SORTING', 6)
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_ADMIN_SUPPLIER', 'MENU_SORTING', 7)
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_PAL_SAMPLE', 'MENU_SORTING', 0)
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_WEIGHT_SAMPLEPOINT', 'MENU_SORTING', 5)
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('MENU_SORTING', 'root', 5)
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_PALLET_SAMPLE', 'N', 'Y', 'FORM', 'Pallet Sample Enquiries &amp; Reports', 0, 'sample_admin.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_PALLET_SAMPLE', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_ID', 'N', 'Y', 'FORM', 'Defects Modes', 0, 'sample_defects.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_DEFECT_ID', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_ID_ADD', 'N', 'Y', 'FUNCTION', 'Defects Modes', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_DEFECT_MODE', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_ID_DELETE', 'N', 'Y', 'FUNCTION', 'Defects Modes', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_DEFECT_MODE', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_ID_EDIT', 'N', 'Y', 'FUNCTION', 'Defects Modes', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_DEFECT_MODE', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_ID_RENAME', 'N', 'Y', 'FUNCTION', 'Defects Modes', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_DEFECT_MODE', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_TYPE', 'N', 'Y', 'FORM', '1 mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 0, 'sample_defects.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_TYPE_ADD', 'N', 'Y', 'FUNCTION', '1 mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_TYPE_DELETE', 'N', 'Y', 'FUNCTION', '1 mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_TYPE_EDIT', 'N', 'Y', 'FUNCTION', '1 mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_DEFECT_TYPE_RENAME', 'N', 'Y', 'FUNCTION', '1 mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_DEFECT_TYPE', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_REASON', 'N', 'Y', 'FORM', '26 mod_FRM_ADMIN_SAMPLE_REASON', 0, 'mhn_reasons.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_REASON', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_REASON_ADD', 'N', 'Y', 'FUNCTION', 'Sample Reasons', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_REASON', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_REASON_DELETE', 'N', 'Y', 'FUNCTION', '26 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_REASON_EDIT', 'N', 'Y', 'FUNCTION', 'Sample Reasons', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SAMPLE_REASON', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SAMPLE_REASON_RENAME', 'N', 'Y', 'FUNCTION', '26 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SHIFT_NAMES', 'N', 'Y', 'FORM', 'Admin Shift Names', 0, 'shiftnames.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SHIFT_NAMES', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SHIFT_NAMES_ADD', 'N', 'Y', 'FUNCTION', '1 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SHIFT_NAMES_DELETE', 'N', 'Y', 'FUNCTION', '1 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SHIFT_NAMES_EDIT', 'N', 'Y', 'FUNCTION', '1 mod_FRM_ADMIN_SHIFT_NAMES_EDIT', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SHIFT_NAMES_EDIT', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SHIFT_NAMES_RENAME', 'N', 'Y', 'FUNCTION', '1 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SUPPLIER', 'N', 'Y', 'FORM', 'Admin Suppliers', 0, 'supplier.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SUPPLIER', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SUPPLIER_ADD', 'N', 'Y', 'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SUPPLIER_DELETE', 'N', 'Y', 'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SUPPLIER_EDIT', 'N', 'Y', 'FUNCTION', '1 mod_FRM_ADMIN_SUPPLIER_EDIT', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_SUPPLIER_EDIT', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_SUPPLIER_RENAME', 'N', 'Y', 'FUNCTION', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_PAL_SAMPLE', 'N', 'Y', 'FORM', 'Pallet Sampling', 0, 'pallet_sampling.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_PAL_SAMPLE', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_PAL_SAMPLE_EDIT', 'N', 'Y', 'FUNCTION', '1 ', 0, '', '', '', '', '', 'N', 'N', 1, '', '', '', '')
+    </statement>   
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('MENU_SORTING', 'N', 'Y', 'MENU', '1 mod_MENU_SORTING', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_MENU_SORTING', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_SAMPLE_DEFECT_ID', 'N', 'Y', 'REPORT', '1 ', 0, '', '', 'sample_defect_id.jrxml', '', '', 'Y', 'N', 1, 'Standard', '', '', '')
+    </statement>   
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_SAMPLE_DEFECT_TYPE', 'N', 'Y', 'REPORT', '1 ', 0, '', '', 'sample_defect_type.jrxml', '', '', 'Y', 'N', 1, 'Standard', '', '', '')
+    </statement>  
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_SAMPLE_REASONS', 'N', 'Y', 'REPORT', '1 ', 0, '', '', 'sample_reasons.jrxml', '', '', 'Y', 'N', 1, 'Standard', '', '', '')
+    </statement>
+
+    <statement>   
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_SHIFT_NAMES', 'N', 'Y', 'REPORT', '1 ', 0, '', '', 'shift_name.jrxml', '', '', 'Y', 'N', 1, 'Standard', '', '', '')
+    </statement>
+
+    <statement>          
+			INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_SUPPLIERS', 'N', 'Y', 'REPORT', NULL, 0, NULL, NULL, NULL, NULL, NULL, 'Y', 'N', 1, '', '', '', '')
+    </statement>   
+    
+        
+  		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_File', 'EN', 'File', '0')
+		</statement>    
+    
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_File', 'DE', 'Datei', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_File', 'FR', 'Déposer', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_File', 'NL', 'Bestand', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_File', 'ES', 'Archivo', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_File', 'PL', 'Plik', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_File', 'HU', 'Fájl', '0')
+		</statement>
+  
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Already_Exists_Overwrite', 'EN', 'already exists - Overwrite ?', '0')
+		</statement>  
+  
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Already_Exists_Overwrite', 'DE', 'existiert bereits - überschreiben?', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Already_Exists_Overwrite', 'FR', 'existe déjà - écraser?', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Already_Exists_Overwrite', 'NL', 'al bestaat - overschrijven?', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Already_Exists_Overwrite', 'ES', 'ya existe - sobrescribir?', '0')
+		</statement>
+		
+		<statement>
+		 	INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Already_Exists_Overwrite', 'PL', 'już istnieje - nadpisanie?', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Already_Exists_Overwrite', 'HU', 'már létezik - felülírja?', '0')
+		</statement>
+ 
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Overwrite_Warning', 'EN', 'Overwrite Warning', '0')
+		</statement> 
+ 
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Overwrite_Warning', 'DE', 'Warnung überschreiben', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Overwrite_Warning', 'FR', 'Écraser l''avertissement', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Overwrite_Warning', 'NL', 'Overschrijven waarschuwing', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Overwrite_Warning', 'ES', 'Sobrescribir advertencia', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Overwrite_Warning', 'PL', 'Nadpisywać ostrzeżenie', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Overwrite_Warning', 'HU', 'Felülírja a figyelmeztetést', '0')
+		</statement>
+
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking_Code', 'EN', 'Leaking Code', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking_Code', 'DE', 'Leckcode', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking_Code', 'FR', 'Code de fuite', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking_Code', 'NL', 'Lekkende code', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking_Code', 'ES', 'Código de fugas', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking_Code', 'PL', 'Przeciekający kod', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Leaking_Code', 'HU', 'Szivárgó kód', '0')
+		</statement>
+
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Non_Leaking_Code', 'EN', 'Non Leaking Code', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Non_Leaking_Code', 'DE', 'Nicht-undichtender Code', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Non_Leaking_Code', 'FR', 'Code non fuite', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Non_Leaking_Code', 'NL', 'Niet-lekkende code', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Non_Leaking_Code', 'ES', 'Código no fugado', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Non_Leaking_Code', 'PL', 'Nieszczelny kod', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Non_Leaking_Code', 'HU', 'Nem szivárgó kód', '0')
+		</statement>	
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Location', 'EN', 'Location (Plant)', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Location', 'DE', 'Lage (Anlage)', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Location', 'FR', 'Emplacement (plante)', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Location', 'NL', 'Locatie (plant)', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Location', 'ES', 'Ubicación (planta)', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Location', 'PL', 'Lokalizacja (roślina)', '0')
+		</statement>
+		
+		<statement>
+			INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Sample_Location', 'HU', 'Helyszín (növény)', '0')
+		</statement> 
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_REASONS] ([SAMPLE_REASON], [DESCRIPTION], [ENABLED]) VALUES (N'FAC', N'Factory Request', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_REASONS] ([SAMPLE_REASON], [DESCRIPTION], [ENABLED]) VALUES (N'INC', N'Incubation', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_REASONS] ([SAMPLE_REASON], [DESCRIPTION], [ENABLED]) VALUES (N'MHN', N'Master Hold Notice', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_REASONS] ([SAMPLE_REASON], [DESCRIPTION], [ENABLED]) VALUES (N'PRE', N'Pre Sort', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_REASONS] ([SAMPLE_REASON], [DESCRIPTION], [ENABLED]) VALUES (N'RTN', N'WMP Returns', N'Y')
+		</statement>
+		
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'BSF', N'Bottom seal', N'Bottom seal', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'CLF', N'Case Fill', N'Case Fill', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'COD', N'Coding', N'Coding', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'CUT', N'Cut', N'Cut', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'DIR', N'Dirty pouch', N'Dirty pouch', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'DMG', N'Damage', N'Damage', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'FRM', N'Forming', N'Forming', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'IDX', N'Indexing', N'Indexing', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'LAM', N'Laminate', N'Laminate', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'PRO', N'Product fill', N'Product fill', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'PUN', N'Punctured', N'Punctured', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'SLI', N'Slit', N'Slit', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'SSF', N'Side Seal', N'Side Seal', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'SWO', N'Swollen', N'Swollen', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'TSF', N'Top Seal', N'Top Seal', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_TYPE] ([DEFECT_TYPE], [DESCRIPTION], [LONG_DESCRIPTION], [OUTPUT_COLUMN], [LEAKING_DATA], [NON_LEAKING_DATA], [ENABLED]) VALUES (N'WET', N'Wet Pouch', N'Wet Pouch', N'0', N'Y', N'Y', N'Y')
+		</statement>
+		
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'BSF-01', N'Triple point fail', N'Fault at the triple point area either on the gusset or the side of the pouch where the side seal = 3mm.', N'BSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'BSF-02', N'Pouch foot seal incorrect', N'Pouch foot seal is either not present, partially formed or uneven.', N'BSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'CFL-01', N'Incorrect number', N'Incorrect number of pouches in Norreg box', N'CLF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'CFL-02', N'Poor Placement', N'Pouches not aligned in the Norreg boxes', N'CLF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'COD-01', N'Videojet Fault', N'The videojet code is either missing, incomplete, incorrect or poorly postioned (outside of the white box). ', N'COD', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'CUT-01', N'Cut', N'The pouch was damaged by something causing one or more cuts.', N'CUT', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'DIR-01', N'Secondary Contamination', N'The pouch is dirty (product residue present).', N'DIR', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'DMG-02', N'Crushed Corners', N'Crushed packaging due to position of the box on the corner of the pallet', N'DMG', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'FRM-01', N'Unglued tabs', N'Cardboard tabs not glued correctly', N'FRM', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'IDX-01', N'Indexing', N'Pouch graphic is not alligned with cut off position', N'IDX', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'LAM-01', N'Delamination', N'Outer layer of pouch is coming off', N'LAM', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'PRO-01', N'Weight Under', N'The pouch has been inadequately filled (T2 violation) and not rejected by the checkweigher. For 100g products the weight is less than 91g and for 85g products the weight is less than 76g; Or the pouch is empty.', N'PRO', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'PRO-02', N'Weight Over', N'The pouch has been significantly overfilled and not rejected by the checkweigher. For 100 grams products the weight is more than 113g and for 85g products the weight is more than 96g.', N'PRO', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'PRO-03', N'Empty Pouch', N'Totally empty pouch.', N'PRO', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'PUN-01', N'Punctured', N'The pouch was damaged by something causing one or more punctures', N'PUN', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'PUN-02', N'Bird Damage', N'Pouch is pierced by birds beak in transport', N'PUN', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'SLI-01', N'Incorrect Slitting', N'The slit cut is missing or too long/short or no alligned to the slit guide on the pack.', N'SLI', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'SSF-01', N'Narrow Side Seal', N'The side seal is below the critical limit &lt;3mm.', N'SSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'SWO-01', N'Swollen', N'TBD', N'SWO', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'TSF-01', N'Ultrasonic seal missing/incomplete', N'The ultrasonic seal is not present on the or the seal is incomplete (does not extend the full width of the pouch or is breached).', N'TSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'TSF-02', N'Ultrasonic seal creased', N'There is creasing or a crease extending through the pouch with significant amplitude.', N'TSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'TSF-03', N'Ultrasonic seal position miss-alignment', N'The ultrasonic seal is not located in the target postion. It is too close to the top of the pouch or it is formed at an angle.', N'TSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'TSF-04', N'Ultrasonic seal damaged', N'Ultrasonic seal is damaged and the aluminium layer of the laminate becomes visible or ultrasonic seal is split.', N'TSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'TSF-05', N'Thermal seal incomplete / missing', N'The thermal seal is either not present or does not seal the pouch completely.', N'TSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'TSF-06', N'Overlap', N'Visibility of the laminate. Overlap (laminate layer) greater than 3mm.', N'TSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'TSF-07', N'Folded Corner', N'The pouch has a folded corner or portion of the pouch is folded over.', N'TSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'TSF-08', N'Ultrasonic seal Aluminium Visible', N'There is Aluminium visible in the ultrasonic seal area', N'TSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'TSF-09', N'Creased', N'There are creases in the Top Seal', N'TSF', N'Y')
+		</statement>
+		
+		<statement>
+		   INSERT INTO [dbo].[APP_SAMPLE_DEFECT_ID] ([DEFECT_ID], [DESCRIPTION], [LONG_DESCRIPTION], [DEFECT_TYPE], [ENABLED]) VALUES (N'WET-01', N'Wet Pouch', N'Visible water on the pouches in the Norreg boxes.', N'WET', N'Y')
+		</statement>
+		
+		<statement>
+			INSERT INTO [dbo].[APP_SHIFT_NAMES] ([SHIFT_ID], [DESCRIPTION], [ENABLED]) VALUES ('BLUE', 'Blue', 'Y')
+		</statement>
+		
+		<statement>
+			INSERT INTO [dbo].[APP_SHIFT_NAMES] ([SHIFT_ID], [DESCRIPTION], [ENABLED]) VALUES ('GREEN', 'Green', 'Y')
+		</statement>
+		
+		<statement>
+			INSERT INTO [dbo].[APP_SHIFT_NAMES] ([SHIFT_ID], [DESCRIPTION], [ENABLED]) VALUES ('RED', 'Red', 'Y')
+		</statement>
+		
+		<statement>
+			INSERT INTO [dbo].[APP_SHIFT_NAMES] ([SHIFT_ID], [DESCRIPTION], [ENABLED]) VALUES ('YELLOW', 'Yellow', 'Y')
+		</statement>
+		
+		<statement>
+			INSERT INTO [dbo].[APP_SUPPLIER] (SUPPLIER_ID, SUPPLIER_TYPE, DESCRIPTION, ENABLED) VALUES ('SUPP1', 'LAMINATE', 'Supplier A', 'Y')
+		</statement>
+		
+		<statement>
+			INSERT INTO [dbo].[APP_SUPPLIER] (SUPPLIER_ID, SUPPLIER_TYPE, DESCRIPTION, ENABLED) VALUES ('SUPP2', 'LAMINATE', 'Supplier B', 'Y')
+		</statement>	
+    
+</DDL>

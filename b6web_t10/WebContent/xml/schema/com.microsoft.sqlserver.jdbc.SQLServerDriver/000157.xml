@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Clipboard_Copy','PL','Skopiuj do schowka','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Clipboard_Copy','HU','Másolja a vágólapra','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Clipboard_Copy','FR','Copier dans le presse-papier','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Clipboard_Copy','DE','In die Zwischenablage kopieren','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Clipboard_Copy','ES','Copiar al portapapeles','0')
+    </statement>
+    
+     <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Clipboard_Copy','NL','Kopieer naar klembord','0')
+    </statement>
+    
+     <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Clipboard_Copy','IT','Copia negli appunti','0')
+    </statement>
+    
+    <statement>
+        INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT,MNEMONIC) VALUES ('lbl_Clipboard_Copy','EN','Copy to Clipboard','0')
+    </statement>
+         
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_REPORT_TIME]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [REPORT_TIME]
+		)
+    </statement>
+
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_LOCATION_ID]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [WASTE_LOCATION_ID]
+		)
+    </statement>
+
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_CONTAINER_ID]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [WASTE_CONTAINER_ID]
+		)
+    </statement>
+
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_MATERIAL_ID]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [WASTE_MATERIAL_ID]
+		)
+    </statement>
+
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_PO]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [PROCESS_ORDER]
+		)
+    </statement>
+
+    <statement>
+        CREATE NONCLUSTERED INDEX [IDX_WASTE_REASON_ID]
+		ON [dbo].[APP_WASTE_LOG] (
+		  [WASTE_REASON_ID]
+		)   
+    </statement>
+       
+</DDL>

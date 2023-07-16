@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+    <statement>
+		CREATE TABLE `APP_QM_PANEL` (
+		  `PANEL_ID` int NOT NULL,
+		  `PANEL_DATE` datetime DEFAULT NULL,
+		  `DESCRIPTION` varchar(40) DEFAULT NULL,
+		  `PLANT` varchar(40) DEFAULT NULL,
+		  `STATUS` varchar(15) DEFAULT NULL,
+		  `CREATED` datetime DEFAULT NULL,
+		  `UPDATED` datetime DEFAULT NULL,
+		  PRIMARY KEY (`PANEL_ID`) USING BTREE
+		) ENGINE = InnoDB ROW_FORMAT = Dynamic;
+    </statement>
+    
+    <statement>
+	    CREATE TABLE `APP_QM_PANEL_TRAY` (
+		  `PANEL_ID` int NOT NULL,
+		  `TRAY_ID` int NOT NULL,
+		  `DESCRIPTION` varchar(40) DEFAULT NULL,
+		  `UPDATED` datetime DEFAULT NULL,
+		  `CREATED` datetime DEFAULT NULL,
+		  PRIMARY KEY (`PANEL_ID`,`TRAY_ID`) USING BTREE
+		) ENGINE = InnoDB ROW_FORMAT = Dynamic;
+    </statement>
+    
+    <statement>
+		CREATE TABLE `APP_QM_PANEL_TRAY_SAMPLES` (
+		  `TRAY_ID` int NOT NULL,
+		  `SAMPLE_ID` int NOT NULL,
+		  `SEQUENCE_ID` bigint NOT NULL,
+		  `UPDATED` datetime DEFAULT NULL,
+		  `CREATED` datetime DEFAULT NULL,
+		  PRIMARY KEY (`TRAY_ID`,`SAMPLE_ID`) USING BTREE
+		) ENGINE = InnoDB ROW_FORMAT = Dynamic;
+    </statement>
+    
+    <statement>
+		CREATE TABLE `APP_QM_PANEL_TRAY_RESULTS` (
+		  `TRAY_ID` int NOT NULL,
+		  `SAMPLE_ID` int NOT NULL,
+		  `USER_ID` varchar(20) NOT NULL,
+		  `TEST_ID` varchar(50) DEFAULT NULL,
+		  `VALUE` varchar(50) DEFAULT NULL,
+		  `UPDATED` datetime DEFAULT NULL,
+		  `CREATED` datetime DEFAULT NULL,
+		  PRIMARY KEY (`TRAY_ID`,`SAMPLE_ID`,`USER_ID`) USING BTREE
+		) ENGINE = InnoDB ROW_FORMAT = Dynamic; 
+    </statement>
+    
+    <statement>
+	    CREATE TABLE `APP_QM_USERS` (
+		  `USER_ID` varchar(20) NOT NULL,
+		  `FIRST_NAME` varchar(40) DEFAULT NULL,
+		  `SURNAME` varchar(40) DEFAULT NULL,
+		  `ENABLED` varchar(1) DEFAULT 'Y',
+		  PRIMARY KEY (`USER_ID`)
+		) ENGINE = InnoDB ROW_FORMAT = Dynamic; 
+    </statement>
+
+</DDL>

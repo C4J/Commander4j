@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+   <statement>        
+		CREATE TABLE APP_EQUIPMENT_TYPE (
+		  EQUIPMENT_TYPE varchar(15) NOT NULL,
+		  DESCRIPTION varchar(40) DEFAULT NULL,
+		  WEIGHT_KG decimal(18,3) DEFAULT '0.000',
+		  ENABLED varchar(1) DEFAULT 'Y',
+		  PRIMARY KEY (EQUIPMENT_TYPE)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+    </statement>
+    
+   <statement>        
+		CREATE TABLE `APP_DESPATCH_EQUIPMENT_TYPE` (
+		  `DESPATCH_NO` varchar(18) NOT NULL,
+		  `EQUIPMENT_TYPE` varchar(15) NOT NULL,
+		  `QUANTITY` decimal(22,0) DEFAULT '0',
+		  PRIMARY KEY (`DESPATCH_NO`,`EQUIPMENT_TYPE`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+    </statement>
+    
+   <statement>        
+		ALTER TABLE APP_PALLET ADD COLUMN EQUIPMENT_TYPE varchar(15) NULL NULL DEFAULT '' AFTER UPDATED_BY_USER_ID;
+    </statement>
+    
+   <statement>        
+		ALTER TABLE APP_PALLET_HISTORY ADD COLUMN EQUIPMENT_TYPE varchar(15) NULL NULL DEFAULT '' AFTER DECISION;
+    </statement>
+    
+   <statement>        
+			UPDATE
+			    APP_PALLET PAL,
+			    APP_MATERIAL MAT
+			SET
+			    PAL.EQUIPMENT_TYPE = MAT.EQUIPMENT_TYPE
+			WHERE
+			    PAL.MATERIAL = MAT.MATERIAL
+					AND PAL.EQUIPMENT_TYPE = '' AND MAT.EQUIPMENT_TYPE > ''
+    </statement>
+    	
+   <statement>        
+			UPDATE
+			    APP_PALLET_HISTORY PAL,
+			    APP_MATERIAL MAT
+			SET
+			    PAL.EQUIPMENT_TYPE = MAT.EQUIPMENT_TYPE
+			WHERE
+			    PAL.MATERIAL = MAT.MATERIAL
+					AND PAL.EQUIPMENT_TYPE = '' AND MAT.EQUIPMENT_TYPE > ''
+    </statement>
+    
+   <statement>        
+		ALTER TABLE `APP_DESPATCH` ADD COLUMN `TOTAL_EQUIPMENT` decimal(22, 0) NULL DEFAULT 0 AFTER `JOURNEY_REF`;
+    </statement>
+
+   <statement>        
+		CREATE OR REPLACE VIEW view_pallet_expiry AS SELECT
+			p.SSCC AS SSCC,
+			p.LOCATION_ID AS LOCATION_ID,
+			p.MATERIAL AS MATERIAL,
+			p.BATCH_NUMBER AS BATCH_NUMBER,
+			p.PROCESS_ORDER AS PROCESS_ORDER,
+			p.QUANTITY AS QUANTITY,
+			p.UOM AS UOM,
+			p.DATE_OF_MANUFACTURE AS DATE_OF_MANUFACTURE,
+			p.STATUS AS STATUS,
+			p.EAN AS EAN,
+			p.VARIANT AS VARIANT,
+			p.DESPATCH_NO AS DESPATCH_NO,
+			p.CONFIRMED AS CONFIRMED,
+			p.LAYERS AS LAYERS,
+			p.SSCC_EXPIRY_DATE AS SSCC_EXPIRY_DATE,
+			p.CUSTOMER_ID AS CUSTOMER_ID,
+			p.MHN_NUMBER AS MHN_NUMBER,
+			p.DECISION AS DECISION,
+			b.EXPIRY_DATE AS EXPIRY_DATE,
+			m.DESCRIPTION AS DESCRIPTION,
+			m.OLD_MATERIAL AS OLD_MATERIAL,
+			c.CUSTOMER_NAME AS CUSTOMER_NAME,
+			c.PRINT_ON_LABEL AS PRINT_ON_LABEL,
+			p.DATE_CREATED AS DATE_CREATED,
+			p.CREATED_BY_USER_ID AS CREATED_BY_USER_ID,
+			p.DATE_UPDATED AS DATE_UPDATED,
+			p.UPDATED_BY_USER_ID AS UPDATED_BY_USER_ID,
+			p.EQUIPMENT_TYPE AS EQUIPMENT_TYPE,
+			m.GROSS_WEIGHT AS GROSS_WEIGHT,
+			m.NET_WEIGHT AS NET_WEIGHT,
+			m.WEIGHT_UOM AS WEIGHT_UOM,
+			D.DATA AS PART_NO,
+			E.DATA AS CASE_CONTENT,
+			o.REQUIRED_RESOURCE AS REQUIRED_RESOURCE 
+		FROM
+			((((((
+									app_pallet p
+									LEFT JOIN app_material_batch b ON (((
+												b.MATERIAL = p.MATERIAL 
+												) 
+										AND ( b.BATCH_NUMBER = p.BATCH_NUMBER ))))
+								LEFT JOIN app_material m ON ((
+										m.MATERIAL = p.MATERIAL 
+									)))
+							LEFT JOIN app_customer c ON ((
+									c.CUSTOMER_ID = p.CUSTOMER_ID 
+								)))
+						LEFT JOIN app_process_order o ON ((
+								o.PROCESS_ORDER = p.PROCESS_ORDER 
+							)))
+					LEFT JOIN app_material_customer_data D ON (((
+								D.MATERIAL = p.MATERIAL 
+								) 
+							AND ( D.CUSTOMER_ID = p.CUSTOMER_ID ) 
+						AND ( D.DATA_ID = 'PART_NO' ))))
+				LEFT JOIN app_material_customer_data E ON (((
+							E.MATERIAL = p.MATERIAL 
+							) 
+					AND ( E.CUSTOMER_ID = p.CUSTOMER_ID ) 
+			AND ( E.DATA_ID = 'CASE_CONTENT' ))));
+    </statement>
+		
+   <statement>        
+		CREATE OR REPLACE  VIEW view_pallet_history AS SELECT
+			app_pallet_history.TRANSACTION_REF AS TRANSACTION_REF,
+			app_pallet_history.TRANSACTION_TYPE AS TRANSACTION_TYPE,
+			app_pallet_history.TRANSACTION_SUBTYPE AS TRANSACTION_SUBTYPE,
+			app_pallet_history.TRANSACTION_DATE AS TRANSACTION_DATE,
+			app_pallet_history.SSCC AS SSCC,
+			app_pallet_history.LOCATION_ID AS LOCATION_ID,
+			app_pallet_history.MATERIAL AS MATERIAL,
+			app_pallet_history.BATCH_NUMBER AS BATCH_NUMBER,
+			app_pallet_history.PROCESS_ORDER AS PROCESS_ORDER,
+			app_pallet_history.QUANTITY AS QUANTITY,
+			app_pallet_history.UOM AS UOM,
+			app_pallet_history.DATE_OF_MANUFACTURE AS DATE_OF_MANUFACTURE,
+			app_pallet_history.STATUS AS STATUS,
+			app_pallet_history.EAN AS EAN,
+			app_pallet_history.VARIANT AS VARIANT,
+			app_pallet_history.DESPATCH_NO AS DESPATCH_NO,
+			app_pallet_history.USER_ID AS USER_ID,
+			app_pallet_history.CONFIRMED AS CONFIRMED,
+			app_pallet_history.LAYERS AS LAYERS,
+			app_pallet_history.SSCC_EXPIRY_DATE AS SSCC_EXPIRY_DATE,
+			app_pallet_history.CUSTOMER_ID AS CUSTOMER_ID,
+			app_pallet_history.MHN_NUMBER AS MHN_NUMBER,
+			app_pallet_history.DECISION AS DECISION,
+			app_pallet_history.EQUIPMENT_TYPE AS EQUIPMENT_TYPE 
+		FROM
+			app_pallet_history;
+    </statement>
+	
+	
+   <statement>        
+		CREATE OR REPLACE VIEW view_pallet_history_expiry AS SELECT
+			p.TRANSACTION_REF AS TRANSACTION_REF,
+			p.TRANSACTION_TYPE AS TRANSACTION_TYPE,
+			p.TRANSACTION_SUBTYPE AS TRANSACTION_SUBTYPE,
+			p.TRANSACTION_DATE AS TRANSACTION_DATE,
+			p.SSCC AS SSCC,
+			p.LOCATION_ID AS LOCATION_ID,
+			p.MATERIAL AS MATERIAL,
+			p.BATCH_NUMBER AS BATCH_NUMBER,
+			p.PROCESS_ORDER AS PROCESS_ORDER,
+			p.QUANTITY AS QUANTITY,
+			p.UOM AS UOM,
+			p.DATE_OF_MANUFACTURE AS DATE_OF_MANUFACTURE,
+			p.STATUS AS STATUS,
+			p.EAN AS EAN,
+			p.VARIANT AS VARIANT,
+			p.DESPATCH_NO AS DESPATCH_NO,
+			p.USER_ID AS USER_ID,
+			p.CONFIRMED AS CONFIRMED,
+			p.LAYERS AS LAYERS,
+			p.SSCC_EXPIRY_DATE AS SSCC_EXPIRY_DATE,
+			p.CUSTOMER_ID AS CUSTOMER_ID,
+			p.MHN_NUMBER AS MHN_NUMBER,
+			p.DECISION AS DECISION,
+			p.EQUIPMENT_TYPE AS EQUIPMENT_TYPE,
+			b.EXPIRY_DATE AS EXPIRY_DATE,
+			m.DESCRIPTION AS DESCRIPTION 
+		FROM
+			((
+					app_pallet_history p
+					LEFT JOIN app_material m ON ((
+							m.MATERIAL = p.MATERIAL 
+						)))
+				LEFT JOIN app_material_batch b ON (((
+							b.MATERIAL = p.MATERIAL 
+						) 
+			AND ( b.BATCH_NUMBER = p.BATCH_NUMBER ))));
+   </statement>
+ 
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_DESPATCH_EQUIPMENT');
+     </statement>
+  <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_EQUIPMENT_TYPE');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_ADMIN_PALLET_EDIT_EQUIPMENT');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_EQUIPMENT_TYPE_ADD');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_EQUIPMENT_TYPE_DELETE');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'FRM_EQUIPMENT_TYPE_EDIT');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'MENU_EQUIPMENT');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'RPT_EQUIPMENT_TYPE');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('EQUIPMENT', 'FRM_ADMIN_EQUIPMENT_TYPE');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('EQUIPMENT', 'FRM_ADMIN_PALLET_EDIT_EQUIPMENT');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('EQUIPMENT', 'FRM_EQUIPMENT_TYPE_ADD');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('EQUIPMENT', 'FRM_EQUIPMENT_TYPE_DELETE');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('EQUIPMENT', 'FRM_EQUIPMENT_TYPE_EDIT');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('EQUIPMENT', 'MENU_EQUIPMENT');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('EQUIPMENT', 'RPT_EQUIPMENT_TYPE');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('PALLET', 'FRM_ADMIN_PALLET_EDIT_EQUIPMENT');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_GROUPS (GROUP_ID, DESCRIPTION) VALUES ('EQUIPMENT', 'Equipment - Pallet Types');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Add', 'DE', 'Ausrüstung hinzufügen', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Add', 'EN', 'Add Equipment', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Add', 'ES', 'Agregar equipo', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Add', 'FR', 'Ajouter de l''équipement', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Add', 'HU', 'Berendezés hozzáadása', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Add', 'IT', 'Aggiungi attrezzatura', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Add', 'NL', 'Apparatuur toevoegen', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Add', 'PL', 'Dodaj sprzęt', '0');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Delete', 'DE', 'Ausrüstung löschen', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Delete', 'EN', 'Delete Equipment', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Delete', 'ES', 'Eliminar equipo', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Delete', 'FR', 'Supprimer l''équipement', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Delete', 'HU', 'Berendezés törlése', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Delete', 'IT', 'Elimina attrezzatura', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Delete', 'NL', 'Apparatuur verwijderen', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Equipment_Type_Delete', 'PL', 'Usuń sprzęt', '0');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Select_Equipment_Type', 'DE', 'Gerätetyp auswählen', NULL);
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Select_Equipment_Type', 'EN', 'Select Equipment Type', NULL);
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Select_Equipment_Type', 'ES', 'Seleccione el tipo de equipo', NULL);
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Select_Equipment_Type', 'FR', 'Sélectionnez le type d''équipement', NULL);
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Select_Equipment_Type', 'HU', 'Válassza ki a berendezés típusát', NULL);
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Select_Equipment_Type', 'IT', 'Seleziona il tipo di attrezzatura', NULL);
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Select_Equipment_Type', 'NL', 'Selecteer apparatuurtype', NULL);
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('dlg_Select_Equipment_Type', 'PL', 'Wybierz typ sprzętu', NULL);
+    </statement>
+
+
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('FRM_ADMIN_EQUIPMENT_TYPE', 'DE', 'Ausrüstung', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('FRM_ADMIN_EQUIPMENT_TYPE', 'EN', 'Equipment Admin', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('FRM_ADMIN_EQUIPMENT_TYPE', 'NL', 'Apparatuurbeheerder', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('FRM_ADMIN_EQUIPMENT_TYPE', 'ES', 'Equipo', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('FRM_ADMIN_EQUIPMENT_TYPE', 'FR', 'Équipement', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('FRM_ADMIN_EQUIPMENT_TYPE', 'HU', 'Felszerelés', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('FRM_ADMIN_EQUIPMENT_TYPE', 'IT', 'Attrezzatura', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('FRM_ADMIN_EQUIPMENT_TYPE', 'PL', 'Ekwipunek', '0');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_of', 'DE', 'Menge von', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_of', 'EN', 'Quantity of', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_of', 'ES', 'Cantidad de', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_of', 'FR', 'Quantité de', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_of', 'HU', 'Mennyisége', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_of', 'IT', 'Quantità di', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_of', 'PL', 'Ilość', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_of', 'NL', 'Hoeveelheid van', '0');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_Of_Equipment', 'DE', 'Menge der Ausrüstung', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_Of_Equipment', 'EN', 'Qty of Equipment', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_Of_Equipment', 'ES', 'Cantidad de equipo', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_Of_Equipment', 'FR', 'Quantité d''équipement', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_Of_Equipment', 'HU', 'A berendezések mennyisége', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_Of_Equipment', 'IT', 'Quantità di attrezzatura', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_Of_Equipment', 'PL', 'Ilość sprzętu', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Quantity_Of_Equipment', 'NL', 'Hoeveelheid apparatuur', '0');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Weight', 'DE', 'Gewicht', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Weight', 'EN', 'Weight', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Weight', 'ES', 'Peso', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Weight', 'FR', 'Poids', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Weight', 'HU', 'Súly', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Weight', 'IT', 'Il peso', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Weight', 'PL', 'Waga', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('lbl_Weight', 'NL', 'Gewicht', '0');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_EQUIPMENT_TYPE', 'DE', 'Ausrüstung', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_EQUIPMENT_TYPE', 'EN', 'Equipment Admin', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_EQUIPMENT_TYPE', 'ES', 'Equipo', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_EQUIPMENT_TYPE', 'FR', 'Équipement', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_EQUIPMENT_TYPE', 'HU', 'Felszerelés', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_EQUIPMENT_TYPE', 'IT', 'Attrezzatura', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_EQUIPMENT_TYPE', 'PL', 'Ekwipunek', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_ADMIN_EQUIPMENT_TYPE', 'NL', 'Apparatuurbeheerder', '0');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_EQUIPMENT_TYPE_EDIT', 'DE', 'Ausrüstungseigenschaften', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_EQUIPMENT_TYPE_EDIT', 'EN', 'Equipment Properties', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_EQUIPMENT_TYPE_EDIT', 'ES', 'Propiedades del equipo', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_EQUIPMENT_TYPE_EDIT', 'FR', 'Propriétés de l''équipement', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_EQUIPMENT_TYPE_EDIT', 'HU', 'A berendezés tulajdonságai', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_EQUIPMENT_TYPE_EDIT', 'IT', 'Proprietà dell''attrezzatura', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_EQUIPMENT_TYPE_EDIT', 'PL', 'Właściwości sprzętu', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_EQUIPMENT_TYPE_EDIT', 'NL', 'Apparatuureigenschappen', '0');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_EQUIPMENT', 'DE', 'Ausrüstung', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_EQUIPMENT', 'EN', 'Equipment', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_EQUIPMENT', 'ES', 'Equipo', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_EQUIPMENT', 'FR', 'Équipement', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_EQUIPMENT', 'HU', 'Felszerelés', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_EQUIPMENT', 'IT', 'Attrezzatura', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_EQUIPMENT', 'PL', 'Ekwipunek', '0');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_MENU_EQUIPMENT', 'NL', 'Apparatuur', '0');
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('FRM_ADMIN_EQUIPMENT_TYPE', 'MENU_EQUIPMENT', 0);
+    </statement>
+   <statement>        
+		INSERT INTO SYS_MENUS (MODULE_ID, MENU_ID, SEQUENCE_ID) VALUES ('MENU_EQUIPMENT', 'root', 12);
+    </statement>
+
+   <statement>        
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_DESPATCH_EQUIPMENT', 'N', 'Y', 'FORM', 'Despatch', 0, 'despatch.gif', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_DESPATCH', '', '');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_EQUIPMENT_TYPE', 'N', 'Y', 'FORM', 'Equipment Admin', 0, 'equipment.png', '', '', '', '', 'Y', 'N', 1, '', 'mod_FRM_ADMIN_EQUIPMENT_TYPE', '', '');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_PALLET_EDIT_EQUIPMENT', 'N', 'Y', 'FUNCTION', '', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_ADMIN_PALLET_EQUIPMENT', 'N', 'Y', 'FORM', '', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_EQUIPMENT_TYPE_ADD', 'N', 'Y', 'FUNCTION', '', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_EQUIPMENT_TYPE_DELETE', 'N', 'Y', 'FUNCTION', '', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('FRM_EQUIPMENT_TYPE_EDIT', 'N', 'Y', 'FUNCTION', '1 ', 0, '', '', '', '', '', 'Y', 'N', 1, '', '', '', '');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('MENU_EQUIPMENT', 'N', 'Y', 'MENU', 'Equipment Menu', 0, '', '', '', '', '', 'Y', 'N', 1, '', 'mod_MENU_EQUIPMENT', '', '');
+    </statement>
+   <statement>        
+		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY, AUTO_LABELLER_COMMAND_FILE, AUTO_LABELLER_LABEL_FILE) VALUES ('RPT_EQUIPMENT_TYPE', 'N', 'Y', 'REPORT', '1 ', 0, '', '', 'equipment_types.jrxml', '', '', 'Y', 'N', 1, 'Standard', '', '', '');
+    </statement>
+	
+   <statement>  
+		INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, WEIGHT_KG, ENABLED) VALUES ('BEU', 'Blue Euro pallet (CHEP) (1200x 800)', 30.000, 'Y');
+	</statement>
+	<statement>  
+		INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, WEIGHT_KG, ENABLED) VALUES ('BU', 'Bulk', 30.000, 'Y');
+    </statement>
+   <statement>  
+		INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, WEIGHT_KG, ENABLED) VALUES ('CHP', 'CHEP standard pallet (1200 x 1000)', 30.000, 'Y');
+    </statement>
+   <statement>  
+		INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, WEIGHT_KG, ENABLED) VALUES ('DOL', 'Dolly Pallet', 30.000, 'Y');
+    </statement>
+   <statement>  
+		INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, WEIGHT_KG, ENABLED) VALUES ('DRM', 'Drum', 30.000, 'Y');  
+    </statement> 
+	<statement>  
+		INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, WEIGHT_KG, ENABLED) VALUES ('EUR', 'White Euro pallet (1200x800)', 30.000, 'Y');
+    </statement>
+   <statement>  
+		INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, WEIGHT_KG, ENABLED) VALUES ('IBC', 'Intermediate Bulk Container', 30.000, 'Y');
+    </statement>
+   <statement>  
+		INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, WEIGHT_KG, ENABLED) VALUES ('LPR', 'Red LPR standard  pallet (1200x1000)', 30.000, 'Y');    
+	</statement>
+   <statement>  
+		INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, WEIGHT_KG, ENABLED) VALUES ('WBD', 'White pallet single use (various sizes)', 30.000, 'Y');
+    </statement>
+
+    <statement>
+   		 INSERT INTO APP_EQUIPMENT_TYPE (EQUIPMENT_TYPE, DESCRIPTION, ENABLED,WEIGHT_KG) SELECT DISTINCT(EQUIPMENT_TYPE),'Auto created' as DESCRIPTION,'Y' as ENABLED,30 AS WEIGHT_KG FROM APP_MATERIAL WHERE EQUIPMENT_TYPE > '' AND EQUIPMENT_TYPE NOT IN (SELECT EQUIPMENT_TYPE FROM APP_EQUIPMENT_TYPE)
+    </statement>
+
+    
+    <statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'EN', 'Update Pallets', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'DE', 'Paletten aktualisieren', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'FR', 'Mettre à jour les palettes', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'SP', 'Actualizar paletas', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'IT', 'Aggiorna pallet', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'NL', 'Pallets bijwerken', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'PL', 'Aktualizuj palety', 'U')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Update_Pallets', 'HU', 'Raklapok frissítése', 'U')
+	</statement>
+ 
+	<statement>
+		UPDATE SYS_MODULES SET REPORT_FILENAME = 'despatch2.jrxml' WHERE REPORT_FILENAME = 'despatch.jrxml' AND MODULE_ID IN ('RPT_DESPATCH','RPT_DESPATCH_EMAIL','RPT_DESPATCH_SERVICE')
+	</statement>
+	
+	<statement>
+		UPDATE SYS_MODULES SET REPORT_FILENAME = 'fhf_despatch2.jrxml' WHERE REPORT_FILENAME = 'fhf_despatch.jrxml' AND MODULE_ID IN ('RPT_DESPATCH','RPT_DESPATCH_EMAIL','RPT_DESPATCH_SERVICE')
+	</statement>
+	
+</DDL>
