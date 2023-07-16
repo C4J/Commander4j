@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE DDL SYSTEM "schema.dtd">
-<DDL>
-       
-	<statement>	
-		UPDATE SYS_MODULES SET RF_ACTIVE = 'Y' WHERE MODULE_ID = 'FRM_ADMIN_WASTE_LOG'
-	</statement>
-	
-</DDL>

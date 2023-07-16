@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE DDL SYSTEM "schema.dtd">
-<DDL>
-
-<statement>
-		INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('SSCC_LOCATION_VALIDATION','False','Check SSCC Material Locations');
-</statement>
-
-</DDL>
