@@ -34,7 +34,7 @@ import java.util.LinkedList;
 
 import javax.swing.Icon;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
@@ -55,7 +55,7 @@ public class JDBGroupPermissions
 	private String dbErrorMessage;
 	private String dbGroupId;
 	private String dbModuleId;
-	private Logger logger = Logger.getLogger(JDBGroupPermissions.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBGroupPermissions.class);
 	private String hostID;
 	private String sessionID;
 	private JDBAuditPermissions auditPerm;

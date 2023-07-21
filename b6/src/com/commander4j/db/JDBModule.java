@@ -37,7 +37,7 @@ import java.util.LinkedList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JMenuOption;
@@ -77,7 +77,7 @@ public class JDBModule
 	private String dbPrintPreview;
 	private String dbPrintDialog;
 	private int dbPrintCopies;
-	private final Logger logger = Logger.getLogger(JDBModule.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBModule.class);
 	public static int field_module_id = 35;
 	public static int field_rf_active = 1;
 	public static int field_dk_active = 1;

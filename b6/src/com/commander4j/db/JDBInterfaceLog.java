@@ -33,7 +33,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.sys.Common;
@@ -72,7 +72,7 @@ public class JDBInterfaceLog
 	public static int field_workstation_id = 45;
 	public static int field_filename = 150;
 
-	private final Logger logger = Logger.getLogger(JDBInterfaceLog.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBInterfaceLog.class);
 
 	private String hostID;
 

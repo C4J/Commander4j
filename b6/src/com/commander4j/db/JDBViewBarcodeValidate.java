@@ -31,7 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -54,7 +54,7 @@ public class JDBViewBarcodeValidate {
 
 	private String hostID;
 	private String sessionID;
-	final Logger logger = Logger.getLogger(JDBViewBarcodeValidate.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBViewBarcodeValidate.class);
 
 	public String getProcessOrder()
 	{

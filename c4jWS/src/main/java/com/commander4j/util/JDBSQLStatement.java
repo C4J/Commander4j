@@ -32,7 +32,7 @@ import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.c4jWS.Common;
 
@@ -50,7 +50,7 @@ public class JDBSQLStatement implements Comparable<String>
 
 	private String xmlfilename;
 
-	private final Logger logger = Logger.getLogger(JDBSQLStatement.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBSQLStatement.class);
 	private boolean statementsLoaded = false;
 
 

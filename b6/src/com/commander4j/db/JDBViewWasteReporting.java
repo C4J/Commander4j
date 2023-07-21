@@ -34,7 +34,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;
 
@@ -82,7 +82,7 @@ public class JDBViewWasteReporting
 	private BigDecimal 		dbCostPerKg;	
 	private BigDecimal 		dbCost;
 	
-	private final Logger logger = Logger.getLogger(JDBViewWasteReporting.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBViewWasteReporting.class);
 	private String hostID;
 	private String sessionID;
 

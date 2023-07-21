@@ -78,8 +78,9 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
 
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBModule;
@@ -507,7 +508,7 @@ public class JUtility
 		}
 		catch (ParseException e)
 		{
-			final Logger logger = Logger.getLogger(JUtility.class);
+			final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JUtility.class);
 			logger.error(e.getMessage());
 			str = "0";
 			result = new BigDecimal("0");
@@ -1520,18 +1521,21 @@ public class JUtility
 	 * @param filename
 	 *            String
 	 */
+
+	
 	public static void initLogging(String filename)
 	{
 		if (filename.isEmpty())
 		{
-			// filename = System.getProperty("user.dir") + File.separator +
-			// "xml" + File.separator + "log" + File.separator + "log4j.xml";
-			filename = "." + File.separator + "xml" + File.separator + "log" + File.separator + "log4j.xml";
+			filename = "xml" + File.separator + "log" + File.separator + "log4j2.xml";
 		}
 
-		DOMConfigurator.configure(filename);
+		LoggerContext context = (org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false);
+		File file = new File(filename);
 
-		// BasicConfigurator.configure();
+		// this will force a reconfiguration
+		context.setConfigLocation(file.toURI());
+
 	}
 
 	/**

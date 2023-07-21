@@ -1,7 +1,10 @@
 package com.commander4j.c4jWS;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
+import java.io.File;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
 
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -10,16 +13,20 @@ import jakarta.servlet.annotation.WebListener;
 @WebListener
 public class AppServletContextListener implements ServletContextListener
 {
-	private Logger logger = Logger.getLogger(AppServletContextListener.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(AppServletContextListener.class);
 	
 	public void contextInitialized(ServletContextEvent sce)
 	{
 		String uniqueID = "service";
 		Common.applicationMode = "Servlet";
-		String logfilename = sce.getServletContext().getRealPath("/xml/log/log4j.xml");
+		String logfilename = sce.getServletContext().getRealPath("/xml/log/log4j2.xml");
 		String xmlfilename = sce.getServletContext().getRealPath("/xml/hosts/hosts.xml");
 		
-		DOMConfigurator.configure(logfilename);
+		LoggerContext context = (org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false);
+		File file = new File(logfilename);
+
+		// this will force a reconfiguration
+		context.setConfigLocation(file.toURI());
 		
 		logger.debug("contextInitialized ["+sce.getServletContext().getServletContextName()+"]");
 		
@@ -47,7 +54,7 @@ public class AppServletContextListener implements ServletContextListener
 		Common.hostList.getHost(Common.selectedHostID).disconnectAll();
 		
 		logger.debug("contextDestroyed ["+sce.getServletContext().getServletContextName()+"]");
-		logger.removeAllAppenders();
+
 		logger = null;
 	}
 

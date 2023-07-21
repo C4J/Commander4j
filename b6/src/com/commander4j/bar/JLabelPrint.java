@@ -56,7 +56,7 @@ import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.Copies;
 import javax.swing.JOptionPane;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBCustomer;
@@ -81,7 +81,7 @@ public class JLabelPrint
 	private PreparedStatement v_ps;
 	private HashMap<String, String> variables = new HashMap<String, String>();
 	private HashMap<String, String> expanded_variables = new HashMap<String, String>();
-	private final Logger logger = Logger.getLogger(JLabelPrint.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JLabelPrint.class);
 	private JDBControl ctrl = new JDBControl(Common.selectedHostID, Common.sessionID);
 	private JDBProcessOrder po = new JDBProcessOrder(Common.selectedHostID, Common.sessionID);
 	private JDBMaterial mat = new JDBMaterial(Common.selectedHostID, Common.sessionID);

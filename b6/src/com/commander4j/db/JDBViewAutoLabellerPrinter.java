@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -51,7 +51,7 @@ public class JDBViewAutoLabellerPrinter {
 	private JDBLabelData labdat;
 	private JDBModule modules;
 	private JDBPrinters prints;
-	private final Logger logger = Logger.getLogger(JDBViewAutoLabellerPrinter.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBViewAutoLabellerPrinter.class);
 
 	public JDBViewAutoLabellerPrinter(String host, String session) {
 		setHostID(host);

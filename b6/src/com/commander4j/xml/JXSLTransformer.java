@@ -32,7 +32,7 @@ import javax.xml.transform.Templates;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 public class JXSLTransformer
 {
@@ -41,7 +41,7 @@ public class JXSLTransformer
 	private Source xsl;
 	@SuppressWarnings("unused")
 	private Templates stylesheet;
-	private final Logger logger = Logger.getLogger(JXSLTransformer.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JXSLTransformer.class);
 
 	public JXSLTransformer(String xslFilename)
 	{

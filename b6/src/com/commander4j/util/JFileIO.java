@@ -36,7 +36,7 @@ import java.text.NumberFormat;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
@@ -47,7 +47,7 @@ public class JFileIO
 	private String errorMessage = "";
 	private String filename = "";
 	private String shortfilename = "";
-	private final Logger logger = Logger.getLogger(JFileIO.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JFileIO.class);
 
 	public String getShortFilename()
 	{

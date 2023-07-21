@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -54,7 +54,7 @@ public class JDBSampleDefectIDs
 	public static int field_sample_defect_type = 15;
 	public static int field_description = 40;
 	public static int field_long_description = 255;
-	private final Logger logger = Logger.getLogger(JDBSampleDefectIDs.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBSampleDefectIDs.class);
 	private String hostID;
 	private String sessionID;
 

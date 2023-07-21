@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSessionBindingEvent;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBControl;
@@ -44,7 +44,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 	private static final long serialVersionUID = 1;
 	private String xmlfilename;
 	private String logfilename;
-	private Logger logger = Logger.getLogger(Process.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(Process.class);
 	private JEANBarcode bcode;
 	private boolean bcodeLoaded = false;
 	private Integer despatchListSize = 8;
@@ -681,7 +681,6 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		Common.hostList.disconnectAll();
 		Common.userList.clear();
 		JHost.deRegisterDrivers();
-		logger.removeAllAppenders();
 		logger = null;
 
 	}
@@ -1089,7 +1088,7 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 		Common.paths.put("view.oracle.jdbc.driver.OracleDriver.xml", getServletContext().getRealPath("/xml/view/view.oracle.jdbc.driver.OracleDriver.xml"));
 
 		xmlfilename = getServletContext().getRealPath("/xml/hosts/hosts.xml");
-		logfilename = getServletContext().getRealPath("/xml/log/log4j.xml");
+		logfilename = getServletContext().getRealPath("/xml/log/log4j2.xml");
 		JUtility.initLogging(logfilename);
 
 		Common.hostList.loadHosts(xmlfilename);

@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -53,7 +53,7 @@ public class JDBSuppliers
 	public static int field_supplier_id = 15;
 	public static int field_supplier_type = 12;
 	public static int field_description = 80;
-	private final Logger logger = Logger.getLogger(JDBSuppliers.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBSuppliers.class);
 	private String hostID;
 	private String sessionID;
 

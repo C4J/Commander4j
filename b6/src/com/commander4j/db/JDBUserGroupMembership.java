@@ -35,7 +35,7 @@ import java.util.LinkedList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -48,7 +48,7 @@ public class JDBUserGroupMembership
 	private Exception db_exception;
 	private String db_group_id;
 	private String db_user_id;
-	final Logger logger = Logger.getLogger(JDBUserGroupMembership.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBUserGroupMembership.class);
 	private String hostID;
 	private String sessionID;
 	private JDBAuditPermissions auditPerm;

@@ -32,7 +32,7 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.install4j.api.context.UserCanceledException;
@@ -45,7 +45,7 @@ public class JUpdate
 
 	public static void updateCheck()
 	{
-		final Logger logger = Logger.getLogger(JUpdate.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JUpdate.class);
 
 		if (new File(Common.base_dir + java.io.File.separator + ".install4j" + java.io.File.separator + "i4jparams.conf").isFile())
 		{

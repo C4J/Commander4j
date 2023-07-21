@@ -33,7 +33,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
@@ -56,7 +56,7 @@ public class JDBGroup
 	public static int field_description = 80;
 	private JDBGroupPermissions groupPermissions;
 	private JDBUserGroupMembership userGroupMembership;
-	private final Logger logger = Logger.getLogger(JDBGroup.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBGroup.class);
 	private String hostID;
 	private String sessionID;
 	private JDBAuditPermissions auditPerm;

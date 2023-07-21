@@ -37,7 +37,7 @@ import java.text.NumberFormat;
 import java.util.LinkedList;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -63,7 +63,7 @@ public class JDBProcessOrder
 	private String dbStatus;
 	private String dbDefaultPalletStatus;
 	private String dbInspectionID;
-	private final Logger logger = Logger.getLogger(JDBProcessOrder.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBProcessOrder.class);
 	public static int field_process_order = 10;
 	public static int field_recipe_id = 20;
 	public static int field_description = 60;

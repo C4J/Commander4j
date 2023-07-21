@@ -66,7 +66,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.app.JVersion;
 import com.commander4j.db.JDBControl;
@@ -162,7 +162,7 @@ public class JFrameHostAdmin extends JFrame
 	private JList4j<JHost> jListHosts;
 	private JScrollPane jScrollPane1;
 	private LinkedList<JHost> hostList = new LinkedList<JHost>();
-	final Logger logger = Logger.getLogger(JFrameHostAdmin.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JFrameHostAdmin.class);
 	private JFrameHostAdmin me;
 	private JPanel contentPane;
 	private JLabel4j_std jLabelUniqueID;
@@ -744,6 +744,8 @@ public class JFrameHostAdmin extends JFrame
 				result = "Commander4j tables found but need to be updated, use the AUTO Update option to update them";
 			}
 		}
+		labelActualSchemaVersion.repaint();
+		labelActualProgramVersion.repaint();
 		labelCommand.setText(result);
 	}
 

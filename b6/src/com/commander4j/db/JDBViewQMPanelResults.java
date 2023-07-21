@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;
 
@@ -52,7 +52,7 @@ public class JDBViewQMPanelResults
 	private String dbFirstname;
 	private String dbSurname;
 	
-	private final Logger logger = Logger.getLogger(JDBWasteLog.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBWasteLog.class);
 	private String hostID;
 	private String sessionID;
 

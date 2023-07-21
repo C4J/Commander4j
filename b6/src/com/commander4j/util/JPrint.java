@@ -40,7 +40,7 @@ import javax.print.PrintServiceLookup;
 // import javax.print.attribute.AttributeSet;
 import javax.swing.JOptionPane;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.cups4j.CupsClient;
 import org.cups4j.CupsPrinter;
 
@@ -95,7 +95,7 @@ public class JPrint {
 
 	public static String getDefaultPrinterQueueName()
 	{
-		final Logger logger = Logger.getLogger(JPrint.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JPrint.class);
 		String queuename = new String();
 		PrintService printService = getDefaultPrinterService();
 
@@ -253,7 +253,7 @@ public class JPrint {
 
 	public static void refresh()
 	{
-		final Logger logger = Logger.getLogger(JPrint.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JPrint.class);
 		printers = PrinterJob.lookupPrintServices();
 		printerCount = printers.length;
 

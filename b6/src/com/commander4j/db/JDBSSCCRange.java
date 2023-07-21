@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -52,7 +52,7 @@ public class JDBSSCCRange
 
 	private String db_next;
 
-	final Logger logger = Logger.getLogger(JDBSSCCRange.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBSSCCRange.class);
 
 	public static int field_prefix = 18;
 

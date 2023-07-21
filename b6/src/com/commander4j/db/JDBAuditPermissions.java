@@ -33,7 +33,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -61,7 +61,7 @@ public class JDBAuditPermissions
 	public static int field_target = 45;
 	public static int field_data = 40;
 	
-	private final Logger logger = Logger.getLogger(JDBAuditPermissions.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBAuditPermissions.class);
 
 	private String hostID;
 

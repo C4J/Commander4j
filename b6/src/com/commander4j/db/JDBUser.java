@@ -40,7 +40,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.app.JVersion;
 import com.commander4j.sys.Common;
@@ -81,7 +81,7 @@ public class JDBUser
 	private String dbUserId;
 	private boolean initialised = false;
 	private LinkedList<String> allowedModules = new LinkedList<String>();
-	private final Logger logger = Logger.getLogger(JDBUser.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBUser.class);
 	private String hostID;
 	private String sessionID;
 	private JDBControl ctrl;

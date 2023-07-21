@@ -27,7 +27,7 @@ package com.commander4j.clone;
  * 
  */
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JPrint;
@@ -37,7 +37,7 @@ public class Clone
 {
 
 	public static void main(String[] args) {
-		final Logger logger = Logger.getLogger(Clone.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(Clone.class);
 		//JUtility.setLookandFeel();
 		JUtility.initLogging("");
 		Common.base_dir = System.getProperty("user.dir");

@@ -32,7 +32,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
@@ -47,7 +47,7 @@ public class InboundMessageCollectionThread extends Thread
 	private LinkedList<String> inputPathList = new LinkedList<String>();
 	private String inputPath;
 	private int inputPathCount = 0;
-	private final Logger logger = Logger.getLogger(InboundMessageCollectionThread.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(InboundMessageCollectionThread.class);
 
 	private JFileIO mover = new JFileIO();
 	public static boolean recoveringFiles = false;

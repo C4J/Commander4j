@@ -38,7 +38,7 @@ import java.util.LinkedList;
 
 import javax.swing.JFileChooser;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.gui.JLabel4j_std;
@@ -53,7 +53,7 @@ public class IncommingPalletImportXML
 	private String hostID;
 	private String sessionID;
 	private String errorMessage;
-	final Logger logger = Logger.getLogger(IncommingPalletImportXML.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(IncommingPalletImportXML.class);
 
 	public String getErrorMessage()
 	{

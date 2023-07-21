@@ -33,7 +33,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;
 import com.commander4j.util.JWait;
@@ -58,7 +58,7 @@ public class JDBControl
 	private String hostID;
 	private String sessionID;
 
-	private final Logger logger = Logger.getLogger(JDBControl.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBControl.class);
 
 	public JDBControl(String host, String session)
 	{

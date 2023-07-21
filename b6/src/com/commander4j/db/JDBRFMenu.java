@@ -31,7 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
@@ -51,7 +51,7 @@ public class JDBRFMenu
 
 	private int dbSequenceId;
 
-	private final Logger logger = Logger.getLogger(JDBRFMenu.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBRFMenu.class);
 	private String hostID;
 	private String sessionID;
 

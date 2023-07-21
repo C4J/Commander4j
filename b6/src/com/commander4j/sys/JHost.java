@@ -37,7 +37,7 @@ import java.util.Hashtable;
 import javax.swing.JOptionPane;
 
 import org.apache.commons.text.WordUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBSQLStatement;
 import com.commander4j.db.JDatabaseParameters;
@@ -61,7 +61,7 @@ public class JHost
 	private String uniqueid = JUnique.getUniqueID();
 	private int schemaVersion = -1;
 	private int schemaVersionRequired = -1;
-	private final Logger logger = Logger.getLogger(JHost.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JHost.class);
 
 	public int getConnectionCount()
 	{

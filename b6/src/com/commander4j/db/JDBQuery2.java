@@ -34,7 +34,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
@@ -71,7 +71,7 @@ public class JDBQuery2
 	private String sessionID;
 	private String sortFields = "";
 	private String sortDirection = "";
-	private final Logger logger = Logger.getLogger(JDBQuery2.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBQuery2.class);
 	private String selectLimitType = "";
 	private String sqlTemplate = "";
 	private String sqlFrom = "";

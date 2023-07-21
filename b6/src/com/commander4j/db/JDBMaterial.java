@@ -36,7 +36,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -77,7 +77,7 @@ public class JDBMaterial
 	public static int field_shelf_life_uom = 1;
 	public static int field_old_material = 20;
 	public static int field_equipment_type = 15;
-	private final Logger logger = Logger.getLogger(JDBMaterial.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBMaterial.class);
 	private String hostID;
 	private String sessionID;
 	private JDBUom uom;

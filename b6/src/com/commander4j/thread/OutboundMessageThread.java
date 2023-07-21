@@ -33,7 +33,7 @@ import javax.mail.MessagingException;
 
 import org.apache.commons.beanutils.converters.ArrayConverter;
 import org.apache.commons.beanutils.converters.StringConverter;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceRequest;
@@ -66,7 +66,7 @@ public class OutboundMessageThread extends Thread
 	private JFileIO mover = new JFileIO();
 	private String destinationFile = "";
 	private String renamedDestinationFile = "";
-	private final Logger logger = Logger.getLogger(OutboundMessageThread.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(OutboundMessageThread.class);
 
 	public String getHostID() {
 		return hostID;

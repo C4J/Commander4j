@@ -43,7 +43,7 @@ import java.util.LinkedList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileFilterTXT;
@@ -55,7 +55,7 @@ public class JDBStructure
 	private String sessionID;
 	private String db_error_message;
 	private LinkedList<String> output = new LinkedList<String>();
-	final Logger logger = Logger.getLogger(JDBStructure.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBStructure.class);
 	ResultSetMetaData md;
 
 	public JDBStructure(String host, String session)

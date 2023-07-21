@@ -2,14 +2,14 @@ package com.commander4j.util;
 
 import java.util.HashMap;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 public class JURL
 {
 
-	private Logger logger = Logger.getLogger(JURL.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JURL.class);
 	private HashMap<String, String> paramMap;
 
 	public JURL(HttpServletRequest request)

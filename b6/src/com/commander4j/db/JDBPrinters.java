@@ -38,7 +38,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -71,7 +71,7 @@ public class JDBPrinters
 	private String dbExportPath = "";
 	private String dbExportFormat = "CSV";
 	private String dbEnableDirectPrint = "N";
-	private final Logger logger = Logger.getLogger(JDBPrinters.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBPrinters.class);
 
 	public static int field_printer_id = 20;
 	public static int field_printer_type = 20;

@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.bar.JEANUtility;
 import com.commander4j.sys.Common;
@@ -60,7 +60,7 @@ public class JDBMaterialUom
 	private String dbMaterialOverride;
 	public static int field_ean = 14;
 	public static int field_variant = 2;
-	private final Logger logger = Logger.getLogger(JDBMaterialUom.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBMaterialUom.class);
 	private String hostID;
 	private String sessionID;
 

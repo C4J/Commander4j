@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -56,7 +56,7 @@ public class JDBMaterialCustomerData
 	private String dbDataID;
 	private String dbData;
 
-	private final Logger logger = Logger.getLogger(JDBMaterialCustomerData.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBMaterialCustomerData.class);
 	private String hostID;
 	private String sessionID;
 	public static int field_data_id = 20;

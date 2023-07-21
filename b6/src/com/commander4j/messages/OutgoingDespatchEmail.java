@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -23,7 +23,7 @@ public class OutgoingDespatchEmail
 {
 	private String hostID;
 	private String sessionID;
-	final Logger logger = Logger.getLogger(OutgoingDespatchEmail.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(OutgoingDespatchEmail.class);
 	private String errorMessage;
 	private JFileIO fio = new JFileIO();
 	private JeMailOutGoingMessage ogm;

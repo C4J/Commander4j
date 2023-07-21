@@ -1,6 +1,6 @@
 package com.commander4j.scales;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBUser;
 
@@ -39,7 +39,7 @@ import com.commander4j.util.JUtility;
 public class ScaleTest {
 	private String hostID = "";
 	private String sessionID = "";
-	private final Logger logger = Logger.getLogger(ScaleTest.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(ScaleTest.class);
 
 	private JDBUser userdb;
 	

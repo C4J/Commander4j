@@ -36,7 +36,7 @@ import java.util.LinkedList;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLHost;
@@ -48,7 +48,7 @@ public class JHostList
 	private String CRLF = "\n";
 
 	// private int numberOfHosts = 0;
-	private final Logger logger = Logger.getLogger(JHostList.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JHostList.class);
 
 	public void addHost(JHost hst)
 	{

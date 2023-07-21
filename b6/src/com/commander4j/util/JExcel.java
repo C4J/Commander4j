@@ -43,7 +43,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
@@ -63,7 +63,7 @@ public class JExcel
 {
 
 	private String dbErrorMessage;
-	private final Logger logger = Logger.getLogger(JExcel.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JExcel.class);
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
 	public void setExcelRowLimit(JCheckBox4j cb, JSpinner spin)

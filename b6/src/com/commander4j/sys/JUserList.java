@@ -29,7 +29,7 @@ package com.commander4j.sys;
 
 import java.util.Hashtable;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBUser;
 
@@ -37,7 +37,7 @@ public class JUserList
 {
 
 	private Hashtable<String, JDBUser> users = new Hashtable<String, JDBUser>();
-	private final Logger logger = Logger.getLogger(JUserList.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JUserList.class);
 
 	public void addUser(String sessionID, JDBUser usr) {
 		if (users.containsKey(sessionID) == true)

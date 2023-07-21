@@ -27,7 +27,7 @@ package com.commander4j.cfg;
  * 
  */
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JPlaySound;
@@ -38,7 +38,7 @@ public class Setup
 {
 
 	public static void main(String[] args) {
-		final Logger logger = Logger.getLogger(Setup.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(Setup.class);
 		//JUtility.setLookandFeel();
 		JUtility.initLogging("");
 		Common.base_dir = System.getProperty("user.dir");

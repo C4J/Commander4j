@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -54,7 +54,7 @@ public class JDBMaterialType
 	private String dbMaterialType;
 	public static int field_material_type = 5;
 	public static int field_description = 80;
-	private final Logger logger = Logger.getLogger(JDBMaterialType.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBMaterialType.class);
 	private String hostID;
 	private String sessionID;
 	private String dbOverride_Pack_Label;

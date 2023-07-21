@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;
 
@@ -16,7 +16,7 @@ public class JQMTrayDB
 	private String hostID = "";
 	private JQMTrayEntity trayEntity;
 	private String dbErrorMessage;
-	private Logger logger = Logger.getLogger(JQMTrayDB.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMTrayDB.class);
 
 	public JQMTrayDB(String host, String session)
 	{

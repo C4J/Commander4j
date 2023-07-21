@@ -33,7 +33,7 @@ import java.sql.SQLException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -69,7 +69,7 @@ public class OutgoingProductionDeclarationConfirmation
 {
 	private String hostID;
 	private String sessionID;
-	final Logger logger = Logger.getLogger(OutgoingProductionDeclarationConfirmation.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(OutgoingProductionDeclarationConfirmation.class);
 	private JeMailOutGoingMessage ogm;
 
 	private String errorMessage;

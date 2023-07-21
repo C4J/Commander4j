@@ -29,14 +29,14 @@ package com.commander4j.html;
 
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JPrint;
 
 public class JMenuRFPrinterList
 {
 
-	final Logger logger = Logger.getLogger(JMenuRFPrinterList.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JMenuRFPrinterList.class);
 
 	public String buildPrinterList(String selectedPrinter) {
 

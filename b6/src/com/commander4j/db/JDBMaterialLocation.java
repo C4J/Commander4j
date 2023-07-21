@@ -31,7 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
@@ -56,7 +56,7 @@ public class JDBMaterialLocation
 	public static int field_Material_id = 20;
 	public static int field_Location_id = 15;
 	public static int field_Status = 20;
-	private final Logger logger = Logger.getLogger(JDBMaterialLocation.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBMaterialLocation.class);
 	private String hostID;
 	private String sessionID;
 	private JDBControl ctrl;

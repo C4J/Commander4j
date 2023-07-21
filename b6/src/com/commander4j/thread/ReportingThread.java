@@ -30,7 +30,7 @@ package com.commander4j.thread;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBReportRequest;
 import com.commander4j.db.JDBUser;
@@ -45,7 +45,7 @@ public class ReportingThread extends Thread
 	public boolean allDone = false;
 	private String sessionID;
 	private String hostID;
-	private final Logger logger = Logger.getLogger(ReportingThread.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(ReportingThread.class);
 
 	public String getHostID() {
 		return hostID;

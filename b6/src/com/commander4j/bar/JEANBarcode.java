@@ -39,7 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.sys.Common;
@@ -81,7 +81,7 @@ public class JEANBarcode
 																		 * EAN_DEFS
 																		 * table
 																		 */
-	final Logger logger = Logger.getLogger(JEANBarcode.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JEANBarcode.class);
 	private String hostID;
 	private String sessionID;
 
@@ -284,7 +284,7 @@ public class JEANBarcode
 
 
 	public Date getDateforAppID(String key) {
-		final Logger logger = Logger.getLogger(JEANBarcode.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JEANBarcode.class);
 
 		Date result = null;
 
@@ -363,7 +363,7 @@ public class JEANBarcode
 
 
 	public double getNumberforAppID(String key) {
-		final Logger logger = Logger.getLogger(JEANBarcode.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JEANBarcode.class);
 		double result = 0;
 
 		if (isDataAvailableforAppID(key) == true) {
@@ -402,7 +402,7 @@ public class JEANBarcode
 
 
 	public String getStringforAppID(String key) {
-		final Logger logger = Logger.getLogger(JEANBarcode.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JEANBarcode.class);
 
 		String result = "";
 
@@ -467,7 +467,7 @@ public class JEANBarcode
 		ResultSet rs;
 		// boolean result = false;
 		setErrorMessage("");
-		final Logger logger = Logger.getLogger(JEANBarcode.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JEANBarcode.class);
 
 		logger.debug("loadEANdefs");
 		try {
@@ -491,7 +491,7 @@ public class JEANBarcode
 
 	public boolean parseBarcodeData(String barcodeData) {
 
-		final Logger logger = Logger.getLogger(JEANBarcode.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JEANBarcode.class);
 
 		logger.debug("parseBarcodeData :" + barcodeData);
 

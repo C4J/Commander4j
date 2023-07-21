@@ -31,7 +31,7 @@ import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBLanguage;
@@ -47,7 +47,7 @@ public class Start
 {
 	public static void main(String[] args)
 	{
-		Logger logger = Logger.getLogger(Start.class);
+		Logger logger = org.apache.logging.log4j.LogManager.getLogger(Start.class);
 		JDBLanguage lang;
 		@SuppressWarnings("unused")
 		JDialogLogin userLogonDialog;

@@ -32,7 +32,7 @@ import java.util.LinkedList;
 
 import org.apache.commons.beanutils.converters.ArrayConverter;
 import org.apache.commons.beanutils.converters.StringConverter;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.app.JVersion;
 import com.commander4j.db.JDBArchive;
@@ -69,7 +69,7 @@ public class InterfaceThread extends Thread
 	private Boolean enableEnterfaceStatusEmails = false;
 	private String siteName = "";
 	private String interfaceEmailAddresses = "";
-	private final Logger logger = Logger.getLogger(InterfaceThread.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(InterfaceThread.class);
 	private boolean abortThread = false;
 	private int backupMessageRetention = 30;
 

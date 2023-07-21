@@ -1,6 +1,6 @@
 package com.commander4j.scales;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBWTScale;
 import com.commander4j.db.JDBWTWorkstation;
@@ -21,7 +21,7 @@ public class Scale extends Thread
 	private String previousValue = "0.00";
 	private ScaleCallbackInteface cb;
 
-	private final Logger logger = Logger.getLogger(Scale.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(Scale.class);
 
 	public Scale(String host, String session)
 	{

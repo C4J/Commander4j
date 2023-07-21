@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -54,7 +54,7 @@ public class JDBPrinterLineMembership
 	private String db_printer_id;
 	private String db_line_id;
 	private String db_group_id;
-	final Logger logger = Logger.getLogger(JDBPrinterLineMembership.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBPrinterLineMembership.class);
 	private String hostID;
 	private String sessionID;
 

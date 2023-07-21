@@ -31,7 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -56,7 +56,7 @@ public class JDBQMInspection
 	private String dbErrorMessage;
 	public static int field_inspection_id = 20;
 	public static int field_description = 50;
-	private final Logger logger = Logger.getLogger(JDBQMInspection.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBQMInspection.class);
 	private String hostID;
 	private String sessionID;
 	private JDBQMExtension extension;

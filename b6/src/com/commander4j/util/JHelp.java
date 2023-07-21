@@ -37,7 +37,7 @@ import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 
@@ -50,7 +50,7 @@ public class JHelp
 
 	public static Desktop desktop;
 
-	final Logger logger = Logger.getLogger(JHelp.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JHelp.class);
 
 	public JHelp()
 	{

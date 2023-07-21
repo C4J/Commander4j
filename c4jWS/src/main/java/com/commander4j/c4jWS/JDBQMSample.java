@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 
 public class JDBQMSample
@@ -27,7 +27,7 @@ public class JDBQMSample
 	public static int field_data_2 = 20;
 	public static int field_data_3 = 20;
 	public static int field_data_4 = 20;
-	private final Logger logger = Logger.getLogger(JDBQMSample.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBQMSample.class);
 	private String hostID;
 	private String sessionID;
 

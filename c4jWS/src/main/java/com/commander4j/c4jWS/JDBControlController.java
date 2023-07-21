@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.apache.catalina.connector.Response;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JURL;
 import com.google.gson.Gson;
@@ -19,7 +19,7 @@ public class JDBControlController extends HttpServlet
 {
 
 	private static final long serialVersionUID = -3225137788488489978L;
-	private Logger logger = Logger.getLogger(JQMPanelController.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMPanelController.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{

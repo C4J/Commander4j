@@ -39,7 +39,7 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.messages.OutgoingPalletDelete;
@@ -86,7 +86,7 @@ public class JDBPallet
 	private String dbDespatchNo;
 	private String dbEquipmentType;
 	private Boolean dbConfirmed;
-	private final Logger logger = Logger.getLogger(JDBPallet.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBPallet.class);
 	private JDBMaterialBatch matBatch;
 	private JDBMaterial material;
 	private JDBMaterialUom matUom;

@@ -59,7 +59,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBModule;
 
@@ -85,7 +85,7 @@ public class JInternalFrameMenuTree extends JInternalFrame
 	protected JTree tree;
 	final int screenWidth = 300;
 	final int screenHeight = 600;
-	final Logger logger = Logger.getLogger(JInternalFrameMenuTree.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JInternalFrameMenuTree.class);
 
 	public class MenuTreeRenderer extends DefaultTreeCellRenderer
 	{

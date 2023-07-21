@@ -48,7 +48,7 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.beanutils.converters.ArrayConverter;
 import org.apache.commons.beanutils.converters.StringConverter;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.opencsv.CSVWriter;
 
@@ -84,7 +84,7 @@ public class JDBUserReport {
 	private String 	dbPrivate;
 	private String 	dbGroupID;
 	private String 	dbErrorMessage;
-	private final Logger logger = Logger.getLogger(JDBUserReport.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBUserReport.class);
 	private String 	hostID;
 	private String 	sessionID;
 	private JDBUserGroupMembership ugm;

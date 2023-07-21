@@ -33,7 +33,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.sys.Common;
@@ -64,7 +64,7 @@ public class JDBInterfaceRequest
 	private String dbErrorMessage;
 	private String dbUniqueID;
 
-	private final Logger logger = Logger.getLogger(JDBInterfaceRequest.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBInterfaceRequest.class);
 
 	private String hostID;
 

@@ -29,7 +29,7 @@ package com.commander4j.email;
 
 import javax.mail.MessagingException;
 import org.apache.commons.mail.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import com.commander4j.db.JDBControl;
 import com.commander4j.util.JUtility;
 
@@ -45,7 +45,7 @@ public class JeMail
 	private static String MAIL_SMTP_SSL_PORT;
 	private static String SMTP_USE_SSL;
 	private static String SMTP_USE_TLS;
-	private final Logger logger = Logger.getLogger(JeMail.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JeMail.class);
 	private String hostID;
 	private String sessionID;
 

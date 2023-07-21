@@ -40,7 +40,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -65,7 +65,7 @@ public class AutoLabellerThread extends Thread {
 	private String hostID;
 	private Boolean messageProcessedOK = false;
 	private String messageError = "";
-	private final Logger logger = Logger.getLogger(AutoLabellerThread.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(AutoLabellerThread.class);
 
 	public String getHostID()
 	{

@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;
 
@@ -16,7 +16,7 @@ public class JQMPanelDB
 	private String hostID = "";
 	private JQMPanelEntity panelEntity;
 	private String dbErrorMessage;
-	private Logger logger = Logger.getLogger(JQMPanelDB.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMPanelDB.class);
 
 	public JQMPanelDB(String host, String session)
 	{

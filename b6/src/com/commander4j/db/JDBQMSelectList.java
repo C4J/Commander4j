@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -64,7 +64,7 @@ public class JDBQMSelectList
 	public static int field_list_id = 20;
 	public static int field_value_id = 20;
 	public static int field_description = 50;
-	private final Logger logger = Logger.getLogger(JDBQMSelectList.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBQMSelectList.class);
 	private String hostID;
 	private String sessionID;
 	private Boolean displayModeLong = false;

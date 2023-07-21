@@ -33,7 +33,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -76,7 +76,7 @@ public class JDBInterface
 	public static int field_email_flags = 10;
 	public static int field_email_addresses = 500;
 
-	private final Logger logger = Logger.getLogger(JDBInterface.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBInterface.class);
 
 	private String hostID;
 

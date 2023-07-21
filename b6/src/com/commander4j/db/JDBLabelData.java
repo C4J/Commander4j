@@ -33,7 +33,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.opencsv.ResultSetHelperService;
 
@@ -97,7 +97,7 @@ public class JDBLabelData
 	private String layerUOM = "LAG";
 	private Long dbLayers = (long) 0; 
 
-	private final Logger logger = Logger.getLogger(JDBLabelData.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBLabelData.class);
 
 	private String hostID;
 

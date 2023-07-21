@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.util.LinkedList;
 
 import org.apache.catalina.connector.Response;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JURL;
 import com.google.gson.Gson;
@@ -20,7 +20,7 @@ public class JQMTrayController extends HttpServlet
 {
 
 	private static final long serialVersionUID = -9013610816396593339L;
-	private Logger logger = Logger.getLogger(JQMTrayController.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMTrayController.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{

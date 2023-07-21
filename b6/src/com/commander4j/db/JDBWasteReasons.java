@@ -35,7 +35,7 @@ import java.util.LinkedList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -71,7 +71,7 @@ public class JDBWasteReasons
 	public static int displayModeFull = 0;
 	public static int displayModeShort = 1;
 
-	private final Logger logger = Logger.getLogger(JDBWasteReasons.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBWasteReasons.class);
 	private String hostID;
 	private String sessionID;
 	private Integer displayMode=displayModeFull;

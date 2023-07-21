@@ -1,6 +1,6 @@
 package com.commander4j.c4jWS;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSessionListener;
 public class AppServletSessionListener implements HttpSessionListener
 {
 
-	private Logger logger = Logger.getLogger(AppServletSessionListener.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(AppServletSessionListener.class);
 	boolean connectedOK = false;
 	
 	public void sessionCreated(HttpSessionEvent se)

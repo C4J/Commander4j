@@ -33,7 +33,7 @@ package com.commander4j.html;
 
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBDespatch;
 import com.commander4j.util.JUtility;
@@ -45,7 +45,7 @@ import com.commander4j.util.JUtility;
 public class JMenuRFDespatchList
 {
 
-	final Logger logger = Logger.getLogger(JMenuRFDespatchList.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JMenuRFDespatchList.class);
 	private String hostID;
 	private String sessionID;
 	private String CRLF = "\n";

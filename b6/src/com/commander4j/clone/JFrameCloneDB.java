@@ -56,7 +56,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.app.JVersion;
 import com.commander4j.cfg.JDialogSetupPassword;
@@ -95,7 +95,7 @@ public class JFrameCloneDB extends JFrame
 	private JScrollPane jScrollPaneTo;
 	private LinkedList<JHost> hostListFrom = new LinkedList<JHost>();
 	private LinkedList<JHost> hostListTo = new LinkedList<JHost>();
-	final Logger logger = Logger.getLogger(JFrameCloneDB.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JFrameCloneDB.class);
 	private JPanel contentPane;
 	private JProgressBar progressBar = new JProgressBar();
 	private JLabel4j_std labelCommand = new JLabel4j_std("");

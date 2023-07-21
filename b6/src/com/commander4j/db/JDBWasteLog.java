@@ -36,7 +36,7 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.Objects;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -91,7 +91,7 @@ public class JDBWasteLog
 	private JDBProcessOrder processOrder;
 	private BigDecimal dbTareWeight;
 
-	private final Logger logger = Logger.getLogger(JDBWasteLog.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBWasteLog.class);
 	private String hostID;
 	private String sessionID;
 

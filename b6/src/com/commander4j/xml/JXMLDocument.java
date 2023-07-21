@@ -42,7 +42,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
@@ -61,7 +61,7 @@ public class JXMLDocument
 	 */
 	private XPath xpath = XPathFactory.newInstance().newXPath();
 
-	private final Logger logger = Logger.getLogger(JXMLDocument.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JXMLDocument.class);
 
 	public Document getDocument() {
 		return document;

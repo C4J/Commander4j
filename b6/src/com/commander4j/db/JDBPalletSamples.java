@@ -34,7 +34,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -60,7 +60,7 @@ public class JDBPalletSamples
 	private String dbSamplePoint;
 	private long sample_sequence = 1;
 
-	private final Logger logger = Logger.getLogger(JDBPalletSamples.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBPalletSamples.class);
 	private String hostID;
 	private String sessionID;
 

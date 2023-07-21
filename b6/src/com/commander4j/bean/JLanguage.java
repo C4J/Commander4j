@@ -27,7 +27,7 @@ package com.commander4j.bean;
  * 
  */
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBLanguage;
 
@@ -50,7 +50,7 @@ public class JLanguage
 	private String languageID;
 	private JDBLanguage lang;
 	private Boolean initialised = false;
-	private Logger logger = Logger.getLogger(JLanguage.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JLanguage.class);
 
 	public String getHostID()
 	{

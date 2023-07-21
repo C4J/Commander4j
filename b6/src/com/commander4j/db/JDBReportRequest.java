@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -55,7 +55,7 @@ public class JDBReportRequest
 	private String dbPrintQueue;
 	private Integer dbCopies;
 	private String dbErrorMessage;
-	private final Logger logger = Logger.getLogger(JDBReportRequest.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBReportRequest.class);
 	private String hostID;
 	private String sessionID;
 
@@ -113,7 +113,7 @@ public class JDBReportRequest
 	}
 
 	public boolean create() {
-		final Logger logger = Logger.getLogger(JDBReportRequest.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBReportRequest.class);
 
 		logger.debug("Create Report Request for [" + getModuleID() + "]");
 

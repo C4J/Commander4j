@@ -50,7 +50,7 @@ public class JDBSchema {
 	private String dbErrorMessage;
 	private String sessionID;
 
-//	private final Logger logger = Logger.getLogger(JDBSchema.class);
+//	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBSchema.class);
 
 	private void setSessionID(String session)
 	{

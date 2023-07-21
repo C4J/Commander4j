@@ -33,7 +33,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -72,7 +72,7 @@ public class JXMLHost
 
 	public static void writeHosts(String filename, LinkedList<JHost> hostList, String splash, String updatePath, String updateMode, String installDir, String setupPassword, String hostVersion, String hostUpdatePath)
 	{
-		final Logger logger = Logger.getLogger(JXMLHost.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JXMLHost.class);
 		final JFileIO fio = new JFileIO();
 
 		Common.updateURL = updatePath;

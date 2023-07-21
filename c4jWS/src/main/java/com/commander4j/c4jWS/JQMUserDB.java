@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 public class JQMUserDB
 {
@@ -14,7 +14,7 @@ public class JQMUserDB
 	private String hostID = "";
 	private JQMUserEntity userEntity;
 	private String dbErrorMessage;
-	private Logger logger = Logger.getLogger(JQMUserDB.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JQMUserDB.class);
 
 	public JQMUserDB(String host, String session)
 	{

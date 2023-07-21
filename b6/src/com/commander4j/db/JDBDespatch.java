@@ -35,7 +35,7 @@ import java.util.LinkedList;
 import java.util.Vector;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.messages.OutgoingDespatchConfirmation;
@@ -84,7 +84,7 @@ public class JDBDespatch
 	private OutgoingDespatchPreAdvice opa;
 	private OutgoingDespatchEmail ode;
 	private OutgoingEquipmentTracking oet;
-	private Logger logger = Logger.getLogger(JDBDespatch.class);
+	private Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBDespatch.class);
 	private String hostID;
 	private String sessionID;
 	private JDBLocation lf;

@@ -33,7 +33,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.Vector;
 import javax.swing.JLabel;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import com.commander4j.gui.JCheckListItem;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -67,7 +67,7 @@ public class JDBQMDictionary
 	public static int field_datatype = 50;
 	public static int field_uom = 50;
 
-	private final Logger logger = Logger.getLogger(JDBQMDictionary.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBQMDictionary.class);
 	private String hostID;
 	private String sessionID;
 

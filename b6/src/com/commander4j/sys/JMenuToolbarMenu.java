@@ -38,12 +38,12 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 public class JMenuToolbarMenu
 {
 
-	final Logger logger = Logger.getLogger(JMenuToolbarMenu.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JMenuToolbarMenu.class);
 	private String hostID;
 	private String sessionID;
 

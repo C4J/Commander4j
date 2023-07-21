@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -60,7 +60,7 @@ public class JDBPalletHistory
 	private JDBPallet dbPallet;
 	private String dbErrorMessage;
 	private String dbUserId;
-	private final Logger logger = Logger.getLogger(JDBPalletHistory.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBPalletHistory.class);
 	private String hostID;
 	private String sessionID;
 	private long transaction_ref = 1;

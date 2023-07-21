@@ -35,7 +35,7 @@ import java.util.LinkedList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -75,7 +75,7 @@ public class JDBWasteTransactionType
 	private String dbStoreAsNegative;
 	private String dbEnabled;
 	
-	private final Logger logger = Logger.getLogger(JDBWasteTransactionType.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBWasteTransactionType.class);
 	private String hostID;
 	private String sessionID;
 	private Integer displayMode=displayModeFull;

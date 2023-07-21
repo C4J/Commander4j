@@ -35,7 +35,7 @@ import java.util.LinkedList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -55,7 +55,7 @@ public class JDBDespatchEquipmentTypes
 	private String dbEnabled;
 	private int dbQuantity;
 
-	private final Logger logger = Logger.getLogger(JDBDespatchEquipmentTypes.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBDespatchEquipmentTypes.class);
 	private String hostID;
 	private String sessionID;
 	private Integer displayMode = displayModeFull;

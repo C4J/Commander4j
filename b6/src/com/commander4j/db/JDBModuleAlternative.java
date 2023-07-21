@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -50,7 +50,7 @@ public class JDBModuleAlternative
 	private String dbModuleId;
 	private String dbWorkstationId;
 	private String dbAlternativeModuleId;
-	private final Logger logger = Logger.getLogger(JDBModuleAlternative.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBModuleAlternative.class);
 	private String hostID;
 	private String sessionID;
 

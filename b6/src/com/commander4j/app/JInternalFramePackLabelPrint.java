@@ -64,7 +64,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.bar.JLabelPrint;
 import com.commander4j.calendar.JCalendarButton;
@@ -182,7 +182,7 @@ public class JInternalFramePackLabelPrint extends JInternalFrame
 	private JShelfLifeUom shelflifeuom = new JShelfLifeUom();
 	private JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
 	private JShelfLifeRoundingRule shelfliferoundingrule = new JShelfLifeRoundingRule();
-	final Logger logger = Logger.getLogger(JInternalFramePackLabelPrint.class);
+	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JInternalFramePackLabelPrint.class);
 	private ClockListener clocklistener = new ClockListener();
 	private Timer timer = new Timer(1000, clocklistener);
 	private JDBModule mod = new JDBModule(Common.selectedHostID, Common.sessionID);

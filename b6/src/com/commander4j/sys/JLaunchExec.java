@@ -27,7 +27,7 @@ package com.commander4j.sys;
  * 
  */
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.db.JDBModule;
 import com.commander4j.util.JUtility;
@@ -38,7 +38,7 @@ public class JLaunchExec
 	public static JDBModule mod;
 
 	public static void runExec(String host, String session, String optionName) {
-		final Logger logger = Logger.getLogger(JLaunchMenu.class);
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JLaunchMenu.class);
 		mod = new JDBModule(host, session);
 
 		logger.debug("runForm :" + optionName);

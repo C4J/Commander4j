@@ -34,7 +34,7 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
@@ -70,7 +70,7 @@ public class JDBJourney
 	private String dbhaulier = "";
 	private Timestamp dbDateUpdated;
 	private Timestamp dbTimeslot;
-	private final Logger logger = Logger.getLogger(JDBJourney.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBJourney.class);
 	private String hostID;
 	private String sessionID;
 	private JDBDespatch desp;

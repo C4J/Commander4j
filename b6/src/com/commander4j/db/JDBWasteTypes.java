@@ -36,7 +36,7 @@ import java.util.Vector;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import com.commander4j.gui.JCheckListItem;
 import com.commander4j.sys.Common;
@@ -76,7 +76,7 @@ public class JDBWasteTypes
 	private String dbPPERequired;
 	private String dbEnabled;
 	
-	private final Logger logger = Logger.getLogger(JDBWasteTypes.class);
+	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBWasteTypes.class);
 	private String hostID;
 	private String sessionID;
 	private JDBWasteLocationTypes wlt;
