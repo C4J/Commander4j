@@ -45,6 +45,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -150,6 +151,9 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 	private JMenu4j mnReferenceData;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JLabel4j_std jLabel_WeekNumber;
+	private JTextField4j jTextFieldOperative;
+	private JButton4j jButtonLookup_Operative;
+	private JLabel4j_std lblOperative;
 
 	private JCalendarButton calendarButtonproductionDateFrom;
 	private JCalendarButton calendarButtontProductionDateTo;
@@ -416,6 +420,12 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 			{
 				jTextFieldSample_LocationFiller.setText(jTable1.getValueAt(row, JDBViewPalletSampleTableModel.SamplePoint_Col).toString());
 			}
+			
+			if (fieldname.equals(lang.get("lbl_Operator_ID")) == true)
+			{
+				jTextFieldOperative.setText(jTable1.getValueAt(row, JDBViewPalletSampleTableModel.Operative_Seq).toString());
+			}
+			
 			populateList();
 
 		}
@@ -556,6 +566,11 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 		if (jTextFieldMaterial.getText().equals("") == false)
 		{
 			query.applyWhere("material = ", jTextFieldMaterial.getText());
+		}
+		
+		if (jTextFieldOperative.getText().equals("") == false)
+		{
+			query.applyWhere("id = ",jTextFieldOperative.getText());
 		}
 
 		if (jTextFieldMHN.getText().equals("") == false)
@@ -814,6 +829,20 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 								newItemMenuItem.setText(lang.get("mod_FRM_PAL_SAMPLE"));
 								popupMenu.add(newItemMenuItem);
 							}
+							
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_notifyEmail_16x16);
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_NOTIFY_SORTING"));
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										notifyEmail();
+									}
+								});
+								newItemMenuItem.setText(lang.get("btn_Notify"));
+								popupMenu.add(newItemMenuItem);
+							}
 
 							{
 								mnReferenceData = new JMenu4j(lang.get("lbl_Referenced_Data"));
@@ -945,6 +974,19 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 										}
 									});
 									newItemMenuItem.setText(lang.get("lbl_Sample_SubLocation"));
+									filterByMenu.add(newItemMenuItem);
+								}
+								
+								{
+									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
+									newItemMenuItem.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(final ActionEvent e)
+										{
+											filterBy(lang.get("lbl_Operator_ID"));
+										}
+									});
+									newItemMenuItem.setText(lang.get("lbl_Operator_ID"));
 									filterByMenu.add(newItemMenuItem);
 								}
 
@@ -1221,7 +1263,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jComboBoxPalletStatus = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxPalletStatus);
 					jComboBoxPalletStatus.setModel(jComboBoxDefaultPalletStatusModel);
-					jComboBoxPalletStatus.setBounds(373, 148, 176, 22);
+					jComboBoxPalletStatus.setBounds(346, 148, 176, 22);
 				}
 
 				{
@@ -1237,8 +1279,41 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabel15);
 					jLabel15.setText(lang.get("lbl_Pallet_Status"));
 					jLabel15.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel15.setBounds(236, 148, 130, 21);
+					jLabel15.setBounds(236, 148, 102, 21);
 				}
+				{
+					lblOperative = new JLabel4j_std();
+					lblOperative.setText(lang.get("lbl_Operator_ID"));
+					lblOperative.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblOperative.setBounds(531, 149, 80, 21);
+					jDesktopPane1.add(lblOperative);
+				}
+				{
+					jTextFieldOperative = new JTextField4j();
+					jTextFieldOperative.setEditable(false);
+					jTextFieldOperative.setBounds(622, 149, 73, 21);
+					jDesktopPane1.add(jTextFieldOperative);
+				}
+				
+				{
+					jButtonLookup_Operative = new JButton4j(Common.icon_lookup_16x16);
+					jDesktopPane1.add(jButtonLookup_Operative);
+					jButtonLookup_Operative.setBounds(695, 149, 21, 21);
+					jButtonLookup_Operative.setEnabled(true);
+					jButtonLookup_Operative.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "Y";
+							if (JLaunchLookup.operatives())
+							{
+								jTextFieldOperative.setText(JLaunchLookup.dlgResult);
+							}
+						}
+					});
+				}
+				
 				{
 					jToggleButtonSequence = new JToggleButton();
 					jToggleButtonSequence.setSelected(true);
@@ -1575,7 +1650,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					lbl_Reason = new JLabel4j_std();
 					lbl_Reason.setHorizontalAlignment(SwingConstants.TRAILING);
 					lbl_Reason.setText(lang.get("lbl_Reason"));
-					lbl_Reason.setBounds(236, 43, 130, 21);
+					lbl_Reason.setBounds(236, 43, 102, 21);
 					jDesktopPane1.add(lbl_Reason);
 				}
 
@@ -1583,7 +1658,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					lbl_Defect_ID = new JLabel4j_std();
 					lbl_Defect_ID.setHorizontalAlignment(SwingConstants.TRAILING);
 					lbl_Defect_ID.setText(lang.get("lbl_Defect_ID"));
-					lbl_Defect_ID.setBounds(236, 113, 130, 21);
+					lbl_Defect_ID.setBounds(236, 113, 102, 21);
 					jDesktopPane1.add(lbl_Defect_ID);
 				}
 
@@ -1591,7 +1666,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					lbl_Defect_Type = new JLabel4j_std();
 					lbl_Defect_Type.setHorizontalAlignment(SwingConstants.TRAILING);
 					lbl_Defect_Type.setText(lang.get("lbl_Defect_Type"));
-					lbl_Defect_Type.setBounds(236, 78, 130, 21);
+					lbl_Defect_Type.setBounds(236, 78, 102, 21);
 					jDesktopPane1.add(lbl_Defect_Type);
 				}
 
@@ -1602,7 +1677,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jComboBoxSampleReason = new JComboBox4j<JDBSampleReasons>();
 					jComboBoxSampleReason.setModel(jComboBox2Model);
 					jComboBoxSampleReason.setEditable(false);
-					jComboBoxSampleReason.setBounds(373, 43, 300, 23);
+					jComboBoxSampleReason.setBounds(346, 43, 300, 23);
 					jDesktopPane1.add(jComboBoxSampleReason);
 				}
 
@@ -1613,7 +1688,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jComboBoxDefectID = new JComboBox4j<JDBSampleDefectIDs>();
 					jComboBoxDefectID.setModel(jComboBox3Model);
 					jComboBoxDefectID.setEditable(false);
-					jComboBoxDefectID.setBounds(373, 113, 300, 23);
+					jComboBoxDefectID.setBounds(346, 113, 300, 23);
 					jComboBoxDefectID.setMaximumRowCount(20);
 					jDesktopPane1.add(jComboBoxDefectID);
 				}
@@ -1632,7 +1707,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					});
 					jComboBoxDefectType.setModel(jComboBox3Model);
 					jComboBoxDefectType.setEditable(false);
-					jComboBoxDefectType.setBounds(373, 78, 300, 23);
+					jComboBoxDefectType.setBounds(346, 78, 300, 23);
 					jComboBoxDefectType.setMaximumRowCount(20);
 					jDesktopPane1.add(jComboBoxDefectType);
 				}
@@ -1845,6 +1920,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 		jTextFieldSample_LocationFiller.setText("");
 		jTextFieldMHN.setText("");
 		jComboBoxMonth.setSelectedIndex(0);
+		jTextFieldOperative.setText("");
 
 	}
 
@@ -1884,6 +1960,29 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 
 	}
 
+	
+	private void notifyEmail()
+	{
+
+		if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_PAL_SAMPLE_EDIT"))
+		{
+			int row = jTable1.getSelectedRow();
+			if (row >= 0)
+			{
+				String lsscc = jTable1.getValueAt(row, JDBViewPalletSampleTableModel.SSCC_Col).toString();
+				int question = JOptionPane.showConfirmDialog(Common.mainForm, "Send Email ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+				if (question == 0)
+				{
+					JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
+					pallet.SortNotification(lsscc);
+					JUtility.errorBeep();
+					JOptionPane.showMessageDialog(this,"Notification Requested.");
+				}
+				
+			}
+		}
+
+	}
 	private void setSequence(boolean descending)
 	{
 

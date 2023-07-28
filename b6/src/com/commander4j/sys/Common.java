@@ -143,11 +143,11 @@ public class Common
 	public static String[] locationStatusIncBlank = new String[] { "", "Valid", "Invalid" };
 	public static String[] processOrderStatus = new String[] { "Discarded", "Finished", "Held", "Ready", "Running" };
 	public static String[] processOrderStatusincBlank = new String[] { "", "Discarded", "Finished", "Held", "Ready", "Running" };
-	public static String[] messageTypesexclBlank = new String[] {"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", 	"Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration",	"Production Unconfirm", 	"QM Inspection Request",	"QM Inspection Result" };
-	public static String[] messageTypesincBlank = new String[] { "", 	"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", "Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration",	"Production Unconfirm", 	"QM Inspection Request",	"QM Inspection Result"	};
+	public static String[] messageTypesexclBlank = new String[] {"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", 	"Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration",	"Production Unconfirm", "Sort Notification",	"QM Inspection Request",	"QM Inspection Result" };
+	public static String[] messageTypesincBlank = new String[] { "", 	"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", "Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration",	"Production Unconfirm", "Sort Notification",	"QM Inspection Request",	"QM Inspection Result"	};
 
-	public static String[] transactionTypes = new String[] { "","CLONE", "DESPATCH", "EDIT", "PRINT","PROD DEC", "STATUS CHANGE","MHN","SPLIT","MOVE","MANUAL"};
-	public static String[] transactionSubTypes = new String[] { "", "ADD","REMOVE","CREATE","PRINT", "CONFIRM", "FROM", "TO", "MANUAL", "LABEL","DECISION","BEFORE","AFTER","DELETE","UNCONFIRM" };
+	public static String[] transactionTypes = new String[] { "","CLONE", "DESPATCH", "EDIT", "PRINT","PROD DEC", "STATUS CHANGE","MHN","SPLIT","MOVE","MANUAL","SORT"};
+	public static String[] transactionSubTypes = new String[] { "", "ADD","REMOVE","CREATE","PRINT", "CONFIRM", "FROM", "TO", "MANUAL", "LABEL","DECISION","BEFORE","AFTER","DELETE","UNCONFIRM","NOTIFY" };
 	public static String[] auditEventActions = new String[] { "", "ADD", "REMOVE", "CREATE", "DELETE", "RENAME", "ENABLE", "DISABLE" };
 	public static String[] auditEventTypes = new String[] { "", "USER", "GROUP", "USER_GROUP", "GROUP_MODULE" };
 	public static String[] locationSortBy = new String[] { "LOCATION_ID", "PLANT", "WAREHOUSE", "DESCRIPTION", "GLN", "STORAGE_LOCATION", "STORAGE_TYPE", "STORAGE_SECTION", "STORAGE_BIN"};
@@ -300,6 +300,7 @@ public class Common
 	public final static Icon icon_pallet_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_pallet);
 	public final static Icon icon_split_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_split);
 	public final static Icon icon_move_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_move);
+	public final static Icon icon_notifyEmail_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_notifyEmail);
 	public final static Icon icon_clone_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_clone);
 	public final static Icon icon_case_label_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_case_label);
 	public final static Icon icon_sample_label_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_sample_label);
@@ -317,6 +318,7 @@ public class Common
 	public final static String image_weight_capture = "weight-capture.gif";
 	public final static String image_production_line = "prod_lines.gif";
 	public final static String image_lock = "lock.gif";
+	public final static String image_notifyEmail = "mail.gif";
 	public final static String image_file_save = "file_save.gif";
 	public final static String image_export = "export.gif";
 	public final static String image_alternative = "alternative.gif";

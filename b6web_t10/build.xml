@@ -29,7 +29,7 @@
         <pathelement location="WebContent/WEB-INF/lib/log4j-core-2.20.0.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/log4j-jcl-2.20.0.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/mssql-jdbc-12.2.0.jre11.jar"/>
-        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-j-8.0.32.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-j-8.1.0.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/ojdbc11.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/simple-xml-2.7.1.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/slf4j-api-1.8.0-beta4.jar"/>

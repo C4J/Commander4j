@@ -54,6 +54,7 @@ public class JDBViewPalletSampleTableModel extends AbstractTableModel
 	public static final int MHN_number 			= 11;	
 	public static final int Sample_Date 		= 12;
 	public static final int Sample_Seq 			= 13;
+	public static final int Operative_Seq 		= 14;
 
 	private String[] mcolNames = {"SSCC", 
 								  "Prod Date", 
@@ -68,7 +69,8 @@ public class JDBViewPalletSampleTableModel extends AbstractTableModel
 								  "Process Order", 
 								  "MHN Number",
 								  "Sample Date",
-								  "Seq" };
+								  "Seq",
+								  "Operative"};
 	
 	private ResultSet mResultSet;
 
@@ -166,6 +168,8 @@ public class JDBViewPalletSampleTableModel extends AbstractTableModel
 				return cache.get(row).getProcessOrder();
 			case MHN_number:
 				return cache.get(row).getMHNNumber();
+			case Operative_Seq:
+				return cache.get(row).getOperative();
 			}
 		}
 		catch (Exception ex)

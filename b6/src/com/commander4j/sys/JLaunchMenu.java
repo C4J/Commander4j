@@ -1337,6 +1337,19 @@ public class JLaunchMenu
 			}
 		}
 		
+		if (optionName.equals("FRM_ADMIN_OPERATIVES"))
+		{
+			final JInternalFrameOperativeAdmin u;
+			if (isLoaded(JInternalFrameOperativeAdmin.class))
+				setVisible(JInternalFrameOperativeAdmin.class);
+			else
+			{
+				u = new JInternalFrameOperativeAdmin();
+				u.setTitle(mod.getDescription());
+				displayForm(u, optionName);
+			}
+		}
+		
 		if (optionName.equals("FRM_ADMIN_PACKING_LINES"))
 		{
 			final JInternalFramePackingLineAdmin u;
@@ -2347,6 +2360,19 @@ public class JLaunchMenu
 			// else
 			{
 				u = new JInternalFrameShiftNameProperties(StrParam);
+				u.setTitle(mod.getDescription() + " [" + StrParam + "]");
+				displayForm(u, optionName);
+			}
+		}
+		
+		if (optionName.equals("FRM_ADMIN_OPERATIVES_EDIT"))
+		{
+			final JInternalFrameOperativeProperties u;
+			// if (isLoaded(JInternalFrameMHNDecisionProperties.class))
+			// setVisible(JInternalFrameMHNDecisionProperties.class);
+			// else
+			{
+				u = new JInternalFrameOperativeProperties(StrParam);
 				u.setTitle(mod.getDescription() + " [" + StrParam + "]");
 				displayForm(u, optionName);
 			}

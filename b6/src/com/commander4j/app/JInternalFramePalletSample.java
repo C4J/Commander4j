@@ -84,6 +84,7 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
 import com.commander4j.sys.JLaunchMenu;
+import com.commander4j.sys.JLaunchReport;
 import com.commander4j.tablemodel.JDBPalletSampleTableModel;
 import com.commander4j.util.JColorPair;
 import com.commander4j.util.JDateControl;
@@ -169,6 +170,8 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 	private JDBMaterialCustomerData matCustData = new JDBMaterialCustomerData(Common.selectedHostID, Common.sessionID);
 	private Color foregroundDecision, backgroundDecision;
 	private JButton4j jButtonSave = new JButton4j(Common.icon_update_16x16);
+	private JButton4j jButtonNotifyEmail = new JButton4j(Common.icon_notifyEmail_16x16);
+	private JButton4j jButtonPrint = new JButton4j(Common.icon_report_16x16);
 	private JButton4j jButtonUndo = new JButton4j(Common.icon_undo_16x16);
 	private JButton4j button4jSampleAdd = new JButton4j(Common.icon_add_16x16);
 	private JButton4j button4jSampleDelete = new JButton4j(Common.icon_delete_16x16);
@@ -478,19 +481,23 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					palext.setWeekOfYear(pallet.getDateOfManufacture());
 					jTextFieldWeekNumber.setText(palext.getPWeek().toString());
 
-					if (palext.getPalletQuantity()==null)
+					if (palext.getPalletQuantity() == null)
 					{
 						jFormattedTextFieldStartQuantity.setValue(pallet.getQuantity());
 						palletExtensionModified(true);
 					}
 					else
 					{
-					jFormattedTextFieldStartQuantity.setValue(palext.getPalletQuantity());
+						jFormattedTextFieldStartQuantity.setValue(palext.getPalletQuantity());
 					}
-					
+					jButtonNotifyEmail.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_NOTIFY_SORTING"));
+					jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_NOTIFY_SORTING"));
+
 				}
 				else
 				{
+					jButtonNotifyEmail.setEnabled(false);
+					jButtonPrint.setEnabled(false);
 					firstCaseTime.setEnabled(false);
 					lastCaseTime.setEnabled(false);
 					calendarButtonFirst.setEnabled(false);
@@ -577,6 +584,8 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 		jTextFieldYear.setEditable(false);
 		jTextFieldYear.setText("");
 		jFormattedTextFieldStartQuantity.setValue(new BigDecimal("0.000"));
+		jButtonNotifyEmail.setEnabled(false);
+		jButtonPrint.setEnabled(false);
 	}
 
 	private void initGUI()
@@ -929,7 +938,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				JPanel panel_Pallet_Extension = new JPanel();
 				panel_Pallet_Extension.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Additional Data", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
-				panel_Pallet_Extension.setBounds(5, 190, 978, 148);
+				panel_Pallet_Extension.setBounds(5, 190, 978, 169);
 				jDesktopPane1.add(panel_Pallet_Extension);
 				panel_Pallet_Extension.setLayout(null);
 
@@ -1062,9 +1071,11 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jFormattedTextFieldStartQuantity = new JQuantityInput(new BigDecimal("0"));
-					jFormattedTextFieldStartQuantity.addKeyListener(new KeyAdapter() {
+					jFormattedTextFieldStartQuantity.addKeyListener(new KeyAdapter()
+					{
 						@Override
-						public void keyTyped(KeyEvent e) {
+						public void keyTyped(KeyEvent e)
+						{
 							palletExtensionModified(true);
 						}
 					});
@@ -1183,8 +1194,40 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic('0');
 					jButtonSave.setEnabled(true);
-					jButtonSave.setBounds(566, 98, 100, 32);
+					jButtonSave.setBounds(373, 125, 100, 32);
 					panel_Pallet_Extension.add(jButtonSave);
+				}
+
+				{
+					jButtonNotifyEmail.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							notifyEmail();
+
+						}
+					});
+					jButtonNotifyEmail.setText(lang.get("btn_Notify"));
+					jButtonNotifyEmail.setMnemonic('0');
+					jButtonNotifyEmail.setEnabled(false);
+					jButtonNotifyEmail.setBounds(273, 125, 100, 32);
+					panel_Pallet_Extension.add(jButtonNotifyEmail);
+				}
+				
+				{
+					jButtonPrint.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							print();
+
+						}
+					});
+					jButtonPrint.setText(lang.get("btn_Print"));
+					jButtonPrint.setMnemonic('0');
+					jButtonPrint.setEnabled(false);
+					jButtonPrint.setBounds(173, 125, 100, 32);
+					panel_Pallet_Extension.add(jButtonPrint);
 				}
 
 				{
@@ -1199,13 +1242,13 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					jButtonUndo.setText(lang.get("btn_Undo"));
 					jButtonUndo.setMnemonic('0');
 					jButtonUndo.setEnabled(true);
-					jButtonUndo.setBounds(666, 98, 100, 32);
+					jButtonUndo.setBounds(473, 125, 100, 32);
 					panel_Pallet_Extension.add(jButtonUndo);
 				}
 
 				{
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
-					jButtonHelp.setBounds(766, 98, 100, 32);
+					jButtonHelp.setBounds(573, 125, 100, 32);
 					panel_Pallet_Extension.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
@@ -1213,14 +1256,14 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
-					jButtonClose.setBounds(866, 98, 100, 32);
+					jButtonClose.setBounds(673, 125, 100, 32);
 					panel_Pallet_Extension.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 
 					{
 						jLabel_WeekNumber = new JLabel4j_std();
-						jLabel_WeekNumber.setBounds(800, 62, 101, 21);
+						jLabel_WeekNumber.setBounds(205, 92, 101, 21);
 						panel_Pallet_Extension.add(jLabel_WeekNumber);
 						jLabel_WeekNumber.setText(lang.get("lbl_Week_Number"));
 						jLabel_WeekNumber.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -1228,40 +1271,40 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 					{
 						jTextFieldWeekNumber = new JTextField4j();
 						jTextFieldWeekNumber.setEditable(false);
-						jTextFieldWeekNumber.setBounds(910, 62, 56, 21);
+						jTextFieldWeekNumber.setBounds(315, 92, 56, 21);
 						panel_Pallet_Extension.add(jTextFieldWeekNumber);
 						jTextFieldWeekNumber.setHorizontalAlignment(SwingConstants.CENTER);
 					}
 
 					JLabel4j_std jLabel_DayOfWeek = new JLabel4j_std();
-					jLabel_DayOfWeek.setBounds(-39, 98, 119, 21);
+					jLabel_DayOfWeek.setBounds(294, 92, 119, 21);
 					panel_Pallet_Extension.add(jLabel_DayOfWeek);
 					jLabel_DayOfWeek.setText(lang.get("lbl_Day"));
 					jLabel_DayOfWeek.setHorizontalAlignment(SwingConstants.TRAILING);
 
-					jTextFieldDayOfWeek.setBounds(94, 98, 106, 21);
+					jTextFieldDayOfWeek.setBounds(427, 92, 80, 21);
 					panel_Pallet_Extension.add(jTextFieldDayOfWeek);
 					jTextFieldDayOfWeek.setText("");
 					jTextFieldDayOfWeek.setHorizontalAlignment(SwingConstants.CENTER);
 
 					JLabel4j_std jLabel_Month = new JLabel4j_std();
-					jLabel_Month.setBounds(200, 98, 87, 21);
+					jLabel_Month.setBounds(517, 92, 56, 21);
 					panel_Pallet_Extension.add(jLabel_Month);
 					jLabel_Month.setText(lang.get("lbl_Month"));
 					jLabel_Month.setHorizontalAlignment(SwingConstants.TRAILING);
 
-					jTextFieldMonth.setBounds(294, 98, 100, 21);
+					jTextFieldMonth.setBounds(579, 92, 80, 21);
 					panel_Pallet_Extension.add(jTextFieldMonth);
 					jTextFieldMonth.setText("");
 					jTextFieldMonth.setHorizontalAlignment(SwingConstants.CENTER);
 
 					JLabel4j_std jLabel_Year = new JLabel4j_std();
-					jLabel_Year.setBounds(383, 98, 87, 21);
+					jLabel_Year.setBounds(666, 92, 46, 21);
 					panel_Pallet_Extension.add(jLabel_Year);
 					jLabel_Year.setText(lang.get("lbl_Year"));
 					jLabel_Year.setHorizontalAlignment(SwingConstants.TRAILING);
 
-					jTextFieldYear.setBounds(479, 98, 69, 21);
+					jTextFieldYear.setBounds(721, 92, 46, 21);
 					panel_Pallet_Extension.add(jTextFieldYear);
 					jTextFieldYear.setText("");
 					jTextFieldYear.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1276,7 +1319,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 				JPanel panel_SampleResults = new JPanel();
 				panel_SampleResults.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Results", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
-				panel_SampleResults.setBounds(5, 345, 978, 185);
+				panel_SampleResults.setBounds(5, 368, 978, 162);
 				jDesktopPane1.add(panel_SampleResults);
 				panel_SampleResults.setLayout(null);
 
@@ -1480,6 +1523,26 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 		}
 	}
 
+	private void notifyEmail()
+	{
+		int question = JOptionPane.showConfirmDialog(Common.mainForm, "Send Email ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+		if (question == 0)
+		{
+			JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
+			pallet.SortNotification(lsscc);
+			JUtility.errorBeep();
+			JOptionPane.showMessageDialog(this,"Notification Requested.");
+		}
+
+	}
+	
+	private void print()
+	{
+		HashMap<String, Object> selectedSSCC = new HashMap<String, Object>();
+		selectedSSCC.put("P_SSCC", lsscc);
+		JLaunchReport.runReport("RPT_NOTIFY_SORTING", selectedSSCC, "", null, "");
+	}
+
 	private void save()
 	{
 		jStatusText.setText("");
@@ -1596,6 +1659,13 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 		if (valid == false)
 		{
 			JUtility.errorBeep();
+			jButtonNotifyEmail.setEnabled(false);
+			jButtonPrint.setEnabled(false);
+		}
+		else
+		{
+			jButtonNotifyEmail.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_NOTIFY_SORTING"));
+			jButtonPrint.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_NOTIFY_SORTING"));
 		}
 
 		return valid;

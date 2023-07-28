@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pallet_sample_data" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="75e85a23-bc8f-4e4a-895a-77808a35a833">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Pre Production"/>
@@ -410,7 +410,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SSCC}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy HH:mm:ss">
 				<reportElement x="106" y="0" width="100" height="16" uuid="857475aa-547c-439c-ae6d-bf6570df8c42">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2ec5d5c7-0ae9-4c60-ba50-aa225042ed29"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>

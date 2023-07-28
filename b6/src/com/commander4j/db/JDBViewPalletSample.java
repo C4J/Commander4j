@@ -51,6 +51,7 @@ public class JDBViewPalletSample
 	private String dbSampleDefectID;
 	private String dbLeaking;
 	private String dbComment;
+	private String dbOperative;
 	private BigDecimal dbStartQuantity;
 	private BigDecimal dbSampleQuantity;
 	private String dbLocation;
@@ -80,6 +81,7 @@ public class JDBViewPalletSample
 		setSampleDefectID("");
 		setLeaking("");
 		setComment("");
+		setOperative("");
 		setStartQuantity(new BigDecimal("0"));
 		setSampleQuantity(new BigDecimal("0"));
 		setLocation("");
@@ -92,6 +94,11 @@ public class JDBViewPalletSample
 	public String getComment()
 	{
 		return JUtility.replaceNullStringwithBlank(dbComment).trim();
+	}
+	
+	public String getOperative()
+	{
+		return JUtility.replaceNullStringwithBlank(dbOperative).trim();
 	}
 
 	public String getErrorMessage()
@@ -170,6 +177,7 @@ public class JDBViewPalletSample
 			setMaterialID(rs.getString("material"));
 			setProcessOrder(rs.getString("process_order"));
 			setMHNNumber(rs.getString("mhn_number"));
+			setOperative(rs.getString("id"));
 		}
 		catch (SQLException e)
 		{
@@ -249,6 +257,11 @@ public class JDBViewPalletSample
 	public void setComment(String str)
 	{
 		dbComment = str;
+	}
+	
+	public void setOperative(String str)
+	{
+		dbOperative = str;
 	}
 
 	private void setErrorMessage(String errorMsg)

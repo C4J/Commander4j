@@ -100,6 +100,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 	private JLabel4j_std jLabelDefectType;
 	private JTextField4j jTextFieldSSCC;
 	private JLabel4j_std lblUserID;
+	private JLabel4j_std lblOperative;
 	private JTextField4j jTextFieldUserID;
 	private String lsscc;
 	private Long lsequence;
@@ -120,18 +121,21 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 	private JPanel panelDefectType = new JPanel();
 	private JPanel panelReason = new JPanel();
 	private JTextField4j jTextFieldFiller_ID;
+	private JTextField4j jTextFieldOperative;
 	private JButton4j jButtonLookup_Filler_ID;
+	private JButton4j jButtonLookup_Operative;
 	private String llocation = "";
 	private Vector<JDBSampleDefectIDs> tempIDList = new Vector<JDBSampleDefectIDs>();
-	
-	private void refreshDefectIDList(String typeFilter,String dflt)
+	private JButton4j jButtonNotifyEmail = new JButton4j(Common.icon_notifyEmail_16x16);
+
+	private void refreshDefectIDList(String typeFilter, String dflt)
 	{
-		
+
 		tempIDList.clear();
 		tempIDList.addAll(sampleDefectIDs.getSampleDefects(true));
 		defectIDList.clear();
 		defectIDList.add(new JDBSampleDefectIDs(Common.selectedHostID, Common.sessionID));
-		
+
 		for (int x = 0; x < tempIDList.size(); x++)
 		{
 			if ((typeFilter.equals("")) || (typeFilter.equals(tempIDList.get(x).getSampleDefectType())))
@@ -139,7 +143,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 				defectIDList.add(tempIDList.get(x));
 			}
 		}
-		
+
 		for (int x = 0; x < defectIDList.size(); x++)
 		{
 			if (defectIDList.get(x).getSampleDefectID().equals(sampleDefectIDs.getSampleDefectID()))
@@ -147,9 +151,9 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 				jComboBoxDefectID.setSelectedIndex(x);
 			}
 		}
-		
+
 	}
-	
+
 	private void getPalletExtensionData(String sscc)
 	{
 		if (palext.getSamplePalletExtensionProperties(sscc))
@@ -161,17 +165,17 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 			llocation = "";
 		}
 	}
-	
+
 	private void getPalletData(String sscc)
 	{
 		pallet.getPalletProperties(sscc);
 
 	}
-	
+
 	public JInternalFramePalletSampleProperties(String sscc, Long sequence)
 	{
 		super();
-		
+
 		initGUI();
 
 		setSampleID(sscc, sequence);
@@ -182,7 +186,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
-		
+
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
@@ -225,7 +229,8 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 			jTextFieldComment.setText(sampleProperties.getSampleComment());
 			checkBoxLeaking.setSelected(sampleProperties.isSampleLeaking());
 			jTextFieldUserID.setText(sampleProperties.getUserID());
-			
+			jTextFieldOperative.setText(sampleProperties.getOperative());
+
 			jFormattedTextFieldSampleQuantity.setValue(sampleProperties.getSampleQuantity());
 			jTextFieldFiller_ID.setText(sampleProperties.getSamplePoint());
 			jTextFieldUserID.setText(sampleProperties.getUserID());
@@ -238,7 +243,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 			{
 
 			}
-			
+
 			for (int x = 0; x < defectTypeList.size(); x++)
 			{
 				if (defectTypeList.get(x).getSampleDefectType().equals(sampleProperties.getSampleDefectType()))
@@ -270,7 +275,6 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 
 			jButtonSave.setEnabled(true);
 
-			
 			try
 			{
 				jSpinnerSampleDate.setDate(new Date());
@@ -301,7 +305,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 			{
 
 				this.setPreferredSize(new java.awt.Dimension(448, 289));
-				this.setBounds(25, 25, 814, 435);
+				this.setBounds(25, 25, 814, 471);
 				setVisible(true);
 				this.setClosable(true);
 				this.setIconifiable(true);
@@ -313,7 +317,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 				jComboBoxReason.setModel(jComboBox2Model);
 				jComboBoxReason.setEditable(false);
 				jComboBoxReason.setMaximumRowCount(20);
-				
+
 				defectTypeList.add(new JDBSampleDefectTypes(Common.selectedHostID, Common.sessionID));
 				defectTypeList.addAll(sampleDefectTypes.getSampleDefects(true));
 				ComboBoxModel<JDBSampleDefectTypes> jComboBox6Model = new DefaultComboBoxModel<JDBSampleDefectTypes>(defectTypeList);
@@ -329,7 +333,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 				jComboBoxDefectID.setModel(jComboBox3Model);
 				jComboBoxDefectID.setEditable(false);
 				jComboBoxDefectID.setMaximumRowCount(20);
-				
+
 				jDesktopPane1 = new JDesktopPane();
 				jDesktopPane1.setBackground(Common.color_edit_properties);
 				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
@@ -339,7 +343,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 					jButtonSave = new JButton4j(Common.icon_update_16x16);
 					jDesktopPane1.add(jButtonSave);
 					jButtonSave.setText(lang.get("btn_Save"));
-					jButtonSave.setBounds(215, 355, 112, 32);
+					jButtonSave.setBounds(180, 395, 112, 32);
 					jButtonSave.setEnabled(false);
 					jButtonSave.addActionListener(new ActionListener()
 					{
@@ -402,13 +406,21 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 					lblUserID = new JLabel4j_std();
 					lblUserID.setText(lang.get("lbl_User_ID"));
 					lblUserID.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblUserID.setBounds(5, 318, 144, 21);
+					lblUserID.setBounds(5, 348, 144, 21);
 					jDesktopPane1.add(lblUserID);
+				}
+
+				{
+					lblOperative = new JLabel4j_std();
+					lblOperative.setText(lang.get("lbl_Operator_ID"));
+					lblOperative.setHorizontalAlignment(SwingConstants.TRAILING);
+					lblOperative.setBounds(5, 315, 144, 21);
+					jDesktopPane1.add(lblOperative);
 				}
 				{
 					jTextFieldUserID = new JTextField4j(JDBUser.field_user_id);
 					jTextFieldUserID.setEditable(false);
-					jTextFieldUserID.setBounds(163, 318, 126, 21);
+					jTextFieldUserID.setBounds(163, 348, 126, 21);
 					jTextFieldUserID.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -467,13 +479,13 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(328, 355, 112, 32);
+					jButtonHelp.setBounds(406, 395, 112, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(442, 355, 112, 32);
+					jButtonClose.setBounds(520, 395, 112, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -482,7 +494,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 						}
 					});
 				}
-				
+
 				{
 					jFormattedTextFieldSampleQuantity = new JQuantityInput(new BigDecimal("0"));
 					jFormattedTextFieldSampleQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -546,6 +558,21 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 				}
 
 				{
+					jTextFieldOperative = new JTextField4j();
+					jTextFieldOperative.setEditable(false);
+					jTextFieldOperative.addKeyListener(new KeyAdapter()
+					{
+						@Override
+						public void keyTyped(KeyEvent e)
+						{
+							jButtonSave.setEnabled(true);
+						}
+					});
+					jTextFieldOperative.setBounds(163, 316, 106, 21);
+					jDesktopPane1.add(jTextFieldOperative);
+				}
+
+				{
 					jButtonLookup_Filler_ID = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookup_Filler_ID);
 					jButtonLookup_Filler_ID.setBounds(270, 80, 21, 21);
@@ -564,7 +591,27 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 						}
 					});
 				}
-				
+
+				{
+					jButtonLookup_Operative = new JButton4j(Common.icon_lookup_16x16);
+					jDesktopPane1.add(jButtonLookup_Operative);
+					jButtonLookup_Operative.setBounds(270, 315, 21, 21);
+					jButtonLookup_Operative.setEnabled(true);
+					jButtonLookup_Operative.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+							JLaunchLookup.dlgAutoExec = true;
+							JLaunchLookup.dlgCriteriaDefault = "Y";
+							if (JLaunchLookup.operatives())
+							{
+								jTextFieldOperative.setText(JLaunchLookup.dlgResult);
+								jButtonSave.setEnabled(true);
+							}
+						}
+					});
+				}
+
 				panelReason.setBounds(163, 115, 391, 27);
 				jDesktopPane1.add(panelReason);
 				panelReason.setLayout(null);
@@ -579,14 +626,30 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 					}
 				});
 
+				{
+					jButtonNotifyEmail.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							notifyEmail();
+
+						}
+					});
+					jButtonNotifyEmail.setText(lang.get("btn_Notify"));
+					jButtonNotifyEmail.setMnemonic('0');
+					jButtonNotifyEmail.setEnabled(true);
+					jButtonNotifyEmail.setBounds(293, 395, 112, 32);
+					jDesktopPane1.add(jButtonNotifyEmail);
+				}
+
 				panelDefectID.setBounds(163, 185, 391, 27);
 				jDesktopPane1.add(panelDefectID);
 				panelDefectID.setLayout(null);
-				
+
 				panelDefectType.setBounds(163, 151, 391, 27);
 				jDesktopPane1.add(panelDefectType);
 				panelDefectType.setLayout(null);
-				
+
 				jComboBoxDefectType.setBounds(2, 2, 385, 23);
 				panelDefectType.add(jComboBoxDefectType);
 				jComboBoxDefectType.setMaximumRowCount(20);
@@ -595,7 +658,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 					public void actionPerformed(ActionEvent e)
 					{
 						jButtonSave.setEnabled(true);
-						refreshDefectIDList(((JDBSampleDefectTypes) jComboBoxDefectType.getSelectedItem()).getSampleDefectType(),((JDBSampleDefectIDs) jComboBoxDefectID.getSelectedItem()).getSampleDefectID());
+						refreshDefectIDList(((JDBSampleDefectTypes) jComboBoxDefectType.getSelectedItem()).getSampleDefectType(), ((JDBSampleDefectIDs) jComboBoxDefectID.getSelectedItem()).getSampleDefectID());
 					}
 				});
 
@@ -618,11 +681,10 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 		}
 	}
 
-	private void save()
+	private boolean save()
 	{
 
-		// sample_date,sample_reason = ?,defect_id = ?,leaking = ?, comment=?,
-		// sample_size=?, user_id=? where sscc = ? and sample_sequence =
+		boolean result = false;
 
 		if (validateInput())
 		{
@@ -646,7 +708,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 			{
 				sampleProperties.setSampleDefectID("");
 			}
-			
+
 			try
 			{
 				sampleProperties.setSampleDefectType(((JDBSampleDefectTypes) jComboBoxDefectType.getSelectedItem()).getSampleDefectType());
@@ -659,10 +721,12 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 			sampleProperties.setSampleLeaking(checkBoxLeaking.isSelected());
 
 			sampleProperties.setSampleComment(jTextFieldComment.getText());
-			
+
 			sampleProperties.setSampleQuantity(JUtility.stringToBigDecimal(jFormattedTextFieldSampleQuantity.getText().toString()));
 
 			sampleProperties.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
+
+			sampleProperties.setOperative(jTextFieldOperative.getText());
 
 			jTextFieldUserID.setText(Common.userList.getUser(Common.sessionID).getUserId());
 
@@ -682,11 +746,29 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 			{
 				jTextFieldComment.setText(sampleProperties.getSampleComment());
 				jButtonSave.setEnabled(false);
+				result = true;
 			}
 			else
 			{
 				JUtility.errorBeep();
 				JOptionPane.showMessageDialog(Common.mainForm, sampleProperties.getErrorMessage(), lang.get("dlg_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+			}
+		}
+		return result;
+
+	}
+
+	private void notifyEmail()
+	{
+		if (save())
+		{
+			int question = JOptionPane.showConfirmDialog(Common.mainForm, "Send Email ?", lang.get("dlg_Confirm"), JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+			if (question == 0)
+			{
+				JDBPallet pallet = new JDBPallet(Common.selectedHostID, Common.sessionID);
+				pallet.SortNotification(lsscc);
+				JUtility.errorBeep();
+				JOptionPane.showMessageDialog(this, "Notification Requested.");
 			}
 		}
 
@@ -707,75 +789,86 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 			zeroQuantity = true;
 		}
 
-		if (jTextFieldFiller_ID.getText().equals(""))
+		if (jTextFieldOperative.getText().equals(""))
 		{
 			valid = false;
-			jTextFieldFiller_ID.setBackground(error_color);
+			jTextFieldOperative.setBackground(error_color);
 		}
 		else
 		{
-			jTextFieldFiller_ID.setBackground(light_grey);
-			
-			// Check Reason is present
-			if (jComboBoxReason.getSelectedItem().toString().equals(""))
+			jTextFieldOperative.setBackground(light_grey);
+
+			if (jTextFieldFiller_ID.getText().equals(""))
 			{
-				// Reason is missing
 				valid = false;
-				panelReason.setBackground(error_color);
+				jTextFieldFiller_ID.setBackground(error_color);
 			}
 			else
 			{
-				// Reason is present
-				panelReason.setBackground(light_grey);
+				jTextFieldFiller_ID.setBackground(light_grey);
 
-				if (jComboBoxDefectID.getSelectedItem().toString().equals(""))
+				// Check Reason is present
+				if (jComboBoxReason.getSelectedItem().toString().equals(""))
 				{
-					// Defect is NOT present
-					if (zeroQuantity)
-					{
-						// Zero is permitted if defect is blank
-						jFormattedTextFieldSampleQuantity.setBackground(Color.WHITE);
-						panelDefectID.setBackground(light_grey);
-					}
-					else
-					{
-						// Quantity Required if Defect present
-						valid = false;
-						jFormattedTextFieldSampleQuantity.setBackground(error_color);
-						panelDefectID.setBackground(error_color);
-					}
-
-					if (checkBoxLeaking.isSelected())
-					{
-						// Leaking should not be selected if no Defect selected
-						valid = false;
-						checkBoxLeaking.setBackground(error_color);
-						panelDefectID.setBackground(error_color);
-					}
-					else
-					{
-						checkBoxLeaking.setBackground(light_grey);
-						panelDefectID.setBackground(light_grey);
-					}
+					// Reason is missing
+					valid = false;
+					panelReason.setBackground(error_color);
 				}
 				else
 				{
-					// Defect is present
+					// Reason is present
+					panelReason.setBackground(light_grey);
 
-					checkBoxLeaking.setBackground(light_grey);
-
-					if (zeroQuantity)
+					if (jComboBoxDefectID.getSelectedItem().toString().equals(""))
 					{
-						// Quantity should be zero if Defect blank
-						valid = false;
-						jFormattedTextFieldSampleQuantity.setBackground(error_color);
-						panelDefectID.setBackground(error_color);
+						// Defect is NOT present
+						if (zeroQuantity)
+						{
+							// Zero is permitted if defect is blank
+							jFormattedTextFieldSampleQuantity.setBackground(Color.WHITE);
+							panelDefectID.setBackground(light_grey);
+						}
+						else
+						{
+							// Quantity Required if Defect present
+							valid = false;
+							jFormattedTextFieldSampleQuantity.setBackground(error_color);
+							panelDefectID.setBackground(error_color);
+						}
+
+						if (checkBoxLeaking.isSelected())
+						{
+							// Leaking should not be selected if no Defect
+							// selected
+							valid = false;
+							checkBoxLeaking.setBackground(error_color);
+							panelDefectID.setBackground(error_color);
+						}
+						else
+						{
+							checkBoxLeaking.setBackground(light_grey);
+							panelDefectID.setBackground(light_grey);
+						}
 					}
 					else
 					{
-						// Zero is permitted if defect is blank
-						jFormattedTextFieldSampleQuantity.setBackground(Color.WHITE);
-						panelDefectID.setBackground(light_grey);
+						// Defect is present
+
+						checkBoxLeaking.setBackground(light_grey);
+
+						if (zeroQuantity)
+						{
+							// Quantity should be zero if Defect blank
+							valid = false;
+							jFormattedTextFieldSampleQuantity.setBackground(error_color);
+							panelDefectID.setBackground(error_color);
+						}
+						else
+						{
+							// Zero is permitted if defect is blank
+							jFormattedTextFieldSampleQuantity.setBackground(Color.WHITE);
+							panelDefectID.setBackground(light_grey);
+						}
 					}
 				}
 			}

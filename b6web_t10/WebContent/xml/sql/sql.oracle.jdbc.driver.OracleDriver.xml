@@ -2536,7 +2536,7 @@
 		</statement>
 		<statement>
 			<id>JDBPalletSamples.update</id>
-			<text>update {schema}APP_PALLET_SAMPLES set sample_date=?,sample_reason = ?,defect_type = ?,defect_id = ?,leaking = ?, sample_comment=?, sample_quantity=?, user_id=?, sample_point = ? where sscc = ? and sample_sequence = ?</text>
+			<text>update {schema}APP_PALLET_SAMPLES set sample_date=?,sample_reason = ?,defect_type = ?,defect_id = ?,leaking = ?, sample_comment=?, sample_quantity=?, user_id=?,id=? sample_point = ? where sscc = ? and sample_sequence = ?</text>
 		</statement>
 	         <statement>
 			<id>JDBPalletSamples.getProperties</id>
@@ -2870,6 +2870,36 @@
 			<id>JDBPackingLines.getNames</id>
 			<text>select * from {schema}APP_PACKING_LINES order by packing_line_id</text>
 		</statement>
+		
+		<?JDBOperatives?>		
+		<statement>
+			<id>JDBOperatives.create</id>
+			<text>insert into {schema}APP_OPERATIVES (id,surname,forename,enabled) values (?,?,?,?)</text>
+		</statement>	
+		<statement>
+			<id>JDBOperatives.delete</id>
+			<text>delete from {schema}APP_OPERATIVES where id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBOperatives.update</id>
+			<text>update {schema}APP_OPERATIVES set surname = ?,forename = ?, enabled = ? where id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBOperatives.renameTo</id>
+			<text>update {schema}APP_OPERATIVES set id = ? where id = ?</text>
+		</statement>
+	    <statement>
+			<id>JDBOperatives.getProperties</id>
+			<text>select * from {schema}APP_OPERATIVES where id = ?</text>
+		</statement>	
+	    <statement>
+			<id>JDBOperatives.isValid</id>
+			<text>select * from {schema}APP_OPERATIVES where id = ?</text>
+		</statement>
+		<statement>
+			<id>JDBOperatives.getOperatives</id>
+			<text>select * from {schema}APP_OPERATIVES order by id</text>
+		</statement>		
 
 	</jdbcDriver>
 </SQL>

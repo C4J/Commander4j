@@ -49,6 +49,7 @@ import com.commander4j.messages.OutgoingPalletSplit;
 import com.commander4j.messages.OutgoingPalletStatusChange;
 import com.commander4j.messages.OutgoingProductionDeclarationConfirmation;
 import com.commander4j.messages.OutgoingProductionUnConfirm;
+import com.commander4j.messages.OutgoingSortNotify;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JUnique;
@@ -124,6 +125,7 @@ public class OutboundMessageThread extends Thread
 			OutgoingDespatchConfirmation odc = new OutgoingDespatchConfirmation(getHostID(), getSessionID());
 			OutgoingDespatchPreAdvice opa = new OutgoingDespatchPreAdvice(getHostID(), getSessionID());
 			OutgoingDespatchEmail ode = new OutgoingDespatchEmail(getHostID(), getSessionID());
+			OutgoingSortNotify osn = new OutgoingSortNotify(getHostID(), getSessionID());
 			OutgoingEquipmentTracking oet = new OutgoingEquipmentTracking(getHostID(), getSessionID());
 			OutgoingPalletStatusChange psc = new OutgoingPalletStatusChange(getHostID(), getSessionID());
 			OutgoingPalletSplit ops = new OutgoingPalletSplit(getHostID(), getSessionID());
@@ -234,6 +236,13 @@ public class OutboundMessageThread extends Thread
 								messageProcessedOK = ode.processMessage(ir.getTransactionRef());
 								errorMessage = ode.getErrorMessage();
 								GenericMessageHeader.updateStats("Output","Despatch Email", messageProcessedOK.toString());
+							}
+							
+							if (ir.getInterfaceType().equals("Sort Notification"))
+							{
+								messageProcessedOK = osn.processMessage(ir.getTransactionRef());
+								errorMessage = osn.getErrorMessage();
+								GenericMessageHeader.updateStats("Output","Sort Notification", messageProcessedOK.toString());
 							}
 
 							if (ir.getInterfaceType().equals("Equipment Tracking"))

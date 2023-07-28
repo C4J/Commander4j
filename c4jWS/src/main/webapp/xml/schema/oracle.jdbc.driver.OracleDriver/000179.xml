@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+	
+	<statement>
+		CREATE OR REPLACE VIEW "VIEW_SORTING_DATA" AS SELECT
+			app_pallet_extension.SSCC AS SSCC,
+			app_pallet_extension.SHIFT_ID AS SHIFT_ID,
+			app_pallet_extension.SUPPLIER_ID1 AS SUPPLIER_ID1,
+			app_pallet_extension.INCIDENT_REFERENCE AS INCIDENT_REFERENCE,
+			app_pallet_extension.FIRST_CASE_TIME AS FIRST_CASE_TIME,
+			app_pallet_extension.LAST_CASE_TIME AS LAST_CASE_TIME,
+			app_pallet.LOCATION_ID AS LOCATION_ID,
+			app_pallet.BATCH_NUMBER AS BATCH_NUMBER,
+			app_pallet.MHN_NUMBER AS MHN_NUMBER,
+			app_pallet.DESPATCH_NO AS DESPATCH_NO,
+			app_pallet_extension.LOCATION AS LOCATION,
+			app_pallet_extension.PRODUCT_GROUP AS PRODUCT_GROUP,
+			app_pallet_extension.CONTAINER_CODE AS CONTAINER_CODE,
+			app_pallet_extension.PALLET_QUANTITY AS PALLET_QUANTITY,
+			app_pallet_samples.SAMPLE_DATE AS SAMPLE_DATE,
+			app_pallet_samples.SAMPLE_REASON AS SAMPLE_REASON,
+			app_pallet_samples.DEFECT_TYPE AS DEFECT_TYPE,
+			app_pallet_samples.DEFECT_ID AS DEFECT_ID,
+			app_pallet_samples.LEAKING AS LEAKING,
+			app_pallet_samples.SAMPLE_COMMENT AS SAMPLE_COMMENT,
+			app_pallet_samples.SAMPLE_QUANTITY AS SAMPLE_QUANTITY,
+			app_pallet_samples.SAMPLE_POINT AS SAMPLE_POINT,
+			app_pallet.MATERIAL AS MATERIAL,
+			app_material.DESCRIPTION AS MATERIAL_DESCRIPTION,
+			app_pallet.QUANTITY AS QUANTITY,
+			app_pallet.UOM AS UOM,
+			app_pallet.DATE_OF_MANUFACTURE AS DATE_OF_MANUFACTURE,
+			app_pallet.STATUS AS STATUS,
+			app_material_batch.STATUS AS BATCH_STATUS,
+			app_sample_defect_type.DESCRIPTION AS DEFECT_DESCRIPTION,
+			app_sample_defect_type.LONG_DESCRIPTION AS LONG_DESCRIPTION,
+			app_sample_reasons.DESCRIPTION AS REASON_DESCRIPTION 
+		FROM
+			app_pallet_samples
+			LEFT JOIN app_sample_defect_id ON ( app_pallet_samples.DEFECT_ID = app_sample_defect_id.DEFECT_ID )
+			LEFT JOIN app_sample_defect_type ON ( app_pallet_samples.DEFECT_TYPE = app_sample_defect_type.DEFECT_TYPE )
+			LEFT JOIN app_sample_reasons ON ( app_pallet_samples.SAMPLE_REASON = app_sample_reasons.SAMPLE_REASON )
+			LEFT JOIN app_pallet_extension ON ( app_pallet_extension.SSCC = app_pallet_samples.SSCC )
+			LEFT JOIN app_pallet ON ( app_pallet_extension.SSCC = app_pallet.SSCC )
+			LEFT JOIN app_material_batch ON ( app_pallet.MATERIAL = app_material_batch.MATERIAL ) 
+			AND ( app_pallet.BATCH_NUMBER = app_material_batch.BATCH_NUMBER )
+			LEFT JOIN app_material ON (app_pallet.MATERIAL = app_material.MATERIAL)
+	</statement>
+	
+     <statement>   
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Notify', 'EN', 'Notify', '0')
+    </statement>
+    
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Notify', 'DE', 'Benachrichtigen', '0')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Notify', 'FR', 'Notifier', '0')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Notify', 'NL', 'Melden', '0')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Notify', 'ES', 'Notificar', '0')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Notify', 'PL', 'Notyfikować', '0')
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Notify', 'HU', 'Értesítés', '0')
+	</statement>
+	
+    <statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('btn_Notify', 'IT', 'Notificare', '0')
+	</statement>  
+	
+	<statement>
+		INSERT INTO SYS_MODULES (MODULE_ID,RF_ACTIVE,DK_ACTIVE,MODULE_TYPE,HINT,MNEMONIC,ICON_FILENAME,HELPSET_ID,REPORT_FILENAME,EXEC_FILENAME,EXEC_DIR,PRINT_PREVIEW,PRINT_DIALOG,PRINT_COPIES,REPORT_TYPE,RESOURCE_KEY) VALUES
+		('RPT_NOTIFY_SORTING', 'N', 'Y', 'REPORT', 'Pallet Sorting Notification', '0', '', '', 'sorting_notification.jrxml', '', '', 'Y', 'N', '1', 'Standard', '')
+	</statement>	
+	
+	<statement>          
+		INSERT INTO  SYS_GROUP_PERMISSIONS (GROUP_ID, MODULE_ID) VALUES ('ADMIN', 'RPT_NOTIFY_SORTING')
+    </statement> 
+		
+</DDL>

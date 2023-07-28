@@ -86,7 +86,7 @@ public class JInternalFrameSampleDefectIDProperties extends JInternalFrame
 		super();
 		initGUI();
 		final JHelp help = new JHelp();
-		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_SAMPLE_REASON"));
+		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_SAMPLE_DEFECT_ID"));
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

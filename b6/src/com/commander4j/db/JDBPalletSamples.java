@@ -57,6 +57,7 @@ public class JDBPalletSamples
 	private String dbSampleLeaking = "";
 	private String dbSampleComment;
 	private String dbUserID;
+	private String dbOperative;
 	private String dbSamplePoint;
 	private long sample_sequence = 1;
 
@@ -70,7 +71,7 @@ public class JDBPalletSamples
 		setSessionID(session);
 	}
 
-	public JDBPalletSamples(String sscc, Long sampleSequence,Timestamp sampledate, String reason, String defecttype, String defectid, BigDecimal sampleQuantity, String leaking, String comment, String user, String samplepoint)
+	public JDBPalletSamples(String sscc, Long sampleSequence,Timestamp sampledate, String reason, String defecttype, String defectid, BigDecimal sampleQuantity, String leaking, String comment, String user, String samplepoint, String operative)
 	{
 		setSSCC(sscc);
 		setSampleSequence(sampleSequence);
@@ -83,6 +84,7 @@ public class JDBPalletSamples
 		setSampleComment(comment);
 		setUserID(user);
 		setSamplePoint(samplepoint);
+		setOperative(operative);
 	}
 
 	public void clear()
@@ -96,6 +98,7 @@ public class JDBPalletSamples
 		setSampleComment("");
 		setUserID("");
 		setSamplePoint("");
+		setOperative("");
 	}
 
 	public boolean create()
@@ -225,6 +228,7 @@ public class JDBPalletSamples
 			setSampleQuantity(rs.getBigDecimal("sample_quantity"));
 			setUserID(rs.getString("user_id"));
 			setSamplePoint(rs.getString("sample_point"));
+			setOperative(rs.getString("id"));
 
 		}
 		catch (SQLException e)
@@ -317,6 +321,11 @@ public class JDBPalletSamples
 	public String getUserID()
 	{
 		return JUtility.replaceNullStringwithBlank(dbUserID);
+	}
+	
+	public String getOperative()
+	{
+		return JUtility.replaceNullStringwithBlank(dbOperative);
 	}
 
 	public boolean isValid()
@@ -455,6 +464,11 @@ public class JDBPalletSamples
 		dbUserID = user;
 	}
 
+	public void setOperative(String operative)
+	{
+		dbOperative = operative;
+	}
+	
 	public ResultSet getPalletDataResultSet(PreparedStatement criteria)
 	{
 		ResultSet rs;
@@ -502,8 +516,9 @@ public class JDBPalletSamples
 				stmtupdate.setBigDecimal(7, getSampleQuantity());
 				stmtupdate.setString(8, getUserID());
 				stmtupdate.setString(9, getSamplePoint());
-				stmtupdate.setString(10, getSSCC());
-				stmtupdate.setLong(11, getSampleSequence());
+				stmtupdate.setString(10, getOperative());
+				stmtupdate.setString(11, getSSCC());
+				stmtupdate.setLong(12, getSampleSequence());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				

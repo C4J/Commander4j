@@ -47,6 +47,7 @@ import com.commander4j.messages.OutgoingPalletSplit;
 import com.commander4j.messages.OutgoingPalletStatusChange;
 import com.commander4j.messages.OutgoingProductionDeclarationConfirmation;
 import com.commander4j.messages.OutgoingProductionUnConfirm;
+import com.commander4j.messages.OutgoingSortNotify;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 import com.commander4j.util.JWait;
@@ -120,7 +121,7 @@ public class JDBPallet
 		clear();
 	}
 
-	public JDBPallet(String sscc, String material, String batch, String processOrder, BigDecimal quantity, String uom, BigDecimal baseQuantity, String baseUom, Timestamp dom, String status, String location, String ean, String variant,String equipment)
+	public JDBPallet(String sscc, String material, String batch, String processOrder, BigDecimal quantity, String uom, BigDecimal baseQuantity, String baseUom, Timestamp dom, String status, String location, String ean, String variant, String equipment)
 	{
 		clear();
 		setSSCC(sscc);
@@ -137,10 +138,39 @@ public class JDBPallet
 		setEquipmentType(equipment);
 	}
 
+	public boolean SortNotification(String sscc)
+	{
+		boolean result = false;
+
+		setSSCC(sscc);
+		result = SortNotification();
+
+		return result;
+	}
+
+	public boolean SortNotification()
+	{
+		boolean result = false;
+
+		if (getPalletProperties())
+		{
+			long txnRef = 0;
+			txnRef = writePalletHistory(txnRef, "SORT", "NOTIFY");
+
+			OutgoingSortNotify osn = new OutgoingSortNotify(getHostID(), getSessionID());
+			
+			osn.submit(txnRef);
+			
+			result = true;
+		}
+
+		return result;
+	}
+
 	public void setEquipmentType(String equip)
 	{
 		dbEquipmentType = JUtility.replaceNullStringwithBlank(equip);
-		dbEquipmentType=dbEquipmentType.toUpperCase();
+		dbEquipmentType = dbEquipmentType.toUpperCase();
 	}
 
 	public String getEquipmentType()
@@ -313,7 +343,7 @@ public class JDBPallet
 		dbDateUpdated = JUtility.getSQLDateTime();
 		dbCreatedBy = "";
 		dbUpdatedBy = "";
-		dbEquipmentType="";
+		dbEquipmentType = "";
 		setConfirmed(false);
 	}
 
@@ -359,7 +389,7 @@ public class JDBPallet
 
 		return result;
 	}
-	
+
 	public Boolean rapidUnConfirm()
 	{
 		Boolean result = false;
@@ -381,12 +411,12 @@ public class JDBPallet
 			stmtupdate.setString(3, getSSCC());
 
 			int rows = stmtupdate.executeUpdate();
-			
+
 			if (rows == 1)
-			{	
+			{
 				result = true;
 			}
-			
+
 			stmtupdate.clearParameters();
 			Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
 			stmtupdate.close();
@@ -477,7 +507,7 @@ public class JDBPallet
 					writePalletHistory(getTransactionRef(), "PROD DEC", "UNCONFIRM");
 
 					logger.debug(getSSCC() + " Unconfirmed.");
-					
+
 					if (getLocationObj().isProductionUnConfirmMessageRequired())
 					{
 						opuc.submit(getTransactionRef());
@@ -506,7 +536,7 @@ public class JDBPallet
 
 		return result;
 	}
-	
+
 	public boolean create()
 	{
 		return create("", "");
@@ -831,7 +861,7 @@ public class JDBPallet
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBPallet("sscc", "material", "batch", "process_order", new BigDecimal("0"), "uom", new BigDecimal("0"), "base uom", null, "status", "location_id", "ean", "variant","equipment_type"));
+			result.addElement(new JDBPallet("sscc", "material", "batch", "process_order", new BigDecimal("0"), "uom", new BigDecimal("0"), "base uom", null, "status", "location_id", "ean", "variant", "equipment_type"));
 		}
 		else
 		{
@@ -842,7 +872,7 @@ public class JDBPallet
 				while (rs.next())
 				{
 					result.addElement(new JDBPallet(rs.getString("sscc"), rs.getString("material"), rs.getString("batch_number"), rs.getString("process_order"), rs.getBigDecimal("quantity"), rs.getString("uom"), rs.getBigDecimal("base_quantity"),
-							rs.getString("base_uom"), rs.getTimestamp("date_of_manufacture"), rs.getString("status"), rs.getString("location_id"), rs.getString("ean"), rs.getString("variant"),rs.getString("equipment_type")));
+							rs.getString("base_uom"), rs.getTimestamp("date_of_manufacture"), rs.getString("status"), rs.getString("location_id"), rs.getString("ean"), rs.getString("variant"), rs.getString("equipment_type")));
 				}
 
 				rs.close();
