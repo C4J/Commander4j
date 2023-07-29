@@ -788,6 +788,20 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 								newItemMenuItem.setText(lang.get("btn_Print"));
 								popupMenu.add(newItemMenuItem);
 							}
+							
+							{
+								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_edit_16x16);
+								newItemMenuItem.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_PALLET_EDIT"));
+								newItemMenuItem.addActionListener(new ActionListener()
+								{
+									public void actionPerformed(final ActionEvent e)
+									{
+										editRecord();
+									}
+								});
+								newItemMenuItem.setText(lang.get("btn_Edit"));
+								popupMenu.add(newItemMenuItem);
+							}
 
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_XLS_16x16);
@@ -1147,7 +1161,7 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 					jDesktopPane1.add(jButtonQuantityChanges);
 					jButtonQuantityChanges.setText(lang.get("btn_Sorting_Qty"));
 					jButtonQuantityChanges.setBounds(78, 213, 176, 32);
-					jButtonQuantityChanges.setMnemonic(java.awt.event.KeyEvent.VK_S);
+					jButtonQuantityChanges.setMnemonic(java.awt.event.KeyEvent.VK_Q);
 					jButtonQuantityChanges.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("RPT_SORTING_QTY"));
 					jButtonQuantityChanges.addActionListener(new ActionListener()
 					{
@@ -1995,6 +2009,16 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 		{
 			jToggleButtonSequence.setToolTipText("Ascending");
 			jToggleButtonSequence.setIcon(Common.icon_ascending_16x16);
+		}
+	}
+	
+	private void editRecord()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			String lsscc = jTable1.getValueAt(row, 0).toString();
+			JLaunchMenu.runForm("FRM_ADMIN_PALLET_EDIT", lsscc);
 		}
 	}
 

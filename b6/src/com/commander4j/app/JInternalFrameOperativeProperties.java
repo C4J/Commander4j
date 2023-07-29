@@ -38,6 +38,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import org.apache.commons.lang.WordUtils;
+
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBOperatives;
 import com.commander4j.gui.JButton4j;
@@ -171,8 +173,10 @@ public class JInternalFrameOperativeProperties extends JInternalFrame
 					{
 						public void actionPerformed(ActionEvent evt)
 						{
-							operativedb.setSurname(jTextFieldSurname.getText());
-							operativedb.setForename(jTextFieldForename.getText());
+							jTextFieldSurname.setText(jTextFieldSurname.getText().toUpperCase());
+							operativedb.setSurname(jTextFieldSurname.getText().toUpperCase());
+							jTextFieldForename.setText(WordUtils.capitalize(jTextFieldForename.getText()));
+							operativedb.setForename(WordUtils.capitalize(jTextFieldForename.getText()));
 							operativedb.setEnabled(chckbxEnabled.isSelected());
 							operativedb.update();
 							jButtonUpdate.setEnabled(false);

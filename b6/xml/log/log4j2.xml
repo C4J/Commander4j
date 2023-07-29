@@ -25,6 +25,9 @@
     <Logger name="org.apache.http.impl.conn" level="WARN">
       <AppenderRef ref="Console"/>
     </Logger>
+    <Logger name="org.apache.poi.hssf.model" level="WARN">
+  	  <AppenderRef ref="Console"/>
+    </Logger>
     <Root level="DEBUG">
       <AppenderRef ref="Console"/>
       <AppenderRef ref="RollingFile"/>
