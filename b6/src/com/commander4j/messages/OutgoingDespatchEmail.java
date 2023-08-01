@@ -115,8 +115,6 @@ public class OutgoingDespatchEmail
 
 					FileUtils.moveFile(new File(tempFilename), new File(finalFilename));
 
-					il.write(gmh, GenericMessageHeader.msgStatusSuccess, "Processed OK", "File Write", finalFilename);
-
 					if (device.equals("Email"))
 					{
 						fio.setFilename(finalFilename);

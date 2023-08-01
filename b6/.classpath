@@ -65,7 +65,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/metadata-extractor-2.18.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/SparseBitSet-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/stax2-api-4.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/db/ucp11.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/jcommander-1.82.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/testng-7.7.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasper/jasperreports-annotation-processors-6.20.5.jar"/>

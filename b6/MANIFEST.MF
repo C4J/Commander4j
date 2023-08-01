@@ -19,7 +19,6 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/db/mssql-jdbc-12.2.0.jre11.jar 
  lib/db/mysql-connector-j-8.1.0.jar 
  lib/db/ojdbc11.jar 
- lib/db/ucp11.jar 
  lib/jasper/jasperreports-6.20.5.jar 
  lib/jasper/jasperreports-annotation-processors-6.20.5.jar 
  lib/jasper/jasperreports-castor-6.20.5.jar 

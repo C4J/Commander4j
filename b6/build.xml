@@ -69,7 +69,6 @@
         <pathelement location="lib/jasperlib/metadata-extractor-2.18.0.jar"/>
         <pathelement location="lib/jasperlib/SparseBitSet-1.2.jar"/>
         <pathelement location="lib/jasperlib/stax2-api-4.2.1.jar"/>
-        <pathelement location="lib/db/ucp11.jar"/>
         <pathelement location="lib/jasperlib/jcommander-1.82.jar"/>
         <pathelement location="lib/jasperlib/testng-7.7.0.jar"/>
         <pathelement location="lib/jasper/jasperreports-6.20.5.jar"/>

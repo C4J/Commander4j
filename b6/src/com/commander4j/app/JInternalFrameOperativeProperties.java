@@ -175,8 +175,8 @@ public class JInternalFrameOperativeProperties extends JInternalFrame
 						{
 							jTextFieldSurname.setText(jTextFieldSurname.getText().toUpperCase());
 							operativedb.setSurname(jTextFieldSurname.getText().toUpperCase());
-							jTextFieldForename.setText(WordUtils.capitalize(jTextFieldForename.getText()));
-							operativedb.setForename(WordUtils.capitalize(jTextFieldForename.getText()));
+							jTextFieldForename.setText(WordUtils.capitalize(jTextFieldForename.getText().toLowerCase()));
+							operativedb.setForename(WordUtils.capitalize(jTextFieldForename.getText().toLowerCase()));
 							operativedb.setEnabled(chckbxEnabled.isSelected());
 							operativedb.update();
 							jButtonUpdate.setEnabled(false);
