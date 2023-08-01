@@ -262,6 +262,7 @@ public class JFrameHostAdmin extends JFrame
 		collationModel.addElement("utf32_general_ci");
 		collationModel.addElement("utf8_general_ci");
 		collationModel.addElement("utf8mb4_0900_ai_ci");
+		collationModel.addElement("utf8mb4_general_ci");
 
 		jComboBoxCollation.setModel(collationModel);
 		jComboBoxCollation.setMaximumRowCount(collationModel.getSize());

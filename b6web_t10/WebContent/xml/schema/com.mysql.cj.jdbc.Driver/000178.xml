@@ -5,11 +5,11 @@
 	
 	<statement>
 		CREATE TABLE `APP_PACKING_LINES` (
-		  `PACKING_LINE_ID` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-		  `DESCRIPTION` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '',
-		  `ENABLED` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Y',
+		  `PACKING_LINE_ID` varchar(25) CHARACTER SET {charset} COLLATE {collation} NOT NULL,
+		  `DESCRIPTION` varchar(40) CHARACTER SET {charset} COLLATE {collation} DEFAULT '',
+		  `ENABLED` varchar(1) CHARACTER SET {charset} COLLATE {collation} DEFAULT 'Y',
 		  PRIMARY KEY (`PACKING_LINE_ID`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+		) ENGINE=InnoDB DEFAULT CHARSET={charset} COLLATE={collation};
 	</statement>
 	
 	<statement>

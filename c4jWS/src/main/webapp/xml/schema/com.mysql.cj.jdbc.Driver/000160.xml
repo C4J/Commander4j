@@ -9,7 +9,7 @@
 		  WEIGHT_KG decimal(18,3) DEFAULT '0.000',
 		  ENABLED varchar(1) DEFAULT 'Y',
 		  PRIMARY KEY (EQUIPMENT_TYPE)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+		) ENGINE=InnoDB DEFAULT CHARSET={charset} COLLATE={collation};
     </statement>
     
    <statement>        
@@ -18,7 +18,7 @@
 		  `EQUIPMENT_TYPE` varchar(15) NOT NULL,
 		  `QUANTITY` decimal(22,0) DEFAULT '0',
 		  PRIMARY KEY (`DESPATCH_NO`,`EQUIPMENT_TYPE`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+		) ENGINE=InnoDB DEFAULT CHARSET={charset} COLLATE={collation};
     </statement>
     
    <statement>        

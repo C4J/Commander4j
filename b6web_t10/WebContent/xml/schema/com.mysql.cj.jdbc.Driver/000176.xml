@@ -43,7 +43,7 @@
     </statement>
     
     <statement>
-   		ALTER TABLE `APP_LOCATION` ADD COLUMN `MSG_PROD_UNCONFIRM` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'Y' AFTER `EMAIL_DESPATCH`
+   		ALTER TABLE `APP_LOCATION` ADD COLUMN `MSG_PROD_UNCONFIRM` varchar(1) CHARACTER SET {charset} COLLATE {collation} NULL DEFAULT 'Y' AFTER `EMAIL_DESPATCH`
     </statement>
     
     <statement>
