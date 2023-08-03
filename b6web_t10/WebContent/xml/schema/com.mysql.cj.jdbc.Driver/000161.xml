@@ -31,20 +31,20 @@
 			`TRANS`.`INCLUDE_IN_TOTALS` AS `INCLUDE_IN_TOTALS` 
 		FROM
 			(((((
-								`app_waste_material` `MAT`
-								JOIN `app_waste_log` `LOG` ON ((
+								`APP_WASTE_MATERIAL` `MAT`
+								JOIN `APP_WASTE_LOG` `LOG` ON ((
 										`MAT`.`WASTE_MATERIAL_ID` = `LOG`.`WASTE_MATERIAL_ID` 
 									)))
-							JOIN `app_waste_types` `TYP` ON ((
+							JOIN `APP_WASTE_TYPES` `TYP` ON ((
 									`TYP`.`WASTE_TYPE_ID` = `MAT`.`WASTE_TYPE_ID` 
 								)))
-						LEFT JOIN `app_waste_reasons` `REAS` ON ((
+						LEFT JOIN `APP_WASTE_REASONS` `REAS` ON ((
 								`REAS`.`WASTE_REASON_ID` = `LOG`.`WASTE_REASON_ID` 
 							)))
-					JOIN `app_waste_locations` `LOCN` ON ((
+					JOIN `APP_WASTE_LOCATIONS` `LOCN` ON ((
 							`LOCN`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
 						)))
-				JOIN `app_waste_transactions` `TRANS` ON ((
+				JOIN `APP_WASTE_TRANSACTIONS` `TRANS` ON ((
 					`TRANS`.`WASTE_TRANSACTION_TYPE` = `LOG`.`WASTE_TRANSACTION_TYPE` 
 			)))
     </statement>
@@ -79,29 +79,29 @@
 		`GRP`.`DESCRIPTION` AS `GROUP_DESCRIPTION` 
 	FROM
 		((((((((
-										`app_waste_material` `MAT`
-										JOIN `app_waste_log` `LOG` ON ((
+										`APP_WASTE_MATERIAL` `MAT`
+										JOIN `APP_WASTE_LOG` `LOG` ON ((
 												`MAT`.`WASTE_MATERIAL_ID` = `LOG`.`WASTE_MATERIAL_ID` 
 											)))
-									JOIN `app_waste_types` `TYP` ON ((
+									JOIN `APP_WASTE_TYPES` `TYP` ON ((
 											`TYP`.`WASTE_TYPE_ID` = `MAT`.`WASTE_TYPE_ID` 
 										)))
-								LEFT JOIN `app_waste_reasons` `REAS` ON ((
+								LEFT JOIN `APP_WASTE_REASONS` `REAS` ON ((
 										`REAS`.`WASTE_REASON_ID` = `LOG`.`WASTE_REASON_ID` 
 									)))
-							JOIN `app_waste_locations` `LOCN` ON ((
+							JOIN `APP_WASTE_LOCATIONS` `LOCN` ON ((
 									`LOCN`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
 								)))
-						JOIN `app_waste_location_reporting` `LOCNREP` ON ((
+						JOIN `APP_WASTE_LOCATION_REPORTING` `LOCNREP` ON ((
 								`LOCNREP`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
 							)))
-					JOIN `app_waste_reporting_ids` `REPIDS` ON ((
+					JOIN `APP_WASTE_REPORTING_IDS` `REPIDS` ON ((
 							`REPIDS`.`WASTE_REPORTING_ID` = `LOCNREP`.`WASTE_REPORTING_ID` 
 						)))
-				JOIN `app_waste_transactions` `TRANS` ON ((
+				JOIN `APP_WASTE_TRANSACTIONS` `TRANS` ON ((
 						`TRANS`.`WASTE_TRANSACTION_TYPE` = `LOG`.`WASTE_TRANSACTION_TYPE` 
 					)))
-			JOIN `app_waste_reporting_group` `GRP` ON (((
+			JOIN `APP_WASTE_REPORTING_GROUP` `GRP` ON (((
 						`GRP`.`REPORTING_GROUP` = `REPIDS`.`REPORTING_GROUP` 
 					) 
 		AND ( `TRANS`.`INCLUDE_IN_TOTALS` = 'Y' ))))

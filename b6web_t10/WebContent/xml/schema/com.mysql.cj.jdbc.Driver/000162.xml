@@ -53,20 +53,20 @@
 		`LOG`.`WASTE_COMMENT` AS `WASTE_COMMENT`
 	FROM
 		(((((
-							`app_waste_material` `MAT`
-							JOIN `app_waste_log` `LOG` ON ((
+							`APP_WASTE_MATERIAL` `MAT`
+							JOIN `APP_WASTE_LOG` `LOG` ON ((
 									`MAT`.`WASTE_MATERIAL_ID` = `LOG`.`WASTE_MATERIAL_ID` 
 								)))
-						JOIN `app_waste_types` `TYP` ON ((
+						JOIN `APP_WASTE_TYPES` `TYP` ON ((
 								`TYP`.`WASTE_TYPE_ID` = `MAT`.`WASTE_TYPE_ID` 
 							)))
-					LEFT JOIN `app_waste_reasons` `REAS` ON ((
+					LEFT JOIN `APP_WASTE_REASONS` `REAS` ON ((
 							`REAS`.`WASTE_REASON_ID` = `LOG`.`WASTE_REASON_ID` 
 						)))
-				JOIN `app_waste_locations` `LOCN` ON ((
+				JOIN `APP_WASTE_LOCATIONS` `LOCN` ON ((
 						`LOCN`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
 					)))
-			JOIN `app_waste_transactions` `TRANS` ON ((
+			JOIN `APP_WASTE_TRANSACTIONS` `TRANS` ON ((
 				`TRANS`.`WASTE_TRANSACTION_TYPE` = `LOG`.`WASTE_TRANSACTION_TYPE` 
 		)))
     </statement>

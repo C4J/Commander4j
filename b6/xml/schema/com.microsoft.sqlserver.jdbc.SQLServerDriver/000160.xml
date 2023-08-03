@@ -84,7 +84,7 @@
     </statement>
 
    <statement>        
-		ALTER VIEW [dbo].[VIEW_PALLET_EXPIRY] AS (SELECT 
+		ALTER VIEW [dbo].[view_pallet_expiry] AS (SELECT 
 				p.SSCC, 
 				p.LOCATION_ID, 
 				p.MATERIAL, 
@@ -129,7 +129,7 @@
     </statement>
 		
    <statement>        
-			ALTER VIEW [dbo].[VIEW_PALLET_HISTORY] AS SELECT
+			ALTER VIEW [dbo].[view_pallet_history] AS SELECT
 				APP_PALLET_HISTORY.TRANSACTION_REF, 
 				APP_PALLET_HISTORY.TRANSACTION_TYPE, 
 				APP_PALLET_HISTORY.TRANSACTION_SUBTYPE, 
@@ -160,7 +160,7 @@
 	
 	
    <statement>        
-		ALTER VIEW [dbo].[VIEW_PALLET_HISTORY_EXPIRY] AS SELECT
+		ALTER VIEW [dbo].[view_pallet_history_expiry] AS SELECT
 			APP_PALLET_HISTORY.TRANSACTION_REF, 
 			APP_PALLET_HISTORY.TRANSACTION_TYPE, 
 			APP_PALLET_HISTORY.TRANSACTION_SUBTYPE, 

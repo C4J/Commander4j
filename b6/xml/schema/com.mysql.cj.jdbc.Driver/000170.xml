@@ -4,29 +4,29 @@
 
     <statement>
 		CREATE OR REPLACE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW  `view_qm_results` AS SELECT
-			`app_qm_sample`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
-			`app_qm_sample`.`MATERIAL` AS `MATERIAL`,
-			`app_qm_sample`.`SAMPLE_ID` AS `SAMPLE_ID`,
-			`app_qm_sample`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
-			`app_qm_sample`.`USER_DATA_1` AS `USER_DATA_1`,
-			`app_qm_sample`.`USER_DATA_2` AS `USER_DATA_2`,
-			`app_qm_sample`.`USER_DATA_3` AS `USER_DATA_3`,
-			`app_qm_sample`.`USER_DATA_4` AS `USER_DATA_4`,
-			`app_qm_result`.`TEST_ID` AS `TEST_ID`,
-			`app_qm_dictionary`.`DESCRIPTION` AS `DESCRIPTION`,
-			`app_qm_result`.`VALUE` AS `VALUE`,
-			COALESCE ( `app_qm_selectlist`.`DESCRIPTION`, `app_qm_result`.`VALUE` ) AS `RESULT` 
+			`APP_QM_SAMPLE`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+			`APP_QM_SAMPLE`.`MATERIAL` AS `MATERIAL`,
+			`APP_QM_SAMPLE`.`SAMPLE_ID` AS `SAMPLE_ID`,
+			`APP_QM_SAMPLE`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
+			`APP_QM_SAMPLE`.`USER_DATA_1` AS `USER_DATA_1`,
+			`APP_QM_SAMPLE`.`USER_DATA_2` AS `USER_DATA_2`,
+			`APP_QM_SAMPLE`.`USER_DATA_3` AS `USER_DATA_3`,
+			`APP_QM_SAMPLE`.`USER_DATA_4` AS `USER_DATA_4`,
+			`APP_QM_RESULT`.`TEST_ID` AS `TEST_ID`,
+			`APP_QM_DICTIONARY`.`DESCRIPTION` AS `DESCRIPTION`,
+			`APP_QM_RESULT`.`VALUE` AS `VALUE`,
+			COALESCE ( `APP_QM_SELECTLIST`.`DESCRIPTION`, `APP_QM_RESULT`.`VALUE` ) AS `RESULT` 
 		FROM
 			(((
-						`app_qm_sample`
-						LEFT JOIN `app_qm_result` ON ((
-								`app_qm_sample`.`SAMPLE_ID` = `app_qm_result`.`SAMPLE_ID` 
+						`APP_QM_SAMPLE`
+						LEFT JOIN `APP_QM_RESULT` ON ((
+								`APP_QM_SAMPLE`.`SAMPLE_ID` = `APP_QM_RESULT`.`SAMPLE_ID` 
 							)))
-					LEFT JOIN `app_qm_dictionary` ON ((
-							`app_qm_result`.`TEST_ID` = `app_qm_dictionary`.`TEST_ID` 
+					LEFT JOIN `APP_QM_DICTIONARY` ON ((
+							`APP_QM_RESULT`.`TEST_ID` = `APP_QM_DICTIONARY`.`TEST_ID` 
 						)))
-				LEFT JOIN `app_qm_selectlist` ON ((
-					`app_qm_dictionary`.`SELECT_LIST_ID` = `app_qm_selectlist`.`SELECT_LIST_ID` 
+				LEFT JOIN `APP_QM_SELECTLIST` ON ((
+					`APP_QM_DICTIONARY`.`SELECT_LIST_ID` = `APP_QM_SELECTLIST`.`SELECT_LIST_ID` 
 			)));
     </statement>
 

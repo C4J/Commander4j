@@ -286,20 +286,20 @@
 		`TRANS`.`INCLUDE_IN_TOTALS` AS `INCLUDE_IN_TOTALS` 
 	FROM
 		(((((
-							`app_waste_material` `MAT`
-							JOIN `app_waste_log` `LOG` ON ((
+							`APP_WASTE_MATERIAL` `MAT`
+							JOIN `APP_WASTE_LOG` `LOG` ON ((
 									`MAT`.`WASTE_MATERIAL_ID` = `LOG`.`WASTE_MATERIAL_ID` 
 								)))
-						JOIN `app_waste_types` `TYP` ON ((
+						JOIN `APP_WASTE_TYPES` `TYP` ON ((
 								`TYP`.`WASTE_TYPE_ID` = `MAT`.`WASTE_TYPE_ID` 
 							)))
-					LEFT JOIN `app_waste_reasons` `REAS` ON ((
+					LEFT JOIN `APP_WASTE_REASONS` `REAS` ON ((
 							`REAS`.`WASTE_REASON_ID` = `LOG`.`WASTE_REASON_ID` 
 						)))
-				JOIN `app_waste_locations` `LOCN` ON ((
+				JOIN `APP_WASTE_LOCATIONS` `LOCN` ON ((
 						`LOCN`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
 					)))
-			JOIN `app_waste_transactions` `TRANS` ON ((
+			JOIN `APP_WASTE_TRANSACTIONS` `TRANS` ON ((
 				`TRANS`.`WASTE_TRANSACTION_TYPE` = `LOG`.`WASTE_TRANSACTION_TYPE` 
 		)))
     </statement>
@@ -369,29 +369,29 @@
 		`GRP`.`DESCRIPTION` AS `GROUP_DESCRIPTION` 
 	FROM
 		((((((((
-										`app_waste_material` `MAT`
-										JOIN `app_waste_log` `LOG` ON ((
+										`APP_WASTE_MATERIAL` `MAT`
+										JOIN `APP_WASTE_LOG` `LOG` ON ((
 												`MAT`.`WASTE_MATERIAL_ID` = `LOG`.`WASTE_MATERIAL_ID` 
 											)))
-									JOIN `app_waste_types` `TYP` ON ((
+									JOIN `APP_WASTE_TYPES` `TYP` ON ((
 											`TYP`.`WASTE_TYPE_ID` = `MAT`.`WASTE_TYPE_ID` 
 										)))
-								LEFT JOIN `app_waste_reasons` `REAS` ON ((
+								LEFT JOIN `APP_WASTE_REASONS` `REAS` ON ((
 										`REAS`.`WASTE_REASON_ID` = `LOG`.`WASTE_REASON_ID` 
 									)))
-							JOIN `app_waste_locations` `LOCN` ON ((
+							JOIN `APP_WASTE_LOCATIONS` `LOCN` ON ((
 									`LOCN`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
 								)))
-						JOIN `app_waste_location_reporting` `LOCNREP` ON ((
+						JOIN `APP_WASTE_LOCATION_REPORTING` `LOCNREP` ON ((
 								`LOCNREP`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
 							)))
-					JOIN `app_waste_reporting_ids` `REPIDS` ON ((
+					JOIN `APP_WASTE_REPORTING_IDS` `REPIDS` ON ((
 							`REPIDS`.`WASTE_REPORTING_ID` = `LOCNREP`.`WASTE_REPORTING_ID` 
 						)))
-				JOIN `app_waste_transactions` `TRANS` ON ((
+				JOIN `APP_WASTE_TRANSACTIONS` `TRANS` ON ((
 						`TRANS`.`WASTE_TRANSACTION_TYPE` = `LOG`.`WASTE_TRANSACTION_TYPE` 
 					)))
-			JOIN `app_waste_reporting_group` `GRP` ON (((
+			JOIN `APP_WASTE_REPORTING_GROUP` `GRP` ON (((
 						`GRP`.`REPORTING_GROUP` = `REPIDS`.`REPORTING_GROUP` 
 					) 
 		AND ( `TRANS`.`INCLUDE_IN_TOTALS` = 'Y' ))))
@@ -431,29 +431,29 @@
 		`GRP`.`DESCRIPTION` AS `GROUP_DESCRIPTION` 
 	FROM
 		((((((((
-										`app_waste_material` `MAT`
-										JOIN `app_waste_log` `LOG` ON ((
+										`APP_WASTE_MATERIAL` `MAT`
+										JOIN `APP_WASTE_LOG` `LOG` ON ((
 												`MAT`.`WASTE_MATERIAL_ID` = `LOG`.`WASTE_MATERIAL_ID` 
 											)))
-									JOIN `app_waste_types` `TYP` ON ((
+									JOIN `APP_WASTE_TYPES` `TYP` ON ((
 											`TYP`.`WASTE_TYPE_ID` = `MAT`.`WASTE_TYPE_ID` 
 										)))
-								LEFT JOIN `app_waste_reasons` `REAS` ON ((
+								LEFT JOIN `APP_WASTE_REASONS` `REAS` ON ((
 										`REAS`.`WASTE_REASON_ID` = `LOG`.`WASTE_REASON_ID` 
 									)))
-							JOIN `app_waste_locations` `LOCN` ON ((
+							JOIN `APP_WASTE_LOCATIONS` `LOCN` ON ((
 									`LOCN`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
 								)))
-						JOIN `app_waste_location_reporting` `LOCNREP` ON ((
+						JOIN `APP_WASTE_LOCATION_REPORTING` `LOCNREP` ON ((
 								`LOCNREP`.`WASTE_LOCATION_ID` = `LOG`.`WASTE_LOCATION_ID` 
 							)))
-					JOIN `app_waste_reporting_ids` `REPIDS` ON ((
+					JOIN `APP_WASTE_REPORTING_IDS` `REPIDS` ON ((
 							`REPIDS`.`WASTE_REPORTING_ID` = `LOCNREP`.`WASTE_REPORTING_ID` 
 						)))
-				JOIN `app_waste_transactions` `TRANS` ON ((
+				JOIN `APP_WASTE_TRANSACTIONS` `TRANS` ON ((
 						`TRANS`.`WASTE_TRANSACTION_TYPE` = `LOG`.`WASTE_TRANSACTION_TYPE` 
 					)))
-			JOIN `app_waste_reporting_group` `GRP` ON (((
+			JOIN `APP_WASTE_REPORTING_GROUP` `GRP` ON (((
 						`GRP`.`REPORTING_GROUP` = `REPIDS`.`REPORTING_GROUP` 
 					) 
 		AND ( `TRANS`.`INCLUDE_IN_TOTALS` = 'Y' ))))
@@ -466,17 +466,17 @@
 				`PO`.`STATUS` AS `STATUS`,
 				`PO`.`MATERIAL` AS `MATERIAL`,
 				`PO`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
-				`app_material`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
-				`app_material`.`DESCRIPTION` AS `DESCRIPTION`,
-				`app_material_uom`.`EAN` AS `EAN`,
-				`app_material_uom`.`VARIANT` AS `VARIANT`,
-				`app_material`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
-				`app_material`.`SHELF_LIFE` AS `SHELF_LIFE`,
-				`app_material`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
-				`app_material`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
+				`APP_MATERIAL`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+				`APP_MATERIAL`.`DESCRIPTION` AS `DESCRIPTION`,
+				`APP_MATERIAL_UOM`.`EAN` AS `EAN`,
+				`APP_MATERIAL_UOM`.`VARIANT` AS `VARIANT`,
+				`APP_MATERIAL`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+				`APP_MATERIAL`.`SHELF_LIFE` AS `SHELF_LIFE`,
+				`APP_MATERIAL`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
+				`APP_MATERIAL`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
 				`PO`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
-				`app_customer`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
-				`app_material`.`UPDATED` AS `MATERIAL_UPDATED`,
+				`APP_CUSTOMER`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+				`APP_MATERIAL`.`UPDATED` AS `MATERIAL_UPDATED`,
 				`PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
 				`c4j_GetFinalBatchNumber` (
 					curdate(),
@@ -487,32 +487,32 @@
 				) AS `BATCH_NUMBER`,
 				`c4j_GetFinalExpiryDate` (
 					curdate(),
-					`app_material`.`SHELF_LIFE`,
-					`app_material`.`SHELF_LIFE_UOM`,
-					`app_material`.`SHELF_LIFE_RULE`,
+					`APP_MATERIAL`.`SHELF_LIFE`,
+					`APP_MATERIAL`.`SHELF_LIFE_UOM`,
+					`APP_MATERIAL`.`SHELF_LIFE_RULE`,
 					'N',
 				curdate()) AS `EXPIRY_DATE`,
 				`c4j_GetLayers` ( `PO`.`PROCESS_ORDER` ) AS `DEFAULT_LAYERS`,
 				`c4j_GetFullPalletQuantity` ( `PO`.`PROCESS_ORDER` ) AS `DEFAULT_QUANTITY`,
-				`app_material_customer_data`.`DATA` AS `PART_NO` 
+				`APP_MATERIAL_CUSTOMER_DATA`.`DATA` AS `PART_NO` 
 			FROM
 				((((
-								`app_process_order` `PO`
-								JOIN `app_material_uom` ON (((
-											`PO`.`MATERIAL` = `app_material_uom`.`MATERIAL` 
+								`APP_PROCESS_ORDER` `PO`
+								JOIN `APP_MATERIAL_UOM` ON (((
+											`PO`.`MATERIAL` = `APP_MATERIAL_UOM`.`MATERIAL` 
 											) 
-									AND ( `PO`.`REQUIRED_UOM` = `app_material_uom`.`UOM` ))))
-							JOIN `app_customer` ON ((
-									`PO`.`CUSTOMER_ID` = `app_customer`.`CUSTOMER_ID` 
+									AND ( `PO`.`REQUIRED_UOM` = `APP_MATERIAL_UOM`.`UOM` ))))
+							JOIN `APP_CUSTOMER` ON ((
+									`PO`.`CUSTOMER_ID` = `APP_CUSTOMER`.`CUSTOMER_ID` 
 								)))
-						JOIN `app_material` ON ((
-								`PO`.`MATERIAL` = `app_material`.`MATERIAL` 
+						JOIN `APP_MATERIAL` ON ((
+								`PO`.`MATERIAL` = `APP_MATERIAL`.`MATERIAL` 
 							)))
-					LEFT JOIN `app_material_customer_data` ON (((
-								`PO`.`MATERIAL` = `app_material_customer_data`.`MATERIAL` 
+					LEFT JOIN `APP_MATERIAL_CUSTOMER_DATA` ON (((
+								`PO`.`MATERIAL` = `APP_MATERIAL_CUSTOMER_DATA`.`MATERIAL` 
 								) 
-						AND ( `PO`.`CUSTOMER_ID` = `app_material_customer_data`.`CUSTOMER_ID` ) 
-				AND ( `app_material_customer_data`.`DATA_ID` = 'PART_NO' ))))
+						AND ( `PO`.`CUSTOMER_ID` = `APP_MATERIAL_CUSTOMER_DATA`.`CUSTOMER_ID` ) 
+				AND ( `APP_MATERIAL_CUSTOMER_DATA`.`DATA_ID` = 'PART_NO' ))))
 	
 	</statement>
 	
@@ -558,33 +558,33 @@
 				curdate()) AS `EXPIRY_DATE`,
 				`MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
 				`PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
-				`app_material_customer_data`.`DATA` AS `PART_NO`,
+				`APP_MATERIAL_CUSTOMER_DATA`.`DATA` AS `PART_NO`,
 				ifnull( `CUST`.`CUSTOMER_DATA_01`, '' ) AS `CASE__LABEL`,
 				ifnull( `CUST`.`CUSTOMER_DATA_02`, '' ) AS `PALLET__LABEL`,
 				`CUST`.`UPDATED` AS `CUSTOMER_UPDATED` 
 			FROM
 				(((((
-									`app_process_order` `PO`
-									JOIN `app_material` `MAT` ON ((
+									`APP_PROCESS_ORDER` `PO`
+									JOIN `APP_MATERIAL` `MAT` ON ((
 											`MAT`.`MATERIAL` = `PO`.`MATERIAL` 
 										)))
-								JOIN `app_customer` `CUST` ON ((
+								JOIN `APP_CUSTOMER` `CUST` ON ((
 										`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID` 
 									)))
-							JOIN `app_material_uom` `MATUOM_PROD` ON (((
+							JOIN `APP_MATERIAL_UOM` `MATUOM_PROD` ON (((
 										`MATUOM_PROD`.`MATERIAL` = `PO`.`MATERIAL` 
 										) 
 								AND ( `MATUOM_PROD`.`UOM` = `PO`.`REQUIRED_UOM` ))))
-						JOIN `app_material_uom` `MATUOM_BASE` ON (((
+						JOIN `APP_MATERIAL_UOM` `MATUOM_BASE` ON (((
 									`MATUOM_BASE`.`MATERIAL` = `PO`.`MATERIAL` 
 									) 
 								AND ( `MATUOM_BASE`.`UOM` = `MAT`.`BASE_UOM` ) 
 							AND ( `MATUOM_BASE`.`UOM` = `MAT`.`BASE_UOM` ))))
-					LEFT JOIN `app_material_customer_data` ON (((
-								`PO`.`MATERIAL` = `app_material_customer_data`.`MATERIAL` 
+					LEFT JOIN `APP_MATERIAL_CUSTOMER_DATA` ON (((
+								`PO`.`MATERIAL` = `APP_MATERIAL_CUSTOMER_DATA`.`MATERIAL` 
 								) 
-						AND ( `PO`.`CUSTOMER_ID` = `app_material_customer_data`.`CUSTOMER_ID` ) 
-				AND ( `app_material_customer_data`.`DATA_ID` = 'PART_NO' ))))
+						AND ( `PO`.`CUSTOMER_ID` = `APP_MATERIAL_CUSTOMER_DATA`.`CUSTOMER_ID` ) 
+				AND ( `APP_MATERIAL_CUSTOMER_DATA`.`DATA_ID` = 'PART_NO' ))))
 		
 		
 	</statement>
@@ -615,22 +615,22 @@
 				`CUST`.`UPDATED` AS `CUSTOMER_UPDATED` 
 			FROM
 				(((((
-									`app_process_order` `PO`
-									LEFT JOIN `app_material` `MAT` ON ((
+									`APP_PROCESS_ORDER` `PO`
+									LEFT JOIN `APP_MATERIAL` `MAT` ON ((
 											`MAT`.`MATERIAL` = `PO`.`MATERIAL` 
 										)))
-								LEFT JOIN `app_customer` `CUST` ON ((
+								LEFT JOIN `APP_CUSTOMER` `CUST` ON ((
 										`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID` 
 									)))
-							LEFT JOIN `app_material_uom` `MATUOM` ON (((
+							LEFT JOIN `APP_MATERIAL_UOM` `MATUOM` ON (((
 										`MATUOM`.`MATERIAL` = `PO`.`MATERIAL` 
 										) 
 								AND ( `MATUOM`.`UOM` = `PO`.`REQUIRED_UOM` ))))
-						LEFT JOIN `app_material_uom` `MATUOMFULL` ON (((
+						LEFT JOIN `APP_MATERIAL_UOM` `MATUOMFULL` ON (((
 									`MATUOMFULL`.`MATERIAL` = `PO`.`MATERIAL` 
 									) 
 							AND ( `MATUOMFULL`.`UOM` = 'PAL' ))))
-					LEFT JOIN `app_material_customer_data` `CUSTDATA` ON (((
+					LEFT JOIN `APP_MATERIAL_CUSTOMER_DATA` `CUSTDATA` ON (((
 								`CUSTDATA`.`MATERIAL` = `PO`.`MATERIAL` 
 								) 
 						AND ( `CUSTDATA`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID` ) 

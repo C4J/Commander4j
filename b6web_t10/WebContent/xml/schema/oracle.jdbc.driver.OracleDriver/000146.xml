@@ -74,11 +74,11 @@
    </statement>
    
    <statement>
-   		ALTER VIEW VIEW_PROCESS_ORDER COMPILE
+   		ALTER VIEW view_process_order COMPILE
    </statement>
    
    <statement>
-   		ALTER VIEW VIEW_PROCESS_ORDER_RESOURCE COMPILE
+   		ALTER VIEW view_process_order_resource COMPILE
    </statement>
       
 </DDL>

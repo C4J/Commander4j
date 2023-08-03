@@ -534,13 +534,13 @@
 					`E`.`DATA` AS `CASE_CONTENT`,
 					`o`.`REQUIRED_RESOURCE` AS `REQUIRED_RESOURCE` 
 				FROM
-					((((((`app_pallet` `p`
-					LEFT JOIN `app_material_batch` `b` ON (((`b`.`MATERIAL` = `p`.`MATERIAL` ) 	AND ( `b`.`BATCH_NUMBER` = `p`.`BATCH_NUMBER` ))))
-					LEFT JOIN `app_material` `m` ON ((`m`.`MATERIAL` = `p`.`MATERIAL` )))		
-					LEFT JOIN `app_customer` `c` ON ((`c`.`CUSTOMER_ID` = `p`.`CUSTOMER_ID` )))
-					LEFT JOIN `app_process_order` `o` ON ((`o`.`PROCESS_ORDER` = `p`.`PROCESS_ORDER` )))
-					LEFT JOIN `app_material_customer_data` `D` ON (((`D`.`MATERIAL` = `p`.`MATERIAL` ) 	AND ( `D`.`CUSTOMER_ID` = `p`.`CUSTOMER_ID` ) AND ( `D`.`DATA_ID` = 'PART_NO' ))))
-					LEFT JOIN `app_material_customer_data` `E` ON (((`E`.`MATERIAL` = `p`.`MATERIAL` ) 	AND ( `E`.`CUSTOMER_ID` = `p`.`CUSTOMER_ID` ) AND ( `E`.`DATA_ID` = 'CASE_CONTENT' ))))
+					((((((`APP_PALLET` `p`
+					LEFT JOIN `APP_MATERIAL_BATCH` `b` ON (((`b`.`MATERIAL` = `p`.`MATERIAL` ) 	AND ( `b`.`BATCH_NUMBER` = `p`.`BATCH_NUMBER` ))))
+					LEFT JOIN `APP_MATERIAL` `m` ON ((`m`.`MATERIAL` = `p`.`MATERIAL` )))		
+					LEFT JOIN `APP_CUSTOMER` `c` ON ((`c`.`CUSTOMER_ID` = `p`.`CUSTOMER_ID` )))
+					LEFT JOIN `APP_PROCESS_ORDER` `o` ON ((`o`.`PROCESS_ORDER` = `p`.`PROCESS_ORDER` )))
+					LEFT JOIN `APP_MATERIAL_CUSTOMER_DATA` `D` ON (((`D`.`MATERIAL` = `p`.`MATERIAL` ) 	AND ( `D`.`CUSTOMER_ID` = `p`.`CUSTOMER_ID` ) AND ( `D`.`DATA_ID` = 'PART_NO' ))))
+					LEFT JOIN `APP_MATERIAL_CUSTOMER_DATA` `E` ON (((`E`.`MATERIAL` = `p`.`MATERIAL` ) 	AND ( `E`.`CUSTOMER_ID` = `p`.`CUSTOMER_ID` ) AND ( `E`.`DATA_ID` = 'CASE_CONTENT' ))))
 	</statement>
 	
 </DDL>

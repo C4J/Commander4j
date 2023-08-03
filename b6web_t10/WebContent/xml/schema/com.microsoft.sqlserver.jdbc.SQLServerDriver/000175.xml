@@ -3,7 +3,7 @@
 <DDL>
 	
    <statement>        
-		ALTER VIEW [dbo].[VIEW_PALLET_EXPIRY] AS (SELECT
+		ALTER VIEW [dbo].[view_pallet_expiry] AS (SELECT
 			p.SSCC, 
 			p.LOCATION_ID, 
 			p.MATERIAL, 
