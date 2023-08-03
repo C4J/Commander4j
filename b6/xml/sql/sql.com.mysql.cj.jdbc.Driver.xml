@@ -830,7 +830,7 @@
 		</statement>
 		<statement>
 			<id>JDBDespatch.updateTotalEquipment</id>
-			<text>update app_despatch set total_equipment = ? where despatch_no = ?</text>
+			<text>update APP_DESPATCH set total_equipment = ? where despatch_no = ?</text>
 		</statement>
 		<?JDBInterface ?>
 		<statement>
@@ -2774,7 +2774,7 @@
 		</statement>
 		<statement>
 			<id>JDBQMPanels.getListLimit</id>
-			<text>select  * from {schema}app_qm_panel order by (case status when 'Prepare' then 1 when 'Ready' then 2 when 'Complete' then 3 else 4 end),panel_id desc limit ?</text>
+			<text>select  * from {schema}APP_QM_PANEL order by (case status when 'Prepare' then 1 when 'Ready' then 2 when 'Complete' then 3 else 4 end),panel_id desc limit ?</text>
 		</statement>
 		
 		<?JDBQMTrayResults ?>
@@ -2801,18 +2801,18 @@
 		<statement>
 			<id>JDBQMTrayResults.getByTrayID</id>
 			<text>select
-				app_qm_panel_tray_samples.tray_id, 
-				app_qm_panel_tray_samples.sample_id, 
-				app_qm_panel_tray_samples.sequence_id, 
-				app_qm_panel_tray_samples.updated, 
-				app_qm_panel_tray_samples.created,
+				APP_QM_PANEL_TRAY_SAMPLES.tray_id, 
+				APP_QM_PANEL_TRAY_SAMPLES.sample_id, 
+				APP_QM_PANEL_TRAY_SAMPLES.sequence_id, 
+				APP_QM_PANEL_TRAY_SAMPLES.updated, 
+				APP_QM_PANEL_TRAY_SAMPLES.created,
 				? as user_id,
 				? as test_id,
-				(select value from app_qm_panel_tray_results where app_qm_panel_tray_results.tray_id = app_qm_panel_tray_samples.tray_id
-				and app_qm_panel_tray_results.sample_id = app_qm_panel_tray_samples.sample_id
-				and app_qm_panel_tray_results.user_id = ? and test_id = ?) as 'value'
+				(select value from APP_QM_PANEL_TRAY_RESULTS where APP_QM_PANEL_TRAY_RESULTS.tray_id = APP_QM_PANEL_TRAY_SAMPLES.tray_id
+				and APP_QM_PANEL_TRAY_RESULTS.sample_id = APP_QM_PANEL_TRAY_SAMPLES.sample_id
+				and APP_QM_PANEL_TRAY_RESULTS.user_id = ? and test_id = ?) as 'value'
 			from
-				app_qm_panel_tray_samples
+				APP_QM_PANEL_TRAY_SAMPLES
 			where tray_id = ?
 			order by sequence_id
 			</text>
