@@ -3,11 +3,11 @@
 <DDL>
 
 	<statement>
-		DROP VIEW view_pallet_expiry
+		DROP VIEW VIEW_PALLET_EXPIRY
 	</statement>
 	
 	<statement>
-		CREATE OR REPLACE VIEW view_pallet_expiry AS ( SELECT
+		CREATE OR REPLACE VIEW VIEW_PALLET_EXPIRY AS ( SELECT
 		P."SSCC",
 		P."LOCATION_ID",
 		P."MATERIAL",

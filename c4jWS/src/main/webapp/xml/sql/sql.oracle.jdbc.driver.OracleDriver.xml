@@ -8,11 +8,11 @@
 		</statement>
 		<statement>
 			<id>JDBPalletHistory.selectWithExpiry</id>
-			<text>select * from [view_pallet_history_expiry]</text>
+			<text>select * from [VIEW_PALLET_HISTORY_EXPIRY]</text>
 		</statement>
 		<statement>
 			<id>JDBPalletHistory.select</id>
-			<text>select * from [view_pallet_history]</text>
+			<text>select * from [VIEW_PALLET_HISTORY]</text>
 		</statement>
 		<statement>
 			<id>JDBPalletHistory.insertFromPallet</id>
@@ -343,7 +343,7 @@
 		</statement>
 		<statement>
 			<id>JDBUser.getUserPermisions</id>
-			<text>select * from {schema}view_permissions order by user_id,group_id,module_id</text>
+			<text>select * from {schema}VIEW_PERMISSIONS order by user_id,group_id,module_id</text>
 		</statement>		
 		<statement>
 			<id>JDBUser.getUserProperties</id>
@@ -645,11 +645,11 @@
 		</statement>
 		<statement>
 			<id>JDBProcessOrder.ViewResource</id>
-			<text>select * from view_process_order_resource</text>
+			<text>select * from VIEW_PROCESS_ORDER_RESOURCE</text>
 		</statement>	
 		<statement>
 			<id>JDBProcessOrder.ViewResourceAlternate</id>
-			<text>select *,? AS BATCH_SUFFIX_OVERRIDE from view_process_order_resource where process_order=?</text>
+			<text>select *,? AS BATCH_SUFFIX_OVERRIDE from VIEW_PROCESS_ORDER_RESOURCE where process_order=?</text>
 		</statement>	
 		<?JDBLocation ?>
 		<statement>
@@ -735,7 +735,7 @@
 		</statement>
 		<statement>
 			<id>JDBPallet.selectWithExpiry</id>
-			<text>select * from [view_pallet_expiry]</text>
+			<text>select * from [VIEW_PALLET_EXPIRY]</text>
 		</statement>
 		<statement>
 			<id>JDBPallet.select</id>
@@ -1422,7 +1422,7 @@
 		</statement>		
 		<statement>
 			<id>JDBLabelData.select</id>
-			<text>SELECT * FROM {schema}view_label_data WHERE UNIQUE_ID = ?</text>
+			<text>SELECT * FROM {schema}VIEW_LABEL_DATA WHERE UNIQUE_ID = ?</text>
 		</statement>
 		<?JDBPrinterLineMembership?>
 		<statement>
@@ -1460,11 +1460,11 @@
 		<?DBview_auto_labeller_printer?>	
 		<statement>		
 			<id>DBview_auto_labeller_printer.getModified</id>
-			<text>SELECT * FROM {schema}view_auto_labeller_printer where modified = 'Y'</text>
+			<text>SELECT * FROM {schema}VIEW_AUTO_LABELLER_PRINTER where modified = 'Y'</text>
 		</statement>	
 		<statement>		
 			<id>DBview_auto_labeller_printer.getEnabled</id>
-			<text>SELECT * FROM {schema}view_auto_labeller_printer</text>
+			<text>SELECT * FROM {schema}VIEW_AUTO_LABELLER_PRINTER</text>
 		</statement>
 		<!-- N.B Sequence of fields important below      -->	
 		<statement>		
@@ -1475,7 +1475,7 @@
 			      BASE_QUANTITY,PROD_UOM,BASE_EAN,BASE_VARIANT,PROD_QUANTITY,BASE_UOM,CUSTOMER_ID,CUSTOMER_NAME,PRINT_COPIES,
 			      MODULE_ID,OVERRIDE_MANUFACTURE_DATE,OVERRIDE_EXPIRY_DATE,OVERRIDE_BATCH_PREFIX,BATCH_PREFIX,BATCH_SUFFIX,
 			      REPORT_TYPE,MODULE_TYPE,REPORT_FILENAME,PART_NO
- 				  FROM {schema}view_auto_labeller_printer where line = ? and printer_id = ?</text>
+ 				  FROM {schema}VIEW_AUTO_LABELLER_PRINTER where line = ? and printer_id = ?</text>
 		</statement>	
 		<statement>		
 			<id>DBview_auto_labeller_printer.getProperties_Pack</id>
@@ -1485,7 +1485,7 @@
 			      BASE_QUANTITY,PROD_UOM,BASE_EAN,BASE_VARIANT,PROD_QUANTITY,BASE_UOM,CUSTOMER_ID,CUSTOMER_NAME,PRINT_COPIES,
 			      MODULE_ID,OVERRIDE_MANUFACTURE_DATE,OVERRIDE_EXPIRY_DATE,OVERRIDE_BATCH_PREFIX,BATCH_PREFIX,BATCH_SUFFIX,
 			      REPORT_TYPE,MODULE_TYPE,REPORT_FILENAME,PART_NO
- 				  FROM {schema}view_auto_labeller_printer where line = ? and printer_id = ?</text>
+ 				  FROM {schema}VIEW_AUTO_LABELLER_PRINTER where line = ? and printer_id = ?</text>
 		</statement>	
 		<statement>		
 			<id>DBview_auto_labeller_printer.getProperties_Pallet</id>
@@ -1495,7 +1495,7 @@
 			      BASE_QUANTITY,PROD_UOM,BASE_EAN,BASE_VARIANT,PROD_QUANTITY,BASE_UOM,CUSTOMER_ID,CUSTOMER_NAME,PRINT_COPIES,
 			      MODULE_ID,OVERRIDE_MANUFACTURE_DATE,OVERRIDE_EXPIRY_DATE,OVERRIDE_BATCH_PREFIX,BATCH_PREFIX,BATCH_SUFFIX,
 			      REPORT_TYPE,MODULE_TYPE,REPORT_FILENAME,PART_NO,LAYERS
- 				  FROM {schema}view_auto_labeller_printer where line = ? and printer_id = ?</text>
+ 				  FROM {schema}VIEW_AUTO_LABELLER_PRINTER where line = ? and printer_id = ?</text>
 		</statement>					
 		<?JDBAutoLabellerResources?>
 		<statement>
@@ -1725,7 +1725,7 @@
 		<?JDBViewBarcodeValidate?>
 		<statement>
 			<id>JDBViewBarcodeValidate.getProperties</id>
-			<text>select * from {schema}view_barcode_validate where process_order = ?</text>
+			<text>select * from {schema}VIEW_BARCODE_VALIDATE where process_order = ?</text>
 		</statement>
 		<?JDBWeightWorkstation?>		
 		<statement>
@@ -2237,21 +2237,21 @@
 		<?JDBWasteLocationMaterial?>		
 		<statement>
 			<id>JDBWasteLocationMaterial.isValid</id>
-			<text>select * from {schema}view_waste_location_materials where waste_location_id = ? and waste_material_id = ? </text>
+			<text>select * from {schema}VIEW_WASTE_LOCATION_MATERIALS where waste_location_id = ? and waste_material_id = ? </text>
 		</statement>
 		<statement>
 			<id>JDBWasteLocationMaterial.getMaterialsforLocation</id>
-			<text>select * from {schema}view_waste_location_materials where waste_location_id = ? order by waste_material_id</text>
+			<text>select * from {schema}VIEW_WASTE_LOCATION_MATERIALS where waste_location_id = ? order by waste_material_id</text>
 		</statement>
 				
 		<?JDBWasteMaterialLocation?>		
 		<statement>
 			<id>JDBWasteMaterialLocation.isValid</id>
-			<text>select * from {schema}view_waste_location_materials where waste_material_id = ? and waste_location_id = ? </text>
+			<text>select * from {schema}VIEW_WASTE_LOCATION_MATERIALS where waste_material_id = ? and waste_location_id = ? </text>
 		</statement>
 		<statement>
 			<id>JDBWasteMaterialLocation.getMaterialsforLocation</id>
-			<text>select * from {schema}view_waste_location_materials where waste_location_id = ? order by waste_material_id</text>
+			<text>select * from {schema}VIEW_WASTE_LOCATION_MATERIALS where waste_location_id = ? order by waste_material_id</text>
 		</statement>		
 				
 		<?JDBWasteMaterial?>		

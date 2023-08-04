@@ -24,15 +24,15 @@
 		</statement>
 		<statement>
 			<id>view_pallet_expiry</id>
-			<text>view_pallet_expiry</text>
+			<text>VIEW_PALLET_EXPIRY</text>
 		</statement>
 		<statement>
 			<id>view_pallet_history_expiry</id>
-			<text>view_pallet_history_expiry</text>
+			<text>VIEW_PALLET_HISTORY_EXPIRY</text>
 		</statement>
 		<statement>
 			<id>view_pallet_history</id>
-			<text>view_pallet_history</text>
+			<text>VIEW_PALLET_HISTORY</text>
 		</statement>
 	</jdbcDriver>
 </SQL>

@@ -3,11 +3,11 @@
 <DDL>
 
 <statement>
-DROP VIEW view_qm_results
+DROP VIEW VIEW_QM_RESULTS
 </statement>
 
 <statement>
- CREATE VIEW view_qm_results AS (SELECT samp.PROCESS_ORDER as "PROCESS_ORDER",
+ CREATE VIEW VIEW_QM_RESULTS AS (SELECT samp.PROCESS_ORDER as "PROCESS_ORDER",
        samp.MATERIAL as "MATERIAL",
        samp.SAMPLE_ID as "SAMPLE_ID",
        samp.INSPECTION_ID as "INSPECTION_ID",

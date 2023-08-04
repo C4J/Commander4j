@@ -40,11 +40,11 @@
     </statement>
     
     <statement>
-   		 DROP VIEW view_weight_samples
+   		 DROP VIEW VIEW_WEIGHT_SAMPLES
     </statement>    		    
         		    
     <statement>
-		CREATE VIEW view_weight_samples AS SELECT
+		CREATE VIEW VIEW_WEIGHT_SAMPLES AS SELECT
 		APP_WEIGHT_SAMPLE_HEADER.SAMPLE_POINT,
 		APP_WEIGHT_SAMPLE_HEADER.SAMPLE_DATE,
 		APP_WEIGHT_SAMPLE_HEADER.USER_ID,

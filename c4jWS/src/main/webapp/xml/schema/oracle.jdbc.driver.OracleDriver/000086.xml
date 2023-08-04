@@ -126,7 +126,7 @@
 	</statement>
 	
 	<statement>
-	CREATE OR REPLACE VIEW view_auto_labeller_printer 
+	CREATE OR REPLACE VIEW VIEW_AUTO_LABELLER_PRINTER 
 	AS 
 	SELECT 
 		  APP_AUTO_LABELLER.LINE,

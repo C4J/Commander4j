@@ -3,7 +3,7 @@
 <DDL>
    
    <statement>
-			CREATE VIEW view_weight_samples2 AS SELECT
+			CREATE VIEW VIEW_WEIGHT_SAMPLES2 AS SELECT
 			APP_WEIGHT_SAMPLE_POINT.LOCATION AS LOCATION,
 			APP_WEIGHT_SAMPLE_HEADER.PRODUCT_GROUP AS PRODUCT_GROUP,
 			APP_WEIGHT_SAMPLE_HEADER.SAMPLE_DATE AS SAMPLE_DATE,
@@ -74,11 +74,11 @@
    </statement>
    
    <statement>
-   		ALTER VIEW view_process_order COMPILE
+   		ALTER VIEW VIEW_PROCESS_ORDER COMPILE
    </statement>
    
    <statement>
-   		ALTER VIEW view_process_order_resource COMPILE
+   		ALTER VIEW VIEW_PROCESS_ORDER_RESOURCE COMPILE
    </statement>
       
 </DDL>

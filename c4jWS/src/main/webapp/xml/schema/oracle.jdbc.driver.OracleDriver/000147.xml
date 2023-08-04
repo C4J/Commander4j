@@ -109,7 +109,7 @@
       </statement>
       
      <statement>  
-      CREATE OR REPLACE VIEW view_waste_log AS 
+      CREATE OR REPLACE VIEW VIEW_WASTE_LOG AS 
       SELECT
           LOG.TRANSACTION_REF AS TRANSACTION_REF,
           LOG.REPORT_TIME AS REPORT_TIME,
@@ -146,7 +146,7 @@
         </statement>
                 
      <statement>  
-      CREATE OR REPLACE VIEW view_waste_reporting AS 
+      CREATE OR REPLACE VIEW VIEW_WASTE_REPORTING AS 
       SELECT
           LOG.TRANSACTION_REF AS TRANSACTION_REF,
           LOG.REPORT_TIME AS REPORT_TIME,
@@ -190,7 +190,7 @@
      </statement>
 
      <statement>
-	    CREATE OR REPLACE VIEW view_waste_location_materials AS SELECT
+	    CREATE OR REPLACE VIEW VIEW_WASTE_LOCATION_MATERIALS AS SELECT
 	        LOCN.WASTE_LOCATION_ID,
 	        LOCN.DESCRIPTION AS DESCRIPTION_LOCATION,
 	        TYP.WASTE_TYPE_ID,

@@ -85,7 +85,7 @@
     </statement>
     
 	<statement>
-		CREATE OR REPLACE VIEW "view_pallet_expiry" AS ( SELECT
+		CREATE OR REPLACE VIEW "VIEW_PALLET_EXPIRY" AS ( SELECT
 			P."SSCC",
 			P."LOCATION_ID",
 			P."MATERIAL",
@@ -132,7 +132,7 @@
 	</statement>
 
  	<statement>
-		 CREATE OR REPLACE VIEW "view_pallet_history" AS ( SELECT
+		 CREATE OR REPLACE VIEW "VIEW_PALLET_HISTORY" AS ( SELECT
 			"TRANSACTION_REF",
 			"TRANSACTION_TYPE",
 			"TRANSACTION_SUBTYPE",
@@ -163,7 +163,7 @@
  	</statement>
  	
  	<statement>
-	 	CREATE OR REPLACE VIEW "view_pallet_history_expiry" AS ( SELECT
+	 	CREATE OR REPLACE VIEW "VIEW_PALLET_HISTORY_EXPIRY" AS ( SELECT
 		p."TRANSACTION_REF",
 		p."TRANSACTION_TYPE",
 		p."TRANSACTION_SUBTYPE",

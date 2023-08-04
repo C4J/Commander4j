@@ -3,11 +3,11 @@
 <DDL>
 
     <statement>
-   		 DROP VIEW view_weight_samples
+   		 DROP VIEW VIEW_WEIGHT_SAMPLES
     </statement>    		    
         		    
     <statement>
-		CREATE VIEW view_weight_samples AS SELECT
+		CREATE VIEW VIEW_WEIGHT_SAMPLES AS SELECT
 		APP_WEIGHT_SAMPLE_HEADER.SAMPLE_POINT,
 		APP_WEIGHT_SAMPLE_HEADER.SAMPLE_DATE,
 		cast(APP_WEIGHT_SAMPLE_HEADER.SAMPLE_DATE as date) as SAMPLE_DATE_SHORT,
