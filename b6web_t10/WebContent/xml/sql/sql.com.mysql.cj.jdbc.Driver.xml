@@ -1650,7 +1650,7 @@
 		<?JDBProcessOrderResource?>
 		<statement>
 			<id>JDBProcessOrderResource.create</id>
-			<text>insert into {schema}APP_PROCESS_ORDER_RESOURCE (required_resource,enabled,description,batch_suffix) values (?,?,?,?)</text>
+			<text>insert into {schema}APP_PROCESS_ORDER_RESOURCE (required_resource,enabled,description,batch_suffix,plant_id) values (?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBProcessOrderResource.delete</id>
@@ -1662,7 +1662,7 @@
 		</statement>
 		<statement>
 			<id>JDBProcessOrderResource.update</id>
-			<text>update {schema}APP_PROCESS_ORDER_RESOURCE set enabled = ?,batch_suffix=?,description=? where required_resource = ?</text>
+			<text>update {schema}APP_PROCESS_ORDER_RESOURCE set enabled = ?,batch_suffix=?,description=?,plant_id=? where required_resource = ?</text>
 		</statement>
 		<statement>
 			<id>JDBProcessOrderResource.getProperties</id>

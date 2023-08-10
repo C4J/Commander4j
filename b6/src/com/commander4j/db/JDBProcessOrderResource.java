@@ -56,11 +56,13 @@ public class JDBProcessOrderResource
 	public static int field_Description_id = 80;
 	public static int field_Suffix_id = 15;
 	public static int field_Enabled = 1;
+	public static int field_Plant_id = 20;
 	private String dbErrorMessage;
 	private String dbResource;
 	private String dbDescription;
 	private String dbBatchSuffix;
 	private String dbEnabled;
+	private String dbPlant;
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBProcessOrderResource.class);
 	private String hostID;
 	private String sessionID;
@@ -76,6 +78,7 @@ public class JDBProcessOrderResource
 		setBatchSuffix("");
 		setDescription("");
 		setEnabled(false);
+		setPlant("");
 	}
 	
 	public boolean create(String res)
@@ -89,6 +92,7 @@ public class JDBProcessOrderResource
 			setEnabled("Y");
 			setDescription("");
 			setBatchSuffix("");
+			setPlant("");
 
 			if (isValidResource() == false)
 			{
@@ -98,6 +102,7 @@ public class JDBProcessOrderResource
 				stmtupdate.setString(2, getEnabled());
 				stmtupdate.setString(3, getDescription());
 				stmtupdate.setString(4, getBatchSuffix());
+				stmtupdate.setString(5, getPlant());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -143,6 +148,11 @@ public class JDBProcessOrderResource
 		return result;
 	}
 
+	public String getPlant()
+	{
+		return JUtility.replaceNullStringwithBlank(dbPlant).trim();
+	}
+	
 	public String getBatchSuffix()
 	{
 		return JUtility.replaceNullStringwithBlank(dbBatchSuffix).trim();
@@ -229,6 +239,7 @@ public class JDBProcessOrderResource
 			setResource(rs.getString("required_resource"));
 			setDescription(rs.getString("description"));
 			setBatchSuffix(rs.getString("batch_suffix"));
+			setPlant(rs.getString("plant_id"));
 			setEnabled(rs.getString("enabled"));
 		} catch (SQLException e)
 		{
@@ -262,6 +273,7 @@ public class JDBProcessOrderResource
 				setEnabled(rs.getString("enabled"));
 				setBatchSuffix(rs.getString("batch_suffix"));
 				setDescription(rs.getString("description"));
+				setPlant(rs.getString("plant_id"));
 				result = true;
 			} else
 			{
@@ -303,6 +315,7 @@ public class JDBProcessOrderResource
 				samp.setDescription(rs.getString("description"));
 				samp.setBatchSuffix(rs.getString("batch_suffix"));
 				samp.setEnabled(rs.getString("enabled"));
+				samp.setPlant(rs.getString("plant_id"));
 				sampList.add(samp);
 			}
 			rs.close();
@@ -379,6 +392,11 @@ public class JDBProcessOrderResource
 	{
 		dbBatchSuffix = suffix;
 	}
+	
+	public void setPlant(String plant)
+	{
+		dbPlant = plant;
+	}
 
 	public void setDescription(String desc)
 	{
@@ -444,7 +462,8 @@ public class JDBProcessOrderResource
 				stmtupdate.setString(1, getEnabled());
 				stmtupdate.setString(2, getBatchSuffix());
 				stmtupdate.setString(3, getDescription());
-				stmtupdate.setString(4, getResource());
+				stmtupdate.setString(4, getPlant());
+				stmtupdate.setString(5, getResource());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

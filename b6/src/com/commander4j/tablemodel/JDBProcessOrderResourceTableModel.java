@@ -41,9 +41,10 @@ public class JDBProcessOrderResourceTableModel extends AbstractTableModel
 	public static final int Resource_Col = 0;
 	public static final int Description_Col = 1;
 	public static final int Batch_Col = 2;
-	public static final int Enabled_Col = 3;
+	public static final int Plant_Col = 3;
+	public static final int Enabled_Col = 4;
 
-	private String[] mcolNames = { "Resource", "Description", "Batch Suffix","Enabled"};
+	private String[] mcolNames = { "Resource", "Description", "Batch Suffix","Plant","Enabled"};
 	private ResultSet mResultSet;
 	private int prowCount = -1;
 	private HashMap<Integer,JDBProcessOrderResource> cache = new HashMap<Integer,JDBProcessOrderResource>();
@@ -103,6 +104,8 @@ public class JDBProcessOrderResourceTableModel extends AbstractTableModel
 				return cache.get(row).getDescription();
 			case Batch_Col:
 				return cache.get(row).getBatchSuffix();
+			case Plant_Col:
+				return cache.get(row).getPlant();
 			case Enabled_Col:
 				Boolean cb;
 				if (cache.get(row).getEnabled().equals("Y") == true)

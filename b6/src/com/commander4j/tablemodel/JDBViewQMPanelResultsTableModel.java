@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.swing.table.AbstractTableModel;
 
+import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBViewQMPanelResults;
 import com.commander4j.sys.Common;
 
@@ -32,9 +33,9 @@ public class JDBViewQMPanelResultsTableModel extends AbstractTableModel
     public static final int UserData4_Col = 16;
 	public static final int FirstName_Col =17;
 	public static final int Surname_Col =18;
+	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
-
-	private String[] mcolNames = {  "Panel ID","Tray ID", "Sample ID","Sample Date",  "Panel Date","Status","Tray Description","Plant","User ID","Result","Result Description","Process Order",  "Material","User Data 1","User Data 2","User Data 3","User Data 4","First Name","Surname"};
+	private String[] mcolNames = {  "Panel ID","Tray ID", "Sample ID","Sample Date",  "Panel Date","Status","Tray Description","Plant","User ID","Result","Result Description","Process Order",  "Material",lang.get("lbl_User_Data1"),lang.get("lbl_User_Data2"),lang.get("lbl_User_Data3"),lang.get("lbl_User_Data4"),"First Name","Surname"};
 	private ResultSet mResultSet;
 
 	private int prowCount = -1;

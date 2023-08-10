@@ -43,7 +43,6 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import com.commander4j.db.JDBLanguage;
-import com.commander4j.db.JDBLocation;
 import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JLabel4j_std;
@@ -76,8 +75,10 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 	private String lresource;
 	private JDBProcessOrderResource processOrderResource = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
 	private JTextField4j jTextFieldDescription;
+	private JTextField4j jTextFieldPlantID;
 	private JLabel4j_std jLabelBatchSuffix;
 	private JLabel4j_std jLabelDescription;
+	private JLabel4j_std jLabelPlantID;
 	private JTextField4j jTextFieldResource;
 	private JLabel4j_std jLabelResource;
 	private JDBLanguage lang;
@@ -118,6 +119,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 
 		jTextFieldResource.setText(processOrderResource.getResource());
 		jTextFieldDescription.setText(processOrderResource.getDescription());
+		jTextFieldPlantID.setText(processOrderResource.getPlant());
 		textFieldBatchSuffix.setText(processOrderResource.getBatchSuffix());
 
 		if (processOrderResource.getEnabled().equals("Y"))
@@ -141,7 +143,11 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 	{
 		processOrderResource.setResource(jTextFieldResource.getText());
 		processOrderResource.setDescription(jTextFieldDescription.getText());
+		
+		jTextFieldPlantID.setText(jTextFieldPlantID.getText().toUpperCase());
+		processOrderResource.setPlant(jTextFieldPlantID.getText());
 		processOrderResource.setBatchSuffix(textFieldBatchSuffix.getText());
+		
 		if (checkBoxEnabled.isSelected())
 		{
 			processOrderResource.setEnabled("Y");
@@ -160,6 +166,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 			processOrderResource.create(jTextFieldResource.getText());
 			processOrderResource.update();
 		}
+		
 		jButtonUpdate.setEnabled(false);
 	}
 	
@@ -167,7 +174,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(358, 207));
-			this.setBounds(0, 0, 377, 206);
+			this.setBounds(0, 0, 377, 245);
 			setVisible(true);
 			this.setClosable(true);
 			{
@@ -182,7 +189,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jButtonUpdate.setEnabled(false);
 					jButtonUpdate.setText(lang.get("btn_Save"));
 					jButtonUpdate.setMnemonic(lang.getMnemonicChar());
-					jButtonUpdate.setBounds(6, 128, 112, 32);
+					jButtonUpdate.setBounds(6, 167, 112, 32);
 					jButtonUpdate.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 
@@ -195,14 +202,14 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(125, 128, 112, 32);
+					jButtonHelp.setBounds(125, 167, 112, 32);
 				}
 				{
 					jButtonCancel = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonCancel);
 					jButtonCancel.setText(lang.get("btn_Close"));
 					jButtonCancel.setMnemonic(lang.getMnemonicChar());
-					jButtonCancel.setBounds(244, 128, 112, 32);
+					jButtonCancel.setBounds(244, 167, 112, 32);
 					jButtonCancel.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -214,13 +221,13 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelResource);
 					jLabelResource.setText(lang.get("lbl_Process_Order_Required_Resource"));
 					jLabelResource.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelResource.setBounds(6, 13, 113, 21);
+					jLabelResource.setBounds(6, 10, 113, 21);
 				}
 				{
 					jTextFieldResource = new JTextField4j(JDBProcessOrderResource.field_Resource_id);
 					jDesktopPane1.add(jTextFieldResource);
 					jTextFieldResource.setText(lresource);
-					jTextFieldResource.setBounds(126, 13, 126, 21);
+					jTextFieldResource.setBounds(126, 10, 126, 21);
 					jTextFieldResource.setEnabled(false);
 					jTextFieldResource.setEditable(false);
 				}
@@ -232,7 +239,14 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jLabelDescription.setBounds(6, 41, 113, 21);
 				}
 				{
-					jTextFieldDescription = new JTextField4j(JDBLocation.field_location_id);
+					jLabelPlantID = new JLabel4j_std();
+					jDesktopPane1.add(jLabelPlantID);
+					jLabelPlantID.setText(lang.get("lbl_Plant"));
+					jLabelPlantID.setHorizontalAlignment(SwingConstants.TRAILING);
+					jLabelPlantID.setBounds(6, 103, 113, 21);
+				}
+				{
+					jTextFieldDescription = new JTextField4j(JDBProcessOrderResource.field_Description_id);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						@Override
 						public void keyReleased(KeyEvent e) {
@@ -241,7 +255,19 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					});
 					jDesktopPane1.add(jTextFieldDescription);
 					jTextFieldDescription.setText("");
-					jTextFieldDescription.setBounds(126, 41, 229, 21);
+					jTextFieldDescription.setBounds(127, 41, 229, 21);
+				}
+				{
+					jTextFieldPlantID = new JTextField4j(JDBProcessOrderResource.field_Plant_id);
+					jTextFieldPlantID.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyReleased(KeyEvent e) {
+							jButtonUpdate.setEnabled(true);
+						}
+					});
+					jDesktopPane1.add(jTextFieldPlantID);
+					jTextFieldPlantID.setText("");
+					jTextFieldPlantID.setBounds(125, 103, 104, 21);
 				}
 
 				{
@@ -249,7 +275,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					jDesktopPane1.add(jLabelBatchSuffix);
 					jLabelBatchSuffix.setText(lang.get("lbl_Batch_Suffix"));
 					jLabelBatchSuffix.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelBatchSuffix.setBounds(6, 69, 113, 21);
+					jLabelBatchSuffix.setBounds(6, 72, 113, 21);
 				}
 				
 				textFieldBatchSuffix = new JTextField4j(15);
@@ -260,7 +286,7 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 					}
 				});
 				textFieldBatchSuffix.setText("");
-				textFieldBatchSuffix.setBounds(126, 69, 229, 21);
+				textFieldBatchSuffix.setBounds(126, 72, 229, 21);
 				jDesktopPane1.add(textFieldBatchSuffix);
 				
 				checkBoxEnabled = new JCheckBox("");
@@ -269,13 +295,13 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 						jButtonUpdate.setEnabled(true);
 					}
 				});
-				checkBoxEnabled.setBounds(126, 97, 21, 23);
+				checkBoxEnabled.setBounds(126, 134, 21, 23);
 				jDesktopPane1.add(checkBoxEnabled);
 				
 				label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Enabled"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(6, 97, 113, 21);
+				label4j_std.setBounds(6, 136, 113, 21);
 				jDesktopPane1.add(label4j_std);
 				
 			}
