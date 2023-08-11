@@ -1677,12 +1677,12 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					jLabelUser.setBounds(307, 88, 108, 21);
 				}
 
-				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[] { "Detail Report","Summary Report" });
+				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[] { "Daily Panel Summary","Detail Report","Summary Report" });
 				jComboBoxReportType = new JComboBox4j<String>();
 				jComboBoxReportType.setMaximumRowCount(15);
 				jComboBoxReportType.setModel(jComboBoxReportTypeModel);
 				jComboBoxReportType.setBounds(134, 160, 182, 22);
-				jComboBoxReportType.setSelectedItem("Summary Report");
+				jComboBoxReportType.setSelectedItem("Daily Panel Summary");
 				jDesktopPane1.add(jComboBoxReportType);
 				
 				ComboBoxModel<JDBViewProductGroups> jComboBox3Model = new DefaultComboBoxModel<JDBViewProductGroups>(productGroupList);
@@ -1713,9 +1713,15 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		{
 			JLaunchReport.runReport("RPT_PANEL_RESULTS1", null, "", buildSQL(qPrint), "");
 		}
-		else
+		
+		if (jComboBoxReportType.getSelectedItem().equals("Summary Report"))
 		{
 			JLaunchReport.runReport("RPT_PANEL_RESULTS2", null, "", buildSQL(qPrint), "");
+		}
+		
+		if (jComboBoxReportType.getSelectedItem().equals("Daily Panel Summary"))
+		{
+			JLaunchReport.runReport("RPT_PANEL_RESULTS3", null, "", buildSQL(qPrint), "");
 		}
 	}
 

@@ -432,7 +432,7 @@ public class JLaunchLookup
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}view_selectlist_ZWSIPANE"));
 		JDialogLookup.dlg_title = "Daily Panel Result";
 
-		JDialogLookup.hideVisible=true;
+		JDialogLookup.hideDisabled=false;
 		JDialogLookup.dlg_key_field_name = "value";
 		JDialogLookup.dlg_criteria_field_name_default = "description";
 		JDialogLookup.dlg_orderBy_name_default = "sequence";
@@ -455,7 +455,7 @@ public class JLaunchLookup
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}view_selectlist_filler"));
 		JDialogLookup.dlg_title = "Filler";
 
-		JDialogLookup.hideVisible=true;
+		JDialogLookup.hideDisabled=false;
 		JDialogLookup.dlg_key_field_name = "value";
 		JDialogLookup.dlg_criteria_field_name_default = "description";
 		JDialogLookup.dlg_orderBy_name_default = "sequence";
