@@ -2900,6 +2900,11 @@
 			<id>JDBOperatives.getOperatives</id>
 			<text>select * from {schema}APP_OPERATIVES order by id</text>
 		</statement>
+		<?JDBViewProductGroups?>
+		<statement>
+			<id>JDBViewProductGroups.getProductGroups</id>
+			<text>select * from {schema}view_product_group order by product_group</text>
+		</statement>
 
 	</jdbcDriver>
 </SQL>

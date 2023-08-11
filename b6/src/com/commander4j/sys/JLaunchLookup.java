@@ -381,6 +381,29 @@ public class JLaunchLookup
 		return JDialogLookup.dlg_selected;
 	}
 	
+	public static boolean plants_po_resource() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}view_plants"));
+		JDialogLookup.dlg_title = "Plants (PO Resource)";
+
+		JDialogLookup.hideDisabled=true;
+		JDialogLookup.dlg_key_field_name = "plant_id";
+		JDialogLookup.dlg_criteria_field_name_default = "plant_id";
+		JDialogLookup.dlg_orderBy_name_default = "description";
+		JDialogLookup.dlg_sort_descending = false;
+
+		// dlg_criteria_default = "";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+	
 	public static boolean waste_containers() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_WASTE_CONTAINERS"));
@@ -390,6 +413,52 @@ public class JLaunchLookup
 		JDialogLookup.dlg_key_field_name = "waste_container_id";
 		JDialogLookup.dlg_criteria_field_name_default = "description";
 		JDialogLookup.dlg_orderBy_name_default = "waste_container_id";
+		JDialogLookup.dlg_sort_descending = false;
+
+		// dlg_criteria_default = "";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+	
+	public static boolean panel_ZWSIPANE() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}view_selectlist_ZWSIPANE"));
+		JDialogLookup.dlg_title = "Daily Panel Result";
+
+		JDialogLookup.hideVisible=true;
+		JDialogLookup.dlg_key_field_name = "value";
+		JDialogLookup.dlg_criteria_field_name_default = "description";
+		JDialogLookup.dlg_orderBy_name_default = "sequence";
+		JDialogLookup.dlg_sort_descending = false;
+
+		// dlg_criteria_default = "";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
+	
+	public static boolean panel_Filler() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}view_selectlist_filler"));
+		JDialogLookup.dlg_title = "Filler";
+
+		JDialogLookup.hideVisible=true;
+		JDialogLookup.dlg_key_field_name = "value";
+		JDialogLookup.dlg_criteria_field_name_default = "description";
+		JDialogLookup.dlg_orderBy_name_default = "sequence";
 		JDialogLookup.dlg_sort_descending = false;
 
 		// dlg_criteria_default = "";

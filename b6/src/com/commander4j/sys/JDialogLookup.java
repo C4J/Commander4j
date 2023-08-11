@@ -105,7 +105,8 @@ public class JDialogLookup extends javax.swing.JDialog
 	public static String dlg_key_field_type;
 	public static int dlg_key_field_size;
 	public static boolean hideInactive = false;
-	public static boolean 		hideDisabled = false;
+	public static boolean hideDisabled = false;
+	public static boolean hideVisible = false;
 	private String errorMessage;
 	private String dataResult;
 	private JButton4j jButtonSearch;
@@ -179,6 +180,11 @@ public class JDialogLookup extends javax.swing.JDialog
 		if (hideDisabled)
 		{
 			query.addParamtoSQL("ENABLED = ", "Y");
+		}
+		
+		if (hideVisible)
+		{
+			query.addParamtoSQL("VISIBLE = ", "Y");
 		}
 
 		query.appendSort(jComboBoxOrderBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
