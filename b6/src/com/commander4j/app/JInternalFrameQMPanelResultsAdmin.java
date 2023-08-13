@@ -36,6 +36,8 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
@@ -87,8 +89,6 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 /**
  * The JInternalFrameWasteLogAdmin allows the user to view/edit the table
@@ -173,6 +173,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 	private JComboBox4j<JDBViewProductGroups> comboBoxProductGroups = new JComboBox4j<JDBViewProductGroups>();
 	private Vector<JDBViewProductGroups> productGroupList = new Vector<JDBViewProductGroups>();
 	private JSpinner jSpinnerLimit = new JSpinner();
+	private JTextField4j textFieldUserData3 = new JTextField4j(20);
 
 	private DefaultComboBoxModel<String> sortFieldsFriendly;
 	private LinkedList<String> sortFieldsSQL;
@@ -185,6 +186,8 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 	private void buildSortList()
 	{
 		sortFieldsFriendly = new DefaultComboBoxModel<String>();
+		
+		sortFieldsFriendly.addElement("Sample ID");
 
 		sortFieldsFriendly.addElement("Panel ID");
 
@@ -201,6 +204,8 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		sortFieldsFriendly.addElement("User ID");
 
 		sortFieldsSQL = new LinkedList<String>();
+		
+		sortFieldsSQL.add("SAMPLE_ID");
 
 		sortFieldsSQL.add("PANEL_ID,TRAY_ID,SAMPLE_ID");
 		
@@ -247,8 +252,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_QM_PANEL_RESULTS"));
-	
-
+		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
 		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
@@ -272,6 +276,8 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		jTextFieldProcessOrder.setText("");
 
 		jTextFieldUserID.setText("");
+		
+		textFieldUserData3.setText("");
 
 		panelDateTo.setEnabled(false);
 		panelDateFrom.setEnabled(false);
@@ -595,6 +601,11 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 			query.addParamtoSQL("filler =",jTextFieldFillerID.getText());
 		}
 		
+		if (textFieldUserData3.getText().isEmpty()==false)
+		{
+			query.addParamtoSQL("user_data_3 =",textFieldUserData3.getText());
+		}
+		
 		if (jTextFieldPanelResult.getText().isEmpty()==false)
 		{
 			String driver = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDriver();
@@ -638,16 +649,16 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.PanelDate_Col).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.Status_Col).setPreferredWidth(60);
 		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.TrayDescription_Col).setPreferredWidth(100);
-		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.Plant_Col).setPreferredWidth(80);
-		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.UserID_Col).setPreferredWidth(50);
+		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.Plant_Col).setPreferredWidth(40);
+		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.UserID_Col).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.Result_Col).setPreferredWidth(50);
 		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.ResultDescription_Col).setPreferredWidth(200);
 		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.ProcessOrder_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.Material_Col).setPreferredWidth(80);
-		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.UserData1_Col).setPreferredWidth(100);
-		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.UserData2_Col).setPreferredWidth(100);
-		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.UserData3_Col).setPreferredWidth(100);
-		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.UserData4_Col).setPreferredWidth(100);
+		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.ContainerCode_Col).setPreferredWidth(60);
+		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.UserData2_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.UserData3_Col).setPreferredWidth(60);
+		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.ProductGroup_Col).setPreferredWidth(140);
 		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.FirstName_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewQMPanelResultsTableModel.Surname_Col).setPreferredWidth(80);
 
@@ -1133,7 +1144,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					jLabelMaterial = new JLabel4j_std();
 					jDesktopPane1.add(jLabelMaterial);
 					jLabelMaterial.setText(lang.get("lbl_Material"));
-					jLabelMaterial.setBounds(289, 51, 126, 21);
+					jLabelMaterial.setBounds(245, 51, 108, 21);
 					jLabelMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
@@ -1147,46 +1158,46 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					jLabelPanelID = new JLabel4j_std();
 					jDesktopPane1.add(jLabelPanelID);
 					jLabelPanelID.setText(lang.get("lbl_Panel_ID"));
-					jLabelPanelID.setBounds(0, 127, 126, 21);
+					jLabelPanelID.setBounds(0, 123, 126, 21);
 					jLabelPanelID.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabelReportType = new JLabel4j_std();
 					jDesktopPane1.add(jLabelReportType);
 					jLabelReportType.setText(lang.get("lbl_Module_Report_Type"));
-					jLabelReportType.setBounds(0, 162, 126, 21);
+					jLabelReportType.setBounds(0, 159, 126, 21);
 					jLabelReportType.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabelTrayID = new JLabel4j_std();
 					jDesktopPane1.add(jLabelTrayID);
 					jLabelTrayID.setText(lang.get("lbl_Tray_ID"));
-					jLabelTrayID.setBounds(215, 125, 93, 21);
+					jLabelTrayID.setBounds(260, 123, 93, 21);
 					jLabelTrayID.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabelSampleID = new JLabel4j_std();
 					jDesktopPane1.add(jLabelSampleID);
 					jLabelSampleID.setText(lang.get("lbl_Sample_ID"));
-					jLabelSampleID.setBounds(384, 127, 108, 21);
+					jLabelSampleID.setBounds(458, 123, 108, 21);
 					jLabelSampleID.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jLabelFillerID = new JLabel4j_std();
 					jDesktopPane1.add(jLabelFillerID);
 					jLabelFillerID.setText(lang.get("lbl_Filler_ID"));
-					jLabelFillerID.setBounds(774, 51, 81, 21);
+					jLabelFillerID.setBounds(732, 51, 81, 21);
 					jLabelFillerID.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldMaterial = new JTextField4j(JDBViewQMPanelResults.field_MaterialID);
 					jDesktopPane1.add(jTextFieldMaterial);
-					jTextFieldMaterial.setBounds(440, 50, 126, 22);
+					jTextFieldMaterial.setBounds(363, 51, 93, 22);
 				}
 				{
 					jTextFieldPanelResult = new JTextField4j(JDBViewQMPanelResults.field_Result);
 					jDesktopPane1.add(jTextFieldPanelResult);
-					jTextFieldPanelResult.setBounds(134, 87, 126, 22);
+					jTextFieldPanelResult.setBounds(134, 87, 93, 22);
 				}
 				{
 					jTextFieldPanelID = new JTextField4j(JDBViewQMPanelResults.field_PanelID);
@@ -1200,12 +1211,12 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 						}
 					});
 					jDesktopPane1.add(jTextFieldPanelID);
-					jTextFieldPanelID.setBounds(134, 127, 68, 22);
+					jTextFieldPanelID.setBounds(134, 123, 68, 22);
 				}
 				{
 					jTextFieldTrayID = new JTextField4j(JDBViewQMPanelResults.field_TrayID);
 					jDesktopPane1.add(jTextFieldTrayID);
-					jTextFieldTrayID.setBounds(314, 126, 68, 22);
+					jTextFieldTrayID.setBounds(363, 123, 68, 22);
 					jTextFieldTrayID.addKeyListener(new KeyAdapter() {
 						@Override
 						public void keyTyped(KeyEvent e) {
@@ -1219,7 +1230,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 				{
 					jTextFieldSampleID = new JTextField4j(JDBViewQMPanelResults.field_SampleID);
 					jDesktopPane1.add(jTextFieldSampleID);
-					jTextFieldSampleID.setBounds(498, 127, 68, 22);
+					jTextFieldSampleID.setBounds(574, 123, 68, 22);
 					jTextFieldSampleID.addKeyListener(new KeyAdapter() {
 						@Override
 						public void keyTyped(KeyEvent e) {
@@ -1233,7 +1244,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 				{
 					jTextFieldFillerID = new JTextField4j(JDBViewQMPanelResults.field_SampleID);
 					jDesktopPane1.add(jTextFieldFillerID);
-					jTextFieldFillerID.setBounds(860, 50, 68, 22);
+					jTextFieldFillerID.setBounds(822, 51, 106, 22);
 					jTextFieldFillerID.addKeyListener(new KeyAdapter() {
 						@Override
 						public void keyTyped(KeyEvent e) {
@@ -1248,14 +1259,14 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					jLabelPlant = new JLabel4j_std();
 					jDesktopPane1.add(jLabelPlant);
 					jLabelPlant.setText(lang.get("lbl_Plant"));
-					jLabelPlant.setBounds(613, 51, 51, 21);
+					jLabelPlant.setBounds(458, 51, 108, 21);
 					jLabelPlant.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 
 				{
 					jTextFieldPlant = new JTextField4j(JDBViewQMPanelResults.field_Plant);
 					jDesktopPane1.add(jTextFieldPlant);
-					jTextFieldPlant.setBounds(681, 50, 68, 22);
+					jTextFieldPlant.setBounds(574, 51, 98, 22);
 				}
 
 				{
@@ -1263,12 +1274,12 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabelSortby);
 					jLabelSortby.setText(lang.get("lbl_Sort_By"));
 					jLabelSortby.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelSortby.setBounds(307, 160, 108, 23);
+					jLabelSortby.setBounds(325, 159, 87, 23);
 				}
 				{
 					jComboBoxSortBy = new JComboBox4j<String>();
 					jDesktopPane1.add(jComboBoxSortBy);
-					jComboBoxSortBy.setBounds(439, 160, 255, 23);
+					jComboBoxSortBy.setBounds(419, 159, 255, 23);
 				}
 
 				{
@@ -1295,7 +1306,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					jToggleButtonSequence = new JToggleButton();
 					jToggleButtonSequence.setSelected(true);
 					jDesktopPane1.add(jToggleButtonSequence);
-					jToggleButtonSequence.setBounds(692, 160, 21, 23);
+					jToggleButtonSequence.setBounds(672, 159, 21, 23);
 					jToggleButtonSequence.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1319,7 +1330,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 							}
 						}
 					});
-					jButtonLookupWasteMaterial.setBounds(565, 50, 21, 22);
+					jButtonLookupWasteMaterial.setBounds(457, 51, 21, 22);
 					jDesktopPane1.add(jButtonLookupWasteMaterial);
 				}
 
@@ -1337,7 +1348,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 							}
 						}
 					});
-					jButtonLookupPanelResult.setBounds(259, 87, 21, 22);
+					jButtonLookupPanelResult.setBounds(225, 87, 21, 22);
 					jDesktopPane1.add(jButtonLookupPanelResult);
 				}
 
@@ -1356,7 +1367,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 
 						}
 					});
-					jButtonLookupPlant.setBounds(748, 50, 21, 22);
+					jButtonLookupPlant.setBounds(672, 51, 21, 22);
 					jDesktopPane1.add(jButtonLookupPlant);
 				}
 				
@@ -1375,7 +1386,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 
 						}
 					});
-					jButtonLookupFiller.setBounds(926, 50, 21, 22);
+					jButtonLookupFiller.setBounds(926, 51, 21, 22);
 					jDesktopPane1.add(jButtonLookupFiller);
 				}
 				
@@ -1568,13 +1579,13 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 				JLabel4j_std labelLimit = new JLabel4j_std();
 				labelLimit.setText(lang.get("lbl_Limit"));
 				labelLimit.setHorizontalAlignment(SwingConstants.TRAILING);
-				labelLimit.setBounds(725, 162, 147, 21);
+				labelLimit.setBounds(725, 159, 116, 21);
 				jDesktopPane1.add(labelLimit);
 
 				jCheckBoxLimit = new JCheckBox4j();
 				jCheckBoxLimit.setSelected(true);
 				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(876, 162, 21, 21);
+				jCheckBoxLimit.setBounds(850, 159, 21, 21);
 				jDesktopPane1.add(jCheckBoxLimit);
 				
 
@@ -1582,7 +1593,7 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 				JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
 				ne.getTextField().setFont(Common.font_std);
 				jSpinnerLimit.setEditor(ne);
-				jSpinnerLimit.setBounds(905, 162, 68, 21);
+				jSpinnerLimit.setBounds(879, 159, 68, 21);
 				jSpinnerLimit.setValue(1000);
 				jDesktopPane1.add(jSpinnerLimit);
 
@@ -1620,12 +1631,12 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 				{
 					jTextFieldProcessOrder = new JTextField4j(JDBViewQMPanelResults.field_ProcessOrder);
 					jDesktopPane1.add(jTextFieldProcessOrder);
-					jTextFieldProcessOrder.setBounds(134, 51, 126, 22);
+					jTextFieldProcessOrder.setBounds(134, 51, 93, 22);
 				}
 				{
 					jButtonLookupProcessOrder = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupProcessOrder);
-					jButtonLookupProcessOrder.setBounds(259, 51, 21, 22);
+					jButtonLookupProcessOrder.setBounds(225, 51, 21, 22);
 					jButtonLookupProcessOrder.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1650,12 +1661,12 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 				{
 					jTextFieldUserID = new JTextField4j(JDBUser.field_user_id);
 					jDesktopPane1.add(jTextFieldUserID);
-					jTextFieldUserID.setBounds(440, 88, 126, 22);
+					jTextFieldUserID.setBounds(363, 87, 93, 22);
 				}
 				{
 					jButtonLookupUserID = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLookupUserID);
-					jButtonLookupUserID.setBounds(565, 88, 21, 22);
+					jButtonLookupUserID.setBounds(457, 87, 21, 22);
 					jButtonLookupUserID.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -1674,28 +1685,54 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 					jDesktopPane1.add(jLabelUser);
 					jLabelUser.setText(lang.get("lbl_User_ID"));
 					jLabelUser.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabelUser.setBounds(307, 88, 108, 21);
+					jLabelUser.setBounds(245, 88, 108, 21);
 				}
 
-				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[] { "Daily Panel Summary","Detail Report","Summary Report" });
+				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[] { "Daily Panel Summary","Daily Panel Detail","Detail Report","Summary Report" });
 				jComboBoxReportType = new JComboBox4j<String>();
 				jComboBoxReportType.setMaximumRowCount(15);
 				jComboBoxReportType.setModel(jComboBoxReportTypeModel);
-				jComboBoxReportType.setBounds(134, 160, 182, 22);
+				jComboBoxReportType.setBounds(134, 159, 182, 22);
 				jComboBoxReportType.setSelectedItem("Daily Panel Summary");
 				jDesktopPane1.add(jComboBoxReportType);
 				
 				ComboBoxModel<JDBViewProductGroups> jComboBox3Model = new DefaultComboBoxModel<JDBViewProductGroups>(productGroupList);
 				comboBoxProductGroups.setModel(jComboBox3Model);
-				comboBoxProductGroups.setMaximumRowCount(12);
-				comboBoxProductGroups.setBounds(778, 125, 169, 23);
+				comboBoxProductGroups.setMaximumRowCount(25);
+				comboBoxProductGroups.setBounds(778, 123, 169, 23);
 				jDesktopPane1.add(comboBoxProductGroups);
 				
 				JLabel4j_std jLabelProductGroup = new JLabel4j_std();
-				jLabelProductGroup.setText(lang.get("lbl_User_Data4"));
+				jLabelProductGroup.setText(lang.get("lbl_Product_Group"));
 				jLabelProductGroup.setHorizontalAlignment(SwingConstants.TRAILING);
-				jLabelProductGroup.setBounds(644, 127, 126, 21);
+				jLabelProductGroup.setBounds(644, 123, 126, 21);
 				jDesktopPane1.add(jLabelProductGroup);
+				
+				JLabel4j_std lblUserData3 = new JLabel4j_std(lang.get("lbl_User_Data3"));
+				lblUserData3.setHorizontalAlignment(SwingConstants.TRAILING);
+				lblUserData3.setBounds(490, 89, 76, 16);
+				jDesktopPane1.add(lblUserData3);
+				
+				textFieldUserData3.setToolTipText("Custom Field USER_DATA_3");
+				textFieldUserData3.setColumns(20);
+				textFieldUserData3.setBounds(574, 87, 98, 22);
+				jDesktopPane1.add(textFieldUserData3);
+				
+				JButton4j jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
+				jButtonLookup_Shift_Names.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JLaunchLookup.dlgAutoExec = true;
+						JLaunchLookup.dlgCriteriaDefault = "";
+						if (JLaunchLookup.shiftNames())
+						{
+							textFieldUserData3.setText(JLaunchLookup.dlgResult);
+							textFieldUserData3.setCaretPosition(textFieldUserData3.getText().length());
+						}
+					}
+				});
+				jButtonLookup_Shift_Names.setEnabled(true);
+				jButtonLookup_Shift_Names.setBounds(672, 87, 21, 22);
+				jDesktopPane1.add(jButtonLookup_Shift_Names);
 
 			}
 		}
@@ -1723,6 +1760,12 @@ public class JInternalFrameQMPanelResultsAdmin extends JInternalFrame
 		{
 			JLaunchReport.runReport("RPT_PANEL_RESULTS3", null, "", buildSQL(qPrint), "");
 		}
+		
+		if (jComboBoxReportType.getSelectedItem().equals("Daily Panel Detail"))
+		{
+			JLaunchReport.runReport("RPT_PANEL_RESULTS4", null, "", buildSQL(qPrint), "");
+		}
+
 	}
 
 	/**

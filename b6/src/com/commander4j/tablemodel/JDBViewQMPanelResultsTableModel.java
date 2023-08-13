@@ -27,15 +27,15 @@ public class JDBViewQMPanelResultsTableModel extends AbstractTableModel
 	public static final int ResultDescription_Col = 10;
 	public static final int ProcessOrder_Col = 11;
 	public static final int Material_Col = 12;
-    public static final int UserData1_Col = 13;
+    public static final int ContainerCode_Col = 13;
     public static final int UserData2_Col = 14;
     public static final int UserData3_Col = 15;
-    public static final int UserData4_Col = 16;
+    public static final int ProductGroup_Col = 16;
 	public static final int FirstName_Col =17;
 	public static final int Surname_Col =18;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
-	private String[] mcolNames = {  "Panel ID","Tray ID", "Sample ID","Sample Date",  "Panel Date","Status","Tray Description","Plant","User ID","Result","Result Description","Process Order",  "Material",lang.get("lbl_User_Data1"),lang.get("lbl_User_Data2"),lang.get("lbl_User_Data3"),lang.get("lbl_User_Data4"),"First Name","Surname"};
+	private String[] mcolNames = {  "Panel ID","Tray ID", "Sample ID","Sample Date",  "Panel Date","Status","Tray Description","Plant","User ID","Result","Result Description","Process Order",  "Material","Recipe",lang.get("lbl_User_Data2"),lang.get("lbl_User_Data3"),"Product Group","First Name","Surname"};
 	private ResultSet mResultSet;
 
 	private int prowCount = -1;
@@ -131,14 +131,14 @@ public class JDBViewQMPanelResultsTableModel extends AbstractTableModel
 				return cache.get(row).getProcessOrder();
 			case Material_Col:
 				return cache.get(row).getMaterial();
-			case UserData1_Col:
-				return cache.get(row).getUserData1();
+			case ContainerCode_Col:
+				return cache.get(row).getContainerCode();
 			case UserData2_Col:
 				return cache.get(row).getUserData2();
 			case UserData3_Col:
 				return cache.get(row).getUserData3();
-			case UserData4_Col:
-				return cache.get(row).getUserData4();
+			case ProductGroup_Col:
+				return cache.get(row).getProductGroup();
 			case FirstName_Col:
 				return cache.get(row).getFirstName();
 			case Surname_Col:

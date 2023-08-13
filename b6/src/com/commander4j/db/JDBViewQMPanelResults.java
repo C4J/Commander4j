@@ -44,6 +44,10 @@ public class JDBViewQMPanelResults
 	private String dbProcessOrder;
 
 	private String dbMaterial;
+	private String dbProductGroup;
+	private String dbContainerCode;
+	
+	
 	private String dbUserData1;
 	private String dbUserData2;
 	private String dbUserData3;
@@ -100,6 +104,8 @@ public class JDBViewQMPanelResults
 		setResultDescription("");
 		setProcessOrder("");
 		setMaterial("");
+		setProductGroup("");
+		setContainerCode("");
 		setUserData1("");
 		setUserData2("");
 		setUserData3("");
@@ -114,9 +120,9 @@ public class JDBViewQMPanelResults
 		return dbPanelID;
 	}
 
-	public void setPanelID(long panelid)
+	public void setPanelID(long val)
 	{
-		dbPanelID = panelid;
+		dbPanelID = val;
 	}
 
 	public String getMaterial()
@@ -124,9 +130,29 @@ public class JDBViewQMPanelResults
 		return dbMaterial;
 	}
 
-	public void setMaterial(String dbQuantity)
+	public void setMaterial(String val)
 	{
-		this.dbMaterial = dbQuantity;
+		this.dbMaterial = val;
+	}
+	
+	public String getProductGroup()
+	{
+		return dbProductGroup;
+	}
+
+	public void setProductGroup(String val)
+	{
+		this.dbProductGroup = val;
+	}
+	
+	public String getContainerCode()
+	{
+		return dbContainerCode;
+	}
+
+	public void setContainerCode(String val)
+	{
+		this.dbContainerCode = val;
 	}
 
 	public String getUserData1()
@@ -290,6 +316,8 @@ public class JDBViewQMPanelResults
 			setResultDescription(rs.getString("result_description"));
 			setProcessOrder(rs.getString("process_order"));
 			setMaterial(rs.getString("material"));
+			setProductGroup(rs.getString("product_group"));
+			setContainerCode(rs.getString("container_code"));
 			setUserData1(rs.getString("user_data_1"));
 			setUserData2(rs.getString("user_data_2"));
 			setUserData3(rs.getString("user_data_3"));
