@@ -238,7 +238,7 @@
 		<groupHeader>
 			<band height="29">
 				<textField pattern="dd/MM/yy HH:mm">
-					<reportElement isPrintRepeatedValues="false" x="81" y="3" width="84" height="12" uuid="f0e78db5-3571-48bd-90e0-f20f7c489546">
+					<reportElement x="81" y="3" width="84" height="12" uuid="f0e78db5-3571-48bd-90e0-f20f7c489546">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6e9ab63-5d5f-4ed8-8c5e-ee8d8d9cf7a2"/>
 					</reportElement>
 					<textElement>
@@ -265,7 +265,7 @@
 					<textFieldExpression><![CDATA[$F{PROCESS_ORDER}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement isPrintRepeatedValues="false" x="1" y="3" width="78" height="12" uuid="edcc6e41-8537-4844-9f02-17c1e4416cdc">
+					<reportElement x="1" y="3" width="78" height="12" uuid="edcc6e41-8537-4844-9f02-17c1e4416cdc">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6e9ab63-5d5f-4ed8-8c5e-ee8d8d9cf7a2"/>
 					</reportElement>
 					<textElement textAlignment="Center">
@@ -274,7 +274,7 @@
 					<textFieldExpression><![CDATA[$F{SAMPLE_ID}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement isPrintRepeatedValues="false" x="171" y="3" width="60" height="12" uuid="0fe992af-bed6-45e1-96b0-91b30e315cc3">
+					<reportElement x="171" y="3" width="60" height="12" uuid="0fe992af-bed6-45e1-96b0-91b30e315cc3">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6e9ab63-5d5f-4ed8-8c5e-ee8d8d9cf7a2"/>
 					</reportElement>
 					<textElement>
