@@ -160,7 +160,7 @@
 	</detail>
 	<pageFooter>
 		<band height="24">
-			<textField isBlankWhenNull="false">
+			<textField pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="false">
 				<reportElement key="textField" x="3" y="6" width="206" height="18" forecolor="#000000" uuid="5da89483-70da-49ce-b443-895e006a754d">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>

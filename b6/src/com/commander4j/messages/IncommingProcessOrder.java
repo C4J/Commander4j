@@ -173,31 +173,41 @@ public class IncommingProcessOrder
 		po.setCustomerID(customerID);
 
 		String temp = dueDate.replace("T", " ");
-		java.sql.Timestamp ts2 = java.sql.Timestamp.valueOf(temp);
-		po.setDueDate(ts2);
+		
+		try
+		{
+			java.sql.Timestamp ts2 = java.sql.Timestamp.valueOf(temp);
+			
+			po.setDueDate(ts2);
 
-		if (create == true)
-		{
-			if (po.create() == false)
+			if (create == true)
 			{
-				setErrorMessage(po.getErrorMessage());
+				if (po.create() == false)
+				{
+					setErrorMessage(po.getErrorMessage());
+				} else
+				{
+					result = true;
+					setErrorMessage("Process Order " + po.getProcessOrder() + " created.");
+				}
 			} else
 			{
-				result = true;
-				setErrorMessage("Process Order " + po.getProcessOrder() + " created.");
-			}
-		} else
-		{
-			if (po.update() == false)
-			{
-				setErrorMessage("Process Order " + orderNo + " : " + po.getErrorMessage());
-			} else
-			{
-				result = true;
-				setErrorMessage("Process Order " + po.getProcessOrder() + " updated.");
+				if (po.update() == false)
+				{
+					setErrorMessage("Process Order " + orderNo + " : " + po.getErrorMessage());
+				} else
+				{
+					result = true;
+					setErrorMessage("Process Order " + po.getProcessOrder() + " updated.");
+				}
 			}
 		}
-
+		catch (Exception ex)
+		{
+			setErrorMessage(ex.getMessage());
+			result = false;
+		}
+		
 		po = null;
 
 		return result;

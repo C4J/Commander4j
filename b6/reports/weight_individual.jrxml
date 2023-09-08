@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="weight_individual" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e388a4c6-1aa2-4e32-858c-04fbc4dd729b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MS SQL Server"/>
@@ -541,7 +541,7 @@
 		</groupHeader>
 		<groupFooter>
 			<band height="4">
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement x="2" y="0" width="784" height="2" uuid="0f17e49e-5ab3-4211-b696-60bd993de292">
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -658,7 +658,7 @@
 	</detail>
 	<pageFooter>
 		<band height="20" splitType="Stretch">
-			<textField pattern="" isBlankWhenNull="false">
+			<textField pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="false">
 				<reportElement key="textField" x="0" y="0" width="209" height="19" uuid="f83cc6b6-db98-4a7e-9402-30076102e5de"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

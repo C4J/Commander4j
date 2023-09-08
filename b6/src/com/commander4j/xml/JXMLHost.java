@@ -70,7 +70,7 @@ public class JXMLHost
 
 	}
 
-	public static void writeHosts(String filename, LinkedList<JHost> hostList, String splash, String updatePath, String updateMode, String installDir, String setupPassword, String hostVersion, String hostUpdatePath)
+	public static void writeHosts(String filename, LinkedList<JHost> hostList, String splash, String updatePath, String updateMode, String installDir, String setupPassword, String hostVersion, String hostUpdatePath, Boolean singleInstance,Integer singleInstancePort)
 	{
 		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JXMLHost.class);
 		final JFileIO fio = new JFileIO();
@@ -78,6 +78,8 @@ public class JXMLHost
 		Common.updateURL = updatePath;
 		Common.updateMODE = updateMode;
 		Common.updateInstallDir = installDir;
+		Common.singleInstanceMode= singleInstance;
+		Common.singleInstancePort = singleInstancePort;
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try
@@ -130,6 +132,23 @@ public class JXMLHost
 			text = document.createTextNode(JEncryption.encrypt(setupPassword));
 			configPassword.appendChild(text);
 			hosts.appendChild(configPassword);
+			
+			Element singleInstanceElement = (Element) document.createElement("singleInstance");
+			if (singleInstance)
+			{
+				text = document.createTextNode("Y");
+			}
+			else
+			{
+				text = document.createTextNode("N");
+			}
+			singleInstanceElement.appendChild(text);
+			hosts.appendChild(singleInstanceElement);
+			
+			Element singleInstancePortElement = (Element) document.createElement("singleInstancePort");
+			text = document.createTextNode(String.valueOf(singleInstancePort));
+			singleInstancePortElement.appendChild(text);
+			hosts.appendChild(singleInstancePortElement);
 
 			for (int j = 0; j < hostList.size(); j++)
 			{
@@ -333,6 +352,8 @@ public class JXMLHost
 		String jdbcDatabase = "";
 		String SiteEnabled = "";
 		String uniqueid = "";
+		String singleInstance = "";
+		String singleInstancePort = "";
 
 		LinkedList<JHost> hostList = new LinkedList<JHost>();
 		hostList.clear();
@@ -348,6 +369,21 @@ public class JXMLHost
 		iNumberOfHosts = Integer.valueOf(sNumberOfSites).intValue();
 		splash = xmltest.findXPath("//Hosts/SplashScreen");
 		updateURL = xmltest.findXPath("//Hosts/UpdateURL");
+		
+		singleInstance = JUtility.replaceNullStringwithBlank(xmltest.findXPath("//Hosts/singleInstance"));
+		
+		if (singleInstance.equals(""))
+		{
+			singleInstance = "N";
+		}
+		
+		singleInstancePort = xmltest.findXPath("//Hosts/singleInstancePort");
+		singleInstancePort = JUtility.replaceNullStringwithBlank(singleInstancePort);
+		
+		if (singleInstancePort.equals(""))
+		{
+			singleInstancePort = String.valueOf(Common.singleInstancePort);
+		}
 
 		hostVersion = xmltest.findXPath("//Hosts/hostVersion");
 		if (hostVersion.equals(""))
@@ -371,6 +407,17 @@ public class JXMLHost
 		Common.setupPassword = setupPassword;
 		Common.hostVersion = hostVersion;
 		Common.hostUpdatePath = hostUpdatePath;
+		
+		if (singleInstance.equals("N"))
+		{
+			Common.singleInstanceMode=false;
+		}
+		else
+		{
+			Common.singleInstanceMode=true;
+		}
+		
+		Common.singleInstancePort = Integer.valueOf(singleInstancePort);
 
 		if (splash.equals("N"))
 		{

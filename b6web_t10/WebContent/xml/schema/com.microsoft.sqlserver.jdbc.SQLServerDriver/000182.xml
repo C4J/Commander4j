@@ -75,18 +75,6 @@
 	</statement>
 
 	<statement>
-			CREATE VIEW [dbo].[view_plants] AS (SELECT DISTINCT
-				PLANT_ID PLANT_ID, 
-				PLANT_ID DESCRIPTION, 
-				ENABLED
-			FROM
-				APP_PROCESS_ORDER_RESOURCE
-			WHERE
-				PLANT_ID > '' AND
-				ENABLED = 'Y')
-	</statement>
-
-	<statement>
 			CREATE VIEW [dbo].[view_selectlist_zwsipane] AS (SELECT 
 				SELECT_LIST_ID, 
 				DESCRIPTION, 

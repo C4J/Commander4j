@@ -93,73 +93,73 @@ public class JUtility
 	public static int field_timestamp = 20;
 
 	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
-	
+
 	public static Vector<String> getMonthNames()
 	{
 		Vector<String> result = new Vector<String>();
 
 		Locale lc = new Locale(Common.locale_language, Common.locale_region);
-		
+
 		result.add("");
-		
-		for (int z=1;z<=12;z++)
+
+		for (int z = 1; z <= 12; z++)
 		{
-			
+
 			result.add(Month.of(z).getDisplayName(TextStyle.FULL_STANDALONE, lc));
-			
+
 		}
-		
+
 		return result;
 	}
-		
+
 	public static String getASCIIfromTokens(String input)
 	{
-		
+
 		String result = input;
 
 		result = result.replace("<NONE>", "");
-		result = result.replace("<SOH>",  "\1");
-		result = result.replace("<STX>",  "\2");
-		result = result.replace("<ETX>",  "\3");
-		result = result.replace("<EOT>",  "\4");
-		result = result.replace("<ENQ>",  "\5");
-		result = result.replace("<ACK>",  "\6");
-		result = result.replace("<BEL>",  "\7");
-		result = result.replace("<BS>",   "\b");
-		result = result.replace("<HT>",   "\t");
-		result = result.replace("<LF>",   "\n");
-		result = result.replace("<VT>",   "\11");
-		result = result.replace("<FF>",   "\f");
-		result = result.replace("<CR>",   "\r");
-		
+		result = result.replace("<SOH>", "\1");
+		result = result.replace("<STX>", "\2");
+		result = result.replace("<ETX>", "\3");
+		result = result.replace("<EOT>", "\4");
+		result = result.replace("<ENQ>", "\5");
+		result = result.replace("<ACK>", "\6");
+		result = result.replace("<BEL>", "\7");
+		result = result.replace("<BS>", "\b");
+		result = result.replace("<HT>", "\t");
+		result = result.replace("<LF>", "\n");
+		result = result.replace("<VT>", "\11");
+		result = result.replace("<FF>", "\f");
+		result = result.replace("<CR>", "\r");
+
 		return result;
 	}
-	
+
 	public static String getTokensfromASCII(String input)
 	{
-		
+
 		String result = input;
 
-		result = result.replace("\1", "<SOH>" );
-		result = result.replace("\2", "<STX>" );
-		result = result.replace("\3", "<ETX>" );
-		result = result.replace("\4", "<EOT>" );
-		result = result.replace("\5", "<ENQ>" );
-		result = result.replace("\6", "<ACK>" );
-		result = result.replace("\7", "<BEL>" );
-		result = result.replace("\b", "<BS>" );
-		result = result.replace("\t", "<HT>" );
-		result = result.replace("\n", "<LF>" );
-		result = result.replace("\11", "<VT>" );
-		result = result.replace("\f", "<FF>" );
-		result = result.replace("\r", "<CR>" );
-		
+		result = result.replace("\1", "<SOH>");
+		result = result.replace("\2", "<STX>");
+		result = result.replace("\3", "<ETX>");
+		result = result.replace("\4", "<EOT>");
+		result = result.replace("\5", "<ENQ>");
+		result = result.replace("\6", "<ACK>");
+		result = result.replace("\7", "<BEL>");
+		result = result.replace("\b", "<BS>");
+		result = result.replace("\t", "<HT>");
+		result = result.replace("\n", "<LF>");
+		result = result.replace("\11", "<VT>");
+		result = result.replace("\f", "<FF>");
+		result = result.replace("\r", "<CR>");
+
 		return result;
 	}
-	
+
 	public static String removeTokens(String input)
 	{
-		
+
 		String result = input;
 
 		result = result.replace("<NONE>", "");
@@ -176,29 +176,29 @@ public class JUtility
 		result = result.replace("<VT>", "");
 		result = result.replace("<FF>", "");
 		result = result.replace("<CR>", "");
-		
+
 		return result;
-	}	
-	
+	}
+
 	public static String removeASCII(String input)
 	{
-		
+
 		String result = input;
 
-		result = result.replace("\1", "" );
-		result = result.replace("\2", "" );
-		result = result.replace("\3", "" );
-		result = result.replace("\4", "" );
-		result = result.replace("\5", "" );
-		result = result.replace("\6", "" );
-		result = result.replace("\7", "" );
-		result = result.replace("\b", "" );
-		result = result.replace("\t", "" );
-		result = result.replace("\n", "" );
-		result = result.replace("\11", "" );
-		result = result.replace("\f", "" );
-		result = result.replace("\r", "" );
-		
+		result = result.replace("\1", "");
+		result = result.replace("\2", "");
+		result = result.replace("\3", "");
+		result = result.replace("\4", "");
+		result = result.replace("\5", "");
+		result = result.replace("\6", "");
+		result = result.replace("\7", "");
+		result = result.replace("\b", "");
+		result = result.replace("\t", "");
+		result = result.replace("\n", "");
+		result = result.replace("\11", "");
+		result = result.replace("\f", "");
+		result = result.replace("\r", "");
+
 		return result;
 	}
 
@@ -208,7 +208,7 @@ public class JUtility
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 		return sdf.format(cal.getTime());
 	}
-	
+
 	public static String removeNonGS1BarcodeFriendlyChars(String input)
 	{
 		input = replaceNullStringwithBlank(input);
@@ -237,7 +237,7 @@ public class JUtility
 		input = StringUtils.replaceChars(input, String.valueOf("!"), "_");
 		input = StringUtils.replaceChars(input, String.valueOf("___"), "_");
 		input = StringUtils.replaceChars(input, String.valueOf("__"), "_");
-		
+
 		return input;
 	}
 
@@ -252,30 +252,33 @@ public class JUtility
 		return result;
 	}
 
-	public static boolean hasColumn(ResultSet rs, String columnName) {
-		
+	public static boolean hasColumn(ResultSet rs, String columnName)
+	{
+
 		boolean result = false;
-		
-	    ResultSetMetaData rsmd;
-	    
+
+		ResultSetMetaData rsmd;
+
 		try
 		{
 			rsmd = rs.getMetaData();
-		    int columns = rsmd.getColumnCount();
-		    for (int x = 1; x <= columns; x++) {
-		        if (columnName.toUpperCase().equals(rsmd.getColumnName(x).toUpperCase())) {
-		        	result = true;
-		        }
-		    }
+			int columns = rsmd.getColumnCount();
+			for (int x = 1; x <= columns; x++)
+			{
+				if (columnName.toUpperCase().equals(rsmd.getColumnName(x).toUpperCase()))
+				{
+					result = true;
+				}
+			}
 		}
 		catch (SQLException e)
 		{
 			result = false;
 		}
 
-	    return result;
+		return result;
 	}
-	
+
 	public static int getActiveHostCount()
 	{
 		int result = 0;
@@ -870,9 +873,9 @@ public class JUtility
 		if (clientname.contains("."))
 		{
 			String[] bits = clientname.split("\\.");
-			clientname=bits[0];
+			clientname = bits[0];
 		}
-		
+
 		result = left(clientname, 40);
 
 		return result;
@@ -1142,18 +1145,18 @@ public class JUtility
 		Integer temp = 0;
 
 		TimeZone timeZone = TimeZone.getTimeZone(Common.locale_timezone);
-		
+
 		currentDate.setTimeZone(timeZone);
 		currentDate.setMinimalDaysInFirstWeek(4);
 		currentDate.setFirstDayOfWeek(Calendar.MONDAY);
-		
-	    temp = currentDate.get(Calendar.WEEK_OF_YEAR);
-	    result = String.valueOf(temp).trim();
-		result = padString(result,false,2,"0");
+
+		temp = currentDate.get(Calendar.WEEK_OF_YEAR);
+		result = String.valueOf(temp).trim();
+		result = padString(result, false, 2, "0");
 
 		return result;
 	}
-	
+
 	public static String getWeekOfYear(Timestamp ts)
 	{
 		String result = "";
@@ -1161,87 +1164,87 @@ public class JUtility
 		Integer temp = 0;
 
 		TimeZone timeZone = TimeZone.getTimeZone(Common.locale_timezone);
-		
+
 		Calendar calendar = Calendar.getInstance();
-		
+
 		calendar.setTimeZone(timeZone);
 		calendar.setMinimalDaysInFirstWeek(4);
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
-		
-	    calendar.setTimeInMillis(ts.getTime());
-	    
-	    temp = calendar.get(Calendar.WEEK_OF_YEAR);
-	    result = String.valueOf(temp).trim();
-		result = padString(result,false,2,"0");
+
+		calendar.setTimeInMillis(ts.getTime());
+
+		temp = calendar.get(Calendar.WEEK_OF_YEAR);
+		result = String.valueOf(temp).trim();
+		result = padString(result, false, 2, "0");
 
 		return result;
-		
+
 	}
-	
+
 	public static String getDay(Timestamp ts)
 	{
 		String result = "";
 
 		TimeZone timeZone = TimeZone.getTimeZone(Common.locale_timezone);
-		
+
 		Calendar calendar = Calendar.getInstance();
-		
+
 		calendar.setTimeZone(timeZone);
 		calendar.setMinimalDaysInFirstWeek(4);
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
-		
-	    calendar.setTimeInMillis(ts.getTime());
-	    
-	    SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
 
-	    result = dayFormat.format(calendar.getTime());
+		calendar.setTimeInMillis(ts.getTime());
+
+		SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
+
+		result = dayFormat.format(calendar.getTime());
 
 		return result;
-		
+
 	}
-	
+
 	public static String getMonth(Timestamp ts)
 	{
 		String result = "";
 
 		TimeZone timeZone = TimeZone.getTimeZone(Common.locale_timezone);
-		
+
 		Calendar calendar = Calendar.getInstance();
-		
+
 		calendar.setTimeZone(timeZone);
 		calendar.setMinimalDaysInFirstWeek(4);
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
-		
-	    calendar.setTimeInMillis(ts.getTime());
-	    
-	    SimpleDateFormat dayFormat = new SimpleDateFormat("MMMM", Locale.getDefault());
 
-	    result = dayFormat.format(calendar.getTime());
+		calendar.setTimeInMillis(ts.getTime());
+
+		SimpleDateFormat dayFormat = new SimpleDateFormat("MMMM", Locale.getDefault());
+
+		result = dayFormat.format(calendar.getTime());
 
 		return result;
-		
+
 	}
-	
+
 	public static String getYear(Timestamp ts)
 	{
 		String result = "";
 
 		TimeZone timeZone = TimeZone.getTimeZone(Common.locale_timezone);
-		
+
 		Calendar calendar = Calendar.getInstance();
-		
+
 		calendar.setTimeZone(timeZone);
 		calendar.setMinimalDaysInFirstWeek(4);
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
-		
-	    calendar.setTimeInMillis(ts.getTime());
-	    
-	    SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
 
-	    result = dayFormat.format(calendar.getTime());
+		calendar.setTimeInMillis(ts.getTime());
+
+		SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+
+		result = dayFormat.format(calendar.getTime());
 
 		return result;
-		
+
 	}
 
 	/**
@@ -1381,7 +1384,7 @@ public class JUtility
 
 		t.setTime(caldate.getTimeInMillis());
 		t.setNanos(0);
-		
+
 		return t;
 	}
 
@@ -1406,23 +1409,26 @@ public class JUtility
 			year = Integer.valueOf(isoString.substring(0, 4));
 			month = Integer.valueOf(isoString.substring(5, 7));
 			day = Integer.valueOf(isoString.substring(8, 10));
+
 			try
 			{
-			hour = Integer.valueOf(isoString.substring(11, 13));
+				hour = Integer.valueOf(isoString.substring(11, 13));
 			}
 			catch (Exception ex)
 			{
 			}
+
 			try
 			{
-			min = Integer.valueOf(isoString.substring(14, 16));
+				min = Integer.valueOf(isoString.substring(14, 16));
 			}
 			catch (Exception ex)
 			{
 			}
+
 			try
 			{
-			second = Integer.valueOf(isoString.substring(17, 19));
+				second = Integer.valueOf(isoString.substring(17, 19));
 			}
 			catch (Exception ex)
 			{
@@ -1522,7 +1528,6 @@ public class JUtility
 	 *            String
 	 */
 
-	
 	public static void initLogging(String filename)
 	{
 		if (filename.isEmpty())

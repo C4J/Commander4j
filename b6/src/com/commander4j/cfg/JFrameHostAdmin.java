@@ -93,6 +93,7 @@ import javax.swing.JButton;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JTextArea;
+import java.awt.Font;
 
 
 /**
@@ -198,6 +199,8 @@ public class JFrameHostAdmin extends JFrame
 	private JComboBox4j<String> jComboBoxCharSet = new JComboBox4j<String>();
 	private DefaultComboBoxModel<String> collationModel;
 	private DefaultComboBoxModel<String> CharSetModel;
+	private JCheckBox4j chckbx4jSingleInstance = new JCheckBox4j();
+	private JTextField4j jTextFieldSingleInstancePort = new JTextField4j();
 
 	public static void main(String[] args)
 	{
@@ -379,6 +382,8 @@ public class JFrameHostAdmin extends JFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, "http://commander4j.com/mw/index.php?title=Setup4j");
+		
+
 
 		getHosts();
 
@@ -412,6 +417,10 @@ public class JFrameHostAdmin extends JFrame
 		Common.hostList.loadHosts(hostsFilename);
 		hostList = Common.hostList.getHosts();
 		jCheckBoxSplash.setSelected(Common.displaySplashScreen);
+		
+		chckbx4jSingleInstance.setSelected(Common.singleInstanceMode);
+		jTextFieldSingleInstancePort.setText(String.valueOf(Common.singleInstancePort));
+		
 		JTextFieldUpdateURL.setText(Common.updateURL);
 		jTextField4jInstallDir.setBackground(Common.color_list_assigned);
 		jTextField4jInstallDir.setText(Common.updateInstallDir);
@@ -1029,7 +1038,7 @@ public class JFrameHostAdmin extends JFrame
 									JOptionPane.showMessageDialog(rootPane, "No host has been assigned to the interface service.", "Warning", JOptionPane.WARNING_MESSAGE);
 								}
 
-								JXMLHost.writeHosts(hostsFilename, hostList, splash, JTextFieldUpdateURL.getText(), getUpdateMode(), jTextField4jInstallDir.getText(), pass1, jTextField4jHostVersion.getText(), jTextField4jHostUpdatePath.getText());
+								JXMLHost.writeHosts(hostsFilename, hostList, splash, JTextFieldUpdateURL.getText(), getUpdateMode(), jTextField4jInstallDir.getText(), pass1, jTextField4jHostVersion.getText(), jTextField4jHostUpdatePath.getText(),chckbx4jSingleInstance.isSelected(),Integer.valueOf(jTextFieldSingleInstancePort.getText()));
 								jButtonSave.setEnabled(false);
 								jButtonUndo.setEnabled(false);
 							}
@@ -1467,7 +1476,7 @@ public class JFrameHostAdmin extends JFrame
 					jCheckBoxSplash.setFont(Common.font_std);
 					desktopPane.add(jCheckBoxSplash);
 					jCheckBoxSplash.setText("Enable Splash Screen");
-					jCheckBoxSplash.setBounds(772, 470, 150, 21);
+					jCheckBoxSplash.setBounds(746, 470, 150, 21);
 					jCheckBoxSplash.setBackground(new java.awt.Color(255, 255, 255));
 					jCheckBoxSplash.addActionListener(new ActionListener()
 					{
@@ -1933,7 +1942,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			buttonGroup.add(rdbtnManual);
-			rdbtnManual.setBounds(736, 517, 106, 23);
+			rdbtnManual.setBounds(893, 520, 93, 23);
 			rdbtnManual.setBackground(Color.WHITE);
 			desktopPane.add(rdbtnManual);
 			rdbtnAutomatic.setToolTipText(
@@ -1947,7 +1956,7 @@ public class JFrameHostAdmin extends JFrame
 				}
 			});
 			buttonGroup.add(rdbtnAutomatic);
-			rdbtnAutomatic.setBounds(853, 518, 109, 23);
+			rdbtnAutomatic.setBounds(990, 519, 109, 23);
 			rdbtnAutomatic.setBackground(Color.WHITE);
 			desktopPane.add(rdbtnAutomatic);
 
@@ -1955,7 +1964,7 @@ public class JFrameHostAdmin extends JFrame
 			label4j_std_1.setText("Application Update Mode");
 			label4j_std_1.setHorizontalTextPosition(SwingConstants.RIGHT);
 			label4j_std_1.setHorizontalAlignment(SwingConstants.LEFT);
-			label4j_std_1.setBounds(772, 495, 140, 21);
+			label4j_std_1.setBounds(746, 520, 140, 21);
 			desktopPane.add(label4j_std_1);
 
 			JLabel4j_std label4j_std_2 = new JLabel4j_std();
@@ -2347,6 +2356,39 @@ public class JFrameHostAdmin extends JFrame
 			btnDefaultCharSet.setBounds(671, 420, 21, 21);
 			desktopPane.add(btnDefaultCharSet);
 
+			
+			JLabel4j_std jLabelSingleInstancePort = new JLabel4j_std();
+			jLabelSingleInstancePort.setText("Watchdog Port");
+			jLabelSingleInstancePort.setHorizontalTextPosition(SwingConstants.RIGHT);
+			jLabelSingleInstancePort.setHorizontalAlignment(SwingConstants.RIGHT);
+			jLabelSingleInstancePort.setBounds(872, 495, 84, 21);
+			desktopPane.add(jLabelSingleInstancePort);
+			chckbx4jSingleInstance.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					jTextFieldKeyTyped();
+				}
+			});
+			
+
+			chckbx4jSingleInstance.setToolTipText("If selected this will only allow one instance of Commander4j to run at a time.");
+			chckbx4jSingleInstance.setText("Single Instance");
+			chckbx4jSingleInstance.setFont(new Font("Arial", Font.PLAIN, 11));
+			chckbx4jSingleInstance.setBackground(Color.WHITE);
+			chckbx4jSingleInstance.setBounds(746, 495, 118, 21);
+			desktopPane.add(chckbx4jSingleInstance);
+			jTextFieldSingleInstancePort.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					jTextFieldKeyTyped();
+				}
+			});
+			
+
+			jTextFieldSingleInstancePort.setFocusCycleRoot(true);
+			jTextFieldSingleInstancePort.setBackground(new Color(233, 255, 233));
+			jTextFieldSingleInstancePort.setBounds(967, 495, 70, 21);
+			desktopPane.add(jTextFieldSingleInstancePort);
+			
 			setHostsFilename(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts" + File.separator + "hosts.xml");
 			setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_setup4j).getImage());
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

@@ -1,5 +1,7 @@
 package com.commander4j.sys;
 
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Arrays;
 
 /**
@@ -42,12 +44,14 @@ import com.commander4j.util.JPrint;
 import com.commander4j.util.JSplashScreenUtils;
 import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
+import com.commander4j.watchdog.WatchDog;
 
 public class Start
 {
 	public static void main(String[] args)
 	{
 		Logger logger = org.apache.logging.log4j.LogManager.getLogger(Start.class);
+		WatchDog watchdog;
 		JDBLanguage lang;
 		@SuppressWarnings("unused")
 		JDialogLogin userLogonDialog;
@@ -78,6 +82,45 @@ public class Start
 			Common.hostList.loadHosts();
 		}
 
+		if (Common.singleInstanceMode)
+		{
+		
+			boolean exclusive = false;
+	
+			while (exclusive == false)
+			{
+				try
+				{
+					ServerSocket serverSocket = new ServerSocket(Common.singleInstancePort, 1);
+					serverSocket.close();
+					serverSocket = null;
+					exclusive = true;
+				}
+				catch (Exception e)
+				{
+
+				}
+				
+				if (exclusive == false)
+				{
+					try
+					{
+						logger.debug("Requesting other Commander4j instances close.");
+						Socket clientSocket = new Socket("localhost", Common.singleInstancePort);
+						clientSocket.close();
+					}
+					catch (Exception e)
+					{
+	
+					}
+				}
+			}
+			
+			watchdog = new WatchDog(Common.singleInstancePort);
+			watchdog.start();
+		
+		}
+		
 		com.commander4j.util.JUpdate.updateCheck();
 
 		JSplashScreenUtils.create();

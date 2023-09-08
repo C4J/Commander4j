@@ -50,8 +50,8 @@ public class TableCellRenderer_PanelResults extends DefaultTableCellRenderer
 	private JCheckBox checkbox;
 	public static final DefaultTableCellRenderer DEFAULT_RENDERER = new DefaultTableCellRenderer();
 	private Long lastSampleID = (long) 0;
-	private static Color active = Color.CYAN;
-	private static Color result = Color.GREEN;
+	private Color active = Color.CYAN;
+	private Color result = Color.GREEN;
 
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
 	{

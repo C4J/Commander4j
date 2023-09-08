@@ -290,7 +290,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$V{Percnt}]]></textFieldExpression>
 				</textField>
-				<textField pattern="dd/MM/yy HH:mm">
+				<textField pattern="dd/MM/yyyy HH:mm">
 					<reportElement x="81" y="2" width="84" height="12" uuid="d1a34980-afdd-44d2-80c8-adfca3fce393">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6e9ab63-5d5f-4ed8-8c5e-ee8d8d9cf7a2"/>
 					</reportElement>
@@ -578,7 +578,7 @@
 	</pageHeader>
 	<pageFooter>
 		<band height="24" splitType="Stretch">
-			<textField isBlankWhenNull="false">
+			<textField pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="false">
 				<reportElement key="textField" x="1" y="6" width="209" height="18" forecolor="#000000" uuid="af4fea55-b7ad-4002-988b-7f758c71f5e6">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>

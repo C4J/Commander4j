@@ -403,28 +403,28 @@
 					<text><![CDATA[Sample Date]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="140" y="164" width="100" height="16" uuid="c4e75f87-033c-4b89-a6e2-ddb980426989"/>
+					<reportElement x="122" y="164" width="100" height="16" uuid="c4e75f87-033c-4b89-a6e2-ddb980426989"/>
 					<textElement>
 						<font size="12" isUnderline="true"/>
 					</textElement>
 					<text><![CDATA[Reason]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="324" y="164" width="100" height="16" uuid="61452280-22c5-4725-9a3c-10ae1c52cfec"/>
+					<reportElement x="256" y="164" width="100" height="16" uuid="61452280-22c5-4725-9a3c-10ae1c52cfec"/>
 					<textElement>
 						<font size="12" isUnderline="true"/>
 					</textElement>
 					<text><![CDATA[Defect]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="575" y="164" width="70" height="16" uuid="e36082dd-51ea-4ebd-a95b-8c5f313c910e"/>
-					<textElement>
+					<reportElement x="603" y="164" width="70" height="16" uuid="e36082dd-51ea-4ebd-a95b-8c5f313c910e"/>
+					<textElement textAlignment="Right">
 						<font size="12" isUnderline="true"/>
 					</textElement>
-					<text><![CDATA[Sample Qty]]></text>
+					<text><![CDATA[Fault Qty]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="655" y="164" width="60" height="16" uuid="2b9a467d-303c-495f-878a-3520777703cc"/>
+					<reportElement x="672" y="164" width="60" height="16" uuid="2b9a467d-303c-495f-878a-3520777703cc"/>
 					<textElement textAlignment="Right">
 						<font size="12" isUnderline="true"/>
 					</textElement>
@@ -521,8 +521,8 @@
 					<textFieldExpression><![CDATA[$F{SAMPLE_POINT}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="725" y="164" width="60" height="16" uuid="979aedad-e134-4309-a121-be0abf44358f"/>
-					<textElement textAlignment="Left">
+					<reportElement x="738" y="164" width="60" height="16" uuid="979aedad-e134-4309-a121-be0abf44358f"/>
+					<textElement>
 						<font size="12" isUnderline="true"/>
 					</textElement>
 					<text><![CDATA[Operator]]></text>
@@ -565,58 +565,58 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="33" splitType="Stretch">
+		<band height="36" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="324" y="10" width="60" height="18" uuid="2fa7d52b-b0e5-4bef-b9e6-71cb63cdc14f">
+				<reportElement x="256" y="10" width="60" height="18" uuid="2fa7d52b-b0e5-4bef-b9e6-71cb63cdc14f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7b6fd39-8eca-4666-9105-be98c62139ca"/>
 				</reportElement>
 				<textElement>
-					<font size="12"/>
+					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{DEFECT_TYPE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{DEFECT_ID}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="140" y="10" width="60" height="18" uuid="3e16ad74-692e-4273-a356-c04bbd434398">
+				<reportElement x="123" y="10" width="40" height="18" uuid="3e16ad74-692e-4273-a356-c04bbd434398">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="44fa5cdd-b3ca-4110-827e-5dee2a4f43a1"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement>
-					<font size="12"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SAMPLE_REASON}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="200" y="10" width="120" height="18" uuid="6db28cc8-7cdd-4cb1-b086-d91d9a178a9d"/>
+				<reportElement x="167" y="10" width="83" height="18" uuid="6db28cc8-7cdd-4cb1-b086-d91d9a178a9d"/>
 				<textElement>
-					<font size="12"/>
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{REASON_DESCRIPTION}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="395" y="10" width="175" height="18" uuid="63f4b1e4-0f3d-4183-9934-08534ee9cc22"/>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="316" y="10" width="295" height="18" uuid="63f4b1e4-0f3d-4183-9934-08534ee9cc22"/>
 				<textElement>
-					<font size="12"/>
+					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{DEFECT_DESCRIPTION}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LONG_DESCRIPTION}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="575" y="10" width="70" height="18" uuid="d649bbf4-64a3-4a5e-9526-9b3928dac2f6"/>
+			<textField pattern="#,##0.###;(#,##0.###-)" isBlankWhenNull="true">
+				<reportElement x="615" y="10" width="56" height="18" uuid="d649bbf4-64a3-4a5e-9526-9b3928dac2f6"/>
 				<textElement textAlignment="Right">
 					<font isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SAMPLE_QUANTITY}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="670" y="10" width="40" height="18" uuid="3130fc87-51f9-4a61-91ef-0571f3e0712c"/>
+				<reportElement x="688" y="10" width="40" height="18" uuid="3130fc87-51f9-4a61-91ef-0571f3e0712c"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{LEAKING}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="true">
-				<reportElement x="0" y="10" width="130" height="18" uuid="a03bff1c-3f51-4cf8-a393-9c717223c8c2"/>
+				<reportElement x="0" y="10" width="110" height="18" uuid="a03bff1c-3f51-4cf8-a393-9c717223c8c2"/>
 				<textFieldExpression><![CDATA[$F{SAMPLE_DATE}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="725" y="10" width="73" height="18" uuid="d3ca992c-0cd7-4e3e-b827-9d31fcbb3755"/>
+				<reportElement x="749" y="10" width="52" height="18" uuid="d3ca992c-0cd7-4e3e-b827-9d31fcbb3755"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
 			</textField>
@@ -656,7 +656,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="false">
+			<textField pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="false">
 				<reportElement key="textField" x="3" y="6" width="206" height="18" forecolor="#000000" uuid="7dd304ea-8905-458a-8f6e-6a54d17301e1">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>

@@ -105,6 +105,8 @@ public class Common
 	public static String hostVersion = "";
 	public static String hostUpdatePath = "";
 	public static String setupPassword = "";
+	public static Boolean singleInstanceMode = false;
+	public static int singleInstancePort = 16309;
 	public static int buttonToolbarSize = 65;
 	public static int spacerToolBarSize = 10;
 	public static int comboToolBarSize = 275;
