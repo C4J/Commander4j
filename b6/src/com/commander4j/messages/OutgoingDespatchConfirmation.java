@@ -537,6 +537,9 @@ public class OutgoingDespatchConfirmation
 							}
 							
 
+							Element equipmentType = addElement(document, "equipmentType", palhist.getPallet().getEquipmentType());
+							pallet.appendChild(equipmentType);
+							
 							contents.appendChild(pallet);
 
 						}

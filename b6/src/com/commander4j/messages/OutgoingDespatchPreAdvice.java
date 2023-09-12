@@ -347,6 +347,9 @@ public class OutgoingDespatchPreAdvice
 								Element customer = addElement(document, "customerID", "");
 								pallet.appendChild(customer);
 							}
+							
+							Element equipmentType = addElement(document, "equipmentType", palhist.getPallet().getEquipmentType());
+							pallet.appendChild(equipmentType);
 
 							contents.appendChild(pallet);
 
