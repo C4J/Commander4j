@@ -38,7 +38,7 @@
       
       .grid-container {
 		  display: grid;
-		  grid-template-columns: 150px 150px 150px;
+		  grid-template-columns: 120px 120px 120px 120px;
 		  padding: 10px;
 		  align-content: center;
 		  justify-content: center;
@@ -58,11 +58,22 @@
 
 <br><br><br><br>	
 	<div align="center" id="userCombobox-output"></div>
-<br><br><br><br>
+<br>	<br>
+	</table>	
+		<table id="userEditTable">
+		<tr>
+			<td style="color:black; background-color:#f0f8ff">User ID</td>
+			<td style="color:black; background-color:#f0f8ff"><input type="text" id="userlID" name="userlID" autofocus></td>
+		</tr>
+
+	</table>
+	
+	<br>
 	
 	<div class="grid-container">
   		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">Back</button></div> 
   		 <div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" id="findButton" onclick="find()">Find</button></div>  
   		 <div class="grid-item" align="center"><button class="button" id="nextButton" onclick="next()" disabled>Next</button></div>     
 	</div>
 	
@@ -106,6 +117,8 @@
 			
 			var button=document.getElementById("nextButton");
 			button.disabled = enabled;
+			
+			document.getElementById("userlID").focus();
 	}
 	
 	function newSelection()
@@ -134,6 +147,14 @@
 	    {
 	    	button.disabled = false;
 	    }
+	}
+	
+	function find()
+	{
+		
+		document.getElementById('userSelect').value = document.getElementById("userlID").value;
+		newSelection();
+
 	}
 	
 	function next()
