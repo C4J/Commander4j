@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `rf_active`, `dk_active`, `module_type`, `hint`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`, `resource_key`) VALUES ('FRM_PAL_INFO','Y','N','FORM',NULL,NULL,NULL,'',NULL,NULL,'N','N','1','mod_FRM_PAL_INFO');
+</statement>
+
+<statement>
+INSERT INTO `SYS_RF_MENU` (`module_id`, `sequence_id`) VALUES ('FRM_PAL_INFO','3');
+</statement>
+
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_PAL_INFO');
+</statement>
+
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('XREAD_PALLET','FRM_PAL_INFO');
+</statement>
+
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('XADMIN_PALLET','FRM_PAL_INFO');
+</statement>
+
+</DDL>

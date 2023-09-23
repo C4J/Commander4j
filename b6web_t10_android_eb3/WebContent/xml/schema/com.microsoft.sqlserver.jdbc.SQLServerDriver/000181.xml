@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+    
+	<statement>
+		EXEC SP_RENAME 'VIEW_AUTO_LABELLER_FULL','view_auto_labeller_full';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_AUTO_LABELLER_PRINTER','view_auto_labeller_printer';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_BARCODE_VALIDATE','view_barcode_validate';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_JOURNEYS','view_journeys';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_LABEL_DATA','view_label_data';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_LABEL_DATA_PROCESS_ORDER','view_label_data_process_order';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_LABEL_DATA_PROCESS_ORDER_CDF','view_label_data_process_order_cdf';
+	</statement>
+		
+	<statement>
+		EXEC SP_RENAME 'VIEW_LABELLER_PROCESS_ORDER_INFO','view_labeller_process_order_info';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_PALLET_EXPIRY','view_pallet_expiry';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_PALLET_HISTORY','view_pallet_history';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_PALLET_HISTORY_EXPIRY','view_pallet_history_expiry';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_PALLET_SAMPLES','view_pallet_samples';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_PERMISSIONS','view_permissions';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_PROCESS_ORDER','view_process_order';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_PROCESS_ORDER_RESOURCE','view_process_order_resource';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_QM_ANALYSIS_01','view_qm_analysis_01';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_QM_PANEL_RESULTS','view_qm_panel_results';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_QM_RESULTS','view_qm_results';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_SAMPLE_POINT_LOCATIONS','view_sample_point_locations';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_SORTING_DATA','view_sorting_data';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_SORTING_QTY_DIFFS','view_sorting_qty_diffs';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_SYNC1','view_sync1';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_SYNC2','view_sync2';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_SYNC3A','view_sync3a';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_SYNC3B','view_sync3b';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_SYNC4A','view_sync4a';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_SYNC4B','view_sync4b';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_WASTE_LOCATION_MATERIALS','view_waste_location_materials';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_WASTE_LOG','view_waste_log';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_WASTE_REPORTING','view_waste_reporting';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_WASTE_REPORTING2','view_waste_reporting2';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_WEIGHT_SAMPLES','view_weight_samples';
+	</statement>
+	
+	<statement>
+		EXEC SP_RENAME 'VIEW_WEIGHT_SAMPLES2','view_weight_samples2';
+	</statement>
+
+</DDL>

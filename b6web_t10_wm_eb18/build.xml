@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="b6web_t10_wm_eb18">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="17"/>
+    <property name="source" value="17"/>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/ant-1.10.11.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/avalon-framework-4.2.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commander4j.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-codec-1.15.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-io-2.13.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-lang-2.6.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-lang3-3.12.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-text-1.10.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/cups4j-0.7.9.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/hamcrest-core-1.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/httpclient-4.5.13.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/httpcore-4.4.13.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jaxen-1.2.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jcommon-1.0.23.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/log4j-api-2.20.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/log4j-core-2.20.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/log4j-jcl-2.20.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mssql-jdbc-12.2.0.jre11.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-j-8.1.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ojdbc11.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/simple-xml-2.7.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-api-1.8.0-beta4.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-nop-1.8.0-beta4.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/stax-1.2.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/stax-api-1.0.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ucp11.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/xalan-2.7.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/xpp3-1.1.3.3.jar"/>
+    </path>
+    <path id="Server Runtime [Apache Tomcat v10.1].libraryclasspath">
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/websocket-client-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-i18n-ko.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/el-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/jasper.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/jasper-el.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-util.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-i18n-de.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/jsp-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/ecj-4.27.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-i18n-cs.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/catalina.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-jni.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-i18n-pt-BR.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/catalina-ssi.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/websocket-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/catalina-ha.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/annotations-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/jaspic-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-i18n-zh-CN.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/catalina-ant.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/servlet-api.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-i18n-ru.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/jakartaee-migration-1.0.7-shaded.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../tools/apache-tomcat-10.1 (Java 17)/lib/tomcat-dbcp.jar"/>
+    </path>
+    <path id="b6web_t10_wm_eb18.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="Server Runtime [Apache Tomcat v10.1].libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="b6web_t10_wm_eb18.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="war" depends="build">
+        <war destfile="dist/b6web_t10_wm_eb18.war" webxml="WebContent/WEB-INF/web.xml">
+            <fileset dir="WebContent"/>
+            <lib dir="WebContent/WEB-INF/lib"/>
+            <classes dir="build/classes"/>
+        </war>
+    </target>
+</project>

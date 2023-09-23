@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	
+CREATE TABLE `APP_MATERIAL_LOCATION` (
+  `MATERIAL` VARCHAR(20) NOT NULL,
+  `LOCATION_ID` VARCHAR(15) NOT NULL,
+  `STATUS` VARCHAR(20) NULL,
+  PRIMARY KEY (`MATERIAL`, `LOCATION_ID`)
+)
+ ENGINE=InnoDB;
+</statement>
+
+</DDL>

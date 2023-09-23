@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+ALTER TABLE SYS_MODULES MODIFY (HELPSET_ID VARCHAR2(250))
+</statement>
+
+<statement>
+ALTER TABLE APP_DESPATCH MODIFY (status VARCHAR2(20))
+</statement>
+
+<statement>
+ALTER TABLE APP_MATERIAL MODIFY (default_batch_status VARCHAR2(20))
+</statement>
+
+<statement>
+ALTER TABLE APP_MATERIAL_BATCH MODIFY (status VARCHAR2(20))
+</statement>
+
+<statement>
+ALTER TABLE APP_PALLET MODIFY (status VARCHAR2(20))
+</statement>
+
+<statement>
+ALTER TABLE APP_PALLET_HISTORY MODIFY (status VARCHAR2(20))
+</statement>
+
+<statement>
+ALTER TABLE APP_PROCESS_ORDER MODIFY (status VARCHAR2(20))
+</statement>
+
+<statement>
+ALTER TABLE APP_PROCESS_ORDER MODIFY (default_pallet_status VARCHAR2(20))
+</statement>
+
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Setup\SystemKeys\SystemKeyAdmin.html' WHERE MODULE_ID= 'FRM_ADMIN_CONTROL_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Permissions\Groups\GroupAdmin.htm' WHERE MODULE_ID= 'FRM_ADMIN_GROUPS'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Permissions\Groups\GroupAdminAdd.htm' WHERE MODULE_ID= 'FRM_ADMIN_GROUP_ADD'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Permissions\Groups\GroupAdminDelete.htm' WHERE MODULE_ID= 'FRM_ADMIN_GROUP_DELETE'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Permissions\Groups\GroupAdminEdit.htm' WHERE MODULE_ID= 'FRM_ADMIN_GROUP_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Permissions\Groups\GroupAdminPermissions.html' WHERE MODULE_ID= 'FRM_ADMIN_GROUP_PERM'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Permissions\Groups\GroupAdminRename.htm' WHERE MODULE_ID= 'FRM_ADMIN_GROUP_RENAME'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\dataMaintenance\Locations\LocationAdmin.htm' WHERE MODULE_ID= 'FRM_ADMIN_LOCATIONS'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\Locations\LocationAdminEdit.htm' WHERE MODULE_ID= 'FRM_ADMIN_LOCATION_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\Materials\MaterialAdmin.htm' WHERE MODULE_ID= 'FRM_ADMIN_MATERIALS'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\Materials\MaterialAdminEdit.htm' WHERE MODULE_ID= 'FRM_ADMIN_MATERIAL_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\MaterialTypes\MaterialTypes.htm' WHERE MODULE_ID= 'FRM_ADMIN_MATERIAL_TYPE'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\MaterialTypes\MaterialTypesDelete.htm' WHERE MODULE_ID= 'FRM_ADMIN_MATERIAL_TYPE_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\UOMs\UomAdmin.htm' WHERE MODULE_ID= 'FRM_ADMIN_MATERIAL_UOM'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\UOMs\UomAdminEdit.htm' WHERE MODULE_ID= 'FRM_ADMIN_MATERIAL_UOM_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Customise\Menus\MenuStructure.htm' WHERE MODULE_ID= 'FRM_ADMIN_MENU'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Customise\Modules\ModuleAdminEdit.htm' WHERE MODULE_ID= 'FRM_ADMIN_MODULES'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Customise\Modules\ModuleAdminEdit.htm' WHERE MODULE_ID= 'FRM_ADMIN_MODULE_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\ProcessOrders\ProcessOrderAdmin.htm' WHERE MODULE_ID= 'FRM_ADMIN_PROCESS_ORDER'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\ProcessOrders\ProcessOrderAdminEdit.htm' WHERE MODULE_ID= 'FRM_ADMIN_PROCESS_ORDER_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Customise\Toolbar\ToolbarMaintenance.htm' WHERE MODULE_ID= 'FRM_ADMIN_TOOLBAR'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\UOMs\UomAdmin.htm' WHERE MODULE_ID= 'FRM_ADMIN_UOM'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\UOMs\UomAdminAdd.htm' WHERE MODULE_ID= 'FRM_ADMIN_UOM_ADD'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\dataMaintenance\UOMs\UomAdminEdit.htm' WHERE MODULE_ID= 'FRM_ADMIN_UOM_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Permissions\Users\UserAdmin.htm' WHERE MODULE_ID= 'FRM_ADMIN_USERS'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Permissions\Users\UserAdminEdit.html' WHERE MODULE_ID= 'FRM_ADMIN_USER_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Permissions\Users\UserAdminPermissions.htm' WHERE MODULE_ID= 'FRM_ADMIN_USER_PERM'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Setup\SystemKeys\SystemKeyAdmin.html' WHERE MODULE_ID= 'FRM_SYSTEM_KEYS'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Setup\SystemKeys\SystemKeyAdmin.html' WHERE MODULE_ID= 'FRM_SYSTEM_KEYS_EDIT'
+</statement>
+<statement>
+UPDATE SYS_MODULES SET HELPSET_ID = '{base_dir}\help\html\commander4j\application\administration\Customise\Toolbar\RFMenuMaintenance.htm' WHERE MODULE_ID= 'FRM_ADMIN_RF_MENU'
+</statement>
+
+</DDL>
