@@ -67,6 +67,7 @@
 				document.index.buttonStart.focus();
 				initBarcode();
 				initBattery();
+				initWLAN();
 			}
 			
 			function initBarcode()
@@ -93,7 +94,9 @@
 			{
 				var props ={
 	                color:  "#cd0006",
-	                layout: EB.SignalIndicators.BATTERY_LAYOUT_RIGHT
+	                layout: EB.SignalIndicators.SIGNAL_LAYOUT_RIGHT,
+	                top:    EB.System.screenHeight - 25 ,  
+	                left:   25  
 	            }	
 				 EB.SignalIndicators.showIcon(props);
 			}
