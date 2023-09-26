@@ -18,7 +18,7 @@
 		<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body onLoad = "init()">
 	<form id="hosts" name="hosts" action="Process" method="post">
 	
 		<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -82,6 +82,49 @@
 		String hostIndexFocus = (String) session.getAttribute("hostIndexFocus");
 		out.println(hostIndexFocus);
 	%>
+	
+	 <script type="text/javascript">
+		
+			function init()
+			{
+				
+				initBarcode();
+				initBattery();
+				initWLAN();
+			}
+			
+			function initBarcode()
+			{
+				EB.setProperty("autoenter", "true");
+				EB.setProperty("allDecoders", "false");
+				EB.setProperty("code128", "true");
+				EB.setProperty("code128ean128", "true");
+				EB.Barcode.enable(); 
+			}
+			
+			function initBattery()
+			{
+				var props ={
+	                color:  "#38cd00",
+	                layout: EB.Battery.BATTERY_LAYOUT_RIGHT,
+	                top:    EB.System.screenHeight - 25 ,  
+	                left:   EB.System.screenWidth - 25  
+	            }	
+				 EB.Battery.showIcon(props);
+			}
+			
+			function initWLAN()
+			{
+				var props ={
+	                color:  "#cd0006",
+	                layout: EB.SignalIndicators.SIGNAL_LAYOUT_RIGHT,
+	                top:    EB.System.screenHeight - 25 ,  
+	                left:   25  
+	            }	
+				 EB.SignalIndicators.showIcon(props);
+			}
+			
+	</script>
 		
 </body>
 </html>

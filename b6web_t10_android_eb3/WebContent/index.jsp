@@ -17,7 +17,7 @@
 			    
 	</head>
 
-	<body  onLoad = "focusIt()">
+	<body onLoad = "focusIt()">
 	
 		<form id="index" name="index" action="Process" method="POST">
 		
@@ -65,42 +65,8 @@
 			{
 				
 				document.index.buttonStart.focus();
-				initBarcode();
-				initBattery();
-				initWLAN();
 			}
-			
-			function initBarcode()
-			{
-				EB.Barcode.enable(); 
-				EB.Barcode.allDecoders = 'false';
-				EB.Barcode.code128 = 'true';
-				EB.Barcode.code128ean128 = 'true';
-				EB.Barcode.autoEnter = 'true';
-			}
-			
-			function initBattery()
-			{
-				var props ={
-	                color:  "#38cd00",
-	                layout: EB.Battery.BATTERY_LAYOUT_RIGHT,
-	                top:    EB.System.screenHeight - 25 ,  
-	                left:   EB.System.screenWidth - 25  
-	            }	
-				 EB.Battery.showIcon(props);
-			}
-			
-			function initWLAN()
-			{
-				var props ={
-	                color:  "#cd0006",
-	                layout: EB.SignalIndicators.SIGNAL_LAYOUT_RIGHT,
-	                top:    EB.System.screenHeight - 25 ,  
-	                left:   25  
-	            }	
-				 EB.SignalIndicators.showIcon(props);
-			}
-			
+						
 		</script>
 	
 	</body>
