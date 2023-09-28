@@ -107,6 +107,7 @@
 	
 		function focusIt() {
 			document.productionConfirm.sscc.focus();
+			EB.Barcode.enable(); 
 		}
 
 		function goBack() {

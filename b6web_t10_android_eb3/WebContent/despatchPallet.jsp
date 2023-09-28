@@ -130,6 +130,7 @@
 		function focusIt() 
 		{
 			document.despatchPallet.sscc.focus();
+			EB.Barcode.enable(); 
 
 		}
 
