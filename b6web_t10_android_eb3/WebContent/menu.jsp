@@ -6,7 +6,7 @@
 <head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<script type="text/javascript" charset="utf-8" src="javascript/eb3/ebapi-modules.js"></script>	 
+		<script type="text/javascript" charset="utf-8" src="ebapi-modules.js"></script>	 
 	    
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />

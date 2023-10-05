@@ -3,8 +3,9 @@
 <html>
 <head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<script type="text/javascript" charset="utf-8" src="javascript/eb3/ebapi-modules.js"></script>	 
+
+		<script type="text/javascript" charset="utf-8" src="scriptProperties.js"></script>			
+		<script type="text/javascript" charset="utf-8" src="ebapi-modules.js"></script>	 
 	    
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -88,11 +89,24 @@
 
 		function focusIt() {
 			document.palletInfo.sscc.focus();
+			initC4JBarcode();
+			EB.Barcode.enable(getC4JBarcodeProperties(),scanReceived);
 		}
 
 		function goBack() {
 			window.history.back();
 		}
+		
+        function scanReceived(params){
+
+            if (params['data'] != "")
+            {
+                var data = params['data']
+                document.getElementById("sscc").value = data;
+                document.palletInfo.button.value='Submit';
+                document.palletInfo.submit();
+            }
+        }
 		
 	</script>
 </body>

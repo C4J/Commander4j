@@ -4,8 +4,9 @@
 
 <head>	
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<script type="text/javascript" charset="utf-8" src="javascript/eb3/ebapi-modules.js"></script>	 
+
+		<script type="text/javascript" charset="utf-8" src="scriptProperties.js"></script>	 		
+		<script type="text/javascript" charset="utf-8" src="ebapi-modules.js"></script>	 
 	    
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -106,11 +107,23 @@
 	<script language="javascript" type="text/javascript">
 		function focusIt() {
 			document.validateDUSelect.validateOrder.focus();
+			EB.Barcode.enable(getC4JBarcodeProperties(),scanReceived);
 		}
 
 		function goBack() {
 			window.history.back();
 		}
+		
+        function scanReceived(params){
+
+            if (params['data'] != "")
+            {
+                var data = params['data']
+                document.getElementById("validateOrder").value = data;
+                document.validateDUSelect.button.value='Submit';
+                document.validateDUSelect.submit();
+            }
+        }
 	</script>
 
 </body>

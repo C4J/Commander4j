@@ -828,8 +828,9 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 	{
 
 		HttpSession session = request.getSession();
-		response.setHeader("Cache-Control", "no-cache");
-		response.setHeader("Pragma", "no-cache");
+		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+		response.addHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires", 0);
 		if (session.isNew())
 		{
@@ -839,7 +840,10 @@ public class Process extends jakarta.servlet.http.HttpServlet implements jakarta
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		// synchronized (this)
+		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+		response.addHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
 		{
 
 			HttpSession session = request.getSession();

@@ -5,16 +5,17 @@
 
 <head>
 
+		<script type="text/javascript" charset="utf-8" src="scriptProperties.js"></script>	 
+		<script type="text/javascript" charset="utf-8" src="ebapi-modules.js"></script>	 
+
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<script type="text/javascript" charset="utf-8" src="javascript/eb3/ebapi-modules.js"></script>	 
-	    
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 	
 		<title>Host Select</title>
+		
 		<link href="style/commander.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -87,43 +88,9 @@
 		
 			function init()
 			{
-				
-				initBarcode();
-				initBattery();
-				initWLAN();
+				initC4J();
 			}
-			
-			function initBarcode()
-			{
-				EB.setProperty("autoenter", "true");
-				EB.setProperty("allDecoders", "false");
-				EB.setProperty("code128", "true");
-				EB.setProperty("code128ean128", "true");
-				EB.Barcode.enable(); 
-			}
-			
-			function initBattery()
-			{
-				var props ={
-	                color:  "#38cd00",
-	                layout: EB.Battery.BATTERY_LAYOUT_RIGHT,
-	                top:    EB.System.screenHeight - 25 ,  
-	                left:   EB.System.screenWidth - 25  
-	            }	
-				 EB.Battery.showIcon(props);
-			}
-			
-			function initWLAN()
-			{
-				var props ={
-	                color:  "#cd0006",
-	                layout: EB.SignalIndicators.SIGNAL_LAYOUT_RIGHT,
-	                top:    EB.System.screenHeight - 25 ,  
-	                left:   25  
-	            }	
-				 EB.SignalIndicators.showIcon(props);
-			}
-			
+	
 	</script>
 		
 </body>
