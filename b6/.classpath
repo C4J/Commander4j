@@ -12,7 +12,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/barcode4j-2.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/mondrian-3.1.1.12687.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/servlet-api-2.5.jar"/>
-	<classpathentry kind="lib" path="lib/barcode/avalon-framework-4.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/barcode/avalon-framework-impl-4.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/mail/javax.mail.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/olap4j-0.9.7.309-JS-3.jar"/>
 	<classpathentry kind="lib" path="lib/devonly/i4jruntime.jar"/>
@@ -35,7 +35,6 @@
 	<classpathentry kind="lib" path="lib/jasperlib/spring-core-5.3.27.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/javax.xml.soap-api-1.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/xmpcore-6.1.11.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib_aux/xmlgraphics-commons-2.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/asm-all-5.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/bsh-2.0b6.jar"/>
 	<classpathentry kind="lib" path="lib/cups4j/cups4j-0.7.9.jar"/>
@@ -67,32 +66,32 @@
 	<classpathentry kind="lib" path="lib/jasperlib/stax2-api-4.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/jcommander-1.82.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/testng-7.7.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-annotation-processors-6.20.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-castor-6.20.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.20.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.20.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-custom-visualization-6.20.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.20.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.20.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.20.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-xalan-6.20.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-anim-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-awt-util-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-bridge-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-constants-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-css-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-dom-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-ext-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-gvt-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-i18n-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-parser-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-script-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-shared-resources-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-svg-dom-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-svggen-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-transcoder-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-util-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/batik-xml-1.16.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-annotation-processors-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-castor-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-custom-visualization-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-xalan-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-anim-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-awt-util-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-bridge-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-constants-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-css-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-dom-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-ext-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-gvt-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-i18n-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-parser-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-script-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-shared-resources-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-svg-dom-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-svggen-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-transcoder-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-util-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/batik-xml-1.17.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/byte-buddy-1.12.19.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/classmate-1.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/commons-dbcp-1.2.jar"/>
@@ -149,7 +148,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.spi-2.7.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.tools.ant-2.7.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.tools.jar-2.7.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/openpdf-1.3.30.jaspersoft.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/openpdf-1.3.30.jaspersoft.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-5.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-ooxml-5.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-ooxml-lite-5.2.2.jar"/>
@@ -163,9 +162,9 @@
 	<classpathentry kind="lib" path="lib/jasperlib/tyrus-spi-1.13.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/woodstox-core-6.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/xmlbeans-5.0.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/xmlgraphics-commons-2.7.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib_aux/batik-extension-1.16.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib_aux/batik-gui-util-1.16.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/xmlgraphics-commons-2.9.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/batik-extension-1.17.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib_aux/batik-gui-util-1.17.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/jfreechart-1.5.4.jar"/>
 	<classpathentry kind="lib" path="lib/app/xmlbeans-5.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/stax-ex-1.8.jar"/>
@@ -181,7 +180,11 @@
 	<classpathentry kind="lib" path="lib/jasperlib_aux/junit-platform-engine-1.9.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/objenesis-3.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/opentest4j-1.2.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.20.5.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.20.5.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/barcode/avalon-framework-4.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/junit-3.7.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-fastexcel-6.20.6.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/groovy-2.4.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
