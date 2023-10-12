@@ -16,7 +16,6 @@
         <pathelement location="lib/jasperlib/barcode4j-2.1.jar"/>
         <pathelement location="lib/jasperlib/mondrian-3.1.1.12687.jar"/>
         <pathelement location="lib/jasperlib/servlet-api-2.5.jar"/>
-        <pathelement location="lib/barcode/avalon-framework-impl-4.2.0.jar"/>
         <pathelement location="lib/mail/javax.mail.jar"/>
         <pathelement location="lib/jasperlib/olap4j-0.9.7.309-JS-3.jar"/>
         <pathelement location="lib/devonly/i4jruntime.jar"/>
@@ -118,7 +117,6 @@
         <pathelement location="lib/jasperlib/grizzly-http-2.3.25.jar"/>
         <pathelement location="lib/jasperlib/grizzly-http-server-2.3.25.jar"/>
         <pathelement location="lib/jasperlib/groovy-4.0.8.jar"/>
-        <pathelement location="lib/jasperlib/groovy-2.4.12.jar"/>
         <pathelement location="lib/jasperlib/hibernate-commons-annotations-5.1.2.Final.jar"/>
         <pathelement location="lib/jasperlib/ant-launcher-1.10.11.jar"/>
         <pathelement location="lib/jasperlib/istack-commons-runtime-3.0.7.jar"/>
@@ -190,6 +188,7 @@
         <pathelement location="lib/barcode/avalon-framework-4.2.0.jar"/>
         <pathelement location="lib/jasperlib/junit-3.7.jar"/>
         <pathelement location="lib/jasper/jasperreports-fastexcel-6.20.6.jar"/>
+        <pathelement location="lib/jasperlib/avalon-framework-impl-4.2.0.jar"/>
     </path>
 
     <target name="init">

@@ -100,7 +100,7 @@ public class JInternalFrameArchiveAdmin extends javax.swing.JInternalFrame
 
 		query.clear();
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}SYS_ARCHIVE order by ARCHIVE_ID"));
+		query.addText(JUtility.substSchemaName(schemaName, "select * from {schema}SYS_ARCHIVE order by SEQUENCE,ARCHIVE_ID"));
 		query.applyRestriction(false, "none", 0);
 		query.bindParams();
 
