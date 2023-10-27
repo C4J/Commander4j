@@ -286,6 +286,7 @@ public class Common
 	public final static Icon icon_ok_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_ok);
 	public final static Icon icon_cancel_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_cancel);
 	public final static Icon icon_search_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_search);
+	public final static Icon icon_default_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_default);
 	public final static Icon icon_user_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_user);
 	public final static Icon icon_update_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_update);
 	public final static Icon icon_user_disabled_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_user_disabled);
@@ -322,6 +323,7 @@ public class Common
 	public final static String image_lock = "lock.gif";
 	public final static String image_notifyEmail = "mail.gif";
 	public final static String image_file_save = "file_save.gif";
+	public final static String image_default = "default.png";
 	public final static String image_export = "export.gif";
 	public final static String image_alternative = "alternative.gif";
 	public final static String image_resend = "resend.gif";

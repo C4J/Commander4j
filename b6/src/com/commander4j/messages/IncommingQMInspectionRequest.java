@@ -245,6 +245,7 @@ public class IncommingQMInspectionRequest
 			String testRequired = "";
 			String testVisible = "";
 			String testUOM = "";
+			String testDefaultValue="";
 			
 			int testOccurence = 1;
 			while (testID.length() > 0)
@@ -263,14 +264,14 @@ public class IncommingQMInspectionRequest
 					testRequired = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/inspectionDefinition/activity[" + String.valueOf(ActivityOccurence) + "]/test[" + String.valueOf(testOccurence) + "]/required").trim());
 					testVisible = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/inspectionDefinition/activity[" + String.valueOf(ActivityOccurence) + "]/test[" + String.valueOf(testOccurence) + "]/visible").trim());
 					testUOM = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/inspectionDefinition/activity[" + String.valueOf(ActivityOccurence) + "]/test[" + String.valueOf(testOccurence) + "]/uom").trim());
-					
+					testDefaultValue = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/inspectionDefinition/activity[" + String.valueOf(ActivityOccurence) + "]/test[" + String.valueOf(testOccurence) + "]/defaultValue").trim());				
 					// DICTIONARY //
 
 		
 					qmDictionary.setTestID(testID);
 					if (qmDictionary.isValid()==false)
 					{
-						qmDictionary.create(testID, JLabel.LEADING, testDataType, testUOM, testRequired, testDescription, testVisible,50);
+						qmDictionary.create(testID, JLabel.LEADING, testDataType, testUOM, testRequired, testDescription, testVisible,50,testDefaultValue);
 						
 					}
 					else

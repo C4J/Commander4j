@@ -1145,7 +1145,7 @@
 		</statement>
 		<statement>
 			<id>JDBQMDictionary.create</id>
-			<text>insert into {schema}APP_QM_DICTIONARY (test_id,field_alignment,description,datatype,uom,required,select_list_id,visible,extension_id,field_width) values (?,?,?,?,?,?,?,?,?,?)</text>
+			<text>insert into {schema}APP_QM_DICTIONARY (test_id,field_alignment,description,datatype,uom,required,select_list_id,visible,extension_id,field_width,default_value) values (?,?,?,?,?,?,?,?,?,?,?)</text>
 		</statement>
 		<statement>
 			<id>JDBQMDictionary.delete</id>
@@ -1161,7 +1161,7 @@
 		</statement>
 		<statement>
 			<id>JDBQMDictionary.update</id>
-			<text>update {schema}APP_QM_DICTIONARY set field_alignment=?,description=?,datatype=?,uom=?,required=?,select_list_id=?,visible=?,field_width=? where test_id = ?</text>
+			<text>update {schema}APP_QM_DICTIONARY set field_alignment=?,description=?,datatype=?,uom=?,required=?,select_list_id=?,visible=?,field_width=?,default_value=? where test_id = ?</text>
 		</statement>
 		<?JDBQMExtension ?>
 		<statement>
@@ -1219,8 +1219,12 @@
 		</statement>
 		<?JDBQMResult ?>
 		<statement>
-			<id>JDBQMResult.getResults</id>
+			<id>JDBQMResult.getResult</id>
 			<text>select * from {schema}APP_QM_RESULT where sample_id = ? and test_id = ?</text>
+		</statement>
+	   <statement>
+			<id>JDBQMResult.getResults</id>
+			<text>select * from {schema}APP_QM_RESULT where sample_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBQMResult.create</id>

@@ -86,7 +86,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 	private JComboBox4j<String> comboBoxSelectList;
 	private JComboBox4j<String> comboBoxDataType;
 	private JCheckBox4j chckbxVisible;
-	private JTextField4j textFieldUOM;
+	private JTextField4j textFieldDefaultValue;
 	private JSpinner spinnerWidth;
 	private String[] fieldAlignment = new String[] { "Left", "Right", "Center" };
 	private JComboBox4j<String> comboBoxAlignment;
@@ -113,8 +113,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 
 		if (dict.isValid(insp) == false) {
 			// dict.create(insp,description);
-			dict.create(insp, JLabel.TRAILING, comboBoxDataType.getSelectedItem().toString(), textFieldUOM.getText(),
-					"Y", description, visible, Integer.valueOf(spinnerWidth.getValue().toString()));
+			dict.create(insp, JLabel.TRAILING, comboBoxDataType.getSelectedItem().toString(), "","Y", description, visible, Integer.valueOf(spinnerWidth.getValue().toString()), textFieldDefaultValue.getText());
 		}
 
 		dict.setFieldAlignment(comboBoxAlignment.getSelectedItem().toString());
@@ -122,7 +121,8 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 		dict.setDataType(comboBoxDataType.getSelectedItem().toString());
 		dict.setSelectListID(comboBoxSelectList.getSelectedItem().toString());
 		dict.setVisible(visible);
-		dict.setUOM(textFieldUOM.getText());
+		dict.setUOM("");
+		dict.setDefaultValue(textFieldDefaultValue.getText());
 		dict.setFieldWidth(Integer.valueOf(spinnerWidth.getValue().toString()));
 		dict.update();
 
@@ -270,22 +270,22 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 		lblVisible.setBounds(8, 179, 92, 16);
 		desktopPane.add(lblVisible);
 
-		JLabel4j_std lblUOM = new JLabel4j_std(lang.get("lbl_Material_UOM"));
+		JLabel4j_std lblUOM = new JLabel4j_std(lang.get("lbl_default"));
 		lblUOM.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblUOM.setBounds(8, 213, 92, 16);
 		desktopPane.add(lblUOM);
 
-		textFieldUOM = new JTextField4j(JDBQMDictionary.field_uom);
-		textFieldUOM.addKeyListener(new KeyAdapter() {
+		textFieldDefaultValue = new JTextField4j(JDBQMDictionary.field_uom);
+		textFieldDefaultValue.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				enableSave();
 			}
 		});
-		textFieldUOM.setText("");
-		textFieldUOM.setColumns(10);
-		textFieldUOM.setBounds(112, 206, 143, 28);
-		desktopPane.add(textFieldUOM);
+		textFieldDefaultValue.setText("");
+		textFieldDefaultValue.setColumns(10);
+		textFieldDefaultValue.setBounds(112, 206, 143, 28);
+		desktopPane.add(textFieldDefaultValue);
 
 		spinnerWidth = new JSpinner();
 
@@ -334,7 +334,7 @@ public class JDialogQMDictionaryProperties extends javax.swing.JDialog {
 		else
 			chckbxVisible.setSelected(false);
 
-		textFieldUOM.setText(dict.getUOM());
+		textFieldDefaultValue.setText(dict.getDefaultValue());
 
 		spinnerWidth.setValue(dict.getFieldWidth());
 

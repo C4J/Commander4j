@@ -39,6 +39,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import com.commander4j.celledit.CheckBoxCellEditor;
+import com.commander4j.celledit.ComboBoxCellEditorQMResult;
 import com.commander4j.celledit.NumberCellEditor;
 import com.commander4j.db.JDBQMDictionary;
 import com.commander4j.db.JDBQMSelectList;
@@ -253,19 +254,26 @@ public class JDBQMResultTable extends JTable
 			{
 
 				LinkedList<JDBQMSelectList> listValues = new LinkedList<JDBQMSelectList>();
+				
 				listValues = selectlist.getSelectList(tempDict.getSelectListID());
 				JDBQMSelectList blank = new JDBQMSelectList();
+				listValues.addFirst(blank);
+				
 				JComboBox4jAW<JDBQMSelectList> comboBox = new JComboBox4jAW<JDBQMSelectList>();
-				comboBox.addItem(blank);
+				comboBox.setFont(Common.font_table);
+
+				
+				//comboBox.setWide(true);
+				comboBox.doLayout();
 
 				for (int y = 0; y < listValues.size(); y++)
 				{
 					comboBox.addItem(listValues.get(y));
 				}
-				comboBox.setFont(Common.font_table);
-				comboBox.setMaximumRowCount(35);
-				column.setCellEditor(new DefaultCellEditor(comboBox));
-				comboBox.setWide(true);
+
+
+				
+				column.setCellEditor(new ComboBoxCellEditorQMResult(listValues));
 
 			}
 
@@ -276,11 +284,11 @@ public class JDBQMResultTable extends JTable
 
 			if (tempDict.getDataType().equals("string"))
 			{
-
 				JTextField tf = new JTextField();
 				tf.setFont(Common.font_table);
 				column.setCellEditor(new DefaultCellEditor(tf));
 			}
+			
 			if (tempDict.getDataType().equals("boolean"))
 			{
 

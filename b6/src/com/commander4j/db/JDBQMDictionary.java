@@ -56,6 +56,7 @@ public class JDBQMDictionary
 	private String dbDescription;
 	private String dbDataType;
 	private String dbUOM;
+	private String dbDefaultValue;
 	private String dbRequired;
 	private String dbSelectListID;
 	private String dbVisible;
@@ -77,7 +78,7 @@ public class JDBQMDictionary
 		setSessionID(session);
 	}
 
-	public JDBQMDictionary(String host, String session, String testid, int align, String datatype, String uom, String required, String description, String visible)
+	public JDBQMDictionary(String host, String session, String testid, int align, String datatype, String uom, String required, String description, String visible,String defaultValue)
 	{
 		setHostID(host);
 		setSessionID(session);
@@ -88,6 +89,7 @@ public class JDBQMDictionary
 		setRequired(required);
 		setDescription(description);
 		setVisible(visible);
+		setDefaultValue(defaultValue);
 	}
 
 	public void clear()
@@ -96,13 +98,14 @@ public class JDBQMDictionary
 		setFieldWidth(50);
 		setDataType("");
 		setUOM("");
+		setDefaultValue("");
 		setRequired("");
 		setDescription("");
 		setVisible("");
 		setExtensionID((long) -1);
 	}
 
-	public boolean create(String testid, int align, String datatype, String uom, String required, String description, String visible, int wdth)
+	public boolean create(String testid, int align, String datatype, String uom, String required, String description, String visible, int wdth,String defaultValue)
 	{
 		boolean result = false;
 		setErrorMessage("");
@@ -118,6 +121,7 @@ public class JDBQMDictionary
 			setDescription(description);
 			setVisible(visible);
 			setFieldWidth(wdth);
+			setDefaultValue(defaultValue);
 
 			if (isValid() == false)
 			{
@@ -133,6 +137,7 @@ public class JDBQMDictionary
 				stmtupdate.setString(8, getVisible());
 				stmtupdate.setLong(9, getExtensionID());
 				stmtupdate.setLong(10, getFieldWidth());
+				stmtupdate.setString(11, getDefaultValue());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();
@@ -442,6 +447,14 @@ public class JDBQMDictionary
 			result = dbUOM;
 		return result;
 	}
+	
+	public String getDefaultValue()
+	{
+		String result = "";
+		if (dbDefaultValue != null)
+			result = dbDefaultValue;
+		return result;
+	}
 
 	public void getValuesFromResultSet(ResultSet rs)
 	{
@@ -457,6 +470,7 @@ public class JDBQMDictionary
 			setExtensionID(rs.getLong("extension_id"));
 			setFieldAlign(rs.getInt("field_alignment"));
 			setFieldWidth(rs.getInt("field_width"));
+			setDefaultValue(rs.getString("default_value"));
 		} catch (Exception ex)
 		{
 
@@ -590,6 +604,11 @@ public class JDBQMDictionary
 		dbUOM = uom;
 	}
 
+	public void setDefaultValue(String defaultValue)
+	{
+		dbDefaultValue = defaultValue;
+	}
+	
 	public void setVisible(String visible)
 	{
 		dbVisible = visible;
@@ -632,7 +651,8 @@ public class JDBQMDictionary
 				stmtupdate.setString(6, getSelectListID());
 				stmtupdate.setString(7, getVisible());
 				stmtupdate.setLong(8, getFieldWidth());
-				stmtupdate.setString(9, getTestID());
+				stmtupdate.setString(9, getDefaultValue());
+				stmtupdate.setString(10, getTestID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

@@ -85,7 +85,7 @@ public class JDBQMResult
 		setSampleID(sampleid);
 		setTestID(testid);
 		try {
-			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMResult.getResults"));
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBQMResult.getResult"));
 			stmt.setLong(1, getSampleID());
 			stmt.setString(2, getTestID());
 			stmt.setFetchSize(100);
