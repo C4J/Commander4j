@@ -91,6 +91,7 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
+import javax.swing.ScrollPaneConstants;
 
 /**
  * The JInternalFramePalletSample class is used to record additional information
@@ -262,6 +263,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 		this.setIconifiable(true);
 		jTable1.setModel(pstm);
+		scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		scrollPane1.setViewportView(jTable1);
 		JUtility.scrolltoHomePosition(scrollPane1);
@@ -1323,7 +1325,7 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 				jDesktopPane1.add(panel_SampleResults);
 				panel_SampleResults.setLayout(null);
 
-				scrollPane1.setBounds(0, 20, 975, 160);
+				scrollPane1.setBounds(0, 20, 975, 142);
 				scrollPane1.getViewport().setBackground(Common.color_tablebackground);
 				panel_SampleResults.add(scrollPane1);
 

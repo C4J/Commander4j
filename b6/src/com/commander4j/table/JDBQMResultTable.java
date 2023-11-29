@@ -94,14 +94,21 @@ public class JDBQMResultTable extends JTable
 		setHost(hostid);
 		setSession(sessionid);
 
-		tableMode = mode;
-		test = new JDBQMTest(getHost(), getSession());
-		new JDBQMDictionary(getHost(), getSession());
-		selectlist = new JDBQMSelectList(getHost(), getSession());
+		try
+		{
 
-		testPropertiesList = test.getTestsPropertiesList(inspectionid, activityid);
+			tableMode = mode;
+			test = new JDBQMTest(getHost(), getSession());
+			new JDBQMDictionary(getHost(), getSession());
+			selectlist = new JDBQMSelectList(getHost(), getSession());
 
-		
+			testPropertiesList = test.getTestsPropertiesList(inspectionid, activityid);
+		}
+		catch (Exception ex)
+		{
+
+		}
+
 		setDefaultRenderer(Object.class, Common.renderer_table);
 		getTableHeader().setDefaultRenderer(Common.renderer_tableheader);
 		setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -123,7 +130,8 @@ public class JDBQMResultTable extends JTable
 				width = ((JDBQMDictionary) testPropertiesList.get(x)).getFieldWidth();
 				setColumnWidth(x, width);
 			}
-		} else
+		}
+		else
 		{
 			if (tableMode.equals("index"))
 			{
@@ -131,7 +139,8 @@ public class JDBQMResultTable extends JTable
 				setColumnWidth(1, 125);
 				setColumnWidth(2, 85);
 				setColumnWidth(3, 85);
-			} else
+			}
+			else
 			{
 				if (tableMode.equals("result"))
 				{
@@ -195,11 +204,10 @@ public class JDBQMResultTable extends JTable
 					setRenderer(x, defaultRenderer);
 
 				}
-				
-				
 
 			}
-		} else
+		}
+		else
 		{
 			if (tableMode.equals("index"))
 			{
@@ -207,7 +215,8 @@ public class JDBQMResultTable extends JTable
 				setRenderer(1, indexRenderer);
 				setRenderer(2, indexRenderer);
 				setRenderer(3, indexRenderer);
-			} else
+			}
+			else
 			{
 				if (tableMode.equals("result"))
 				{
@@ -221,7 +230,7 @@ public class JDBQMResultTable extends JTable
 					setRenderer(7, indexRenderer);
 					if (getColumnModel().getColumnCount() > 8)
 					{
-						for (int y=8;y<getColumnModel().getColumnCount();y++)
+						for (int y = 8; y < getColumnModel().getColumnCount(); y++)
 						{
 							setRenderer(y, defaultRenderer);
 							setColumnWidth(y, 130);
@@ -254,16 +263,15 @@ public class JDBQMResultTable extends JTable
 			{
 
 				LinkedList<JDBQMSelectList> listValues = new LinkedList<JDBQMSelectList>();
-				
+
 				listValues = selectlist.getSelectList(tempDict.getSelectListID());
 				JDBQMSelectList blank = new JDBQMSelectList();
 				listValues.addFirst(blank);
-				
+
 				JComboBox4jAW<JDBQMSelectList> comboBox = new JComboBox4jAW<JDBQMSelectList>();
 				comboBox.setFont(Common.font_table);
 
-				
-				//comboBox.setWide(true);
+				// comboBox.setWide(true);
 				comboBox.doLayout();
 
 				for (int y = 0; y < listValues.size(); y++)
@@ -271,8 +279,6 @@ public class JDBQMResultTable extends JTable
 					comboBox.addItem(listValues.get(y));
 				}
 
-
-				
 				column.setCellEditor(new ComboBoxCellEditorQMResult(listValues));
 
 			}
@@ -288,7 +294,7 @@ public class JDBQMResultTable extends JTable
 				tf.setFont(Common.font_table);
 				column.setCellEditor(new DefaultCellEditor(tf));
 			}
-			
+
 			if (tempDict.getDataType().equals("boolean"))
 			{
 
