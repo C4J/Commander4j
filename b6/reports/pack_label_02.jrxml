@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pack_Label_02" language="groovy" pageWidth="447" pageHeight="226" columnWidth="437" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="6a374093-6218-4553-891f-5e2d4f4ddd33">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
 	<property name="com.jaspersoft.studio.unit." value="mm"/>
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
 	<queryString>
-		<![CDATA[SELECT *
-  FROM view_label_data]]>
+		<![CDATA[SELECT *   FROM view_label_data]]>
 	</queryString>
 	<field name="UNIQUE_ID" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>

@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="weights_quickref1" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="06f0cf4f-c839-4cd1-9e94-d7ca33e822aa">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
+	<style name="StyleRed" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{VMean} < $V{VNominal}]]></conditionExpression>
+			<style forecolor="#050505" backcolor="#F72334"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{VMean} >= $V{VNominal}]]></conditionExpression>
+			<style forecolor="#009900" backcolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="StyleRedT1" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{VT1} == 0]]></conditionExpression>
+			<style forecolor="#009900" backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{VT1} > 0]]></conditionExpression>
+			<style forecolor="#000000" backcolor="#FF0A1F"/>
+		</conditionalStyle>
+	</style>
+	<style name="StyleRedT2" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{VT2} == 0]]></conditionExpression>
+			<style forecolor="#009900" backcolor="#FFFFFF"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{VT2} > 0]]></conditionExpression>
+			<style forecolor="#000000" backcolor="#FF0A1F"/>
+		</conditionalStyle>
+	</style>
 	<parameter name="p_title" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[p_title]]></parameterDescription>
 		<defaultValueExpression><![CDATA["Quick Ref"]]></defaultValueExpression>
@@ -29,7 +59,7 @@
 FROM
 	view_weight_samples
  WHERE NOMINAL_WEIGHT > 0
- AND SAMPLE_DATE_SHORT >= '2019-08-01' AND SAMPLE_DATE_SHORT <='2019-10-04'
+ AND SAMPLE_DATE_SHORT >= '2023-08-01' AND SAMPLE_DATE_SHORT <='2023-10-04'
  GROUP BY
   SAMPLE_DATE_SHORT,
 	NOMINAL_WEIGHT,
@@ -89,6 +119,18 @@ FROM
 	<field name="PERCENTAGE_T1S" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="PERCENTAGE_T1S"/>
 	</field>
+	<variable name="VNominal" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{NOMINAL_WEIGHT}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="VMean" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{MEAN_WEIGHT}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="VT1" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{TOTAL_T1S}.intValue()]]></variableExpression>
+	</variable>
+	<variable name="VT2" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{TOTAL_T2S}.intValue()]]></variableExpression>
+	</variable>
 	<group name="SAMPLE_DATE_SHORT">
 		<groupExpression><![CDATA[$F{SAMPLE_DATE_SHORT}]]></groupExpression>
 	</group>
@@ -404,7 +446,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{SAMPLE_SIZE}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
-				<reportElement x="377" y="0" width="44" height="12" uuid="b9fea281-1d54-4ab2-998e-7ea74eb94c73">
+				<reportElement style="StyleRed" x="377" y="0" width="44" height="12" uuid="b9fea281-1d54-4ab2-998e-7ea74eb94c73">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e68b36bd-766b-4094-93af-a8abfcf096d4"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -424,7 +466,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{STANDARD_DEVIATION}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="472" y="0" width="32" height="12" uuid="8d78c0fd-b43a-4e38-9ed3-9b5b599c1c1e">
+				<reportElement style="StyleRedT1" x="472" y="0" width="32" height="12" uuid="8d78c0fd-b43a-4e38-9ed3-9b5b599c1c1e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="af8be616-27d2-4b7d-956b-decdeecbaf40"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -434,7 +476,7 @@ FROM
 				<textFieldExpression><![CDATA[$F{TOTAL_T1S}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="513" y="0" width="32" height="12" uuid="3076f27d-672d-4306-bfa0-bd71187b0aeb">
+				<reportElement style="StyleRedT2" x="513" y="0" width="32" height="12" uuid="3076f27d-672d-4306-bfa0-bd71187b0aeb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6d223a73-4959-4334-8cf7-54281f2b7293"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
