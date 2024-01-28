@@ -141,31 +141,22 @@ public class JInternalFrameProcessOrderResourceProperties extends JInternalFrame
 
 	private void updateRecord()
 	{
+		jTextFieldPlantID.setText(jTextFieldPlantID.getText().toUpperCase());
+		
+		processOrderResource.setResource(jTextFieldResource.getText());
+
+		if (processOrderResource.isValidResource() == false)
+		{
+			processOrderResource.create(jTextFieldResource.getText());
+		}
+
+		processOrderResource.setEnabled(checkBoxEnabled.isSelected());
 		processOrderResource.setResource(jTextFieldResource.getText());
 		processOrderResource.setDescription(jTextFieldDescription.getText());
-		
-		jTextFieldPlantID.setText(jTextFieldPlantID.getText().toUpperCase());
 		processOrderResource.setPlant(jTextFieldPlantID.getText());
 		processOrderResource.setBatchSuffix(textFieldBatchSuffix.getText());
 		
-		if (checkBoxEnabled.isSelected())
-		{
-			processOrderResource.setEnabled("Y");
-		}
-		else
-		{
-			processOrderResource.setEnabled("N");
-		}
-
-		if (processOrderResource.isValidResource())
-		{
-			processOrderResource.update();
-		}
-		else
-		{
-			processOrderResource.create(jTextFieldResource.getText());
-			processOrderResource.update();
-		}
+		processOrderResource.update();
 		
 		jButtonUpdate.setEnabled(false);
 	}
