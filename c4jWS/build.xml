@@ -43,8 +43,8 @@
         <pathelement location="src/main/webapp/WEB-INF/lib/log4j-api-2.20.0.jar"/>
         <pathelement location="src/main/webapp/WEB-INF/lib/log4j-core-2.20.0.jar"/>
         <pathelement location="src/main/webapp/WEB-INF/lib/log4j-jcl-2.20.0.jar"/>
-        <pathelement location="src/main/webapp/WEB-INF/lib/mssql-jdbc-12.2.0.jre11.jar"/>
-        <pathelement location="src/main/webapp/WEB-INF/lib/mysql-connector-j-8.1.0.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/mssql-jdbc-12.4.2.jre11.jar"/>
+        <pathelement location="src/main/webapp/WEB-INF/lib/mysql-connector-j-8.3.0.jar"/>
         <pathelement location="src/main/webapp/WEB-INF/lib/ojdbc11.jar"/>
         <pathelement location="src/main/webapp/WEB-INF/lib/org.osgi.core-6.0.0.jar"/>
         <pathelement location="src/main/webapp/WEB-INF/lib/osgi-resource-locator-1.0.3.jar"/>
