@@ -47,7 +47,7 @@
         
         <library>
             <description>Apache Log4j</description>
-            <version>1.2.17</version>
+            <version>2.20.0</version>
             <type>Apache License 2.0</type>
         </library>
         
@@ -125,13 +125,13 @@
         
         <library>
             <description>Microsoft JDBC</description>
-            <version>9.4.1</version>
+            <version>12.4.2</version>
             <type>Microsoft JDBC License</type>
         </library>  
         
         <library>
             <description>mySQL JDBC</description>
-            <version>8.0.32</version>
+            <version>8.3.0</version>
             <type>mySQL JDBC License</type>
         </library>    
         
@@ -149,7 +149,7 @@
 
         <library>
             <description>Batik</description>
-            <version>1.16</version>
+            <version>1.17</version>
             <type>Apache License 2.0</type>
         </library>   
 
@@ -281,19 +281,19 @@
         
         <library>
         	<description>Jackson Annotations</description>
-        	<version>2.12.2</version>
+        	<version>2.15.3</version>
         	<type>Apache License 2.0</type>
         </library> 
         
         <library>
         	<description>Jackson Core</description>
-        	<version>2.14.1</version>
+        	<version>2.15.3</version>
         	<type>Apache License 2.0</type>
         </library> 
 
         <library>
         	<description>Jackson Databind</description>
-        	<version>2.14.1</version>
+        	<version>2.15.3</version>
         	<type>Apache License 2.0</type>
         </library> 
                     
