@@ -1263,7 +1263,7 @@ public class JInternalFrameMaterialProperties extends javax.swing.JInternalFrame
 		}
 		else
 		{
-			material.setMoveAfterMakeEnabled("Y");
+			material.setMoveAfterMakeEnabled("N");
 			material.setMoveAfterMakeLocationID("");
 			textField4jMoveAfterMake.setText("");
 		}
