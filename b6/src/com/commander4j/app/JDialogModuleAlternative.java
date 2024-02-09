@@ -35,6 +35,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -464,16 +465,22 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 
 		JDBModule tempModule = new JDBModule(Common.selectedHostID, Common.sessionID);
 
-		LinkedList<JDBListData> tempModuleList = new LinkedList<JDBListData>();
+		LinkedList<JDBListData> tempModuleListREPORT = new LinkedList<JDBListData>();
+		LinkedList<JDBListData> tempModuleListUSER = new LinkedList<JDBListData>();
 
-		tempModuleList = tempModule.getModuleIdsByType("REPORT");
+		tempModuleListREPORT = tempModule.getModuleIdsByType("REPORT");
+		tempModuleListUSER = tempModule.getModuleIdsByType("USER");
+		
+		tempModuleListREPORT.addAll(tempModuleListUSER);
+		
+		Collections.sort(tempModuleListREPORT);
 
 		int sel = -1;
-		for (int j = 0; j < tempModuleList.size(); j++)
+		for (int j = 0; j < tempModuleListREPORT.size(); j++)
 		{
 
-			defComboBoxMod.addElement(tempModuleList.get(j).toString());
-			if (tempModuleList.get(j).toString().equals(defaultitem))
+			defComboBoxMod.addElement(tempModuleListREPORT.get(j).toString());
+			if (tempModuleListREPORT.get(j).toString().equals(defaultitem))
 			{
 				sel = j;
 			}

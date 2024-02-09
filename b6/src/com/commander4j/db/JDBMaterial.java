@@ -66,7 +66,7 @@ public class JDBMaterial
 	private BigDecimal dbNetWeight;
 	private String dbOldMaterial;
 	private String dbInspectionID;
-    private String dbEquipmentType;
+	private String dbEquipmentType;
 	private Integer dbShelflife;
 	private String dbShelflifeRule;
 	private String dbShelflifeUom;
@@ -571,19 +571,27 @@ public class JDBMaterial
 		boolean result = false;
 
 		materialID = JUtility.replaceNullStringwithBlank(materialID);
+		moveAfterMakeLocationID = JUtility.replaceNullStringwithBlank(moveAfterMakeLocationID);
 
 		if (materialID.equals("") == false)
 		{
-			if (moveAfterMakeEnabled.equals("Y") ||  moveAfterMakeEnabled.equals("N"))
-				
-				
-			if (getMaterialProperties(materialID))
-			{
-				setMaterial(materialID);
-				setMoveAfterMakeEnabled(moveAfterMakeEnabled);
-				setMoveAfterMakeLocationID(moveAfterMakeLocationID);
-				result = update();
-			}
+			if (moveAfterMakeEnabled.equals("Y") || moveAfterMakeEnabled.equals("N"))
+
+				if (moveAfterMakeEnabled.equals("Y") && moveAfterMakeLocationID.equals(""))
+				{
+					setErrorMessage("Move Location cannot be blank when move after make is Y");
+					result = false;
+				}
+				else
+				{
+					if (getMaterialProperties(materialID))
+					{
+						setMaterial(materialID);
+						setMoveAfterMakeEnabled(moveAfterMakeEnabled);
+						setMoveAfterMakeLocationID(moveAfterMakeLocationID);
+						result = update();
+					}
+				}
 		}
 		return result;
 	}
@@ -1132,16 +1140,16 @@ public class JDBMaterial
 					setErrorMessage(uom.getErrorMessage());
 			}
 		}
-		
-		//Check Equipment Type
+
+		// Check Equipment Type
 		if (result == true)
 		{
-			if (getEquipmentType().equals("")==false)
+			if (getEquipmentType().equals("") == false)
 			{
 				result = eqType.isValidEquipmentType(getEquipmentType());
-				if (result==false)
+				if (result == false)
 				{
-					setErrorMessage(eqType.getErrorMessage());	
+					setErrorMessage(eqType.getErrorMessage());
 				}
 			}
 		}
@@ -1228,7 +1236,7 @@ public class JDBMaterial
 	public void setEquipmentType(String equipmentType)
 	{
 		dbEquipmentType = JUtility.replaceNullStringwithBlank(equipmentType);
-		dbEquipmentType=dbEquipmentType.toUpperCase();
+		dbEquipmentType = dbEquipmentType.toUpperCase();
 	}
 
 	private void setErrorMessage(String ErrorMsg)
