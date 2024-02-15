@@ -90,7 +90,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 	private JLabel4j_std jLabelLineID;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JList4j<String> listWorkstations = new JList4j<String>();
-	private JComboBox4j<String> comboBox4jAlternativeModule = new JComboBox4j<String>();
+	private JComboBox4j<JDBListData> comboBox4jAlternativeModule = new JComboBox4j<JDBListData>();
 	private String selectedModule = "";
 	private String selectedAlternativeModule = "";
 
@@ -293,6 +293,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 			});
 
 			comboBox4jAlternativeModule.setBounds(29, 416, 386, 21);
+
 			jDesktopPane1.add(comboBox4jAlternativeModule);
 
 			{
@@ -328,7 +329,8 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 				});
 			}
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -397,10 +399,12 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 			if (lworkstation_id.equals("") == false)
 			{
 				lworkstation_id = lworkstation_id.toUpperCase();
+
 				try
 				{
 					selectedAlternativeModule = comboBox4jAlternativeModule.getSelectedItem().toString();
-				} catch (Exception ex)
+				}
+				catch (Exception ex)
 				{
 					selectedAlternativeModule = "";
 				}
@@ -414,6 +418,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 				if (u.create(selectedModule, lworkstation_id, selectedAlternativeModule))
 				{
 					populateListWorkstations(lworkstation_id);
+					jButtonUpdate.setEnabled(true);
 				}
 				else
 				{
@@ -429,9 +434,11 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 		{
 			String workstation = ((String) listWorkstations.getSelectedValue()).toString();
 			JDBModuleAlternative po = new JDBModuleAlternative(Common.selectedHostID, Common.sessionID);
+			
 			po.setModuleId(selectedModule);
 			po.setWorkstationId(workstation);
 			po.setAternativeModuleId(comboBox4jAlternativeModule.getSelectedItem().toString());
+			
 			po.update();
 			populateListWorkstations(workstation);
 		}
@@ -461,7 +468,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 
 	private void populateListModules(String defaultitem)
 	{
-		DefaultComboBoxModel<String> defComboBoxMod = new DefaultComboBoxModel<String>();
+		DefaultComboBoxModel<JDBListData> defComboBoxMod = new DefaultComboBoxModel<JDBListData>();
 
 		JDBModule tempModule = new JDBModule(Common.selectedHostID, Common.sessionID);
 
@@ -470,16 +477,16 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 
 		tempModuleListREPORT = tempModule.getModuleIdsByType("REPORT");
 		tempModuleListUSER = tempModule.getModuleIdsByType("USER");
-		
+
 		tempModuleListREPORT.addAll(tempModuleListUSER);
-		
+
 		Collections.sort(tempModuleListREPORT);
 
 		int sel = -1;
 		for (int j = 0; j < tempModuleListREPORT.size(); j++)
 		{
 
-			defComboBoxMod.addElement(tempModuleListREPORT.get(j).toString());
+			defComboBoxMod.addElement(tempModuleListREPORT.get(j));
 			if (tempModuleListREPORT.get(j).toString().equals(defaultitem))
 			{
 				sel = j;
@@ -487,7 +494,7 @@ public class JDialogModuleAlternative extends javax.swing.JDialog
 		}
 
 		comboBox4jAlternativeModule.setModel(defComboBoxMod);
-
+		comboBox4jAlternativeModule.setRenderer(Common.renderer_list);
 		comboBox4jAlternativeModule.setSelectedIndex(sel);
 
 	}
