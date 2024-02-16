@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="10.0.7" transformSequenceNumber="10">
   <directoryPresets config="./images/icons/CMD4j_Icons" />
-  <application name="Commander4j" applicationId="6923-0356-2321-8111" mediaDir="../../../Distribution/java17/b6Commander4j" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="10.22" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="17" javaMaxVersion="17">
+  <application name="Commander4j" applicationId="6923-0356-2321-8111" mediaDir="../../../Distribution/java17/b6Commander4j" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="10.23" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="17" javaMaxVersion="17">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="nl" />

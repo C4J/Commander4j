@@ -65,15 +65,15 @@
 	<classpathentry kind="lib" path="lib/jasperlib/stax2-api-4.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/jcommander-1.82.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/testng-7.7.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-annotation-processors-6.21.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-castor-6.21.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.21.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.21.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-custom-visualization-6.21.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.21.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.21.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.21.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-xalan-6.21.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-annotation-processors-6.21.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-castor-6.21.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-customizers-6.21.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-chart-themes-6.21.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-custom-visualization-6.21.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-functions-6.21.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-javaflow-6.21.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-metadata-6.21.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-xalan-6.21.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-anim-1.17.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-awt-util-1.17.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/batik-bridge-1.17.jar"/>
@@ -147,7 +147,7 @@
 	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.spi-2.7.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.tools.ant-2.7.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/net.tascalate.javaflow.tools.jar-2.7.3.jar"/>
-	<classpathentry kind="lib" path="lib/jasperlib/openpdf-1.3.30.jaspersoft.3.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/openpdf-1.3.32.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-5.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-ooxml-5.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/poi-ooxml-lite-5.2.2.jar"/>
@@ -179,11 +179,12 @@
 	<classpathentry kind="lib" path="lib/jasperlib_aux/junit-platform-engine-1.9.1.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/objenesis-3.3.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib_aux/opentest4j-1.2.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.21.0.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.21.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-6.21.2.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-fonts-6.21.2.jar"/>
 	<classpathentry kind="lib" path="lib/barcode/avalon-framework-4.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/junit-3.7.jar"/>
-	<classpathentry kind="lib" path="lib/jasper/jasperreports-fastexcel-6.21.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasper/jasperreports-fastexcel-6.21.2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperlib/avalon-framework-impl-4.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jasperlib/groovy-2.4.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
