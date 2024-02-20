@@ -35,6 +35,7 @@ import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 
 import javax.swing.ButtonGroup;
@@ -79,6 +80,8 @@ import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JUtility;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 /**
  * The JInternalFrameQMSampleLabel is used printing sample labels and populating
@@ -749,6 +752,18 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(lblStatusBar);
 
 		sampleDateTime = new JDateControl();
+		sampleDateTime.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				Date selected = sampleDateTime.getDate();
+				Date current = JUtility.getSQLDateTime();
+				if (selected.after(current))
+				{
+					sampleDateTime.setDate(current);
+				}
+				
+			}
+		});
+		
 		sampleDateTime.setEnabled(false);
 		sampleDateTime.setBounds(417, 8, 128, 25);
 		desktopPane.add(sampleDateTime);
