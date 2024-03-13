@@ -36,7 +36,6 @@ public class JTextInputDialog extends JDialog
 	private int maxCharacters = 0;
 	private JLabel4j_std displayCharacterCount = new JLabel4j_std();
 	private JButton4j okButton;
-	private JButton4j cancelButton;
 	private JDBLanguage lang;
 
 
@@ -64,11 +63,22 @@ public class JTextInputDialog extends JDialog
 		}
 		else
 		{
-			displayCharacterCount.setForeground(Color.BLACK);
-			okButton.setEnabled(true);
+			
+
+			if (getTextEntered().length() > 0)
+			{
+				okButton.setEnabled(true);
+				displayCharacterCount.setForeground(Color.BLACK);
+			}
+			else
+			{
+				okButton.setEnabled(false);	
+				displayCharacterCount.setForeground(Color.RED);
+			}
 		}
 		displayCharacterCount.setFont(new Font("Arial", Font.BOLD, 11));
 		displayCharacterCount.setText(msg);
+		
 	}
 
 	public JTextInputDialog(JFrame frame, String textValue, int maxCharacters)
@@ -77,7 +87,7 @@ public class JTextInputDialog extends JDialog
 		isTextEntered = false;
 		this.maxCharacters = maxCharacters;
 		setModal(true);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
 		setResizable(false);
 		
@@ -114,12 +124,12 @@ public class JTextInputDialog extends JDialog
 
 
 		JPanel buttonPane = new JPanel();
-		buttonPane.setBounds(0, 144, 725, 46);
+		buttonPane.setBounds(0, 144, 569, 46);
 		contentPanel.add(buttonPane);
 		{
 			okButton = new JButton4j(Common.icon_ok_16x16);
 			okButton.setText(lang.get("btn_Ok"));
-			okButton.setBounds(321, 5, 116, 29);
+			okButton.setBounds(226, 5, 116, 29);
 			okButton.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -136,21 +146,6 @@ public class JTextInputDialog extends JDialog
 			okButton.setActionCommand("OK");
 			buttonPane.add(okButton);
 			getRootPane().setDefaultButton(okButton);
-		}
-		{
-			cancelButton = new JButton4j(Common.icon_cancel_16x16);
-			cancelButton.setText(lang.get("btn_Close"));
-			cancelButton.setBounds(437, 5, 116, 29);
-			cancelButton.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					isTextEntered = false;
-					dispose();
-				}
-			});
-			cancelButton.setActionCommand("Cancel");
-			buttonPane.add(cancelButton);
 		}
 		
 		textArea.setCaretPosition(textArea.getDocument().getLength());

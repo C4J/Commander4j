@@ -2476,10 +2476,10 @@ INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `
 INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('BUDDYJ','*','EN','Beagle','2006-02-25 18:41:20','2006-02-25 12:37:26','N','Y','Y','0','N','2005-10-01 00:00:00','');
 </statement>
 <statement>
-INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('CHANDRAE','ADMIN','EN','Dave Garratt','2005-02-07 13:57:22','2004-12-29 18:34:34','N','N','Y','0','N','2005-10-01 00:00:00','');
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('CHANDRAE','ADMIN','EN','Dave','2005-02-07 13:57:22','2004-12-29 18:34:34','N','N','Y','0','N','2005-10-01 00:00:00','');
 </statement>
 <statement>
-INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('DAVID','password','EN','David Garratt','2009-10-11 20:06:37','2006-03-05 16:08:53','N','N','Y','0','N','2005-06-29 20:25:00','');
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('DAVID','password','EN','David','2009-10-11 20:06:37','2006-03-05 16:08:53','N','N','Y','0','N','2005-06-29 20:25:00','');
 </statement>
 <statement>
 INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('DREADJ','password','EN',NULL,NULL,'2005-01-11 19:40:36','N','Y','Y','0','N','2005-10-01 00:00:00','');

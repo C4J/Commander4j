@@ -1031,16 +1031,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						String comments = sampleHeader.getComments();
-						JTextInputDialog textInp = new JTextInputDialog(Common.mainForm, comments, JDBWTSampleHeader.field_Comments);
-						textInp.setVisible(true);
-						if (textInp.isTextEntered())
-						{
-
-							sampleHeader.setComments(textInp.getTextEntered());
-							sampleHeader.updateComments();
-						}
-						textInp = null;
+						displayCommentInputPanel();
 					}
 				});
 
@@ -1063,6 +1054,20 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		}
 	}
 
+	private void displayCommentInputPanel()
+	{
+		String comments = sampleHeader.getComments();
+		JTextInputDialog textInp = new JTextInputDialog(Common.mainForm, comments, JDBWTSampleHeader.field_Comments);
+		textInp.setVisible(true);
+		if (textInp.isTextEntered())
+		{
+
+			sampleHeader.setComments(textInp.getTextEntered());
+			sampleHeader.updateComments();
+		}
+		textInp = null;
+	}
+	
 	public void createDemoPanel()
 	{
 
@@ -1152,6 +1157,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 					if (t2_count > 0)
 					{
 						JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T2_p1") + lang.get("err_T1_p2"));
+						displayCommentInputPanel();
 
 					}
 					else
@@ -1159,6 +1165,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						if (t1_count > 0)
 						{
 							JLaunchMenu.runDialog("FRM_WEIGHT_ERROR", lang.get("err_T1_p1") + lang.get("err_T1_p2"));
+							displayCommentInputPanel();
 						}
 					}
 
