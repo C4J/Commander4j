@@ -38,6 +38,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
@@ -130,6 +131,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 	private JTable4j tableResults;
 	private JCheckBox4j checkBox4j_T1 = new JCheckBox4j();
 	private JCheckBox4j checkBox4j_T2 = new JCheckBox4j();
+	private LinkedList<String> selectedSamplePoints = new LinkedList<String>();
 
 	public JInternalFrameWTReport()
 	{
@@ -152,6 +154,9 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			public void run()
 			{
+				fld_SamplePoint.setToolTipText("None");
+				fld_SamplePoint.setEditable(false);
+				fld_SamplePoint.setEnabled(false);
 				fld_SamplePoint.requestFocus();
 				fld_SamplePoint.setCaretPosition(fld_SamplePoint.getText().length());
 
@@ -200,7 +205,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		if (fld_SamplePoint.getText().equals("") == false)
 		{
-			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
+			q2.applyIn("sample_point in ", selectedSamplePoints);
 		}
 
 		if (fld_Product_Group.getText().equals("") == false)
@@ -301,7 +306,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		if (fld_SamplePoint.getText().equals("") == false)
 		{
-			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
+			q2.applyIn("sample_point in ", selectedSamplePoints);
 		}
 
 		if (fld_Product_Group.getText().equals("") == false)
@@ -395,7 +400,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		if (fld_SamplePoint.getText().equals("") == false)
 		{
-			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
+			q2.applyIn("sample_point in ", selectedSamplePoints);
 		}
 
 		if (fld_Product_Group.getText().equals("") == false)
@@ -489,7 +494,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		if (fld_SamplePoint.getText().equals("") == false)
 		{
-			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
+			q2.applyIn("sample_point in ", selectedSamplePoints);
 		}
 
 		if (fld_Product_Group.getText().equals("") == false)
@@ -586,7 +591,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		if (fld_SamplePoint.getText().equals("") == false)
 		{
-			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
+			q2.applyIn("sample_point in ", selectedSamplePoints);
 		}
 
 		if (fld_Product_Group.getText().equals("") == false)
@@ -660,7 +665,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 		if (fld_SamplePoint.getText().equals("") == false)
 		{
-			q2.applyWhere("sample_point = ", fld_SamplePoint.getText());
+			q2.applyIn("sample_point in ", selectedSamplePoints);
 		}
 
 		if (fld_Product_Group.getText().equals("") == false)
@@ -688,7 +693,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 	private void clearFilter()
 	{
-		fld_SamplePoint.setText("");
+
 		fld_Process_Order.setText("");
 		fld_Material.setText("");
 		fld_Product_Group.setText("");
@@ -701,6 +706,9 @@ public class JInternalFrameWTReport extends JInternalFrame
 		button_CalendarSampleDateTo.setEnabled(false);
 		checkBox4j_T1.setSelected(false);
 		checkBox4j_T2.setSelected(false);
+		selectedSamplePoints.clear();
+		fld_SamplePoint.setText("");
+		fld_SamplePoint.setToolTipText("None");
 
 		search();
 	}
@@ -805,15 +813,30 @@ public class JInternalFrameWTReport extends JInternalFrame
 					{
 						public void actionPerformed(ActionEvent e)
 						{
-							JLaunchLookup.dlgAutoExec = false;
-							JLaunchLookup.dlgCriteriaDefault = "";
-							if (JLaunchLookup.weightSamplePoint())
+							JDialogSamplePointSelect sps = new JDialogSamplePointSelect(selectedSamplePoints);
+							sps.setVisible(true);
+							selectedSamplePoints = sps.getSelected();
+							
+							fld_SamplePoint.setText(String.valueOf(selectedSamplePoints.size())+" selected.");
+							
+							if (selectedSamplePoints.size()>0)
 							{
-								fld_SamplePoint.setText(JLaunchLookup.dlgResult);
 
-								fld_Process_Order.setText("");
-
+								String tooltiptext = "<html>";
+								
+								for (int x=0;x<selectedSamplePoints.size();x++)
+								{
+									tooltiptext = tooltiptext + "<strong>" + selectedSamplePoints.get(x)+"</strong><br>";
+								}
+								tooltiptext = tooltiptext + "</html>";
+								
+								fld_SamplePoint.setToolTipText(tooltiptext);
 							}
+							else
+							{
+								fld_SamplePoint.setToolTipText("None");
+							}
+
 						}
 					});
 					btn_SamplePoint_Lookup.setBounds(236, 14, 21, 25);

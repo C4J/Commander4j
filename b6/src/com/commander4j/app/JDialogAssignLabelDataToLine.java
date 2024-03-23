@@ -29,6 +29,7 @@ package com.commander4j.app;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -110,12 +111,13 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		this.setSize(677, 461);
 
 		Dimension screensize = Common.mainForm.getSize();
+		Point parentPos = Common.mainForm.getLocation();
 
 		Dimension formsize = getSize();
 		int leftmargin = ((screensize.width - formsize.width) / 2);
 		int topmargin = ((screensize.height - formsize.height) / 2);
 
-		setLocation(leftmargin, topmargin);
+		setLocation(parentPos.x + leftmargin , parentPos.y+ topmargin);
 
 		jDesktopPane1 = new JDesktopPane();
 		jDesktopPane1.setBounds(0, 200, 671, -200);

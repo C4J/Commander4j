@@ -28,6 +28,7 @@ package com.commander4j.sys;
  */
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Rectangle;
 import javax.swing.JDialog;
 import javax.swing.JInternalFrame;
@@ -160,12 +161,14 @@ public class JLaunchMenu
 	{
 
 		Dimension screensize = Common.mainForm.getSize();
+		Point parentPos = Common.mainForm.getLocation();
 
 		Dimension formsize = u.getSize();
 		int leftmargin = ((screensize.width - formsize.width) / 2);
 		int topmargin = ((screensize.height - formsize.height) / 2);
 
-		u.setLocation(leftmargin, topmargin);
+		u.setLocation(parentPos.x + leftmargin , parentPos.y+ topmargin);
+		
 		u.setModal(true);
 		u.setVisible(true);
 	}

@@ -32,6 +32,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.LinkedList;
 import java.util.Vector;
 
 import org.apache.logging.log4j.Logger;
@@ -196,7 +197,50 @@ public class JDBQuery2
 			}
 		}
 	}
-	
+
+	public void applyIn(String field, LinkedList<String> param)
+	{
+
+		if (field != null)
+		{
+			if (field.equals("") == false)
+			{
+				if (param.size() > 0)
+				{
+					criteriaCount++;
+
+					if ((criteriaCount == 1) & (sqlFrom.contains(" WHERE ") == false))
+					{
+						sqlWhere = "WHERE ";
+					}
+					else
+					{
+						sqlWhere = sqlWhere + " AND ";
+					}
+
+					String temp = "";
+					
+					for (int x=0;x<param.size();x++)
+					{
+						if (x==0)
+						{
+							temp = temp + "(?";
+						}
+						else
+						{
+							temp = temp + ",?";
+						}
+						applyParameter(param.get(x));	
+					}
+					temp = temp + ")";
+					
+					sqlWhere = sqlWhere + field + temp;
+
+				}
+			}
+		}
+	}
+
 	public void applyHaving(String field, Object param)
 	{
 
@@ -234,9 +278,9 @@ public class JDBQuery2
 		{
 			if (literal.equals("") == false)
 			{
-				
+
 				literal = literal.trim();
-				literal = " "+literal+" ";
+				literal = " " + literal + " ";
 
 				criteriaCount++;
 
@@ -253,7 +297,7 @@ public class JDBQuery2
 			}
 		}
 	}
-	
+
 	public void applyHavingLiteral(String literal)
 	{
 
@@ -261,9 +305,9 @@ public class JDBQuery2
 		{
 			if (literal.equals("") == false)
 			{
-				
+
 				literal = literal.trim();
-				literal = " "+literal+" ";
+				literal = " " + literal + " ";
 
 				criteriaCount++;
 
@@ -468,7 +512,7 @@ public class JDBQuery2
 	{
 		sqltext = txt;
 	}
-	
+
 	public void setSQLFinal(String finalSQL)
 	{
 		sqlFinal = finalSQL;

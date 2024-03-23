@@ -29,8 +29,8 @@ package com.commander4j.sys;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
+import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -67,7 +67,6 @@ import com.commander4j.gui.JList4j;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import java.awt.Font;
 
 public class JDialogLookup extends javax.swing.JDialog
 {
@@ -111,8 +110,6 @@ public class JDialogLookup extends javax.swing.JDialog
 	private JButton4j jButtonSearch;
 	private JToggleButton jToggleButtonSequence;
 	private JDialogLookup me;
-	private Dimension screen;
-	private Rectangle window;
 	private Dimension startupSize;
 	private PreparedStatement listStatement;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID,Common.sessionID);
@@ -368,9 +365,15 @@ public class JDialogLookup extends javax.swing.JDialog
 
 		jTextFieldCriteria.setText(JLaunchLookup.dlgCriteriaDefault);
 
-		screen = Toolkit.getDefaultToolkit().getScreenSize();
-		window = getBounds();
-		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
+		Dimension screensize = Common.mainForm.getSize();
+		Point parentPos = Common.mainForm.getLocation();
+
+		Dimension formsize = getSize();
+		int leftmargin = ((screensize.width - formsize.width) / 2);
+		int topmargin = ((screensize.height - formsize.height) / 2);
+
+		setLocation(parentPos.x + leftmargin , parentPos.y+ topmargin);
+		
 		startupSize = me.getSize();
 
 		this.setModal(true);
@@ -533,10 +536,19 @@ public class JDialogLookup extends javax.swing.JDialog
 						public void componentResized(ComponentEvent evt) {
 							if (jScrollPane1.getHorizontalScrollBar().isVisible() == true)
 							{
-								me.setSize(me.getSize().width + 50, (me.getSize().height));
-								screen = Toolkit.getDefaultToolkit().getScreenSize();
-								window = getBounds();
-								setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
+								me.setSize(me.getSize().width + 50, (me.getSize().height));							
+								
+								Dimension screensize = Common.mainForm.getSize();
+								Point parentPos = Common.mainForm.getLocation();
+
+								Dimension formsize = getSize();
+								int leftmargin = ((screensize.width - formsize.width) / 2);
+								int topmargin = ((screensize.height - formsize.height) / 2);
+
+								setLocation(parentPos.x + leftmargin , parentPos.y+ topmargin);
+								
+								
+								
 								me.validate();
 							}
 						}

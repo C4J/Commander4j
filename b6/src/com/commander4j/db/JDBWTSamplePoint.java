@@ -31,7 +31,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.Vector;
 
+import com.commander4j.gui.JCheckListItem;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JUtility;
 
@@ -42,17 +44,18 @@ public class JDBWTSamplePoint
 	public static int field_Location = 35;
 	public static int field_Required_Resource = 50;
 
-	public static int displayType_LIST = 1;
-	public static int displayType_COMBO = 2;
+	public static final int displayType_LIST = 1;
+	public static final int displayType_COMBO = 2;
+	public static final int displayType_SHORT = 3;
 	private String dbSamplePoint = "";
 	private String dbDescription = "";
 	private String dbLocation = "";
 	private String dbErrorMessage = "";
 	private String hostID;
 	private String sessionID;
-	private String dbRequiredResource="";
-	private int displayType=1;
-	
+	private String dbRequiredResource = "";
+	private int displayType = 1;
+
 	public String getRequiredResource()
 	{
 		return dbRequiredResource;
@@ -78,7 +81,7 @@ public class JDBWTSamplePoint
 		setRequiredResource("");
 
 	}
-	
+
 	public boolean create()
 	{
 		boolean result = false;
@@ -233,7 +236,8 @@ public class JDBWTSamplePoint
 		return dbSamplePoint;
 	}
 
-	public ResultSet getSamplePointDataResultSet() {
+	public ResultSet getSamplePointDataResultSet()
+	{
 		PreparedStatement stmt;
 		ResultSet rs = null;
 		setErrorMessage("");
@@ -253,7 +257,8 @@ public class JDBWTSamplePoint
 		return rs;
 	}
 
-	public LinkedList<JDBWTSamplePoint> getSamplePoints(int displayType) {
+	public LinkedList<JDBWTSamplePoint> getSamplePoints(int displayType)
+	{
 		LinkedList<JDBWTSamplePoint> sampList = new LinkedList<JDBWTSamplePoint>();
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -285,6 +290,66 @@ public class JDBWTSamplePoint
 		}
 
 		return sampList;
+	}
+
+	public Vector<JCheckListItem> getSamplePointCheckList(LinkedList<String> defaultselected)
+	{
+		Vector<JCheckListItem> spList = new Vector<JCheckListItem>();
+		PreparedStatement stmt;
+		ResultSet rs;
+		setErrorMessage("");
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBWTSamplePoint.getSamplePoints"));
+			stmt.setFetchSize(100);
+			rs = stmt.executeQuery();
+
+			while (rs.next())
+			{
+				JDBWTSamplePoint samp = new JDBWTSamplePoint(getHostID(), getSessionID());
+				samp.getValuesFromResultSet(rs);
+				samp.setDisplayType(displayType_SHORT);
+
+				JCheckListItem ci = new JCheckListItem(samp);
+				
+				if (defaultselected.indexOf(samp.getSamplePoint()) >= 0)
+				{
+					ci.setSelected(true);
+				}
+				else
+				{
+					ci.setSelected(false);
+				}
+				
+				spList.add(ci);
+			}
+			rs.close();
+			stmt.close();
+
+		}
+		catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+
+		return spList;
+	}
+
+	public void getValuesFromResultSet(ResultSet rs)
+	{
+		try
+		{
+			setDescription(rs.getString("description"));
+			setSamplePoint(rs.getString("sample_point"));
+			setDescription(rs.getString("description"));
+			setLocation(rs.getString("location"));
+			setRequiredResource(rs.getString("required_resource"));
+
+		}
+		catch (Exception ex)
+		{
+
+		}
 	}
 
 	private String getSessionID()
@@ -389,30 +454,34 @@ public class JDBWTSamplePoint
 	{
 		this.dbSamplePoint = JUtility.replaceNullStringwithBlank(spoint);
 	}
-	
+
 	private void setSessionID(String session)
 	{
 		sessionID = session;
 	}
-	
-	public String toString() {
-		
-		
+
+	public String toString()
+	{
+
 		String result = "";
 		
-		if (displayType==1)
-		{
-			result= JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ")+ JUtility.padString(getDescription(), true, field_Description, " ")+getRequiredResource();
+		switch (displayType) {
+			case displayType_LIST:
+				result = JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ") + JUtility.padString(getDescription(), true, field_Description, " ") + getRequiredResource();
+				break;
+			case displayType_COMBO:
+				result = JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ") + " - " + JUtility.padString(getDescription(), true, field_Description, " ");
+				break;
+			case displayType_SHORT:
+				result = getSamplePoint();
+				break;
+			default:
+				result = "displayType undifined";
 		}
-		else
-		{
-			result= JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ")+" - "+ JUtility.padString(getDescription(), true, field_Description, " ");
-			
-		}
-
+		
 		return result;
 	}
-	
+
 	public boolean update()
 	{
 		boolean result = false;
