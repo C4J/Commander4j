@@ -178,6 +178,7 @@ public class JHost
 					if (Common.sd.getData(sessionID, "silentExceptions").equals("Yes") == false)
 					{
 						JUtility.errorBeep();
+						JSplashScreenUtils.hide();
 						JOptionPane.showMessageDialog(null, "Invalid jdbc driver [" + ex.getMessage() + "]", "Login Error (" + getSiteDescription() + ")", JOptionPane.ERROR_MESSAGE);
 					}
 					result = false;

@@ -189,11 +189,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	private JDBWTSamplePoint samplePointdb = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
 	private JDBWTTNE tnedb = new JDBWTTNE(Common.selectedHostID, Common.sessionID);
 	private JDBWTWorkstation workdb = new JDBWTWorkstation(Common.selectedHostID, Common.sessionID);
-	// private JDBWTScale scaledb = new JDBWTScale(Common.selectedHostID,
-	// Common.sessionID);
 	private Scale scale;
 
-	private Integer sampleSequence = 0;
 	private Integer lGraphMaxPlots = 40;
 	private static String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
 	private Timer timer = new Timer(1000, clocklistener);
@@ -258,6 +255,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		fld_Workstation.setText(workstation);
 
 		updateWorkstationInfo(workstation, true);
+		updateSamplePoint("", true);
 
 		JDBQuery query = new JDBQuery(Common.selectedHostID, Common.sessionID);
 		query.clear();
@@ -768,7 +766,6 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 							fld_Standard_Deviation.setText("0.000");
 							logEnabled = true;
 							jStatusText.setText("Start weighing " + lSampleSize + " samples");
-							sampleSequence = 0;
 							sampleDetailList.clear();
 							populateList();
 						}
@@ -985,9 +982,9 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						fld_Batch_Mean.setBackground(Common.color_app_window);
 						fld_Standard_Deviation.setText("0.000");
 						logEnabled = false;
-						sampleSequence = 0;
 						sampleDetailList.clear();
 						populateList();
+						jStatusText.setText("Cancelled");
 
 					}
 				});
@@ -1095,8 +1092,8 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				sampleDetail.setSamplePoint(samplePointdb.getSamplePoint());
 				sampleDetail.setSampleDate(sampleHeader.getSampleDate());
 				sampleDetail.setSampleWeightDate(JUtility.getSQLDateTime());
-				sampleSequence++;
-				sampleDetail.setSampleSequence(sampleSequence);
+
+				sampleDetail.setSampleSequence(sampleDetailList.size()+1);
 				sampleDetail.setSampleGrossWeight(new BigDecimal(weight));
 				sampleDetail.setSampleTareWeight(matgroupdb.getTareWeight());
 				sampleDetail.setSampleWeightUom(weightUOM);
@@ -1124,10 +1121,10 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				}
 
 				sampleDetailList.addLast(sampleDetail);
-
+				
 				populateList();
 
-				if (sampleSequence == lSampleSize)
+				if (sampleDetailList.size() == lSampleSize)
 				{
 
 					std_dev = calculateStandardDeviation();
@@ -1172,7 +1169,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				}
 				else
 				{
-					jStatusText.setText("Weigh sample " + String.valueOf(sampleSequence + 1) + " of " + String.valueOf(lSampleSize));
+					jStatusText.setText("Weigh sample " + String.valueOf(sampleDetailList.size() + 1) + " of " + String.valueOf(lSampleSize));
 				}
 			}
 
@@ -1316,7 +1313,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		sampleHeader.setNegT1(tnedb.getNegT1());
 		sampleHeader.setNegT2(tnedb.getNegT2());
 		sampleHeader.setSampleSize(lSampleSize);
-		sampleHeader.setSampleCount(lSampleSize);
+		sampleHeader.setSampleCount(sampleDetailList.size());
 		sampleHeader.setSampleMean(mean);
 		sampleHeader.setSampleStdDev(StdDev);
 		sampleHeader.setSampleT1Count(t1s);
@@ -1733,6 +1730,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 			fld_TNE.setBackground(Color.WHITE);
 		}
 
+		if (fld_SamplePoint.getText().equals(""))
+		{
+			result = false;
+		}
+		
 		validToScan = result;
 		btn_Begin.setEnabled(validToScan);
 
