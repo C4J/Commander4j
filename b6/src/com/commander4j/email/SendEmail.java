@@ -27,6 +27,7 @@ public class SendEmail
 	private Properties smtpProperties;
 	private boolean initialised = false;
 	private boolean enabled = false;
+	private String configID="";
 
 	public void init()
 	{
@@ -38,6 +39,7 @@ public class SendEmail
 		try
 		{
 			enabled = Boolean.valueOf(doc.findXPath("/emailSettings/email/@enabled").trim());
+			configID = doc.findXPath("/emailSettings/email/@configID");
 		}
 		catch (Exception ex)
 		{
@@ -49,8 +51,9 @@ public class SendEmail
 		int seq = 1;
 		while (cont)
 		{
-			String prop = doc.findXPath("//configuration/property[" + String.valueOf(seq) + "]/@name").trim();
-			String val = doc.findXPath("//configuration/property[" + String.valueOf(seq) + "]/@value").trim();
+			String prop = doc.findXPath("/emailSettings/"+configID+"/property[" + String.valueOf(seq) + "]/@name").trim();
+			String val  = doc.findXPath("/emailSettings/"+configID+"/property[" + String.valueOf(seq) + "]/@value").trim();		
+			
 			if (prop.equals(""))
 			{
 				cont = false;

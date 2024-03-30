@@ -62,7 +62,7 @@
       <dirEntry mountPoint="109" file="./xml/schema" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="schema" overrideDirMode="true" />
       <dirEntry mountPoint="110" file="./xml/sql" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="sql" overrideDirMode="true" />
       <dirEntry mountPoint="111" file="./xml/view" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="view" overrideDirMode="true" />
-      <dirEntry mountPoint="1004" file="./xml/config" overwriteMode="2" uninstallMode="4" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="config" />
+      <dirEntry mountPoint="1004" file="./xml/config" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="config" />
       <dirEntry mountPoint="34" file="./lib" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="lib" overrideDirMode="true" />
       <dirEntry mountPoint="167" file="./help/html" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="html" overrideDirMode="true">
         <exclude>
