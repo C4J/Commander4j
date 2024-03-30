@@ -161,7 +161,6 @@ public class JFrameHostAdmin extends JFrame
 	private JScrollPane jScrollPane1;
 	private LinkedList<JHost> hostList = new LinkedList<JHost>();
 	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JFrameHostAdmin.class);
-	private JFrameHostAdmin me;
 	private JPanel contentPane;
 	private JLabel4j_std jLabelUniqueID;
 	private JTextField4j jTextFieldUniqueID;
@@ -386,7 +385,7 @@ public class JFrameHostAdmin extends JFrame
 
 		if (Common.setupPassword.equals("") == false)
 		{
-			JDialogSetupPassword u = new JDialogSetupPassword(null, Common.setupPassword);
+			JDialogSetupPassword u = new JDialogSetupPassword(Setup.hostadmin, Common.setupPassword);
 			u.setModal(true);
 		}
 
@@ -688,8 +687,6 @@ public class JFrameHostAdmin extends JFrame
 		jTextFieldDescription.setEnabled(edit);
 		jTextFieldURL.setEnabled(edit);
 		jTextFieldSiteNo.setEnabled(edit);
-		// jTextFieldDriver.setEnabled(edit);
-		// jTextFieldConnect.setEnabled(edit);
 		jTextFieldDateTime.setEnabled(edit);
 		jTextFieldSelectLimit.setEnabled(edit);
 		jTextFieldSchema.setEnabled(edit);
@@ -896,7 +893,7 @@ public class JFrameHostAdmin extends JFrame
 								int j = jListHosts.getSelectedIndex();
 								String d = hostList.get(j).getSiteDescription();
 								JUtility.errorBeep();
-								int n = JOptionPane.showConfirmDialog(null, "Delete [" + d + "] ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+								int n = JOptionPane.showConfirmDialog(Setup.hostadmin, "Delete [" + d + "] ?", "Confirm", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 								if (n == 0)
 								{
@@ -1032,7 +1029,7 @@ public class JFrameHostAdmin extends JFrame
 
 								if (JXMLHost.validateServiceHostPresent(hostList) == false)
 								{
-									JOptionPane.showMessageDialog(rootPane, "No host has been assigned to the interface service.", "Warning", JOptionPane.WARNING_MESSAGE);
+									JOptionPane.showMessageDialog(Setup.hostadmin, "No host has been assigned to the interface service.", "Warning", JOptionPane.WARNING_MESSAGE);
 								}
 
 								JXMLHost.writeHosts(hostsFilename, hostList, splash, JTextFieldUpdateURL.getText(), getUpdateMode(), jTextField4jInstallDir.getText(), pass1, jTextField4jHostVersion.getText(), jTextField4jHostUpdatePath.getText(),chckbx4jSingleInstance.isSelected(),Integer.valueOf(jTextFieldSingleInstancePort.getText()));
@@ -1041,7 +1038,7 @@ public class JFrameHostAdmin extends JFrame
 							}
 							else
 							{
-								JOptionPane.showMessageDialog(null, "Setup password has been changed but failed verification - please check.", "Error", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(Setup.hostadmin, "Setup password has been changed but failed verification - please check.", "Error", JOptionPane.ERROR_MESSAGE);
 							}
 						}
 					});
@@ -1623,7 +1620,7 @@ public class JFrameHostAdmin extends JFrame
 										updateMesage = "Current Schema Version is " + String.valueOf(updrst.schema_CURVersion) + ", required version is " + String.valueOf(updrst.schema_NEWVersion) + ". Upgrade ?";
 									}
 
-									int continueUpdate = JOptionPane.showConfirmDialog(me, updateMesage, "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+									int continueUpdate = JOptionPane.showConfirmDialog(Setup.hostadmin, updateMesage, "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 									if (continueUpdate == 0)
 									{
@@ -1643,9 +1640,9 @@ public class JFrameHostAdmin extends JFrame
 											else
 											{
 												JUtility.errorBeep();
-												JDialogDMLErrors dmlerrs = new JDialogDMLErrors(me, cmds, updrst);
+												JDialogDMLErrors dmlerrs = new JDialogDMLErrors(Setup.hostadmin, cmds, updrst);
 												dmlerrs.setModal(true);
-												int ignoreDDLErrors = JOptionPane.showConfirmDialog(me, "Ignore Errors and set SCHEMA version to " + String.valueOf(updrst.schema_NEWVersion) + " ?", "Connection to (" + hst.getSiteDescription() + ")",
+												int ignoreDDLErrors = JOptionPane.showConfirmDialog(Setup.hostadmin, "Ignore Errors and set SCHEMA version to " + String.valueOf(updrst.schema_NEWVersion) + " ?", "Connection to (" + hst.getSiteDescription() + ")",
 														JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 												if (ignoreDDLErrors == 0)
@@ -1656,7 +1653,7 @@ public class JFrameHostAdmin extends JFrame
 										}
 										else
 										{
-											JOptionPane.showMessageDialog(me, "No DDL Commands found", "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.WARNING_MESSAGE);
+											JOptionPane.showMessageDialog(Setup.hostadmin, "No DDL Commands found", "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.WARNING_MESSAGE);
 
 										}
 
@@ -1672,7 +1669,7 @@ public class JFrameHostAdmin extends JFrame
 											{
 												ctrl.create("SCHEMA VERSION", String.valueOf(updrst.schema_NEWVersion), "Schema Version");
 											}
-											JOptionPane.showMessageDialog(me, "Schema Version now set to " + String.valueOf(JVersion.getSchemaVersion()), "Control Table", JOptionPane.INFORMATION_MESSAGE);
+											JOptionPane.showMessageDialog(Setup.hostadmin, "Schema Version now set to " + String.valueOf(JVersion.getSchemaVersion()), "Control Table", JOptionPane.INFORMATION_MESSAGE);
 
 										}
 
@@ -1680,7 +1677,7 @@ public class JFrameHostAdmin extends JFrame
 								}
 								else
 								{
-									JOptionPane.showMessageDialog(me, "No Schema update Required", "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.INFORMATION_MESSAGE);
+									JOptionPane.showMessageDialog(Setup.hostadmin, "No Schema update Required", "Connection to (" + hst.getSiteDescription() + ")", JOptionPane.INFORMATION_MESSAGE);
 								}
 
 								if (updrst.program_updateRequired)
@@ -1699,7 +1696,7 @@ public class JFrameHostAdmin extends JFrame
 
 									if (ctrl.getProperties("PROGRAM VERSION"))
 									{
-										JOptionPane.showMessageDialog(me, "Program Version now set to " + JVersion.getProgramVersion(), "Control Table", JOptionPane.INFORMATION_MESSAGE);
+										JOptionPane.showMessageDialog(Setup.hostadmin, "Program Version now set to " + JVersion.getProgramVersion(), "Control Table", JOptionPane.INFORMATION_MESSAGE);
 									}
 
 								}
@@ -2103,12 +2100,12 @@ public class JFrameHostAdmin extends JFrame
 					{
 						if (Files.exists(Paths.get(filePath)))
 						{
-							JOptionPane.showMessageDialog(jTextFieldPort, "Valid.", "Host Path", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(Setup.hostadmin, "Valid.", "Host Path", JOptionPane.INFORMATION_MESSAGE);
 						}
 						else
 						{
 							JUtility.errorBeep();
-							JOptionPane.showMessageDialog(jTextFieldPort, "Invalid Path [" + filePath + "]", "Host Path", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(Setup.hostadmin, "Invalid Path [" + filePath + "]", "Host Path", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				}
@@ -2127,12 +2124,12 @@ public class JFrameHostAdmin extends JFrame
 					{
 						if (Files.exists(Paths.get(filePath)))
 						{
-							JOptionPane.showMessageDialog(jTextFieldPort, "Valid.", "Update Path", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(Setup.hostadmin, "Valid.", "Update Path", JOptionPane.INFORMATION_MESSAGE);
 						}
 						else
 						{
 							JUtility.errorBeep();
-							JOptionPane.showMessageDialog(jTextFieldPort, "Invalid Path [" + filePath + "]", "Update Path", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(Setup.hostadmin, "Invalid Path [" + filePath + "]", "Update Path", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				}
@@ -2279,7 +2276,7 @@ public class JFrameHostAdmin extends JFrame
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					String programVersion = JOptionPane.showInputDialog(null, "Amend Program Version", textField4jReqdProgram.getText());
+					String programVersion = JOptionPane.showInputDialog(Setup.hostadmin, "Amend Program Version", textField4jReqdProgram.getText());
 					if (programVersion != null)
 					{
 						if (Common.hostList.getHost(Common.selectedHostID).connect(Common.sessionID, Common.selectedHostID))

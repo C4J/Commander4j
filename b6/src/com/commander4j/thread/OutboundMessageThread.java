@@ -29,8 +29,6 @@ package com.commander4j.thread;
 
 import java.util.LinkedList;
 
-import javax.mail.MessagingException;
-
 import org.apache.commons.beanutils.converters.ArrayConverter;
 import org.apache.commons.beanutils.converters.StringConverter;
 import org.apache.logging.log4j.Logger;
@@ -38,7 +36,6 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceRequest;
 import com.commander4j.db.JDBUser;
-import com.commander4j.email.JeMail;
 import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.messages.OutgoingDespatchConfirmation;
 import com.commander4j.messages.OutgoingDespatchEmail;
@@ -117,7 +114,6 @@ public class OutboundMessageThread extends Thread
 		if (dbconnected)
 		{
 
-			JeMail mail = new JeMail(getHostID(), getSessionID());
 			JDBInterfaceRequest ir = new JDBInterfaceRequest(getHostID(), getSessionID());
 			JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 			OutgoingProductionDeclarationConfirmation opdc = new OutgoingProductionDeclarationConfirmation(getHostID(), getSessionID());
@@ -274,15 +270,10 @@ public class OutboundMessageThread extends Thread
 
 										if (emailList.length > 0)
 										{
-											try
-											{
 												String siteName = Common.hostList.getHost(getHostID()).getSiteDescription();
-												mail.postMail(emailList, "Error Processing Outgoing " + ir.getInterfaceType()+" for ["+siteName+"] on "+JUtility.getClientName(), errorMessage, "", "");
-											}
-											catch (MessagingException e)
-											{
 
-											}
+												Common.sendmail.Send(emailList, "Error Processing Outgoing " + ir.getInterfaceType()+" for ["+siteName+"] on "+JUtility.getClientName(), errorMessage,  "");
+
 										}
 									}
 								}

@@ -38,7 +38,6 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceLog;
 import com.commander4j.db.JDBUser;
-import com.commander4j.email.JeMail;
 import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.messages.IncommingBatchStatusChange;
 import com.commander4j.messages.IncommingDespatchConfirmation;
@@ -116,7 +115,7 @@ public class InboundMessageThread extends Thread
 		if (dbconnected)
 		{
 			JDBInterfaceLog il = new JDBInterfaceLog(getHostID(), getSessionID());
-			JeMail mail = new JeMail(getHostID(), getSessionID());
+			//JeMail mail = new JeMail(getHostID(), getSessionID());
 			JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 			IncommingMaterialDefinition imd = new IncommingMaterialDefinition(getHostID(), getSessionID());
 			IncommingProcessOrderStatusChange iposc = new IncommingProcessOrderStatusChange(getHostID(), getSessionID());
@@ -323,7 +322,9 @@ public class InboundMessageThread extends Thread
 													String siteName = Common.hostList.getHost(getHostID()).getSiteDescription();
 													String attachedFilename = Common.base_dir + java.io.File.separator + inputPath + fromFile;
 													logger.debug("Attaching file  " + Common.base_dir + java.io.File.separator + inputPath + fromFile);
-													mail.postMail(emailList, "Error Processing Incoming " + gmh.getInterfaceType() + " for [" + siteName + "] on " + JUtility.getClientName(), errorMessage, fromFile, attachedFilename);
+													//mail.postMail(emailList, "Error Processing Incoming " + gmh.getInterfaceType() + " for [" + siteName + "] on " + JUtility.getClientName(), errorMessage, fromFile, attachedFilename);
+													Common.sendmail.Send(emailList, "Error Processing Incoming " + gmh.getInterfaceType() + " for [" + siteName + "] on " + JUtility.getClientName(), errorMessage, attachedFilename);
+												
 													com.commander4j.util.JWait.milliSec(2000);
 												}
 											}

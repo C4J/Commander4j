@@ -36,6 +36,7 @@ import com.commander4j.util.JUtility;
 
 public class Setup
 {
+	public static JFrameHostAdmin hostadmin;
 
 	public static void main(String[] args) {
 		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(Setup.class);
@@ -46,7 +47,7 @@ public class Setup
 		JPlaySound.enable();
 		logger.info("Application starting");
 		JPrint.init();
-		JFrameHostAdmin hostadmin = new JFrameHostAdmin();
+		hostadmin = new JFrameHostAdmin();
 		hostadmin.setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_setup4j).getImage());
 		hostadmin.setVisible(true);
 

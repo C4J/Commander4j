@@ -178,6 +178,8 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/jasperlib_aux/opentest4j-1.2.0.jar 
  lib/jasperlib_aux/slf4j-nop-1.8.0-beta4.jar 
  lib/jasperlib_aux/xmlgraphics-commons-2.2.jar 
- lib/mail/javax.activation-1.2.0.jar 
- lib/mail/javax.mail.jar 
+ lib/mail/angus-activation-2.0.1.jar 
+ lib/mail/angus-mail-2.0.2.jar 
+ lib/mail/jakarta.activation-api-2.1.2.jar 
+ lib/mail/jakarta.mail-api-2.1.2.jar 
  lib/serial/jSerialComm-2.10.4.jar 

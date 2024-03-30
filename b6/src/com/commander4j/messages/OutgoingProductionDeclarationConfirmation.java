@@ -47,7 +47,7 @@ import com.commander4j.db.JDBMaterial;
 import com.commander4j.db.JDBPalletHistory;
 import com.commander4j.db.JDBProcessOrder;
 import com.commander4j.db.JDBUom;
-import com.commander4j.email.JeMailOutGoingMessage;
+import com.commander4j.email.OutGoingMessage;
 import com.commander4j.sys.Common;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JUtility;
@@ -70,7 +70,7 @@ public class OutgoingProductionDeclarationConfirmation
 	private String hostID;
 	private String sessionID;
 	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(OutgoingProductionDeclarationConfirmation.class);
-	private JeMailOutGoingMessage ogm;
+	private OutGoingMessage ogm;
 
 	private String errorMessage;
 	private JFileIO fio = new JFileIO();
@@ -347,7 +347,7 @@ public class OutgoingProductionDeclarationConfirmation
 
 							if (device.equals("Email"))
 							{
-								ogm = new JeMailOutGoingMessage(inter, transactionRef, fio);
+								ogm = new OutGoingMessage(inter, transactionRef, fio);
 								ogm.sendEmail();
 							}
 						} else

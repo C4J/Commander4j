@@ -35,6 +35,7 @@ import com.commander4j.util.JUtility;
 
 public class Clone
 {
+	public static JFrameCloneDB clonedb;
 
 	public static void main(String[] args) {
 		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(Clone.class);
@@ -44,7 +45,7 @@ public class Clone
 		Common.applicationMode = "SwingClient";
 		logger.info("Application starting");
 		JPrint.init();
-		JFrameCloneDB clonedb = new JFrameCloneDB();
+		clonedb = new JFrameCloneDB();
 		clonedb.setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_clone4j).getImage());
 		clonedb.setVisible(true);
 

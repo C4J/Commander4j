@@ -37,16 +37,16 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-import java.util.Hashtable;
-
 import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBQMSelectList;
+import com.commander4j.email.SendEmail;
 import com.commander4j.renderer.JDBListRenderer;
 import com.commander4j.renderer.RenderColumnPrefs;
 import com.commander4j.renderer.TableCellRenderer_Default;
@@ -62,6 +62,8 @@ import com.commander4j.util.JSessionData;
  */
 public class Common
 {
+	public static SendEmail sendmail = new SendEmail();
+	
 	//LOGON STATUS
 	public static boolean logonValidated = false;
 	public static boolean passwordChangeRequired = false;

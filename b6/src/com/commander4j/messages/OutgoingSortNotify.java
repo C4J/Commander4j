@@ -16,7 +16,7 @@ import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceLog;
 import com.commander4j.db.JDBInterfaceRequest;
 import com.commander4j.db.JDBPalletHistory;
-import com.commander4j.email.JeMailOutGoingMessage;
+import com.commander4j.email.OutGoingMessage;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JFileIO;
 import com.commander4j.util.JUtility;
@@ -28,7 +28,7 @@ public class OutgoingSortNotify
 	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(OutgoingSortNotify.class);
 	private String errorMessage;
 	private JFileIO fio = new JFileIO();
-	private JeMailOutGoingMessage ogm;
+	private OutGoingMessage ogm;
 
 	public String getErrorMessage()
 	{
@@ -135,7 +135,7 @@ public class OutgoingSortNotify
 									if (inter.getEmailSuccess())
 									{
 
-										ogm = new JeMailOutGoingMessage(inter, transactionRef, fio);
+										ogm = new OutGoingMessage(inter, transactionRef, fio);
 
 										if (ogm.sendEmail())
 										{

@@ -16,7 +16,10 @@
         <pathelement location="lib/jasperlib/barcode4j-2.1.jar"/>
         <pathelement location="lib/jasperlib/mondrian-3.1.1.12687.jar"/>
         <pathelement location="lib/jasperlib/servlet-api-2.5.jar"/>
-        <pathelement location="lib/mail/javax.mail.jar"/>
+        <pathelement location="lib/mail/angus-activation-2.0.1.jar"/>
+        <pathelement location="lib/mail/angus-mail-2.0.2.jar"/>
+        <pathelement location="lib/mail/jakarta.activation-api-2.1.2.jar"/>
+        <pathelement location="lib/mail/jakarta.mail-api-2.1.2.jar"/>
         <pathelement location="lib/jasperlib/olap4j-0.9.7.309-JS-3.jar"/>
         <pathelement location="lib/devonly/i4jruntime.jar"/>
         <pathelement location="lib/app/commons-email-1.5.jar"/>
@@ -53,7 +56,6 @@
         <pathelement location="lib/db/mysql-connector-j-8.3.0.jar"/>
         <pathelement location="lib/serial/jSerialComm-2.10.4.jar"/>
         <pathelement location="lib/jasperlib/ant-1.10.11.jar"/>
-        <pathelement location="lib/mail/javax.activation-1.2.0.jar"/>
         <pathelement location="lib/db/mssql-jdbc-12.4.2.jre11.jar"/>
         <pathelement location="lib/cups4j/hamcrest-core-1.3.jar"/>
         <pathelement location="lib/cups4j/stax-1.2.0.jar"/>

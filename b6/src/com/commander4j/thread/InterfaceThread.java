@@ -40,7 +40,6 @@ import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBSchema;
 import com.commander4j.db.JDBUser;
-import com.commander4j.email.JeMail;
 import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
@@ -60,6 +59,7 @@ public class InterfaceThread extends Thread
 	private Boolean shutdown = false;
 	private String sessionID = "";
 	private OutboundMessageThread outboundThread;
+
 	private AutoLabellerThread autoLabellerThread;
 	private ReportingThread reportingThread;
 	private InboundMessageCollectionThread fileCollectThread;
@@ -188,7 +188,7 @@ public class InterfaceThread extends Thread
 
 					JDBUser user = new JDBUser(getHostID(), getSessionID());
 					JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
-					JeMail mail = new JeMail(getHostID(), getSessionID());
+
 
 					user.setUserId("interface");
 					user.setPassword("interface");
@@ -222,7 +222,8 @@ public class InterfaceThread extends Thread
 								else
 								{
 									subject = "Commander4j " + JVersion.getProgramVersion() + " Interface startup for [" + siteName + "] on " + JUtility.getClientName();
-									mail.postMail(emailList, subject, "Interface service has started.", "", "");
+
+									Common.sendmail.Send(emailList, subject, "Interface service has started.", "");
 								}
 							}
 							catch (Exception ex)
@@ -275,7 +276,7 @@ public class InterfaceThread extends Thread
 								else
 								{
 									subject = "Commander4j " + JVersion.getProgramVersion() + " Interface shutdown for [" + siteName + "] on " + JUtility.getClientName();
-									mail.postMail(emailList, subject, "Interface service has stopped.", "", "");
+									Common.sendmail.Send(emailList, subject, "Interface service has stopped.", "");
 								}
 							}
 							catch (Exception ex)
@@ -339,15 +340,11 @@ public class InterfaceThread extends Thread
 
 						if (enableEnterfaceStatusEmails == true)
 						{
-							try
-							{
-								mail.postMail(emailList, "Commander4j " + JVersion.getProgramVersion() + " Interface maintenance for [" + siteName + "] on " + JUtility.getClientName(), memoryBefore + "\n\n" + memoryAfter + "\n\n" + archivedFiles
-										+ "\n\n" + freeSpace + "\n\n" + "Maintenance is scheduled to occur at " + Common.statusReportTime + " each day.\n\n\n\n" + stats + "\n\n\n" + archiveReportString, "", "");
-							}
-							catch (Exception ex)
-							{
-								logger.error("InterfaceThread Unable to send emails");
-							}
+
+
+							Common.sendmail.Send(emailList, "Commander4j " + JVersion.getProgramVersion() + " Interface maintenance for [" + siteName + "] on " + JUtility.getClientName(), memoryBefore + "\n\n" + memoryAfter + "\n\n" + archivedFiles
+										+ "\n\n" + freeSpace + "\n\n" + "Maintenance is scheduled to occur at " + Common.statusReportTime + " each day.\n\n\n\n" + stats + "\n\n\n" + archiveReportString, "");
+						
 						}
 						logger.debug("Interface Garbage Collection.");
 						logger.debug("HOUSEKEEPING END");
@@ -497,7 +494,7 @@ public class InterfaceThread extends Thread
 			}
 			autoLabellerThread = null;
 			logger.debug("Auto Labeller Thread Stopped.");
-
+			
 		}
 	}
 

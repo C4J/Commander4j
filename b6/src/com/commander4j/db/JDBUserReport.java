@@ -50,9 +50,6 @@ import org.apache.commons.beanutils.converters.ArrayConverter;
 import org.apache.commons.beanutils.converters.StringConverter;
 import org.apache.logging.log4j.Logger;
 
-import com.opencsv.CSVWriter;
-
-import com.commander4j.email.JeMail;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JExcel;
@@ -64,6 +61,7 @@ import com.commander4j.util.JUtility;
 import com.healthmarketscience.jackcess.Database;
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.util.ImportUtil;
+import com.opencsv.CSVWriter;
 
 public class JDBUserReport {
 	
@@ -92,7 +90,6 @@ public class JDBUserReport {
 	private boolean adminUser = false;
 	private String 	dbParamDateRange = "";
 	private Timestamp 	paramDateFrom;
-	private JeMail 	mail;
 	private JDBLanguage 	lang ;
 	private String systemResultData = ""; 
 	private Timestamp paramDateTo;
@@ -211,7 +208,6 @@ public class JDBUserReport {
 		setHostID(host);
 		setSessionID(session);
 		ugm = new JDBUserGroupMembership(host, session);
-		mail = new JeMail(getHostID(), getSessionID());
 		lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 
 		if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_USER_REPORT_EDIT"))
@@ -1016,8 +1012,7 @@ public class JDBUserReport {
 
 					if (emailList.length > 0)
 					{
-						String shortFilename = JUtility.getFilenameFromPath(getExportFilename());
-						mail.postMail(emailList, "Commande4j User Report requested by "+Common.userList.getUser(Common.sessionID).getUserId()+" from [" + Common.hostList.getHost(getHostID()).getSiteDescription() + "] on " + JUtility.getClientName(), "See attached report.\n", shortFilename, getExportFilename());
+						Common.sendmail.Send(emailList, "Commande4j User Report requested by "+Common.userList.getUser(Common.sessionID).getUserId()+" from [" + Common.hostList.getHost(getHostID()).getSiteDescription() + "] on " + JUtility.getClientName(), "See attached report.\n", getExportFilename());
 						com.commander4j.util.JWait.milliSec(2000);
 					}
 				}
