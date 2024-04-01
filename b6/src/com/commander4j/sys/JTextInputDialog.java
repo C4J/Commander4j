@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -95,9 +96,15 @@ public class JTextInputDialog extends JDialog
 		setTitle("Text Input");
 
 		setSize(569, 213);
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Rectangle window = getBounds();
-		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
+		
+		Dimension screensize = Common.mainForm.getSize();
+		Point parentPos = Common.mainForm.getLocation();
+
+		Dimension formsize = getSize();
+		int leftmargin = ((screensize.width - formsize.width) / 2);
+		int topmargin = ((screensize.height - formsize.height) / 2);
+
+		setLocation(parentPos.x + leftmargin , parentPos.y+ topmargin);
 
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

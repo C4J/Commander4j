@@ -1013,7 +1013,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 						double random = ThreadLocalRandom.current().nextDouble(91, 107);
 						BigDecimal rnd = BigDecimal.valueOf(random);
 						rnd = rnd.divide(new BigDecimal(1), 3, RoundingMode.HALF_UP);
-						logSampleWeight(rnd.toString(), "G");
+						String result = validateWeight(rnd.toString());
+						if ((result.equals("error") == false) && (result.equals("") == false))
+						{
+							logSampleWeight(rnd.toString(), "G");
+						}
 					}
 				});
 				btnDebug.setText("Debug");
@@ -1064,7 +1068,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		}
 		textInp = null;
 	}
-	
+
 	public void createDemoPanel()
 	{
 
@@ -1093,7 +1097,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				sampleDetail.setSampleDate(sampleHeader.getSampleDate());
 				sampleDetail.setSampleWeightDate(JUtility.getSQLDateTime());
 
-				sampleDetail.setSampleSequence(sampleDetailList.size()+1);
+				sampleDetail.setSampleSequence(sampleDetailList.size() + 1);
 				sampleDetail.setSampleGrossWeight(new BigDecimal(weight));
 				sampleDetail.setSampleTareWeight(matgroupdb.getTareWeight());
 				sampleDetail.setSampleWeightUom(weightUOM);
@@ -1121,7 +1125,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				}
 
 				sampleDetailList.addLast(sampleDetail);
-				
+
 				populateList();
 
 				if (sampleDetailList.size() == lSampleSize)
@@ -1287,8 +1291,11 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 	}
 	// updateOrderInfo -- > updateMaterialInfo
 
-	private void saveAll(BigDecimal mean, BigDecimal StdDev, Integer t1s, Integer t2s)
+	private boolean saveAll(BigDecimal mean, BigDecimal StdDev, Integer t1s, Integer t2s)
 	{
+		boolean result = true;
+		String error = "";
+
 		jStatusText.setText("");
 
 		jStatusText.setText("Saving results to database...");
@@ -1319,20 +1326,64 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		sampleHeader.setSampleT1Count(t1s);
 		sampleHeader.setSampleT2Count(t2s);
 		sampleHeader.setComments("");
-		sampleHeader.create();
-		sampleHeader.update();
 
-		for (int j = 0; j < sampleDetailList.size(); j++)
+		if (sampleHeader.create() == false)
 		{
-			JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
-			t.setSampleDate(sampleHeader.getSampleDate());
-			t.create();
-			t.update();
+			result = false;
+			error = sampleHeader.getErrorMessage();
+		}
+		if (result == true)
+		{
+			if (sampleHeader.update() == false)
+			{
+				result = false;
+				error = sampleHeader.getErrorMessage();
+			}
 
+			if (result == true)
+			{
+
+				for (int j = 0; j < sampleDetailList.size(); j++)
+				{
+					JDBWTSampleDetail t = (JDBWTSampleDetail) sampleDetailList.get(j);
+					t.setSampleDate(sampleHeader.getSampleDate());
+
+					if (result == true)
+					{
+						if (t.create() == false)
+						{
+							result = false;
+							error = sampleHeader.getErrorMessage();
+						}
+
+						if (result == true)
+						{
+
+							if (t.update() == false)
+							{
+								result = false;
+								error = sampleHeader.getErrorMessage();
+							}
+						}
+					}
+				}
+
+			}
 		}
 
-		jStatusText.setText("Results have been saved.");
+		if (result == true)
+		{
+			jStatusText.setText("Results have been saved.");
+		}
+		else
+		{
+			jStatusText.setText("Error saving results.");
+			JUtility.errorBeep();
+			JOptionPane.showMessageDialog(Common.mainForm, error, lang.get("err_Error"), JOptionPane.ERROR_MESSAGE, Common.icon_confirm_16x16);
+		}
 		btnComment.setEnabled(true);
+
+		return result;
 
 	}
 
@@ -1734,7 +1785,7 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 		{
 			result = false;
 		}
-		
+
 		validToScan = result;
 		btn_Begin.setEnabled(validToScan);
 
@@ -1795,15 +1846,17 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 			class callback implements ScaleCallbackInteface
 			{
-
 				@Override
 				public void setWeight(String weight)
 				{
-					System.out.println("Parent method : " + weight);
-					logSampleWeight(weight, "G");
+					String result = validateWeight(weight);
+
+					if ((result.equals("error") == false) && (result.equals("") == false))
+					{
+						logSampleWeight(result, "G");
+					}
 
 				}
-
 			}
 			callback cb = new callback();
 
@@ -1820,45 +1873,66 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 
 	private boolean addManualWeight()
 	{
-		boolean numberOK = false;
+		boolean result = false;
+		String numberOK = "error";
 		String grossWt = "";
 
-		while (numberOK == false)
+		while (numberOK.equals("error"))
 		{
 			grossWt = JOptionPane.showInputDialog(Common.mainForm, lang.get("dlg_Gross_Weight_Grams"), grossWt);
 
-			if (grossWt != null)
+			numberOK = validateWeight(grossWt);
+
+			if ((numberOK.equals("error") == false) && (numberOK.equals("") == false))
 			{
-				if (grossWt.equals("") == false)
+				logSampleWeight(numberOK, "G");
+				jStatusText.setText("");
+				result = true;
+			}
+			else
+			{
+				if (numberOK.equals("error"))
 				{
-					try
-					{
-						BigDecimal gw1 = new BigDecimal("0.000");
-						BigDecimal gw2 = new BigDecimal(grossWt);
-						gw1 = gw1.add(gw2);
-						grossWt = gw1.toString();
-						jStatusText.setText("");
-						logSampleWeight(grossWt, "G");
-						numberOK = true;
-					}
-					catch (Exception ex)
-					{
-						jStatusText.setText("Invalid number format");
-						JUtility.errorBeep();
-						numberOK = false;
-					}
+					jStatusText.setText("Invalid number format");
+					JUtility.errorBeep();
 				}
-				else
+			}
+
+		}
+		return result;
+
+	}
+
+	private String validateWeight(String grossWt)
+	{
+		String result = "error";
+
+		if (grossWt != null)
+		{
+			if (grossWt.equals("") == false)
+			{
+				try
 				{
-					numberOK = true;
+					BigDecimal gw1 = new BigDecimal("0.000");
+					BigDecimal gw2 = new BigDecimal(grossWt);
+					gw1 = gw1.add(gw2);
+					result = gw1.toString();
+				}
+				catch (Exception ex)
+				{
+					result = "error";
 				}
 			}
 			else
 			{
-				numberOK = true;
+				result = "";
 			}
 		}
-		return numberOK;
+		else
+		{
+			result = "";
+		}
 
+		return result;
 	}
 }
