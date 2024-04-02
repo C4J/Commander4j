@@ -631,8 +631,15 @@ public class JInternalFrameWTReport extends JInternalFrame
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
 		q2.applyWhat("*");
 
-		q2.applyFrom("{schema}APP_WEIGHT_SAMPLE_HEADER");
-
+		if (jComboBoxReportType.getSelectedItem().toString().equals("Summary Mean & SD"))
+		{
+			q2.applyFrom("{schema}view_weight_samples3");
+		}
+		else
+		{
+			q2.applyFrom("{schema}APP_WEIGHT_SAMPLE_HEADER");
+		}
+		
 		if (checkBox4jFromEnabled.isSelected())
 		{
 			q2.applyWhere("sample_date>=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
@@ -980,7 +987,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jDesktopPane1.add(label4j_std);
 
 				ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
-				{ "SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE", "SAMPLE_POINT,SAMPLE_DATE", "SAMPLE_POINT,PRODUCT_GROUP,SAMPLE_DATE" });
+				{ "SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE", "SAMPLE_POINT,SAMPLE_DATE", "SAMPLE_POINT,PRODUCT_GROUP,SAMPLE_DATE", "NOMINAL_WEIGHT,MATERIAL,SAMPLE_DATE,SAMPLE_POINT" });
 				jComboBoxSortBy = new JComboBox4j<String>();
 				jComboBoxSortBy.setMaximumRowCount(15);
 				jComboBoxSortBy.setModel(jComboBoxSortByModel);
@@ -1001,7 +1008,8 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jDesktopPane1.add(label4j_std_report_type);
 
 				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[]
-				{ "Quick Reference 1","Quick Reference 2","Quick Reference 3", "Overview Weight Report by Sample Point", "Summary Weight Report by Sample Point", "Individual Weight Check Report by Sample Point", "Search Results", "Mean above Nominal", "T1s or T2s" });
+				{ "Quick Reference 1", "Quick Reference 2", "Quick Reference 3", "Summary Mean & SD", "Overview Weight Report by Sample Point", "Summary Weight Report by Sample Point", "Individual Weight Check Report by Sample Point", "Search Results",
+						"Mean above Nominal", "T1s or T2s" });
 				jComboBoxReportType = new JComboBox4j<String>();
 				jComboBoxReportType.addActionListener(new ActionListener()
 				{
@@ -1035,7 +1043,12 @@ public class JInternalFrameWTReport extends JInternalFrame
 						{
 							jComboBoxSortBy.setEnabled(false);
 
-						}						
+						}
+						if (jComboBoxReportType.getSelectedItem().toString().equals("Summary Mean & SD"))
+						{
+							jComboBoxSortBy.setSelectedItem("NOMINAL_WEIGHT,MATERIAL,SAMPLE_DATE,SAMPLE_POINT");
+							jComboBoxSortBy.setEnabled(false);
+						}
 						if (jComboBoxReportType.getSelectedItem().toString().equals("Mean above Nominal"))
 						{
 							jComboBoxSortBy.setEnabled(true);
@@ -1048,6 +1061,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 						if (jComboBoxReportType.getSelectedItem().toString().equals("Search Results"))
 						{
+							jComboBoxSortBy.setSelectedItem("SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE");
 							jComboBoxSortBy.setEnabled(true);
 
 						}
@@ -1296,6 +1310,13 @@ public class JInternalFrameWTReport extends JInternalFrame
 								parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
 								PreparedStatement temp = buildSQLsummary_overview();
 								JLaunchReport.runReport("RPT_WT_OVERVIEW", parameters, "", temp, "");
+							}
+							else if (jComboBoxReportType.getSelectedItem().equals("Summary Mean & SD"))
+							{
+								HashMap<String, Object> parameters = new HashMap<String, Object>();
+								parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
+								PreparedStatement temp = buildSQLr();
+								JLaunchReport.runReport("RPT_WT_SD_MEAN", parameters, "", temp, "");
 							}
 							else
 							{
