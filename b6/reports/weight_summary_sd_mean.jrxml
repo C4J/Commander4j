@@ -90,9 +90,9 @@ WHERE
 		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_WEIGHT_UOM"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_detail"/>
 	</field>
-	<field name="TARE" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.name" value="TARE"/>
-		<property name="com.jaspersoft.studio.field.label" value="TARE"/>
+	<field name="TARE_WEIGHT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TARE_WEIGHT"/>
+		<property name="com.jaspersoft.studio.field.label" value="TARE_WEIGHT"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_weight_sample_header"/>
 	</field>
 	<field name="NET" class="java.math.BigDecimal">
@@ -165,6 +165,9 @@ WHERE
 	</variable>
 	<variable name="NET4" class="java.math.BigDecimal" resetType="Group" resetGroup="MATERIAL" calculation="StandardDeviation">
 		<variableExpression><![CDATA[$F{NET}]]></variableExpression>
+	</variable>
+	<variable name="SAMPLE_SEQUENCE2" class="java.lang.Integer" resetType="Group" resetGroup="MATERIAL" calculation="Count">
+		<variableExpression><![CDATA[$F{SAMPLE_SEQUENCE}]]></variableExpression>
 	</variable>
 	<group name="NOMINAL">
 		<groupExpression><![CDATA[$F{NOMINAL_WEIGHT}]]></groupExpression>
@@ -351,7 +354,7 @@ WHERE
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="25">
+			<band height="22">
 				<textField>
 					<reportElement key="textField" style="Style3" mode="Opaque" x="613" y="2" width="30" height="15" uuid="8e187123-955d-49bc-bfd3-069b1192ac87"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -377,11 +380,47 @@ WHERE
 					<textFieldExpression><![CDATA[$V{NET3}]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement x="580" y="18" width="220" height="1" uuid="279170cb-97dc-44b6-b284-6ff53500377d"/>
+					<reportElement x="612" y="19" width="188" height="1" uuid="279170cb-97dc-44b6-b284-6ff53500377d"/>
 				</line>
 				<line>
-					<reportElement x="580" y="0" width="220" height="1" uuid="76f21384-42f6-4408-bc9c-8062662c95d4"/>
+					<reportElement x="612" y="0" width="188" height="1" uuid="76f21384-42f6-4408-bc9c-8062662c95d4"/>
 				</line>
+				<line>
+					<reportElement x="204" y="1" width="35" height="1" uuid="f54ac5ba-0217-4bf5-8cf9-1065f11bf8b5"/>
+				</line>
+				<line>
+					<reportElement x="204" y="18" width="35" height="1" uuid="b95f7465-057e-4cd0-b93d-d826843f2bc7"/>
+				</line>
+				<textField>
+					<reportElement x="202" y="2" width="36" height="16" uuid="36d871bc-60dc-4a83-96c8-5023545a3ee4"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{SAMPLE_SEQUENCE2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.000%">
+					<reportElement key="textField" style="Style3" mode="Opaque" x="270" y="2" width="50" height="16" uuid="2ea1e5e2-e891-4cdc-b9ca-cba43b75eda1"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[($V{T12}.doubleValue() / $V{SAMPLE_SEQUENCE2}.doubleValue())]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="326" y="2" width="65" height="15" uuid="67f95aa2-666d-47d9-83c8-d6fba79df8a7">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b95fa299-13c7-444f-b6c3-e5d92cf0abd3"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font isBold="false" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[T1's )]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="264" y="2" width="15" height="15" uuid="e59875a2-f294-4357-8564-480a81e8c768">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b95fa299-13c7-444f-b6c3-e5d92cf0abd3"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font isBold="false" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[(]]></text>
+				</staticText>
 			</band>
 		</groupFooter>
 	</group>
@@ -403,8 +442,8 @@ WHERE
 					<textFieldExpression><![CDATA[$V{NET2}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="211" y="1" width="35" height="15" uuid="38445bfb-9d3a-4f98-91d9-a26d9c9ff185"/>
-					<textElement textAlignment="Center"/>
+					<reportElement x="204" y="1" width="35" height="15" uuid="38445bfb-9d3a-4f98-91d9-a26d9c9ff185"/>
+					<textElement textAlignment="Right"/>
 					<textFieldExpression><![CDATA[$V{SAMPLE_SEQUENCE1}]]></textFieldExpression>
 				</textField>
 				<textField>

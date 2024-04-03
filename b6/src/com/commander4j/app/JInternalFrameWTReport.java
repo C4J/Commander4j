@@ -1001,6 +1001,12 @@ public class JInternalFrameWTReport extends JInternalFrame
 					}
 				});
 
+				jCheckBoxLimit = new JCheckBox4j();
+				jCheckBoxLimit.setSelected(true);
+				jCheckBoxLimit.setBackground(Color.WHITE);
+				jCheckBoxLimit.setBounds(883, 117, 21, 21);
+				jDesktopPane1.add(jCheckBoxLimit);
+				
 				JLabel4j_std label4j_std_report_type = new JLabel4j_std();
 				label4j_std_report_type.setText(lang.get("mod_FRM_WEIGHT_REPORTS"));
 				label4j_std_report_type.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -1015,6 +1021,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
+
 						if (jComboBoxReportType.getSelectedItem().toString().equals("Overview Weight Report by Sample Point"))
 						{
 							jComboBoxSortBy.setSelectedItem("SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE");
@@ -1090,23 +1097,18 @@ public class JInternalFrameWTReport extends JInternalFrame
 				label4j_std_1.setBounds(807, 117, 74, 21);
 				jDesktopPane1.add(label4j_std_1);
 
-				jCheckBoxLimit = new JCheckBox4j();
-				jCheckBoxLimit.setSelected(true);
-				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(883, 117, 21, 21);
-				jDesktopPane1.add(jCheckBoxLimit);
 
 				{
 					SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
 					jSpinnerIntModel.setMinimum(1);
-					jSpinnerIntModel.setMaximum(5000);
+					jSpinnerIntModel.setMaximum(25000);
 					jSpinnerIntModel.setStepSize(1);
 					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
 					ne.getTextField().setFont(Common.font_std);
 					jSpinnerLimit.setEditor(ne);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
 					jSpinnerLimit.setBounds(906, 116, 68, 21);
-					jSpinnerLimit.setValue(1000);
+					jSpinnerLimit.setValue(5000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 					jDesktopPane1.add(jSpinnerLimit);
 				}
