@@ -232,10 +232,12 @@ public class JExcel
 			HSSFCellStyle cellStyle_date = workbook.createCellStyle();
 			cellStyle_date.setAlignment(HorizontalAlignment.CENTER);
 			cellStyle_date.setDataFormat(HSSFDataFormat.getBuiltinFormat("m/d/yy h:mm"));
+			cellStyle_date.setShrinkToFit(true);
 
 			HSSFCellStyle cellStyle_timestamp = workbook.createCellStyle();
 			cellStyle_timestamp.setAlignment(HorizontalAlignment.CENTER);
 			cellStyle_timestamp.setDataFormat(HSSFDataFormat.getBuiltinFormat("m/d/yy h:mm"));
+			cellStyle_timestamp.setShrinkToFit(true);
 
 			HSSFCellStyle cellStyle_decimal = workbook.createCellStyle();
 			cellStyle_decimal.setAlignment(HorizontalAlignment.RIGHT);

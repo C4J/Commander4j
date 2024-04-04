@@ -1010,7 +1010,12 @@ public class JInternalFrameWTWeightCapture extends JInternalFrame
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						double random = ThreadLocalRandom.current().nextDouble(91, 107);
+						double target = Double.valueOf(fld_Nominal_Weight.getText());
+						double tne = Double.valueOf(fld_TNE.getText());
+						int rand1 = ThreadLocalRandom.current().nextInt(0, 2);
+						int rand2 = ThreadLocalRandom.current().nextInt(0, 1);
+						int rand3 = ThreadLocalRandom.current().nextInt(0, 2);
+						double random = ThreadLocalRandom.current().nextDouble(target-(tne*rand1)-rand2, target+(tne*2)+rand3);
 						BigDecimal rnd = BigDecimal.valueOf(random);
 						rnd = rnd.divide(new BigDecimal(1), 3, RoundingMode.HALF_UP);
 						String result = validateWeight(rnd.toString());

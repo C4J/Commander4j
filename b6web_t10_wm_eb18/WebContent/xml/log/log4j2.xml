@@ -28,6 +28,24 @@
     <Logger name="org.apache.poi.hssf.model" level="WARN">
   	  <AppenderRef ref="Console"/>
     </Logger>
+     <Logger name="log4j.logger.org.apache.commons.digester" level="WARN">
+       <AppenderRef ref="Console"/>
+    </Logger>
+ 	<Logger name="log4j.logger.org.apache.commons.beanutils" level="WARN">
+       <AppenderRef ref="Console"/>
+    </Logger>
+ 	<Logger name="net.sf.jasperreports" level="WARN">
+       <AppenderRef ref="Console"/>
+    </Logger>
+ 	<Logger name="net.sf.jasperreports.engine.util" level="WARN">
+       <AppenderRef ref="Console"/>
+    </Logger>
+    <Logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="WARN">
+    	 <AppenderRef ref="Console"/>
+    </Logger>
+    <Logger name="org.springframework.beans.factory.xml.XmlBeanDefinitionReader" level="WARN">
+     	<AppenderRef ref="Console"/>
+    </Logger>
     <Root level="DEBUG">
       <AppenderRef ref="Console"/>
       <AppenderRef ref="RollingFile"/>
