@@ -5,7 +5,7 @@ package com.commander4j.app;
  * 
  * Project Name : Commander4j
  * 
- * Filename     : JInternalFramMaterialBatchAdmin.java
+ * Filename     : JInternalFrameWTReport.java
  * 
  * Package Name : com.commander4j.app
  * 
@@ -64,7 +64,6 @@ import com.commander4j.db.JDBQMSample;
 import com.commander4j.db.JDBQuery;
 import com.commander4j.db.JDBQuery2;
 import com.commander4j.db.JDBWTProductGroups;
-import com.commander4j.db.JDBWTSampleHeader;
 import com.commander4j.db.JDBWTViewWeightSample;
 import com.commander4j.db.JDBWTWorkstation;
 import com.commander4j.gui.JButton4j;
@@ -117,7 +116,6 @@ public class JInternalFrameWTReport extends JInternalFrame
 	private JButton4j jButtonReports;
 	private JCheckBox4j jCheckBoxLimit;
 	private JComboBox4j<String> jComboBoxSortBy;
-	private JComboBox4j<String> jComboBoxReportType;
 	private JDesktopPane jDesktopPane1;
 	private JSpinner jSpinnerLimit = new JSpinner();
 	private JLabel4j_std jStatusText;
@@ -166,15 +164,15 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 	}
 
-	private void buildSQL()
+	private void buildSQL(String type)
 	{
 
 		JDBQuery2.closeStatement(listStatement);
 
-		listStatement = buildSQLr();
+		listStatement = buildSQLr(type);
 	}
 	
-	private PreparedStatement buildSQLr()
+	private PreparedStatement buildSQLr(String type)
 	{
 
 		PreparedStatement result;
@@ -182,7 +180,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 		
 		q2.applyWhat("*");
 
-		if (jComboBoxReportType.getSelectedItem().toString().equals("Summary Mean & SD"))
+		if (type.equals("report"))
 		{
 			
 			q2.applyFrom("{schema}view_weight_samples3");
@@ -222,6 +220,11 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			q2.applyWhere("product_group = ", fld_Product_Group.getText());
 		}
+		
+		if (fld_Container_Code.getText().equals("") == false)
+		{
+			q2.applyWhere("container_code = ", fld_Container_Code.getText());
+		}
 
 		if (checkBox4j_T1.isSelected())
 		{
@@ -233,7 +236,15 @@ public class JInternalFrameWTReport extends JInternalFrame
 			q2.applyWhere("sample_t2_count > ", 0);
 		}
 		
-		q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
+		if (type.equals("report"))
+		{
+			
+			q2.applySort("NOMINAL_WEIGHT,MATERIAL,SAMPLE_DATE,SAMPLE_POINT,SAMPLE_SEQUENCE",false);
+		}
+		else
+		{
+			q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
+		}
 		
 		q2.applyRestriction(jCheckBoxLimit.isSelected(), jSpinnerLimit.getValue());
 		q2.applySQL();
@@ -245,6 +256,8 @@ public class JInternalFrameWTReport extends JInternalFrame
 	private void clearFilter()
 	{
 
+		jComboBoxSortBy.setSelectedIndex(0);
+		jToggleButtonSequence.setSelected(false);
 		fld_Process_Order.setText("");
 		fld_Material.setText("");
 		fld_Product_Group.setText("");
@@ -266,19 +279,18 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 	private void excel()
 	{
-		JDBWTSampleHeader sampleHeader = new JDBWTSampleHeader(Common.selectedHostID, Common.sessionID);
+		JDBWTViewWeightSample sampleHeader = new JDBWTViewWeightSample(Common.selectedHostID, Common.sessionID);
 		JExcel export = new JExcel();
 		
 		export.setExcelRowLimit(jCheckBoxLimit, jSpinnerLimit);
-		buildSQL();
 		
-		export.saveAs("weight_samples.xls", sampleHeader.getSampleHeaderDataResultSet(listStatement), Common.mainForm);
+		buildSQL("report");
 		
-		if (jComboBoxReportType.getSelectedItem().toString().equals("Summary Mean & SD"))
-		{
-			jComboBoxReportType.setSelectedItem("Search Results");	
-			buildSQL();
-		}
+		export.saveAs("weight_checks.xls", sampleHeader.getViewWeightSampleDataResultSet(listStatement), Common.mainForm);
+		
+	
+		buildSQL("search");
+
 		populateList();
 	}
 
@@ -426,7 +438,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				lbl_Product_Group.setBounds(748, 14, 107, 25);
 				jDesktopPane1.add(lbl_Product_Group);
 
-				fld_Product_Group.setBounds(861, 14, 94, 25);
+				fld_Product_Group.setBounds(861, 14, 120, 25);
 				jDesktopPane1.add(fld_Product_Group);
 
 				JLabel4j_std lbl_Container_Code = new JLabel4j_std();
@@ -435,7 +447,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				lbl_Container_Code.setBounds(748, 63, 107, 25);
 				jDesktopPane1.add(lbl_Container_Code);
 
-				fld_Container_Code.setBounds(861, 63, 94, 25);
+				fld_Container_Code.setBounds(861, 63, 120, 25);
 				jDesktopPane1.add(fld_Container_Code);
 
 				JLabel4j_std lbl_Sample_Date = new JLabel4j_std();
@@ -535,16 +547,23 @@ public class JInternalFrameWTReport extends JInternalFrame
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Sort_By"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(405, 115, 69, 21);
+				label4j_std.setBounds(188, 118, 69, 21);
 				jDesktopPane1.add(label4j_std);
 
 				ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
-				{ "SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE", "SAMPLE_POINT,SAMPLE_DATE","SAMPLE_POINT,MATERIAL", "SAMPLE_POINT,PRODUCT_GROUP,SAMPLE_DATE", "NOMINAL_WEIGHT,MATERIAL,SAMPLE_DATE,SAMPLE_POINT" });
+				{"NOMINAL_WEIGHT,SAMPLE_DATE,SAMPLE_POINT",
+				 "NOMINAL_WEIGHT,MATERIAL,SAMPLE_DATE,SAMPLE_POINT",	
+				 "SAMPLE_DATE,SAMPLE_POINT,NOMINAL_WEIGHT", 
+				 "SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE", 
+				 "SAMPLE_POINT,SAMPLE_DATE",
+				 "SAMPLE_POINT,MATERIAL", 
+				 "SAMPLE_POINT,PRODUCT_GROUP,SAMPLE_DATE" 
+				 });
 				
 				jComboBoxSortBy = new JComboBox4j<String>();
 				jComboBoxSortBy.setMaximumRowCount(15);
 				jComboBoxSortBy.setModel(jComboBoxSortByModel);
-				jComboBoxSortBy.setBounds(480, 114, 328, 22);
+				jComboBoxSortBy.setBounds(279, 117, 391, 22);
 				jDesktopPane1.add(jComboBoxSortBy);
 				jToggleButtonSequence.addActionListener(new ActionListener()
 				{
@@ -559,40 +578,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jCheckBoxLimit.setBackground(Color.WHITE);
 				jCheckBoxLimit.setBounds(883, 117, 21, 21);
 				jDesktopPane1.add(jCheckBoxLimit);
-				
-				JLabel4j_std label4j_std_report_type = new JLabel4j_std();
-				label4j_std_report_type.setText(lang.get("mod_FRM_WEIGHT_REPORTS"));
-				label4j_std_report_type.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std_report_type.setBounds(3, 114, 117, 21);
-				jDesktopPane1.add(label4j_std_report_type);
 
-				ComboBoxModel<String> jComboBoxReportTypeModel = new DefaultComboBoxModel<String>(new String[]
-				{ "Summary Mean & SD",  "Search Results" });
-				jComboBoxReportType = new JComboBox4j<String>();
-				jComboBoxReportType.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e)
-					{
-					
-						if (jComboBoxReportType.getSelectedItem().toString().equals("Summary Mean & SD"))
-						{
-							jComboBoxSortBy.setSelectedItem("NOMINAL_WEIGHT,MATERIAL,SAMPLE_DATE,SAMPLE_POINT");
-							jComboBoxSortBy.setEnabled(false);
-						}
-
-						if (jComboBoxReportType.getSelectedItem().toString().equals("Search Results"))
-						{
-							jComboBoxSortBy.setSelectedItem("SAMPLE_POINT,PROCESS_ORDER,SAMPLE_DATE");
-							jComboBoxSortBy.setEnabled(true);
-
-						}
-					}
-				});
-				jComboBoxReportType.setMaximumRowCount(15);
-				jComboBoxReportType.setModel(jComboBoxReportTypeModel);
-				jComboBoxReportType.setBounds(128, 113, 273, 22);
-				jComboBoxReportType.setSelectedItem("Search Results");
-				jDesktopPane1.add(jComboBoxReportType);
 				jToggleButtonSequence.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -602,7 +588,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				});
 
 				jToggleButtonSequence.setSelected(false);
-				jToggleButtonSequence.setBounds(808, 114, 21, 22);
+				jToggleButtonSequence.setBounds(670, 117, 21, 22);
 				jDesktopPane1.add(jToggleButtonSequence);
 
 				JLabel4j_std label4j_std_1 = new JLabel4j_std();
@@ -622,7 +608,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 					jSpinnerLimit.setEditor(ne);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
 					jSpinnerLimit.setBounds(906, 116, 68, 21);
-					jSpinnerLimit.setValue(5000);
+					jSpinnerLimit.setValue(1000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 					jDesktopPane1.add(jSpinnerLimit);
 				}
@@ -681,7 +667,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				}
 
 				JButton4j btn_LookupProductGroup = new JButton4j(Common.icon_lookup_16x16);
-				btn_LookupProductGroup.setBounds(954, 14, 21, 25);
+				btn_LookupProductGroup.setBounds(980, 14, 21, 25);
 				jDesktopPane1.add(btn_LookupProductGroup);
 				btn_LookupProductGroup.addActionListener(new ActionListener()
 				{
@@ -712,7 +698,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					}
 				});
-				btn_LookupContainerCode.setBounds(954, 63, 21, 25);
+				btn_LookupContainerCode.setBounds(980, 63, 21, 25);
 				jDesktopPane1.add(btn_LookupContainerCode);
 
 				{
@@ -774,15 +760,10 @@ public class JInternalFrameWTReport extends JInternalFrame
 	}
 
 	private void print()
-	{
-		jComboBoxReportType.setSelectedItem("Summary Mean & SD");
-		jComboBoxSortBy.setSelectedItem("NOMINAL_WEIGHT,MATERIAL,SAMPLE_DATE,SAMPLE_POINT");
-		
+	{		
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		
-		parameters.put("p_title", jComboBoxReportType.getSelectedItem().toString());
-		
-		PreparedStatement temp = buildSQLr();
+			
+		PreparedStatement temp = buildSQLr("report");
 		
 		JLaunchReport.runReport("RPT_WT_SD_MEAN", parameters, "", temp, "");
 	}
@@ -840,11 +821,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 	private void search()
 	{
-		if (jComboBoxReportType.getSelectedItem().toString().equals("Summary Mean & SD"))
-		{
-			jComboBoxReportType.setSelectedItem("Search Results");	
-		}
-		buildSQL();
+		buildSQL("search");
 		populateList();
 	}
 
