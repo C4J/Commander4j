@@ -608,7 +608,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 					jSpinnerLimit.setEditor(ne);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
 					jSpinnerLimit.setBounds(906, 116, 68, 21);
-					jSpinnerLimit.setValue(1000);
+					jSpinnerLimit.setValue(2000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 					jDesktopPane1.add(jSpinnerLimit);
 				}

@@ -357,12 +357,12 @@ public class JFrameHostAdmin extends JFrame
 	{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1187, 752);
+		setBounds(100, 100, 1203, 752);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		desktopPane.setBounds(0, 0, 1190, 762);
+		desktopPane.setBounds(0, 0, 1206, 762);
 		desktopPane.setBackground(Color.WHITE);
 		contentPane.add(desktopPane);
 
@@ -1846,14 +1846,14 @@ public class JFrameHostAdmin extends JFrame
 			});
 			desktopPane.add(jComboBoxCharSet);
 
-			progressBar.setBounds(0, 661, 1185, 28);
+			progressBar.setBounds(0, 661, 1206, 28);
 			progressBar.setBackground(Color.WHITE);
 			progressBar.setForeground(Color.BLUE);
 			desktopPane.add(progressBar);
 			labelCommand.setForeground(Color.RED);
 			labelCommand.setFont(Common.font_std);
 
-			labelCommand.setBounds(0, 691, 1183, 23);
+			labelCommand.setBounds(0, 691, 1206, 23);
 			labelCommand.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			desktopPane.add(labelCommand);
 
