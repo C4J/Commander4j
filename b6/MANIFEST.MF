@@ -182,4 +182,4 @@ Class-Path: lib/app/commons-email-1.5.jar
  lib/mail/angus-mail-2.0.2.jar 
  lib/mail/jakarta.activation-api-2.1.2.jar 
  lib/mail/jakarta.mail-api-2.1.2.jar 
- lib/serial/jSerialComm-2.10.4.jar 
+ lib/serial/jSerialComm-2.11.0.jar 
