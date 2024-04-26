@@ -72,15 +72,15 @@
         <pathelement location="lib/jasperlib/stax2-api-4.2.1.jar"/>
         <pathelement location="lib/jasperlib/jcommander-1.82.jar"/>
         <pathelement location="lib/jasperlib/testng-7.7.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-annotation-processors-6.21.2.jar"/>
-        <pathelement location="lib/jasper/jasperreports-castor-6.21.2.jar"/>
-        <pathelement location="lib/jasper/jasperreports-chart-customizers-6.21.2.jar"/>
-        <pathelement location="lib/jasper/jasperreports-chart-themes-6.21.2.jar"/>
-        <pathelement location="lib/jasper/jasperreports-custom-visualization-6.21.2.jar"/>
-        <pathelement location="lib/jasper/jasperreports-functions-6.21.2.jar"/>
-        <pathelement location="lib/jasper/jasperreports-javaflow-6.21.2.jar"/>
-        <pathelement location="lib/jasper/jasperreports-metadata-6.21.2.jar"/>
-        <pathelement location="lib/jasper/jasperreports-xalan-6.21.2.jar"/>
+        <pathelement location="lib/jasper/jasperreports-annotation-processors-6.21.3.jar"/>
+        <pathelement location="lib/jasper/jasperreports-castor-6.21.3.jar"/>
+        <pathelement location="lib/jasper/jasperreports-chart-customizers-6.21.3.jar"/>
+        <pathelement location="lib/jasper/jasperreports-chart-themes-6.21.3.jar"/>
+        <pathelement location="lib/jasper/jasperreports-custom-visualization-6.21.3.jar"/>
+        <pathelement location="lib/jasper/jasperreports-functions-6.21.3.jar"/>
+        <pathelement location="lib/jasper/jasperreports-javaflow-6.21.3.jar"/>
+        <pathelement location="lib/jasper/jasperreports-metadata-6.21.3.jar"/>
+        <pathelement location="lib/jasper/jasperreports-xalan-6.21.3.jar"/>
         <pathelement location="lib/jasperlib/batik-anim-1.17.jar"/>
         <pathelement location="lib/jasperlib/batik-awt-util-1.17.jar"/>
         <pathelement location="lib/jasperlib/batik-bridge-1.17.jar"/>
@@ -186,11 +186,11 @@
         <pathelement location="lib/jasperlib_aux/junit-platform-engine-1.9.1.jar"/>
         <pathelement location="lib/jasperlib_aux/objenesis-3.3.jar"/>
         <pathelement location="lib/jasperlib_aux/opentest4j-1.2.0.jar"/>
-        <pathelement location="lib/jasper/jasperreports-6.21.2.jar"/>
-        <pathelement location="lib/jasper/jasperreports-fonts-6.21.2.jar"/>
+        <pathelement location="lib/jasper/jasperreports-6.21.3.jar"/>
+        <pathelement location="lib/jasper/jasperreports-fonts-6.21.3.jar"/>
         <pathelement location="lib/barcode/avalon-framework-4.2.0.jar"/>
         <pathelement location="lib/jasperlib/junit-3.7.jar"/>
-        <pathelement location="lib/jasper/jasperreports-fastexcel-6.21.2.jar"/>
+        <pathelement location="lib/jasper/jasperreports-fastexcel-6.21.3.jar"/>
         <pathelement location="lib/jasperlib/avalon-framework-impl-4.2.0.jar"/>
     </path>
 
