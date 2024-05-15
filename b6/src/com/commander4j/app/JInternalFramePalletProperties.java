@@ -383,7 +383,7 @@ public class JInternalFramePalletProperties extends javax.swing.JInternalFrame
 					{
 						public void keyReleased(KeyEvent evt)
 						{
-							fld_Location.setText(JLaunchLookup.dlgResult);
+							//fld_Location.setText(JLaunchLookup.dlgResult);
 							locationChanged(fld_Location.getText());
 
 						}

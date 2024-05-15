@@ -77,12 +77,12 @@ public class JDialogSetupPassword extends JDialog
 		getContentPane().setLayout(null);
 
 		btn_close = new JButton4j("Close", Common.icon_cancel_16x16);
-		btn_close.setText("Cancel");
 		btn_close.setBounds(142, 52, 104, 25);
+		btn_close.setText("Cancel");
 		getContentPane().add(btn_close);
 		btn_login = new JButton4j("Login", Common.icon_ok_16x16);
-		btn_login.setText("OK");
 		btn_login.setBounds(19, 52, 104, 25);
+		btn_login.setText("OK");
 		getContentPane().add(btn_login);
 		btn_login.addActionListener(buttonhandler);
 		btn_close.addActionListener(buttonhandler);
@@ -97,8 +97,8 @@ public class JDialogSetupPassword extends JDialog
 		fld_password.setFont(Common.font_std);
 
 		JLabel lblPassword = new JLabel("Password :");
-		lblPassword.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblPassword.setBounds(19, 24, 83, 16);
+		lblPassword.setHorizontalAlignment(SwingConstants.TRAILING);
 		getContentPane().add(lblPassword);
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
