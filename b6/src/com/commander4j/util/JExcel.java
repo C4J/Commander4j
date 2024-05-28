@@ -54,6 +54,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JCheckBox4j;
@@ -94,9 +95,10 @@ public class JExcel
 		cb.repaint();
 	}
 
-	public void saveAs(String defaultFilename, ResultSet rs, Component parent)
+	public boolean saveAs(String defaultFilename, ResultSet rs, Component parent)
 	{
-
+		boolean result = true;
+		
 		JFileChooser saveXLS = new JFileChooser();
 
 		try
@@ -105,23 +107,33 @@ public class JExcel
 			saveXLS.setCurrentDirectory(f);
 			saveXLS.addChoosableFileFilter(new JFileFilterXLS());
 			saveXLS.setSelectedFile(new File(defaultFilename));
+			
+			int input = saveXLS.showSaveDialog(parent);
+			
+			if (input == 0)
+			{
+				File selectedFile;
+				selectedFile = saveXLS.getSelectedFile();
+				if (selectedFile != null)
+				{
+					String filename = selectedFile.getAbsolutePath();
+					JExcel export = new JExcel();
+					result = export.exportToExcel(filename, rs);
+				}
+			}
+			else
+			{
+				result = false;
+			}
 		}
 		catch (Exception ex)
 		{
+			result = false;
 		}
 
-		int result = saveXLS.showSaveDialog(parent);
-		if (result == 0)
-		{
-			File selectedFile;
-			selectedFile = saveXLS.getSelectedFile();
-			if (selectedFile != null)
-			{
-				String filename = selectedFile.getAbsolutePath();
-				JExcel export = new JExcel();
-				export.exportToExcel(filename, rs);
-			}
-		}
+
+		
+		return result;
 	}
 
 	public boolean saveAndView(String defaultFilename, ResultSet rs, Component parent)
@@ -225,6 +237,7 @@ public class JExcel
 
 			HSSFCellStyle cellStyle_title = workbook.createCellStyle();
 			cellStyle_title.setAlignment(HorizontalAlignment.CENTER);
+			cellStyle_title.setVerticalAlignment(VerticalAlignment.CENTER);
 
 			HSSFCellStyle cellStyle_char = workbook.createCellStyle();
 			cellStyle_char.setAlignment(HorizontalAlignment.LEFT);
@@ -254,7 +267,7 @@ public class JExcel
 			font_title.setBold(true);
 			;
 			font_title.setItalic(true);
-			font_title.setUnderline(HSSFFont.U_DOUBLE);
+			font_title.setUnderline(HSSFFont.U_SINGLE);
 			cellStyle_title.setFont(font_title);
 
 			HSSFCell cell;

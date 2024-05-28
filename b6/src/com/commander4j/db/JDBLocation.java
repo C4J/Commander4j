@@ -321,6 +321,34 @@ public class JDBLocation
 		return result;
 	}
 
+	
+	public String getHTMLPullDownCombo_Plain(String itemName, String defaultValue)
+	{
+		String result = "";
+		String selected = "";
+		LinkedList<JDBLocation> locationList = new LinkedList<JDBLocation>();
+		locationList.addAll(getLocationList());
+		result = "<SELECT ID=\"" + itemName + "\" NAME=\"" + itemName + "\">";
+		result = result + "<OPTION></OPTION>";
+		if (locationList.size() > 0)
+		{
+			for (int x = 0; x < locationList.size(); x++)
+			{
+				if (locationList.get(x).getLocationID().equals(defaultValue))
+				{
+					selected = " SELECTED";
+				} else
+				{
+					selected = "";
+				}
+				result = result + "<OPTION" + selected + ">" + locationList.get(x).getLocationID()+"</OPTION>";
+			}
+		}
+		result = result + "</SELECT>";
+
+		return result;
+	}
+	
 	public String getHTMLJourneysCombo(String itemName, String defaultValue)
 	{
 		String result = "";
@@ -332,6 +360,38 @@ public class JDBLocation
 		journeyList.addAll(jlistdb.getJourneyList(defaultValue));
 
 		result = "<SELECT width=\"100%\" style=\"font-size: 24px;\" ID=\"" + itemName + "\" NAME=\"" + itemName + "\">" + "<OPTION></OPTION>";
+
+		if (journeyList.size() > 0)
+		{
+			for (int x = 0; x < journeyList.size(); x++)
+			{
+				if (journeyList.get(x).getJourneyRef().equals(defaultValue))
+				{
+					selected = " SELECTED";
+				} else
+				{
+					selected = "";
+				}
+				result = result + "<OPTION" + selected + ">" + journeyList.get(x).getJourneyRef()+"</OPTION>";
+			}
+		}
+
+		result = result + "</SELECT>";
+
+		return result;
+	}
+
+	public String getHTMLJourneysCombo_Plain(String itemName, String defaultValue)
+	{
+		String result = "";
+		String selected = "";
+
+		JDBJourney jlistdb = new JDBJourney(getHostID(), getSessionID());
+		LinkedList<JDBJourney> journeyList = new LinkedList<JDBJourney>();
+
+		journeyList.addAll(jlistdb.getJourneyList(defaultValue));
+
+		result = "<SELECT ID=\"" + itemName + "\" NAME=\"" + itemName + "\">" + "<OPTION></OPTION>";
 
 		if (journeyList.size() > 0)
 		{

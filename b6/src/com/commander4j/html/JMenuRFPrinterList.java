@@ -67,4 +67,34 @@ public class JMenuRFPrinterList
 
 		return result;
 	}
+	
+	public String buildPrinterList_Plain(String selectedPrinter) {
+
+		String result = "";
+		String selected = "";
+		LinkedList<String> list = new LinkedList<String>();
+		list = JPrint.getPrinterNames();
+		result = "<SELECT NAME=\"" + "selectedPrintQueue" + "\">";
+		result = result + "<OPTION>";
+
+		if (list.size() > 0)
+		{
+			for (int x = 0; x < list.size(); x++)
+		    //for (int x = list.size()-1; x >=0; x--)
+			{
+				if (list.get(x).toString().equals(selectedPrinter))
+				{
+					selected = " SELECTED";
+				}
+				else
+				{
+					selected = "";
+				}
+				result = result + "<OPTION" + selected + ">" + list.get(x).toString();
+			}
+		}
+		result = result + "</SELECT>";
+
+		return result;
+	}
 }

@@ -50,6 +50,7 @@ import com.commander4j.db.JDBProcessOrderResource;
 import com.commander4j.db.JDBWTSamplePoint;
 import com.commander4j.db.JDBWTScale;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
@@ -78,13 +79,16 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSave;
 	private JTextField4j jTextFieldLocation;
+	private JTextField4j jTextFieldReportingGroup = new JTextField4j(35);
 	private JLabel4j_std jLabel1;
+	private JLabel4j_std jLabelEnabled;
 	private JDBWTSamplePoint samppoint = new JDBWTSamplePoint(Common.selectedHostID, Common.sessionID);
 	private String lsamplepoint;
 	private JDBLanguage lang = new JDBLanguage(Common.selectedHostID, Common.sessionID);
 	private JComboBox4j<JDBProcessOrderResource> comboBox4j_Resources = new JComboBox4j<JDBProcessOrderResource>();
 	private Vector<JDBProcessOrderResource> resourceList = new Vector<JDBProcessOrderResource>();
 	private JDBProcessOrderResource poResources = new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID);
+	private JCheckBox4j chckbxEnabled = new JCheckBox4j("");
 	
 	public void setSamplePointID(String sampid)
 	{
@@ -112,6 +116,15 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 		jTextFieldSamplePoint.setText(samppoint.getSamplePoint());
 		jTextFieldLocation.setText(samppoint.getLocation());
 		jTextFieldDescription.setText(samppoint.getDescription());
+		chckbxEnabled.setSelected(samppoint.isEnabled());
+		jTextFieldReportingGroup.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				jButtonSave.setEnabled(true);
+			}
+		});
+		jTextFieldReportingGroup.setText(samppoint.getReportingGroup());
+		jButtonSave.setEnabled(false);
 	}
 	
 	public JInternalFrameWTSamplePointProperties(String uomid)
@@ -141,9 +154,9 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 			public void run() {
 				jTextFieldDescription.requestFocus();
 				jTextFieldDescription.setCaretPosition(jTextFieldDescription.getText().length());
+				jButtonSave.setEnabled(false);
 			}
 		});
-
 
 	}
 
@@ -151,7 +164,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 571, 244);
+			this.setBounds(25, 25, 566, 277);
 			setVisible(true);
 			this.setTitle("Sample Point Properties");
 			{
@@ -167,6 +180,15 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jLabel1.setHorizontalTextPosition(SwingConstants.RIGHT);
 					jLabel1.setBounds(0, 10, 149, 21);
 				}
+				{
+					jLabelEnabled = new JLabel4j_std();
+					jDesktopPane1.add(jLabelEnabled);
+					jLabelEnabled.setText(lang.get("lbl_Enabled"));
+					jLabelEnabled.setHorizontalAlignment(SwingConstants.RIGHT);
+					jLabelEnabled.setHorizontalTextPosition(SwingConstants.RIGHT);
+					jLabelEnabled.setBounds(400, 10, 106, 21);
+				}
+				
 				{
 					jTextFieldSamplePoint = new JTextField4j(JDBWTSamplePoint.field_SamplePoint);
 					jDesktopPane1.add(jTextFieldSamplePoint);
@@ -203,7 +225,7 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(128, 155, 110, 32);
+					jButtonSave.setBounds(126, 194, 110, 32);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							save();
@@ -215,14 +237,14 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(240, 155, 110, 32);
+					jButtonHelp.setBounds(238, 194, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(352, 155, 110, 32);
+					jButtonClose.setBounds(350, 194, 110, 32);
 					jButtonClose.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							dispose();
@@ -272,12 +294,29 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 				label4j_Required_Resource.setBounds(0, 112, 149, 21);
 				jDesktopPane1.add(label4j_Required_Resource);
 				
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						jTextFieldLocation.requestFocus();
-						jTextFieldLocation.setCaretPosition(jTextFieldLocation.getText().length());
-					}
-				});
+				jTextFieldReportingGroup.setText("");
+				jTextFieldReportingGroup.setPreferredSize(new Dimension(40, 20));
+				jTextFieldReportingGroup.setFocusCycleRoot(true);
+				jTextFieldReportingGroup.setCaretPosition(0);
+				jTextFieldReportingGroup.setBounds(155, 146, 237, 21);
+				jDesktopPane1.add(jTextFieldReportingGroup);
+				
+				JLabel4j_std jLabel_ReportingGroup = new JLabel4j_std();
+				jLabel_ReportingGroup.setText(lang.get("lbl_Reporting_Group"));
+				jLabel_ReportingGroup.setHorizontalTextPosition(SwingConstants.RIGHT);
+				jLabel_ReportingGroup.setHorizontalAlignment(SwingConstants.RIGHT);
+				jLabel_ReportingGroup.setBounds(0, 146, 149, 21);
+				jDesktopPane1.add(jLabel_ReportingGroup);
+				
+				{
+					chckbxEnabled.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							jButtonSave.setEnabled(true);
+						}
+					});
+					chckbxEnabled.setBounds(509, 8, 22, 23);
+					jDesktopPane1.add(chckbxEnabled);
+				}
 			}
 		}
 		catch (Exception e)
@@ -292,6 +331,8 @@ public class JInternalFrameWTSamplePointProperties extends JInternalFrame
 		samppoint.setDescription(jTextFieldDescription.getText());
 		samppoint.setSamplePoint(jTextFieldSamplePoint.getText().toUpperCase());
 		samppoint.setRequiredResource(((JDBProcessOrderResource) comboBox4j_Resources.getSelectedItem()).getResource());
+		samppoint.setReportingGroup(jTextFieldReportingGroup.getText().toUpperCase());
+		samppoint.setEnabled(chckbxEnabled.isSelected());
 		samppoint.update();
 		jButtonSave.setEnabled(false);
 	}

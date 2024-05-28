@@ -1,0 +1,160 @@
+html {
+	font-size: 100%; /* Base font size */
+}
+
+body {
+	font-family: Courier New;
+	margin: 0;
+	padding: 0;
+	font-size: 1rem; /* Equivalent to 16px */
+}
+
+.container {
+	max-width: 650px;
+	margin: 1% auto;
+	padding: 1%;
+	border: 1px solid #ccc;
+	border-radius: 1px;
+}
+
+h1 {
+	text-align: center;
+	font-size: 2.0rem; /* Responsive font size */
+	margin-bottom: 1rem;
+}
+
+h2 {
+	text-align: center;
+	font-size: 1.5rem; /* Responsive font size */
+	margin-bottom: 1rem;
+}
+
+/* Additional CSS for text input labels */
+.form-group {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.5rem;
+}
+
+label {
+	margin-right: 1rem;
+	font-size: 1.6rem; 
+	vertical-align: middle;
+	white-space:nowrap;
+}
+
+input[type="text"],select,input[type="password"] {
+	flex: 1;
+	width: calc(100% - 1.875rem); /* Adjust input width */
+	padding: 0.5rem;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	font-size: 1.6rem; /* Responsive font size */
+	margin-bottom:1px;
+	color:blue;
+}
+
+input[type='radio'] {
+	height: 20px;
+	width: 20px;
+	position: relative;
+	vertical-align: middle; 
+	font-size: 2rem; 
+	margin-bottom: 4px;/* Responsive font size */
+}
+
+.button-group {
+	text-align: center;
+	margin-top: 1rem;
+}
+
+.button-group-vertical {
+	text-align: vertical;
+	margin-top: 1rem;
+}
+
+button {
+	padding: 0.5rem 0.5rem;
+	margin-right: 0.5rem;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 1.8rem; /* Responsive font size */
+}
+
+.submit-btn {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.cancel-btn {
+	background-color: #f44336;
+	color: white;
+}
+
+.regular-btn {
+	background-color: rgb(47, 191, 234);
+	color: white;
+}
+
+/* Additional CSS for radio button group */
+.radio-group {
+	margin-left: 1.25rem; /* Adjust margin to separate from radio buttons */
+}
+
+.radio-group input[type="radio"],
+.radio-group label {
+	display: inline-block;
+
+	margin-bottom: 0.5rem;
+	margin-top: 1rem;
+}
+
+.radio-group input[type="radio"] {
+	margin-right: 0.5rem;
+   vertical-align: middle;
+}
+
+browserMode
+{
+ 	background-color:  black;
+ 	color: black;
+}
+
+/* DEFAULT */
+@media screen and (max-width: 6300px) 
+{
+	html {
+		font-size: 100%;
+		background-color: white;
+	}
+}
+/* MC92NO */
+@media screen and (max-width: 500px) {
+	html {
+		font-size: 85%;
+		background-color: #F2FFE7;
+	}
+}
+
+/* MC9300 */
+@media screen and (max-width: 400px) {
+	html {
+		font-size: 60%;
+		background-color: #E7FEFF;
+	}
+}
+
+.divTable { display: table;margin: 0 auto; }
+.divTableRow { display: table-row;margin-bottom: 0.5rem }
+.divTableHeading { display: table-header-group; }
+.divTableCell, .divTableHead { display: table-cell; }
+.divTableHeading { display: table-header-group; }
+.divTableFoot { display: table-footer-group; }
+.divTableBody { display: table-row-group; }
+
+select {
+	font-size: 1.6rem; 
+	width: 100%;
+}
+

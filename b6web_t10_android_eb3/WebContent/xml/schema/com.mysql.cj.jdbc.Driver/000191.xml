@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		ALTER TABLE `APP_WEIGHT_SAMPLE_POINT` ADD COLUMN `REPORTING_GROUP` varchar(25) NULL DEFAULT '' AFTER `REQUIRED_RESOURCE`
+	</statement>
+	
+	<statement>
+		ALTER TABLE `APP_WEIGHT_SAMPLE_POINT` ADD COLUMN `ENABLED` varchar(1) NULL DEFAULT 'Y' AFTER `REPORTING_GROUP`
+	</statement>
+	
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = '',ENABLED = 'Y'
+	</statement>
+	
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = 'F01-02' WHERE SAMPLE_POINT IN ('Filler 01','Filler 02')
+	</statement>
+	
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = 'F03-04' WHERE SAMPLE_POINT IN ('Filler 03','Filler 04')
+	</statement>
+	
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = 'F09-10' WHERE SAMPLE_POINT IN ('Filler 09','Filler 10')
+	</statement>
+	
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = 'F11-12' WHERE SAMPLE_POINT IN ('Filler 11','Filler 12')
+	</statement>
+	
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = 'F13-14' WHERE SAMPLE_POINT IN ('Filler 13','Filler 14')
+	</statement>
+	
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = 'F15-16' WHERE SAMPLE_POINT IN ('Filler 15','Filler 16')
+	</statement>
+	
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = 'F17-18' WHERE SAMPLE_POINT IN ('Filler 17','Filler 18')
+	</statement>
+	
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = 'F41-42' WHERE SAMPLE_POINT IN ('Filler 41','Filler 42')
+	</statement>
+
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = 'F43-44' WHERE SAMPLE_POINT IN ('Filler 43','Filler 44')
+	</statement>
+	
+	<statement>
+		UPDATE `APP_WEIGHT_SAMPLE_POINT` SET REPORTING_GROUP = 'F45-46' WHERE SAMPLE_POINT IN ('FILLER 45','FILLER 46')
+	</statement>
+	
+	<statement>
+		CREATE OR REPLACE
+			VIEW `view_weight_samples5` AS
+			    SELECT 
+			        `app_weight_sample_point`.`REPORTING_GROUP` AS `REPORTING_GROUP`,
+			        MIN(`app_weight_sample_header`.`MATERIAL`) AS `MATERIAL`,
+			        CAST(`app_weight_sample_detail`.`SAMPLE_DATE` AS DATE) AS `SAMPLE_DATE`,
+			        MIN(`app_weight_sample_header`.`PROCESS_ORDER`) AS `PROCESS_ORDER`,
+			        MIN(`app_weight_sample_header`.`PRODUCT_GROUP`) AS `PRODUCT_GROUP`,
+			        MIN(`app_weight_sample_header`.`CONTAINER_CODE`) AS `CONTAINER_CODE`,
+			        CAST(AVG(`app_weight_sample_detail`.`SAMPLE_NET_WEIGHT`) AS DECIMAL (10 , 4 )) AS `MEAN_WEIGHT`,
+			        CAST(STD(`app_weight_sample_detail`.`SAMPLE_NET_WEIGHT`) AS DECIMAL (10 , 4 )) AS `STANDARD_DEVIATION`,
+			        SUM(`app_weight_sample_detail`.`SAMPLE_T1_COUNT`) AS `SAMPLE_T1_COUNT`,
+			        SUM(`app_weight_sample_detail`.`SAMPLE_T2_COUNT`) AS `SAMPLE_T2_COUNT`,
+			        COUNT(`app_weight_sample_detail`.`SAMPLE_SEQUENCE`) AS `NO_OF_SAMPLES`
+			    FROM
+			        ((`app_weight_sample_detail`
+			        LEFT JOIN `app_weight_sample_header` ON (((`app_weight_sample_header`.`SAMPLE_POINT` = `app_weight_sample_detail`.`SAMPLE_POINT`) AND (`app_weight_sample_header`.`SAMPLE_DATE` = `app_weight_sample_detail`.`SAMPLE_DATE`))))
+			        LEFT JOIN `app_weight_sample_point` ON ((`app_weight_sample_point`.`SAMPLE_POINT` = `app_weight_sample_detail`.`SAMPLE_POINT`)))
+			    WHERE
+			        ((`app_weight_sample_detail`.`SAMPLE_POINT` > '')
+			            AND (`app_weight_sample_header`.`PROCESS_ORDER` > '')
+			            AND (`app_weight_sample_header`.`MATERIAL` > '')
+			            AND (`app_weight_sample_detail`.`SAMPLE_GROSS_WEIGHT` > 0))
+			    GROUP BY `app_weight_sample_point`.`REPORTING_GROUP` , `app_weight_sample_header`.`MATERIAL` , CAST(`app_weight_sample_detail`.`SAMPLE_DATE`
+			        AS DATE)
+	</statement>
+	
+	<statement>
+		CREATE OR REPLACE
+			VIEW `view_weight_samples4` AS
+			    SELECT 
+			        `app_weight_sample_detail`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
+			        `app_weight_sample_detail`.`SAMPLE_POINT` AS `SAMPLE_POINT`,
+			        MIN(`app_weight_sample_point`.`REPORTING_GROUP`) AS `REPORTING_GROUP`,
+			        MIN(`app_weight_sample_header`.`MATERIAL`) AS `MATERIAL`,
+			        MIN(`app_weight_sample_header`.`PROCESS_ORDER`) AS `PROCESS_ORDER`,
+			        MIN(`app_weight_sample_header`.`PRODUCT_GROUP`) AS `PRODUCT_GROUP`,
+			        MIN(`app_weight_sample_header`.`CONTAINER_CODE`) AS `CONTAINER_CODE`,
+			        MIN(`app_weight_sample_header`.`NOMINAL_WEIGHT`) AS `NOMINAL_WEIGHT`,
+			        MIN(`app_weight_sample_header`.`NOMINAL_WEIGHT_UOM`) AS `NOMINAL_WEIGHT_UOM`,
+			        CAST(AVG(`app_weight_sample_detail`.`SAMPLE_NET_WEIGHT`) AS DECIMAL (10 , 4 )) AS `MEAN_WEIGHT`,
+			        CAST(STD(`app_weight_sample_detail`.`SAMPLE_NET_WEIGHT`) AS DECIMAL (10 , 4 )) AS `STANDARD_DEVIATION`,
+			        SUM(`app_weight_sample_detail`.`SAMPLE_T1_COUNT`) AS `SAMPLE_T1_COUNT`,
+			        SUM(`app_weight_sample_detail`.`SAMPLE_T2_COUNT`) AS `SAMPLE_T2_COUNT`,
+			        COUNT(`app_weight_sample_detail`.`SAMPLE_SEQUENCE`) AS `NO_OF_SAMPLES`
+			    FROM
+			        ((`app_weight_sample_detail`
+			        LEFT JOIN `app_weight_sample_header` ON (((`app_weight_sample_header`.`SAMPLE_POINT` = `app_weight_sample_detail`.`SAMPLE_POINT`) AND (`app_weight_sample_header`.`SAMPLE_DATE` = `app_weight_sample_detail`.`SAMPLE_DATE`))))
+			        LEFT JOIN `app_weight_sample_point` ON ((`app_weight_sample_point`.`SAMPLE_POINT` = `app_weight_sample_detail`.`SAMPLE_POINT`)))
+			    WHERE
+			        ((`app_weight_sample_detail`.`SAMPLE_POINT` > '')
+			            AND (`app_weight_sample_header`.`PROCESS_ORDER` > '')
+			            AND (`app_weight_sample_header`.`MATERIAL` > '')
+			            AND (`app_weight_sample_detail`.`SAMPLE_GROSS_WEIGHT` > 0))
+			    GROUP BY `app_weight_sample_detail`.`SAMPLE_DATE` , `app_weight_sample_detail`.`SAMPLE_POINT`	
+	</statement>
+	
+	<statement>
+		CREATE OR REPLACE
+			VIEW `view_weight_samples3` AS
+			    SELECT 
+			        `app_weight_sample_detail`.`SAMPLE_POINT` AS `SAMPLE_POINT`,
+			        `app_weight_sample_point`.`REPORTING_GROUP` AS `REPORTING_GROUP`,
+			        `app_weight_sample_detail`.`SAMPLE_DATE` AS `SAMPLE_DATE`,
+			        CAST(`app_weight_sample_header`.`SAMPLE_DATE` AS DATE) AS `SAMPLE_DATE_SHORT`,
+			        `app_weight_sample_detail`.`SAMPLE_SEQUENCE` AS `SAMPLE_SEQUENCE`,
+			        `app_weight_sample_detail`.`SAMPLE_WEIGHT_DATE` AS `SAMPLE_WEIGHT_DATE`,
+			        `app_weight_sample_detail`.`SAMPLE_GROSS_WEIGHT` AS `SAMPLE_GROSS_WEIGHT`,
+			        `app_weight_sample_detail`.`SAMPLE_WEIGHT_UOM` AS `SAMPLE_WEIGHT_UOM`,
+			        `app_weight_sample_header`.`TARE_WEIGHT` AS `TARE_WEIGHT`,
+			        (`app_weight_sample_detail`.`SAMPLE_GROSS_WEIGHT` - `app_weight_sample_header`.`TARE_WEIGHT`) AS `NET`,
+			        `app_weight_sample_header`.`NOMINAL_WEIGHT` AS `NOMINAL_WEIGHT`,
+			        `app_weight_sample_header`.`NOMINAL_WEIGHT_UOM` AS `NOMINAL_WEIGHT_UOM`,
+			        `app_weight_sample_detail`.`SAMPLE_T1_COUNT` AS `SAMPLE_T1_COUNT`,
+			        `app_weight_sample_detail`.`SAMPLE_T2_COUNT` AS `SAMPLE_T2_COUNT`,
+			        `app_weight_sample_header`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+			        `app_weight_sample_header`.`MATERIAL` AS `MATERIAL`,
+			        `app_weight_sample_header`.`PRODUCT_GROUP` AS `PRODUCT_GROUP`,
+			        `app_weight_sample_header`.`CONTAINER_CODE` AS `CONTAINER_CODE`
+			    FROM
+			        ((`app_weight_sample_detail`
+			        LEFT JOIN `app_weight_sample_header` ON (((`app_weight_sample_header`.`SAMPLE_POINT` = `app_weight_sample_detail`.`SAMPLE_POINT`) AND (`app_weight_sample_header`.`SAMPLE_DATE` = `app_weight_sample_detail`.`SAMPLE_DATE`))))
+			        LEFT JOIN `app_weight_sample_point` ON ((`app_weight_sample_point`.`SAMPLE_POINT` = `app_weight_sample_detail`.`SAMPLE_POINT`)))
+			    WHERE
+			        ((`app_weight_sample_detail`.`SAMPLE_POINT` > '')
+			            AND (`app_weight_sample_header`.`PROCESS_ORDER` > '')
+			            AND (`app_weight_sample_header`.`MATERIAL` > '')
+			            AND (`app_weight_sample_detail`.`SAMPLE_GROSS_WEIGHT` > 0))	
+	</statement>
+	
+	<statement>
+		CREATE OR REPLACE VIEW 
+			view_app_weight_sample_point as 
+			select * from app_weight_sample_point where enabled = 'Y'
+	</statement>
+	
+	<statement>    
+		CREATE OR REPLACE VIEW 
+			`view_sample_point_locations` AS 
+			select distinct `APP_WEIGHT_SAMPLE_POINT`.`LOCATION` AS `Location` from `APP_WEIGHT_SAMPLE_POINT` WHERE enabled = 'Y'
+	</statement>
+		
+	<statement>
+		CREATE OR REPLACE VIEW  
+		     view_sample_point_groups AS 
+		     select distinct reporting_group from app_weight_sample_point where enabled = 'Y'
+	</statement>
+</DDL>

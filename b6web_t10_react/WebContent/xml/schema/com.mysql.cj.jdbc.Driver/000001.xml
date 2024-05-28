@@ -1,0 +1,2666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+INSERT INTO `APP_STATUS` (`status`) VALUES ('Blocked')
+</statement>
+<statement>
+INSERT INTO `APP_STATUS` (`status`) VALUES ('QI')
+</statement>
+<statement>
+INSERT INTO `APP_STATUS` (`status`) VALUES ('Unrestricted')
+</statement>
+
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('LAY','LAY','LAY','Layers');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('%','P1','%','percent');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('%O','','%O','per thousand');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('1','','1','One');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('1/G','','1/G','per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('10','DAY','10','Day');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('22S','','22S','square millimetre per second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('2M','2M','2M','centimetre per second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('2X','2X','2X','metre per minute');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('3RT','','3RT','Third Party Service Rate/Costs');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('4G','4G','4G','microlitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('4O','4O','4O','Microfarad');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('4T','4T','4T','Picofarad');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('A','AMP','A','ampere');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('A87','A87','A87','gigaohm');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('A93','A93','A93','gram per cubic metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ACR','ACR','ACR','Acre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('B34','B34','B34','kilogram per cubic decimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('B45','B45','B45','kilomole');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('B47','B47','B47','Kilonewton');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('B73','B73','B73','Meganewton');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('B75','B75','B75','Megaohm');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('B78','B78','B78','megavolt');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('B84','B84','B84','Microampere');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('BAG','BG','BAG','Bag');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('BAR','BAR','BAR','bar');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('BOT','BO','BOT','Bottle');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('BQK','A18','BQK','becquerel per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('C10','C10','C10','millifarad');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('C36','C36','C36','mole per cubic metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('C38','C38','C38','mole per litre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('C39','C39','C39','Nanoampere');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('C3S','2J','C3S','cubic centimetre per second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('C41','C41','C41','nanofarad');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('C56','C56','C56','newton per square millimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('CCM','CMQ','CCM','cubic centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('CD','CDL','CD','candela');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('CDM','DMQ','CDM','cubic decimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('CFU','','CFU','Colony forming Unit');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('CM','CMT','CM','centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('CM2','CMK','CM2','square centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('CMH','','CMH','centimetre per hour');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('CNT','','CNT','count');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('CS','CS','CS','Case');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('CTL','CLT','CTL','centilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('D10','D10','D10','siemens per metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('D41','D41','D41','ton per cubic metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('D46','D46','D46','volt ampere');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('DEG','DD','DEG','Degree');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('DM','DMT','DM','decimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('DR','DR','DR','Drum');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('DZ','DZN','DZ','dozen');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('EA','EA','EA','each');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('EE','','EE','enzyme unit');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('EML','','EML','enzyme unit/millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('F','FAR','F','Farad');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('FA','FAH','FA','degree Fahrenheit');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('FT','FOT','FT','foot');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('FT2','FTK','FT2','square foot');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('FT3','FTQ','FT3','cubic foot');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('G','GRM','G','Gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('GC','CEL','GC','degree Celsius');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('GHG','','GHG','gram per hectogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('GJ','GV','GJ','gigajoule');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('GKG','GK','GKG','gram per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('GLI','GL','GLI','gram per litre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('GLL','GLL','GLL','gallon US (liquid)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('GM','A94','GM','gram per mole');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('GM2','GM','GM2','gram per square metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('GPH','','GPH','gallon per hour (US)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('GQ','GQ','GQ','microgram per cubic metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('H','HUR','H','hour');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('HAR','HAR','HAR','hectare');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('HL','HLT','HL','hectolitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('HPA','A97','HPA','Hectopascal');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('HUM','ZZ1','HUM','Handling unit movement');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('HZ','HTZ','HZ','hertz');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('IN','INH','IN','inch');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('IN2','INK','IN2','square inch');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('IN3','INQ','IN3','cubic inch');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('J','JOU','J','Joule');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('JHR','ANN','JHR','year');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('JKG','J2','JKG','joule per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('JMO','B15','JMO','joule per mole');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('K','KEL','K','Kelvin');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KA','B22','KA','Kiloampere');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KAN','CA','KAN','can');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KAR','CT','KAR','carton');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KBK','B25','KBK','Kilobecquerel per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KG','KGM','KG','Kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KGF','','KGF','kilogram per square metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KGK','3H','KGK','kilogram per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KGM','D74','KGM','kilogram per mole');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KGS','KGS','KGS','kilogram per second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KGV','KMQ','KGV','kilogram per cubic metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KGW','','KGW','kg Active Ingredient');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KHZ','KHZ','KHZ','Kilohertz');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KI','CR','KI','Crate');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KJ','KJO','KJ','Kilojoule');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KJK','B42','KJK','kilojoule per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KJM','B44','KJM','kilojoule per mole');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KM','KTM','KM','kilometre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KM2','KMK','KM2','square kilometre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KMH','KMH','KMH','kilometre per hour');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KMK','','KMK','cubic metre per cubic metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KMN','','KMN','kelvin per minute');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KMS','','KMS','kelvin per second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KNM','','KNM','kilonewton per square metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KOH','B49','KOH','kiloohm');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KPA','KPA','KPA','Kilopascal');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KT','KTN','KT','kilotonne');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KV','KVT','KV','Kilovolt');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KVA','KVA','KVA','kilovolt ampere');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KW','KWT','KW','Kilowatt');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('KWH','KWH','KWH','Kilowatt hour');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('L','LTR','L','litre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('L2','L2','L2','litre per minute');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('LAG','LR','LAG','layer of a pallet');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('LB','LBR','LB','pound');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('LE','ZZ3','LE','activity unit');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('LPH','','LPH','litre per hour');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('M','MTR','M','metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('M%','','M%','Percent mass');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('M%O','','M%O','per thousand mass');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('M/S','MTS','M/S','metre per second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('M2','MTK','M2','square metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('M2I','','M2I','per square metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('M2S','S4','M2S','metre squared per second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('M3','MTQ','M3','cubic metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('M3S','MQS','M3S','cubic metre per second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MA','4K','MA','Milliampere');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MBA','MBR','MBA','millibar');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MBZ','','MBZ','metrebar per second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MEJ','3B','MEJ','megajoule');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MG','MGM','MG','Milligram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MGF','','MGF','milligram/square centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MGG','','MGG','milligram per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MGK','NA','MGK','milligram per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MGL','M1','MGL','milligram per litre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MGQ','GP','MGQ','milligram per cubic metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MGW','MAW','MGW','megawatt');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MHZ','MHZ','MHZ','megahertz');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MI','SMI','MI','Mile');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MI2','MIK','MI2','square mile');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MIM','4H','MIM','micrometre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MIN','MIN','MIN','minute');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MIS','B98','MIS','Microsecond');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MJ','C15','MJ','millijoule');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ML','MLT','ML','millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MLK','','MLK','millilitre per cubic metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MM','MMT','MM','millimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MM2','MMK','MM2','square millimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MMA','','MMA','millimetre per year');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MMG','','MMG','millimole per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MMH','','MMH','millimetre per hour');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MMK','D87','MMK','millimole per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MMO','C18','MMO','millimole');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MMQ','MMQ','MMQ','cubic millimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MMS','C16','MMS','millimetre per second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MNM','C22','MNM','millinewton per metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MOK','C19','MOK','mole per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MOL','C34','MOL','mole');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MON','MON','MON','Month');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MPA','MPA','MPA','megapascal');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MPB','','MPB','parts per billion (mass)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MPM','','MPM','parts per million (mass)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MPS','C24','MPS','millipascal second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MPT','','MPT','parts per trillion (mass)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MPZ','','MPZ','metrepascal/second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MQH','MQH','MQH','cubic metre per hour');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MS','C26','MS','Millisecond');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MS2','MSK','MS2','metre per second squared');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MTE','C29','MTE','millitesla');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MTS','','MTS','metre per hour');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MV','2Z','MV','millivolt');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MVA','MVA','MVA','megavolt ampere');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MW','C31','MW','milliwatt');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('MWH','MWH','MWH','megawatt hour');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('N','NEW','N','newton');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('NAM','C45','NAM','nanometre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('NM','4P','NM','newton per metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('NS','C47','NS','Nanosecond');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('OHM','OHM','OHM','Ohm');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('OZ','ONZ','OZ','ounce');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('OZA','OZA','OZA','fluid ounce US');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('P','','P','point');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PA','PAL','PA','pascal');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PAA','PR','PAA','pair');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PAK','PK','PAK','pack');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PAL','D97','PAL','pallet (unit load)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PAS','C65','PAS','pascal second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PMI','','PMI','per minute');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PPB','','PPB','parts per billion (units)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PPM','','PPM','parts per million (units)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PPT','','PPT','parts per trillion (units)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PRS','IE','PRS','number of persons');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PS','','PS','Picosecond');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PT','PT','PT','pint US (liquid)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('PUM','ZZ2','PUM','planning unit measure');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('QT','QT','QT','quart US (liquid)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('RHO','','RHO','gram per cubic centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ROL','RO','ROL','Roll');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('S','SEC','S','second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('SIL','','SIL','silo');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ST','C62','ST','piece');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('STD','HUR','STD','Hours');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('SUD','C62','SUD','storage unit day');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('TAG','DAY','TAG','Days');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('TC3','','TC3','per cubic centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('TES','D33','TES','tesla');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('TH','MIL','TH','thousand');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('TM3','','TM3','per cubic metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('TNK','','TNK','tanker');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('TO','TNE','TO','tonne (metric ton)');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('TON','STN','TON','ton US');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('UGL','','UGL','microgram per litre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('V','VLT','V','volt');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('V%','','V%','Percent volume');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('V%O','','V%O','per thousand volume');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('V01','','V01','Microsiemens per centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('V02','','V02','millimole per litre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('VPB','','VPB','parts per billion volume');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('VPM','','VPM','parts per million volume');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('VPT','','VPT','parts per trillion volume');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('W','WTT','W','watt');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('WCH','WEE','WCH','Week');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('YD','YRD','YD','yard');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('YD2','YDK','YD2','square yard');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('YD3','YDQ','YD3','cubic yard');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z01','','Z01','kilojoule per 100 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z02','','Z02','kilocalorie per 100 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z03','','Z03','kilocalorie');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z04','','Z04','microgram per 100 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z06','','Z06','cubic centimetre/sq metre day');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z07','HR','Z07','Hardness Rockwell');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z08','','Z08','brabender unit');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z09','','Z09','flute per metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z10','','Z10','per 100 milligram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z12','','Z12','per 25 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z13','','Z13','per 50 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z14','','Z14','per 100 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z15','','Z15','decanewton');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z16','','Z16','milliequivalent O2/kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z17','','Z17','Dornic degree');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z18','','Z18','cubic centimetre/sq metre sec');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z19','','Z19','milliequivalent per 100 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z20','','Z20','milliequivalent');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z21','','Z21','milliequivalent per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z24','','Z24','per 10 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z25','','Z25','milligram per 100 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z26','','Z26','gram per unit');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z27','','Z27','decanewton per centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z28','','Z28','picogram per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z29','','Z29','litre per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z33','','Z33','gram per minute');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z34','','Z34','kilogram per minute');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z40','GC','Z40','gram per 100 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z41','','Z41','milliequivalent per millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z42','C20','Z42','millinewton');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z43','','Z43','milliequivalent H/100 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z44','','Z44','milliequivalent OH/100 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z45','','Z45','gram per cubic decimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z46','','Z46','millilitre per 100g');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z47','','Z47','gram per 100 millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z48','','Z48','microgram per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z49','','Z49','millilitre per 100 millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z50','','Z50','Kolbach unit per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z51','','Z51','Windisch Kolbach unit per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z52','','Z52','amyloglucosidase unit per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z53','','Z53','Nestle unit per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z54','','Z54','trypsin inhibitor unit/gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z55','','Z55','US pharmacopoeia unit per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z58','','Z58','per cubic decimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z59','D5','Z59','kilogram per square centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z60','','Z60','kilonewton per metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z61','','Z61','newton per 15 millimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z62','','Z62','millinewton metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z63','','Z63','newton square millimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z64','','Z64','gram per centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z65','','Z65','French degree');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z66','','Z66','German degree');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z67','','Z67','centinewton square centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z68','','Z68','micrometre per pascal second');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z69','','Z69','international unit vit A/100g');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z70','','Z70','international unit vit D/100g');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z71','','Z71','international unit vit E/100g');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z72','','Z72','microgram ÃŸ carotene/100g');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z73','','Z73','microgram RE/100g');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z74','','Z74','milligram TE per 100g');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z75','','Z75','microgram vitamin D/100g');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z76','GO','Z76','milligram per square metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z77','D21','Z77','square metre per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z78','','Z78','millipascal');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z79','','Z79','gram per square metre day');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z80','','Z80','milliosmole per litre solution');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z81','','Z81','milliosmole per kilogram water');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z82','','Z82','US pharmacopoeia unit per mg');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z83','','Z83','trypsin inhibitor unit/mg N');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z84','','Z84','Nestle unit per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z85','','Z85','kiloNovo unit per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z86','','Z86','microgram per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z87','','Z87','millilitre per minute');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z88','PO','Z88','pound per inch');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z89','','Z89','pound per square inch');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z90','','Z90','kilogram per hour');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z91','','Z91','per kilogram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z92','','Z92','degree Celcius per minute');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z93','','Z93','newton centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z94','','Z94','kilogram per 100 square metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z95','','Z95','per metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z96','DS','Z96','display');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z97','','Z97','per millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z98','','Z98','per 10 millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('Z99','','Z99','international unit vitamin A');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZA0','IA','IA','inch pound');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZA1','','ZA1','microgram beta carotene');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZA2','','ZA2','microgram retinol equivalent');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZA3','','ZA3','international unit vitamin D');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZA4','','ZA4','microgram vitamin D');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZA5','','ZA5','International unit vitamin E');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZA6','','ZA6','mg tocopherol equivalent');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZA7','','ZA7','millilitre per gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZA8','','ZA8','degree brix');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZA9','','ZA9','degree Soxhlet Henkel');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZB0','NU','ZB0','newton metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZB1','GJ','ZB1','gram per millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZB2','NE','ZB2','net litre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZB3','','ZB3','per 25 millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZB4','','ZB4','per 50 millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZB5','','ZB5','per 100 millilitre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZB6','','ZB6','per gross rating point');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZB7','','ZB7','unit per day');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZB8','','ZB8','litre per day');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZB9','','ZB9','gram per day');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZC0','CP','ZC0','centipoise');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZC1','','ZC1','per day');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZC2','','ZC2','per week');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZC3','','ZC3','per month');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZC4','','ZC4','gross rating point');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZC5','','ZC5','targeted rating point');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZC6','','ZC6','advertising spot');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZC7','','ZC7','newton millimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZC8','','ZC8','per 5 gram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZC9','MC','ZC9','microgram');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZD0','','ZD0','milligram retinol equivalent');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZD1','','ZD1','milligram beta carotene');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZD2','','ZD2','x1000 international unit vit A');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZD3','','ZD3','milligram vitamin D');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZD4','','ZD4','x1000 international unit vit D');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZD7','G/M','ZD7','gram per meter');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZD8','','ZD8','milligram per square decimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZD9','','ZD9','milligram per end');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZE1','','ZE1','pinhole per square metre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZE2','','ZE2','milligram per 1000 cycles');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZE3','','ZE3','unit per centimetre');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZF1','ZZA','IEA','IP Each');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZF2','ZZB','IDP','IP Display');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZF3','ZZC','ICS','IP Case');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZF4','ZZD','ICT','IP Carton');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZF5','ZZE','ILY','IP Layer');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZF6','ZZF','IPL','IP Pallet');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZF7','ZZG','IBG','IP Bag');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZF8','ZZH','IDR','IP Drum');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZF9','ZZI','IRL','IP Roll');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZG0','ZZJ','ITH','IP 1000');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZG1','ZZK','IPR','IP Pair');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZG2','ZZL','IPK','IP Pack');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZG3','ZZM','IBT','IP Bottle');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZG4','ZZN','IDZ','IP Dozen');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZG5','ZZO','ICN','IP Can');
+</statement>
+<statement>
+INSERT INTO `APP_UOM` (`uom`, `iso_uom`, `local_uom`, `description`) VALUES ('ZG6','ZZP','ICR','IP Crate');
+</statement>
+
+
+<statement>
+INSERT INTO `APP_UOM_CONVERSION` (`uom_from`, `uom_to`, `numerator`, `denominator`) VALUES ('G','KG','1','1000');
+</statement>
+<statement>
+INSERT INTO `APP_UOM_CONVERSION` (`uom_from`, `uom_to`, `numerator`, `denominator`) VALUES ('KG','KG','1','1');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('00','SSCC-18','S','N',18,'F','Y');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('01','SCC-14','S','N',14,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('02','Item Number of Goods Contained Within Another Unit (Must Use with AI 37)','S','N',14,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('10','Batch or Lot Number','S','N',20,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('11','Production Date (YYMMDD)','D','N',6,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('13','Packaging Date (YYMMDD)','D','N',6,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('15','Sell By Date (Quality) (YYMMDD)','D','N',6,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('17','Expiration Date (Safety) (YYMMDD)','D','N',6,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('20','Product Variant','S','N',2,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('21','Serial Number','S','N',20,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('22','HIBCC - Quantity, Date, Batch and Link','S','N',29,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('230','Lot Number (Transitional Use)','S','N',1,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('231','Lot Number (Transitional Use)','S','N',3,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('232','Lot Number (Transitional Use)','S','N',5,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('233','Lot Number (Transitional Use)','S','N',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('234','Lot Number (Transitional Use)','S','N',9,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('235','Lot Number (Transitional Use)','S','N',11,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('236','Lot Number (Transitional Use)','S','N',13,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('237','Lot Number (Transitional Use)','S','N',15,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('238','Lot Number (Transitional Use)','S','N',17,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('239','Lot Number (Transitional Use)','S','N',19,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('240','Additional Product Identification assigned by the Manufacturer','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('250','Secondary Serial Number','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('30','Quantity','N','N',8,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('310','Net Weight, Kilograms','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('311','Length or 1st Dimension, Meters','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('312','Width, Diameter or 2nd Dimension, Meters','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('313','Depth, Thickness, Height or 3rd Dimension, Meters','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('314','Area, Square Meters','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('315','Volume, Liters','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('316','Volume, Cubic Meters','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('320','Net Weight, Pounds','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('321','Length or 1st Dimension, Inches','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('322','Length or 1st Dimension, Feet','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('323','Length or 1st Dimension, Yards','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('324','Width, Diameter, or 2nd Dimension, Inches','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('325','Width, Diameter, or 2nd Dimension, Feet','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('326','Width, Diameter, or 2nd Dimension, Yards','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('327','Depth, Thickness, Height or 3rd Dimension, Inches','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('328','Depth, Thickness, Height or 3rd Dimension, Feet','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('329','Depth, Thickness, Height or 3rd Dimension, Yards','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('330','Gross Weight, Kilograms','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('331','Length or 1st Dimension, Meters, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('332','Width, Diameter or 2nd Dimension, Meters, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('333','Depth, Thickness, Height or 3rd Dimension, Meters, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('334','Area, Square Meters, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('335','Gross Volume, Liters','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('336','Gross Volume, Cubic Meters','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('340','Gross Weight, Pounds','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('341','Length or 1st Dimension, Inches, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('342','Length or 1st Dimension, Feet, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('343','Length or 1st Dimension, Yards, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('344','Width, Diameter or 2nd Dimension, Inches, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('345','Width, Diameter or 2nd Dimension, Feet, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('346','Width, Diameter or 2nd Dimension, Yards, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('347','Depth, Thickness, Height or 3rd Dimension, Inches, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('348','Depth, Thickness, Height or 3rd Dimension, Feet, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('349','Depth, Thickness, Height or 3rd Dimension, Yards, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('350','Area, Square Inches','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('351','Area, Square Feet','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('352','Area, Square Yards','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('353','Area, Square Inches, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('354','Area, Square Feet, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('355','Area, Square Yards, Logistics','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('356','Net Weight, Troy Ounce','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('360','Volume, Quarts','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('361','Volume, Gallons','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('362','Gross Volume, Quarts','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('363','Gross Volume, Gallons','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('364','Volume, Cubic Inches','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('365','Volume, Cubic Feet','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('366','Volume, Cubic Yards','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('367','Gross Volume, Cubic Inches','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('368','Gross Volume, Cubic Feet','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('369','Gross Volume, Cubic Yards','N','Y',7,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('37','Quantity of Units Contained (For Use With AI 02 Only)','N','N',8,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('400','Customer Purchase Order Number','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('410','Ship To (Deliver To) Location Code Using EAN-13','S','N',13,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('411','Bill To (Invoice To) Location Code Using EAN-13','S','N',13,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('412','Purchase From (Location Code of Party from Whom Goods are Purchased)','S','N',13,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('414','EAN Location Code for Physical Identification','S','N',13,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('420','Ship To (Deliver To) Postal Code Within a Single Postal Authority','S','N',9,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('421','Ship To (Deliver To) Postal Code With 3-Digit ISO Country Code Prefix','S','N',12,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('8001','Roll products - Width, Length, Core Diameter, Direction and Splices','S','N',14,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('8002','Electronic Serial Number for Cellular Mobile Telephones','S','N',20,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('8003','UPC/EAN Number and Serial Number of Returnable Asset','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('8004','UCC/EAN Serial Identification','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('8005','Identifies the Price Per Unit of Measure','N','N',6,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('8100','Coupon Extended Code - Number System Character and Offer','S','N',6,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('8101','Coupon Extended Code - Number System Character, Offer, and End of Offer','S','N',10,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('8102','Coupon Extended Code - Number System Character preceded by zero','S','N',2,'F','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('90','Mutually Agreed, Between Trading Partners or FACT DIs','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('91','Intra-Company (Internal)','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('92','Intra-Company (Internal)','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('93','Intra-Company (Internal)','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('94','Intra-Company (Internal)','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('95','Internal-Carriers','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('96','Internal-Carriers','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('97','Intra-Company (Internal)','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('98','Intra-Company (Internal)','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `BAR_EAN_DEFS` (`application_id`, `description`, `data_type`, `decimal_indicator`, `max_data_length`, `fixed_variable`, `check_digit`) VALUES ('99','Internal','S','N',30,'V','N');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('BATCH FORMAT','{YEAR,4,1}{JULIAN_DAY}{PLANT}','Format for Batch Number');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('COMPANY NAME','My Company','Company Name as printed on Reports');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('DEFAULT BATCH STATUS','Restricted','Used if Material has no default batch status defined');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('DEFAULT HELPSET ID','UsingHelp','Default Help Page');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('DEFAULT PALLET STATUS','Unrestricted','Used if Material has no default pallet status defined');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('DESPATCH NUMBER','1','Despatch Number');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('DESPATCH NUMBER FORMAT','WI{NNNNN}','Format of Despatch Number');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('HELPSET FILENAME','help/helpset.hs','Location and name of the HelpSet');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('INTERFACE LOG ID','1','');
+</statement>
+
+<statement>
+	INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('UOM BASE QTY PER LAYER', 'LAG', 'UOM Base Qty Per Layer');
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_AUTH_REQD', 'true', 'SMTP Authentication Reqd')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_HOST_NAME', 'mail.testsmtp.com', 'SMTP Server for sending emails')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_AUTH_USER', 'mailUser', 'SMTP Username')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_AUTH_PWD', 'mailPassword', 'SMTP Password')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_POP_HOST_NAME', 'mail.testsmtp.com', 'POP3 Server for receiving emails')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_POP_AUTH_USER', 'mailUser', 'POP3 Username')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_POP_AUTH_PWD', 'mailPassword', 'POP3 Password')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_FROM_ADRESS', 'Commander4j', 'From Email')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_PORT', '25', 'SMTP Port')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('MAIL_SMTP_USE_TLS', 'False', 'Use TLS')
+</statement>
+
+<statement>
+		Insert into SYS_CONTROL (SYSTEM_KEY,KEY_VALUE,DESCRIPTION) values ('UOM FULL PALLET QTY', 'PAL', 'Uom for full pallet')
+</statement>
+
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('PASSWORD ATTEMPTS','3','Max password tries before account locked');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('PASSWORD EXPIRY','30','Password expiry in days.');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('PLANT','0929','SAP Plant');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('PROCESS ORDER NUMBER','1','');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('PROCESS ORDER NUMBER FORMAT','{NNNNNNNN}','');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('SCHEMA VERSION','1','Database Version');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('SSCC PREFIX','0000000000','Pallet Number Prefix');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('SSCC SEQUENCE','1','Next Pallet Number');
+</statement>
+<statement>
+INSERT INTO `SYS_CONTROL` (`system_key`, `key_value`, `description`) VALUES ('TRANSACTION REF','1','');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUPS` (`group_id`, `description`) VALUES ('ADMIN','Admin');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUPS` (`group_id`, `description`) VALUES ('INTERFACE','Interfaces');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUPS` (`group_id`, `description`) VALUES ('PALLET','Finished Goods');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUPS` (`group_id`, `description`) VALUES ('PUBLIC','Public');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUPS` (`group_id`, `description`) VALUES ('REPORT_DESIGN','Report Designers');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUPS` (`group_id`, `description`) VALUES ('TOOLS','Tools');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_CONTROL_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_DESPATCH');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_GROUPS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_GROUP_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_GROUP_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_GROUP_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_GROUP_PERM');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_GROUP_RENAME');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_INTERFACE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_INTERFACE_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_INTERFACE_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_INTERFACE_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_INTERFACE_LOG');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_INTERFACE_PROCESS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_LOCATIONS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_LOCATION_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_LOCATION_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_LOCATION_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIALS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_BATCH');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_BATCH_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_TYPE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_TYPE_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_TYPE_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_TYPE_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_TYPE_PRINT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_TYPE_RENAME');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_UOM');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_UOM_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_UOM_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MATERIAL_UOM_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MENU');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MODULES');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MODULE_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MODULE_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MODULE_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_MODULE_RENAME');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLETS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_EDIT_BATCH');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_EDIT_LOCATION');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_EDIT_MATERIAL');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_EDIT_PROD_DATE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_EDIT_QUANTITY');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_EDIT_STATUS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_EDIT_UOM');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_HISTORY');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PALLET_PRINT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PROCESS_ORDER');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PROCESS_ORDER_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PROCESS_ORDER_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_PROCESS_ORDER_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_RF_MENU');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_TOOLBAR');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_UOM');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_UOM_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_UOM_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_UOM_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_UOM_PRINT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_UOM_RENAME');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_USERS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_USER_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_USER_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_USER_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_USER_PERM');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_ADMIN_USER_RENAME');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_CM_PRINTERS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_PAL_PROD_CONFIRM');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_PAL_PROD_DEC');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_SYSTEM_KEYS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_SYSTEM_KEYS_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_SYSTEM_KEYS_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','FRM_SYSTEM_KEYS_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','MENU_ADMIN');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','MENU_CUSTOMISE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','MENU_DATA_MAINT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','MENU_INTERFACE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','MENU_PAL');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','MENU_PAL_REPORTS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','MENU_PERMISSIONS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','MENU_SETUP');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','MENU_TOOLS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_CONTROL');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_DESPATCH');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_GROUPS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_LOCATIONS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_MATERIALS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_MATERIAL_UOM');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_MODULES');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_PALLETS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_PALLET_HISTORY');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_PALLET_LABEL');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_PROCESS_ORDERS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_TYPES');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_UNITS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','RPT_USERS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('ADMIN','root');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('INTERFACE','FRM_ADMIN_INTERFACE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('INTERFACE','FRM_ADMIN_INTERFACE_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('INTERFACE','FRM_ADMIN_INTERFACE_LOG');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('INTERFACE','MENU_INTERFACE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_DESPATCH');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLETS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_ADD');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_DELETE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_EDIT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_EDIT_BATCH');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_EDIT_LOCATION');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_EDIT_MATERIAL');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_EDIT_PROD_DATE');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_EDIT_QUANTITY');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_EDIT_STATUS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_EDIT_UOM');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_HISTORY');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PALLET_PRINT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_ADMIN_PROCESS_ORDER');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_PAL_PROD_CONFIRM');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_PAL_PROD_DEC');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','MENU_PAL');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','MENU_PAL_REPORTS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','RPT_DESPATCH');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','RPT_PALLETS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','RPT_PALLET_HISTORY');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PUBLIC','FRM_CM_PRINTERS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PUBLIC','root');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('REPORT_DESIGN','EXEC_IREPORT');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('REPORT_DESIGN','MENU_TOOLS');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('TOOLS','EXEC_CONFIG');
+</statement>
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('TOOLS','EXEC_IREPORT');
+</statement>
+<statement>
+INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Batch Status Change','Input','{base_dir}\\xml\\interface\\input\\Batch Status Change','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+</statement>
+<statement>
+INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Despatch Confirmation','Output','{base_dir}\\xml\\interface\\output\\Despatch Confirmation','Y','Disk',NULL,NULL,NULL,NULL,NULL,'EANCOM','None',NULL,'','');
+</statement>
+<statement>
+Insert INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Despatch Confirmation','Input','{base_dir}\\xml\\interface\\input\\Despatch Confirmation','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+</statement>
+<statement>
+Insert INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Despatch Pre Advice','Output','{base_dir}\\xml\\interface\\output\\Despatch Pre Advice','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+</statement>
+<statement>
+Insert INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Equipment Tracking','Output','{base_dir}\\xml\\interface\\output\\Equipment Tracking','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+</statement>
+<statement>
+INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Material Definition','Input','{base_dir}\\xml\\interface\\input\\Material Definition','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','ISO to INTERNAL',NULL,'','');
+</statement>
+<statement>
+INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Pallet Status Change','Input','{base_dir}\\xml\\interface\\input\\Pallet Status Change','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+</statement>
+<statement>
+INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Process Order','Input','{base_dir}\\xml\\interface\\input\\Process Order','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','Local to INTERNAL',NULL,'','');
+</statement>
+<statement>
+INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Process Order Status Change','Input','{base_dir}\\xml\\interface\\input\\Process Order Status Change','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+</statement>
+<statement>
+INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Production Declaration','Input','{base_dir}\\xml\\interface\\input\\Production Declaration','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+</statement>
+<statement>
+INSERT INTO `SYS_INTERFACE` (`INTERFACE_TYPE`, `INTERFACE_DIRECTION`, `PATH`, `ENABLED`, `DEVICE`, `SUBJECT`, `TOPIC`, `SERVER`, `USERNAME`, `PASSWORD`, `FORMAT`, `UOM_CONVERSION`, `ENABLE_EMAIL_NOTIFICATIONS`, `EMAIL_FLAGS`, `EMAIL_ADDRESSES`) VALUES ('Production Declaration','Output','{base_dir}\\xml\\interface\\output\\Production Declaration','Y','Disk',NULL,NULL,NULL,NULL,NULL,'XML','None',NULL,'','');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('EXEC_CONFIG','MENU_TOOLS','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('EXEC_IREPORT','MENU_TOOLS','0');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_DESPATCH','MENU_PAL','2');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_GROUPS','MENU_PERMISSIONS','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_INTERFACE','MENU_INTERFACE','0');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_INTERFACE_LOG','MENU_INTERFACE','2');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_INTERFACE_PROCESS','MENU_INTERFACE','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_LOCATIONS','MENU_DATA_MAINT','0');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_MATERIALS','MENU_DATA_MAINT','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_MATERIAL_BATCH','MENU_DATA_MAINT','2');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_MATERIAL_TYPE','MENU_DATA_MAINT','3');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_MENU','MENU_CUSTOMISE','0');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_MODULES','MENU_SETUP','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_PALLETS','MENU_PAL','3');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_PALLET_HISTORY','MENU_PAL','4');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_PROCESS_ORDER','MENU_DATA_MAINT','4');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_RF_MENU','MENU_CUSTOMISE','3');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_TOOLBAR','MENU_CUSTOMISE','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_UOM','MENU_DATA_MAINT','5');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_ADMIN_USERS','MENU_PERMISSIONS','0');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_CM_PRINTERS','MENU_PAL_REPORTS','5');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_CM_PRINTERS','root','4');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_PAL_PROD_CONFIRM','MENU_PAL','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_PAL_PROD_DEC','MENU_PAL','0');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('FRM_SYSTEM_KEYS','MENU_SETUP','0');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('MENU_ADMIN','root','2');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('MENU_CUSTOMISE','MENU_ADMIN','0');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('MENU_DATA_MAINT','root','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('MENU_INTERFACE','root','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('MENU_PAL','root','0');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('MENU_PERMISSIONS','MENU_ADMIN','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('MENU_SETUP','MENU_ADMIN','2');
+</statement>
+<statement>
+INSERT INTO `SYS_MENUS` (`module_id`, `menu_id`, `sequence_id`) VALUES ('MENU_TOOLS','root','3');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('EXEC_CONFIG','Host Configuration','N','Y','EXEC',NULL,'0',NULL,NULL,NULL,'C:\\Java\\eclipse\\workspace\\b4\\Setup_Commander.cmd','C:\\Java\\eclipse\\workspace\\b4','Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('EXEC_IREPORT','iReports','N','Y','EXEC','','0','','','','C:\\Java\\iReport\\iReport.bat','C:\\Java\\iReport','Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_CONTROL_EDIT','12','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/administration/Setup/SystemKeys/SystemKeyAdmin.html',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_DESPATCH','Despatch Pallets','Y','Y','FORM','Despatch Pallets','0','despatch.gif',NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_GROUPS','Groups','N','Y','FORM','Administer User Groups','71','admingroups.gif','/help/html/commander4j/application/administration/Permissions/Groups/GroupAdmin.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_GROUP_ADD','Add a Group','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/administration/Permissions/Groups/GroupAdminAdd.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_GROUP_DELETE','Delete a Group','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/administration/Permissions/Groups/GroupAdminDelete.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_GROUP_EDIT','Group Properties','N','Y','FUNCTION','Edit Group Properties','0',NULL,'/help/html/commander4j/administration/Permissions/Groups/GroupAdminEdit.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_GROUP_PERM','Group Permissions','N','Y','FUNCTION','Assign Modules to Group','0',NULL,'/help/html/commander4j/administration/Permissions/Groups/GroupAdminPermissions.html',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_GROUP_RENAME','Rename a Group','N','Y','FUNCTION',NULL,'0',NULL,'help/html/commander4j/administration/Permissions/Groups/GroupAdminRename.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_INTERFACE','Interface Admin','N','Y','FORM','','0','interface.gif','','','','','Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_INTERFACE_EDIT','Interface Properties','N','Y','FUNCTION','','0','','','','','','Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_INTERFACE_LOG','View Interface Log','N','Y','FORM',NULL,'79','interface.gif',NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_INTERFACE_PROCESS','Process Interface Messages','N','Y','FORM','','0','connect.gif','','','','','Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_LOCATIONS','Administer Locations','N','Y','FORM','Maintain the locations table','76','locations.gif','/help/html/commander4j/application/dataMaintenance/Locations/LocationAdmin.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_LOCATION_ADD','Add a new location','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_LOCATION_DELETE','Delete a location','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_LOCATION_EDIT','Edit a location','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/dataMaintenance/Locations/LocationAdminEdit.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIALS','Administer Materials','N','Y','FORM','Create and update Materials','77','materials.gif','/help/html/commander4j/application/dataMaintenance/Locations/LocationAdmin.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_ADD','Add a Meterial','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_BATCH','Administer Batches','N','Y','FORM','Maintain Material Batches','66','batches.gif',NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_BATCH_EDIT','Edit a Material Batch Record','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_DELETE','Delete a Material','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_EDIT','Edit a Material','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/dataMaintenance/Materials/MaterialAdminEdit.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_TYPE','Administer Material Types','N','Y','FORM','Material Types','84','types.gif','/help/html/commander4j/application/dataMaintenance/MaterialTypes/MaterialTypes.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_TYPE_ADD',NULL,'N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_TYPE_DELETE',NULL,'N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_TYPE_EDIT','Add or Update a Material Type','N','Y','FUNCTION','Add or Update a Material Type','0',NULL,'/help/html/commander4j/dataMaintenance/MaterialTypes/MaterialTypesDelete.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_TYPE_PRINT',NULL,'N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_TYPE_RENAME',NULL,'N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_UOM','Administer UOMs for a Material','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/dataMaintenance/UOMs/UomAdmin.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_UOM_ADD',NULL,'N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_UOM_DELETE',NULL,'N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MATERIAL_UOM_EDIT','Edit Material UOM Properties','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/dataMaintenance/UOMs/UomAdminEdit.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MENU','Menu Maintenance','N','Y','FORM','Change menu structure','97','menustruct.gif','/help/html/commander4j/application/administration/Customise/Menus/MenuAdmin.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MODULES','Modules','N','Y','FORM','Administer Modules','77','adminmodules.gif','/help/html/commander4j/application/administration/Customise/Modules/ModuleAdmin.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MODULE_ADD','Add a Module','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MODULE_DELETE','Delete a Module','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MODULE_EDIT','Edit the Module Properties','N','Y','FUNCTION','Edit a Module','0',NULL,'/help/html/commander4j/administration/Customise/Modules/ModuleAdminEdit.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_MODULE_RENAME','Rename a Module','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLETS','Administer Pallets','N','Y','FORM',NULL,'80','pallet.gif',NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_ADD','Add a Pallet','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_DELETE','Delete a Pallet','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_EDIT','Edit Pallet','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_EDIT_BATCH','Edit Pallet Batch','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_EDIT_LOCATION','Edit Pallet Location','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_EDIT_MATERIAL','Edit Material of Pallet','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_EDIT_PROCESS_ORDER','Edit Process Order','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_EDIT_PROD_DATE',NULL,'N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_EDIT_QUANTITY','Edit Pallet Quantity','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_EDIT_STATUS','Edit Pallet Status','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_EDIT_UOM',NULL,'N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_HISTORY','Pallet History','N','Y','FORM',NULL,'0','pallet_history.gif',NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PALLET_PRINT','Pallet Print','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PROCESS_ORDER','Administer Process Orders','N','Y','FORM',NULL,'79','process_order.gif','/help/html/commander4j/application/dataMaintenance/ProcessOrders/ProcessOrderAdmin.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PROCESS_ORDER_ADD','Add a process order','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PROCESS_ORDER_DELETE','Delete a process order','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_PROCESS_ORDER_EDIT','Edit a Process Order','N','Y','FUNCTION','Create and update Process Orders','0',NULL,'/help/html/commander4j/dataMaintenance/ProcessOrders/ProcessOrderAdminEdit.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_RF_MENU','RF Menu Maintenance','N','Y','FORM','Change the Toolbar contents','84','rf_menu.gif','/help/html/commander4j/application/administration/Customise/Toolbar/RFMenuMaintenance.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_TOOLBAR','Toolbar Maintenance','N','Y','FORM','Change the Toolbar contents','84','toolbar.gif','/help/html/commander4j/application/administration/Customise/Toolbar/ToolbarMaintenance.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_UOM','Administer Units of Measure','N','Y','FORM','Setup standard UOM\'s','85','units.gif','/help/html/commander4j/application/dataMaintenance/UOMs/UomAdmin.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_UOM_ADD','Add a new UOM','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/dataMaintenance/UOMs/UomAdminAdd.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_UOM_DELETE','Delete a UOM','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_UOM_EDIT','Edit a UOM','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/dataMaintenance/UOMs/UomAdminEdit.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_UOM_PRINT','Print UOMs','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_UOM_RENAME','Rename a UOM','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_USERS','Users','N','Y','FORM','Administer User Accounts','85','adminusers.gif','/help/html/commander4j/application/administration/Permissions/Users/UserAdmin.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_USER_ADD','Add a new User','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_USER_DELETE','Delete a User','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_USER_EDIT','User Properties','N','Y','FUNCTION','Edit User Details','0',NULL,'/help/html/commander4j/administration/Permissions/Users/UserAdminEdit.html',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_USER_PERM','User Permissions','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/administration/Permissions/Users/UserAdminPermissions.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_ADMIN_USER_RENAME','Rename a User','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_CM_PRINTERS','Default Printer','N','Y','FORM','Select default printer for reports.','68','print.gif',NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_PAL_PROD_CONFIRM','Production Confirmation','Y','Y','FORM',NULL,'0','ok.gif',NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_PAL_PROD_DEC','Production Declaration','N','Y','FORM',NULL,'0','scanner.gif','/help/html/commander4j/application/Transactions/prodDeclaration/prodDeclaration.htm',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_SYSTEM_KEYS','System Keys Maintenance','N','Y','FORM','Maintain System Keys','0','settings.gif','/help/html/commander4j/application/administration/Setup/SystemKeys/SystemKeyAdmin.html',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_SYSTEM_KEYS_ADD','Add a System Key','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_SYSTEM_KEYS_DELETE','Delete a System Key','N','Y','FUNCTION',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('FRM_SYSTEM_KEYS_EDIT','Edit a System Key','N','Y','FUNCTION',NULL,'0',NULL,'/help/html/commander4j/administration/Setup/SystemKeys/SystemKeyAdmin.html',NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('MENU_ADMIN','Administration','N','Y','MENU',NULL,'65',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('MENU_CUSTOMISE','Customise Application','N','Y','MENU','Customise Application','67',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('MENU_DATA_MAINT','Data Maintenance','N','Y','MENU',NULL,'68',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('MENU_INTERFACE','Interfaces','N','Y','MENU','','65','','','','','','Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('MENU_PAL','Pallet Transactions','N','Y','MENU',NULL,'71',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('MENU_PAL_REPORTS','Reports Menu','N','Y','MENU',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('MENU_PERMISSIONS','Permissions','N','Y','MENU',NULL,'80',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('MENU_SETUP','Setup','N','Y','MENU',NULL,'83',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('MENU_TOOLS','Tools','N','Y','MENU',NULL,'84',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_CONTROL','System Keys','N','Y','REPORT',NULL,'0',NULL,NULL,'control.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_DESPATCH','Despatch Note','N','Y','REPORT',NULL,'0',NULL,NULL,'Despatch.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_GROUPS','Print Groups','N','Y','REPORT',NULL,'0',NULL,NULL,'groups.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_LOCATIONS','Print Locations','N','Y','REPORT',NULL,'0',NULL,NULL,'locations.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_MATERIALS','Print Materials','N','Y','REPORT',NULL,'0',NULL,NULL,'materials.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_MATERIAL_UOM','Material Uoms','N','Y','REPORT',NULL,'0',NULL,NULL,'material_uom.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_MODULES','Print Modules','N','Y','REPORT',NULL,'0',NULL,NULL,'modules.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_PALLETS','Pallet Report','N','Y','REPORT',NULL,'0',NULL,NULL,'pallets.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_PALLET_HISTORY','Pallet Histort','N','Y','REPORT',NULL,'0',NULL,NULL,'pallet_history.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_PALLET_LABEL','Pallet Barcode Label','N','Y','REPORT','','0','','','pallet_A5_x2.jrxml','','','Y','Y','2');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_PROCESS_ORDERS','Print Process Orders','N','Y','REPORT',NULL,'0',NULL,NULL,'process_orders.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_TYPES','Material Types','N','Y','REPORT',NULL,'0',NULL,NULL,'types.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_UNITS','Units of Measure','N','Y','REPORT',NULL,'0',NULL,NULL,'units.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('RPT_USERS','Print Users','N','Y','REPORT',NULL,'0',NULL,NULL,'users.jrxml',NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `description`, `rf_active`, `dk_active`, `module_type`, `hint`, `mnemonic`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`) VALUES ('root','Main Menu','N','Y','MENU',NULL,'0',NULL,NULL,NULL,NULL,NULL,'Y','N','1');
+</statement>
+<statement>
+INSERT INTO `SYS_RF_MENU` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_DESPATCH','2');
+</statement>
+<statement>
+INSERT INTO `SYS_RF_MENU` (`module_id`, `sequence_id`) VALUES ('FRM_PAL_PROD_CONFIRM','1');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_DESPATCH','14');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_GROUPS','1');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_LOCATIONS','10');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_MATERIALS','7');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_MATERIAL_BATCH','9');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_MATERIAL_TYPE','8');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_MENU','4');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_MODULES','2');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_PALLETS','12');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_PALLET_HISTORY','13');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_PROCESS_ORDER','11');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_TOOLBAR','5');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_UOM','6');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_USERS','0');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_CM_PRINTERS','18');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_ADMIN_INTERFACE_PROCESS','17');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_PAL_PROD_CONFIRM','16');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_PAL_PROD_DEC','15');
+</statement>
+<statement>
+INSERT INTO `SYS_TOOLBAR` (`module_id`, `sequence_id`) VALUES ('FRM_SYSTEM_KEYS','3');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('ADMIN','password','EN','Administrator','2005-09-01 20:34:49','2005-01-05 19:16:51','N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('BUDDYJ','*','EN','Beagle','2006-02-25 18:41:20','2006-02-25 12:37:26','N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('CHANDRAE','ADMIN','EN','Dave','2005-02-07 13:57:22','2004-12-29 18:34:34','N','N','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('DAVID','password','EN','David','2009-10-11 20:06:37','2006-03-05 16:08:53','N','N','Y','0','N','2005-06-29 20:25:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('DREADJ','password','EN',NULL,NULL,'2005-01-11 19:40:36','N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('FOGELK','password','EN','Generic User',NULL,'2005-01-08 16:58:48','N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('FRED','password','EN','Fred',NULL,'2007-09-06 19:47:17','N','Y','Y','0','N','2007-09-06 19:47:17','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('GOODMANB','PASS','EN','Tim','2005-02-13 21:23:13','2005-02-13 15:51:51','N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('HANNAC','password','EN','',NULL,'2005-01-11 19:40:47','N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('HORTONI','*','EN','Mandy','2005-08-13 20:43:03','2005-08-12 14:18:57','N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('JOHNSONA','*','EN','Debbie','2005-04-05 22:41:25','2005-04-05 22:41:09','N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('LEWISD','password','EN',NULL,'2005-08-09 19:33:21','2005-01-11 19:37:47','N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('MANDY','*','EN','','2009-06-02 13:04:35','2009-05-29 12:37:45','N','Y','Y','0','N',NULL,'');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('OKUDAD','password','EN','Ivan',NULL,'2005-01-11 19:41:58','Y','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('OREILLYW','*','EN',NULL,'2005-09-22 20:18:26','2005-09-22 20:17:26','N','Y','Y','0','Y','2005-07-16 17:13:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('ROBINSONM','password','EN',NULL,NULL,'2005-01-11 19:43:00','N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('YOUNGS','ADMIN','EN',NULL,NULL,NULL,'N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USERS` (`user_id`, `password`, `language_id`, `user_comment`, `last_logon`, `last_password_change`, `account_locked`, `password_expires`, `password_change_allowed`, `bad_password_attempts`, `account_expires`, `account_expiry_date`, `email_address`) VALUES ('INTERFACE','INTERFACE','EN',NULL,NULL,NULL,'N','Y','Y','0','N','2005-10-01 00:00:00','');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('ADMIN','ADMIN');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('ADMIN','INTERFACE');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('ADMIN','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('ADMIN','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('BUDDYJ','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('CHANDRAE','ADMIN');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('CHANDRAE','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('CHANDRAE','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('DAVID','ADMIN');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('DAVID','INTERFACE');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('DAVID','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('DAVID','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('DAVID','REPORT_DESIGN');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('DAVID','TOOLS');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('DREADJ','ADMIN');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('DREADJ','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('DREADJ','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('FOGELK','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('FOGELK','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('FRED','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('FRED','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('GOODMANB','ADMIN');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('GOODMANB','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('GOODMANB','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('HANNAC','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('HORTONI','ADMIN');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('HORTONI','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('HORTONI','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('JOHNSONA','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('JOHNSONA','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('LEWISD','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('LEWISD','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('MANDY','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('MANDY','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('OKUDAD','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('OKUDAD','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('OREILLYW','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('ROBINSONM','ADMIN');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('ROBINSONM','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('ROBINSONM','PUBLIC');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('YOUNGS','ADMIN');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('YOUNGS','PALLET');
+</statement>
+<statement>
+INSERT INTO `SYS_USER_GROUP_MEMBERSHIP` (`user_id`, `group_id`) VALUES ('YOUNGS','PUBLIC');
+</statement>
+
+<statement>
+INSERT INTO `APP_MATERIAL_TYPE` (`MATERIAL_TYPE`,`DESCRIPTION`) VALUES ('FERT','Finished Goods')
+</statement>
+<statement>
+INSERT INTO `APP_MATERIAL_TYPE` (`MATERIAL_TYPE`,`DESCRIPTION`) VALUES ('HALB','Intermediate')
+</statement>
+<statement>
+INSERT INTO `APP_MATERIAL_TYPE` (`MATERIAL_TYPE`,`DESCRIPTION`) VALUES ('RAW','Raw Materials')
+</statement>
+
+</DDL>

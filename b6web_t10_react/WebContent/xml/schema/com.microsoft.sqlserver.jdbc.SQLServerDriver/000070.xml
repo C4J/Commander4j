@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	CREATE TABLE [dbo].[SYS_PRINTERS](
+		[PRINTER_ID] [varchar](20) NOT NULL,
+		[PRINTER_TYPE] [varchar](20) NULL,
+		[IP_ADDRESS] [varchar](25) NULL,
+		[PORT] [varchar](10) NULL,
+		[DESCRIPTION] [varchar](50) NULL,
+		[LINE] [varchar](20) NULL,		
+		[ENABLED] [varchar](1) NULL,
+	 CONSTRAINT [PK_SYS_PRINTERS] PRIMARY KEY CLUSTERED 
+	(
+		[PRINTER_ID] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+</statement>
+
+<statement>
+ALTER  FUNCTION [dbo].[c4j_GetFinalBatchNumber]
+(
+	@ProductionDate			datetime,
+	@OverrideBatch			varchar(1),
+	@OverrideBatchNumber	varchar(40),
+    @BatchOptional       	varchar(40),
+	@ProcessOrder           varchar(40)
+)
+
+RETURNS varchar(100)
+AS
+BEGIN
+
+DECLARE
+		@Result         varchar(100),
+		@BatchFormat    varchar(100)
+
+		if @OverrideBatch = 'Y'
+		BEGIN
+			SET @Result = @OverrideBatchNumber;
+		END
+
+
+		if @OverrideBatch = 'N'
+		BEGIN
+			SET @BatchFormat = dbo.c4j_GetControlValue('BATCH FORMAT');
+			SET @Result = @BatchFormat;
+			SET @Result = REPLACE(@Result,'{PLANT}',dbo.c4j_GetPlant());
+			SET @Result = REPLACE(@Result,'{PROCESS_ORDER}',@ProcessOrder);
+			SET @Result = REPLACE(@Result,'{YEAR4}',dbo.c4j_GetYear(@ProductionDate,4));
+			SET @Result = REPLACE(@Result,'{YEAR2}',dbo.c4j_GetYear(@ProductionDate,2));
+			SET @Result = REPLACE(@Result,'{YEAR1}',dbo.c4j_GetYear(@ProductionDate,1));
+			SET @Result = REPLACE(@Result,'{MONTH}',dbo.c4j_GetMonth(@ProductionDate));
+			SET @Result = REPLACE(@Result,'{DAY}',dbo.c4j_GetDay(@ProductionDate));
+			SET @Result = REPLACE(@Result,'{JULIAN_DAY}',dbo.c4j_GetJulian(@ProductionDate,1));
+			SET @Result = REPLACE(@Result,'{JULIAN0_DAY}',dbo.c4j_GetJulian(@ProductionDate,0));
+			SET @Result = REPLACE(@Result,'{JULIAN1_DAY}',dbo.c4j_GetJulian(@ProductionDate,1));
+		END
+		
+		SET @Result = @Result + @BatchOptional;
+
+		RETURN	@Result
+END
+</statement>
+
+<statement>
+ALTER VIEW [dbo].[view_auto_labeller] AS 
+SELECT AL.LINE,
+       AL.PROCESS_ORDER,
+	   PO.STATUS,
+	   PO.MATERIAL,
+	   PO.REQUIRED_UOM,
+	   MAT.MATERIAL_TYPE,
+	   MAT.DESCRIPTION,
+	   RIGHT('00000000000000'+MATUOM.EAN,14) AS EAN, 
+	   RIGHT('00'+MATUOM.VARIANT,2) AS VARIANT,
+	   MAT.OLD_MATERIAL,
+	   MAT.SHELF_LIFE, 
+	   MAT.SHELF_LIFE_UOM, 
+	   MAT.SHELF_LIFE_RULE, 
+	   PO.CUSTOMER_ID,
+	   CUST.CUSTOMER_NAME,
+	   MAT.UPDATED AS MATERIAL_UPDATED,
+	   PO.UPDATED AS PROCESS_ORDER_UPDATED,
+	   dbo.c4j_GetFinalBatchNumber(GETDATE(),OVERRIDE_BATCH,OVERRIDE_BATCH_NUMBER,BATCH_OPTIONAL,AL.PROCESS_ORDER) AS BATCH_NUMBER,
+	   dbo.c4j_GetFinalExpiryDate(GETDATE(),MAT.SHELF_LIFE,MAT.SHELF_LIFE_UOM,MAT.SHELF_LIFE_RULE,AL.OVERRIDE_EXPIRY,AL.OVERRIDE_EXPIRY_DATE) AS EXPIRY_DATE,
+	   dbo.c4j_GetLayers(AL.PROCESS_ORDER) AS DEFAULT_LAYERS,
+	   dbo.c4j_GetFullPalletQuantity(PO.PROCESS_ORDER) AS DEFAULT_QUANTITY
+	   FROM APP_AUTO_LABELLER AL, 
+	        APP_PROCESS_ORDER PO,
+			APP_MATERIAL MAT,
+			APP_CUSTOMER CUST,
+			APP_MATERIAL_UOM MATUOM
+	   WHERE PO.PROCESS_ORDER = AL.PROCESS_ORDER 
+	   AND MAT.MATERIAL = PO.MATERIAL 
+	   AND CUST.CUSTOMER_ID = PO.CUSTOMER_ID
+	   AND MATUOM.MATERIAL = PO.MATERIAL AND MATUOM.UOM=PO.REQUIRED_UOM
+</statement>
+
+<statement>
+ALTER VIEW [dbo].[view_auto_labeller_full] AS 
+SELECT PO.PROCESS_ORDER,
+	   PO.STATUS,
+	   PO.MATERIAL,
+	   PO.REQUIRED_UOM,
+	   MAT.MATERIAL_TYPE,
+	   MAT.DESCRIPTION,
+	   RIGHT('00000000000000'+MATUOM.EAN,14) AS EAN, 
+	   RIGHT('00'+MATUOM.VARIANT,2) AS VARIANT,
+	   MAT.OLD_MATERIAL,
+	   MAT.SHELF_LIFE, 
+	   MAT.SHELF_LIFE_UOM, 
+	   MAT.SHELF_LIFE_RULE, 
+	   PO.CUSTOMER_ID,
+	   CUST.CUSTOMER_NAME,
+	   MAT.UPDATED AS MATERIAL_UPDATED,
+	   PO.UPDATED AS PROCESS_ORDER_UPDATED,
+	   dbo.c4j_GetFinalBatchNumber(GETDATE(),'N','','',PO.PROCESS_ORDER) AS BATCH_NUMBER,
+	   dbo.c4j_GetFinalExpiryDate(GETDATE(),MAT.SHELF_LIFE,MAT.SHELF_LIFE_UOM,MAT.SHELF_LIFE_RULE,'N',GETDATE()) AS EXPIRY_DATE,
+	   dbo.c4j_GetLayers(PO.PROCESS_ORDER) AS DEFAULT_LAYERS,
+	   dbo.c4j_GetFullPalletQuantity(PO.PROCESS_ORDER) AS DEFAULT_QUANTITY
+	   FROM APP_PROCESS_ORDER PO,
+			APP_MATERIAL MAT,
+			APP_CUSTOMER CUST,
+			APP_MATERIAL_UOM MATUOM
+	   WHERE MAT.MATERIAL = PO.MATERIAL 
+	   AND CUST.CUSTOMER_ID = PO.CUSTOMER_ID
+	   AND MATUOM.MATERIAL = PO.MATERIAL AND MATUOM.UOM=PO.REQUIRED_UOM
+</statement>
+
+</DDL>

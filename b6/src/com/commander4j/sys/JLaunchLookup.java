@@ -590,7 +590,7 @@ public class JLaunchLookup
 	
 	public static boolean weightSamplePoint() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
-		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}APP_WEIGHT_SAMPLE_POINT"));
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}VIEW_APP_WEIGHT_SAMPLE_POINT"));
 		JDialogLookup.dlg_title = "Sample Points";
 
 		JDialogLookup.hideDisabled=false;
@@ -610,6 +610,29 @@ public class JLaunchLookup
 
 		return JDialogLookup.dlg_selected;
 	}	
+	
+	public static boolean weightSamplePointGroups() {
+		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();
+		JDialogLookup.dlg_table = new JDBTable(Common.selectedHostID, Common.sessionID, JUtility.substSchemaName(schemaName, "{schema}view_sample_point_groups"));
+		JDialogLookup.dlg_title = "Sample Point Group";
+
+		JDialogLookup.hideDisabled=false;
+		JDialogLookup.dlg_key_field_name = "reporting_group";
+		JDialogLookup.dlg_criteria_field_name_default = "reporting_group";
+		JDialogLookup.dlg_orderBy_name_default = "reporting_group";
+		JDialogLookup.dlg_sort_descending = false;
+
+		// dlg_criteria_default = "";
+		dlgAutoExec = true;
+
+		JDialogLookup inst = new JDialogLookup(Common.mainForm);
+
+		inst.setVisible(true);
+
+		dlgResult = JDialogLookup.dlg_selected_var.trim();
+
+		return JDialogLookup.dlg_selected;
+	}
 	
 	public static boolean samplePointLocations() {
 		String schemaName = Common.hostList.getHost(Common.selectedHostID).getDatabaseParameters().getjdbcDatabaseSchema();

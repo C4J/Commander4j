@@ -40,9 +40,11 @@ import com.commander4j.util.JUtility;
 public class JDBWTSamplePoint
 {
 	public static int field_SamplePoint = 25;
-	public static int field_Description = 35;
-	public static int field_Location = 35;
-	public static int field_Required_Resource = 50;
+	public static int field_Description = 25;
+	public static int field_Location = 25;
+	public static int field_Required_Resource = 20;
+	public static int field_ReportingGroup = 25;
+	public static int field_Enabled = 1;
 
 	public static final int displayType_LIST = 1;
 	public static final int displayType_COMBO = 2;
@@ -54,6 +56,8 @@ public class JDBWTSamplePoint
 	private String hostID;
 	private String sessionID;
 	private String dbRequiredResource = "";
+	private String dbReportingGroup = "";
+	private String dbEnabled = "";
 	private int displayType = 1;
 
 	public String getRequiredResource()
@@ -79,6 +83,8 @@ public class JDBWTSamplePoint
 		setDescription("");
 		setLocation("");
 		setRequiredResource("");
+		setReportingGroup("");
+		setEnabled(true);
 
 	}
 
@@ -223,6 +229,8 @@ public class JDBWTSamplePoint
 			setDescription(rs.getString("description"));
 			setLocation(rs.getString("location"));
 			setRequiredResource(rs.getString("required_resource"));
+			setReportingGroup(rs.getString("reporting_group"));
+			setEnabled(rs.getString("enabled"));
 
 		}
 		catch (SQLException e)
@@ -234,6 +242,28 @@ public class JDBWTSamplePoint
 	public String getSamplePoint()
 	{
 		return dbSamplePoint;
+	}
+	
+	public String getReportingGroup()
+	{
+		return dbReportingGroup;
+	}
+	
+	public String getEnabled()
+	{
+		return dbEnabled;
+	}
+	
+	public boolean isEnabled()
+	{
+		boolean result = false;
+		
+		if (dbEnabled.equals("Y"))
+		{
+			result = true;
+		}
+		
+		return result;
 	}
 
 	public ResultSet getSamplePointDataResultSet()
@@ -278,6 +308,8 @@ public class JDBWTSamplePoint
 				samp.setDescription(rs.getString("description"));
 				samp.setLocation(rs.getString("location"));
 				samp.setRequiredResource(rs.getString("required_resource"));
+				samp.setReportingGroup(rs.getString("reporting_group"));
+				samp.setEnabled(rs.getString("enabled"));
 				sampList.add(samp);
 			}
 			rs.close();
@@ -321,7 +353,10 @@ public class JDBWTSamplePoint
 					ci.setSelected(false);
 				}
 				
-				spList.add(ci);
+				if (samp.isEnabled())
+				{
+					spList.add(ci);
+				}
 			}
 			rs.close();
 			stmt.close();
@@ -344,6 +379,8 @@ public class JDBWTSamplePoint
 			setDescription(rs.getString("description"));
 			setLocation(rs.getString("location"));
 			setRequiredResource(rs.getString("required_resource"));
+			setReportingGroup(rs.getString("reporting_group"));
+			setEnabled(rs.getString("enabled"));
 
 		}
 		catch (Exception ex)
@@ -454,6 +491,28 @@ public class JDBWTSamplePoint
 	{
 		this.dbSamplePoint = JUtility.replaceNullStringwithBlank(spoint);
 	}
+	
+	public void setReportingGroup(String reportingGroup)
+	{
+		this.dbReportingGroup = JUtility.replaceNullStringwithBlank(reportingGroup);
+	}
+	
+	public void setEnabled(String enabled)
+	{
+		this.dbEnabled = enabled;
+	}
+	
+	public void setEnabled(boolean enabled)
+	{
+		if (enabled)
+		{
+			this.dbEnabled = "Y";
+		}
+		else
+		{
+			this.dbEnabled = "N";
+		}
+	}
 
 	private void setSessionID(String session)
 	{
@@ -467,7 +526,7 @@ public class JDBWTSamplePoint
 		
 		switch (displayType) {
 			case displayType_LIST:
-				result = JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ") + JUtility.padString(getDescription(), true, field_Description, " ") + getRequiredResource();
+				result = JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ") + JUtility.padString(getDescription(), true, field_Description, " ") + JUtility.padString(getRequiredResource(), true, field_Required_Resource, " ")+ JUtility.padString(getReportingGroup(), true, field_ReportingGroup, " ");
 				break;
 			case displayType_COMBO:
 				result = JUtility.padString(getSamplePoint(), true, field_SamplePoint, " ") + " - " + JUtility.padString(getDescription(), true, field_Description, " ");
@@ -496,7 +555,9 @@ public class JDBWTSamplePoint
 				stmtupdate.setString(1, getDescription());
 				stmtupdate.setString(2, getLocation());
 				stmtupdate.setString(3, getRequiredResource());
-				stmtupdate.setString(4, getSamplePoint());
+				stmtupdate.setString(4, getReportingGroup());
+				stmtupdate.setString(5, getEnabled());
+				stmtupdate.setString(6, getSamplePoint());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

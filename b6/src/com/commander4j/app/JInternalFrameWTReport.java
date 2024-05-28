@@ -36,6 +36,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -81,8 +83,6 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * The JInternalFrameWTReports is for reporting on weight checks
@@ -109,6 +109,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 	private JTextField fld_Process_Order = new JTextField(JDBProcessOrder.field_process_order);
 	private JTextField4j fld_Product_Group = new JTextField4j(JDBWTProductGroups.field_product_group);
 	private JTextField4j fld_SamplePoint = new JTextField4j(JDBWTWorkstation.field_SamplePoint);
+	private JTextField4j fld_SamplePointReportingGroup = new JTextField4j(JDBWTWorkstation.field_SamplePoint);
 	private JButton4j jButtonClear;
 	private JButton4j jButtonDetails;
 	private JButton4j jButtonExcel;
@@ -153,12 +154,9 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			public void run()
 			{
-				fld_SamplePoint.setToolTipText("None");
-				fld_SamplePoint.setEditable(false);
 				fld_SamplePoint.setEnabled(false);
-				fld_SamplePoint.requestFocus();
-				fld_SamplePoint.setCaretPosition(fld_SamplePoint.getText().length());
-
+				fld_SamplePoint.setEditable(false);
+				fld_SamplePoint.setToolTipText("None");			
 			}
 		});
 
@@ -179,18 +177,23 @@ public class JInternalFrameWTReport extends JInternalFrame
 		JDBQuery2 q2 = new JDBQuery2(Common.selectedHostID, Common.sessionID);
 		
 		q2.applyWhat("*");
-
-		if (type.equals("report"))
-		{
-			
-			q2.applyFrom("{schema}view_weight_samples3");
-		}
-		else
-		{
-			q2.applyFrom("{schema}view_weight_samples4");
-		}
-
 		
+		switch (type) 
+		{
+	        case "report":  
+				q2.applyFrom("{schema}view_weight_samples3");
+	            break;
+	        case "search":  
+				q2.applyFrom("{schema}view_weight_samples4");
+	            break;
+	        case "excel":  
+				q2.applyFrom("{schema}view_weight_samples5");
+	            break;
+	        default:
+	        	q2.applyFrom("{schema}view_weight_samples4");
+	        	 break;
+		}
+            		
 		if (checkBox4jFromEnabled.isSelected())
 		{
 			q2.applyWhere("sample_date>=", JUtility.getTimestampFromDate(sampleDateFrom.getDate()));
@@ -215,6 +218,11 @@ public class JInternalFrameWTReport extends JInternalFrame
 		{
 			q2.applyIn("sample_point in ", selectedSamplePoints);
 		}
+		
+		if (fld_SamplePointReportingGroup.getText().equals("") == false)
+		{
+			q2.applyWhere("reporting_group = ", fld_SamplePointReportingGroup.getText());
+		}
 
 		if (fld_Product_Group.getText().equals("") == false)
 		{
@@ -236,14 +244,18 @@ public class JInternalFrameWTReport extends JInternalFrame
 			q2.applyWhere("sample_t2_count > ", 0);
 		}
 		
-		if (type.equals("report"))
+		switch (type) 
 		{
-			
-			q2.applySort("NOMINAL_WEIGHT,MATERIAL,SAMPLE_DATE,SAMPLE_POINT,SAMPLE_SEQUENCE",false);
-		}
-		else
-		{
-			q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
+	        case "report":  
+	        	q2.applySort("NOMINAL_WEIGHT,MATERIAL,SAMPLE_DATE,SAMPLE_POINT,SAMPLE_SEQUENCE",false);
+	            break;
+	        case "search":  
+	        	q2.applySort(jComboBoxSortBy.getSelectedItem().toString(), jToggleButtonSequence.isSelected());
+	            break;
+	        case "excel":  	
+	            break;
+	        default:
+	        	 break;
 		}
 		
 		q2.applyRestriction(jCheckBoxLimit.isSelected(), jSpinnerLimit.getValue());
@@ -273,6 +285,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 		selectedSamplePoints.clear();
 		fld_SamplePoint.setText("");
 		fld_SamplePoint.setToolTipText("None");
+		fld_SamplePointReportingGroup.setText("");
 
 		search();
 	}
@@ -284,11 +297,39 @@ public class JInternalFrameWTReport extends JInternalFrame
 		
 		export.setExcelRowLimit(jCheckBoxLimit, jSpinnerLimit);
 		
-		buildSQL("report");
+		buildSQL("excel");
 		
-		export.saveAs("weight_checks.xls", sampleHeader.getViewWeightSampleDataResultSet(listStatement), Common.mainForm);
+		String prefix = " ";
 		
-	
+		if (fld_SamplePointReportingGroup.getText().equals("")==false)
+		{
+			prefix = prefix + fld_SamplePointReportingGroup.getText();
+		}
+		
+		int datesused = 0;
+		
+		if (checkBox4jFromEnabled.isSelected())
+		{
+			prefix = prefix +  " from "+JUtility.getISOTimeStampStringFormat(JUtility.getTimestampFromDate(sampleDateFrom.getDate())).replace("T", "_").replace("-", "_").replace(":", "_");
+			datesused++;
+		}
+		
+		if (checkBox4jToEnabled.isSelected())
+		{
+			String join = "";
+			if (datesused > 0) join = " to ";
+				
+			prefix = prefix +  join+JUtility.getISOTimeStampStringFormat(JUtility.getTimestampFromDate(sampleDateTo.getDate())).replace("T", "_").replace("-", "_").replace(":", "_");
+			datesused++;
+		}
+		
+		if (prefix.equals(" ")) prefix = "";
+		
+		String filename = "weights_summary"+ prefix+ ".xls";
+		
+		export.saveAndView(filename, sampleHeader.getViewWeightSampleDataResultSet(listStatement), Common.mainForm);
+		
+
 		buildSQL("search");
 
 		populateList();
@@ -314,14 +355,14 @@ public class JInternalFrameWTReport extends JInternalFrame
 					jDesktopPane1.add(btn_Help);
 					btn_Help.setText(lang.get("btn_Help"));
 					btn_Help.setMnemonic(java.awt.event.KeyEvent.VK_H);
-					btn_Help.setBounds(718, 150, 140, 32);
+					btn_Help.setBounds(718, 125, 140, 32);
 				}
 				{
 					btn_Close = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(btn_Close);
 					btn_Close.setText(lang.get("btn_Close"));
 					btn_Close.setMnemonic(java.awt.event.KeyEvent.VK_C);
-					btn_Close.setBounds(861, 150, 140, 32);
+					btn_Close.setBounds(861, 125, 140, 32);
 					btn_Close.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -336,26 +377,26 @@ public class JInternalFrameWTReport extends JInternalFrame
 					lbl_Process_Order = new JLabel4j_std();
 					jDesktopPane1.add(lbl_Process_Order);
 					lbl_Process_Order.setText(lang.get("lbl_Process_Order"));
-					lbl_Process_Order.setBounds(0, 63, 120, 25);
+					lbl_Process_Order.setBounds(0, 88, 120, 25);
 					lbl_Process_Order.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					fld_Process_Order.setFont(Common.font_input);
 
 					jDesktopPane1.add(fld_Process_Order);
-					fld_Process_Order.setBounds(128, 63, 107, 25);
+					fld_Process_Order.setBounds(128, 88, 107, 25);
 				}
 				{
 					lbl_Material = new JLabel4j_std();
 					jDesktopPane1.add(lbl_Material);
 					lbl_Material.setText(lang.get("lbl_Material"));
-					lbl_Material.setBounds(279, 63, 94, 25);
+					lbl_Material.setBounds(279, 51, 94, 25);
 					lbl_Material.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 
 					jDesktopPane1.add(fld_Material);
-					fld_Material.setBounds(379, 63, 93, 25);
+					fld_Material.setBounds(379, 51, 93, 25);
 				}
 
 				{
@@ -374,7 +415,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					});
 
-					btn_Process_Order_Lookup.setBounds(236, 63, 21, 25);
+					btn_Process_Order_Lookup.setBounds(236, 88, 21, 25);
 					jDesktopPane1.add(btn_Process_Order_Lookup);
 				}
 
@@ -410,7 +451,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 						}
 					});
-					btn_SamplePoint_Lookup.setBounds(236, 14, 21, 25);
+					btn_SamplePoint_Lookup.setBounds(236, 51, 21, 25);
 					jDesktopPane1.add(btn_SamplePoint_Lookup);
 				}
 
@@ -427,9 +468,9 @@ public class JInternalFrameWTReport extends JInternalFrame
 				JLabel4j_std lbl_SamplePoint = new JLabel4j_std();
 				lbl_SamplePoint.setText(lang.get("lbl_SamplePoint"));
 				lbl_SamplePoint.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_SamplePoint.setBounds(0, 14, 122, 25);
+				lbl_SamplePoint.setBounds(0, 51, 122, 25);
 				jDesktopPane1.add(lbl_SamplePoint);
-				fld_SamplePoint.setBounds(128, 14, 107, 25);
+				fld_SamplePoint.setBounds(128, 51, 107, 25);
 				jDesktopPane1.add(fld_SamplePoint);
 
 				JLabel4j_std lbl_Product_Group = new JLabel4j_std();
@@ -444,10 +485,10 @@ public class JInternalFrameWTReport extends JInternalFrame
 				JLabel4j_std lbl_Container_Code = new JLabel4j_std();
 				lbl_Container_Code.setText(lang.get("lbl_Container_Code"));
 				lbl_Container_Code.setHorizontalAlignment(SwingConstants.TRAILING);
-				lbl_Container_Code.setBounds(748, 63, 107, 25);
+				lbl_Container_Code.setBounds(748, 51, 107, 25);
 				jDesktopPane1.add(lbl_Container_Code);
 
-				fld_Container_Code.setBounds(861, 63, 120, 25);
+				fld_Container_Code.setBounds(861, 51, 120, 25);
 				jDesktopPane1.add(fld_Container_Code);
 
 				JLabel4j_std lbl_Sample_Date = new JLabel4j_std();
@@ -505,7 +546,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				sampleDateTo.setBounds(603, 14, 128, 25);
 				jDesktopPane1.add(sampleDateTo);
 
-				scrollPane.setBounds(0, 194, 1014, 408);
+				scrollPane.setBounds(0, 169, 1014, 433);
 				jDesktopPane1.add(scrollPane);
 
 				tableResults = new JTable4j();
@@ -541,13 +582,13 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 				btn_Search.setText(lang.get("btn_Search"));
 				btn_Search.setMnemonic(KeyEvent.VK_S);
-				btn_Search.setBounds(3, 150, 140, 32);
+				btn_Search.setBounds(0, 125, 140, 32);
 				jDesktopPane1.add(btn_Search);
 
 				JLabel4j_std label4j_std = new JLabel4j_std();
 				label4j_std.setText(lang.get("lbl_Sort_By"));
 				label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std.setBounds(188, 118, 69, 21);
+				label4j_std.setBounds(279, 92, 99, 21);
 				jDesktopPane1.add(label4j_std);
 
 				ComboBoxModel<String> jComboBoxSortByModel = new DefaultComboBoxModel<String>(new String[]
@@ -563,7 +604,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jComboBoxSortBy = new JComboBox4j<String>();
 				jComboBoxSortBy.setMaximumRowCount(15);
 				jComboBoxSortBy.setModel(jComboBoxSortByModel);
-				jComboBoxSortBy.setBounds(279, 117, 391, 22);
+				jComboBoxSortBy.setBounds(400, 91, 391, 22);
 				jDesktopPane1.add(jComboBoxSortBy);
 				jToggleButtonSequence.addActionListener(new ActionListener()
 				{
@@ -576,7 +617,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 				jCheckBoxLimit = new JCheckBox4j();
 				jCheckBoxLimit.setSelected(true);
 				jCheckBoxLimit.setBackground(Color.WHITE);
-				jCheckBoxLimit.setBounds(883, 117, 21, 21);
+				jCheckBoxLimit.setBounds(910, 92, 21, 21);
 				jDesktopPane1.add(jCheckBoxLimit);
 
 				jToggleButtonSequence.addActionListener(new ActionListener()
@@ -588,13 +629,13 @@ public class JInternalFrameWTReport extends JInternalFrame
 				});
 
 				jToggleButtonSequence.setSelected(false);
-				jToggleButtonSequence.setBounds(670, 117, 21, 22);
+				jToggleButtonSequence.setBounds(791, 91, 21, 22);
 				jDesktopPane1.add(jToggleButtonSequence);
 
 				JLabel4j_std label4j_std_1 = new JLabel4j_std();
 				label4j_std_1.setText(lang.get("lbl_Limit"));
 				label4j_std_1.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_std_1.setBounds(807, 117, 74, 21);
+				label4j_std_1.setBounds(834, 92, 74, 21);
 				jDesktopPane1.add(label4j_std_1);
 
 
@@ -607,7 +648,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 					ne.getTextField().setFont(Common.font_std);
 					jSpinnerLimit.setEditor(ne);
 					jSpinnerLimit.setModel(jSpinnerIntModel);
-					jSpinnerLimit.setBounds(906, 116, 68, 21);
+					jSpinnerLimit.setBounds(933, 92, 68, 21);
 					jSpinnerLimit.setValue(2000);
 					jSpinnerLimit.getEditor().setSize(45, 21);
 					jDesktopPane1.add(jSpinnerLimit);
@@ -633,7 +674,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					});
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
-					jButtonClear.setBounds(146, 150, 140, 32);
+					jButtonClear.setBounds(146, 125, 140, 32);
 					jDesktopPane1.add(jButtonClear);
 				}
 
@@ -648,7 +689,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					});
 					jButtonDetails.setText(lang.get("btn_Details"));
-					jButtonDetails.setBounds(432, 150, 140, 32);
+					jButtonDetails.setBounds(432, 125, 140, 32);
 					jDesktopPane1.add(jButtonDetails);
 				}
 
@@ -662,7 +703,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					});
 					jButtonReports.setText(lang.get("btn_Print"));
-					jButtonReports.setBounds(289, 150, 140, 32);
+					jButtonReports.setBounds(289, 125, 140, 32);
 					jDesktopPane1.add(jButtonReports);
 				}
 
@@ -698,12 +739,12 @@ public class JInternalFrameWTReport extends JInternalFrame
 						}
 					}
 				});
-				btn_LookupContainerCode.setBounds(980, 63, 21, 25);
+				btn_LookupContainerCode.setBounds(980, 51, 21, 25);
 				jDesktopPane1.add(btn_LookupContainerCode);
 
 				{
 					jButtonMaterialLookup = new JButton4j(Common.icon_lookup_16x16);
-					jButtonMaterialLookup.setBounds(471, 63, 21, 25);
+					jButtonMaterialLookup.setBounds(471, 51, 21, 25);
 					jDesktopPane1.add(jButtonMaterialLookup);
 					jButtonMaterialLookup.addActionListener(new ActionListener()
 					{
@@ -721,7 +762,7 @@ public class JInternalFrameWTReport extends JInternalFrame
 
 				{
 					jButtonExcel = new JButton4j(Common.icon_XLS_16x16);
-					jButtonExcel.setBounds(575, 150, 140, 32);
+					jButtonExcel.setBounds(575, 125, 140, 32);
 					jButtonExcel.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(final ActionEvent e)
@@ -734,23 +775,50 @@ public class JInternalFrameWTReport extends JInternalFrame
 					jDesktopPane1.add(jButtonExcel);
 				}
 				checkBox4j_T1.setBackground(Color.WHITE);
-				checkBox4j_T1.setBounds(610, 63, 21, 25);
+				checkBox4j_T1.setBounds(610, 51, 21, 25);
 				jDesktopPane1.add(checkBox4j_T1);
 				checkBox4j_T2.setBackground(Color.WHITE);
-				checkBox4j_T2.setBounds(670, 63, 21, 25);
+				checkBox4j_T2.setBounds(670, 51, 21, 25);
 				jDesktopPane1.add(checkBox4j_T2);
 
 				JLabel4j_std label4j_T1 = new JLabel4j_std();
 				label4j_T1.setText("T2");
 				label4j_T1.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_T1.setBounds(645, 63, 21, 25);
+				label4j_T1.setBounds(645, 51, 21, 25);
 				jDesktopPane1.add(label4j_T1);
 
 				JLabel4j_std label4j_T2 = new JLabel4j_std();
 				label4j_T2.setText("T1");
 				label4j_T2.setHorizontalAlignment(SwingConstants.TRAILING);
-				label4j_T2.setBounds(553, 63, 52, 25);
+				label4j_T2.setBounds(553, 51, 52, 25);
 				jDesktopPane1.add(label4j_T2);
+				fld_SamplePointReportingGroup.setEnabled(false);
+				
+				fld_SamplePointReportingGroup.setToolTipText("None");
+				fld_SamplePointReportingGroup.setEditable(false);
+				fld_SamplePointReportingGroup.setCaretPosition(0);
+				fld_SamplePointReportingGroup.setBounds(128, 14, 107, 25);
+				jDesktopPane1.add(fld_SamplePointReportingGroup);
+				
+				JButton4j btn_SamplePointGroup_Lookup = new JButton4j(Common.icon_lookup_16x16);
+				btn_SamplePointGroup_Lookup.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JLaunchLookup.dlgAutoExec = false;
+						JLaunchLookup.dlgCriteriaDefault = "";
+						if (JLaunchLookup.weightSamplePointGroups())
+						{
+							fld_SamplePointReportingGroup.setText(JLaunchLookup.dlgResult);
+						}
+					}
+				});
+				btn_SamplePointGroup_Lookup.setBounds(236, 14, 21, 25);
+				jDesktopPane1.add(btn_SamplePointGroup_Lookup);
+				
+				JLabel4j_std lbl_SamplePointGroup = new JLabel4j_std();
+				lbl_SamplePointGroup.setText(lang.get("lbl_Reporting_Group"));
+				lbl_SamplePointGroup.setHorizontalAlignment(SwingConstants.TRAILING);
+				lbl_SamplePointGroup.setBounds(0, 14, 122, 25);
+				jDesktopPane1.add(lbl_SamplePointGroup);
 			}
 		}
 		catch (Exception e)
