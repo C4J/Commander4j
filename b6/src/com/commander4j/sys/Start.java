@@ -73,6 +73,7 @@ public class Start
 		JUtility.adjustForLookandFeel();
 		JConfig.loadConfig("config.xml");
 		JUtility.initLogging("");
+		JUtility.dumpVMParams();
 
 		Common.hostList.loadHosts();
 		

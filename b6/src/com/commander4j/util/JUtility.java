@@ -59,6 +59,7 @@ import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.Vector;
@@ -86,6 +87,9 @@ import com.commander4j.bar.JEANBarcode;
 import com.commander4j.db.JDBModule;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JHost;
+
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 
 public class JUtility
 {
@@ -207,6 +211,21 @@ public class JUtility
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 		return sdf.format(cal.getTime());
+	}
+	
+	public static void dumpVMParams()
+	{
+		final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JUtility.class);
+		RuntimeMXBean bean = ManagementFactory.getRuntimeMXBean();
+		String result ="\n\nJVM Arguments\n\n";
+
+		List<String> listOfArguments = bean.getInputArguments();
+
+		for (int i = 0; i < listOfArguments.size(); i++) {
+		   result = result + listOfArguments.get(i)+"\n";
+		}
+		result = result + "\n";
+		logger.debug(result);
 	}
 
 	public static String removeNonGS1BarcodeFriendlyChars(String input)
