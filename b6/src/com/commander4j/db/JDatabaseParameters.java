@@ -42,6 +42,12 @@ public class JDatabaseParameters
 	
 	private String jdbcDatabaseTimeZoneEnable;
 	
+	private String jdbcDatabaseEncrypt;
+	
+	private String jdbcDatabaseIntegratedSecurity;
+	
+	private String jdbcDatabaseTrustServerCertificate;
+	
 	private String jdbcDatabaseCollation;
 	
 	private String jdbcDatabaseCharacterSet;
@@ -66,6 +72,9 @@ public class JDatabaseParameters
 		jdbcDatabaseSelectLimit = "";
 		jdbcDatabaseTimeZone = "";
 		jdbcDatabaseTimeZoneEnable = "";
+		setjdbcDatabaseEncrypt("");
+		setjdbcDatabaseIntegratedSecurity("");
+		setjdbcDatabaseTrustServerCertificate("");
 		jdbcDatabaseSchema = "";
 		jdbcServer = "";
 		jdbcPort = "";
@@ -124,6 +133,25 @@ public class JDatabaseParameters
 	{
 		jdbcDatabaseTimeZoneEnable = value;
 	}
+	
+	public void setjdbcDatabaseEncrypt(String value)
+	{
+		if (value.equals("")) value = "N";
+		jdbcDatabaseEncrypt = value;
+	}
+	
+	public void setjdbcDatabaseIntegratedSecurity(String value)
+	{
+		if (value.equals("")) value = "N";
+		jdbcDatabaseIntegratedSecurity = value;
+	}
+
+	public void setjdbcDatabaseTrustServerCertificate(String value)
+	{
+		if (value.equals("")) value = "N";
+		jdbcDatabaseTrustServerCertificate = value;
+	}
+
 
 	public void setjdbcDatabaseSchema(String value)
 	{
@@ -199,7 +227,7 @@ public class JDatabaseParameters
 			{
 				if	(isjdbcDatabaseTimeZoneEnable())
 				{
-				value = "jdbc:mysql://jdbcServer:jdbcPort/jdbcDatabase?timezone?connectTimeout=5&socketTimeout=0&autoReconnect=true";
+					value = "jdbc:mysql://jdbcServer:jdbcPort/jdbcDatabase?timezone?connectTimeout=5&socketTimeout=0&autoReconnect=true";
 				}
 				else
 				{
@@ -216,7 +244,7 @@ public class JDatabaseParameters
 		if (getjdbcDriver().equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
 		{
 
-			value = "jdbc:sqlserver://jdbcServer\\jdbcSID:jdbcPort;databaseName=jdbcDatabase;selectMethod=direct;encrypt=false;trustServerCertificate=false";
+			value = "jdbc:sqlserver://jdbcServer\\jdbcSID:jdbcPort;databaseName=jdbcDatabase;selectMethod=direct;"+getjdbcDatabaseEncryptParam()+getjdbcDatabaseTrustServerCertificateParam()+getjdbcDatabaseIntegratedSecurityParam();
 
 		}
 
@@ -296,6 +324,73 @@ public class JDatabaseParameters
 		return jdbcDatabaseTimeZoneEnable;
 	}
 	
+	public String getjdbcDatabaseEncryptEnable()
+	{
+		if (jdbcDatabaseEncrypt.equals("")) jdbcDatabaseEncrypt = "N";
+		return jdbcDatabaseEncrypt;
+	}
+	
+	public String getjdbcDatabaseEncryptParam()
+	{
+		String result = "encrypt=";
+		
+		if (isjdbcDatabaseEncrypt())
+		{
+			result = result + "true;";
+		}
+		else
+		{
+			result = result + "false;";
+		}
+		
+		return result;
+	}
+	
+	public String getjdbcDatabaseIntegratedSecurityParam()
+	{
+		String result = "integratedSecurity=";
+		
+		if (isjdbcDatabaseIntegratedSecurity())
+		{
+			result = result + "true;";
+		}
+		else
+		{
+			result = result + "false;";
+		}
+		
+		return result;
+	}
+	
+	public String getjdbcDatabaseTrustServerCertificateParam()
+	{
+		String result = "trustServerCertificate=";
+		
+		if (isjdbcDatabaseTrustServerCertificate())
+		{
+			result = result + "true;";
+		}
+		else
+		{
+			result = result + "false;";
+		}
+		
+		return result;
+	}
+	
+	public String getjdbcDatabaseIntegratedSecurityEnable()
+	{
+		if (jdbcDatabaseIntegratedSecurity.equals("")) jdbcDatabaseIntegratedSecurity = "N";
+		return jdbcDatabaseIntegratedSecurity;
+	}
+	
+	public String getjdbcDatabaseTrustServerCertificateEnable()
+	{
+		if (jdbcDatabaseTrustServerCertificate.equals("")) jdbcDatabaseTrustServerCertificate = "N"; 
+		return jdbcDatabaseTrustServerCertificate;
+	}
+	
+	
 	public boolean isjdbcDatabaseTimeZoneEnable()
 	{
 		if (JUtility.replaceNullStringwithBlank(jdbcDatabaseTimeZoneEnable).equals("Y"))
@@ -308,6 +403,7 @@ public class JDatabaseParameters
 		}
 	}
 	
+	
 	public void setjdbcDatabaseTimeZoneEnable(boolean value)
 	{
 		if (value)
@@ -317,6 +413,94 @@ public class JDatabaseParameters
 		else
 		{
 			jdbcDatabaseTimeZoneEnable ="";
+		}
+	}
+	
+	
+	public boolean isjdbcDatabaseEncrypt()
+	{
+		if (JUtility.replaceNullStringwithBlank(jdbcDatabaseEncrypt).equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
+	public void setjdbcDatabaseEncrypt(boolean value)
+	{
+		if (value)
+		{
+			jdbcDatabaseEncrypt ="Y";
+		}
+		else
+		{
+			jdbcDatabaseEncrypt ="";
+		}
+	}	
+	
+	public boolean getjdbcDatabaseIntegratedSecurity()
+	{
+		if (JUtility.replaceNullStringwithBlank(jdbcDatabaseIntegratedSecurity).equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
+	public void setjdbcDatabaseIntegratedSecurity(boolean value)
+	{
+		if (value)
+		{
+			jdbcDatabaseIntegratedSecurity ="Y";
+		}
+		else
+		{
+			jdbcDatabaseIntegratedSecurity ="";
+		}
+	}
+	
+	public boolean isjdbcDatabaseIntegratedSecurity()
+	{
+		if (JUtility.replaceNullStringwithBlank(jdbcDatabaseIntegratedSecurity).equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean isjdbcDatabaseTrustServerCertificate()
+	{
+		if (JUtility.replaceNullStringwithBlank(jdbcDatabaseTrustServerCertificate).equals("Y"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
+	public void setjdbcDatabaseTrustServerCertificate(boolean value)
+	{
+		if (value)
+		{
+			jdbcDatabaseTrustServerCertificate ="Y";
+		}
+		else
+		{
+			jdbcDatabaseTrustServerCertificate ="";
 		}
 	}
 	

@@ -36,7 +36,7 @@
 	
 	<statement> 
 		INSERT INTO SYS_MODULES (MODULE_ID, RF_ACTIVE, DK_ACTIVE, MODULE_TYPE, HINT, MNEMONIC, ICON_FILENAME, HELPSET_ID, REPORT_FILENAME, EXEC_FILENAME, EXEC_DIR, PRINT_PREVIEW, PRINT_DIALOG, PRINT_COPIES, REPORT_TYPE, RESOURCE_KEY) VALUES 
-		            ('SYS_INFO', 'Y', 'N', 'FUNCTION', 'lbl_System_Info', '0', '', '', '', '', '', 'N', 'N', '1', '', '')
+		            ('SYS_INFO', 'Y', 'N', 'FORM', '', '0', '', '', '', '', '', 'N', 'N', '1', '', 'lbl_System_Info')
 	</statement> 
 	
 	<statement>

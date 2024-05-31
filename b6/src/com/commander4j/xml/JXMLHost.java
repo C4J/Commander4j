@@ -202,6 +202,7 @@ public class JXMLHost
 				Element jdbcDatabaseTimeZoneEnable = (Element) document.createElement("jdbcDatabaseTimeZoneEnable");
 				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseTimeZoneEnable().trim());
 				jdbcDatabaseTimeZoneEnable.appendChild(text);
+						
 				
 				Element jdbcDatabaseCollation = (Element) document.createElement("jdbcDatabaseCollation");
 				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcCollation().trim());
@@ -259,6 +260,18 @@ public class JXMLHost
 				Element jdbcDatabase = (Element) document.createElement("jdbcDatabase");
 				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabase().trim());
 				jdbcDatabase.appendChild(text);
+				
+				Element jdbcDatabaseEncrypt = (Element) document.createElement("jdbcDatabaseEncrypt");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseEncryptEnable().trim());
+				jdbcDatabaseEncrypt.appendChild(text);
+				
+				Element jdbcDatabaseIntegratedSecurity = (Element) document.createElement("jdbcDatabaseIntegratedSecurity");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseIntegratedSecurityEnable().trim());
+				jdbcDatabaseIntegratedSecurity.appendChild(text);
+				
+				Element jdbcDatabaseTrustServerCertificate = (Element) document.createElement("jdbcDatabaseTrustServerCertificate");
+				text = document.createTextNode(hostList.get(j).getDatabaseParameters().getjdbcDatabaseTrustServerCertificateEnable().trim());
+				jdbcDatabaseTrustServerCertificate.appendChild(text);		
 
 				DatabaseParameters.appendChild(jdbcUsername);
 				DatabaseParameters.appendChild(jdbcPassword);
@@ -267,6 +280,9 @@ public class JXMLHost
 				DatabaseParameters.appendChild(jdbcPort);
 				DatabaseParameters.appendChild(jdbcSID);
 				DatabaseParameters.appendChild(jdbcDatabase);
+				DatabaseParameters.appendChild(jdbcDatabaseEncrypt);
+				DatabaseParameters.appendChild(jdbcDatabaseIntegratedSecurity);
+				DatabaseParameters.appendChild(jdbcDatabaseTrustServerCertificate);
 
 				site.appendChild(enabled);
 				site.appendChild(uniqueid);
@@ -354,6 +370,9 @@ public class JXMLHost
 		String uniqueid = "";
 		String singleInstance = "";
 		String singleInstancePort = "";
+		String jdbcTrustServerCertificate = "";
+		String jdbcIntegratedSecurity = "";
+		String jdbcEncrypt = "";
 
 		LinkedList<JHost> hostList = new LinkedList<JHost>();
 		hostList.clear();
@@ -478,6 +497,10 @@ public class JXMLHost
 				jdbcPort = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcPort").trim();
 				jdbcSID = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcSID").trim();
 				jdbcDatabase = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabase").trim();
+				
+				jdbcTrustServerCertificate = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseTrustServerCertificate").trim();
+				jdbcIntegratedSecurity = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseIntegratedSecurity").trim();
+				jdbcEncrypt = xmltest.findXPath("//Hosts/Site[@Number='" + SiteNumber + "']/DatabaseParameters/jdbcDatabaseEncrypt").trim();
 
 				sitejdbcConnectString = jdbcConnectString;
 				if (parse)
@@ -508,6 +531,10 @@ public class JXMLHost
 				host.getDatabaseParameters().setjdbcPort(jdbcPort);
 				host.getDatabaseParameters().setjdbcSID(jdbcSID);
 				host.getDatabaseParameters().setjdbcDatabase(jdbcDatabase);
+				
+				host.getDatabaseParameters().setjdbcDatabaseEncrypt(jdbcEncrypt);
+				host.getDatabaseParameters().setjdbcDatabaseTrustServerCertificate(jdbcTrustServerCertificate);
+				host.getDatabaseParameters().setjdbcDatabaseIntegratedSecurity(jdbcIntegratedSecurity);
 
 				hostList.addLast(host);
 

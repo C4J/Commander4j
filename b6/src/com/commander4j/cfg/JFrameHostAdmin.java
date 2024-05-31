@@ -197,6 +197,9 @@ public class JFrameHostAdmin extends JFrame
 	private DefaultComboBoxModel<String> CharSetModel;
 	private JCheckBox4j chckbx4jSingleInstance = new JCheckBox4j();
 	private JTextField4j jTextFieldSingleInstancePort = new JTextField4j();
+	private JCheckBox4j jCheckBoxEncrypt = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxIntegrated = new JCheckBox4j();
+	private JCheckBox4j jCheckBoxTrust = new JCheckBox4j();
 
 	public static void main(String[] args)
 	{
@@ -379,8 +382,6 @@ public class JFrameHostAdmin extends JFrame
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, "http://commander4j.com/mw/index.php?title=Setup4j");
 		
-
-
 		getHosts();
 
 		if (Common.setupPassword.equals("") == false)
@@ -516,6 +517,18 @@ public class JFrameHostAdmin extends JFrame
 			if (hst.getDatabaseParameters().getjdbcDriver().equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
 			{
 				jComboBoxjdbcDriver.setSelectedIndex(3);
+				
+				if (hst.getDatabaseParameters().isjdbcDatabaseIntegratedSecurity())
+				{
+					jTextFieldUsername.setEnabled(false);
+					jTextFieldPassword.setEnabled(false);
+				}
+				else
+				{
+					jTextFieldUsername.setEnabled(true);
+					jTextFieldPassword.setEnabled(true);
+				}
+				
 			}
 			if (hst.getDatabaseParameters().getjdbcDriver().equals("http"))
 			{
@@ -527,6 +540,12 @@ public class JFrameHostAdmin extends JFrame
 			jTextFieldSelectLimit.setText(hst.getDatabaseParameters().getjdbcDatabaseSelectLimit());
 
 			jComboBoxjdbcTimeZone.setSelectedItem(hst.getDatabaseParameters().getjdbcDatabaseTimeZone());
+			
+
+			jCheckBoxEncrypt.setSelected(hst.getDatabaseParameters().isjdbcDatabaseEncrypt());
+			jCheckBoxIntegrated.setSelected(hst.getDatabaseParameters().isjdbcDatabaseIntegratedSecurity());
+			jCheckBoxTrust.setSelected(hst.getDatabaseParameters().isjdbcDatabaseTrustServerCertificate());
+			
 			chckbxUseTimeZoneInConnect.setSelected(hst.getDatabaseParameters().isjdbcDatabaseTimeZoneEnable());
 			jComboBoxCollation.setSelectedItem(hst.getDatabaseParameters().getjdbcCollation());
 			jComboBoxCharSet.setSelectedItem(hst.getDatabaseParameters().getjdbcCharacterSet());
@@ -618,6 +637,10 @@ public class JFrameHostAdmin extends JFrame
 			}
 
 			hst.getDatabaseParameters().setjdbcDatabaseTimeZoneEnable(chckbxUseTimeZoneInConnect.isSelected());
+			hst.getDatabaseParameters().setjdbcDatabaseEncrypt(jCheckBoxEncrypt.isSelected());
+			hst.getDatabaseParameters().setjdbcDatabaseIntegratedSecurity(jCheckBoxIntegrated.isSelected());
+			hst.getDatabaseParameters().setjdbcDatabaseTrustServerCertificate(jCheckBoxTrust.isSelected());
+			
 			hst.getDatabaseParameters().setjdbcDatabaseSchema(jTextFieldSchema.getText());
 			hst.getDatabaseParameters().setjdbcUsername(jTextFieldUsername.getText());
 			hst.getDatabaseParameters().setjdbcPassword(String.valueOf(jTextFieldPassword.getPassword()));
@@ -626,6 +649,7 @@ public class JFrameHostAdmin extends JFrame
 			hst.getDatabaseParameters().setjdbcSID(jTextFieldSID.getText());
 			hst.getDatabaseParameters().setjdbcServer(jTextFieldServer.getText());
 			hst.getDatabaseParameters().setjdbcDatabase(jTextFieldDatabase.getText());
+			
 			hst.setUniqueID(jTextFieldUniqueID.getText());
 			hst.getSqlstatements().setjdbcDriver(hst.getDatabaseParameters().getjdbcDriver());
 			hst.getSqlstatements().setjdbcDriver(hst.getDatabaseParameters().getjdbcDriver());
@@ -690,8 +714,9 @@ public class JFrameHostAdmin extends JFrame
 		jTextFieldDateTime.setEnabled(edit);
 		jTextFieldSelectLimit.setEnabled(edit);
 		jTextFieldSchema.setEnabled(edit);
-		jTextFieldUsername.setEnabled(edit);
-		jTextFieldPassword.setEnabled(edit);
+//		jTextFieldUsername.setEnabled(edit);
+//		jTextFieldPassword.setEnabled(edit);
+		
 		jTextFieldPort.setEnabled(edit);
 		jTextFieldSID.setEnabled(edit);
 		jTextFieldServer.setEnabled(edit);
@@ -1166,6 +1191,8 @@ public class JFrameHostAdmin extends JFrame
 								jTextFieldDatabase.setText("database_name");
 								jTextFieldUsername.setText("sql_username");
 								jTextFieldPassword.setText("sql_password");
+								jTextFieldUsername.setEnabled(true);
+								jTextFieldPassword.setEnabled(true);
 								jTextFieldSID.setText("orcl");
 								jTextFieldDateTime.setText("sysdate");
 								jTextFieldSelectLimit.setText("rownum");
@@ -1181,6 +1208,9 @@ public class JFrameHostAdmin extends JFrame
 								jComboBoxCharSet.setSelectedItem("");
 								btnDefaultCollation.setEnabled(false);
 								btnDefaultCharSet.setEnabled(false);
+								jCheckBoxEncrypt.setEnabled(false);
+								jCheckBoxIntegrated.setEnabled(false);
+								jCheckBoxTrust.setEnabled(false);
 							}
 
 							if (jComboBoxjdbcDriver.getSelectedItem().toString().equals("mySQL"))
@@ -1190,6 +1220,8 @@ public class JFrameHostAdmin extends JFrame
 								jTextFieldDatabase.setText("database_name");
 								jTextFieldUsername.setText("sql_username");
 								jTextFieldPassword.setText("sql_password");
+								jTextFieldUsername.setEnabled(true);
+								jTextFieldPassword.setEnabled(true);
 								jTextFieldDateTime.setText("sysdate");
 								jTextFieldSelectLimit.setText("limit");
 								jTextFieldServer.setText("ip_address");
@@ -1204,6 +1236,9 @@ public class JFrameHostAdmin extends JFrame
 								jComboBoxCharSet.setSelectedItem("utf8mb4");
 								btnDefaultCollation.setEnabled(true);
 								btnDefaultCharSet.setEnabled(true);
+								jCheckBoxEncrypt.setEnabled(false);
+								jCheckBoxIntegrated.setEnabled(false);
+								jCheckBoxTrust.setEnabled(false);
 							}
 
 							if (jComboBoxjdbcDriver.getSelectedItem().toString().equals("SQL Server"))
@@ -1213,6 +1248,8 @@ public class JFrameHostAdmin extends JFrame
 								jTextFieldDatabase.setText("database_name");
 								jTextFieldUsername.setText("sql_username");
 								jTextFieldPassword.setText("sql_password");
+								jTextFieldUsername.setEnabled(true);
+								jTextFieldPassword.setEnabled(true);
 								jTextFieldDateTime.setText("sysdate");
 								jTextFieldSelectLimit.setText("top");
 								jTextFieldServer.setText("ip_address");
@@ -1227,6 +1264,10 @@ public class JFrameHostAdmin extends JFrame
 								jComboBoxCharSet.setSelectedItem("");
 								btnDefaultCollation.setEnabled(false);
 								btnDefaultCharSet.setEnabled(false);
+								jCheckBoxEncrypt.setEnabled(true);
+								jCheckBoxIntegrated.setEnabled(true);
+								jCheckBoxTrust.setEnabled(true);
+								
 							}
 
 							if (jComboBoxjdbcDriver.getSelectedItem().toString().equals("Web URL"))
@@ -1237,6 +1278,8 @@ public class JFrameHostAdmin extends JFrame
 								jTextFieldSelectLimit.setText("");
 								jTextFieldServer.setText("");
 								jTextFieldPort.setText("");
+								jTextFieldUsername.setEnabled(false);
+								jTextFieldPassword.setEnabled(false);
 								jComboBoxjdbcTimeZone.setSelectedItem("");
 								jComboBoxjdbcTimeZone.setEnabled(false);
 								chckbxUseTimeZoneInConnect.setEnabled(false);
@@ -1249,6 +1292,9 @@ public class JFrameHostAdmin extends JFrame
 								jComboBoxCharSet.setSelectedItem("");
 								btnDefaultCollation.setEnabled(false);
 								btnDefaultCharSet.setEnabled(false);
+								jCheckBoxEncrypt.setEnabled(false);
+								jCheckBoxIntegrated.setEnabled(false);
+								jCheckBoxTrust.setEnabled(false);
 							}
 							jTextFieldKeyTyped();
 						}
@@ -2382,6 +2428,47 @@ public class JFrameHostAdmin extends JFrame
 			jTextFieldSingleInstancePort.setBackground(new Color(233, 255, 233));
 			jTextFieldSingleInstancePort.setBounds(967, 495, 70, 21);
 			desktopPane.add(jTextFieldSingleInstancePort);
+			jCheckBoxEncrypt.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					jTextFieldKeyTyped();
+				}
+			});
+			
+
+			jCheckBoxEncrypt.setText("Encrypt");
+			jCheckBoxEncrypt.setToolTipText("Only used with SQL Server.");
+			jCheckBoxEncrypt.setSelected(true);
+			jCheckBoxEncrypt.setFont(new Font("Arial", Font.PLAIN, 11));
+			jCheckBoxEncrypt.setBackground(Color.WHITE);
+			jCheckBoxEncrypt.setBounds(622, 90, 70, 21);
+			desktopPane.add(jCheckBoxEncrypt);
+			jCheckBoxIntegrated.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					jTextFieldKeyTyped();
+				}
+			});
+			
+			jCheckBoxIntegrated.setText("Integrated Security");
+			jCheckBoxIntegrated.setToolTipText("Only used with SQL Server. Usename and Password are disabled if this is selected");
+			jCheckBoxIntegrated.setSelected(true);
+			jCheckBoxIntegrated.setFont(new Font("Arial", Font.PLAIN, 11));
+			jCheckBoxIntegrated.setBackground(Color.WHITE);
+			jCheckBoxIntegrated.setBounds(711, 90, 127, 21);
+			desktopPane.add(jCheckBoxIntegrated);
+			jCheckBoxTrust.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					jTextFieldKeyTyped();
+				}
+			});
+			
+
+			jCheckBoxTrust.setText("Trust Server Cert");
+			jCheckBoxTrust.setToolTipText("Only used with SQL Server.");
+			jCheckBoxTrust.setSelected(true);
+			jCheckBoxTrust.setFont(new Font("Arial", Font.PLAIN, 11));
+			jCheckBoxTrust.setBackground(Color.WHITE);
+			jCheckBoxTrust.setBounds(842, 90, 127, 21);
+			desktopPane.add(jCheckBoxTrust);
 			
 			setHostsFilename(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts" + File.separator + "hosts.xml");
 			setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_setup4j).getImage());
