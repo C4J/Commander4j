@@ -267,6 +267,9 @@
           <directory location="xml/log" failOnError="false" />
           <directory location="lib/jasper_properties" failOnError="false" />
         </classPath>
+        <nativeLibraryDirectories>
+          <directory name="lib/db" />
+        </nativeLibraryDirectories>
       </java>
       <vmOptionsFile mode="content" overwriteMode="2">
         <content>-Djava.library.path=./lib/db
