@@ -44,6 +44,7 @@ import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
@@ -105,8 +106,8 @@ public class JFrameCloneDB extends JFrame
 	private String sessionTo = JUnique.getUniqueID();
 	private String hostIDFrom = "";
 	private String hostIDTo = "";
-	String lastError="";
-	String currentError="";
+	String lastError = "";
+	String currentError = "";
 
 	public static void main(String[] args)
 	{
@@ -118,7 +119,8 @@ public class JFrameCloneDB extends JFrame
 				{
 					JFrameCloneDB frame = new JFrameCloneDB();
 					frame.setVisible(true);
-				} catch (Exception e)
+				}
+				catch (Exception e)
 				{
 					e.printStackTrace();
 				}
@@ -222,7 +224,8 @@ public class JFrameCloneDB extends JFrame
 			hstFrom = (JHost) jListHostFrom.getModel().getElementAt(j);
 			hostIDFrom = hstFrom.getSiteNumber();
 
-		} else
+		}
+		else
 		{
 
 		}
@@ -236,7 +239,8 @@ public class JFrameCloneDB extends JFrame
 		try
 		{
 			Thread.sleep(10);
-		} catch (InterruptedException ie)
+		}
+		catch (InterruptedException ie)
 		{
 		}
 	}
@@ -250,7 +254,8 @@ public class JFrameCloneDB extends JFrame
 			hstTo = (JHost) jListHostTo.getModel().getElementAt(j);
 			hostIDTo = hstTo.getSiteNumber();
 
-		} else
+		}
+		else
 		{
 
 		}
@@ -262,7 +267,8 @@ public class JFrameCloneDB extends JFrame
 		if (hostIDFrom.equals(hostIDTo) == false)
 		{
 			jButtonClone.setEnabled(true);
-		} else
+		}
+		else
 		{
 			jButtonClone.setEnabled(false);
 		}
@@ -323,216 +329,234 @@ public class JFrameCloneDB extends JFrame
 					String schemaTo = "";
 					JDBControl ctrl;
 
-					// Source & Destination must be different Hosts//
-					setStatusBarText("Validating selected hosts");
-					if (hostIDFrom.equals(hostIDTo) == false)
+					JUtility.errorBeep();
+					int dialogResult = JOptionPane.showConfirmDialog(JFrameCloneDB.this, "Replace the contents of destination database\n\n"+hstTo.getSiteDescription()+"\n\nwith source database\n\n"+hstFrom.getSiteDescription()+" ?\n\nData in "+hstTo.getSiteDescription()+" will be erased !", "Warning", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+
+					if (dialogResult == JOptionPane.YES_OPTION)
 					{
 
-						// Check we can connect to Source //
-						setStatusBarText("Connecting to source...");
-						if (hstFrom.connect(sessionFrom, hostIDFrom))
+						// Source & Destination must be different Hosts//
+						setStatusBarText("Validating selected hosts");
+						if (hostIDFrom.equals(hostIDTo) == false)
 						{
 
-							// Check we can connect to Destination //
-							setStatusBarText("Connecting to destination...");
-							if (hstTo.connect(sessionTo, hostIDTo))
+							// Check we can connect to Source //
+							setStatusBarText("Connecting to source...");
+							if (hstFrom.connect(sessionFrom, hostIDFrom))
 							{
 
-								// Check Application Schema Versions are the
-								// same in Source and Destination //
-								setStatusBarText("Checking schema versions...");
-								ctrl = new JDBControl(hostIDFrom, sessionFrom);
-								schemaFrom = ctrl.getKeyValue("SCHEMA VERSION");
-								ctrl = new JDBControl(hostIDTo, sessionTo);
-								schemaTo = ctrl.getKeyValue("SCHEMA VERSION");
-
-								if (schemaFrom.equals(schemaTo))
+								// Check we can connect to Destination //
+								setStatusBarText("Connecting to destination...");
+								if (hstTo.connect(sessionTo, hostIDTo))
 								{
-									// OK //
-									setStatusBarText("Getting source table names...");
-									int tableCountFrom = 0;
-									JDBStructure strucFrom = new JDBStructure(hostIDFrom, sessionFrom);
-									LinkedList<String> tablesFrom = strucFrom.getTableNames();
-									tableCountFrom = tablesFrom.size();
-									progressBar.setMinimum(1);
-									progressBar.setMaximum(tableCountFrom);
 
-									setStatusBarText("Getting destination table names...");
-									int tableCountTo = 0;
-									JDBStructure strucTo = new JDBStructure(hostIDTo, sessionTo);
-									LinkedList<String> tablesTo = strucTo.getTableNames();
-									tableCountTo = tablesTo.size();
+									// Check Application Schema Versions are the
+									// same in Source and Destination //
+									setStatusBarText("Checking schema versions...");
+									ctrl = new JDBControl(hostIDFrom, sessionFrom);
+									schemaFrom = ctrl.getKeyValue("SCHEMA VERSION");
+									ctrl = new JDBControl(hostIDTo, sessionTo);
+									schemaTo = ctrl.getKeyValue("SCHEMA VERSION");
 
-									if (tableCountFrom == tableCountTo)
+									if (schemaFrom.equals(schemaTo))
 									{
-										String table = "";
-										for (int tf = 0; tf < tableCountFrom; tf++)
+										// OK //
+										setStatusBarText("Getting source table names...");
+										int tableCountFrom = 0;
+										JDBStructure strucFrom = new JDBStructure(hostIDFrom, sessionFrom);
+										LinkedList<String> tablesFrom = strucFrom.getTableNames();
+										tableCountFrom = tablesFrom.size();
+										progressBar.setMinimum(1);
+										progressBar.setMaximum(tableCountFrom);
+
+										setStatusBarText("Getting destination table names...");
+										int tableCountTo = 0;
+										JDBStructure strucTo = new JDBStructure(hostIDTo, sessionTo);
+										LinkedList<String> tablesTo = strucTo.getTableNames();
+										tableCountTo = tablesTo.size();
+
+										if (tableCountFrom == tableCountTo)
 										{
-											table = tablesFrom.get(tf);
-											//table = "APP_QM_ANALYSIS";
-											progressBar.setValue(tf + 1);
-											progressBar.paintImmediately(progressBar.getVisibleRect());
-											if (tablesTo.contains(table))
+											String table = "";
+											for (int tf = 0; tf < tableCountFrom; tf++)
 											{
-
-												// GET FIELDS FOR CURRENT TABLE
-												setStatusBarText("Getting field names for " + table);
-												LinkedList<JDBField> fieldNames = strucFrom.getFieldNames(table);
-												JWait.milliSec(100);
-
-												// CREATE INSERT STATEMENT FOR
-												// TARGET DATABASE //
-												setStatusBarText("Generating insert SQL for " + table);
-												String insertTable = "insert into " + table;
-												String insertFields = "";
-												String insertPlaceMarkers = "";
-												String comma = "";
-
-												for (int temp = 0; temp < fieldNames.size(); temp++)
+												table = tablesFrom.get(tf);
+												// table = "APP_QM_ANALYSIS";
+												progressBar.setValue(tf + 1);
+												progressBar.paintImmediately(progressBar.getVisibleRect());
+												if (tablesTo.contains(table))
 												{
-													if (temp == 0)
+
+													// GET FIELDS FOR CURRENT
+													// TABLE
+													setStatusBarText("Getting field names for " + table);
+													LinkedList<JDBField> fieldNames = strucFrom.getFieldNames(table);
+													JWait.milliSec(100);
+
+													// CREATE INSERT STATEMENT
+													// FOR
+													// TARGET DATABASE //
+													setStatusBarText("Generating insert SQL for " + table);
+													String insertTable = "insert into " + table;
+													String insertFields = "";
+													String insertPlaceMarkers = "";
+													String comma = "";
+
+													for (int temp = 0; temp < fieldNames.size(); temp++)
 													{
-														comma = "";
-													} else
-													{
-														comma = ",";
-													}
-													insertFields = insertFields + comma + fieldNames.get(temp).getfieldName();
-													insertPlaceMarkers = insertPlaceMarkers + comma + "?";
-												}
-
-												String insertStatement = insertTable + " (" + insertFields + ") values (" + insertPlaceMarkers + ")";
-
-												// SELECT ALL SOURCE RECORDS //
-												setStatusBarText("Copying table " + table);
-												Long recordsCopied = (long) 0;
-												try
-												{
-													hstFrom.getConnection(sessionFrom).setAutoCommit(false);
-													hstTo.getConnection(sessionTo).setAutoCommit(false);
-													PreparedStatement truncateData = hstTo.getConnection(sessionTo).prepareStatement("truncate table " + table);
-													PreparedStatement destinationData = hstTo.getConnection(sessionTo).prepareStatement(insertStatement);
-													PreparedStatement sourceData = hstFrom.getConnection(sessionFrom).prepareStatement("select * from " + table);
-													sourceData.setFetchDirection(ResultSet.FETCH_FORWARD);
-													destinationData.setFetchDirection(ResultSet.FETCH_FORWARD);
-													sourceData.setFetchSize(1);
-													destinationData.setFetchSize(1);
-													truncateData.setFetchSize(1);
-													ResultSet sourceResultset = sourceData.executeQuery();
-
-													truncateData.execute();
-													truncateData.close();
-													truncateData = null;
-
-													while (sourceResultset.next())
-													{
-														for (int fldfrom = 0; fldfrom < fieldNames.size(); fldfrom++)
+														if (temp == 0)
 														{
-															JDBField field = fieldNames.get(fldfrom);
-															if (field.getfieldType().toLowerCase().equals("varchar"))
-															{
-																String value;
-																value = JUtility.replaceNullStringwithBlank(sourceResultset.getString(field.getfieldName()));
-																destinationData.setString(fldfrom + 1, value);
-
-															}
-															if (field.getfieldType().toLowerCase().equals("nvarchar"))
-															{
-																String value;
-																value = JUtility.replaceNullStringwithBlank(sourceResultset.getString(field.getfieldName()));
-																destinationData.setString(fldfrom + 1, value);
-
-															}
-															if ((field.getfieldType().toLowerCase().equals("decimal")) | (field.getfieldType().toLowerCase().equals("numeric")) | (field.getfieldType().toLowerCase().equals("float")))
-															{
-																BigDecimal value;
-																value = sourceResultset.getBigDecimal(field.getfieldName());
-																destinationData.setBigDecimal(fldfrom + 1, value);
-
-															}
-															if (field.getfieldType().toLowerCase().equals("datetime"))
-															{
-																Timestamp value;
-																value = sourceResultset.getTimestamp(field.getfieldName());
-																destinationData.setTimestamp(fldfrom + 1, value);
-
-															}
-															if ((field.getfieldType().toLowerCase().equals("int")) | (field.getfieldType().toLowerCase().equals("bigint")))
-															{
-																Integer value;
-																value = sourceResultset.getInt(field.getfieldName());
-																destinationData.setInt(fldfrom + 1, value);
-	
-															}
-															field = null;
+															comma = "";
 														}
-														try
+														else
 														{
-															destinationData.execute();
-															hstTo.getConnection(sessionTo).commit();
-															destinationData.clearParameters();
-															recordsCopied++;
-
-														} catch (Exception ex)
-														{
-															
-															currentError = table+ " "+ex.getMessage();
-															if (currentError.equals(lastError)==false)
-															{
-																setStatusBarText(currentError);
-																logger.debug(currentError);
-																lastError = currentError;
-															}
+															comma = ",";
 														}
+														insertFields = insertFields + comma + fieldNames.get(temp).getfieldName();
+														insertPlaceMarkers = insertPlaceMarkers + comma + "?";
 													}
 
-													sourceResultset.close();
-													sourceResultset = null;
-													destinationData.close();
-													destinationData = null;
-													sourceData.close();
-													sourceData = null;
+													String insertStatement = insertTable + " (" + insertFields + ") values (" + insertPlaceMarkers + ")";
 
-													setStatusBarText("Copying complete");
+													// SELECT ALL SOURCE RECORDS
+													// //
+													setStatusBarText("Copying table " + table);
+													Long recordsCopied = (long) 0;
+													try
+													{
+														hstFrom.getConnection(sessionFrom).setAutoCommit(false);
+														hstTo.getConnection(sessionTo).setAutoCommit(false);
+														PreparedStatement truncateData = hstTo.getConnection(sessionTo).prepareStatement("truncate table " + table);
+														PreparedStatement destinationData = hstTo.getConnection(sessionTo).prepareStatement(insertStatement);
+														PreparedStatement sourceData = hstFrom.getConnection(sessionFrom).prepareStatement("select * from " + table);
+														sourceData.setFetchDirection(ResultSet.FETCH_FORWARD);
+														destinationData.setFetchDirection(ResultSet.FETCH_FORWARD);
+														sourceData.setFetchSize(1);
+														destinationData.setFetchSize(1);
+														truncateData.setFetchSize(1);
+														ResultSet sourceResultset = sourceData.executeQuery();
 
+														truncateData.execute();
+														truncateData.close();
+														truncateData = null;
 
-												} catch (SQLException e)
+														while (sourceResultset.next())
+														{
+															for (int fldfrom = 0; fldfrom < fieldNames.size(); fldfrom++)
+															{
+																JDBField field = fieldNames.get(fldfrom);
+																if (field.getfieldType().toLowerCase().equals("varchar"))
+																{
+																	String value;
+																	value = JUtility.replaceNullStringwithBlank(sourceResultset.getString(field.getfieldName()));
+																	destinationData.setString(fldfrom + 1, value);
+
+																}
+																if (field.getfieldType().toLowerCase().equals("nvarchar"))
+																{
+																	String value;
+																	value = JUtility.replaceNullStringwithBlank(sourceResultset.getString(field.getfieldName()));
+																	destinationData.setString(fldfrom + 1, value);
+
+																}
+																if ((field.getfieldType().toLowerCase().equals("decimal")) | (field.getfieldType().toLowerCase().equals("numeric")) | (field.getfieldType().toLowerCase().equals("float")))
+																{
+																	BigDecimal value;
+																	value = sourceResultset.getBigDecimal(field.getfieldName());
+																	destinationData.setBigDecimal(fldfrom + 1, value);
+
+																}
+																if (field.getfieldType().toLowerCase().equals("datetime"))
+																{
+																	Timestamp value;
+																	value = sourceResultset.getTimestamp(field.getfieldName());
+																	destinationData.setTimestamp(fldfrom + 1, value);
+
+																}
+																if ((field.getfieldType().toLowerCase().equals("int")) | (field.getfieldType().toLowerCase().equals("bigint")))
+																{
+																	Integer value;
+																	value = sourceResultset.getInt(field.getfieldName());
+																	destinationData.setInt(fldfrom + 1, value);
+
+																}
+																field = null;
+															}
+															try
+															{
+																destinationData.execute();
+																hstTo.getConnection(sessionTo).commit();
+																destinationData.clearParameters();
+																recordsCopied++;
+
+															}
+															catch (Exception ex)
+															{
+
+																currentError = table + " " + ex.getMessage();
+																if (currentError.equals(lastError) == false)
+																{
+																	setStatusBarText(currentError);
+																	logger.debug(currentError);
+																	lastError = currentError;
+																}
+															}
+														}
+
+														sourceResultset.close();
+														sourceResultset = null;
+														destinationData.close();
+														destinationData = null;
+														sourceData.close();
+														sourceData = null;
+
+														setStatusBarText("Copying complete");
+
+													}
+													catch (SQLException e)
+													{
+														logger.error("Error reading " + table + " [" + e.getMessage() + "]");
+														labelCommand.setText("Error reading " + table + " [" + e.getMessage() + "]");
+													}
+
+												}
+												else
 												{
-													logger.error("Error reading " + table + " ["+e.getMessage()+"]");
-													labelCommand.setText("Error reading " + table+ " ["+e.getMessage()+"]");
+													labelCommand.setText("Table " + table + " does not exist in destination");
 												}
 
-											} else
-											{
-												labelCommand.setText("Table " + table + " does not exist in destination");
 											}
-
 										}
-									} else
-									{
+										else
+										{
 
-										labelCommand.setText("Number of tables mismatch " + String.valueOf(tableCountFrom) + "/" + String.valueOf(tableCountTo));
+											labelCommand.setText("Number of tables mismatch " + String.valueOf(tableCountFrom) + "/" + String.valueOf(tableCountTo));
+										}
+
+									}
+									else
+									{
+										labelCommand.setText("Schema version mismatch " + String.valueOf(schemaFrom) + "/" + String.valueOf(schemaTo));
 									}
 
-								} else
+								}
+								else
 								{
-									labelCommand.setText("Schema version mismatch " + String.valueOf(schemaFrom) + "/" + String.valueOf(schemaTo));
+									labelCommand.setText("Cannot connect to destination.");
 								}
 
-							} else
-							{
-								labelCommand.setText("Cannot connect to destination.");
 							}
-
-						} else
-						{
-							labelCommand.setText("Cannot connect to source.");
+							else
+							{
+								labelCommand.setText("Cannot connect to source.");
+							}
+							hstFrom.disconnectAll();
+							hstTo.disconnectAll();
 						}
-						hstFrom.disconnectAll();
-						hstTo.disconnectAll();
-					} else
-					{
-						labelCommand.setText("Cannot clone to self.");
+						else
+						{
+							labelCommand.setText("Cannot clone to self.");
+						}
 					}
 				}
 			});
@@ -577,7 +601,8 @@ public class JFrameCloneDB extends JFrame
 			label4j_std_1.setBounds(295, 15, 248, 21);
 			desktopPane.add(label4j_std_1);
 
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}

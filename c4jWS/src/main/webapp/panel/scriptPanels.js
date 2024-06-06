@@ -11,7 +11,7 @@
 				window.location='panelEdit.html';
 			}
 		}
-	};
+	}
 	
 	function getStatusColour(status)
 	{
@@ -44,7 +44,7 @@
 		
 		window.location='panels.html';
 
-	};
+	}
 	
 	function loadTrays() {
 		
@@ -57,7 +57,7 @@
 				window.location='trays.html';
 			}
 		}
-	};
+	}
 			
 	function updatePanel(plant,description,status)
 	{
@@ -81,14 +81,14 @@
 			method: "PUT",
 			body: JSON.stringify(payload)
 		})
-		.then(function(res){ console.log(res) })
-		.catch(function(res){ console.log(res) });
+		.then(function(res){ console.log(res); })
+		.catch(function(res){ console.log(res); });
 		
-		panelListSave("selectedPanelPlant",plant)
+		panelListSave("selectedPanelPlant",plant);
 		
 		refreshPanel();
 	
-	};
+	}
 	
 	function panelListSave(key,val) 
 	{
@@ -99,7 +99,7 @@
 		console.log('panelListSave key='+key);
 		console.log('panelListSave value='+val);
 		sessionStorage.setItem(key, val);
-	};
+	}
 	
 	function panelListGet(key,val) 
 	{
@@ -118,7 +118,7 @@
 		console.log('panelListGet checkedOrNot [' + checkedOrNot + ']');
 	
 		return checkedOrNot;
-	};	
+	}	
 	
 	async function newPanel() {
 	
@@ -152,13 +152,13 @@
 		
 		window.location='panelEdit.html';
 		
-	};
+	}
 	
 	function refreshPanel()
 	{
 		console.log('refreshPanel'); 
 		location.reload();
-	};
+	}
 	
 	function formatDate(isoDate)
 	{
@@ -215,4 +215,4 @@
 			}
 		
 		}
-	};
+	}

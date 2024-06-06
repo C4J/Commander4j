@@ -9,13 +9,13 @@
 			console.debug('editUserRecord  selected user ='+selectedUser);
 			window.location='userEdit.html';
 		}
-	};
+	}
 	
 	function userMenu() {
 		
 		window.location='users.html';
 
-	};
+	}
 	
 	
 	function formatDate(isoDate)
@@ -76,10 +76,10 @@
 			method: "PUT",
 			body: JSON.stringify(payload)
 		})
-		.then(function(res){ console.log(res) })
-		.catch(function(res){ console.log(res) });
+		.then(function(res){ console.log(res); })
+		.catch(function(res){ console.log(res); });
 	
-	};
+	}
 	
 	function userListSave(key,val) 
 	{
@@ -90,7 +90,7 @@
 		console.log('userListSave key='+key);
 		console.log('userListSave value='+val);
 		sessionStorage.setItem(key, val);
-	};
+	}
 	
 	function userListGet(key,val) 
 	{
@@ -109,7 +109,7 @@
 		console.log('userListGet checkedOrNot [' + checkedOrNot + ']');
 	
 		return checkedOrNot;
-	};	
+	}	
 	
 	async function saveUser(userID,firstname,surname,enabled) {
 	
@@ -147,14 +147,14 @@
 		refreshUser();
 		
 		window.location='userEdit.html';
-	};
+	}
 	
 	
 	function refreshUser()
 	{
 		console.log('refreshUser'); 
 		location.reload();
-	};
+	}
 	
 	async function newUser() {
 	
@@ -193,5 +193,5 @@
 		refreshUser();
 		
 		window.location='userEdit.html';
-	};
+	}
 	

@@ -14,32 +14,32 @@
 				window.location='samples.html';
 			}
 		}
-	};
+	}
 	
 	function sampleMenu() {
 		
 		window.location='samples.html';
 
-	};
+	}
 	
 	function trayEdit() {
 		
 		window.location='trayEdit.html';
 	
-	};
+	}
 	
 	function trayMenu() {
 		
 		window.location='trays.html';
 
-	};
+	}
 				
 	function sampleListSave(key,val) 
 	{
 		console.log('sampleListSave key='+key);
 		console.log('sampleListSave value='+val);
 		sessionStorage.setItem(key, val);
-	};
+	}
 	
 	function sampleListGet(key,val) 
 	{
@@ -58,7 +58,7 @@
 		console.log('sampleListGet checkedOrNot [' + checkedOrNot + ']');
 	
 		return checkedOrNot;
-	};	
+	}	
 	
 	async function newSample(sampleID) {
 	
@@ -94,13 +94,13 @@
 		refreshSample();
 		
 		window.location='samples.html';
-	};
+	}
 	
 	function refreshSample()
 	{
 		console.log('refreshSample'); 
 		location.reload();
-	};
+	}
 	
 	async function deleteSample() {
 	
@@ -130,4 +130,4 @@
 		refreshSample();
 		
 		window.location='samples.html';
-	};
+	}

@@ -14,25 +14,25 @@
 				window.location='trayEdit.html';
 			}
 		}
-	};
+	}
 	
 	function trayMenu() {
 		
 		window.location='trays.html';
 
-	};
+	}
 	
 	function panelEdit() {
 		
 		window.location='panelEdit.html';
 	
-	};
+	}
 	
 	function panelMenu() {
 		
 		window.location='panels.html';
 
-	};
+	}
 	
 	function formatDate(isoDate)
 	{
@@ -69,12 +69,12 @@
 			method: "PUT",
 			body: JSON.stringify(payload)
 		})
-		.then(function(res){ console.log(res) })
-		.catch(function(res){ console.log(res) });
+		.then(function(res){ console.log(res); })
+		.catch(function(res){ console.log(res); });
 		
 		refreshTray();
 	
-	};
+	}
 	
 	function trayListSave(key,val) 
 	{
@@ -85,7 +85,7 @@
 		console.log('trayListSave key='+key);
 		console.log('trayListSave value='+val);
 		sessionStorage.setItem(key, val);
-	};
+	}
 	
 	function trayListGet(key,val) 
 	{
@@ -104,7 +104,7 @@
 		console.log('trayListGet checkedOrNot [' + checkedOrNot + ']');
 	
 		return checkedOrNot;
-	};	
+	}	
 	
 	async function newTray() {
 	
@@ -141,7 +141,7 @@
 		refreshTray();
 		
 		window.location='trayEdit.html';
-	};
+	}
 	
 	function sampleMenu()
 	{
@@ -154,13 +154,13 @@
 				window.location='samples.html';
 			}
 		}
-	};
+	}
 	
 	function refreshTray()
 	{
 		console.log('refreshTray'); 
 		location.reload();
-	};
+	}
 	
 	async function deleteTray() {
 	
@@ -194,4 +194,4 @@
 		refreshTray();
 		
 		window.location='trays.html';
-	};
+	}
