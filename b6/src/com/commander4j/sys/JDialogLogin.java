@@ -28,9 +28,10 @@ package com.commander4j.sys;
  */
 
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Toolkit;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -143,10 +144,18 @@ public class JDialogLogin extends JDialog {
 			}
 		});
 		
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		this.setSize(277, 192);
-		setLocation((screenSize.width - screenWidth) / 2, (screenSize.height - screenHeight) / 2);
+		this.setSize(277, 192);		
+		
+		GraphicsDevice gd = JUtility.getGraphicsDevice();
+		
+		GraphicsConfiguration gc = gd.getDefaultConfiguration();
+
+		Rectangle screenBounds = gc.getBounds();
+
+		setBounds(screenBounds.x + ((screenBounds.width - JDialogLogin.this.getWidth()) / 2), screenBounds.y + ((screenBounds.height - JDialogLogin.this.getHeight()) / 2), JDialogLogin.this.getWidth(), JDialogLogin.this.getHeight());
+
+
 		setResizable(false);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setVisible(true);

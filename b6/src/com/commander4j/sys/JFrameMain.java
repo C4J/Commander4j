@@ -32,8 +32,9 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -63,6 +64,7 @@ import com.commander4j.db.JDBListData;
 import com.commander4j.db.JDBModule;
 import com.commander4j.gui.JDesktopPane4j;
 import com.commander4j.util.JHelp;
+import com.commander4j.util.JUtility;
 
 /**
  * JFrameMain is the main desktop for the Swing application as shown below.
@@ -177,10 +179,15 @@ public class JFrameMain extends JFrame implements ComponentListener
 	{
 
 		super(Common.appDisplayName+" " + JVersion.getProgramVersion() + " (" + Common.hostList.getHost(Common.selectedHostID).getSiteDescription() + ")");
+		
+		GraphicsDevice gd = JUtility.getGraphicsDevice();
+		
+		GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setSize(screenSize.width, screenSize.height - 50);
-		setLocation(0, 0);
+		Rectangle screenBounds = gc.getBounds();
+
+		setBounds(screenBounds.x, screenBounds.y , screenBounds.width, screenBounds.height-50);
+
 		setResizable(true);
 		
 		setExtendedState(Frame.MAXIMIZED_HORIZ);

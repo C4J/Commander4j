@@ -28,10 +28,11 @@ package com.commander4j.cfg;
  */
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Toolkit;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -997,7 +998,7 @@ public class JFrameHostAdmin extends JFrame
 						public void actionPerformed(ActionEvent evt)
 						{
 							logger.debug("JFrameHostAdmin closed");
-							dispose();
+							System.exit(0);
 						}
 					});
 				}
@@ -2472,8 +2473,16 @@ public class JFrameHostAdmin extends JFrame
 			
 			setHostsFilename(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts" + File.separator + "hosts.xml");
 			setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_setup4j).getImage());
-			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			setLocation((screenSize.width - getSize().width) / 2, (screenSize.height - getSize().height) / 2);
+						
+			GraphicsDevice gd = JUtility.getGraphicsDevice();
+			
+			GraphicsConfiguration gc = gd.getDefaultConfiguration();
+
+			Rectangle screenBounds = gc.getBounds();
+
+			setBounds(screenBounds.x + ((screenBounds.width - JFrameHostAdmin.this.getWidth()) / 2), screenBounds.y + ((screenBounds.height - JFrameHostAdmin.this.getHeight()) / 2), JFrameHostAdmin.this.getWidth(), JFrameHostAdmin.this.getHeight());
+
+			setVisible(true);
 
 		}
 		catch (Exception e)

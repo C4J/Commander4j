@@ -93,7 +93,8 @@ public class JSplashScreenUtils
 		if (Common.displaySplashScreen)
 		{
 			Common.splash = new JWindowSplash();
-			Common.progress = new JWindowProgress(Common.splash.getImageDimensions());
+
+			Common.progress = new JWindowProgress(Common.splash.getBounds());
 		}
 	}
 

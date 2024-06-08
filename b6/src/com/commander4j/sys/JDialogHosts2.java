@@ -30,9 +30,9 @@ package com.commander4j.sys;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -48,12 +48,13 @@ import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import javax.swing.border.EtchedBorder;
 
 import com.commander4j.app.JVersion;
 import com.commander4j.gui.JButton4j;
 import com.commander4j.gui.JImagePanel4j;
 import com.commander4j.gui.JList4j;
-import javax.swing.border.EtchedBorder;
+import com.commander4j.util.JUtility;
 
 public class JDialogHosts2 extends JDialog
 {
@@ -75,10 +76,13 @@ public class JDialogHosts2 extends JDialog
 
 		populateList("");
 
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Rectangle window = getBounds();
-		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
+		GraphicsDevice gd = JUtility.getGraphicsDevice();
+		
+		GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
+		Rectangle screenBounds = gc.getBounds();
+
+		setBounds(screenBounds.x + ((screenBounds.width - JDialogHosts2.this.getWidth()) / 2), screenBounds.y + ((screenBounds.height - JDialogHosts2.this.getHeight()) / 2), JDialogHosts2.this.getWidth(), JDialogHosts2.this.getHeight());
 		Common.selectedHostID = "Cancel";
 
 		setResizable(false);
@@ -207,7 +211,7 @@ public class JDialogHosts2 extends JDialog
 					public void actionPerformed(ActionEvent evt)
 					{
 						Common.selectedHostID = "Cancel";
-						dispose();
+						System.exit(0);
 					}
 				});
 			}

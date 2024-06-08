@@ -28,10 +28,11 @@ package com.commander4j.clone;
  */
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Toolkit;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -149,8 +150,16 @@ public class JFrameCloneDB extends JFrame
 		initGUI();
 
 		setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_clone4j).getImage());
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation((screenSize.width - getSize().width) / 2, (screenSize.height - getSize().height) / 2);
+		
+		GraphicsDevice gd = JUtility.getGraphicsDevice();
+		
+		GraphicsConfiguration gc = gd.getDefaultConfiguration();
+
+		Rectangle screenBounds = gc.getBounds();
+
+		setBounds(screenBounds.x + ((screenBounds.width - JFrameCloneDB.this.getWidth()) / 2), screenBounds.y + ((screenBounds.height - JFrameCloneDB.this.getHeight()) / 2), JFrameCloneDB.this.getWidth(), JFrameCloneDB.this.getHeight());
+
+		setVisible(true);
 
 		getHosts();
 
@@ -570,7 +579,7 @@ public class JFrameCloneDB extends JFrame
 				public void actionPerformed(ActionEvent evt)
 				{
 					logger.debug("JFrameCloneDB closed");
-					dispose();
+					System.exit(0);;
 				}
 			});
 

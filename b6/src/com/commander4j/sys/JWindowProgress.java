@@ -33,11 +33,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 
 import javax.swing.JProgressBar;
 import javax.swing.JWindow;
-
 
 public class JWindowProgress extends JWindow
 {
@@ -52,19 +50,19 @@ public class JWindowProgress extends JWindow
 	private JProgressBar progress = new JProgressBar();
 	
 
-	public JWindowProgress(Dimension imageSize)
+	public JWindowProgress(Rectangle splashBounds)
 	{
 
-		imageWidth = imageSize.width;
-		int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
-		int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 
-		rect = new Rectangle((screenWidth / 2 - (imageWidth/2)),  ((screenHeight /2)+10), imageWidth, progressHeight);
+		rect = new Rectangle(splashBounds.x,  splashBounds.y+splashBounds.height+10, splashBounds.width, progressHeight);
+		
 		
 		setBounds(rect);
+
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		getContentPane().add(progress,BorderLayout.PAGE_END);
+		
 		progress.setBorderPainted(true);
 		progress.setPreferredSize(new Dimension(imageWidth, progressHeight));
 		progress.setMinimumSize(new Dimension(imageWidth, progressHeight));
@@ -74,7 +72,6 @@ public class JWindowProgress extends JWindow
 		progress.setBackground(Color.WHITE);
 		progress.setForeground(Color.BLUE);
 		
-
 		setVisible(true);
 	}
 

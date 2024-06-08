@@ -1,36 +1,9 @@
 package com.commander4j.sys;
 
-/**
- * @author David Garratt
- * 
- * Project Name : Commander4j
- * 
- * Filename     : JDialogChangePassword.java
- * 
- * Package Name : com.commander4j.sys
- * 
- * License      : GNU General Public License
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 3 of the 
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public 
- * License along with this program.  If not, see
- * http://www.commander4j.com/website/license.html.
- * 
- */
-
-
-import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Toolkit;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -138,10 +111,16 @@ public class JDialogChangePassword extends JDialog
 
 		getRootPane().setDefaultButton(btn_change);
 
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
 		this.setSize(304, 224);
-		setLocation((screenSize.width - screenWidth) / 2, (screenSize.height - screenHeight) / 2);
+		
+		GraphicsDevice gd = JUtility.getGraphicsDevice();
+		
+		GraphicsConfiguration gc = gd.getDefaultConfiguration();
+
+		Rectangle screenBounds = gc.getBounds();
+
+		setBounds(screenBounds.x + ((screenBounds.width - JDialogChangePassword.this.getWidth()) / 2), screenBounds.y + ((screenBounds.height - JDialogChangePassword.this.getHeight()) / 2), JDialogChangePassword.this.getWidth(), JDialogChangePassword.this.getHeight());
+		
 		setResizable(false);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
