@@ -1,4 +1,5 @@
-
+/*jshint esversion: 6 */
+/*jshint esversion: 8 */
 	
 	function editTrayRecord() {
 		

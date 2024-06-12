@@ -1,6 +1,6 @@
-
+/*jshint esversion: 6 */
+/*jshint esversion: 8 */
 	
-
 	async function newResult(trayID,sampleID,userID,testID,resultID) {
 	
 		const dataObject = { 
