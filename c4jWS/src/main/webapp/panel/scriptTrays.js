@@ -1,5 +1,10 @@
 /*jshint esversion: 6 */
 /*jshint esversion: 8 */
+
+	function getContextPath() {
+	   let result = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+	   return result;
+	}
 	
 	function editTrayRecord() {
 		
@@ -61,7 +66,7 @@
 			description: description
 		};
 		
-		fetch("/c4jWS/Trays",
+		fetch(getContextPath()+"/Trays",
 		{
 			headers: {
 			  'Accept': 'application/json',
@@ -120,7 +125,7 @@
 	
 		console.log(JSON.stringify(dataObject));
 	
-		let response = await fetch("/c4jWS/Trays", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
+		let response = await fetch(getContextPath()+"/Trays", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`HTTP error, status = ${response.status}`);
@@ -170,10 +175,10 @@
 		var selectedPanel = sessionStorage.getItem('selectedPanel');
 		var selectedTray = sessionStorage.getItem('selectedTray');
 		
-		console.log("/c4jWS/Trays?panelID="+selectedPanel+"&trayID="+selectedTray);	
+		console.log(getContextPath()+"/Trays?panelID="+selectedPanel+"&trayID="+selectedTray);	
 		
 		try {
-		  const response = await fetch("/c4jWS/Trays?trayID="+selectedTray+"&panelID="+selectedPanel, {
+		  const response = await fetch(getContextPath()+"/Trays?trayID="+selectedTray+"&panelID="+selectedPanel, {
 			method: "delete"
 		  });
 		

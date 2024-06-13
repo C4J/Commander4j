@@ -1,6 +1,11 @@
 /*jshint esversion: 6 */
 /*jshint esversion: 8 */
 	
+	function getContextPath() {
+	   let result = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+	   return result;
+	}
+
 	async function newResult(trayID,sampleID,userID,testID,resultID) {
 	
 		const dataObject = { 
@@ -13,7 +18,7 @@
 	
 		console.log(JSON.stringify(dataObject));
 	
-		let response = await fetch("/c4jWS/TrayResults", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
+		let response = await fetch(getContextPath()+"/TrayResults", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`HTTP error, status = ${response.status}`);

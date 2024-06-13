@@ -165,7 +165,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		Boolean ud2 = false;
 		Boolean ud3 = false;
 		Boolean ud4 = false;
-		
+
 		if (processOrderValid == true)
 		{
 			if (listActivities.getSelectedIndex() != -1)
@@ -195,7 +195,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				{
 					ud2 = true;
 				}
-				
+
 				ud3 = false;
 				if (qmud3 == true)
 				{
@@ -208,8 +208,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				{
 					ud3 = true;
 				}
-				
-				
+
 				ud4 = false;
 				if (qmud4 == true)
 				{
@@ -221,14 +220,13 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				else
 				{
 					ud4 = true;
-				}				
-				
+				}
+
 				if (ud1 & ud2 & ud3 & ud4)
 				{
 					result = true;
 				}
-				
-				
+
 			}
 		}
 		btnPrint.setEnabled(result);
@@ -332,7 +330,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 			{
 				textFieldUserData4.setText("");
 			}
-			
+
 			matCustData.setMaterial(po.getMaterial());
 			matCustData.setCustomerID(po.getCustomerID());
 			matCustData.setDataID("PRODUCT_GROUP");
@@ -752,18 +750,24 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 		desktopPane.add(lblStatusBar);
 
 		sampleDateTime = new JDateControl();
-		sampleDateTime.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				Date selected = sampleDateTime.getDate();
-				Date current = JUtility.getSQLDateTime();
-				if (selected.after(current))
+		sampleDateTime.addChangeListener(new ChangeListener()
+		{
+			public void stateChanged(ChangeEvent e)
+			{
+
+				if (chckbxAutoTime.isSelected() == false)
 				{
-					sampleDateTime.setDate(current);
+					Date selected = sampleDateTime.getDate();
+					Date current = JUtility.getSQLDateTime();
+					if (selected.after(current))
+					{
+						sampleDateTime.setDate(current);
+					}
 				}
-				
+
 			}
 		});
-		
+
 		sampleDateTime.setEnabled(false);
 		sampleDateTime.setBounds(417, 8, 128, 25);
 		desktopPane.add(sampleDateTime);
@@ -855,7 +859,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				setDefaultDPI(pq);
 			}
 		});
-		
+
 		{
 			jButtonLookup_Shift_Names = new JButton4j(Common.icon_lookup_16x16);
 			desktopPane.add(jButtonLookup_Shift_Names);
@@ -877,7 +881,7 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 				}
 			});
 		}
-		
+
 		{
 			jButtonLookup_Packing_Line = new JButton4j(Common.icon_lookup_16x16);
 			desktopPane.add(jButtonLookup_Packing_Line);
@@ -911,8 +915,6 @@ public class JInternalFrameQMSampleLabel extends JInternalFrame
 
 			}
 		});
-
-
 
 		timer.start();
 

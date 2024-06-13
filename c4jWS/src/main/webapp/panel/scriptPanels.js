@@ -1,4 +1,11 @@
+/*jshint esversion: 6 */
+/*jshint esversion: 8 */
 	
+	function getContextPath() {
+	   let result = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+	   return result;
+	}
+
 	function editPanelRecord() {
 		
 		var selected = sessionStorage.getItem('selectedPanel');
@@ -72,7 +79,7 @@
 			status: status
 		};
 		
-		fetch("/c4jWS/Panels",
+		fetch(getContextPath()+"/Panels",
 		{
 			headers: {
 			  'Accept': 'application/json',
@@ -129,7 +136,7 @@
 	
 		console.log(JSON.stringify(dataObject));
 	
-		let response = await fetch("/c4jWS/Panels", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
+		let response = await fetch(getContextPath()+"/Panels", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`HTTP error, status = ${response.status}`);
@@ -187,10 +194,10 @@
 			if (selectedPanel !== '')
 			{
 		
-				console.log("/c4jWS/Panels?panelID="+selectedPanel);	
+				console.log(getContextPath()+"/Panels?panelID="+selectedPanel);	
 				
 				try {
-				  const response = await fetch("/c4jWS/Panels?panelID="+selectedPanel, {
+				  const response = await fetch(getContextPath()+"/Panels?panelID="+selectedPanel, {
 					method: "delete"
 				  });
 				

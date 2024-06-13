@@ -1,5 +1,10 @@
 /*jshint esversion: 6 */
 /*jshint esversion: 8 */
+
+	function getContextPath() {
+	   let result = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+	   return result;
+	}
 	
 	function editUserRecord() {
 		
@@ -68,7 +73,7 @@
 			enabled: enableChar
 		};
 		
-		fetch("/c4jWS/Users",
+		fetch(getContextPath()+"/Users",
 		{
 			headers: {
 			  'Accept': 'application/json',
@@ -126,7 +131,7 @@
 	
 		console.log(JSON.stringify(dataObject));
 	
-		let response = await fetch("/c4jWS/Users", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
+		let response = await fetch(getContextPath()+"/Users", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`HTTP error, status = ${response.status}`);
@@ -172,7 +177,7 @@
 	
 		console.log(JSON.stringify(dataObject));
 	
-		let response = await fetch("/c4jWS/Users", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
+		let response = await fetch(getContextPath()+"/Users", { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataObject) })
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error(`HTTP error, status = ${response.status}`);
