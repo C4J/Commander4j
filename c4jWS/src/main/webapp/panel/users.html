@@ -14,7 +14,7 @@
 
 	 <!-- Link to my stylesheet -->
 	 <link rel="stylesheet" href="stylesPanels.css">
-	<title>Tray Menu</title>
+	<title>User Menu</title>
 
 	<script src="scriptUsers.js"></script> <!-- Link to the javascript file -->
 	
@@ -53,6 +53,7 @@
 		<label  style="color: red;" for="N">: Disabled</label>
 	</div>
 	
+	<div style="overflow-y: scroll; height:300px;">
 	<table id="userTable">
 		<thead>
 			<tr>
@@ -64,7 +65,8 @@
 		</thead>
 		<tbody id="userTable-output">
 		</tbody>
-	</table>	
+	</table>
+	</div>	
 	
 	<div class="grid-container">
   		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewUser()">Add</button></div> 

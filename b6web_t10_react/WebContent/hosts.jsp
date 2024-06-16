@@ -27,7 +27,7 @@
 			<form id="hosts" name="hosts" action="Process" method="post">
 							
 	
-				<div class="button-group-vertical">
+				<div class="button-group-vertical" style="overflow-y: scroll; height:200px;">
 						<%
 							String hostList = (String) session.getAttribute("hostList");
 							if (hostList == null)
