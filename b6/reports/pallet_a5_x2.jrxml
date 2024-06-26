@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pallet_a5_x2" language="groovy" pageWidth="421" pageHeight="595" columnWidth="421" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a86243ae-9678-4159-a228-d0d75586cd5b">
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="pallet_a5_x2" language="groovy" pageWidth="421" pageHeight="595" columnWidth="421" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a86243ae-9678-4159-a228-d0d75586cd5b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -12,9 +11,7 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
-	<queryString>
-		<![CDATA[SELECT * FROM view_pallet_expiry WHERE SSCC = $P{SSCC}]]>
-	</queryString>
+	<query language="sql"><![CDATA[SELECT * FROM view_pallet_expiry WHERE SSCC = $P{SSCC}]]></query>
 	<field name="SSCC" class="java.lang.String"/>
 	<field name="LOCATION_ID" class="java.lang.String"/>
 	<field name="MATERIAL" class="java.lang.String"/>
@@ -38,36 +35,30 @@
 	<field name="OLD_MATERIAL" class="java.lang.String"/>
 	<field name="CUSTOMER_NAME" class="java.lang.String"/>
 	<field name="PRINT_ON_LABEL" class="java.lang.String"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
+	<background splitType="Stretch"/>
 	<detail>
 		<band height="595">
-			<break>
-				<reportElement x="0" y="275" width="421" height="1" uuid="e8637226-00c2-4763-93e4-5645788fa6ba"/>
-			</break>
-			<subreport>
-				<reportElement x="0" y="0" width="421" height="275" uuid="18ab7342-138b-4368-9bcb-8a5964bc7d1a"/>
-				<subreportParameter name="SSCC">
-					<subreportParameterExpression><![CDATA[$F{SSCC}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="LABEL_NO">
-					<subreportParameterExpression><![CDATA["L1"]]></subreportParameterExpression>
-				</subreportParameter>
+			<element kind="break" uuid="e8637226-00c2-4763-93e4-5645788fa6ba" x="0" y="275" width="421" height="1"/>
+			<element kind="subreport" uuid="18ab7342-138b-4368-9bcb-8a5964bc7d1a" x="0" y="0" width="421" height="275">
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "pallet_a5_x1.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement x="0" y="276" width="421" height="319" uuid="82594c18-d2f8-4943-b13f-3319ba2b7a53"/>
-				<subreportParameter name="SSCC">
-					<subreportParameterExpression><![CDATA[$F{SSCC}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="LABEL_NO">
-					<subreportParameterExpression><![CDATA["L2"]]></subreportParameterExpression>
-				</subreportParameter>
+				<expression><![CDATA[$P{SUBREPORT_DIR} + "pallet_a5_x1.jasper"]]></expression>
+				<parameter name="SSCC">
+					<expression><![CDATA[$F{SSCC}]]></expression>
+				</parameter>
+				<parameter name="LABEL_NO">
+					<expression><![CDATA["L1"]]></expression>
+				</parameter>
+			</element>
+			<element kind="subreport" uuid="82594c18-d2f8-4943-b13f-3319ba2b7a53" x="0" y="276" width="421" height="319">
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "pallet_a5_x1.jasper"]]></subreportExpression>
-			</subreport>
+				<expression><![CDATA[$P{SUBREPORT_DIR} + "pallet_a5_x1.jasper"]]></expression>
+				<parameter name="SSCC">
+					<expression><![CDATA[$F{SSCC}]]></expression>
+				</parameter>
+				<parameter name="LABEL_NO">
+					<expression><![CDATA["L2"]]></expression>
+				</parameter>
+			</element>
 		</band>
 	</detail>
 </jasperReport>

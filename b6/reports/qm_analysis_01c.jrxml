@@ -1,24 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QM_Analysis_01c" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="70ddfa37-7405-4067-9988-162eaa7e638d">
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="QM_Analysis_01c" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="70ddfa37-7405-4067-9988-162eaa7e638d">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="139"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="854"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL Database"/>
 	<parameter name="P_BATCH_SUFFIX" class="java.lang.String">
-		<parameterDescription><![CDATA[]]></parameterDescription>
+		<description><![CDATA[]]></description>
 		<defaultValueExpression><![CDATA[00]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_SAMPLE_DATE_START" class="java.sql.Timestamp">
-		<parameterDescription><![CDATA[Samples To Date]]></parameterDescription>
+		<description><![CDATA[Samples To Date]]></description>
 		<defaultValueExpression><![CDATA[DATE(2017,1,1)]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_SAMPLE_DATE_END" class="java.sql.Timestamp">
-		<parameterDescription><![CDATA[Samples To Date]]></parameterDescription>
+		<description><![CDATA[Samples To Date]]></description>
 		<defaultValueExpression><![CDATA[NOW( )]]></defaultValueExpression>
 	</parameter>
-	<queryString language="SQL">
-		<![CDATA[SELECT
+	<query language="SQL"><![CDATA[SELECT
 	PRODUCT_PANEL AS IN_OUT,
 	COUNT(PRODUCT_PANEL) AS COUNTER,
 	(SELECT COUNT(PRODUCT_PANEL) FROM view_qm_analysis_01 WHERE BATCH_SUFFIX = $P{P_BATCH_SUFFIX} AND 	SAMPLE_DATE >= $P{P_SAMPLE_DATE_START}  AND 	SAMPLE_DATE <= $P{P_SAMPLE_DATE_END} ) AS TOTAL
@@ -30,74 +28,39 @@ AND 	SAMPLE_DATE >= $P{P_SAMPLE_DATE_START}
 AND 	SAMPLE_DATE <= $P{P_SAMPLE_DATE_END} 
 GROUP BY
 	BATCH_SUFFIX ,
-	PRODUCT_PANEL]]>
-	</queryString>
+	PRODUCT_PANEL]]></query>
 	<field name="IN_OUT" class="java.lang.String"/>
 	<field name="COUNTER" class="java.lang.Long"/>
 	<field name="TOTAL" class="java.lang.Long"/>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<title>
-		<band splitType="Stretch"/>
-	</title>
-	<pageHeader>
-		<band splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band height="23" splitType="Stretch">
+	<background splitType="Stretch"/>
+	<title splitType="Stretch"/>
+	<pageHeader splitType="Stretch"/>
+	<columnHeader height="23" splitType="Stretch">
+		<element kind="staticText" uuid="093df8ef-46e8-4de5-86cc-c5545c7c6b61" x="1" y="0" width="180" height="23" fontSize="12.0" underline="true" bold="false" italic="false" hTextAlign="Left">
+			<text><![CDATA[Product Panel Detailed Analysis]]></text>
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<staticText>
-				<reportElement x="1" y="0" width="180" height="23" uuid="093df8ef-46e8-4de5-86cc-c5545c7c6b61">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Left">
-					<font size="12" isBold="false" isItalic="false" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[Product Panel Detailed Analysis]]></text>
-			</staticText>
-		</band>
+			<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 	</columnHeader>
 	<detail>
 		<band height="12" splitType="Stretch">
+			<element kind="textField" uuid="e37abfc1-605d-48fb-ba9a-ebb0d1eb4195" x="2" y="0" width="118" height="12" fontSize="8.0">
+				<expression><![CDATA[$F{IN_OUT}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			</element>
+			<element kind="textField" uuid="a35251cd-6cd9-4d12-b90a-e727cf21001d" x="131" y="0" width="50" height="12" fontSize="8.0" hTextAlign="Right">
+				<expression><![CDATA[$F{COUNTER}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			</element>
+			<element kind="textField" uuid="3b2b6efb-c45b-4521-a629-7dcd46db637d" x="187" y="0" width="60" height="12" fontSize="8.0" pattern="#,##0.##%" hTextAlign="Right">
+				<expression><![CDATA[(new Double($F{COUNTER}.doubleValue()) / new Double($F{TOTAL}.doubleValue()))]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			</element>
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<textField>
-				<reportElement x="2" y="0" width="118" height="12" uuid="e37abfc1-605d-48fb-ba9a-ebb0d1eb4195">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement>
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{IN_OUT}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="131" y="0" width="50" height="12" uuid="a35251cd-6cd9-4d12-b90a-e727cf21001d">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Right">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{COUNTER}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.##%">
-				<reportElement x="187" y="0" width="60" height="12" uuid="3b2b6efb-c45b-4521-a629-7dcd46db637d">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Right">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[(new Double($F{COUNTER}.doubleValue()) / new Double($F{TOTAL}.doubleValue()))]]></textFieldExpression>
-			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band splitType="Stretch"/>
-	</summary>
+	<columnFooter splitType="Stretch"/>
+	<pageFooter splitType="Stretch"/>
+	<summary splitType="Stretch"/>
 </jasperReport>

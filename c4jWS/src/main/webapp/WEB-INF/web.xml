@@ -1,10 +1,11 @@
 <?com.commander4j.xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<web-app xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
 	xmlns="https://jakarta.ee/com.commander4j.xml/ns/jakartaee"
-	xmlns:web="http://xmlns.jcp.org/com.commander4j.xml/ns/javaee"
-	xsi:schemaLocation="https://jakarta.ee/com.commander4j.xml/ns/jakartaee https://jakarta.ee/com.commander4j.xml/ns/jakartaee/web-app_5_0.xsd"
+	xmlns:web="https://xmlns.jcp.org/com.commander4j.xml/ns/javaee"
+	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
 	id="WebApp_ID" version="5.0" metadata-complete="false">
 	<display-name>c4jWS</display-name>
+	<description>C4J Panel Results</description>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>

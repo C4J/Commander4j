@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="qm_sample_label" pageWidth="289" pageHeight="107" orientation="Landscape" columnWidth="287" leftMargin="1" rightMargin="1" topMargin="1" bottomMargin="1" uuid="cc7a55b2-fcc7-403d-ac2e-317e3f2805f9">
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="qm_sample_label" language="java" pageWidth="289" pageHeight="107" orientation="Landscape" columnWidth="287" leftMargin="1" rightMargin="1" topMargin="1" bottomMargin="1" uuid="cc7a55b2-fcc7-403d-ac2e-317e3f2805f9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -12,9 +11,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<queryString language="SQL">
-		<![CDATA[select * from app_qm_sample where sample_id = 1735453]]>
-	</queryString>
+	<query language="SQL"><![CDATA[select * from app_qm_sample where sample_id = 1735453]]></query>
 	<field name="SAMPLE_ID" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="SAMPLE_ID"/>
 		<property name="com.jaspersoft.studio.field.label" value="SAMPLE_ID"/>
@@ -45,58 +42,41 @@
 		<property name="com.jaspersoft.studio.field.label" value="USER_DATA_2"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="app_qm_sample"/>
 	</field>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
+	<background splitType="Stretch"/>
 	<detail>
 		<band height="105" splitType="Stretch">
-			<componentElement>
-				<reportElement x="45" y="53" width="226" height="50" uuid="cbdff917-a86c-4267-bd27-1ecaca57aaf7"/>
-				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" moduleWidth="2.0">
-					<jr:codeExpression><![CDATA[$F{SAMPLE_ID}]]></jr:codeExpression>
-				</jr:Code128>
-			</componentElement>
-			<textField>
-				<reportElement x="64" y="7" width="66" height="12" uuid="ead650ed-0b92-47e9-9dab-ba4b54b8da8a"/>
-				<textFieldExpression><![CDATA[$F{PROCESS_ORDER}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="0" y="7" width="60" height="12" uuid="2f862638-6f38-431e-9acf-0fcf9aa9429a">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Right"/>
+			<element kind="component" uuid="cbdff917-a86c-4267-bd27-1ecaca57aaf7" x="45" y="53" width="226" height="50">
+				<component kind="barcode4j:Code128" moduleWidth="2.0">
+					<codeExpression><![CDATA[$F{SAMPLE_ID}]]></codeExpression>
+				</component>
+			</element>
+			<element kind="textField" uuid="ead650ed-0b92-47e9-9dab-ba4b54b8da8a" x="64" y="7" width="66" height="12">
+				<expression><![CDATA[$F{PROCESS_ORDER}]]></expression>
+			</element>
+			<element kind="staticText" uuid="2f862638-6f38-431e-9acf-0fcf9aa9429a" x="0" y="7" width="60" height="12" hTextAlign="Right">
 				<text><![CDATA[Order : ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="133" y="7" width="60" height="12" uuid="2536785f-57f3-4f2f-a588-800e76548c37">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Right"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="2536785f-57f3-4f2f-a588-800e76548c37" x="133" y="7" width="60" height="12" hTextAlign="Right">
 				<text><![CDATA[Material : ]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="200" y="7" width="66" height="12" uuid="99ffe186-402f-45a2-bc44-74057ca85a6c"/>
-				<textFieldExpression><![CDATA[$F{MATERIAL}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy HH:mm">
-				<reportElement x="64" y="22" width="116" height="12" uuid="220d279d-d262-4769-8db4-38db853dc618"/>
-				<textFieldExpression><![CDATA[$F{SAMPLE_DATE}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="4" y="22" width="60" height="12" uuid="701fd362-3765-4283-a5a2-7e682e82bff8">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Right"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="99ffe186-402f-45a2-bc44-74057ca85a6c" x="200" y="7" width="66" height="12">
+				<expression><![CDATA[$F{MATERIAL}]]></expression>
+			</element>
+			<element kind="textField" uuid="220d279d-d262-4769-8db4-38db853dc618" x="64" y="22" width="116" height="12" pattern="dd/MM/yyyy HH:mm">
+				<expression><![CDATA[$F{SAMPLE_DATE}]]></expression>
+			</element>
+			<element kind="staticText" uuid="701fd362-3765-4283-a5a2-7e682e82bff8" x="4" y="22" width="60" height="12" hTextAlign="Right">
 				<text><![CDATA[Date :]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="64" y="36" width="66" height="12" uuid="2222de7f-f06a-48eb-afad-6bf233979e11"/>
-				<textFieldExpression><![CDATA[$F{USER_DATA_1}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="200" y="36" width="66" height="12" uuid="fa3d81b6-a79f-4674-a74b-1766150ff653"/>
-				<textFieldExpression><![CDATA[$F{USER_DATA_2}]]></textFieldExpression>
-			</textField>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="2222de7f-f06a-48eb-afad-6bf233979e11" x="64" y="36" width="66" height="12">
+				<expression><![CDATA[$F{USER_DATA_1}]]></expression>
+			</element>
+			<element kind="textField" uuid="fa3d81b6-a79f-4674-a74b-1766150ff653" x="200" y="36" width="66" height="12">
+				<expression><![CDATA[$F{USER_DATA_2}]]></expression>
+			</element>
 		</band>
 	</detail>
 </jasperReport>

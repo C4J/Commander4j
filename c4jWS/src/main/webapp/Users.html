@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>c4jWS Panels</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+ 	<p><a href="index.html">Home</a></p>
+ 	<h1>/Users</h1>
+ 	<h2>Table APP_QM_USERS</h2>
+ 	<table style="width:800px">
+ 	<tr><th width=125px>Field Name</th><th width=75px>Type</th><th width=55px>Size</th><th width=55px>Primary Key</th><th width=355px>Comment</th></tr>
+ 	<tr><td>PANEL_ID</td><td>Long</td><td></td><td align="center">1</td><td>Link to Panel record.</td></tr>
+ 	<tr><td>USER_ID</td><td>Long</td><td></td><td align="center">2</td><td>User ID</td></tr>
+ 	<tr><td>CREATED</td><td>Timestamp</td><td></td><td></td><td>System maintained</td></tr>
+ 	</table>
+ 	<p><i></i></p>
+ 
+ 	<h2>Transactions</h2>
+ 	<h3>GET (Read)</h3>
+
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve Users for a specified panelID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Users?panelID={id}&nbsp;</td></tr>
+ 	</table>
+ 	 	<br/>
+ 	<table style="width:600px">
+ 	<tr><td><b>&nbsp;Retrieve User by panelID and userID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Users?panelID={id}&amp;userID=DAVID&nbsp;</td></tr>
+ 	</table>
+  
+    <h4>JSON Example</h4>
+    <pre>
+[
+  {
+    "panelID": 1,
+    "userID": "DAVID",
+    "created": "2022-09-30T16:43:53"
+  }
+]
+  </pre>
+    <h3>POST (Create)</h3>
+    
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Inserts data as per JSON Body</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/lUsers</td></tr>
+ 	</table>
+
+    <h4>JSON Example - POST</h4>
+    <pre>
+[
+  {
+    "panelID": 1,
+    "userID": "MANDY",
+  }
+]
+    </pre>
+    
+    <h4>JSON Example - Response</h4>
+    <pre>
+[
+ {
+    "panelID": 1,
+    "trayID": 8,
+    "plant": "Pouch 4a",
+    "description": "New Product Trial",
+    "status": "Prepare",
+    "created": "2022-09-25T08:52:30"
+  }
+ ]
+    </pre>
+      
+    <h3>DELETE (Delete)</h3>
+    
+    <table style="width:600px">
+ 	<tr><td><b>&nbsp;Deletes all Users for specified Panel</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Users?panelID={id}</td></tr>
+ 	</table>
+ 	 <br/>
+ 	<table style="width:600px">
+    <tr><td><b>&nbsp;Deletes User as per parameters for panelID and userID</b></td></tr>
+ 	<tr><td>&nbsp;http://localhost:8080/c4jWS/Users?panelID={id}&amp;userID={id}&nbsp;</td></tr>
+ 	</table>
+
+</body>
+</html>
