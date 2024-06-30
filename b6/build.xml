@@ -19,10 +19,7 @@
 		<pathelement location="lib/ant-launcher-1.10.14.jar"/>
 		<pathelement location="lib/antlr-2.7.7.jar"/>
 		<pathelement location="lib/antlr4-runtime-4.10.1.jar"/>
-		<pathelement location="lib/avalon-framework-api-4.2.0.jar"/>
-		<pathelement location="lib/avalon-framework-impl-4.2.0.jar"/>
 		<pathelement location="lib/barbecue-1.5-beta1.jar"/>
-		<pathelement location="lib/barcode4j-2.1.jar"/>
 		<pathelement location="lib/batik-anim-1.17.jar"/>
 		<pathelement location="lib/batik-awt-util-1.17.jar"/>
 		<pathelement location="lib/batik-bridge-1.17.jar"/>
@@ -45,7 +42,6 @@
 		<pathelement location="lib/cdt-java-client-4.0.0.jar"/>
 		<pathelement location="lib/classmate-1.5.1.jar"/>
 		<pathelement location="lib/commons-beanutils-1.9.4.jar"/>
-		<pathelement location="lib/commons-cli-1.0.jar"/>
 		<pathelement location="lib/commons-collections-3.2.2.jar"/>
 		<pathelement location="lib/commons-collections4-4.4.jar"/>
 		<pathelement location="lib/commons-compress-1.21.jar"/>
@@ -175,6 +171,10 @@
 		<pathelement location="lib/db/mssql-jdbc-12.6.2.jre11.jar"/>
 		<pathelement location="lib/db/mysql-connector-j-8.3.0.jar"/>
 		<pathelement location="lib/db/ojdbc11.jar"/>
+		<pathelement location="lib/avalon-framework-api-4.3.1.jar"/>
+		<pathelement location="lib/avalon-framework-impl-4.3.1.jar"/>
+		<pathelement location="lib/barcode4j-2.2.3.jar"/>
+		<pathelement location="lib/commons-cli-1.8.0.jar"/>
 	</path>
 	<path id="run.Start.classpath">
 		<path refid="b6.classpath"/>
@@ -186,10 +186,7 @@
 		<pathelement location="lib/ant-launcher-1.10.14.jar"/>
 		<pathelement location="lib/antlr-2.7.7.jar"/>
 		<pathelement location="lib/antlr4-runtime-4.10.1.jar"/>
-		<pathelement location="lib/avalon-framework-api-4.2.0.jar"/>
-		<pathelement location="lib/avalon-framework-impl-4.2.0.jar"/>
 		<pathelement location="lib/barbecue-1.5-beta1.jar"/>
-		<pathelement location="lib/barcode4j-2.1.jar"/>
 		<pathelement location="lib/batik-anim-1.17.jar"/>
 		<pathelement location="lib/batik-awt-util-1.17.jar"/>
 		<pathelement location="lib/batik-bridge-1.17.jar"/>
@@ -212,7 +209,6 @@
 		<pathelement location="lib/cdt-java-client-4.0.0.jar"/>
 		<pathelement location="lib/classmate-1.5.1.jar"/>
 		<pathelement location="lib/commons-beanutils-1.9.4.jar"/>
-		<pathelement location="lib/commons-cli-1.0.jar"/>
 		<pathelement location="lib/commons-collections-3.2.2.jar"/>
 		<pathelement location="lib/commons-collections4-4.4.jar"/>
 		<pathelement location="lib/commons-compress-1.21.jar"/>
@@ -342,6 +338,10 @@
 		<pathelement location="lib/db/mssql-jdbc-12.6.2.jre11.jar"/>
 		<pathelement location="lib/db/mysql-connector-j-8.3.0.jar"/>
 		<pathelement location="lib/db/ojdbc11.jar"/>
+		<pathelement location="lib/avalon-framework-api-4.3.1.jar"/>
+		<pathelement location="lib/avalon-framework-impl-4.3.1.jar"/>
+		<pathelement location="lib/barcode4j-2.2.3.jar"/>
+		<pathelement location="lib/commons-cli-1.8.0.jar"/>
 	</path>
 	<target name="init">
 		<mkdir dir="bin"/>

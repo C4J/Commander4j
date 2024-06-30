@@ -14,10 +14,7 @@
 	<classpathentry kind="lib" path="lib/ant-launcher-1.10.14.jar"/>
 	<classpathentry kind="lib" path="lib/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="lib/antlr4-runtime-4.10.1.jar"/>
-	<classpathentry kind="lib" path="lib/avalon-framework-api-4.2.0.jar"/>
-	<classpathentry kind="lib" path="lib/avalon-framework-impl-4.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/barbecue-1.5-beta1.jar"/>
-	<classpathentry kind="lib" path="lib/barcode4j-2.1.jar"/>
 	<classpathentry kind="lib" path="lib/batik-anim-1.17.jar"/>
 	<classpathentry kind="lib" path="lib/batik-awt-util-1.17.jar"/>
 	<classpathentry kind="lib" path="lib/batik-bridge-1.17.jar"/>
@@ -40,7 +37,6 @@
 	<classpathentry kind="lib" path="lib/cdt-java-client-4.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/classmate-1.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-beanutils-1.9.4.jar"/>
-	<classpathentry kind="lib" path="lib/commons-cli-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-collections-3.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-collections4-4.4.jar"/>
 	<classpathentry kind="lib" path="lib/commons-compress-1.21.jar"/>
@@ -170,5 +166,9 @@
 	<classpathentry kind="lib" path="lib/db/mssql-jdbc-12.6.2.jre11.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-j-8.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/db/ojdbc11.jar"/>
+	<classpathentry kind="lib" path="lib/avalon-framework-api-4.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/avalon-framework-impl-4.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/barcode4j-2.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/commons-cli-1.8.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

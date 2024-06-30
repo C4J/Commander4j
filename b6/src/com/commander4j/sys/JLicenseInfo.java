@@ -118,7 +118,7 @@ public class JLicenseInfo implements Comparable<JLicenseInfo>
 	{
 		String comparedDesc = o.description;
 		
-		return this.description.compareTo(comparedDesc);
+		return this.description.toUpperCase().compareTo(comparedDesc.toUpperCase());
 
 	}
 	

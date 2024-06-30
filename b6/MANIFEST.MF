@@ -8,10 +8,10 @@ Class-Path: lib/SparseBitSet-1.2.jar
  lib/ant-launcher-1.10.14.jar 
  lib/antlr-2.7.7.jar 
  lib/antlr4-runtime-4.10.1.jar 
- lib/avalon-framework-api-4.2.0.jar 
- lib/avalon-framework-impl-4.2.0.jar 
+ lib/avalon-framework-api-4.3.1.jar 
+ lib/avalon-framework-impl-4.3.1.jar 
  lib/barbecue-1.5-beta1.jar 
- lib/barcode4j-2.1.jar 
+ lib/barcode4j-2.2.3.jar 
  lib/batik-anim-1.17.jar 
  lib/batik-awt-util-1.17.jar 
  lib/batik-bridge-1.17.jar 
@@ -34,7 +34,7 @@ Class-Path: lib/SparseBitSet-1.2.jar
  lib/cdt-java-client-4.0.0.jar 
  lib/classmate-1.5.1.jar 
  lib/commons-beanutils-1.9.4.jar 
- lib/commons-cli-1.0.jar 
+ lib/commons-cli-1.8.0.jar 
  lib/commons-codec-1.17.0.jar 
  lib/commons-collections-3.2.2.jar 
  lib/commons-collections4-4.4.jar 

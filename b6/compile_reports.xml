@@ -1,185 +1,29 @@
-<project name="antcompile" default="test" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
-
+<project name="antcompile" default="compile-reports" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 	<description>Shows how multiple JRXML files can be compiled in batch mode using ANT.</description>
-
+	
 	<path id="report-compile-classpath">
-		<path refid="report-compile-lib"/>
-		<pathelement location="./build/classes"/>
-		<pathelement location="../../common-samples/classes"/>
-		<pathelement location="lib/devonly/i4jruntime.jar"/>
-		<pathelement location="lib/aalto-xml-1.3.2.jar"/>
-		<pathelement location="lib/angus-activation-2.0.2.jar"/>
-		<pathelement location="lib/angus-mail-2.0.3.jar"/>
-		<pathelement location="lib/ant-1.10.14.jar"/>
-		<pathelement location="lib/ant-launcher-1.10.14.jar"/>
-		<pathelement location="lib/antlr-2.7.7.jar"/>
-		<pathelement location="lib/antlr4-runtime-4.10.1.jar"/>
-		<pathelement location="lib/avalon-framework-api-4.2.0.jar"/>
-		<pathelement location="lib/avalon-framework-impl-4.2.0.jar"/>
-		<pathelement location="lib/barbecue-1.5-beta1.jar"/>
-		<pathelement location="lib/barcode4j-2.1.jar"/>
-		<pathelement location="lib/batik-anim-1.17.jar"/>
-		<pathelement location="lib/batik-awt-util-1.17.jar"/>
-		<pathelement location="lib/batik-bridge-1.17.jar"/>
-		<pathelement location="lib/batik-constants-1.17.jar"/>
-		<pathelement location="lib/batik-css-1.17.jar"/>
-		<pathelement location="lib/batik-dom-1.17.jar"/>
-		<pathelement location="lib/batik-ext-1.17.jar"/>
-		<pathelement location="lib/batik-gvt-1.17.jar"/>
-		<pathelement location="lib/batik-i18n-1.17.jar"/>
-		<pathelement location="lib/batik-parser-1.17.jar"/>
-		<pathelement location="lib/batik-script-1.17.jar"/>
-		<pathelement location="lib/batik-shared-resources-1.17.jar"/>
-		<pathelement location="lib/batik-svg-dom-1.17.jar"/>
-		<pathelement location="lib/batik-svggen-1.17.jar"/>
-		<pathelement location="lib/batik-util-1.17.jar"/>
-		<pathelement location="lib/batik-xml-1.17.jar"/>
-		<pathelement location="lib/byte-buddy-1.14.7.jar"/>
-		<pathelement location="lib/castor-core-1.4.1.jar"/>
-		<pathelement location="lib/castor-xml-1.4.1.jar"/>
-		<pathelement location="lib/cdt-java-client-4.0.0.jar"/>
-		<pathelement location="lib/classmate-1.5.1.jar"/>
-		<pathelement location="lib/commons-beanutils-1.9.4.jar"/>
-		<pathelement location="lib/commons-cli-1.0.jar"/>
-		<pathelement location="lib/commons-codec-1.11.jar"/>
-		<pathelement location="lib/commons-collections-3.2.2.jar"/>
-		<pathelement location="lib/commons-collections4-4.4.jar"/>
-		<pathelement location="lib/commons-compress-1.21.jar"/>
-		<pathelement location="lib/commons-dbcp-1.2.jar"/>
-		<pathelement location="lib/commons-discovery-0.2.jar"/>
-		<pathelement location="lib/commons-io-2.7.jar"/>
-		<pathelement location="lib/commons-lang-2.6.jar"/>
-		<pathelement location="lib/commons-lang3-3.13.0.jar"/>
-		<pathelement location="lib/commons-logging-1.3.0.jar"/>
-		<pathelement location="lib/commons-math-1.0.jar"/>
-		<pathelement location="lib/commons-math3-3.6.1.jar"/>
-		<pathelement location="lib/commons-pool-1.3.jar"/>
-		<pathelement location="lib/commons-text-1.11.0.jar"/>
-		<pathelement location="lib/commons-vfs-1.0.jar"/>
-		<pathelement location="lib/core-3.4.0.jar"/>
-		<pathelement location="lib/cups4j-0.7.9.jar"/>
-		<pathelement location="lib/curvesapi-1.07.jar"/>
-		<pathelement location="lib/ecj-3.21.0.jar"/>
-		<pathelement location="lib/eigenbase-properties-1.1.0.10924.jar"/>
-		<pathelement location="lib/eigenbase-resgen-1.3.0.11873.jar"/>
-		<pathelement location="lib/eigenbase-xom-1.3.0.11999.jar"/>
-		<pathelement location="lib/fastexcel-reader-0.15.6.jar"/>
-		<pathelement location="lib/grizzly-framework-2.3.25.jar"/>
-		<pathelement location="lib/grizzly-http-2.3.25.jar"/>
-		<pathelement location="lib/grizzly-http-server-2.3.25.jar"/>
-		<pathelement location="lib/groovy-4.0.16.jar"/>
-		<pathelement location="lib/groovy-sandbox-1.26-jaspersoft-2.jar"/>
-		<pathelement location="lib/hibernate-commons-annotations-6.0.6.Final.jar"/>
-		<pathelement location="lib/hibernate-core-6.3.1.Final.jar"/>
-		<pathelement location="lib/httpclient-4.5.14.jar"/>
-		<pathelement location="lib/httpcore-4.4.16.jar"/>
-		<pathelement location="lib/istack-commons-runtime-4.1.1.jar"/>
-		<pathelement location="lib/jackcess-4.0.6.jar"/>
-		<pathelement location="lib/jackson-annotations-2.17.1.jar"/>
-		<pathelement location="lib/jackson-core-2.17.1.jar"/>
-		<pathelement location="lib/jackson-databind-2.17.1.jar"/>
-		<pathelement location="lib/jackson-dataformat-xml-2.17.1.jar"/>
-		<pathelement location="lib/jakarta.activation-api-2.1.3.jar"/>
-		<pathelement location="lib/jakarta.inject-api-2.0.1.jar"/>
-		<pathelement location="lib/jakarta.mail-api-2.1.3.jar"/>
-		<pathelement location="lib/jakarta.persistence-api-3.1.0.jar"/>
-		<pathelement location="lib/jakarta.transaction-api-2.0.1.jar"/>
-		<pathelement location="lib/jakarta.xml.bind-api-4.0.0.jar"/>
-		<pathelement location="lib/jandex-3.1.2.jar"/>
-		<pathelement location="lib/jasperreports-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-annotation-processors-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-ant-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-barbecue-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-barcode4j-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-castor-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-chart-customizers-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-charts-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-chart-themes-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-chrome-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-data-adapters-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-data-adapters-http-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-ejbql-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-excel-poi-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-fastexcel-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-fonts-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-functions-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-google-maps-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-groovy-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-hibernate-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-interactivity-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-javascript-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-jaxen-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-jdt-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-json-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-metadata-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-olap-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-pdf-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-servlets-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-sort-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-spring-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-velocity-7.0.0.jar"/>
-		<pathelement location="lib/jasperreports-xalan-7.0.0.jar"/>
-		<pathelement location="lib/javacup-0.10k.jar"/>
-		<pathelement location="lib/javassist-3.24.1-GA.jar"/>
-		<pathelement location="lib/javax.inject-1.jar"/>
-		<pathelement location="lib/javax.websocket-api-1.1.jar"/>
-		<pathelement location="lib/javax.xml.soap-api-1.4.0.jar"/>
-		<pathelement location="lib/jaxb-core-4.0.2.jar"/>
-		<pathelement location="lib/jaxb-runtime-4.0.2.jar"/>
-		<pathelement location="lib/jaxen-2.0.0.jar"/>
-		<pathelement location="lib/jboss-logging-3.5.0.Final.jar"/>
-		<pathelement location="lib/jfreechart-1.5.4.jar"/>
-		<pathelement location="lib/jgoodies-common-1.6.0.jar"/>
-		<pathelement location="lib/jgoodies-forms-1.7.1.jar"/>
-		<pathelement location="lib/jSerialComm-2.11.0.jar"/>
-		<pathelement location="lib/log4j-api-2.17.2.jar"/>
-		<pathelement location="lib/log4j-core-2.17.2.jar"/>
-		<pathelement location="lib/lucene-analyzers-common-8.11.2.jar"/>
-		<pathelement location="lib/lucene-core-8.11.2.jar"/>
-		<pathelement location="lib/mondrian-3.1.1.12687.jar"/>
-		<pathelement location="lib/mssql-jdbc-12.6.3.jre11.jar"/>
-		<pathelement location="lib/mysql-connector-j-8.4.0.jar"/>
-		<pathelement location="lib/ojdbc11-23.4.0.24.05.jar"/>
-		<pathelement location="lib/olap4j-0.9.7.309-JS-3.jar"/>
-		<pathelement location="lib/opencsv-5.9.jar"/>
-		<pathelement location="lib/openpdf-1.3.32.jar"/>
-		<pathelement location="lib/poi-5.2.2.jar"/>
-		<pathelement location="lib/poi-ooxml-5.2.2.jar"/>
-		<pathelement location="lib/poi-ooxml-lite-5.2.2.jar"/>
-		<pathelement location="lib/protobuf-java-3.25.1.jar"/>
-		<pathelement location="lib/rhino-1.7.14.jar"/>
-		<pathelement location="lib/serializer-2.7.2.jar"/>
-		<pathelement location="lib/simple-xml-2.7.1.jar"/>
-		<pathelement location="lib/slf4j-api-1.7.25.jar"/>
-		<pathelement location="lib/SparseBitSet-1.2.jar"/>
-		<pathelement location="lib/spring-beans-5.3.27.jar"/>
-		<pathelement location="lib/spring-core-5.3.27.jar"/>
-		<pathelement location="lib/spring-jcl-5.3.27.jar"/>
-		<pathelement location="lib/stax-1.2.0.jar"/>
-		<pathelement location="lib/stax2-api-4.2.2.jar"/>
-		<pathelement location="lib/stax-api-1.0.1.jar"/>
-		<pathelement location="lib/txw2-4.0.2.jar"/>
-		<pathelement location="lib/tyrus-client-1.13.1.jar"/>
-		<pathelement location="lib/tyrus-container-grizzly-client-1.13.1.jar"/>
-		<pathelement location="lib/tyrus-core-1.13.1.jar"/>
-		<pathelement location="lib/tyrus-spi-1.13.1.jar"/>
-		<pathelement location="lib/velocity-engine-core-2.3.jar"/>
-		<pathelement location="lib/woodstox-core-6.6.2.jar"/>
-		<pathelement location="lib/xalan-2.7.3.jar"/>
-		<pathelement location="lib/xml-apis-ext-1.3.04.jar"/>
-		<pathelement location="lib/xmlbeans-5.0.3.jar"/>
-		<pathelement location="lib/xmlgraphics-commons-2.9.jar"/>
-		<pathelement location="lib/xmpcore-6.1.11.jar"/>
-		<pathelement location="lib/xpp3-1.1.3.3.jar"/>
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
 	</path>
-
+	
 	<target name="prepare-report-compile-classpath">
 		<ivy:configure file="./ivysettings.xml" override="true"/>
 		<ivy:resolve file="./ivy.xml" log="download-only"/>
-		<ivy:cachepath pathid="report-compile-lib"/>
 	</target>
-
-	<target name="compile" description="Compiles report designs specified using the &quot;srcdir&quot; in the &lt;jrc&gt; tag." depends="prepare-report-compile-classpath">
+	
+	<target name="clean" description="Deletes all the generated files.">
+		<delete dir="./compiled"/>
+		<delete dir="./temp"/>
+	</target>
+	
+	<target name="delete-compiled">
+		<delete>
+			<fileset dir="./reports" includes="**/*.jasper"/>
+		</delete>
+	</target>
+	
+	<target name="compile" description="Compiles report designs specified using the &quot;srcdir&quot; in the &lt;jrc> tag." depends="prepare-report-compile-classpath">
 		<mkdir dir="./temp"/>
 		<taskdef name="jrc" classname="net.sf.jasperreports.ant.JRAntCompileTask">
 			<classpath refid="report-compile-classpath"/>
@@ -189,22 +33,11 @@
 			<include name="**/*.jrxml"/>
 		</jrc>
 	</target>
-
-	<target name="clean" description="Deletes all the generated files.">
-		<delete dir="./compiled"/>
-		<delete dir="./temp"/>
-	</target>
-	
-	<target name="delete-compiled">  
-		<delete>  
-			<fileset dir="./reports" includes="**/*.jasper"/>  
-		</delete>  
-	</target> 
 	
 	<target name="tidy" description="Deletes all the temp files.">
 		<delete dir="./temp"/>
 	</target>
-
+	
 	<target name="compile-reports" description="Runs the sample.">
 		<echo message="==================================="/>
 		<echo message=" Ant Compile Sample"/>
@@ -214,5 +47,4 @@
 		<antcall target="compile"/>
 		<antcall target="tidy"/>
 	</target>
-
 </project>
