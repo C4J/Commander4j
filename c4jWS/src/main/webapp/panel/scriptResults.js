@@ -4,7 +4,7 @@
 	function getContextPath() {
 	   let result = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
 	   return result;
-	}
+	};
 
 	async function newResult(trayID,sampleID,userID,testID,resultID) {
 	

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="10.0.8" transformSequenceNumber="10">
   <directoryPresets config="./lib/db/auth" />
-  <application name="Commander4j" applicationId="6923-0356-2321-8111" mediaDir="../../../Distribution/java17/b6Commander4j" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="11.00" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="17" javaMaxVersion="17">
+  <application name="Commander4j" applicationId="6923-0356-2321-8111" mediaDir="../../../Distribution/java17/b6Commander4j" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="11.01" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="17" javaMaxVersion="17">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
         <language id="nl" />
@@ -30,9 +30,6 @@
       <mountPoint id="111" location="xml/view" />
       <mountPoint id="1004" location="xml/config" />
       <mountPoint id="34" location="lib" />
-      <mountPoint id="1303" location="lib/auth" />
-      <mountPoint id="1304" location="lib/auth/x86" />
-      <mountPoint id="1305" location="lib/auth/x64" />
       <mountPoint id="35" location="logs" />
       <mountPoint id="36" location="help" />
       <mountPoint id="167" location="help/html" />
@@ -66,8 +63,6 @@
       <dirEntry mountPoint="110" file="./xml/sql" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="sql" overrideDirMode="true" />
       <dirEntry mountPoint="111" file="./xml/view" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="view" overrideDirMode="true" />
       <dirEntry mountPoint="1004" file="./xml/config" overwriteMode="0" uninstallMode="1" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="config" />
-      <dirEntry mountPoint="1304" file="./lib/db/auth/x86" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="x86" />
-      <dirEntry mountPoint="1305" file="./lib/db/auth/x64" overwriteMode="1" uninstallMode="2" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="x64" />
       <dirEntry mountPoint="34" file="./lib" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="lib" overrideDirMode="true" />
       <dirEntry mountPoint="167" file="./help/html" overwriteMode="1" uninstallMode="2" overrideFileMode="true" overrideOverwriteMode="true" overrideUninstallMode="true" subDirectory="html" overrideDirMode="true">
         <exclude>

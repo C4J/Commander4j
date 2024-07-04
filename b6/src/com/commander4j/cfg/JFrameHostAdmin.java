@@ -62,6 +62,7 @@ import javax.swing.JTextArea;
 import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
@@ -90,9 +91,9 @@ import com.commander4j.util.JFileFilterXML;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
+import com.commander4j.util.JWait;
 import com.commander4j.xml.JXMLHost;
 import com.commander4j.xml.JXMLSchema;
-
 
 /**
  * JFrameHostAdmin is a Frame which allows the user to configure any number of
@@ -382,7 +383,7 @@ public class JFrameHostAdmin extends JFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, "http://commander4j.com/mw/index.php?title=Setup4j");
-		
+
 		getHosts();
 
 		if (Common.setupPassword.equals("") == false)
@@ -415,10 +416,10 @@ public class JFrameHostAdmin extends JFrame
 		Common.hostList.loadHosts(hostsFilename);
 		hostList = Common.hostList.getHosts();
 		jCheckBoxSplash.setSelected(Common.displaySplashScreen);
-		
+
 		chckbx4jSingleInstance.setSelected(Common.singleInstanceMode);
 		jTextFieldSingleInstancePort.setText(String.valueOf(Common.singleInstancePort));
-		
+
 		JTextFieldUpdateURL.setText(Common.updateURL);
 		jTextField4jInstallDir.setBackground(Common.color_list_assigned);
 		jTextField4jInstallDir.setText(Common.updateInstallDir);
@@ -518,7 +519,7 @@ public class JFrameHostAdmin extends JFrame
 			if (hst.getDatabaseParameters().getjdbcDriver().equals("com.microsoft.sqlserver.jdbc.SQLServerDriver"))
 			{
 				jComboBoxjdbcDriver.setSelectedIndex(3);
-				
+
 				if (hst.getDatabaseParameters().isjdbcDatabaseIntegratedSecurity())
 				{
 					jTextFieldUsername.setEnabled(false);
@@ -529,7 +530,7 @@ public class JFrameHostAdmin extends JFrame
 					jTextFieldUsername.setEnabled(true);
 					jTextFieldPassword.setEnabled(true);
 				}
-				
+
 			}
 			if (hst.getDatabaseParameters().getjdbcDriver().equals("http"))
 			{
@@ -541,12 +542,11 @@ public class JFrameHostAdmin extends JFrame
 			jTextFieldSelectLimit.setText(hst.getDatabaseParameters().getjdbcDatabaseSelectLimit());
 
 			jComboBoxjdbcTimeZone.setSelectedItem(hst.getDatabaseParameters().getjdbcDatabaseTimeZone());
-			
 
 			jCheckBoxEncrypt.setSelected(hst.getDatabaseParameters().isjdbcDatabaseEncrypt());
 			jCheckBoxIntegrated.setSelected(hst.getDatabaseParameters().isjdbcDatabaseIntegratedSecurity());
 			jCheckBoxTrust.setSelected(hst.getDatabaseParameters().isjdbcDatabaseTrustServerCertificate());
-			
+
 			chckbxUseTimeZoneInConnect.setSelected(hst.getDatabaseParameters().isjdbcDatabaseTimeZoneEnable());
 			jComboBoxCollation.setSelectedItem(hst.getDatabaseParameters().getjdbcCollation());
 			jComboBoxCharSet.setSelectedItem(hst.getDatabaseParameters().getjdbcCharacterSet());
@@ -641,7 +641,7 @@ public class JFrameHostAdmin extends JFrame
 			hst.getDatabaseParameters().setjdbcDatabaseEncrypt(jCheckBoxEncrypt.isSelected());
 			hst.getDatabaseParameters().setjdbcDatabaseIntegratedSecurity(jCheckBoxIntegrated.isSelected());
 			hst.getDatabaseParameters().setjdbcDatabaseTrustServerCertificate(jCheckBoxTrust.isSelected());
-			
+
 			hst.getDatabaseParameters().setjdbcDatabaseSchema(jTextFieldSchema.getText());
 			hst.getDatabaseParameters().setjdbcUsername(jTextFieldUsername.getText());
 			hst.getDatabaseParameters().setjdbcPassword(String.valueOf(jTextFieldPassword.getPassword()));
@@ -650,7 +650,7 @@ public class JFrameHostAdmin extends JFrame
 			hst.getDatabaseParameters().setjdbcSID(jTextFieldSID.getText());
 			hst.getDatabaseParameters().setjdbcServer(jTextFieldServer.getText());
 			hst.getDatabaseParameters().setjdbcDatabase(jTextFieldDatabase.getText());
-			
+
 			hst.setUniqueID(jTextFieldUniqueID.getText());
 			hst.getSqlstatements().setjdbcDriver(hst.getDatabaseParameters().getjdbcDriver());
 			hst.getSqlstatements().setjdbcDriver(hst.getDatabaseParameters().getjdbcDriver());
@@ -715,9 +715,9 @@ public class JFrameHostAdmin extends JFrame
 		jTextFieldDateTime.setEnabled(edit);
 		jTextFieldSelectLimit.setEnabled(edit);
 		jTextFieldSchema.setEnabled(edit);
-//		jTextFieldUsername.setEnabled(edit);
-//		jTextFieldPassword.setEnabled(edit);
-		
+		// jTextFieldUsername.setEnabled(edit);
+		// jTextFieldPassword.setEnabled(edit);
+
 		jTextFieldPort.setEnabled(edit);
 		jTextFieldSID.setEnabled(edit);
 		jTextFieldServer.setEnabled(edit);
@@ -774,8 +774,19 @@ public class JFrameHostAdmin extends JFrame
 				result = "Commander4j tables found but need to be updated, use the AUTO Update option to update them";
 			}
 		}
-		labelActualSchemaVersion.repaint();
-		labelActualProgramVersion.repaint();
+		
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				labelActualProgramVersion.repaint();
+				labelActualSchemaVersion.repaint();
+				JWait.milliSec(250);
+			}
+		});
+
+
 		labelCommand.setText(result);
 	}
 
@@ -1058,7 +1069,8 @@ public class JFrameHostAdmin extends JFrame
 									JOptionPane.showMessageDialog(Setup.hostadmin, "No host has been assigned to the interface service.", "Warning", JOptionPane.WARNING_MESSAGE);
 								}
 
-								JXMLHost.writeHosts(hostsFilename, hostList, splash, JTextFieldUpdateURL.getText(), getUpdateMode(), jTextField4jInstallDir.getText(), pass1, jTextField4jHostVersion.getText(), jTextField4jHostUpdatePath.getText(),chckbx4jSingleInstance.isSelected(),Integer.valueOf(jTextFieldSingleInstancePort.getText()));
+								JXMLHost.writeHosts(hostsFilename, hostList, splash, JTextFieldUpdateURL.getText(), getUpdateMode(), jTextField4jInstallDir.getText(), pass1, jTextField4jHostVersion.getText(), jTextField4jHostUpdatePath.getText(),
+										chckbx4jSingleInstance.isSelected(), Integer.valueOf(jTextFieldSingleInstancePort.getText()));
 								jButtonSave.setEnabled(false);
 								jButtonUndo.setEnabled(false);
 							}
@@ -1268,7 +1280,7 @@ public class JFrameHostAdmin extends JFrame
 								jCheckBoxEncrypt.setEnabled(true);
 								jCheckBoxIntegrated.setEnabled(true);
 								jCheckBoxTrust.setEnabled(true);
-								
+
 							}
 
 							if (jComboBoxjdbcDriver.getSelectedItem().toString().equals("Web URL"))
@@ -1689,8 +1701,8 @@ public class JFrameHostAdmin extends JFrame
 												JUtility.errorBeep();
 												JDialogDMLErrors dmlerrs = new JDialogDMLErrors(Setup.hostadmin, cmds, updrst);
 												dmlerrs.setModal(true);
-												int ignoreDDLErrors = JOptionPane.showConfirmDialog(Setup.hostadmin, "Ignore Errors and set SCHEMA version to " + String.valueOf(updrst.schema_NEWVersion) + " ?", "Connection to (" + hst.getSiteDescription() + ")",
-														JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
+												int ignoreDDLErrors = JOptionPane.showConfirmDialog(Setup.hostadmin, "Ignore Errors and set SCHEMA version to " + String.valueOf(updrst.schema_NEWVersion) + " ?",
+														"Connection to (" + hst.getSiteDescription() + ")", JOptionPane.YES_NO_OPTION, 0, Common.icon_confirm_16x16);
 
 												if (ignoreDDLErrors == 0)
 												{
@@ -2397,19 +2409,19 @@ public class JFrameHostAdmin extends JFrame
 			btnDefaultCharSet.setBounds(671, 420, 21, 21);
 			desktopPane.add(btnDefaultCharSet);
 
-			
 			JLabel4j_std jLabelSingleInstancePort = new JLabel4j_std();
 			jLabelSingleInstancePort.setText("Watchdog Port");
 			jLabelSingleInstancePort.setHorizontalTextPosition(SwingConstants.RIGHT);
 			jLabelSingleInstancePort.setHorizontalAlignment(SwingConstants.RIGHT);
 			jLabelSingleInstancePort.setBounds(872, 495, 84, 21);
 			desktopPane.add(jLabelSingleInstancePort);
-			chckbx4jSingleInstance.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			chckbx4jSingleInstance.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
 					jTextFieldKeyTyped();
 				}
 			});
-			
 
 			chckbx4jSingleInstance.setToolTipText("If selected this will only allow one instance of Commander4j to run at a time.");
 			chckbx4jSingleInstance.setText("Single Instance");
@@ -2417,24 +2429,26 @@ public class JFrameHostAdmin extends JFrame
 			chckbx4jSingleInstance.setBackground(Color.WHITE);
 			chckbx4jSingleInstance.setBounds(746, 495, 118, 21);
 			desktopPane.add(chckbx4jSingleInstance);
-			jTextFieldSingleInstancePort.addKeyListener(new KeyAdapter() {
+			jTextFieldSingleInstancePort.addKeyListener(new KeyAdapter()
+			{
 				@Override
-				public void keyTyped(KeyEvent e) {
+				public void keyTyped(KeyEvent e)
+				{
 					jTextFieldKeyTyped();
 				}
 			});
-			
 
 			jTextFieldSingleInstancePort.setFocusCycleRoot(true);
 			jTextFieldSingleInstancePort.setBackground(new Color(233, 255, 233));
 			jTextFieldSingleInstancePort.setBounds(967, 495, 70, 21);
 			desktopPane.add(jTextFieldSingleInstancePort);
-			jCheckBoxEncrypt.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			jCheckBoxEncrypt.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
 					jTextFieldKeyTyped();
 				}
 			});
-			
 
 			jCheckBoxEncrypt.setText("Encrypt");
 			jCheckBoxEncrypt.setToolTipText("Only used with SQL Server.");
@@ -2443,12 +2457,14 @@ public class JFrameHostAdmin extends JFrame
 			jCheckBoxEncrypt.setBackground(Color.WHITE);
 			jCheckBoxEncrypt.setBounds(622, 90, 70, 21);
 			desktopPane.add(jCheckBoxEncrypt);
-			jCheckBoxIntegrated.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			jCheckBoxIntegrated.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
 					jTextFieldKeyTyped();
 				}
 			});
-			
+
 			jCheckBoxIntegrated.setText("Integrated Security");
 			jCheckBoxIntegrated.setToolTipText("Only used with SQL Server. Usename and Password are disabled if this is selected");
 			jCheckBoxIntegrated.setSelected(true);
@@ -2456,12 +2472,13 @@ public class JFrameHostAdmin extends JFrame
 			jCheckBoxIntegrated.setBackground(Color.WHITE);
 			jCheckBoxIntegrated.setBounds(711, 90, 127, 21);
 			desktopPane.add(jCheckBoxIntegrated);
-			jCheckBoxTrust.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			jCheckBoxTrust.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
 					jTextFieldKeyTyped();
 				}
 			});
-			
 
 			jCheckBoxTrust.setText("Trust Server Cert");
 			jCheckBoxTrust.setToolTipText("Only used with SQL Server.");
@@ -2470,12 +2487,12 @@ public class JFrameHostAdmin extends JFrame
 			jCheckBoxTrust.setBackground(Color.WHITE);
 			jCheckBoxTrust.setBounds(842, 90, 127, 21);
 			desktopPane.add(jCheckBoxTrust);
-			
+
 			setHostsFilename(System.getProperty("user.dir") + File.separator + "xml" + File.separator + "hosts" + File.separator + "hosts.xml");
 			setIconImage(Common.imageIconloader.getImageIcon16x16(Common.image_osx_setup4j).getImage());
-						
+
 			GraphicsDevice gd = JUtility.getGraphicsDevice();
-			
+
 			GraphicsConfiguration gc = gd.getDefaultConfiguration();
 
 			Rectangle screenBounds = gc.getBounds();
