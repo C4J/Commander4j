@@ -1,0 +1,9 @@
+{
+ "compilerOptions": {
+  "disableSizeLimit": true,
+  "allowJs": true,
+  "module": "commonjs",
+  "target": "es6",
+  "checkJs": true
+ }
+}

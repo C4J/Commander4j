@@ -2,4 +2,5 @@
 <faceted-project>
   <runtime name="Java 17 JDK"/>
   <installed facet="java" version="17"/>
+  <installed facet="me.spring" version="4.1"/>
 </faceted-project>
