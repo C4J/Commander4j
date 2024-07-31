@@ -223,14 +223,18 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 						fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 						for (int x = 0; x < ddlLocal.size();x++)
 						{            
-							fw.write("Schema Version : " + ddlLocal.get(x).getVersion()+"\n");
-							fw.write("Sequence       : " + String.valueOf(ddlLocal.get(x).getSequence())+"\n");
-							fw.write("DDL            : " + ddlLocal.get(x).getText()+"\n");
-							fw.write("Error Message  : " + ddlLocal.get(x).getError()+"\n");
-							fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-							fw.flush();
+							if (ddlLocal.get(x).getError().equals("Success")==false)
+							{
+								fw.write("Schema Version : " + ddlLocal.get(x).getVersion()+"\n");
+								fw.write("Sequence       : " + String.valueOf(ddlLocal.get(x).getSequence())+"\n");
+								fw.write("DDL            : " + ddlLocal.get(x).getText()+"\n");
+								fw.write("Error Message  : " + ddlLocal.get(x).getError()+"\n");
+								fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+								fw.flush();
+							}
 						}
 						fw.write("\nNo of Errors   : " +String.valueOf(ddlLocal.size())+"\n");
+						fw.flush();
 						fw.close();
 						
 						result=true;
