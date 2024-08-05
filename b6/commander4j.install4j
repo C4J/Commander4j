@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="10.0.8" transformSequenceNumber="10">
-  <directoryPresets config="./lib/db/auth" />
+  <directoryPresets config="./images/icons/CMD4j_Icons" />
   <application name="Commander4j" applicationId="6923-0356-2321-8111" mediaDir="../../../Distribution/java17/b6Commander4j" shrinkRuntime="false" shortName="Commander4j" publisher="David Garratt" publisherWeb="http://www.commander4j.com" version="11.02" allPathsRelative="true" macVolumeId="2fff9a9d0dc659ac" javaMinVersion="17" javaMaxVersion="17">
     <languages skipLanguageSelection="true">
       <additionalLanguages>
@@ -304,6 +304,22 @@
         <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_256x256.png" />
       </iconImageFiles>
     </launcher>
+    <launcher name="EncryptData" id="1313" icnsFile="./images/icons/CMD4j_Icons/MyIcon.icns">
+      <executable name="EncryptData" iconSet="true" iconFile="./images/icons/CMD4j_Icons/icon.ico" executableDir="." redirectStderr="false" executableMode="console" />
+      <java mainClass="com.commander4j.util.EncryptData">
+        <classPath>
+          <archive location="commander4j.jar" failOnError="false" />
+          <directory location="lib" failOnError="false" />
+        </classPath>
+      </java>
+      <iconImageFiles>
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_16x16.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_32x32.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_48x48.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_128x128.png" />
+        <file path="./images/icons/CMD4j_Icons/MyIcon.iconset/icon_256x256.png" />
+      </iconImageFiles>
+    </launcher>
   </launchers>
   <installerGui autoUpdateDescriptorUrl="${installer:C4JUpdaterUrl}">
     <applications>
@@ -575,6 +591,24 @@ else
     Util.logInfo(null, "Not Windows");
     return false;
 }</condition>
+              </action>
+              <action id="1314" beanClass="com.install4j.runtime.beans.actions.files.CopyFileAction" actionElevationType="elevated">
+                <serializedBean>
+                  <property name="destinationFile">
+                    <object class="java.io.File">
+                      <string>xml/config</string>
+                    </object>
+                  </property>
+                  <property name="files" type="array" class="java.io.File" length="1">
+                    <element index="0">
+                      <object class="java.io.File">
+                        <string>${installer:sys.mediaDir}/email.xml</string>
+                      </object>
+                    </element>
+                  </property>
+                  <property name="overwriteMode" type="enum" class="com.install4j.api.context.OverwriteMode" value="ALWAYS" />
+                  <property name="uninstallMode" type="enum" class="com.install4j.api.context.UninstallMode" value="NEVER" />
+                </serializedBean>
               </action>
             </actions>
             <formComponents>

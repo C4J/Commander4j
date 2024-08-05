@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLDocument;
+import com.commander4j.util.EncryptData;
+import com.commander4j.util.JCipher;
 
 import jakarta.mail.Authenticator;
 import jakarta.mail.Message;
@@ -28,6 +30,7 @@ public class SendEmail
 	private boolean initialised = false;
 	private boolean enabled = false;
 	private String configID="";
+	private JCipher cipher = new JCipher(EncryptData.key);
 
 	public void init()
 	{
@@ -53,7 +56,17 @@ public class SendEmail
 		{
 			String prop = doc.findXPath("/emailSettings/"+configID+"/property[" + String.valueOf(seq) + "]/@name").trim();
 			String val  = doc.findXPath("/emailSettings/"+configID+"/property[" + String.valueOf(seq) + "]/@value").trim();		
+			String encrypted = doc.findXPath("//configuration/property[" + String.valueOf(seq) + "]/@encrypted").trim().toLowerCase();
 			
+			if (encrypted.equals(""))
+			{
+				encrypted = "no";
+			}
+			
+			if (encrypted.equals("yes"))
+			{
+				val = cipher.decode(val);
+			}			
 			if (prop.equals(""))
 			{
 				cont = false;
