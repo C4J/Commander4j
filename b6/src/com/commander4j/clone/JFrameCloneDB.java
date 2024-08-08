@@ -390,7 +390,7 @@ public class JFrameCloneDB extends JFrame
 											for (int tf = 0; tf < tableCountFrom; tf++)
 											{
 												table = tablesFrom.get(tf);
-												// table = "APP_QM_ANALYSIS";
+											//	table = "APP_PALLET_SAMPLES";
 												progressBar.setValue(tf + 1);
 												progressBar.paintImmediately(progressBar.getVisibleRect());
 												if (tablesTo.contains(table))
@@ -468,7 +468,7 @@ public class JFrameCloneDB extends JFrame
 																	destinationData.setString(fldfrom + 1, value);
 
 																}
-																if ((field.getfieldType().toLowerCase().equals("decimal")) | (field.getfieldType().toLowerCase().equals("numeric")) | (field.getfieldType().toLowerCase().equals("float")))
+																if ((field.getfieldType().toLowerCase().equals("decimal unsigned")) | (field.getfieldType().toLowerCase().equals("decimal")) | (field.getfieldType().toLowerCase().equals("numeric")) | (field.getfieldType().toLowerCase().equals("float")))
 																{
 																	BigDecimal value;
 																	value = sourceResultset.getBigDecimal(field.getfieldName());
@@ -476,6 +476,13 @@ public class JFrameCloneDB extends JFrame
 
 																}
 																if (field.getfieldType().toLowerCase().equals("datetime"))
+																{
+																	Timestamp value;
+																	value = sourceResultset.getTimestamp(field.getfieldName());
+																	destinationData.setTimestamp(fldfrom + 1, value);
+
+																}
+																if (field.getfieldType().toLowerCase().equals("timestamp"))
 																{
 																	Timestamp value;
 																	value = sourceResultset.getTimestamp(field.getfieldName());
