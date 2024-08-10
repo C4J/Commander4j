@@ -221,6 +221,7 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 						fw.write("Updating from Schema Version "+String.valueOf(updateRequest.schema_CURVersion+" to "+String.valueOf(updateRequest.schema_NEWVersion))+"\n");
 						fw.write("*********************************************************************************************************************************************************\n\n\n");
 						fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+						int errCount = 0;
 						for (int x = 0; x < ddlLocal.size();x++)
 						{            
 							if (ddlLocal.get(x).getError().equals("Success")==false)
@@ -231,9 +232,11 @@ public class JDialogDMLErrors extends javax.swing.JDialog
 								fw.write("Error Message  : " + ddlLocal.get(x).getError()+"\n");
 								fw.write("---------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 								fw.flush();
+								errCount ++;
 							}
 						}
-						fw.write("\nNo of Errors   : " +String.valueOf(ddlLocal.size())+"\n");
+						fw.write("\nNo of Commands   : " +String.valueOf(ddlLocal.size())+"\n");
+						fw.write("\nNo of Errors     : " +String.valueOf(errCount)+"\n");
 						fw.flush();
 						fw.close();
 						

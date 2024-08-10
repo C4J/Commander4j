@@ -643,8 +643,5 @@ insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_F
 insert into SYS_LANGUAGE (resource_key,language_id,text,mnemonic) values ('mod_FRM_ADMIN_AUTO_LAB_EDIT','IT','Add or Update a Production Line','');
 </statement>
 
-<statement>
-ALTER TABLE `APP_MATERIAL_BATCH` DROP FOREIGN KEY `sys_c004058` ;
-</statement>
 
 </DDL>
