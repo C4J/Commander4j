@@ -54,7 +54,7 @@ Class-Path: lib/SparseBitSet-1.2.jar
  lib/cups4j-0.7.9.jar 
  lib/curvesapi-1.07.jar 
  lib/db/mssql-jdbc-12.6.2.jre11.jar 
- lib/db/mysql-connector-j-8.3.0.jar 
+ lib/db/mysql-connector-j-9.0.0.jar 
  lib/db/ojdbc11.jar 
  lib/ecj-3.21.0.jar 
  lib/eigenbase-properties-1.1.0.10924.jar 
