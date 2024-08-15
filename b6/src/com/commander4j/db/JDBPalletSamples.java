@@ -60,6 +60,11 @@ public class JDBPalletSamples
 	private String dbOperative;
 	private String dbSamplePoint;
 	private long sample_sequence = 1;
+	private BigDecimal dbLane1Quantity = new BigDecimal("0.00");
+	private BigDecimal dbLane2Quantity = new BigDecimal("0.00");
+	private BigDecimal dbLane3Quantity = new BigDecimal("0.00");
+	private BigDecimal dbLane4Quantity = new BigDecimal("0.00");
+	private BigDecimal dbLane5Quantity = new BigDecimal("0.00");
 
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBPalletSamples.class);
 	private String hostID;
@@ -71,7 +76,7 @@ public class JDBPalletSamples
 		setSessionID(session);
 	}
 
-	public JDBPalletSamples(String sscc, Long sampleSequence,Timestamp sampledate, String reason, String defecttype, String defectid, BigDecimal sampleQuantity, String leaking, String comment, String user, String samplepoint, String operative)
+	public JDBPalletSamples(String sscc, Long sampleSequence,Timestamp sampledate, String reason, String defecttype, String defectid, BigDecimal sampleQuantity, String leaking, String comment, String user, String samplepoint, String operative, BigDecimal lane1Quantity, BigDecimal lane2Quantity, BigDecimal lane3Quantity, BigDecimal lane4Quantity, BigDecimal lane5Quantity)
 	{
 		setSSCC(sscc);
 		setSampleSequence(sampleSequence);
@@ -85,6 +90,11 @@ public class JDBPalletSamples
 		setUserID(user);
 		setSamplePoint(samplepoint);
 		setOperative(operative);
+		setLane1Quantity(lane1Quantity);
+		setLane2Quantity(lane2Quantity);
+		setLane3Quantity(lane3Quantity);
+		setLane4Quantity(lane4Quantity);
+		setLane5Quantity(lane5Quantity);
 	}
 
 	public void clear()
@@ -99,6 +109,11 @@ public class JDBPalletSamples
 		setUserID("");
 		setSamplePoint("");
 		setOperative("");
+		setLane1Quantity(new BigDecimal("0.00"));
+		setLane2Quantity(new BigDecimal("0.00"));
+		setLane3Quantity(new BigDecimal("0.00"));
+		setLane4Quantity(new BigDecimal("0.00"));
+		setLane5Quantity(new BigDecimal("0.00"));
 	}
 
 	public boolean create()
@@ -211,6 +226,36 @@ public class JDBPalletSamples
 		return dbSampleQuantity;
 	}
 	
+	public BigDecimal getLane1Quantity()
+	{
+
+		return dbLane1Quantity;
+	}
+	
+	public BigDecimal getLane2Quantity()
+	{
+
+		return dbLane2Quantity;
+	}
+	
+	public BigDecimal getLane3Quantity()
+	{
+
+		return dbLane3Quantity;
+	}
+	
+	public BigDecimal getLane4Quantity()
+	{
+
+		return dbLane4Quantity;
+	}
+	
+	public BigDecimal getLane5Quantity()
+	{
+
+		return dbLane5Quantity;
+	}
+	
 
 	public void getPropertiesfromResultSet(ResultSet rs)
 	{
@@ -229,6 +274,11 @@ public class JDBPalletSamples
 			setUserID(rs.getString("user_id"));
 			setSamplePoint(rs.getString("sample_point"));
 			setOperative(rs.getString("id"));
+			setLane1Quantity(rs.getBigDecimal("lane_1"));
+			setLane2Quantity(rs.getBigDecimal("lane_2"));
+			setLane3Quantity(rs.getBigDecimal("lane_3"));
+			setLane4Quantity(rs.getBigDecimal("lane_4"));
+			setLane5Quantity(rs.getBigDecimal("lane_5"));
 
 		}
 		catch (SQLException e)
@@ -416,6 +466,31 @@ public class JDBPalletSamples
 	{
 		dbSampleQuantity = removed;
 	}
+
+	public void setLane1Quantity(BigDecimal removed)
+	{
+		dbLane1Quantity = removed;
+	}
+	
+	public void setLane2Quantity(BigDecimal removed)
+	{
+		dbLane2Quantity = removed;
+	}
+	
+	public void setLane3Quantity(BigDecimal removed)
+	{
+		dbLane3Quantity = removed;
+	}
+	
+	public void setLane4Quantity(BigDecimal removed)
+	{
+		dbLane4Quantity = removed;
+	}
+	
+	public void setLane5Quantity(BigDecimal removed)
+	{
+		dbLane5Quantity = removed;
+	}
 	
 	private void setSessionID(String session)
 	{
@@ -517,8 +592,14 @@ public class JDBPalletSamples
 				stmtupdate.setString(8, getUserID());
 				stmtupdate.setString(9, getSamplePoint());
 				stmtupdate.setString(10, getOperative());
-				stmtupdate.setString(11, getSSCC());
-				stmtupdate.setLong(12, getSampleSequence());
+				stmtupdate.setBigDecimal(11, getLane1Quantity());
+				stmtupdate.setBigDecimal(12, getLane2Quantity());
+				stmtupdate.setBigDecimal(13, getLane3Quantity());
+				stmtupdate.setBigDecimal(14, getLane4Quantity());
+				stmtupdate.setBigDecimal(15, getLane5Quantity());
+				stmtupdate.setString(16, getSSCC());
+				stmtupdate.setLong(17, getSampleSequence());
+				
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				

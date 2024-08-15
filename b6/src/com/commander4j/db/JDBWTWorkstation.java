@@ -43,6 +43,8 @@ public class JDBWTWorkstation
 	public static int field_SamplePoint = 25;
 	public static int field_ScaleID = 15;
 	public static int field_ScalePort = 45;
+	public static int field_Override_Sample_Size = 5;
+	public static int field_Sample_Size = 5;
 
 	private String dbWorkstationID="";
 	private String dbDescription="";
@@ -50,6 +52,8 @@ public class JDBWTWorkstation
 	private String dbSamplePoint="";
 	private String dbScaleID="";
 	private String dbScalePort="";
+	private String dbOverrideSampleSize="";
+	private int dbSampleSize = 5;
 
 	private String dbErrorMessage="";
 	private String hostID;
@@ -69,6 +73,8 @@ public class JDBWTWorkstation
 		setLocation("");
 		setScaleID("");
 		setScalePort("");
+		setOverrideSampleSize("N");
+		setSampleSize(5);
 	}
 
 	public boolean create()
@@ -142,6 +148,52 @@ public class JDBWTWorkstation
 		return delete();
 	}
 	
+	public void setOverrideSampleSize(String override)
+	{
+		dbOverrideSampleSize = override;
+	}
+	
+	public void setOverrideSampleSize(boolean override)
+	{
+		if (override)
+		{
+			dbOverrideSampleSize = "Y";
+		}
+		else
+		{
+			dbOverrideSampleSize = "N";
+		}
+	}
+	
+	public boolean isOverrideSampleSize()
+	{
+		boolean result = false;
+		
+		if (getOverrideSampleSize().equals("Y"))
+		{			
+			result =  true;
+		}
+		
+		return result;
+	}
+	
+	public void setSampleSize(int samplesize)
+	{
+		dbSampleSize = samplesize;
+	}
+	
+	public int getSampleSize()
+	{
+		return dbSampleSize;
+	}
+	
+	public String getOverrideSampleSize()
+	{
+		dbOverrideSampleSize = JUtility.replaceNullStringwithBlank(dbOverrideSampleSize);
+		
+		return dbOverrideSampleSize;
+	}
+	
 	public String getDescription()
 	{
 		return dbDescription;
@@ -209,6 +261,8 @@ public class JDBWTWorkstation
 			setSamplePoint(rs.getString("sample_point"));
 			setScaleID(rs.getString("scale_id"));
 			setScalePort(rs.getString("scale_port_id"));
+			setOverrideSampleSize(rs.getString("override_sample_size"));
+			setSampleSize(rs.getInt("sample_size"));
 
 		} catch (SQLException e)
 		{
@@ -281,6 +335,8 @@ public class JDBWTWorkstation
 				samp.setDescription(rs.getString("description"));
 				samp.setLocation(rs.getString("location"));
 				samp.setScaleID(rs.getString("scale_id"));
+				samp.setOverrideSampleSize(rs.getString("override_sample_size"));
+				samp.setSampleSize(rs.getInt("sample_size"));
 
 				sampList.add(samp);
 			}
@@ -429,7 +485,9 @@ public class JDBWTWorkstation
 				stmtupdate.setString(3, getSamplePoint());
 				stmtupdate.setString(4, getScaleID());	
 				stmtupdate.setString(5, getScalePort());
-				stmtupdate.setString(6, getWorkstationID());
+				stmtupdate.setString(6, getOverrideSampleSize());
+				stmtupdate.setInt(7, getSampleSize());
+				stmtupdate.setString(8, getWorkstationID());
 				stmtupdate.execute();
 				stmtupdate.clearParameters();
 				Common.hostList.getHost(getHostID()).getConnection(getSessionID()).commit();

@@ -1746,7 +1746,7 @@
 		</statement>
 		<statement>
 			<id>JDBWTWorkstation.update</id>
-			<text>update {schema}APP_WEIGHT_WORKSTATION set description = ?,location=?,sample_point=?,scale_id=?,scale_port_id=? where workstation_id = ?</text>
+			<text>update {schema}APP_WEIGHT_WORKSTATION set description = ?,location=?,sample_point=?,scale_id=?,scale_port_id=?,override_sample_size=?,sample_size=? where workstation_id = ?</text>
 		</statement>
 		<statement>
 			<id>JDBWTWorkstation.getWorkstations</id>
@@ -2540,7 +2540,7 @@
 		</statement>
 		<statement>
 			<id>JDBPalletSamples.update</id>
-			<text>update {schema}APP_PALLET_SAMPLES set sample_date=?,sample_reason = ?,defect_type = ?,defect_id = ?,leaking = ?, sample_comment=?, sample_quantity=?, user_id=?,id=? sample_point = ? where sscc = ? and sample_sequence = ?</text>
+			<text>update {schema}APP_PALLET_SAMPLES set sample_date=?,sample_reason = ?,defect_type = ?,defect_id = ?,leaking = ?, sample_comment=?, sample_quantity=?, user_id=?,sample_point = ?, id=?, lane_1=?, lane_1=2, lane_1=3, lane_1=4, lane_1=5 where sscc = ? and sample_sequence = ?</text>
 		</statement>
 	         <statement>
 			<id>JDBPalletSamples.getProperties</id>

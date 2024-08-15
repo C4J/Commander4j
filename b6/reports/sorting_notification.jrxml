@@ -3,10 +3,10 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="304"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="688"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Commander WIs Dev"/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="494"/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="494"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="317"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="672"/>
 	<property name="com.jaspersoft.studio.report.description" value="Sorting Notification"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
 	<parameter name="P_SSCC" class="java.lang.String">
 		<defaultValueExpression><![CDATA["350001615047582331"]]></defaultValueExpression>
 	</parameter>
@@ -127,6 +127,31 @@
 	<field name="ID" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="ID"/>
 		<property name="com.jaspersoft.studio.field.label" value="ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_sorting_data"/>
+	</field>
+	<field name="LANE_1" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="LANE_1"/>
+		<property name="com.jaspersoft.studio.field.label" value="LANE_1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_sorting_data"/>
+	</field>
+	<field name="LANE_2" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="LANE_2"/>
+		<property name="com.jaspersoft.studio.field.label" value="LANE_2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_sorting_data"/>
+	</field>
+	<field name="LANE_3" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="LANE_3"/>
+		<property name="com.jaspersoft.studio.field.label" value="LANE_3"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_sorting_data"/>
+	</field>
+	<field name="LANE_4" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="LANE_4"/>
+		<property name="com.jaspersoft.studio.field.label" value="LANE_4"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="view_sorting_data"/>
+	</field>
+	<field name="LANE_5" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="LANE_5"/>
+		<property name="com.jaspersoft.studio.field.label" value="LANE_5"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="view_sorting_data"/>
 	</field>
 	<field name="MATERIAL" class="java.lang.String">
@@ -285,10 +310,10 @@
 				<element kind="staticText" uuid="c4e75f87-033c-4b89-a6e2-ddb980426989" x="122" y="164" width="58" height="16" fontSize="12.0" underline="true">
 					<text><![CDATA[Reason]]></text>
 				</element>
-				<element kind="staticText" uuid="61452280-22c5-4725-9a3c-10ae1c52cfec" x="274" y="164" width="100" height="16" fontSize="12.0" underline="true">
+				<element kind="staticText" uuid="61452280-22c5-4725-9a3c-10ae1c52cfec" x="274" y="164" width="76" height="16" fontSize="12.0" underline="true">
 					<text><![CDATA[Defect]]></text>
 				</element>
-				<element kind="staticText" uuid="e36082dd-51ea-4ebd-a95b-8c5f313c910e" x="669" y="164" width="70" height="16" fontSize="12.0" underline="true" hTextAlign="Right">
+				<element kind="staticText" uuid="e36082dd-51ea-4ebd-a95b-8c5f313c910e" x="672" y="164" width="70" height="16" fontSize="12.0" underline="true" hTextAlign="Right">
 					<text><![CDATA[Fault Qty]]></text>
 				</element>
 				<element kind="staticText" uuid="2b9a467d-303c-495f-878a-3520777703cc" x="738" y="164" width="60" height="16" fontSize="12.0" underline="true" hTextAlign="Right">
@@ -339,6 +364,21 @@
 				<element kind="staticText" uuid="cd973de0-96c3-48f9-91da-7394bbdd219a" x="186" y="164" width="83" height="16" fontSize="12.0" underline="true">
 					<text><![CDATA[Filler]]></text>
 				</element>
+				<element kind="staticText" uuid="aa4776a7-fb85-4023-912a-e9b07d75a50b" x="370" y="164" width="40" height="16" fontSize="12.0" underline="true" hTextAlign="Right">
+					<text><![CDATA[Lane 1]]></text>
+				</element>
+				<element kind="staticText" uuid="cf920f65-addc-45e5-83b3-852a3b0f045b" x="419" y="164" width="40" height="16" fontSize="12.0" underline="true" hTextAlign="Right">
+					<text><![CDATA[Lane 2]]></text>
+				</element>
+				<element kind="staticText" uuid="41a3421a-e093-4840-a054-c17586b8ef95" x="472" y="164" width="40" height="16" fontSize="12.0" underline="true" hTextAlign="Right">
+					<text><![CDATA[Lane 3]]></text>
+				</element>
+				<element kind="staticText" uuid="5762a954-3dc4-499c-bdb2-95940e05196a" x="524" y="164" width="40" height="16" fontSize="12.0" underline="true" hTextAlign="Right">
+					<text><![CDATA[Lane 4]]></text>
+				</element>
+				<element kind="staticText" uuid="d07f48d7-8818-438c-9036-0818ef93bf9a" x="577" y="164" width="40" height="16" fontSize="12.0" underline="true" hTextAlign="Right">
+					<text><![CDATA[Lane 5]]></text>
+				</element>
 			</band>
 		</groupHeader>
 	</group>
@@ -363,33 +403,52 @@
 		</element>
 	</pageHeader>
 	<detail>
-		<band height="53" splitType="Stretch">
-			<element kind="textField" uuid="2fa7d52b-b0e5-4bef-b9e6-71cb63cdc14f" x="274" y="10" width="60" height="18" fontSize="10.0" blankWhenNull="true">
+		<band height="74" splitType="Stretch">
+			<element kind="textField" uuid="2fa7d52b-b0e5-4bef-b9e6-71cb63cdc14f" x="274" y="4" width="76" height="18" fontSize="10.0" blankWhenNull="true">
 				<expression><![CDATA[$F{DEFECT_ID}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c7b6fd39-8eca-4666-9105-be98c62139ca"/>
 			</element>
-			<element kind="textField" uuid="3e16ad74-692e-4273-a356-c04bbd434398" x="123" y="10" width="57" height="18" fontSize="10.0" blankWhenNull="true" hTextAlign="Left">
+			<element kind="textField" uuid="3e16ad74-692e-4273-a356-c04bbd434398" x="123" y="4" width="57" height="18" fontSize="10.0" blankWhenNull="true" hTextAlign="Left">
 				<expression><![CDATA[$F{SAMPLE_REASON}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="44fa5cdd-b3ca-4110-827e-5dee2a4f43a1"/>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			</element>
-			<element kind="textField" uuid="6db28cc8-7cdd-4cb1-b086-d91d9a178a9d" x="186" y="10" width="83" height="18" fontSize="10.0" blankWhenNull="true">
+			<element kind="textField" uuid="6db28cc8-7cdd-4cb1-b086-d91d9a178a9d" x="186" y="4" width="83" height="18" fontSize="10.0" blankWhenNull="true">
 				<expression><![CDATA[$F{SAMPLE_POINT}]]></expression>
 			</element>
-			<element kind="textField" uuid="63f4b1e4-0f3d-4183-9934-08534ee9cc22" x="340" y="10" width="331" height="18" fontSize="10.0" textAdjust="StretchHeight" blankWhenNull="true">
+			<element kind="textField" uuid="63f4b1e4-0f3d-4183-9934-08534ee9cc22" x="0" y="27" width="730" height="18" fontSize="10.0" textAdjust="StretchHeight" blankWhenNull="true">
 				<expression><![CDATA[$F{LONG_DESCRIPTION}]]></expression>
 			</element>
-			<element kind="textField" uuid="d649bbf4-64a3-4a5e-9526-9b3928dac2f6" x="681" y="10" width="56" height="18" pattern="#,##0.###;(#,##0.###-)" blankWhenNull="true" bold="false" hTextAlign="Right">
+			<element kind="textField" uuid="d649bbf4-64a3-4a5e-9526-9b3928dac2f6" x="684" y="4" width="56" height="18" pattern="#,##0.###;(#,##0.###-)" blankWhenNull="true" bold="false" hTextAlign="Right">
 				<expression><![CDATA[$F{SAMPLE_QUANTITY}]]></expression>
 			</element>
-			<element kind="textField" uuid="3130fc87-51f9-4a61-91ef-0571f3e0712c" x="754" y="10" width="40" height="18" blankWhenNull="true" hTextAlign="Center">
+			<element kind="textField" uuid="3130fc87-51f9-4a61-91ef-0571f3e0712c" x="754" y="4" width="40" height="18" blankWhenNull="true" hTextAlign="Center">
 				<expression><![CDATA[$F{LEAKING}]]></expression>
 			</element>
-			<element kind="textField" uuid="a03bff1c-3f51-4cf8-a393-9c717223c8c2" x="0" y="10" width="110" height="18" pattern="dd/MM/yyyy HH:mm:ss" blankWhenNull="true">
+			<element kind="textField" uuid="a03bff1c-3f51-4cf8-a393-9c717223c8c2" x="0" y="4" width="110" height="18" pattern="dd/MM/yyyy HH:mm:ss" blankWhenNull="true">
 				<expression><![CDATA[$F{SAMPLE_DATE}]]></expression>
 			</element>
-			<element kind="textField" uuid="ea4fceed-1002-4371-bf25-be70a9bcee72" positionType="Float" x="340" y="29" width="452" height="20" removeLineWhenBlank="true">
+			<element kind="textField" uuid="ea4fceed-1002-4371-bf25-be70a9bcee72" positionType="Float" x="1" y="49" width="738" height="20" removeLineWhenBlank="true">
 				<expression><![CDATA[$F{SAMPLE_COMMENT}]]></expression>
+			</element>
+			<element kind="textField" uuid="eaf2d8be-8750-426d-b2f2-ad744d9d6ffe" x="370" y="4" width="40" height="18" pattern="#,##0.###;(#,##0.###-)" blankWhenNull="true" bold="false" hTextAlign="Right">
+				<expression><![CDATA[$F{LANE_1}]]></expression>
+			</element>
+			<element kind="textField" uuid="49011ccc-41be-4ed5-8424-314802737b9f" x="421" y="4" width="40" height="18" pattern="#,##0.###;(#,##0.###-)" blankWhenNull="true" bold="false" hTextAlign="Right">
+				<expression><![CDATA[$F{LANE_2}]]></expression>
+			</element>
+			<element kind="textField" uuid="e257e59d-0b3c-48ad-b899-09ece42b96b6" x="474" y="4" width="40" height="18" pattern="#,##0.###;(#,##0.###-)" blankWhenNull="true" bold="false" hTextAlign="Right">
+				<expression><![CDATA[$F{LANE_3}]]></expression>
+			</element>
+			<element kind="textField" uuid="b20e92c4-9aca-4e71-8f09-d37af74149bb" x="525" y="4" width="40" height="18" pattern="#,##0.###;(#,##0.###-)" blankWhenNull="true" bold="false" hTextAlign="Right">
+				<expression><![CDATA[$F{LANE_4}]]></expression>
+			</element>
+			<element kind="textField" uuid="3577c0ce-4825-4e40-bea4-c68ce0ba2670" x="578" y="4" width="40" height="18" pattern="#,##0.###;(#,##0.###-)" blankWhenNull="true" bold="false" hTextAlign="Right">
+				<expression><![CDATA[$F{LANE_5}]]></expression>
+			</element>
+			<element kind="line" uuid="5a6e58ae-7eec-4aaa-9ee5-b96b4c41e0fc" x="0" y="70" width="802" height="1">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<pen lineStyle="Dotted"/>
 			</element>
 		</band>
 	</detail>

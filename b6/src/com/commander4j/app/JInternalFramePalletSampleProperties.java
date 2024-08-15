@@ -30,6 +30,7 @@ package com.commander4j.app;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -45,6 +46,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
@@ -70,7 +72,6 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
-import javax.swing.JPanel;
 
 /**
  * The JInternalFramePalletSampleProperties is used editing a record in the
@@ -81,6 +82,11 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 {
 	private JLabel4j_std jLabelSampleQuantity;
 	private JQuantityInput jFormattedTextFieldSampleQuantity;
+	private JQuantityInput jFormattedTextFieldLane1Quantity;
+	private JQuantityInput jFormattedTextFieldLane2Quantity;
+	private JQuantityInput jFormattedTextFieldLane3Quantity;
+	private JQuantityInput jFormattedTextFieldLane4Quantity;
+	private JQuantityInput jFormattedTextFieldLane5Quantity;
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 	private JLabel4j_std jLabel_SSCC;
@@ -182,6 +188,46 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 
 		final JHelp help = new JHelp();
 		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_PAL_SAMPLE_EDIT"));
+		
+		JLabel4j_std jLabelLane1 = new JLabel4j_std();
+		jLabelLane1.setForeground(Color.BLUE);
+		jLabelLane1.setFont(new Font("Arial", Font.ITALIC, 11));
+		jLabelLane1.setText(lang.get("lbl_Lane")+ " 1");
+		jLabelLane1.setHorizontalAlignment(SwingConstants.TRAILING);
+		jLabelLane1.setBounds(218, 248, 51, 21);
+		jDesktopPane1.add(jLabelLane1);
+		
+		JLabel4j_std jLabelLane2 = new JLabel4j_std();
+		jLabelLane2.setForeground(Color.BLUE);
+		jLabelLane2.setFont(new Font("Arial", Font.ITALIC, 11));
+		jLabelLane2.setText(lang.get("lbl_Lane")+ " 2");
+		jLabelLane2.setHorizontalAlignment(SwingConstants.TRAILING);
+		jLabelLane2.setBounds(331, 248, 51, 21);
+		jDesktopPane1.add(jLabelLane2);
+		
+		JLabel4j_std jLabelLane3 = new JLabel4j_std();
+		jLabelLane3.setForeground(Color.BLUE);
+		jLabelLane3.setFont(new Font("Arial", Font.ITALIC, 11));
+		jLabelLane3.setText(lang.get("lbl_Lane")+ " 3");
+		jLabelLane3.setHorizontalAlignment(SwingConstants.TRAILING);
+		jLabelLane3.setBounds(444, 248, 51, 21);
+		jDesktopPane1.add(jLabelLane3);
+		
+		JLabel4j_std jLabelLane4 = new JLabel4j_std();
+		jLabelLane4.setForeground(Color.BLUE);
+		jLabelLane4.setFont(new Font("Arial", Font.ITALIC, 11));
+		jLabelLane4.setText(lang.get("lbl_Lane")+ " 4");
+		jLabelLane4.setHorizontalAlignment(SwingConstants.TRAILING);
+		jLabelLane4.setBounds(557, 248, 51, 21);
+		jDesktopPane1.add(jLabelLane4);
+		
+		JLabel4j_std jLabelLane5 = new JLabel4j_std();
+		jLabelLane5.setForeground(Color.BLUE);
+		jLabelLane5.setFont(new Font("Arial", Font.ITALIC, 11));
+		jLabelLane5.setText(lang.get("lbl_Lane")+ " 5");
+		jLabelLane5.setHorizontalAlignment(SwingConstants.TRAILING);
+		jLabelLane5.setBounds(670, 248, 51, 21);
+		jDesktopPane1.add(jLabelLane5);
 
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Rectangle window = getBounds();
@@ -232,6 +278,13 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 			jTextFieldOperative.setText(sampleProperties.getOperative());
 
 			jFormattedTextFieldSampleQuantity.setValue(sampleProperties.getSampleQuantity());
+			
+			jFormattedTextFieldLane1Quantity.setValue(sampleProperties.getLane1Quantity());
+			jFormattedTextFieldLane2Quantity.setValue(sampleProperties.getLane2Quantity());
+			jFormattedTextFieldLane3Quantity.setValue(sampleProperties.getLane3Quantity());
+			jFormattedTextFieldLane4Quantity.setValue(sampleProperties.getLane4Quantity());
+			jFormattedTextFieldLane5Quantity.setValue(sampleProperties.getLane5Quantity());
+			
 			jTextFieldFiller_ID.setText(sampleProperties.getSamplePoint());
 			jTextFieldUserID.setText(sampleProperties.getUserID());
 
@@ -499,7 +552,7 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 					jFormattedTextFieldSampleQuantity = new JQuantityInput(new BigDecimal("0"));
 					jFormattedTextFieldSampleQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
 					jFormattedTextFieldSampleQuantity.setFont(Common.font_std);
-					jFormattedTextFieldSampleQuantity.setBounds(163, 248, 71, 21);
+					jFormattedTextFieldSampleQuantity.setBounds(163, 248, 50, 21);
 					jFormattedTextFieldSampleQuantity.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -509,7 +562,82 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 					});
 					jDesktopPane1.add(jFormattedTextFieldSampleQuantity);
 				}
+				
+				{
+					jFormattedTextFieldLane1Quantity = new JQuantityInput(new BigDecimal("0"));
+					jFormattedTextFieldLane1Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
+					jFormattedTextFieldLane1Quantity.setFont(Common.font_std);
+					jFormattedTextFieldLane1Quantity.setBounds(276, 248, 50, 21);
+					jFormattedTextFieldLane1Quantity.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
+							jButtonSave.setEnabled(true);
+						}
+					});
+					jDesktopPane1.add(jFormattedTextFieldLane1Quantity);
+				}
+				
+				{
+					jFormattedTextFieldLane2Quantity = new JQuantityInput(new BigDecimal("0"));
+					jFormattedTextFieldLane2Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
+					jFormattedTextFieldLane2Quantity.setFont(Common.font_std);
+					jFormattedTextFieldLane2Quantity.setBounds(389, 248, 50, 21);
+					jFormattedTextFieldLane2Quantity.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
+							jButtonSave.setEnabled(true);
+						}
+					});
+					jDesktopPane1.add(jFormattedTextFieldLane2Quantity);
+				}
 
+				{
+					jFormattedTextFieldLane3Quantity = new JQuantityInput(new BigDecimal("0"));
+					jFormattedTextFieldLane3Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
+					jFormattedTextFieldLane3Quantity.setFont(Common.font_std);
+					jFormattedTextFieldLane3Quantity.setBounds(502, 248, 50, 21);
+					jFormattedTextFieldLane3Quantity.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
+							jButtonSave.setEnabled(true);
+						}
+					});
+					jDesktopPane1.add(jFormattedTextFieldLane3Quantity);
+				}
+				
+				{
+					jFormattedTextFieldLane4Quantity = new JQuantityInput(new BigDecimal("0"));
+					jFormattedTextFieldLane4Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
+					jFormattedTextFieldLane4Quantity.setFont(Common.font_std);
+					jFormattedTextFieldLane4Quantity.setBounds(615, 248, 50, 21);
+					jFormattedTextFieldLane4Quantity.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
+							jButtonSave.setEnabled(true);
+						}
+					});
+					jDesktopPane1.add(jFormattedTextFieldLane4Quantity);
+				}
+				
+				{
+					jFormattedTextFieldLane5Quantity = new JQuantityInput(new BigDecimal("0"));
+					jFormattedTextFieldLane5Quantity.setHorizontalAlignment(SwingConstants.TRAILING);
+					jFormattedTextFieldLane5Quantity.setFont(Common.font_std);
+					jFormattedTextFieldLane5Quantity.setBounds(729, 248, 50, 21);
+					jFormattedTextFieldLane5Quantity.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
+							jButtonSave.setEnabled(true);
+						}
+					});
+					jDesktopPane1.add(jFormattedTextFieldLane5Quantity);
+				}
+				
 				{
 					jLabelSampleQuantity = new JLabel4j_std();
 					jLabelSampleQuantity.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -723,6 +851,12 @@ public class JInternalFramePalletSampleProperties extends JInternalFrame
 			sampleProperties.setSampleComment(jTextFieldComment.getText());
 
 			sampleProperties.setSampleQuantity(JUtility.stringToBigDecimal(jFormattedTextFieldSampleQuantity.getText().toString()));
+			
+			sampleProperties.setLane1Quantity(JUtility.stringToBigDecimal(jFormattedTextFieldLane1Quantity.getText().toString()));
+			sampleProperties.setLane2Quantity(JUtility.stringToBigDecimal(jFormattedTextFieldLane2Quantity.getText().toString()));
+			sampleProperties.setLane3Quantity(JUtility.stringToBigDecimal(jFormattedTextFieldLane3Quantity.getText().toString()));
+			sampleProperties.setLane4Quantity(JUtility.stringToBigDecimal(jFormattedTextFieldLane4Quantity.getText().toString()));
+			sampleProperties.setLane5Quantity(JUtility.stringToBigDecimal(jFormattedTextFieldLane5Quantity.getText().toString()));
 
 			sampleProperties.setUserID(Common.userList.getUser(Common.sessionID).getUserId());
 

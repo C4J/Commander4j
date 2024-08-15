@@ -59,6 +59,11 @@ public class JDBViewPalletSample
 	private String dbMaterialID;
 	private String dbProcessOrder;
 	private String dbMHNNumber;
+	private BigDecimal dbLane1Quantity = new BigDecimal("0.00");
+	private BigDecimal dbLane2Quantity = new BigDecimal("0.00");
+	private BigDecimal dbLane3Quantity = new BigDecimal("0.00");
+	private BigDecimal dbLane4Quantity = new BigDecimal("0.00");
+	private BigDecimal dbLane5Quantity = new BigDecimal("0.00");
 
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBViewPalletSample.class);
 	private String hostID;
@@ -89,8 +94,68 @@ public class JDBViewPalletSample
 		setMaterialID("");
 		setProcessOrder("");
 		setMHNNumber("");
+		setLane1Quantity(new BigDecimal("0"));
+		setLane2Quantity(new BigDecimal("0"));
+		setLane3Quantity(new BigDecimal("0"));
+		setLane4Quantity(new BigDecimal("0"));
+		setLane5Quantity(new BigDecimal("0"));
 	}
 
+	public void setLane1Quantity(BigDecimal removed)
+	{
+		dbLane1Quantity = removed;
+	}
+	
+	public void setLane2Quantity(BigDecimal removed)
+	{
+		dbLane2Quantity = removed;
+	}
+	
+	public void setLane3Quantity(BigDecimal removed)
+	{
+		dbLane3Quantity = removed;
+	}
+	
+	public void setLane4Quantity(BigDecimal removed)
+	{
+		dbLane4Quantity = removed;
+	}
+	
+	public void setLane5Quantity(BigDecimal removed)
+	{
+		dbLane5Quantity = removed;
+	}
+	
+	public BigDecimal getLane1Quantity()
+	{
+
+		return dbLane1Quantity;
+	}
+	
+	public BigDecimal getLane2Quantity()
+	{
+
+		return dbLane2Quantity;
+	}
+	
+	public BigDecimal getLane3Quantity()
+	{
+
+		return dbLane3Quantity;
+	}
+	
+	public BigDecimal getLane4Quantity()
+	{
+
+		return dbLane4Quantity;
+	}
+	
+	public BigDecimal getLane5Quantity()
+	{
+
+		return dbLane5Quantity;
+	}
+	
 	public String getComment()
 	{
 		return JUtility.replaceNullStringwithBlank(dbComment).trim();
@@ -178,6 +243,11 @@ public class JDBViewPalletSample
 			setProcessOrder(rs.getString("process_order"));
 			setMHNNumber(rs.getString("mhn_number"));
 			setOperative(rs.getString("id"));
+			setLane1Quantity(rs.getBigDecimal("lane_1"));
+			setLane2Quantity(rs.getBigDecimal("lane_2"));
+			setLane3Quantity(rs.getBigDecimal("lane_3"));
+			setLane4Quantity(rs.getBigDecimal("lane_4"));
+			setLane5Quantity(rs.getBigDecimal("lane_5"));
 		}
 		catch (SQLException e)
 		{

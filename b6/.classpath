@@ -159,14 +159,15 @@
 	<classpathentry kind="lib" path="lib/log4j-api-2.23.1.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-core-2.23.1.jar"/>
 	<classpathentry kind="lib" path="lib/db/mssql-jdbc-12.6.2.jre11.jar"/>
-	<classpathentry kind="lib" path="lib/db/mysql-connector-j-8.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/db/ojdbc11.jar"/>
 	<classpathentry kind="lib" path="lib/avalon-framework-api-4.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/avalon-framework-impl-4.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/barcode4j-2.2.3.jar"/>
 	<classpathentry kind="lib" path="lib/commons-cli-1.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/db/mysql-connector-j-9.0.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/Java 17 JDK">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>

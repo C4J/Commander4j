@@ -55,6 +55,11 @@ public class JDBViewPalletSampleTableModel extends AbstractTableModel
 	public static final int Sample_Date 		= 12;
 	public static final int Sample_Seq 			= 13;
 	public static final int Operative_Seq 		= 14;
+	public static final int 	SampleLane1_Col = 15;
+	public static final int 	SampleLane2_Col = 16;
+	public static final int 	SampleLane3_Col = 17;
+	public static final int 	SampleLane4_Col = 18;
+	public static final int 	SampleLane5_Col = 19;
 
 	private String[] mcolNames = {"SSCC", 
 								  "Prod Date", 
@@ -70,7 +75,12 @@ public class JDBViewPalletSampleTableModel extends AbstractTableModel
 								  "MHN Number",
 								  "Sample Date",
 								  "Seq",
-								  "Operative"};
+								  "Operative"
+								  ,"Lane 1"
+								  ,"Lane 2"
+								  ,"Lane 3"
+								  ,"Lane 4"
+								  ,"Lane 5"};
 	
 	private ResultSet mResultSet;
 
@@ -170,6 +180,21 @@ public class JDBViewPalletSampleTableModel extends AbstractTableModel
 				return cache.get(row).getMHNNumber();
 			case Operative_Seq:
 				return cache.get(row).getOperative();
+				
+			case SampleLane1_Col:
+				return cache.get(row).getLane1Quantity();	
+				
+			case SampleLane2_Col:
+				return cache.get(row).getLane2Quantity();
+				
+			case SampleLane3_Col:
+				return cache.get(row).getLane3Quantity();	
+				
+			case SampleLane4_Col:
+				return cache.get(row).getLane4Quantity();	
+				
+			case SampleLane5_Col:
+				return cache.get(row).getLane5Quantity();	
 			}
 		}
 		catch (Exception ex)

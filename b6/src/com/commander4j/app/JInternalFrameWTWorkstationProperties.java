@@ -28,6 +28,7 @@ package com.commander4j.app;
  */
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -43,8 +44,12 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.db.JDBProcessOrderResource;
@@ -52,6 +57,7 @@ import com.commander4j.db.JDBWTSamplePoint;
 import com.commander4j.db.JDBWTScale;
 import com.commander4j.db.JDBWTWorkstation;
 import com.commander4j.gui.JButton4j;
+import com.commander4j.gui.JCheckBox4j;
 import com.commander4j.gui.JComboBox4j;
 import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
@@ -96,13 +102,15 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 	private Vector<JDBProcessOrderResource> resourceList = new Vector<JDBProcessOrderResource>();
 	private Vector<JDBWTScale> scaleList = new Vector<JDBWTScale>();
 	private Vector<String> portList = new Vector<String>();
-	private String[] standardPorts = new String[]
-	{ "","COM1", "COM2", "COM3", "COM4", "COM5", "COM6" };
+	private String[] standardPorts = new String[] { "","COM1", "COM2", "COM3", "COM4", "COM5", "COM6" };
+	private JCheckBox4j checkOverride = new JCheckBox4j();
+	private JSpinner jSpinnerLimit = new JSpinner();
+	private JLabel4j_std label4j_SampleSize = new JLabel4j_std();
 
 	public void setWorkstationID(String wstation)
 	{
 		lworkstation = wstation;
-
+		
 		if (jButtonSave.isEnabled())
 		{
 
@@ -124,6 +132,20 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 		jTextFieldWorkstation.setText(workdb.getWorkstationID());
 		jTextFieldLocation.setText(workdb.getLocation());
 		jTextFieldDescription.setText(workdb.getDescription());
+		jSpinnerLimit.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				jButtonSave.setEnabled(true);
+			}
+		});
+		jSpinnerLimit.setValue(workdb.getSampleSize());
+		checkOverride.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jButtonSave.setEnabled(true);
+				setVisibleOverride(checkOverride.isSelected());
+			}
+		});
+		checkOverride.setSelected(workdb.isOverrideSampleSize());
+		setVisibleOverride(workdb.isOverrideSampleSize());
 		
 		//*************************************************
 		//** This section moved out of Init deliberately)**
@@ -190,11 +212,17 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 			}
 		}
 
+
 		
 		jButtonSave.setEnabled(false);
 
 	}
 
+	private void setVisibleOverride(boolean enabled)
+	{
+		jSpinnerLimit.setEnabled(enabled);
+	}
+	
 	public JInternalFrameWTWorkstationProperties(String workstation)
 	{
 
@@ -217,7 +245,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 			{
 				jTextFieldDescription.requestFocus();
 				jTextFieldDescription.setCaretPosition(jTextFieldDescription.getText().length());
-
+				
 			}
 		});
 
@@ -228,7 +256,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(387, 165));
-			this.setBounds(25, 25, 564, 325);
+			this.setBounds(25, 25, 564, 337);
 			setVisible(true);
 			this.setTitle("Workstation Properties");
 			{
@@ -282,7 +310,7 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 					jButtonSave.setText(lang.get("btn_Save"));
 					jButtonSave.setMnemonic(lang.getMnemonicChar());
 					jButtonSave.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jButtonSave.setBounds(114, 237, 110, 32);
+					jButtonSave.setBounds(115, 256, 110, 32);
 					jButtonSave.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -296,14 +324,14 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
-					jButtonHelp.setBounds(226, 237, 110, 32);
+					jButtonHelp.setBounds(227, 256, 110, 32);
 				}
 				{
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
-					jButtonClose.setBounds(338, 237, 110, 32);
+					jButtonClose.setBounds(339, 256, 110, 32);
 					jButtonClose.addActionListener(new ActionListener()
 					{
 						public void actionPerformed(ActionEvent evt)
@@ -386,6 +414,40 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 				label4j_SamplePoint.setBounds(0, 115, 149, 21);
 				jDesktopPane1.add(label4j_SamplePoint);
 				
+				JLabel4j_std label4j_Override = new JLabel4j_std();
+				label4j_Override.setText(lang.get("lbl_Override"));
+				label4j_Override.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_Override.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_Override.setBounds(0, 223, 149, 21);
+				jDesktopPane1.add(label4j_Override);
+				
+
+				label4j_SampleSize.setText(lang.get("lbl_SampleSize"));
+				label4j_SampleSize.setHorizontalTextPosition(SwingConstants.RIGHT);
+				label4j_SampleSize.setHorizontalAlignment(SwingConstants.RIGHT);
+				label4j_SampleSize.setBounds(184, 224, 78, 21);
+				jDesktopPane1.add(label4j_SampleSize);
+				
+				
+				checkOverride.setBackground(Color.WHITE);
+				checkOverride.setBounds(155, 219, 21, 25);
+				jDesktopPane1.add(checkOverride);
+				
+				{
+					SpinnerNumberModel jSpinnerIntModel = new SpinnerNumberModel();
+					jSpinnerIntModel.setMinimum(1);
+					jSpinnerIntModel.setMaximum(25000);
+					jSpinnerIntModel.setStepSize(1);
+					JSpinner.NumberEditor ne = new JSpinner.NumberEditor(jSpinnerLimit);
+					ne.getTextField().setFont(Common.font_std);
+					jSpinnerLimit.setEditor(ne);
+					jSpinnerLimit.setModel(jSpinnerIntModel);
+					jSpinnerLimit.setBounds(269, 223, 68, 21);
+					jSpinnerLimit.setValue(2000);
+					jSpinnerLimit.getEditor().setSize(45, 21);
+					jDesktopPane1.add(jSpinnerLimit);
+				}
+				
 				resourceList.add(new JDBProcessOrderResource(Common.selectedHostID, Common.sessionID));
 				resourceList.addAll(poResources.getResources());
 
@@ -404,6 +466,8 @@ public class JInternalFrameWTWorkstationProperties extends JInternalFrame
 		workdb.setWorkstationID(jTextFieldWorkstation.getText());
 		workdb.setSamplePoint(((JDBWTSamplePoint) comboBox4j_SamplePoint.getSelectedItem()).getSamplePoint());
 		workdb.setScaleID(((JDBWTScale) comboBox_Scales.getSelectedItem()).getScaleID());
+		workdb.setOverrideSampleSize(checkOverride.isSelected());
+		workdb.setSampleSize(Integer.valueOf((jSpinnerLimit.getValue().toString())));
 		
 		if (comboBox_Ports.getSelectedIndex() >= 0)
 		{

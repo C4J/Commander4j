@@ -1959,14 +1959,19 @@ public class JInternalFramePalletSampleAdmin extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.Sample_Date).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.Location_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.SamplePoint_Col).setPreferredWidth(80);
-		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.Sample_Reason).setPreferredWidth(60);
-		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.Sample_DefectType).setPreferredWidth(60);
+		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.Sample_Reason).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.Sample_DefectType).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.Sample_DefectID).setPreferredWidth(60);
 		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.Leaking).setPreferredWidth(50);
-		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.SampleQuantity_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.SampleQuantity_Col).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.Material_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.Process_Order_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.MHN_number).setPreferredWidth(90);
+		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.SampleLane1_Col).setPreferredWidth(55);
+		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.SampleLane2_Col).setPreferredWidth(55);
+		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.SampleLane3_Col).setPreferredWidth(55);
+		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.SampleLane4_Col).setPreferredWidth(55);
+		jTable1.getColumnModel().getColumn(JDBViewPalletSampleTableModel.SampleLane5_Col).setPreferredWidth(55);
 
 		jScrollPane1.repaint();
 

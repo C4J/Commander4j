@@ -91,7 +91,6 @@ import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
 import com.commander4j.util.JUtility;
-import javax.swing.ScrollPaneConstants;
 
 /**
  * The JInternalFramePalletSample class is used to record additional information
@@ -263,7 +262,6 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 
 		this.setIconifiable(true);
 		jTable1.setModel(pstm);
-		scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		scrollPane1.setViewportView(jTable1);
 		JUtility.scrolltoHomePosition(scrollPane1);
@@ -274,13 +272,18 @@ public class JInternalFramePalletSample extends javax.swing.JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleSequence_Col).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleDate_Col).setPreferredWidth(120);
 		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SamplePoint_Col).setPreferredWidth(90);
-		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleReason_Col).setPreferredWidth(65);
-		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleDefectType_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleReason_Col).setPreferredWidth(80);
+		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleDefectType_Col).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleDefectID_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleLeaking_Col).setPreferredWidth(50);
 		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleQuantity).setPreferredWidth(70);
 		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleComment_Col).setPreferredWidth(240);
 		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleUserID_Col).setPreferredWidth(100);
+		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleLane1_Col).setPreferredWidth(55);
+		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleLane2_Col).setPreferredWidth(55);
+		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleLane3_Col).setPreferredWidth(55);
+		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleLane4_Col).setPreferredWidth(55);
+		jTable1.getColumnModel().getColumn(JDBPalletSampleTableModel.SampleLane5_Col).setPreferredWidth(55);
 
 		scrollPane1.repaint();
 

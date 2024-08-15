@@ -53,8 +53,13 @@ public class JDBPalletSampleTableModel extends AbstractTableModel
 	public static final int 	SampleQuantity = 7;
 	public static final int 	SampleComment_Col = 8;
 	public static final int 	SampleUserID_Col = 9;
+	public static final int 	SampleLane1_Col = 10;
+	public static final int 	SampleLane2_Col = 11;
+	public static final int 	SampleLane3_Col = 12;
+	public static final int 	SampleLane4_Col = 13;
+	public static final int 	SampleLane5_Col = 14;
 
-	private String[] mcolNames = { "Unique ID", "Sample Date", "Sample Point","Reason","Defect Type", "Defect ID", "Leaking", "Sample Qty","Comment", "User ID" };
+	private String[] mcolNames = { "Unique ID", "Sample Date", "Sample Point","Reason","Defect Type", "Defect ID", "Leaking", "Sample Qty","Comment", "User ID","Lane 1","Lane 2","Lane 3","Lane 4","Lane 5" };
 	private ResultSet mResultSet;
 	
 	private int prowCount = -1;
@@ -175,7 +180,22 @@ public class JDBPalletSampleTableModel extends AbstractTableModel
 				
 			case SampleUserID_Col:
 				return cache.get(row).getUserID();
-
+				
+			case SampleLane1_Col:
+				return cache.get(row).getLane1Quantity();	
+				
+			case SampleLane2_Col:
+				return cache.get(row).getLane2Quantity();
+				
+			case SampleLane3_Col:
+				return cache.get(row).getLane3Quantity();	
+				
+			case SampleLane4_Col:
+				return cache.get(row).getLane4Quantity();	
+				
+			case SampleLane5_Col:
+				return cache.get(row).getLane5Quantity();	
+				
 			}
 
 		}
