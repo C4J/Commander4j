@@ -1,5 +1,7 @@
 package com.commander4j.tablemodel;
 
+import java.math.BigDecimal;
+
 /**
  * @author David Garratt
  * 
@@ -64,6 +66,7 @@ public class JDBPalletSampleTableModel extends AbstractTableModel
 	
 	private int prowCount = -1;
 	private HashMap<Integer,JDBPalletSamples> cache = new HashMap<Integer,JDBPalletSamples>();
+	private BigDecimal zero = new BigDecimal("0.00");
 	
 	public JDBPalletSampleTableModel()
 	{
@@ -182,19 +185,54 @@ public class JDBPalletSampleTableModel extends AbstractTableModel
 				return cache.get(row).getUserID();
 				
 			case SampleLane1_Col:
-				return cache.get(row).getLane1Quantity();	
+				if (cache.get(row).getLane1Quantity().compareTo(zero)==0)
+				{
+					return "";
+				}
+				else
+				{
+					return cache.get(row).getLane1Quantity();
+				}
 				
 			case SampleLane2_Col:
-				return cache.get(row).getLane2Quantity();
+				if (cache.get(row).getLane2Quantity().compareTo(zero)==0)
+				{
+					return "";
+				}
+				else
+				{
+					return cache.get(row).getLane2Quantity();
+				}
 				
 			case SampleLane3_Col:
-				return cache.get(row).getLane3Quantity();	
+				if (cache.get(row).getLane3Quantity().compareTo(zero)==0)
+				{
+					return "";
+				}
+				else
+				{
+					return cache.get(row).getLane3Quantity();
+				}	
 				
 			case SampleLane4_Col:
-				return cache.get(row).getLane4Quantity();	
+				if (cache.get(row).getLane4Quantity().compareTo(zero)==0)
+				{
+					return "";
+				}
+				else
+				{
+					return cache.get(row).getLane4Quantity();
+				}
 				
 			case SampleLane5_Col:
-				return cache.get(row).getLane5Quantity();	
+				if (cache.get(row).getLane5Quantity().compareTo(zero)==0)
+				{
+					return "";
+				}
+				else
+				{
+					return cache.get(row).getLane5Quantity();
+				}	
 				
 			}
 

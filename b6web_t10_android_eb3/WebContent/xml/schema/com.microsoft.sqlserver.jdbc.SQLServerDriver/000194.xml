@@ -190,7 +190,7 @@
     </statement>  
     
     <statement>
-   	 ALTER TABLE [dbo].[SYS_USER_REPORTS] ALTER COLUMN [SQL_SELECT] varchar(8000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+   	 ALTER TABLE [dbo].[SYS_USER_REPORTS] ALTER COLUMN [SQL_SELECT] varchar(8000) COLLATE database_default NULL
     </statement>
       
     <statement>

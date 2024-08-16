@@ -4,8 +4,8 @@
 
 <statement>
 ALTER TABLE [dbo].[APP_PALLET] ADD
-[MHN_NUMBER] [varchar] (10) COLLATE Latin1_General_CI_AS NULL,
-[DECISION] [varchar] (10) COLLATE Latin1_General_CI_AS NULL
+[MHN_NUMBER] [varchar] (10) COLLATE database_default NULL,
+[DECISION] [varchar] (10) COLLATE database_default NULL
 </statement>
 
 <statement>
@@ -14,26 +14,26 @@ CREATE NONCLUSTERED INDEX [PALLET_MHN_IDX] ON [dbo].[APP_PALLET] ([MHN_NUMBER])
 
 <statement>
 ALTER TABLE [dbo].[APP_PALLET_HISTORY] ADD
-[MHN_NUMBER] [varchar] (10) COLLATE Latin1_General_CI_AS NULL,
-[DECISION] [varchar] (10) COLLATE Latin1_General_CI_AS NULL
+[MHN_NUMBER] [varchar] (10) COLLATE database_default NULL,
+[DECISION] [varchar] (10) COLLATE database_default NULL
 </statement>
 
 <statement>
 CREATE TABLE [dbo].[APP_MHN]
 (
-[MHN_NUMBER] [varchar] (10) COLLATE Latin1_General_CI_AS NOT NULL,
-[INITIATOR] [varchar] (20) COLLATE Latin1_General_CI_AS NULL,
-[RECORDER] [varchar] (20) COLLATE Latin1_General_CI_AS NULL,
-[AUTHORISOR] [varchar] (20) COLLATE Latin1_General_CI_AS NULL,
-[REASON1] [varchar] (10) COLLATE Latin1_General_CI_AS NULL,
-[REASON2] [varchar] (10) COLLATE Latin1_General_CI_AS NULL,
-[REASON3] [varchar] (10) COLLATE Latin1_General_CI_AS NULL,
+[MHN_NUMBER] [varchar] (10) COLLATE database_default NOT NULL,
+[INITIATOR] [varchar] (20) COLLATE database_default NULL,
+[RECORDER] [varchar] (20) COLLATE database_default NULL,
+[AUTHORISOR] [varchar] (20) COLLATE database_default NULL,
+[REASON1] [varchar] (10) COLLATE database_default NULL,
+[REASON2] [varchar] (10) COLLATE database_default NULL,
+[REASON3] [varchar] (10) COLLATE database_default NULL,
 [DATE_CREATED] [datetime] NULL,
 [DATE_EXPECTED] [datetime] NULL,
 [DATE_RESOLVED] [datetime] NULL,
-[STATUS] [varchar] (20) COLLATE Latin1_General_CI_AS NULL,
-[REQUIRED_RESOURCE] [varchar] (50) COLLATE Latin1_General_CI_AS NULL,
-[COMMENT] [varchar] (250) COLLATE Latin1_General_CI_AS NULL
+[STATUS] [varchar] (20) COLLATE database_default NULL,
+[REQUIRED_RESOURCE] [varchar] (50) COLLATE database_default NULL,
+[COMMENT] [varchar] (250) COLLATE database_default NULL
 )
 </statement>
 
@@ -44,8 +44,8 @@ ALTER TABLE [dbo].[APP_MHN] ADD CONSTRAINT [PK_APP_MHN] PRIMARY KEY CLUSTERED  (
 <statement>
 CREATE TABLE [dbo].[APP_MHN_DECISIONS]
 (
-[DECISION] [varchar] (10) COLLATE Latin1_General_CI_AS NOT NULL,
-[DESCRIPTION] [varchar] (50) COLLATE Latin1_General_CI_AS NULL,
+[DECISION] [varchar] (10) COLLATE database_default NOT NULL,
+[DESCRIPTION] [varchar] (50) COLLATE database_default NULL,
 [COLOR_FOREGROUND] [int] NULL,
 [COLOR_BACKGROUND] [int] NULL
 )
@@ -58,8 +58,8 @@ ALTER TABLE [dbo].[APP_MHN_DECISIONS] ADD CONSTRAINT [PK_APP_MHN_DECISION] PRIMA
 <statement>
 CREATE TABLE [dbo].[APP_MHN_REASONS]
 (
-[REASON] [varchar] (10) COLLATE Latin1_General_CI_AS NOT NULL,
-[DESCRIPTION] [varchar] (50) COLLATE Latin1_General_CI_AS NULL
+[REASON] [varchar] (10) COLLATE database_default NOT NULL,
+[DESCRIPTION] [varchar] (50) COLLATE database_default NULL
 )
 </statement>
 

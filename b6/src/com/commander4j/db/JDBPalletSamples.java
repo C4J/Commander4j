@@ -65,6 +65,7 @@ public class JDBPalletSamples
 	private BigDecimal dbLane3Quantity = new BigDecimal("0.00");
 	private BigDecimal dbLane4Quantity = new BigDecimal("0.00");
 	private BigDecimal dbLane5Quantity = new BigDecimal("0.00");
+	private BigDecimal zero = new BigDecimal("0.00");
 
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBPalletSamples.class);
 	private String hostID;
@@ -228,31 +229,46 @@ public class JDBPalletSamples
 	
 	public BigDecimal getLane1Quantity()
 	{
-
+		if (dbLane1Quantity == null)
+		{
+			dbLane1Quantity =  zero;
+		}
 		return dbLane1Quantity;
 	}
 	
 	public BigDecimal getLane2Quantity()
 	{
-
+		if (dbLane2Quantity == null)
+		{
+			dbLane2Quantity =  zero;
+		}
 		return dbLane2Quantity;
 	}
 	
 	public BigDecimal getLane3Quantity()
 	{
-
+		if (dbLane3Quantity == null)
+		{
+			dbLane3Quantity =  zero;
+		}
 		return dbLane3Quantity;
 	}
 	
 	public BigDecimal getLane4Quantity()
 	{
-
+		if (dbLane4Quantity == null)
+		{
+			dbLane4Quantity =  zero;
+		}
 		return dbLane4Quantity;
 	}
 	
 	public BigDecimal getLane5Quantity()
 	{
-
+		if (dbLane5Quantity == null)
+		{
+			dbLane5Quantity =  zero;
+		}
 		return dbLane5Quantity;
 	}
 	
@@ -469,26 +485,46 @@ public class JDBPalletSamples
 
 	public void setLane1Quantity(BigDecimal removed)
 	{
+		if (removed == null)
+		{
+			removed = zero;
+		}	
 		dbLane1Quantity = removed;
 	}
 	
 	public void setLane2Quantity(BigDecimal removed)
 	{
+		if (removed == null)
+		{
+			removed = zero;
+		}		
 		dbLane2Quantity = removed;
 	}
 	
 	public void setLane3Quantity(BigDecimal removed)
 	{
+		if (removed == null)
+		{
+			removed = zero;
+		}
 		dbLane3Quantity = removed;
 	}
 	
 	public void setLane4Quantity(BigDecimal removed)
 	{
+		if (removed == null)
+		{
+			removed = zero;
+		}
 		dbLane4Quantity = removed;
 	}
 	
 	public void setLane5Quantity(BigDecimal removed)
 	{
+		if (removed == null)
+		{
+			removed = zero;
+		}
 		dbLane5Quantity = removed;
 	}
 	

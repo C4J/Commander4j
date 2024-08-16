@@ -3,7 +3,7 @@
 <DDL>
 
 <statement>
-ALTER TABLE [dbo].[APP_MHN_DECISIONS] ADD [STATUS] [varchar] (20) COLLATE Latin1_General_CI_AS NULL
+ALTER TABLE [dbo].[APP_MHN_DECISIONS] ADD [STATUS] [varchar] (20) COLLATE database_default NULL
 </statement>
 
 <statement>

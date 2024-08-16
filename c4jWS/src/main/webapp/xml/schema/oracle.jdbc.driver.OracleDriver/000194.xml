@@ -152,7 +152,7 @@
     </statement>
     
     <statement>
-  	  ALTER TABLE "SYS_USER_REPORTS" MODIFY ("SQL_SELECT" VARCHAR2(8000 BYTE))
+  	  ALTER TABLE "SYS_USER_REPORTS" MODIFY ("SQL_SELECT" VARCHAR2(4000 BYTE))
     </statement>
 
 </DDL>

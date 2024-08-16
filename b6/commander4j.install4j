@@ -1384,14 +1384,14 @@ else
     <unixInstaller name="Linux Installer" id="403" mediaFileName="${compiler:sys.shortName}_${compiler:sys.version}_linux${compiler:sys.withJre}" installDir="Commander4j">
       <jreBundle jreBundleSource="none" />
     </unixInstaller>
-    <macosFolder name="Mac OS X Folder intel (with JRE)" id="678" mediaFileName="${compiler:sys.shortName}_${compiler:sys.version}_intel_mac${compiler:sys.withJre}" installDir="Commander4j" useLegacyMediaFileIds="true" legacyMediaFileIds="584">
+    <macosFolder name="Mac OS X Folder intel (with JRE)" id="678" mediaFileName="${compiler:sys.shortName}_${compiler:sys.version}_apple_intel${compiler:sys.withJre}" installDir="Commander4j" useLegacyMediaFileIds="true" legacyMediaFileIds="584">
       <jreBundle usePack200="false" manualJreEntry="true">
         <modules>
           <defaultModules set="all" />
         </modules>
       </jreBundle>
     </macosFolder>
-    <macosFolder name="Mac OS X Folder arm (with JRE)" id="1312" mediaFileName="${compiler:sys.shortName}_${compiler:sys.version}_silicon_mac${compiler:sys.withJre}" installDir="Commander4j" useLegacyMediaFileIds="true" legacyMediaFileIds="584" architecture="aarch64">
+    <macosFolder name="Mac OS X Folder arm (with JRE)" id="1312" mediaFileName="${compiler:sys.shortName}_${compiler:sys.version}_apple_silicon${compiler:sys.withJre}" installDir="Commander4j" useLegacyMediaFileIds="true" legacyMediaFileIds="584" architecture="aarch64">
       <jreBundle usePack200="false" manualJreEntry="true">
         <modules>
           <defaultModules set="all" />
