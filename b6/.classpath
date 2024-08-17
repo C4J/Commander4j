@@ -158,7 +158,7 @@
 	<classpathentry kind="lib" path="lib/commons-codec-1.17.0.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-api-2.23.1.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-core-2.23.1.jar"/>
-	<classpathentry kind="lib" path="lib/db/mssql-jdbc-12.6.2.jre11.jar"/>
+	<classpathentry kind="lib" path="lib/db/mssql-jdbc-12.8.0.jre11.jar"/>
 	<classpathentry kind="lib" path="lib/db/ojdbc11.jar"/>
 	<classpathentry kind="lib" path="lib/avalon-framework-api-4.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/avalon-framework-impl-4.3.1.jar"/>
