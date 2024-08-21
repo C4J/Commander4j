@@ -49,8 +49,15 @@ public class JQuantityInput extends JFormattedTextField
 	public BigDecimal getQuantity()
 	{
 		BigDecimal result;
-
-		result = JUtility.stringToBigDecimal(getText());
+		
+		try
+		{
+			result = JUtility.stringToBigDecimal(getText());
+		}
+		catch (Exception ex)
+		{
+			result = new BigDecimal("0");
+		}
 
 		return result;
 	}

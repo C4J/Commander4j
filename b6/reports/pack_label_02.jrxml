@@ -6,148 +6,170 @@
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
-	<query language="sql"><![CDATA[SELECT *   FROM view_label_data]]></query>
+	<query language="sql">
+		<![CDATA[SELECT *   FROM view_label_data]]>
+	</query>
 	<field name="UNIQUE_ID" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="PRINT_DATE" class="java.sql.Timestamp">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="USER_ID" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="WORKSTATION_ID" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="MATERIAL" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="MATERIAL_TYPE" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="BATCH_NUMBER" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="PROCESS_ORDER" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="REQUIRED_RESOURCE" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="LOCATION_ID" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="PROD_QUANTITY" class="java.math.BigDecimal">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="PROD_UOM" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="DATE_OF_MANUFACTURE" class="java.sql.Timestamp">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="EXPIRY_DATE" class="java.sql.Timestamp">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="EXPIRY_MODE" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="PROD_EAN" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="PROD_VARIANT" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="CUSTOMER_ID" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="PRINT_COPIES" class="java.lang.Integer">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="PRINT_QUEUE_NAME" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="BASE_EAN" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="BASE_VARIANT" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="BASE_QUANTITY" class="java.math.BigDecimal">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="BASE_UOM" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="MODULE_ID" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="OVERRIDE_MANUFACTURE_DATE" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="OVERRIDE_EXPIRY_DATE" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="OVERRIDE_BATCH_PREFIX" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="BATCH_PREFIX" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="BATCH_SUFFIX" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="LINE" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="MATERIAL_DESCRIPTION" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<field name="CUSTOMER_NAME" class="java.lang.String">
-		<description><![CDATA[]]></description>
+		<description/>
 	</field>
 	<detail>
 		<band height="215" splitType="Stretch">
 			<element kind="textField" uuid="cae7b6a2-c660-4f04-ad8a-60df1184debe" x="50" y="30" width="80" height="16" fontSize="12.0" blankWhenNull="true">
-				<expression><![CDATA[$F{MATERIAL}]]></expression>
+				<expression>
+					<![CDATA[$F{MATERIAL}]]>
+				</expression>
 			</element>
 			<element kind="textField" uuid="2a645727-20a7-4f79-8e0b-3fc10fd24a71" x="0" y="0" width="280" height="30" fontSize="23.0" vTextAlign="Middle">
-				<expression><![CDATA[$F{CUSTOMER_NAME}]]></expression>
+				<expression>
+					<![CDATA[$F{CUSTOMER_NAME}]]>
+				</expression>
 				<property name="local_mesure_unitheight" value="mm"/>
 				<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 			</element>
 			<element kind="textField" uuid="cc977a09-fd89-4c41-ae14-a411989efe6d" x="85" y="46" width="97" height="16" fontSize="12.0" pattern="MM yyyy" blankWhenNull="true">
-				<expression><![CDATA[$F{EXPIRY_DATE}]]></expression>
+				<expression>
+					<![CDATA[$F{EXPIRY_DATE}]]>
+				</expression>
 			</element>
 			<element kind="staticText" uuid="6d21fac6-dc2c-4903-90fc-b1ccf68c662b" x="0" y="46" width="80" height="16" fontSize="12.0" hTextAlign="Left">
-				<text><![CDATA[Best Before :]]></text>
+				<text>
+					<![CDATA[Best Before :]]>
+				</text>
 			</element>
 			<element kind="textField" uuid="a8b43aae-3f37-4365-8083-b694a882e8db" x="3" y="193" width="430" height="22" fontSize="12.0" hTextAlign="Center">
-				<expression><![CDATA["(01)"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0") +
+				<expression>
+					<![CDATA["(01)"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0") +
 "(20)"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_VARIANT},2,"0") +
 "(15)"+new java.text.SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
-"(10)"+$F{BATCH_NUMBER}]]></expression>
+"(10)"+$F{BATCH_NUMBER}]]>
+				</expression>
 			</element>
 			<element kind="textField" uuid="fd02a501-bdec-444b-a5a8-8fc352bed2a3" x="306" y="78" width="107" height="16" fontSize="12.0" blankWhenNull="true" hTextAlign="Left">
-				<expression><![CDATA[$F{BATCH_NUMBER}]]></expression>
+				<expression>
+					<![CDATA[$F{BATCH_NUMBER}]]>
+				</expression>
 			</element>
 			<element kind="staticText" uuid="56d98ab9-2633-4a58-a862-766f351a7df8" x="0" y="62" width="61" height="16" fontSize="12.0">
-				<text><![CDATA[GTIN CU :]]></text>
+				<text>
+					<![CDATA[GTIN CU :]]>
+				</text>
 			</element>
 			<element kind="textField" uuid="f838f8cd-5697-4729-b5ed-2c383a670b0a" x="61" y="62" width="20" height="16" fontSize="12.0" pattern="#,##0.###;(#,##0.###-)" blankWhenNull="true" hTextAlign="Center">
-				<expression><![CDATA[$F{BASE_QUANTITY}.intValueExact()]]></expression>
+				<expression>
+					<![CDATA[$F{BASE_QUANTITY}.intValueExact()]]>
+				</expression>
 			</element>
 			<element kind="textField" uuid="1886cede-8635-429e-b8e4-2e2d7a32ef40" x="0" y="30" width="50" height="16" fontSize="12.0" blankWhenNull="true">
-				<expression><![CDATA[$F{MATERIAL_TYPE}+" :"]]></expression>
+				<expression>
+					<![CDATA[$F{MATERIAL_TYPE}+" :"]]>
+				</expression>
 			</element>
 			<element kind="component" uuid="3c48205d-5b30-49d7-bc8b-b52a7564a095" x="10" y="124" width="420" height="85">
 				<component kind="barcode4j:EAN128" moduleWidth="2.0" textPosition="none">
-					<codeExpression><![CDATA["01"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0") +
+					<codeExpression>
+						<![CDATA["01"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0") +
 "20"+org.apache.commons.lang.StringUtils.leftPad($F{PROD_VARIANT},2,"0") +
 "15"+new java.text.SimpleDateFormat("yy").format($F{EXPIRY_DATE})+
 new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
-"10"+$F{BATCH_NUMBER}]]></codeExpression>
+"10"+$F{BATCH_NUMBER}]]>
+					</codeExpression>
 				</component>
 				<property name="local_mesure_unitmoduleWidth" value="pixel"/>
 				<property name="com.jaspersoft.studio.unit.moduleWidth" value="px"/>
@@ -155,22 +177,34 @@ new java.text.SimpleDateFormat("MM").format($F{EXPIRY_DATE})+"00"+
 				<property name="com.jaspersoft.studio.unit.y" value="mm"/>
 			</element>
 			<element kind="textField" uuid="e73ce261-baa3-4501-ab1b-e1c6e5e50bfd" x="65" y="78" width="153" height="16" fontSize="12.0" pattern="" blankWhenNull="true">
-				<expression><![CDATA[com.commander4j.util.JUtility.padString($F{PROD_EAN},false,14,"0")]]></expression>
+				<expression>
+					<![CDATA[org.apache.commons.lang.StringUtils.leftPad($F{PROD_EAN},14,"0")]]>
+				</expression>
 			</element>
 			<element kind="staticText" uuid="b7220c3c-6787-493d-8448-df69b6e79ee8" x="0" y="78" width="61" height="16" fontSize="12.0">
-				<text><![CDATA[GTIN DU :]]></text>
+				<text>
+					<![CDATA[GTIN DU :]]>
+				</text>
 			</element>
 			<element kind="staticText" uuid="e60e4327-1a37-408c-ad98-ed48ab779df2" x="81" y="62" width="20" height="16" fontSize="12.0" hTextAlign="Center">
-				<text><![CDATA[x]]></text>
+				<text>
+					<![CDATA[x]]>
+				</text>
 			</element>
 			<element kind="textField" uuid="f05439b0-234e-4c60-9da7-00dea3c59830" x="101" y="62" width="113" height="16" fontSize="12.0" blankWhenNull="true">
-				<expression><![CDATA[com.commander4j.util.JUtility.padString($F{BASE_EAN},false,14,"0")]]></expression>
+				<expression>
+					<![CDATA[org.apache.commons.lang.StringUtils.leftPad($F{BASE_EAN},14,"0")]]>
+				</expression>
 			</element>
 			<element kind="staticText" uuid="28a27b45-3c4e-4a2a-8d6a-a159521e2af1" x="214" y="78" width="80" height="16" fontSize="12.0" hTextAlign="Right">
-				<text><![CDATA[Batch :]]></text>
+				<text>
+					<![CDATA[Batch :]]>
+				</text>
 			</element>
 			<element kind="textField" uuid="b6a04fbe-6a44-4e83-81fe-5f7c83f2f750" x="3" y="97" width="427" height="20" fontSize="14.0" blankWhenNull="true" bold="true" hTextAlign="Center">
-				<expression><![CDATA[$F{MATERIAL_DESCRIPTION}]]></expression>
+				<expression>
+					<![CDATA[$F{MATERIAL_DESCRIPTION}]]>
+				</expression>
 			</element>
 		</band>
 	</detail>
