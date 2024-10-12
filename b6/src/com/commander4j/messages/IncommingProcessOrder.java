@@ -56,6 +56,7 @@ public class IncommingProcessOrder
 	private String dueDate;
 	private String location;
 	private String receipeId;
+	private String receipeVersion;
 	private String requiredQuantity;
 	private String requiredUom;
 	private String defaultPalletStatus;
@@ -118,6 +119,7 @@ public class IncommingProcessOrder
 		location = gmh.getXMLDocument().findXPath("//message/messageData/processOrder/location").trim();
 		dueDate = gmh.getXMLDocument().findXPath("//message/messageData/processOrder/dueDate").trim();
 		receipeId = gmh.getXMLDocument().findXPath("//message/messageData/processOrder/receipeId").trim();
+		receipeVersion = gmh.getXMLDocument().findXPath("//message/messageData/processOrder/receipeVersion").trim();
 		requiredQuantity = gmh.getXMLDocument().findXPath("//message/messageData/processOrder/requiredQuantity").trim();
 
 		requiredUom = gmh.getXMLDocument().findXPath("//message/messageData/processOrder/requiredUom").trim();
@@ -145,6 +147,7 @@ public class IncommingProcessOrder
 		po.setStatus(status);
 		po.setDefaultPalletStatus(defaultPalletStatus);
 		po.setRecipe(receipeId);
+		po.setRecipeVersion(receipeVersion);
 		po.setRequiredQuantity(BigDecimal.valueOf(Double.valueOf(requiredQuantity)));
 		po.setRequiredUom(requiredUom);
 		po.setRequiredResource(requiredResource);

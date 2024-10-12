@@ -126,6 +126,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 	private JDateControl jSpinnerDueDate;
 	private JLabel4j_std jLabelDueDate;
 	private JTextField4j jTextFieldRecipe;
+	private JTextField4j jTextFieldRecipeVersion;
 	private JLabel4j_std jLabelRecipe;
 	private JTextField4j jTextFieldShelfLifeRoundingRule;
 	private JLabel4j_std jLabelRounding;
@@ -269,6 +270,12 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			{
 				jTextFieldProcessOrder.requestFocus();
 				jTextFieldProcessOrder.setCaretPosition(jTextFieldProcessOrder.getText().length());
+				
+				JLabel4j_std jLabelRecipeVersion = new JLabel4j_std();
+				jLabelRecipeVersion.setText("/");
+				jLabelRecipeVersion.setHorizontalAlignment(SwingConstants.CENTER);
+				jLabelRecipeVersion.setBounds(280, 77, 21, 21);
+				jPanelProcessOrder.add(jLabelRecipeVersion);
 
 			}
 		});
@@ -378,6 +385,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			}
 			
 			jTextFieldRecipe.setText(processorder.getRecipe());
+			jTextFieldRecipeVersion.setText(processorder.getRecipeVersion());
 			jTextFieldLocation.setText(processorder.getLocation());
 
 			try
@@ -446,6 +454,7 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 		jTextFieldProcessOrderDescription.setText("");
 		jTextFieldProcessOrderStatus.setText("");
 		jTextFieldRecipe.setText("");
+		jTextFieldRecipeVersion.setText("");
 		jTextFieldLocation.setText("");
 		jTextFieldMaterial.setText("");
 		jTextFieldMaterialDescription.setText("");
@@ -989,9 +998,14 @@ public class JInternalFrameProductionDeclaration extends JInternalFrame {
 			jTextFieldProcessOrderStatus.setEnabled(false);
 			jTextFieldRecipe = new JTextField4j();
 			jPanelProcessOrder.add(jTextFieldRecipe);
-			jTextFieldRecipe.setBounds(161, 77, 139, 21);
+			jTextFieldRecipe.setBounds(161, 77, 119, 21);
 			jTextFieldRecipe.setEditable(false);
 			jTextFieldRecipe.setEnabled(false);
+			jTextFieldRecipeVersion = new JTextField4j();
+			jPanelProcessOrder.add(jTextFieldRecipeVersion);
+			jTextFieldRecipeVersion.setBounds(300, 77, 58, 21);
+			jTextFieldRecipeVersion.setEditable(false);
+			jTextFieldRecipeVersion.setEnabled(false);
 			jLabelRecipe = new JLabel4j_std();
 			jPanelProcessOrder.add(jLabelRecipe);
 			jLabelRecipe.setText(lang.get("lbl_Process_Order_Recipe"));

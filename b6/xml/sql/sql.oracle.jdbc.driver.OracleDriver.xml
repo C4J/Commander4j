@@ -637,7 +637,7 @@
 		</statement>
 		<statement>
 			<id>JDBProcessOrder.update</id>
-			<text>update {schema}APP_PROCESS_ORDER set material=?,description=?,status=?,location_id=?,due_date=?,recipe_id=?,required_quantity=?,required_uom=?,default_pallet_status=?,updated=?,required_resource=?,customer_id=?,inspection_id=? where process_order=?</text>
+			<text>update {schema}APP_PROCESS_ORDER set material=?,description=?,status=?,location_id=?,due_date=?,recipe_id=?,required_quantity=?,required_uom=?,default_pallet_status=?,updated=?,required_resource=?,customer_id=?,inspection_id=?,recipe_version=? where process_order=?</text>
 		</statement>
 		<statement>
 			<id>JDBProcessOrder.selectWithLimit</id>

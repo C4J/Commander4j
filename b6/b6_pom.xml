@@ -6,7 +6,7 @@
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<properties>
-		<revision>7.0.0</revision>
+		<revision>7.0.1</revision>
 	</properties>
 	<dependencies>
 

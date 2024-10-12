@@ -58,6 +58,7 @@ public class JDBProcessOrder
 	private String dbMaterial;
 	private String dbProcessOrder;
 	private String dbRecipeId;
+	private String dbRecipeVersion;
 	private String dbRequiredResource;
 	private String dbCustomerID;
 	private String dbStatus;
@@ -66,6 +67,7 @@ public class JDBProcessOrder
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JDBProcessOrder.class);
 	public static int field_process_order = 10;
 	public static int field_recipe_id = 20;
+	public static int field_recipe_version = 10;
 	public static int field_description = 60;
 	public static int field_status = 15;
 	public static int field_required_resource = 50;
@@ -98,7 +100,7 @@ public class JDBProcessOrder
 		ctrl = new JDBControl(getHostID(), getSessionID());
 	}
 
-	private JDBProcessOrder(String process_order, String material, String description, String status, String location, Timestamp due_date, String recipe, String palletStatus, String reqdResource)
+	private JDBProcessOrder(String process_order, String material, String description, String status, String location, Timestamp due_date, String recipe, String palletStatus, String reqdResource,String recipeVersion)
 	{
 		clear();
 		setProcessOrder(process_order);
@@ -110,6 +112,7 @@ public class JDBProcessOrder
 		setRecipe(recipe);
 		setDefaultPalletStatus(palletStatus);
 		setRequiredResource(reqdResource);
+		setRecipeVersion(recipeVersion);
 	}
 
 	public LinkedList<String> getResourceList(String line, String group)
@@ -155,6 +158,7 @@ public class JDBProcessOrder
 		setLocation("");
 		setDueDate(null);
 		setRecipe("");
+		setRecipeVersion("");
 		setRequiredQuantity(new BigDecimal(0));
 	}
 
@@ -377,7 +381,7 @@ public class JDBProcessOrder
 
 		if (Common.hostList.getHost(getHostID()).toString().equals(null))
 		{
-			result.addElement(new JDBProcessOrder("process_order", "material", "description", "status", "location_id", null, "recipe_id", "pallet_status", "resource"));
+			result.addElement(new JDBProcessOrder("process_order", "material", "description", "status", "location_id", null, "recipe_id", "pallet_status", "resource","recipe_version"));
 		}
 		else
 		{
@@ -388,7 +392,7 @@ public class JDBProcessOrder
 				while (rs.next())
 				{
 					result.addElement(new JDBProcessOrder(rs.getString("process_order"), rs.getString("material"), rs.getString("description"), rs.getString("status"), rs.getString("location_id"), rs.getTimestamp("due_date"), rs.getString("recipe_id"),
-							rs.getString("default_pallet_status"), rs.getString("required_resource")));
+							rs.getString("default_pallet_status"), rs.getString("required_resource"), rs.getString("recipe_version")));
 				}
 				rs.close();
 
@@ -570,6 +574,7 @@ public class JDBProcessOrder
 			setRequiredResource(rs.getString("required_resource"));
 			setCustomerID(rs.getString("customer_id"));
 			setInspectionID(rs.getString("inspection_id"));
+			setRecipeVersion(rs.getString("recipe_version"));
 		}
 		catch (SQLException e)
 		{
@@ -585,6 +590,11 @@ public class JDBProcessOrder
 	public String getRecipe()
 	{
 		return dbRecipeId;
+	}
+	
+	public String getRecipeVersion()
+	{
+		return dbRecipeVersion;
 	}
 
 	public BigDecimal getRequiredQuantity()
@@ -817,6 +827,11 @@ public class JDBProcessOrder
 	{
 		dbRecipeId = recipe;
 	}
+	
+	public void setRecipeVersion(String version)
+	{
+		dbRecipeVersion = version;
+	}
 
 	public void setRequiredQuantity(BigDecimal quantity)
 	{
@@ -895,7 +910,8 @@ public class JDBProcessOrder
 				stmtupdate.setString(11, getRequiredResource());
 				stmtupdate.setString(12, getCustomerID());
 				stmtupdate.setString(13, getInspectionID());
-				stmtupdate.setString(14, getProcessOrder());
+				stmtupdate.setString(14, getRecipeVersion());
+				stmtupdate.setString(15, getProcessOrder());
 
 				stmtupdate.execute();
 				stmtupdate.clearParameters();

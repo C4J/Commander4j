@@ -48,7 +48,7 @@ public class JFileFilterXML extends FileFilter
 			return true;
 		}
 
-		String extension = JFileFilterXLSTypes.getExtension(f);
+		String extension = JFileFilterXMLTypes.getExtension(f);
 		if (extension != null)
 		{
 			if (extension.equals(JFileFilterXMLTypes.XML))

@@ -136,6 +136,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 	private JDateControl dueDateFrom;
 	private JLabel4j_std jLabel6;
 	private JTextField4j jTextFieldRecipe;
+	private JTextField4j jTextFieldRecipeVersion;
 	private JTextField4j jTextFieldLocation;
 	private JLabel4j_std jLabel5;
 	private JTextField4j jTextFieldProcessOrder;
@@ -321,6 +322,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		jComboBoxStatus.setSelectedItem("");
 		jTextFieldLocation.setText("");
 		jTextFieldRecipe.setText("");
+		jTextFieldRecipeVersion.setText("");
 		jTextFieldCustomer.setText("");
 		jTextFieldInspectionID.setText("");
 		jTextFieldRequiredResource.setText("");
@@ -593,6 +595,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		query.addParamtoSQL("status=", jComboBoxStatus.getSelectedItem());
 		query.addParamtoSQL("location_id=", jTextFieldLocation.getText());
 		query.addParamtoSQL("recipe_id=", jTextFieldRecipe.getText());
+		query.addParamtoSQL("recipe_version=", jTextFieldRecipeVersion.getText());
 		query.addParamtoSQL("description like ", "%" + jTextFieldDescription.getText() + "%");
 		query.addParamtoSQL("required_resource = ", jTextFieldRequiredResource.getText());
 		query.addParamtoSQL("customer_id=", jTextFieldCustomer.getText());
@@ -1350,14 +1353,14 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				}
 				{
 					jLabel3 = new JLabel4j_std();
-					jLabel3.setBounds(521, 12, 98, 21);
+					jLabel3.setBounds(493, 12, 87, 21);
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Description"));
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBProcessOrder.field_description);
-					jTextFieldDescription.setBounds(629, 12, 354, 22);
+					jTextFieldDescription.setBounds(593, 12, 390, 22);
 					jDesktopPane1.add(jTextFieldDescription);
 				}
 				{
@@ -1379,7 +1382,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				}
 				{
 					jLabel2 = new JLabel4j_std();
-					jLabel2.setBounds(758, 46, 89, 21);
+					jLabel2.setBounds(768, 46, 79, 21);
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Location_ID"));
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -1410,8 +1413,13 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				}
 				{
 					jTextFieldRecipe = new JTextField4j(JDBProcessOrder.field_recipe_id);
-					jTextFieldRecipe.setBounds(629, 46, 125, 22);
+					jTextFieldRecipe.setBounds(589, 46, 119, 22);
 					jDesktopPane1.add(jTextFieldRecipe);
+				}
+				{
+					jTextFieldRecipeVersion = new JTextField4j(JDBProcessOrder.field_recipe_id);
+					jTextFieldRecipeVersion.setBounds(726, 46, 41, 22);
+					jDesktopPane1.add(jTextFieldRecipeVersion);
 				}
 				{
 					jLabel6 = new JLabel4j_std();
@@ -1505,7 +1513,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 				}
 				{
 					jLabel8 = new JLabel4j_std();
-					jLabel8.setBounds(524, 46, 95, 21);
+					jLabel8.setBounds(493, 47, 87, 21);
 					jDesktopPane1.add(jLabel8);
 					jLabel8.setText(lang.get("lbl_Process_Order_Recipe"));
 					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -1796,6 +1804,12 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 					btnLookupResource.setBounds(253, 110, 22, 21);
 					jDesktopPane1.add(btnLookupResource);
 				}
+				
+				JLabel4j_std jLabelRecipeVersion = new JLabel4j_std();
+				jLabelRecipeVersion.setText("/");
+				jLabelRecipeVersion.setHorizontalAlignment(SwingConstants.CENTER);
+				jLabelRecipeVersion.setBounds(706, 47, 21, 21);
+				jDesktopPane1.add(jLabelRecipeVersion);
 			}
 		}
 		catch (Exception e)

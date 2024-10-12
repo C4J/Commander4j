@@ -99,12 +99,14 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 	private JComboBox4j<String> jComboBoxStatus;
 	private JComboBox4j<String> jComboBoxPalletStatus = new JComboBox4j<String>();
 	private JLabel4j_std jLabelBatchStatus;
+	private JLabel4j_std jLabelRecipeVersion;
 	private JTextField4j jTextFieldLocation;
 	private JTextField4j jTextFieldCustomer;
 	private JLabel4j_std jLabelLocation;
 	private JDateControl jSpinnerDueDate;
 	private JLabel4j_std jLabelDueDate;
 	private JTextField4j jTextFieldRecipeID;
+	private JTextField4j jTextFieldRecipeVersion;
 	private JTextField4j jTextFieldRequiredResource;
 	private JLabel4j_std jLabel1Recipe;
 	private JTextField4j jTextFieldDescription;
@@ -163,6 +165,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 			jTextFieldMaterial.setText(processorder.getMaterial());
 			jTextFieldDescription.setText(processorder.getDescription());
 			jTextFieldRecipeID.setText(processorder.getRecipe());
+			jTextFieldRecipeVersion.setText(processorder.getRecipeVersion());
 			jTextFieldLocation.setText(processorder.getLocation());
 			jTextFieldCustomer.setText(processorder.getCustomerID());
 			jTextFieldInspectionID.setText(processorder.getInspectionID());
@@ -337,6 +340,13 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 					jLabel1Recipe.setBounds(12, 136, 144, 21);
 				}
 				{
+					jLabelRecipeVersion  = new JLabel4j_std();
+					jDesktopPane1.add(jLabelRecipeVersion);
+					jLabelRecipeVersion.setText("/");
+					jLabelRecipeVersion.setHorizontalAlignment(SwingConstants.CENTER);
+					jLabelRecipeVersion.setBounds(288, 136, 21, 21);
+				}
+				{
 					lblInspectionID = new JLabel4j_std();
 					lblInspectionID.setText(lang.get("lbl_Inspection_ID"));
 					lblInspectionID.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -348,6 +358,18 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 					jDesktopPane1.add(jTextFieldRecipeID);
 					jTextFieldRecipeID.setBounds(163, 136, 126, 21);
 					jTextFieldRecipeID.addKeyListener(new KeyAdapter()
+					{
+						public void keyTyped(KeyEvent evt)
+						{
+							jButtonSave.setEnabled(true);
+						}
+					});
+				}
+				{
+					jTextFieldRecipeVersion = new JTextField4j(JDBProcessOrder.field_recipe_version);
+					jDesktopPane1.add(jTextFieldRecipeVersion);
+					jTextFieldRecipeVersion.setBounds(310, 136, 66, 21);
+					jTextFieldRecipeVersion.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
 						{
@@ -709,6 +731,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 	{
 		processorder.setDescription(jTextFieldDescription.getText());
 		processorder.setRecipe(jTextFieldRecipeID.getText());
+		processorder.setRecipeVersion(jTextFieldRecipeVersion.getText());
 		processorder.setLocation(jTextFieldLocation.getText());
 		processorder.setCustomerID(jTextFieldCustomer.getText());
 		processorder.setInspectionID(jTextFieldInspectionID.getText());
