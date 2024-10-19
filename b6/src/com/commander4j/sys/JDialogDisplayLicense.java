@@ -1,31 +1,27 @@
 package com.commander4j.sys;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.JViewport;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.commander4j.db.JDBLanguage;
 import com.commander4j.gui.JButton4j;
-import javax.swing.JScrollPane;
-
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.awt.event.ActionEvent;
-import javax.swing.WindowConstants;
-import javax.swing.JTextPane;
-import javax.swing.JViewport;
-import java.awt.Color;
-import java.awt.Font;
 
 public class JDialogDisplayLicense extends JDialog
 {
@@ -43,6 +39,16 @@ public class JDialogDisplayLicense extends JDialog
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 		setTitle(license.getDescription()+ " ("+license.type+")");
 		setBounds(100, 100, 767, 587);
+		
+		Dimension screensize = Common.mainForm.getSize();
+		Point parentPos = Common.mainForm.getLocation();
+
+		Dimension formsize = getSize();
+		int leftmargin = ((screensize.width - formsize.width) / 2);
+		int topmargin = ((screensize.height - formsize.height) / 2);
+
+		setLocation(parentPos.x + leftmargin , parentPos.y+ topmargin);
+		
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -80,9 +86,6 @@ public class JDialogDisplayLicense extends JDialog
 			getRootPane().setDefaultButton(okButton);
 		}
 
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		Rectangle window = getBounds();
-		setLocation((screen.width - window.width) / 2, (screen.height - window.height) / 2);
 
 		setResizable(false);
 		setModal(true);
