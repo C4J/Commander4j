@@ -44,14 +44,15 @@ public class JDBProcessOrderTableModel extends AbstractTableModel
 	public static final int Process_Order_Status_Col = 3;
 	public static final int Process_Order_Location_Col = 4;
 	public static final int Process_Order_Due_Date_Col = 5;
-	public static final int Process_Order_Recipe_Col = 6;
-	public static final int Process_Order_Required_Quantity_Col = 7;
-	public static final int Process_Order_Required_Uom_Col = 8;
-	public static final int Process_Order_DefaultBatchStatus_Col = 9;
-	public static final int Process_Order_Required_Resource_Col = 10;
-	public static final int Process_Order_Customer_Col = 11;
+	public static final int Process_Order_Required_Quantity_Col = 6;
+	public static final int Process_Order_Required_Uom_Col = 7;
+	public static final int Process_Order_Recipe_Col = 8;
+	public static final int Process_Order_Recipe_Version_Col = 9;
+	public static final int Process_Order_DefaultBatchStatus_Col = 10;
+	public static final int Process_Order_Required_Resource_Col = 11;
+	public static final int Process_Order_Customer_Col = 12;
 	
-	private String[] mcolNames = { "Process Order", "Material", "Description", "Status", "Location ID", "Due Date", "Recipe ID", "Quantity", "Uom", "Default Pallet Status", "Resource","Customer" };
+	private String[] mcolNames = { "Process Order", "Material", "Description", "Status", "Location ID", "Due Date", "Quantity", "Uom", "Recipe ID","Version", "Default Pallet Status", "Resource","Customer" };
 	private ResultSet mResultSet;
 	private int prowCount = -1;
 	private HashMap<Integer,JDBProcessOrder> cache = new HashMap<Integer,JDBProcessOrder>();
@@ -126,6 +127,8 @@ public class JDBProcessOrderTableModel extends AbstractTableModel
 				return cache.get(row).getRequiredUom();
 			case Process_Order_Recipe_Col:
 				return cache.get(row).getRecipe();
+			case Process_Order_Recipe_Version_Col:
+				return cache.get(row).getRecipeVersion();
 			case Process_Order_DefaultBatchStatus_Col:
 				return cache.get(row).getDefaultPalletStatus();
 			case Process_Order_Required_Resource_Col:

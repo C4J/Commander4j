@@ -13,13 +13,13 @@
 		if (selectedUser !== null)
 		{
 			console.debug('editUserRecord  selected user ='+selectedUser);
-			window.location='userEdit.html';
+			window.location.href=getContextPath()+'/panel/userEdit.html';
 		}
 	}
 	
 	function userMenu() {
 		
-		window.location='users.html';
+		window.location.href=getContextPath()+'/panel/users.html';
 
 	}
 	
@@ -152,7 +152,7 @@
 	
 		refreshUser();
 		
-		window.location='userEdit.html';
+		window.location.href=getContextPath()+'/panel/userEdit.html';
 	}
 	
 	
@@ -198,6 +198,6 @@
 	
 		refreshUser();
 		
-		window.location='userEdit.html';
+		window.location.href=getContextPath()+'/panel/userEdit.html';
 	}
 	

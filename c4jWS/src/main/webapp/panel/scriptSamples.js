@@ -17,26 +17,26 @@
 			{
 				console.debug('editSampleRecord  selected sample ='+selectedSample);
 				console.debug('editSampleRecord  selected tray ='+selectedTray);
-				window.location='samples.html';
+				window.location.href=getContextPath()+'/panel/samples.html';
 			}
 		}
 	}
 	
 	function sampleMenu() {
 		
-		window.location='samples.html';
+		window.location.href=getContextPath()+'/panel/samples.html';
 
 	}
 	
 	function trayEdit() {
 		
-		window.location='trayEdit.html';
+		window.location.href=getContextPath()+'/panel/trayEdit.html';
 	
 	}
 	
 	function trayMenu() {
 		
-		window.location='trays.html';
+		window.location.href=getContextPath()+'/panel/trays.html';
 
 	}
 				
@@ -99,13 +99,14 @@
 	
 		refreshSample();
 		
-		window.location='samples.html';
+		window.location.href=getContextPath()+'/panel/samples.html';
 	}
 	
 	function refreshSample()
 	{
 		console.log('refreshSample'); 
 		location.reload();
+		document.getElementById("scanData").focus();
 	}
 	
 	async function deleteSample() {
@@ -135,5 +136,5 @@
 	
 		refreshSample();
 		
-		window.location='samples.html';
+		window.location.href=getContextPath()+'/panel/samples.html';
 	}

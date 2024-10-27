@@ -38,6 +38,36 @@
 		  font-size: 16px;
 		}
 	</style>
+	
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 600px; /* gives an initial height of 200px to the table */
+		width: 600px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	</style>
 
 </head>
 
@@ -45,38 +75,40 @@
 
 	<h1 id="heading" style="text-align:center">Panel</h1>
 
-	<table id="trayEditTable">
-
-		<tr>
-			<td style="color:black; background-color:#f0f8ff">Plant</td>
-			<td style="color:black; background-color:#f0f8ff"><input type="text" id="plant" name="plant" autofocus></td>
-		</tr>
-		<tr>
-			<td style="color:black; background-color:#f0f8ff">Description</td>
-			<td  style="color:black; background-color:#f0f8ff" id="descrow"><input type="text" id="description" name="description"></td>
-		</tr>
-		<tr>
-			<td style="color:black; background-color:#f0f8ff">Created</td>
-			<td style="color:black; background-color:#f0f8ff"><input  style="color:black; background-color:#f0f8ff" type="text" id="created" name="created" disabled></td>
-		</tr>
-		<tr>
-			<td style="color:black; background-color:#f0f8ff">Updated</td>
-			<td style="color:black; background-color:#f0f8ff"><input  style="color:black; background-color:#f0f8ff" type="text" id="updated" name="updated" disabled></td>
-		</tr>
-		<tr>
-			<td style="color:black; background-color:#f0f8ff">Status</td>
-			<td style="color:black; background-color:#f0f8ff">
-				<select name="status" id="status">
-				  	<option value="Prepare">Prepare</option>
-				  	<option value="Ready">Ready</option>
-				  	<option value="Complete">Complete</option>
-		  	</select>
-			</td>
-		</tr>
-	</table>
+	<div class="tableFixHead">
+		<table id="trayEditTable">
+	
+			<tr>
+				<td style="color:black; background-color:#f0f8ff">Plant</td>
+				<td style="color:black; background-color:#f0f8ff"><input type="text" id="plant" name="plant" autofocus></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff">Description</td>
+				<td  style="color:black; background-color:#f0f8ff" id="descrow"><input type="text" id="description" name="description"></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff">Created</td>
+				<td style="color:black; background-color:#f0f8ff"><input  style="color:black; background-color:#f0f8ff" type="text" id="created" name="created" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff">Updated</td>
+				<td style="color:black; background-color:#f0f8ff"><input  style="color:black; background-color:#f0f8ff" type="text" id="updated" name="updated" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff">Status</td>
+				<td style="color:black; background-color:#f0f8ff">
+					<select name="status" id="status">
+					  	<option value="Prepare">Prepare</option>
+					  	<option value="Ready">Ready</option>
+					  	<option value="Complete">Complete</option>
+			  	</select>
+				</td>
+			</tr>
+		</table>
+	</div>
 
 	<table id="panelEditTable">
-		<tbody id="panelEdit-output">
+		<tbody id="panelEdit-output"></tbody>
 	</table>
 	
 	<div class="grid-container">

@@ -50,6 +50,36 @@
 		}
 	</style>
 	
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 500px; /* gives an initial height of 200px to the table */
+		width: 600px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	</style>
+	
 </head>
 
 <body onLoad="buildSampleTable()">
@@ -57,17 +87,19 @@
 	<h1 id="heading" style="text-align:center">Samples</h1>
 	<h2 id="userid" style="text-align:center">Panelist</h2>
 	
-	<table id="sampleTable">
-		<thead>
-			<tr>
-				<th>Sample ID</th>
-				<th>Result</th>
-				<th>Sequence</th>
-			</tr>
-		</thead>
-		<tbody id="sampleTable-output">
-		</tbody>
-	</table>
+	<div class="tableFixHead">
+		<table id="sampleTable">
+			<thead>
+				<tr>
+					<th>Sample ID</th>
+					<th>Result</th>
+					<th>Sequence</th>
+				</tr>
+			</thead>
+			<tbody id="sampleTable-output">
+			</tbody>
+		</table>
+	</div>
 	
 	<br>	
 	<div align="center" id="resultCombobox-output"></div>

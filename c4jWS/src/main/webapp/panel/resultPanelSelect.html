@@ -38,6 +38,36 @@
 		}
 	</style>
 	
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 600px; /* gives an initial height of 200px to the table */
+		width: 600px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	</style>
+	
 </head>
 
 <body onLoad="buildPanelTable()">
@@ -45,17 +75,19 @@
 	<h1 id="heading" style="text-align:center">Panels</h1>
 	<h2 id="userid" style="text-align:center">Panelist</h2>
 		
-	<table id="panelTable">
-		<thead>
-			<tr>
-				<th>Panel ID</th>
-				<th>Plant</th>
-				<th>Description</th>
-			</tr>
-		</thead>
-		<tbody id="panelsTable-output">
-		</tbody>
-	</table>
+	<div class="tableFixHead">
+		<table id="panelTable">
+			<thead>
+				<tr>
+					<th>Panel ID</th>
+					<th>Plant</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody id="panelsTable-output">
+			</tbody>
+		</table>
+	</div>
 	
 	<div class="grid-container">
   		 <div class="grid-item" align="center"><button class="button" id="backButton" onclick="back()">Back</button></div> 

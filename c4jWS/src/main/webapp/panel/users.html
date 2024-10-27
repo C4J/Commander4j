@@ -39,6 +39,36 @@
 		}
 	</style>	
 	
+	<style>
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 600px; /* gives an initial height of 200px to the table */
+		width: 600px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	</style>
+	
 </head>
 
 <body onLoad="buildUserTable()">
@@ -52,20 +82,23 @@
 		<input type="radio" name="filterStatus" onChange="filterChange(this)" value="N" id="N">
 		<label  style="color: red;" for="N">: Disabled</label>
 	</div>
+	<br>
 	
-	<table id="userTable">
-		<thead>
-			<tr>
-				<th>User ID</th>
-				<th>First Name</th>
-				<th>Surname</th>
-				<th>Enabled</th>
-			</tr>
-		</thead>
-		<tbody id="userTable-output">
-		</tbody>
-	</table>
-	
+	<div class="tableFixHead">
+		<table id="userTable">
+			<thead>
+				<tr>
+					<th>User ID</th>
+					<th>First Name</th>
+					<th>Surname</th>
+					<th>Enabled</th>
+				</tr>
+			</thead>
+			<tbody id="userTable-output">
+			</tbody>
+		</table>
+	</div>
+	<br>
 	<div class="grid-container">
   		 <div class="grid-item" align="center"><button class="button" onclick="confirmNewUser()">Add</button></div> 
   		 <div class="grid-item" align="center"><button class="button" onclick="editUserRecord()">Edit</button></div>  

@@ -230,36 +230,36 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 			if (fieldname.equals("Process Order") == true)
 			{
-				jTextFieldProcessOrder.setText(jTable1.getValueAt(row, 0).toString());
+				jTextFieldProcessOrder.setText(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Col).toString());
 			}
 
 			if (fieldname.equals("Material") == true)
 			{
-				jTextFieldMaterial.setText(jTable1.getValueAt(row, 1).toString());
+				jTextFieldMaterial.setText(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Material_Col).toString());
 			}
 
 			if (fieldname.equals("Description") == true)
 			{
-				jTextFieldDescription.setText(jTable1.getValueAt(row, 2).toString());
+				jTextFieldDescription.setText(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Description_Col).toString());
 			}
 
 			if (fieldname.equals("Status") == true)
 			{
-				jComboBoxStatus.setSelectedItem(jTable1.getValueAt(row, 3).toString());
+				jComboBoxStatus.setSelectedItem(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Status_Col).toString());
 			}
 
 			if (fieldname.equals("Location") == true)
 			{
-				jTextFieldLocation.setText(jTable1.getValueAt(row, 4).toString());
+				jTextFieldLocation.setText(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Location_Col).toString());
 			}
 
 			if (fieldname.equals("Recipe") == true)
 			{
-				jTextFieldRecipe.setText(jTable1.getValueAt(row, 6).toString());
+				jTextFieldRecipe.setText(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Recipe_Col).toString());
 			}
 			if (fieldname.equals("Resource") == true)
 			{
-				jTextFieldRequiredResource.setText(jTable1.getValueAt(row, 10).toString());
+				jTextFieldRequiredResource.setText(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Required_Resource_Col).toString());
 			}
 			buildSQL();
 			populateList();
@@ -277,36 +277,36 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 
 			if (fieldname.equals("Process Order") == true)
 			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 0).toString());
+				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Col).toString());
 			}
 
 			if (fieldname.equals("Material") == true)
 			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 1).toString());
+				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Material_Col).toString());
 			}
 
 			if (fieldname.equals("Description") == true)
 			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 2).toString());
+				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Description_Col).toString());
 			}
 
 			if (fieldname.equals("Status") == true)
 			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 3).toString());
+				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Status_Col).toString());
 			}
 
 			if (fieldname.equals("Location") == true)
 			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 4).toString());
+				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Location_Col).toString());
 			}
 
 			if (fieldname.equals("Recipe") == true)
 			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 6).toString());
+				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Recipe_Col).toString());
 			}
 			if (fieldname.equals("Resource") == true)
 			{
-				stringSelection = new StringSelection(jTable1.getValueAt(row, 10).toString());
+				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Required_Resource_Col).toString());
 			}
 			
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
@@ -462,6 +462,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Location_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Due_Date_Col).setPreferredWidth(130);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Recipe_Col).setPreferredWidth(135);
+		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Recipe_Version_Col).setPreferredWidth(60);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Required_Quantity_Col).setPreferredWidth(85);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Required_Uom_Col).setPreferredWidth(35);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_DefaultBatchStatus_Col).setPreferredWidth(120);

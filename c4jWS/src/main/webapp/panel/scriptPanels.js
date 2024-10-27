@@ -15,7 +15,8 @@
 			if (selected !== null)
 			{
 				console.debug('editPanelRecord  selected panel ='+selected);
-				window.location='panelEdit.html';
+				console.debug(window.location.href);
+				window.location.href=getContextPath()+'/panel/panelEdit.html';
 			}
 		}
 	}
@@ -49,7 +50,7 @@
 	      sessionStorage.setItem('panelStatus', 'Prepare');
 	    }
 		
-		window.location='panels.html';
+		window.location.href=getContextPath()+'/panel/panels.html';
 
 	}
 	
@@ -61,7 +62,7 @@
 		{
 			if (selected !== null)
 			{
-				window.location='trays.html';
+				window.location.href=getContextPath()+'/panel/trays.html';
 			}
 		}
 	}
@@ -157,7 +158,7 @@
 	
 		refreshPanel();
 		
-		window.location='panelEdit.html';
+		window.location.href=getContextPath()+'/panel/panelEdit.html';
 		
 	}
 	
@@ -213,12 +214,12 @@
 				  const data = await response.json();
 				  console.log(data);
 				} catch (error) {
-				  console.log('Error: ' + err);
+				  console.log('Error: ' + error);
 				}
 						
 				refreshPanel();
 				
-				window.location='panels.html';
+				window.location.href=getContextPath()+'/panel/panels.html';
 			}
 		
 		}

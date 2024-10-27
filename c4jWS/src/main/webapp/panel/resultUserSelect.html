@@ -50,15 +50,47 @@
 		}
 	</style>
 	
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 500px; /* gives an initial height of 200px to the table */
+		width: 600px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	</style>
+	
 </head>
 
 <body onLoad="buildUserComboBox()">
 
 <h1 style="text-align:center">Select Panelist</h1>
 
-<br><br><br><br>	
+<br><br>	
 	<div align="center" id="userCombobox-output"></div>
 <br><br>
+
+	<div class="tableFixHead">
 	<table id="userEditTable">
 		<tr>
 			<td style="color:black; background-color:#f0f8ff">User ID</td>
@@ -66,6 +98,7 @@
 		</tr>
 
 	</table>
+	</div>
 	
 	<br>
 	
