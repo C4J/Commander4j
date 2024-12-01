@@ -40,6 +40,7 @@ import com.commander4j.db.JDBInterfaceLog;
 import com.commander4j.db.JDBUser;
 import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.messages.IncommingBatchStatusChange;
+import com.commander4j.messages.IncommingBillOfMaterials;
 import com.commander4j.messages.IncommingDespatchConfirmation;
 import com.commander4j.messages.IncommingInspectionResult;
 import com.commander4j.messages.IncommingJourney;
@@ -130,6 +131,7 @@ public class InboundMessageThread extends Thread
 			IncommingDespatchConfirmation idc = new IncommingDespatchConfirmation(getHostID(), getSessionID());
 			IncommingQMInspectionRequest iireq = new IncommingQMInspectionRequest(getHostID(), getSessionID());
 			IncommingMaterialAutoMove imam = new IncommingMaterialAutoMove(getHostID(), getSessionID());
+			IncommingBillOfMaterials ibm = new IncommingBillOfMaterials(getHostID(), getSessionID());
 			GenericMessageHeader gmh = new GenericMessageHeader();
 			File dir ;
 			String[] extensions = { "xml", "XML" };
@@ -283,6 +285,12 @@ public class InboundMessageThread extends Thread
 											{
 												messageProcessedOK = imam.processMessage(gmh);
 												errorMessage = imam.getErrorMessage();
+											}
+											
+											if (interfaceType.equals("Bill of Material") == true)
+											{
+												messageProcessedOK = ibm.processMessage(gmh);
+												errorMessage = ibm.getErrorMessage();
 											}
 
 											GenericMessageHeader.updateStats("Input", interfaceType, messageProcessedOK.toString());

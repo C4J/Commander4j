@@ -94,7 +94,7 @@
     </statement>
     
     <statement>     
-    CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_pallet_samples` AS    
+    CREATE VIEW `view_pallet_samples` AS    
 			SELECT
 				`APP_PALLET_SAMPLES`.`SSCC` AS `SSCC`,
 				`APP_PALLET_SAMPLES`.`SAMPLE_SEQUENCE` AS `SAMPLE_SEQUENCE`,
@@ -156,7 +156,7 @@
     </statement>
     
     <statement>        
-		CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `view_sample_point_locations` AS select distinct `APP_WEIGHT_SAMPLE_POINT`.`LOCATION` AS `Location` from `APP_WEIGHT_SAMPLE_POINT`
+		CREATE VIEW `view_sample_point_locations` AS select distinct `APP_WEIGHT_SAMPLE_POINT`.`LOCATION` AS `Location` from `APP_WEIGHT_SAMPLE_POINT`
     </statement>
     
     <statement>   

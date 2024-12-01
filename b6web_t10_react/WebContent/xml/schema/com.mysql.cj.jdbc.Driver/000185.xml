@@ -3,7 +3,7 @@
 <DDL>
 
     <statement>
-		CREATE OR REPLACE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW  `view_qm_results` AS 
+		CREATE OR REPLACE VIEW  `view_qm_results` AS 
 			SELECT samp.PROCESS_ORDER as 'PROCESS_ORDER',
 			samp.MATERIAL as 'MATERIAL',
 			samp.SAMPLE_ID as 'SAMPLE_ID',

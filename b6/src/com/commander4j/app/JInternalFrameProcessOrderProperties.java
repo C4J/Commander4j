@@ -64,6 +64,7 @@ import com.commander4j.gui.JLabel4j_std;
 import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchLookup;
+import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.util.JDateControl;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JQuantityInput;
@@ -93,6 +94,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 	private JButton4j jButtonLocationLookup;
 	private JButton4j jButtonResourceLookup;
 	private JButton4j jButtonMaterialLookup;
+	private JButton4j jButtonBOMLookup;
 	private JButton4j jButtonClose;
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSave;
@@ -344,7 +346,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 					jDesktopPane1.add(jLabelRecipeVersion);
 					jLabelRecipeVersion.setText("/");
 					jLabelRecipeVersion.setHorizontalAlignment(SwingConstants.CENTER);
-					jLabelRecipeVersion.setBounds(288, 136, 21, 21);
+					jLabelRecipeVersion.setBounds(287, 136, 10, 21);
 				}
 				{
 					lblInspectionID = new JLabel4j_std();
@@ -368,7 +370,7 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 				{
 					jTextFieldRecipeVersion = new JTextField4j(JDBProcessOrder.field_recipe_version);
 					jDesktopPane1.add(jTextFieldRecipeVersion);
-					jTextFieldRecipeVersion.setBounds(310, 136, 66, 21);
+					jTextFieldRecipeVersion.setBounds(298, 136, 66, 21);
 					jTextFieldRecipeVersion.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -550,6 +552,21 @@ public class JInternalFrameProcessOrderProperties extends JInternalFrame {
 						}
 					});
 				}
+				{
+					jButtonBOMLookup = new JButton4j(Common.icon_bom_16x16);
+					jButtonBOMLookup.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_ADMIN"));
+					jDesktopPane1.add(jButtonBOMLookup);
+					jButtonBOMLookup.setBounds(364, 136, 21, 21);
+					jButtonBOMLookup.setToolTipText(lang.get("mod_MENU_BOM"));
+					jButtonBOMLookup.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent evt)
+						{
+							JLaunchMenu.runForm("FRM_BOM_ADMIN", jTextFieldRecipeID.getText(), jTextFieldRecipeVersion.getText());
+						}
+					});
+				}
+				
 				{
 					jButtonLocationLookup = new JButton4j(Common.icon_lookup_16x16);
 					jDesktopPane1.add(jButtonLocationLookup);

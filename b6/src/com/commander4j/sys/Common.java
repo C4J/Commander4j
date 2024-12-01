@@ -62,6 +62,7 @@ import com.commander4j.util.JSessionData;
  */
 public class Common
 {
+	public static int sessionCount = 0;
 	public static SendEmail sendmail = new SendEmail();
 	
 	//LOGON STATUS
@@ -79,8 +80,6 @@ public class Common
 	public static String appWebsite="http://www.commander4j.com";
 	public static String appAuthor="David Garratt";
 	public static String appSupportEmail="support@commander4j.com";
-	
-	
 	
 	public static int LFAdjustWidth=0;
 	public static int LFAdjustHeight=0;
@@ -147,16 +146,17 @@ public class Common
 	public static String[] locationStatusIncBlank = new String[] { "", "Valid", "Invalid" };
 	public static String[] processOrderStatus = new String[] { "Discarded", "Finished", "Held", "Ready", "Running" };
 	public static String[] processOrderStatusincBlank = new String[] { "", "Discarded", "Finished", "Held", "Ready", "Running" };
-	public static String[] messageTypesexclBlank = new String[] {"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", 	"Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration",	"Production Unconfirm", "Sort Notification",	"QM Inspection Request",	"QM Inspection Result" };
-	public static String[] messageTypesincBlank = new String[] { "", 	"Batch Status Change", 	"Despatch Confirmation", 	"Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", "Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", 	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration",	"Production Unconfirm", "Sort Notification",	"QM Inspection Request",	"QM Inspection Result"	};
+	public static String[] messageTypesexclBlank = new String[] {"Bill of Materials", "Batch Status Change", 	"Despatch Confirmation", "Despatch Email", 	"Despatch Pre Advice", 	"Equipment Tracking", 	"Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", "Pallet Issue","Pallet Return",	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration",	"Production Unconfirm", "Sort Notification",	"QM Inspection Request",	"QM Inspection Result" };
+	public static String[] messageTypesincBlank = new String[] { "", "Bill of Materials", "Batch Status Change", "Despatch Confirmation", "Despatch Email", "Despatch Pre Advice", 	"Equipment Tracking", "Journey Definition",	"Location",	"Material Auto Move", 	"Material Definition", 	"Pallet Delete",	"Pallet Move",	"Pallet Split", "Pallet Issue","Pallet Return",	"Pallet Status Change",	"Process Order", 	"Process Order Status Change",	"Production Declaration",	"Production Unconfirm", "Sort Notification",	"QM Inspection Request",	"QM Inspection Result"	};
 
-	public static String[] transactionTypes = new String[] { "","CLONE", "DESPATCH", "EDIT", "PRINT","PROD DEC", "STATUS CHANGE","MHN","SPLIT","MOVE","MANUAL","SORT"};
+	public static String[] transactionTypes = new String[] { "","CLONE", "DESPATCH", "EDIT", "ISSUE","RETURN","PRINT","PROD DEC", "STATUS CHANGE","MHN","SPLIT","MOVE","MANUAL","SORT"};
 	public static String[] transactionSubTypes = new String[] { "", "ADD","REMOVE","CREATE","PRINT", "CONFIRM", "FROM", "TO", "MANUAL", "LABEL","DECISION","BEFORE","AFTER","DELETE","UNCONFIRM","NOTIFY" };
 	public static String[] auditEventActions = new String[] { "", "ADD", "REMOVE", "CREATE", "DELETE", "RENAME", "ENABLE", "DISABLE" };
 	public static String[] auditEventTypes = new String[] { "", "USER", "GROUP", "USER_GROUP", "GROUP_MODULE" };
 	public static String[] locationSortBy = new String[] { "LOCATION_ID", "PLANT", "WAREHOUSE", "DESCRIPTION", "GLN", "STORAGE_LOCATION", "STORAGE_TYPE", "STORAGE_SECTION", "STORAGE_BIN"};
 	public static String[] materialSortBy =new String[] {"MATERIAL", "MATERIAL_TYPE", "DESCRIPTION", "BASE_UOM", "PRODUCTION_UOM", "ISSUE_UOM", "SHELF_LIFE", "SHELF_LIFE_RULE", "DEFAULT_PALLET_STATUS", "DEFAULT_BATCH_STATUS","EQUIPMENT_TYPE"};
 	public static String[] processSortBy = new String[] { "PROCESS_ORDER", "MATERIAL", "DESCRIPTION", "STATUS", "LOCATION_ID", "DUE_DATE", "RECIPE_ID" };
+	public static String[] viewBOMSortBy =new String[] {"BOM_ID,BOM_VERSION,STAGE,INPUT_OUTPUT,SEQUENCE", "MATERIAL", "TYPE", "LOCATION_ID", "UOM"};
 	public static final JImageIconLoader imageIconloader = new JImageIconLoader();
 
 	public static final WeightSampleDetailCellRenderer weight_sample_list = new WeightSampleDetailCellRenderer();
@@ -179,6 +179,7 @@ public class Common
 	public final static Font font_small = new Font("Arial", Font.PLAIN, 9);
 	public final static Font font_std = new Font("Arial", Font.PLAIN, 11);
 	public final static Font font_input = new Font("Arial", Font.PLAIN, 11);
+	public final static Font font_input_large = new Font("Arial", Font.PLAIN, 13);
 	public final static Font font_popup = new Font("Arial", Font.PLAIN, 11);
 	public final static Font font_bold = new Font("Arial", Font.BOLD, 11);
 	public final static Font font_italic = new Font("Arial", Font.ITALIC, 11);
@@ -192,6 +193,8 @@ public class Common
 	public final static Font font_table_header = new java.awt.Font("Arial", Font.PLAIN, 11);
 	public final static Font font_table = new java.awt.Font("Monospaced", 0, 11);
 	public final static Font font_textArea = new java.awt.Font("Monospaced", 0, 14);
+	public final static Font font_tree_tooltip = new Font( "Monospaced", Font.PLAIN, 14);
+	public final static Font font_bom = new Font("Arial", Font.PLAIN, 14);
 	
 	public static final TableCellRenderer_Default renderer_table = new TableCellRenderer_Default();
 	public static final TableCellRenderer_PanelResults renderer_table_panel_results = new TableCellRenderer_PanelResults();
@@ -216,7 +219,6 @@ public class Common
 	public final static Color color_text_disabled = Color.BLACK;
 	public final static Color color_edit_properties = new Color(241, 241, 241);
 	public final static Color color_app_window = new Color(241, 241, 241);
-
 
 	public final static int menuTreeWidth = 250;
 	public static JWindowSplash splash;
@@ -318,7 +320,13 @@ public class Common
 	public final static Icon icon_production_line_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_production_line);
 	public final static Icon icon_weight_capture_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_weight_capture);
 	public final static Icon icon_pallet_sampling_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_pallet_sample);
-
+	public final static Icon icon_process_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_process);
+	public final static Icon icon_import_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_import);
+	public final static Icon icon_bom_16x16 = Common.imageIconloader.getImageIcon16x16(Common.image_bom);
+	
+	public final static String image_import = "file_open.gif";
+	public final static String image_bom = "recipe.gif";
+	public final static String image_process = "release.gif";
 	public final static String image_pallet_sample = "pallet_sampling.gif";
 	public final static String image_weight_capture = "weight-capture.gif";
 	public final static String image_production_line = "prod_lines.gif";

@@ -52,6 +52,7 @@ public class GenericMessageHeader
 	private String interfaceDirection = "";
 	private Boolean validHostRef = false;
 	private Boolean dbconnected = true;
+	private String xmlfilename = "";
 	private JXMLDocument xmlMessage;
 	public static String msgStatusSuccess = "Success";
 	public static String msgStatusWarning = "Warning";
@@ -161,6 +162,16 @@ public class GenericMessageHeader
 		return validHostRef;
 	}
 
+	public void setFilename(String filename)
+	{
+		xmlfilename = filename;
+	}
+	
+	public String getFilename()
+	{
+		return xmlfilename;
+	}
+	
 	public Boolean readAddressInfo(String filename, String sessionID) {
 		Boolean result;
 		try
@@ -170,6 +181,7 @@ public class GenericMessageHeader
 			if (result)
 			{
 				decodeHeader(xmlMessage);
+				setFilename(filename);
 			}
 		}
 		catch (Exception ex)

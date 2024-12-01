@@ -61,6 +61,9 @@ public class JDBLocation
 	private String db_msg_despatch_equip_track = "";
 	private String db_msg_prod_confirm = "";
 	private String db_msg_prod_unconfirm = "";
+	private String db_msg_pallet_issue = "";
+	private String db_msg_pallet_return = "";
+	private String db_barcode_id = "";
 	private String dbStorageSection;
 	private String dbStorageType;
 	private String dbWarehouse;
@@ -78,6 +81,7 @@ public class JDBLocation
 	public static int field_storage_section = 10;
 	public static int field_storage_bin = 10;
 	public static int field_equipment_tracking_id = 15;
+	public static int field_barcode_id = 25;
 	private String hostID;
 	private String sessionID;
 	private String dbEnabled;
@@ -159,6 +163,9 @@ public class JDBLocation
 		setMsgPalletSplit("N");
 		setPermittedPalletStatus("");
 		setPermittedBatchStatus("");
+		setMsgPalletIssue("N");
+		setMsgPalletReturn("N");
+		setBarcodeId("");
 		setEnabled(false);
 	}
 
@@ -609,6 +616,21 @@ public class JDBLocation
 	{
 		return JUtility.replaceNullStringwithBlank(db_msg_prod_unconfirm);
 	}
+	
+	public String getMsgPalletIssue()
+	{
+		return JUtility.replaceNullStringwithBlank(db_msg_pallet_issue);
+	}
+	
+	public String getMsgPalletReturn()
+	{
+		return JUtility.replaceNullStringwithBlank(db_msg_pallet_return);
+	}
+	
+	public String getBarcodeId()
+	{
+		return JUtility.replaceNullStringwithBlank(db_barcode_id);
+	}
 
 	public String getPlant()
 	{
@@ -642,6 +664,9 @@ public class JDBLocation
 			setMsgProdUnConfirm(rs.getString("msg_prod_unconfirm"));
 			setPermittedPalletStatus(rs.getString("permitted_pallet_status"));
 			setPermittedBatchStatus(rs.getString("permitted_batch_status"));
+			setMsgPalletIssue(rs.getString("msg_pallet_issue"));
+			setMsgPalletReturn(rs.getString("msg_pallet_return"));
+			setBarcodeId(rs.getString("barcode_id"));
 			setEnabled(rs.getString("enabled"));
 
 		} catch (SQLException e)
@@ -704,6 +729,26 @@ public class JDBLocation
 	{
 		Boolean result = false;
 		if (getMsgDelete().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+	
+	public Boolean isPalletIssueMessageRequired()
+	{
+		Boolean result = false;
+		if (getMsgPalletIssue().equals("Y"))
+		{
+			result = true;
+		}
+		return result;
+	}
+	
+	public Boolean isPalletReturnMessageRequired()
+	{
+		Boolean result = false;
+		if (getMsgPalletReturn().equals("Y"))
 		{
 			result = true;
 		}
@@ -977,6 +1022,28 @@ public class JDBLocation
 			db_msg_pallet_split = "N";
 		}
 	}
+	
+	public void setMsgPalletIssue(Boolean dbMsgPalletIssue)
+	{
+		if (dbMsgPalletIssue)
+		{
+			db_msg_pallet_issue = "Y";
+		} else
+		{
+			db_msg_pallet_issue = "N";
+		}
+	}
+	
+	public void setMsgPalletReturn(Boolean dbMsgPalletReturn)
+	{
+		if (dbMsgPalletReturn)
+		{
+			db_msg_pallet_return = "Y";
+		} else
+		{
+			db_msg_pallet_return = "N";
+		}
+	}
 
 	public void setMsgDespatchEquipTrack(String dbMsgDespatchEquipTrack)
 	{
@@ -1021,6 +1088,21 @@ public class JDBLocation
 	{
 		db_msg_prod_unconfirm = dbMsgProdUnConfirm;
 	}
+	
+	public void setMsgPalletIssue(String dbMsgPalletIssue)
+	{
+		db_msg_pallet_issue = dbMsgPalletIssue;
+	}
+	
+	public void setMsgPalletReturn(String dbMsgPalletReturn)
+	{
+		db_msg_pallet_return = dbMsgPalletReturn;
+	}
+	
+	public void setBarcodeId(String dbBarcodeId)
+	{
+		db_barcode_id = dbBarcodeId;
+	}
 
 	public void setMsgProdConfirm(Boolean dbMsgProdConfirm)
 	{
@@ -1044,6 +1126,39 @@ public class JDBLocation
 			db_msg_prod_unconfirm = "N";
 		}
 
+	}
+	
+	public String getLocationIDfromBarcodeID(String barcode)
+	{
+		String result = "";
+		
+		PreparedStatement stmt;
+		ResultSet rs;
+
+		try
+		{
+			stmt = Common.hostList.getHost(getHostID()).getConnection(getSessionID()).prepareStatement(Common.hostList.getHost(getHostID()).getSqlstatements().getSQL("JDBLocation.getLocationIDfromBarcodeID"));
+			stmt.setString(1, barcode);
+			stmt.setString(2, barcode);
+			stmt.setFetchSize(1);
+			rs = stmt.executeQuery();
+
+			if (rs.next())
+			{
+				result = JUtility.replaceNullStringwithBlank(rs.getString("location_id"));
+			} else
+			{
+				setErrorMessage("Invalid Barcode [" + barcode + "]");
+				result = "";
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e)
+		{
+			setErrorMessage(e.getMessage());
+		}
+		
+		return result;
 	}
 
 	public void setPlant(String plant)
@@ -1126,7 +1241,10 @@ public class JDBLocation
 				stmtupdate.setString(20, getMsgJourneyRef());
 				stmtupdate.setString(21, getEmailDespatch());
 				stmtupdate.setString(22, getMsgProdUnConfirm());
-				stmtupdate.setString(23, getLocationID());
+				stmtupdate.setString(23, getMsgPalletIssue());
+				stmtupdate.setString(24, getMsgPalletReturn());
+				stmtupdate.setString(25, getBarcodeId());
+				stmtupdate.setString(26, getLocationID());
 
 				stmtupdate.execute();
 

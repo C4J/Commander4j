@@ -42,6 +42,8 @@ import com.commander4j.messages.OutgoingDespatchEmail;
 import com.commander4j.messages.OutgoingDespatchPreAdvice;
 import com.commander4j.messages.OutgoingEquipmentTracking;
 import com.commander4j.messages.OutgoingPalletDelete;
+import com.commander4j.messages.OutgoingPalletIssue;
+import com.commander4j.messages.OutgoingPalletReturn;
 import com.commander4j.messages.OutgoingPalletSplit;
 import com.commander4j.messages.OutgoingPalletStatusChange;
 import com.commander4j.messages.OutgoingProductionDeclarationConfirmation;
@@ -126,6 +128,8 @@ public class OutboundMessageThread extends Thread
 			OutgoingPalletStatusChange psc = new OutgoingPalletStatusChange(getHostID(), getSessionID());
 			OutgoingPalletSplit ops = new OutgoingPalletSplit(getHostID(), getSessionID());
 			OutgoingPalletDelete opd = new OutgoingPalletDelete(getHostID(), getSessionID());
+			OutgoingPalletIssue opi = new OutgoingPalletIssue(getHostID(), getSessionID());
+			OutgoingPalletReturn opr = new OutgoingPalletReturn(getHostID(), getSessionID());
 			LinkedList<Long> irqList = new LinkedList<Long>();
 			int noOfMessages = 0;
 
@@ -246,6 +250,20 @@ public class OutboundMessageThread extends Thread
 								messageProcessedOK = oet.processMessage(ir.getTransactionRef());
 								errorMessage = oet.getErrorMessage();
 								GenericMessageHeader.updateStats("Output","Equipment Tracking", messageProcessedOK.toString());
+							}
+							
+							if (ir.getInterfaceType().equals("Pallet Issue"))
+							{
+								messageProcessedOK = opi.processMessage(ir.getTransactionRef());
+								errorMessage = opi.getErrorMessage();
+								GenericMessageHeader.updateStats("Output","Pallet Issue", messageProcessedOK.toString());
+							}
+							
+							if (ir.getInterfaceType().equals("Pallet Return"))
+							{
+								messageProcessedOK = opr.processMessage(ir.getTransactionRef());
+								errorMessage = opr.getErrorMessage();
+								GenericMessageHeader.updateStats("Output","Pallet Return", messageProcessedOK.toString());
 							}
 							
 							if (messageProcessedOK == true)

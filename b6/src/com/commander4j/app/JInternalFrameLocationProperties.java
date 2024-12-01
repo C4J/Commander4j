@@ -87,6 +87,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 	private JButton4j jButtonHelp;
 	private JButton4j jButtonSave;
 	private JLabel4j_std jLabel9;
+	private JLabel4j_std jLabelBarcodeId;
 	private JTextField4j jTextFieldStorageSection;
 	private JTextField4j jTextFieldStorageType;
 	private JLabel4j_std jLabel7;
@@ -102,6 +103,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 	private String llocation;
 	private JDBLocation location = new JDBLocation(Common.selectedHostID, Common.sessionID);
 	private JTextField4j jTextFieldEquipmentTrackingID;
+	private JTextField4j jTextFieldBarcodeID;
 	private JLabel4j_std lblMsgDespatchConfirm;
 	private JLabel4j_std lblMsgPreAdvice;
 	private JLabel4j_std lblMsgPalletSplit;
@@ -117,6 +119,8 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 	private JCheckBox4j checkBox_Production_Confirmation;
 	private JCheckBox4j checkBox_Production_UnConfirm;
 	private JCheckBox4j checkBox_PalletDelete;
+	private JCheckBox4j checkBox_PalletIssue;
+	private JCheckBox4j checkBox_PalletReturn;
 	private JScrollPane scrollPane;
 	private JList4j<String> palletStatusList;
 	private JList4j<String> batchStatusList;
@@ -176,6 +180,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 			jTextFieldStorageSection.setText(location.getStorageSection());
 			jTextFieldStorageBin.setText(location.getStorageBin());
 			jTextFieldEquipmentTrackingID.setText(location.getEquipmentTrackingID());
+			jTextFieldBarcodeID.setText(location.getBarcodeId());
 			chckbxEnabled.setSelected(location.isEnabled());
 			checkBox_DespatchConfirm.setSelected(location.isDespatchConfirmationMessageRequired());
 			checkBox_PreAdvice.setSelected(location.isDespatchPreAdviceMessageRequired());
@@ -184,6 +189,8 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 			checkBox_PalletSplit.setSelected(location.isPalletSplitMessageRequired());
 			checkBox_JourneyRef.setSelected(location.isJourneyRefRequired());
 			checkBox_PalletDelete.setSelected(location.isPalletDeleteMessageRequired());
+			checkBox_PalletIssue.setSelected(location.isPalletIssueMessageRequired());
+			checkBox_PalletReturn.setSelected(location.isPalletReturnMessageRequired());
 			checkBox_Equipment_Tracking.setSelected(location.isDespatchEquipmentTrackingMessageRequired());
 			checkBox_Production_Confirmation.setSelected(location.isProductionConfirmationMessageRequired());
 			checkBox_Production_UnConfirm.setSelected(location.isProductionUnConfirmMessageRequired());
@@ -257,12 +264,15 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 		location.setStorageSection(jTextFieldStorageSection.getText());
 		location.setStorageBin(jTextFieldStorageBin.getText());
 		location.setEquipmentTrackingID(jTextFieldEquipmentTrackingID.getText());
+		location.setBarcodeId(jTextFieldBarcodeID.getText());
 		location.setMsgDespatchConfirm(checkBox_DespatchConfirm.isSelected());
 		location.setMsgDespatchEquipTrack(checkBox_Equipment_Tracking.isSelected());
 		location.setMsgDespatchPreadvice(checkBox_PreAdvice.isSelected());
 		location.setMsgStatusChange(checkBox_StatusChange.isSelected());
 		location.setMsgProdConfirm(checkBox_Production_Confirmation.isSelected());
 		location.setMsgPalletSplit(checkBox_PalletSplit.isSelected());
+		location.setMsgPalletIssue(checkBox_PalletIssue.isSelected());
+		location.setMsgPalletReturn(checkBox_PalletReturn.isSelected());
 		location.setMsgDelete(checkBox_PalletDelete.isSelected());
 		location.setEnabled(chckbxEnabled.isSelected());
 		location.setMsgJourneyRef(checkBox_JourneyRef.isSelected());
@@ -318,7 +328,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 		try
 		{
 			this.setPreferredSize(new java.awt.Dimension(450, 340));
-			this.setBounds(0, 0, 489, 666);
+			this.setBounds(0, 0, 515, 592);
 			setVisible(true);
 			this.setClosable(true);
 			this.setIconifiable(true);
@@ -329,7 +339,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 				getContentPane().add(jDesktopPane1, BorderLayout.CENTER);
 				{
 					scrollPane = new JScrollPane();
-					scrollPane.setBounds(52, 480, 163, 84);
+					scrollPane.setBounds(100, 414, 163, 84);
 					palletStatusList = new JList4j<String>();
 					DefaultListModel<String> lmod1 = new DefaultListModel<String>();
 					for (int temp=0;temp<Common.palletStatus.length;temp++)
@@ -351,7 +361,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 				}
 				{
 					scrollPane = new JScrollPane();
-					scrollPane.setBounds(242, 480, 163, 84);
+					scrollPane.setBounds(294, 414, 163, 84);
 					batchStatusList = new JList4j<String>();
 					DefaultListModel<String> lmod2 = new DefaultListModel<String>();
 					for (int temp=0;temp<Common.batchStatus.length;temp++)
@@ -375,20 +385,20 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jDesktopPane1.add(jLabel1);
 					jLabel1.setText(lang.get("lbl_Storage_Location"));
 					jLabel1.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel1.setBounds(0, 7, 151, 21);
+					jLabel1.setBounds(0, 7, 121, 21);
 				}
 				{
 					lblPermitPalletStatus = new JLabel4j_std();
 					lblPermitPalletStatus.setFont(Common.font_bold);
 					lblPermitPalletStatus.setText(lang.get("lbl_Storage_Location_Permit_Pallet_Status"));
-					lblPermitPalletStatus.setBounds(52, 458, 163, 21);
+					lblPermitPalletStatus.setBounds(100, 394, 163, 21);
 					jDesktopPane1.add(lblPermitPalletStatus);
 				}
 				{
 					lblPermitBatchStatus = new JLabel4j_std();
 					lblPermitBatchStatus.setFont(Common.font_bold);
 					lblPermitBatchStatus.setText(lang.get("lbl_Storage_Location_Permit_Batch_Status"));
-					lblPermitBatchStatus.setBounds(242, 457, 163, 21);
+					lblPermitBatchStatus.setBounds(294, 394, 163, 21);
 					jDesktopPane1.add(lblPermitBatchStatus);
 				}
 				{
@@ -397,19 +407,19 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jTextFieldLocationID.setText(llocation);
 					jTextFieldLocationID.setEditable(false);
 					jTextFieldLocationID.setEnabled(false);
-					jTextFieldLocationID.setBounds(158, 7, 140, 21);
+					jTextFieldLocationID.setBounds(128, 7, 140, 21);
 				}
 				{
 					jLabel3 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel3);
 					jLabel3.setText(lang.get("lbl_Storage_Warehouse"));
 					jLabel3.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel3.setBounds(0, 63, 151, 21);
+					jLabel3.setBounds(0, 63, 121, 21);
 				}
 				{
 					jTextFieldWarehouse = new JTextField4j(JDBLocation.field_warehouse);
 					jDesktopPane1.add(jTextFieldWarehouse);
-					jTextFieldWarehouse.setBounds(158, 63, 105, 21);
+					jTextFieldWarehouse.setBounds(128, 63, 105, 21);
 					jTextFieldWarehouse.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -419,7 +429,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 				{
 					jTextFieldGLN = new JTextField4j(JDBLocation.field_gln);
 					jDesktopPane1.add(jTextFieldGLN);
-					jTextFieldGLN.setBounds(158, 91, 140, 21);
+					jTextFieldGLN.setBounds(128, 91, 140, 21);
 					jTextFieldGLN.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -431,12 +441,12 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jDesktopPane1.add(jLabel2);
 					jLabel2.setText(lang.get("lbl_Description"));
 					jLabel2.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel2.setBounds(0, 119, 151, 21);
+					jLabel2.setBounds(0, 119, 121, 21);
 				}
 				{
 					jTextFieldPlant = new JTextField4j(JDBLocation.field_plant);
 					jDesktopPane1.add(jTextFieldPlant);
-					jTextFieldPlant.setBounds(158, 35, 105, 21);
+					jTextFieldPlant.setBounds(128, 35, 105, 21);
 					jTextFieldPlant.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -448,12 +458,12 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jDesktopPane1.add(jLabel4);
 					jLabel4.setText(lang.get("lbl_Storage_Plant"));
 					jLabel4.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel4.setBounds(0, 35, 151, 21);
+					jLabel4.setBounds(0, 35, 121, 21);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBLocation.field_description);
 					jDesktopPane1.add(jTextFieldDescription);
-					jTextFieldDescription.setBounds(158, 119, 308, 21);
+					jTextFieldDescription.setBounds(128, 119, 356, 21);
 					jTextFieldDescription.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -465,19 +475,19 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jDesktopPane1.add(jLabel5);
 					jLabel5.setText(lang.get("lbl_Storage_GLN"));
 					jLabel5.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel5.setBounds(0, 91, 151, 21);
+					jLabel5.setBounds(0, 91, 121, 21);
 				}
 				{
 					jLabel6 = new JLabel4j_std();
 					jDesktopPane1.add(jLabel6);
 					jLabel6.setText(lang.get("lbl_Storage_Location"));
 					jLabel6.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel6.setBounds(0, 147, 151, 21);
+					jLabel6.setBounds(0, 147, 121, 21);
 				}
 				{
 					jTextFieldStorageLocation = new JTextField4j(JDBLocation.field_storage_location);
 					jDesktopPane1.add(jTextFieldStorageLocation);
-					jTextFieldStorageLocation.setBounds(158, 147, 105, 21);
+					jTextFieldStorageLocation.setBounds(128, 147, 105, 21);
 					jTextFieldStorageLocation.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -489,12 +499,12 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jDesktopPane1.add(jLabel7);
 					jLabel7.setText(lang.get("lbl_Storage_Type"));
 					jLabel7.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel7.setBounds(0, 175, 151, 21);
+					jLabel7.setBounds(0, 175, 121, 21);
 				}
 				{
 					jTextFieldStorageType = new JTextField4j(JDBLocation.field_storage_type);
 					jDesktopPane1.add(jTextFieldStorageType);
-					jTextFieldStorageType.setBounds(158, 175, 105, 21);
+					jTextFieldStorageType.setBounds(128, 175, 105, 21);
 					jTextFieldStorageType.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -506,12 +516,12 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jDesktopPane1.add(jLabel8);
 					jLabel8.setText(lang.get("lbl_Storage_Section"));
 					jLabel8.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel8.setBounds(0, 203, 151, 21);
+					jLabel8.setBounds(0, 203, 121, 21);
 				}
 				{
 					jTextFieldStorageSection = new JTextField4j(JDBLocation.field_storage_section);
 					jDesktopPane1.add(jTextFieldStorageSection);
-					jTextFieldStorageSection.setBounds(158, 203, 105, 21);
+					jTextFieldStorageSection.setBounds(128, 203, 105, 21);
 					jTextFieldStorageSection.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -523,12 +533,19 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jDesktopPane1.add(jLabel9);
 					jLabel9.setText(lang.get("lbl_Storage_Bin"));
 					jLabel9.setHorizontalAlignment(SwingConstants.TRAILING);
-					jLabel9.setBounds(0, 231, 151, 21);
+					jLabel9.setBounds(0, 231, 121, 21);
+				}
+				{
+					jLabelBarcodeId = new JLabel4j_std();
+					jDesktopPane1.add(jLabelBarcodeId);
+					jLabelBarcodeId.setText(lang.get("lbl_Barcode_ID"));
+					jLabelBarcodeId.setHorizontalAlignment(SwingConstants.TRAILING);
+					jLabelBarcodeId.setBounds(237, 175, 135, 21);
 				}
 				{
 					jTextFieldStorageBin = new JTextField4j(JDBLocation.field_storage_bin);
 					jDesktopPane1.add(jTextFieldStorageBin);
-					jTextFieldStorageBin.setBounds(158, 231, 105, 21);
+					jTextFieldStorageBin.setBounds(128, 231, 105, 21);
 					jTextFieldStorageBin.addKeyListener(new KeyAdapter() {
 						public void keyTyped(KeyEvent evt) {
 							jButtonSave.setEnabled(true);
@@ -539,49 +556,49 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					lblMsgDespatchConfirm = new JLabel4j_std();
 					lblMsgDespatchConfirm.setText("Msg Despatch Confirm");
 					lblMsgDespatchConfirm.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMsgDespatchConfirm.setBounds(0, 299, 186, 21);
+					lblMsgDespatchConfirm.setBounds(23, 260, 186, 21);
 					jDesktopPane1.add(lblMsgDespatchConfirm);
 				}
 				{
 					lblMsgPreAdvice = new JLabel4j_std();
 					lblMsgPreAdvice.setText("Msg Despatch Pre Advice");
 					lblMsgPreAdvice.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMsgPreAdvice.setBounds(0, 332, 186, 21);
+					lblMsgPreAdvice.setBounds(23, 282, 186, 21);
 					jDesktopPane1.add(lblMsgPreAdvice);
 				}
 				{
 					lblMsgPreAdvice = new JLabel4j_std();
 					lblMsgPreAdvice.setText("Msg SSCC Status Change");
 					lblMsgPreAdvice.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMsgPreAdvice.setBounds(0, 396, 186, 21);
+					lblMsgPreAdvice.setBounds(23, 326, 186, 21);
 					jDesktopPane1.add(lblMsgPreAdvice);
 				}
 				{
 					lblMsgPalletSplit = new JLabel4j_std();
 					lblMsgPalletSplit.setText("Msg SSCC Split");
 					lblMsgPalletSplit.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMsgPalletSplit.setBounds(225, 364, 181, 21);
+					lblMsgPalletSplit.setBounds(251, 304, 181, 21);
 					jDesktopPane1.add(lblMsgPalletSplit);
 				}
 				{
 					lblMsgEquipmentTracking = new JLabel4j_std();
 					lblMsgEquipmentTracking.setText("Msg Equipment Tracking");
 					lblMsgEquipmentTracking.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMsgEquipmentTracking.setBounds(225, 298, 181, 21);
+					lblMsgEquipmentTracking.setBounds(251, 260, 181, 21);
 					jDesktopPane1.add(lblMsgEquipmentTracking);
 				}
 				{
 					lblMsgProductionConfirmation = new JLabel4j_std();
 					lblMsgProductionConfirmation.setText("Msg Production Confirm");
 					lblMsgProductionConfirmation.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMsgProductionConfirmation.setBounds(225, 331, 181, 21);
+					lblMsgProductionConfirmation.setBounds(251, 282, 181, 21);
 					jDesktopPane1.add(lblMsgProductionConfirmation);
 				}
 				{
 					lblMsgProductionUnConfirm = new JLabel4j_std();
 					lblMsgProductionUnConfirm.setText("Msg Production UnConfirm");
 					lblMsgProductionUnConfirm.setHorizontalAlignment(SwingConstants.TRAILING);
-					lblMsgProductionUnConfirm.setBounds(225, 427, 181, 21);
+					lblMsgProductionUnConfirm.setBounds(251, 348, 181, 21);
 					jDesktopPane1.add(lblMsgProductionUnConfirm);
 				}
 				{
@@ -591,14 +608,14 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 							jButtonSave.setEnabled(true);
 						}
 					});
-					checkBox_DespatchConfirm.setBounds(193, 295, 31, 24);
+					checkBox_DespatchConfirm.setBounds(216, 257, 31, 24);
 					jDesktopPane1.add(checkBox_DespatchConfirm);
 				}
 				{
 					JLabel4j_std label4j_std2 = new JLabel4j_std();
 					label4j_std2.setText("Email Despatch Pre Advice");
 					label4j_std2.setHorizontalAlignment(SwingConstants.TRAILING);
-					label4j_std2.setBounds(0, 364, 186, 21);
+					label4j_std2.setBounds(23, 304, 186, 21);
 					jDesktopPane1.add(label4j_std2);
 					
 
@@ -607,7 +624,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 							jButtonSave.setEnabled(true);
 						}
 					});
-					checkBox_EmailPreAdvice.setBounds(193, 361, 31, 24);
+					checkBox_EmailPreAdvice.setBounds(216, 301, 31, 24);
 					jDesktopPane1.add(checkBox_EmailPreAdvice);
 				}
 				{
@@ -617,7 +634,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 							jButtonSave.setEnabled(true);
 						}
 					});
-					checkBox_PreAdvice.setBounds(193, 329, 31, 24);
+					checkBox_PreAdvice.setBounds(216, 279, 31, 24);
 					jDesktopPane1.add(checkBox_PreAdvice);
 				}
 				{
@@ -627,7 +644,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 							jButtonSave.setEnabled(true);
 						}
 					});
-					checkBox_StatusChange.setBounds(193, 393, 31, 24);
+					checkBox_StatusChange.setBounds(216, 323, 31, 24);
 					jDesktopPane1.add(checkBox_StatusChange);
 				}	
 				{
@@ -637,7 +654,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 							jButtonSave.setEnabled(true);
 						}
 					});
-					checkBox_PalletSplit.setBounds(413, 361, 31, 24);
+					checkBox_PalletSplit.setBounds(439, 301, 31, 24);
 					jDesktopPane1.add(checkBox_PalletSplit);
 				}	
 				{
@@ -647,7 +664,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 							jButtonSave.setEnabled(true);
 						}
 					});
-					checkBox_JourneyRef.setBounds(413, 393, 31, 24);
+					checkBox_JourneyRef.setBounds(439, 323, 31, 24);
 					jDesktopPane1.add(checkBox_JourneyRef);
 				}	
 				
@@ -658,7 +675,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 							jButtonSave.setEnabled(true);
 						}
 					});
-					checkBox_Equipment_Tracking.setBounds(413, 295, 31, 24);
+					checkBox_Equipment_Tracking.setBounds(439, 257, 31, 24);
 					jDesktopPane1.add(checkBox_Equipment_Tracking);
 				}
 				{
@@ -668,7 +685,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 							jButtonSave.setEnabled(true);
 						}
 					});
-					checkBox_Production_Confirmation.setBounds(413, 328, 31, 24);
+					checkBox_Production_Confirmation.setBounds(439, 279, 31, 24);
 					jDesktopPane1.add(checkBox_Production_Confirmation);
 				}
 				{
@@ -678,7 +695,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 							jButtonSave.setEnabled(true);
 						}
 					});
-					checkBox_Production_UnConfirm.setBounds(413, 424, 31, 24);
+					checkBox_Production_UnConfirm.setBounds(439, 345, 31, 24);
 					jDesktopPane1.add(checkBox_Production_UnConfirm);
 				}
 				{
@@ -687,7 +704,7 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jButtonSave.setEnabled(false);
 					jButtonSave.setText("Save");
 					jButtonSave.setMnemonic(83);
-					jButtonSave.setBounds(62, 576, 112, 28);
+					jButtonSave.setBounds(86, 510, 112, 28);
 					jButtonSave.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
 							save();
@@ -705,14 +722,14 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 				jDesktopPane1.add(jButtonHelp);
 				jButtonHelp.setText("Help");
 				jButtonHelp.setMnemonic(java.awt.event.KeyEvent.VK_H);
-				jButtonHelp.setBounds(181, 576, 112, 28);
+				jButtonHelp.setBounds(205, 510, 112, 28);
 			}
 			{
 				jButtonCancel = new JButton4j(Common.icon_close_16x16);
 				jDesktopPane1.add(jButtonCancel);
 				jButtonCancel.setText("Close");
 				jButtonCancel.setMnemonic(67);
-				jButtonCancel.setBounds(300, 576, 112, 28);
+				jButtonCancel.setBounds(324, 510, 112, 28);
 				jButtonCancel.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						dispose();
@@ -727,26 +744,49 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 						jButtonSave.setEnabled(true);
 					}
 				});
-				jTextFieldEquipmentTrackingID.setBounds(158, 262, 105, 21);
+				jTextFieldEquipmentTrackingID.setBounds(379, 147, 105, 21);
 				jDesktopPane1.add(jTextFieldEquipmentTrackingID);
+			}
+			{
+				jTextFieldBarcodeID = new JTextField4j(JDBLocation.field_barcode_id);
+				jTextFieldBarcodeID.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						jButtonSave.setEnabled(true);
+					}
+				});
+				jTextFieldBarcodeID.setBounds(379, 175, 105, 21);
+				jDesktopPane1.add(jTextFieldBarcodeID);
 			}
 			{
 				JLabel4j_std label = new JLabel4j_std();
 				label.setText(lang.get("lbl_Storage_Equipment_Tracking_ID"));
 				label.setHorizontalAlignment(SwingConstants.TRAILING);
-				label.setBounds(0, 262, 151, 21);
+				label.setBounds(237, 147, 135, 21);
 				jDesktopPane1.add(label);
 			}
 			JLabel4j_std label4j_std = new JLabel4j_std();
 			label4j_std.setText("Msg SSCC Delete");
 			label4j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-			label4j_std.setBounds(0, 427, 186, 21);
+			label4j_std.setBounds(23, 348, 186, 21);
 			jDesktopPane1.add(label4j_std);
+			
+			JLabel4j_std label6j_std = new JLabel4j_std();
+			label6j_std.setText("Msg SSCC Issue");
+			label6j_std.setHorizontalAlignment(SwingConstants.TRAILING);
+			label6j_std.setBounds(23, 370, 186, 21);
+			jDesktopPane1.add(label6j_std);
+			
+			JLabel4j_std label7j_std = new JLabel4j_std();
+			label7j_std.setText("Msg SSCC Return");
+			label7j_std.setHorizontalAlignment(SwingConstants.TRAILING);
+			label7j_std.setBounds(261, 370, 170, 21);
+			jDesktopPane1.add(label7j_std);
 			
 			JLabel4j_std label5j_std = new JLabel4j_std();
 			label5j_std.setText("Msg Journey Ref");
 			label5j_std.setHorizontalAlignment(SwingConstants.TRAILING);
-			label5j_std.setBounds(225, 396, 181, 21);
+			label5j_std.setBounds(251, 326, 181, 21);
 			jDesktopPane1.add(label5j_std);			
 			
 			checkBox_PalletDelete = new JCheckBox4j("");
@@ -755,19 +795,36 @@ public class JInternalFrameLocationProperties extends JInternalFrame
 					jButtonSave.setEnabled(true);
 				}
 			});
-			checkBox_PalletDelete.setBounds(193, 425, 31, 24);
+			checkBox_PalletDelete.setBounds(216, 345, 31, 24);
 			jDesktopPane1.add(checkBox_PalletDelete);
+			
 			chckbxEnabled.setFont(Common.font_std);
 			chckbxEnabled.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					jButtonSave.setEnabled(true);
 				}
 			});
-			
-
 			chckbxEnabled.setBounds(310, 4, 156, 23);
 			chckbxEnabled.setText(lang.get("lbl_Interface_Enabled"));
 			jDesktopPane1.add(chckbxEnabled);
+			
+			checkBox_PalletIssue = new JCheckBox4j("");
+			checkBox_PalletIssue.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					jButtonSave.setEnabled(true);
+				}
+			});
+			checkBox_PalletIssue.setBounds(216, 367, 31, 24);
+			jDesktopPane1.add(checkBox_PalletIssue);
+			
+			checkBox_PalletReturn = new JCheckBox4j("");
+			checkBox_PalletReturn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					jButtonSave.setEnabled(true);
+				}
+			});
+			checkBox_PalletReturn.setBounds(439, 367, 31, 24);
+			jDesktopPane1.add(checkBox_PalletReturn);
 
 		}
 		catch (Exception e)

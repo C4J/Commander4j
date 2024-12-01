@@ -164,6 +164,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 	private PreparedStatement listStatement;
 	private JMenu4j mnReferenceData;
 	private JMenuItem4j mntmEditMaterial;
+	private JMenuItem4j mntmEditBOM;
 	private JMenuItem4j mntmEditLocation;
 
 	public JInternalFrameProcessOrderAdmin()
@@ -461,7 +462,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Status_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Location_Col).setPreferredWidth(80);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Due_Date_Col).setPreferredWidth(130);
-		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Recipe_Col).setPreferredWidth(135);
+		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Recipe_Col).setPreferredWidth(105);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Recipe_Version_Col).setPreferredWidth(60);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Required_Quantity_Col).setPreferredWidth(85);
 		jTable1.getColumnModel().getColumn(JDBProcessOrderTableModel.Process_Order_Required_Uom_Col).setPreferredWidth(35);
@@ -902,7 +903,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 											int row = jTable1.getSelectedRow();
 											if (row >= 0)
 											{
-												String llocation = jTable1.getValueAt(row, 4).toString();
+												String llocation = jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Location_Col).toString();
 												JLaunchMenu.runForm("FRM_ADMIN_LOCATION_EDIT", llocation);
 											}
 										}
@@ -920,7 +921,7 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 											int row = jTable1.getSelectedRow();
 											if (row >= 0)
 											{
-												String lmaterial = jTable1.getValueAt(row, 1).toString();
+												String lmaterial = jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Material_Col).toString();
 												JLaunchMenu.runForm("FRM_ADMIN_MATERIAL_EDIT", lmaterial);
 											}
 										}
@@ -928,6 +929,26 @@ public class JInternalFrameProcessOrderAdmin extends JInternalFrame
 									mnReferenceData.add(mntmEditMaterial);
 									mntmEditMaterial.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_ADMIN_MATERIAL_EDIT"));
 									mntmEditMaterial.setIcon(Common.icon_material_16x16);
+								}
+								
+								{
+									mntmEditBOM = new JMenuItem4j(lang.get("mod_MENU_BOM"));
+									mntmEditBOM.addActionListener(new ActionListener()
+									{
+										public void actionPerformed(ActionEvent arg0)
+										{
+											int row = jTable1.getSelectedRow();
+											if (row >= 0)
+											{
+												String lbom = jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Recipe_Col).toString();
+												String lversion = jTable1.getValueAt(row, JDBProcessOrderTableModel.Process_Order_Recipe_Version_Col).toString();
+												JLaunchMenu.runForm("FRM_BOM_ADMIN", lbom,lversion);
+											}
+										}
+									});
+									mnReferenceData.add(mntmEditBOM);
+									mntmEditBOM.setEnabled(Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_ADMIN"));
+									mntmEditBOM.setIcon(Common.icon_bom_16x16);
 								}
 
 							}
