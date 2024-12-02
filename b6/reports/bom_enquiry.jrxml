@@ -1,0 +1,381 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="bom_enquiry" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="782" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="800d3a28-a0b4-4781-943c-0ff66134753d">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mySQL"/>
+	<import>net.sf.jasperreports.engine.*</import>
+	<import>java.util.*</import>
+	<import>net.sf.jasperreports.engine.data.*</import>
+	<parameter name="COMPANY_NAME" forPrompting="false" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Company Name"]]></defaultValueExpression>
+	</parameter>
+	<query language="sql"><![CDATA[select * from VIEW_BOM ]]></query>
+	<field name="bom_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="bom_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="bom_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="bom_version" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="bom_version"/>
+		<property name="com.jaspersoft.studio.field.label" value="bom_version"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="display_order" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="display_order"/>
+		<property name="com.jaspersoft.studio.field.label" value="display_order"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="stage" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="stage"/>
+		<property name="com.jaspersoft.studio.field.label" value="stage"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="input_output" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="input_output"/>
+		<property name="com.jaspersoft.studio.field.label" value="input_output"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="sequence" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sequence"/>
+		<property name="com.jaspersoft.studio.field.label" value="sequence"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="material" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="material"/>
+		<property name="com.jaspersoft.studio.field.label" value="material"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="material_uuid" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="material_uuid"/>
+		<property name="com.jaspersoft.studio.field.label" value="material_uuid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="description" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="description"/>
+		<property name="com.jaspersoft.studio.field.label" value="description"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="quantity" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="quantity"/>
+		<property name="com.jaspersoft.studio.field.label" value="quantity"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="type"/>
+		<property name="com.jaspersoft.studio.field.label" value="type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="uom" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="uom"/>
+		<property name="com.jaspersoft.studio.field.label" value="uom"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="gtin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="gtin"/>
+		<property name="com.jaspersoft.studio.field.label" value="gtin"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="variant" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="variant"/>
+		<property name="com.jaspersoft.studio.field.label" value="variant"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="location_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="location_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="location_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<field name="location_uuid" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="location_uuid"/>
+		<property name="com.jaspersoft.studio.field.label" value="location_uuid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="app_bom"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="46" splitType="Stretch">
+		<element kind="staticText" uuid="8e134bf0-3b44-4ac5-9284-97de68bb84de" key="staticText" x="517" y="5" width="262" height="40" fontSize="30.0" hTextAlign="Right">
+			<text><![CDATA[Bill of Materials]]></text>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="be0bef9d-a612-4df3-9a61-ea4cc8da9825" key="textField-1" x="0" y="0" width="510" height="46" fontSize="16.0" blankWhenNull="false" vTextAlign="Middle">
+			<expression><![CDATA[$P{COMPANY_NAME}]]></expression>
+			<property name="local_mesure_unitx" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="local_mesure_unity" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<property name="local_mesure_unitheight" value="pixel"/>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</title>
+	<columnHeader height="24" splitType="Stretch">
+		<element kind="rectangle" uuid="cea36013-26b0-4821-8852-ad1021ea8b41" key="rectangle" mode="Opaque" x="0" y="0" width="782" height="17" forecolor="#000000" backcolor="#FACF0F">
+			<pen lineWidth="0.0" lineStyle="Solid"/>
+		</element>
+		<element kind="line" uuid="2e374660-7d93-4f90-ae10-87d6a8bd58f2" key="line" x="0" y="0" width="782" height="1" forecolor="#000000" backcolor="#FFFFFF" direction="BottomUp"/>
+		<element kind="line" uuid="6eea10ad-71c7-4968-9696-725cbd07f200" key="line" x="0" y="17" width="782" height="1" forecolor="#000000" backcolor="#FFFFFF" direction="BottomUp">
+			<property name="local_mesure_unity" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+		</element>
+		<element kind="staticText" uuid="54622c58-40cb-4a2f-9633-61803d73f431" key="staticText" x="0" y="-1" width="70" height="18" forecolor="#000000" fontSize="10.0" vTextAlign="Middle">
+			<text><![CDATA[BOM Id]]></text>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="194d9c13-df1a-47c2-bc3f-12426adb8a91" key="staticText" x="93" y="-1" width="68" height="18" forecolor="#000000" fontSize="10.0" vTextAlign="Middle">
+			<text><![CDATA[Version]]></text>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="7871a646-5619-49ca-b6b2-290cdbd94afd" key="staticText" x="290" y="-1" width="72" height="18" forecolor="#000000" fontSize="10.0" vTextAlign="Middle">
+			<text><![CDATA[Material]]></text>
+			<property name="local_mesure_unity" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="a1b39b3e-943c-47b6-a25b-389b81bfc085" key="staticText" x="370" y="-1" width="110" height="18" forecolor="#000000" fontSize="10.0" vTextAlign="Middle">
+			<text><![CDATA[Description]]></text>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="d9ebdfd8-cbf8-4ac1-9ab1-04e1d29d155f" key="staticText" x="153" y="-1" width="44" height="18" forecolor="#000000" fontSize="10.0" vTextAlign="Middle">
+			<text><![CDATA[Stage]]></text>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="2140a131-0f2d-4437-bdb8-ac99892bf153" key="staticText" x="201" y="-1" width="68" height="18" forecolor="#000000" fontSize="10.0" vTextAlign="Middle">
+			<text><![CDATA[Input/Output]]></text>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="e2c0a087-b955-4e69-b23d-b465d4f26957" key="staticText" x="543" y="-1" width="110" height="18" forecolor="#000000" fontSize="10.0" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[Quantity]]></text>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="daa4ada2-3905-41e9-ad1d-6668027bee34" key="staticText" x="663" y="-1" width="50" height="18" forecolor="#000000" fontSize="10.0" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[UOM]]></text>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="53cdadbb-5997-4ab7-b3df-920a230f3a9f" key="staticText" x="722" y="-1" width="54" height="18" forecolor="#000000" fontSize="10.0" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Location]]></text>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<element kind="textField" uuid="10398bf8-a5f1-4538-9aec-d7c80da4537a" key="textField" x="0" y="-5" width="90" height="18" forecolor="#000000" fontSize="10.0" pattern="" blankWhenNull="false" underline="false" strikeThrough="false" pdfEmbedded="false" bold="false" italic="false" vTextAlign="Middle">
+				<expression><![CDATA[$F{bom_id}]]></expression>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="a157e60c-1159-4600-a6c3-f8a6fac4912d" key="textField" x="93" y="-5" width="56" height="18" forecolor="#000000" fontSize="10.0" pattern="" blankWhenNull="true" underline="false" strikeThrough="false" pdfEmbedded="false" bold="false" italic="false" vTextAlign="Middle">
+				<expression><![CDATA[$F{bom_version}]]></expression>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="307ed6ce-f58d-457d-9aaf-730b5632ba61" key="textField" x="290" y="-5" width="82" height="18" forecolor="#000000" fontSize="10.0" pattern="" blankWhenNull="true" underline="false" strikeThrough="false" pdfEmbedded="false" bold="false" italic="false" vTextAlign="Middle">
+				<expression><![CDATA[$F{material}]]></expression>
+				<property name="local_mesure_unity" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="cd7e69e4-82e1-4f1c-af00-5e9e7b68cbe7" key="textField" x="593" y="-5" width="60" height="18" forecolor="#000000" fontSize="10.0" pattern="" blankWhenNull="true" underline="false" strikeThrough="false" pdfEmbedded="false" bold="false" italic="false" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[$F{quantity}]]></expression>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="bc9ef3a8-bcdf-4a12-9598-c83c437dab08" key="textField" x="370" y="-5" width="219" height="18" forecolor="#000000" fontSize="10.0" pattern="" blankWhenNull="true" underline="false" strikeThrough="false" pdfEmbedded="false" bold="false" italic="false" vTextAlign="Middle">
+				<expression><![CDATA[$F{description}]]></expression>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="8604e7b4-f4b6-4d8f-9f18-01a8b0ac78a3" key="textField" x="662" y="-5" width="50" height="18" forecolor="#000000" fontSize="10.0" pattern="" blankWhenNull="true" underline="false" strikeThrough="false" pdfEmbedded="false" bold="false" italic="false" hTextAlign="Left" vTextAlign="Middle">
+				<expression><![CDATA[$F{uom}]]></expression>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="a81ebc77-3e16-4266-9a09-a669dc12d796" key="textField" x="721" y="-5" width="60" height="18" forecolor="#000000" fontSize="10.0" pattern="" blankWhenNull="true" underline="false" strikeThrough="false" pdfEmbedded="false" bold="false" italic="false" hTextAlign="Left" vTextAlign="Middle">
+				<expression><![CDATA[$F{location_id}]]></expression>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="2a7d85fa-f723-4357-b2cb-71761f37325e" key="textField" x="153" y="-5" width="44" height="18" forecolor="#000000" fontSize="10.0" pattern="" blankWhenNull="true" underline="false" strikeThrough="false" pdfEmbedded="false" bold="false" italic="false" vTextAlign="Middle">
+				<expression><![CDATA[$F{stage}]]></expression>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="7892bcfc-90e8-4a12-a3d7-987b231602e2" key="textField" x="210" y="-5" width="70" height="18" forecolor="#000000" fontSize="10.0" pattern="" blankWhenNull="true" underline="false" strikeThrough="false" pdfEmbedded="false" bold="false" italic="false" vTextAlign="Middle">
+				<expression><![CDATA[$F{input_output}]]></expression>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<columnFooter splitType="Stretch"/>
+	<pageFooter height="22" splitType="Stretch">
+		<element kind="textField" uuid="59ec4732-1040-45b4-947c-b5bb9aca7b7d" key="textField" x="560" y="1" width="170" height="18" forecolor="#000000" pattern="" blankWhenNull="false" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Page " + $V{PAGE_NUMBER} + " of "]]></expression>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="c9a64801-00db-4005-b8fd-ef1849184866" key="textField" mode="Transparent" x="733" y="1" width="44" height="18" forecolor="#000000" backcolor="#FFFFFF" fontSize="10.0" evaluationTime="Report" pattern="" blankWhenNull="false" underline="false" strikeThrough="false" pdfEmbedded="false" bold="false" italic="false" vTextAlign="Middle">
+			<expression><![CDATA["" + $V{PAGE_NUMBER}]]></expression>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="textField" uuid="a2fa6e28-95ef-45ab-823d-3de82ef3c3c3" key="textField" x="1" y="4" width="209" height="18" forecolor="#000000" pattern="dd/MM/yyyy HH:mm" blankWhenNull="false" vTextAlign="Middle">
+			<expression><![CDATA[new Date()]]></expression>
+			<property name="local_mesure_unity" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+	</pageFooter>
+	<summary splitType="Stretch"/>
+</jasperReport>

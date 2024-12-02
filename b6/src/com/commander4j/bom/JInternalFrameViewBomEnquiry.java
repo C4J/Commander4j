@@ -39,6 +39,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -70,6 +72,7 @@ import com.commander4j.gui.JTextField4j;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchMenu;
 import com.commander4j.sys.JLaunchReport;
+import com.commander4j.util.JExcel;
 import com.commander4j.util.JHelp;
 import com.commander4j.util.JUtility;
 
@@ -78,6 +81,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 	private static final long serialVersionUID = 1;
 	private JDesktopPane jDesktopPane1;
 
+	private JButton4j jButtonViewEdit;
 	private JButton4j jButtonClear;
 	private JButton4j jButtonExcel;
 	private JButton4j jButtonPrint;
@@ -248,12 +252,27 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 	private void export()
 	{
 
+		try
+		{
+			JExcel export = new JExcel();
+			PreparedStatement temp = buildSQLr();
+			ResultSet rs;
+			rs = temp.executeQuery();
+			export.saveAs("bom_enquiry.xls",rs, Common.mainForm);
+			populateList();
+			rs.close();
+			temp.close();
+		}
+		catch (SQLException e)
+		{
+
+		}
 	}
 
 	private void print()
 	{
 		PreparedStatement temp = buildSQLr();
-		JLaunchReport.runReport("RPT_VIEW_BOM", null, "", temp, "");
+		JLaunchReport.runReport("RPT_BOM_ENQUIRY", null, "", temp, "");
 	}
 
 	private void search()
@@ -452,13 +471,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 								{
 									public void actionPerformed(final ActionEvent e)
 									{
-										int row = jTable1.getSelectedRow();
-										if (row >= 0)
-										{
-											String id = jTable1.getValueAt(row, JDBViewBomTableModel.bom_id_col).toString();
-											String ver = jTable1.getValueAt(row, JDBViewBomTableModel.bom_version_col).toString();
-											JLaunchMenu.runForm("FRM_BOM_ADMIN", id,ver);
-										}
+										viewEditBOM();
 									}
 								});
 								newItemMenuItem.setText(lang.get("mod_MENU_BOM"));
@@ -756,7 +769,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 					jButtonSearch = new JButton4j(Common.icon_search_16x16);
 					jDesktopPane1.add(jButtonSearch);
 					jButtonSearch.setText(lang.get("btn_Search"));
-					jButtonSearch.setBounds(162, 112, 109, 32);
+					jButtonSearch.setBounds(3, 112, 139, 32);
 					jButtonSearch.setMnemonic(lang.getMnemonicChar());
 					jButtonSearch.addActionListener(new ActionListener()
 					{
@@ -886,7 +899,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 					jButtonHelp = new JButton4j(Common.icon_help_16x16);
 					jDesktopPane1.add(jButtonHelp);
 					jButtonHelp.setText(lang.get("btn_Help"));
-					jButtonHelp.setBounds(596, 112, 109, 32);
+					jButtonHelp.setBounds(693, 112, 139, 32);
 					jButtonHelp.setMnemonic(lang.getMnemonicChar());
 				}
 
@@ -894,7 +907,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 					jButtonClose = new JButton4j(Common.icon_close_16x16);
 					jDesktopPane1.add(jButtonClose);
 					jButtonClose.setText(lang.get("btn_Close"));
-					jButtonClose.setBounds(704, 112, 109, 32);
+					jButtonClose.setBounds(831, 112, 139, 32);
 					jButtonClose.setMnemonic(lang.getMnemonicChar());
 					jButtonClose.addActionListener(new ActionListener()
 					{
@@ -909,7 +922,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 					jButtonPrint = new JButton4j(Common.icon_report_16x16);
 					jDesktopPane1.add(jButtonPrint);
 					jButtonPrint.setText(lang.get("btn_Print"));
-					jButtonPrint.setBounds(379, 112, 109, 32);
+					jButtonPrint.setBounds(417, 112, 139, 32);
 					jButtonPrint.setMnemonic(lang.getMnemonicChar());
 					jButtonPrint.addActionListener(new ActionListener()
 					{
@@ -970,7 +983,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 
 					jButtonExcel.setText(lang.get("btn_Excel"));
 					jButtonExcel.setMnemonic(lang.getMnemonicChar());
-					jButtonExcel.setBounds(488, 112, 109, 32);
+					jButtonExcel.setBounds(555, 112, 139, 32);
 					jDesktopPane1.add(jButtonExcel);
 				}
 
@@ -985,8 +998,23 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 					});
 					jButtonClear.setText(lang.get("btn_Clear_Filter"));
 					jButtonClear.setMnemonic(lang.getMnemonicChar());
-					jButtonClear.setBounds(270, 112, 109, 32);
+					jButtonClear.setBounds(141, 112, 139, 32);
 					jDesktopPane1.add(jButtonClear);
+				}
+				
+				{
+					jButtonViewEdit = new JButton4j(Common.icon_bom_16x16);
+					jButtonViewEdit.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(final ActionEvent e)
+						{
+							viewEditBOM();
+						}
+					});
+					jButtonViewEdit.setText(lang.get("mod_FRM_BOM_ADMIN"));
+					jButtonViewEdit.setMnemonic(lang.getMnemonicChar());
+					jButtonViewEdit.setBounds(279, 112, 139, 32);
+					jDesktopPane1.add(jButtonViewEdit);
 				}
 
 				JLabel4j_std label4j_std = new JLabel4j_std();
@@ -1015,6 +1043,17 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 		}
 	}
 
+	private void viewEditBOM()
+	{
+		int row = jTable1.getSelectedRow();
+		if (row >= 0)
+		{
+			String id = jTable1.getValueAt(row, JDBViewBomTableModel.bom_id_col).toString();
+			String ver = jTable1.getValueAt(row, JDBViewBomTableModel.bom_version_col).toString();
+			JLaunchMenu.runForm("FRM_BOM_ADMIN", id,ver);
+		}
+	}
+	
 	/**
 	 * WindowBuilder generated method.<br>
 	 * Please don't remove this method or its invocations.<br>
