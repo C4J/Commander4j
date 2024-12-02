@@ -249,7 +249,7 @@
 	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'DE', 'Stücklistenverwaltung', '0')</statement>
 	
 	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'FR', 'Administration de la nomenclature', '0')</statement>
-mod_FRM_BOM_ADMIN
+
 	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'NL', 'Administratie van stuklijsten', '0')</statement>
 	
 	<statement>INSERT INTO SYS_LANGUAGE (RESOURCE_KEY, LANGUAGE_ID, TEXT, MNEMONIC) VALUES ('mod_FRM_BOM_ADMIN', 'ES', 'Administración de listas de materiales', '0')</statement>
