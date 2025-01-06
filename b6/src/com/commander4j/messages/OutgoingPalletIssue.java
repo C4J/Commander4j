@@ -213,6 +213,9 @@ public class OutgoingPalletIssue
 						productionDeclaration.appendChild(customer);
 					}
 
+					Element transactionDate = addElement(document, "transactionDate", JUtility.getISOTimeStampStringFormat(palhist.getTransactionDate()));
+					productionDeclaration.appendChild(transactionDate);
+					
 					Element ean = addElement(document, "ean", palhist.getPallet().getEAN());
 					productionDeclaration.appendChild(ean);
 

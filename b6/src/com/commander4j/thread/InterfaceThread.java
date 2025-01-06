@@ -28,6 +28,8 @@ package com.commander4j.thread;
  */
 
 import java.io.File;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.LinkedList;
 
 import org.apache.commons.beanutils.converters.ArrayConverter;
@@ -40,6 +42,9 @@ import com.commander4j.db.JDBControl;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBSchema;
 import com.commander4j.db.JDBUser;
+import com.commander4j.email.EmailHTML;
+import com.commander4j.exception.ExceptionHTML;
+import com.commander4j.exception.ExceptionMsg;
 import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
@@ -60,6 +65,11 @@ public class InterfaceThread extends Thread
 	private String sessionID = "";
 	private OutboundMessageThread outboundThread;
 
+	public final static int emailType_Startup = 1;
+	public final static int emailType_Shutdown = 2;
+	public final static int emailType_Housekeeping = 3;
+	public final static int emailType_Statistics = 4;
+
 	private AutoLabellerThread autoLabellerThread;
 	private ReportingThread reportingThread;
 	private InboundMessageCollectionThread fileCollectThread;
@@ -67,12 +77,14 @@ public class InterfaceThread extends Thread
 	private boolean threadsRunning = false;
 	private boolean houseKeeping = false;
 	private Boolean enableEnterfaceStatusEmails = false;
-	private String siteName = "";
+
 	private String interfaceEmailAddresses = "";
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(InterfaceThread.class);
 	private boolean abortThread = false;
 	private int backupMessageRetention = 30;
-
+	
+	Runtime runtime = Runtime.getRuntime();
+	int mb = 1024 * 1024;
 
 	public String getSessionID()
 	{
@@ -82,8 +94,8 @@ public class InterfaceThread extends Thread
 	public void setSessionID(String sessionID)
 	{
 		this.sessionID = sessionID;
-	}	
-	
+	}
+
 	public InterfaceThread(String host, String session)
 	{
 		setHostID(host);
@@ -167,9 +179,11 @@ public class InterfaceThread extends Thread
 			Common.selectedHostID = getHostID();
 			houseKeeping = false;
 
+			// Primary Loop
 			while (shutdown == false)
 			{
 
+				// Wait for database connection
 				logger.debug("Connecting to database.");
 				while ((Common.hostList.getHost(getHostID()).isConnected(getSessionID()) == false) && (shutdown == false))
 				{
@@ -187,49 +201,19 @@ public class InterfaceThread extends Thread
 					Common.init();
 
 					JDBUser user = new JDBUser(getHostID(), getSessionID());
-					JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
-
 
 					user.setUserId("interface");
 					user.setPassword("interface");
 					user.setLoginPassword("interface");
 					Common.userList.addUser(getSessionID(), user);
 
-					enableEnterfaceStatusEmails = Boolean.parseBoolean(ctrl.getKeyValueWithDefault("INTERFACE EMAIL NOTIFY", "false", "Email startup and shutdown events :- true or false"));
-
-					interfaceEmailAddresses = ctrl.getKeyValueWithDefault("INTERFACE ADMIN EMAIL", "someone@somewhere.com", "Email address for startup and shutdown events.");
-
-					StringConverter stringConverter = new StringConverter();
-					ArrayConverter arrayConverter = new ArrayConverter(String[].class, stringConverter);
-					arrayConverter.setDelimiter(';');
-					arrayConverter.setAllowedChars(new char[]
-					{ '@', '_' });
-					String[] emailList = (String[]) arrayConverter.convert(String[].class, interfaceEmailAddresses);
-					siteName = Common.hostList.getHost(getHostID()).getSiteDescription();
-
 					if (user.login())
 					{
 
-						if (enableEnterfaceStatusEmails == true)
+						// Notify of startup
+						if (houseKeeping == false)
 						{
-							try
-							{
-								String subject = "";
-								if (houseKeeping == true)
-								{
-
-								}
-								else
-								{
-									subject = "Commander4j " + JVersion.getProgramVersion() + " Interface startup for [" + siteName + "] on " + JUtility.getClientName();
-
-									Common.sendmail.Send(emailList, subject, "Interface service has started.", "");
-								}
-							}
-							catch (Exception ex)
-							{
-								logger.error("InterfaceThread Unable to send emails");
-							}
+							notifyInterfaceStatusEmail(emailType_Startup);
 						}
 
 						houseKeeping = false;
@@ -240,57 +224,145 @@ public class InterfaceThread extends Thread
 
 						startupThreads();
 
+						// As long as we are not shutting down check for the
+						// nominated housekeeping time
 						while ((shutdown == false) & (houseKeeping == false))
 						{
-							com.commander4j.util.JWait.milliSec(1000);
-							currentDateTime = JUtility.getDateTimeString("yyyy-MM-dd HH:mm:ss");
+							ZonedDateTime instant = ZonedDateTime.now();
+
+							ZonedDateTime instantInUTC = instant.withZoneSameInstant(ZoneId.of("UTC"));
+
+							currentDateTime = instantInUTC.toString();
 							currentDate = currentDateTime.substring(0, 10);
 							currentTime = currentDateTime.substring(11, 19);
-							
+
 							if (currentTime.substring(0, 5).equals(Common.statusReportTime.substring(0, 5)))
 							{
 								if (currentDate.equals(lastRunDate) == false)
 								{
+									// Switch to housekeeping mode
 									lastRunDate = currentDate;
 									houseKeeping = true;
 								}
 							}
-							
+
 						}
 
+						// We are now either shutting down or doing housekeeping
 						logger.debug("Stopping Threads....");
+
 						shutdownThreads();
 
 						user.logout();
+
 						logger.debug("Interface Logged out successfully");
 
-						if (enableEnterfaceStatusEmails == true)
+						// Do housekeeping
+						if (houseKeeping == true)
 						{
-							try
-							{
-								String subject = "";
-								if (houseKeeping == true)
-								{
-
-								}
-								else
-								{
-									subject = "Commander4j " + JVersion.getProgramVersion() + " Interface shutdown for [" + siteName + "] on " + JUtility.getClientName();
-									Common.sendmail.Send(emailList, subject, "Interface service has stopped.", "");
-								}
-							}
-							catch (Exception ex)
-							{
-								logger.error("InterfaceThread Unable to send emails");
-							}
+							notifyInterfaceStatusEmail(emailType_Housekeeping);
 						}
 
+						// Do shutdown
+						if (shutdown == true)
+						{
+							notifyInterfaceStatusEmail(emailType_Shutdown);
+						}
+
+						logger.debug("Disconnecting from database.");
+						Common.hostList.getHost(getHostID()).disconnectAll();
 					}
 					else
 					{
 						logger.debug("Interface routine failed to logon to application using account INTERFACE");
 
 					}
+
+				}
+			}
+		}
+	}
+
+	private void notifyInterfaceStatusEmail(int EmailType)
+	{
+		JDBControl ctrl = new JDBControl(getHostID(), getSessionID());
+		enableEnterfaceStatusEmails = Boolean.parseBoolean(ctrl.getKeyValueWithDefault("INTERFACE EMAIL NOTIFY", "false", "Email startup and shutdown events :- true or false"));
+
+		interfaceEmailAddresses = ctrl.getKeyValueWithDefault("INTERFACE ADMIN EMAIL", "someone@somewhere.com", "Email address for startup and shutdown events.");
+
+		StringConverter stringConverter = new StringConverter();
+		ArrayConverter arrayConverter = new ArrayConverter(String[].class, stringConverter);
+
+		arrayConverter.setDelimiter(';');
+		arrayConverter.setAllowedChars(new char[]
+		{ '@', '_' });
+
+		String[] emailList = (String[]) arrayConverter.convert(String[].class, interfaceEmailAddresses);
+
+		String subject = "";
+		String siteName = Common.hostList.getHost(getHostID()).getSiteDescription();
+		ExceptionHTML ept;
+
+		if (enableEnterfaceStatusEmails == true)
+		{
+
+			if (emailList.length > 0)
+			{
+
+				switch (EmailType)
+				{
+				case emailType_Startup:
+
+					ept = new ExceptionHTML("Interface Status", "Description", "10%", "Detail", "30%");
+					ept.clear();
+					ept.addRow(new ExceptionMsg("Site Name", siteName));
+					ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
+					ept.addRow(new ExceptionMsg("Commander4j Version", JVersion.getProgramVersion()));
+					ept.addRow(new ExceptionMsg("Interface Status", "Interface service has started"));
+					ept.addRow(new ExceptionMsg("Event Time", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
+
+					subject = "Commander4j " + JVersion.getProgramVersion() + " Interface startup for [" + siteName + "] on " + JUtility.getClientName();
+
+					Common.sendmail.Send(emailList, subject, ept.getHTML(), "");
+
+					break;
+
+				case emailType_Shutdown:
+
+					ept = new ExceptionHTML("Interface Status", "Description", "10%", "Detail", "30%");
+					ept.clear();
+					ept.addRow(new ExceptionMsg("Site Name", siteName));
+					ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
+					ept.addRow(new ExceptionMsg("Commander4j Version", JVersion.getProgramVersion()));
+					ept.addRow(new ExceptionMsg("Interface Status", "Interface service has stopped"));
+					ept.addRow(new ExceptionMsg("Event Time", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
+
+					subject = "Commander4j " + JVersion.getProgramVersion() + " Interface shutdown for [" + siteName + "] on " + JUtility.getClientName();
+
+					Common.sendmail.Send(emailList, subject, ept.getHTML(), "");
+
+					break;
+
+				case emailType_Housekeeping:
+
+					logger.debug("HOUSEKEEPING START");
+
+					logger.debug("Initiating data archiving....");
+					
+					ept = new ExceptionHTML("Interface Status", "Description", "10%", "Detail", "30%");
+					ept.clear();
+					ept.addRow(new ExceptionMsg("Site Name", siteName));
+					ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
+					ept.addRow(new ExceptionMsg("Commander4j Version", JVersion.getProgramVersion()));
+					ept.addRow(new ExceptionMsg("Interface Status", "Housekeeping"));
+					ept.addRow(new ExceptionMsg("Scheduled Time", Common.statusReportTime.substring(0, 5)));
+					ept.addRow(new ExceptionMsg("Event Time", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
+					
+					JDBArchive archive = new JDBArchive(getHostID(), getSessionID());
+					archive.runSQLJobList();
+					String archiveStats = archive.reportData();
+					archive = null;
+					logger.debug("Data archiving complete....");
 
 					try
 					{
@@ -301,60 +373,115 @@ public class InterfaceThread extends Thread
 						backupMessageRetention = 30;
 					}
 
-					String archiveReportString = "";
-					if (shutdown == false)
+					// Archive old backup files goes here
+					String archivedFiles = "Backup message files removed by auto archive = ";
+					if (backupMessageRetention > 0)
 					{
-						logger.debug("Initiating data archiving....");
-						JDBArchive c = new JDBArchive(getHostID(), getSessionID());
-						c.runSQLJobList();
-						archiveReportString = c.reportData();
-						c = null;
-						logger.debug("Data archiving complete....");
-
-						logger.debug("Disconnecting from database.");
-						Common.hostList.getHost(getHostID()).disconnectAll();
+						archivedFiles = archivedFiles + String.valueOf(JArchive.archiveBackupFiles(System.getProperty("user.dir") + File.separator + Common.interface_backup_path, backupMessageRetention));
 					}
-
-					if (houseKeeping == true)
+					else
 					{
-						logger.debug("HOUSEKEEPING START");
-
-						// Archive old backup files goes here
-						String archivedFiles = "Backup message files removed by auto archive = ";
-						if (backupMessageRetention > 0)
-						{
-							archivedFiles = archivedFiles + String.valueOf(JArchive.archiveBackupFiles(System.getProperty("user.dir") + File.separator + Common.interface_backup_path, backupMessageRetention));
-						}
-						else
-						{
-							archivedFiles = "Auto archive of messages disabled";
-						}
-
-						String freeSpace = JUtility.diskFree();
-
-						String memoryBefore = "Memory used before garbage collection = " + String.valueOf((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024) + "k";
-						System.gc();
-						String memoryAfter = "Memory used after garbage collection  = " + String.valueOf((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024) + "k";
-						String stats = GenericMessageHeader.getStats();
-						GenericMessageHeader.clearStats();
-
-						if (enableEnterfaceStatusEmails == true)
-						{
-
-
-							Common.sendmail.Send(emailList, "Commander4j " + JVersion.getProgramVersion() + " Interface maintenance for [" + siteName + "] on " + JUtility.getClientName(), memoryBefore + "\n\n" + memoryAfter + "\n\n" + archivedFiles
-										+ "\n\n" + freeSpace + "\n\n" + "Maintenance is scheduled to occur at " + Common.statusReportTime + " each day.\n\n\n\n" + stats + "\n\n\n" + archiveReportString, "");
-						
-						}
-						logger.debug("Interface Garbage Collection.");
-						logger.debug("HOUSEKEEPING END");
-
+						archivedFiles = "Auto archive of messages disabled";
 					}
+					
+					archivedFiles = "<p>"+archivedFiles+"</p>";
+
+					String freeSpace = JUtility.diskFree();
+					
+					freeSpace = "<p>"+freeSpace+"</p>";
+
+					String interfaceStats = GenericMessageHeader.getStats();
+					GenericMessageHeader.clearStats();
+
+					String memoryStats = getMemoryStats();
+					
+					Common.sendmail.Send(emailList, "Commander4j " + JVersion.getProgramVersion() + " Interface maintenance for [" + siteName + "] on " + JUtility.getClientName(),
+							EmailHTML.header+ept.getHTML() + interfaceStats + archiveStats + memoryStats +archivedFiles+freeSpace+ EmailHTML.footer, "");
+					
+					logger.debug("Interface Garbage Collection.");
+					logger.debug("HOUSEKEEPING END");
+
+					break;
+
+				case emailType_Statistics:
+
+					break;
+
 				}
+
 			}
 		}
+
 	}
 
+	private String getMemoryStats()
+	{
+		String result = "";
+		
+		result = result + "<div id=\"garbage\" >\n"
+				+ "<table border=\"3\">\n"
+				+ "	<thead>\n"
+				+ "  <caption>Before GC</caption>\n"
+				+ "	 <tr>\n"
+				+ "		<th>Memory</th>\n"
+				+ "		<th>MB</th>\n"
+				+ "	 </tr>\n"
+				+ "	</thead>\n"
+				+ " <tbody>\n"
+				+ "	 <tr>\n"
+				+ "	  <td>Used Memory</td>\n"
+				+ "	  <td style=\"width:20%; text-align: right\">"+ (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb</td>\n"
+				+ "	 </tr>\n"
+				+ "  <tr>\n"
+				+ "	  <td>Free Memory</td>\n"
+				+ "	  <td style=\"width:20%; text-align: right\">"+ runtime.freeMemory() / mb + "mb</td>\n"
+				+ "	 </tr>\n"
+				+ "	 <tr>\n"
+				+ "	  <td>Total Memory</td>\n"
+				+ "	  <td style=\"width:20%; text-align: right\">"+ runtime.totalMemory() / mb + "mb</td>\n"
+				+ "	 </tr>\n"
+				+ "  <tr>\n"
+				+ "	  <td>Max Memory</td>\n"
+				+ "	  <td style=\"width:20%; text-align: right\">"+ runtime.maxMemory() / mb + "mb</td>\n"
+				+ "	 </tr>\n"
+				+ "	</tbody>\n"
+				+ "</table> \n"
+				+ "<br>\n";
+		
+				System.gc();
+				
+				result = result + "<table border=\"3\">\n"
+				+ " <thead>\n"
+				+ "   <caption>After GC</caption>\n"
+				+ "   <tr>\n"
+				+ "	   <th>Memory</th>\n"
+				+ "    <th>MB</th>\n"
+				+ "	  </tr>\n"
+				+ "	</thead>\n"
+				+ "	<tbody>\n"
+				+ "	 <tr>\n"
+				+ "	  <td>Used Memory</td>\n"
+				+ "	  <td style=\"width:20%; text-align: right\">"+ (runtime.totalMemory() - runtime.freeMemory()) / mb + "mb</td>\n"
+				+ "	 </tr>\n"
+				+ "  <tr>\n"
+				+ "	  <td>Free Memory</td>\n"
+				+ "	  <td style=\"width:20%; text-align: right\">"+ runtime.freeMemory() / mb + "mb</td>\n"
+				+ "	 </tr>\n"
+				+ "	 <tr>\n"
+				+ "	  <td>Total Memory</td>\n"
+				+ "	  <td style=\"width:20%; text-align: right\">"+ runtime.totalMemory() / mb + "mb</td>\n"
+				+ "	 </tr>\n"
+				+ "  <tr>\n"
+				+ "	  <td>Max Memory</td>\n"
+				+ "	  <td style=\"width:20%; text-align: right\">"+ runtime.maxMemory() / mb + "mb</td>\n"
+				+ "  </tr>\n"
+				+ " </tbody>\n"
+				+ "</table> \n"
+				+ "</div>";
+		
+		return result;
+	}
+	
 	public void startupThreads()
 	{
 
@@ -494,7 +621,7 @@ public class InterfaceThread extends Thread
 			}
 			autoLabellerThread = null;
 			logger.debug("Auto Labeller Thread Stopped.");
-			
+
 		}
 	}
 

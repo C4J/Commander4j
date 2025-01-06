@@ -115,8 +115,6 @@ public class JInternalFrameBomElementProperties extends JInternalFrame
 	{
 		jTextField_DataID.setText(id);
 
-		setTitle(getTitle() + " - " + id);
-
 		ldata_id = id;
 
 		getProperties(ldata_id);

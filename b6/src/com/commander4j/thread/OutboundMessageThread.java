@@ -36,6 +36,8 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceRequest;
 import com.commander4j.db.JDBUser;
+import com.commander4j.exception.ExceptionHTML;
+import com.commander4j.exception.ExceptionMsg;
 import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.messages.OutgoingDespatchConfirmation;
 import com.commander4j.messages.OutgoingDespatchEmail;
@@ -68,11 +70,13 @@ public class OutboundMessageThread extends Thread
 	private String renamedDestinationFile = "";
 	private final Logger logger = org.apache.logging.log4j.LogManager.getLogger(OutboundMessageThread.class);
 
-	public String getHostID() {
+	public String getHostID()
+	{
 		return hostID;
 	}
 
-	public void setHostID(String host) {
+	public void setHostID(String host)
+	{
 		hostID = host;
 	}
 
@@ -82,15 +86,18 @@ public class OutboundMessageThread extends Thread
 		setHostID(host);
 	}
 
-	public String getSessionID() {
+	public String getSessionID()
+	{
 		return sessionID;
 	}
 
-	public void setSessionID(String sessionID) {
+	public void setSessionID(String sessionID)
+	{
 		this.sessionID = sessionID;
 	}
 
-	public void run() {
+	public void run()
+	{
 		logger.debug("OutboundMessageThread running");
 		setSessionID(JUnique.getUniqueID());
 		JDBUser user = new JDBUser(getHostID(), getSessionID());
@@ -186,86 +193,86 @@ public class OutboundMessageThread extends Thread
 							{
 								messageProcessedOK = opdc.processMessage(ir.getTransactionRef());
 								errorMessage = opdc.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Production Declaration", messageProcessedOK.toString());
+								GenericMessageHeader.updateStats("Output", "Production Declaration", messageProcessedOK.toString());
 							}
-							
+
 							if (ir.getInterfaceType().equals("Production Unconfirm"))
 							{
 								messageProcessedOK = opuc.processMessage(ir.getTransactionRef());
 								errorMessage = opuc.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Production Unconfirm", messageProcessedOK.toString());
+								GenericMessageHeader.updateStats("Output", "Production Unconfirm", messageProcessedOK.toString());
 							}
 
 							if (ir.getInterfaceType().equals("Pallet Status Change"))
 							{
 								messageProcessedOK = psc.processMessage(ir.getTransactionRef());
 								errorMessage = psc.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Pallet Status Change", messageProcessedOK.toString());
-							}							
+								GenericMessageHeader.updateStats("Output", "Pallet Status Change", messageProcessedOK.toString());
+							}
 
 							if (ir.getInterfaceType().equals("Pallet Split"))
 							{
 								messageProcessedOK = ops.processMessage(ir.getTransactionRef());
 								errorMessage = ops.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Pallet Split", messageProcessedOK.toString());
-							}	
-							
+								GenericMessageHeader.updateStats("Output", "Pallet Split", messageProcessedOK.toString());
+							}
+
 							if (ir.getInterfaceType().equals("Pallet Delete"))
 							{
 								messageProcessedOK = opd.processMessage(ir.getTransactionRef());
 								errorMessage = opd.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Pallet Delete", messageProcessedOK.toString());
-							}	
-							
+								GenericMessageHeader.updateStats("Output", "Pallet Delete", messageProcessedOK.toString());
+							}
+
 							if (ir.getInterfaceType().equals("Despatch Confirmation"))
 							{
 								messageProcessedOK = odc.processMessage(ir.getTransactionRef());
 								errorMessage = odc.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Despatch Confirmation", messageProcessedOK.toString());
+								GenericMessageHeader.updateStats("Output", "Despatch Confirmation", messageProcessedOK.toString());
 							}
 
 							if (ir.getInterfaceType().equals("Despatch Pre Advice"))
 							{
 								messageProcessedOK = opa.processMessage(ir.getTransactionRef());
 								errorMessage = opa.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Despatch Pre Advice", messageProcessedOK.toString());
+								GenericMessageHeader.updateStats("Output", "Despatch Pre Advice", messageProcessedOK.toString());
 							}
-							
+
 							if (ir.getInterfaceType().equals("Despatch Email"))
 							{
 								messageProcessedOK = ode.processMessage(ir.getTransactionRef());
 								errorMessage = ode.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Despatch Email", messageProcessedOK.toString());
+								GenericMessageHeader.updateStats("Output", "Despatch Email", messageProcessedOK.toString());
 							}
-							
+
 							if (ir.getInterfaceType().equals("Sort Notification"))
 							{
 								messageProcessedOK = osn.processMessage(ir.getTransactionRef());
 								errorMessage = osn.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Sort Notification", messageProcessedOK.toString());
+								GenericMessageHeader.updateStats("Output", "Sort Notification", messageProcessedOK.toString());
 							}
 
 							if (ir.getInterfaceType().equals("Equipment Tracking"))
 							{
 								messageProcessedOK = oet.processMessage(ir.getTransactionRef());
 								errorMessage = oet.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Equipment Tracking", messageProcessedOK.toString());
+								GenericMessageHeader.updateStats("Output", "Equipment Tracking", messageProcessedOK.toString());
 							}
-							
+
 							if (ir.getInterfaceType().equals("Pallet Issue"))
 							{
 								messageProcessedOK = opi.processMessage(ir.getTransactionRef());
 								errorMessage = opi.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Pallet Issue", messageProcessedOK.toString());
+								GenericMessageHeader.updateStats("Output", "Pallet Issue", messageProcessedOK.toString());
 							}
-							
+
 							if (ir.getInterfaceType().equals("Pallet Return"))
 							{
 								messageProcessedOK = opr.processMessage(ir.getTransactionRef());
 								errorMessage = opr.getErrorMessage();
-								GenericMessageHeader.updateStats("Output","Pallet Return", messageProcessedOK.toString());
+								GenericMessageHeader.updateStats("Output", "Pallet Return", messageProcessedOK.toString());
 							}
-							
+
 							if (messageProcessedOK == true)
 							{
 								ir.delete();
@@ -282,15 +289,28 @@ public class OutboundMessageThread extends Thread
 										StringConverter stringConverter = new StringConverter();
 										ArrayConverter arrayConverter = new ArrayConverter(String[].class, stringConverter);
 										arrayConverter.setDelimiter(';');
-										arrayConverter.setAllowedChars(new char[] { '@' });
+										arrayConverter.setAllowedChars(new char[]
+										{ '@' });
 
 										String[] emailList = (String[]) arrayConverter.convert(String[].class, emailaddresses);
 
 										if (emailList.length > 0)
 										{
-												String siteName = Common.hostList.getHost(getHostID()).getSiteDescription();
+											String siteName = Common.hostList.getHost(getHostID()).getSiteDescription();
 
-												Common.sendmail.Send(emailList, "Error Processing Outgoing " + ir.getInterfaceType()+" for ["+siteName+"] on "+JUtility.getClientName(), errorMessage,  "");
+											ExceptionHTML ept = new ExceptionHTML("Error processing message", "Description", "10%", "Detail", "30%");
+											ept.clear();
+											ept.addRow(new ExceptionMsg("Site Name", siteName));
+											ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
+											ept.addRow(new ExceptionMsg("Interface Type", ir.getInterfaceType()));
+											ept.addRow(new ExceptionMsg("Message Format", inter.getFormat()));
+											ept.addRow(new ExceptionMsg("Interface Direction", inter.getInterfaceDirection()));
+											ept.addRow(new ExceptionMsg("Transaction Ref", ir.getTransactionRef().toString()));
+											ept.addRow(new ExceptionMsg("Processing Date", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
+											ept.addRow(new ExceptionMsg("Output Path", inter.getPath()));
+											ept.addRow(new ExceptionMsg("Error", errorMessage));
+
+											Common.sendmail.Send(emailList, "Error Processing Outgoing " + ir.getInterfaceType() + " for [" + siteName + "] on " + JUtility.getClientName(), ept.getHTML(), "");
 
 										}
 									}

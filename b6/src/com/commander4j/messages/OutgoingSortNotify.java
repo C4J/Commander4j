@@ -130,7 +130,7 @@ public class OutgoingSortNotify
 								if (device.equals("Email"))
 								{
 									fio.setFilename(finalFilename);
-									fio.setShortFilename(finalFilename + ".pdf");
+									fio.setShortFilename(sscc + ".pdf");
 
 									if (inter.getEmailSuccess())
 									{

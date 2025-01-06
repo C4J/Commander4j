@@ -38,7 +38,8 @@ import com.commander4j.util.JUtility;
 import com.commander4j.xml.JXMLDocument;
 
 /**
- * All Commander4j xml messages have a standard format. The header section describes the content (data) component of the message.
+ * All Commander4j xml messages have a standard format. The header section
+ * describes the content (data) component of the message.
  *
  */
 public class GenericMessageHeader
@@ -57,27 +58,27 @@ public class GenericMessageHeader
 	public static String msgStatusSuccess = "Success";
 	public static String msgStatusWarning = "Warning";
 	public static String msgStatusError = "Error";
-	
-	public static ConcurrentHashMap<String,Integer> interfaceStats = new ConcurrentHashMap<String, Integer>();
-	
-	public static synchronized void updateStats(String direction,String type,String result)
+
+	public static ConcurrentHashMap<String, Integer> interfaceStats = new ConcurrentHashMap<String, Integer>();
+
+	public static synchronized void updateStats(String direction, String type, String result)
 	{
 		String key = com.commander4j.util.JUtility.padString(direction, true, 10, " ");
 		key = key + com.commander4j.util.JUtility.padString(type, true, 45, " ");
 		key = key + com.commander4j.util.JUtility.padString(result, true, 10, " ");
-		
-		if (interfaceStats.containsKey(key)==false)
+
+		if (interfaceStats.containsKey(key) == false)
 		{
 			interfaceStats.put(key, 0);
 		}
-		
+
 		int counter = interfaceStats.get(key);
 		counter++;
-		
+
 		interfaceStats.replace(key, counter);
 	}
-	
-	public static  synchronized void clearStats()
+
+	public static synchronized void clearStats()
 	{
 		interfaceStats.clear();
 	}
@@ -86,26 +87,64 @@ public class GenericMessageHeader
 	{
 		String results = "";
 
-        Iterator<String> iterator = interfaceStats.keySet().iterator();
-        String key = "";
-        int counter = 0;
-        
-        results = "Interface Statistics\n";
-        results = results +"====================\n\n";
-        
-        while(iterator. hasNext()){  
-        	key = iterator.next().toString();
-            results = results + key + "   -   " +interfaceStats.get(key).toString()+"\n";
-            counter++;
-        }
-        
-        if (counter == 0) results = "No Messages Processed.\n";
-        
-        
+		Iterator<String> iterator = interfaceStats.keySet().iterator();
+		String key = "";
+		int counter = 0;
+
+		results = "<br>\n" + 
+		"<div id=\"garbage\" >\n" + 
+		"<table border=\"3\">\n" + 
+		"<thead>\n" + 
+		"<caption>Interface Statistics</caption>\n" + 
+		"<tr>\n" + 
+		"<th>Interface</th>\n" + 
+		"<th>Status</th>\n" + 
+		"<th>Count</th>\n" + 
+		"</tr>\n" + 
+		"</thead>\n" + 
+		"<tbody>\n";
+
+		String status = "";
+		String description = "";
+		
+		while (iterator.hasNext())
+		{
+			key = iterator.next().toString();
+			description = key;
+			
+			if (description.contains(Boolean.TRUE.toString()))
+			{
+				status= "Success";
+				description = description.replace(Boolean.TRUE.toString(), "");
+			}
+			
+			if (description.contains(Boolean.FALSE.toString()))
+			{
+				status= "Fail";
+				description = description.replace(Boolean.FALSE.toString(), "");
+			}
+			
+			//description = description.replace("  ", " ");
+			
+			results = results + 
+					"<tr>\n" + 
+					"<td>" + description + "</td>\n" +
+					"<td>" + status + "</td>\n" +
+					"<td style=\"width:20%; text-align: right\">" + interfaceStats.get(key).toString() + "</td>\n" +
+					"</tr>\n";
+			counter++;
+		}
+
+		if (counter == 0)
+			results = results + "<tr>\n" + "<td>No Messages Processed</td><td></td><td></td></tr>\n";
+
+		results = results + "</tbody>\n" + "</table> \n";
+
 		return results;
 	}
-	
-	public void decodeHeader(JXMLDocument xmltest) {
+
+	public void decodeHeader(JXMLDocument xmltest)
+	{
 		dbconnected = false;
 
 		setHostRef(xmltest.findXPath("//message/hostRef"));
@@ -118,47 +157,58 @@ public class GenericMessageHeader
 
 	}
 
-	public String getHostID() {
+	public String getHostID()
+	{
 		return hostID;
 	}
 
-	public Document getDocument() {
+	public Document getDocument()
+	{
 		return xmlMessage.getDocument();
 	}
 
-	public String getInterfaceDirection() {
+	public String getInterfaceDirection()
+	{
 		return interfaceDirection;
 	}
 
-	public String getInterfaceType() {
+	public String getInterfaceType()
+	{
 		return interfaceType;
 	}
 
-	public String getMessageDate() {
+	public String getMessageDate()
+	{
 		return messageDate;
 	}
 
-	public Timestamp getMessageDateTimeStamp() {
+	public Timestamp getMessageDateTimeStamp()
+	{
 		return JUtility.getTimeStampFromISOString(getMessageDate());
 	}
 
-	public String getMessageInformation() {
+	public String getMessageInformation()
+	{
 		return messageInformation;
 	}
 
-	public String getMessageRef() {
+	public String getMessageRef()
+	{
 		return messageRef;
 	}
 
-	public JXMLDocument getXMLDocument() {
+	public JXMLDocument getXMLDocument()
+	{
 		return xmlMessage;
 	}
 
-	public Boolean isConnected() {
+	public Boolean isConnected()
+	{
 		return dbconnected;
 	}
 
-	public Boolean isValidHostRef() {
+	public Boolean isValidHostRef()
+	{
 		return validHostRef;
 	}
 
@@ -166,13 +216,14 @@ public class GenericMessageHeader
 	{
 		xmlfilename = filename;
 	}
-	
+
 	public String getFilename()
 	{
 		return xmlfilename;
 	}
-	
-	public Boolean readAddressInfo(String filename, String sessionID) {
+
+	public Boolean readAddressInfo(String filename, String sessionID)
+	{
 		Boolean result;
 		try
 		{
@@ -191,35 +242,43 @@ public class GenericMessageHeader
 		return result;
 	}
 
-	private void setHostID(String host) {
+	private void setHostID(String host)
+	{
 		hostID = host;
 	}
 
-	private void setHostRef(String hRef) {
+	private void setHostRef(String hRef)
+	{
 		hostRef = hRef;
 	}
 
-	private String getHostRef() {
+	private String getHostRef()
+	{
 		return hostRef;
 	}
 
-	public void setInterfaceDirection(String direction) {
+	public void setInterfaceDirection(String direction)
+	{
 		interfaceDirection = direction;
 	}
 
-	public void setInterfaceType(String type) {
+	public void setInterfaceType(String type)
+	{
 		interfaceType = type;
 	}
 
-	public void setMessageDate(String mDate) {
+	public void setMessageDate(String mDate)
+	{
 		messageDate = mDate;
 	}
 
-	public void setMessageInformation(String messageInfo) {
+	public void setMessageInformation(String messageInfo)
+	{
 		messageInformation = messageInfo;
 	}
 
-	public void setMessageRef(String mRef) {
+	public void setMessageRef(String mRef)
+	{
 		messageRef = mRef;
 	}
 

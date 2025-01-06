@@ -1988,12 +1988,14 @@ public class JLaunchMenu
 			final JInternalFrameBomElementProperties u;
 			if (isLoaded(JInternalFrameBomElementProperties.class))
 			{
+				((JInternalFrameBomElementProperties) isLoadedInstance(JInternalFrameBomElementProperties.class)).setTitle(mod.getDescription()+" ["+StrParam+"]");;
 				((JInternalFrameBomElementProperties) isLoadedInstance(JInternalFrameBomElementProperties.class)).setDataID(StrParam);
 				setVisible(JInternalFrameBomElementProperties.class);
 			}
 			else
 			{
 				u = new JInternalFrameBomElementProperties(StrParam);
+				u.setTitle(mod.getDescription()+" ["+StrParam+"]");
 				displayForm(u, optionName);
 			}
 		}

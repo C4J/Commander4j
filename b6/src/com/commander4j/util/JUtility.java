@@ -521,7 +521,7 @@ public class JUtility
 			Path dirPath = rootPath.resolve(root);
 			FileStore dirFileStore = Files.getFileStore(dirPath);
 
-			free = dirFileStore.getUsableSpace() / 1048576;
+			free = dirFileStore.getUnallocatedSpace() / 1024 / 1024;
 			result = String.valueOf(free) + " mb on " + root;
 
 		}

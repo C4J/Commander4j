@@ -50,6 +50,8 @@ import org.apache.commons.beanutils.converters.ArrayConverter;
 import org.apache.commons.beanutils.converters.StringConverter;
 import org.apache.logging.log4j.Logger;
 
+import com.commander4j.exception.ExceptionHTML;
+import com.commander4j.exception.ExceptionMsg;
 import com.commander4j.sys.Common;
 import com.commander4j.sys.JLaunchReport;
 import com.commander4j.util.JExcel;
@@ -1012,7 +1014,19 @@ public class JDBUserReport {
 
 					if (emailList.length > 0)
 					{
-						Common.sendmail.Send(emailList, "Commande4j User Report requested by "+Common.userList.getUser(Common.sessionID).getUserId()+" from [" + Common.hostList.getHost(getHostID()).getSiteDescription() + "] on " + JUtility.getClientName(), "See attached report.\n", getExportFilename());
+						ExceptionHTML ept = new ExceptionHTML(getDescription(), "Description", "10%", "Detail", "30%");
+						ept.clear();
+						ept.addRow(new ExceptionMsg("Site Name", Common.hostList.getHost(getHostID()).getSiteDescription()));
+						ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
+						ept.addRow(new ExceptionMsg("Interface Type", "PDF Report"));
+						ept.addRow(new ExceptionMsg("Description", getDescription()));
+						ept.addRow(new ExceptionMsg("Report ID",getReportID()));
+						ept.addRow(new ExceptionMsg("User ID", Common.userList.getUser(Common.sessionID).getUserId()));
+						ept.addRow(new ExceptionMsg("Processing Date", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
+						ept.addRow(new ExceptionMsg("Report Output Filename", getExportFilename()));
+						ept.addRow(new ExceptionMsg("Comment", "See attached report"));
+						
+						Common.sendmail.Send(emailList, "Commande4j User Report ["+getDescription()+"]", ept.getHTML(), getExportFilename());
 						com.commander4j.util.JWait.milliSec(2000);
 					}
 				}

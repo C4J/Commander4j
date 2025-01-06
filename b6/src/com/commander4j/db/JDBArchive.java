@@ -97,21 +97,36 @@ public class JDBArchive
 		dbEmailReport = dbEmailReport + line + "\n";
 	}
 
-	private void reportAddBlankLine()
-	{
-		dbEmailReport = dbEmailReport + "\n";
-	}
 
 	private void reportHeading()
 	{
-		reportAddLine("Database Archiving Report");
-		reportAddLine("=========================");
-		reportAddBlankLine();
+		reportAddLine(				
+				"<br>\n"
+				+ "<div id=\"archive\" >\n"
+				+ "<table border=\"3\">\n"
+				+ "<thead>\n"
+				+ "<caption>Database Archiving Report</caption>\n"
+				+ "<tr>\n"
+				+ "<th>Archive ID</th>\n"
+				+ "<th>Description</th>\n"
+				+ "<th>Records Deleted</th>\n"
+				+ "</tr>\n"
+				+ "</thead>\n"
+				+ "<tbody>\n");
+	}
+	
+	private void reportFooter()
+	{
+		reportAddLine(
+				"</tbody>\n"
+			  + "</table> \n"
+			  + "<br>\n"
+			  );	
 	}
 
 	public String reportData()
 	{
-		return dbEmailReport + "\n\n";
+		return dbEmailReport;
 	}
 
 	public JDBArchive(String host, String session)
@@ -729,8 +744,13 @@ public class JDBArchive
 					setRunEnd(end);
 					setSQLResult(recordsDeleted.toString() + " records deleted.");
 					setRecordsDeleted(recordsDeleted);
-					reportAddLine(JUtility.padString("[" + getArchiveID() + "]", true, 20, " ") + JUtility.padString(getDescription(), true, 41, " ") + JUtility.padString(recordsDeleted.toString() + " records deleted.", false, 30, " "));
-
+					reportAddLine(
+					"<tr>\n"
+					+ "<td style=\"width:20%; text-align: left\">" + getArchiveID() + "</td>\n"
+					+ "<td style=\"width:20%; text-align: left\">" + getDescription() + "</td>\n"
+					+ "<td style=\"width:20%; text-align: right\">"+ recordsDeleted.toString() + " record(s) deleted</td>\n"
+					+ "</tr>\n");
+					
 					updateRunStats();
 				}
 
@@ -783,6 +803,7 @@ public class JDBArchive
 					result = runSQLDelete(archid);
 				}
 			}
+			reportFooter();
 		}
 
 	}

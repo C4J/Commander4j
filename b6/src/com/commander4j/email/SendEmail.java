@@ -80,7 +80,7 @@ public class SendEmail
 
 	}
 
-	public synchronized boolean Send(String[] recipeints, String subject, String messageText, String filename)
+	public synchronized boolean Send(String[] recipients, String subject, String messageText, String filename)
 	{
 		boolean result = true;
 		
@@ -93,10 +93,10 @@ public class SendEmail
 		if (enabled)
 		{
 
-			if (recipeints != null)
+			if (recipients != null)
 			{
 
-				if (recipeints.length > 0)
+				if (recipients.length > 0)
 				{
 					
 					try
@@ -135,7 +135,7 @@ public class SendEmail
 							message = new MimeMessage(unauthenticatedSession);
 						}
 
-						String emails = StringUtils.join(recipeints, ",");
+						String emails = StringUtils.join(recipients, ",");
 
 						logger.debug("Email To: " + emails);
 						message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(emails));
@@ -146,9 +146,7 @@ public class SendEmail
 
 						MimeBodyPart mimeBodyPart = new MimeBodyPart();
 
-						// mimeBodyPart.setContent(messageText, "text/html;
-						// charset=utf-8");
-						mimeBodyPart.setText(messageText + "\n\n", "utf-8");
+						mimeBodyPart.setContent(messageText, "text/html");
 
 						Multipart multipart = new MimeMultipart();
 						multipart.addBodyPart(mimeBodyPart);

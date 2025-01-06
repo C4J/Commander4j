@@ -145,7 +145,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBViewBomTableModel.bom_material_col).toString());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Location_ID")) == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBViewBomTableModel.bom_location_col).toString());
@@ -160,7 +160,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBViewBomTableModel.bom_id_col).toString());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Pallet_Quantity")) == true)
 			{
 				stringSelection = new StringSelection(jTable1.getValueAt(row, JDBViewBomTableModel.bom_quantity_col).toString());
@@ -183,7 +183,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 		jComboBoxType.getModel().setSelectedItem("");
 
 		jComboBoxLocation.getModel().setSelectedItem("");
-		
+
 		jComboBoxStage.getModel().setSelectedItem("");
 
 		buildSQL();
@@ -201,12 +201,12 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 			{
 				jTextFieldBomID.setText(jTable1.getValueAt(row, JDBViewBomTableModel.bom_id_col).toString());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Version")) == true)
 			{
 				jTextFieldBomVersion.setText(jTable1.getValueAt(row, JDBViewBomTableModel.bom_version_col).toString());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Material")) == true)
 			{
 				jTextFieldMaterial.setText(jTable1.getValueAt(row, JDBViewBomTableModel.bom_material_col).toString());
@@ -221,22 +221,21 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 			{
 				jComboBoxUOM.setSelectedItem(jTable1.getValueAt(row, JDBViewBomTableModel.bom_uom_col).toString());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Material_Type")) == true)
 			{
 				jComboBoxType.setSelectedItem(jTable1.getValueAt(row, JDBViewBomTableModel.bom_material_type).toString());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Location_ID")) == true)
 			{
 				jComboBoxLocation.setSelectedItem(jTable1.getValueAt(row, JDBViewBomTableModel.bom_location_col).toString());
 			}
-			
+
 			if (fieldname.equals(lang.get("lbl_Stage")) == true)
 			{
 				jComboBoxStage.setSelectedItem(jTable1.getValueAt(row, JDBViewBomTableModel.bom_stage_col).toString());
 			}
-
 
 			buildSQL();
 			populateList();
@@ -258,7 +257,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 			PreparedStatement temp = buildSQLr();
 			ResultSet rs;
 			rs = temp.executeQuery();
-			export.saveAs("bom_enquiry.xls",rs, Common.mainForm);
+			export.saveAs("bom_enquiry.xls", rs, Common.mainForm);
 			populateList();
 			rs.close();
 			temp.close();
@@ -334,7 +333,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 		query.addParamtoSQL("uom=", ((String) jComboBoxUOM.getSelectedItem()));
 
 		query.addParamtoSQL("type=", ((String) jComboBoxType.getSelectedItem()));
-		
+
 		query.addParamtoSQL("stage=", ((String) jComboBoxStage.getSelectedItem()));
 
 		if (jTextFieldDescription.getText().equals("") == false)
@@ -385,7 +384,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 			locationList.add("");
 		}
 		locationList.addAll(dbList.getListItems("location_id"));
-		
+
 		if (dbList.getListItems("stage").contains("") == false)
 		{
 			stageList.add("");
@@ -454,6 +453,17 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 								{ "Three", "Four" } }, new String[]
 						{ "Column 1", "Column 2" });
 						jTable1 = new JTable4j();
+						jTable1.addMouseListener(new MouseAdapter()
+						{
+							public void mouseClicked(MouseEvent evt)
+							{
+								if (evt.getClickCount() == 2)
+								{
+									viewEditBOM();
+
+								}
+							}
+						});
 						jTable1.setDefaultRenderer(Object.class, Common.renderer_table);
 						jScrollPane1.setViewportView(jTable1);
 						jTable1.setModel(jTable1Model);
@@ -462,9 +472,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 						{
 							final JPopupMenu popupMenu = new JPopupMenu();
 							addPopup(jTable1, popupMenu);
-							
-							
-							
+
 							{
 								final JMenuItem4j newItemMenuItem = new JMenuItem4j(Common.icon_bom_16x16);
 								newItemMenuItem.addActionListener(new ActionListener()
@@ -581,7 +589,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 								final JMenu4j filterByMenu = new JMenu4j();
 								filterByMenu.setText(lang.get("lbl_Filter_By"));
 								popupMenu.add(filterByMenu);
-								
+
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
 									newItemMenuItem.addActionListener(new ActionListener()
@@ -594,7 +602,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 									newItemMenuItem.setText(lang.get("lbl_Process_Order_Recipe"));
 									filterByMenu.add(newItemMenuItem);
 								}
-								
+
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
 									newItemMenuItem.addActionListener(new ActionListener()
@@ -659,7 +667,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 									newItemMenuItem.setText(lang.get("lbl_Material_UOM"));
 									filterByMenu.add(newItemMenuItem);
 								}
-								
+
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
 									newItemMenuItem.addActionListener(new ActionListener()
@@ -708,7 +716,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 									newItemMenuItem.setText(lang.get("lbl_Material"));
 									clipboardMenu.add(newItemMenuItem);
 								}
-								
+
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
 									newItemMenuItem.addActionListener(new ActionListener()
@@ -747,7 +755,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 									newItemMenuItem.setText(lang.get("lbl_Process_Order_Recipe"));
 									clipboardMenu.add(newItemMenuItem);
 								}
-								
+
 								{
 									final JMenuItem4j newItemMenuItem = new JMenuItem4j();
 									newItemMenuItem.addActionListener(new ActionListener()
@@ -855,7 +863,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 					jComboBoxLocation.setBounds(344, 45, 94, 21);
 					jComboBoxLocation.setMaximumRowCount(12);
 				}
-				
+
 				{
 					ComboBoxModel<String> jComboBox2Model = new DefaultComboBoxModel<String>(stageList);
 					jComboBoxStage = new JComboBox4j<String>();
@@ -1001,7 +1009,7 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 					jButtonClear.setBounds(141, 112, 139, 32);
 					jDesktopPane1.add(jButtonClear);
 				}
-				
+
 				{
 					jButtonViewEdit = new JButton4j(Common.icon_bom_16x16);
 					jButtonViewEdit.addActionListener(new ActionListener()
@@ -1045,15 +1053,18 @@ public class JInternalFrameViewBomEnquiry extends JInternalFrame
 
 	private void viewEditBOM()
 	{
-		int row = jTable1.getSelectedRow();
-		if (row >= 0)
+		if (Common.userList.getUser(Common.sessionID).isModuleAllowed("FRM_BOM_ADMIN") == true)
 		{
-			String id = jTable1.getValueAt(row, JDBViewBomTableModel.bom_id_col).toString();
-			String ver = jTable1.getValueAt(row, JDBViewBomTableModel.bom_version_col).toString();
-			JLaunchMenu.runForm("FRM_BOM_ADMIN", id,ver);
+			int row = jTable1.getSelectedRow();
+			if (row >= 0)
+			{
+				String id = jTable1.getValueAt(row, JDBViewBomTableModel.bom_id_col).toString();
+				String ver = jTable1.getValueAt(row, JDBViewBomTableModel.bom_version_col).toString();
+				JLaunchMenu.runForm("FRM_BOM_ADMIN", id, ver);
+			}
 		}
 	}
-	
+
 	/**
 	 * WindowBuilder generated method.<br>
 	 * Please don't remove this method or its invocations.<br>

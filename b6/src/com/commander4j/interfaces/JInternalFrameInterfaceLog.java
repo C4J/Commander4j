@@ -77,6 +77,8 @@ import com.commander4j.messages.OutgoingDespatchConfirmation;
 import com.commander4j.messages.OutgoingDespatchEmail;
 import com.commander4j.messages.OutgoingDespatchPreAdvice;
 import com.commander4j.messages.OutgoingEquipmentTracking;
+import com.commander4j.messages.OutgoingPalletIssue;
+import com.commander4j.messages.OutgoingPalletReturn;
 import com.commander4j.messages.OutgoingProductionDeclarationConfirmation;
 import com.commander4j.messages.OutgoingProductionUnConfirm;
 import com.commander4j.sys.Common;
@@ -207,6 +209,24 @@ public class JInternalFrameInterfaceLog extends JInternalFrame
 							opdc.submit(Long.valueOf(messageRef));
 							errorMessage.setText(opdc.getErrorMessage());
 							opdc = null;
+						}
+						
+						if (transactionType.endsWith("Pallet Issue"))
+						{
+							OutgoingPalletIssue opi = new OutgoingPalletIssue(Common.selectedHostID, Common.sessionID);
+							//opdc.processMessage(Long.valueOf(messageRef));
+							opi.submit(Long.valueOf(messageRef));
+							errorMessage.setText(opi.getErrorMessage());
+							opi = null;
+						}
+						
+						if (transactionType.endsWith("Pallet Return"))
+						{
+							OutgoingPalletReturn opr = new OutgoingPalletReturn(Common.selectedHostID, Common.sessionID);
+							//opdc.processMessage(Long.valueOf(messageRef));
+							opr.submit(Long.valueOf(messageRef));
+							errorMessage.setText(opr.getErrorMessage());
+							opr = null;
 						}
 						
 						if (transactionType.endsWith("Production Unconfirm"))

@@ -38,6 +38,8 @@ import org.apache.logging.log4j.Logger;
 import com.commander4j.db.JDBInterface;
 import com.commander4j.db.JDBInterfaceLog;
 import com.commander4j.db.JDBUser;
+import com.commander4j.exception.ExceptionHTML;
+import com.commander4j.exception.ExceptionMsg;
 import com.commander4j.messages.GenericMessageHeader;
 import com.commander4j.messages.IncommingBatchStatusChange;
 import com.commander4j.messages.IncommingBillOfMaterials;
@@ -116,7 +118,7 @@ public class InboundMessageThread extends Thread
 		if (dbconnected)
 		{
 			JDBInterfaceLog il = new JDBInterfaceLog(getHostID(), getSessionID());
-			//JeMail mail = new JeMail(getHostID(), getSessionID());
+			// JeMail mail = new JeMail(getHostID(), getSessionID());
 			JDBInterface inter = new JDBInterface(getHostID(), getSessionID());
 			IncommingMaterialDefinition imd = new IncommingMaterialDefinition(getHostID(), getSessionID());
 			IncommingProcessOrderStatusChange iposc = new IncommingProcessOrderStatusChange(getHostID(), getSessionID());
@@ -133,8 +135,9 @@ public class InboundMessageThread extends Thread
 			IncommingMaterialAutoMove imam = new IncommingMaterialAutoMove(getHostID(), getSessionID());
 			IncommingBillOfMaterials ibm = new IncommingBillOfMaterials(getHostID(), getSessionID());
 			GenericMessageHeader gmh = new GenericMessageHeader();
-			File dir ;
-			String[] extensions = { "xml", "XML" };
+			File dir;
+			String[] extensions =
+			{ "xml", "XML" };
 			List<File> filenames;
 
 			while (true)
@@ -155,7 +158,7 @@ public class InboundMessageThread extends Thread
 				{
 
 					dir = new File(inputPath);
-					
+
 					filenames = (List<File>) FileUtils.listFiles(dir, extensions, false);
 
 					if (filenames.size() > 0)
@@ -286,7 +289,7 @@ public class InboundMessageThread extends Thread
 												messageProcessedOK = imam.processMessage(gmh);
 												errorMessage = imam.getErrorMessage();
 											}
-											
+
 											if (interfaceType.equals("Bill of Material") == true)
 											{
 												messageProcessedOK = ibm.processMessage(gmh);
@@ -330,9 +333,23 @@ public class InboundMessageThread extends Thread
 													String siteName = Common.hostList.getHost(getHostID()).getSiteDescription();
 													String attachedFilename = Common.base_dir + java.io.File.separator + inputPath + fromFile;
 													logger.debug("Attaching file  " + Common.base_dir + java.io.File.separator + inputPath + fromFile);
-													//mail.postMail(emailList, "Error Processing Incoming " + gmh.getInterfaceType() + " for [" + siteName + "] on " + JUtility.getClientName(), errorMessage, fromFile, attachedFilename);
-													Common.sendmail.Send(emailList, "Error Processing Incoming " + gmh.getInterfaceType() + " for [" + siteName + "] on " + JUtility.getClientName(), errorMessage, attachedFilename);
-												
+
+													ExceptionHTML ept = new ExceptionHTML("Error processing message", "Description", "10%", "Detail", "30%");
+													ept.clear();
+													ept.addRow(new ExceptionMsg("Site Name", siteName));
+													ept.addRow(new ExceptionMsg("Computer Name", JUtility.getClientName()));
+													ept.addRow(new ExceptionMsg("Interface Type", gmh.getInterfaceType()));
+													ept.addRow(new ExceptionMsg("Interface Direction", gmh.getInterfaceDirection()));
+													ept.addRow(new ExceptionMsg("Message Date", gmh.getMessageDate()));
+													ept.addRow(new ExceptionMsg("Message Info", gmh.getMessageInformation()));
+													ept.addRow(new ExceptionMsg("Message Ref", gmh.getMessageRef()));
+													ept.addRow(new ExceptionMsg("Input File", gmh.getFilename()));
+													ept.addRow(new ExceptionMsg("Processing Date", JUtility.getISOTimeStampStringFormat(JUtility.getSQLDateTime())));
+													ept.addRow(new ExceptionMsg("Error File", errorPath + gmh.getInterfaceType() + File.separator + fromFile));
+													ept.addRow(new ExceptionMsg("Error", errorMessage));
+
+													Common.sendmail.Send(emailList, "Error Processing Incoming " + gmh.getInterfaceType() + " for [" + siteName + "] on " + JUtility.getClientName(), ept.getHTML(), attachedFilename);
+
 													com.commander4j.util.JWait.milliSec(2000);
 												}
 											}
@@ -354,7 +371,6 @@ public class InboundMessageThread extends Thread
 			}
 		}
 	}
-
 
 	private void setHostID(String hostID)
 	{

@@ -2915,7 +2915,7 @@
 		</statement>
 		<statement>
 			<id>JDBViewBomRecord.getBomStages</id>
-			<text>SELECT  distinct(stage) from view_bom where bom_id = ? and bom_version = ?</text>
+			<text>SELECT  stage,bom_id,bom_version from view_bom where bom_id = ? and bom_version = ? group by stage,bom_id,bom_version</text>
 		</statement>
 		<statement>
 			<id>JDBViewBomRecord.isValidMaterialForLocation</id>
