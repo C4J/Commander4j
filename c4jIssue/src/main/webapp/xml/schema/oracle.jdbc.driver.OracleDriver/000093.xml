@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+	<statement>
+		ALTER TABLE SYS_USERS ADD ACCOUNT_ENABLED VARCHAR2(1)  DEFAULT 'Y'
+	</statement>
+
+	<statement>
+		ALTER TABLE SYS_USERS ADD PASSWORD_ENCRYPTED VARCHAR2(1)  DEFAULT 'N'
+	</statement>
+
+	<statement>
+		UPDATE SYS_USERS SET PASSWORD_ENCRYPTED  = 'N'
+	</statement>
+
+	<statement>
+		ALTER TABLE SYS_USERS ADD ACCOUNT_LOCKED_DATE DATE
+	</statement>
+	
+	<statement>
+		ALTER TABLE SYS_USERS ADD PASSWORD_CHANGE_REQUIRED VARCHAR2(1)  DEFAULT 'N'
+	</statement>
+
+	<statement>
+		UPDATE SYS_USERS SET PASSWORD_CHANGE_REQUIRED = 'N'
+	</statement>
+
+	<statement>
+		UPDATE SYS_USERS SET ACCOUNT_ENABLED = 'Y' WHERE ACCOUNT_LOCKED = 'N'
+	</statement>
+
+	<statement>
+		UPDATE SYS_USERS SET ACCOUNT_ENABLED = 'N' WHERE ACCOUNT_LOCKED = 'Y'
+	</statement>
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_User_Account_Enabled','EN','Account Enabled')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_User_Account_Enabled','DE','Konto aktiviert')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_User_Account_Enabled','FR','Compte activé')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_User_Account_Enabled','NL','Account Ingeschakeld')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_User_Account_Enabled','PL','Konto Włączone')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_User_Account_Enabled','ES','Cuenta Activado')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_User_Account_Enabled','IT','Account abilitato')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_User_Account_Enabled','HU','Account Enabled')
+	</statement>			
+	
+		<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Change_Required','EN','Password Change Required')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Change_Required','DE','Kennwort Pflicht ändern')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Change_Required','FR','Mot de passe changement nécessaire')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Change_Required','NL','Wachtwoord vereist Change')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Change_Required','PL','Wymagane zmiany hasła')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Change_Required','ES','Cambiar contraseña Obligatorio')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Change_Required','IT','Cambia password Richiesto')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Change_Required','HU','Jelszómódosításra van szükség')
+	</statement>	
+	
+  <statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Expired','EN','Password Expired')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Expired','DE','Passwort abgelaufen')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Expired','FR','Mot de passe expiré')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Expired','NL','Wachtwoord verlopen')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Expired','PL','Hasło minął')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Expired','ES','Contraseña Expirado')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Expired','IT','Password scaduta')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Expired','HU','Jelszó lejárt')
+	</statement>	
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Not_Complex','EN','Password not complex enough. Requires\n{upper} upper case characters\n{lower} lower case characters\n{special} non alphabetic characters.')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Not_Complex','DE','Kennwort nicht komplex genug. benötigt\n{upper} Großbuchstaben\n3 Kleinbuchstaben\n{special} Nicht alphabetische Zeichen.')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Not_Complex','FR','Mot de passe pas assez complexe. nécessite\n{upper} caractères majuscules\n{lower} caractères minuscules\n{special} caractères non alphabétiques.')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Not_Complex','HU','A jelszó nem elég összetett. igényel\n{upper} nagybetűk\n{lower} kisbetűk\n{special}, nem betű karaktereket.')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Not_Complex','IT','La password non abbastanza complesso. Richiede\n{upper} caratteri maiuscoli\n{lower} caratteri minuscoli\n{special} caratteri non alfabetici.')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Not_Complex','PL','Hasło nie dość skomplikowane. wymaga\n{upper} wielkimi literami\n{lower} małe litery\n{special} znaki alfabetyczne. Non')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Not_Complex','NL','Wachtwoord niet complex genoeg. vereist\n{upper} hoofdletters\n{lower} kleine letters\n{special} niet-alfabetische tekens.')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Password_Not_Complex','ES','La contraseña no lo suficientemente compleja. Requiere\n{upper} caracteres en mayúsculas\n{lower} caracteres en minúsculas\n{special} caracteres no alfabéticos.')
+	</statement>
+	
+	
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Expired','EN','Account has expired')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Expired','DE','Konto abgelaufen')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Expired','FR','Compte a expiré')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Expired','HU','Fiók lejárt')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Expired','IT','Account è scaduto')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Expired','PL','Konto wygasło')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Expired','NL','Account is verlopen')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Expired','ES','Cuenta ha expirado')
+	</statement>
+	
+	
+		
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Locked','EN','Account is locked')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Locked','DE','Konto gesperrt')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Locked','FR','Le compte est verrouillé')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Locked','HU','Zárolja')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Locked','IT','L''account è bloccato')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Locked','PL','Konto jest zablokowane')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Locked','NL','Account is vergrendeld')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Locked','ES','Cuenta está bloqueado')
+	</statement>
+	
+		
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Disabled','EN','Account is disabled')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Disabled','DE','Konto ist deaktiviert')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Disabled','FR','Le compte est désactivé')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Disabled','HU','Fiók le van tiltva')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Disabled','IT','Account disabilitato')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Disabled','PL','Konto jest wyłączone')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Disabled','NL','Account is uitgeschakeld')
+	</statement>
+
+	<statement>
+		INSERT INTO SYS_LANGUAGE (RESOURCE_KEY,LANGUAGE_ID,TEXT) VALUES ('lbl_Account_Disabled','ES','Cuenta deshabilitada')
+	</statement>	
+	
+	<statement>
+		UPDATE SYS_USERS SET ACCOUNT_LOCKED_DATE = SYSDATE WHERE ACCOUNT_LOCKED = 'Y' 
+	</statement>					
+</DDL>

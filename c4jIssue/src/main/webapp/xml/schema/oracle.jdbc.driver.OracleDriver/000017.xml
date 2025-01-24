@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+	
+<statement>
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Language_ID','Language ID','NL','')
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Language_ID','Language ID','EN','')
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Resource_Key','Resource Key','NL','')
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Resource_Key','Resource Key','EN','')
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Mnemonic','Mnemonic','NL','')
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Mnemonic','Mnemonic','EN','')
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Text','Text','NL','')
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('lbl_Text','Text','EN','')
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LANGUAGE','Translations','NL','')
+</statement>
+
+<statement>
+insert into SYS_LANGUAGE (resource_key,text,language_id,mnemonic) values ('mod_FRM_ADMIN_LANGUAGE','Translations','EN','')
+</statement>
+
+<statement>
+insert into SYS_MODULES (module_id,rf_active,dk_active,module_type,hint,icon_filename,helpset_id,report_filename,exec_filename,exec_dir,print_preview,print_dialog,print_copies,report_type,resource_key) values ('FRM_ADMIN_LANGUAGE','','Y','FORM','','translate.gif','','','','','','',1,'','mod_FRM_ADMIN_LANGUAGE')
+</statement>         
+
+<statement>
+insert into SYS_GROUP_PERMISSIONS (group_id, module_id) values ('ADMI', 'FRM_ADMIN_LANGUAGE')
+</statement>  
+
+<statement>
+insert into SYS_MENUS (module_id, menu_id, sequence_id) values ('FRM_ADMIN_LANGUAGE', 'MENU_SETUP', 4)
+</statement>
+
+</DDL>

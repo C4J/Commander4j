@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="../style/styleIssue.css">
+	 
+	<title>Select Process Order</title>
+
+	<script src="../javascript/common.js"></script>
+	<script src="../javascript/processOrderScript.js"></script>
+	
+	<style>
+	
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }	
+	
+      .box {
+        width: 350px;
+        height: 30px;
+        border: 1px solid #999;
+        font-size: 18px;
+        color: #1c87c9;
+        background-color: #eee;
+        border-radius: 5px;
+        box-shadow: 4px 4px #ccc;
+      }
+      
+      .grid-container {
+		  display: grid;
+		  grid-template-columns: 180px 180px 180px;
+		  padding: 1px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		  padding: 10px;
+		  font-size: 16px;
+		}
+	</style>
+	
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 400px; /* gives an initial height of 200px to the table */
+		width: 700px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 8px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	  div {
+	    white-space: nowrap;
+	  }
+	</style>
+	
+</head>
+
+<body onLoad="checkLogon();init();buildResourceComboBox();buildOrderTable();">
+
+<h1 style="text-align:center">Select Process Order</h1>
+<h2 id="userid" style="text-align:center">User</h2>
+
+	<br>	
+	<div align="center" id="resourceCombobox-output"></div>
+	<br>
+
+	<div class="tableFixHead">
+		<table id="orderTable">
+			<thead>
+				<tr>
+					<th>Order</th>
+					<th>Material</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody id="ordersTable-output">
+			</tbody>
+		</table>
+	</div>
+	
+	<br>
+	
+	<div class="grid-container">
+		<div class="grid-item" align="center"><button class="button" onclick="back()">Back</button></div> 
+		<div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>  
+		<div class="grid-item" align="center"><button class="button" id="nextButton" onclick="ssccSelect()">Issue SSCC</button></div>     
+	</div>
+	<div class="grid-container">
+		<div class="grid-item" align="center"><button class="button" id="menuButton" onclick="menu()">Menu</button></div> 
+		<div class="grid-item" align="center"><button class="button" id="logoutButton" onclick="logout()">Logout</button></div>    
+	</div>
+	
+
+</body>
+
+<script>
+		
+   		
+	function init()
+	{
+		let selectedUser = sessionStorage.getItem('selectedUsername');
+		
+		document.getElementById('userid').innerHTML = "User ["+sessionStorage.getItem('selectedUsername')+"]";
+	}
+	
+	function buildOrderTable() {
+		
+		let selectedResource = sessionStorage.getItem('selectedResource');
+		
+		if (selectedResource == null)
+		{
+			selectedResource = "";
+		}
+		
+		fetch(getContextPath()+"/ProcessOrders?action=getOrders&status=Ready&resource="+selectedResource)
+			.then(function(response) { return response.json(); })
+			.then(function(orders) {
+				let placeholder = document.querySelector("#ordersTable-output");
+				let out = "";
+				for (let order of orders) {
+					out += `<tr>
+				<td style="color:black; background-color:#f0f8ff; width:15%"><input type="radio" id="'${order.processOrderID}'" 
+					name="processOrderSelectList" 
+					onchange="saveSelectedValues('${order.processOrderID}','${order.material}','${order.bom_id}','${order.bom_version}');" 
+					value="'${order.processOrderID}'" ` + processOrderListGet('selectedProcessOrder', order.processOrderID) + `>
+					<label for="'${order.processOrderID}'"> ${order.processOrderID}</label></td>
+				<td style="color:black; background-color:#f0f8ff; width:15%">`+order.material+`</td>
+				<td style="color:black; background-color:#f0f8ff; width:70%; text-align:left">`+order.description+`</td>
+			</tr>`;
+				}
+
+				placeholder.innerHTML = out;
+			})
+	}
+	
+	function saveSelectedValues(order,material,bom_id,bom_version)
+	{
+		processOrderListSave('selectedProcessOrder',order);
+		processOrderListSave('selectedProcessOrderMaterial',material);
+		processOrderListSave('selectedBOMId',bom_id);
+		processOrderListSave('selectedBOMVersion',bom_version);
+	}
+	
+	function ssccSelect() 
+	{
+		let selectedOrder = sessionStorage.getItem('selectedProcessOrder');
+		let selectedBOMId = sessionStorage.getItem('selectedBOMId');
+		let selectedBOMVersion = sessionStorage.getItem('selectedBOMVersion');
+		
+		if (selectedOrder !== null)
+		{
+			if (selectedOrder)			
+			{
+				if (selectedOrder !== '')
+				{
+					window.location.href=getContextPath()+'/html/palletIssueSelect.html';	
+				}
+			}
+		}
+	}
+	
+	function refresh()
+	{
+		location.reload();
+	}
+	
+	function buildResourceComboBox() {
+		
+		let selectedResource = sessionStorage.getItem('selectedResource');
+		
+		let dropdownHTML = '<label for="resourceSelect">Resource : </label><select id="resourceSelect" name="resourceSelect" class="box" onchange="resourceChanged()">';
+		
+		fetch(getContextPath()+"/Resources")
+			.then(function(response) { return response.json(); })
+			.then(function(resources) {
+				dropdownHTML+='<option value=""></option>';
+				for (let resource of resources) {
+				    let required_resource = resource.required_resource;
+				    let value = resource.required_resource;
+					dropdownHTML+='<option value="'+value+'" '+getComboChecked(value)+'>'+value+'</option>';
+				}
+				
+				 dropdownHTML+='</select>';        
+
+				 let container=document.getElementById("resourceCombobox-output");
+				 container.innerHTML=dropdownHTML;
+
+			})
+	}
+	
+	function resourceChanged()
+	{
+		
+		let select = document.getElementById("resourceSelect");
+		let option = select.options[select.selectedIndex];
+		let label = option.text;
+		let val = option.value;
+		    
+		processOrderListSave('selectedProcessOrder',"");
+		processOrderListSave('selectedProcessOrderMaterial',"");
+		processOrderListSave('selectedBOMId',"");
+		processOrderListSave('selectedBOMVersion',"");
+	    
+	    sessionStorage.setItem("selectedResource", val);
+		
+		buildOrderTable();
+	    
+	}
+	
+	function getComboChecked(input)
+	{
+		let result = "";
+		
+		let selectedResource = sessionStorage.getItem('selectedResource');
+		
+		if (selectedResource !== null)
+		{
+			if (input == selectedResource)
+			{
+				result = 'selected';
+			}
+		}
+		
+		return result;
+	}
+	
+	function back()
+	{
+		window.location.href=getContextPath()+'/html/menu.html';
+	}
+	
+</script>
+
+</html>
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+INSERT INTO `SYS_MODULES` (`module_id`, `rf_active`, `dk_active`, `module_type`, `hint`, `icon_filename`, `helpset_id`, `report_filename`, `exec_filename`, `exec_dir`, `print_preview`, `print_dialog`, `print_copies`, `resource_key`) VALUES ('FRM_PAL_LABEL_COPIES','Y','N','FORM',NULL,NULL,NULL,'',NULL,NULL,'N','N','1','mod_FRM_PAL_LABEL_COPIES');
+</statement>
+
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`) values ('mod_FRM_PAL_LABEL_COPIES','EN','Label Print','')
+</statement>
+
+<statement>
+insert into `SYS_LANGUAGE` (`resource_key`,`language_id`,`text`,`mnemonic`) values ('mod_FRM_PAL_LABEL_COPIES','NL','Label Print','')
+</statement>
+
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PALLET','FRM_PAL_LABEL_COPIES');
+</statement>
+
+<statement>
+INSERT INTO `SYS_GROUP_PERMISSIONS` (`group_id`, `module_id`) VALUES ('PUBLIC','FRM_PAL_LABEL_COPIES');
+</statement>
+
+
+</DDL>

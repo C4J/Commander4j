@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="../style/styleIssue.css">
+	 
+	<title>Logon</title>
+
+	<script src="../javascript/common.js"></script>
+	<script src="../javascript/userScript.js"></script>
+	<script src="../javascript/hostScript.js"></script>
+	
+	<style>
+	
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }
+      
+      .grid-container {
+		  display: grid;
+		  flex-wrap: wrap;
+		  grid-template-columns: 180px 180px;
+		  padding: 2px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>
+	
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 420px; /* gives an initial height of 200px to the table */
+		width: 600px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	  div {
+	    white-space: nowrap;
+	  }
+	</style>
+
+</head>
+
+<body onLoad="getHostProperties();setUserFocus()">
+
+	<h1 id="heading" style="text-align:center">Logon</h1>
+	<br>
+	<h2 id="hostDescription" style="text-align:center; color: red;"></h2>
+	<br>
+	<br>
+	<br>
+
+	<div class="tableFixHead">
+		<table id="userLogonTable">
+	
+			<tr>
+				<td style="color:black; background-color:#f0f8ff">Username</td>
+				<td style="color:black; background-color:#f0f8ff"><input type="text" id="username" name="username" size="30" maxlength="30" autofocus></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff">Password</td>
+				<td  style="color:black; background-color:#f0f8ff"><input type="password" id="password" name="password" size="30"  maxlength="30"></td>
+			</tr>
+
+		</table>
+		<br>
+		<br>
+		<p id="errorMessage" style="text-align:center"></p>
+	</div>
+	
+	
+	<div class="grid-container">
+  		 <div class="grid-item" align="center"><button class="button" onclick='logon();'>Logon</button></div>  
+  		 <div class="grid-item" align="center"><button class="button" onclick="welcome()">Exit</button></div> 
+	</div>
+
+</body>
+
+<script>
+	
+	let uname = document.getElementById("username");
+	
+	uname.addEventListener("keypress", function(event) 
+	{
+ 		if (event.key === "Enter") 
+		{
+	    	event.preventDefault();
+			password.focus();
+	  	}
+	});
+	
+	let pword = document.getElementById("password");
+	
+	pword.addEventListener("keypress", function(event) 
+	{
+	  if (event.key === "Enter") 
+	  {
+	    event.preventDefault();
+		logon();
+	  }
+	});
+	
+	function logon()
+	{
+		console.log("logon");
+		let errMsg = document.getElementById("errorMessage");
+		logon2(errMsg,document.getElementById("username").value,document.getElementById("password").value);
+	}
+	
+	function setUserFocus() 
+	{
+		document.getElementById("username").focus();
+	}
+	
+	function getContextPath() {
+	   let result = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+	   return result;
+	}
+
+
+	function welcome()
+	{
+		window.location.href=getContextPath()+'/index.html';
+	}
+
+</script>
+
+</html>

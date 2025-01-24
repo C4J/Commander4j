@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="../style/styleIssue.css">
+	 
+	<title>Pallet Issue</title>
+
+	<script src="../javascript/common.js"></script>
+	<script src="../javascript/palletScript.js"></script>
+	
+	<style>
+		
+ 	  .is-scrollLocked {
+		   overflow: hidden;
+	   }
+	        
+      .grid-container {
+		  display: grid;
+		  flex-wrap: wrap;
+		  grid-template-columns: 180px 180px 180px;
+		  padding: 2px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>
+	
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 350px; /* gives an initial height of 200px to the table */
+		width: 650px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  
+	  .tableFixHead2 {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 115px; /* gives an initial height of 200px to the table */
+	    width: 650px; /* gives an initial height of 200px to the table */
+	    margin-left: auto;
+	    margin-right: auto;
+	  }
+	  
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  
+	  .tableFixHead2 thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+	    margin-left: auto;
+	    margin-right: auto;
+	  }
+	  
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	  
+	  div {
+	    white-space: nowrap;
+	  }
+	</style>
+
+</head>
+
+<body onLoad="checkLogon();init();getPalletProperties()">
+
+	<h1 id="heading" style="text-align:center">Issue to Order</h1>
+	<h2 id="userandorder" style="text-align:center">User Order</h2>
+	<h3 id="recipe" style="text-align:center">Recipe</h3>
+
+	<div class="tableFixHead">
+		
+		<table id="palletTable">
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right" >SSCC&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input  style="color:black; background-color:#f0f8ff" size="50" type="text" id="sscc" name="sscc" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Process Order&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="process_order" name="process_order" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Material&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="material" name="material" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Description&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="description" name="description" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Pallet Status&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="pallet_status" name="pallet_status" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Batch Number&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="batch_number" name="batch_number" disabled></td>
+			</tr>	
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Batch Status&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="batch_status" name="batch_status" disabled></td>
+			</tr>			
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Current Quantity&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="quantity" name="quantity" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Unit of Measure&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="uom" name="uom" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Lot Number&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff"  size="50" type="text" id="lot_number" name="lot_number" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Location&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff"  size="50" type="text" id="location_id" name="location_id" disabled></td>
+			</tr>
+		</table>
+	</div>	
+	  
+	<div class="tableFixHead2">
+		
+		<table id="laneTable">
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Location&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff; text-align: left">&nbsp;<input type="text" size="20" id="issue_location" name="issue_location"></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Issue Quantity&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff; text-align: left">&nbsp;<input type="text" size="20" id="issue_quantity" name="issue_quantity"></td>
+			</tr>
+		</table>
+
+		<p id="errorMessage" style="text-align:center"></p>
+	</div>	
+	
+	<div class="grid-container">
+		<div class="grid-item" align="center"><button class="button" onclick="back()">Back</button></div> 
+		<div class="grid-item" align="center"><button class="button" onclick="refresh()">Refresh</button></div>  
+  		<div class="grid-item" align="center"><button class="button" onclick='preIssueChecks()'>Issue SSCC</button></div> 
+	</div>
+	
+	<div class="grid-container">
+		<div class="grid-item" align="center"><button class="button" id="menuButton" onclick="menu()">Menu</button></div> 
+		<div class="grid-item" align="center"><button class="button" id="logoutButton" onclick="logout()">Logout</button></div>    
+	</div>
+
+</body>
+
+<script>
+	
+	var issue_location = document.getElementById("issue_location");
+
+	issue_location.addEventListener("keypress", function(event) 
+	{
+		if (event.key === "Enter") 
+		{
+	    	event.preventDefault();
+			issue_quantity.focus();
+	  	}
+	});
+	
+	var issue_quantity = document.getElementById("issue_quantity");
+
+	issue_quantity.addEventListener("keypress", function(event) 
+	{
+		if (event.key === "Enter") 
+		{
+	    	event.preventDefault();
+			issue_location.focus();
+	  	}
+	});
+	
+	function init()
+	{
+		let selectedUser = sessionStorage.getItem('selectedUsername');
+		let selectedOrder = sessionStorage.getItem('selectedProcessOrder');
+		
+		document.getElementById('userandorder').innerHTML = "User ["+selectedUser+"] - Order ["+selectedOrder+"]";
+		
+		let selectedBOMId = sessionStorage.getItem('selectedBOMId');
+		let selectedBOMVersion = sessionStorage.getItem('selectedBOMVersion');
+		let selectedStage = sessionStorage.getItem('selectedStage');
+
+		document.getElementById('recipe').innerHTML = "BOM ID ["+selectedBOMId+"] - BOM Version ["+selectedBOMVersion+"] - Stage ["+selectedStage+"]";
+		
+		setLastResultMessage(document.getElementById('errorMessage'));
+	}
+	
+	function preIssueChecks()
+	{
+	
+		let errMsg = document.getElementById("errorMessage");
+		let inputFocus = document.getElementById("issue_location");
+		
+		let selectedUser = sessionStorage.getItem('selectedUsername');
+		console.debug('selectedUser =' + selectedUser);
+		
+		let selectedOrder = sessionStorage.getItem('selectedProcessOrder');
+		console.debug('selectedOrder =' + selectedOrder);
+		
+		let selectedSSCC = sessionStorage.getItem('selectedSSCC');
+		console.debug('selectedSSCC =' + selectedSSCC);
+		
+		let selectedQuantity = document.getElementById("issue_quantity").value;
+		console.debug('selectedQuantity =' + selectedQuantity);
+		
+		let selectedLocation = document.getElementById("issue_location").value;
+		console.debug('selectedLocation =' + selectedLocation);
+		
+		let selectedStage = sessionStorage.getItem('selectedStage');
+		console.debug('selectedStage =' + selectedStage);
+				
+		validateSSCCLocation(errMsg,inputFocus,selectedSSCC,selectedOrder,selectedQuantity,selectedStage,selectedUser,selectedLocation)
+		
+		getPalletProperties();
+	}
+	
+	async function getPalletProperties()
+	{
+		setLaneFocus();
+
+		let selectedSSCC = sessionStorage.getItem('selectedSSCC');
+
+		console.debug('selectedSSCC =' + selectedSSCC);
+
+		
+		let payload = {
+			action: "query",
+			sscc: selectedSSCC,
+			processOrder: "",
+			quantity: 0.000	
+		};
+
+		console.log(JSON.stringify(payload));
+
+		let response = await fetch(getContextPath()+"/Pallets", { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(`HTTP error, status = ${response.status}`);
+				}
+				return response.json();
+			})
+			.then((data) => {
+				document.getElementById("sscc").value = data.sscc;
+				document.getElementById("process_order").value = data.processOrder;
+				document.getElementById("material").value = data.material;
+				document.getElementById("pallet_status").value = data.palletStatus;
+				document.getElementById("batch_number").value = data.batchNumber;
+				document.getElementById("batch_status").value = data.batchStatus;
+				
+				document.getElementById("quantity").value = data.quantity;
+				if (data.quantity == 0)
+				{
+					document.getElementById("quantity").style.backgroundColor = "orange";	
+				}
+				
+				document.getElementById("uom").value = data.uom;
+								
+				document.getElementById("lot_number").value = data.oldMaterial + selectedSSCC.substring(8,18);
+				document.getElementById("location_id").value = data.locationId;
+				document.getElementById("description").value = data.description;
+				document.getElementById("issue_quantity").value = data.quantity;
+
+			})
+			.catch((error) => {
+				document.getElementById("errorMessage").value = "Error"+error.message;
+			});
+
+		console.log(response);
+
+	}
+	
+	function setLaneFocus() 
+	{
+		document.getElementById("issue_location").focus();
+	}
+	
+	function back()
+	{
+		window.location.href=getContextPath()+'/html/palletIssueSelect.html';
+	}
+	
+	function refresh()
+	{
+		location.reload();
+	}
+
+</script>
+			
+</html>

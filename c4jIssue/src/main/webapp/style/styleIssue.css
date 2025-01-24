@@ -1,0 +1,169 @@
+/* I always reset all the html elements */
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+h2 .red-text {
+    color: red;
+}
+  
+body{
+	font-family: sans-serif;
+	min-height: 100vh;
+	color: #555;
+}
+
+input[type="text"]
+{
+	font-size:16px;
+}
+
+input[type="password"]
+{
+	font-size:16px;
+}
+
+input:focus { 
+  background-color: yellow;
+}
+
+table{
+	margin: 10px auto;
+}
+
+table th{
+	padding: 3px 0;
+	background-color: #f4f4f4;
+	border:  thin solid #d4d4d4;
+}
+
+table td{
+	padding: 3px 0;
+	border:  thin solid #d4d4d4;
+	width: 18%;
+	text-align: center;
+	background-color: #fff;
+}
+
+table img{
+	width:  70%;
+}
+
+table a{
+	text-decoration: none;
+	color: darkred;
+	background-color: #ffecef;
+	padding: 5px 5px;
+}
+table a:active{
+	background-color: #ccf4d6;
+	color:  green;
+}
+
+table select{
+	padding: 5px;
+	width:  200px;
+	font-size: 16px;
+	border: thin solid #d4d4d4;
+	background-color: transparent;
+}
+table select:focus{
+	outline: none;
+}
+
+table img{
+	width:  60%;
+}
+
+.button {
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  letter-spacing: 2px;
+  position: relative;
+  background-color: #f1f624;
+  border: none;
+  padding: 4px;
+  text-align: center;
+  transition-duration: 0.4s;
+  overflow: hidden;
+  box-shadow: 0 5px 15px #193047;
+  border-radius: 2px;
+  width:  100%;
+}
+
+.button:hover {
+  background: #fff;
+  box-shadow: 0px 2px 10px 5px #ff0000;
+  color: #000;
+}
+
+.button:after {
+  content: "";
+  background: #1abc9c;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+.button:focus { outline:0; }
+
+.button_tall {
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  letter-spacing: 2px;
+  position: relative;
+  background-color: #f1f624;
+  border: none;
+  padding: 4px;
+  text-align: center;
+  transition-duration: 0.4s;
+  overflow: hidden;
+  box-shadow: 0 5px 15px #193047;
+  border-radius: 2px;
+  width:  100%;
+  height: 50px;
+}
+
+.button_tall:hover {
+  background: #fff;
+  box-shadow: 0px 2px 10px 5px #ff0000;
+  color: #000;
+}
+
+.button_tall:after {
+  content: "";
+  background: #1abc9c;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.button_tall:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+.button_tall:focus { outline:0; }

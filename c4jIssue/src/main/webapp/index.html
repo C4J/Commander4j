@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome</title>
+	
+	<link href="style/styleIssue.css" rel="stylesheet" type="text/css">
+	
+	<script src="./javascript/common.js"></script>
+	<script src="./javascript/hostScript.js"></script>
+	
+	<style>
+
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }	
+
+	  .box {
+	    width: 350px;
+	    height: 30px;
+	    border: 1px solid #999;
+	    font-size: 18px;
+	    color: #1c87c9;
+	    background-color: #eee;
+	    border-radius: 5px;
+	    box-shadow: 4px 4px #ccc;
+	  }
+	  
+	  .grid-container {
+		  display: grid;
+		  grid-template-columns: 220px;
+		  padding: 10px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 10px;
+		  font-size: 16px;
+		}
+	</style>
+
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 500px; /* gives an initial height of 200px to the table */
+		width: 700px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	</style>
+	
+	<style>
+		.image-container {
+		  display: flex;
+		  justify-content: center;
+		}
+	</style>
+	
+</head>
+
+<body onLoad="getHostProperties()">
+	
+		<h1 style="text-align:center">Welcome</h1>
+		<br>
+		<h2 id="hostDescription" style="text-align:center; color: red;"></h2>
+		<br>
+		<br>
+		<div class="image-container">
+			<img src="images/splash.gif" alt="Commander4j">
+		</div>
+		<br>
+		<br>
+		<div class="grid-container">
+			 <div class="grid-item" align="center"><button class="button_tall" id="issueButton" onclick="logon()">Start</button></div> 
+		</div>
+		
+	</body>
+
+</html>

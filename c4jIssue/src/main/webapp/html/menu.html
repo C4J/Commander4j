@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>c4jIssue</title>
+	 <link rel="stylesheet" href="../style/styleIssue.css">
+	 <script src="../javascript/common.js"></script>
+	
+	<style>
+
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }	
+
+	  .box {
+	    width: 350px;
+	    height: 30px;
+	    border: 1px solid #999;
+	    font-size: 18px;
+	    color: #1c87c9;
+	    background-color: #eee;
+	    border-radius: 5px;
+	    box-shadow: 4px 4px #ccc;
+	  }
+	  
+	  .grid-container {
+		  display: grid;
+		  grid-template-columns: 220px;
+		  padding: 10px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 10px;
+		  font-size: 16px;
+		}
+	</style>
+
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 500px; /* gives an initial height of 200px to the table */
+		width: 700px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	  div {
+	    white-space: nowrap;
+	  }
+	</style>
+	
+</head>
+
+<body onLoad="init();checkLogon();">
+		<h1 style="text-align:center">Menu</h1>
+		<h2 id="userid" style="text-align:center">User</h2>
+		<br>
+		<div class="grid-container">
+			 <div class="grid-item" align="center"><button class="button_tall" id="issueButton" onclick="Issue()">SSCC Issue</button></div> 
+			 <div class="grid-item" align="center"><button class="button_tall" id="issueButton" onclick="Return()">SSCC Return</button></div> 
+			 <div class="grid-item" align="center"><button class="button_tall" id="issueButton" onclick="History()">SSCC History</button></div> 
+			 <div class="grid-item" align="center"><button class="button_tall" id="issueButton" onclick="Information()">SSCC Info</button></div> 
+			 <div class="grid-item" align="center"><button class="button_tall" id="logoutButton" onclick="Logout()">Logout</button></div> 
+		</div>
+		
+</body>
+
+<script>
+		
+	function Information()
+	{
+		sessionStorage.setItem("selectedSSCC", "");
+		window.location.href=getContextPath()+'/html/palletInformation.html';
+	}
+	
+	function init()
+	{
+		let selectedUser = sessionStorage.getItem('selectedUsername');
+		
+		document.getElementById('userid').innerHTML = "User ["+sessionStorage.getItem('selectedUsername')+"]";
+	}
+	
+	function Issue()
+	{
+		sessionStorage.setItem("selectedProcessOrder", "");
+		sessionStorage.setItem("selectedSSCC", "");
+		window.location.href=getContextPath()+'/html/processOrderIssueSelect.html';
+	}
+	
+	function History()
+	{
+		sessionStorage.setItem("selectedSSCC", "");
+		window.location.href=getContextPath()+'/html/palletHistory.html';
+	}
+	
+	function Return()
+	{
+		sessionStorage.setItem("selectedProcessOrder", "");
+		sessionStorage.setItem("selectedSSCC", "");
+		window.location.href=getContextPath()+'/html/palletReturnSelect.html';
+	}
+	
+	function Logout()
+	{
+		sessionStorage.setItem("selectedProcessOrder", "");
+		sessionStorage.setItem("selectedSSCC", "");
+		window.location.href=getContextPath()+'/html/userLogon.html';
+	}
+	
+</script>
+
+</html>

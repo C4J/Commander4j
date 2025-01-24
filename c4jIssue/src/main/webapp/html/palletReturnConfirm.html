@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="../style/styleIssue.css">
+	 
+	 <script src="../javascript/common.js"></script>
+	 <script src="../javascript/palletScript.js"></script>
+	 
+	<title>Pallet Return</title>
+	
+	<style>
+		
+ 	  .is-scrollLocked {
+		   overflow: hidden;
+	   }
+	        
+      .grid-container {
+		  display: grid;
+		  flex-wrap: wrap;
+		  grid-template-columns: 180px 180px 180px;
+		  padding: 2px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>
+	
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 405px; /* gives an initial height of 200px to the table */
+		width: 650px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  
+	  .tableFixHead2 {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 90px; /* gives an initial height of 200px to the table */
+	    width: 650px; /* gives an initial height of 200px to the table */
+	    margin-left: auto;
+	    margin-right: auto;
+	  }
+	  
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  
+	  .tableFixHead2 thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+	    margin-left: auto;
+	    margin-right: auto;
+	  }
+	  
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	  
+	  div {
+	    white-space: nowrap;
+	  }
+	</style>
+
+</head>
+
+<body onLoad="checkLogon();getPalletProperties()">
+
+	<h1 id="heading" style="text-align:center">Return from Order</h1>
+	<h2 id="userandorder" style="text-align:center">User Order</h2>
+
+	<div class="tableFixHead">
+		
+		<table id="palletTable">
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right" >SSCC&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input  style="color:black; background-color:#f0f8ff" size="50" type="text" id="sscc" name="sscc" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Process Order&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="process_order" name="process_order" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Material&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="material" name="material" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Description&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="description" name="description" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Pallet Status&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="pallet_status" name="pallet_status" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Batch Number&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="batch_number" name="batch_number" disabled></td>
+			</tr>	
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Batch Status&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="batch_status" name="batch_status" disabled></td>
+			</tr>			
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Current Quantity&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="quantity" name="quantity" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Unit of Measure&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="uom" name="uom" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Recipe ID&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff" size="50" type="text" id="bom_id" name="bom_id" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Recipe Version&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff"  size="50" type="text" id="bom_version" name="bom_version" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Lot Number&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff"  size="50" type="text" id="lot_number" name="lot_number" disabled></td>
+			</tr>
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Location&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff"><input style="color:black; background-color:#f0f8ff"  size="50" type="text" id="location_id" name="location_id" disabled></td>
+			</tr>
+		</table>
+	</div>	
+	  
+	<div class="tableFixHead2">
+		
+		<table id="laneTable">
+			<tr>
+				<td style="color:black; background-color:#f0f8ff; text-align: right">Return Quantity&nbsp;</td>
+				<td style="color:black; background-color:#f0f8ff; text-align: left">&nbsp;<input type="text" size="20" id="return_quantity" name="return_quantity"></td>
+			</tr>
+		</table>
+		<p id="errorMessage" style="text-align:center"></p>
+	</div>	
+	
+	<div class="grid-container">
+		<div class="grid-item" align="center"><button class="button" onclick="back()">Back</button></div> 
+		<div class="grid-item" align="center"><button class="button" onclick="refresh()">Refresh</button></div>  
+  		<div class="grid-item" align="center"><button class="button" onclick='preReturnChecks()'>Return SSCC</button></div> 
+	</div>
+	
+	<div class="grid-container">
+		<div class="grid-item" align="center"><button class="button" id="menuButton" onclick="menu()">Menu</button></div> 
+		<div class="grid-item" align="center"><button class="button" id="logoutButton" onclick="logout()">Logout</button></div>    
+	</div>
+
+</body>
+
+<script>
+	
+	
+	var selectedUser = sessionStorage.getItem('selectedUsername');
+	var selectedOrder = sessionStorage.getItem('selectedProcessOrder');
+
+	document.getElementById('userandorder').innerHTML = "User ["+selectedUser+"] - Order ["+selectedOrder+"]";
+	
+
+	var return_quantity = document.getElementById("return_quantity");
+
+	return_quantity.addEventListener("keypress", function(event) 
+	{
+		if (event.key === "Enter") 
+		{
+	    	event.preventDefault();
+			return_quantity.focus();
+	  	}
+	});
+	
+	function preReturnChecks()
+	{
+	
+		var errMsg = document.getElementById("errorMessage");
+		
+		var selectedUser = sessionStorage.getItem('selectedUsername');
+		console.debug('selectedUser =' + selectedUser);
+		
+		var selectedOrder = sessionStorage.getItem('selectedProcessOrder');
+		console.debug('selectedOrder =' + selectedOrder);
+		
+		var selectedSSCC = sessionStorage.getItem('selectedSSCC');
+		console.debug('selectedSSCC =' + selectedSSCC);
+		
+		var selectedReturnQuantity = document.getElementById("return_quantity").value;
+		console.debug('selectedReturnQuantity =' + selectedReturnQuantity);
+
+		var selectedReturnLocation = sessionStorage.getItem('selectedReturnLocation');
+		console.debug('selectedReturnLocation =' + selectedReturnLocation);
+		
+		returnSSCC(errMsg,selectedSSCC,selectedOrder,selectedReturnQuantity,selectedUser,selectedReturnLocation);
+
+	}
+	
+	async function getPalletProperties()
+	{
+		setQuantityFocus();
+
+		var selectedSSCC = sessionStorage.getItem('selectedSSCC');
+		
+		var selectedReturnQuantity = sessionStorage.getItem('selectedReturnQuantity');
+
+		document.getElementById("return_quantity").value = selectedReturnQuantity;
+		
+		console.debug('selectedSSCC =' + selectedSSCC);
+
+		
+		var payload = {
+			action: "query",
+			sscc: selectedSSCC,
+			processOrder: "",
+			quantity: 0.000	
+		};
+
+		console.log(JSON.stringify(payload));
+
+		let response = await fetch(getContextPath()+"/Pallets", { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error(`HTTP error, status = ${response.status}`);
+				}
+				return response.json();
+			})
+			.then((data) => {
+				document.getElementById("sscc").value = data.sscc;
+				document.getElementById("process_order").value = data.processOrder;
+				document.getElementById("material").value = data.material;
+				document.getElementById("pallet_status").value = data.palletStatus;
+				document.getElementById("batch_number").value = data.batchNumber;
+				document.getElementById("batch_status").value = data.batchStatus;
+				document.getElementById("quantity").value = data.quantity;
+				document.getElementById("uom").value = data.uom;
+				document.getElementById("bom_id").value = data.bomId;
+				document.getElementById("bom_version").value = data.bomVersion;
+				document.getElementById("lot_number").value = data.oldMaterial + selectedSSCC.substring(8,18);
+				document.getElementById("location_id").value = data.locationId;
+				document.getElementById("description").value = data.description;
+
+				return
+			})
+			.catch((error) => {
+				document.getElementById("description").value = "Error"+error.message;
+			});
+
+		console.log(response);
+
+	}
+	
+	function setQuantityFocus() 
+	{
+		document.getElementById("return_quantity").focus();
+	}
+	
+	function back()
+	{
+		window.location.href=getContextPath()+'/html/processOrderReturnSelect.html';
+	}
+	
+	function refresh()
+	{
+		location.reload();
+	}
+	
+
+	/**
+	 * @param {HTMLElement} errMsg
+	 * @param {string} sscc
+	 * @param {string} order
+	 * @param {number} quantity
+	 * @param {string} userId
+	 * @param {string} barcode_id
+	 */
+		async function returnSSCC(errMsg,sscc,order,quantity,userId,barcode_id)
+		{
+			console.log(sscc);
+					
+			var payload = {
+				action: "return",
+				sscc: sscc,
+				processOrder: order,
+				quantity : quantity,
+				material: "material",
+				palletStatus: "palletStatus",
+				batchNumber: "batchNumber",
+				batchStatus :"batchStatus",
+				uom: "uom",
+				confirmed : "confirmed",
+				bomId: "bomId",
+				bomVersion : "bomVersion",
+				oldMaterial: "oldMaterial",
+				userId : userId,
+				locationId : barcode_id,
+				description : "description"
+			};
+		
+			console.log(JSON.stringify(payload));
+		
+			let response = await fetch(getContextPath()+"/Pallets", { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error(`HTTP error, status = ${response.status}`);
+					}
+					return response.json();
+				})
+				.then((data) => {
+					setResultMessage(errMsg,data.quantity + " " + data.uom + " returned to "+ data.sscc,true);
+				    sessionStorage.setItem("selectedSSCC", data.sscc);
+				    sessionStorage.setItem("selectedReturnQuantity", "");
+					getPalletProperties();
+
+				})
+				.catch((error) => {
+					sessionStorage.setItem("selectedSSCC", "");
+					setResultMessage(errMsg,"Invalid SSCC "+sscc,false);
+					console.log(error);
+				});
+		
+			console.log(response);
+
+		}
+
+</script>
+			
+</html>

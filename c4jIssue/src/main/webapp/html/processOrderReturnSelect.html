@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+	
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="../style/styleIssue.css">
+	 
+	<title>Select Process Order</title>
+
+	<script src="../javascript/common.js"></script>
+	<script src="../javascript/returnableScript.js"></script>
+	
+	<style>
+	
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }	
+	
+      .box {
+        width: 350px;
+        height: 30px;
+        border: 1px solid #999;
+        font-size: 18px;
+        color: #1c87c9;
+        background-color: #eee;
+        border-radius: 5px;
+        box-shadow: 4px 4px #ccc;
+      }
+      
+      .grid-container {
+		  display: grid;
+		  grid-template-columns: 180px 180px 180px;
+		  padding: 1px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		  padding: 10px;
+		  font-size: 16px;
+		}
+	</style>
+	
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+	    height: 380px; /* gives an initial height of 200px to the table */
+		width: 550px; /* gives an initial height of 200px to the table */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  .tableFixHead thead th {
+	    position: sticky; /* make the table heads sticky */
+	    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  table {
+	    border-collapse: collapse; /* make the table borders collapse to each other */
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 8px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	  div {
+	    white-space: nowrap;
+	  }
+	</style>
+	
+</head>
+
+<body onLoad="checkLogon();init();buildOrderTable();">
+
+<h1 style="text-align:center">Select Process Order</h1>
+<h2 id="userid" style="text-align:center">User</h2>
+<h3 id="selectedSSCC" style="text-align:center">SSCC</h3>
+<br>
+	<div class="tableFixHead">
+		<table id="orderTable">
+			<thead>
+				<tr>
+					<th>Order</th>
+					<th>Location</th>
+					<th>Quantity</th>
+					<th>UOM</th>
+				</tr>
+			</thead>
+			<tbody id="ordersTable-output">
+			</tbody>
+		</table>
+	</div>
+	
+	<br>
+
+	<p id="errorMessage" style="text-align:center"></p>
+
+	<br>
+	
+	<div class="grid-container">
+		<div class="grid-item" align="center"><button class="button" onclick="back()">Back</button></div> 
+		<div class="grid-item" align="center"><button class="button" id="refreshButton" onclick="refresh()">Refresh</button></div>  
+		<div class="grid-item" align="center"><button class="button" id="nextButton" onclick="ssccSelect()">Return SSCC</button></div>     
+	</div>
+	<div class="grid-container">
+		<div class="grid-item" align="center"><button class="button" id="menuButton" onclick="menu()">Menu</button></div> 
+		<div class="grid-item" align="center"><button class="button" id="logoutButton" onclick="logout()">Logout</button></div>    
+	</div>
+	
+
+</body>
+
+<script>
+		
+   		
+	function init()
+	{
+		let selectedUser = sessionStorage.getItem('selectedUsername');
+		
+		document.getElementById('userid').innerHTML = "User ["+sessionStorage.getItem('selectedUsername')+"]";
+		
+		let selectedSSCC = sessionStorage.getItem('selectedSSCC');
+
+		document.getElementById('selectedSSCC').innerHTML = "SSCC ["+sessionStorage.getItem('selectedSSCC')+"]";
+	}
+	
+	async function buildOrderTable() {
+		
+		let selectedSSCC = sessionStorage.getItem('selectedSSCC');
+		
+		let foundSome = false;
+		
+		console.debug('selectedSSCC =' + selectedSSCC);
+		
+		let payload = 
+		{
+			action: "query",
+			commandStatus : "",
+			errorMessage : ""
+		};
+		
+		await fetch(getContextPath()+"/Returnable?action=getOrders&sscc="+selectedSSCC, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+		
+			.then(function(response) { return response.json(); })
+			.then(function(orders) {
+				let temp = orders.length;
+				let placeholder = document.querySelector("#ordersTable-output");
+				let out = "";
+				for (let order of orders) {
+					out += `
+					<tr>
+						<td style="color:black; background-color:#f0f8ff; width:33%"><input type="radio" id="'${order.processOrderID}'" name="processOrderSelectList" onchange="processOrderListSave('selectedProcessOrder','${order.processOrderID}');processOrderListSave('selectedReturnQuantity','${order.quantity}');processOrderListSave('selectedReturnLocation','${order.locationID}');" value="'${order.processOrderID}'" ` + processOrderListGet('selectedProcessOrder', order.processOrderID) + `><label for="'${order.processOrderID}'"> ${order.processOrderID}</label></td>
+						<td style="color:black; background-color:#f0f8ff; width:33%; text-align:right">`+order.locationID+`&nbsp;</td>
+						<td style="color:black; background-color:#f0f8ff; width:33%; text-align:right">`+order.quantity+`&nbsp;</td>
+						<td style="color:black; background-color:#f0f8ff; width:33%; text-align:left">&nbsp;`+order.uom+`</td>
+					</tr>`;
+				}
+
+				if (temp == 0)
+				{
+					setResultMessage(document.getElementById("errorMessage"),"No orders with returnable quantity.",false);
+					document.getElementById('nextButton').setAttribute("disabled", "disabled");
+				}
+				else
+				{
+					setResultMessage(document.getElementById("errorMessage"),temp+" order(s) available for return.",true);
+					document.getElementById('nextButton').removeAttribute("disabled");
+				}
+				
+				placeholder.innerHTML = out;
+			})
+	}
+	
+	
+	function ssccSelect() 
+	{
+		let selectedOrder = sessionStorage.getItem('selectedProcessOrder');
+		
+		if (selectedOrder !== null)
+		{
+			if (selectedOrder)			
+			{
+				if (selectedOrder !== '')
+				{
+					window.location.href=getContextPath()+'/html/palletReturnConfirm.html';	
+				}
+			}
+		}
+	}
+	
+	function refresh()
+	{
+		location.reload();
+	}
+	
+	function back()
+	{
+		window.location.href=getContextPath()+'/html/palletReturnSelect.html';
+	}
+	
+	
+</script>
+
+</html>
+

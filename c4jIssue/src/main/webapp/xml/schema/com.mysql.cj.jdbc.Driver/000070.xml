@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+
+<statement>
+	CREATE TABLE `SYS_PRINTERS` (
+	  `PRINTER_ID` varchar(20) NOT NULL,
+	  `PRINTER_TYPE` varchar(20) DEFAULT NULL,
+	  `IP_ADDRESS` varchar(25) DEFAULT NULL,
+	  `PORT` varchar(10) DEFAULT NULL,
+	  `DESCRIPTION` varchar(50) DEFAULT NULL,
+	  `LINE` varchar(20) DEFAULT NULL,
+	  `ENABLED` varchar(1) DEFAULT NULL,
+	  PRIMARY KEY (`PRINTER_ID`)
+	) ENGINE=InnoDB;
+</statement>
+
+<statement>
+DROP FUNCTION `c4j_GetFinalBatchNumber`;
+</statement>
+
+	<statement>
+				CREATE FUNCTION `c4j_GetFinalBatchNumber`(
+					XPRODUCTION_DATE datetime,
+					XOVERRIDE_BATCH VARCHAR ( 1 ),
+					XOVERRIDE_BATCH_NUMBER VARCHAR ( 40 ),
+					XBATCH_OPTIONAL VARCHAR ( 40 ),
+					XPROCESS_ORDER VARCHAR ( 40 )) RETURNS varchar(100) CHARSET utf8
+				    NO SQL
+				BEGIN
+					DECLARE
+						result VARCHAR ( 100 ) CHARACTER 
+						SET utf8;
+					DECLARE
+						batchformat VARCHAR ( 100 ) CHARACTER 
+						SET utf8;
+					IF
+						XOVERRIDE_BATCH = 'Y' THEN
+							
+							SET result = XOVERRIDE_BATCH_NUMBER;
+						
+					END IF;
+					IF
+						XOVERRIDE_BATCH = 'N' THEN
+							
+							SET batchformat = c4j_GetControlValue ( 'BATCH FORMAT' );
+						
+						SET result = batchformat;
+						
+						SET result = REPLACE (
+							result,
+							'{PLANT}',
+						c4j_GetPlant ());
+						
+						SET result = REPLACE ( result, '{PROCESS_ORDER}', XPROCESS_ORDER );
+						
+						SET result = REPLACE (
+							result,
+							'{YEAR4}',
+						c4j_GetYear ( XPRODUCTION_DATE, 4 ));
+						
+						SET result = REPLACE (
+							result,
+							'{YEAR2}',
+						c4j_GetYear ( XPRODUCTION_DATE, 2 ));
+						
+						SET result = REPLACE (
+							result,
+							'{YEAR1}',
+						c4j_GetYear ( XPRODUCTION_DATE, 1 ));
+						
+						SET result = REPLACE (
+							result,
+							'{MONTH}',
+						c4j_GetMonth ( XPRODUCTION_DATE ));
+						
+						SET result = REPLACE (
+							result,
+							'{DAY}',
+						c4j_GetDay ( XPRODUCTION_DATE ));
+						
+						SET result = REPLACE (
+							result,
+							'{JULIAN_DAY}',
+						c4j_GetJulian ( XPRODUCTION_DATE, 1 ));
+						
+						SET result = REPLACE (
+							result,
+							'{JULIAN0_DAY}',
+						c4j_GetJulian ( XPRODUCTION_DATE, 0 ));
+						
+						SET result = REPLACE (
+							result,
+							'{JULIAN1_DAY}',
+						c4j_GetJulian ( XPRODUCTION_DATE, 1 ));
+						
+					END IF;
+					
+					SET result = CONCAT( result, XBATCH_OPTIONAL );
+					RETURN result;
+				
+				END
+		</statement>
+
+<statement>
+CREATE 
+     OR REPLACE 
+VIEW `view_auto_labeller` AS
+    select 
+        `AL`.`LINE` AS `LINE`,
+        `AL`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+        `PO`.`STATUS` AS `STATUS`,
+        `PO`.`MATERIAL` AS `MATERIAL`,
+        `PO`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
+        `MAT`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+        `MAT`.`DESCRIPTION` AS `DESCRIPTION`,
+        right(concat('00000000000000', `MATUOM`.`EAN`),
+            14) AS `EAN`,
+        right(concat('00', `MATUOM`.`VARIANT`),
+            2) AS `VARIANT`,
+        `MAT`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+        `MAT`.`SHELF_LIFE` AS `SHELF_LIFE`,
+        `MAT`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
+        `MAT`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
+        `PO`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+        `CUST`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+        `MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
+        `PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+        c4j_GetFinalBatchNumber(curdate(),
+                `AL`.`OVERRIDE_BATCH`,
+                `AL`.`OVERRIDE_BATCH_NUMBER`,
+                `AL`.`BATCH_OPTIONAL`,`AL`.`PROCESS_ORDER`) AS `BATCH_NUMBER`,
+        c4j_GetFinalExpiryDate(curdate(),
+                `MAT`.`SHELF_LIFE`,
+                `MAT`.`SHELF_LIFE_UOM`,
+                `MAT`.`SHELF_LIFE_RULE`,
+                `AL`.`OVERRIDE_EXPIRY`,
+                `AL`.`OVERRIDE_EXPIRY_DATE`) AS `EXPIRY_DATE`,
+        c4j_GetLayers(`PO`.`PROCESS_ORDER`) AS `DEFAULT_LAYERS`,
+        c4j_GetFullPalletQuantity(`PO`.`PROCESS_ORDER`) AS `DEFAULT_QUANTITY`
+    from
+        ((((`APP_AUTO_LABELLER` `AL`
+        join `APP_PROCESS_ORDER` `PO`)
+        join `APP_MATERIAL` `MAT`)
+        join `APP_CUSTOMER` `CUST`)
+        join `APP_MATERIAL_UOM` `MATUOM`)
+    where
+        ((`PO`.`PROCESS_ORDER` = `AL`.`PROCESS_ORDER`)
+            and (`MAT`.`MATERIAL` = `PO`.`MATERIAL`)
+            and (`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`)
+            and (`MATUOM`.`MATERIAL` = `PO`.`MATERIAL`)
+            and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`));
+
+</statement>
+
+<statement>
+CREATE 
+     OR REPLACE
+VIEW `view_auto_labeller_full` AS
+    select 
+        `PO`.`PROCESS_ORDER` AS `PROCESS_ORDER`,
+        `PO`.`STATUS` AS `STATUS`,
+        `PO`.`MATERIAL` AS `MATERIAL`,
+        `PO`.`REQUIRED_UOM` AS `REQUIRED_UOM`,
+        `MAT`.`MATERIAL_TYPE` AS `MATERIAL_TYPE`,
+        `MAT`.`DESCRIPTION` AS `DESCRIPTION`,
+        right(concat('00000000000000', `MATUOM`.`EAN`),
+            14) AS `EAN`,
+        right(concat('00', `MATUOM`.`VARIANT`),
+            2) AS `VARIANT`,
+        `MAT`.`OLD_MATERIAL` AS `OLD_MATERIAL`,
+        `MAT`.`SHELF_LIFE` AS `SHELF_LIFE`,
+        `MAT`.`SHELF_LIFE_UOM` AS `SHELF_LIFE_UOM`,
+        `MAT`.`SHELF_LIFE_RULE` AS `SHELF_LIFE_RULE`,
+        `PO`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+        `CUST`.`CUSTOMER_NAME` AS `CUSTOMER_NAME`,
+        `MAT`.`UPDATED` AS `MATERIAL_UPDATED`,
+        `PO`.`UPDATED` AS `PROCESS_ORDER_UPDATED`,
+        c4j_GetFinalBatchNumber(curdate(), 'N', 'N', '',`PO`.`PROCESS_ORDER`) AS `BATCH_NUMBER`,
+        c4j_GetFinalExpiryDate(curdate(),
+                `MAT`.`SHELF_LIFE`,
+                `MAT`.`SHELF_LIFE_UOM`,
+                `MAT`.`SHELF_LIFE_RULE`,
+                'N',
+                curdate()) AS `EXPIRY_DATE`,
+        c4j_GetLayers(`PO`.`PROCESS_ORDER`) AS `DEFAULT_LAYERS`,
+        c4j_GetFullPalletQuantity(`PO`.`PROCESS_ORDER`) AS `DEFAULT_QUANTITY`
+    from
+        (((`APP_PROCESS_ORDER` `PO`
+        join `APP_MATERIAL` `MAT`)
+        join `APP_CUSTOMER` `CUST`)
+        join `APP_MATERIAL_UOM` `MATUOM`)
+    where
+        ((`MAT`.`MATERIAL` = `PO`.`MATERIAL`)
+            and (`CUST`.`CUSTOMER_ID` = `PO`.`CUSTOMER_ID`)
+            and (`MATUOM`.`MATERIAL` = `PO`.`MATERIAL`)
+            and (`MATUOM`.`UOM` = `PO`.`REQUIRED_UOM`));
+
+</statement>
+
+</DDL>

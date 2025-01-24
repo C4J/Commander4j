@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Setting the pages character encoding -->
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="cache-control" content="max-age=0">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+	<meta http-equiv="pragma" content="no-cache">
+
+	<!-- The meta viewport will scale my content to any device width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	 <!-- Link to my stylesheet -->
+	 <link rel="stylesheet" href="../style/styleIssue.css">
+	 
+	<title>SSCC Pallet History</title>
+
+	<script src="../javascript/common.js"></script>
+	<script src="../javascript/palletScript.js"></script>
+	
+	<style>
+	
+	  .is-scrollLocked {
+		   overflow: hidden;
+	   }
+      
+      .grid-container {
+		  display: grid;
+		  flex-wrap: wrap;
+		  grid-template-columns: 180px 180px;
+		  padding: 2px;
+		  align-content: center;
+		  justify-content: center;
+		}
+		.grid-item {
+		
+		  padding: 5px;
+		  font-size: 16px;
+		}
+	</style>
+	
+	<style>	
+	  .tableFixHead {
+	    overflow-y: auto; 
+	    height: 60px; 
+		width: 600px;
+ 		margin-left: auto;
+	 	margin-right: auto;
+	   }
+	
+	    .tableFixHead thead th {
+	    position: sticky;
+	    top: 0px; 
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  
+	  .tableFixHead2 {
+	    overflow-y: auto; 
+	    height: 370px;
+	    width: 600px; 
+	 	margin-left: auto;
+		margin-right: auto;
+		font-size: 12px; 
+	  }
+	 
+	   .tableFixHead2 thead th {
+	    position: sticky; 
+	    top: 0px; 
+	    margin-left: auto;
+	    margin-right: auto;
+		font-size: 12px; 
+	  }
+	  
+	  table {
+	    border-collapse: collapse; 
+	    width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	  }
+	  th,
+	  td {
+	    padding: 8px 16px;
+	    border: 1px solid #ccc;
+	  }
+	  th {
+	    background: #eee;
+	  }
+	  div {
+	    white-space: nowrap;
+	  }
+	</style>
+
+</head>
+
+<body onLoad="checkLogon();init();setSSCCFocus()">
+
+	<h1 id="heading" style="text-align:center">SSCC History</h1>
+	<h2 id="userid" style="text-align:center">User</h2>
+	
+	<br>
+
+	<div class="tableFixHead">
+		<table id="ssccTable">
+	
+			<tr>
+				<td style="color:black; background-color:#f0f8ff">SSCC (Pallet)</td>
+				<td style="color:black; background-color:#f0f8ff"><input type="text" id="sscc" name="sscc" size="20" maxlength="20" autofocus></td>
+			</tr>
+
+		</table>
+	</div>
+	
+
+	<div class="tableFixHead2">
+		<table id="historyTable">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Type</th>
+					<th>SubType</th>
+					<th>Order</th>
+					<th>Location</th>
+					<th>Quantity</th>
+					<th>Uom</th>
+				</tr>
+			</thead>
+			<tbody id="historyTable-output">
+			</tbody>
+		</table>
+	</div>
+	
+	<br>
+
+	<p id="errorMessage" style="text-align:center"></p>
+	
+	<br>
+	
+	<div class="grid-container">
+		<div class="grid-item" align="center"><button class="button" onclick="back()">Back</button></div> 
+  		<div class="grid-item" align="center"><button class="button" onclick='getPalletHistory();'>SSCC History</button></div>  
+	</div>
+	
+	<div class="grid-container">
+		<div class="grid-item" align="center"><button class="button" id="menuButton" onclick="menu()">Menu</button></div> 
+		<div class="grid-item" align="center"><button class="button" id="logoutButton" onclick="logout()">Logout</button></div>    
+	</div>
+
+</body>
+
+<script>
+	
+	let uname = document.getElementById("sscc");
+	
+	uname.addEventListener("keypress", function(event) 
+	{
+ 		if (event.key === "Enter") 
+		{
+	    	event.preventDefault();
+			getPalletHistory();
+	  	}
+	});
+	
+	function init()
+	{
+		let selectedUser = sessionStorage.getItem('selectedUsername');
+		
+		document.getElementById('userid').innerHTML = "User ["+sessionStorage.getItem('selectedUsername')+"]";
+	}
+	
+	function setSSCCFocus() 
+	{
+		checkLogon();
+		
+		document.getElementById("sscc").focus();
+		
+	}
+
+	function back()
+	{
+		window.location.href=getContextPath()+'/html/menu.html';
+	}
+	
+	function getPalletHistory()
+	{
+		let sscc = document.getElementById("sscc").value;
+		
+		sscc = formatSSCC(sscc);
+		
+		buildHistoryTable(sscc);
+		document.getElementById("sscc").value = "";
+		setSSCCFocus();
+		
+	}
+	
+	async function buildHistoryTable(sscc) {
+		
+		let payload = {
+			action: "query",
+			sscc: sscc
+		};
+
+		let response = await fetch(getContextPath()+"/PalletHistory", { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+
+			.then(function(response) { return response.json(); })
+			.then(function(history) {
+				
+				let temp = history.length;
+				let placeholder = document.querySelector("#historyTable-output");
+				let out = "";
+				for (let pallet of history) {	
+					errMsg = "";				 
+					 out += `<tr>
+						<td style="color:black; background-color:#f0f8ff; width:15%; text-align:left">`+pallet.transaction_date+`</td>
+						<td style="color:black; background-color:#f0f8ff; width:15%; text-align:left">`+pallet.transaction_type+`</td>
+						<td style="color:black; background-color:#f0f8ff; width:15%; text-align:left">`+pallet.transaction_subtype+`</td>
+						<td style="color:black; background-color:#f0f8ff; width:10%">`+pallet.processOrder+`</td>
+						<td style="color:black; background-color:#f0f8ff; width:10%; text-align:left">`+pallet.locationId+`</td>
+					 	<td style="color:black; background-color:#f0f8ff; width:10%; text-align:right">`+pallet.quantity+`</td>
+						<td style="color:black; background-color:#f0f8ff; width:10%">`+pallet.uom+`</td>
+					 </tr>`;
+				}
+				placeholder.innerHTML = out;
+				
+				if (temp == 0)
+				{
+					setResultMessage(document.getElementById("errorMessage"),"SSCC "+sscc+" not found.",false);
+				}
+				else
+				{
+					setResultMessage(document.getElementById("errorMessage"),temp+" records displayed for SSCC "+sscc,true);
+				}
+				
+			})
+	}
+
+</script>
+
+</html>
