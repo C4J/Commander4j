@@ -382,7 +382,7 @@ public class JFrameHostAdmin extends JFrame
 		buildCharSetList();
 
 		final JHelp help = new JHelp();
-		help.enableHelpOnButton(jButtonHelp, "http://commander4j.com/mw/index.php?title=Setup4j");
+		help.enableHelpOnButton(jButtonHelp, "https://wiki.commander4j.com/index.php?title=Setup4j");
 
 		getHosts();
 

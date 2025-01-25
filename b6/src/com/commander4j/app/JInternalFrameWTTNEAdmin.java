@@ -197,7 +197,7 @@ public class JInternalFrameWTTNEAdmin extends javax.swing.JInternalFrame
 		super();
 		initGUI();
 		final JHelp help = new JHelp();
-		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_ADMIN_TNE"));
+		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_WEIGHT_TNE"));
 		
 		populateList(zero,"");
 	}

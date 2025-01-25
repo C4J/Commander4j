@@ -126,9 +126,6 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		jDesktopPane1.setPreferredSize(new java.awt.Dimension(462, 497));
 		jDesktopPane1.setLayout(null);
 
-		final JHelp help = new JHelp();
-		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_LABEL_DATA_ASSIGN"));
-
 		unique_id = unique;
 		labdat.getProperties(unique_id);
 
@@ -139,6 +136,9 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 		selectedGroup = labdat.getLabelType();
 
 		initGUI();
+		
+		final JHelp help = new JHelp();
+		help.enableHelpOnButton(jButtonHelp, JUtility.getHelpSetIDforModule("FRM_LABEL_DATA_ASSIGN"));
 
 		populateList(selectedGroup);
 

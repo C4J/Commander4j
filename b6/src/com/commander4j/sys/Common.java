@@ -112,7 +112,7 @@ public class Common
 	public static int spacerToolBarSize = 10;
 	public static int comboToolBarSize = 275;
 
-	public static String helpURL = "http://www.commander4j.com";
+	public static String helpURL = "https://wiki.commander4j.com/index.php?title=Commander4j";
 	public static String interface_recovery_path = "xml/interface/recovery/";
 	public static String interface_error_path = "xml/interface/error/";
 	public static String interface_backup_path = "xml/interface/backup/";

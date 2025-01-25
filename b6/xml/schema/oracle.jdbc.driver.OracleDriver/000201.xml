@@ -552,6 +552,15 @@
 	    UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Tolerable_Negative_Errors' WHERE MODULE_ID = 'FRM_WEIGHT_TNE' AND MODULE_TYPE = 'FORM'
 	</statement>
 	<statement>
+	    UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Tolerable_Negative_Errors' WHERE MODULE_ID = 'FRM_WEIGHT_TNE_ADD' AND MODULE_TYPE = 'FORM'
+	</statement>
+	<statement>
+	    UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Tolerable_Negative_Errors' WHERE MODULE_ID = 'FRM_WEIGHT_TNE_DELETE' AND MODULE_TYPE = 'FORM'
+	</statement>
+	<statement>
+	    UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Tolerable_Negative_Errors' WHERE MODULE_ID = 'FRM_WEIGHT_TNE_EDIT' AND MODULE_TYPE = 'FORM'
+	</statement>
+	<statement>
 	    UPDATE SYS_MODULES SET HELPSET_ID = 'https://wiki.commander4j.com/index.php?title=Workstation_Admin' WHERE MODULE_ID = 'FRM_WEIGHT_WORKSTATION' AND MODULE_TYPE = 'FORM'
 	</statement>
 
