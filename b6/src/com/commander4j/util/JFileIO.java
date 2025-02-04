@@ -28,21 +28,19 @@ package com.commander4j.util;
  */
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URLDecoder;
+import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
+import org.w3c.dom.ls.DOMImplementationLS;
+import org.w3c.dom.ls.LSOutput;
+import org.w3c.dom.ls.LSSerializer;
 
 public class JFileIO
 {
@@ -91,8 +89,7 @@ public class JFileIO
 		{
 			deleteFile(destFile);
 			org.apache.commons.io.FileUtils.moveFile(from, to);
-		}
-		catch (IOException e)
+		} catch (IOException e)
 		{
 			logger.debug("move_File error :" + e.getMessage());
 			setErrorMessage(e.getMessage());
@@ -110,8 +107,7 @@ public class JFileIO
 		try
 		{
 			org.apache.commons.io.FileUtils.moveFileToDirectory(from, dir, createDestDir);
-		}
-		catch (IOException e)
+		} catch (IOException e)
 		{
 			logger.debug("move_FileToDirectory error :" + e.getMessage());
 			setErrorMessage(e.getMessage());
@@ -128,10 +124,9 @@ public class JFileIO
 
 		try
 		{
-			result = FileUtils.readFileToString(file, "UTF-8");
+			result = FileUtils.readFileToString(file,"UTF-8");
 
-		}
-		catch (IOException e)
+		} catch (IOException e)
 		{
 			logger.debug("readFiletoString error :" + e.getMessage());
 			setErrorMessage(e.getMessage());
@@ -153,7 +148,8 @@ public class JFileIO
 	public Boolean writeToDisk(String path, Document document, long dbTransactionRef, String filesuffix)
 	{
 		Boolean result = true;
-
+		try
+		{
 			NumberFormat formatter = new DecimalFormat("0000000000");
 			path = path.replace("\\", java.io.File.separator);
 			path = path.replace("/", java.io.File.separator);
@@ -166,18 +162,50 @@ public class JFileIO
 				}
 			}
 			String filename = path;
-
+			
 			if (dbTransactionRef >= 0)
 			{
-				filename = filename + formatter.format(dbTransactionRef);
+				filename = filename +  formatter.format(dbTransactionRef);
 			}
-
-			filename = filename + filesuffix;
-
 			
-			result = writeToDisk(filename,document);
+			filename = filename + filesuffix;
+			
+			setFilename(filename);
+			setShortFilename(formatter.format(dbTransactionRef) + filesuffix);
 
+			// ===============================
 
+			DOMImplementationLS DOMiLS = null;
+			FileOutputStream FOS = null;
+
+			// testing the support for DOM Load and Save
+			if ((document.getFeature("Core", "3.0") != null) && (document.getFeature("LS", "3.0") != null))
+			{
+				DOMiLS = (DOMImplementationLS) (document.getImplementation()).getFeature("LS", "3.0");
+
+				// get a LSOutput object
+				LSOutput LSO = DOMiLS.createLSOutput();
+
+				FOS = new FileOutputStream(filename);
+				LSO.setByteStream((OutputStream) FOS);
+
+				// get a LSSerializer object
+				LSSerializer LSS = DOMiLS.createLSSerializer();
+
+				// do the serialization
+				LSS.write(document, LSO);
+
+				FOS.close();
+			} 
+
+			// ===============================
+
+		} catch (Exception ex)
+		{
+			logger.debug("writeToDisk error :" + ex.getMessage());
+			setErrorMessage("Error writing message to disk. " + ex.getMessage());
+			result = false;
+		}
 		return result;
 	}
 
@@ -204,8 +232,7 @@ public class JFileIO
 			fw.write(document);
 			fw.close();
 
-		}
-		catch (Exception ex)
+		} catch (Exception ex)
 		{
 			logger.debug("writeToDisk error :" + ex.getMessage());
 			setErrorMessage("Error writing message to disk. " + ex.getMessage());
@@ -213,39 +240,47 @@ public class JFileIO
 		}
 		return result;
 	}
-
+	
 	public Boolean writeToDisk(String filename, Document document)
 	{
-
-		Boolean result = false;
-
-		setFilename(filename);
-		setShortFilename(filename);
-
+		Boolean result = true;
 		try
 		{
-			StreamResult sr = new StreamResult(new File(filename));
-			sr.setSystemId(URLDecoder.decode(sr.getSystemId(), "UTF-8"));
-			
-			TransformerFactory tf = TransformerFactory.newInstance();
-			Transformer transformer = tf.newTransformer();
-			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			setFilename(filename);
+			setShortFilename(filename);
+			// ===============================
 
-			transformer.transform(new DOMSource(document), sr);
+			DOMImplementationLS DOMiLS = null;
+			FileOutputStream FOS = null;
 
-			result = true;
+			// testing the support for DOM Load and Save
+			if ((document.getFeature("Core", "3.0") != null) && (document.getFeature("LS", "3.0") != null))
+			{
+				DOMiLS = (DOMImplementationLS) (document.getImplementation()).getFeature("LS", "3.0");
 
-		}
-		catch (Exception ex)
+				// get a LSOutput object
+				LSOutput LSO = DOMiLS.createLSOutput();
+
+				FOS = new FileOutputStream(filename);
+				LSO.setByteStream((OutputStream) FOS);
+
+				// get a LSSerializer object
+				LSSerializer LSS = DOMiLS.createLSSerializer();
+
+				// do the serialization
+				LSS.write(document, LSO);
+
+				FOS.close();
+			} 
+
+			// ===============================
+
+		} catch (Exception ex)
 		{
 			logger.debug("writeToDisk error :" + ex.getMessage());
 			setErrorMessage("Error writing message to disk. " + ex.getMessage());
+			result = false;
 		}
-
 		return result;
 	}
 
@@ -255,9 +290,8 @@ public class JFileIO
 		File from = new File(filename);
 		try
 		{
-			result = FileUtils.readLines(from, "UTF-8");
-		}
-		catch (IOException e)
+			result = FileUtils.readLines(from,"UTF-8");
+		} catch (IOException e)
 		{
 			logger.debug("readFileLines error :" + e.getMessage());
 			e.printStackTrace();
@@ -272,8 +306,7 @@ public class JFileIO
 		try
 		{
 			FileUtils.writeLines(from, data);
-		}
-		catch (IOException e)
+		} catch (IOException e)
 		{
 			result = false;
 			logger.debug("writeFileLines error :" + e.getMessage());

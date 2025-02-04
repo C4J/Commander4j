@@ -173,7 +173,7 @@ public class OutgoingProductionDeclarationConfirmation
 					Element recipe = addElement(document, "recipe", palhist.getPallet().getProcessOrderObj(false).getRecipe());
 					productionDeclaration.appendChild(recipe);
 					
-					Element recipeVersion = addElement(document, "recipeVersion", palhist.getPallet().getProcessOrderObj(false).getRecipeVersion());
+					Element recipeVersion = addElement(document, "recipeVersion", JUtility.replaceNullStringwithBlank(palhist.getPallet().getProcessOrderObj(false).getRecipeVersion()));
 					productionDeclaration.appendChild(recipeVersion);
 
 					Element required_resource = addElement(document, "requiredResource", palhist.getPallet().getProcessOrderObj(false).getRequiredResource());
