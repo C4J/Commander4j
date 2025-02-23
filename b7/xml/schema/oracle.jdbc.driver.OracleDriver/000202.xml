@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DDL SYSTEM "schema.dtd">
+<DDL>
+   
+<statement>ALTER TABLE "APP_AUTO_LABELLER" MODIFY ("LINE" VARCHAR2(40))</statement>
+
+<statement>ALTER TABLE "APP_AUTO_LABELLER_RESOURCES" MODIFY ("LINE" VARCHAR2(40))</statement>
+
+<statement>ALTER TABLE "APP_LABEL_DATA" MODIFY ("LINE" VARCHAR2(40))</statement>
+
+<statement>ALTER TABLE "SYS_PRINTER_LINE_MEMBERSHIP" MODIFY ("LINE" VARCHAR2(40))</statement>
+
+<statement>ALTER TABLE "SYS_WORKSTATION_LINE_MEMBERS" MODIFY ("LINE" VARCHAR2(40))</statement>
+
+<statement>ALTER TABLE "APP_AUTO_LABELLER" ADD ("ENABLED" VARCHAR2(1) VISIBLE DEFAULT 'Y')</statement>
+
+<statement>UPDATE "APP_AUTO_LABELLER" SET ENABLED = 'Y'</statement>
+	
+</DDL>
