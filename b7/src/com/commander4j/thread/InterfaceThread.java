@@ -52,6 +52,7 @@ import com.commander4j.util.JArchive;
 import com.commander4j.util.JPrint;
 import com.commander4j.util.JUnique;
 import com.commander4j.util.JUtility;
+import com.commander4j.util.JWait;
 
 public class InterfaceThread extends Thread
 {
@@ -245,6 +246,8 @@ public class InterfaceThread extends Thread
 									houseKeeping = true;
 								}
 							}
+							
+							JWait.oneSec();
 
 						}
 
