@@ -404,7 +404,7 @@ public class JDialogAssignLabelDataToLine extends javax.swing.JDialog {
 			jDesktopPane1.add(textField4j_Status);
 
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(154, 262, 429, 113);
+			scrollPane.setBounds(22, 262, 634, 113);
 			jDesktopPane1.add(scrollPane);
 
 			list = new JList4j<JDBListData>();

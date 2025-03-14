@@ -673,7 +673,7 @@ public class JDBAutoLabeller
 
 	public String toString()
 	{
-		return JUtility.padString(getLine(), true, 20, " ") + getDescription();
+		return JUtility.padString(getLine(), true, field_line, " ") + " " +getDescription();
 	}
 
 	public boolean isValidClientWorkstationID(String client)

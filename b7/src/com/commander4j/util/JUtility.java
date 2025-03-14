@@ -46,6 +46,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.net.URI;
@@ -153,6 +154,44 @@ public class JUtility
 		}
 
 		return result;
+	}
+	
+	public static String getLoggedInUser()
+	{
+		String os = System.getProperty("os.name").toLowerCase();
+		String command = "whoami"; // Works on Windows, Linux, macOS
+
+		if (os.contains("win"))
+		{
+			command = "cmd.exe /c whoami"; // Windows command format
+		}
+
+		try
+		{
+			ProcessBuilder builder = new ProcessBuilder(command.split(" "));
+			Process process = builder.start();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String user = reader.readLine();
+
+			if (user == null || user.isEmpty())
+			{
+				user = System.getProperty("user.name").toUpperCase();
+			}
+
+			user = user.trim();
+
+			if (user.contains("\\"))
+			{
+				user = user.substring(user.indexOf("\\") + 1);
+			}
+
+			return user.toUpperCase();
+		}
+		catch (IOException e)
+		{
+			return System.getProperty("user.name").toUpperCase();
+		}
 	}
 
 	public static Vector<String> getMonthNames()
@@ -544,6 +583,8 @@ public class JUtility
 		result = result.replace("'", " ");
 		result = result.replace(":", " ");
 		result = result.replace("?", " ");
+		result = result.replace(">", " ");
+		result = result.replace("<", " ");
 		// result = result.replace("*", " ");
 
 		return result;

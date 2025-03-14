@@ -222,7 +222,7 @@ public class OutgoingDespatchConfirmation
 					desp.setLoadNo("123");
 				}
 					    
-				document = document + "EQD+CN+"+JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getTrailer(), 10))+"'";
+				document = document + "EQD+CN+"+ JUtility.stripEANCOMSpecialCharacters(JUtility.replaceNullStringwithBlank(StringUtils.left(desp.getTrailer(), 10)))+"'";
 	    
 				// NEXT 2 LINES COMMENTS NEED TO BE RESTORED FOR SAP EWM
 				

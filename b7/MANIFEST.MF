@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Main-Class: com.commander4j.start.Init
-Class-Path: lib/SparseBitSet-1.2.jar 
- lib/aalto-xml-1.3.2.jar 
+Class-Path: lib/SparseBitSet-1.3.jar 
+ lib/aalto-xml-1.3.3.jar 
  lib/angus-activation-2.0.2.jar 
  lib/angus-mail-2.0.3.jar 
  lib/ant-1.10.14.jar 
@@ -9,28 +9,28 @@ Class-Path: lib/SparseBitSet-1.2.jar
  lib/antlr-2.7.7.jar 
  lib/barbecue-1.5-beta1.jar 
  lib/barcode4j-2.3.1.jar 
- lib/batik-anim-1.17.jar 
- lib/batik-awt-util-1.17.jar 
- lib/batik-bridge-1.17.jar 
- lib/batik-constants-1.17.jar 
- lib/batik-css-1.17.jar 
- lib/batik-dom-1.17.jar 
- lib/batik-ext-1.17.jar 
- lib/batik-gvt-1.17.jar 
- lib/batik-i18n-1.17.jar 
- lib/batik-parser-1.17.jar 
- lib/batik-script-1.17.jar 
- lib/batik-shared-resources-1.17.jar 
- lib/batik-svg-dom-1.17.jar 
- lib/batik-svggen-1.17.jar 
- lib/batik-util-1.17.jar 
- lib/batik-xml-1.17.jar 
+ lib/batik-anim-1.18.jar 
+ lib/batik-awt-util-1.18.jar 
+ lib/batik-bridge-1.18.jar 
+ lib/batik-constants-1.18.jar 
+ lib/batik-css-1.18.jar 
+ lib/batik-dom-1.18.jar 
+ lib/batik-ext-1.18.jar 
+ lib/batik-gvt-1.18.jar 
+ lib/batik-i18n-1.18.jar 
+ lib/batik-parser-1.18.jar 
+ lib/batik-script-1.18.jar 
+ lib/batik-shared-resources-1.18.jar 
+ lib/batik-svg-dom-1.18.jar 
+ lib/batik-svggen-1.18.jar 
+ lib/batik-util-1.18.jar 
+ lib/batik-xml-1.18.jar 
  lib/castor-core-1.4.1.jar 
  lib/commons-beanutils-1.9.4.jar 
  lib/commons-codec-1.18.0.jar 
  lib/commons-collections-3.2.2.jar 
  lib/commons-collections4-4.4.jar 
- lib/commons-compress-1.21.jar 
+ lib/commons-compress-1.26.2.jar 
  lib/commons-io-2.18.0.jar 
  lib/commons-lang-2.6.jar 
  lib/commons-lang3-3.17.0.jar 
@@ -39,16 +39,16 @@ Class-Path: lib/SparseBitSet-1.2.jar
  lib/commons-text-1.13.0.jar 
  lib/core-3.4.0.jar 
  lib/cups4j-0.7.9.jar 
- lib/curvesapi-1.07.jar 
+ lib/curvesapi-1.08.jar 
  lib/db/mssql-jdbc-12.8.1.jre11.jar 
  lib/db/mysql-connector-j-9.2.0.jar 
  lib/db/ojdbc17.jar 
  lib/ecj-3.21.0.jar 
- lib/fastexcel-reader-0.15.6.jar 
+ lib/fastexcel-reader-0.18.4.jar 
  lib/groovy-4.0.16.jar 
  lib/groovy-sandbox-1.26-jaspersoft-2.jar 
- lib/httpclient-4.5.13.jar 
- lib/httpcore-4.4.13.jar 
+ lib/httpclient-4.5.14.jar 
+ lib/httpcore-4.4.16.jar 
  lib/jSerialComm-2.11.0.jar 
  lib/jackcess-4.0.8.jar 
  lib/jackson-annotations-2.17.1.jar 
@@ -57,29 +57,26 @@ Class-Path: lib/SparseBitSet-1.2.jar
  lib/jackson-dataformat-xml-2.17.1.jar 
  lib/jakarta.activation-api-2.1.3.jar 
  lib/jakarta.mail-api-2.1.3.jar 
- lib/jasperreports-7.0.1.jar 
- lib/jasperreports-annotation-processors-7.0.1.jar 
- lib/jasperreports-ant-7.0.1.jar 
- lib/jasperreports-barbecue-7.0.1.jar 
- lib/jasperreports-barcode4j-7.0.1.jar 
- lib/jasperreports-chart-customizers-7.0.1.jar 
- lib/jasperreports-chart-themes-7.0.1.jar 
- lib/jasperreports-charts-7.0.1.jar 
- lib/jasperreports-data-adapters-7.0.1.jar 
- lib/jasperreports-excel-poi-7.0.1.jar 
- lib/jasperreports-fastexcel-7.0.1.jar 
- lib/jasperreports-fonts-7.0.1.jar 
- lib/jasperreports-functions-7.0.1.jar 
- lib/jasperreports-groovy-7.0.1.jar 
- lib/jasperreports-interactivity-7.0.1.jar 
- lib/jasperreports-javaflow-7.0.1.jar 
- lib/jasperreports-jdt-7.0.1.jar 
- lib/jasperreports-json-7.0.1.jar 
- lib/jasperreports-metadata-7.0.1.jar 
- lib/jasperreports-pdf-7.0.1.jar 
- lib/jasperreports-sort-7.0.1.jar 
- lib/jasperreports-spring-7.0.1.jar 
- lib/jasperreports-velocity-7.0.1.jar 
+ lib/jasperreports-7.0.2.jar 
+ lib/jasperreports-annotation-processors-7.0.2.jar 
+ lib/jasperreports-ant-7.0.2.jar 
+ lib/jasperreports-barbecue-7.0.2.jar 
+ lib/jasperreports-barcode4j-7.0.2.jar 
+ lib/jasperreports-chart-customizers-7.0.2.jar 
+ lib/jasperreports-chart-themes-7.0.2.jar 
+ lib/jasperreports-charts-7.0.2.jar 
+ lib/jasperreports-data-adapters-7.0.2.jar 
+ lib/jasperreports-excel-poi-7.0.2.jar 
+ lib/jasperreports-fastexcel-7.0.2.jar 
+ lib/jasperreports-fonts-7.0.2.jar 
+ lib/jasperreports-functions-7.0.2.jar 
+ lib/jasperreports-groovy-7.0.2.jar 
+ lib/jasperreports-javaflow-7.0.2.jar 
+ lib/jasperreports-jdt-7.0.2.jar 
+ lib/jasperreports-json-7.0.2.jar 
+ lib/jasperreports-metadata-7.0.2.jar 
+ lib/jasperreports-pdf-7.0.2.jar 
+ lib/jasperreports-spring-7.0.2.jar 
  lib/jfreechart-1.5.4.jar 
  lib/jgoodies-common-1.6.0.jar 
  lib/jgoodies-forms-1.7.1.jar 
@@ -90,22 +87,22 @@ Class-Path: lib/SparseBitSet-1.2.jar
  lib/net.tascalate.javaflow.api-2.7.5.jar 
  lib/opencsv-5.10.jar 
  lib/openpdf-1.3.32.jar 
- lib/poi-5.2.2.jar 
- lib/poi-ooxml-5.2.2.jar 
- lib/poi-ooxml-lite-5.2.2.jar 
+ lib/poi-5.3.0.jar 
+ lib/poi-ooxml-5.3.0.jar 
+ lib/poi-ooxml-lite-5.3.0.jar 
  lib/simple-xml-2.7.1.jar 
  lib/slf4j-api-2.0.16.jar 
  lib/slf4j-nop-2.0.16.jar 
- lib/spring-beans-5.3.27.jar 
- lib/spring-core-5.3.27.jar 
- lib/spring-jcl-5.3.27.jar 
+ lib/spring-beans-6.2.3.jar 
+ lib/spring-core-6.2.3.jar 
+ lib/spring-jcl-6.2.3.jar 
  lib/stax-1.2.0.jar 
  lib/stax-api-1.0.1.jar 
  lib/stax2-api-4.2.2.jar 
  lib/velocity-engine-core-2.3.jar 
  lib/woodstox-core-6.6.2.jar 
  lib/xml-apis-ext-1.3.04.jar 
- lib/xmlbeans-5.0.3.jar 
- lib/xmlgraphics-commons-2.9.jar 
+ lib/xmlbeans-5.2.1.jar 
+ lib/xmlgraphics-commons-2.10.jar 
  lib/xmpcore-6.1.11.jar 
  lib/xpp3-1.1.3.3.jar 

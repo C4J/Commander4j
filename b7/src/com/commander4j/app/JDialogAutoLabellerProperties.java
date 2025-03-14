@@ -239,12 +239,12 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 					jLabelLineID.setText(lang.get("lbl_Line_ID"));
 					jLabelLineID.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelLineID.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelLineID.setBounds(12, 17, 108, 21);
+					jLabelLineID.setBounds(12, 17, 83, 21);
 				}
 				comboBox4jGroup.setEnabled(false);
 				comboBox4jGroup.setPreferredSize(new Dimension(40, 20));
 				comboBox4jGroup.setFocusCycleRoot(true);
-				comboBox4jGroup.setBounds(128, 51, 167, 21);
+				comboBox4jGroup.setBounds(105, 51, 167, 21);
 
 				comboBox4jGroup.setModel(new DefaultComboBoxModel<String>(Common.printerGroup));
 				comboBox4jGroup.addActionListener(new ActionListener()
@@ -261,7 +261,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 					jTextFieldType.setHorizontalAlignment(SwingConstants.LEFT);
 					jTextFieldType.setEditable(false);
 					jTextFieldType.setEnabled(false);
-					jTextFieldType.setBounds(128, 17, 224, 21);
+					jTextFieldType.setBounds(105, 17, 284, 21);
 				}
 				{
 					jLabelDescription = new JLabel4j_std();
@@ -269,12 +269,12 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 					jLabelDescription.setText(lang.get("lbl_Description"));
 					jLabelDescription.setHorizontalAlignment(SwingConstants.RIGHT);
 					jLabelDescription.setHorizontalTextPosition(SwingConstants.RIGHT);
-					jLabelDescription.setBounds(339, 17, 107, 21);
+					jLabelDescription.setBounds(382, 17, 107, 21);
 				}
 				{
 					jTextFieldDescription = new JTextField4j(JDBAutoLabeller.field_description);
 					jDesktopPane1.add(jTextFieldDescription, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jTextFieldDescription.setBounds(456, 17, 327, 21);
+					jTextFieldDescription.setBounds(496, 17, 287, 21);
 					jTextFieldDescription.addKeyListener(new KeyAdapter()
 					{
 						public void keyTyped(KeyEvent evt)
@@ -347,7 +347,7 @@ public class JDialogAutoLabellerProperties extends javax.swing.JDialog
 					label4j_std.setText(lang.get("lbl_Group_ID"));
 					label4j_std.setHorizontalTextPosition(SwingConstants.RIGHT);
 					label4j_std.setHorizontalAlignment(SwingConstants.RIGHT);
-					label4j_std.setBounds(12, 52, 108, 19);
+					label4j_std.setBounds(12, 52, 83, 19);
 					jDesktopPane1.add(label4j_std);
 				}
 
