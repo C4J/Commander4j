@@ -95,6 +95,7 @@ public class JFrameCloneDB extends JFrame
 	private JList4j<JHost> jListHostTo;
 	private JScrollPane jScrollPaneFrom;
 	private JScrollPane jScrollPaneTo;
+
 	private LinkedList<JHost> hostListFrom = new LinkedList<JHost>();
 	private LinkedList<JHost> hostListTo = new LinkedList<JHost>();
 	final Logger logger = org.apache.logging.log4j.LogManager.getLogger(JFrameCloneDB.class);
@@ -175,10 +176,18 @@ public class JFrameCloneDB extends JFrame
 
 	private void getHosts()
 	{
+
 		hostListFrom.clear();
+		
 		hostListTo.clear();
+		
+		Common.hostList.clear();
+		
 		Common.hostList.loadHosts();
+		
+	
 		hostListFrom = Common.hostList.getHosts();
+
 		hostListTo = Common.hostList.getHosts();
 	}
 
@@ -201,6 +210,8 @@ public class JFrameCloneDB extends JFrame
 		jListHostFrom.setModel(jList1Model);
 		jListHostFrom.setCellRenderer(Common.renderer_list);
 		jListHostFrom.setSelectedIndex(sel);
+		jListHostFrom.requestFocus();
+		jListHostFrom.repaint();
 	}
 
 	private void populateListTo(String defaultitem)
@@ -222,6 +233,8 @@ public class JFrameCloneDB extends JFrame
 		jListHostTo.setModel(jList1Model);
 		jListHostTo.setCellRenderer(Common.renderer_list);
 		jListHostTo.setSelectedIndex(sel);
+		jListHostTo.requestFocus();
+		jListHostTo.repaint();
 	}
 
 	private void getHostDataFrom()
