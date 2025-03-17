@@ -40,6 +40,7 @@ import com.commander4j.db.JDBMaterialCustomerData;
 import com.commander4j.db.JDBMaterialLocation;
 import com.commander4j.db.JDBMaterialType;
 import com.commander4j.db.JDBMaterialUom;
+import com.commander4j.db.JDBModule;
 import com.commander4j.db.JDBUom;
 import com.commander4j.util.JUtility;
 
@@ -97,6 +98,8 @@ public class IncommingMaterialDefinition
 	private String customer_name;
 	private String override_pack_label;
 	private String pack_label_module_id;
+	private String override_pallet_label;
+	private String pallet_label_module_id;
 	private String moveAfterMake;
 	private String moveLocationID;
 
@@ -141,6 +144,7 @@ public class IncommingMaterialDefinition
 		Boolean result = true;
 
 		JDBMaterial mat = new JDBMaterial(getHostID(), getSessionID());
+		JDBModule mod = new JDBModule(getHostID(), getSessionID());
 		JDBMaterialType mattype = new JDBMaterialType(getHostID(), getSessionID());
 		JDBMaterialLocation matlocn = new JDBMaterialLocation(getHostID(), getSessionID());
 		JDBLocation locn = new JDBLocation(getHostID(), getSessionID());
@@ -206,6 +210,9 @@ public class IncommingMaterialDefinition
 		
 		override_pack_label = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("/message/messageData/materialDefinition/override_pack_label").trim());
 		pack_label_module_id = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("/message/messageData[1]/materialDefinition/pack_label_module_id").trim());
+	
+		override_pallet_label = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("/message/messageData/materialDefinition/override_pallet_label").trim());
+		pallet_label_module_id = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("/message/messageData[1]/materialDefinition/pallet_label_module_id").trim());
 		
 		inspection_id = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/inspection_id").trim());
 		default_batch_status = JUtility.replaceNullStringwithBlank(gmh.getXMLDocument().findXPath("//message/messageData/materialDefinition/default_batch_status").trim());
@@ -467,14 +474,58 @@ public class IncommingMaterialDefinition
 		//ROCKWELL_MM_FFMW_XML_to_C4J_XML.xsl does not even attempt to extract the data and put in inbound material messsage as these fields are now
 		//set using an independent message type.
 		
+		//See if a value is included in the inbound message and ignore if not.
+		
 		if (override_pack_label.equals("")==false)
 		{
 			if (override_pack_label.equals("N"))
 			{
+				//If no override then remove module id
 				pack_label_module_id="";
 			}
+			
+			if (override_pack_label.equals("Y"))
+			{
+				//Check override then check that specified module exists.
+				mod.setModuleId(pack_label_module_id);
+				
+				if (mod.isValidModuleId()==false)
+				{
+					//if Module does not exist then ignore 
+					override_pack_label="N";
+					pack_label_module_id="";
+				}
+			}
+			
 			mat.setOverridePackLabel(override_pack_label);
 			mat.setPackLabelModuleID(pack_label_module_id);
+			
+		}
+		
+		if (override_pallet_label.equals("")==false)
+		{
+			if (override_pallet_label.equals("N"))
+			{
+				//If no override then remove module id
+				pallet_label_module_id="";
+			}
+			
+			if (override_pallet_label.equals("Y"))
+			{
+				//Check override then check that specified module exists.
+				mod.setModuleId(pallet_label_module_id);
+				
+				if (mod.isValidModuleId()==false)
+				{
+					//if Module does not exist then ignore 
+					override_pallet_label="N";
+					pallet_label_module_id="";
+				}
+			}
+			
+			mat.setOverridePalletLabel(override_pack_label);
+			mat.setPalletLabelModuleID(pallet_label_module_id);
+			
 		}
 
 		if (mat.update() == false)
