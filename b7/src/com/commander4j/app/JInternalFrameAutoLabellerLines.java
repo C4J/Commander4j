@@ -391,9 +391,9 @@ public class JInternalFrameAutoLabellerLines extends JInternalFrame
 
 		jTable1.setFont(Common.font_list);
 
-		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Line_Col).setPreferredWidth(150);
+		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Line_Col).setPreferredWidth(280);
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Group_Col).setPreferredWidth(50);
-		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Enabled_Col).setPreferredWidth(60);
+		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Enabled_Col).setPreferredWidth(50);
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Description_Col).setPreferredWidth(190);
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.Prefix_Col).setPreferredWidth(40);
 		jTable1.getColumnModel().getColumn(JDBAutoLabellerTableModel.ProcessOrder_Col).setPreferredWidth(80);

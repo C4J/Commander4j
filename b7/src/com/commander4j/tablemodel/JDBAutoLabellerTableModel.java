@@ -47,13 +47,13 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 	public static final int Line_Col = 0;
 	public static final int Group_Col = 1;
 	public static final int Enabled_Col = 2;
-	public static final int Description_Col = 3;
-	public static final int Prefix_Col = 4;
+	public static final int Modified_Col = 3;
+	public static final int Description_Col = 4;
 	public static final int ProcessOrder_Col = 5;
 	public static final int Material_Col = 6;
 	public static final int Batch_Col = 7;
 	public static final int Expiry_Col = 8;
-	public static final int Modified_Col = 9;
+	public static final int Prefix_Col = 9;
 	public static final int Use_SSCC_Range_Col = 10;
 	public static final int SSCC_Prefix_Col = 11;
 	public static final int SSCC_Range_Col = 12;
@@ -64,7 +64,7 @@ public class JDBAutoLabellerTableModel extends AbstractTableModel
 	private JDBControl ctrl;
 	private JDBLabelData labdata;
 	private String[] mcolNames =
-	{ "Line", "Group","Enabled", "Description", "Prefix","Process Order", "Material", "Batch", "Expiry Date", "Modified", "Use SSCC", "SSCC Prefix", "Sequence" };
+	{ "Line", "Group","Enabled", "Modified","Description","Process Order", "Material", "Batch", "Expiry Date", "Prefix",  "Use SSCC", "SSCC Prefix", "Sequence" };
 	private String lastUniqueFound = "";
 	private ResultSet mResultSet;
 
