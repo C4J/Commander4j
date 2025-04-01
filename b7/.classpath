@@ -105,9 +105,9 @@
 	<classpathentry kind="lib" path="lib/groovy-sandbox-1.26-jaspersoft-2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperreports-groovy-7.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-nop-2.0.16.jar"/>
-	<classpathentry kind="lib" path="lib/db/mssql-jdbc-12.8.1.jre11.jar"/>
 	<classpathentry kind="lib" path="lib/db/mysql-connector-j-9.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/db/ojdbc17.jar"/>
+	<classpathentry kind="lib" path="lib/db/mssql-jdbc-12.10.0.jre11.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21">
 		<attributes>
 			<attribute name="module" value="true"/>
